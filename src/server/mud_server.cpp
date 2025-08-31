@@ -16,6 +16,7 @@
 #include "network_manager.hpp"
 #include "persistence_manager.hpp"
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <magic_enum/magic_enum.hpp>
@@ -299,14 +300,15 @@ void ModernMUDServer::stop() {
 
     Log::info("Stopping Modern FieryMUD Server...");
 
+    // Stop networking FIRST to cleanly disconnect all players
+    // This must happen before world server stops to avoid strand deadlocks
+    if (network_manager_) {
+        network_manager_->stop();
+    }
+
     // Stop world server (handles save and cleanup)
     if (world_server_) {
         world_server_->stop();
-    }
-
-    // Stop networking
-    if (network_manager_) {
-        network_manager_->stop();
     }
 
     // Stop I/O context
@@ -592,8 +594,34 @@ Result<void> validate_environment() {
 }
 
 Result<void> setup_logging(const ServerConfig &config) {
-    // TODO: Implement comprehensive logging setup
-    Log::info("Logging initialized for {}", config.mud_name);
+    // Parse log level string to enum
+    LogLevel level = LogLevel::Info; // default
+    std::string level_str = config.log_level;
+    
+    // Convert to lowercase for case-insensitive matching
+    std::transform(level_str.begin(), level_str.end(), level_str.begin(), ::tolower);
+    
+    if (level_str == "trace") {
+        level = LogLevel::Trace;
+    } else if (level_str == "debug") {
+        level = LogLevel::Debug;
+    } else if (level_str == "info") {
+        level = LogLevel::Info;
+    } else if (level_str == "warn" || level_str == "warning") {
+        level = LogLevel::Warning;
+    } else if (level_str == "error") {
+        level = LogLevel::Error;
+    } else if (level_str == "critical") {
+        level = LogLevel::Critical;
+    } else if (level_str == "off") {
+        level = LogLevel::Off;
+    }
+    
+    // Initialize logging with the configured level
+    std::string log_file = config.log_directory + "/fierymud.log";
+    Logger::initialize(log_file, level, true);
+    
+    Log::info("Logging initialized for {} with level: {}", config.mud_name, config.log_level);
     return Success();
 }
 } // namespace ServerUtils

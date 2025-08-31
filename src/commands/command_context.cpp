@@ -11,6 +11,8 @@
 #include "command_system.hpp"
 #include "../world/world_manager.hpp"
 #include "command_context.hpp"
+#include "rich_text.hpp"
+#include "terminal_capabilities.hpp"
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../world/room.hpp"
@@ -227,7 +229,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
     return nullptr;
 }
 
-std::shared_ptr<Room> CommandContext::find_room_target(std::string_view name) const {
+std::shared_ptr<Room> CommandContext::find_room_target(std::string_view /* name */) const {
     // TODO: Implement room finding by name or ID
     // For now, return nullptr as stub
     // LOG_DEBUG("Finding room target: {}", name);
@@ -322,6 +324,126 @@ Result<void> CommandContext::move_actor_direction(Direction dir) const {
     
     // Success - movement messages are handled by WorldManager callbacks
     return Result<void>{};
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Enhanced Act-Style Messaging Methods (inspired by legacy system)
+//////////////////////////////////////////////////////////////////////////////
+
+void CommandContext::act_to_char(std::string_view message) const {
+    if (!actor) return;
+    
+    std::string substituted = substitute_variables(message);
+    send(substituted);
+}
+
+void CommandContext::act_to_room(std::string_view message, bool exclude_actor) const {
+    if (!room) return;
+    
+    std::string substituted = substitute_variables(message);
+    send_to_room(substituted, exclude_actor);
+}
+
+void CommandContext::act_to_target(std::shared_ptr<Actor> target, std::string_view message) const {
+    if (!target) return;
+    
+    std::string substituted = substitute_variables(message, target);
+    send_to_actor(target, substituted);
+}
+
+void CommandContext::act(std::string_view message, std::shared_ptr<Actor> target, ActTarget type) const {
+    switch (type) {
+        case ActTarget::ToChar:
+            act_to_char(message);
+            break;
+        case ActTarget::ToTarget:
+            if (target) {
+                act_to_target(target, message);
+            }
+            break;
+        case ActTarget::ToRoom:
+            act_to_room(message, true);
+            break;
+        case ActTarget::ToAll:
+        default:
+            // Send to all relevant parties (legacy-style behavior)
+            act_to_char(message);
+            if (target) {
+                act_to_target(target, message);
+            }
+            act_to_room(message, true);
+            break;
+    }
+}
+
+std::string CommandContext::substitute_variables(std::string_view message, std::shared_ptr<Actor> target) const {
+    std::string result{message};
+    
+    // Actor substitutions ($n patterns)
+    if (actor) {
+        // Replace $n with actor name
+        size_t pos = 0;
+        while ((pos = result.find("$n", pos)) != std::string::npos) {
+            result.replace(pos, 2, actor->name());
+            pos += actor->name().length();
+        }
+        
+        // Replace $s with actor possessive (simplified for now)
+        pos = 0;
+        while ((pos = result.find("$s", pos)) != std::string::npos) {
+            result.replace(pos, 2, "their");  // Gender-neutral default
+            pos += 5;
+        }
+    }
+    
+    // Target substitutions ($N patterns)  
+    if (target) {
+        // Replace $N with target name
+        size_t pos = 0;
+        while ((pos = result.find("$N", pos)) != std::string::npos) {
+            result.replace(pos, 2, target->name());
+            pos += target->name().length();
+        }
+        
+        // Replace $S with target possessive (simplified for now)
+        pos = 0;
+        while ((pos = result.find("$S", pos)) != std::string::npos) {
+            result.replace(pos, 2, "their");  // Gender-neutral default
+            pos += 5;
+        }
+    }
+    
+    return result;
+}
+
+Result<CommandResult> CommandContext::execute_social(const SocialMessage& social, std::string_view target_name) const {
+    if (!actor) {
+        return std::unexpected(Error{ErrorCode::InvalidState, "No actor context"});
+    }
+    
+    if (target_name.empty()) {
+        // No target - use simple messages
+        act_to_char(social.to_actor_no_arg);
+        act_to_room(social.to_room_no_arg);
+    } else {
+        // Find target
+        auto target = find_actor_target(target_name);
+        if (!target) {
+            if (!social.target_not_found.empty()) {
+                send_error(social.target_not_found);
+            } else {
+                send_error(fmt::format("'{}' is not here.", target_name));
+            }
+            return CommandResult::InvalidTarget;
+        }
+        
+        // Send targeted messages
+        act_to_char(substitute_variables(social.to_actor_with_target, target));
+        act_to_target(target, substitute_variables(social.to_target, target));
+        act_to_room(substitute_variables(social.to_room_with_target, target));
+    }
+    
+    return CommandResult::Success;
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -518,3 +640,136 @@ std::string_view get_color_code(MessageType type) {
 }
 
 } // namespace CommandContextUtils
+
+//////////////////////////////////////////////////////////////////////////////
+// CommandContext Rich Text Methods Implementation
+//////////////////////////////////////////////////////////////////////////////
+
+void CommandContext::send_rich(const RichText& rich_text) const {
+    if (actor) {
+        actor->send_message(rich_text.to_ansi());
+    }
+}
+
+void CommandContext::send_colored(std::string_view message, Color color) const {
+    if (actor) {
+        RichText rich;
+        rich.colored(message, color);
+        actor->send_message(rich.to_ansi());
+    }
+}
+
+void CommandContext::send_progress_bar(std::string_view label, float percentage, int width) const {
+    if (actor) {
+        // Detect capabilities for adaptive progress bars
+        auto caps = TerminalCapabilities::detect_capabilities();
+        RichText rich(caps);
+        rich.text(label).text(": ");
+        rich.progress_bar(percentage, width);  // Uses adaptive characters
+        rich.text(fmt::format(" {:.1f}%", percentage * 100.0f));
+        actor->send_message(rich.to_ansi());
+    }
+}
+
+void CommandContext::send_table(const std::vector<std::string>& headers, 
+                                const std::vector<std::vector<std::string>>& rows) const {
+    if (actor) {
+        // Detect terminal capabilities for adaptive formatting
+        auto caps = TerminalCapabilities::detect_capabilities();
+        auto table = Format::table(headers, rows, caps);
+        actor->send_message(table.to_ansi());
+    }
+}
+
+void CommandContext::send_health_status(int current, int max) const {
+    if (actor) {
+        // Use adaptive formatting for health bar
+        auto caps = TerminalCapabilities::detect_capabilities();
+        RichText health_bar(caps);
+        
+        float percentage = (max > 0) ? static_cast<float>(current) / max : 0.0f;
+        health_bar.text("Health: ");
+        health_bar.progress_bar(percentage, 20);  // Uses adaptive characters
+        health_bar.text(fmt::format(" {}/{}", current, max));
+        
+        actor->send_message(health_bar.to_ansi());
+    }
+}
+
+void CommandContext::send_damage_report(int amount, std::string_view source) const {
+    if (actor) {
+        RichText msg;
+        msg.text("You deal ");
+        msg.rgb(std::to_string(amount), Colors::Damage);
+        msg.text(" damage");
+        
+        if (!source.empty()) {
+            msg.text(" with your ");
+            msg.text(source);
+        }
+        msg.text("!");
+        
+        actor->send_message(msg.to_ansi());
+    }
+}
+
+void CommandContext::send_healing_report(int amount, std::string_view source) const {
+    if (actor) {
+        RichText msg;
+        msg.text("You ");
+        if (!source.empty()) {
+            msg.text(source);
+            msg.text(" for ");
+        } else {
+            msg.text("heal ");
+        }
+        msg.rgb("+" + std::to_string(amount), Colors::Healing);
+        msg.text(" hit points!");
+        
+        actor->send_message(msg.to_ansi());
+    }
+}
+
+void CommandContext::send_object_description(std::string_view name, std::string_view quality) const {
+    if (actor) {
+        auto object_display = Format::object_name(name, quality);
+        actor->send_message(object_display.to_ansi());
+    }
+}
+
+void CommandContext::send_header(std::string_view title, char border_char) const {
+    if (actor) {
+        RichText header;
+        std::string border_line(60, border_char);
+        
+        header.colored(border_line, Colors::Border);
+        header.text("\n");
+        
+        // Center the title
+        int padding = (60 - static_cast<int>(title.length())) / 2;
+        if (padding > 0) {
+            header.text(std::string(padding, ' '));
+        }
+        
+        header.bold(title);
+        header.text("\n");
+        header.colored(border_line, Colors::Border);
+        
+        actor->send_message(header.to_ansi());
+    }
+}
+
+void CommandContext::send_separator(char ch, int width) const {
+    if (actor) {
+        RichText sep;
+        sep.colored(std::string(width, ch), Colors::Border);
+        actor->send_message(sep.to_ansi());
+    }
+}
+
+void CommandContext::send_command_help(std::string_view command, std::string_view syntax) const {
+    if (actor) {
+        auto help_display = Format::command_syntax(command, syntax);
+        actor->send_message(help_display.to_ansi());
+    }
+}

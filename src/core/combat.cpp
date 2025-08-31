@@ -1,6 +1,7 @@
 #include "combat.hpp"
 #include "actor.hpp"
 #include "logging.hpp"
+#include "../world/room.hpp"
 #include <random>
 #include <algorithm>
 #include <unordered_map>
@@ -190,8 +191,8 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     if (!hit) {
         result.type = CombatResult::Type::Miss;
         result.attacker_message = "Your attack misses.";
-        result.target_message = fmt::format("{} misses you.", attacker->name());
-        result.room_message = fmt::format("{}'s attack misses {}.", attacker->name(), target->name());
+        result.target_message = fmt::format("{} misses you.", attacker->display_name());
+        result.room_message = fmt::format("{}'s attack misses {}.", attacker->display_name(), target->display_name());
         
         fire_event(CombatEvent(CombatEvent::EventType::AttackMiss, attacker, target));
         return result;
@@ -246,9 +247,10 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         attacker->gain_experience(exp_gain);
         
         result.type = CombatResult::Type::Death;
-        result.attacker_message += fmt::format(" You have killed {}! You gain {} experience.", target->name(), exp_gain);
+        result.attacker_message += fmt::format(" You have killed {}! You gain {} experience.", 
+                                               target->display_name(), exp_gain);
         result.target_message = "You are DEAD!";
-        result.room_message += fmt::format(" {} is DEAD!", target->name());
+        result.room_message += fmt::format(" {} is DEAD!", target->display_name());
         
         fire_event(CombatEvent(CombatEvent::EventType::ActorDeath, attacker, target));
         fire_event(CombatEvent(CombatEvent::EventType::CombatEnd, attacker, target));
@@ -357,7 +359,7 @@ bool ClassAbilities::warrior_extra_attack_available(const Actor& actor) {
     return level >= 6 && (level >= 20 || level >= 16 || level >= 11 || level >= 6);
 }
 
-bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const Actor& target) {
+bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const Actor& /* target */) {
     // For now, simple check: rogue vs non-rogue
     // In future: check if target is unaware, flanked, etc.
     if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
@@ -451,7 +453,8 @@ void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
 bool CombatManager::process_combat_rounds() {
     cleanup_invalid_combats();
     
-    auto now = std::chrono::steady_clock::now();
+    // Process combat rounds
+    // auto now = std::chrono::steady_clock::now();
     bool rounds_processed = false;
     
     for (auto& combat : active_combats_) {
@@ -573,7 +576,17 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
             first_attacker->send_message(result1.attacker_message + "\r\n");
             first_target->send_message(result1.target_message + "\r\n");
             
-            // TODO: Send room message to other people in room
+            // Send room message to others in room
+            if (!result1.room_message.empty()) {
+                if (auto room = first_target->current_room()) {
+                    // Send message to everyone except the combatants
+                    for (const auto& actor : room->contents().actors) {
+                        if (actor && actor != first_attacker && actor != first_target) {
+                            actor->send_message(result1.room_message + "\r\n");
+                        }
+                    }
+                }
+            }
         }
         
         // If target died, combat will be ended by perform_attack
@@ -597,7 +610,15 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
             first_target->send_message(result2.attacker_message + "\r\n");
             first_attacker->send_message(result2.target_message + "\r\n");
             
-            // TODO: Send room message to other people in room
+            // Send room message to others in room
+            if (!result2.room_message.empty()) {
+                // Send message to everyone except the combatants
+                for (const auto& actor : room->contents().actors) {
+                    if (actor && actor != first_target && actor != first_attacker) {
+                        actor->send_message(result2.room_message + "\r\n");
+                    }
+                }
+            }
         }
     }
 }

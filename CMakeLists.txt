@@ -19,7 +19,9 @@ CPMAddPackage("gh:Neargye/magic_enum#v0.9.7")
 CPMAddPackage("gh:jarro2783/cxxopts#v3.3.1")
 CPMAddPackage("gh:catchorg/Catch2#v3.6.0")
 
-# Standalone Asio for networking
+# Standalone Asio for networking with SSL support
+find_package(OpenSSL REQUIRED)
+
 CPMAddPackage(
     NAME asio
     GITHUB_REPOSITORY chriskohlhoff/asio
@@ -33,7 +35,9 @@ if(asio_ADDED)
     target_compile_definitions(asio INTERFACE 
         ASIO_STANDALONE 
         ASIO_NO_DEPRECATED
+        ASIO_HAS_STD_CHRONO
     )
+    target_link_libraries(asio INTERFACE OpenSSL::SSL OpenSSL::Crypto)
 endif()
 
 # Version generation for legacy build
@@ -67,6 +71,7 @@ set(SOURCES
     src/core/entity.cpp
     src/core/actor.cpp
     src/core/object.cpp
+    src/core/shopkeeper.cpp
     src/core/combat.cpp
     src/world/room.cpp
     src/world/zone.cpp
@@ -76,11 +81,15 @@ set(SOURCES
     src/server/mud_server.cpp
     src/server/network_manager.cpp
     src/net/player_connection.cpp
+    src/net/mssp_handler.cpp
+    src/net/tls_context.cpp
     src/game/login_system.cpp
     src/server/persistence_manager.cpp
     src/server/configuration_manager.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
+    src/commands/rich_text.cpp
+    src/commands/terminal_capabilities.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
     src/commands/information_commands.cpp
@@ -157,16 +166,22 @@ set(CORE_TEST_SOURCES
     src/core/entity.cpp
     src/core/actor.cpp
     src/core/object.cpp
+    src/core/shopkeeper.cpp
     src/core/combat.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
     src/world/weather.cpp
     src/server/world_server.cpp
+    src/server/network_manager.cpp
     src/net/player_connection.cpp
+    src/net/tls_context.cpp
+    src/net/mssp_handler.cpp
     src/game/login_system.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
+    src/commands/rich_text.cpp
+    src/commands/terminal_capabilities.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
     src/commands/information_commands.cpp

@@ -139,6 +139,9 @@ public:
     /** Get all equipped items */
     std::vector<std::shared_ptr<Object>> get_all_equipped() const;
     
+    /** Get all equipped items with their slots */
+    std::vector<std::pair<EquipSlot, std::shared_ptr<Object>>> get_all_equipped_with_slots() const;
+    
     /** Get equipped items by type */
     std::vector<std::shared_ptr<Object>> get_equipped_by_type(ObjectType type) const;
     
@@ -166,6 +169,9 @@ private:
     
     /** Check if slot conflicts with currently equipped items */
     bool has_slot_conflict(EquipSlot slot, const Object& item) const;
+    
+    /** Get descriptive error message for slot conflicts */
+    std::string get_slot_conflict_message(EquipSlot slot, const Object& item) const;
 };
 
 /** Actor position in the world */
@@ -344,6 +350,10 @@ public:
     int aggression_level() const { return aggression_level_; }
     void set_aggression_level(int level) { aggression_level_ = std::max(0, std::min(10, level)); }
     
+    /** Shopkeeper properties */
+    bool is_shopkeeper() const { return is_shopkeeper_; }
+    void set_shopkeeper(bool value) { is_shopkeeper_ = value; }
+    
     /** Memory for received messages (for AI) */
     const std::vector<std::string>& get_received_messages() const { return received_messages_; }
     void clear_received_messages() { received_messages_.clear(); }
@@ -354,6 +364,7 @@ protected:
 private:
     bool aggressive_ = false;
     int aggression_level_ = 5;  // 0-10 scale
+    bool is_shopkeeper_ = false;
     std::vector<std::string> received_messages_;
     
     void initialize_for_level(int level);
@@ -373,6 +384,9 @@ public:
     
     /** JSON serialization */
     nlohmann::json to_json() const override;
+    
+    /** Display name for players returns their actual name */
+    std::string display_name(bool with_article = false) const override;
     
     /** Communication (Players queue output to session) */
     void send_message(std::string_view message) override;

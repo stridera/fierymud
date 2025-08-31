@@ -8,6 +8,7 @@
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../net/player_connection.hpp"
+#include "../server/network_manager.hpp"
 #include "../world/world_manager.hpp"
 
 #include <algorithm>
@@ -116,6 +117,93 @@ void LoginSystem::handle_get_name(std::string_view input) {
         return;
     }
 
+    // Check if input contains colon (user:password format)
+    auto colon_pos = input.find(':');
+    if (colon_pos != std::string::npos) {
+        // Parse user:password format
+        std::string name_part = std::string(input.substr(0, colon_pos));
+        std::string password_part = std::string(input.substr(colon_pos + 1));
+        
+        // Trim whitespace from both parts
+        auto trim = [](std::string& s) {
+            auto start = s.find_first_not_of(" \t\r\n");
+            auto end = s.find_last_not_of(" \t\r\n");
+            if (start != std::string::npos) {
+                s = s.substr(start, end - start + 1);
+            } else {
+                s.clear();
+            }
+        };
+        
+        trim(name_part);
+        trim(password_part);
+        
+        if (name_part.empty() || password_part.empty()) {
+            send_message("Invalid format. Use 'name:password' or just 'name'.");
+            send_prompt();
+            return;
+        }
+        
+        std::string name = normalize_name(name_part);
+        
+        if (!is_valid_name(name)) {
+            send_message("Invalid name. Names must be 3-20 characters, letters only, and start with a capital letter.");
+            send_prompt();
+            return;
+        }
+        
+        creation_data_.name = name;
+        
+        // Check if character exists
+        auto exists_result = character_exists(name);
+        if (!exists_result) {
+            send_message("Error checking character database. Please try again.");
+            send_prompt();
+            return;
+        }
+        
+        if (exists_result.value()) {
+            // Existing character - try to login directly with provided password
+            auto load_result = load_character(name, password_part);
+            if (!load_result) {
+                login_attempts_++;
+                if (login_attempts_ >= MAX_LOGIN_ATTEMPTS) {
+                    disconnect_with_message("Too many failed login attempts. Goodbye!");
+                    return;
+                }
+                
+                send_message("Invalid password. Please try again with 'name:password' or just the name.");
+                send_prompt();
+                return;
+            }
+            
+            // Successfully loaded character
+            player_ = load_result.value();
+            
+            // Check for existing connection and handle reconnection
+            if (auto* network_manager = connection_->get_network_manager()) {
+                if (network_manager->handle_reconnection(connection_, player_->name())) {
+                    Log::info("Player '{}' reconnected successfully", player_->name());
+                    return;
+                }
+            }
+            
+            transition_to(LoginState::Playing);
+            send_message(fmt::format("Welcome to FieryMUD, {}!", player_->name()));
+            
+            if (player_loaded_callback_) {
+                player_loaded_callback_(player_);
+            }
+            
+            Log::info("Player '{}' logged in successfully via name:password format", player_->name());
+            return;
+        } else {
+            send_message(fmt::format("Character '{}' does not exist. Create it first by entering just the name.", name));
+            send_prompt();
+            return;
+        }
+    }
+
     std::string name = normalize_name(input);
 
     if (!is_valid_name(name)) {
@@ -170,6 +258,17 @@ void LoginSystem::handle_get_password(std::string_view input) {
 
     // Successfully loaded character
     player_ = load_result.value();
+    
+    // Check for existing connection and handle reconnection
+    if (auto* network_manager = connection_->get_network_manager()) {
+        if (network_manager->handle_reconnection(connection_, player_->name())) {
+            // Existing connection was found and player transferred to this connection
+            // The reconnection handler already sent appropriate messages
+            Log::info("Player '{}' reconnected successfully", player_->name());
+            return; // Early return since reconnection handled everything
+        }
+    }
+    
     transition_to(LoginState::Playing);
 
     send_message(fmt::format("Welcome to FieryMUD, {}!", player_->name()));
@@ -692,69 +791,4 @@ LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_
     }
     
     return validation;
-}
-
-Result<void> LoginSystem::migrate_player_file(std::string_view name) {
-    const auto &dir = Config::instance().player_directory();
-    std::filesystem::path path{dir};
-    path /= fmt::format("{}.json", name);
-    auto filename = path.string();
-    
-    try {
-        std::ifstream file(filename);
-        if (!file.is_open()) {
-            return std::unexpected(Error{ErrorCode::FileNotFound, fmt::format("Cannot open file: {}", filename)});
-        }
-        
-        nlohmann::json data;
-        file >> data;
-        file.close();
-        
-        // Backup original file
-        auto backup_path = fmt::format("{}.backup.{}", filename, 
-                                     std::chrono::system_clock::now().time_since_epoch().count());
-        std::filesystem::copy_file(path, backup_path);
-        
-        bool modified = false;
-        
-        // Add missing created timestamp if needed
-        if (!data.contains("created")) {
-            data["created"] = std::chrono::duration_cast<std::chrono::seconds>(
-                std::chrono::system_clock::now().time_since_epoch()).count();
-            modified = true;
-        }
-        
-        // Ensure player_data has all required modern fields
-        auto& player_data = data["player_data"];
-        
-        // Add default equipment if missing
-        if (!player_data.contains("equipment")) {
-            player_data["equipment"] = nlohmann::json::object();
-            modified = true;
-        }
-        
-        // Add default inventory if missing  
-        if (!player_data.contains("inventory")) {
-            player_data["inventory"] = nlohmann::json::array();
-            modified = true;
-        }
-        
-        if (modified) {
-            // Write migrated file
-            std::ofstream output_file(filename);
-            if (!output_file.is_open()) {
-                return std::unexpected(Error{ErrorCode::FileAccessError, "Cannot write migrated file"});
-            }
-            
-            output_file << data.dump(2);
-            output_file.close();
-            
-            Log::info("Migrated player file for '{}' (backup: {})", name, backup_path);
-        }
-        
-        return Success();
-        
-    } catch (const std::exception& e) {
-        return std::unexpected(Error{ErrorCode::ParseError, fmt::format("Migration failed: {}", e.what())});
-    }
 }

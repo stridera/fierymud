@@ -1,147 +1,112 @@
 # FieryMUD Modernization Task Status
 
-## Container System Inheritance Fix ✅
+## Phase 1: Core System Modernization ✅ COMPLETE
+
+### Container System Inheritance Fix ✅
 
 **COMPLETED**: Fixed container system architecture to enable proper item storage in bags and containers.
 
-### Major Achievements  
+**Major Achievements**: Object inheritance architecture, legacy JSON compatibility, factory method enhancement, type safety fix, comprehensive testing, and container functionality all working correctly.
 
-- **✅ Object Inheritance Architecture**: Implemented proper object factory pattern creating Container subclass instances
-- **✅ Legacy JSON Compatibility**: Added parsing for legacy container format (`"values": {"Capacity": "50"}`)
-- **✅ Factory Method Enhancement**: Modified `Object::from_json()` to create appropriate subclasses (Container, Weapon, Armor)
-- **✅ Type Safety Fix**: Fixed `std::dynamic_pointer_cast<Container>()` failures in put command
-- **✅ Comprehensive Testing**: Unit tests verify container inheritance and legacy capacity parsing work correctly
-- **✅ Container Functionality**: Bags now properly support add_item(), remove_item(), get_contents() methods
-
-### Technical Implementations
-
-- **Container Factory Pattern**:
-  - Modified `Object::from_json()` factory method to create Container instances for CONTAINER types
-  - Pre-parsing of legacy JSON capacity before object instantiation
-  - Support for legacy format: `"values": {"Capacity": "50"}` → `info.capacity = 50`
-- **Object Inheritance System**:
-  - Base Object class with specialized Container, Weapon, Armor subclasses  
-  - Type-safe `std::dynamic_pointer_cast<Container>()` succeeds with new architecture
-  - Container-specific methods: add_item(), remove_item(), get_contents(), can_store_item()
-- **Legacy Compatibility**: Maintains backward compatibility with existing world JSON data while enabling modern OOP design
-
-### Container Fix Status
-
-- **✅ All unit tests passing**: Container inheritance and JSON parsing verified
-- **✅ Factory method working**: Objects properly created as Container subclass instances  
-- **✅ Legacy parsing working**: Bag capacity correctly set to 50 items, 500 weight capacity
-
-## Command System Modernization ✅
+### Command System Modernization ✅
 
 **COMPLETED**: Successfully modernized and cleaned up the command system architecture.
 
-### Major Achievements
+**Major Achievements**: Commands properly organized into specialized namespaces, header cleanup, polymorphism working, container integration, and full production functionality.
 
-- **✅ Command Organization**: Commands properly organized into specialized files:
-  - `InformationCommands` (look, stat, who, inventory, etc.)
-  - `CommunicationCommands` (say, tell, emote, etc.)
-  - `MovementCommands` (north, south, exits, etc.)
-  - `ObjectCommands` (get, drop, put, wear, etc.)
-  - `CombatCommands` (kill, hit, cast, flee, etc.)
-  - `SystemCommands` (quit, save, help, etc.)
-  - `SocialCommands` (smile, nod, wave, etc.)
-  - `AdminCommands` (shutdown, goto, teleport, etc.)
+### Display Name Unification ✅
 
-- **✅ Header Cleanup**: Removed duplicate function declarations from `builtin_commands.hpp`
-- **✅ Architecture Verification**: Confirmed `builtin_commands.cpp` properly serves as command registration hub
-- **✅ Polymorphism Working**: `stat` and `look` commands properly work with derived object classes
-- **✅ Container Integration**: Commands properly handle Container casting and specialized methods
-- **✅ Build System**: All builds successful, tests passing at 100%
-- **✅ Server Functionality**: Production server runs successfully with full command system
+**COMPLETED**: Fixed all instances where keywords were inappropriately displayed to players instead of proper display names.
 
-### Technical Verification
+**Major Achievements**:
+- **✅ Player-Facing Display Issues**: Fixed NPC condition display, combat prompts, equipment descriptions
+- **✅ Clean Interface Implementation**: Added `Player::display_name()` override, made `Entity::display_name()` virtual
+- **✅ Communication Commands**: Fixed tell, emote, whisper, shout, gossip to show proper names
+- **✅ Social Commands**: Fixed all social actions to display proper names instead of keywords
+- **✅ Object Interaction**: Fixed get, drop, put, give, wear, wield commands to show proper names
+- **✅ Combat System**: Fixed combat messages and prompts to show descriptive names
+- **✅ Information Commands**: Fixed look, where, and stat commands to show proper names
+- **✅ Logging System**: Updated logs to use appropriate names (player names for players, display names for NPCs)
+- **✅ Code Cleanup**: Eliminated all conditional `dynamic_cast` logic, unified interface
 
-- **Command Registration**: All commands properly registered through specialized namespaces
-- **Type Safety**: `std::dynamic_pointer_cast<Container>()` working correctly in look/stat commands
-- **Polymorphic Methods**: Object `get_stat_info()` method properly shows specialized information for derived classes
-- **World Loading**: 131 zones, 9963 rooms loaded successfully with only 2 minor exit errors and 138 harmless warnings
-- **Equipment System**: Zone resets successfully equipping items on NPCs through inheritance system
+**Technical Implementation**:
+- Made `Entity::display_name()` virtual for proper polymorphism
+- Added `Player::display_name()` override that returns player's actual name
+- NPCs and objects use existing Entity logic (short_description → name fallback)
+- Eliminated complex conditional branching throughout codebase
+- All player-facing messages now show proper descriptive names
 
-## Current Focus: Code Quality and Legacy Integration 🔍
+## Phase 2: Code Quality and System Cleanup 🔧 IN PROGRESS
 
-### Priority 1: Legacy Integration and Output Formatting
+### Priority 1: Code Quality and Technical Debt 
 
-- **Spell/Ability Output**: Use `legacy/src/*` to improve spell and ability output formatting to match legacy expectations
-- **Combat Messages**: Enhance combat system feedback using legacy reference implementations
-- **Social System**: Improve social command output formatting for better user experience
+**Current Focus**: Clean up codebase quality issues and resolve technical debt.
 
-### Priority 2: Advanced Object Features
+- **🔄 TODO Resolution**: Address all TODO comments and implement missing functionality
+- **🔄 Warning Cleanup**: Fix unused variable warnings and compiler issues
+- **🔄 Integration Placeholders**: Replace "This would need integration with..." comments with implementations
+- **🔄 Documentation Updates**: Update outdated comments and documentation
+- **🔄 Performance Optimizations**: Address performance bottlenecks identified during development
 
-- **Enhanced Container System**
-  - Implement liquid containers with volume tracking
-  - Add container closure/locking mechanisms with key support
-  - Implement weight-based capacity limits
-- **Advanced Equipment System**
-  - Multi-slot equipment (rings, jewelry)
-  - Equipment condition and durability
-  - Magical item effects and enchantments
+### Priority 2: System Integration Completion
 
-### Priority 3: Core Game Systems
+- **Combat System Enhancement**: Complete spell/ability integration with modern command system
+- **Social System Polish**: Enhanced social commands with proper message formatting  
+- **Equipment System**: Complete equipment integration with condition and durability
+- **Container System**: Finish advanced container features (liquid containers, locking)
 
-- **NPC Interaction System**
-  - Shop/merchant systems using enhanced object framework
-  - Quest item tracking and management
-  - NPC equipment and inventory systems
-- **Advanced Combat Integration**
-  - Weapon durability and maintenance
-  - Combat equipment effects
-  - Consumable item usage in combat
+### Priority 3: Production Readiness
 
-### Priority 4: Production Readiness
+- **World Data Validation**: Fix remaining room exit errors and validation warnings
+- **Performance Optimization**: Address memory usage and computational bottlenecks
+- **GMCP Enhancement**: Complete modern GMCP integration
+- **Error Handling**: Robust error handling and recovery mechanisms
 
-- **World data validation cleanup**
-  - Fix 2 room exit errors (rooms pointing to non-existent destinations)
-  - Address 138 validation warnings (mainly circular exits in test/development zones)
-  - Ensure all zone resets work properly with complete object/mobile sets
-- **Performance optimization** and **Enhanced GMCP integration**
+### Phase 2 Success Criteria
+
+- **Zero TODO Comments**: All TODO items resolved or converted to GitHub issues
+- **Zero Compiler Warnings**: Clean build with no warnings
+- **Complete Integration**: All "integration needed" placeholders implemented
+- **Performance Benchmarks**: Meet established performance targets
+- **Production Quality**: Ready for deployment with comprehensive testing
 
 ## Development Commands
 
 - `./build/fierymud` - Run modern server (production-ready)
-- `./run_tests.sh` - Run stable test suite (100% success rate)
+- `./run_tests.sh` - Run stable test suite (100% success rate)  
 - `cmake --build build` - Build system
 - `./build/stable_tests` - Run integration tests directly
 
+## Phase 2 Task Planning
+
+### Immediate Tasks (Week 1)
+1. **TODO Audit**: Comprehensive search and catalog of all TODO comments
+2. **Warning Resolution**: Fix all unused parameter and variable warnings
+3. **Integration Cleanup**: Find and implement all "integration needed" placeholders
+4. **Code Review**: Identify technical debt and performance issues
+
+### Short-term Tasks (Week 2-3)  
+1. **Combat Integration**: Complete spell and ability system integration
+2. **Social Enhancement**: Polish social command messaging and templates
+3. **Container Features**: Implement liquid containers and advanced features
+4. **Performance Optimization**: Address identified bottlenecks
+
+### Medium-term Goals (Month 1)
+1. **Production Deployment**: Full production readiness
+2. **Advanced Features**: Complete equipment durability and magical effects
+3. **World Data**: Clean up all validation errors and warnings
+4. **Documentation**: Comprehensive system documentation
+
 ## Summary
 
-**Major Milestone Achieved**: The **command system modernization and container inheritance architecture are complete** with 100% test success rate and full production functionality. The **enhanced object system** with proper inheritance and the **organized command architecture** provide a solid foundation for advanced gameplay features.
+**Phase 1 Complete**: Core system modernization achieved with container inheritance, command system organization, and display name unification all working perfectly. The foundation is solid for advanced features.
+
+**Current Status**: **Phase 2 In Progress** - Focus on code quality, technical debt resolution, and production readiness. All major systems are functional and tested.
 
 **Architecture Status**:
 - ✅ **Object Inheritance**: Container, Weapon, Armor subclasses working perfectly
 - ✅ **Command System**: Clean, organized, modular command architecture  
+- ✅ **Display Names**: Unified interface with proper player vs NPC name handling
 - ✅ **Type Safety**: Polymorphic methods and safe casting working correctly
 - ✅ **Production Ready**: Server runs successfully with full functionality
-
-## Legacy Analysis and Documentation ✅ 
-
-**COMPLETED**: Comprehensive analysis of legacy messaging patterns and architectural recommendations.
-
-### Major Achievements
-
-- **✅ Legacy Pattern Analysis**: Analyzed legacy spell, social, and combat messaging systems
-- **✅ act() System Documentation**: Documented sophisticated room messaging with variable substitution
-- **✅ Social Command Structure**: Analyzed complex social message templates with contextual responses  
-- **✅ Architecture Recommendations**: Created detailed recommendations for modern messaging enhancement
-- **✅ Implementation Guide**: Provided concrete examples and priority roadmap for improvements
-
-### Technical Documentation
-
-- **Created**: `docs/LEGACY_MESSAGING_PATTERNS.md` - Comprehensive analysis and recommendations
-- **Variable Substitution**: Documented `$n`, `$N`, `$s`, `$S` pattern system from legacy code
-- **Message Types**: TO_CHAR, TO_VICT, TO_ROOM messaging patterns analyzed  
-- **Color System**: Legacy color codes and formatting patterns documented
-- **Social Templates**: Complex social message structure with no-arg/target/not-found variants
-
-### Next Phase Recommendations
-
-1. **Enhanced CommandContext**: Add act()-style messaging methods for consistency
-2. **Message Templates**: Implement social message template system
-3. **Variable Substitution**: Add legacy-compatible variable substitution 
-4. **Spell Enhancement**: Rich spell and ability output formatting
-
-**Current Status**: **Modernization Phase 1 Complete** - All core systems modernized, documented, and production-ready. Ready for Phase 2 enhancement implementation.
+- 🔄 **Code Quality**: Cleaning up TODO items, warnings, and integration placeholders

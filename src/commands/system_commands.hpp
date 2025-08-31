@@ -26,4 +26,6 @@ namespace SystemCommands {
     Result<CommandResult> cmd_help(const CommandContext& ctx);
     Result<CommandResult> cmd_commands(const CommandContext& ctx);
     Result<CommandResult> cmd_prompt(const CommandContext& ctx);
+    Result<CommandResult> cmd_richtest(const CommandContext& ctx);
+    Result<CommandResult> cmd_clientinfo(const CommandContext& ctx);
 }

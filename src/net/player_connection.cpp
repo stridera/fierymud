@@ -9,8 +9,10 @@
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
+#include "../server/network_manager.hpp"
 #include "../server/world_server.hpp"
 #include "../world/world_manager.hpp"
+#include "mssp_handler.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -18,38 +20,95 @@
 #include <regex>
 
 // GMCPHandler implementation
-GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection) {}
+GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection) {
+    // Initialize with conservative defaults until client capabilities are detected
+    terminal_capabilities_ = TerminalCapabilities::detect_capabilities();
+    
+    // Initialize MSSP handler with network manager's config
+    if (connection_.get_network_manager()) {
+        // Note: NetworkManager constructor takes ServerConfig reference but we need access to it
+        // For now, we'll create the handler when needed in handle_mssp_request
+        mssp_handler_ = nullptr;
+    }
+}
+
+void GMCPHandler::enable() {
+    gmcp_enabled_ = true;
+    terminal_capabilities_.supports_gmcp = true;  // Mark GMCP as supported
+    Log::info("GMCP enabled. Using conservative defaults until client capabilities detected: terminal={}, unicode={}, color={}, level={}", 
+              terminal_capabilities_.terminal_name,
+              terminal_capabilities_.supports_unicode,
+              terminal_capabilities_.supports_color,
+              static_cast<int>(terminal_capabilities_.overall_level));
+}
 
 Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) {
-    if (option != GMCP_OPTION) {
-        return Result<void>{}; // Not our option, ignore
-    }
-
-    switch (command) {
-    case TELNET_WILL:
-        // Client wants to use GMCP
-        enable();
-        return send_telnet_option(TELNET_DO, GMCP_OPTION);
-
-    case TELNET_WONT:
-        // Client doesn't want GMCP
-        disable();
-        return send_telnet_option(TELNET_DONT, GMCP_OPTION);
-
-    case TELNET_DO:
-        // Client wants us to use GMCP (we already do)
-        enable();
-        send_hello();
-        send_supports_set();
-        return Result<void>{};
-
-    case TELNET_DONT:
-        // Client doesn't want us to use GMCP
-        disable();
-        return Result<void>{};
-
+    switch (option) {
+    case GMCP_OPTION:
+        switch (command) {
+        case TELNET_WILL:
+            // Client wants to use GMCP
+            enable();
+            return send_telnet_option(TELNET_DO, GMCP_OPTION);
+        case TELNET_WONT:
+            // Client doesn't want GMCP
+            disable();
+            return send_telnet_option(TELNET_DONT, GMCP_OPTION);
+        case TELNET_DO:
+            // Client wants us to use GMCP (we already do)
+            enable();
+            send_server_services();
+            // Request terminal capabilities after GMCP handshake
+            request_terminal_type();
+            request_new_environ();
+            return Result<void>{};
+        case TELNET_DONT:
+            // Client doesn't want us to use GMCP
+            disable();
+            return Result<void>{};
+        default:
+            return std::unexpected(Error{ErrorCode::InvalidArgument, fmt::format("Unknown telnet command: {}", command)});
+        }
+        break;
+        
+    case TTYPE_OPTION:
+        switch (command) {
+        case TELNET_WILL:
+            // Client supports terminal type
+            return send_telnet_option(TELNET_DO, TTYPE_OPTION);
+        case TELNET_WONT:
+            // Client doesn't support terminal type
+            return send_telnet_option(TELNET_DONT, TTYPE_OPTION);
+        default:
+            return Result<void>{};
+        }
+        break;
+        
+    case NEW_ENVIRON_OPTION:
+        switch (command) {
+        case TELNET_WILL:
+            // Client supports NEW-ENVIRON
+            return send_telnet_option(TELNET_DO, NEW_ENVIRON_OPTION);
+        case TELNET_WONT:
+            // Client doesn't support NEW-ENVIRON
+            return send_telnet_option(TELNET_DONT, NEW_ENVIRON_OPTION);
+        default:
+            return Result<void>{};
+        }
+        break;
+        
+    case MSSP_OPTION:
+        switch (command) {
+        case TELNET_DO:
+            // Client wants MSSP data
+            return handle_mssp_request();
+        default:
+            return Result<void>{}; // Ignore other MSSP commands
+        }
+        break;
+        
     default:
-        return std::unexpected(Error{ErrorCode::InvalidArgument, fmt::format("Unknown telnet command: {}", command)});
+        return Result<void>{}; // Not our option, ignore
     }
 }
 
@@ -62,18 +121,63 @@ Result<void> GMCPHandler::handle_gmcp_subnegotiation(std::string_view data) {
 }
 
 Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
+    Log::debug("Processing GMCP message: {}", message);
+    
     try {
-        auto json_data = nlohmann::json::parse(message);
+        // GMCP messages are in the format "Module.SubModule JSON_DATA"
+        // Find the first space to separate module from JSON data
+        size_t space_pos = message.find(' ');
+        if (space_pos == std::string::npos) {
+            Log::debug("GMCP message has no JSON data: {}", message);
+            return Result<void>{};  // No JSON data, just module name
+        }
+        
+        std::string module = std::string(message.substr(0, space_pos));
+        std::string json_str = std::string(message.substr(space_pos + 1));
+        
+        Log::debug("GMCP module: '{}', JSON: '{}'", module, json_str);
+        
+        auto json_data = nlohmann::json::parse(json_str);
 
-        // Handle common GMCP client messages
-        if (json_data.contains("Core.Supports.Set")) {
-            auto supports = json_data["Core.Supports.Set"];
-            for (const auto &module : supports) {
-                add_client_support(module.get<std::string>());
+        // Handle Core.Hello - client introduces itself
+        if (module == "Core.Hello") {
+            Log::info("GMCP client hello: {}", json_data.dump());
+            
+            Log::debug("Processing Core.Hello - step 1: extracting client info");
+            // Extract client information and update terminal capabilities
+            if (json_data.contains("client")) {
+                terminal_capabilities_.client_name = json_data["client"].get<std::string>();
+                Log::debug("Extracted client name: {}", terminal_capabilities_.client_name);
+            }
+            if (json_data.contains("version")) {
+                terminal_capabilities_.client_version = json_data["version"].get<std::string>();
+                Log::debug("Extracted client version: {}", terminal_capabilities_.client_version);
+            }
+            
+            Log::debug("Processing Core.Hello - step 2: calling detect_capabilities_from_gmcp");
+            try {
+                // Update capabilities based on known clients
+                terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_gmcp(json_data);
+                terminal_capabilities_.supports_gmcp = true;  // Obviously true if we're getting GMCP
+                Log::debug("Processing Core.Hello - step 3: capabilities updated successfully");
+            } catch (const std::exception& e) {
+                Log::error("Exception in detect_capabilities_from_gmcp: {}", e.what());
+                terminal_capabilities_.supports_gmcp = true;  // At least mark GMCP as supported
+            }
+            
+            Log::info("Updated capabilities from GMCP Hello: client={} {}, unicode={}, color={}, level={}", 
+                      terminal_capabilities_.client_name,
+                      terminal_capabilities_.client_version,
+                      terminal_capabilities_.supports_unicode,
+                      terminal_capabilities_.supports_color,
+                      static_cast<int>(terminal_capabilities_.overall_level));
+        }
+        // Handle Core.Supports.Set - client tells us what modules it supports
+        else if (module == "Core.Supports.Set") {
+            for (const auto &support_module : json_data) {
+                add_client_support(support_module.get<std::string>());
             }
             Log::debug("GMCP client supports {} modules", client_supports_.size());
-        } else if (json_data.contains("Core.Hello")) {
-            Log::info("GMCP client hello: {}", json_data["Core.Hello"].dump());
         }
 
         return Result<void>{};
@@ -114,12 +218,13 @@ Result<void> GMCPHandler::send_gmcp(std::string_view module, const nlohmann::jso
     }
 }
 
-void GMCPHandler::send_hello() {
-    nlohmann::json hello = {{"client", "FieryMUD"},
-                            {"version", "3.0.0-modern"},
-                            {"features", nlohmann::json::array({"GMCP", "MXP", "UTF-8"})}};
-
-    send_gmcp("Core.Hello", hello);
+void GMCPHandler::send_server_services() {
+    // Send server-side services to the client (like legacy offer_gmcp_services)
+    nlohmann::json client_gui = {{"version", "3.0.0-modern"}, {"url", "https://fierymud.org"}};
+    send_gmcp("Client.GUI", client_gui);
+    
+    nlohmann::json client_map = {{"url", "https://fierymud.org/map"}};
+    send_gmcp("Client.Map", client_map);
 }
 
 void GMCPHandler::send_supports_set() {
@@ -153,6 +258,87 @@ bool GMCPHandler::client_supports(std::string_view module) const {
     return client_supports_.find(std::string(module)) != client_supports_.end();
 }
 
+void GMCPHandler::handle_terminal_type(std::string_view ttype) {
+    // Parse MTTS terminal type - format is "terminal-name-MTTS n"
+    std::string ttype_str{ttype};
+    size_t mtts_pos = ttype_str.find("-MTTS ");
+    
+    if (mtts_pos != std::string::npos) {
+        // Extract terminal name and MTTS number
+        std::string terminal_name = ttype_str.substr(0, mtts_pos);
+        std::string mtts_str = ttype_str.substr(mtts_pos + 6);
+        
+        try {
+            uint32_t mtts_bitvector = std::stoul(mtts_str);
+            handle_mtts_capability(mtts_bitvector);
+            
+            // Also update terminal name
+            terminal_capabilities_.terminal_name = terminal_name;
+            Log::info("MTTS terminal type: {} with bitvector: {}", terminal_name, mtts_bitvector);
+        } catch (const std::exception& e) {
+            Log::warn("Failed to parse MTTS bitvector from '{}': {}", ttype, e.what());
+            // Fall back to basic terminal type detection
+            terminal_capabilities_ = TerminalCapabilities::get_capabilities_for_terminal(ttype);
+        }
+    } else {
+        // Standard terminal type without MTTS
+        terminal_capabilities_ = TerminalCapabilities::get_capabilities_for_terminal(ttype);
+        Log::info("Standard terminal type: {}", ttype);
+    }
+}
+
+void GMCPHandler::handle_mtts_capability(uint32_t bitvector) {
+    terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_mtts(bitvector, terminal_capabilities_.terminal_name);
+    Log::info("MTTS capabilities detected (bitvector: {}): terminal={}, color={}, 256color={}, truecolor={}, unicode={}, mouse={}, screen_reader={}, tls={}, level={}", 
+              bitvector,
+              terminal_capabilities_.terminal_name,
+              terminal_capabilities_.supports_color,
+              terminal_capabilities_.supports_256_color, 
+              terminal_capabilities_.supports_true_color,
+              terminal_capabilities_.supports_unicode,
+              terminal_capabilities_.supports_mouse,
+              terminal_capabilities_.supports_screen_reader,
+              terminal_capabilities_.supports_tls,
+              static_cast<int>(terminal_capabilities_.overall_level));
+}
+
+void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, std::string>& env_vars) {
+    terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_new_environ(env_vars);
+    Log::info("NEW-ENVIRON capabilities detected from {} variables: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}", 
+              env_vars.size(),
+              terminal_capabilities_.terminal_name,
+              terminal_capabilities_.client_name,
+              terminal_capabilities_.client_version,
+              terminal_capabilities_.supports_color,
+              terminal_capabilities_.supports_256_color,
+              terminal_capabilities_.supports_true_color,
+              terminal_capabilities_.supports_unicode,
+              static_cast<int>(terminal_capabilities_.overall_level));
+    
+    // Log some key environment variables for debugging
+    for (const auto& [key, value] : env_vars) {
+        Log::debug("NEW-ENVIRON {}: {}", key, value);
+    }
+}
+
+const TerminalCapabilities::Capabilities& GMCPHandler::get_terminal_capabilities() const {
+    return terminal_capabilities_;
+}
+
+void GMCPHandler::request_terminal_type() {
+    // Send IAC DO TTYPE to request terminal type
+    std::vector<uint8_t> ttype_request = {TELNET_IAC, TELNET_DO, TTYPE_OPTION};
+    connection_.send_raw_data(ttype_request);
+    Log::debug("Requested terminal type");
+}
+
+void GMCPHandler::request_new_environ() {
+    // Send IAC DO NEW-ENVIRON to request environment variables
+    std::vector<uint8_t> environ_request = {TELNET_IAC, TELNET_DO, NEW_ENVIRON_OPTION};
+    connection_.send_raw_data(environ_request);
+    Log::debug("Requested NEW-ENVIRON data");
+}
+
 std::string GMCPHandler::escape_telnet_data(std::string_view data) {
     std::string escaped;
     escaped.reserve(data.size() * 2); // Worst case: every byte is IAC
@@ -175,38 +361,154 @@ Result<void> GMCPHandler::send_telnet_option(uint8_t command, uint8_t option) {
     return Result<void>{};
 }
 
-// PlayerConnection implementation
-std::shared_ptr<PlayerConnection> PlayerConnection::create(asio::io_context &io_context,
-                                                           std::shared_ptr<WorldServer> world_server) {
-
-    // Use private constructor with shared_ptr
-    return std::shared_ptr<PlayerConnection>(new PlayerConnection(io_context, std::move(world_server)));
+Result<void> GMCPHandler::handle_mssp_request() {
+    Log::debug("Client requested MSSP data");
+    return send_mssp_data();
 }
 
-PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server)
-    : io_context_(io_context), strand_(asio::make_strand(io_context)), socket_(io_context),
-      world_server_(std::move(world_server)), idle_check_timer_(io_context), gmcp_handler_(*this), 
-      connect_time_(std::chrono::steady_clock::now()) {}
+Result<void> GMCPHandler::send_mssp_data() {
+    // Create MSSP handler if not already created
+    if (!mssp_handler_ && connection_.get_network_manager()) {
+        // We need access to ServerConfig from NetworkManager
+        // Since NetworkManager stores const ServerConfig& but doesn't expose it,
+        // we'll create a minimal config for now
+        // TODO: Add config accessor to NetworkManager
+        Log::warn("MSSP: Creating placeholder ServerConfig - should use actual config from NetworkManager");
+        
+        // For now, we'll send basic MSSP data without full config integration
+        std::vector<uint8_t> mssp_data;
+        
+        // Start MSSP subnegotiation: IAC SB MSSP_OPTION
+        mssp_data.push_back(TELNET_IAC);
+        mssp_data.push_back(TELNET_SB);
+        mssp_data.push_back(MSSP_OPTION);
+        
+        // Add basic server information
+        auto add_pair = [&](const std::string& var, const std::string& val) {
+            mssp_data.push_back(1); // MSSP_VAR
+            for (char c : var) mssp_data.push_back(static_cast<uint8_t>(c));
+            mssp_data.push_back(2); // MSSP_VAL  
+            for (char c : val) mssp_data.push_back(static_cast<uint8_t>(c));
+        };
+        
+        // Basic server info
+        add_pair("NAME", "FieryMUD");
+        add_pair("CODEBASE", "FieryMUD"); 
+        add_pair("VERSION", "3.0.0");
+        add_pair("HOSTNAME", "localhost");
+        add_pair("PORT", "4000");
+        add_pair("FAMILY", "CircleMUD");
+        add_pair("GENRE", "Fantasy");
+        add_pair("LANGUAGE", "English");
+        add_pair("STATUS", "Live");
+        
+        // Features
+        add_pair("ANSI", "1");
+        add_pair("GMCP", "1");
+        add_pair("MSSP", "1");
+        add_pair("UTF-8", "1");
+        add_pair("256 COLORS", "1");
+        add_pair("TRUECOLOR", "1");
+        add_pair("SSL", "0");  // Will be "1" when TLS is implemented
+        add_pair("TLS", "0");  // Will be "1" when TLS is implemented
+        
+        // Current statistics
+        if (connection_.get_network_manager()) {
+            auto player_count = std::to_string(connection_.get_network_manager()->connection_count());
+            add_pair("PLAYERS", player_count);
+        } else {
+            add_pair("PLAYERS", "0");
+        }
+        add_pair("UPTIME", "3600"); // Placeholder uptime
+        
+        // End MSSP subnegotiation: IAC SE
+        mssp_data.push_back(TELNET_IAC);
+        mssp_data.push_back(TELNET_SE);
+        
+        connection_.send_raw_data(mssp_data);
+        Log::info("Sent MSSP data ({} bytes) to client", mssp_data.size());
+        return Result<void>{};
+    }
+    
+    // If we have a proper handler, use it
+    if (mssp_handler_) {
+        auto mssp_data = mssp_handler_->generate_mssp_data(connection_.get_network_manager());
+        connection_.send_raw_data(mssp_data);
+        Log::info("Sent MSSP data ({} bytes) to client via handler", mssp_data.size());
+        return Result<void>{};
+    }
+    
+    return std::unexpected(Error{ErrorCode::InternalError, "Unable to generate MSSP data"});
+}
+
+// PlayerConnection implementation
+std::shared_ptr<PlayerConnection> PlayerConnection::create(asio::io_context &io_context,
+                                                           std::shared_ptr<WorldServer> world_server,
+                                                           NetworkManager* network_manager) {
+
+    // Use private constructor with shared_ptr
+    return std::shared_ptr<PlayerConnection>(new PlayerConnection(io_context, std::move(world_server), network_manager));
+}
+
+std::shared_ptr<PlayerConnection> PlayerConnection::create_tls(asio::io_context &io_context,
+                                                              std::shared_ptr<WorldServer> world_server,
+                                                              NetworkManager* network_manager,
+                                                              TLSContextManager& tls_manager) {
+    // Use private TLS constructor with shared_ptr
+    return std::shared_ptr<PlayerConnection>(new PlayerConnection(io_context, std::move(world_server), network_manager, tls_manager));
+}
+
+PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
+                                   NetworkManager* network_manager)
+    : io_context_(io_context), strand_(asio::make_strand(io_context)),
+      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context), 
+      gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {
+    // Create plain TCP socket
+    connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context));
+}
+
+PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
+                                   NetworkManager* network_manager, TLSContextManager& tls_manager)
+    : io_context_(io_context), strand_(asio::make_strand(io_context)),
+      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context), 
+      gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {
+    // Create TLS socket
+    connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context), tls_manager.get_context());
+}
 
 PlayerConnection::~PlayerConnection() { cleanup_connection(); }
 
 void PlayerConnection::start() {
     connect_time_ = std::chrono::steady_clock::now();
 
-    Log::info("New connection from {}", remote_address());
+    Log::info("New {} connection from {}", (is_tls_connection() ? "TLS" : "TCP"), remote_address());
 
     // Initialize login system
     login_system_ = std::make_unique<LoginSystem>(shared_from_this());
     login_system_->set_player_loaded_callback([this](std::shared_ptr<Player> player) { on_login_completed(player); });
 
-    handle_connect();
+    // For TLS connections, perform handshake first
+    if (is_tls_connection()) {
+        connection_socket_->async_handshake([this, self = shared_from_this()](const asio::error_code& error) {
+            if (!error) {
+                Log::debug("TLS handshake completed for {}", remote_address());
+                handle_connect();
+            } else {
+                Log::error("TLS handshake failed for {}: {}", remote_address(), error.message());
+                disconnect("TLS handshake failed");
+            }
+        });
+    } else {
+        // Plain connection - proceed directly
+        handle_connect();
+    }
 }
 
 void PlayerConnection::handle_connect() {
     transition_to(ConnectionState::Login);
 
     // Send immediate welcome to keep connection alive
-    send_line("=== Welcome to Modern FieryMUD ===");
+    send_line("=== Welcome to FieryMUD ===");
 
     // Begin reading
     start_read();
@@ -217,9 +519,15 @@ void PlayerConnection::handle_connect() {
 }
 
 void PlayerConnection::send_telnet_negotiation() {
-    // Offer GMCP support: IAC WILL GMCP_OPTION
+    // Only offer GMCP support initially to avoid potential loops
+    // IAC WILL GMCP_OPTION
     std::vector<uint8_t> gmcp_offer = {GMCPHandler::TELNET_IAC, GMCPHandler::TELNET_WILL, GMCPHandler::GMCP_OPTION};
+    Log::info("Sending GMCP offer to {}: IAC WILL GMCP (255 251 201)", remote_address());
     send_raw_data(gmcp_offer);
+    
+    // Don't immediately request capabilities - wait for client response first
+    // This prevents potential infinite loops with aggressive clients
+    // TODO: Request capabilities after initial GMCP handshake is complete
 }
 
 void PlayerConnection::start_read() {
@@ -227,7 +535,7 @@ void PlayerConnection::start_read() {
         return;
 
     auto self = shared_from_this();
-    socket_.async_read_some(
+    connection_socket_->async_read_some(
         asio::buffer(read_buffer_),
         asio::bind_executor(strand_, [this, self](const asio::error_code &error, std::size_t bytes_transferred) {
             handle_read(error, bytes_transferred);
@@ -240,7 +548,13 @@ void PlayerConnection::handle_read(const asio::error_code &error, std::size_t by
         if (error == asio::error::eof || error == asio::error::connection_reset ||
             error == asio::error::connection_aborted) {
             Log::debug("Connection closed from {}: {}", remote_address(), error.message());
-            disconnect("Connection closed");
+            
+            // If player is actively playing, go linkdead instead of disconnecting
+            if (state_ == ConnectionState::Playing && player_) {
+                set_linkdead(true, "Connection lost");
+            } else {
+                disconnect("Connection closed");
+            }
         } else if (error == asio::error::operation_aborted) {
             // Operation was cancelled, ignore
             return;
@@ -282,6 +596,7 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
                     command == GMCPHandler::TELNET_DO || command == GMCPHandler::TELNET_DONT) {
 
                     // Simple 3-byte command
+                    Log::debug("Received telnet option from {}: command={} option={}", remote_address(), command, option);
                     gmcp_handler_.handle_telnet_option(command, option);
                     in_telnet_negotiation_ = false;
                 } else if (command == GMCPHandler::TELNET_SB) {
@@ -368,22 +683,15 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     // Ensure player is placed in a room
     if (!player_->current_room()) {
-        // Try to place in the configured starting room
+        // Try to place in the configured starting room using proper world manager
         auto starting_room_id = Config::instance().default_starting_room();
-        auto starting_room = WorldManager::instance().get_room(starting_room_id);
+        auto move_result = WorldManager::instance().move_actor_to_room(player_, starting_room_id);
         
-        if (starting_room) {
-            auto move_result = player_->move_to(starting_room);
-            if (!move_result) {
-                Log::warn("Failed to place player '{}' in starting room {}: {}", 
-                         player_->name(), starting_room_id.value(), move_result.error().message);
-            } else {
-                starting_room->add_actor(player_);
-                Log::info("Placed player '{}' in starting room {}", player_->name(), starting_room_id.value());
-            }
+        if (!move_result.success) {
+            Log::warn("Failed to place player '{}' in starting room {}: {}", 
+                     player_->name(), starting_room_id.value(), move_result.failure_reason);
         } else {
-            Log::error("Starting room {} not found - player '{}' will be in nowhere", 
-                      starting_room_id.value(), player_->name());
+            Log::info("Placed player '{}' in starting room {}", player_->name(), starting_room_id.value());
         }
     }
 
@@ -414,6 +722,37 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     // Send welcome to game
     send_message("Welcome to FieryMUD!");
+    send_prompt();
+}
+
+void PlayerConnection::attach_player(std::shared_ptr<Player> player) {
+    player_ = std::move(player);
+    
+    // Set the player's output interface to this connection
+    player_->set_output(shared_from_this());
+    
+    // Transition to playing state
+    transition_to(ConnectionState::Playing);
+    
+    // Store original host for reconnection validation
+    original_host_ = remote_address();
+    
+    // Start idle checking timer for session management
+    start_idle_timer();
+    
+    Log::info("Player '{}' reconnected from {}", player_->name(), remote_address());
+    
+    // Send reconnection message and current room info
+    send_message("=== Reconnected ===");
+    if (auto room = player_->current_room()) {
+        send_message(room->get_room_description(player_.get()));
+    }
+    
+    // Send room info for reconnections (vitals/status already established)
+    if (supports_gmcp()) {
+        send_room_info();
+    }
+    
     send_prompt();
 }
 
@@ -470,8 +809,11 @@ void PlayerConnection::flush_output() {
     write_in_progress_ = true;
 
     auto self = shared_from_this();
-    asio::async_write(
-        socket_, asio::buffer(output_queue_.front()),
+    
+    // Use async_write_some for TLS compatibility
+    const std::string& data = output_queue_.front();
+    connection_socket_->async_write_some(
+        asio::buffer(data),
         asio::bind_executor(strand_, [this, self](const asio::error_code &error, std::size_t bytes_transferred) {
             handle_write(error, bytes_transferred);
         }));
@@ -557,32 +899,37 @@ void PlayerConnection::force_disconnect() {
     transition_to(ConnectionState::Disconnected);
     cleanup_connection();
 
-    if (disconnect_callback_) {
-        disconnect_callback_(shared_from_this());
-    }
+    // Note: Disconnect callback is skipped during NetworkManager shutdown
+    // to prevent deadlocks since connections are being bulk-disconnected
 }
 
 void PlayerConnection::cleanup_connection() {
-    if (socket_.is_open()) {
-        asio::error_code ec;
-        socket_.close(ec);
+    // During shutdown, do synchronous cleanup to avoid strand deadlocks
+    if (connection_socket_ && connection_socket_->is_open()) {
+        connection_socket_->close();
     }
+    
+    // Cancel any pending timers
+    idle_check_timer_.cancel();
+    
+    // Clear I/O state
+    output_queue_.clear();
+    write_in_progress_ = false;
 
-    // Remove player from world server if they were playing
+    // Clean up resources
     if (player_) {
-        world_server_->remove_player(player_);
+        Log::debug("Cleaning up connection for player: {}", player_->name());
+        // Skip world server removal during shutdown to avoid strand deadlock
     }
 
     player_.reset();
     login_system_.reset();
-    output_queue_.clear();
-    write_in_progress_ = false;
 }
 
 std::string PlayerConnection::remote_address() const {
     try {
-        if (socket_.is_open()) {
-            return socket_.remote_endpoint().address().to_string();
+        if (connection_socket_ && connection_socket_->is_open()) {
+            return connection_socket_->remote_endpoint();
         }
     } catch (const std::exception &) {
         // Socket might be closed
@@ -680,24 +1027,7 @@ void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
     }
 }
 
-bool PlayerConnection::attempt_reconnection(std::string_view name, std::string_view password) {
-    // This would be called during login to reconnect to an existing linkdead character
-    // For now, this is a placeholder for future implementation
-    
-    if (state_ != ConnectionState::Login) {
-        Log::warn("Reconnection attempt in invalid state: {}", static_cast<int>(state_));
-        return false;
-    }
-    
-    // TODO: Implement reconnection logic
-    // 1. Find existing linkdead player with matching name
-    // 2. Validate password
-    // 3. Transfer player from old connection to new connection
-    // 4. Clean up old linkdead connection
-    
-    Log::debug("Reconnection attempt for '{}' - not yet implemented", name);
-    return false;
-}
+// Removed attempt_reconnection() method - not used, login system handles reconnection directly
 
 void PlayerConnection::start_idle_timer() {
     // Start periodic idle checking every 60 seconds

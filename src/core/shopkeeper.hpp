@@ -1,0 +1,124 @@
+/***************************************************************************
+ *   File: src/core/shopkeeper.hpp                          Part of FieryMUD *
+ *  Usage: Shopkeeper system for buy/sell mechanics                         *
+ *                                                                           *
+ *  All rights reserved.  See license.doc for complete information.         *
+ *                                                                           *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#pragma once
+
+#include "ids.hpp"
+#include "result.hpp"
+#include <memory>
+#include <string>
+#include <vector>
+#include <unordered_map>
+
+// Forward declarations
+class Object;
+class Actor;
+
+/**
+ * @brief Item available for purchase in a shop
+ */
+struct ShopItem {
+    EntityId prototype_id;     // Object prototype to create
+    std::string name;          // Display name
+    std::string description;   // Item description
+    int cost;                 // Cost in copper coins
+    int stock;                // Available quantity (-1 for unlimited)
+    int max_stock;            // Maximum stock level for restocking
+    
+    ShopItem() = default;
+    ShopItem(EntityId id, std::string_view item_name, std::string_view desc, int price, int quantity = -1)
+        : prototype_id(id), name(item_name), description(desc), cost(price), stock(quantity), max_stock(quantity) {}
+};
+
+/**
+ * @brief Shopkeeper data and functionality
+ */
+class Shopkeeper {
+public:
+    explicit Shopkeeper(EntityId shop_id);
+    
+    // Shop management
+    void add_item(const ShopItem& item);
+    void remove_item(EntityId prototype_id);
+    bool has_item(EntityId prototype_id) const;
+    const ShopItem* get_item(EntityId prototype_id) const;
+    
+    // Stock management
+    void restock_item(EntityId prototype_id, int quantity);
+    void restock_all();
+    bool reduce_stock(EntityId prototype_id, int quantity = 1);
+    
+    // Shop operations
+    std::vector<ShopItem> get_available_items() const;
+    std::vector<std::string> get_shop_listing() const;
+    
+    // Buy/sell rates
+    void set_buy_rate(float rate) { buy_rate_ = rate; }
+    void set_sell_rate(float rate) { sell_rate_ = rate; }
+    float get_buy_rate() const { return buy_rate_; }
+    float get_sell_rate() const { return sell_rate_; }
+    
+    // Shop properties
+    void set_name(std::string_view name) { shop_name_ = name; }
+    const std::string& get_name() const { return shop_name_; }
+    
+    EntityId get_shop_id() const { return shop_id_; }
+    
+    // Currency handling
+    int calculate_buy_price(const ShopItem& item) const;
+    int calculate_sell_price(const Object& obj) const;
+    
+private:
+    EntityId shop_id_;
+    std::string shop_name_;
+    std::unordered_map<EntityId, ShopItem> items_;
+    float buy_rate_ = 1.0f;    // Player buys at this rate (1.0 = full price)
+    float sell_rate_ = 0.5f;   // Player sells at this rate (0.5 = half price)
+};
+
+/**
+ * @brief Shop command results for client feedback
+ */
+enum class ShopResult {
+    Success,
+    NoShopkeeper,
+    ItemNotFound,
+    InsufficientFunds,
+    InsufficientStock,
+    InventoryFull,
+    InvalidItem,
+    ShopClosed
+};
+
+/**
+ * @brief Global shop management
+ */
+class ShopManager {
+public:
+    static ShopManager& instance();
+    
+    // Shop registration
+    void register_shopkeeper(EntityId shopkeeper_id, std::unique_ptr<Shopkeeper> shop);
+    void unregister_shopkeeper(EntityId shopkeeper_id);
+    
+    // Shop access
+    Shopkeeper* get_shopkeeper(EntityId shopkeeper_id);
+    const Shopkeeper* get_shopkeeper(EntityId shopkeeper_id) const;
+    
+    // Shop operations
+    ShopResult buy_item(std::shared_ptr<Actor> buyer, EntityId shopkeeper_id, EntityId item_id);
+    ShopResult sell_item(std::shared_ptr<Actor> seller, EntityId shopkeeper_id, std::shared_ptr<Object> item);
+    
+    // Shop discovery
+    std::vector<EntityId> find_shops_in_room(EntityId room_id) const;
+    
+private:
+    ShopManager() = default;
+    std::unordered_map<EntityId, std::unique_ptr<Shopkeeper>> shops_;
+};

@@ -50,6 +50,14 @@ struct ServerConfig {
     int port = 4001;
     int max_connections = 200;
     std::chrono::seconds connection_timeout{300};
+    
+    // TLS/SSL settings
+    bool enable_tls = false;
+    int tls_port = 4443;
+    std::string tls_certificate_file = "certs/server.crt";
+    std::string tls_private_key_file = "certs/server.key";
+    std::string tls_dh_params_file = "certs/dhparams.pem";
+    bool tls_require_client_cert = false;
 
     // Game settings
     std::string mud_name = "Modern FieryMUD";
@@ -76,6 +84,9 @@ struct ServerConfig {
     // Debugging
     bool enable_debug_commands = false;
     std::string admin_password = "changeme";
+    
+    // Logging settings
+    std::string log_level = "info";
 
     // Load from JSON configuration file
     static Result<ServerConfig> load_from_file(const std::string &filename);

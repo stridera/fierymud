@@ -30,7 +30,7 @@ WorldServer::WorldServer(asio::io_context &io_context, const ServerConfig &confi
 
 WorldServer::~WorldServer() { stop(); }
 
-Result<void> WorldServer::initialize(bool is_test_mode) {
+Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     Log::info("Initializing WorldServer...");
 
     // Initialize game systems (singletons)
@@ -72,7 +72,7 @@ Result<void> WorldServer::start() {
         if (!world_load) {
             Log::warn("Failed to load world data: {}", world_load.error().message);
             Log::info("Creating default world as fallback...");
-            
+
             // Create default world directly (we're already on the world strand)
             // Create a simple starting room
             auto room_result = Room::create(EntityId{3001}, "The Forest Temple of Mielikki", SectorType::Inside);
@@ -233,7 +233,7 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
                 // Response will be sent via the CommandContext/connection mechanism
                 // No need to send additional response here
             }
-            
+
             // Send prompt after command execution
             send_prompt_to_actor(actor);
         }
@@ -372,19 +372,19 @@ void WorldServer::perform_heartbeat() {
     auto uptime =
         std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - start_time_).count();
 
-    Log::info("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}", uptime,
-              active_connections_.size(), commands_processed_.load());
+    Log::trace("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}", uptime,
+               active_connections_.size(), commands_processed_.load());
 }
 
 void WorldServer::perform_combat_processing() {
     // This runs on the world strand - thread safe!
     // Process all active combat rounds
     bool rounds_processed = FieryMUD::CombatManager::process_combat_rounds();
-    
+
     // Only send prompts if actual combat rounds were processed
     if (rounds_processed) {
         auto fighting_actors = FieryMUD::CombatManager::get_all_fighting_actors();
-        for (auto& actor : fighting_actors) {
+        for (auto &actor : fighting_actors) {
             if (actor && actor->is_alive()) {
                 send_prompt_to_actor(actor);
             }
@@ -478,38 +478,45 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     if (!actor) {
         return;
     }
-    
+
     // Get actor's current stats
-    const auto& stats = actor->stats();
-    
+    const auto &stats = actor->stats();
+
     // Basic prompt format: <HP>H <Move>M>
     std::string prompt = fmt::format("{}H {}M", stats.hit_points, stats.movement);
-    
+
     // If fighting, show opponent's condition
     if (actor->is_fighting()) {
         auto opponent = FieryMUD::CombatManager::get_opponent(*actor);
         if (opponent) {
             // Calculate condition based on HP percentage
-            const auto& opp_stats = opponent->stats();
+            const auto &opp_stats = opponent->stats();
             int hp_percent = (opp_stats.hit_points * 100) / std::max(1, opp_stats.max_hit_points);
-            
+
             std::string condition;
-            if (hp_percent >= 95) condition = "perfect";
-            else if (hp_percent >= 85) condition = "scratched";  
-            else if (hp_percent >= 70) condition = "hurt";
-            else if (hp_percent >= 50) condition = "wounded";
-            else if (hp_percent >= 30) condition = "bleeding";
-            else if (hp_percent >= 15) condition = "critical";
-            else condition = "dying";
-            
-            prompt += fmt::format(" (Fighting: {} is {})", opponent->name(), condition);
+            if (hp_percent >= 95)
+                condition = "perfect";
+            else if (hp_percent >= 85)
+                condition = "scratched";
+            else if (hp_percent >= 70)
+                condition = "hurt";
+            else if (hp_percent >= 50)
+                condition = "wounded";
+            else if (hp_percent >= 30)
+                condition = "bleeding";
+            else if (hp_percent >= 15)
+                condition = "critical";
+            else
+                condition = "dying";
+
+            prompt += fmt::format(" (Fighting: {} is {})", opponent->display_name(), condition);
         } else {
             prompt += " (Fighting)";
         }
     }
-    
+
     prompt += "> ";
-    
+
     // Send the prompt - we need to handle different actor types
     if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
         // For players, try to get their output interface

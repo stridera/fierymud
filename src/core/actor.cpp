@@ -270,6 +270,53 @@ Result<Inventory> Inventory::from_json(const nlohmann::json& json) {
 
 // Equipment Implementation
 
+std::string Equipment::get_slot_conflict_message(EquipSlot slot, const Object& item) const {
+    // First check: Is this slot already occupied?
+    if (is_equipped(slot)) {
+        switch (slot) {
+            case EquipSlot::Light:      return "You are already using something as light.";
+            case EquipSlot::Finger_R:   return "You are already wearing something on your right finger.";
+            case EquipSlot::Finger_L:   return "You are already wearing something on your left finger.";
+            case EquipSlot::Neck1:
+            case EquipSlot::Neck2:      return "You are already wearing something around your neck.";
+            case EquipSlot::Body:       return "You are already wearing something on your body.";
+            case EquipSlot::Head:       return "You are already wearing something on your head.";
+            case EquipSlot::Legs:       return "You are already wearing something on your legs.";
+            case EquipSlot::Feet:       return "You are already wearing something on your feet.";
+            case EquipSlot::Hands:      return "You are already wearing something on your hands.";
+            case EquipSlot::Arms:       return "You are already wearing something on your arms.";
+            case EquipSlot::Shield:     return "You are already using something as a shield.";
+            case EquipSlot::About:      return "You are already wearing something about your body.";
+            case EquipSlot::Waist:      return "You are already wearing something around your waist.";
+            case EquipSlot::Wrist_R:    return "You are already wearing something on your right wrist.";
+            case EquipSlot::Wrist_L:    return "You are already wearing something on your left wrist.";
+            case EquipSlot::Wield:      return "You are already wielding something.";
+            case EquipSlot::Hold:       return "You are already holding something.";
+            case EquipSlot::Float:      return "You already have something floating nearby.";
+            default:                    return "You are already wearing something there.";
+        }
+    }
+    
+    // Check for two-handed weapon conflicts
+    if (item.has_flag(ObjectFlag::TwoHanded) && slot == EquipSlot::Wield) {
+        if (is_equipped(EquipSlot::Wield2)) {
+            return "You can't wield a two-handed weapon while holding something in your off-hand.";
+        }
+        if (is_equipped(EquipSlot::Shield)) {
+            return "You can't wield a two-handed weapon while using a shield.";
+        }
+    }
+    
+    if (slot == EquipSlot::Wield2 || slot == EquipSlot::Shield) {
+        auto main_weapon = get_equipped(EquipSlot::Wield);
+        if (main_weapon && main_weapon->has_flag(ObjectFlag::TwoHanded)) {
+            return "You can't use that while wielding a two-handed weapon.";
+        }
+    }
+    
+    return ""; // No conflict
+}
+
 Result<void> Equipment::equip_item(std::shared_ptr<Object> item) {
     if (!item) {
         return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
@@ -280,8 +327,9 @@ Result<void> Equipment::equip_item(std::shared_ptr<Object> item) {
     }
     
     EquipSlot slot = item->equip_slot();
-    if (has_slot_conflict(slot, *item)) {
-        return std::unexpected(Errors::InvalidState("You are already wielding something. Remove it first."));
+    std::string conflict_message = get_slot_conflict_message(slot, *item);
+    if (!conflict_message.empty()) {
+        return std::unexpected(Errors::InvalidState(conflict_message));
     }
     
     equipped_[slot] = std::move(item);
@@ -325,6 +373,19 @@ std::vector<std::shared_ptr<Object>> Equipment::get_all_equipped() const {
     for (const auto& [slot, item] : equipped_) {
         if (item) {
             items.push_back(item);
+        }
+    }
+    
+    return items;
+}
+
+std::vector<std::pair<EquipSlot, std::shared_ptr<Object>>> Equipment::get_all_equipped_with_slots() const {
+    std::vector<std::pair<EquipSlot, std::shared_ptr<Object>>> items;
+    items.reserve(equipped_.size());
+    
+    for (const auto& [slot, item] : equipped_) {
+        if (item) {
+            items.emplace_back(slot, item);
         }
     }
     
@@ -928,6 +989,11 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
     }
 }
 
+std::string Player::display_name(bool /* with_article */) const {
+    // For players, display name is always their actual name
+    return std::string{name()};
+}
+
 void Player::send_message(std::string_view message) {
     output_queue_.emplace_back(message);
     
@@ -966,7 +1032,7 @@ nlohmann::json Player::get_status_gmcp() const {
     };
 }
 
-void Player::on_room_change(std::shared_ptr<Room> old_room, std::shared_ptr<Room> new_room) {
+void Player::on_room_change(std::shared_ptr<Room> /* old_room */, std::shared_ptr<Room> /* new_room */) {
     // Send GMCP room update if player has output (connection) and supports GMCP
     if (auto output = get_output()) {
         // Try to cast to PlayerConnection to access GMCP methods
@@ -986,7 +1052,7 @@ void Player::send_gmcp_vitals_update() {
     }
 }
 
-void Player::on_level_up(int old_level, int new_level) {
+void Player::on_level_up(int /* old_level */, int /* new_level */) {
     // Send GMCP vitals update when player levels up (vitals change)
     send_gmcp_vitals_update();
 }

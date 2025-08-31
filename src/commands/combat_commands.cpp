@@ -47,7 +47,7 @@ Result<CommandResult> cmd_kill(const CommandContext &ctx) {
 
     // Check if target is already fighting this actor or someone else
     if (target->position() == Position::Fighting) {
-        ctx.send(fmt::format("{} is already fighting!", target->name()));
+        ctx.send(fmt::format("{} is already fighting!", target->display_name()));
         return CommandResult::InvalidState;
     }
 
@@ -279,7 +279,8 @@ void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> ro
             // Remove from player equipment and add to corpse
             actor->equipment().unequip_item(item->id());
             // TODO: Add items to corpse container (need Container class)
-            Log::info("Transferred equipped item '{}' to {}'s corpse", item->name(), actor->name());
+            Log::info("Transferred equipped item '{}' to {}'s corpse", item->display_name(), 
+                     actor->display_name());
         }
     }
 
@@ -290,14 +291,16 @@ void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> ro
             // Remove from player inventory and add to corpse
             actor->inventory().remove_item(item->id());
             // TODO: Add items to corpse container (need Container class)
-            Log::info("Transferred inventory item '{}' to {}'s corpse", item->name(), actor->name());
+            Log::info("Transferred inventory item '{}' to {}'s corpse", item->display_name(), 
+                     actor->display_name());
         }
     }
 
     // Add corpse to the room
     room->add_object(corpse);
 
-    Log::info("Created corpse for {} in room {}", actor->name(), room->id().value());
+    Log::info("Created corpse for {} in room {}", 
+             actor->display_name(), room->id().value());
 }
 
 } // namespace CombatCommands

@@ -144,12 +144,19 @@ Result<void> register_all_commands() {
     Commands().command("close", ObjectCommands::cmd_close).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("lock", ObjectCommands::cmd_lock).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("unlock", ObjectCommands::cmd_unlock).category("Object").privilege(PrivilegeLevel::Player).build();
+    
+    // Shop Commands (from ObjectCommands namespace)
+    Commands().command("list", ObjectCommands::cmd_list).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("buy", ObjectCommands::cmd_buy).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands().command("sell", ObjectCommands::cmd_sell).category("Object").privilege(PrivilegeLevel::Player).build();
 
     // System Commands (from SystemCommands namespace)
     Commands().command("quit", SystemCommands::cmd_quit).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("save", SystemCommands::cmd_save).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("help", SystemCommands::cmd_help).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("commands", SystemCommands::cmd_commands).category("System").privilege(PrivilegeLevel::Player).build();
+    Commands().command("richtest", SystemCommands::cmd_richtest).category("System").privilege(PrivilegeLevel::Player).build();
+    Commands().command("clientinfo", SystemCommands::cmd_clientinfo).category("System").privilege(PrivilegeLevel::Player).build();
 
     // Social Commands (from SocialCommands namespace)
     Commands().command("smile", SocialCommands::cmd_smile).category("Social").privilege(PrivilegeLevel::Player).build();
@@ -342,7 +349,7 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
     
     // Show position and status information
     if (target->position() != Position::Standing) {
-        desc << fmt::format("{} is {}.\n", target->name(), 
+        desc << fmt::format("{} is {}.\n", target->display_name(), 
                            ActorUtils::get_position_name(target->position()));
     }
     
@@ -352,50 +359,50 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
         double health_percent = static_cast<double>(stats.hit_points) / stats.max_hit_points * 100.0;
         
         if (health_percent < 25.0) {
-            desc << fmt::format("{} looks nearly dead.\n", target->name());
+            desc << fmt::format("{} looks nearly dead.\n", target->display_name());
         } else if (health_percent < 50.0) {
-            desc << fmt::format("{} looks badly wounded.\n", target->name());
+            desc << fmt::format("{} looks badly wounded.\n", target->display_name());
         } else if (health_percent < 75.0) {
-            desc << fmt::format("{} looks wounded.\n", target->name());
+            desc << fmt::format("{} looks wounded.\n", target->display_name());
         } else if (health_percent < 100.0) {
-            desc << fmt::format("{} looks slightly hurt.\n", target->name());
+            desc << fmt::format("{} looks slightly hurt.\n", target->display_name());
         } else {
-            desc << fmt::format("{} is in excellent condition.\n", target->name());
+            desc << fmt::format("{} is in excellent condition.\n", target->display_name());
         }
     }
     
     // Show equipment highlights - main weapon and armor
     if (auto main_weapon = target->equipment().get_main_weapon()) {
-        desc << fmt::format("{} is wielding {}.\n", target->name(), main_weapon->short_description());
+        desc << fmt::format("{} is wielding {}.\n", target->display_name(), main_weapon->short_description());
     }
     
     if (auto off_weapon = target->equipment().get_off_weapon()) {
-        desc << fmt::format("{} is holding {} in the off-hand.\n", target->name(), off_weapon->short_description());
+        desc << fmt::format("{} is holding {} in the off-hand.\n", target->display_name(), off_weapon->short_description());
     }
     
     // Show visible armor or clothing
     auto equipped_items = target->equipment().get_all_equipped();
     for (const auto& item : equipped_items) {
         if (item && item->is_armor()) {
-            desc << fmt::format("{} is wearing {}.\n", target->name(), item->short_description());
+            desc << fmt::format("{} is wearing {}.\n", target->display_name(), item->short_description());
             break; // Just show one piece of notable armor
         }
     }
     
     // Show fighting status
     if (target->is_fighting()) {
-        desc << fmt::format("{} is engaged in combat!\n", target->name());
+        desc << fmt::format("{} is engaged in combat!\n", target->display_name());
     }
     
     // Show special flags/conditions
     if (target->has_flag(ActorFlag::Invisible)) {
-        desc << fmt::format("{} appears translucent.\n", target->name());
+        desc << fmt::format("{} appears translucent.\n", target->display_name());
     }
     if (target->has_flag(ActorFlag::Sanctuary)) {
-        desc << fmt::format("{} glows with a white aura.\n", target->name());
+        desc << fmt::format("{} glows with a white aura.\n", target->display_name());
     }
     if (target->has_flag(ActorFlag::Flying)) {
-        desc << fmt::format("{} is hovering above the ground.\n", target->name());
+        desc << fmt::format("{} is hovering above the ground.\n", target->display_name());
     }
 
     return desc.str();
@@ -422,21 +429,48 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
     return inv.str();
 }
 
+std::string get_equipment_slot_display_name(EquipSlot slot) {
+    switch (slot) {
+        case EquipSlot::Light:      return "<used as light>";
+        case EquipSlot::Finger_R:   return "<worn on right finger>";
+        case EquipSlot::Finger_L:   return "<worn on left finger>";
+        case EquipSlot::Neck1:      return "<worn around neck>";
+        case EquipSlot::Neck2:      return "<worn around neck>";
+        case EquipSlot::Body:       return "<worn on body>";
+        case EquipSlot::Head:       return "<worn on head>";
+        case EquipSlot::Legs:       return "<worn on legs>";
+        case EquipSlot::Feet:       return "<worn on feet>";
+        case EquipSlot::Hands:      return "<worn on hands>";
+        case EquipSlot::Arms:       return "<worn on arms>";
+        case EquipSlot::Shield:     return "<worn as shield>";
+        case EquipSlot::About:      return "<worn about body>";
+        case EquipSlot::Waist:      return "<worn around waist>";
+        case EquipSlot::Wrist_R:    return "<worn on right wrist>";
+        case EquipSlot::Wrist_L:    return "<worn on left wrist>";
+        case EquipSlot::Wield:      return "<wielded>";
+        case EquipSlot::Hold:       return "<held>";
+        case EquipSlot::Float:      return "<floating nearby>";
+        default:                    return "<worn>";
+    }
+}
+
 std::string format_equipment(std::shared_ptr<Actor> actor) {
     if (!actor) {
         return "You have no equipment.";
     }
 
-    auto equipment = actor->equipment().get_all_equipped();
+    auto equipment = actor->equipment().get_all_equipped_with_slots();
     if (equipment.empty()) {
         return "You are not wearing anything.";
     }
 
     std::ostringstream eq;
     eq << "You are wearing:\n";
-    for (const auto &item : equipment) {
+    for (const auto &[slot, item] : equipment) {
         if (item) {
-            eq << fmt::format("  {}\n", item->name());
+            eq << fmt::format("{} {}\n", 
+                get_equipment_slot_display_name(slot), 
+                item->short_description());
         }
     }
 

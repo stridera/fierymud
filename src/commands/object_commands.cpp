@@ -11,6 +11,7 @@
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
+#include "../core/shopkeeper.hpp"
 #include "../world/room.hpp"
 
 #include <algorithm>
@@ -143,10 +144,10 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             if (gotten_count > 0) {
                 if (gotten_count == 1) {
                     ctx.send_success(fmt::format("You get {} from {}.", gotten_names[0], ctx.format_object_name(source_container)));
-                    ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->name(), gotten_names[0], ctx.format_object_name(source_container)), true);
+                    ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->display_name(), gotten_names[0], ctx.format_object_name(source_container)), true);
                 } else {
                     ctx.send_success(fmt::format("You get {} items from {}.", gotten_count, ctx.format_object_name(source_container)));
-                    ctx.send_to_room(fmt::format("{} gets several items from {}.", ctx.actor->name(), ctx.format_object_name(source_container)), true);
+                    ctx.send_to_room(fmt::format("{} gets several items from {}.", ctx.actor->display_name(), ctx.format_object_name(source_container)), true);
                 }
                 return CommandResult::Success;
             } else {
@@ -188,7 +189,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
 
         ctx.send_success(fmt::format("You get {} from {}.", ctx.format_object_name(item_to_get),
                                      ctx.format_object_name(source_container)));
-        ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->name(), ctx.format_object_name(item_to_get),
+        ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->display_name(), ctx.format_object_name(item_to_get),
                                      ctx.format_object_name(source_container)),
                          true);
 
@@ -237,10 +238,10 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             if (gotten_count > 0) {
                 if (gotten_count == 1) {
                     ctx.send_success(fmt::format("You get {}.", gotten_names[0]));
-                    ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->name(), gotten_names[0]), true);
+                    ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->display_name(), gotten_names[0]), true);
                 } else {
                     ctx.send_success(fmt::format("You get {} items.", gotten_count));
-                    ctx.send_to_room(fmt::format("{} gets several items.", ctx.actor->name()), true);
+                    ctx.send_to_room(fmt::format("{} gets several items.", ctx.actor->display_name()), true);
                 }
                 return CommandResult::Success;
             } else {
@@ -284,7 +285,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         }
 
         ctx.send_success(fmt::format("You get {}.", ctx.format_object_name(target_object)));
-        ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+        ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
         return CommandResult::Success;
     }
@@ -335,10 +336,10 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
         if (dropped_count > 0) {
             if (dropped_count == 1) {
                 ctx.send_success(fmt::format("You drop {}.", dropped_names[0]));
-                ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->name(), dropped_names[0]), true);
+                ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->display_name(), dropped_names[0]), true);
             } else {
                 ctx.send_success(fmt::format("You drop {} items.", dropped_count));
-                ctx.send_to_room(fmt::format("{} drops several items.", ctx.actor->name()), true);
+                ctx.send_to_room(fmt::format("{} drops several items.", ctx.actor->display_name()), true);
             }
         } else {
             ctx.send_error("You couldn't drop anything.");
@@ -373,7 +374,7 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     ctx.room->contents_mutable().objects.push_back(target_object);
 
     ctx.send_success(fmt::format("You drop {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
     return CommandResult::Success;
 }
@@ -508,7 +509,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
 
     ctx.send_success(
         fmt::format("You put {} in {}.", ctx.format_object_name(item_to_put), ctx.format_object_name(container)));
-    ctx.send_to_room(fmt::format("{} puts {} in {}.", ctx.actor->name(), ctx.format_object_name(item_to_put),
+    ctx.send_to_room(fmt::format("{} puts {} in {}.", ctx.actor->display_name(), ctx.format_object_name(item_to_put),
                                  ctx.format_object_name(container)),
                      true);
 
@@ -538,12 +539,26 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    // TODO: Implement actual give logic
-    ctx.send_success(fmt::format("You give {} to {}.", ctx.format_object_name(obj), target->name()));
+    // Transfer the object from giver to receiver
+    auto removed_obj = ctx.actor->inventory().remove_item(obj->id());
+    if (!removed_obj) {
+        ctx.send_error("You no longer have that item.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Add to target's inventory
+    if (auto add_result = target->inventory().add_item(removed_obj); !add_result) {
+        // Failed to add to target - return to giver
+        ctx.actor->inventory().add_item(removed_obj);
+        ctx.send_error(fmt::format("{} cannot carry any more items.", target->display_name()));
+        return CommandResult::ResourceError;
+    }
+    
+    ctx.send_success(fmt::format("You give {} to {}.", ctx.format_object_name(obj), target->display_name()));
 
-    ctx.send_to_actor(target, fmt::format("{} gives you {}.", ctx.actor->name(), ctx.format_object_name(obj)));
+    ctx.send_to_actor(target, fmt::format("{} gives you {}.", ctx.actor->display_name(), ctx.format_object_name(obj)));
 
-    ctx.send_to_room(fmt::format("{} gives {} to {}.", ctx.actor->name(), ctx.format_object_name(obj), target->name()),
+    ctx.send_to_room(fmt::format("{} gives {} to {}.", ctx.actor->display_name(), ctx.format_object_name(obj), target->display_name()),
                      true);
 
     return CommandResult::Success;
@@ -587,7 +602,7 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
     ctx.actor->inventory().remove_item(target_object);
 
     ctx.send_success(fmt::format("You wear {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} wears {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} wears {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
     return CommandResult::Success;
 }
@@ -630,7 +645,7 @@ Result<CommandResult> cmd_wield(const CommandContext &ctx) {
     ctx.actor->inventory().remove_item(target_object);
 
     ctx.send_success(fmt::format("You wield {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} wields {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} wields {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
     return CommandResult::Success;
 }
@@ -683,7 +698,7 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     }
 
     ctx.send_success(fmt::format("You remove {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} removes {}.", ctx.actor->name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} removes {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
     return CommandResult::Success;
 }
@@ -759,7 +774,7 @@ Result<CommandResult> cmd_open(const CommandContext &ctx) {
     target_obj->set_container_info(container_info);
 
     ctx.send_success(fmt::format("You open {}.", ctx.format_object_name(target_obj)));
-    ctx.send_to_room(fmt::format("{} opens {}.", ctx.actor->name(), ctx.format_object_name(target_obj)), true);
+    ctx.send_to_room(fmt::format("{} opens {}.", ctx.actor->display_name(), ctx.format_object_name(target_obj)), true);
 
     return CommandResult::Success;
 }
@@ -826,7 +841,7 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
     target_obj->set_container_info(container_info);
 
     ctx.send_success(fmt::format("{} is now closed.", ctx.format_object_name(target_obj)));
-    ctx.send_to_room(fmt::format("{} closes {}.", ctx.actor->name(), ctx.format_object_name(target_obj)), true);
+    ctx.send_to_room(fmt::format("{} closes {}.", ctx.actor->display_name(), ctx.format_object_name(target_obj)), true);
 
     return CommandResult::Success;
 }
@@ -837,9 +852,70 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Implement container and door locking
-    ctx.send_error("Locking containers and doors is not yet implemented.");
-    return CommandResult::SystemError;
+    std::string_view target_name = ctx.arg(0);
+
+    if (!ctx.actor || !ctx.room) {
+        return std::unexpected(Errors::InvalidState("No actor or room context"));
+    }
+
+    // Find container in room or inventory
+    std::shared_ptr<Object> target_obj = nullptr;
+    
+    // First check inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(target_name)) {
+            target_obj = obj;
+            break;
+        }
+    }
+    
+    // If not found in inventory, check room
+    if (!target_obj) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(target_name)) {
+                target_obj = obj;
+                break;
+            }
+        }
+    }
+
+    if (!target_obj) {
+        ctx.send_error(fmt::format("You don't see '{}'.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    if (!target_obj->is_container()) {
+        ctx.send_error(fmt::format("You can't lock {} - it's not a container.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidTarget;
+    }
+
+    auto container_info = target_obj->container_info();
+    
+    if (!container_info.lockable) {
+        ctx.send_error(fmt::format("The {} cannot be locked.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidTarget;
+    }
+    
+    if (!container_info.closed) {
+        ctx.send_error(fmt::format("You must close {} first before locking it.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidState;
+    }
+    
+    if (container_info.locked) {
+        ctx.send_error(fmt::format("The {} is already locked.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidState;
+    }
+
+    // Lock the container
+    container_info.locked = true;
+    target_obj->set_container_info(container_info);
+
+    ctx.send_success(fmt::format("You lock {}.", ctx.format_object_name(target_obj)));
+    ctx.send_to_room(fmt::format("{} locks {}.", ctx.actor->display_name(), ctx.format_object_name(target_obj)), true);
+
+    return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
@@ -848,9 +924,65 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Implement container and door unlocking
-    ctx.send_error("Unlocking containers and doors is not yet implemented.");
-    return CommandResult::SystemError;
+    std::string_view target_name = ctx.arg(0);
+
+    if (!ctx.actor || !ctx.room) {
+        return std::unexpected(Errors::InvalidState("No actor or room context"));
+    }
+
+    // Find container in room or inventory
+    std::shared_ptr<Object> target_obj = nullptr;
+    
+    // First check inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(target_name)) {
+            target_obj = obj;
+            break;
+        }
+    }
+    
+    // If not found in inventory, check room
+    if (!target_obj) {
+        auto &room_objects = ctx.room->contents_mutable().objects;
+        for (auto &obj : room_objects) {
+            if (obj && obj->matches_keyword(target_name)) {
+                target_obj = obj;
+                break;
+            }
+        }
+    }
+
+    if (!target_obj) {
+        ctx.send_error(fmt::format("You don't see '{}'.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    if (!target_obj->is_container()) {
+        ctx.send_error(fmt::format("You can't unlock {} - it's not a container.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidTarget;
+    }
+
+    auto container_info = target_obj->container_info();
+    
+    if (!container_info.lockable) {
+        ctx.send_error(fmt::format("The {} cannot be unlocked.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidTarget;
+    }
+    
+    if (!container_info.locked) {
+        ctx.send_error(fmt::format("The {} is not locked.", ctx.format_object_name(target_obj)));
+        return CommandResult::InvalidState;
+    }
+
+    // Unlock the container
+    container_info.locked = false;
+    target_obj->set_container_info(container_info);
+
+    ctx.send_success(fmt::format("You unlock {}.", ctx.format_object_name(target_obj)));
+    ctx.send_to_room(fmt::format("{} unlocks {}.", ctx.actor->display_name(), ctx.format_object_name(target_obj)), true);
+
+    return CommandResult::Success;
 }
 
 // =============================================================================
@@ -902,7 +1034,7 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
     light_source->set_light_info(new_light_info);
 
     ctx.send_success(fmt::format("You light the {}. It glows brightly.", ctx.format_object_name(light_source)));
-    ctx.send_to_room(fmt::format("{} lights {}.", ctx.actor->name(), ctx.format_object_name(light_source)), true);
+    ctx.send_to_room(fmt::format("{} lights {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)), true);
 
     return CommandResult::Success;
 }
@@ -949,10 +1081,10 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
 
     if (food_item->type() == ObjectType::Food) {
         ctx.send_success(fmt::format("You eat the {}. It's delicious!", ctx.format_object_name(food_item)));
-        ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->name(), ctx.format_object_name(food_item)), true);
+        ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)), true);
     } else {
         ctx.send_success(fmt::format("You drink the {}. You feel refreshed.", ctx.format_object_name(food_item)));
-        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->name(), ctx.format_object_name(food_item)), true);
+        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)), true);
     }
 
     return CommandResult::Success;
@@ -1006,19 +1138,227 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
         
         ctx.send_success(fmt::format("You drink the {}. You feel its effects course through your body.", 
                                    ctx.format_object_name(drink_item)));
-        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->name(), ctx.format_object_name(drink_item)), true);
+        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
     } else if (drink_item->type() == ObjectType::Liquid_Container) {
         // Liquid containers can be drunk from multiple times
         ctx.send_success(fmt::format("You drink from the {}. The liquid is refreshing.", 
                                    ctx.format_object_name(drink_item)));
-        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->name(), ctx.format_object_name(drink_item)), true);
+        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
     } else {
         // Food items (like fruits with juice)
         ctx.send_success(fmt::format("You drink from the {}. It quenches your thirst.", 
                                    ctx.format_object_name(drink_item)));
-        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->name(), ctx.format_object_name(drink_item)), true);
+        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
     }
 
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Shop Commands
+// =============================================================================
+
+Result<CommandResult> cmd_list(const CommandContext &ctx) {
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find shopkeeper in current room
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    // Look for shopkeepers in the room
+    const auto& room_contents = ctx.room->contents();
+    std::vector<std::shared_ptr<Actor>> shopkeepers;
+    
+    for (const auto& actor : room_contents.actors) {
+        if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
+            if (mobile->is_shopkeeper()) {
+                shopkeepers.push_back(mobile);
+            }
+        }
+    }
+    
+    if (shopkeepers.empty()) {
+        ctx.send_error("There are no shopkeepers here.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Use the first shopkeeper found (could be enhanced to let user choose)
+    auto shopkeeper_actor = shopkeepers[0];
+    auto& shop_manager = ShopManager::instance();
+    const auto* shop = shop_manager.get_shopkeeper(shopkeeper_actor->id());
+    
+    if (!shop) {
+        ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Display shop listing
+    auto listing = shop->get_shop_listing();
+    for (const auto& line : listing) {
+        ctx.send(line);
+    }
+    
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_buy(const CommandContext &ctx) {
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("buy <item>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    std::string item_name{ctx.arg(0)};
+    
+    // Look for shopkeepers in the room
+    const auto& room_contents = ctx.room->contents();
+    std::vector<std::shared_ptr<Actor>> shopkeepers;
+    
+    for (const auto& actor : room_contents.actors) {
+        if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
+            if (mobile->is_shopkeeper()) {
+                shopkeepers.push_back(mobile);
+            }
+        }
+    }
+    
+    if (shopkeepers.empty()) {
+        ctx.send_error("There are no shopkeepers here.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Use the first shopkeeper found
+    auto shopkeeper_actor = shopkeepers[0];
+    auto& shop_manager = ShopManager::instance();
+    const auto* shop = shop_manager.get_shopkeeper(shopkeeper_actor->id());
+    
+    if (!shop) {
+        ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Find item by name in shop inventory
+    auto available_items = shop->get_available_items();
+    const ShopItem* target_item = nullptr;
+    
+    for (const auto& item : available_items) {
+        if (item.name.find(item_name) != std::string::npos || 
+            item.name == item_name) {
+            target_item = &item;
+            break;
+        }
+    }
+    
+    if (!target_item) {
+        ctx.send_error(fmt::format("The shopkeeper doesn't have '{}' for sale.", item_name));
+        return CommandResult::InvalidTarget;
+    }
+    
+    // Calculate price and attempt purchase
+    int price = shop->calculate_buy_price(*target_item);
+    
+    // Attempt to purchase the item
+    auto result = ShopManager::instance().buy_item(ctx.actor, shopkeeper_actor->id(), target_item->prototype_id);
+    
+    switch (result) {
+        case ShopResult::Success:
+            ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_item->name, price));
+            break;
+        case ShopResult::InsufficientFunds:
+            ctx.send_error("You don't have enough money to buy that.");
+            return CommandResult::InvalidSyntax;
+        case ShopResult::InsufficientStock:
+            ctx.send_error("That item is out of stock.");
+            return CommandResult::InvalidTarget;
+        default:
+            ctx.send_error("You cannot buy that item.");
+            return CommandResult::InvalidTarget;
+    }
+    
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_sell(const CommandContext &ctx) {
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("sell <item>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    std::string target_name{ctx.arg(0)};
+
+    // Find shopkeeper in current room
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    // Look for shopkeepers in the room
+    const auto& room_contents = ctx.room->contents();
+    std::vector<std::shared_ptr<Actor>> shopkeepers;
+    
+    for (const auto& actor : room_contents.actors) {
+        if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
+            if (mobile->is_shopkeeper()) {
+                shopkeepers.push_back(mobile);
+            }
+        }
+    }
+    
+    if (shopkeepers.empty()) {
+        ctx.send_error("There are no shopkeepers here.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Use the first shopkeeper found
+    auto shopkeeper_actor = shopkeepers[0];
+    auto& shop_manager = ShopManager::instance();
+    const auto* shop = shop_manager.get_shopkeeper(shopkeeper_actor->id());
+    
+    if (!shop) {
+        ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
+        return CommandResult::ResourceError;
+    }
+    
+    // Find item in player's inventory (simplified search for now)
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> target_object = nullptr;
+    
+    for (const auto& item : inventory_items) {
+        if (item->name().find(target_name) != std::string::npos || 
+            item->name() == target_name) {
+            target_object = item;
+            break;
+        }
+    }
+    
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't have '{}' to sell.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+    
+    // Calculate sell price and simulate sale
+    int price = shop->calculate_sell_price(*target_object);
+    
+    ctx.send_success(fmt::format("You would sell {} for {} copper coins.", 
+                                 target_object->name(), price));
+    ctx.send(fmt::format("(Note: Actual sale mechanics with currency integration pending)"));
+    
     return CommandResult::Success;
 }
 

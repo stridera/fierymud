@@ -36,37 +36,4 @@ class PlayerOutput {
     virtual void disconnect(std::string_view reason = "") = 0;
 };
 
-/**
- * @brief Null implementation of PlayerOutput for testing
- *
- * This captures all output for testing purposes without requiring network connections.
- */
-class NullPlayerOutput : public PlayerOutput {
-  public:
-    void send_message(std::string_view message) override { captured_output += std::string(message) + "\n"; }
-
-    void send_prompt(std::string_view prompt) override { captured_output += "[PROMPT: " + std::string(prompt) + "]\n"; }
-
-    void send_line(std::string_view line) override { captured_output += std::string(line) + "\n"; }
-
-    bool is_connected() const override { return true; }
-
-    std::string remote_address() const override { return "test-harness"; }
-
-    void disconnect(std::string_view reason = "") override { 
-        if (!reason.empty()) {
-            captured_output += "[DISCONNECT: " + std::string(reason) + "]\n";
-        } else {
-            captured_output += "[DISCONNECT]\n";
-        }
-    }
-
-    /** Get captured output for testing */
-    const std::string &get_captured_output() const { return captured_output; }
-
-    /** Clear captured output */
-    void clear_captured_output() { captured_output.clear(); }
-
-  private:
-    std::string captured_output;
-};
+// Removed NullPlayerOutput class - not used, tests use MockGameSession instead

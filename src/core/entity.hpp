@@ -95,7 +95,7 @@ public:
     virtual std::string_view type_name() const { return "Entity"; }
     
     /** Create formatted display name with article (a, an, the) */
-    std::string display_name(bool with_article = false) const;
+    virtual std::string display_name(bool with_article = false) const;
     
 protected:
     friend class EntityFactory;

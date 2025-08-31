@@ -17,8 +17,9 @@
 
 // MockPlayerConnection Implementation
 
-MockPlayerConnection::MockPlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server)
-    : PlayerConnection(io_context, world_server) {
+MockPlayerConnection::MockPlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
+                                           NetworkManager* network_manager)
+    : PlayerConnection(io_context, world_server, network_manager) {
     // Initialize test-specific state
 }
 

@@ -381,9 +381,9 @@ Result<CommandResult> cmd_where(const CommandContext &ctx) {
 
     auto target_room = target->current_room();
     if (!target_room) {
-        ctx.send_line(fmt::format("{} is nowhere.", target->name()));
+        ctx.send_line(fmt::format("{} is nowhere.", target->display_name()));
     } else {
-        ctx.send_line(fmt::format("{} is in: {} [{}]", target->name(), target_room->name(), target_room->id().value()));
+        ctx.send_line(fmt::format("{} is in: {} [{}]", target->display_name(), target_room->display_name(), target_room->id().value()));
     }
 
     return CommandResult::Success;

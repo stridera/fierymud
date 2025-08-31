@@ -51,6 +51,8 @@ int main(int argc, char *argv[]) {
         options.add_options()("h,help", "Show help message")(
             "c,config", "Configuration file path", cxxopts::value<std::string>()->default_value("config/prod.json"))(
             "p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4001"))(
+            "l,log-level", "Log level (debug, info, warn, error)", cxxopts::value<std::string>()->default_value("info"))(
+            "s,tls", "Enable TLS/SSL support")(
             "d,daemon", "Run as daemon")("t,test", "Test configuration and exit")("v,version",
                                                                                   "Show version information");
 
@@ -63,6 +65,7 @@ int main(int argc, char *argv[]) {
             std::cout << "  fierymud                         # Run with default config\n";
             std::cout << "  fierymud -c my_config.json       # Use custom config\n";
             std::cout << "  fierymud -p 4000                 # Override port\n";
+            std::cout << "  fierymud -l debug                # Enable debug logging\n";
             return 0;
         }
 
@@ -77,6 +80,7 @@ int main(int argc, char *argv[]) {
         // Extract configuration
         ServerConfig config;
         config.port = std::stoi(result["port"].as<std::string>());
+        config.log_level = result["log-level"].as<std::string>();
 
         std::string config_file = result["config"].as<std::string>();
 
@@ -93,9 +97,23 @@ int main(int argc, char *argv[]) {
             if (result.count("port")) {
                 config.port = std::stoi(result["port"].as<std::string>());
             }
+            // Override log level if specified on command line
+            if (result.count("log-level")) {
+                config.log_level = result["log-level"].as<std::string>();
+            }
+            
+            // Override TLS setting if specified on command line
+            if (result.count("tls")) {
+                config.enable_tls = true;
+            }
         } else {
             std::cout << "Configuration file not found: " << config_file << "\n";
             std::cout << "Using default configuration with port " << config.port << "\n";
+            
+            // Apply TLS setting even without config file
+            if (result.count("tls")) {
+                config.enable_tls = true;
+            }
         }
 
         // Test mode

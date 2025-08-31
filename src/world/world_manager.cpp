@@ -559,7 +559,7 @@ MovementResult WorldManager::move_actor(std::shared_ptr<Actor> actor, Direction 
     
     auto logger = Log::movement();
     logger->debug("Actor {} moved {} from {} to {}", 
-                 actor->name(), direction, current_room->name(), destination_room->name());
+                 actor->display_name(), direction, current_room->display_name(), destination_room->display_name());
     
     return result;
 }
@@ -598,7 +598,8 @@ MovementResult WorldManager::move_actor_to_room(std::shared_ptr<Actor> actor, En
     result.to_room = destination_room->id();
     
     auto logger = Log::movement();
-    logger->debug("Actor {} teleported to {}", actor->name(), destination_room->name());
+    logger->debug("Actor {} teleported to {}", 
+                 actor->display_name(), destination_room->display_name());
     
     return result;
 }
@@ -1089,7 +1090,7 @@ Result<void> WorldManager::load_zones_from_directory(const std::string& world_di
     return Success();
 }
 
-Result<void> WorldManager::load_rooms_from_directory(const std::string& room_dir) {
+Result<void> WorldManager::load_rooms_from_directory(const std::string& /* room_dir */) {
     // For now, rooms are loaded as part of zone files
     // TODO: Implement separate room file loading if needed
     return Success();
@@ -1141,9 +1142,9 @@ void WorldManager::validate_zone_integrity(std::shared_ptr<Zone> zone, Validatio
 }
 
 MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> actor,
-                                                        std::shared_ptr<Room> from_room,
+                                                        std::shared_ptr<Room> /* from_room */,
                                                         std::shared_ptr<Room> to_room,
-                                                        Direction direction) const {
+                                                        Direction /* direction */) const {
     if (!to_room->can_accommodate(actor.get())) {
         return MovementResult("Destination room is full");
     }
@@ -1255,8 +1256,8 @@ bool WorldManager::is_passable_for_actor(std::shared_ptr<Room> room, std::shared
     return true;
 }
 
-int WorldManager::get_movement_cost(std::shared_ptr<Room> from_room, std::shared_ptr<Room> to_room,
-                                   std::shared_ptr<Actor> actor) const {
+int WorldManager::get_movement_cost(std::shared_ptr<Room> /* from_room */, std::shared_ptr<Room> to_room,
+                                   std::shared_ptr<Actor> /* actor */) const {
     if (!to_room) {
         return 1000; // Very high cost for invalid rooms
     }
@@ -1452,7 +1453,7 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         }
         
         // Convert equipment slot number to EquipSlot enum
-        EquipSlot equip_slot = static_cast<EquipSlot>(potential_equipment_slot);
+        [[maybe_unused]] EquipSlot equip_slot = static_cast<EquipSlot>(potential_equipment_slot);
         
         auto shared_object = std::shared_ptr<Object>(new_object.release());
         
@@ -1541,7 +1542,7 @@ void WorldManager::register_spawned_mobile(std::shared_ptr<Mobile> mobile) {
     spawned_mobiles_[mobile->id()] = mobile;
     
     auto logger = Log::game();
-    logger->debug("Registered spawned mobile {} ({})", mobile->name(), mobile->id());
+    logger->debug("Registered spawned mobile {} ({})", mobile->display_name(), mobile->id());
 }
 
 void WorldManager::unregister_spawned_mobile(EntityId mobile_id) {
@@ -1549,7 +1550,7 @@ void WorldManager::unregister_spawned_mobile(EntityId mobile_id) {
     auto it = spawned_mobiles_.find(mobile_id);
     if (it != spawned_mobiles_.end()) {
         auto logger = Log::game();
-        logger->debug("Unregistered spawned mobile {} ({})", it->second->name(), mobile_id);
+        logger->debug("Unregistered spawned mobile {} ({})", it->second->display_name(), mobile_id);
         spawned_mobiles_.erase(it);
     }
 }
@@ -1626,7 +1627,7 @@ void WorldManager::update_weather_system(std::chrono::minutes elapsed) {
             continue; // Skip zones that override weather
         }
         
-        auto weather_effects = Weather().get_weather_effects(zone_id);
+        [[maybe_unused]] auto weather_effects = Weather().get_weather_effects(zone_id);
         
         // Apply weather effects to zone statistics and properties
         // This could include adjusting spawn rates, visibility, etc.
@@ -1765,7 +1766,7 @@ namespace WorldUtils {
         metrics["total_rooms"] = static_cast<int>(world.room_count());
         
         // Count rooms by sector type
-        for (int i = 0; i < magic_enum::enum_count<SectorType>(); ++i) {
+        for (size_t i = 0; i < magic_enum::enum_count<SectorType>(); ++i) {
             auto sector = static_cast<SectorType>(i);
             auto rooms = world.find_rooms_by_sector(sector);
             std::string key = fmt::format("rooms_{}", magic_enum::enum_name(sector));
@@ -1773,7 +1774,7 @@ namespace WorldUtils {
         }
         
         // Count zones by flag
-        for (int i = 0; i < magic_enum::enum_count<ZoneFlag>(); ++i) {
+        for (size_t i = 0; i < magic_enum::enum_count<ZoneFlag>(); ++i) {
             auto flag = static_cast<ZoneFlag>(i);
             auto zones = world.find_zones_with_flag(flag);
             std::string key = fmt::format("zones_{}", magic_enum::enum_name(flag));

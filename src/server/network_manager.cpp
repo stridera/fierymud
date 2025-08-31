@@ -28,12 +28,35 @@ Result<void> NetworkManager::initialize() {
         // Set socket options
         acceptor_->set_option(asio::ip::tcp::acceptor::reuse_address(true));
 
-        Log::info("NetworkManager initialized successfully on port {}", config_.port);
+        Log::info("Plain TCP acceptor initialized on port {}", config_.port);
+        
+        // Initialize TLS if enabled
+        if (config_.enable_tls) {
+            Log::info("Initializing TLS support on port {}", config_.tls_port);
+            
+            // Create TLS context manager
+            tls_context_manager_ = std::make_unique<TLSContextManager>(config_);
+            auto tls_init_result = tls_context_manager_->initialize();
+            if (!tls_init_result) {
+                Log::warn("TLS initialization failed: {}", tls_init_result.error().message);
+                Log::info("Continuing without TLS support");
+                tls_context_manager_.reset();
+            } else {
+                // Create TLS acceptor
+                asio::ip::tcp::endpoint tls_endpoint(asio::ip::tcp::v4(), config_.tls_port);
+                tls_acceptor_ = std::make_unique<asio::ip::tcp::acceptor>(io_context_, tls_endpoint);
+                tls_acceptor_->set_option(asio::ip::tcp::acceptor::reuse_address(true));
+                
+                Log::info("TLS acceptor initialized on port {}", config_.tls_port);
+            }
+        }
+
+        Log::info("NetworkManager initialized successfully");
         return Success();
 
     } catch (const std::exception &e) {
         return std::unexpected(
-            Errors::SystemError(fmt::format("Failed to initialize acceptor on port {}: {}", config_.port, e.what())));
+            Error(ErrorCode::NetworkError, fmt::format("Failed to initialize acceptor: {}", e.what())));
     }
 }
 
@@ -47,13 +70,21 @@ Result<void> NetworkManager::start() {
     try {
         // Start accepting connections
         start_accept();
+        
+        // Start TLS accepting if enabled
+        if (tls_acceptor_ && tls_context_manager_) {
+            start_tls_accept();
+            Log::info("NetworkManager started - accepting connections on port {} (plain) and {} (TLS)", 
+                      config_.port, config_.tls_port);
+        } else {
+            Log::info("NetworkManager started - accepting connections on port {} (plain only)", config_.port);
+        }
 
-        Log::info("NetworkManager started, accepting connections on port {}", config_.port);
         return Success();
 
     } catch (const std::exception &e) {
         running_.store(false);
-        return std::unexpected(Errors::SystemError(fmt::format("Failed to start NetworkManager: {}", e.what())));
+        return std::unexpected(Error(ErrorCode::NetworkError, fmt::format("Failed to start NetworkManager: {}", e.what())));
     }
 }
 
@@ -69,13 +100,25 @@ void NetworkManager::stop() {
     if (acceptor_) {
         acceptor_->close();
     }
+    if (tls_acceptor_) {
+        tls_acceptor_->close();
+    }
 
     // Note: io_context is managed by ModernMUDServer
 
-    // Close all existing connections
+    // Close all existing connections safely
+    std::vector<std::shared_ptr<PlayerConnection>> connections_to_close;
     {
         std::lock_guard<std::mutex> lock(connections_mutex_);
-        connections_.clear();
+        connections_to_close = connections_;
+        connections_.clear();  // Clear first to prevent callback deadlock
+    }
+    
+    // Now disconnect all connections outside the mutex lock
+    for (auto& connection : connections_to_close) {
+        if (connection) {
+            connection->force_disconnect();
+        }
     }
 
     Log::info("NetworkManager stopped");
@@ -95,12 +138,53 @@ std::vector<std::shared_ptr<Player>> NetworkManager::get_connected_players() con
     return players;
 }
 
-void NetworkManager::cleanup_disconnected_connections() {
+// Removed cleanup_disconnected_connections() - linkdead connections should not be auto-cleaned
+// Removed find_connection_by_player_name() - only internal unlocked version needed
+
+std::shared_ptr<PlayerConnection> NetworkManager::find_connection_by_player_name_unlocked(std::string_view player_name) const {
+    // NOTE: Assumes connections_mutex_ is already locked by caller
+    for (const auto &connection : connections_) {
+        if (auto player = connection->get_player()) {
+            if (player->name() == player_name) {
+                return connection;
+            }
+        }
+    }
+    return nullptr;
+}
+
+bool NetworkManager::handle_reconnection(std::shared_ptr<PlayerConnection> new_connection, std::string_view player_name) {
     std::lock_guard<std::mutex> lock(connections_mutex_);
+    
+    // Find existing connection for this player (mutex already locked)
+    auto existing_connection = find_connection_by_player_name_unlocked(player_name);
+    if (!existing_connection) {
+        return false; // No existing connection found
+    }
+    
+    // Get the player from the existing connection
+    auto player = existing_connection->get_player();
+    if (!player) {
+        return false; // No player associated with existing connection
+    }
+    
+    Log::info("Handling reconnection for player '{}' - transferring from old connection to new", player_name);
+    
+    // Transfer player to new connection
+    new_connection->attach_player(player);
+    
+    // Disconnect and remove the old connection
+    existing_connection->disconnect("Reconnected from another location");
     connections_.erase(
-        std::remove_if(connections_.begin(), connections_.end(),
-                       [](const std::shared_ptr<PlayerConnection> &conn) { return !conn->is_connected(); }),
-        connections_.end());
+        std::remove(connections_.begin(), connections_.end(), existing_connection),
+        connections_.end()
+    );
+    
+    // Add the new connection to the list
+    connections_.push_back(new_connection);
+    
+    Log::info("Successfully transferred player '{}' to new connection", player_name);
+    return true;
 }
 
 // Private Asio methods
@@ -118,7 +202,7 @@ void NetworkManager::start_accept() {
         });
     }
 
-    auto new_connection = PlayerConnection::create(io_context_, world_server_shared);
+    auto new_connection = PlayerConnection::create(io_context_, world_server_shared, this);
 
     // Accept the next connection
     acceptor_->async_accept(new_connection->socket(), [this, new_connection](const asio::error_code &error) {
@@ -151,5 +235,54 @@ void NetworkManager::handle_accept(std::shared_ptr<PlayerConnection> connection,
     // Continue accepting new connections
     if (running_.load()) {
         start_accept();
+    }
+}
+
+void NetworkManager::start_tls_accept() {
+    if (!tls_acceptor_ || !tls_context_manager_) {
+        return;
+    }
+    
+    // Create a new TLS connection for this accept operation
+    std::shared_ptr<WorldServer> world_server_shared;
+    if (world_server_) {
+        world_server_shared = std::shared_ptr<WorldServer>(world_server_, [](WorldServer *) {
+            // Empty deleter since we don't own the WorldServer
+        });
+    }
+
+    auto new_connection = PlayerConnection::create_tls(io_context_, world_server_shared, this, *tls_context_manager_);
+
+    // Accept the next TLS connection
+    tls_acceptor_->async_accept(new_connection->socket(), [this, new_connection](const asio::error_code &error) {
+        handle_tls_accept(new_connection, error);
+    });
+}
+
+void NetworkManager::handle_tls_accept(std::shared_ptr<PlayerConnection> connection, const asio::error_code &error) {
+    if (!running_.load()) {
+        return;
+    }
+
+    if (!error) {
+        Log::info("New TLS connection accepted from {}", connection->socket().remote_endpoint().address().to_string());
+
+        // Add to connection list
+        {
+            std::lock_guard<std::mutex> lock(connections_mutex_);
+            connections_.push_back(connection);
+        }
+
+        // Start the TLS connection (which will handle TLS handshake)
+        connection->start();
+
+        Log::info("TLS connection initialized successfully. Total connections: {}", connection_count());
+    } else if (error != asio::error::operation_aborted) {
+        Log::error("TLS accept error: {}", error.message());
+    }
+
+    // Continue accepting new TLS connections
+    if (running_.load()) {
+        start_tls_accept();
     }
 }

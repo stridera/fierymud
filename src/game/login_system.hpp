@@ -78,16 +78,8 @@ class LoginSystem {
     void start_login();
     void process_input(std::string_view input);
 
-    // State queries
-    LoginState current_state() const { return state_; }
-    bool is_logged_in() const { return state_ == LoginState::Playing; }
-    bool is_disconnected() const { return state_ == LoginState::Disconnected; }
-
     // Callbacks
     void set_player_loaded_callback(PlayerLoadedCallback callback) { player_loaded_callback_ = std::move(callback); }
-
-    // Player access (only valid when logged in)
-    std::shared_ptr<Player> get_player() const { return player_; }
 
   private:
     // State machine handlers
@@ -131,8 +123,6 @@ class LoginSystem {
     };
     
     PlayerFileValidation validate_player_file(std::string_view name) const;
-    Result<void> migrate_player_file(std::string_view name);
-    Result<std::shared_ptr<Player>> recover_corrupted_player(std::string_view name);
 
     // State
     LoginState state_{LoginState::GetName};

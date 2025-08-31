@@ -10,6 +10,8 @@
 #include "../game/login_system.hpp"
 #include "../game/player_output.hpp"
 #include "../world/room.hpp"
+#include "../commands/terminal_capabilities.hpp"
+#include "tls_context.hpp"
 
 #include <asio.hpp>
 #include <chrono>
@@ -20,10 +22,12 @@
 #include <string>
 #include <string_view>
 #include <unordered_set>
+#include <unordered_map>
 
 // Forward declarations
 class Player;
 class WorldServer;
+class NetworkManager;
 
 /**
  * @brief Player connection state tracking
@@ -54,13 +58,16 @@ class GMCPHandler {
     static constexpr uint8_t TELNET_SE = 240;
     static constexpr uint8_t TELNET_GA = 249; // Go Ahead for prompts
     static constexpr uint8_t GMCP_OPTION = 201;
+    static constexpr uint8_t MSSP_OPTION = 70;
+    static constexpr uint8_t TTYPE_OPTION = 24;    // Terminal Type
+    static constexpr uint8_t NEW_ENVIRON_OPTION = 39; // NEW-ENVIRON
 
     explicit GMCPHandler(class PlayerConnection &connection);
     ~GMCPHandler() = default;
 
     // GMCP capability management
     bool supports_gmcp() const { return gmcp_enabled_; }
-    void enable() { gmcp_enabled_ = true; }
+    void enable();
     void disable() { gmcp_enabled_ = false; }
 
     // Telnet option negotiation
@@ -70,9 +77,13 @@ class GMCPHandler {
     // GMCP message processing
     Result<void> process_gmcp_message(std::string_view message);
     Result<void> send_gmcp(std::string_view module, const nlohmann::json &data);
+    
+    // MSSP message processing
+    Result<void> handle_mssp_request();
+    Result<void> send_mssp_data();
 
-    // Core GMCP modules
-    void send_hello();
+    // Core GMCP modules  
+    void send_server_services();
     void send_supports_set();
 
     // Room module
@@ -81,11 +92,23 @@ class GMCPHandler {
     // Client capability management
     void add_client_support(std::string_view module);
     bool client_supports(std::string_view module) const;
+    
+    // Terminal capability detection
+    void handle_terminal_type(std::string_view ttype);
+    void handle_mtts_capability(uint32_t bitvector);
+    void handle_new_environ_data(const std::unordered_map<std::string, std::string>& env_vars);
+    const TerminalCapabilities::Capabilities& get_terminal_capabilities() const;
+    
+    // Request client capabilities
+    void request_terminal_type();
+    void request_new_environ();
 
   private:
     class PlayerConnection &connection_;
     bool gmcp_enabled_{false};
     std::unordered_set<std::string> client_supports_;
+    TerminalCapabilities::Capabilities terminal_capabilities_;
+    std::unique_ptr<class MSSPHandler> mssp_handler_;
 
     // Helper methods
     std::string escape_telnet_data(std::string_view data);
@@ -107,9 +130,16 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     using MessageCallback = std::function<void(std::string_view)>;
     using DisconnectCallback = std::function<void(std::shared_ptr<PlayerConnection>)>;
 
-    // Factory method for safe shared_ptr creation
+    // Factory methods for safe shared_ptr creation
     static std::shared_ptr<PlayerConnection> create(asio::io_context &io_context,
-                                                    std::shared_ptr<WorldServer> world_server);
+                                                    std::shared_ptr<WorldServer> world_server,
+                                                    NetworkManager* network_manager);
+    
+    // Factory method for TLS connections
+    static std::shared_ptr<PlayerConnection> create_tls(asio::io_context &io_context,
+                                                        std::shared_ptr<WorldServer> world_server,
+                                                        NetworkManager* network_manager,
+                                                        TLSContextManager& tls_manager);
 
     ~PlayerConnection();
 
@@ -119,8 +149,11 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void force_disconnect();
 
     // Socket access for accept operations
-    asio::ip::tcp::socket &socket() { return socket_; }
-    const asio::ip::tcp::socket &socket() const { return socket_; }
+    asio::ip::tcp::socket &socket() { return connection_socket_->tcp_socket(); }
+    const asio::ip::tcp::socket &socket() const { return connection_socket_->tcp_socket(); }
+    
+    // TLS support queries
+    bool is_tls_connection() const { return connection_socket_ && connection_socket_->is_tls(); }
 
     // State queries
     ConnectionState state() const { return state_; }
@@ -136,6 +169,9 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
 
     // Player access (only valid when playing)
     std::shared_ptr<Player> get_player() const { return player_; }
+    
+    // Reconnection support - attach existing player to new connection
+    void attach_player(std::shared_ptr<Player> player);
 
     // Message sending (thread-safe)
     void send_message(std::string_view message) override;
@@ -148,6 +184,11 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void send_room_info();
     void send_vitals();
     void send_status();
+    
+    // Terminal capability detection
+    const TerminalCapabilities::Capabilities& get_terminal_capabilities() const { 
+        return gmcp_handler_.get_terminal_capabilities(); 
+    }
 
     // Raw data sending for telnet protocol
     void send_raw_data(const std::vector<uint8_t> &data);
@@ -156,12 +197,20 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     std::string remote_address() const override;
     std::chrono::steady_clock::time_point connect_time() const { return connect_time_; }
     std::chrono::seconds connection_duration() const;
+    
+    // Network manager access for reconnection handling
+    NetworkManager* get_network_manager() const { return network_manager_; }
 
     // Callbacks
     void set_disconnect_callback(DisconnectCallback callback) { disconnect_callback_ = std::move(callback); }
 
   protected:
-    explicit PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server);
+    explicit PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server, 
+                              NetworkManager* network_manager);
+    
+    // TLS constructor
+    explicit PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server, 
+                              NetworkManager* network_manager, TLSContextManager& tls_manager);
 
     // Async operation handlers
     void handle_connect();
@@ -184,7 +233,6 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void check_idle_timeout();
     void set_afk(bool afk);
     void set_linkdead(bool linkdead, std::string_view reason = "");
-    bool attempt_reconnection(std::string_view name, std::string_view password);
     void start_idle_timer();
     void handle_idle_timer(const asio::error_code &error);
 
@@ -199,8 +247,9 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     // Core components
     asio::io_context &io_context_;
     asio::strand<asio::io_context::executor_type> strand_;
-    asio::ip::tcp::socket socket_;
+    std::unique_ptr<TLSSocket> connection_socket_;
     std::shared_ptr<WorldServer> world_server_;
+    NetworkManager* network_manager_;
     asio::steady_timer idle_check_timer_;
 
     // Protocol handlers

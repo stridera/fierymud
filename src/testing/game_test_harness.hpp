@@ -7,7 +7,6 @@
 
 #include "../core/ids.hpp"
 #include "../core/result.hpp"
-#include "../game/command_system.hpp"
 #include "../world/game_world.hpp"
 
 #include <asio.hpp>

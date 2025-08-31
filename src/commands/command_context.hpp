@@ -21,6 +21,10 @@
 #include <chrono>
 #include <any>
 #include <span>
+#include <fmt/format.h>
+
+// Forward declaration for rich text system
+class RichText;
 
 // Forward declarations
 class Actor;
@@ -70,6 +74,47 @@ enum class TargetType {
     String,         // Arbitrary string
     Number,         // Numeric value
     Multiple        // Multiple targets
+};
+
+/** Act message targeting (inspired by legacy system) */
+enum class ActTarget {
+    ToChar,         // Message to the actor performing the action
+    ToTarget,       // Message to the target/victim of the action  
+    ToRoom,         // Message to everyone else in the room
+    ToAll           // All of the above (default behavior)
+};
+
+/** Social message template (inspired by legacy social_messg) */
+struct SocialMessage {
+    // No argument supplied
+    std::string to_actor_no_arg;     // "You smile happily."
+    std::string to_room_no_arg;      // "$n smiles happily."
+    
+    // Target found
+    std::string to_actor_with_target;    // "You smile at $N."
+    std::string to_target;               // "$n smiles at you."
+    std::string to_room_with_target;     // "$n smiles at $N."
+    
+    // Target not found
+    std::string target_not_found;       // "Smile at whom?"
+    
+    // Convenience constructor for simple socials
+    SocialMessage(std::string_view action) {
+        to_actor_no_arg = fmt::format("You {}.", action);
+        to_room_no_arg = fmt::format("$n {}.", action);
+        to_actor_with_target = fmt::format("You {} $N.", action);
+        to_target = fmt::format("$n {} you.", action);
+        to_room_with_target = fmt::format("$n {} $N.", action);
+        target_not_found = fmt::format("{} whom?", action);
+    }
+    
+    // Full constructor for custom messages
+    SocialMessage(std::string_view actor_no_arg, std::string_view room_no_arg,
+                 std::string_view actor_with_target, std::string_view target_msg,
+                 std::string_view room_with_target, std::string_view not_found = "")
+        : to_actor_no_arg(actor_no_arg), to_room_no_arg(room_no_arg)
+        , to_actor_with_target(actor_with_target), to_target(target_msg)
+        , to_room_with_target(room_with_target), target_not_found(not_found) {}
 };
 
 /** Target resolution result */

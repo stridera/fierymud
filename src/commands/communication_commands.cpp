@@ -50,11 +50,11 @@ Result<CommandResult> cmd_tell(const CommandContext &ctx) {
     std::string message = ctx.args_from(1);
 
     // Send to target
-    std::string target_msg = fmt::format("{} tells you, '{}'", ctx.actor->name(), message);
+    std::string target_msg = fmt::format("{} tells you, '{}'", ctx.actor->display_name(), message);
     ctx.send_to_actor(target, target_msg);
 
     // Send confirmation to sender
-    std::string sender_msg = fmt::format("You tell {}, '{}'", target->name(), message);
+    std::string sender_msg = fmt::format("You tell {}, '{}'", target->display_name(), message);
     ctx.send(sender_msg);
 
     return CommandResult::Success;
@@ -67,7 +67,7 @@ Result<CommandResult> cmd_emote(const CommandContext &ctx) {
     }
 
     std::string action = ctx.args_from(0);
-    std::string emote_msg = fmt::format("{} {}", ctx.actor->name(), action);
+    std::string emote_msg = fmt::format("{} {}", ctx.actor->display_name(), action);
 
     // Send to everyone in the room including self - emotes show the same message to everyone
     ctx.send_to_room(emote_msg, false); // Include self - everyone sees the same thing
@@ -95,15 +95,15 @@ Result<CommandResult> cmd_whisper(const CommandContext &ctx) {
     std::string message = ctx.args_from(1);
 
     // Send to target
-    std::string target_msg = fmt::format("{} whispers to you, '{}'", ctx.actor->name(), message);
+    std::string target_msg = fmt::format("{} whispers to you, '{}'", ctx.actor->display_name(), message);
     ctx.send_to_actor(target, target_msg);
 
     // Send confirmation to sender
-    std::string sender_msg = fmt::format("You whisper to {}, '{}'", target->name(), message);
+    std::string sender_msg = fmt::format("You whisper to {}, '{}'", target->display_name(), message);
     ctx.send(sender_msg);
 
     // Let others see the whisper (but not the content)
-    std::string room_msg = fmt::format("{} whispers something to {}.", ctx.actor->name(), target->name());
+    std::string room_msg = fmt::format("{} whispers something to {}.", ctx.actor->display_name(), target->display_name());
     ctx.send_to_room(room_msg, true);
 
     return CommandResult::Success;

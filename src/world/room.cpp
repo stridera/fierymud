@@ -335,14 +335,14 @@ Result<std::unique_ptr<Room>> Room::from_json(const nlohmann::json& json) {
                 } else {
                     // Try converting numeric string to SectorType
                     try {
-                        int sector_num = std::stoi(sector_str);
+                        [[maybe_unused]] int sector_num = std::stoi(sector_str);
                         // TODO: Map numeric sector to SectorType enum when available
                     } catch (...) {
                         // Use default sector
                     }
                 }
             } else {
-                int sector_num = json["sector"].get<int>();
+                [[maybe_unused]] int sector_num = json["sector"].get<int>();
                 // TODO: Map numeric sector to SectorType enum when available
             }
         }
@@ -468,7 +468,7 @@ std::vector<Direction> Room::get_available_exits() const {
     return directions;
 }
 
-std::vector<Direction> Room::get_visible_exits(const Actor* observer) const {
+std::vector<Direction> Room::get_visible_exits(const Actor* /* observer */) const {
     std::vector<Direction> directions;
     for (const auto& [dir, exit] : exits_) {
         if (exit.to_room.is_valid() && !exit.is_hidden) {

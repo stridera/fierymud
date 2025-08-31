@@ -27,7 +27,28 @@ The core MUD infrastructure is now solid with working commands, movement, combat
 
 ## Next Iteration Priorities
 
-### 1. Container System Stability & Completion 📦 **[HIGH PRIORITY]**
+### 1. TLS/SSL Encryption Support 🔐 **[HIGH PRIORITY - Security]**
+
+**Status**: Ready to implement  
+**Estimated Effort**: 4-5 hours  
+**Dependencies**: GMCP client detection (completed ✅)
+
+**Immediate Security Need**: Modern MUD servers require encrypted connections for:
+- Player password protection during login
+- Protection against network eavesdropping
+- Compliance with modern security standards
+- Enhanced client trust and adoption
+
+**Technical Implementation**:
+- Integrate Asio SSL streams with existing PlayerConnection architecture
+- Add certificate management (self-signed for development, CA-signed for production)
+- Implement dual-port support (4001 plaintext, 4443 TLS)
+- Update client capability detection to advertise TLS support via GMCP
+- Backward compatibility with non-SSL clients
+
+**Expected Outcome**: Secure encrypted client connections with seamless fallback to plaintext
+
+### 2. Container System Stability & Completion 📦 **[HIGH PRIORITY]**
 
 **Status**: Framework exists but some test failures detected  
 **Estimated Effort**: 2-3 hours  
@@ -167,18 +188,31 @@ The core MUD infrastructure is now solid with working commands, movement, combat
 - Backup and recovery systems
 - Migration tools for legacy data
 
-### 7. Network and Protocol Enhancements 🌐
+### 7. Network and Protocol Enhancements 🌐 **[ELEVATED PRIORITY - Security]**
 
-**Status**: Basic telnet works  
-**Estimated Effort**: 4-5 hours
+**Status**: Basic telnet works, GMCP implemented ✅  
+**Estimated Effort**: 6-8 hours  
+**Dependencies**: Client capability detection (completed)
 
 **Scope**:
 
-- MXP (MUD eXtension Protocol) support
-- MCCP (compression) implementation
-- IPv6 support
-- SSL/TLS encryption
-- WebSocket support for web clients
+**High Priority Security & Modern Protocols**:
+- **TLS/SSL Encryption**: Secure client connections with certificate management
+- **Modern Telnet Options**: Enhanced terminal capability detection (completed ✅)
+- **GMCP Protocol**: Generic Mud Communication Protocol (completed ✅)
+- **IPv6 Support**: Modern network stack compatibility
+
+**Enhanced Client Support**:
+- **MCCP (MUD Client Compression Protocol)**: Bandwidth optimization
+- **MXP (MUD eXtension Protocol)**: Rich client interface support  
+- **WebSocket Support**: Browser-based clients and modern web interfaces
+- **Client Capability Negotiation**: Enhanced terminal detection (completed ✅)
+
+**Technical Implementation Notes**:
+- TLS integration with Asio SSL streams
+- Certificate management and renewal
+- Backward compatibility with non-SSL clients
+- Port-based SSL/non-SSL separation (e.g., 4001 plain, 4443 TLS)
 
 ### 8. Administration Tools 🔧
 
@@ -283,26 +317,27 @@ The core MUD infrastructure is now solid with working commands, movement, combat
 
 ## Implementation Strategy
 
-### Phase 1: Core Gameplay (Current Priority)
+### Phase 1: Core Security & Gameplay (Current Priority)
 
-1. **Weather System** - Immediate next step
-2. Enhanced Object Interactions
-3. Advanced NPC AI
-4. Player Advancement System
+1. **TLS/SSL Encryption** - Critical security upgrade ⚡
+2. **Container System Completion** - Core gameplay stability  
+3. **Weather System** - Environmental gameplay enhancement
+4. Enhanced Object Interactions
+5. Advanced NPC AI
 
 ### Phase 2: System Reliability
 
 1. Enhanced Database System
-2. Testing Framework Expansion
+2. Testing Framework Expansion  
 3. Administration Tools
 4. Documentation
 
-### Phase 3: Advanced Features
+### Phase 3: Advanced Network Features
 
-1. Network Protocol Enhancements
+1. **Advanced Protocol Enhancements** (MCCP, MXP, WebSocket)
 2. Magic System Expansion
 3. Clan System Enhancement
-4. Economy and Trading
+4. Player Advancement System
 
 ### Phase 4: Endgame Content
 

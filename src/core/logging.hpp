@@ -240,6 +240,11 @@ template <typename... Args> void debug(std::string_view format, Args &&...args) 
     game()->debug(format, std::forward<Args>(args)...);
 }
 
+/** Quick trace logging */
+template <typename... Args> void trace(std::string_view format, Args &&...args) {
+    game()->trace(format, std::forward<Args>(args)...);
+}
+
 /** Log game event with player context */
 template <typename... Args> void player_event(std::string_view player_name, std::string_view event, Args &&...args) {
     LogContext ctx;

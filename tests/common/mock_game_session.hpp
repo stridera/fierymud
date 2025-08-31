@@ -28,7 +28,8 @@
  */
 class MockPlayerConnection : public PlayerConnection {
   public:
-    MockPlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server);
+    MockPlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
+                         NetworkManager* network_manager = nullptr);
     ~MockPlayerConnection() = default;
 
     // Mock-specific methods for testing

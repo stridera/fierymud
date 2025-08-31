@@ -766,7 +766,7 @@ Result<bool> Zone::execute_load_mobile(const ZoneCommand &cmd) {
     // Spawn the mobile
     auto mobile = spawn_mobile_callback_(mobile_id, room_id);
     if (mobile) {
-        logger->info("Zone {} spawned mobile '{}' ({}) in room {}", name(), mobile->name(), mobile_id, room_id);
+        logger->info("Zone {} spawned mobile '{}' ({}) in room {}", name(), mobile->display_name(), mobile_id, room_id);
         stats_.mobile_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to spawn mobile {} in room {}", name(), mobile_id, room_id);
@@ -934,7 +934,7 @@ Result<bool> Zone::execute_load_object(const ZoneCommand &cmd) {
     // Spawn the object
     auto object = spawn_object_callback_(object_id, room_id);
     if (object) {
-        logger->info("Zone {} spawned object '{}' ({}) in room {}", name(), object->name(), object_id, room_id);
+        logger->info("Zone {} spawned object '{}' ({}) in room {}", name(), object->display_name(), object_id, room_id);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to spawn object {} in room {}", name(), object_id, room_id);
@@ -961,7 +961,7 @@ Result<bool> Zone::execute_give_object(const ZoneCommand &cmd) {
     // The spawn callback should handle placing it in the correct mobile's inventory
     auto object = spawn_object_callback_(object_id, EntityId{mobile_id.value()});
     if (object) {
-        logger->info("Zone {} gave object '{}' ({}) to mobile {}", name(), object->name(), object_id, mobile_id);
+        logger->info("Zone {} gave object '{}' ({}) to mobile {}", name(), object->display_name(), object_id, mobile_id);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to give object {} to mobile {}", name(), object_id, mobile_id);
@@ -991,7 +991,7 @@ Result<bool> Zone::execute_equip_object(const ZoneCommand &cmd) {
     auto object = spawn_object_callback_(object_id, equip_room_id);
     if (object) {
         logger->info("Zone {} equipped object '{}' ({}) on mobile {} slot {}", 
-                    name(), object->name(), object_id, mobile_id, equipment_slot);
+                    name(), object->display_name(), object_id, mobile_id, equipment_slot);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to equip object {} on mobile {} slot {}", 
@@ -1018,7 +1018,7 @@ Result<bool> Zone::execute_put_object(const ZoneCommand &cmd) {
     // Use a special encoding: container object ID as the room ID
     auto object = spawn_object_callback_(object_id, container_id);
     if (object) {
-        logger->info("Zone {} put object '{}' ({}) in container {}", name(), object->name(), object_id, container_id);
+        logger->info("Zone {} put object '{}' ({}) in container {}", name(), object->display_name(), object_id, container_id);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to put object {} in container {}", name(), object_id, container_id);

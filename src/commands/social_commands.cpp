@@ -23,118 +23,37 @@ namespace SocialCommands {
 // =============================================================================
 
 Result<CommandResult> cmd_smile(const CommandContext& ctx) {
-    if (!ctx.actor) {
-        return std::unexpected(Errors::InvalidState("No actor context"));
-    }
+    static const SocialMessage smile_msg("You smile happily.", "$n smiles happily.",
+                                        "You smile at $N.", "$n smiles at you.",
+                                        "$n smiles at $N.", "Smile at whom?");
     
-    if (ctx.arg_count() == 0) {
-        ctx.send("You smile happily.");
-        ctx.send_to_room(fmt::format("{} smiles happily.", ctx.actor->name()), true);
-    } else {
-        auto target = ctx.find_actor_target(ctx.arg(0));
-        if (!target) {
-            ctx.send_error(fmt::format("'{}' is not here.", ctx.arg(0)));
-            return CommandResult::InvalidTarget;
-        }
-        
-        ctx.send(fmt::format("You smile at {}.", target->name()));
-        ctx.send_to_actor(target, fmt::format("{} smiles at you.", ctx.actor->name()));
-        ctx.send_to_room(fmt::format("{} smiles at {}.", ctx.actor->name(), target->name()), true);
-    }
-    
-    return CommandResult::Success;
+    return ctx.execute_social(smile_msg, ctx.arg_count() > 0 ? ctx.arg(0) : "");
 }
 
 Result<CommandResult> cmd_nod(const CommandContext& ctx) {
-    if (!ctx.actor) {
-        return std::unexpected(Errors::InvalidState("No actor context"));
-    }
-    
-    if (ctx.arg_count() == 0) {
-        ctx.send("You nod.");
-        ctx.send_to_room(fmt::format("{} nods.", ctx.actor->name()), true);
-    } else {
-        auto target = ctx.find_actor_target(ctx.arg(0));
-        if (!target) {
-            ctx.send_error(fmt::format("'{}' is not here.", ctx.arg(0)));
-            return CommandResult::InvalidTarget;
-        }
-        
-        ctx.send(fmt::format("You nod at {}.", target->name()));
-        ctx.send_to_actor(target, fmt::format("{} nods at you.", ctx.actor->name()));
-        ctx.send_to_room(fmt::format("{} nods at {}.", ctx.actor->name(), target->name()), true);
-    }
-    
-    return CommandResult::Success;
+    static const SocialMessage nod_msg("nod");  // Uses convenience constructor
+    return ctx.execute_social(nod_msg, ctx.arg_count() > 0 ? ctx.arg(0) : "");
 }
 
 Result<CommandResult> cmd_wave(const CommandContext& ctx) {
-    if (!ctx.actor) {
-        return std::unexpected(Errors::InvalidState("No actor context"));
-    }
-    
-    if (ctx.arg_count() == 0) {
-        ctx.send("You wave.");
-        ctx.send_to_room(fmt::format("{} waves.", ctx.actor->name()), true);
-    } else {
-        auto target = ctx.find_actor_target(ctx.arg(0));
-        if (!target) {
-            ctx.send_error(fmt::format("'{}' is not here.", ctx.arg(0)));
-            return CommandResult::InvalidTarget;
-        }
-        
-        ctx.send(fmt::format("You wave at {}.", target->name()));
-        ctx.send_to_actor(target, fmt::format("{} waves at you.", ctx.actor->name()));
-        ctx.send_to_room(fmt::format("{} waves at {}.", ctx.actor->name(), target->name()), true);
-    }
-    
-    return CommandResult::Success;
+    static const SocialMessage wave_msg("wave");  // Uses convenience constructor  
+    return ctx.execute_social(wave_msg, ctx.arg_count() > 0 ? ctx.arg(0) : "");
 }
 
 Result<CommandResult> cmd_bow(const CommandContext& ctx) {
-    if (!ctx.actor) {
-        return std::unexpected(Errors::InvalidState("No actor context"));
-    }
+    static const SocialMessage bow_msg("You bow gracefully.", "$n bows gracefully.",
+                                      "You bow to $N.", "$n bows to you.",
+                                      "$n bows to $N.", "Bow to whom?");
     
-    if (ctx.arg_count() == 0) {
-        ctx.send("You bow gracefully.");
-        ctx.send_to_room(fmt::format("{} bows gracefully.", ctx.actor->name()), true);
-    } else {
-        auto target = ctx.find_actor_target(ctx.arg(0));
-        if (!target) {
-            ctx.send_error(fmt::format("'{}' is not here.", ctx.arg(0)));
-            return CommandResult::InvalidTarget;
-        }
-        
-        ctx.send(fmt::format("You bow to {}.", target->name()));
-        ctx.send_to_actor(target, fmt::format("{} bows to you.", ctx.actor->name()));
-        ctx.send_to_room(fmt::format("{} bows to {}.", ctx.actor->name(), target->name()), true);
-    }
-    
-    return CommandResult::Success;
+    return ctx.execute_social(bow_msg, ctx.arg_count() > 0 ? ctx.arg(0) : "");
 }
 
 Result<CommandResult> cmd_laugh(const CommandContext& ctx) {
-    if (!ctx.actor) {
-        return std::unexpected(Errors::InvalidState("No actor context"));
-    }
+    static const SocialMessage laugh_msg("You laugh out loud.", "$n laughs out loud.",
+                                        "You laugh at $N.", "$n laughs at you.",
+                                        "$n laughs at $N.", "Laugh at whom?");
     
-    if (ctx.arg_count() == 0) {
-        ctx.send("You laugh out loud.");
-        ctx.send_to_room(fmt::format("{} laughs out loud.", ctx.actor->name()), true);
-    } else {
-        auto target = ctx.find_actor_target(ctx.arg(0));
-        if (!target) {
-            ctx.send_error(fmt::format("'{}' is not here.", ctx.arg(0)));
-            return CommandResult::InvalidTarget;
-        }
-        
-        ctx.send(fmt::format("You laugh at {}.", target->name()));
-        ctx.send_to_actor(target, fmt::format("{} laughs at you.", ctx.actor->name()));
-        ctx.send_to_room(fmt::format("{} laughs at {}.", ctx.actor->name(), target->name()), true);
-    }
-    
-    return CommandResult::Success;
+    return ctx.execute_social(laugh_msg, ctx.arg_count() > 0 ? ctx.arg(0) : "");
 }
 
 // =============================================================================
@@ -147,9 +66,9 @@ std::string format_social_message(std::string_view action,
                                  std::shared_ptr<Actor> actor, 
                                  std::shared_ptr<Actor> target) {
     if (target) {
-        return fmt::format("{} {} {}.", actor->name(), action, target->name());
+        return fmt::format("{} {} {}.", actor->display_name(), action, target->display_name());
     } else {
-        return fmt::format("{} {}.", actor->name(), action);
+        return fmt::format("{} {}.", actor->display_name(), action);
     }
 }
 
