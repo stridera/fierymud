@@ -1445,9 +1445,9 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     // First check if this is a simple inventory request (no upper bits set)
     if (potential_equipment_slot == 0) {
         // Check if object is suitable for mobile inventory (not too heavy, appropriate type)
+        // Allow OTHER type objects since they include toys, dolls, and other items mobiles can carry
         bool suitable_for_mobile = (new_object->weight() <= 100 && 
-                                   new_object->type() != ObjectType::Fountain && 
-                                   new_object->type() != ObjectType::Other);
+                                   new_object->type() != ObjectType::Fountain);
         
         if (suitable_for_mobile) {
             // This might be an inventory request - try to find a mobile with this ID

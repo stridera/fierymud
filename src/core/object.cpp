@@ -877,9 +877,11 @@ std::string Object::get_stat_info() const {
     std::ostringstream output;
     
     // Basic object information - similar to legacy format
-    output << fmt::format("Name: '{}', Aliases: {}, Level: {}\n", 
+    // Show the display name and keywords for identification
+    std::string keyword_list = EntityUtils::create_keyword_string(keywords());
+    output << fmt::format("Name: '{}', Keywords: {}, Level: {}\n", 
         short_description().empty() ? "<None>" : short_description(), 
-        name(), 
+        keyword_list.empty() ? name() : keyword_list,
         level());
 
     output << fmt::format("ID: [    {}], Type: {}, SpecProc: None\n", 
@@ -1053,13 +1055,11 @@ std::string Object::get_stat_info() const {
     if (!extra_descs.empty()) {
         output << "Extra descriptions:\n";
         for (const auto& desc : extra_descs) {
-            // Format keywords as comma-separated string
-            std::string keywords_str;
-            for (size_t i = 0; i < desc.keywords.size(); ++i) {
-                if (i > 0) keywords_str += ", ";
-                keywords_str += desc.keywords[i];
-            }
-            output << fmt::format("  {}: {}\n", keywords_str, desc.description);
+            // Use a descriptive label instead of showing keyword arrays to admins
+            std::string label = desc.keywords.empty() ? "unknown" : 
+                               (desc.keywords.size() == 1 ? desc.keywords[0] : 
+                                fmt::format("{} (and {} others)", desc.keywords[0], desc.keywords.size() - 1));
+            output << fmt::format("  {}: {}\n", label, desc.description);
         }
     }
     

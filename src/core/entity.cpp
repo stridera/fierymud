@@ -172,6 +172,8 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         
         if (json.contains("short")) {
             entity->set_short_desc(json["short"].get<std::string>());
+        } else if (json.contains("short_desc")) {
+            entity->set_short_desc(json["short_desc"].get<std::string>());
         } else if (json.contains("short_description")) {
             entity->set_short_desc(json["short_description"].get<std::string>());
         }
@@ -330,6 +332,8 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
         
         if (json.contains("short")) {
             entity->set_short_desc(json["short"].get<std::string>());
+        } else if (json.contains("short_desc")) {
+            entity->set_short_desc(json["short_desc"].get<std::string>());
         } else if (json.contains("short_description")) {
             entity->set_short_desc(json["short_description"].get<std::string>());
         }
