@@ -123,9 +123,9 @@ void LoginSystem::handle_get_name(std::string_view input) {
         // Parse user:password format
         std::string name_part = std::string(input.substr(0, colon_pos));
         std::string password_part = std::string(input.substr(colon_pos + 1));
-        
+
         // Trim whitespace from both parts
-        auto trim = [](std::string& s) {
+        auto trim = [](std::string &s) {
             auto start = s.find_first_not_of(" \t\r\n");
             auto end = s.find_last_not_of(" \t\r\n");
             if (start != std::string::npos) {
@@ -134,26 +134,26 @@ void LoginSystem::handle_get_name(std::string_view input) {
                 s.clear();
             }
         };
-        
+
         trim(name_part);
         trim(password_part);
-        
+
         if (name_part.empty() || password_part.empty()) {
             send_message("Invalid format. Use 'name:password' or just 'name'.");
             send_prompt();
             return;
         }
-        
+
         std::string name = normalize_name(name_part);
-        
+
         if (!is_valid_name(name)) {
             send_message("Invalid name. Names must be 3-20 characters, letters only, and start with a capital letter.");
             send_prompt();
             return;
         }
-        
+
         creation_data_.name = name;
-        
+
         // Check if character exists
         auto exists_result = character_exists(name);
         if (!exists_result) {
@@ -161,7 +161,7 @@ void LoginSystem::handle_get_name(std::string_view input) {
             send_prompt();
             return;
         }
-        
+
         if (exists_result.value()) {
             // Existing character - try to login directly with provided password
             auto load_result = load_character(name, password_part);
@@ -171,34 +171,35 @@ void LoginSystem::handle_get_name(std::string_view input) {
                     disconnect_with_message("Too many failed login attempts. Goodbye!");
                     return;
                 }
-                
+
                 send_message("Invalid password. Please try again with 'name:password' or just the name.");
                 send_prompt();
                 return;
             }
-            
+
             // Successfully loaded character
             player_ = load_result.value();
-            
+
             // Check for existing connection and handle reconnection
-            if (auto* network_manager = connection_->get_network_manager()) {
+            if (auto *network_manager = connection_->get_network_manager()) {
                 if (network_manager->handle_reconnection(connection_, player_->name())) {
                     Log::info("Player '{}' reconnected successfully", player_->name());
                     return;
                 }
             }
-            
+
             transition_to(LoginState::Playing);
             send_message(fmt::format("Welcome to FieryMUD, {}!", player_->name()));
-            
+
             if (player_loaded_callback_) {
                 player_loaded_callback_(player_);
             }
-            
+
             Log::info("Player '{}' logged in successfully via name:password format", player_->name());
             return;
         } else {
-            send_message(fmt::format("Character '{}' does not exist. Create it first by entering just the name.", name));
+            send_message(
+                fmt::format("Character '{}' does not exist. Create it first by entering just the name.", name));
             send_prompt();
             return;
         }
@@ -258,9 +259,9 @@ void LoginSystem::handle_get_password(std::string_view input) {
 
     // Successfully loaded character
     player_ = load_result.value();
-    
+
     // Check for existing connection and handle reconnection
-    if (auto* network_manager = connection_->get_network_manager()) {
+    if (auto *network_manager = connection_->get_network_manager()) {
         if (network_manager->handle_reconnection(connection_, player_->name())) {
             // Existing connection was found and player transferred to this connection
             // The reconnection handler already sent appropriate messages
@@ -268,7 +269,7 @@ void LoginSystem::handle_get_password(std::string_view input) {
             return; // Early return since reconnection handled everything
         }
     }
-    
+
     transition_to(LoginState::Playing);
 
     send_message(fmt::format("Welcome to FieryMUD, {}!", player_->name()));
@@ -446,7 +447,6 @@ void LoginSystem::send_prompt() {
         prompt_text = "Confirm creation? ";
         break;
     default:
-        prompt_text = "> ";
         break;
     }
 
@@ -551,7 +551,7 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     }
 
     auto player = std::shared_ptr<Player>(player_result.value().release());
-    
+
     // Refresh the player's start room to match the current world's default
     // This ensures existing characters get updated if the world's start room changes
     auto world_start_room = WorldManager::instance().get_start_room();
@@ -561,7 +561,7 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     } else {
         Log::warn("World start room is invalid for loaded player {}", player->name());
     }
-    
+
     return player;
 }
 
@@ -685,18 +685,18 @@ std::string LoginSystem::normalize_name(std::string_view name) const {
 
 LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_view name) const {
     PlayerFileValidation validation;
-    
+
     const auto &dir = Config::instance().player_directory();
     std::filesystem::path path{dir};
     path /= fmt::format("{}.json", name);
     auto filename = path.string();
-    
+
     // Check if file exists
     if (!std::filesystem::exists(path)) {
         validation.error_message = "Player file does not exist";
         return validation;
     }
-    
+
     // Check file permissions and size
     std::error_code ec;
     auto file_size = std::filesystem::file_size(path, ec);
@@ -704,21 +704,21 @@ LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_
         validation.error_message = fmt::format("Cannot access file: {}", ec.message());
         return validation;
     }
-    
+
     if (file_size == 0) {
         validation.has_corruption = true;
         validation.error_message = "Player file is empty";
         validation.suggested_fix = "Restore from backup or recreate character";
         return validation;
     }
-    
+
     if (file_size > 1024 * 1024) { // 1MB limit
         validation.has_corruption = true;
         validation.error_message = "Player file unusually large (possible corruption)";
         validation.suggested_fix = "Check file content for corruption";
         return validation;
     }
-    
+
     // Validate JSON structure
     try {
         std::ifstream file(filename);
@@ -726,10 +726,10 @@ LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_
             validation.error_message = "Cannot open player file";
             return validation;
         }
-        
+
         nlohmann::json data;
         file >> data;
-        
+
         // Check required top-level fields
         if (!data.contains("password")) {
             validation.has_corruption = true;
@@ -737,22 +737,20 @@ LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_
             validation.suggested_fix = "File structure corruption - restore from backup";
             return validation;
         }
-        
+
         if (!data.contains("player_data")) {
             validation.has_corruption = true;
             validation.error_message = "Missing player_data field";
             validation.suggested_fix = "File structure corruption - restore from backup";
             return validation;
         }
-        
+
         auto player_data = data["player_data"];
-        
+
         // Check critical player fields
-        std::vector<std::string> required_fields = {
-            "name", "id", "level", "class", "race", "attributes", "vitals"
-        };
-        
-        for (const auto& field : required_fields) {
+        std::vector<std::string> required_fields = {"name", "id", "level", "class", "race", "attributes", "vitals"};
+
+        for (const auto &field : required_fields) {
             if (!player_data.contains(field)) {
                 validation.has_corruption = true;
                 validation.error_message = fmt::format("Missing required field: {}", field);
@@ -760,14 +758,14 @@ LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_
                 return validation;
             }
         }
-        
+
         // Check for migration needs (version compatibility)
         if (!data.contains("created")) {
             validation.needs_migration = true;
             validation.error_message = "Legacy format detected";
             validation.suggested_fix = "File will be migrated on load";
         }
-        
+
         // Validate data integrity
         if (player_data["name"] != name) {
             validation.has_corruption = true;
@@ -775,20 +773,20 @@ LoginSystem::PlayerFileValidation LoginSystem::validate_player_file(std::string_
             validation.suggested_fix = "File name and data inconsistent";
             return validation;
         }
-        
+
         validation.is_valid = true;
-        
-    } catch (const nlohmann::json::exception& e) {
+
+    } catch (const nlohmann::json::exception &e) {
         validation.has_corruption = true;
         validation.error_message = fmt::format("JSON parsing error: {}", e.what());
         validation.suggested_fix = "File corrupted - restore from backup";
         return validation;
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         validation.has_corruption = true;
         validation.error_message = fmt::format("File validation error: {}", e.what());
         validation.suggested_fix = "File access issue - check permissions";
         return validation;
     }
-    
+
     return validation;
 }

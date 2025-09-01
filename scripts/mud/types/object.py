@@ -6,7 +6,7 @@ from mud.bitflags import BitFlags
 from mud.flags import AFFECTS, EFFECTS, OBJECT_FLAGS, OBJECT_TYPES, WEAR_FLAGS
 from mud.mudfile import MudData
 from mud.parser import Parser
-from mud.types import MudTypes, WearLocation, obj_val
+from mud.types import MudTypes, WearLocation, obj_val, Extras
 
 
 class ObjectType(Enum):
@@ -47,11 +47,11 @@ class ObjectType(Enum):
 class Object:
     id: int
     type: ObjectType | None = None
-    name_list: str | None = None
-    short_description: str | None = None
-    description: str | None = None
-    action_description: str | None = None
-    extra_descriptions: dict[str, str] | None = None
+    keywords: list[str] | None = None
+    short: str | None = None
+    ground: str | None = None
+    action_desc: str | None = None
+    extras: list[Extras] | None = None
     values: dict | None = None  # Stats that change for each object type
     flags: list[str] | None = None  # ItemFlags
     weight: float | None = None
@@ -75,18 +75,18 @@ class Object:
         objects = []
         for object_data in data.split_by_delimiter():
             obj = {}
-            obj["id"] = object_data.get_next_line().lstrip("#")
+            obj["id"] = int(object_data.get_next_line().lstrip("#"))
 
-            obj["name_list"] = object_data.read_string()
-            obj["short_description"] = object_data.read_string()
-            obj["description"] = object_data.read_string()
-            obj["action_description"] = object_data.read_string()
+            obj["keywords"] = object_data.read_string().split(" ")
+            obj["short"] = object_data.read_string()
+            obj["ground"] = object_data.read_string()
+            obj["action_desc"] = object_data.read_string()
 
             type_flag, extra_flags, wear_flags, level = object_data.get_next_line().split()
             f1, f2, f3, f4, f5, f6, f7 = object_data.get_next_line().split()
             weight, cost, timer, eff1, _, _, eff2, eff3 = object_data.get_next_line().split()
             item_types = BitFlags.get_flag(int(type_flag), OBJECT_TYPES)
-            extra_flags_text = BitFlags.build_flags(int(extra_flags), OBJECT_FLAGS)
+            extra_flags = BitFlags.build_flags(int(extra_flags), OBJECT_FLAGS)
             wear_flags_text = BitFlags.build_flags(int(wear_flags), WEAR_FLAGS)
             extra_stats = obj_val(item_types, f1, f2, f3, f4, f5, f6, f7)
             effects = (int(eff3) << 26) | (int(eff2) << int(13)) | int(eff1)
@@ -94,21 +94,21 @@ class Object:
 
             obj["type"] = item_types
             obj["wear_flags"] = wear_flags_text
-            obj["flags"] = extra_flags_text
-            obj["level"] = level
-            obj["weight"] = weight
-            obj["cost"] = cost
-            obj["timer"] = timer
+            obj["flags"] = extra_flags
+            obj["level"] = int(level)
+            obj["weight"] = float(weight)
+            obj["cost"] = int(cost)
+            obj["timer"] = int(timer)
             obj["effects"] = obj_effects
             obj["values"] = extra_stats
 
             while line := object_data.get_next_line():
                 if line.startswith("E"):
-                    if "extra_descriptions" not in obj:
-                        obj["extra_descriptions"] = []
-                    keyword = object_data.read_string()
+                    if "extras" not in obj:
+                        obj["extras"] = []
+                    keyword = object_data.read_string().split(" ")
                     extra_desc = object_data.read_string()
-                    obj["extra_descriptions"].append({"keyword": keyword, "desc": extra_desc})
+                    obj["extras"].append(Extras(keywords=keyword, text=extra_desc))
                 elif line.startswith("A"):
                     if "affects" not in obj:
                         obj["affects"] = []
@@ -169,28 +169,3 @@ class Object:
                 last_root = obj
 
         return objects
-
-    def to_json(self):
-        """Return a JSON-serializable dict for this Object."""
-        from dataclasses import asdict
-
-        d = asdict(self)
-        # Convert enum type to name
-        if self.type is not None and hasattr(self.type, "name"):
-            d["type"] = self.type.name
-
-        # Recursively convert contained objects
-        if self.contains:
-            d["contains"] = [c.to_json() for c in self.contains]
-
-        # Convert affects list of dicts (location may be enum)
-        if self.affects:
-            converted = []
-            for a in self.affects:
-                loc = a.get("location")
-                if hasattr(loc, "name"):
-                    a["location"] = loc.name
-                converted.append(a)
-            d["affects"] = converted
-
-        return d

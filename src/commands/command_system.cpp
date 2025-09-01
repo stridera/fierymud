@@ -175,15 +175,12 @@ CommandSystem::CommandBuilder CommandSystem::command(std::string_view name, Comm
 
 Result<CommandResult> CommandSystem::execute_command(std::shared_ptr<Actor> actor, std::string_view input) {
     if (!actor) {
-        fmt::print("CommandSystem::execute_command: actor is nullptr\n");
         return std::unexpected(Errors::InvalidArgument("actor", "cannot be null"));
     }
-    fmt::print("CommandSystem::execute_command: actor name: {}\n", actor->name());
 
     CommandParser parser;
     auto parse_result = parser.parse(input);
     if (!parse_result) {
-        // Fix formatting to actually include the error message (previously ignored the arg)
         actor->send_message(fmt::format("Invalid command syntax: {}\n", parse_result.error_message));
         return CommandResult::InvalidSyntax;
     }
@@ -412,8 +409,15 @@ PrivilegeLevel CommandSystem::get_actor_privilege(std::shared_ptr<Actor> actor) 
         return PrivilegeLevel::Guest;
     }
 
-    // TODO: Get from actor's actual privilege level
-    // For now, return Player as default
+    // Try to cast to Player to check god level
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        if (player->is_god()) {
+            return PrivilegeLevel::God;
+        }
+        return PrivilegeLevel::Player;
+    }
+
+    // For mobiles and other actors, return Player as default
     return PrivilegeLevel::Player;
 }
 
@@ -426,7 +430,8 @@ std::unordered_set<std::string> CommandSystem::get_actor_permissions(std::shared
     auto privilege = get_actor_privilege(actor);
     auto permissions = CommandSystemUtils::get_default_permissions(privilege);
 
-    // TODO: Add actor-specific permissions
+    // Add actor-specific permissions (placeholder for future implementation)
+    // In the future, this could check actor->get_custom_permissions() or similar
 
     return permissions;
 }
@@ -562,10 +567,10 @@ void CommandSystem::clear_all_cooldowns(std::shared_ptr<Actor> actor) {
 
 void CommandSystem::log_command_execution(const CommandContext &context, CommandResult result,
                                           std::chrono::milliseconds duration) {
-    Log::info("Command executed: {} by {} in room {} - {} ({}ms)", context.command.command,
-              context.actor ? context.actor->name() : "unknown",
-              context.room ? std::to_string(context.room->id().value()) : "none",
-              CommandSystemUtils::result_to_string(result), duration.count());
+    Log::trace("Command executed: {} by {} in room {} - {} ({}ms)", context.command.command,
+               context.actor ? context.actor->name() : "unknown",
+               context.room ? std::to_string(context.room->id().value()) : "none",
+               CommandSystemUtils::result_to_string(result), duration.count());
 }
 
 std::vector<std::string> CommandSystem::get_command_history(std::shared_ptr<Actor> actor, size_t count) const {
@@ -587,11 +592,6 @@ std::vector<std::string> CommandSystem::get_command_history(std::shared_ptr<Acto
 }
 
 Result<CommandContext> CommandSystem::create_context(std::shared_ptr<Actor> actor, const ParsedCommand &command) const {
-    if (!actor) {
-        fmt::print("CommandSystem::create_context: actor is nullptr\n");
-    } else {
-        fmt::print("CommandSystem::create_context: actor name: {}\n", actor->name());
-    }
     CommandContext context;
     context.actor = actor;
 
@@ -608,53 +608,80 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
     if (!actor) {
         return false;
     }
-    
+
     // Check if actor is dead or ghost - allow informational commands for both states
     if (actor->position() == Position::Ghost || actor->position() == Position::Dead) {
         // Allow informational commands and release for dead/ghost players
         std::string cmd_name = command.name;
         std::transform(cmd_name.begin(), cmd_name.end(), cmd_name.begin(), ::tolower);
-        
+
         // List of commands dead/ghost players can use
         static const std::set<std::string> ghost_allowed_commands = {
-            "look", "l",           // Look around
-            "release",             // Return to life
-            "help", "?",           // Help system
-            "score", "sc",         // Character stats
-            "inventory", "i",      // Inventory
-            "equipment", "eq",     // Equipment
-            "commands", "comm",    // Available commands
-            "who", "users",        // Who's online
-            "time",                // Game time
-            "weather",             // Weather
-            "exits",               // Available exits
-            "emote", ":",          // Emotes
-            "say", "'",            // Communication
-            "tell", "whisper",     // Private communication
-            "gossip", "ooc",       // OOC channels
-            "info", "news",        // Information commands
-            "title",               // View/set title
-            "prompt"               // Prompt settings
+            "look",      "l",       // Look around
+            "release",              // Return to life
+            "help",      "?",       // Help system
+            "score",     "sc",      // Character stats
+            "inventory", "i",       // Inventory
+            "equipment", "eq",      // Equipment
+            "commands",  "comm",    // Available commands
+            "who",       "users",   // Who's online
+            "time",                 // Game time
+            "weather",              // Weather
+            "exits",                // Available exits
+            "emote",     ":",       // Emotes
+            "say",       "'",       // Communication
+            "tell",      "whisper", // Private communication
+            "gossip",    "ooc",     // OOC channels
+            "info",      "news",    // Information commands
+            "title",                // View/set title
+            "prompt"                // Prompt settings
         };
-        
+
         if (ghost_allowed_commands.contains(cmd_name)) {
             return true;
         }
-        
+
         // Check aliases too
-        for (const auto& alias : command.aliases) {
+        for (const auto &alias : command.aliases) {
             std::string alias_lower = alias;
             std::transform(alias_lower.begin(), alias_lower.end(), alias_lower.begin(), ::tolower);
             if (ghost_allowed_commands.contains(alias_lower)) {
                 return true;
             }
         }
-        
-        return false;  // Dead/ghost players cannot use any other commands
+
+        return false; // Dead/ghost players cannot use any other commands
     }
-    
-    // TODO: Implement other state-based checks (fighting, sitting, sleeping, etc.)
-    // For living actors, allow all commands for now
+
+    // Check position-based restrictions
+    Position actor_position = actor->position();
+
+    // Get command name for position checks
+    std::string cmd_name = command.name;
+    std::transform(cmd_name.begin(), cmd_name.end(), cmd_name.begin(), ::tolower);
+
+    // Commands that require the actor to be awake
+    static const std::unordered_set<std::string> awake_commands = {
+        "look", "l", "who", "time", "weather", "exits", "inventory", "i", "equipment", "eq", "commands", "comm"};
+
+    // Commands that can be used while sleeping
+    static const std::unordered_set<std::string> sleep_commands = {"wake", "quit", "save", "ooc", "gossip"};
+
+    if (actor_position == Position::Sleeping) {
+        return sleep_commands.contains(cmd_name) || awake_commands.contains(cmd_name);
+    }
+
+    // Commands that require standing (movement, combat, etc.)
+    static const std::unordered_set<std::string> standing_commands = {
+        "north", "south", "east", "west",   "up",    "down",    "ne",   "nw",    "se",   "sw",     "get",   "drop",
+        "put",   "give",  "wear", "remove", "wield", "unwield", "open", "close", "lock", "unlock", "enter", "leave"};
+
+    if ((actor_position == Position::Sitting || actor_position == Position::Resting) &&
+        standing_commands.contains(cmd_name)) {
+        return false; // Must stand up first
+    }
+
+    // All other commands allowed for living actors
     return true;
 }
 
@@ -878,8 +905,17 @@ std::string format_privilege_level(PrivilegeLevel level, bool use_color) {
         return std::string{privilege_to_string(level)};
     }
 
-    // TODO: Add color codes based on privilege level
-    return std::string{privilege_to_string(level)};
+    // Add color codes based on privilege level
+    switch (level) {
+    case PrivilegeLevel::Guest:
+        return fmt::format("\033[37m{}\033[0m", privilege_to_string(level)); // White
+    case PrivilegeLevel::Player:
+        return fmt::format("\033[32m{}\033[0m", privilege_to_string(level)); // Green
+    case PrivilegeLevel::God:
+        return fmt::format("\033[33m{}\033[0m", privilege_to_string(level)); // Yellow
+    default:
+        return std::string{privilege_to_string(level)};
+    }
 }
 
 bool privilege_allows(PrivilegeLevel actor_level, PrivilegeLevel required_level) {

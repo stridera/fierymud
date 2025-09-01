@@ -15,15 +15,23 @@ class Encoder(JSONEncoder):
     # Writing files
     def default(self, o):
         """
-        Default method for converting the object to json
+        Default method for converting the object to json, dropping null fields.
         :param obj: The object to convert
         :return: The converted object
         """
         if hasattr(o, "json_repr"):
-            return o.json_repr()
-        if isinstance(o, Enum):
+            result = o.json_repr()
+        elif isinstance(o, Enum):
             return o.name
-        return o.__dict__ if hasattr(o, "__dict__") else str(o)
+        elif hasattr(o, "__dict__"):
+            result = o.__dict__
+        else:
+            return str(o)
+
+        if isinstance(result, dict):
+            # Drop fields with value None
+            return {k: v for k, v in result.items() if v is not None}
+        return result
 
 
 class MudData:

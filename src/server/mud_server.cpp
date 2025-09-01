@@ -170,7 +170,7 @@ ModernMUDServer::ModernMUDServer(ServerConfig config) : config_(std::move(config
     // Initialize systems (but don't start them yet)
     world_server_ = std::make_unique<WorldServer>(io_context_, config_);
     network_manager_ = std::make_unique<NetworkManager>(io_context_, config_);
-    persistence_manager_ = std::make_unique<PersistenceManager>();
+    // PersistenceManager is a singleton, accessed via PersistenceManager::instance()
     config_manager_ = std::make_unique<ConfigurationManager>();
 }
 
@@ -382,8 +382,8 @@ void ModernMUDServer::broadcast_message(std::string_view message) {
 
     auto online_players = get_online_players();
     for (auto &player : online_players) {
-        // TODO: Implement player messaging when network layer is complete
-        Log::info("Broadcasting to {}: {}", player->name(), message);
+        player->send_message(std::string(message) + "\r\n");
+        Log::debug("Broadcasted to {}: {}", player->name(), message);
     }
 
     Log::info("Broadcast: {}", message);
@@ -430,7 +430,7 @@ Result<void> ModernMUDServer::initialize_networking() {
     return network_manager_->initialize();
 }
 
-Result<void> ModernMUDServer::initialize_persistence() { return persistence_manager_->initialize(config_); }
+Result<void> ModernMUDServer::initialize_persistence() { return PersistenceManager::instance().initialize(config_); }
 
 Result<void> ModernMUDServer::load_initial_data() {
     // World loading is now handled asynchronously by WorldServer on the world strand
@@ -493,11 +493,10 @@ void ModernMUDServer::monitoring_task() {
 }
 
 Result<void> ModernMUDServer::save_all_data() {
-    if (persistence_manager_) {
-        auto persist_result = persistence_manager_->save_all_players();
-        if (!persist_result) {
-            return persist_result;
-        }
+    // Save all players using singleton PersistenceManager
+    auto persist_result = PersistenceManager::instance().save_all_players();
+    if (!persist_result) {
+        return persist_result;
     }
 
     return Success();
@@ -523,10 +522,12 @@ void ModernMUDServer::log_state_change(ServerState old_state, ServerState new_st
     Log::info("Server state changed: {} -> {}", magic_enum::enum_name(old_state), magic_enum::enum_name(new_state));
 }
 
-// Placeholder implementations for missing classes
+// Player management
 std::vector<std::shared_ptr<Player>> ModernMUDServer::get_online_players() const {
-    // TODO: Implement when Player class and network layer are complete
-    return {};
+    if (!world_server_) {
+        return {};
+    }
+    return world_server_->get_online_players();
 }
 
 void ModernMUDServer::shutdown_networking() {
@@ -546,20 +547,39 @@ void ModernMUDServer::cleanup_resources() {
 Result<void> ModernMUDServer::reload_config() {
     Log::info("Reloading server configuration...");
 
-    // TODO: Implement actual config reloading
-    // For now, just log that we received the request
-    Log::info("Configuration reload completed (placeholder)");
+    // Re-read configuration file
+    auto config_result = ServerConfig::load_from_file("config/server.json");
+    if (!config_result) {
+        Log::error("Failed to reload configuration: {}", config_result.error().message);
+        return std::unexpected(config_result.error());
+    }
+
+    // Update the server configuration
+    config_ = config_result.value();
+
+    // Re-setup logging with new configuration
+    auto logging_result = ServerUtils::setup_logging(config_);
+    if (!logging_result) {
+        Log::warn("Failed to update logging configuration: {}", logging_result.error().message);
+    }
+
+    // Validate new environment settings
+    auto validation_result = ServerUtils::validate_environment();
+    if (!validation_result) {
+        Log::warn("Environment validation failed after reload: {}", validation_result.error().message);
+    }
+
+    Log::info("Configuration reload completed successfully");
     return Success();
 }
 
 Result<void> ModernMUDServer::backup_data() {
     Log::info("Starting data backup...");
 
-    if (persistence_manager_) {
-        auto backup_result = persistence_manager_->backup_data();
-        if (!backup_result) {
-            return backup_result;
-        }
+    // Backup data using singleton PersistenceManager
+    auto backup_result = PersistenceManager::instance().backup_data();
+    if (!backup_result) {
+        return backup_result;
     }
 
     Log::info("Data backup completed");
@@ -572,24 +592,108 @@ void ModernMUDServer::update_stats() {
         stats_.current_connections = network_manager_->connection_count();
     }
 
-    // TODO: Update other stats like memory usage, CPU usage, etc.
+    // Update memory and performance stats
+    stats_.peak_connections.store(std::max(stats_.peak_connections.load(), stats_.current_connections.load()));
+
+    // Get world server stats if available
+    if (world_server_) {
+        auto world_stats = world_server_->get_performance_stats();
+        stats_.total_commands.store(world_stats.commands_processed);
+    }
 }
 
 // ServerUtils Implementation
 
 namespace ServerUtils {
 bool is_port_available(int port) {
-    // TODO: Implement actual port checking
-    return true;
+    // Try to bind to the port to check availability
+    try {
+        asio::io_context io_context;
+        asio::ip::tcp::acceptor acceptor(io_context);
+        asio::ip::tcp::endpoint endpoint(asio::ip::tcp::v4(), port);
+
+        acceptor.open(endpoint.protocol());
+        acceptor.set_option(asio::ip::tcp::acceptor::reuse_address(true));
+        acceptor.bind(endpoint);
+        acceptor.close();
+
+        return true;
+    } catch (const std::exception &e) {
+        Log::debug("Port {} is not available: {}", port, e.what());
+        return false;
+    }
 }
 
 ResourceUsage get_resource_usage() {
-    // TODO: Implement actual resource monitoring
-    return {0.0, 0, 0, 0};
+    ResourceUsage usage = {0.0, 0, 0, 0};
+
+    try {
+        // Memory usage using /proc/self/status (Linux specific)
+        std::ifstream status("/proc/self/status");
+        if (status.is_open()) {
+            std::string line;
+            while (std::getline(status, line)) {
+                if (line.find("VmRSS:") == 0) {
+                    std::istringstream iss(line);
+                    std::string label, value, unit;
+                    iss >> label >> value >> unit;
+                    usage.memory_mb = std::stoul(value) / 1024; // Convert KB to MB
+                    break;
+                }
+            }
+        }
+
+        // CPU usage is more complex to calculate, leave as 0.0 for now
+        usage.cpu_percentage = 0.0;
+
+        // Network connections - count current network connections
+        usage.network_connections = 0; // Could count via /proc/net/tcp if needed
+
+        // Disk usage
+        try {
+            auto space_info = std::filesystem::space(".");
+            usage.disk_free_mb = space_info.available / (1024 * 1024);
+        } catch (...) {
+            usage.disk_free_mb = 0;
+        }
+
+    } catch (const std::exception &e) {
+        Log::debug("Error getting resource usage: {}", e.what());
+    }
+
+    return usage;
 }
 
 Result<void> validate_environment() {
-    // TODO: Implement environment validation
+    // Check required directories exist
+    std::vector<std::string> required_dirs = {"data", "lib", "lib/etc", "lib/text"};
+
+    for (const auto &dir : required_dirs) {
+        if (!std::filesystem::exists(dir)) {
+            return std::unexpected(Errors::FileSystem(fmt::format("Required directory '{}' does not exist", dir)));
+        }
+        if (!std::filesystem::is_directory(dir)) {
+            return std::unexpected(Errors::FileSystem(fmt::format("Required path '{}' is not a directory", dir)));
+        }
+    }
+
+    // Check write permissions to data directory
+    std::filesystem::path data_dir = "data";
+    auto perms = std::filesystem::status(data_dir).permissions();
+    if ((perms & std::filesystem::perms::owner_write) == std::filesystem::perms::none) {
+        return std::unexpected(Errors::FileSystem("Data directory is not writable"));
+    }
+
+    // Check for minimum required files
+    std::vector<std::string> required_files = {"lib/etc/motd", "lib/etc/news", "lib/etc/policy"};
+
+    for (const auto &file : required_files) {
+        if (!std::filesystem::exists(file)) {
+            Log::warn("Recommended file '{}' does not exist", file);
+        }
+    }
+
+    Log::debug("Environment validation passed");
     return Success();
 }
 
@@ -597,10 +701,10 @@ Result<void> setup_logging(const ServerConfig &config) {
     // Parse log level string to enum
     LogLevel level = LogLevel::Info; // default
     std::string level_str = config.log_level;
-    
+
     // Convert to lowercase for case-insensitive matching
     std::transform(level_str.begin(), level_str.end(), level_str.begin(), ::tolower);
-    
+
     if (level_str == "trace") {
         level = LogLevel::Trace;
     } else if (level_str == "debug") {
@@ -616,11 +720,11 @@ Result<void> setup_logging(const ServerConfig &config) {
     } else if (level_str == "off") {
         level = LogLevel::Off;
     }
-    
+
     // Initialize logging with the configured level
     std::string log_file = config.log_directory + "/fierymud.log";
     Logger::initialize(log_file, level, true);
-    
+
     Log::info("Logging initialized for {} with level: {}", config.mud_name, config.log_level);
     return Success();
 }

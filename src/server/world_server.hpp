@@ -105,6 +105,9 @@ public:
     explicit WorldServer(asio::io_context& io_context, const ServerConfig& config);
     ~WorldServer();
     
+    /** Get current singleton instance (if set) */
+    static WorldServer* instance();
+    
     // Lifecycle management
     Result<void> initialize(bool is_test_mode = false);
     Result<void> start();
@@ -130,6 +133,10 @@ public:
     
     // Command system access
     CommandSystem* get_command_system() const;
+    
+    // Player access
+    std::vector<std::shared_ptr<Player>> get_online_players() const;
+    std::vector<std::shared_ptr<Actor>> get_online_actors() const;
     
     // Periodic operations (thread-safe - runs on strand)
     void schedule_periodic_cleanup();

@@ -572,7 +572,7 @@ void WeatherSystem::advance_season(std::chrono::days elapsed) {
     if (current_season_days >= season_length) {
         current_season_days = std::chrono::days{0};
         
-        Season next_season;
+        Season next_season = Season::Spring; // Default, will be overwritten
         switch (current_season_) {
             case Season::Spring: next_season = Season::Summer; break;
             case Season::Summer: next_season = Season::Autumn; break;
@@ -707,7 +707,7 @@ WeatherType WeatherSystem::generate_next_weather(const WeatherState& current, co
 
 std::chrono::minutes WeatherSystem::generate_weather_duration(WeatherType type, Season season) const {
     // Base durations for different weather types
-    std::chrono::minutes base_duration;
+    std::chrono::minutes base_duration{60}; // Default 1 hour
     
     switch (type) {
         case WeatherType::Clear:

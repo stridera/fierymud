@@ -225,12 +225,12 @@ TEST_CASE("Object Interaction Integration Test", "[integration][objects][command
             nlohmann::json json = obj->to_json();
             
             // Verify JSON contains expected fields
-            REQUIRE(json.contains("short_description"));
+            REQUIRE(json.contains("short"));
             REQUIRE(json.contains("keywords"));
             REQUIRE(json.contains("id"));
             
             if (obj->id() == EntityId{3010}) {
-                REQUIRE(json["short_description"] == "some bread");
+                REQUIRE(json["short"] == "some bread");
                 // Keywords should be parsed from name during object creation
                 std::vector<std::string> keywords = json["keywords"];
                 REQUIRE(std::find(keywords.begin(), keywords.end(), "bread") != keywords.end());

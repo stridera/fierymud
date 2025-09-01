@@ -75,14 +75,3 @@ class Shop:
                 shop["hours"].append({"open": opens, "close": closes})
             shops.append(cls(**shop))
         return shops
-
-    def to_json(self):
-        from dataclasses import asdict
-        d = asdict(self)
-        # Convert ObjectType enums in accepts
-        accepts = []
-        for a in self.accepts:
-            entry = {"type": a.get("type").name if a.get("type") is not None and hasattr(a.get("type"), "name") else a.get("type"), "keywords": a.get("keywords")}
-            accepts.append(entry)
-        d["accepts"] = accepts
-        return d

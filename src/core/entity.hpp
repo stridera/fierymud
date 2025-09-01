@@ -45,16 +45,22 @@ public:
     /** Get all keywords for matching */
     std::span<const std::string> keywords() const { return keywords_; }
     
-    /** Get description text */
-    std::string_view description() const { return description_; }
+    /** Get ground description text (shown when object is on ground) */
+    std::string_view ground() const { return ground_; }
     
     /** Get short description (for lists, inventory, etc.) */
-    std::string_view short_description() const { 
-        if (short_description_.empty()) {
+    std::string_view short_desc() const { 
+        if (short_.empty()) {
             return name_;
         }
-        return short_description_;
+        return short_;
     }
+    
+    /** Legacy compatibility - get ground description */
+    std::string_view description() const { return ground_; }
+    
+    /** Legacy compatibility - get short description */
+    std::string_view short_description() const { return short_desc(); }
     
     /** Check if entity matches a given keyword */
     bool matches_keyword(std::string_view keyword) const;
@@ -77,12 +83,20 @@ public:
     /** Remove a keyword (cannot remove primary name) */
     void remove_keyword(std::string_view keyword);
     
-    /** Set description */
-    void set_description(std::string_view new_desc) { description_ = new_desc; }
+    /** Set ground description */
+    void set_ground(std::string_view new_ground) { ground_ = new_ground; }
     
     /** Set short description */
+    void set_short_desc(std::string_view new_short) { 
+        short_ = new_short; 
+    }
+    
+    /** Legacy compatibility - set ground description */
+    void set_description(std::string_view new_desc) { ground_ = new_desc; }
+    
+    /** Legacy compatibility - set short description */
     void set_short_description(std::string_view new_short_desc) { 
-        short_description_ = new_short_desc; 
+        short_ = new_short_desc; 
     }
     
     /** JSON serialization */
@@ -105,8 +119,8 @@ protected:
     /** Constructor for loading from JSON */
     Entity(EntityId id, std::string_view name, 
            std::span<const std::string> keywords,
-           std::string_view description,
-           std::string_view short_description = "");
+           std::string_view ground,
+           std::string_view short_desc = "");
     
     /** Ensure name is always in keywords list */
     void ensure_name_in_keywords();
@@ -118,8 +132,8 @@ private:
     EntityId id_;
     std::string name_;
     std::vector<std::string> keywords_;
-    std::string description_;
-    std::string short_description_;
+    std::string ground_;
+    std::string short_;
 };
 
 /** Entity factory for creating entities from JSON */

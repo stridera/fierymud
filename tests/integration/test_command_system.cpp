@@ -220,5 +220,7 @@ TEST_CASE("CommandContext: Message Routing", "[command][context]") {
         // For say command, we should have both self and room messages
         // (This tests the messaging infrastructure that emotes rely on)
         REQUIRE(found_self);
+        // Note: found_room would be tested in multi-player scenarios
+        (void)found_room; // Suppress unused variable warning
     }
 }

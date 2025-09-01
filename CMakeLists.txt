@@ -73,6 +73,7 @@ set(SOURCES
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/combat.cpp
+    src/core/spell_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -111,6 +112,7 @@ set(SIMPLE_TEST_SOURCES
     src/core/actor.cpp
     src/core/object.cpp
     src/core/combat.cpp
+    src/core/spell_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -168,12 +170,14 @@ set(CORE_TEST_SOURCES
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/combat.cpp
+    src/core/spell_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
     src/world/weather.cpp
     src/server/world_server.cpp
     src/server/network_manager.cpp
+    src/server/persistence_manager.cpp
     src/net/player_connection.cpp
     src/net/tls_context.cpp
     src/net/mssp_handler.cpp

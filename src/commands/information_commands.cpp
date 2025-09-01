@@ -12,6 +12,7 @@
 
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
+#include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/weather.hpp"
 
@@ -346,8 +347,12 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_who(const CommandContext &ctx) {
-    // TODO: Implement actual online actors retrieval
+    // Get online actors from WorldServer
     std::vector<std::shared_ptr<Actor>> online_actors;
+    
+    if (auto* world_server = WorldServer::instance()) {
+        online_actors = world_server->get_online_actors();
+    }
 
     if (online_actors.empty()) {
         ctx.send_line("No players are currently online.");
@@ -561,6 +566,12 @@ Result<CommandResult> cmd_stat(const CommandContext &ctx) {
     case TargetType::Actor:
         // Use the actor's get_stat_info method which handles polymorphism correctly
         stat_info = target_info.actor->get_stat_info();
+        ctx.send(stat_info);
+        return CommandResult::Success;
+        
+    case TargetType::Self:
+        // Handle "stat me" and "stat self" - use the current actor
+        stat_info = ctx.actor->get_stat_info();
         ctx.send(stat_info);
         return CommandResult::Success;
         

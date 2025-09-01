@@ -11,6 +11,7 @@
 #include "command_system.hpp"
 #include "../world/world_manager.hpp"
 #include "command_context.hpp"
+#include "command_parser.hpp"
 #include "rich_text.hpp"
 #include "terminal_capabilities.hpp"
 #include "../core/actor.hpp"
@@ -229,11 +230,20 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
     return nullptr;
 }
 
-std::shared_ptr<Room> CommandContext::find_room_target(std::string_view /* name */) const {
-    // TODO: Implement room finding by name or ID
-    // For now, return nullptr as stub
-    // LOG_DEBUG("Finding room target: {}", name);
-    return nullptr;
+std::shared_ptr<Room> CommandContext::find_room_target(std::string_view name) const {
+    if (name.empty()) {
+        return nullptr;
+    }
+    
+    // Try to parse as room ID first
+    auto room_id_opt = CommandParserUtils::parse_entity_id(name);
+    if (room_id_opt && room_id_opt->is_valid()) {
+        return WorldManager::instance().get_room(*room_id_opt);
+    }
+    
+    // Try to find by keyword
+    auto rooms = WorldManager::instance().find_rooms_by_keyword(name);
+    return rooms.empty() ? nullptr : rooms[0];
 }
 
 TargetInfo CommandContext::resolve_target(std::string_view name) const {
@@ -246,6 +256,13 @@ TargetInfo CommandContext::resolve_target(std::string_view name) const {
         TargetInfo info;
         info.type = TargetType::Self;
         info.actor = actor;
+        return info;
+    }
+    
+    if (name == "room" || name == "here") {
+        TargetInfo info;
+        info.type = TargetType::Room;
+        info.room = room;
         return info;
     }
     
@@ -384,8 +401,8 @@ std::string CommandContext::substitute_variables(std::string_view message, std::
         // Replace $n with actor name
         size_t pos = 0;
         while ((pos = result.find("$n", pos)) != std::string::npos) {
-            result.replace(pos, 2, actor->name());
-            pos += actor->name().length();
+            result.replace(pos, 2, actor->display_name());
+            pos += actor->display_name().length();
         }
         
         // Replace $s with actor possessive (simplified for now)
@@ -401,8 +418,8 @@ std::string CommandContext::substitute_variables(std::string_view message, std::
         // Replace $N with target name
         size_t pos = 0;
         while ((pos = result.find("$N", pos)) != std::string::npos) {
-            result.replace(pos, 2, target->name());
-            pos += target->name().length();
+            result.replace(pos, 2, target->display_name());
+            pos += target->display_name().length();
         }
         
         // Replace $S with target possessive (simplified for now)

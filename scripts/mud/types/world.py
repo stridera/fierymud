@@ -4,19 +4,20 @@ from enum import Enum
 from mud.bitflags import BitFlags
 from mud.flags import ROOM_FLAGS
 from mud.mudfile import MudData
-from mud.types import Direction
+from mud.types import Direction, Extras
+
 
 class Sectors(Enum):
-    STRUCTURE = 0 # A building of some kind
-    CITY = 1       # In a city
-    FIELD = 2      # In a field
-    FOREST = 3     # In a forest
-    HILLS = 4      # In the hills
-    MOUNTAIN = 5   # On a mountain
-    SHALLOWS = 6   # Easily passable water
-    WATER = 7      # Water - need a boat
-    UNDERWATER = 8 # Underwater
-    AIR = 9        # Wheee!
+    STRUCTURE = 0  # A building of some kind
+    CITY = 1  # In a city
+    FIELD = 2  # In a field
+    FOREST = 3  # In a forest
+    HILLS = 4  # In the hills
+    MOUNTAIN = 5  # On a mountain
+    SHALLOWS = 6  # Easily passable water
+    WATER = 7  # Water - need a boat
+    UNDERWATER = 8  # Underwater
+    AIR = 9  # Wheee!
     ROAD = 10
     GRASSLANDS = 11
     CAVE = 12
@@ -42,7 +43,7 @@ class World:
     sector: Sectors
     flags: list[str]
     exits: dict[str, dict[str, str]] | None = None
-    extra_descriptions: dict[str, str] | None = None
+    extras: list[Extras] | None = None
 
     @classmethod
     def parse(cls, world_file: MudData):
@@ -78,11 +79,11 @@ class World:
                         print(f"Duplicate exit for direction {direction} in room {room_data.id}")
                     room["exits"][direction] = exit
                 elif line.startswith("E"):
-                    if "extra_descriptions" not in room:
-                        room["extra_descriptions"] = {}
-                    keyword = room_data.read_string()
+                    if "extras" not in room:
+                        room["extras"] = []
+                    keyword = room_data.read_string().split(" ")
                     description = room_data.read_string()
-                    room["extra_descriptions"][keyword] = description
+                    room["extras"].append(Extras(keywords=keyword, text=description))
                 else:
                     print(f"Unknown line: {line}")
 

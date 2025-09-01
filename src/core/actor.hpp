@@ -18,6 +18,10 @@
 #include <unordered_map>
 #include <optional>
 #include <span>
+#include <chrono>
+#include <ctime>
+
+#include "spell_system.hpp"
 
 // Forward declarations
 class Room;
@@ -303,6 +307,15 @@ public:
     /** Get comprehensive stat information for debugging/admin commands */
     std::string get_stat_info() const;
     
+    /** Spell casting support */
+    bool can_cast_spell(std::string_view spell_name) const;
+    bool has_spell_slots(int circle) const;
+    bool use_spell_slot(int circle);
+    std::pair<int, int> get_spell_slot_info(int circle) const;
+    void update_spell_slots();
+    const SpellSlots& spell_slots() const;
+    SpellSlots& spell_slots();
+    
 protected:
     /** Constructor for derived classes */
     Actor(EntityId id, std::string_view name);
@@ -325,6 +338,7 @@ private:
     Position position_ = Position::Standing;
     std::unordered_set<ActorFlag> flags_;
     std::weak_ptr<Room> current_room_;
+    std::unique_ptr<SpellSlots> spell_slots_;
 };
 
 /** Mobile (NPC) class */
@@ -354,6 +368,10 @@ public:
     bool is_shopkeeper() const { return is_shopkeeper_; }
     void set_shopkeeper(bool value) { is_shopkeeper_ = value; }
     
+    /** Description management */
+    std::string_view description() const { return description_; }
+    void set_description(std::string_view desc) { description_ = desc; }
+    
     /** Memory for received messages (for AI) */
     const std::vector<std::string>& get_received_messages() const { return received_messages_; }
     void clear_received_messages() { received_messages_.clear(); }
@@ -366,6 +384,7 @@ private:
     int aggression_level_ = 5;  // 0-10 scale
     bool is_shopkeeper_ = false;
     std::vector<std::string> received_messages_;
+    std::string description_ = "";  // Detailed description for NPCs
     
     void initialize_for_level(int level);
 };
@@ -412,6 +431,10 @@ public:
     int god_level() const { return god_level_; }
     void set_god_level(int level) { god_level_ = std::max(0, level); }
     
+    /** Linkdead state management */
+    bool is_linkdead() const { return linkdead_; }
+    void set_linkdead(bool linkdead) { linkdead_ = linkdead; }
+    
     /** GMCP support methods */
     nlohmann::json get_vitals_gmcp() const;
     nlohmann::json get_status_gmcp() const;
@@ -428,8 +451,25 @@ public:
     std::string race() const { return race_; }
     
     /** Set character class and race */
-    void set_class(std::string_view character_class) { player_class_ = character_class; }
+    void set_class(std::string_view character_class) { 
+        player_class_ = character_class; 
+        initialize_spell_slots();
+    }
     void set_race(std::string_view character_race) { race_ = character_race; }
+    
+    /** Player title management */
+    std::string_view title() const { return title_; }
+    void set_title(std::string_view player_title) { title_ = player_title; }
+    
+    /** Time tracking */
+    std::time_t creation_time() const { return creation_time_; }
+    std::time_t last_logon_time() const { return last_logon_time_; }
+    std::chrono::seconds total_play_time() const { return total_play_time_; }
+    void set_last_logon(std::time_t time) { last_logon_time_ = time; }
+    void add_play_time(std::chrono::seconds time) { total_play_time_ += time; }
+    
+    /** Initialize spell slots based on class and level */
+    void initialize_spell_slots();
     
 protected:
     Player(EntityId id, std::string_view name);
@@ -443,6 +483,7 @@ protected:
 private:
     std::string account_;
     bool online_ = false;
+    bool linkdead_ = false;  // Player connection lost but still in world
     int god_level_ = 0;
     EntityId start_room_ = INVALID_ENTITY_ID;  // Player's start room for revival
     std::vector<std::string> output_queue_;
@@ -451,6 +492,12 @@ private:
     // Character creation fields
     std::string player_class_ = "warrior";  // Default class
     std::string race_ = "human";            // Default race
+    std::string title_ = "";                // Player title
+    
+    // Time tracking fields
+    std::time_t creation_time_ = std::time(nullptr);  // Time of character creation
+    std::time_t last_logon_time_ = 0;                 // Time of last logon
+    std::chrono::seconds total_play_time_{0};         // Total accumulated play time
 };
 
 /** Actor utility functions */

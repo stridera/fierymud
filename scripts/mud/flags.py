@@ -705,7 +705,7 @@ OBJECT_TYPES = [
 ]
 
 WEAR_FLAGS = [
-    "TAKE",  # /* Item can be takes         */
+    "TAKE",  # /* Item can be taken         */
     "FINGER",  # /* Can be worn on finger     */
     "NECK",  # /* Can be worn around neck   */
     "BODY",  # /* Can be worn on body       */

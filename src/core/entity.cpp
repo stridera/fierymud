@@ -26,9 +26,9 @@ Entity::Entity(EntityId id, std::string_view name)
 
 Entity::Entity(EntityId id, std::string_view name, 
                std::span<const std::string> keywords,
-               std::string_view description,
-               std::string_view short_description)
-    : id_(id), name_(name), description_(description), short_description_(short_description) {
+               std::string_view ground,
+               std::string_view short_desc)
+    : id_(id), name_(name), ground_(ground), short_(short_desc) {
     
     keywords_.reserve(keywords.size() + 1);
     for (const auto& keyword : keywords) {
@@ -108,10 +108,10 @@ nlohmann::json Entity::to_json() const {
     json["id"] = id_.value();
     json["name"] = name_;
     json["keywords"] = keywords_;
-    json["description"] = description_;
+    json["ground"] = ground_;
     
-    if (!short_description_.empty()) {
-        json["short_description"] = short_description_;
+    if (!short_.empty()) {
+        json["short"] = short_;
     }
     
     return json;
@@ -124,16 +124,29 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
             return std::unexpected(Errors::ParseError("Entity JSON missing 'id' field"));
         }
         
-        // Handle name field mapping: keywords -> name -> name_list (legacy)
+        // Handle name field mapping: name -> short -> keywords -> name_list (legacy)
         std::string name;
         if (json.contains("name")) {
             name = json["name"].get<std::string>();
-        } else if (json.contains("keywords") && json["keywords"].is_string()) {
-            name = json["keywords"].get<std::string>();
+        } else if (json.contains("short")) {
+            // Use short description as name for display purposes
+            name = json["short"].get<std::string>();
+        } else if (json.contains("keywords")) {
+            if (json["keywords"].is_string()) {
+                name = json["keywords"].get<std::string>();
+            } else if (json["keywords"].is_array() && !json["keywords"].empty()) {
+                // Use first keyword as name fallback
+                for (const auto& keyword : json["keywords"]) {
+                    if (keyword.is_string()) {
+                        name = keyword.get<std::string>();
+                        break; // Use only the first keyword, not all joined
+                    }
+                }
+            }
         } else if (json.contains("name_list")) {
             name = json["name_list"].get<std::string>();
         } else {
-            return std::unexpected(Errors::ParseError("Entity JSON missing 'name', 'keywords', or 'name_list' field"));
+            return std::unexpected(Errors::ParseError("Entity JSON missing 'name', 'short', 'keywords', or 'name_list' field"));
         }
         
         // Handle ID conversion
@@ -148,15 +161,19 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         
         auto entity = std::unique_ptr<Entity>(new Entity(id, name));
         
-        // Parse optional fields with field mapping
-        if (json.contains("description")) {
-            entity->set_description(json["description"].get<std::string>());
+        // Parse optional fields with field mapping (new and legacy field names)
+        if (json.contains("ground")) {
+            entity->set_ground(json["ground"].get<std::string>());
+        } else if (json.contains("description")) {
+            entity->set_ground(json["description"].get<std::string>());
         } else if (json.contains("long_description")) {
-            entity->set_description(json["long_description"].get<std::string>());
+            entity->set_ground(json["long_description"].get<std::string>());
         }
         
-        if (json.contains("short_description")) {
-            entity->set_short_description(json["short_description"].get<std::string>());
+        if (json.contains("short")) {
+            entity->set_short_desc(json["short"].get<std::string>());
+        } else if (json.contains("short_description")) {
+            entity->set_short_desc(json["short_description"].get<std::string>());
         }
         
         // Parse keywords from array or space-separated string
@@ -201,7 +218,7 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
 }
 
 std::string Entity::display_name(bool with_article) const {
-    return EntityUtils::format_entity_name(name_, short_description_, with_article);
+    return EntityUtils::format_entity_name(name_, short_, with_article);
 }
 
 void Entity::ensure_name_in_keywords() {
@@ -282,22 +299,39 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
             return std::unexpected(Errors::ParseError("Entity JSON missing 'id' field"));
         }
         
-        if (!json.contains("name")) {
-            return std::unexpected(Errors::ParseError("Entity JSON missing 'name' field"));
-        }
-        
         EntityId id{json["id"].get<std::uint64_t>()};
-        std::string name = json["name"].get<std::string>();
+        
+        // Handle name field mapping: name -> short -> keywords fallback
+        std::string name;
+        if (json.contains("name")) {
+            name = json["name"].get<std::string>();
+        } else if (json.contains("short")) {
+            name = json["short"].get<std::string>();
+        } else if (json.contains("keywords") && json["keywords"].is_array() && !json["keywords"].empty()) {
+            // Use first keyword as fallback
+            for (const auto& keyword : json["keywords"]) {
+                if (keyword.is_string()) {
+                    name = keyword.get<std::string>();
+                    break;
+                }
+            }
+        } else {
+            return std::unexpected(Errors::ParseError("Entity JSON missing 'name', 'short', or 'keywords' field"));
+        }
         
         auto entity = std::unique_ptr<Entity>(new Entity(id, name));
         
-        // Parse optional fields
-        if (json.contains("description")) {
-            entity->set_description(json["description"].get<std::string>());
+        // Parse optional fields (new and legacy field names)
+        if (json.contains("ground")) {
+            entity->set_ground(json["ground"].get<std::string>());
+        } else if (json.contains("description")) {
+            entity->set_ground(json["description"].get<std::string>());
         }
         
-        if (json.contains("short_description")) {
-            entity->set_short_description(json["short_description"].get<std::string>());
+        if (json.contains("short")) {
+            entity->set_short_desc(json["short"].get<std::string>());
+        } else if (json.contains("short_description")) {
+            entity->set_short_desc(json["short_description"].get<std::string>());
         }
         
         if (json.contains("keywords") && json["keywords"].is_array()) {

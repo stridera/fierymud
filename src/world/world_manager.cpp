@@ -1110,13 +1110,6 @@ void WorldManager::validate_room_exits(std::shared_ptr<Room> room, ValidationRes
             continue;
         }
         
-        if (exit->to_room == room->id()) {
-            result.circular_exits++;
-            result.add_warning(fmt::format("Room {} has circular exit {}", 
-                                         room->id(), dir));
-            continue;
-        }
-        
         if (!get_room(exit->to_room)) {
             result.missing_exits++;
             result.add_error(fmt::format("Room {} exit {} points to non-existent room {}", 
@@ -1435,9 +1428,40 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     new_object->set_light_info(prototype->light_info());
     
     // Check if this is an encoded equipment request (mobile_id | (equipment_slot << 32))
+    // or an inventory request (just mobile_id)
     uint64_t room_id_value = room_id.value();
     uint64_t potential_mobile_id = room_id_value & 0xFFFFFFFF; // Lower 32 bits
     uint64_t potential_equipment_slot = room_id_value >> 32;   // Upper 32 bits
+    
+    // First check if this is a simple inventory request (no upper bits set)
+    if (potential_equipment_slot == 0) {
+        // Check if object is suitable for mobile inventory (not too heavy, appropriate type)
+        bool suitable_for_mobile = (new_object->weight() <= 100 && 
+                                   new_object->type() != ObjectType::Fountain && 
+                                   new_object->type() != ObjectType::Other);
+        
+        if (suitable_for_mobile) {
+            // This might be an inventory request - try to find a mobile with this ID
+            std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(EntityId{potential_mobile_id});
+            
+            if (target_mobile) {
+                // This is an inventory request - give the item to the mobile
+                auto shared_object = std::shared_ptr<Object>(new_object.release());
+                
+                auto give_result = target_mobile->give_item(shared_object);
+                if (!give_result) {
+                    logger->error("Failed to give object {} to mobile {}: {}", 
+                                object_id, potential_mobile_id, give_result.error().message);
+                    return nullptr;
+                }
+                
+                logger->debug("Successfully gave object {} to mobile {} inventory", 
+                             object_id, potential_mobile_id);
+                return shared_object;
+            }
+        }
+        // If unsuitable for mobile or no mobile found, continue to standard room placement logic
+    }
     
     // If upper 32 bits contain data, this is likely an equipment request
     if (potential_equipment_slot > 0 && potential_equipment_slot < 32) {
@@ -1453,9 +1477,12 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         }
         
         // Convert equipment slot number to EquipSlot enum
-        [[maybe_unused]] EquipSlot equip_slot = static_cast<EquipSlot>(potential_equipment_slot);
+        EquipSlot equip_slot = static_cast<EquipSlot>(potential_equipment_slot);
         
         auto shared_object = std::shared_ptr<Object>(new_object.release());
+        
+        // Set the correct equip slot on the object before equipping
+        shared_object->set_equip_slot(equip_slot);
         
         // Try to equip the item on the mobile
         auto equip_result = target_mobile->equipment().equip_item(shared_object);

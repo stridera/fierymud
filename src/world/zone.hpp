@@ -35,6 +35,7 @@ class Mobile;
 /** Zone reset callback types */
 using SpawnMobileCallback = std::function<std::shared_ptr<Mobile>(EntityId mobile_id, EntityId room_id)>;
 using SpawnObjectCallback = std::function<std::shared_ptr<Object>(EntityId object_id, EntityId room_id)>;
+using RemoveObjectCallback = std::function<bool(EntityId object_id, EntityId room_id)>;
 using GetRoomCallback = std::function<std::shared_ptr<Room>(EntityId room_id)>;
 using CleanupZoneMobilesCallback = std::function<void(EntityId zone_id)>;
 
@@ -146,7 +147,6 @@ struct ZoneCommand {
     
     /** JSON serialization */
     nlohmann::json to_json() const;
-    static Result<ZoneCommand> from_json(const nlohmann::json& json);
 };
 
 /** Zone reset statistics */
@@ -239,6 +239,7 @@ public:
     // Reset callbacks
     void set_spawn_mobile_callback(SpawnMobileCallback callback) { spawn_mobile_callback_ = std::move(callback); }
     void set_spawn_object_callback(SpawnObjectCallback callback) { spawn_object_callback_ = std::move(callback); }
+    void set_remove_object_callback(RemoveObjectCallback callback) { remove_object_callback_ = std::move(callback); }
     void set_get_room_callback(GetRoomCallback callback) { get_room_callback_ = std::move(callback); }
     void set_cleanup_zone_mobiles_callback(CleanupZoneMobilesCallback callback) { cleanup_zone_mobiles_callback_ = std::move(callback); }
     
@@ -298,6 +299,7 @@ private:
     // Reset callbacks
     SpawnMobileCallback spawn_mobile_callback_;
     SpawnObjectCallback spawn_object_callback_;
+    RemoveObjectCallback remove_object_callback_;
     GetRoomCallback get_room_callback_;
     CleanupZoneMobilesCallback cleanup_zone_mobiles_callback_;
     
@@ -310,6 +312,10 @@ private:
     Result<bool> execute_give_object(const ZoneCommand& cmd);
     Result<bool> execute_equip_object(const ZoneCommand& cmd);
     Result<bool> execute_put_object(const ZoneCommand& cmd);
+    Result<bool> execute_remove_object(const ZoneCommand& cmd);
+    
+    /** Process equipment and inventory for a specific mobile instance */
+    void process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id);
     
     /** Check if zone is empty of players */
     bool is_empty_of_players() const;

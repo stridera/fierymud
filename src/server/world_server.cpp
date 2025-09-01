@@ -21,14 +21,25 @@
 #include <memory>
 #include <nlohmann/json.hpp>
 
+// Static instance pointer for singleton access
+static WorldServer* g_world_server_instance = nullptr;
+
 WorldServer::WorldServer(asio::io_context &io_context, const ServerConfig &config)
     : io_context_(io_context), world_strand_(asio::make_strand(io_context)), config_(config),
       start_time_(std::chrono::steady_clock::now()) {
 
     Log::info("WorldServer created with strand-based architecture");
+    g_world_server_instance = this;
 }
 
-WorldServer::~WorldServer() { stop(); }
+WorldServer::~WorldServer() { 
+    g_world_server_instance = nullptr;
+    stop(); 
+}
+
+WorldServer* WorldServer::instance() {
+    return g_world_server_instance;
+}
 
 Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     Log::info("Initializing WorldServer...");
@@ -268,6 +279,36 @@ void WorldServer::remove_player(std::shared_ptr<Player> player) {
 
 CommandSystem *WorldServer::get_command_system() const { return command_system_; }
 
+std::vector<std::shared_ptr<Player>> WorldServer::get_online_players() const {
+    // Extract Player objects from active connections
+    std::vector<std::shared_ptr<Player>> players;
+    
+    // Note: This accesses connection_actors_ which should be thread-safe for const access
+    // since we're only reading the map, not modifying it
+    for (const auto& [connection, actor] : connection_actors_) {
+        if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+            players.push_back(player);
+        }
+    }
+    
+    return players;
+}
+
+std::vector<std::shared_ptr<Actor>> WorldServer::get_online_actors() const {
+    // Extract all Actor objects from active connections
+    std::vector<std::shared_ptr<Actor>> actors;
+    
+    // Note: This accesses connection_actors_ which should be thread-safe for const access
+    // since we're only reading the map, not modifying it
+    for (const auto& [connection, actor] : connection_actors_) {
+        if (actor) {
+            actors.push_back(actor);
+        }
+    }
+    
+    return actors;
+}
+
 // Private strand-based operations
 
 void WorldServer::handle_command(CommandRequest command) {
@@ -275,8 +316,19 @@ void WorldServer::handle_command(CommandRequest command) {
 
     Log::debug("Handling command: {}", command.command);
 
-    // TODO: Integrate with full CommandSystem
-    // For now, basic command handling is done in process_command
+    // Full CommandSystem integration is pending player registry implementation
+    // For now, just log the command - the existing process_command methods
+    // in WorldManager will handle the actual command execution
+    
+    if (command.player_id != INVALID_ENTITY_ID) {
+        std::string input = command.command;
+        if (!command.args.empty()) {
+            input += " " + command.args;
+        }
+        Log::debug("Command received: '{}' from player {}", input, command.player_id);
+    } else {
+        Log::warn("Received command '{}' without valid player ID", command.command);
+    }
 }
 
 void WorldServer::handle_player_connection(std::shared_ptr<PlayerConnection> connection) {
@@ -363,7 +415,17 @@ void WorldServer::perform_cleanup() {
                        [](const std::shared_ptr<PlayerConnection> &conn) { return !conn->is_connected(); }),
         active_connections_.end());
 
-    // TODO: Other cleanup tasks (expired objects, etc.)
+    // Additional cleanup tasks
+    
+    // Refresh spell slots for all connected players
+    for (auto& conn : active_connections_) {
+        if (auto player = conn->get_player()) {
+            player->update_spell_slots();
+        }
+    }
+    
+    // Additional world updates can be added here as needed
+    Log::trace("Cleanup tasks completed");
 }
 
 void WorldServer::perform_heartbeat() {
@@ -459,8 +521,13 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
             nlohmann::json room_data;
             room_data["num"] = room->id().value();
             room_data["name"] = room->name();
-            room_data["zone"] = "test";          // TODO: Get actual zone name
-            room_data["environment"] = "inside"; // TODO: Map sector types
+            // Get zone name from room's zone ID
+            std::string zone_name = "unknown";
+            if (auto zone = world_manager_->get_zone(room->zone_id())) {
+                zone_name = zone->name();
+            }
+            room_data["zone"] = zone_name;
+            room_data["environment"] = RoomUtils::get_sector_name(room->sector_type());
 
             auto result = connection->send_gmcp("Room.Info", room_data);
             if (result) {

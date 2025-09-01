@@ -425,29 +425,6 @@ TEST_CASE("World Utils: Zone Command System", "[world][utils][zone][commands]") 
         REQUIRE(cmd_str.find("Load_Mobile") != std::string::npos);
     }
 
-    SECTION("Zone command JSON serialization") {
-        ZoneCommand cmd;
-        cmd.command_type = ZoneCommandType::Load_Object;
-        cmd.if_flag = 2;
-        cmd.entity_id = EntityId{2001};
-        cmd.room_id = EntityId{1001};
-        cmd.comment = "O 2 2001 1001 0 0";
-
-        auto json = cmd.to_json();
-        REQUIRE(json["command_type"] == "Load_Object");
-        REQUIRE(json["if_flag"] == 2);
-        REQUIRE(json["entity_id"] == 2001);
-        REQUIRE(json["room_id"] == 1001);
-
-        auto restored_result = ZoneCommand::from_json(json);
-        REQUIRE(restored_result.has_value());
-
-        auto restored = restored_result.value();
-        REQUIRE(restored.command_type == cmd.command_type);
-        REQUIRE(restored.if_flag == cmd.if_flag);
-        REQUIRE(restored.entity_id == cmd.entity_id);
-        REQUIRE(restored.room_id == cmd.room_id);
-    }
 }
 
 TEST_CASE("World Utils: Zone Reset System", "[world][utils][zone][reset]") {
@@ -480,70 +457,6 @@ TEST_CASE("World Utils: Zone Reset System", "[world][utils][zone][reset]") {
     }
 }
 
-TEST_CASE("World Utils: Zone JSON Serialization", "[world][utils][zone][json]") {
-    SECTION("Complete zone serialization") {
-        auto zone = Zone::create(EntityId{100}, "Test Zone", 45, ResetMode::Empty).value();
-        zone->set_description("A test zone for unit testing.");
-        std::vector<std::string> keywords = {"test", "zone", "unit"};
-        zone->set_keywords(keywords);
-        zone->set_min_level(10);
-        zone->set_max_level(50);
-        zone->set_builders("TestBuilder");
-        zone->set_first_room(EntityId{1001});
-        zone->set_last_room(EntityId{1099});
-        zone->set_flag(ZoneFlag::Quest);
-        zone->set_flag(ZoneFlag::Recall_Ok);
-
-        zone->add_room(EntityId{1001});
-        zone->add_room(EntityId{1002});
-
-        ZoneCommand cmd;
-        cmd.command_type = ZoneCommandType::Load_Mobile;
-        cmd.if_flag = 1;
-        cmd.entity_id = EntityId{3001};
-        cmd.room_id = EntityId{1001};
-        zone->add_command(cmd);
-
-        auto json = zone->to_json();
-
-        REQUIRE(json["id"] == 100);
-        REQUIRE(json["name"] == "Test Zone");
-        REQUIRE(json["reset_minutes"] == 45);
-        REQUIRE(json["reset_mode"] == "Empty");
-        REQUIRE(json["min_level"] == 10);
-        REQUIRE(json["max_level"] == 50);
-        REQUIRE(json["builders"] == "TestBuilder");
-        REQUIRE(json["first_room"] == 1001);
-        REQUIRE(json["last_room"] == 1099);
-
-        REQUIRE(json["flags"].is_array());
-        REQUIRE(json["flags"].size() == 2);
-
-        REQUIRE(json["rooms"].is_array());
-        REQUIRE(json["rooms"].size() == 2);
-
-        REQUIRE(json["commands"].is_array());
-        REQUIRE(json["commands"].size() == 1);
-
-        // Test round-trip
-        auto restored_result = Zone::from_json(json);
-        REQUIRE(restored_result.has_value());
-
-        auto restored = std::move(restored_result.value());
-        REQUIRE(restored->id() == zone->id());
-        REQUIRE(restored->name() == zone->name());
-        REQUIRE(restored->reset_minutes() == zone->reset_minutes());
-        REQUIRE(restored->reset_mode() == zone->reset_mode());
-        REQUIRE(restored->min_level() == zone->min_level());
-        REQUIRE(restored->max_level() == zone->max_level());
-        REQUIRE(restored->builders() == zone->builders());
-        REQUIRE(restored->has_flag(ZoneFlag::Quest));
-        REQUIRE(restored->has_flag(ZoneFlag::Recall_Ok));
-        REQUIRE(restored->contains_room(EntityId{1001}));
-        REQUIRE(restored->contains_room(EntityId{1002}));
-        REQUIRE(restored->commands().size() == 1);
-    }
-}
 
 TEST_CASE("World Utils: Zone Command Parser", "[world][utils][zone][parser]") {
     SECTION("Parse zone command line") {

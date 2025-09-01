@@ -9,6 +9,7 @@
 #include "../core/actor.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
+#include "../server/persistence_manager.hpp"
 
 #include <algorithm>
 
@@ -234,16 +235,27 @@ bool GameWorld::save_character(std::shared_ptr<Player> player) {
     // For now, just log that we would save
     Log::info("Saving character: {}", player->name());
 
-    // TODO: Implement actual character persistence
+    // Use PersistenceManager to save the player
+    auto save_result = PersistenceManager::instance().save_player(player);
+    if (!save_result) {
+        Log::error("Failed to save character {}: {}", player->name(), save_result.error().message);
+        return false;
+    }
+    
     return true;
 }
 
 std::shared_ptr<Player> GameWorld::load_character(const std::string &name) {
-    // For now, return nullptr (character doesn't exist)
     Log::debug("Attempting to load character: {}", name);
 
-    // TODO: Implement actual character loading
-    return nullptr;
+    // Use PersistenceManager to load the player
+    auto load_result = PersistenceManager::instance().load_player(name);
+    if (!load_result) {
+        Log::debug("Failed to load character {}: {}", name, load_result.error().message);
+        return nullptr;
+    }
+    
+    return load_result.value();
 }
 
 std::shared_ptr<CommandSystem> GameWorld::get_command_system() const {

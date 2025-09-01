@@ -8,6 +8,7 @@
  ***************************************************************************/
 
 #include "actor.hpp"
+#include "spell_system.hpp"
 #include "../core/logging.hpp"
 #include "../game/player_output.hpp"
 #include "../world/room.hpp"
@@ -495,11 +496,12 @@ Result<Equipment> Equipment::from_json(const nlohmann::json& json) {
 // Actor Implementation
 
 Actor::Actor(EntityId id, std::string_view name) 
-    : Entity(id, name) {}
+    : Entity(id, name), spell_slots_(std::make_unique<SpellSlots>()) {}
 
 Actor::Actor(EntityId id, std::string_view name, 
              const Stats& stats, const Inventory& inventory, const Equipment& equipment)
-    : Entity(id, name), stats_(stats), inventory_(inventory), equipment_(equipment) {}
+    : Entity(id, name), stats_(stats), inventory_(inventory), equipment_(equipment), 
+      spell_slots_(std::make_unique<SpellSlots>()) {}
 
 bool Actor::has_flag(ActorFlag flag) const {
     return flags_.contains(flag);
@@ -688,6 +690,11 @@ nlohmann::json Actor::to_json() const {
     }
     json["flags"] = flag_names;
     
+    // Add spell slots if they exist
+    if (spell_slots_) {
+        json["spell_slots"] = spell_slots_->to_json();
+    }
+    
     return json;
 }
 
@@ -696,6 +703,46 @@ Result<void> Actor::validate() const {
     TRY(stats_.validate());
     
     return Success();
+}
+
+// Spell system methods
+bool Actor::can_cast_spell(std::string_view spell_name) const {
+    auto* spell = SpellRegistry::instance().find_spell(spell_name);
+    if (!spell) {
+        return false;
+    }
+    
+    return spell->can_cast(*this) && has_spell_slots(spell->circle);
+}
+
+bool Actor::has_spell_slots(int circle) const {
+    return spell_slots_ && spell_slots_->has_slots(circle);
+}
+
+bool Actor::use_spell_slot(int circle) {
+    return spell_slots_ && spell_slots_->use_slot(circle);
+}
+
+std::pair<int, int> Actor::get_spell_slot_info(int circle) const {
+    if (!spell_slots_) {
+        return {0, 0};
+    }
+    
+    return spell_slots_->get_slot_info(circle);
+}
+
+void Actor::update_spell_slots() {
+    if (spell_slots_) {
+        spell_slots_->update_refresh();
+    }
+}
+
+const SpellSlots& Actor::spell_slots() const {
+    return *spell_slots_;
+}
+
+SpellSlots& Actor::spell_slots() {
+    return *spell_slots_;
 }
 
 // Mobile Implementation
@@ -768,20 +815,31 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
             mobile->stats().alignment = alignment;
         }
         
-        // Parse mob flags (comma-separated string)
+        // Parse mob flags (array of strings or comma-separated string)
         if (json.contains("mob_flags")) {
             try {
-                std::string flags_str = json["mob_flags"].get<std::string>();
-                if (!flags_str.empty()) {
-                    std::istringstream iss(flags_str);
-                    std::string flag_name;
-                    while (std::getline(iss, flag_name, ',')) {
-                        // Trim whitespace
-                        flag_name.erase(0, flag_name.find_first_not_of(" \t"));
-                        flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
-                        
+                if (json["mob_flags"].is_array()) {
+                    // Handle array format (modern JSON structure)
+                    for (const auto& flag_json : json["mob_flags"]) {
+                        std::string flag_name = flag_json.get<std::string>();
                         if (auto flag = ActorUtils::parse_flag(flag_name)) {
                             mobile->set_flag(flag.value(), true);
+                        }
+                    }
+                } else {
+                    // Handle comma-separated string format (legacy)
+                    std::string flags_str = json["mob_flags"].get<std::string>();
+                    if (!flags_str.empty()) {
+                        std::istringstream iss(flags_str);
+                        std::string flag_name;
+                        while (std::getline(iss, flag_name, ',')) {
+                            // Trim whitespace
+                            flag_name.erase(0, flag_name.find_first_not_of(" \t"));
+                            flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
+                            
+                            if (auto flag = ActorUtils::parse_flag(flag_name)) {
+                                mobile->set_flag(flag.value(), true);
+                            }
                         }
                     }
                 }
@@ -790,20 +848,31 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
             }
         }
         
-        // Parse effect flags (comma-separated string)
+        // Parse effect flags (array of strings or comma-separated string)
         if (json.contains("effect_flags")) {
             try {
-                std::string effects_str = json["effect_flags"].get<std::string>();
-                if (!effects_str.empty()) {
-                    std::istringstream iss(effects_str);
-                    std::string flag_name;
-                    while (std::getline(iss, flag_name, ',')) {
-                        // Trim whitespace
-                        flag_name.erase(0, flag_name.find_first_not_of(" \t"));
-                        flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
-                        
+                if (json["effect_flags"].is_array()) {
+                    // Handle array format (modern JSON structure)
+                    for (const auto& flag_json : json["effect_flags"]) {
+                        std::string flag_name = flag_json.get<std::string>();
                         if (auto flag = ActorUtils::parse_flag(flag_name)) {
                             mobile->set_flag(flag.value(), true);
+                        }
+                    }
+                } else {
+                    // Handle comma-separated string format (legacy)
+                    std::string effects_str = json["effect_flags"].get<std::string>();
+                    if (!effects_str.empty()) {
+                        std::istringstream iss(effects_str);
+                        std::string flag_name;
+                        while (std::getline(iss, flag_name, ',')) {
+                            // Trim whitespace
+                            flag_name.erase(0, flag_name.find_first_not_of(" \t"));
+                            flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
+                            
+                            if (auto flag = ActorUtils::parse_flag(flag_name)) {
+                                mobile->set_flag(flag.value(), true);
+                            }
                         }
                     }
                 }
@@ -980,6 +1049,20 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
             player->set_start_room(EntityId{start_room_id});
         }
         
+        // Load spell slots if present
+        if (json.contains("spell_slots")) {
+            auto spell_slots_result = SpellSlots::from_json(json["spell_slots"]);
+            if (spell_slots_result) {
+                player->spell_slots() = spell_slots_result.value();
+            } else {
+                Log::warn("Failed to load spell slots for player '{}': {}", 
+                         player->name(), spell_slots_result.error().message);
+            }
+        }
+        
+        // Initialize spell slots based on class and level
+        player->initialize_spell_slots();
+        
         TRY(player->validate());
         
         return player;
@@ -1052,7 +1135,16 @@ void Player::send_gmcp_vitals_update() {
     }
 }
 
+void Player::initialize_spell_slots() {
+    spell_slots().initialize_for_class(player_class_, stats().level);
+    Log::debug("Initialized spell slots for player '{}' (class: {}, level: {})", 
+              name(), player_class_, stats().level);
+}
+
 void Player::on_level_up(int /* old_level */, int /* new_level */) {
+    // Update spell slots for new level
+    initialize_spell_slots();
+    
     // Send GMCP vitals update when player levels up (vitals change)
     send_gmcp_vitals_update();
 }
@@ -1185,16 +1277,15 @@ std::string Actor::get_stat_info() const {
     // Mobile-specific data
     if (mobile) {
         // For now, use the same name as alias since we don't have separate alias field
-        output << fmt::format("Alias: {}, VNum: [N/A], RNum: [N/A]\n", name());
+        output << fmt::format("Alias: {}\n", name());
     }
     
     // Descriptions
     if (mobile) {
         output << fmt::format("L-Des: {}\n", short_description().empty() ? "<None>" : short_description());
-        // TODO: Add description field support
+        output << fmt::format("Description: {}\n", mobile->description().empty() ? "<None>" : mobile->description());
     } else if (player) {
-        // TODO: Add title support for players
-        output << fmt::format("Title: <None>\n");
+        output << fmt::format("Title: {}\n", player->title().empty() ? "<None>" : player->title());
     }
     
     // Character stats and abilities
@@ -1210,8 +1301,21 @@ std::string Actor::get_stat_info() const {
     
     // Player-specific data
     if (player) {
-        // TODO: Add creation/logon times
-        output << fmt::format("Created: [Unknown], Last Logon: [Unknown], Played: [Unknown]\n");
+        // Format time displays
+        auto format_time = [](std::time_t time) -> std::string {
+            if (time == 0) return "Never";
+            auto tm = *std::localtime(&time);
+            return fmt::format("{:02d}/{:02d}/{:4d} {:02d}:{:02d}", 
+                tm.tm_mon + 1, tm.tm_mday, tm.tm_year + 1900,
+                tm.tm_hour, tm.tm_min);
+        };
+        
+        auto creation = format_time(player->creation_time());
+        auto last_logon = format_time(player->last_logon_time());
+        auto play_hours = player->total_play_time().count() / 3600;
+        
+        output << fmt::format("Created: [{}], Last Logon: [{}], Played: [{}h]\n",
+            creation, last_logon, play_hours);
         output << fmt::format("Age: [{}], Homeroom: [{}]", 
             20 + stats_.level, 
             static_cast<uint32_t>(player->start_room().value()));
@@ -1300,6 +1404,22 @@ std::string Actor::get_stat_info() const {
         20, max_carry_weight(), 
         inventory().item_count(), current_carry_weight(),
         worn_items, worn_weight);
+    
+    // Show carried objects list
+    const auto inventory_items = inventory().get_all_items();
+    if (!inventory_items.empty()) {
+        output << "Carrying:\n";
+        for (const auto& item : inventory_items) {
+            if (item) {
+                output << fmt::format("  - {} (ID: {}, Weight: {})\n", 
+                    item->short_description(), 
+                    static_cast<uint32_t>(item->id().value()), 
+                    item->weight());
+            }
+        }
+    } else {
+        output << "Carrying: Nothing\n";
+    }
     
     // Conditions (hunger, thirst, drunk)
     output << "Hunger: Off, Thirst: Off, Drunk: Off\n";

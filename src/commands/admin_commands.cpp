@@ -20,16 +20,26 @@ namespace AdminCommands {
 // =============================================================================
 
 Result<CommandResult> cmd_shutdown(const CommandContext &ctx) {
-    // TODO: Implement permission checking
-    // if (!ctx.has_permission(Permissions::SHUTDOWN)) {
-    //     ctx.send_error("You don't have permission to shutdown the MUD.");
-    //     return CommandResult::InsufficientPrivs;
-    // }
+    // Check shutdown permission
+    if (ctx.actor_permissions.find(std::string(Permissions::SHUTDOWN)) == ctx.actor_permissions.end()) {
+        ctx.send_error("You don't have permission to shutdown the MUD.");
+        return CommandResult::InsufficientPrivs;
+    }
 
     ctx.send_to_all("SYSTEM: MUD is shutting down in 30 seconds!");
     Log::warn("Shutdown initiated by {}", ctx.actor->name());
 
-    // TODO: Implement actual shutdown sequence
+    // Trigger graceful server shutdown
+    // Note: In a real implementation, this should send a shutdown signal to the main server
+    // For now, we'll use a simple approach through the command system
+    Log::error("Shutdown command executed - server should begin graceful shutdown");
+    
+    // In the future, this could:
+    // 1. Save all player data
+    // 2. Notify connected players
+    // 3. Close network connections gracefully
+    // 4. Stop game loops and cleanup resources
+    // 5. Signal main thread to exit
 
     return CommandResult::Success;
 }
@@ -77,25 +87,22 @@ Result<CommandResult> cmd_teleport(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    // TODO: Parse entity ID from string argument
-    // auto room_id = ctx.parse_entity_id_arg(1);
-    // For now, create a dummy room ID
-    auto room_id = EntityId{1000};
-    if (!room_id.is_valid()) {
+    // Parse room ID from command argument
+    auto room_id_opt = CommandParserUtils::parse_entity_id(ctx.arg(1));
+    if (!room_id_opt || !room_id_opt->is_valid()) {
         ctx.send_error("Invalid room ID.");
         return CommandResult::InvalidSyntax;
     }
+    auto room_id = *room_id_opt;
 
-    // TODO: Implement actor movement
-    // auto result = WorldManager::instance().move_actor_to_room(target, room_id);
-    // For now, just simulate success
-    auto result = Success();
-    if (!result) {
-        ctx.send_error("Failed to teleport player.");
+    // Move actor to the specified room
+    auto movement_result = WorldManager::instance().move_actor_to_room(target, room_id);
+    if (!movement_result.success) {
+        ctx.send_error(fmt::format("Failed to teleport player: {}", movement_result.failure_reason));
         return CommandResult::ResourceError;
     }
 
-    ctx.send_success(fmt::format("Teleported {} to room {}.", target->name(), room_id.value()));
+    ctx.send_success(fmt::format("Teleported {} to room {}.", target->display_name(), room_id.value()));
 
     ctx.send_to_actor(target, "You have been teleported!");
 
@@ -119,16 +126,14 @@ Result<CommandResult> cmd_summon(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Implement actor movement
-    // auto result = WorldManager::instance().move_actor_to_room(target, ctx.room->id());
-    // For now, just simulate success
-    auto result = Success();
-    if (!result) {
-        ctx.send_error("Failed to summon player.");
+    // Move target actor to current room
+    auto movement_result = WorldManager::instance().move_actor_to_room(target, ctx.room->id());
+    if (!movement_result.success) {
+        ctx.send_error(fmt::format("Failed to summon player: {}", movement_result.failure_reason));
         return CommandResult::ResourceError;
     }
 
-    ctx.send_success(fmt::format("You summon {}.", target->name()));
+    ctx.send_success(fmt::format("You summon {}.", target->display_name()));
     ctx.send_to_actor(target, "You have been summoned!");
 
     return CommandResult::Success;
@@ -231,8 +236,14 @@ Result<CommandResult> cmd_weather_control(const CommandContext &ctx) {
         EntityId zone_id = INVALID_ENTITY_ID;
 
         if (ctx.arg_count() >= 2) {
-            // TODO: Parse zone ID from argument
-            ctx.send_error("Zone-specific reports not yet implemented. Showing current zone report.");
+            // Parse zone ID from argument
+            auto zone_id_opt = CommandParserUtils::parse_entity_id(ctx.arg(1));
+            if (zone_id_opt && zone_id_opt->is_valid()) {
+                zone_id = *zone_id_opt;
+            } else {
+                ctx.send_error("Invalid zone ID.");
+                return CommandResult::InvalidSyntax;
+            }
         }
 
         if (zone_id == INVALID_ENTITY_ID) {

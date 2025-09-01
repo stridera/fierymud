@@ -23,11 +23,11 @@ from mud.types import (
 @dataclass
 class Mob:
     id: int
-    name_list: str
+    keywords: str
     mob_class: str
-    short_description: str
-    long_description: str
-    description: str
+    short_desc: str
+    long_desc: str
+    desc: str
     mob_flags: list[str]
     effect_flags: list[str]
     alignment: int
@@ -65,10 +65,10 @@ class Mob:
             if line.startswith("*"):
                 continue
             mob["id"] = int(line.lstrip("#"))
-            mob["name_list"] = mob_data.read_string()
-            mob["short_description"] = mob_data.read_string()
-            mob["long_description"] = mob_data.read_string()
-            mob["description"] = mob_data.read_string()
+            mob["keywords"] = mob_data.read_string()
+            mob["short_desc"] = mob_data.read_string()
+            mob["long_desc"] = mob_data.read_string()
+            mob["desc"] = mob_data.read_string()
 
             mob_flags, effect_flags, align, _ = mob_data.get_next_line().split()
             mob["mob_flags"] = BitFlags.read_flags(mob_flags, MOB_FLAGS)
@@ -86,9 +86,9 @@ class Mob:
 
             fields = mob_data.get_next_line().split()
             if len(fields) == 6:
-                mob["money"] = Money(fields[0], fields[1], fields[2], fields[3])
+                mob["money"] = Money(int(fields[0]), int(fields[1]), int(fields[2]), int(fields[3]))
             if len(fields) == 4:
-                mob["money"] = Money(fields[0], fields[1], 0, 0)
+                mob["money"] = Money(int(fields[0]), int(fields[1]), 0, 0)
 
             (position, default_position, gender, class_num, race, race_align, size) = mob_data.get_next_line().split()
 
@@ -142,32 +142,3 @@ class Mob:
             mob["stats"] = Stats(**stats)
             mobs.append(cls(**mob))
         return mobs
-
-    def to_json(self):
-        """Return a JSON-serializable dict for this Mob."""
-        from dataclasses import asdict
-
-        d = asdict(self)
-        # If nested dataclasses implement to_json, call them
-        for key in (
-            "hp_dice",
-            "damage_dice",
-            "money",
-            "stats",
-            "life_force",
-            "composition",
-            "stance",
-        ):
-            val = getattr(self, key, None)
-            if val is None:
-                continue
-            if hasattr(val, "to_json"):
-                d[key] = val.to_json()
-
-        # Enums (like Class, Race, Gender, Size, Position) -> use .name when available
-        for enum_key in ("mob_class", "race", "gender", "size", "position", "default_position"):
-            val = getattr(self, enum_key, None)
-            if val is not None and hasattr(val, "name"):
-                d[enum_key] = val.name
-
-        return d

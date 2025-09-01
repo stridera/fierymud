@@ -10,15 +10,6 @@
 #include "builtin_commands.hpp"
 
 // Include specialized command modules
-#include "information_commands.hpp"
-#include "communication_commands.hpp"  
-#include "movement_commands.hpp"
-#include "object_commands.hpp"
-#include "admin_commands.hpp"
-#include "combat_commands.hpp"
-#include "social_commands.hpp"
-#include "system_commands.hpp"
-
 #include "../core/actor.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
@@ -27,6 +18,14 @@
 #include "../world/room.hpp"
 #include "../world/weather.hpp"
 #include "../world/world_manager.hpp"
+#include "admin_commands.hpp"
+#include "combat_commands.hpp"
+#include "communication_commands.hpp"
+#include "information_commands.hpp"
+#include "movement_commands.hpp"
+#include "object_commands.hpp"
+#include "social_commands.hpp"
+#include "system_commands.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -37,7 +36,6 @@
 
 namespace BuiltinCommands {
 
-
 // =============================================================================
 // Command Registration
 // =============================================================================
@@ -46,28 +44,86 @@ Result<void> register_all_commands() {
     Log::info("Registering built-in commands...");
 
     // Information Commands (from InformationCommands namespace)
-    Commands().command("look", InformationCommands::cmd_look).alias("l").category("Information").privilege(PrivilegeLevel::Player).build();
-    Commands().command("examine", InformationCommands::cmd_examine).category("Information").privilege(PrivilegeLevel::Player).build();
-    Commands().command("who", InformationCommands::cmd_who).category("Information").privilege(PrivilegeLevel::Player).build();
-    Commands().command("where", InformationCommands::cmd_where).category("Information").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("look", InformationCommands::cmd_look)
+        .alias("l")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("examine", InformationCommands::cmd_examine)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("who", InformationCommands::cmd_who)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("where", InformationCommands::cmd_where)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
     Commands()
         .command("inventory", InformationCommands::cmd_inventory)
         .alias("i")
         .category("Information")
         .privilege(PrivilegeLevel::Player)
         .build();
-    Commands().command("equipment", InformationCommands::cmd_equipment).category("Information").privilege(PrivilegeLevel::Player).build();
-    Commands().command("score", InformationCommands::cmd_score).category("Information").privilege(PrivilegeLevel::Player).build();
-    Commands().command("time", InformationCommands::cmd_time).category("Information").privilege(PrivilegeLevel::Player).build();
-    Commands().command("weather", InformationCommands::cmd_weather).category("Information").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("equipment", InformationCommands::cmd_equipment)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("score", InformationCommands::cmd_score)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("time", InformationCommands::cmd_time)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("weather", InformationCommands::cmd_weather)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     // Communication Commands (from CommunicationCommands namespace)
-    Commands().command("say", CommunicationCommands::cmd_say).alias("'").category("Communication").privilege(PrivilegeLevel::Player).build();
-    Commands().command("tell", CommunicationCommands::cmd_tell).category("Communication").privilege(PrivilegeLevel::Player).build();
-    Commands().command("emote", CommunicationCommands::cmd_emote).category("Communication").privilege(PrivilegeLevel::Player).build();
-    Commands().command("whisper", CommunicationCommands::cmd_whisper).category("Communication").privilege(PrivilegeLevel::Player).build();
-    Commands().command("shout", CommunicationCommands::cmd_shout).category("Communication").privilege(PrivilegeLevel::Player).build();
-    Commands().command("gossip", CommunicationCommands::cmd_gossip).category("Communication").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("say", CommunicationCommands::cmd_say)
+        .alias("'")
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("tell", CommunicationCommands::cmd_tell)
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("emote", CommunicationCommands::cmd_emote)
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("whisper", CommunicationCommands::cmd_whisper)
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("shout", CommunicationCommands::cmd_shout)
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("gossip", CommunicationCommands::cmd_gossip)
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     // Movement Commands (from MovementCommands namespace)
     Commands()
@@ -118,14 +174,22 @@ Result<void> register_all_commands() {
         .usable_while_sitting(false)
         .build();
 
-    Commands().command("exits", MovementCommands::cmd_exits).category("Movement").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("exits", MovementCommands::cmd_exits)
+        .category("Movement")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     // Combat Commands (from CombatCommands namespace)
     Commands().command("kill", CombatCommands::cmd_kill).category("Combat").privilege(PrivilegeLevel::Player).build();
     Commands().command("hit", CombatCommands::cmd_hit).category("Combat").privilege(PrivilegeLevel::Player).build();
     Commands().command("cast", CombatCommands::cmd_cast).category("Combat").privilege(PrivilegeLevel::Player).build();
     Commands().command("flee", CombatCommands::cmd_flee).category("Combat").privilege(PrivilegeLevel::Player).build();
-    Commands().command("release", CombatCommands::cmd_release).category("Death").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("release", CombatCommands::cmd_release)
+        .category("Death")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     // Object Commands (from ObjectCommands namespace)
     Commands().command("get", ObjectCommands::cmd_get).category("Object").privilege(PrivilegeLevel::Player).build();
@@ -134,7 +198,11 @@ Result<void> register_all_commands() {
     Commands().command("give", ObjectCommands::cmd_give).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("wear", ObjectCommands::cmd_wear).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("wield", ObjectCommands::cmd_wield).category("Object").privilege(PrivilegeLevel::Player).build();
-    Commands().command("remove", ObjectCommands::cmd_remove).category("Object").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("remove", ObjectCommands::cmd_remove)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     // Object Interaction Commands (from ObjectCommands namespace)
     Commands().command("light", ObjectCommands::cmd_light).category("Object").privilege(PrivilegeLevel::Player).build();
@@ -143,8 +211,12 @@ Result<void> register_all_commands() {
     Commands().command("open", ObjectCommands::cmd_open).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("close", ObjectCommands::cmd_close).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("lock", ObjectCommands::cmd_lock).category("Object").privilege(PrivilegeLevel::Player).build();
-    Commands().command("unlock", ObjectCommands::cmd_unlock).category("Object").privilege(PrivilegeLevel::Player).build();
-    
+    Commands()
+        .command("unlock", ObjectCommands::cmd_unlock)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
     // Shop Commands (from ObjectCommands namespace)
     Commands().command("list", ObjectCommands::cmd_list).category("Object").privilege(PrivilegeLevel::Player).build();
     Commands().command("buy", ObjectCommands::cmd_buy).category("Object").privilege(PrivilegeLevel::Player).build();
@@ -154,9 +226,21 @@ Result<void> register_all_commands() {
     Commands().command("quit", SystemCommands::cmd_quit).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("save", SystemCommands::cmd_save).category("System").privilege(PrivilegeLevel::Player).build();
     Commands().command("help", SystemCommands::cmd_help).category("System").privilege(PrivilegeLevel::Player).build();
-    Commands().command("commands", SystemCommands::cmd_commands).category("System").privilege(PrivilegeLevel::Player).build();
-    Commands().command("richtest", SystemCommands::cmd_richtest).category("System").privilege(PrivilegeLevel::Player).build();
-    Commands().command("clientinfo", SystemCommands::cmd_clientinfo).category("System").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("commands", SystemCommands::cmd_commands)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("richtest", SystemCommands::cmd_richtest)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    Commands()
+        .command("clientinfo", SystemCommands::cmd_clientinfo)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     // Social Commands (from SocialCommands namespace)
     Commands().command("smile", SocialCommands::cmd_smile).category("Social").privilege(PrivilegeLevel::Player).build();
@@ -166,11 +250,23 @@ Result<void> register_all_commands() {
     Commands().command("laugh", SocialCommands::cmd_laugh).category("Social").privilege(PrivilegeLevel::Player).build();
 
     // Administrative Commands (from AdminCommands namespace)
-    Commands().command("shutdown", AdminCommands::cmd_shutdown).category("Admin").privilege(PrivilegeLevel::Coder).build();
+    Commands()
+        .command("shutdown", AdminCommands::cmd_shutdown)
+        .category("Admin")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
     Commands().command("goto", AdminCommands::cmd_goto).category("Admin").privilege(PrivilegeLevel::God).build();
-    Commands().command("teleport", AdminCommands::cmd_teleport).category("Admin").privilege(PrivilegeLevel::God).build();
+    Commands()
+        .command("teleport", AdminCommands::cmd_teleport)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
     Commands().command("summon", AdminCommands::cmd_summon).category("Admin").privilege(PrivilegeLevel::God).build();
-    Commands().command("setweather", AdminCommands::cmd_weather_control).category("Admin").privilege(PrivilegeLevel::God).build();
+    Commands()
+        .command("setweather", AdminCommands::cmd_weather_control)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
 
     // Zone Development Commands (from AdminCommands namespace)
     Commands()
@@ -200,8 +296,17 @@ Result<void> register_all_commands() {
         .build();
 
     // Debug/Diagnostic Commands (from SystemCommands namespace)
-    Commands().command("prompt", SystemCommands::cmd_prompt).category("System").privilege(PrivilegeLevel::Player).build();
-    Commands().command("stat", InformationCommands::cmd_stat).category("Information").privilege(PrivilegeLevel::God).build();
+    Commands()
+        .command("prompt", SystemCommands::cmd_prompt)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+    // Temporary at player permissions for debugging.
+    Commands()
+        .command("stat", InformationCommands::cmd_stat)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     Log::info("Built-in commands registered successfully.");
     return Success();
@@ -209,7 +314,34 @@ Result<void> register_all_commands() {
 
 Result<void> unregister_all_commands() {
     Log::info("Unregistering built-in commands...");
-    // TODO: Implement command unregistration when needed
+
+    auto &cmd_system = CommandSystem::instance();
+
+    // Information Commands
+    const std::vector<std::string> commands_to_unregister = {
+        "look", "examine", "who", "where", "inventory", "equipment", "score", "time", "weather", "stat",
+        // Communication Commands
+        "say", "tell", "emote", "whisper", "shout", "gossip",
+        // Movement Commands
+        "north", "south", "east", "west", "up", "down", "exits",
+        // Combat Commands
+        "kill", "hit", "cast", "flee", "release",
+        // Object Commands
+        "get", "drop", "put", "give", "wear", "wield", "remove", "light", "eat", "drink", "open", "close", "lock",
+        "unlock", "list", "buy", "sell",
+        // System Commands
+        "quit", "save", "help", "commands", "richtest", "clientinfo", "prompt",
+        // Social Commands
+        "smile", "nod", "wave", "bow", "laugh",
+        // Admin Commands
+        "shutdown", "goto", "teleport", "summon", "setweather", "reloadzone", "savezone", "reloadallzones", "filewatch",
+        "dumpworld"};
+
+    for (const auto &cmd : commands_to_unregister) {
+        cmd_system.unregister_command(cmd);
+    }
+
+    Log::info("Unregistered {} built-in commands", commands_to_unregister.size());
     return Success();
 }
 
@@ -338,26 +470,25 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
     }
 
     std::ostringstream desc;
-    
+
     // Show the actor's name and short description
     desc << fmt::format("{}\n", target->short_description());
-    
+
     // Show the longer description if available and different from short description
     if (!target->description().empty() && target->description() != target->short_description()) {
         desc << fmt::format("{}\n", target->description());
     }
-    
+
     // Show position and status information
     if (target->position() != Position::Standing) {
-        desc << fmt::format("{} is {}.\n", target->display_name(), 
-                           ActorUtils::get_position_name(target->position()));
+        desc << fmt::format("{} is {}.\n", target->display_name(), ActorUtils::get_position_name(target->position()));
     }
-    
+
     // Show health status for living actors
     if (target->is_alive()) {
-        const auto& stats = target->stats();
+        const auto &stats = target->stats();
         double health_percent = static_cast<double>(stats.hit_points) / stats.max_hit_points * 100.0;
-        
+
         if (health_percent < 25.0) {
             desc << fmt::format("{} looks nearly dead.\n", target->display_name());
         } else if (health_percent < 50.0) {
@@ -370,30 +501,31 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
             desc << fmt::format("{} is in excellent condition.\n", target->display_name());
         }
     }
-    
+
     // Show equipment highlights - main weapon and armor
     if (auto main_weapon = target->equipment().get_main_weapon()) {
         desc << fmt::format("{} is wielding {}.\n", target->display_name(), main_weapon->short_description());
     }
-    
+
     if (auto off_weapon = target->equipment().get_off_weapon()) {
-        desc << fmt::format("{} is holding {} in the off-hand.\n", target->display_name(), off_weapon->short_description());
+        desc << fmt::format("{} is holding {} in the off-hand.\n", target->display_name(),
+                            off_weapon->short_description());
     }
-    
+
     // Show visible armor or clothing
     auto equipped_items = target->equipment().get_all_equipped();
-    for (const auto& item : equipped_items) {
+    for (const auto &item : equipped_items) {
         if (item && item->is_armor()) {
             desc << fmt::format("{} is wearing {}.\n", target->display_name(), item->short_description());
             break; // Just show one piece of notable armor
         }
     }
-    
+
     // Show fighting status
     if (target->is_fighting()) {
         desc << fmt::format("{} is engaged in combat!\n", target->display_name());
     }
-    
+
     // Show special flags/conditions
     if (target->has_flag(ActorFlag::Invisible)) {
         desc << fmt::format("{} appears translucent.\n", target->display_name());
@@ -431,26 +563,46 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
 
 std::string get_equipment_slot_display_name(EquipSlot slot) {
     switch (slot) {
-        case EquipSlot::Light:      return "<used as light>";
-        case EquipSlot::Finger_R:   return "<worn on right finger>";
-        case EquipSlot::Finger_L:   return "<worn on left finger>";
-        case EquipSlot::Neck1:      return "<worn around neck>";
-        case EquipSlot::Neck2:      return "<worn around neck>";
-        case EquipSlot::Body:       return "<worn on body>";
-        case EquipSlot::Head:       return "<worn on head>";
-        case EquipSlot::Legs:       return "<worn on legs>";
-        case EquipSlot::Feet:       return "<worn on feet>";
-        case EquipSlot::Hands:      return "<worn on hands>";
-        case EquipSlot::Arms:       return "<worn on arms>";
-        case EquipSlot::Shield:     return "<worn as shield>";
-        case EquipSlot::About:      return "<worn about body>";
-        case EquipSlot::Waist:      return "<worn around waist>";
-        case EquipSlot::Wrist_R:    return "<worn on right wrist>";
-        case EquipSlot::Wrist_L:    return "<worn on left wrist>";
-        case EquipSlot::Wield:      return "<wielded>";
-        case EquipSlot::Hold:       return "<held>";
-        case EquipSlot::Float:      return "<floating nearby>";
-        default:                    return "<worn>";
+    case EquipSlot::Light:
+        return "<used as light>";
+    case EquipSlot::Finger_R:
+        return "<worn on right finger>";
+    case EquipSlot::Finger_L:
+        return "<worn on left finger>";
+    case EquipSlot::Neck1:
+        return "<worn around neck>";
+    case EquipSlot::Neck2:
+        return "<worn around neck>";
+    case EquipSlot::Body:
+        return "<worn on body>";
+    case EquipSlot::Head:
+        return "<worn on head>";
+    case EquipSlot::Legs:
+        return "<worn on legs>";
+    case EquipSlot::Feet:
+        return "<worn on feet>";
+    case EquipSlot::Hands:
+        return "<worn on hands>";
+    case EquipSlot::Arms:
+        return "<worn on arms>";
+    case EquipSlot::Shield:
+        return "<worn as shield>";
+    case EquipSlot::About:
+        return "<worn about body>";
+    case EquipSlot::Waist:
+        return "<worn around waist>";
+    case EquipSlot::Wrist_R:
+        return "<worn on right wrist>";
+    case EquipSlot::Wrist_L:
+        return "<worn on left wrist>";
+    case EquipSlot::Wield:
+        return "<wielded>";
+    case EquipSlot::Hold:
+        return "<held>";
+    case EquipSlot::Float:
+        return "<floating nearby>";
+    default:
+        return "<worn>";
     }
 }
 
@@ -468,9 +620,7 @@ std::string format_equipment(std::shared_ptr<Actor> actor) {
     eq << "You are wearing:\n";
     for (const auto &[slot, item] : equipment) {
         if (item) {
-            eq << fmt::format("{} {}\n", 
-                get_equipment_slot_display_name(slot), 
-                item->short_description());
+            eq << fmt::format("{} {}\n", get_equipment_slot_display_name(slot), item->short_description());
         }
     }
 
@@ -483,7 +633,7 @@ std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
 
     for (const auto &actor : actors) {
         if (actor) {
-            who << fmt::format("  {} (Level {})\n", actor->name(), actor->stats().level);
+            who << fmt::format("  {} (Level {})\n", actor->display_name(), actor->stats().level);
         }
     }
 
@@ -570,7 +720,7 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     std::string dir_name{magic_enum::enum_name(dir)};
     std::transform(dir_name.begin(), dir_name.end(), dir_name.begin(), ::tolower);
     ctx.send(fmt::format("You move {}.", dir_name));
-    
+
     // Automatically show the new room after movement
     auto look_result = InformationCommands::cmd_look(ctx);
     if (!look_result) {
@@ -609,9 +759,9 @@ std::string format_communication(std::shared_ptr<Actor> sender, std::string_view
     }
 
     if (channel.empty()) {
-        return fmt::format("{} says, '{}'", sender->name(), message);
+        return fmt::format("{} says, '{}'", sender->display_name(), message);
     } else {
-        return fmt::format("{} {}s, '{}'", sender->name(), channel, message);
+        return fmt::format("{} {}s, '{}'", sender->display_name(), channel, message);
     }
 }
 

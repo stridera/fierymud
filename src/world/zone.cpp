@@ -59,58 +59,6 @@ nlohmann::json ZoneCommand::to_json() const {
     return json;
 }
 
-Result<ZoneCommand> ZoneCommand::from_json(const nlohmann::json &json) {
-    try {
-        ZoneCommand cmd;
-
-        if (json.contains("command_type")) {
-            auto type_name = json["command_type"].get<std::string>();
-            if (auto type = ZoneUtils::parse_command_type(type_name)) {
-                cmd.command_type = type.value();
-            } else {
-                return std::unexpected(Errors::ParseError("Invalid command type", type_name));
-            }
-        }
-
-        if (json.contains("if_flag")) {
-            cmd.if_flag = json["if_flag"].get<int>();
-        }
-
-        // Handle both legacy field names and JSON format field names
-        if (json.contains("entity_id")) {
-            cmd.entity_id = EntityId{json["entity_id"].get<std::uint64_t>()};
-        } else if (json.contains("id")) {
-            cmd.entity_id = EntityId{json["id"].get<std::uint64_t>()};
-        }
-
-        if (json.contains("room_id")) {
-            cmd.room_id = EntityId{json["room_id"].get<std::uint64_t>()};
-        } else if (json.contains("room")) {
-            cmd.room_id = EntityId{json["room"].get<std::uint64_t>()};
-        }
-
-        if (json.contains("container_id")) {
-            cmd.container_id = EntityId{json["container_id"].get<std::uint64_t>()};
-        } else if (json.contains("container")) {
-            cmd.container_id = EntityId{json["container"].get<std::uint64_t>()};
-        }
-
-        if (json.contains("max_count")) {
-            cmd.max_count = json["max_count"].get<int>();
-        } else if (json.contains("max")) {
-            cmd.max_count = json["max"].get<int>();
-        }
-
-        if (json.contains("comment")) {
-            cmd.comment = json["comment"].get<std::string>();
-        }
-
-        return cmd;
-
-    } catch (const nlohmann::json::exception &e) {
-        return std::unexpected(Errors::ParseError("ZoneCommand JSON parsing", e.what()));
-    }
-}
 
 // Zone Implementation
 
@@ -270,23 +218,12 @@ Result<std::unique_ptr<Zone>> Zone::from_json(const nlohmann::json &json) {
             }
         }
 
-        // Parse commands - support both flat array and nested object formats
-        if (zone_data.contains("commands")) {
-            const auto &cmds = zone_data["commands"];
-            if (cmds.is_array()) {
-                // Flat array format
-                for (const auto &cmd_json : cmds) {
-                    auto cmd_res = ZoneCommand::from_json(cmd_json);
-                    if (cmd_res) {
-                        zone->add_command(cmd_res.value());
-                    } else {
-                        // If a command fails to parse, surface the error
-                        return std::unexpected(cmd_res.error());
-                    }
-                }
-            } else if (cmds.is_object()) {
-                // Nested object format with mob/object sections
-                auto parse_result = parse_nested_zone_commands(cmds, zone.get());
+        // Parse resets - nested object format with mob/object sections
+        if (zone_data.contains("resets")) {
+            const auto &resets = zone_data["resets"];
+            if (resets.is_object()) {
+                // Nested object format with mob sections
+                auto parse_result = parse_nested_zone_commands(resets, zone.get());
                 if (!parse_result) {
                     return std::unexpected(parse_result.error());
                 }
@@ -478,14 +415,6 @@ nlohmann::json Zone::to_json() const {
         json["rooms"] = room_ids;
     }
 
-    // Serialize commands
-    std::vector<nlohmann::json> cmd_array;
-    for (const auto &cmd : commands_) {
-        cmd_array.push_back(cmd.to_json());
-    }
-    if (!cmd_array.empty()) {
-        json["commands"] = cmd_array;
-    }
 
     return json;
 }
@@ -533,6 +462,9 @@ Result<bool> Zone::execute_command(const ZoneCommand &cmd) {
 
     case ZoneCommandType::Put_Object:
         return execute_put_object(cmd);
+
+    case ZoneCommandType::Remove_Object:
+        return execute_remove_object(cmd);
 
     case ZoneCommandType::Open_Door:
     case ZoneCommandType::Close_Door:
@@ -766,8 +698,12 @@ Result<bool> Zone::execute_load_mobile(const ZoneCommand &cmd) {
     // Spawn the mobile
     auto mobile = spawn_mobile_callback_(mobile_id, room_id);
     if (mobile) {
-        logger->info("Zone {} spawned mobile '{}' ({}) in room {}", name(), mobile->display_name(), mobile_id, room_id);
+        logger->debug("Zone {} spawned mobile '{}' ({}) in room {}", name(), mobile->display_name(), mobile_id,
+                      room_id);
         stats_.mobile_count++; // Track spawning stats
+        
+        // Immediately process equipment and inventory for this specific mobile instance
+        process_mobile_equipment(mobile, mobile_id);
     } else {
         logger->warn("Zone {} failed to spawn mobile {} in room {}", name(), mobile_id, room_id);
     }
@@ -775,11 +711,75 @@ Result<bool> Zone::execute_load_mobile(const ZoneCommand &cmd) {
     return true; // Continue processing
 }
 
-Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_json, Zone* zone) {
+void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id) {
+    if (!mobile || !spawn_object_callback_) {
+        return;
+    }
+    
+    auto logger = Log::game();
+    
+    // Process equipment commands for this mobile one-by-one, removing them as we go
+    // This ensures that multiple instances of the same mobile type get different equipment sets
+    std::unordered_set<int> processed_slots; // Track which equipment slots we've already filled
+    int inventory_items_processed = 0;
+    const int MAX_INVENTORY_ITEMS_PER_MOBILE = 10; // Reasonable limit
+    
+    auto it = commands_.begin();
+    while (it != commands_.end()) {
+        bool processed = false;
+        
+        if (it->container_id == mobile_id) {
+            if (it->command_type == ZoneCommandType::Give_Object && 
+                inventory_items_processed < MAX_INVENTORY_ITEMS_PER_MOBILE) {
+                // Give object to mobile's inventory
+                auto object = spawn_object_callback_(it->entity_id, EntityId{mobile_id.value()});
+                if (object) {
+                    logger->debug("Zone {} gave object '{}' ({}) to mobile '{}' ({})", 
+                                 name(), object->display_name(), it->entity_id, 
+                                 mobile->display_name(), mobile_id);
+                    stats_.object_count++;
+                    inventory_items_processed++;
+                    processed = true;
+                } else {
+                    logger->warn("Zone {} failed to create inventory object {} for mobile {}", 
+                                name(), it->entity_id, mobile_id);
+                }
+            } else if (it->command_type == ZoneCommandType::Equip_Object) {
+                int equipment_slot = it->max_count; // Equipment slot stored in max_count field
+                
+                // Only process this slot if we haven't already equipped something there
+                if (processed_slots.find(equipment_slot) == processed_slots.end()) {
+                    EntityId equip_room_id{mobile_id.value() | (static_cast<uint64_t>(equipment_slot) << 32)};
+                    auto object = spawn_object_callback_(it->entity_id, equip_room_id);
+                    if (object) {
+                        logger->debug("Zone {} equipped object '{}' ({}) on mobile '{}' ({}) slot {}", 
+                                     name(), object->display_name(), it->entity_id, 
+                                     mobile->display_name(), mobile_id, equipment_slot);
+                        stats_.object_count++;
+                        processed_slots.insert(equipment_slot);
+                        processed = true;
+                    } else {
+                        logger->warn("Zone {} failed to create equipment object {} for mobile {} slot {}", 
+                                    name(), it->entity_id, mobile_id, equipment_slot);
+                    }
+                }
+            }
+        }
+        
+        // Remove processed commands so they don't execute again later
+        if (processed) {
+            it = commands_.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_json, Zone *zone) {
     try {
         // Parse mobile commands
         if (commands_json.contains("mob") && commands_json["mob"].is_array()) {
-            for (const auto& mob_cmd : commands_json["mob"]) {
+            for (const auto &mob_cmd : commands_json["mob"]) {
                 // Load mobile command
                 ZoneCommand load_mobile;
                 load_mobile.command_type = ZoneCommandType::Load_Mobile;
@@ -787,20 +787,20 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_jso
                 load_mobile.room_id = EntityId{mob_cmd["room"].get<std::uint64_t>()};
                 load_mobile.max_count = mob_cmd.contains("max") ? mob_cmd["max"].get<int>() : 1;
                 zone->add_command(load_mobile);
-                
+
                 // Parse carried objects
                 if (mob_cmd.contains("carrying") && mob_cmd["carrying"].is_array()) {
-                    for (const auto& carry_obj : mob_cmd["carrying"]) {
+                    for (const auto &carry_obj : mob_cmd["carrying"]) {
                         ZoneCommand give_obj;
                         give_obj.command_type = ZoneCommandType::Give_Object;
                         give_obj.entity_id = EntityId{carry_obj["id"].get<std::uint64_t>()};
                         give_obj.container_id = load_mobile.entity_id; // Mobile ID
                         give_obj.max_count = carry_obj.contains("max") ? carry_obj["max"].get<int>() : 1;
                         zone->add_command(give_obj);
-                        
+
                         // Handle nested containers
                         if (carry_obj.contains("contains") && carry_obj["contains"].is_array()) {
-                            for (const auto& nested_obj : carry_obj["contains"]) {
+                            for (const auto &nested_obj : carry_obj["contains"]) {
                                 ZoneCommand put_obj;
                                 put_obj.command_type = ZoneCommandType::Put_Object;
                                 put_obj.entity_id = EntityId{nested_obj["id"].get<std::uint64_t>()};
@@ -811,34 +811,53 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_jso
                         }
                     }
                 }
-                
+
                 // Parse equipped objects
                 if (mob_cmd.contains("equipped") && mob_cmd["equipped"].is_array()) {
-                    for (const auto& equip_obj : mob_cmd["equipped"]) {
+                    for (const auto &equip_obj : mob_cmd["equipped"]) {
                         ZoneCommand equip_cmd;
                         equip_cmd.command_type = ZoneCommandType::Equip_Object;
                         equip_cmd.entity_id = EntityId{equip_obj["id"].get<std::uint64_t>()};
                         equip_cmd.container_id = load_mobile.entity_id; // Mobile ID
-                        equip_cmd.max_count = equip_obj.contains("location") ? equip_obj["location"].get<int>() : 0;
+                        
+                        // Parse location (string or number) to EquipSlot enum value
+                        if (equip_obj.contains("location")) {
+                            int slot_value = 0;
+                            const auto &location_field = equip_obj["location"];
+                            
+                            if (location_field.is_string()) {
+                                // Modern format: string name like "Wrist", "Hands", etc.
+                                std::string location_str = location_field.get<std::string>();
+                                auto slot_opt = magic_enum::enum_cast<EquipSlot>(location_str);
+                                slot_value = slot_opt ? static_cast<int>(*slot_opt) : 0;
+                            } else if (location_field.is_number()) {
+                                // Legacy format: numeric slot ID
+                                slot_value = location_field.get<int>();
+                            }
+                            
+                            equip_cmd.max_count = slot_value;
+                        } else {
+                            equip_cmd.max_count = 0;
+                        }
                         zone->add_command(equip_cmd);
                     }
                 }
             }
         }
-        
+
         // Parse standalone object commands
         if (commands_json.contains("object") && commands_json["object"].is_array()) {
-            for (const auto& obj_cmd : commands_json["object"]) {
+            for (const auto &obj_cmd : commands_json["object"]) {
                 ZoneCommand load_object;
                 load_object.command_type = ZoneCommandType::Load_Object;
                 load_object.entity_id = EntityId{obj_cmd["id"].get<std::uint64_t>()};
                 load_object.room_id = EntityId{obj_cmd["room"].get<std::uint64_t>()};
                 load_object.max_count = obj_cmd.contains("max") ? obj_cmd["max"].get<int>() : 1;
                 zone->add_command(load_object);
-                
+
                 // Parse objects to create inside this object
                 if (obj_cmd.contains("create_objects") && obj_cmd["create_objects"].is_array()) {
-                    for (const auto& create_obj : obj_cmd["create_objects"]) {
+                    for (const auto &create_obj : obj_cmd["create_objects"]) {
                         ZoneCommand put_obj;
                         put_obj.command_type = ZoneCommandType::Put_Object;
                         put_obj.entity_id = EntityId{create_obj["id"].get<std::uint64_t>()};
@@ -849,10 +868,10 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_jso
                 }
             }
         }
-        
+
         // Parse remove commands
         if (commands_json.contains("remove") && commands_json["remove"].is_array()) {
-            for (const auto& remove_cmd : commands_json["remove"]) {
+            for (const auto &remove_cmd : commands_json["remove"]) {
                 ZoneCommand remove_obj;
                 remove_obj.command_type = ZoneCommandType::Remove_Object;
                 remove_obj.entity_id = EntityId{remove_cmd["id"].get<std::uint64_t>()};
@@ -860,21 +879,21 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_jso
                 zone->add_command(remove_obj);
             }
         }
-        
+
         // Parse door commands
         if (commands_json.contains("door") && commands_json["door"].is_array()) {
-            for (const auto& door_cmd : commands_json["door"]) {
+            for (const auto &door_cmd : commands_json["door"]) {
                 ZoneCommand door_command;
                 std::string state = "open";
                 if (door_cmd.contains("state")) {
-                    const auto& state_value = door_cmd["state"];
+                    const auto &state_value = door_cmd["state"];
                     if (state_value.is_string()) {
                         state = state_value.get<std::string>();
                     } else if (state_value.is_array() && !state_value.empty()) {
                         state = state_value[0].get<std::string>();
                     }
                 }
-                
+
                 if (state == "open") {
                     door_command.command_type = ZoneCommandType::Open_Door;
                 } else if (state == "close" || state == "closed") {
@@ -886,9 +905,9 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_jso
                 } else {
                     door_command.command_type = ZoneCommandType::Close_Door; // Default
                 }
-                
+
                 door_command.room_id = EntityId{door_cmd["room"].get<std::uint64_t>()};
-                
+
                 // Parse direction string to Direction enum
                 std::uint64_t direction_value = 0;
                 if (door_cmd.contains("direction")) {
@@ -901,10 +920,10 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json& commands_jso
                 zone->add_command(door_command);
             }
         }
-        
+
         return Success();
-        
-    } catch (const nlohmann::json::exception& e) {
+
+    } catch (const nlohmann::json::exception &e) {
         return std::unexpected(Errors::ParseError("Failed to parse nested zone commands", e.what()));
     }
 }
@@ -934,7 +953,7 @@ Result<bool> Zone::execute_load_object(const ZoneCommand &cmd) {
     // Spawn the object
     auto object = spawn_object_callback_(object_id, room_id);
     if (object) {
-        logger->info("Zone {} spawned object '{}' ({}) in room {}", name(), object->display_name(), object_id, room_id);
+        logger->debug("Zone {} spawned object '{}' ({}) in room {}", name(), object->display_name(), object_id, room_id);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to spawn object {} in room {}", name(), object_id, room_id);
@@ -961,7 +980,8 @@ Result<bool> Zone::execute_give_object(const ZoneCommand &cmd) {
     // The spawn callback should handle placing it in the correct mobile's inventory
     auto object = spawn_object_callback_(object_id, EntityId{mobile_id.value()});
     if (object) {
-        logger->info("Zone {} gave object '{}' ({}) to mobile {}", name(), object->display_name(), object_id, mobile_id);
+        logger->debug("Zone {} gave object '{}' ({}) to mobile {}", name(), object->display_name(), object_id,
+                     mobile_id);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to give object {} to mobile {}", name(), object_id, mobile_id);
@@ -990,12 +1010,12 @@ Result<bool> Zone::execute_equip_object(const ZoneCommand &cmd) {
     EntityId equip_room_id{mobile_id.value() | (static_cast<uint64_t>(equipment_slot) << 32)};
     auto object = spawn_object_callback_(object_id, equip_room_id);
     if (object) {
-        logger->info("Zone {} equipped object '{}' ({}) on mobile {} slot {}", 
-                    name(), object->display_name(), object_id, mobile_id, equipment_slot);
+        logger->debug("Zone {} equipped object '{}' ({}) on mobile {} slot {}", name(), object->display_name(),
+                      object_id, mobile_id, equipment_slot);
         stats_.object_count++; // Track spawning stats
     } else {
-        logger->warn("Zone {} failed to equip object {} on mobile {} slot {}", 
-                    name(), object_id, mobile_id, equipment_slot);
+        logger->warn("Zone {} failed to equip object {} on mobile {} slot {}", name(), object_id, mobile_id,
+                     equipment_slot);
     }
 
     return true; // Continue processing
@@ -1018,11 +1038,37 @@ Result<bool> Zone::execute_put_object(const ZoneCommand &cmd) {
     // Use a special encoding: container object ID as the room ID
     auto object = spawn_object_callback_(object_id, container_id);
     if (object) {
-        logger->info("Zone {} put object '{}' ({}) in container {}", name(), object->display_name(), object_id, container_id);
+        logger->info("Zone {} put object '{}' ({}) in container {}", name(), object->display_name(), object_id,
+                     container_id);
         stats_.object_count++; // Track spawning stats
     } else {
         logger->warn("Zone {} failed to put object {} in container {}", name(), object_id, container_id);
     }
 
+    return true; // Continue processing
+}
+
+Result<bool> Zone::execute_remove_object(const ZoneCommand &cmd) {
+    auto logger = Log::game();
+    
+    EntityId object_id = cmd.entity_id;
+    EntityId room_id = cmd.room_id;
+    
+    logger->debug("Zone {} removing object {} from room {}", name(), object_id, room_id);
+    
+    if (!remove_object_callback_) {
+        logger->warn("Zone {} has no remove object callback set", name());
+        return true; // Continue processing but don't remove
+    }
+    
+    // Remove the object from the specified room
+    auto removed = remove_object_callback_(object_id, room_id);
+    if (removed) {
+        logger->debug("Zone {} removed object {} from room {}", name(), object_id, room_id);
+        stats_.object_count = std::max(0, stats_.object_count - 1); // Track removal stats
+    } else {
+        logger->warn("Zone {} failed to remove object {} from room {}", name(), object_id, room_id);
+    }
+    
     return true; // Continue processing
 }

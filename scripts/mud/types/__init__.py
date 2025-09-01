@@ -133,14 +133,15 @@ class MudTypes(Enum):
 
 
 @dataclass
+class Extras:
+    keywords: list[str]
+    text: str
+
+
+@dataclass
 class CurrentMax:
     current: int
     max: int
-
-    def to_json(self):
-        from dataclasses import asdict
-
-        return asdict(self)
 
 
 @dataclass
@@ -152,11 +153,6 @@ class Stats:
     constitution: int
     charisma: int
 
-    def to_json(self):
-        from dataclasses import asdict
-
-        return asdict(self)
-
 
 @dataclass
 class Money:
@@ -165,10 +161,12 @@ class Money:
     gold: int
     platinum: int
 
-    def to_json(self):
-        from dataclasses import asdict
-
-        return asdict(self)
+    # Create a constructor to make sure we have valid money amounts and that we parse as ints
+    def __init__(self, copper: int, silver: int, gold: int, platinum: int):
+        self.copper = max(0, copper)
+        self.silver = max(0, silver)
+        self.gold = max(0, gold)
+        self.platinum = max(0, platinum)
 
 
 @dataclass
@@ -178,11 +176,6 @@ class SavingThrows:
     petrification: int
     breath: int
     spell: int
-
-    def to_json(self):
-        from dataclasses import asdict
-
-        return asdict(self)
 
 
 @dataclass
@@ -558,6 +551,7 @@ class Size(Enum):
     Titanic = 8
     Mountainous = 9
 
+
 class DamageType(Enum):
     HIT = 1
     STING = 2
@@ -587,81 +581,81 @@ def obj_val(item_type: str, *args):
     results = {}
     match item_type:
         case "ARMOR" | "TREASURE":
-            results = {"AC": args[0]}
+            results = {"AC": int(args[0])}
         case "LIGHT":
             results = {
-                "Is_Lit:": args[0],
-                "Capacity": args[1],
-                "Remaining": "PERMANENT" if int(args[2]) == -1 else args[2],
+                "Is_Lit:": bool(int(args[0])),
+                "Capacity": int(args[1]),
+                "Remaining": int(args[2]),
             }
         case "CONTAINER":
             results = {
-                "Capacity": args[0],
+                "Capacity": int(args[0]),
                 "Flags": BitFlags.build_flags(args[1], ["Closeable", "PickProof", "Closed", "Locked"]),
-                "Key": args[2],
-                "IsCorpse": args[3],
-                "Weight Reduction": args[4],
+                "Key": int(args[2]),
+                "IsCorpse": bool(int(args[3])),
+                "Weight Reduction": float(args[4]),
             }
         case "DRINKCON" | "FOUNTAIN":
             results = {
-                "Capacity": args[0],
-                "Remaining": args[1],
+                "Capacity": int(args[0]),
+                "Remaining": int(args[1]),
                 "Liquid": BitFlags.get_flag(args[2], LIQUIDS),
-                "Poisoned": args[3],
+                "Poisoned": bool(int(args[3])),
             }
         case "FOOD":
             results = {
-                "Filling": args[0],
-                "Poisoned": args[1],
+                "Filling": int(args[0]),
+                "Poisoned": bool(int(args[1])),
             }
         case "SPELLBOOK":
             results = {
-                "Pages": args[0],
+                "Pages": int(args[0]),
             }
         case "SCROLL" | "POTION":
             spells = []
-            if args[1]:
+            if int(args[1]) > 0:
                 spells.append(BitFlags.get_flag(args[1], SPELLS))
-            if args[2]:
+            if int(args[2]) > 0:
                 spells.append(BitFlags.get_flag(args[2], SPELLS))
-            if args[3]:
+            if int(args[3]) > 0:
                 spells.append(BitFlags.get_flag(args[3], SPELLS))
             results = {
-                "Level": args[0],
-                "Spell": spells,
+                "Level": int(args[0]),
+                "Spells": spells,
             }
         case "WAND" | "STAFF" | "INSTRUMENT":
             results = {
-                "Level": args[0],
-                "Max_Charges": args[1],
-                "Charges_Left": args[2],
+                "Level": int(args[0]),
+                "Max_Charges": int(args[1]),
+                "Charges_Left": int(args[2]),
                 "Spell": BitFlags.get_flag(args[3], SPELLS),
             }
 
         case "MONEY":
             results = {
-                "Platinum": args[0],
-                "Gold": args[1],
-                "Silver": args[2],
-                "Copper": args[3],
+                "Platinum": int(args[0]),
+                "Gold": int(args[1]),
+                "Silver": int(args[2]),
+                "Copper": int(args[3]),
             }
         case "PORTAL":
             results = {
-                "Destination": args[0],
+                "Destination": int(args[0]),
                 "Entry_Message": args[1],
                 "Character_Message": args[2],
                 "Exit_Message": args[3],
             }
         case "WALL":
             results = {
-                "Direction": args[0],
-                "Dispellable": args[1],
-                "HitPoints": args[2],
-                "Spell": args[3],
+                "Direction": int(args[0]),
+                "Dispellable": bool(int(args[1])),
+                "HitPoints": int(args[2]),
+                "Spell": int(args[3]),
             }
         case "BOARD":
             results = {
-                "Pages": args[0],
+                "Pages": int(args[0]),
             }
         case "WEAPON":
             dice = int(args[1])
@@ -671,16 +665,16 @@ def obj_val(item_type: str, *args):
                 "HitRoll": int(args[0]),
                 "Hit Dice": Dice(args[1], args[2], 0),
                 "Average": average,
-                "Damage Type": DAMAGE_TYPES[int(args[3])]
+                "Damage Type": DAMAGE_TYPES[int(args[3])],
             }
         case "TRAP":
             results = {
                 "Spell": BitFlags.get_flag(args[0], SPELLS),
-                "Trap HitPoints": args[1],
+                "Trap HitPoints": int(args[1]),
             }
         case "NOTE":
             results = {
-                "Tongue": args[0],
+                "Language": "Common",
             }
         case (
             "WORN"

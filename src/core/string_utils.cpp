@@ -23,7 +23,7 @@
 #include <utility>
 
 std::string ellipsis(const std::string_view str, int maxlen) {
-    if (str.length() < maxlen - 3)
+    if (static_cast<int>(str.length()) < maxlen - 3)
         return std::string(str);
 
     std::string result;

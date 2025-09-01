@@ -13,6 +13,7 @@
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../net/player_connection.hpp"
+#include "../server/persistence_manager.hpp"
 
 #include <fmt/format.h>
 
@@ -30,7 +31,17 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
     ctx.send("Goodbye! Thanks for playing FieryMUD.");
     ctx.actor->set_position(Position::Standing);  // Player remains standing until logout
 
-    // TODO: Implement proper logout sequence with save
+    // Save player data before logout
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        auto save_result = PersistenceManager::instance().save_player(*player);
+        if (!save_result) {
+            Log::error("Failed to save player {}: {}", player->name(), save_result.error().message);
+            ctx.send("Warning: Character save failed!");
+        } else {
+            Log::info("Player {} saved successfully on quit", player->name());
+        }
+    }
+
     Log::info("Player {} quit the game", ctx.actor->name());
 
     return CommandResult::Success;
@@ -41,10 +52,22 @@ Result<CommandResult> cmd_save(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // TODO: Implement player save functionality
     ctx.send("Saving your character...");
-    Log::info("Manual save for player {}", ctx.actor->name());
-    ctx.send("Saved successfully.");
+    
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        auto save_result = PersistenceManager::instance().save_player(*player);
+        if (!save_result) {
+            Log::error("Manual save failed for player {}: {}", player->name(), save_result.error().message);
+            ctx.send("Save failed: " + save_result.error().message);
+            return CommandResult::ResourceError;
+        } else {
+            Log::info("Manual save successful for player {}", player->name());
+            ctx.send("Character saved successfully.");
+        }
+    } else {
+        ctx.send("Only players can be saved.");
+        return CommandResult::InvalidTarget;
+    }
 
     return CommandResult::Success;
 }

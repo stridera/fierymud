@@ -108,20 +108,3 @@ class Player:
     def parse_player(cls, player_file: MudData):
         parser = Parser(MudTypes.PLAYER)
         return cls(**parser.parse(player_file))
-
-    def to_json(self):
-        from dataclasses import asdict
-        d = asdict(self)
-        # Convert nested dataclasses
-        for key in ("saving_throws", "stats", "money", "bank"):
-            val = getattr(self, key, None)
-            if val is not None and hasattr(val, "to_json"):
-                d[key] = val.to_json()
-        # Convert enums and special types to strings
-        if d.get("birth_time") is not None:
-            d["birth_time"] = str(d["birth_time"])
-        if d.get("last_login_time") is not None:
-            d["last_login_time"] = str(d["last_login_time"])
-        if d.get("host") is not None:
-            d["host"] = str(d["host"])
-        return d

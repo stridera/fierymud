@@ -190,6 +190,9 @@ public:
     /** Get base value in copper coins */
     int value() const { return value_; }
     
+    /** Get object level requirement */
+    int level() const { return level_; }
+    
     /** Get wear slot if wearable */
     EquipSlot equip_slot() const { return equip_slot_; }
     
@@ -268,6 +271,7 @@ public:
     /** Set properties */
     void set_weight(int w) { weight_ = std::max(0, w); }
     void set_value(int v) { value_ = std::max(0, v); }
+    void set_level(int l) { level_ = std::max(0, l); }
     void set_equip_slot(EquipSlot slot) { equip_slot_ = slot; }
     void set_type(ObjectType new_type) { type_ = new_type; }
     
@@ -302,6 +306,7 @@ private:
     ObjectType type_ = ObjectType::Undefined;
     int weight_ = 0;
     int value_ = 0;
+    int level_ = 1;             // Level requirement for using object
     int condition_ = 100;       // 0-100 durability
     int timer_ = -1;            // Timer for temporary objects
     bool has_timer_ = false;    // Whether timer is active

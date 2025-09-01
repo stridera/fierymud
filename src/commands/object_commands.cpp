@@ -1356,7 +1356,7 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
     int price = shop->calculate_sell_price(*target_object);
     
     ctx.send_success(fmt::format("You would sell {} for {} copper coins.", 
-                                 target_object->name(), price));
+                                 target_object->display_name(), price));
     ctx.send(fmt::format("(Note: Actual sale mechanics with currency integration pending)"));
     
     return CommandResult::Success;

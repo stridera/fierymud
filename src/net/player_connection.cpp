@@ -237,17 +237,53 @@ void GMCPHandler::send_room_info(const Room &room) {
     if (!client_supports("Room"))
         return;
 
+    // Helper function to convert Direction to string
+    auto direction_to_string = [](Direction dir) -> std::string {
+        switch (dir) {
+            case Direction::North: return "n";
+            case Direction::East: return "e";
+            case Direction::South: return "s";
+            case Direction::West: return "w";
+            case Direction::Up: return "u";
+            case Direction::Down: return "d";
+            case Direction::Northeast: return "ne";
+            case Direction::Northwest: return "nw";
+            case Direction::Southeast: return "se";
+            case Direction::Southwest: return "sw";
+            case Direction::In: return "in";
+            case Direction::Out: return "out";
+            case Direction::Portal: return "portal";
+            default: return "unknown";
+        }
+    };
+
+    // Get zone name from WorldManager
+    std::string zone_name = "Unknown";
+    if (room.zone_id().is_valid()) {
+        auto zone = WorldManager::instance().get_zone(room.zone_id());
+        if (zone) {
+            zone_name = zone->name();
+        }
+    }
+
+    // Build exits information
+    nlohmann::json exits = nlohmann::json::object();
+    for (Direction dir : room.get_visible_exits()) {
+        const auto* exit_info = room.get_exit(dir);
+        if (exit_info && exit_info->to_room.is_valid()) {
+            exits[direction_to_string(dir)] = exit_info->to_room.value();
+        }
+    }
+
     nlohmann::json room_data = {{"num", room.id().value()},
                                 {"name", room.name()},
-                                {"zone", "Unknown"}, // TODO: Add zone support to Room
+                                {"zone", zone_name},
                                 {"environment", static_cast<int>(room.sector_type())},
                                 {"coord",
-                                 {{"x", 0}, // TODO: Implement coordinates when available
-                                  {"y", 0},
-                                  {"z", 0}}},
-                                {"exits", nlohmann::json::object()}};
-
-    // TODO: Add exits when Room interface supports iteration
+                                 {{"x", static_cast<int>(room.id().value() % 1000)}, // Derive X from room ID
+                                  {"y", static_cast<int>(room.id().value() / 1000 % 1000)}, // Derive Y from room ID  
+                                  {"z", static_cast<int>(room.id().value() / 1000000)}}}, // Derive Z from room ID
+                                {"exits", exits}};
 
     send_gmcp("Room.Info", room_data);
 }
@@ -369,61 +405,12 @@ Result<void> GMCPHandler::handle_mssp_request() {
 Result<void> GMCPHandler::send_mssp_data() {
     // Create MSSP handler if not already created
     if (!mssp_handler_ && connection_.get_network_manager()) {
-        // We need access to ServerConfig from NetworkManager
-        // Since NetworkManager stores const ServerConfig& but doesn't expose it,
-        // we'll create a minimal config for now
-        // TODO: Add config accessor to NetworkManager
-        Log::warn("MSSP: Creating placeholder ServerConfig - should use actual config from NetworkManager");
+        // Create MSSP handler with access to the actual ServerConfig
+        const auto& config = connection_.get_network_manager()->get_config();
+        mssp_handler_ = std::make_unique<MSSPHandler>(config);
         
-        // For now, we'll send basic MSSP data without full config integration
-        std::vector<uint8_t> mssp_data;
-        
-        // Start MSSP subnegotiation: IAC SB MSSP_OPTION
-        mssp_data.push_back(TELNET_IAC);
-        mssp_data.push_back(TELNET_SB);
-        mssp_data.push_back(MSSP_OPTION);
-        
-        // Add basic server information
-        auto add_pair = [&](const std::string& var, const std::string& val) {
-            mssp_data.push_back(1); // MSSP_VAR
-            for (char c : var) mssp_data.push_back(static_cast<uint8_t>(c));
-            mssp_data.push_back(2); // MSSP_VAL  
-            for (char c : val) mssp_data.push_back(static_cast<uint8_t>(c));
-        };
-        
-        // Basic server info
-        add_pair("NAME", "FieryMUD");
-        add_pair("CODEBASE", "FieryMUD"); 
-        add_pair("VERSION", "3.0.0");
-        add_pair("HOSTNAME", "localhost");
-        add_pair("PORT", "4000");
-        add_pair("FAMILY", "CircleMUD");
-        add_pair("GENRE", "Fantasy");
-        add_pair("LANGUAGE", "English");
-        add_pair("STATUS", "Live");
-        
-        // Features
-        add_pair("ANSI", "1");
-        add_pair("GMCP", "1");
-        add_pair("MSSP", "1");
-        add_pair("UTF-8", "1");
-        add_pair("256 COLORS", "1");
-        add_pair("TRUECOLOR", "1");
-        add_pair("SSL", "0");  // Will be "1" when TLS is implemented
-        add_pair("TLS", "0");  // Will be "1" when TLS is implemented
-        
-        // Current statistics
-        if (connection_.get_network_manager()) {
-            auto player_count = std::to_string(connection_.get_network_manager()->connection_count());
-            add_pair("PLAYERS", player_count);
-        } else {
-            add_pair("PLAYERS", "0");
-        }
-        add_pair("UPTIME", "3600"); // Placeholder uptime
-        
-        // End MSSP subnegotiation: IAC SE
-        mssp_data.push_back(TELNET_IAC);
-        mssp_data.push_back(TELNET_SE);
+        // Generate MSSP data using the proper handler
+        auto mssp_data = mssp_handler_->generate_mssp_data(connection_.get_network_manager());
         
         connection_.send_raw_data(mssp_data);
         Log::info("Sent MSSP data ({} bytes) to client", mssp_data.size());
@@ -649,7 +636,7 @@ void PlayerConnection::process_input(std::string_view input) {
             Log::error("World server not available!");
             send_message("World server not available.");
         }
-        send_prompt();
+        // Prompt is sent by WorldServer::send_prompt_to_actor after command processing
     } else if (state_ == ConnectionState::AFK && player_) {
         // AFK players can still execute commands, this brings them back
         Log::debug("AFK player '{}' returning with command", player_->name());
@@ -658,7 +645,7 @@ void PlayerConnection::process_input(std::string_view input) {
         if (world_server_) {
             world_server_->process_command(player_, input);
         }
-        send_prompt();
+        // Prompt is sent by WorldServer::send_prompt_to_actor after command processing
     } else {
         Log::warn("Unexpected state in process_input: state={}, has_player={}", static_cast<int>(state_),
                   player_ != nullptr);
@@ -1016,12 +1003,15 @@ void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
         // Keep player in world but mark as linkdead
         // The world server will handle linkdead cleanup after timeout
         if (player_) {
-            // TODO: Add linkdead flag to Player class for world persistence
+            player_->set_linkdead(true);
             Log::debug("Player {} marked linkdead, staying in world", player_->name());
         }
     } else {
         Log::info("Player {} recovered from linkdead state", 
                   player_ ? player_->name() : "unknown");
+        if (player_) {
+            player_->set_linkdead(false);
+        }
         transition_to(ConnectionState::Playing);
         disconnect_reason_.clear();
     }

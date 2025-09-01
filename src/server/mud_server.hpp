@@ -107,6 +107,7 @@ struct ServerStats {
     std::atomic<uint64_t> failed_commands{0};
     std::atomic<uint64_t> total_logins{0};
     std::atomic<uint64_t> failed_logins{0};
+    std::atomic<uint64_t> peak_connections{0};
 
     std::chrono::seconds uptime() const {
         return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - start_time);
@@ -189,7 +190,7 @@ class ModernMUDServer {
     // Core systems
     std::unique_ptr<WorldServer> world_server_;
     std::unique_ptr<NetworkManager> network_manager_;
-    std::unique_ptr<PersistenceManager> persistence_manager_;
+    // PersistenceManager is a singleton, accessed via PersistenceManager::instance()
     std::unique_ptr<ConfigurationManager> config_manager_;
 
     // Management threads

@@ -268,6 +268,14 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             }
         }
         
+        if (json.contains("level")) {
+            if (json["level"].is_string()) {
+                object->set_level(std::stoi(json["level"].get<std::string>()));
+            } else {
+                object->set_level(json["level"].get<int>());
+            }
+        }
+        
         if (json.contains("condition")) {
             object->set_condition(json["condition"].get<int>());
         }
@@ -371,7 +379,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                     }
                 }
                 if (values_json.contains("Key")) {
-                    // Legacy format: "0" = no key, other values = key vnum
+                    // Legacy format: "0" = no key, other values = key id
                     std::string key_str = values_json["Key"].get<std::string>();
                     if (!key_str.empty() && key_str != "0") {
                         container.key_id = EntityId{static_cast<std::uint64_t>(std::stoi(key_str))};
@@ -482,6 +490,7 @@ nlohmann::json Object::to_json() const {
     json["object_type"] = std::string(magic_enum::enum_name(type_));
     json["weight"] = weight_;
     json["value"] = value_;
+    json["level"] = level_;
     json["condition"] = condition_;
     
     if (has_timer_) {
@@ -871,32 +880,51 @@ std::string Object::get_stat_info() const {
     output << fmt::format("Name: '{}', Aliases: {}, Level: {}\n", 
         short_description().empty() ? "<None>" : short_description(), 
         name(), 
-        1); // TODO: Add object level support
-    
-    output << fmt::format("VNum: [    0], RNum: [    0], Type: {}, SpecProc: None\n", 
-        magic_enum::enum_name(type()));
-    
+        level());
+
+    output << fmt::format("ID: [    {}], Type: {}, SpecProc: None\n", 
+        id(), magic_enum::enum_name(type()));
+
     output << fmt::format("L-Des: {}\n", 
         description().empty() ? "None" : description());
     
-    // TODO: Add action description support
+    // Action description (placeholder for future implementation)
+    output << fmt::format("Action Description: None\n");
     
     // Wear flags
     std::string wear_flags = "<None>";
     if (is_wearable()) {
         wear_flags = "TAKE";
-        // TODO: Add specific wear location flags based on equip_slot
+        // Add specific wear location flags based on equip_slot
         switch (equip_slot()) {
-            case EquipSlot::Head: wear_flags += " HEAD"; break;
+            case EquipSlot::Light: wear_flags += " LIGHT"; break;
+            case EquipSlot::Finger_R: 
+            case EquipSlot::Finger_L: wear_flags += " FINGER"; break;
+            case EquipSlot::Neck1: 
+            case EquipSlot::Neck2: wear_flags += " NECK"; break;
             case EquipSlot::Body: wear_flags += " BODY"; break;
-            case EquipSlot::Arms: wear_flags += " ARMS"; break;
-            case EquipSlot::Hands: wear_flags += " HANDS"; break;
+            case EquipSlot::Head: wear_flags += " HEAD"; break;
             case EquipSlot::Legs: wear_flags += " LEGS"; break;
             case EquipSlot::Feet: wear_flags += " FEET"; break;
-            case EquipSlot::Wield: wear_flags += " WIELD"; break;
+            case EquipSlot::Hands: wear_flags += " HANDS"; break;
+            case EquipSlot::Arms: wear_flags += " ARMS"; break;
             case EquipSlot::Shield: wear_flags += " SHIELD"; break;
-            case EquipSlot::Neck1: wear_flags += " NECK"; break;
-            case EquipSlot::Finger_R: wear_flags += " FINGER"; break;
+            case EquipSlot::About: wear_flags += " ABOUT"; break;
+            case EquipSlot::Waist: wear_flags += " WAIST"; break;
+            case EquipSlot::Wrist_R:
+            case EquipSlot::Wrist_L: wear_flags += " WRIST"; break;
+            case EquipSlot::Wield: wear_flags += " WIELD"; break;
+            case EquipSlot::Hold: wear_flags += " HOLD"; break;
+            case EquipSlot::Float: wear_flags += " FLOAT"; break;
+            case EquipSlot::Wield2: wear_flags += " WIELD2"; break;
+            case EquipSlot::Eye: wear_flags += " EYE"; break;
+            case EquipSlot::Ear: wear_flags += " EAR"; break;
+            case EquipSlot::Badge: wear_flags += " BADGE"; break;
+            case EquipSlot::Focus: wear_flags += " FOCUS"; break;
+            case EquipSlot::Throat: wear_flags += " THROAT"; break;
+            case EquipSlot::Face: wear_flags += " FACE"; break;
+            case EquipSlot::Wings: wear_flags += " WINGS"; break;
+            case EquipSlot::Disguise: wear_flags += " DISGUISE"; break;
             default: break;
         }
     }
@@ -904,7 +932,17 @@ std::string Object::get_stat_info() const {
     
     // Extra flags
     std::string extra_flags = "<None>";
-    // TODO: Add object flags support based on flags_ set
+    if (!flags_.empty()) {
+        std::vector<std::string> flag_names;
+        for (const auto& flag : flags_) {
+            flag_names.push_back(std::string(magic_enum::enum_name(flag)));
+        }
+        extra_flags = "";
+        for (size_t i = 0; i < flag_names.size(); ++i) {
+            if (i > 0) extra_flags += " ";
+            extra_flags += flag_names[i];
+        }
+    }
     output << fmt::format("Extra flags   : {}\n", extra_flags);
     
     // Spell effects
@@ -915,11 +953,11 @@ std::string Object::get_stat_info() const {
         static_cast<float>(weight()), 
         static_cast<float>(weight()), 
         value(), 
-        timer(), 0, 0); // TODO: Add decomp, hiddenness support
+        timer(), 0, 0); // Decomp time and hiddenness not yet implemented
     
     // Location information
     output << fmt::format("In room: {}, In object: None, Carried by: Nobody, Worn by: Nobody\n",
-        0); // TODO: Add location tracking
+        0); // Location tracking not yet implemented
     
     // Type-specific information
     switch (type()) {
@@ -993,7 +1031,18 @@ std::string Object::get_stat_info() const {
     
     // Container contents
     if (is_container()) {
-        // TODO: Add container contents listing when we have contained objects
+        // Use dynamic_cast on this pointer instead of shared_from_this
+        const auto* container = dynamic_cast<const Container*>(this);
+        if (container && !container->is_empty()) {
+            output << fmt::format("Contents ({} items):\n", container->contents_count());
+            for (const auto& item : container->get_contents()) {
+                if (item) {
+                    output << fmt::format("  - {}\n", item->display_name());
+                }
+            }
+        } else {
+            output << "Contents: Empty\n";
+        }
     }
     
     // Apply effects

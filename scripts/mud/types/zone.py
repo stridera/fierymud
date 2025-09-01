@@ -3,7 +3,7 @@ from enum import Enum
 from typing import DefaultDict
 
 from mud.mudfile import MudData
-from mud.types import Direction
+from mud.types import Direction, WearFlags
 
 
 class ResetModes(Enum):
@@ -17,6 +17,7 @@ class Hemispheres(Enum):
     NORTHEAST = 1
     SOUTHWEST = 2
     SOUTHEAST = 3
+
 
 class Climates(Enum):
     NONE = 0  #        /* do not report weather */
@@ -50,7 +51,7 @@ class Zone:
     reset_mode: ResetModes
     hemisphere: Hemispheres
     climate: Climates
-    commands: list[Command]
+    resets: list[Command]
 
     @classmethod
     def parse_commands(cls, zone_file: MudData):
@@ -126,7 +127,16 @@ class Zone:
                         elif step.cmd == "E":
                             if "equipped" not in mob:
                                 mob["equipped"] = []
-                            object = {"id": step.arg1, "max": step.arg2, "location": step.arg3, "name": step.sarg}
+                            try:
+                                location = WearFlags(step.arg3)
+                            except ValueError:
+                                location = step.arg3  # fallback to raw value if not in WearFlags
+                            object = {
+                                "id": step.arg1,
+                                "max": step.arg2,
+                                "location": location,
+                                "name": step.sarg,
+                            }
                             while steps and steps[0].cmd == "P" and steps[0].cont:
                                 step = steps.pop(0)
                                 if "contains" not in object:
@@ -144,8 +154,8 @@ class Zone:
                     object = {"id": step.arg1, "max": step.arg2, "room": step.arg3, "name": step.sarg}
                     while steps and steps[0].cont and steps[0].cmd == "P":
                         step = steps.pop(0)
-                        if "create_objects" not in object:
-                            object["create_objects"] = []
+                        if "contains" not in object:
+                            object["contains"] = []
                         inside = {"id": step.arg1, "max": step.arg2, "container": step.arg3, "name": step.sarg}
                         if object["id"] != inside["container"]:
                             print(f"Error, attempting to put object in object with different parent: {step}")
@@ -156,13 +166,12 @@ class Zone:
                                 inside_inside = {
                                     "id": step.arg1,
                                     "max": step.arg2,
-                                    "container": step.arg3,
                                     "name": step.sarg,
                                 }
-                                if inside["id"] != inside_inside["container"]:
+                                if inside["id"] != step.arg3:
                                     print(f"Error, attempting to put object in object with different parent: {step}")
                                 inside["contains"].append(inside_inside)
-                        object["create_objects"].append(inside)
+                        object["contains"].append(inside)
                     commands["object"].append(object)
                 case "P":
                     print(f"Error, attempting to put object in object with no parent: {step}")
@@ -187,18 +196,6 @@ class Zone:
                 case _:
                     print(f"Error, unknown command: {step}")
 
-        zone["commands"] = commands
+        zone["resets"] = commands
 
         return cls(**zone)
-
-    def to_json(self):
-        from dataclasses import asdict
-
-        d = asdict(self)
-        # commands is a DefaultDict(list) of lists of dicts; ensure it's JSON serializable
-        d["commands"] = {k: v for k, v in self.commands.items()}
-        if hasattr(self.reset_mode, "name"):
-            d["reset_mode"] = self.reset_mode.name
-        if hasattr(self.climate, "name"):
-            d["climate"] = self.climate.name
-        return d
