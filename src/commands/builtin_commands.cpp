@@ -448,13 +448,9 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
         for (const auto &extra : extras) {
             if (!first)
                 desc << ", ";
-            // Format the keywords vector as a string
-            bool first_keyword = true;
-            for (const auto &keyword : extra.keywords) {
-                if (!first_keyword)
-                    desc << " ";
-                desc << keyword;
-                first_keyword = false;
+            // Show the first keyword as the examinable feature name
+            if (!extra.keywords.empty()) {
+                desc << extra.keywords[0];
             }
             first = false;
         }

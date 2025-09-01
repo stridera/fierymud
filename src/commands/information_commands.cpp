@@ -319,15 +319,15 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
         if (!extra_descs.empty()) {
             detailed_desc << "\n--- Additional Details ---\n";
             detailed_desc << "You can examine specific features: ";
-            std::vector<std::string> all_keywords;
+            std::vector<std::string> examinable_features;
             for (const auto &extra : extra_descs) {
-                // Combine all keywords from this extra description
-                for (const auto &keyword : extra.keywords) {
-                    all_keywords.push_back(keyword);
+                // Show the first keyword as the examinable feature name
+                if (!extra.keywords.empty()) {
+                    examinable_features.push_back(extra.keywords[0]);
                 }
             }
             detailed_desc << fmt::format("{}\n",
-                                         CommandParserUtils::join(std::span<const std::string>{all_keywords}, ", "));
+                                         CommandParserUtils::join(std::span<const std::string>{examinable_features}, ", "));
         }
 
         break;

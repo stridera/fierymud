@@ -128,8 +128,8 @@ TEST_CASE("Object Description System", "[unit][descriptions]") {
         REQUIRE(description.find("a marble statue") != std::string::npos);
         REQUIRE(description.find("A beautifully carved marble statue stands here.") != std::string::npos);
         REQUIRE(description.find("You notice some details you could examine more closely:") != std::string::npos);
-        REQUIRE(description.find("face expression") != std::string::npos);
-        REQUIRE(description.find("base pedestal") != std::string::npos);
+        REQUIRE(description.find("face") != std::string::npos);
+        REQUIRE(description.find("base") != std::string::npos);
     }
 
     SECTION("Weight and value display") {
