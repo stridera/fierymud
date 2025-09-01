@@ -1343,6 +1343,15 @@ void WorldManager::setup_zone_callbacks(std::shared_ptr<Zone> zone) {
         return get_room(room_id);
     });
     
+    // Set up object removal callback
+    zone->set_remove_object_callback([this](EntityId object_id, EntityId room_id) -> bool {
+        auto room = get_room(room_id);
+        if (!room) {
+            return false;
+        }
+        return room->remove_object(object_id);
+    });
+    
     // Set up zone mobile cleanup callback
     zone->set_cleanup_zone_mobiles_callback([this](EntityId zone_id) {
         cleanup_zone_mobiles(zone_id);
