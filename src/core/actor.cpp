@@ -1096,13 +1096,29 @@ void Player::receive_message(std::string_view message) {
 
 nlohmann::json Player::get_vitals_gmcp() const {
     const auto& stats = this->stats();
+    
+    // Calculate percentages for UI display
+    int hp_percent = (stats.max_hit_points > 0) ? (stats.hit_points * 100) / stats.max_hit_points : 0;
+    int mana_percent = (stats.max_mana > 0) ? (stats.mana * 100) / stats.max_mana : 0;
+    int move_percent = (stats.max_movement > 0) ? (stats.movement * 100) / stats.max_movement : 0;
+    
     return {
         {"hp", stats.hit_points},
-        {"max_hp", stats.max_hit_points},
-        {"mv", stats.movement},
-        {"max_mv", stats.max_movement}
-        // Note: FieryMUD uses spell slots instead of mana
-        // Spell slot information should be added separately when implemented
+        {"maxhp", stats.max_hit_points},
+        {"hp_percent", hp_percent},
+        {"sp", stats.mana},  // "sp" = spell points (common GMCP convention)
+        {"maxsp", stats.max_mana},
+        {"sp_percent", mana_percent},
+        {"ep", stats.movement},  // "ep" = endurance points (movement)
+        {"maxep", stats.max_movement},
+        {"ep_percent", move_percent},
+        {"level", stats.level},
+        {"experience", stats.experience},
+        {"tnl", stats.experience_to_next_level()},  // "tnl" = to next level
+        {"gold", stats.gold},
+        {"alignment", stats.alignment}
+        // Note: Enhanced GMCP vitals with standard field names and percentages
+        // Compatible with most MUD clients while preserving FieryMUD's spell slot system
     };
 }
 
