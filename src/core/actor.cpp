@@ -574,7 +574,9 @@ Result<void> Actor::give_item(std::shared_ptr<Object> item) {
     }
     
     if (!inventory_.can_carry(item->weight(), max_carry_weight())) {
-        return std::unexpected(Errors::InvalidState("Cannot carry that much weight"));
+        return std::unexpected(Errors::InvalidState(fmt::format(
+            "Cannot carry that much weight: item {} weighs {}, current weight {}/{}", 
+            item->name(), item->weight(), current_carry_weight(), max_carry_weight())));
     }
     
     return inventory_.add_item(std::move(item));
@@ -613,7 +615,9 @@ std::shared_ptr<Object> Actor::unequip(EquipSlot slot) {
 }
 
 int Actor::max_carry_weight() const {
-    return 20 + Stats::attribute_modifier(stats_.strength) * 5;
+    // Base capacity increased for better gameplay balance
+    // Typical objects weigh 1-20 pounds, so we need reasonable capacity
+    return 50 + Stats::attribute_modifier(stats_.strength) * 10;
 }
 
 int Actor::current_carry_weight() const {
