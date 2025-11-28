@@ -2469,7 +2469,6 @@
         {
             "id": 3000,
             "keywords": "bigby wizard shopkeeper",
-            "mob_class": "Sorcerer",
             "short_desc": "Bigby",
             "long_desc": "Bigby walks around behind the counter, muttering powerful incantations.",
             "desc": "Bigby looks to be very old, but he is far from senile.  The raw magical power that emanates from him is almost frightening, but he seems to be somewhat less than concerned by the likes of you.  Best to not make him notice you - just buy what you came in for and then leave him alone.    ",
@@ -2509,12 +2508,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 13,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Sorcerer",
+            "race": "Humanoid",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2533,7 +2533,6 @@
         {
             "id": 3001,
             "keywords": "helena baker shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "Helena",
             "long_desc": "Helena smiles brightly at you as she prepares another batch of donuts.",
             "desc": "A bright happy woman. She looks like she's found her calling and one taste of her donuts should be enough to prove it to you too! She may be a baker now, but her weathered skin and excellent body tone reveal her tougher side.",
@@ -2572,12 +2571,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2596,7 +2596,6 @@
         {
             "id": 3002,
             "keywords": "aaron grocer shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "Aaron",
             "long_desc": "Aaron stands behind his counter, smiling warmly.",
             "desc": "A large grocer. Aaron looks like he could sell you a mountain, then deliver it to you personally!",
@@ -2634,12 +2633,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2658,7 +2658,6 @@
         {
             "id": 3003,
             "keywords": "santiago weaponsmith shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Santiago",
             "long_desc": "Santiago walks confidently about his shop, master of every weapon he sells.",
             "desc": "A seasoned weaponsmith and warrior. Santiago has obviously seen more battles in his life than you have seen days in yours. His obvious skill with the weapons he sells make his confidence understandable. You would be well advised to not even THINK about messing with this man!",
@@ -2695,12 +2694,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2719,7 +2719,6 @@
         {
             "id": 3004,
             "keywords": "beowyn armourer shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Beowyn",
             "long_desc": "Beowyn stands here, polishing the many fine armours he has for sale.",
             "desc": "An aging, but extremely powerful armourer and warrior. Beowyn has built mighty muscles from a lifetime of adventure and hard work. He looks friendly, as long as you're friendly. You probably don't want to get on his bad side. It looks like he has a long memory.",
@@ -2758,12 +2757,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2782,7 +2782,6 @@
         {
             "id": 3005,
             "keywords": "receptionist recep inn innkeeper",
-            "mob_class": "Warrior",
             "short_desc": "a pretty half-elven receptionist",
             "long_desc": "A pretty half-elven receptionist shows patrons to their rooms.",
             "desc": "She is very young, still a teenager, with long light brown hair and light green eyes. She has a very competent air about her.",
@@ -2816,12 +2815,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Warrior",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 65,
@@ -2840,7 +2840,6 @@
         {
             "id": 3006,
             "keywords": "lisa shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "Lisa",
             "long_desc": "Lisa is walking around here, rearranging her many leather wares.",
             "desc": "Still young, Lisa has that air of confidence about her that you just can't argue with. Perhaps that's why she gave up adventuring to start her own business. She's obviously very successful.",
@@ -2879,12 +2878,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2903,7 +2903,6 @@
         {
             "id": 3007,
             "keywords": "granite armourer shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Granite",
             "long_desc": "Granite stands here, straightening up his shields for sale.",
             "desc": "Short, wide, and very muscular, Granite is definately not someone you should mess with. One look at his warm smile, however, is enough to convince you that he is a friendly person. One look around his shop should be enough to convince you he knows what he's doing.",
@@ -2940,12 +2939,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -2964,7 +2964,6 @@
         {
             "id": 3008,
             "keywords": "drako armourer shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Drako",
             "long_desc": "Drako stands here, polishing his many fine bronze armours.",
             "desc": "Drako is a young, aspiring armourer. Although new to his profession, his talent is readily apparent. Some day he may even match Beowyn's skills in armoury. Today, however, Drako is content to manufacture many fine inexpensive bronze armours and build a customer base.",
@@ -3001,12 +3000,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3025,7 +3025,6 @@
         {
             "id": 3009,
             "keywords": "shauna armourer shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Shauna",
             "long_desc": "Shauna stands here, proudly setting up her many fine iron armours.",
             "desc": "Shauna is an old stick-in-the-mud type of person. You can tell she's very set in her ways. She's one of those people who believes that the old methods are still the best, and always will be. Her gruff manner doesn't exactly give you a warm, fuzzy feeling either.",
@@ -3062,12 +3061,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3086,7 +3086,6 @@
         {
             "id": 3010,
             "keywords": "elspeth jeweler woman beautiful shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "Elspeth the Jeweler",
             "long_desc": "A beautiful woman stands behind one of the counters, aiding patrons.",
             "desc": "She is a lovely woman, with long blonde hair and a gentle smile. Always polite and charming, she aids people who walk into the shop, helping them find what they need -- or just convincing them that they do, indeed need something.",
@@ -3123,12 +3122,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 99,
                 "intelligence": 67,
@@ -3147,7 +3147,6 @@
         {
             "id": 3011,
             "keywords": "jorhan cleaner shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Jorhan",
             "long_desc": "Jorhan is here, cleaning up around his animals.",
             "desc": "Jorhan is a tall, slender man in the middle of his life.  He has a clean, sharp appearance to him, and a clean bill of health from his looks.  His brown hair is parted to the side, making his black eyes sparkle.    ",
@@ -3189,12 +3188,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 84,
                 "intelligence": 77,
@@ -3213,7 +3213,6 @@
         {
             "id": 3012,
             "keywords": "kayla ex'la exla beautiful young vibrant woman shopkeeper",
-            "mob_class": "Warrior",
             "short_desc": "Kayla Ex'la",
             "long_desc": "A beautiful, vibrant, young woman is here, petting some animals.",
             "desc": "Kayla is somewhat short by normal human standards, but is sweet and caring with her animals.  Her hair flows down along her shoulders, brushing lightly at the hem of her skirt.  She seems to be in her upper twenties, but younger at heart.",
@@ -3257,12 +3256,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 90,
                 "intelligence": 72,
@@ -3281,7 +3281,6 @@
         {
             "id": 3013,
             "keywords": "research clerk bigby assistant",
-            "mob_class": "Sorcerer",
             "short_desc": "Bigby's research assistant",
             "long_desc": "Bigby's research assistant attends some scrolls.",
             "desc": "He is a young, passionate-looking mage with a short-cropped black beard and an elaborate, three-cornered hat.  His robes show that he is a wizard of advanced learning, and his position as assistant to the mighty Bigby is proof of this. His features, pale from a lack of sunlight, are worried as he rummages through some scrolls.",
@@ -3314,12 +3313,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 4,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Flying",
+            "gender": "Male",
+            "mob_class": "Sorcerer",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 94,
                 "intelligence": 63,
@@ -3338,7 +3338,6 @@
         {
             "id": 3014,
             "keywords": "attendant plain man",
-            "mob_class": "Monk",
             "short_desc": "a plain attendant",
             "long_desc": "An attendant dressed in plain robes stands by.",
             "desc": "A pleasant young man stands here, apparently hired to watch over the room. His head is shaven and he wears entirely simple white linen clothing: a tunic and trousers.  He seems rather thin, but not undernourished.",
@@ -3372,12 +3371,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Monk",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 94,
                 "intelligence": 61,
@@ -3396,7 +3396,6 @@
         {
             "id": 3018,
             "keywords": "erasmus illusionist man guild guildmaster",
-            "mob_class": "Illusionist",
             "short_desc": "Erasmus",
             "long_desc": "Erasmus sits by the fire gazing attentively at the flames.",
             "desc": "This man is dressed like the room he is in: lightly, but with dark accents. Blood-red hems adorn his robe, which is generally white or cream-colored.  He is old, with white hair that is cut fairly short and combed back over the top of his head.  His large, sunken blue eyes appear steady and studious.",
@@ -3434,12 +3433,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 1,
-            "default_position": 1,
-            "gender": 1,
-            "race": 0,
+            "position": "Sitting",
+            "default_position": "Sitting",
+            "gender": "Male",
+            "mob_class": "Illusionist",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 91,
                 "intelligence": 78,
@@ -3458,7 +3458,6 @@
         {
             "id": 3020,
             "keywords": "archmage guildmaster mage master 3020",
-            "mob_class": "Sorcerer",
             "short_desc": "the Archmage",
             "long_desc": "The Archmage studies a book.",
             "desc": "Even though your guildmaster looks old and tired, you can clearly see the vast amount of knowledge she posesses.  She is wearing fine magic clothing, and you notice that she is surrounded by a blue shimmering aura.",
@@ -3496,12 +3495,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Sorcerer",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3520,7 +3520,6 @@
         {
             "id": 3021,
             "keywords": "priestess priest guildmaster master high-priestess guild-master",
-            "mob_class": "Cleric",
             "short_desc": "the High Priestess",
             "long_desc": "The High Priestess, your guildmaster, is standing here.",
             "desc": "You are in no doubt that the High Priestess is truly close to Mielikki; she has a peaceful, loving look, as if she were truly one with nature.  She is standing here, waiting to assist you.    ",
@@ -3556,12 +3555,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Cleric",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3580,7 +3580,6 @@
         {
             "id": 3022,
             "keywords": "masterrogue rogue guildmaster master",
-            "mob_class": "Rogue",
             "short_desc": "the Master Rogue",
             "long_desc": "The Master Rogue, your guildmaster, is standing here.",
             "desc": "You realize that whenever the Master Rogue moves, you fail to notice it - the way of a true rogue.  He is dressed in poor clothing, giving him the appearance of a beggar.    ",
@@ -3616,12 +3615,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Rogue",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3640,7 +3640,6 @@
         {
             "id": 3023,
             "keywords": "coach warrior guildmaster master",
-            "mob_class": "Warrior",
             "short_desc": "the Warrior Coach",
             "long_desc": "The Warrior Coach, your guildmaster, is standing here.",
             "desc": "This is your master. Big and strong with bulging muscles. Several scars across his body proves that he was using arms before you were born. He has a calm look on his face.",
@@ -3676,12 +3675,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 66,
@@ -3700,7 +3700,6 @@
         {
             "id": 3024,
             "keywords": "guard sorcerer-guard",
-            "mob_class": "Sorcerer",
             "short_desc": "a sorcerer-guard",
             "long_desc": "A sorcerer guards the exits to the guildhalls.",
             "desc": "He is an experienced mage who has specialized in the field of Combat Magic. He is here to guard the Mage's Guild and his superior knowledge of offensive as well as defensive spells make him a deadly opponent.",
@@ -3736,12 +3735,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 4,
-            "default_position": 4,
-            "gender": 1,
-            "race": 0,
+            "position": "Flying",
+            "default_position": "Flying",
+            "gender": "Male",
+            "mob_class": "Sorcerer",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3760,7 +3760,6 @@
         {
             "id": 3025,
             "keywords": "guild_guard templar holy knight magistrate",
-            "mob_class": "Paladin",
             "short_desc": "the Knight Templar",
             "long_desc": "The Holy Templar Magistrate rests here, studying some papers.",
             "desc": "He is a specially trained warrior belonging to the military order of the Faith. His duty is to protect the faithful from persecution and infidel attacks and his religious devotion combined with his superior skill makes him a deadly opponent.    ",
@@ -3800,12 +3799,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Paladin",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3824,7 +3824,6 @@
         {
             "id": 3026,
             "keywords": "guard well-built wellbuilt rogue",
-            "mob_class": "Assassin",
             "short_desc": "a well-built Rogue",
             "long_desc": "A well-built Rogue is guarding the entrance.",
             "desc": "This rogue has specialized in killing others as quickly and as effectively as possible, with all types of weapons.  His superior knowledge of how and where to use them combined with his extraordinary stealth make him a deadly opponent.",
@@ -3858,12 +3857,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Assassin",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3882,7 +3882,6 @@
         {
             "id": 3027,
             "keywords": "knight mighty",
-            "mob_class": "Paladin",
             "short_desc": "the Mighty Knight",
             "long_desc": "The Mighty Knight is guarding this entrance.",
             "desc": "He is an expert warrior who has attained knighthood through countless chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his extreme skill combined with his experience in warfare makes him a deadly opponent.",
@@ -3915,12 +3914,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Paladin",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -3939,7 +3939,6 @@
         {
             "id": 3034,
             "keywords": "betsy-boo disheveled-troll-woman junker",
-            "mob_class": "Layman",
             "short_desc": "Betsy Boo",
             "long_desc": "A disheveled troll woman pushes around a heaping cart of garbage.",
             "desc": "Long ratty gray hair frames the squished up, wrinkly gray face of this haggard old troll woman.  Her exact size is impossible to discern as she has a literal mountain of old junk piled upon her back, like a turtle who's shell is constructed entirely from debris.  She mutters to herself while gathering up random objects and tossing them onto her trash mountain.  She pushes a large cart, also filled to overflowing with detritus from the junkyard.",
@@ -3982,12 +3981,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 4,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Layman",
+            "race": "Troll",
             "race_align": 1,
-            "size": 3,
+            "size": "Large",
             "stats": {
                 "strength": 75,
                 "intelligence": 71,
@@ -4006,7 +4006,6 @@
         {
             "id": 3040,
             "keywords": "barkeep bartender bar half elven shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "a half-elven barkeep",
             "long_desc": "A bartender wipes down the bar.",
             "desc": "He's a young and chipper half-elf with long, wavy amber hair and bright green eyes.",
@@ -4044,12 +4043,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4068,7 +4068,6 @@
         {
             "id": 3046,
             "keywords": "morgen bartender pubkeeper barkeep shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "Morgen",
             "long_desc": "Morgen stands behind the bar, jovial and eager to serve customers.",
             "desc": "Morgen has plump cheeks and a round pot belly, looking quite jovial and friendly.  As a bartender, he likes to keep his customers happy, but it looks as though he has been having his share of the stores too.    ",
@@ -4105,12 +4104,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4129,7 +4129,6 @@
         {
             "id": 3050,
             "keywords": "guard tall-elven-guard high-elven-guard",
-            "mob_class": "Warrior",
             "short_desc": "a tall elven guard",
             "long_desc": "A tall elven guard watches over the crowd.",
             "desc": "He's an extremely dangerous looking elf with a lordly expression.",
@@ -4164,12 +4163,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 1,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Elf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4188,7 +4188,6 @@
         {
             "id": 3051,
             "keywords": "guard half elven",
-            "mob_class": "Warrior",
             "short_desc": "a half-elven guard",
             "long_desc": "A half-elven guard in full armor strides through the crowd.",
             "desc": "He's half-elven, with long hair and bright eyes. He bears numerous scars from old battles, and his expression is lofty as he surveys the crowd around him.",
@@ -4221,12 +4220,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4245,7 +4245,6 @@
         {
             "id": 3052,
             "keywords": "guard half elven town",
-            "mob_class": "Warrior",
             "short_desc": "a half-elven town guard",
             "long_desc": "A young half-elven guard surveys the crowd.",
             "desc": "Though he's young, he seems enthusiastic. Clearly not an elf, his features are too fine and delicate to be fully human.",
@@ -4284,12 +4283,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4308,7 +4308,6 @@
         {
             "id": 3053,
             "keywords": "highdruidess highdruid high druidess druid guildmaster master",
-            "mob_class": "Druid",
             "short_desc": "the High Druid",
             "long_desc": "The High Druid stands near her favorite tree.",
             "desc": "You are in no doubt that the High Druid is truly close to Mielikki; she has that peaceful, loving look, as if she were truly one with nature.  She is resting here peacefully reading a book.    ",
@@ -4346,12 +4345,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Druid",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4370,7 +4370,6 @@
         {
             "id": 3054,
             "keywords": "knight helmeted quiet",
-            "mob_class": "Paladin",
             "short_desc": "a quiet helmeted knight",
             "long_desc": "A quiet knight in burnished gray armor watches you.",
             "desc": "The eyes of this knight cannot be seen within the burnished, gray steel helm. It stands relaxed, obviously tracking your movements, yet without apparent concern.  It appears to be guarding something.",
@@ -4410,12 +4409,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Paladin",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 88,
                 "intelligence": 77,
@@ -4434,7 +4434,6 @@
         {
             "id": 3055,
             "keywords": "guard druidic mysterious druid",
-            "mob_class": "Druid",
             "short_desc": "a druidic guard",
             "long_desc": "A mysterious and dangerous-looking druid wearing a guard's tabard stands here.",
             "desc": "He is one of the elven guardians of the village, but he has an air of mystery and ominous deadliness about him that few elves possess. Tattoos on his skin mark him as a druid.",
@@ -4469,12 +4468,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 1,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Druid",
+            "race": "Elf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4493,7 +4493,6 @@
         {
             "id": 3056,
             "keywords": "guard druidic mysterious druid",
-            "mob_class": "Druid",
             "short_desc": "a druidic guard",
             "long_desc": "A deadly-looking druid in guard's armor watches over his surroundings.",
             "desc": "He is an elf, tall and proud, but with an air of serenity and ominous deadliness that few elves possess.",
@@ -4528,12 +4527,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 1,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Druid",
+            "race": "Elf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 70,
@@ -4552,7 +4552,6 @@
         {
             "id": 3057,
             "keywords": "guard city-hall-guard",
-            "mob_class": "Warrior",
             "short_desc": "a City Hall guard",
             "long_desc": "A bored City Hall guard stands in front of the stairs.",
             "desc": "This poor soul has been assigned one of the most falsely-prestigious jobs in the Town of Mielikki: guarding the Mayor's office.  Although they manage to stay on their feet, the guard looks ready to slump over and sleep any second. They are fully dressed in shining bronze, symbolic of Mielikki craftsmanship, but it comes off as overkill for such a small-time posting.",
@@ -4583,12 +4582,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 3,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "NonBinary",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 94,
                 "intelligence": 62,
@@ -4607,7 +4607,6 @@
         {
             "id": 3059,
             "keywords": "guard guard-mielikki village footman",
-            "mob_class": "Warrior",
             "short_desc": "a village footman",
             "long_desc": "A footman patrols the streets.",
             "desc": "This human is of average height and weight, and not very well armored. Still, he has some scars on him, and walks like a fairly experienced warrior.",
@@ -4643,12 +4642,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 74,
@@ -4667,7 +4667,6 @@
         {
             "id": 3060,
             "keywords": "guard peasant",
-            "mob_class": "Warrior",
             "short_desc": "a peasant guard",
             "long_desc": "A peasant guard stands here.",
             "desc": "The peasant guard might not look very bright, but he's big and strong, and looks to be very trustworthy.",
@@ -4703,12 +4702,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -4727,7 +4727,6 @@
         {
             "id": 3061,
             "keywords": "janitor gnomic",
-            "mob_class": "Layman",
             "short_desc": "a gnomic janitor",
             "long_desc": "A janitor is walking around, cleaning up.",
             "desc": "This little gnome is short and wrinkled, with a greenish cast to his skin. He mumbles to himself while he slowly tidies up wherever he goes.",
@@ -4760,12 +4759,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 2,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Gnome",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 68,
@@ -4784,7 +4784,6 @@
         {
             "id": 3062,
             "keywords": "dog furry stray",
-            "mob_class": "Layman",
             "short_desc": "a furry stray dog",
             "long_desc": "A stray dog sniffs for food.",
             "desc": "This dog has a long coat of fur that might be white under all the dirt. He has a friendly, goofy expression, expressive brown eyes, and a pink tongue that always seems to be lolling.",
@@ -4817,12 +4816,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 71,
@@ -4841,7 +4841,6 @@
         {
             "id": 3064,
             "keywords": "drunk",
-            "mob_class": "Layman",
             "short_desc": "a drunk",
             "long_desc": "A happy drunk staggers past.",
             "desc": "This fellow looks terribly happy. He staggers around from time to time, loudly proclaiming the virtues of whatever it is that's on his mind. He is of indeterminate age, and of average build.",
@@ -4871,12 +4870,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 69,
@@ -4895,7 +4895,6 @@
         {
             "id": 3065,
             "keywords": "beggar",
-            "mob_class": "Layman",
             "short_desc": "a poor beggar",
             "long_desc": "A beggar is here, asking for a few coins.",
             "desc": "He is on the older side of indeterminate, with a careworn face and a nearly toothless smile that he rarely displays. He is dressed in shapeless, filthy rags.",
@@ -4925,12 +4924,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 1,
-            "default_position": 1,
-            "gender": 1,
-            "race": 0,
+            "position": "Sitting",
+            "default_position": "Sitting",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 68,
@@ -4949,7 +4949,6 @@
         {
             "id": 3066,
             "keywords": "cur snarling",
-            "mob_class": "Layman",
             "short_desc": "a snarling cur",
             "long_desc": "A snarling cur growls and backs away from you.",
             "desc": "It is a small and thoroughly disreputable creature, with sandy-yellow fur that is quite dirty and yellowed teeth that it exposes constantly.",
@@ -4979,12 +4978,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 77,
@@ -5003,7 +5003,6 @@
         {
             "id": 3067,
             "keywords": "guard gate",
-            "mob_class": "Warrior",
             "short_desc": "the gate guard",
             "long_desc": "A gate guard is standing here, guarding the town's entrance.",
             "desc": "A veteran of the common guard, this guard seems to be enjoying his prestigious position as guardian of one of the town's many entrances. His warrior skills make him ideal for the job.",
@@ -5038,12 +5037,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 72,
@@ -5062,7 +5062,6 @@
         {
             "id": 3068,
             "keywords": "green gelatinous blob horrid oozing",
-            "mob_class": "Layman",
             "short_desc": "the horrid green gelatinous blob",
             "long_desc": "An oozing green gelatinous blob is here, sucking in bits of debris.",
             "desc": "A horrid looking thing; it's huge, greenish, and looks like the blob.",
@@ -5095,12 +5094,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 17,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Other",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 73,
@@ -5119,7 +5119,6 @@
         {
             "id": 3069,
             "keywords": "guard bodyguard quiet",
-            "mob_class": "Warrior",
             "short_desc": "a quiet guard",
             "long_desc": "A quiet guard stands near the door.",
             "desc": "He's a fairly young human, with a few scars to show he's seen a few fights. He has expressive blue eyes, but doesn't talk much, preferring to do his job properly.",
@@ -5154,12 +5153,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 87,
                 "intelligence": 67,
@@ -5178,7 +5178,6 @@
         {
             "id": 3070,
             "keywords": "mage elite black",
-            "mob_class": "Sorcerer",
             "short_desc": "the Elite Black Mage",
             "long_desc": "The Elite Black Mage wanders around mumbling strange noises.",
             "desc": "The mage looks old and decrepit, yet he seems to be a wise old man content to let others be.",
@@ -5214,12 +5213,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 4,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Flying",
+            "gender": "Male",
+            "mob_class": "Sorcerer",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -5238,7 +5238,6 @@
         {
             "id": 3075,
             "keywords": "ranger cloaked figure mysteriously elf",
-            "mob_class": "Ranger",
             "short_desc": "a mysteriously cloaked figure",
             "long_desc": "A cloaked figure leans on a signpost.",
             "desc": "A tall, slender elf leans gently on a signpost.  His skin is tanned, and although still incredibly smooth it is starting to show signs of wear from the sun.  The smell of saltwater still hangs heavily about the cloaked ranger as he gazes around with an appraising eye.    ",
@@ -5279,12 +5278,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 1,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Ranger",
+            "race": "Elf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 85,
                 "intelligence": 79,
@@ -5303,7 +5303,6 @@
         {
             "id": 3080,
             "keywords": "Isilynor dragon-slayer woman elf",
-            "mob_class": "Paladin",
             "short_desc": "Isilynor",
             "long_desc": "Isilynor the valiant dragon slayer stands at attention.",
             "desc": "Isilynor is a fierce and skilled warrior, combining the grace and agility of her elven heritage with the strength and power required to take down the most fearsome of dragons.  She stands tall and lithe, with a regal bearing and piercing purple eyes that betray a fierce determination.  Her black hair is long and flowing, tied back in a practical braid to keep it out of her face during battle.  She wears a suit of armor made from the finest mythril, intricately etched with delicate filigree and polished to a brilliant shine. She wields a mythril greatsword with a sharp, pointed blade designed to cut through the scaly hide of great dragons.",
@@ -5345,12 +5344,13 @@
                 "gold": 0,
                 "platinum": 100000000
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 1,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Paladin",
+            "race": "Elf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 88,
                 "intelligence": 68,
@@ -5369,7 +5369,6 @@
         {
             "id": 3081,
             "keywords": "mare horse",
-            "mob_class": "Warrior",
             "short_desc": "a stout mare",
             "long_desc": "A sleek mare stands tall above the rest.",
             "desc": "A slender and powerful horse looks back at you.",
@@ -5399,12 +5398,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Warrior",
+            "race": "Animal",
             "race_align": 0,
-            "size": 3,
+            "size": "Large",
             "stats": {
                 "strength": 96,
                 "intelligence": 66,
@@ -5423,7 +5423,6 @@
         {
             "id": 3090,
             "keywords": "kitten",
-            "mob_class": "Layman",
             "short_desc": "a kitten",
             "long_desc": "A kitten is here.",
             "desc": "The Kitten looks like a cute, little, fierce fighter.",
@@ -5453,12 +5452,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 70,
@@ -5477,7 +5477,6 @@
         {
             "id": 3091,
             "keywords": "puppy loyal-puppy",
-            "mob_class": "Layman",
             "short_desc": "a puppy",
             "long_desc": "A loyal puppy is here.",
             "desc": "The puppy looks like a cute little fierce fighter.",
@@ -5507,12 +5506,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 81,
@@ -5531,7 +5531,6 @@
         {
             "id": 3092,
             "keywords": "beagle",
-            "mob_class": "Layman",
             "short_desc": "a beagle",
             "long_desc": "A loyal beagle is here.",
             "desc": "Though not large, this dog looks like a loyal and fierce fighter.",
@@ -5561,12 +5560,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 70,
@@ -5585,7 +5585,6 @@
         {
             "id": 3093,
             "keywords": "rottweiler dog",
-            "mob_class": "Layman",
             "short_desc": "a rottweiler",
             "long_desc": "A loyal rottweiler is here.",
             "desc": "The rottweiler looks like a strong, fierce fighter.",
@@ -5615,12 +5614,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 90,
                 "intelligence": 72,
@@ -5639,7 +5639,6 @@
         {
             "id": 3094,
             "keywords": "wolf",
-            "mob_class": "Layman",
             "short_desc": "a wolf",
             "long_desc": "A trained wolf is here.",
             "desc": "The Wolf looks like a strong, fearless fighter.",
@@ -5669,12 +5668,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 71,
@@ -5693,7 +5693,6 @@
         {
             "id": 3095,
             "keywords": "postmaster post master",
-            "mob_class": "Layman",
             "short_desc": "the postmaster",
             "long_desc": "The postmaster stands here, looking rather bored.",
             "desc": "The postmaster appears to be old, bored, and always on the verge of dozing off. Still, he looks like he could drown you in a sea of red tape, so perhaps you'd better be nice to him.",
@@ -5725,12 +5724,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 13,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Humanoid",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 66,
@@ -5749,7 +5749,6 @@
         {
             "id": 3096,
             "keywords": "banker gnome",
-            "mob_class": "Layman",
             "short_desc": "a fussy gnomic banker",
             "long_desc": "A fussy little gnome sits behind the counter.",
             "desc": "He is well-dressed and well-groomed, making him look almost comical. Wrinkled, short, overweight, and slightly green in skin color, he has a large round red nose and beady little eyes. His voice is quavery, but his tone commanding.",
@@ -5782,12 +5781,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 2,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Gnome",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -5806,7 +5806,6 @@
         {
             "id": 3098,
             "keywords": "raetic raetic-nightfall man necromancer",
-            "mob_class": "Necromancer",
             "short_desc": "Raetic",
             "long_desc": "Raetic Nightfall looms over the lab table in the dark.",
             "desc": "This frail human man sticks to the shadows, obfuscating the gaunt and sallow features of his bony face.  He wears a dull grey robe, trimmed with the geometric alchemical symbol for change.  His sleeves are pulled back and tied up to avoid trailing them in any of the bloody remains strewn about the table. Dyed on the shoulders of the robe are blood red crosses.",
@@ -5844,12 +5843,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Necromancer",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 82,
                 "intelligence": 89,
@@ -5868,7 +5868,6 @@
         {
             "id": 3100,
             "keywords": "maid half elven shopkeeper",
-            "mob_class": "Layman",
             "short_desc": "a half-elven maid",
             "long_desc": "A maid waits on tables.",
             "desc": "She is very beautiful with golden hair, and deep blue eyes.",
@@ -5906,12 +5905,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Layman",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 60,
@@ -5930,7 +5930,6 @@
         {
             "id": 3101,
             "keywords": "guard peasant",
-            "mob_class": "Layman",
             "short_desc": "the peasant guard",
             "long_desc": "A peasant guard is here, dunking his donut in a cup of coffee.",
             "desc": "A big, strong, helpful, trustworthy guard who probably likes Helena's delicious jelly donuts a lot more than the likes of you!",
@@ -5964,12 +5963,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 13,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Humanoid",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 77,
@@ -5988,7 +5988,6 @@
         {
             "id": 3102,
             "keywords": "donkey spunky-donkey skinny-gray-donkey mount",
-            "mob_class": "Layman",
             "short_desc": "a spunky donkey",
             "long_desc": "A skinny gray donkey hems and haws here, nibbling something on the ground.",
             "desc": "The donkey's hair is patchy, and not completely even, a large rowdy mane growing out of the backside of its neck.  Two long, pointy ears sticking out of its head and large teeth edging out of its mouth give it a funny-looking grin. It hops around on all legs, full of energy, but quite spunky.    ",
@@ -6020,12 +6019,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 3,
+            "size": "Large",
             "stats": {
                 "strength": 77,
                 "intelligence": 77,
@@ -6044,7 +6044,6 @@
         {
             "id": 3103,
             "keywords": "parrot colorful-parrot rainbow-feathered-bird",
-            "mob_class": "Layman",
             "short_desc": "a colorful parrot",
             "long_desc": "A rainbow-feathered bird sits here calmly preening.",
             "desc": "With a long, flattened face a short beak, this parrot looks rather comical in its outfit of rainbow-colored feathers.  The feathers covering its head are a bright red, fading to a sunny yellow around its midsection.  Its belly feathers are a soothing green, and some of the feathers along its tail are a bright blue.    ",
@@ -6075,12 +6074,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 91,
                 "intelligence": 65,
@@ -6099,7 +6099,6 @@
         {
             "id": 3130,
             "keywords": "nasty sewer monster",
-            "mob_class": "Layman",
             "short_desc": "a nasty sewer monster",
             "long_desc": "The nasty sewer monster lurks here.",
             "desc": "It sure looks like something out of a movie.  It strongly resembles a huge figure made up from mud alone, and it sure looks like it had human flesh for breakfast and is strongly intent on having the same for dinner.    ",
@@ -6128,12 +6127,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 92,
                 "intelligence": 76,
@@ -6152,7 +6152,6 @@
         {
             "id": 3131,
             "keywords": "small bat hanging",
-            "mob_class": "Layman",
             "short_desc": "a small bat",
             "long_desc": "The small bat is hanging from the ceiling.",
             "desc": "You have never in your entire life seen such a mean looking small creature. The bat rather peaceful, hanging there.  The thought of arousing this evil looking creature doesn't seem appealing.    ",
@@ -6181,12 +6180,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 4,
-            "default_position": 4,
-            "gender": 0,
-            "race": 14,
+            "position": "Flying",
+            "default_position": "Flying",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 81,
                 "intelligence": 72,
@@ -6205,7 +6205,6 @@
         {
             "id": 3132,
             "keywords": "small giant maggot",
-            "mob_class": "Layman",
             "short_desc": "a small maggot",
             "long_desc": "A small maggot wiggles here.",
             "desc": "The maggot appears to be dormant its tiny belly seems to be full.  The maggot looks like it could do some serious damage, better to leave it alone.    ",
@@ -6234,12 +6233,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 92,
                 "intelligence": 72,
@@ -6258,7 +6258,6 @@
         {
             "id": 3133,
             "keywords": "Abominable slime creature",
-            "mob_class": "Layman",
             "short_desc": "abominable slime creature",
             "long_desc": "An abominable slime creature lurks here.",
             "desc": "Towering in front of you is a huge abominable slime creature.  Its skin is a deep dark green, slime covering its entire body.  The creature glares at you with his cold black eyes watching your every movement.  It smells as if the creature just took a bath in feces.  Behind him is an extremely long and slippery slime trail.    ",
@@ -6289,12 +6288,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 14,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Animal",
             "race_align": 0,
-            "size": 3,
+            "size": "Large",
             "stats": {
                 "strength": 94,
                 "intelligence": 70,
@@ -6313,7 +6313,6 @@
         {
             "id": 3143,
             "keywords": "mayor",
-            "mob_class": "Layman",
             "short_desc": "the Mayor",
             "long_desc": "The Mayor is walking around spreading rumors.",
             "desc": "He is a stocky, middle-aged man with thin, grey hair.",
@@ -6344,12 +6343,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 13,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Humanoid",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 30,
                 "intelligence": 76,
@@ -6368,7 +6368,6 @@
         {
             "id": 3149,
             "keywords": "freddy shopkeeper toy-store",
-            "mob_class": "Layman",
             "short_desc": "Freddy",
             "long_desc": "Freddy smiles, playing with a finger puzzle and looking quite friendly.",
             "desc": "Red-haired, freckled, and wearing oversized overalls, it looks like Freddy has never grown up.  He smiles at all who enter his shop, especially excited to see little girls and boys.    ",
@@ -6402,12 +6401,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 90,
                 "intelligence": 71,
@@ -6426,7 +6426,6 @@
         {
             "id": 3160,
             "keywords": "julk-mercenary-trainer",
-            "mob_class": "Mercenary",
             "short_desc": "Julk",
             "long_desc": "Julk the mercenary trainer leans against the wall, looking for new clients.",
             "desc": "Though he comes only halfway up the doorframe, this halfling almost resembles a dwarf, with his deep chest, and square shoulders.  With one hand, he tosses a dagger, catching it by the blade to pass the time.  With the other hand, he keeps a light hand on his purse.  He's always on the lookout for opportunities to add to it.  Perhaps he has something to offer you..",
@@ -6464,12 +6463,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 11,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Mercenary",
+            "race": "Halfling",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 87,
                 "intelligence": 79,
@@ -6488,7 +6488,6 @@
         {
             "id": 3161,
             "keywords": "mrs judith slender-strong-halfling-woman",
-            "mob_class": "Assassin",
             "short_desc": "Judith",
             "long_desc": "Barely noticable, a slender, strong halfling woman assists Julk with his business.",
             "desc": "You might have not toticed her at all, she draws no attention to herself. However, upon closer inspection, you see she is not shy, but confident and deliberate in every move she makes.",
@@ -6525,12 +6524,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 2,
-            "race": 11,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Female",
+            "mob_class": "Assassin",
+            "race": "Halfling",
             "race_align": 0,
-            "size": 1,
+            "size": "Small",
             "stats": {
                 "strength": 74,
                 "intelligence": 89,
@@ -6549,7 +6549,6 @@
         {
             "id": 3165,
             "keywords": "calken trainer warrior",
-            "mob_class": "Warrior",
             "short_desc": "Calken",
             "long_desc": "An experienced old warrior is training town guards and adventurers alike.",
             "desc": "Calken's dwarven beard is almost entirely grey, leaving only a trace of it's youthful red.  He is shorter than any human in the room, but from the width of his shoulders and the depth of his chest, you imagine he is as strong as half of them combined.",
@@ -6585,12 +6584,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 3,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Warrior",
+            "race": "Dwarf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 100,
                 "intelligence": 66,
@@ -6609,7 +6609,6 @@
         {
             "id": 3170,
             "keywords": "fecil-mage-trainer shaman conjurer",
-            "mob_class": "Conjurer",
             "short_desc": "Fecil",
             "long_desc": "Fecil is here conjuring an elemental for his pupil to engage.",
             "desc": "Fecil is standing here twirling his long twisted black hair, pale skin stretched across his tall boney frame.  He seems to have a mischevious and creepy essence about him.  He talks in a low whisper in a crackely voice fit for a man of old age.  How old is this man?  Has he somehow prolonged his life using magic or is he an un-aging man?",
@@ -6645,12 +6644,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 0,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Conjurer",
+            "race": "Human",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 77,
                 "intelligence": 85,
@@ -6669,7 +6669,6 @@
         {
             "id": 3200,
             "keywords": "tozug gnarled ogre guildmaster master",
-            "mob_class": "Berserker",
             "short_desc": "Tozug",
             "long_desc": "Tozug the gnarled guildmaster watches over this creepy place.",
             "desc": "A gnarled and scarred old ogre, Tozug is the guildmaster of the Great Swamp berserkers.  He is covered in scars and old injuries much like the hall he calls home.  Yet there is a surprisingly agility to his movements.  He moves in concert with the swamp around him, clearly attached to its wild rhythms.",
@@ -6709,12 +6708,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 7,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Berserker",
+            "race": "Ogre",
             "race_align": 1,
-            "size": 3,
+            "size": "Large",
             "stats": {
                 "strength": 80,
                 "intelligence": 70,
@@ -6733,7 +6733,6 @@
         {
             "id": 3201,
             "keywords": "wild-ogre-berserker-guard",
-            "mob_class": "Berserker",
             "short_desc": "an ogre berserker guard",
             "long_desc": "A wild ogre berserker guard stands before the doors.",
             "desc": "This ogre is a giant beast of a monster, primed to slay at a moment's notice. Years of experience and countless ravaging battles have earned him a place of honor guarding the Berserker Hall.  It is his duty to keep out any who might accidentally enter the guildhall - for their own safety.",
@@ -6774,12 +6773,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 7,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Berserker",
+            "race": "Ogre",
             "race_align": 1,
-            "size": 3,
+            "size": "Large",
             "stats": {
                 "strength": 88,
                 "intelligence": 62,
@@ -6798,7 +6798,6 @@
         {
             "id": 3208,
             "keywords": "elderly man",
-            "mob_class": "Layman",
             "short_desc": "the elderly man",
             "long_desc": "An elderly man sits at the corner of the pool, staring curiously at his reflection.",
             "desc": "This man appears to be confused by the reflection he sees in the pool.  He sits there muttering something about the fountain's healing powers.    ",
@@ -6828,12 +6827,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 17,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Layman",
+            "race": "Other",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 90,
                 "intelligence": 66,
@@ -6852,7 +6852,6 @@
         {
             "id": 3301,
             "keywords": "Rousel",
-            "mob_class": "Layman",
             "short_desc": "Rousel the newbie training master",
             "long_desc": "Rousel stands here awaiting newbies to train.",
             "desc": "Rousel has rippling muscles and seems very aware of his surroundings. I don't think it would be a good idea to attack him.",
@@ -6881,12 +6880,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 17,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Layman",
+            "race": "Other",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 83,
                 "intelligence": 63,
@@ -6905,7 +6905,6 @@
         {
             "id": 3490,
             "keywords": "guildmaster master lord pyro pyromancer archmage",
-            "mob_class": "Pyromancer",
             "short_desc": "the Lord of Flames",
             "long_desc": "The Lord of Flames, your guildmaster, is standing here.",
             "desc": "As you look up into the eyes of your guildmaster, you begin to feel your body getting hotter and hotter.  This man has harnessed all of the skills that can be attainted through fire and is a very deadly opponent.    ",
@@ -6945,12 +6944,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Pyromancer",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 78,
                 "intelligence": 80,
@@ -6969,7 +6969,6 @@
         {
             "id": 3491,
             "keywords": "guildmaster master cryomancer cryo high archmage",
-            "mob_class": "Cryomancer",
             "short_desc": "the High Cryomancer",
             "long_desc": "The High Cryomancer, your guildmaster, is standing here.",
             "desc": "This man has clearly been practicing with water for many years.  As he walks around the room, it seems as if he were sliding on a sheet of ice.  He moves about and acts without the use of any energy, this cryomancer is very dangerous.    ",
@@ -7007,12 +7006,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 9,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Cryomancer",
+            "race": "HalfElf",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 99,
                 "intelligence": 80,
@@ -7031,7 +7031,6 @@
         {
             "id": 3492,
             "keywords": "priest high guildmaster master zeno",
-            "mob_class": "Priest",
             "short_desc": "Zeno the Priest",
             "long_desc": "Zeno the Priest, your guildmaster, is standing here.",
             "desc": "He stands here at attention, waiting to assist all who enter.  He has been a faithful priest and gets joy from assisting others.  He has just recently given up preaching to assist all those who wish to enter the faith.    ",
@@ -7070,12 +7069,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 1,
-            "race": 17,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Male",
+            "mob_class": "Priest",
+            "race": "Other",
             "race_align": 0,
-            "size": 2,
+            "size": "Medium",
             "stats": {
                 "strength": 86,
                 "intelligence": 68,
@@ -7094,7 +7094,6 @@
         {
             "id": 3499,
             "keywords": "code program the-code the-program",
-            "mob_class": "Thief",
             "short_desc": "the code",
             "long_desc": "The code is here, jeering and smirking at you.",
             "desc": "This is the code.  Beware it says, least you be sucked in to my web of global variables, buffer overflows and endless loops.  No-one escapes my Power!",
@@ -7136,12 +7135,13 @@
                 "gold": 0,
                 "platinum": 0
             },
-            "position": 3,
-            "default_position": 3,
-            "gender": 0,
-            "race": 19,
+            "position": "Standing",
+            "default_position": "Standing",
+            "gender": "Neutral",
+            "mob_class": "Thief",
+            "race": "Demon",
             "race_align": 1,
-            "size": 5,
+            "size": "Giant",
             "stats": {
                 "strength": 30,
                 "intelligence": 30,
@@ -16153,40 +16153,6 @@
     ],
     "shops": [
         {
-            "id": 3010,
-            "selling": {},
-            "buy_profit": 1.0,
-            "sell_profit": 1.0,
-            "accepts": [
-                {
-                    "type": "Treasure",
-                    "keywords": ""
-                },
-                {
-                    "type": "Armor",
-                    "keywords": "jewel"
-                }
-            ],
-            "no_such_item1": "%s Sorry, I don't stock that item.",
-            "no_such_item2": "%s You don't seem to have that.",
-            "do_not_buy": "%s I don't trade in such items.",
-            "missing_cash1": "%s I can't afford that!",
-            "missing_cash2": "%s You are too poor!",
-            "message_buy": "%s, Thanks for the deal.",
-            "message_sell": "%s, Good doing business with you.",
-            "temper1": 0,
-            "flags": [],
-            "keeper": 1768843622,
-            "trades_with": [],
-            "rooms": [],
-            "hours": [
-                {
-                    "open": 0,
-                    "close": 28
-                }
-            ]
-        },
-        {
             "id": 3020,
             "selling": {
                 "3020": 0,
@@ -17071,33 +17037,6 @@
             ]
         },
         {
-            "id": 3149,
-            "selling": {},
-            "buy_profit": 1.0,
-            "sell_profit": 1.0,
-            "accepts": [],
-            "no_such_item1": "%s Sorry, I don't stock that item.",
-            "no_such_item2": "%s You don't seem to have that.",
-            "do_not_buy": "%s I don't trade in such items.",
-            "missing_cash1": "%s I can't afford that!",
-            "missing_cash2": "%s You are too poor!",
-            "message_buy": "%s, Thanks for the deal.",
-            "message_sell": "%s, Good doing business with you.",
-            "temper1": 0,
-            "flags": [],
-            "keeper": 1768843622,
-            "trades_with": [],
-            "rooms": [
-                3150
-            ],
-            "hours": [
-                {
-                    "open": 0,
-                    "close": 28
-                }
-            ]
-        },
-        {
             "id": 3150,
             "selling": {
                 "3109": 0,
@@ -17250,87 +17189,6 @@
             "trades_with": [],
             "rooms": [
                 3150
-            ],
-            "hours": [
-                {
-                    "open": 0,
-                    "close": 28
-                }
-            ]
-        },
-        {
-            "id": 3155,
-            "selling": {
-                "600": 0,
-                "601": 0,
-                "602": 0,
-                "603": 0,
-                "604": 0,
-                "3090": 0,
-                "605": 0,
-                "606": 0,
-                "607": 0,
-                "608": 0,
-                "609": 0,
-                "610": 0,
-                "611": 0,
-                "613": 0,
-                "614": 0,
-                "615": 0,
-                "616": 0,
-                "618": 0,
-                "619": 0,
-                "621": 0,
-                "623": 0,
-                "624": 0,
-                "625": 0,
-                "627": 0,
-                "629": 0,
-                "630": 0,
-                "631": 0,
-                "632": 0,
-                "636": 0,
-                "638": 0,
-                "639": 0,
-                "640": 0,
-                "642": 0,
-                "643": 0,
-                "644": 0,
-                "645": 0,
-                "649": 0,
-                "657": 0,
-                "652": 0,
-                "653": 0,
-                "654": 0,
-                "655": 0,
-                "664": 0,
-                "665": 0,
-                "671": 0,
-                "672": 0,
-                "673": 0,
-                "674": 0
-            },
-            "buy_profit": 1.05,
-            "sell_profit": 0.9,
-            "accepts": [
-                {
-                    "type": "Other",
-                    "keywords": "map"
-                }
-            ],
-            "no_such_item1": "%s Sorry, I don't stock that item.",
-            "no_such_item2": "%s You don't seem to have that.",
-            "do_not_buy": "%s I don't trade in such items.",
-            "missing_cash1": "%s I can't afford that!",
-            "missing_cash2": "%s You are too poor!",
-            "message_buy": "%s Thanks for the deal.",
-            "message_sell": "%s Good doing business with you.",
-            "temper1": 0,
-            "flags": [],
-            "keeper": 600,
-            "trades_with": [],
-            "rooms": [
-                3155
             ],
             "hours": [
                 {
@@ -18514,7 +18372,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -18536,12 +18393,6 @@
                     "keyword": "",
                     "key": "-1",
                     "destination": "3004"
-                },
-                "Down": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "51900"
                 }
             },
             "extras": [
@@ -18563,7 +18414,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -18583,7 +18433,6 @@
             "flags": [
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "GUILDHALL",
                 "ALWAYSLIT"
             ],
@@ -18604,7 +18453,6 @@
             "flags": [
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -18639,9 +18487,7 @@
             "id": "3005",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The temple is directly north of this spot.  The fountain is to the south.  The Town Center itself continues on to the east and west.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18674,9 +18520,7 @@
             "id": "3006",
             "name": "Town Center",
             "description": "Marble paving stones lie carefully interlocked beneath the shady branches of several well-tended trees.  The plaza continues east and south, and the sound of running water comes from the southeast.  To the north is a medium-sized wooden building, tidy and well-kept.  A sturdy building to the west has a sign proclaiming \"Office of the Templar\".",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "East": {
@@ -18727,17 +18571,9 @@
             "id": "3007",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The Town Center continues on the the west and south.  Just north of here, you can see a well-tended cobblestone path, and to the east is Jorhan's stables.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
-                "North": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "18000"
-                },
                 "East": {
                     "description": "",
                     "keyword": "",
@@ -18762,9 +18598,7 @@
             "id": "3008",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The fountain is east of here.  The Town Center continues on the north and south.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18793,8 +18627,7 @@
             "description": "The hustle and bustle of the village is nowhere as evident as here, the center of this plaza. The grass grows green and thick around it, with paths leading to its center, where a fountain bubbles. Some people sit and picnic, while others just mill around.",
             "flags": [
                 "NOMOB",
-                "NOTRACK",
-                "BFS_MARK"
+                "NOTRACK"
             ],
             "sector": "CITY",
             "exits": {
@@ -18828,9 +18661,7 @@
             "id": "3010",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The fountain is to the west.  The Town Center continues on to the north and south.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18857,9 +18688,7 @@
             "id": "3011",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The western part of Main Street begins to the west.  The Town Center continues on to the north and east.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18892,9 +18721,7 @@
             "id": "3012",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The fountain is to the north.  The Town Center continues on to the east and west.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18921,9 +18748,7 @@
             "id": "3013",
             "name": "Town Center",
             "description": "The hustle and bustle of this living vibrant city is obvious here, on this marble-paved plaza.  Still, even here, the town's obvious closeness to nature is evident.  There are numerous well-tended trees here and the fountain at the center of the plaza is located in a large comfortable looking grassy area. Looks like a good place for a picnic.  The Dark Alley begins to the south. The eastern part of Main Street begins to the east.  The Town Center continues on to the north and west.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18956,9 +18781,7 @@
             "id": "3014",
             "name": "East Main Street",
             "description": "You are standing on the main east/west running street here.  To the north is Santiago's Weapon Shop and the Warrior's Guild.  To the west, Main Street passes through the Town Center.  The eastern part of Main Street continues on to the east.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -18985,9 +18808,7 @@
             "id": "3015",
             "name": "East Main Street",
             "description": "You are standing on the main east/west running street here.  The eastern part of Main Street passes through Commerce Square to the east as well as going on to the west.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "East": {
@@ -19008,9 +18829,7 @@
             "id": "3016",
             "name": "Commerce Square",
             "description": "This is the intersection of Main Street and Commerce Avenue.  You can leave the Square on Main Street by walking east or west.  You can also leave the Square on Commerce Avenue by walking north or south.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19043,9 +18862,7 @@
             "id": "3017",
             "name": "East Main Street",
             "description": "You are standing on the main east/west running street here.  The eastern part of Main Street passes through Commerce Square to the west and ends near the town's east gate just east of here.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "East": {
@@ -19067,8 +18884,7 @@
             "name": "Inside the East Gate",
             "description": "You are now standing on the easternmost outskirts of the town, looking through a short tunnel to the town gates.  Who can say what exactly lies beyond the safe confines of the town, but it must surely be exciting!  Main Street begins just to the west of here.    ",
             "flags": [
-                "NOTRACK",
-                "BFS_MARK"
+                "NOTRACK"
             ],
             "sector": "CITY",
             "exits": {
@@ -19096,12 +18912,6 @@
             ],
             "sector": "CITY",
             "exits": {
-                "East": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "3500"
-                },
                 "West": {
                     "description": "",
                     "keyword": "",
@@ -19116,7 +18926,6 @@
             "description": "Santiago's Weapon Shop is decorated from floor to ceiling with paintings and other memorabilia of the most famous battles of the past century, all of which Santiago himself has fought in, usually on the winning side.  The shop looks like it is well stocked.  The main exit to the south will return you to East Main Street.  An exit to the east will take you to the entrance of the Warrior's Guild.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19141,7 +18950,6 @@
             "description": "This is the entrance to the Inner Sanctum of the Warrior's Guild.  It is spartanly decorated with displays of curious ancient weapons as well as a few tapestries depicting epic battles.  The Inner Sanctum lies to the north. Santiago's Weapons Shop is to the west.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19174,7 +18982,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19191,9 +18998,7 @@
             "id": "3023",
             "name": "North Commerce Avenue",
             "description": "You are standing on a major north/south running street here.  To the east is Lisa's House of Leather.  Just south of here lies Commerce Square.  The northern part of Commerce Avenue continues on to the north from here.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19220,9 +19025,7 @@
             "id": "3024",
             "name": "North Commerce Avenue",
             "description": "You are standing on a major north/south running street here.  Aaron's General Store is to the east.  The northern part of Commerce Avenue continues on to the north and south from here.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19308,9 +19111,7 @@
             "id": "3028",
             "name": "South Commerce Avenue",
             "description": "You are standing on a major north/south running street here.  The southern part of Commerce Avenue continues on to the north and south.  A colorful-looking toy store, Freddy's Toys for Girls and Boys, is just to the east.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19337,9 +19138,7 @@
             "id": "3029",
             "name": "South Commerce Avenue",
             "description": "You are standing on a major north/south running street here.  To the east is Kayla's Pet Shop.  The southern part of Commerce Avenue ends to the south at New Castle Square and continues on to the north.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19398,9 +19197,7 @@
             "id": "3032",
             "name": "Dark Alley",
             "description": "You are standing in a dark and smelly alleyway running east/west from here. The Dark Alley ends to the west just south of the Town Center and to the east just north of the City Dump.  A pub with the sign of a drunken squirrel is directly south of here.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "East": {
@@ -19429,7 +19226,6 @@
             "description": "Marginally clean and organized, the interior of the pub is constructed mainly of wooden beams.  Just above the door, a large sign depicts a swaggering rodent holding a mug.  Tables are scattered about the room and a long bar runs along the south wall.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19446,9 +19242,7 @@
             "id": "3034",
             "name": "Dark Alley",
             "description": "You are standing at the eastern end of a dark and smelly alleyway. Tr'ven's workshop is to the North, The City Dump is to the south and the Dark Alley continues on to the west.",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19477,8 +19271,7 @@
             "description": "This is the place where all GOOD citizens drop off the useless junk they no longer wish to lug around with them or pay to store elsewhere.  If YOU have useless junk you want to get rid of, this is the place to drop it!  Mountains of junk loom to the east in some kind of massive junkyard expansion of the city dump. ",
             "flags": [
                 "NOMOB",
-                "PEACEFUL",
-                "BFS_MARK"
+                "PEACEFUL"
             ],
             "sector": "CITY",
             "exits": {
@@ -19510,7 +19303,6 @@
             "flags": [
                 "NOMOB",
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19536,7 +19328,6 @@
             "description": "This is the entrance to the Inner Sanctum of the Rogue's Guild.  There is one weak light coming from a small candle in the corner of the room.  The darkness combined with the shadows that never seem to stay still give this room an eerie feel.  The Inner Sanctum is down.  The Jewelry Shop lies to the west.  ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19570,7 +19361,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19587,9 +19377,7 @@
             "id": "3039",
             "name": "West Main Street",
             "description": "You are standing on the main east/west running street here.  To the south is Bigby's Magic Shop and the Mage's Guild.  To the east, Main Street passes through the Town Center.  The western part of Main Street continues on to the west.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "East": {
@@ -19616,9 +19404,7 @@
             "id": "3040",
             "name": "West Main Street",
             "description": "You are standing on the main east/west running street here.  To the north, you can see the start of Sleepy Boulevard and the town's Inn.  To the west, Main Street ends at Smelter's Square.  The western part of Main Street also continues on to the east.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19645,9 +19431,7 @@
             "id": "3041",
             "name": "Smelter's Square",
             "description": "This is where Main Street and Smelter's Row mutually terminate.  You can leave the Square on Main Street by walking east.  You can also leave the square on Smelter's Row by walking south.  Immediately west of here lies the western gates of the town.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "East": {
@@ -19675,8 +19459,7 @@
             "name": "Inside the West Gate",
             "description": "You are now standing on the western most outskirts of the town, looking through a short tunnel to the town gates.  Who can say what exactly lies beyond the safe confines of the town, but it must surely be exciting!  Smelter's Square lies just to the east of here.    ",
             "flags": [
-                "NOTRACK",
-                "BFS_MARK"
+                "NOTRACK"
             ],
             "sector": "CITY",
             "exits": {
@@ -19700,8 +19483,7 @@
             "description": "You are standing just outside the town's western gates.  Farmer's Row begins here and continues on to the west.  You can see farmlands and thick forests just to the west of town from here.  The sounds of many insects emanate from the nearby farmlands.    ",
             "flags": [
                 "NOMOB",
-                "NOTRACK",
-                "BFS_MARK"
+                "NOTRACK"
             ],
             "sector": "CITY",
             "exits": {
@@ -19710,12 +19492,6 @@
                     "keyword": "",
                     "key": "-1",
                     "destination": "3042"
-                },
-                "West": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "8025"
                 }
             }
         },
@@ -19725,7 +19501,6 @@
             "description": "This is the Magic Shop of the once-mighty wizard, Bigby.  Apparently he has decided to try to live the quiet life.  Perhaps this is all part of a plan that only another Mage could understand.  In any event, the Magic Shop seems to be well stocked with magical devices.  You can return to Main Street via the exit to the north.  To the south is the entrance to the Mage's Guild.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19762,7 +19537,6 @@
             "description": "The magic being emitted through this room gives your body an uncomfortable chill.  There is a strong heat coming from above, and a cold breeze flowing from below.  The Inner Sanctum of the Mage's Guild lies to the east, and Bigby's Magic Shop is to the north.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19807,7 +19581,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "GUILDHALL",
                 "ALWAYSLIT"
             ],
@@ -19825,9 +19598,7 @@
             "id": "3047",
             "name": "Sleepy Boulevard",
             "description": "You are standing on a major north/south running street.  To the south lies Main Street.  The Forest Inn is directly west of here and the Post Office is directly east of here.  Sleepy Boulevard continues on to the north.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19860,9 +19631,7 @@
             "id": "3048",
             "name": "Sleepy Boulevard",
             "description": "You are standing on a major north/south running street here.  Sleepy Boulevard continues on to the north and south from here.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19883,9 +19652,7 @@
             "id": "3049",
             "name": "Sleepy Boulevard",
             "description": "You are standing on a major north/south running street here.  To the north, Sleepy Boulevard ends inside the North Gate of the town.  Sleepy Boulevard continues on to the south from here.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -19907,8 +19674,7 @@
             "name": "Inside the North Gate",
             "description": "You are now standing on the northernmost outskirts of the town, looking through a short tunnel to the town gates.  Who can say what exactly lies beyond the safe confines of the town, but it must surely be exciting!  Sleepy Boulevard begins just south of here.    ",
             "flags": [
-                "NOTRACK",
-                "BFS_MARK"
+                "NOTRACK"
             ],
             "sector": "CITY",
             "exits": {
@@ -19936,12 +19702,6 @@
             ],
             "sector": "CITY",
             "exits": {
-                "North": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "7001"
-                },
                 "South": {
                     "description": "",
                     "keyword": "",
@@ -19956,7 +19716,6 @@
             "description": "This is the entrance to the famed Forest Inn.  You have heard a lot about it for two reasons.  The Forest Inn is well-known for its comfortable rooms and friendly staff.  Also, it happens to be the only Inn around.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -19993,7 +19752,6 @@
             "description": "You are in the drinking extension of the Forest Inn.  Patrons and townfolk alike mix here freely over a brew at all hours of the day and night.  You are more than welcome to pull up a chair and join in as long as you can pay the rather hefty bar tabs.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20014,7 +19772,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20031,9 +19788,7 @@
             "id": "3055",
             "name": "Smelter's Row",
             "description": "You are standing on a minor north/south running street here.  To the east is Granite's Shield Emporium and to the west is Drako's Bronze Shop.  To the north lies Smelter's Square, where Smelter's Row and Main Street both terminate. Smelter's row continues on to the south.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -20066,9 +19821,7 @@
             "id": "3056",
             "name": "Smelter's Row",
             "description": "You are standing on a minor north/south running street here.  To the east is Beowyn's Armoury and to the west is Shauna's House of Iron.  Just south of here lies New Castle Plaza, where both Smelter's Row and New Castle Road terminate. Smelter's Row continues on to the north.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -20103,7 +19856,6 @@
             "description": "You are standing in Beowyn's Armoury.  Steel plates, ranging in size from mere inches to several meters across seem to be everywhere in this shop. Beowyn is obviously well prepared to handle any sudden surges in the demand for steel armours.  The atmosphere of this place makes you comfortable in spending your hard earned gold on Beowyn's armour -- anything made in a place like this could probably withstand anything short of dragon's breath!  The only exit from this place is to the west, back on to Smelter's Row.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20120,9 +19872,7 @@
             "id": "3058",
             "name": "New Castle Plaza",
             "description": "You are standing in New Castle Plaza, the place where Smelter's Row and New Castle Road join.  Smelter's Row continues on to the north and New Castle Road continues on to the east.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -20366,12 +20116,6 @@
                     "key": "-1",
                     "destination": "3067"
                 },
-                "East": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "16900"
-                },
                 "South": {
                     "description": "",
                     "keyword": "",
@@ -20439,12 +20183,6 @@
                     "keyword": "",
                     "key": "-1",
                     "destination": "3070"
-                },
-                "South": {
-                    "description": "You see the beginning of the Blue-Fog Trail.",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "11701"
                 }
             },
             "extras": [
@@ -20719,12 +20457,6 @@
                     "keyword": "",
                     "key": "-1",
                     "destination": "3079"
-                },
-                "South": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "5300"
                 }
             }
         },
@@ -20747,7 +20479,6 @@
             "description": "You are now standing in Drako's Bronze Shop.  The shop is not very well maintained, although it is far from slovenly.  Its obvious that Drako is very interested in keeping his overhead low, competing as he is with so many other armourers on Smelter's Row.  Still, the quality of Drako's work is apparent. You'll likely get your money's worth here.  The only exit from this place is east, back on to Smelter's Row.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20766,7 +20497,6 @@
             "description": "You are now standing in Shauna's House of Iron.  Its obvious that Shauna has little faith in the new Steel process, as evidenced by the complete lack of steel armours in her shop.  Not to mention the disparaging anti-steel slogans hanging on her walls.  Nonetheless, Shauna has mastered the olden iron-working methods and her armours are of the very highest quality available.  Well worth the cost.  The only exit from this place is east, back on to Smelter's Row.  ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20785,7 +20515,6 @@
             "description": "You are standing in Granite's Shield Emporium, the home of Granite the Shield Master.  Shields of all types adorn the walls.  You can certainly find any shield worth having in the selection here.  The only exit from this place is west, back on to Smelter's Row.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20804,7 +20533,6 @@
             "description": "This large wooden building smells strongly of leather and furs. Stacks and piles of various leather goods, all around, are displayed, sometimes to advantage, sometimes not. Prices are marked carefully on each bin, stack, and rack. An open door leads west, to Commerce Avenue.",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20824,7 +20552,6 @@
             "flags": [
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "GUILDHALL",
                 "ALWAYSLIT"
             ],
@@ -20844,7 +20571,6 @@
             "description": "You are standing in the town's post office.  A place where you can leave private mail messages for other people who frequent the town.    ",
             "flags": [
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20890,15 +20616,7 @@
                 "NOSHIFT"
             ],
             "sector": "STRUCTURE",
-            "exits": {
-                "East": {
-                    "description": "",
-                    "keyword": "door",
-                    "type": "Door",
-                    "key": "-1",
-                    "destination": "5304"
-                }
-            }
+            "exits": {}
         },
         {
             "id": "3091",
@@ -20907,7 +20625,6 @@
             "flags": [
                 "NOMOB",
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -20942,7 +20659,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "GUILDHALL",
                 "ALWAYSLIT"
             ],
@@ -20964,7 +20680,6 @@
                 "NOMOB",
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "GUILDHALL",
                 "ALWAYSLIT"
             ],
@@ -20985,7 +20700,6 @@
             "flags": [
                 "INDOORS",
                 "PEACEFUL",
-                "BFS_MARK",
                 "GUILDHALL",
                 "ALWAYSLIT"
             ],
@@ -21006,7 +20720,6 @@
             "flags": [
                 "NOMOB",
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -21026,7 +20739,6 @@
             "flags": [
                 "NOMOB",
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -21062,9 +20774,7 @@
             "id": "3099",
             "name": "Dark Alley",
             "description": "You are standing at the western end of a dark and smelly alleyway.  The Town Center is to the north and the Dark Alley continues on to the east.    ",
-            "flags": [
-                "BFS_MARK"
-            ],
+            "flags": [],
             "sector": "CITY",
             "exits": {
                 "North": {
@@ -21597,7 +21307,6 @@
             "flags": [
                 "NOMOB",
                 "INDOORS",
-                "BFS_MARK",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -21753,7 +21462,6 @@
             "description": "Here in the heart of the City Hall of Mielikki stands a large rotunda.  The large dome overhead is made of white and gray marble and is capped with a bronze crown made by local bronze smith Drako himself.  Large windows ring the rotunda, welcoming warm sunlight by day and gentle moonlight by night.  In the center of the rotunda grows a large oak tree in honor of the goddess Mielikki for whom the town is named and draws its divine protection.  Two large chambers extend off the rotunda.  West are the Mielikki town archives.  East is the City Hall assembly chamber.  A wide flight of stairs leads to the Mayor's office on the second level of the rotunda.",
             "flags": [
                 "INDOORS",
-                "ATRIUM",
                 "ALWAYSLIT"
             ],
             "sector": "STRUCTURE",
@@ -21894,12 +21602,6 @@
                     "type": "Door",
                     "key": "-1",
                     "destination": "3201"
-                },
-                "Down": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "0",
-                    "destination": "5303"
                 }
             },
             "extras": [
@@ -22409,12 +22111,6 @@
             ],
             "sector": "RUINS",
             "exits": {
-                "North": {
-                    "description": "",
-                    "keyword": "",
-                    "key": "-1",
-                    "destination": "7005"
-                },
                 "South": {
                     "description": "",
                     "keyword": "",

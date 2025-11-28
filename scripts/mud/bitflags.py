@@ -77,7 +77,7 @@ class BitFlags:
                 print(f"UNKNOWN({i}) (max: {len(self.flags)}) in {self.flags}")
 
     def json_repr(self):
-        return list(self)
+        return [flag for flag in list(self) if flag is not None]
 
     @staticmethod
     def read_flag_list(data: str, flags: list[str]) -> list[str]:

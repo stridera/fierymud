@@ -24,7 +24,6 @@ from mud.types import (
 class Mob:
     id: int
     keywords: str
-    mob_class: str
     short_desc: str
     long_desc: str
     desc: str
@@ -92,13 +91,13 @@ class Mob:
 
             (position, default_position, gender, class_num, race, race_align, size) = mob_data.get_next_line().split()
 
-            mob["position"] = int(position)
-            mob["default_position"] = int(default_position)
-            mob["gender"] = int(gender)
+            mob["position"] = Position(int(position))
+            mob["default_position"] = Position(int(default_position))
+            mob["gender"] = Gender(int(gender))
             mob["mob_class"] = Class(int(class_num))
-            mob["race"] = int(race)
+            mob["race"] = Race(int(race))
             mob["race_align"] = int(race_align)
-            mob["size"] = int(size)
+            mob["size"] = Size(int(size))
 
             # End of static data, now we read the dynamic data
             stats = {}

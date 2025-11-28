@@ -1038,11 +1038,11 @@ ROOM_FLAGS = [
     "TUNNEL",  # 8       /* room for only 2 pers           */
     "PRIVATE",  # 9      /* Can't teleport in              */
     "GODROOM",  # 10     /* LVL_GOD+ only allowed          */
-    "HOUSE",  # 11       /* (R) Room is a house            */
-    "HOUSE_CRASH",  # 12 /* (R) House needs saving         */
-    "ATRIUM",  # 13      /* (R) The door to a house        */
-    "OLC",  # 14         /* (R) Modifyable/!compress       */
-    "BFS_MARK",  # 15    /* (R) breadth-first srch mrk     */
+    None,  # 11       /* (R) Room is a house            */
+    None,  # 12 /* (R) House needs saving         */
+    None,  # 13      /* (R) The door to a house        */
+    None,  # 14         /* (R) Modifyable/!compress       */
+    None,  # 15    /* (R) breadth-first srch mrk     */
     "NOWELL",  # 16      /* No spell portals like moonwell */
     "NORECALL",  # 17    /* No recalling                   */
     "UNDERDARK",  # 18   /*                   (not used)   */

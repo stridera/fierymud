@@ -8,13 +8,13 @@
  ***************************************************************************/
 
 #include "information_commands.hpp"
-#include "builtin_commands.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/weather.hpp"
+#include "builtin_commands.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -63,7 +63,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             full_desc << "\nYou see:\n";
             for (const auto &obj : objects) {
                 if (obj) {
-                    full_desc << fmt::format("  {}\n", obj->short_description());
+                    full_desc << fmt::format("  {}\n", obj->ground());
                 }
             }
         }
@@ -77,7 +77,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                     full_desc << "\nAlso here:\n";
                     found_others = true;
                 }
-                full_desc << fmt::format("  {}\n", actor->short_description());
+                full_desc << fmt::format("  {}\n", actor->display_name());
             }
         }
 
@@ -89,52 +89,52 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
     if (ctx.arg_count() >= 2 && ctx.arg(0) == "in") {
         // Look inside a container
         std::string container_name(ctx.arg(1));
-        
+
         // Find the container
         auto target_info = ctx.resolve_target(container_name);
         if (!target_info.is_valid() || target_info.type != TargetType::Object) {
             ctx.send_error(fmt::format("You don't see '{}' here.", container_name));
             return CommandResult::InvalidTarget;
         }
-        
+
         auto container = target_info.object;
-        
+
         // Check if it's a container
         if (!container->is_container()) {
             ctx.send_error(fmt::format("The {} is not a container.", ctx.format_object_name(container)));
             return CommandResult::InvalidTarget;
         }
-        
+
         // Try to cast to Container to access contents
         auto container_obj = std::dynamic_pointer_cast<Container>(container);
         if (!container_obj) {
             ctx.send_error(fmt::format("You can't look inside {}.", ctx.format_object_name(container)));
             return CommandResult::InvalidState;
         }
-        
+
         // Check container properties
-        const auto& container_info = container_obj->container_info();
-        
+        const auto &container_info = container_obj->container_info();
+
         // Check if container is closed
         if (container_info.closeable && container_info.closed) {
             ctx.send_error(fmt::format("The {} is closed.", ctx.format_object_name(container)));
             return CommandResult::InvalidState;
         }
-        
+
         // Get container contents
         auto contents = container_obj->get_contents();
-        
+
         if (contents.empty()) {
             ctx.send(fmt::format("The {} is empty.", ctx.format_object_name(container)));
         } else {
             ctx.send(fmt::format("Looking inside {}, you see:", ctx.format_object_name(container)));
-            for (const auto& item : contents) {
+            for (const auto &item : contents) {
                 if (item) {
                     ctx.send(fmt::format("  {}", item->short_description()));
                 }
             }
         }
-        
+
         return CommandResult::Success;
     }
 
@@ -326,8 +326,8 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
                     examinable_features.push_back(extra.keywords[0]);
                 }
             }
-            detailed_desc << fmt::format("{}\n",
-                                         CommandParserUtils::join(std::span<const std::string>{examinable_features}, ", "));
+            detailed_desc << fmt::format(
+                "{}\n", CommandParserUtils::join(std::span<const std::string>{examinable_features}, ", "));
         }
 
         break;
@@ -349,8 +349,8 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
 Result<CommandResult> cmd_who(const CommandContext &ctx) {
     // Get online actors from WorldServer
     std::vector<std::shared_ptr<Actor>> online_actors;
-    
-    if (auto* world_server = WorldServer::instance()) {
+
+    if (auto *world_server = WorldServer::instance()) {
         online_actors = world_server->get_online_actors();
     }
 
@@ -388,7 +388,8 @@ Result<CommandResult> cmd_where(const CommandContext &ctx) {
     if (!target_room) {
         ctx.send_line(fmt::format("{} is nowhere.", target->display_name()));
     } else {
-        ctx.send_line(fmt::format("{} is in: {} [{}]", target->display_name(), target_room->display_name(), target_room->id().value()));
+        ctx.send_line(fmt::format("{} is in: {} [{}]", target->display_name(), target_room->display_name(),
+                                  target_room->id().value()));
     }
 
     return CommandResult::Success;
@@ -421,7 +422,7 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    const auto& stats = ctx.actor->stats();
+    const auto &stats = ctx.actor->stats();
     std::ostringstream score;
 
     // Character header - centered name
@@ -429,47 +430,45 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     int padding = std::max(0, (45 - static_cast<int>(name.length())) / 2);
     score << fmt::format("{:{}}{}\n\n", "", padding, fmt::format("Character attributes for {}", name));
 
-    // Basic character info  
-    score << fmt::format("Level: {}  Class: {}  Race: Human  Size: Medium  Gender: Neutral\n", 
-                        stats.level, "Warrior");
+    // Basic character info
+    score << fmt::format("Level: {}  Class: {}  Race: Human  Size: Medium  Gender: Neutral\n", stats.level, "Warrior");
 
     // Age, height, weight (placeholder values)
-    score << fmt::format("Age: {} years, {} months  Height: 5'10\"  Weight: 180 lbs\n", 
-                        20 + stats.level, (stats.level * 3) % 12);
+    score << fmt::format("Age: {} years, {} months  Height: 5'10\"  Weight: 180 lbs\n", 20 + stats.level,
+                         (stats.level * 3) % 12);
 
-    // Abilities 
-    score << fmt::format("Str: {}    Int: {}     Wis: {}\n", 
-                        stats.strength, stats.intelligence, stats.wisdom);
-    score << fmt::format("Dex: {}    Con: {}     Cha: {}\n", 
-                        stats.dexterity, stats.constitution, stats.charisma);
+    // Abilities
+    score << fmt::format("Str: {}    Int: {}     Wis: {}\n", stats.strength, stats.intelligence, stats.wisdom);
+    score << fmt::format("Dex: {}    Con: {}     Cha: {}\n", stats.dexterity, stats.constitution, stats.charisma);
 
     // Hit points, mana, movement
-    score << fmt::format("Hit points: {}/{}   Mana: {}/{}   Moves: {}/{}\n",
-                        stats.hit_points, stats.max_hit_points,
-                        stats.mana, stats.max_mana,
-                        stats.movement, stats.max_movement);
+    score << fmt::format("Hit points: {}/{}   Mana: {}/{}   Moves: {}/{}\n", stats.hit_points, stats.max_hit_points,
+                         stats.mana, stats.max_mana, stats.movement, stats.max_movement);
 
     // Armor class and combat stats
-    score << fmt::format("Armor Class: {}   Hit roll: {}   Damage roll: {}\n",
-                        stats.armor_class, stats.hit_roll, stats.damage_roll);
+    score << fmt::format("Armor Class: {}   Hit roll: {}   Damage roll: {}\n", stats.armor_class, stats.hit_roll,
+                         stats.damage_roll);
 
     // Alignment
     std::string align_desc;
-    if (stats.alignment < -350) align_desc = "Evil";
-    else if (stats.alignment > 350) align_desc = "Good";
-    else align_desc = "Neutral";
+    if (stats.alignment < -350)
+        align_desc = "Evil";
+    else if (stats.alignment > 350)
+        align_desc = "Good";
+    else
+        align_desc = "Neutral";
     score << fmt::format("Alignment: {} ({})  ", align_desc, stats.alignment);
 
     // Position/Status
     score << fmt::format("Status: {}\n", magic_enum::enum_name(ctx.actor->position()));
 
-    // Encumbrance 
+    // Encumbrance
     int current_weight = ctx.actor->current_carry_weight();
     int max_weight = ctx.actor->max_carry_weight();
     score << fmt::format("Encumbrance: {}/{} lbs  ", current_weight, max_weight);
 
     // Experience and gold
-    if (stats.level < 100) {  // Not immortal
+    if (stats.level < 100) { // Not immortal
         score << fmt::format("Experience: {}  ", stats.experience);
     }
     score << fmt::format("Gold: {}\n", stats.gold);
@@ -562,25 +561,25 @@ Result<CommandResult> cmd_stat(const CommandContext &ctx) {
         stat_info = target_info.object->get_stat_info();
         ctx.send(stat_info);
         return CommandResult::Success;
-        
+
     case TargetType::Actor:
         // Use the actor's get_stat_info method which handles polymorphism correctly
         stat_info = target_info.actor->get_stat_info();
         ctx.send(stat_info);
         return CommandResult::Success;
-        
+
     case TargetType::Self:
         // Handle "stat me" and "stat self" - use the current actor
         stat_info = ctx.actor->get_stat_info();
         ctx.send(stat_info);
         return CommandResult::Success;
-        
+
     case TargetType::Room:
         // Use the room's get_stat_info method which provides comprehensive room statistics
         stat_info = target_info.room->get_stat_info();
         ctx.send(stat_info);
         return CommandResult::Success;
-        
+
     default:
         ctx.send_error("You can't get statistics for that.");
         return CommandResult::InvalidTarget;

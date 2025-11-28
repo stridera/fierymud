@@ -174,7 +174,7 @@ class MudFiles:
     files: list[MudFile]
 
     @classmethod
-    def _get_zone_files(cls, path: str, zone: int | None = None) -> list[MudFile]:
+    def _get_zone_files(cls, path: str, zone: int | None = None) -> Self:
         files = []
         for ext in ["zon", "mob", "obj", "shp", "trg", "wld"]:
             file = os.path.join(path, ext, f"{zone}.{ext}")

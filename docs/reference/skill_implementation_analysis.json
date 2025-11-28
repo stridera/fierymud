@@ -1,0 +1,659 @@
+{
+  "categories": {
+    "combat": [
+      "SKILL_BANDAGE",
+      "SKILL_BASH",
+      "SKILL_BERSERK",
+      "SKILL_BIND",
+      "SKILL_BODYSLAM",
+      "SKILL_BREATHE_ACID",
+      "SKILL_BREATHE_GAS",
+      "SKILL_BREATHE_FIRE",
+      "SKILL_BREATHE_FROST",
+      "SKILL_BREATHE_LIGHTNING",
+      "SKILL_CARTWHEEL",
+      "SKILL_CLAW",
+      "SKILL_CORNER",
+      "SKILL_DISARM",
+      "SKILL_EYE_GOUGE",
+      "SKILL_DODGE",
+      "SKILL_DOORBASH",
+      "SKILL_DOUSE",
+      "SKILL_ELECTRIFY",
+      "SKILL_REND",
+      "SKILL_FIRST_AID",
+      "SKILL_GUARD",
+      "SKILL_HITALL",
+      "SKILL_INSTANT_KILL",
+      "SKILL_KICK",
+      "SKILL_LURE",
+      "SKILL_MAUL",
+      "SKILL_PARRY",
+      "SKILL_PECK",
+      "SKILL_PUNCH",
+      "SKILL_RESCUE",
+      "SKILL_RIPOSTE",
+      "SKILL_ROAR",
+      "SKILL_SHAPECHANGE",
+      "SKILL_ROUNDHOUSE",
+      "SKILL_SWEEP",
+      "SKILL_TAME"
+    ],
+    "utility": [
+      "SKILL_BATTLE_HOWL",
+      "SKILL_CHANT",
+      "SKILL_GROUND_SHAKER",
+      "SKILL_HUNT",
+      "SKILL_PERFORM",
+      "SKILL_SCRIBE",
+      "SKILL_SWITCH",
+      "SKILL_TANTRUM",
+      "SKILL_VAMP_TOUCH"
+    ],
+    "passive": [
+      "SKILL_DOUBLE_ATTACK",
+      "SKILL_MEDITATE",
+      "SKILL_QUICK_CHANT"
+    ],
+    "weapon_proficiency": [
+      "SKILL_2H_BLUDGEONING",
+      "SKILL_2H_PIERCING",
+      "SKILL_2H_SLASHING",
+      "SKILL_BAREHAND",
+      "SKILL_BLUDGEONING",
+      "SKILL_DUAL_WIELD",
+      "SKILL_MISSILE",
+      "SKILL_PIERCING",
+      "SKILL_SLASHING"
+    ],
+    "spell_sphere": [
+      "SKILL_KNOW_SPELL",
+      "SKILL_SPHERE_AIR",
+      "SKILL_SPHERE_DEATH",
+      "SKILL_SPHERE_DIVIN",
+      "SKILL_SPHERE_EARTH",
+      "SKILL_SPHERE_ENCHANT",
+      "SKILL_SPHERE_FIRE",
+      "SKILL_SPHERE_GENERIC",
+      "SKILL_SPHERE_HEALING",
+      "SKILL_SPHERE_PROT",
+      "SKILL_SPHERE_SUMMON",
+      "SKILL_SPHERE_WATER"
+    ],
+    "movement": [
+      "SKILL_GROUP_RETREAT",
+      "SKILL_HIDE",
+      "SKILL_MOUNT",
+      "SKILL_RIDING",
+      "SKILL_SAFEFALL",
+      "SKILL_SNEAK",
+      "SKILL_RETREAT",
+      "SKILL_SNEAK_ATTACK",
+      "SKILL_SPRINGLEAP",
+      "SKILL_SUMMON_MOUNT",
+      "SKILL_TRACK"
+    ],
+    "stealth": [
+      "SKILL_BACKSTAB",
+      "SKILL_CIRCLE",
+      "SKILL_CONCEAL",
+      "SKILL_PICK_LOCK",
+      "SKILL_SHADOW",
+      "SKILL_STEAL",
+      "SKILL_STEALTH",
+      "SKILL_THROATCUT"
+    ],
+    "songs": [
+      "SONG_BALLAD_OF_TEARS",
+      "SONG_SONG_OF_REST",
+      "SONG_CROWN_OF_MADNESS",
+      "SONG_ENRAPTURE",
+      "SONG_FREEDOM_SONG",
+      "SONG_HEARTHSONG",
+      "SONG_HEROIC_JOURNEY",
+      "SONG_INSPIRATION",
+      "SONG_JOYFUL_NOISE",
+      "SONG_TERROR"
+    ],
+    "chants": [
+      "CHANT_APOCALYPTIC_ANTHEM",
+      "CHANT_ARIA_OF_DISSONANCE",
+      "CHANT_BATTLE_HYMN",
+      "CHANT_INTERMINABLE_WRATH",
+      "CHANT_IVORY_SYMPHONY",
+      "CHANT_PEACE",
+      "CHANT_REGENERATION",
+      "CHANT_SHADOWS_SORROW_SONG",
+      "CHANT_SEED_OF_DESTRUCTION",
+      "CHANT_SONATA_OF_MALAISE",
+      "CHANT_SPIRIT_BEAR",
+      "CHANT_SPIRIT_WOLF",
+      "CHANT_WAR_CRY",
+      "CHANT_HYMN_OF_SAINT_AUGUSTINE",
+      "CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE",
+      "CHANT_FIRES_OF_SAINT_AUGUSTINE",
+      "CHANT_TEMPEST_OF_SAINT_AUGUSTINE",
+      "CHANT_TREMORS_OF_SAINT_AUGUSTINE"
+    ],
+    "unimplemented": []
+  },
+  "implementations": {
+    "SKILL_BACKSTAB": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_backstab)",
+        "line": 581
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_backstab)",
+        "line": 31
+      }
+    ],
+    "SKILL_BASH": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 1048
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_BASH:",
+        "line": 1144
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "reference",
+        "context": "case :",
+        "line": 1144
+      },
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_doorbash)",
+        "line": 1334
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 32
+      }
+    ],
+    "SKILL_BERSERK": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_berserk)",
+        "line": 2419
+      }
+    ],
+    "SKILL_BODYSLAM": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_BODYSLAM:",
+        "line": 1136
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "reference",
+        "context": "case :",
+        "line": 1136
+      }
+    ],
+    "SKILL_BREATHE_ACID": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "SKILL_BREATHE_GAS": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "SKILL_BREATHE_FIRE": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "SKILL_BREATHE_FROST": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "SKILL_BREATHE_LIGHTNING": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "SKILL_CARTWHEEL": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_cartwheel)",
+        "line": 2508
+      }
+    ],
+    "SKILL_CLAW": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_claw)",
+        "line": 2318
+      }
+    ],
+    "SKILL_CORNER": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_corner)",
+        "line": 2213
+      }
+    ],
+    "SKILL_DISARM": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_disarm)",
+        "line": 1882
+      }
+    ],
+    "SKILL_EYE_GOUGE": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_eye_gouge)",
+        "line": 1356
+      }
+    ],
+    "SKILL_DOORBASH": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 1048
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_BASH:",
+        "line": 1144
+      },
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_doorbash)",
+        "line": 1334
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 32
+      }
+    ],
+    "SKILL_ELECTRIFY": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_electrify)",
+        "line": 2373
+      }
+    ],
+    "SKILL_REND": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_rend)",
+        "line": 2829
+      }
+    ],
+    "SKILL_GROUP_RETREAT": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_retreat)",
+        "line": 888
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_group)",
+        "line": 1676
+      }
+    ],
+    "SKILL_HIDE": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_hide)",
+        "line": 418
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_hide)",
+        "line": 1096
+      }
+    ],
+    "SKILL_HITALL": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_hit)",
+        "line": 444
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_hitall)",
+        "line": 2120
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_hitall)",
+        "line": 33
+      }
+    ],
+    "SKILL_INSTANT_KILL": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_kill)",
+        "line": 475
+      }
+    ],
+    "SKILL_KICK": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_kick)",
+        "line": 1303
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_kick)",
+        "line": 34
+      }
+    ],
+    "SKILL_LURE": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_lure)",
+        "line": 2689
+      }
+    ],
+    "SKILL_MAUL": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_MAUL:",
+        "line": 1151
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "reference",
+        "context": "case :",
+        "line": 1151
+      }
+    ],
+    "SKILL_PECK": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_peck)",
+        "line": 2263
+      }
+    ],
+    "SKILL_RESCUE": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_rescue)",
+        "line": 1231
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_rescue)",
+        "line": 35
+      }
+    ],
+    "SKILL_ROAR": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_roar)",
+        "line": 221
+      }
+    ],
+    "SKILL_RETREAT": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_retreat)",
+        "line": 888
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_gretreat)",
+        "line": 963
+      }
+    ],
+    "SKILL_ROUNDHOUSE": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_roundhouse)",
+        "line": 3084
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_use)",
+        "line": 1928
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_roundhouse)",
+        "line": 36
+      }
+    ],
+    "SKILL_SPRINGLEAP": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_springleap)",
+        "line": 1448
+      }
+    ],
+    "SKILL_SWEEP": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_sweep)",
+        "line": 327
+      }
+    ],
+    "SKILL_THROATCUT": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_throatcut)",
+        "line": 1579
+      }
+    ],
+    "SKILL_MOUNT": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_mount)",
+        "line": 2560
+      },
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_dismount)",
+        "line": 2646
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_summon_mount)",
+        "line": 2224
+      }
+    ],
+    "SKILL_SUMMON_MOUNT": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_mount)",
+        "line": 2560
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_summon_mount)",
+        "line": 2224
+      }
+    ],
+    "SKILL_TAME": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_tame)",
+        "line": 2678
+      }
+    ],
+    "SONG_SONG_OF_REST": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_rest)",
+        "line": 2030
+      }
+    ],
+    "SKILL_BANDAGE": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_bandage)",
+        "line": 1572
+      }
+    ],
+    "SKILL_BIND": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_unbind)",
+        "line": 950
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_bind)",
+        "line": 997
+      }
+    ],
+    "SKILL_DOUSE": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_douse)",
+        "line": 1398
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_use)",
+        "line": 1928
+      }
+    ],
+    "SKILL_FIRST_AID": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_first_aid)",
+        "line": 2560
+      }
+    ],
+    "SKILL_GUARD": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_guard)",
+        "line": 102
+      }
+    ],
+    "SKILL_SHAPECHANGE": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_shapechange)",
+        "line": 438
+      }
+    ],
+    "SKILL_STEAL": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_steal)",
+        "line": 1143
+      }
+    ],
+    "SKILL_STEALTH": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_steal)",
+        "line": 1143
+      }
+    ],
+    "CHANT_PEACE": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_peace)",
+        "line": 2163
+      }
+    ],
+    "SKILL_DUAL_WIELD": [
+      {
+        "file": "fight.cpp",
+        "type": "command",
+        "function": "ACMD(do_wield)",
+        "line": 2473
+      }
+    ]
+  },
+  "implementation_patterns": {
+    "command_based": 44,
+    "skill_function": 0,
+    "switch_case": 4
+  }
+}

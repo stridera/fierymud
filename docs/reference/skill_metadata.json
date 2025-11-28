@@ -1,0 +1,1984 @@
+{
+  "SKILL_2H_BLUDGEONING": {
+    "id": 466,
+    "name": "2H bludgeoning weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_2H_PIERCING": {
+    "id": 467,
+    "name": "2H piercing weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_2H_SLASHING": {
+    "id": 468,
+    "name": "2H slashing weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_BACKSTAB": {
+    "id": 401,
+    "name": "backstab",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_backstab)",
+        "line": 581
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_backstab)",
+        "line": 31
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BANDAGE": {
+    "id": 443,
+    "name": "bandage",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_bandage)",
+        "line": 1572
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BAREHAND": {
+    "id": 449,
+    "name": "barehand",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_BASH": {
+    "id": 402,
+    "name": "bash",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 1048
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_BASH:",
+        "line": 1144
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "reference",
+        "context": "case :",
+        "line": 1144
+      },
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_doorbash)",
+        "line": 1334
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 32
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BATTLE_HOWL": {
+    "id": 484,
+    "name": "battle howl",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_BERSERK": {
+    "id": 413,
+    "name": "berserk",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_berserk)",
+        "line": 2419
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BIND": {
+    "id": 428,
+    "name": "bind",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_unbind)",
+        "line": 950
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_bind)",
+        "line": 997
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BLUDGEONING": {
+    "id": 463,
+    "name": "bludgeoning weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_BODYSLAM": {
+    "id": 427,
+    "name": "bodyslam",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_BODYSLAM:",
+        "line": 1136
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "reference",
+        "context": "case :",
+        "line": 1136
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BREATHE_ACID": {
+    "id": 488,
+    "name": "breathe acid",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BREATHE_GAS": {
+    "id": 489,
+    "name": "breathe gas",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BREATHE_FIRE": {
+    "id": 486,
+    "name": "breathe fire",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BREATHE_FROST": {
+    "id": 487,
+    "name": "breathe frost",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_BREATHE_LIGHTNING": {
+    "id": 435,
+    "name": "breathe lightning",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_breathe)",
+        "line": 128
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_CARTWHEEL": {
+    "id": 491,
+    "name": "cartwheel",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_cartwheel)",
+        "line": 2508
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_CHANT": {
+    "id": 446,
+    "name": "chant",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_DOUBLE_ATTACK": {
+    "id": 412,
+    "name": "double attack",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_DUAL_WIELD": {
+    "id": 411,
+    "name": "dual wield",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "fight.cpp",
+        "type": "command",
+        "function": "ACMD(do_wield)",
+        "line": 2473
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_CIRCLE": {
+    "id": 426,
+    "name": "circle",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_CLAW": {
+    "id": 480,
+    "name": "claw",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_claw)",
+        "line": 2318
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_CONCEAL": {
+    "id": 478,
+    "name": "conceal",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_CORNER": {
+    "id": 475,
+    "name": "corner",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_corner)",
+        "line": 2213
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_DISARM": {
+    "id": 431,
+    "name": "disarm",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_disarm)",
+        "line": 1882
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_EYE_GOUGE": {
+    "id": 472,
+    "name": "eye gouge",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": "\"Your vision returns.\"",
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_eye_gouge)",
+        "line": 1356
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_DODGE": {
+    "id": 421,
+    "name": "dodge",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_DOORBASH": {
+    "id": 419,
+    "name": "doorbash",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 1048
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_BASH:",
+        "line": 1144
+      },
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_doorbash)",
+        "line": 1334
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_bash)",
+        "line": 32
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_DOUSE": {
+    "id": 438,
+    "name": "douse",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_douse)",
+        "line": 1398
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_use)",
+        "line": 1928
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_ELECTRIFY": {
+    "id": 481,
+    "name": "electrify",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_DIRECT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_electrify)",
+        "line": 2373
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_REND": {
+    "id": 494,
+    "name": "rend",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": "\"You patch your defenses.\"",
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_rend)",
+        "line": 2829
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_FIRST_AID": {
+    "id": 444,
+    "name": "first aid",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_first_aid)",
+        "line": 2560
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_GROUND_SHAKER": {
+    "id": 483,
+    "name": "ground shaker",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_GROUP_RETREAT": {
+    "id": 474,
+    "name": "group retreat",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_retreat)",
+        "line": 888
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_group)",
+        "line": 1676
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_GUARD": {
+    "id": 434,
+    "name": "guard",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_guard)",
+        "line": 102
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_HIDE": {
+    "id": 403,
+    "name": "hide",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_hide)",
+        "line": 418
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_hide)",
+        "line": 1096
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_HITALL": {
+    "id": 441,
+    "name": "hitall",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_hit)",
+        "line": 444
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_hitall)",
+        "line": 2120
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_hitall)",
+        "line": 33
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_HUNT": {
+    "id": 442,
+    "name": "hunt",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_INSTANT_KILL": {
+    "id": 440,
+    "name": "instant kill",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_kill)",
+        "line": 475
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_KICK": {
+    "id": 404,
+    "name": "kick",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_kick)",
+        "line": 1303
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_kick)",
+        "line": 34
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_LURE": {
+    "id": 492,
+    "name": "lure",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_lure)",
+        "line": 2689
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_MAUL": {
+    "id": 485,
+    "name": "maul",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "switch_case",
+        "function": "case SKILL_MAUL:",
+        "line": 1151
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "reference",
+        "context": "case :",
+        "line": 1151
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_MEDITATE": {
+    "id": 423,
+    "name": "meditate",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_MISSILE": {
+    "id": 469,
+    "name": "missile weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_DIRECT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_MOUNT": {
+    "id": 415,
+    "name": "mount",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_mount)",
+        "line": 2560
+      },
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_dismount)",
+        "line": 2646
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_summon_mount)",
+        "line": 2224
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_PARRY": {
+    "id": 420,
+    "name": "parry",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_PECK": {
+    "id": 479,
+    "name": "peck",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_peck)",
+        "line": 2263
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_PERFORM": {
+    "id": 490,
+    "name": "perform",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_PICK_LOCK": {
+    "id": 405,
+    "name": "pick lock",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_PIERCING": {
+    "id": 464,
+    "name": "piercing weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_PUNCH": {
+    "id": 406,
+    "name": "punch",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_QUICK_CHANT": {
+    "id": 424,
+    "name": "quick chant",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_RESCUE": {
+    "id": 407,
+    "name": "rescue",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_rescue)",
+        "line": 1231
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_rescue)",
+        "line": 35
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_RIDING": {
+    "id": 416,
+    "name": "riding",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_RIPOSTE": {
+    "id": 422,
+    "name": "riposte",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_ROAR": {
+    "id": 437,
+    "name": "roar",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_roar)",
+        "line": 221
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_SAFEFALL": {
+    "id": 448,
+    "name": "safefall",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SCRIBE": {
+    "id": 447,
+    "name": "scribe",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SHAPECHANGE": {
+    "id": 429,
+    "name": "shapechange",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_shapechange)",
+        "line": 438
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_SNEAK": {
+    "id": 408,
+    "name": "sneak",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_KNOW_SPELL": {
+    "id": 451,
+    "name": "spell knowledge",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_RETREAT": {
+    "id": 473,
+    "name": "retreat",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_retreat)",
+        "line": 888
+      },
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_gretreat)",
+        "line": 963
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_ROUNDHOUSE": {
+    "id": 495,
+    "name": "roundhouse",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_roundhouse)",
+        "line": 3084
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_use)",
+        "line": 1928
+      },
+      {
+        "file": "warrior.cpp",
+        "type": "command",
+        "function": "ACMD(do_roundhouse)",
+        "line": 36
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_SHADOW": {
+    "id": 477,
+    "name": "shadow",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SLASHING": {
+    "id": 465,
+    "name": "slashing weapons",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SNEAK_ATTACK": {
+    "id": 493,
+    "name": "sneak attack",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_AIR": {
+    "id": 456,
+    "name": "sphere of air",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_DEATH": {
+    "id": 461,
+    "name": "sphere of death",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_DIVIN": {
+    "id": 462,
+    "name": "sphere of divination",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_EARTH": {
+    "id": 455,
+    "name": "sphere of earth",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_ENCHANT": {
+    "id": 459,
+    "name": "sphere of enchantment",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_FIRE": {
+    "id": 453,
+    "name": "sphere of fire",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_GENERIC": {
+    "id": 452,
+    "name": "sphere of generic",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_HEALING": {
+    "id": 457,
+    "name": "sphere of healing",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_PROT": {
+    "id": 458,
+    "name": "sphere of protection",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_SUMMON": {
+    "id": 460,
+    "name": "sphere of summoning",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPHERE_WATER": {
+    "id": 454,
+    "name": "sphere of water",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_SPRINGLEAP": {
+    "id": 414,
+    "name": "springleap",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_springleap)",
+        "line": 1448
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_STEAL": {
+    "id": 409,
+    "name": "steal",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_steal)",
+        "line": 1143
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_STEALTH": {
+    "id": 476,
+    "name": "stealth",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_steal)",
+        "line": 1143
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_SUMMON_MOUNT": {
+    "id": 450,
+    "name": "summon mount",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_mount)",
+        "line": 2560
+      },
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_summon_mount)",
+        "line": 2224
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_SWEEP": {
+    "id": 436,
+    "name": "sweep",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_sweep)",
+        "line": 327
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_SWITCH": {
+    "id": 430,
+    "name": "switch",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_TAME": {
+    "id": 417,
+    "name": "tame",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_tame)",
+        "line": 2678
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_TANTRUM": {
+    "id": 482,
+    "name": "tantrum",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_THROATCUT": {
+    "id": 418,
+    "name": "throatcut",
+    "type": "skill",
+    "humanoid": true,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [
+      {
+        "file": "act.offensive.cpp",
+        "type": "command",
+        "function": "ACMD(do_throatcut)",
+        "line": 1579
+      }
+    ],
+    "help_text": null
+  },
+  "SKILL_TRACK": {
+    "id": 410,
+    "name": "track",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "0",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SKILL_VAMP_TOUCH": {
+    "id": 445,
+    "name": "vampiric touch",
+    "type": "skill",
+    "humanoid": false,
+    "targets": "TAR_CONTACT",
+    "wearoff": null,
+    "fighting_ok": true,
+    "violent": true,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_APOCALYPTIC_ANTHEM": {
+    "id": 609,
+    "name": "apocalyptic anthem",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_MANUAL",
+    "damage": "0",
+    "quest": true,
+    "wearoff": null,
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_ARIA_OF_DISSONANCE": {
+    "id": 607,
+    "name": "aria of dissonance",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_FIGHT_VICT",
+    "violent": true,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "The dissonance stops ringing in your ears.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_BATTLE_HYMN": {
+    "id": 602,
+    "name": "battle hymn",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": false,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your rage fades away.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_INTERMINABLE_WRATH": {
+    "id": 613,
+    "name": "interminable wrath",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": null,
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_IVORY_SYMPHONY": {
+    "id": 606,
+    "name": "ivory symphony",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_MANUAL",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Feeling returns to your limbs.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_PEACE": {
+    "id": 604,
+    "name": "peace",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": false,
+    "routines": "MAG_MANUAL",
+    "damage": "0",
+    "quest": false,
+    "wearoff": null,
+    "humanoid": false,
+    "implementations": [
+      {
+        "file": "act.other.cpp",
+        "type": "command",
+        "function": "ACMD(do_peace)",
+        "line": 2163
+      }
+    ],
+    "help_text": null
+  },
+  "CHANT_REGENERATION": {
+    "id": 601,
+    "name": "regeneration",
+    "type": "chant",
+    "minpos": "POS_SITTING",
+    "fighting_ok": false,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your healthy feeling subsides.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_SHADOWS_SORROW_SONG": {
+    "id": 605,
+    "name": "shadows sorrow song",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_MASS",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "The shadows in your mind clear up.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_SEED_OF_DESTRUCTION": {
+    "id": 610,
+    "name": "seed of destruction",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_FIGHT_VICT",
+    "violent": true,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "The disease leaves you.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_SONATA_OF_MALAISE": {
+    "id": 608,
+    "name": "sonata of malaise",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_MASS",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "The sonata of malaise stops echoing in your ears.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_SPIRIT_BEAR": {
+    "id": 612,
+    "name": "spirit of the bear",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your claws become decidedly less bear-like.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_SPIRIT_WOLF": {
+    "id": 611,
+    "name": "spirit of the wolf",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your fangs recede and you lose your wolf-like spirit.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_WAR_CRY": {
+    "id": 603,
+    "name": "war cry",
+    "type": "chant",
+    "minpos": "POS_STANDING",
+    "fighting_ok": false,
+    "targets": "TAR_IGNORE",
+    "violent": false,
+    "routines": "MAG_GROUP",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your determination level returns to normal.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_HYMN_OF_SAINT_AUGUSTINE": {
+    "id": 614,
+    "name": "hymn of saint augustine",
+    "type": "chant",
+    "minpos": "POS_SITTING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your inner elements subside.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE": {
+    "id": 616,
+    "name": "blizzards of saint augustine",
+    "type": "chant",
+    "minpos": "POS_SITTING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your inner cold subsides.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_FIRES_OF_SAINT_AUGUSTINE": {
+    "id": 615,
+    "name": "fires of saint augustine",
+    "type": "chant",
+    "minpos": "POS_SITTING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your inner fire subsides.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_TEMPEST_OF_SAINT_AUGUSTINE": {
+    "id": 618,
+    "name": "tempest of saint augustine",
+    "type": "chant",
+    "minpos": "POS_SITTING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your inner storm subsides.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "CHANT_TREMORS_OF_SAINT_AUGUSTINE": {
+    "id": 617,
+    "name": "tremors of saint augustine",
+    "type": "chant",
+    "minpos": "POS_SITTING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_SELF_ONLY",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your inner earth subsides.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_BALLAD_OF_TEARS": {
+    "id": 557,
+    "name": "ballad of tears",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_AREA",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your nerves settle down as the terror leaves you.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_SONG_OF_REST": {
+    "id": 556,
+    "name": "song of rest",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": false,
+    "targets": "TAR_CHAR_ROOM",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "The restful song fades from your memory.",
+    "humanoid": false,
+    "implementations": [
+      {
+        "file": "act.movement.cpp",
+        "type": "command",
+        "function": "ACMD(do_rest)",
+        "line": 2030
+      }
+    ],
+    "help_text": null
+  },
+  "SONG_CROWN_OF_MADNESS": {
+    "id": 555,
+    "name": "crown of madness",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_AREA",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your mind returns to reality.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_ENRAPTURE": {
+    "id": 553,
+    "name": "enrapture",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": false,
+    "targets": "TAR_IGNORE",
+    "violent": false,
+    "routines": "MAG_AREA",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "You regain your senses as the illusions subside.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_FREEDOM_SONG": {
+    "id": 559,
+    "name": "freedom song",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_IGNORE",
+    "violent": true,
+    "routines": "MAG_GROUP",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your nerves settle down as the terror leaves you.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_HEARTHSONG": {
+    "id": 554,
+    "name": "hearthsong",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": false,
+    "targets": "TAR_IGNORE",
+    "violent": false,
+    "routines": "MAG_GROUP",
+    "damage": "0",
+    "quest": true,
+    "wearoff": "Your familiar disguise melts away.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_HEROIC_JOURNEY": {
+    "id": 558,
+    "name": "heroic journey",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM",
+    "violent": false,
+    "routines": "MAG_GROUP",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your inspiration fades.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_INSPIRATION": {
+    "id": 551,
+    "name": "inspiration",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM",
+    "violent": false,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your inspiration fades.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_JOYFUL_NOISE": {
+    "id": 560,
+    "name": "joyful noise",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM",
+    "violent": false,
+    "routines": "MAG_UNAFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": null,
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  },
+  "SONG_TERROR": {
+    "id": 552,
+    "name": "terror",
+    "type": "song",
+    "minpos": "POS_STANDING",
+    "fighting_ok": true,
+    "targets": "TAR_CHAR_ROOM | TAR_FIGHT_VICT",
+    "violent": true,
+    "routines": "MAG_AFFECT",
+    "damage": "0",
+    "quest": false,
+    "wearoff": "Your nerves settle down as the terror leaves you.",
+    "humanoid": false,
+    "implementations": [],
+    "help_text": null
+  }
+}

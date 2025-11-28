@@ -150,4 +150,60 @@ TEST_CASE("Object Description System", "[unit][descriptions]") {
         REQUIRE(description.find("It weighs 1 pounds") != std::string::npos);
         REQUIRE(description.find("worth 500 gold coins") != std::string::npos);
     }
+
+    SECTION("Extra descriptions loaded from JSON") {
+        // Create JSON with extra descriptions similar to world data format
+        nlohmann::json object_json = {
+            {"id", "3007"},
+            {"type", "TOUCHSTONE"},
+            {"name_list", "sculpture mielikki goddess"},
+            {"short_description", "the living sculpture of Mielikki"},
+            {"description", "A larger-than-life-size sculpture of the beautiful goddess is here."},
+            {"extra_descriptions", nlohmann::json::array({
+                {
+                    {"keyword", "sculpture mielikki goddess"},
+                    {"desc", "Standing approximately ten feet tall, the altar is a living sculpture of the beautiful goddess of nature herself. Her beauty is awe-inspiring. The sculpture consists of living vines, bushes, flowering plants, and several small trees, all intertwined. A tiny plaque of white metal rests against her foot."}
+                },
+                {
+                    {"keyword", "plaque"},
+                    {"desc", "Inscribed into the plaque are the words \"Touch the goddess to mark your sanctuary.\""}
+                }
+            })}
+        };
+        
+        auto result = Object::from_json(object_json);
+        REQUIRE(result.has_value());
+        auto object = std::shared_ptr<Object>(result.value().release());
+        
+        // Test basic object properties
+        REQUIRE(object->short_description() == "the living sculpture of Mielikki");
+        REQUIRE(object->description() == "A larger-than-life-size sculpture of the beautiful goddess is here.");
+        
+        // Test extra descriptions
+        auto sculpture_desc = object->get_extra_description("sculpture");
+        REQUIRE(sculpture_desc.has_value());
+        REQUIRE(sculpture_desc.value().find("ten feet tall") != std::string::npos);
+        REQUIRE(sculpture_desc.value().find("living vines") != std::string::npos);
+        
+        auto plaque_desc = object->get_extra_description("plaque");
+        REQUIRE(plaque_desc.has_value());
+        REQUIRE(plaque_desc.value().find("Touch the goddess") != std::string::npos);
+        
+        // Test multiple keywords for same description
+        auto goddess_desc = object->get_extra_description("goddess");
+        REQUIRE(goddess_desc.has_value());
+        REQUIRE(goddess_desc.value() == sculpture_desc.value());
+        
+        auto mielikki_desc = object->get_extra_description("mielikki");
+        REQUIRE(mielikki_desc.has_value());
+        REQUIRE(mielikki_desc.value() == sculpture_desc.value());
+        
+        // Test invalid keyword
+        auto invalid_desc = object->get_extra_description("nonexistent");
+        REQUIRE_FALSE(invalid_desc.has_value());
+        
+        // Test that all extra descriptions are available
+        const auto& all_extras = object->get_all_extra_descriptions();
+        REQUIRE(all_extras.size() == 2);
+    }
 }

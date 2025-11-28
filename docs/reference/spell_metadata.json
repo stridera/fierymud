@@ -1,0 +1,5490 @@
+{
+  "1": {
+    "enumName": "SPELL_ARMOR",
+    "name": "armor",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected."
+  },
+  "2": {
+    "enumName": "SPELL_TELEPORT",
+    "name": "teleport",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "3": {
+    "enumName": "SPELL_BLESS",
+    "name": "bless",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_ALTER_OBJ"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less righteous."
+  },
+  "4": {
+    "enumName": "SPELL_BLINDNESS",
+    "name": "blindness",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_NOT_SELF"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel a cloak of blindness dissolve."
+  },
+  "5": {
+    "enumName": "SPELL_BURNING_HANDS",
+    "name": "burning hands",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "6": {
+    "enumName": "SPELL_CALL_LIGHTNING",
+    "name": "call lightning",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_OUTDOORS"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SHOCK",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "7": {
+    "enumName": "SPELL_CHARM",
+    "name": "charm person",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 35,
+    "questSpell": true,
+    "wearOffMessage": "You feel more self-confident."
+  },
+  "8": {
+    "enumName": "SPELL_CHILL_TOUCH",
+    "name": "chill touch",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 7,
+    "questSpell": false,
+    "wearOffMessage": "You feel your strength return."
+  },
+  "9": {
+    "enumName": "SPELL_CLONE",
+    "name": "clone",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 35,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "10": {
+    "enumName": "SPELL_COLOR_SPRAY",
+    "name": "color spray",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "11": {
+    "enumName": "SPELL_CONTROL_WEATHER",
+    "name": "control weather",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "12": {
+    "enumName": "SPELL_CREATE_FOOD",
+    "name": "create food",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_CREATION"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "13": {
+    "enumName": "SPELL_CREATE_WATER",
+    "name": "create water",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_OBJ_INV",
+      "TAR_OBJ_EQUIP"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "14": {
+    "enumName": "SPELL_CURE_BLIND",
+    "name": "cure blind",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "15": {
+    "enumName": "SPELL_CURE_CRITIC",
+    "name": "cure critic",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 15,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "16": {
+    "enumName": "SPELL_CURE_LIGHT",
+    "name": "cure light",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 9,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "18": {
+    "enumName": "SPELL_DETECT_ALIGN",
+    "name": "detect alignment",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 9,
+    "questSpell": false,
+    "wearOffMessage": "You feel less aware."
+  },
+  "19": {
+    "enumName": "SPELL_DETECT_INVIS",
+    "name": "detect invisibility",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "Your eyes stop tingling."
+  },
+  "20": {
+    "enumName": "SPELL_DETECT_MAGIC",
+    "name": "detect magic",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The detect magic wears off."
+  },
+  "21": {
+    "enumName": "SPELL_DETECT_POISON",
+    "name": "detect poison",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 13,
+    "questSpell": false,
+    "wearOffMessage": "You feel slightly less aware."
+  },
+  "22": {
+    "enumName": "SPELL_DISPEL_EVIL",
+    "name": "dispel evil",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "23": {
+    "enumName": "SPELL_EARTHQUAKE",
+    "name": "earthquake",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_OUTDOORS"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "24": {
+    "enumName": "SPELL_ENCHANT_WEAPON",
+    "name": "enchant weapon",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_OBJ_INV",
+      "TAR_OBJ_EQUIP"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 23,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "25": {
+    "enumName": "SPELL_ENERGY_DRAIN",
+    "name": "energy drain",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "26": {
+    "enumName": "SPELL_FIREBALL",
+    "name": "fireball",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "27": {
+    "enumName": "SPELL_HARM",
+    "name": "harm",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "28": {
+    "enumName": "SPELL_HEAL",
+    "name": "heal",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT",
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "29": {
+    "enumName": "SPELL_INVISIBLE",
+    "name": "invisibility",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV",
+      "TAR_OBJ_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_ALTER_OBJ"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "You fade back into view."
+  },
+  "30": {
+    "enumName": "SPELL_LIGHTNING_BOLT",
+    "name": "lightning bolt",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SHOCK",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "31": {
+    "enumName": "SPELL_LOCATE_OBJECT",
+    "name": "locate object",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 12,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "32": {
+    "enumName": "SPELL_MAGIC_MISSILE",
+    "name": "magic missile",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_CRUSH",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "33": {
+    "enumName": "SPELL_POISON",
+    "name": "poison",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_NOT_SELF",
+      "TAR_OBJ_INV",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_ALTER_OBJ"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less sick."
+  },
+  "34": {
+    "enumName": "SPELL_PROT_FROM_EVIL",
+    "name": "protection from evil",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected."
+  },
+  "35": {
+    "enumName": "SPELL_REMOVE_CURSE",
+    "name": "remove curse",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV",
+      "TAR_OBJ_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "36": {
+    "enumName": "SPELL_SANCTUARY",
+    "name": "sanctuary",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 35,
+    "questSpell": false,
+    "wearOffMessage": "The white aura around your body fades."
+  },
+  "37": {
+    "enumName": "SPELL_SHOCKING_GRASP",
+    "name": "shocking grasp",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SHOCK",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 9,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "38": {
+    "enumName": "SPELL_SLEEP",
+    "name": "sleep",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "You feel less tired."
+  },
+  "39": {
+    "enumName": "SPELL_ENHANCE_ABILITY",
+    "name": "enhance ability",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less enhanced."
+  },
+  "40": {
+    "enumName": "SPELL_SUMMON",
+    "name": "summon",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "41": {
+    "enumName": "SPELL_VENTRILOQUATE",
+    "name": "ventriloquate",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 6,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "42": {
+    "enumName": "SPELL_WORD_OF_RECALL",
+    "name": "word of recall",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "43": {
+    "enumName": "SPELL_REMOVE_POISON",
+    "name": "remove poison",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV",
+      "TAR_OBJ_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_UNAFFECT",
+      "MAG_ALTER_OBJ"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "44": {
+    "enumName": "SPELL_SENSE_LIFE",
+    "name": "sense life",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "You feel less aware of your surroundings."
+  },
+  "45": {
+    "enumName": "SPELL_ANIMATE_DEAD",
+    "name": "animate dead",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_OBJ_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": "Your undead creation crumbles to dust."
+  },
+  "46": {
+    "enumName": "SPELL_DISPEL_GOOD",
+    "name": "dispel good",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "47": {
+    "enumName": "SPELL_GROUP_ARMOR",
+    "name": "group armor",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_GROUP"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 9,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "48": {
+    "enumName": "SPELL_GROUP_HEAL",
+    "name": "group heal",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_GROUP"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "49": {
+    "enumName": "SPELL_GROUP_RECALL",
+    "name": "group recall",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_GROUP"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "50": {
+    "enumName": "SPELL_INFRAVISION",
+    "name": "infravision",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 9,
+    "questSpell": false,
+    "wearOffMessage": "Your night vision seems to fade."
+  },
+  "51": {
+    "enumName": "SPELL_WATERWALK",
+    "name": "waterwalk",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": "Your feet seem less buoyant."
+  },
+  "52": {
+    "enumName": "SPELL_STONE_SKIN",
+    "name": "stone skin",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "&3&dYour skin softens and returns to normal.&0"
+  },
+  "53": {
+    "enumName": "SPELL_FULL_HEAL",
+    "name": "full heal",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT",
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "54": {
+    "enumName": "SPELL_FULL_HARM",
+    "name": "full harm",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "55": {
+    "enumName": "SPELL_WALL_OF_FOG",
+    "name": "wall of fog",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_ROOM"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": "The fog seems to clear out."
+  },
+  "56": {
+    "enumName": "SPELL_WALL_OF_STONE",
+    "name": "wall of stone",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": "The wall of stone crumbles into dust."
+  },
+  "57": {
+    "enumName": "SPELL_FLY",
+    "name": "fly",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "You feel the weight of your body return."
+  },
+  "59": {
+    "enumName": "SPELL_SUMMON_ELEMENTAL",
+    "name": "summon elemental",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "60": {
+    "enumName": "SPELL_SUMMON_DEMON",
+    "name": "summon demon",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 31,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "61": {
+    "enumName": "SPELL_SUMMON_GREATER_DEMON",
+    "name": "summon greater demon",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 35,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "62": {
+    "enumName": "SPELL_DIMENSION_DOOR",
+    "name": "dimension door",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 15,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "63": {
+    "enumName": "SPELL_CREEPING_DOOM",
+    "name": "creeping doom",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 35,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "64": {
+    "enumName": "SPELL_DOOM",
+    "name": "doom",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 35,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "65": {
+    "enumName": "SPELL_METEORSWARM",
+    "name": "meteorswarm",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 37,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "66": {
+    "enumName": "SPELL_BIGBYS_CLENCHED_FIST",
+    "name": "bigbys clenched fist",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_CRUSH",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "67": {
+    "enumName": "SPELL_FARSEE",
+    "name": "farsee",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 9,
+    "questSpell": false,
+    "wearOffMessage": "Your pupils dilate as your vision returns to normal."
+  },
+  "68": {
+    "enumName": "SPELL_HASTE",
+    "name": "haste",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "Your pulse returns to normal."
+  },
+  "70": {
+    "enumName": "SPELL_GREATER_ENDURANCE",
+    "name": "greater endurance",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": "Your endurance returns to normal."
+  },
+  "71": {
+    "enumName": "SPELL_MOONWELL",
+    "name": "moonwell",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "73": {
+    "enumName": "SPELL_DARKNESS",
+    "name": "darkness",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The magical darkness lifts."
+  },
+  "74": {
+    "enumName": "SPELL_ILLUMINATION",
+    "name": "illumination",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The magical light fades away.&0"
+  },
+  "76": {
+    "enumName": "SPELL_CONE_OF_COLD",
+    "name": "cone of cold",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "77": {
+    "enumName": "SPELL_ICE_STORM",
+    "name": "ice storm",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 23,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "78": {
+    "enumName": "SPELL_ICE_SHARDS",
+    "name": "ice shards",
+    "castTimeSpeed": "CAST_SPEED16",
+    "castTimeRounds": 4.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 31,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "79": {
+    "enumName": "SPELL_MAJOR_PARALYSIS",
+    "name": "major paralysis",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 35,
+    "questSpell": true,
+    "wearOffMessage": "You can move again."
+  },
+  "80": {
+    "enumName": "SPELL_VAMPIRIC_BREATH",
+    "name": "vampiric breath",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "82": {
+    "enumName": "SPELL_INCENDIARY_NEBULA",
+    "name": "incendiary nebula",
+    "castTimeSpeed": "CAST_SPEED16",
+    "castTimeRounds": 4.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 35,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "83": {
+    "enumName": "SPELL_MINOR_PARALYSIS",
+    "name": "minor paralysis",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": "Your muscles regain feeling."
+  },
+  "84": {
+    "enumName": "SPELL_CAUSE_LIGHT",
+    "name": "cause light",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "85": {
+    "enumName": "SPELL_CAUSE_SERIOUS",
+    "name": "cause serious",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "86": {
+    "enumName": "SPELL_CAUSE_CRITIC",
+    "name": "cause critical",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "87": {
+    "enumName": "SPELL_PRESERVE",
+    "name": "preserve",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_OBJ_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "88": {
+    "enumName": "SPELL_CURE_SERIOUS",
+    "name": "cure serious",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "89": {
+    "enumName": "SPELL_VIGORIZE_LIGHT",
+    "name": "vigorize light",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "90": {
+    "enumName": "SPELL_VIGORIZE_SERIOUS",
+    "name": "vigorize serious",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "91": {
+    "enumName": "SPELL_VIGORIZE_CRITIC",
+    "name": "vigorize critic",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "92": {
+    "enumName": "SPELL_SOULSHIELD",
+    "name": "soulshield",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The aura guarding your body fades away."
+  },
+  "93": {
+    "enumName": "SPELL_DESTROY_UNDEAD",
+    "name": "destroy undead",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "94": {
+    "enumName": "SPELL_SILENCE",
+    "name": "silence",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_NOT_SELF"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You can speak again."
+  },
+  "95": {
+    "enumName": "SPELL_FLAMESTRIKE",
+    "name": "flamestrike",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "96": {
+    "enumName": "SPELL_UNHOLY_WORD",
+    "name": "unholy word",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "97": {
+    "enumName": "SPELL_HOLY_WORD",
+    "name": "holy word",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "98": {
+    "enumName": "SPELL_PLANE_SHIFT",
+    "name": "plane shift",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "99": {
+    "enumName": "SPELL_DISPEL_MAGIC",
+    "name": "dispel magic",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_OBJ_ROOM",
+      "TAR_OBJ_INV"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_DISPEL",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 15,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "100": {
+    "enumName": "SPELL_MINOR_CREATION",
+    "name": "minor creation",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "101": {
+    "enumName": "SPELL_CONCEALMENT",
+    "name": "concealment",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 13,
+    "questSpell": false,
+    "wearOffMessage": "You fade back into view."
+  },
+  "102": {
+    "enumName": "SPELL_RAY_OF_ENFEEB",
+    "name": "ray of enfeeblement",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": "Your strength returns to you."
+  },
+  "103": {
+    "enumName": "SPELL_FEATHER_FALL",
+    "name": "feather fall",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 13,
+    "questSpell": false,
+    "wearOffMessage": "You float back to the ground."
+  },
+  "104": {
+    "enumName": "SPELL_WIZARD_EYE",
+    "name": "wizard eye",
+    "castTimeSpeed": "CAST_SPEED16",
+    "castTimeRounds": 4.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 17,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "105": {
+    "enumName": "SPELL_FIRESHIELD",
+    "name": "fireshield",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "The flames around your body dissipate."
+  },
+  "106": {
+    "enumName": "SPELL_COLDSHIELD",
+    "name": "coldshield",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "The ice formation around your body melts."
+  },
+  "107": {
+    "enumName": "SPELL_MINOR_GLOBE",
+    "name": "minor globe",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 23,
+    "questSpell": false,
+    "wearOffMessage": "The globe around your body fades out."
+  },
+  "108": {
+    "enumName": "SPELL_MAJOR_GLOBE",
+    "name": "major globe",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 35,
+    "questSpell": true,
+    "wearOffMessage": "The globe of force surrounding you dissipates."
+  },
+  "109": {
+    "enumName": "SPELL_DISINTEGRATE",
+    "name": "disintegrate",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 27,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "110": {
+    "enumName": "SPELL_HARNESS",
+    "name": "harness",
+    "castTimeSpeed": "CAST_SPEED2",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": "&4The harnessed power in your body fades.&0"
+  },
+  "111": {
+    "enumName": "SPELL_CHAIN_LIGHTNING",
+    "name": "chain lightning",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SHOCK",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 27,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "112": {
+    "enumName": "SPELL_MASS_INVIS",
+    "name": "mass invisibility",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_BULK_OBJS",
+      "MAG_MASS"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 23,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "114": {
+    "enumName": "SPELL_FEAR",
+    "name": "fear",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your courage returns to you."
+  },
+  "115": {
+    "enumName": "SPELL_CIRCLE_OF_LIGHT",
+    "name": "circle of light",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The circle of light above you fades out."
+  },
+  "116": {
+    "enumName": "SPELL_DIVINE_BOLT",
+    "name": "divine bolt",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "117": {
+    "enumName": "SPELL_PRAYER",
+    "name": "prayer",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your holy prayer fades."
+  },
+  "118": {
+    "enumName": "SPELL_ELEMENTAL_WARDING",
+    "name": "elemental warding",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less safe from the elements."
+  },
+  "119": {
+    "enumName": "SPELL_DIVINE_RAY",
+    "name": "divine ray",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "120": {
+    "enumName": "SPELL_LESSER_EXORCISM",
+    "name": "lesser exorcism",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "121": {
+    "enumName": "SPELL_DECAY",
+    "name": "decay",
+    "castTimeSpeed": "CAST_SPEED4",
+    "castTimeRounds": 1.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "122": {
+    "enumName": "SPELL_SPEAK_IN_TONGUES",
+    "name": "speak in tongues",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your vocabulary diminishes drastically."
+  },
+  "123": {
+    "enumName": "SPELL_ENLIGHTENMENT",
+    "name": "enlightenment",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "124": {
+    "enumName": "SPELL_EXORCISM",
+    "name": "exorcism",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "125": {
+    "enumName": "SPELL_SPINECHILLER",
+    "name": "spinechiller",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 10,
+    "questSpell": false,
+    "wearOffMessage": "The tingling in your spine subsides."
+  },
+  "126": {
+    "enumName": "SPELL_WINGS_OF_HEAVEN",
+    "name": "wings of heaven",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your wings gently fold back and fade away."
+  },
+  "127": {
+    "enumName": "SPELL_BANISH",
+    "name": "banish",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_NOT_SELF",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "128": {
+    "enumName": "SPELL_WORD_OF_COMMAND",
+    "name": "word of command",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "129": {
+    "enumName": "SPELL_DIVINE_ESSENCE",
+    "name": "divine essence",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_GROUP"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "130": {
+    "enumName": "SPELL_HEAVENS_GATE",
+    "name": "heavens gate",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "131": {
+    "enumName": "SPELL_DARK_PRESENCE",
+    "name": "dark presence",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_ALTER_OBJ"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel the dark presence leave you."
+  },
+  "132": {
+    "enumName": "SPELL_DEMONSKIN",
+    "name": "demonskin",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your skin reverts back to normal."
+  },
+  "133": {
+    "enumName": "SPELL_DARK_FEAST",
+    "name": "dark feast",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_OBJ_ROOM",
+      "TAR_CONTACT"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "134": {
+    "enumName": "SPELL_HELL_BOLT",
+    "name": "hell bolt",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "135": {
+    "enumName": "SPELL_DISEASE",
+    "name": "disease",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You are cured of your disease!"
+  },
+  "136": {
+    "enumName": "SPELL_INSANITY",
+    "name": "insanity",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your mind returns to reality."
+  },
+  "137": {
+    "enumName": "SPELL_DEMONIC_ASPECT",
+    "name": "demonic aspect",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The demon within you fades away."
+  },
+  "138": {
+    "enumName": "SPELL_HELLFIRE_BRIMSTONE",
+    "name": "hellfire and brimstone",
+    "castTimeSpeed": "CAST_SPEED16",
+    "castTimeRounds": 4.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "139": {
+    "enumName": "SPELL_STYGIAN_ERUPTION",
+    "name": "stygian eruption",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "140": {
+    "enumName": "SPELL_DEMONIC_MUTATION",
+    "name": "demonic mutation",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You mutate back to your original form."
+  },
+  "141": {
+    "enumName": "SPELL_WINGS_OF_HELL",
+    "name": "wings of hell",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your giant bat-like wings fold up and vanish."
+  },
+  "142": {
+    "enumName": "SPELL_SANE_MIND",
+    "name": "sane mind",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "143": {
+    "enumName": "SPELL_HELLS_GATE",
+    "name": "hell gate",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "144": {
+    "enumName": "SPELL_BARKSKIN",
+    "name": "barkskin",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "Your skin softens back to its original texture."
+  },
+  "145": {
+    "enumName": "SPELL_NIGHT_VISION",
+    "name": "night vision",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your night vision fades out."
+  },
+  "146": {
+    "enumName": "SPELL_WRITHING_WEEDS",
+    "name": "writhing weeds",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_OUTDOORS"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "147": {
+    "enumName": "SPELL_CREATE_SPRING",
+    "name": "create spring",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_CREATION"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "148": {
+    "enumName": "SPELL_NOURISHMENT",
+    "name": "nourishment",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "149": {
+    "enumName": "SPELL_GAIAS_CLOAK",
+    "name": "cloak of gaia",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY",
+      "TAR_OUTDOORS"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your shroud of nature dissolves."
+  },
+  "150": {
+    "enumName": "SPELL_NATURES_EMBRACE",
+    "name": "natures embrace",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY",
+      "TAR_OUTDOORS"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_POINT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Nature releases you from her embrace."
+  },
+  "151": {
+    "enumName": "SPELL_ENTANGLE",
+    "name": "entangle",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_OUTDOORS"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You break free of the vines."
+  },
+  "152": {
+    "enumName": "SPELL_INVIGORATE",
+    "name": "invigorate",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_GROUP"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_HEALING",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "153": {
+    "enumName": "SPELL_WANDERING_WOODS",
+    "name": "wandering woods",
+    "castTimeSpeed": "CAST_SPEED16",
+    "castTimeRounds": 4.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "The woods around you shift back to their proper form."
+  },
+  "154": {
+    "enumName": "SPELL_URBAN_RENEWAL",
+    "name": "urban renewal",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_OUTDOORS"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_ROOM"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "&2The woods in the surrounding area break apart and crumble.&0"
+  },
+  "155": {
+    "enumName": "SPELL_SUNRAY",
+    "name": "sunray",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your vision has returned."
+  },
+  "156": {
+    "enumName": "SPELL_ARMOR_OF_GAIA",
+    "name": "armor of gaia",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "157": {
+    "enumName": "SPELL_FIRE_DARTS",
+    "name": "fire darts",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 9,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "158": {
+    "enumName": "SPELL_MAGIC_TORCH",
+    "name": "magic torch",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 7,
+    "questSpell": false,
+    "wearOffMessage": "Your magic torch peters out."
+  },
+  "159": {
+    "enumName": "SPELL_SMOKE",
+    "name": "smoke",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": "As the smoke clears, your vision returns."
+  },
+  "160": {
+    "enumName": "SPELL_MIRAGE",
+    "name": "mirage",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "You become more visible as the heat around your body dies out."
+  },
+  "161": {
+    "enumName": "SPELL_FLAME_BLADE",
+    "name": "flame blade",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "162": {
+    "enumName": "SPELL_POSITIVE_FIELD",
+    "name": "positive field",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_GROUND"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SHOCK",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 18,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "163": {
+    "enumName": "SPELL_FIRESTORM",
+    "name": "firestorm",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "164": {
+    "enumName": "SPELL_MELT",
+    "name": "melt",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "165": {
+    "enumName": "SPELL_CIRCLE_OF_FIRE",
+    "name": "circle of fire",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_ROOM"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": "&1&bThe &1&bfl&3am&1es&0 &1surrounding &1the area &9&bdie out&0."
+  },
+  "166": {
+    "enumName": "SPELL_IMMOLATE",
+    "name": "immolate",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "167": {
+    "enumName": "SPELL_SUPERNOVA",
+    "name": "supernova",
+    "castTimeSpeed": "CAST_SPEED16",
+    "castTimeRounds": 4.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 31,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "168": {
+    "enumName": "SPELL_CREMATE",
+    "name": "cremate",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 35,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "169": {
+    "enumName": "SPELL_NEGATE_HEAT",
+    "name": "negate heat",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": "Your immunity to heat has passed."
+  },
+  "170": {
+    "enumName": "SPELL_ACID_BURST",
+    "name": "acid burst",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 23,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "171": {
+    "enumName": "SPELL_ICE_DARTS",
+    "name": "ice darts",
+    "castTimeSpeed": "CAST_SPEED4",
+    "castTimeRounds": 1.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 7,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "172": {
+    "enumName": "SPELL_ICE_ARMOR",
+    "name": "ice armor",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 13,
+    "questSpell": false,
+    "wearOffMessage": "Your iced encasing melts away, leaving you vulnerable again."
+  },
+  "173": {
+    "enumName": "SPELL_ICE_DAGGER",
+    "name": "ice dagger",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "174": {
+    "enumName": "SPELL_FREEZING_WIND",
+    "name": "freezing wind",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "175": {
+    "enumName": "SPELL_FREEZE",
+    "name": "freeze",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "176": {
+    "enumName": "SPELL_WALL_OF_ICE",
+    "name": "wall of ice",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 27,
+    "questSpell": true,
+    "wearOffMessage": "The wall of ice melts away..."
+  },
+  "177": {
+    "enumName": "SPELL_ICEBALL",
+    "name": "iceball",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "178": {
+    "enumName": "SPELL_FLOOD",
+    "name": "flood",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_WATER",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 35,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "179": {
+    "enumName": "SPELL_VAPORFORM",
+    "name": "vaporform",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 35,
+    "questSpell": true,
+    "wearOffMessage": "Your form condenses into flesh once again."
+  },
+  "180": {
+    "enumName": "SPELL_NEGATE_COLD",
+    "name": "negate cold",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": "You feel vulnerable to the cold again."
+  },
+  "181": {
+    "enumName": "SPELL_WATERFORM",
+    "name": "waterform",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 27,
+    "questSpell": true,
+    "wearOffMessage": "Your form solidifies into flesh once again."
+  },
+  "182": {
+    "enumName": "SPELL_EXTINGUISH",
+    "name": "extinguish",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "183": {
+    "enumName": "SPELL_RAIN",
+    "name": "rain",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 23,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "184": {
+    "enumName": "SPELL_REDUCE",
+    "name": "reduce",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": "You return to your normal size.&0"
+  },
+  "185": {
+    "enumName": "SPELL_ENLARGE",
+    "name": "enlarge",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_UNAFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 29,
+    "questSpell": false,
+    "wearOffMessage": "You return to your normal size.&0"
+  },
+  "186": {
+    "enumName": "SPELL_IDENTIFY",
+    "name": "identify",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV",
+      "TAR_OBJ_ROOM",
+      "TAR_CONTACT"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "187": {
+    "enumName": "SPELL_BONE_ARMOR",
+    "name": "bone armor",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 12,
+    "questSpell": false,
+    "wearOffMessage": "&3Your skin returns to normal.&0"
+  },
+  "188": {
+    "enumName": "SPELL_SUMMON_CORPSE",
+    "name": "summon corpse",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "189": {
+    "enumName": "SPELL_SHIFT_CORPSE",
+    "name": "shift corpse",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 17,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "190": {
+    "enumName": "SPELL_GLORY",
+    "name": "glory",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": "Your visage becomes plain once again."
+  },
+  "191": {
+    "enumName": "SPELL_ILLUSORY_WALL",
+    "name": "illusory wall",
+    "castTimeSpeed": "CAST_SPEED18",
+    "castTimeRounds": 4.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_STRING"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 27,
+    "questSpell": true,
+    "wearOffMessage": "The wall dissolves into tiny motes of light..."
+  },
+  "192": {
+    "enumName": "SPELL_NIGHTMARE",
+    "name": "nightmare",
+    "castTimeSpeed": "CAST_SPEED4",
+    "castTimeRounds": 1.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 12,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "193": {
+    "enumName": "SPELL_DISCORPORATE",
+    "name": "discorporate",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_DISCORPORATE",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 14,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "194": {
+    "enumName": "SPELL_ISOLATION",
+    "name": "isolation",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 8,
+    "questSpell": false,
+    "wearOffMessage": "It is as if a veil has lifted from the surrounding area."
+  },
+  "195": {
+    "enumName": "SPELL_FAMILIARITY",
+    "name": "familiarity",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 10,
+    "questSpell": false,
+    "wearOffMessage": "Your familiar disguise melts away."
+  },
+  "196": {
+    "enumName": "SPELL_HYSTERIA",
+    "name": "hysteria",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 16,
+    "questSpell": false,
+    "wearOffMessage": "Your courage returns to you."
+  },
+  "197": {
+    "enumName": "SPELL_MESMERIZE",
+    "name": "mesmerize",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 8,
+    "questSpell": false,
+    "wearOffMessage": "You regain your senses."
+  },
+  "198": {
+    "enumName": "SPELL_SEVERANCE",
+    "name": "severance",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_DISCORPORATE",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 37,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "199": {
+    "enumName": "SPELL_SOUL_REAVER",
+    "name": "soul reaver",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 30,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "200": {
+    "enumName": "SPELL_DETONATION",
+    "name": "detonation",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_GROUND",
+      "TAR_OUTDOORS"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_CRUSH",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 10,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "201": {
+    "enumName": "SPELL_FIRE_BREATH",
+    "name": "fire breath",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "202": {
+    "enumName": "SPELL_GAS_BREATH",
+    "name": "gas breath",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_POISON",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "203": {
+    "enumName": "SPELL_FROST_BREATH",
+    "name": "frost breath",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_COLD",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "204": {
+    "enumName": "SPELL_ACID_BREATH",
+    "name": "acid breath",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "205": {
+    "enumName": "SPELL_LIGHTNING_BREATH",
+    "name": "lightning breath",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SHOCK",
+    "sphere": "SKILL_SPHERE_AIR",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "206": {
+    "enumName": "SPELL_LESSER_ENDURANCE",
+    "name": "lesser endurance",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your endurance returns to normal."
+  },
+  "207": {
+    "enumName": "SPELL_ENDURANCE",
+    "name": "endurance",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 7,
+    "questSpell": false,
+    "wearOffMessage": "Your endurance returns to normal."
+  },
+  "208": {
+    "enumName": "SPELL_VITALITY",
+    "name": "vitality",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 7,
+    "questSpell": false,
+    "wearOffMessage": "Your magical vitality drains away."
+  },
+  "209": {
+    "enumName": "SPELL_GREATER_VITALITY",
+    "name": "greater vitality",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": "Your magical vitality drains away."
+  },
+  "210": {
+    "enumName": "SPELL_DRAGONS_HEALTH",
+    "name": "dragons health",
+    "castTimeSpeed": "CAST_SPEED14",
+    "castTimeRounds": 3.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 21,
+    "questSpell": true,
+    "wearOffMessage": "Your health returns to normal."
+  },
+  "211": {
+    "enumName": "SPELL_REBUKE_UNDEAD",
+    "name": "rebuke undead",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 8,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "212": {
+    "enumName": "SPELL_DEGENERATION",
+    "name": "degeneration",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 12,
+    "questSpell": true,
+    "wearOffMessage": null
+  },
+  "213": {
+    "enumName": "SPELL_SOUL_TAP",
+    "name": "soul tap",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_CONTACT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_HEAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 22,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "214": {
+    "enumName": "SPELL_NATURES_GUIDANCE",
+    "name": "natures guidance",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 8,
+    "questSpell": false,
+    "wearOffMessage": "You suddenly feel a little unguided."
+  },
+  "215": {
+    "enumName": "SPELL_MOONBEAM",
+    "name": "moonbeam",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_OUTDOORS",
+      "TAR_NIGHT_ONLY"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 10,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "216": {
+    "enumName": "SPELL_PHANTASM",
+    "name": "phantasm",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 12,
+    "questSpell": false,
+    "wearOffMessage": "Your illusion dissolves into tiny multicolored lights that float away."
+  },
+  "217": {
+    "enumName": "SPELL_SIMULACRUM",
+    "name": "simulacrum",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_WORLD"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_SUMMON"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 15,
+    "questSpell": false,
+    "wearOffMessage": "Your illusion dissolves into tiny multicolored lights that float away."
+  },
+  "218": {
+    "enumName": "SPELL_MISDIRECTION",
+    "name": "misdirection",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 12,
+    "questSpell": false,
+    "wearOffMessage": "You no longer feel like you're going every which way at once."
+  },
+  "219": {
+    "enumName": "SPELL_CONFUSION",
+    "name": "confusion",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "You no longer feel so confused."
+  },
+  "220": {
+    "enumName": "SPELL_PHOSPHORIC_EMBERS",
+    "name": "phosphoric embers",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 18,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "222": {
+    "enumName": "SPELL_PYRE",
+    "name": "pyre",
+    "castTimeSpeed": "CAST_SPEED4",
+    "castTimeRounds": 1.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_FIRE",
+    "sphere": "SKILL_SPHERE_FIRE",
+    "pages": 15,
+    "questSpell": false,
+    "wearOffMessage": "The flames enveloping you die down."
+  },
+  "223": {
+    "enumName": "SPELL_IRON_MAIDEN",
+    "name": "iron maiden",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_PIERCE",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 14,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "224": {
+    "enumName": "SPELL_FRACTURE",
+    "name": "fracture",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SLASH",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 17,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "226": {
+    "enumName": "SPELL_BONE_CAGE",
+    "name": "bone cage",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SLASH",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 16,
+    "questSpell": false,
+    "wearOffMessage": "The bones holding you down crumble to dust."
+  },
+  "228": {
+    "enumName": "SPELL_WORLD_TELEPORT",
+    "name": "world teleport",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 11,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "234": {
+    "enumName": "SPELL_SPIRIT_ARROWS",
+    "name": "spirit arrows",
+    "castTimeSpeed": "CAST_SPEED4",
+    "castTimeRounds": 1.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "235": {
+    "enumName": "SPELL_PROT_FROM_GOOD",
+    "name": "protection from good",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected."
+  },
+  "236": {
+    "enumName": "SPELL_ANCESTRAL_VENGEANCE",
+    "name": "ancestral vengeance",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "237": {
+    "enumName": "SPELL_CIRCLE_OF_DEATH",
+    "name": "circle of death",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 27,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "238": {
+    "enumName": "SPELL_BALEFUL_POLYMORPH",
+    "name": "baleful polymorph",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_SUMMON",
+    "pages": 25,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "239": {
+    "enumName": "SPELL_SPIRIT_RAY",
+    "name": "spirit ray",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE",
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ALIGN",
+    "sphere": "SKILL_SPHERE_DEATH",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "240": {
+    "enumName": "SPELL_VICIOUS_MOCKERY",
+    "name": "vicious mockery",
+    "castTimeSpeed": "CAST_SPEED6",
+    "castTimeRounds": 1.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "241": {
+    "enumName": "SPELL_REMOVE_PARALYSIS",
+    "name": "remove paralysis",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "242": {
+    "enumName": "SPELL_CLOUD_OF_DAGGERS",
+    "name": "cloud of daggers",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_SLASH",
+    "sphere": "SKILL_SPHERE_GENERIC",
+    "pages": 27,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "243": {
+    "enumName": "SPELL_REVEAL_HIDDEN",
+    "name": "reveal hidden",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_DIVIN",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "244": {
+    "enumName": "SPELL_BLINDING_BEAUTY",
+    "name": "blinding beauty",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_AREA"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel a cloak of blindness dissolve."
+  },
+  "245": {
+    "enumName": "SPELL_ACID_FOG",
+    "name": "acid fog",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_IGNORE",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_MANUAL"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_ACID",
+    "sphere": "SKILL_SPHERE_EARTH",
+    "pages": 27,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "246": {
+    "enumName": "SPELL_WEB",
+    "name": "web",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_NOT_SELF"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": "The webs holding you in place dissolve."
+  },
+  "247": {
+    "enumName": "SPELL_EARTH_BLESSING",
+    "name": "earth blessing",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_SITTING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_OBJ_INV"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT",
+      "MAG_ALTER_OBJ"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less righteous."
+  },
+  "248": {
+    "enumName": "SPELL_PROTECT_FIRE",
+    "name": "protection from fire",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected from fire."
+  },
+  "249": {
+    "enumName": "SPELL_PROTECT_COLD",
+    "name": "protection from cold",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected from cold."
+  },
+  "250": {
+    "enumName": "SPELL_PROTECT_ACID",
+    "name": "protection from earth",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected from earth."
+  },
+  "251": {
+    "enumName": "SPELL_PROTECT_SHOCK",
+    "name": "protection from air",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less protected from air."
+  },
+  "252": {
+    "enumName": "SPELL_ENHANCE_STR",
+    "name": "enhance strength",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel weaker."
+  },
+  "253": {
+    "enumName": "SPELL_ENHANCE_DEX",
+    "name": "enhance dexterity",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel slower."
+  },
+  "254": {
+    "enumName": "SPELL_ENHANCE_CON",
+    "name": "enhance constitution",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less healthy."
+  },
+  "255": {
+    "enumName": "SPELL_ENHANCE_INT",
+    "name": "enhance intelligence",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel dumber."
+  },
+  "256": {
+    "enumName": "SPELL_ENHANCE_WIS",
+    "name": "enhance wisdom",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel less witty."
+  },
+  "257": {
+    "enumName": "SPELL_ENHANCE_CHA",
+    "name": "enhance charisma",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "You feel uglier."
+  },
+  "258": {
+    "enumName": "SPELL_FIRES_OF_SAINT_AUGUSTINE",
+    "name": "fires of st. augustine",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": "Your inner fire subsides."
+  },
+  "259": {
+    "enumName": "SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE",
+    "name": "blizzards of st. augustine",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": "Your inner cold subsides."
+  },
+  "260": {
+    "enumName": "SPELL_TREMORS_OF_SAINT_AUGUSTINE",
+    "name": "tremors of st. augustine",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": "Your inner earth subsides."
+  },
+  "261": {
+    "enumName": "SPELL_TEMPEST_OF_SAINT_AUGUSTINE",
+    "name": "tempest of st. augustine",
+    "castTimeSpeed": "CAST_SPEED1",
+    "castTimeRounds": 0.5,
+    "minPosition": "POS_SITTING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 5,
+    "questSpell": true,
+    "wearOffMessage": "Your inner storm subsides."
+  },
+  "263": {
+    "enumName": "SPELL_WATER_BLAST",
+    "name": "water blast",
+    "castTimeSpeed": "CAST_SPEED10",
+    "castTimeRounds": 2.5,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_CHAR_ROOM",
+      "TAR_FIGHT_VICT",
+      "TAR_DIRECT"
+    ],
+    "violent": true,
+    "routines": [
+      "MAG_DAMAGE"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_WATER",
+    "sphere": "SKILL_SPHERE_WATER",
+    "pages": 21,
+    "questSpell": false,
+    "wearOffMessage": null
+  },
+  "264": {
+    "enumName": "SPELL_DISPLACEMENT",
+    "name": "displacement",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "&9&bYour image solidifies.&0"
+  },
+  "265": {
+    "enumName": "SPELL_GREATER_DISPLACEMENT",
+    "name": "greater displacement",
+    "castTimeSpeed": "CAST_SPEED12",
+    "castTimeRounds": 3.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_MENTAL",
+    "sphere": "SKILL_SPHERE_PROT",
+    "pages": 19,
+    "questSpell": true,
+    "wearOffMessage": "&9&bYour image solidifies.&0"
+  },
+  "266": {
+    "enumName": "SPELL_NIMBLE",
+    "name": "nimble",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": true,
+    "targets": [
+      "TAR_SELF_ONLY"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 19,
+    "questSpell": false,
+    "wearOffMessage": "Your movements slow to normal."
+  },
+  "267": {
+    "enumName": "SPELL_CLARITY",
+    "name": "clarity",
+    "castTimeSpeed": "CAST_SPEED8",
+    "castTimeRounds": 2.0,
+    "minPosition": "POS_STANDING",
+    "fightingOk": false,
+    "targets": [
+      "TAR_CHAR_ROOM"
+    ],
+    "violent": false,
+    "routines": [
+      "MAG_AFFECT"
+    ],
+    "additionalMemTime": 0,
+    "damageType": "DAM_UNDEFINED",
+    "sphere": "SKILL_SPHERE_ENCHANT",
+    "pages": 5,
+    "questSpell": false,
+    "wearOffMessage": "Your mind returns to its normal state."
+  }
+}

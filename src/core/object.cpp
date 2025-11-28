@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 #include <unordered_map>
 
 // DamageProfile Implementation
@@ -463,6 +464,35 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             }
         }
         
+        // Parse extra descriptions
+        if (json.contains("extra_descriptions") && json["extra_descriptions"].is_array()) {
+            for (const auto& extra_json : json["extra_descriptions"]) {
+                if (extra_json.contains("keyword") && extra_json.contains("desc")) {
+                    ExtraDescription extra;
+                    
+                    // Handle both single keyword string and array of keywords
+                    if (extra_json["keyword"].is_string()) {
+                        std::string keyword_str = extra_json["keyword"].get<std::string>();
+                        // Split space-separated keywords into individual keywords
+                        std::istringstream iss(keyword_str);
+                        std::string word;
+                        while (iss >> word) {
+                            extra.keywords.push_back(word);
+                        }
+                    } else if (extra_json["keyword"].is_array()) {
+                        for (const auto& kw : extra_json["keyword"]) {
+                            if (kw.is_string()) {
+                                extra.keywords.push_back(kw.get<std::string>());
+                            }
+                        }
+                    }
+                    
+                    extra.description = extra_json["desc"].get<std::string>();
+                    object->add_extra_description(extra);
+                }
+            }
+        }
+        
         TRY(object->validate());
         
         return object;
@@ -537,6 +567,25 @@ nlohmann::json Object::to_json() const {
             {"brightness", light_info_.brightness},
             {"lit", light_info_.lit}
         };
+    }
+    
+    // Serialize extra descriptions
+    if (!extra_descriptions_.empty()) {
+        nlohmann::json extra_array = nlohmann::json::array();
+        for (const auto& extra : extra_descriptions_) {
+            nlohmann::json extra_json;
+            
+            // Serialize keyword as single string if only one, array if multiple
+            if (extra.keywords.size() == 1) {
+                extra_json["keyword"] = extra.keywords[0];
+            } else {
+                extra_json["keyword"] = extra.keywords;
+            }
+            
+            extra_json["desc"] = extra.description;
+            extra_array.push_back(extra_json);
+        }
+        json["extra_descriptions"] = extra_array;
     }
     
     return json;
