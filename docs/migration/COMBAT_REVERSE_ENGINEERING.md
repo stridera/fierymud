@@ -48,7 +48,7 @@
 - Complete post-hit defense bypass list (8 skills)
 - Susceptibility stacking rules (multiplicative, no hard cap besides immunity)
 - AC→AR extraction formula (removes DEX double-dipping)
-- L50+ pathology demonstration (5% hit rate table showing binary behavior)
+- L50 combat analysis (95% hit rate - current system works well at this tier)
 - Mob dice migration variance guardrails (CV cap 0.60 normal, 0.80 bosses)
 - Three-layer defense architecture with hard caps (Block 50%, Parry 40%, Dodge 30%)
 - Magic AC → Ward% routing (mage armor, stoneskin, shield spell)
@@ -1470,11 +1470,14 @@ THAC0_calc = 9×10 - (4×10) - 30 - 20 - 20 - 30 = 90 - 40 - 30 - 20 - 20 - 30 =
 victim_AC = -40 + (2×10) = -20
 
 # Hit if: -50 - d200 ≤ -20
-# Hit if: d200 ≤ -30  (ALWAYS IMPOSSIBLE from normal rolls)
+# Solving: -d200 ≤ 30
+# Hit if: d200 ≥ -30  (ALWAYS TRUE for positive rolls)
 
-# But auto-hit 191-200 = 5%
+# Auto-miss (1-10): 5%
+# Calculated (11-190): 90% (all hit since d200 ≥ -30 always true)
+# Auto-hit (191-200): 5%
 
-Total hit% = 5% (auto-hit only)
+Total hit% = 95%
 ```
 
 **Damage**:
@@ -1483,12 +1486,14 @@ Base: 25 + 9 = 34
 Weapon: 3d8 avg = 13.5
 Total avg = 47.5
 
-DPH = 47.5
-DPS = 47.5 × 0.05 / 4 = 0.59 per second
-TTK = 600 / 0.59 = 1017 seconds (17 minutes!)
+Critical (0.5% chance): 95
+
+Average DPH (damage per hit) = 47.5 × 0.995 + 95 × 0.005 = 47.74
+DPS = 47.74 × 0.95 / 4 = 11.33 per second
+TTK = 600 / 11.33 = 53.0 seconds
 ```
 
-**PROBLEM IDENTIFIED**: Level 50+ Warriors hit 5% of time against equal-level mobs!
+**NOTE**: Level 50 Warriors hit 95% of the time against equal-level mobs - the current system works correctly at this level
 
 ### 6.3 Modern System Calculations
 
@@ -1566,17 +1571,17 @@ TTK = 600 / 8.24 = 72.8 seconds
 ```
 
 **Comparison**:
-- Current hit%: 5% → New hit%: 95% (+90%!)
-- Current DPS: 0.59 → New DPS: 8.24 (+1297%)
-- Current TTK: 1017s → New TTK: 72.8s (-93%)
+- Current hit%: 95% → New hit%: 95% (0%)
+- Current DPS: 11.33 → New DPS: 8.24 (-27%)
+- Current TTK: 53.0s → New TTK: 72.8s (+37%)
 
-**Result**: New system FIXES the pathological case at level 50!
+**Result**: New system is slower at level 50. Current system performs well at this level.
 
 ### 6.4 Calibration Adjustments
 
 **Findings**:
 1. Low-level (20) fights are ~30-40% slower in new system
-2. Mid-level (50) fights are 10-15× faster (fixing broken mechanics)
+2. Mid-level (50) fights are ~30-40% slower in new system (current system works well)
 3. High-level (80) needs testing but should be in range
 
 **Proposed Knob Adjustments**:
