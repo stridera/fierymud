@@ -192,21 +192,20 @@ Result<void> GMCPHandler::send_gmcp(std::string_view module, const nlohmann::jso
     }
 
     try {
-        nlohmann::json message;
-        message[std::string(module)] = data;
-
-        std::string json_str = message.dump();
+        std::string json_str = data.dump();
         std::string escaped = escape_telnet_data(json_str);
 
-        // Send GMCP subnegotiation: IAC SB GMCP_OPTION <data> IAC SE
+        // Send GMCP subnegotiation: IAC SB GMCP_OPTION <module> SP <data> IAC SE
         std::vector<uint8_t> gmcp_data;
         gmcp_data.push_back(TELNET_IAC);
         gmcp_data.push_back(TELNET_SB);
         gmcp_data.push_back(GMCP_OPTION);
 
-        for (char c : escaped) {
-            gmcp_data.push_back(static_cast<uint8_t>(c));
-        }
+        gmcp_data.insert(gmcp_data.end(), module.begin(), module.end());
+
+        gmcp_data.push_back(' ');
+
+        gmcp_data.insert(gmcp_data.end(), escaped.begin(), escaped.end());
 
         gmcp_data.push_back(TELNET_IAC);
         gmcp_data.push_back(TELNET_SE);
