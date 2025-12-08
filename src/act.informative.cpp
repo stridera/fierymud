@@ -2288,7 +2288,7 @@ ACMD(do_users) {
                 break;
             case 'i':
                 ipsort = 1;
-                for (i = 0; i <= 300; i++) {
+                for (i = 0; i < 300; i++) {
                     *iplist[i] = '\0';
                     *userlist[i] = '\0';
                     repeats[i] = 0;

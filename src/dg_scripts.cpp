@@ -102,7 +102,7 @@ int find_real_zone_by_room(room_num vznum) {
 int real_zone(int zvnum) {
     int i;
 
-    for (i = 0; i < top_of_zone_table; i++)
+    for (i = 0; i <= top_of_zone_table; i++)
         if (zone_table[i].number == zvnum)
             return i;
 
