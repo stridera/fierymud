@@ -180,7 +180,7 @@ void init_weather() {
     int climate;
 
     /* Initialize weather for each zone based on its climate. */
-    for (i = 0; i < top_of_zone_table; ++i) {
+    for (i = 0; i <= top_of_zone_table; ++i) {
         climate = zone_table[i].climate;
 
         zone_table[i].temperature = climates[climate].base_temperature;
@@ -436,7 +436,7 @@ void update_precipitation(int zone_rnum) {
 void update_weather(long pulse) {
     int i;
 
-    for (i = 0; i < top_of_zone_table; ++i) {
+    for (i = 0; i <= top_of_zone_table; ++i) {
         if (zone_table[i].climate == CLIMATE_NONE)
             continue;
         switch (pulse % (3 * SECS_PER_MUD_HOUR * PASSES_PER_SEC)) {
