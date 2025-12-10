@@ -75,11 +75,14 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
         switch (command) {
         case TELNET_WILL:
             // Client supports terminal type
-            return send_telnet_option(TELNET_DO, TTYPE_OPTION);
+            subnegotiate_terminal_type();
+            return Result<void>{};
         case TELNET_WONT:
             // Client doesn't support terminal type
-            return send_telnet_option(TELNET_DONT, TTYPE_OPTION);
+            // No action required
+            return Result<void>{};
         default:
+            // Malformed Telnet command
             return Result<void>{};
         }
         break;
@@ -88,11 +91,14 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
         switch (command) {
         case TELNET_WILL:
             // Client supports NEW-ENVIRON
-            return send_telnet_option(TELNET_DO, NEW_ENVIRON_OPTION);
+            subnegotiate_new_environ();
+            return Result<void>{};
         case TELNET_WONT:
             // Client doesn't support NEW-ENVIRON
-            return send_telnet_option(TELNET_DONT, NEW_ENVIRON_OPTION);
+            // No action required
+            return Result<void>{};
         default:
+            // Malformed Telnet command
             return Result<void>{};
         }
         break;
@@ -192,21 +198,20 @@ Result<void> GMCPHandler::send_gmcp(std::string_view module, const nlohmann::jso
     }
 
     try {
-        nlohmann::json message;
-        message[std::string(module)] = data;
-
-        std::string json_str = message.dump();
+        std::string json_str = data.dump();
         std::string escaped = escape_telnet_data(json_str);
 
-        // Send GMCP subnegotiation: IAC SB GMCP_OPTION <data> IAC SE
+        // Send GMCP subnegotiation: IAC SB GMCP_OPTION <module> SP <data> IAC SE
         std::vector<uint8_t> gmcp_data;
         gmcp_data.push_back(TELNET_IAC);
         gmcp_data.push_back(TELNET_SB);
         gmcp_data.push_back(GMCP_OPTION);
 
-        for (char c : escaped) {
-            gmcp_data.push_back(static_cast<uint8_t>(c));
-        }
+        gmcp_data.insert(gmcp_data.end(), module.begin(), module.end());
+
+        gmcp_data.push_back(' ');
+
+        gmcp_data.insert(gmcp_data.end(), escaped.begin(), escaped.end());
 
         gmcp_data.push_back(TELNET_IAC);
         gmcp_data.push_back(TELNET_SE);
@@ -338,6 +343,62 @@ void GMCPHandler::handle_mtts_capability(uint32_t bitvector) {
               static_cast<int>(terminal_capabilities_.overall_level));
 }
 
+std::unordered_map<std::string, std::string> GMCPHandler::parse_new_environ_data(std::string_view data) {
+    std::unordered_map<std::string, std::string> env_vars;
+
+    std::string var;
+    std::string value;
+
+    bool first = true;
+    bool read_var = false;
+    bool read_value = false;
+    bool escaped = false;
+    for (char c : data) {
+        if (first) {
+            if (c == SB_IS || c == SB_INFO) {
+                continue;
+            }
+            first = false;
+        }
+        if (!escaped) {
+            if (c == NEW_ENVIRON_ESC) {
+                escaped = true;
+                continue;
+            } else if (c == NEW_ENVIRON_VAR || c == NEW_ENVIRON_USERVAR) {
+                if (read_value) {
+                    Log::debug("NEW_ENVIRON for {}: var={} value={}", connection_.remote_address(), var, value);
+                    env_vars[var] = value;
+                    var.clear();
+                    value.clear();
+                }
+                read_var = true;
+                continue;
+            } else if (c == NEW_ENVIRON_VALUE) {
+                read_value = true;
+                continue;
+            }
+        } else {
+            escaped = false;
+        }
+        if (read_var) {
+            var.push_back(c);
+        } else if (read_value) {
+            var.push_back(c);
+        } else {
+            Log::debug("Invalid NEW_ENVIRON subnegotiation data from {}", connection_.remote_address());
+        }
+    }
+
+    if (read_value) {
+        Log::debug("NEW_ENVIRON for {}: var={} value={}", connection_.remote_address(), var, value);
+        env_vars[var] = value;
+    } else {
+        Log::debug("Incomplete NEW_ENVIRON subnegotiation data from {}", connection_.remote_address());
+    }
+
+    return env_vars;
+}
+
 void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, std::string>& env_vars) {
     terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_new_environ(env_vars);
     Log::info("NEW-ENVIRON capabilities detected from {} variables: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}", 
@@ -368,11 +429,35 @@ void GMCPHandler::request_terminal_type() {
     Log::debug("Requested terminal type");
 }
 
+void GMCPHandler::subnegotiate_terminal_type() {
+    connection_.send_raw_data({
+        TELNET_IAC,
+        TELNET_SB,
+        TTYPE_OPTION,
+        SB_SEND,
+        TELNET_IAC,
+        TELNET_SE,
+    });
+    Log::debug("Requested terminal subnegotiation from {}", connection_.remote_address());
+}
+
 void GMCPHandler::request_new_environ() {
     // Send IAC DO NEW-ENVIRON to request environment variables
     std::vector<uint8_t> environ_request = {TELNET_IAC, TELNET_DO, NEW_ENVIRON_OPTION};
     connection_.send_raw_data(environ_request);
     Log::debug("Requested NEW-ENVIRON data");
+}
+
+void GMCPHandler::subnegotiate_new_environ() {
+    connection_.send_raw_data({
+        TELNET_IAC,
+        TELNET_SB,
+        NEW_ENVIRON_OPTION,
+        SB_SEND,
+        TELNET_IAC,
+        TELNET_SE,
+    });
+    Log::debug("Requested NEW-ENVIRON subnegotiation from {}", connection_.remote_address());
 }
 
 std::string GMCPHandler::escape_telnet_data(std::string_view data) {
@@ -394,6 +479,7 @@ std::string GMCPHandler::escape_telnet_data(std::string_view data) {
 Result<void> GMCPHandler::send_telnet_option(uint8_t command, uint8_t option) {
     std::vector<uint8_t> data = {TELNET_IAC, command, option};
     connection_.send_raw_data(data);
+    Log::debug("Sent telnet option to {}: command={} option={}", connection_.remote_address(), command, option);
     return Result<void>{};
 }
 
@@ -597,6 +683,11 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
 
                         if (option == GMCPHandler::GMCP_OPTION) {
                             gmcp_handler_.handle_gmcp_subnegotiation(sub_data);
+                        } else if (option == GMCPHandler::TTYPE_OPTION) {
+                            gmcp_handler_.handle_terminal_type(sub_data);
+                        } else if (option == GMCPHandler::NEW_ENVIRON_OPTION) {
+                            auto env_vars = gmcp_handler_.parse_new_environ_data(sub_data);
+                            gmcp_handler_.handle_new_environ_data(env_vars);
                         }
 
                         in_telnet_negotiation_ = false;

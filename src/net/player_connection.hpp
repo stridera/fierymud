@@ -61,6 +61,13 @@ class GMCPHandler {
     static constexpr uint8_t MSSP_OPTION = 70;
     static constexpr uint8_t TTYPE_OPTION = 24;    // Terminal Type
     static constexpr uint8_t NEW_ENVIRON_OPTION = 39; // NEW-ENVIRON
+    static constexpr uint8_t SB_IS = 0;
+    static constexpr uint8_t SB_SEND = 1;
+    static constexpr uint8_t SB_INFO = 2;
+    static constexpr uint8_t NEW_ENVIRON_VAR = 0;
+    static constexpr uint8_t NEW_ENVIRON_VALUE = 1;
+    static constexpr uint8_t NEW_ENVIRON_ESC = 2;
+    static constexpr uint8_t NEW_ENVIRON_USERVAR = 3;
 
     explicit GMCPHandler(class PlayerConnection &connection);
     ~GMCPHandler() = default;
@@ -101,7 +108,11 @@ class GMCPHandler {
     
     // Request client capabilities
     void request_terminal_type();
+    void subnegotiate_terminal_type();
+
     void request_new_environ();
+    void subnegotiate_new_environ();
+    std::unordered_map<std::string, std::string> parse_new_environ_data(std::string_view data);
 
   private:
     class PlayerConnection &connection_;
