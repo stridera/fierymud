@@ -20,3 +20,8 @@ data_test/
 log/
 logs/
 *.log
+
+# Development certificates (keep local, don't commit)
+certs/*.key
+certs/*.pem
+certs/*.crt
