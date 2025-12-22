@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/testing/game_test_harness.cpp    Part of FieryMUD *
- *  Usage: Test harness implementation                                      *
- ***************************************************************************/
-
 #include "game_test_harness.hpp"
 
 #include "../core/logging.hpp"

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/world/world_server.hpp           Part of FieryMUD *
- *  Usage: World server and game state management                          *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/ids.hpp"

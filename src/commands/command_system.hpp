@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/command_system.hpp                Part of FieryMUD *
- *  Usage: Command registration and privilege system                       *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/ids.hpp"
@@ -126,7 +117,7 @@ struct CommandInfo {
 
     std::chrono::seconds cooldown{0}; // Command cooldown
     int minimum_level = 1;            // Minimum character level
-    int maximum_level = 99;           // Maximum character level
+    int maximum_level = 999;          // Maximum character level (includes immortals 100+)
 
     CommandHandler handler; // Command execution function
 

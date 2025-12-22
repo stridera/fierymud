@@ -1,16 +1,10 @@
-/***************************************************************************
- *   File: src/server/world_server.hpp                    Part of FieryMUD *
- *  Usage: Strand-based world server for serialized game logic            *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
+// ASIO strand-based game loop with serialized world state access
 
 #pragma once
 
 #include "../core/result.hpp"
 #include "../core/ids.hpp"
+#include "../world/time_system.hpp"
 // #include "../game/loop.hpp" // Game loop functionality integrated
 #include <asio.hpp>
 #include <memory>

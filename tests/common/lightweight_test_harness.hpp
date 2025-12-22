@@ -119,7 +119,9 @@ public:
                 auto chest_result = Container::create(EntityId{object_id++}, "test_chest", 10);
                 if (chest_result.has_value()) {
                     auto chest = std::shared_ptr<Container>(chest_result.value().release());
-                    
+                    chest->set_short_description("a wooden test_chest");
+                    chest->set_ground("A wooden test_chest sits here.");
+
                     // Configure as closeable/lockable container
                     ContainerInfo info;
                     info.capacity = 5;
@@ -130,16 +132,18 @@ public:
                     info.locked = false;  // Start unlocked for initial testing
                     info.key_id = EntityId{object_id + 10}; // Key we'll create later
                     chest->set_container_info(info);
-                    
+
                     // Add a potion inside the chest
                     auto potion_result = Object::create(EntityId{object_id++}, "test_potion", ObjectType::Potion);
                     if (potion_result.has_value()) {
                         auto potion = std::shared_ptr<Object>(potion_result.value().release());
+                        potion->set_short_description("a test_potion");
+                        potion->set_ground("A test_potion lies here.");
                         potion->set_weight(1);
                         potion->set_value(50);
                         chest->add_item(potion);
                     }
-                    
+
                     start_room_->add_object(chest);
                 }
             }
@@ -149,7 +153,9 @@ public:
                 auto sword_result = Weapon::create(EntityId{object_id++}, "test_sword", ObjectType::Weapon);
                 if (sword_result.has_value()) {
                     auto sword = std::shared_ptr<Weapon>(sword_result.value().release());
-                    
+                    sword->set_short_description("a test_sword");
+                    sword->set_ground("A test_sword lies here.");
+
                     // Set weapon properties
                     DamageProfile damage;
                     damage.base_damage = 5;
@@ -157,13 +163,13 @@ public:
                     damage.dice_sides = 6;
                     damage.damage_bonus = 2;
                     sword->set_damage_profile(damage);
-                    
+
                     sword->set_weight(3);
                     sword->set_value(100);
                     sword->set_reach(1);
                     sword->set_speed(2);
                     sword->set_equip_slot(EquipSlot::Wield); // Set the equip slot separately
-                    
+
                     start_room_->add_object(sword);
                 }
             }
@@ -173,35 +179,39 @@ public:
                 auto shield_result = Armor::create(EntityId{object_id++}, "test_shield", EquipSlot::Shield);
                 if (shield_result.has_value()) {
                     auto shield = std::shared_ptr<Armor>(shield_result.value().release());
+                    shield->set_short_description("a test_shield");
+                    shield->set_ground("A test_shield lies here.");
                     shield->set_armor_class(3);
                     shield->set_weight(2);
                     shield->set_value(75);
                     shield->set_material("steel");
-                    
+
                     start_room_->add_object(shield);
                 }
             }
-            
+
             // 4. Light Source - Test Torch
             {
                 auto torch_result = Object::create(EntityId{object_id++}, "test_torch", ObjectType::Light);
                 if (torch_result.has_value()) {
                     auto torch = std::shared_ptr<Object>(torch_result.value().release());
+                    torch->set_short_description("a test_torch");
+                    torch->set_ground("A test_torch lies here.");
                     torch->set_equip_slot(EquipSlot::Light);
                     torch->set_weight(1);
                     torch->set_value(5);
-                    
+
                     // Configure as light source
                     LightInfo light_info;
                     light_info.duration = 100;
                     light_info.brightness = 2;
                     light_info.lit = false; // Starts unlit
                     torch->set_light_info(light_info);
-                    
+
                     start_room_->add_object(torch);
                 }
             }
-            
+
             // 5. Key for the chest (matches chest's key_id)
             {
                 // Skip ahead to the key ID we reserved for the chest
@@ -209,37 +219,43 @@ public:
                 auto key_result = Object::create(EntityId{object_id++}, "test_key", ObjectType::Key);
                 if (key_result.has_value()) {
                     auto key = std::shared_ptr<Object>(key_result.value().release());
+                    key->set_short_description("a test_key");
+                    key->set_ground("A test_key lies here.");
                     key->set_weight(0); // Keys are typically weightless
                     key->set_value(1);
-                    
+
                     // This key will unlock the test_chest
                     start_room_->add_object(key);
                 }
             }
-            
+
             // 6. Consumable food item with spoilage timer
             {
                 auto bread_result = Object::create(EntityId{object_id++}, "test_bread", ObjectType::Food);
                 if (bread_result.has_value()) {
                     auto bread = std::shared_ptr<Object>(bread_result.value().release());
+                    bread->set_short_description("a test_bread");
+                    bread->set_ground("A test_bread lies here.");
                     bread->set_weight(1);
                     bread->set_value(2);
-                    
+
                     // Configure as consumable with spoilage timer
                     bread->set_timer(24); // Food spoils after 24 game hours
                     // Note: This creates a consumable item that will decay over time
                     // When timer reaches 0, the food becomes spoiled
-                    
+
                     start_room_->add_object(bread);
                 }
             }
-            
+
             // 7. Another container - Bag (smaller, for testing capacity)
             {
                 auto bag_result = Container::create(EntityId{object_id++}, "test_bag", 2);
                 if (bag_result.has_value()) {
                     auto bag = std::shared_ptr<Container>(bag_result.value().release());
-                    
+                    bag->set_short_description("a test_bag");
+                    bag->set_ground("A test_bag lies here.");
+
                     ContainerInfo info;
                     info.capacity = 2; // Very small capacity for testing limits
                     info.closeable = false; // Always open
@@ -247,66 +263,74 @@ public:
                     info.lockable = false;
                     info.locked = false;
                     bag->set_container_info(info);
-                    
+
                     bag->set_weight(1);
                     bag->set_value(10);
-                    
+
                     start_room_->add_object(bag);
                 }
             }
-            
-            // 8. Scroll - Magic consumable item 
+
+            // 8. Scroll - Magic consumable item
             {
                 auto scroll_result = Object::create(EntityId{object_id++}, "test_scroll", ObjectType::Scroll);
                 if (scroll_result.has_value()) {
                     auto scroll = std::shared_ptr<Object>(scroll_result.value().release());
+                    scroll->set_short_description("a test_scroll");
+                    scroll->set_ground("A test_scroll lies here.");
                     scroll->set_weight(0); // Scrolls are weightless
                     scroll->set_value(15);
-                    
+
                     // Scrolls are single-use consumables for testing
                     start_room_->add_object(scroll);
                 }
             }
-            
+
             // 9. Another light source - Lantern with longer duration
             {
                 auto lantern_result = Object::create(EntityId{object_id++}, "test_lantern", ObjectType::Light);
                 if (lantern_result.has_value()) {
                     auto lantern = std::shared_ptr<Object>(lantern_result.value().release());
+                    lantern->set_short_description("a test_lantern");
+                    lantern->set_ground("A test_lantern lies here.");
                     lantern->set_equip_slot(EquipSlot::Light);
                     lantern->set_weight(2);
                     lantern->set_value(20);
-                    
+
                     // Configure as more powerful light source
                     LightInfo light_info;
                     light_info.duration = 500; // Longer lasting than torch
                     light_info.brightness = 4;  // Brighter than torch
                     light_info.lit = false;     // Starts unlit
                     lantern->set_light_info(light_info);
-                    
+
                     start_room_->add_object(lantern);
                 }
             }
-            
+
             // 10. Liquid container with liquid
             {
                 auto waterskin_result = Object::create(EntityId{object_id++}, "test_waterskin", ObjectType::Liquid_Container);
                 if (waterskin_result.has_value()) {
                     auto waterskin = std::shared_ptr<Object>(waterskin_result.value().release());
+                    waterskin->set_short_description("a test_waterskin");
+                    waterskin->set_ground("A test_waterskin lies here.");
                     waterskin->set_weight(3);
                     waterskin->set_value(8);
-                    
+
                     // Container for liquids - for drink/pour testing
                     start_room_->add_object(waterskin);
                 }
             }
-            
+
             // 11. Second weapon - Test Dagger (to test weapon slot conflicts)
             {
                 auto dagger_result = Weapon::create(EntityId{object_id++}, "test_dagger", ObjectType::Weapon);
                 if (dagger_result.has_value()) {
                     auto dagger = std::shared_ptr<Weapon>(dagger_result.value().release());
-                    
+                    dagger->set_short_description("a test_dagger");
+                    dagger->set_ground("A test_dagger lies here.");
+
                     // Set weapon properties (using same pattern as sword)
                     DamageProfile damage;
                     damage.base_damage = 2;  // Slightly less damage than sword
@@ -314,13 +338,13 @@ public:
                     damage.dice_sides = 4;
                     damage.damage_bonus = 1;
                     dagger->set_damage_profile(damage);
-                    
+
                     dagger->set_weight(1);    // Lighter than sword
                     dagger->set_value(25);    // Less valuable than sword
                     dagger->set_reach(1);
                     dagger->set_speed(1);     // Faster than sword
                     dagger->set_equip_slot(EquipSlot::Wield); // Same slot as sword - will conflict
-                    
+
                     start_room_->add_object(dagger);
                 }
             }

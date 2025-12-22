@@ -1,12 +1,3 @@
-/***************************************************************************
- *  File: clan.cpp                                        Part of FieryMUD *
- *  Usage: Implementation of clan class and operations                     *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- *  FieryMUD is based on HubisMUD Copyright (C) 1997, 1998.                *
- *  HubisMUD is based on DikuMUD, Copyright (C) 1990, 1991.                *
- ***************************************************************************/
-
 #include "clan.hpp"
 
 #include "../../legacy/src/chars.hpp"
@@ -23,8 +14,9 @@
 // Global clan repository instance
 ClanRepository clan_repository;
 
-// Clan snoop system - maps clan ID to set of character pointers
-std::unordered_map<ClanID, std::unordered_set<CharData*>> clan_snoop_table;
+// Clan snoop system - maps clan ID to set of character names
+// Uses names instead of raw pointers to avoid dangling pointer issues
+std::unordered_map<ClanID, std::unordered_set<std::string>> clan_snoop_table;
 
 // Clan class implementation
 
@@ -627,27 +619,28 @@ bool ClanRepository::load_legacy(const std::string_view clan_num) {
     return true;
 }
 
-// Clan snoop management functions
-void add_clan_snoop(CharData *ch, ClanID clan_id) {
-    if (!ch) return;
-    clan_snoop_table[clan_id].insert(ch);
+// Clan snoop management functions (string-based, safe against dangling pointers)
+void add_clan_snoop(std::string_view char_name, ClanID clan_id) {
+    if (char_name.empty()) return;
+    clan_snoop_table[clan_id].insert(std::string(char_name));
 }
 
-void remove_clan_snoop(CharData *ch, ClanID clan_id) {
-    if (!ch) return;
+void remove_clan_snoop(std::string_view char_name, ClanID clan_id) {
+    if (char_name.empty()) return;
     auto it = clan_snoop_table.find(clan_id);
     if (it != clan_snoop_table.end()) {
-        it->second.erase(ch);
+        it->second.erase(std::string(char_name));
         if (it->second.empty()) {
             clan_snoop_table.erase(it);
         }
     }
 }
 
-void remove_all_clan_snoops(CharData *ch) {
-    if (!ch) return;
+void remove_all_clan_snoops(std::string_view char_name) {
+    if (char_name.empty()) return;
+    std::string name_str(char_name);
     for (auto it = clan_snoop_table.begin(); it != clan_snoop_table.end();) {
-        it->second.erase(ch);
+        it->second.erase(name_str);
         if (it->second.empty()) {
             it = clan_snoop_table.erase(it);
         } else {
@@ -656,25 +649,52 @@ void remove_all_clan_snoops(CharData *ch) {
     }
 }
 
-bool is_snooping_clan(CharData *ch, ClanID clan_id) {
-    if (!ch) return false;
+bool is_snooping_clan(std::string_view char_name, ClanID clan_id) {
+    if (char_name.empty()) return false;
     auto it = clan_snoop_table.find(clan_id);
     if (it != clan_snoop_table.end()) {
-        return it->second.count(ch) > 0;
+        return it->second.count(std::string(char_name)) > 0;
     }
     return false;
 }
 
-std::vector<ClanID> get_snooped_clans(CharData *ch) {
+std::vector<ClanID> get_snooped_clans(std::string_view char_name) {
     std::vector<ClanID> result;
-    if (!ch) return result;
-    
+    if (char_name.empty()) return result;
+
+    std::string name_str(char_name);
     for (const auto& [clan_id, snoops] : clan_snoop_table) {
-        if (snoops.count(ch) > 0) {
+        if (snoops.count(name_str) > 0) {
             result.push_back(clan_id);
         }
     }
     return result;
+}
+
+// Legacy interface wrappers (extract name from CharData)
+void add_clan_snoop(CharData* ch, ClanID clan_id) {
+    if (!ch || !ch->player.short_descr) return;
+    add_clan_snoop(std::string_view(ch->player.short_descr), clan_id);
+}
+
+void remove_clan_snoop(CharData* ch, ClanID clan_id) {
+    if (!ch || !ch->player.short_descr) return;
+    remove_clan_snoop(std::string_view(ch->player.short_descr), clan_id);
+}
+
+void remove_all_clan_snoops(CharData* ch) {
+    if (!ch || !ch->player.short_descr) return;
+    remove_all_clan_snoops(std::string_view(ch->player.short_descr));
+}
+
+bool is_snooping_clan(CharData* ch, ClanID clan_id) {
+    if (!ch || !ch->player.short_descr) return false;
+    return is_snooping_clan(std::string_view(ch->player.short_descr), clan_id);
+}
+
+std::vector<ClanID> get_snooped_clans(CharData* ch) {
+    if (!ch || !ch->player.short_descr) return {};
+    return get_snooped_clans(std::string_view(ch->player.short_descr));
 }
 
 // Function for use with function registry - checks clan permission or god status

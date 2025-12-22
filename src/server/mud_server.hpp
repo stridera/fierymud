@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/server/mud_server.hpp               Part of FieryMUD *
- *  Usage: Standalone modern MUD server implementation                     *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/ids.hpp"
@@ -52,7 +43,7 @@ struct ServerConfig {
     std::chrono::seconds connection_timeout{300};
     
     // TLS/SSL settings
-    bool enable_tls = false;
+    bool enable_tls = true;
     int tls_port = 4443;
     std::string tls_certificate_file = "certs/server.crt";
     std::string tls_private_key_file = "certs/server.key";
@@ -203,6 +194,7 @@ class ModernMUDServer {
     // Initialization phases
     Result<void> initialize_logging();
     Result<void> initialize_directories();
+    Result<void> initialize_database();
     Result<void> initialize_game_systems();
     Result<void> initialize_networking();
     Result<void> initialize_persistence();

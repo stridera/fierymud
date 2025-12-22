@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/server/persistence_manager.hpp             Part of FieryMUD *
- *  Usage: Modern data persistence and storage management                  *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/result.hpp"

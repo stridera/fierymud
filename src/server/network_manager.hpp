@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/server/network_manager.hpp                 Part of FieryMUD *
- *  Usage: Modern network management for player connections                *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/result.hpp"

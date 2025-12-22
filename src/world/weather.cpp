@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/world/weather.cpp                          Part of FieryMUD *
- *  Usage: Modern weather system implementation                            *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "weather.hpp"
 #include "zone.hpp"
 #include "room.hpp"
@@ -1041,4 +1032,267 @@ namespace WeatherUtils {
         
         return effects;
     }
+
+    std::string_view get_disaster_name(DisasterType type) {
+        return magic_enum::enum_name(type);
+    }
+
+    std::optional<DisasterType> parse_disaster_type(std::string_view name) {
+        return magic_enum::enum_cast<DisasterType>(name);
+    }
+
+    std::string get_disaster_color(DisasterType type) {
+        switch (type) {
+            case DisasterType::None: return "\033[0m"; // Reset
+            case DisasterType::Tornado: return "\033[95m"; // Magenta
+            case DisasterType::Blizzard: return "\033[97m"; // Bright white
+            case DisasterType::Earthquake: return "\033[33m"; // Yellow/brown
+            case DisasterType::Flood: return "\033[94m"; // Blue
+            case DisasterType::Hailstorm: return "\033[96m"; // Cyan
+            case DisasterType::Sandstorm: return "\033[93m"; // Yellow
+            case DisasterType::Heatwave: return "\033[91m"; // Red
+            case DisasterType::Hurricane: return "\033[35m"; // Purple
+            case DisasterType::Tsunami: return "\033[34m"; // Dark blue
+            case DisasterType::Waterspout: return "\033[36m"; // Teal
+        }
+        return "\033[0m"; // Reset
+    }
+
+    std::string get_disaster_symbol(DisasterType type) {
+        switch (type) {
+            case DisasterType::None: return "";
+            case DisasterType::Tornado: return "🌪";
+            case DisasterType::Blizzard: return "🌨";
+            case DisasterType::Earthquake: return "🌋";
+            case DisasterType::Flood: return "🌊";
+            case DisasterType::Hailstorm: return "🧊";
+            case DisasterType::Sandstorm: return "🏜";
+            case DisasterType::Heatwave: return "🔥";
+            case DisasterType::Hurricane: return "🌀";
+            case DisasterType::Tsunami: return "🌊";
+            case DisasterType::Waterspout: return "🌊";
+        }
+        return "?";
+    }
+}
+
+// Disaster Management Implementation
+
+void WeatherSystem::trigger_disaster(EntityId zone_id, DisasterType type, std::chrono::minutes duration) {
+    if (zone_id == INVALID_ENTITY_ID) {
+        // Trigger disaster globally
+        global_weather_.disaster = type;
+        global_weather_.disaster_duration = duration;
+    } else {
+        // Trigger disaster for specific zone
+        auto& weather = zone_weather_[zone_id];
+        weather.disaster = type;
+        weather.disaster_duration = duration;
+    }
+}
+
+void WeatherSystem::end_disaster(EntityId zone_id) {
+    if (zone_id == INVALID_ENTITY_ID) {
+        global_weather_.disaster = DisasterType::None;
+        global_weather_.disaster_duration = std::chrono::minutes{0};
+    } else {
+        auto it = zone_weather_.find(zone_id);
+        if (it != zone_weather_.end()) {
+            it->second.disaster = DisasterType::None;
+            it->second.disaster_duration = std::chrono::minutes{0};
+        }
+    }
+}
+
+DisasterType WeatherSystem::get_active_disaster(EntityId zone_id) const {
+    if (zone_id == INVALID_ENTITY_ID) {
+        return global_weather_.disaster;
+    }
+
+    auto it = zone_weather_.find(zone_id);
+    if (it != zone_weather_.end()) {
+        return it->second.disaster;
+    }
+
+    return global_weather_.disaster;
+}
+
+bool WeatherSystem::has_active_disaster(EntityId zone_id) const {
+    return get_active_disaster(zone_id) != DisasterType::None;
+}
+
+std::string WeatherSystem::get_disaster_description(DisasterType type) const {
+    switch (type) {
+        case DisasterType::None:
+            return "No disaster in effect.";
+        case DisasterType::Tornado:
+            return "A violent tornado tears through the area, uprooting trees and destroying structures!";
+        case DisasterType::Blizzard:
+            return "A severe blizzard rages, with blinding snow and freezing winds making travel nearly impossible!";
+        case DisasterType::Earthquake:
+            return "The ground shakes violently as an earthquake rumbles through the region!";
+        case DisasterType::Flood:
+            return "Rising waters flood the area, submerging the land and washing away everything in its path!";
+        case DisasterType::Hailstorm:
+            return "Massive hailstones rain down from the sky, battering everything below!";
+        case DisasterType::Sandstorm:
+            return "A fierce sandstorm engulfs the area, with stinging sand reducing visibility to nothing!";
+        case DisasterType::Heatwave:
+            return "Extreme heat scorches the land, making the air shimmer and sapping strength from all living things!";
+        case DisasterType::Hurricane:
+            return "A massive hurricane batters the region with torrential rain and catastrophic winds!";
+        case DisasterType::Tsunami:
+            return "A colossal tsunami wave crashes onto the shore, devastating everything in its path!";
+        case DisasterType::Waterspout:
+            return "A towering waterspout forms over the water, spinning violently and threatening nearby vessels!";
+    }
+    return "An unknown disaster strikes!";
+}
+
+void WeatherSystem::update_disasters(std::chrono::minutes elapsed) {
+    // Update global disaster duration
+    if (global_weather_.disaster != DisasterType::None) {
+        global_weather_.disaster_duration -= elapsed;
+        if (global_weather_.disaster_duration <= std::chrono::minutes{0}) {
+            global_weather_.disaster = DisasterType::None;
+            global_weather_.disaster_duration = std::chrono::minutes{0};
+        }
+    }
+
+    // Update zone disaster durations
+    for (auto& [zone_id, weather] : zone_weather_) {
+        if (weather.disaster != DisasterType::None) {
+            weather.disaster_duration -= elapsed;
+            if (weather.disaster_duration <= std::chrono::minutes{0}) {
+                weather.disaster = DisasterType::None;
+                weather.disaster_duration = std::chrono::minutes{0};
+            }
+        }
+    }
+}
+
+float WeatherSystem::calculate_disaster_probability(const WeatherState& state) const {
+    float probability = 0.0f;
+
+    // Base probability from weather intensity
+    switch (state.intensity) {
+        case WeatherIntensity::Calm:   probability = 0.001f; break;
+        case WeatherIntensity::Light:  probability = 0.005f; break;
+        case WeatherIntensity::Moderate: probability = 0.01f; break;
+        case WeatherIntensity::Severe: probability = 0.05f; break;
+        case WeatherIntensity::Extreme: probability = 0.15f; break;
+    }
+
+    // Increase probability for extreme weather types
+    if (WeatherUtils::is_extreme_weather(state.type)) {
+        probability *= 2.0f;
+    }
+
+    // Reduce probability if disaster already active
+    if (state.disaster != DisasterType::None) {
+        probability = 0.0f;
+    }
+
+    return probability;
+}
+
+DisasterType WeatherSystem::select_disaster_type(const WeatherState& state, Season season) const {
+    std::vector<DisasterType> compatible_disasters;
+
+    // Select disasters based on weather type
+    switch (state.type) {
+        case WeatherType::Heavy_Rain:
+        case WeatherType::Thunderstorm:
+            compatible_disasters.push_back(DisasterType::Flood);
+            compatible_disasters.push_back(DisasterType::Tornado);
+            if (season == Season::Summer || season == Season::Autumn) {
+                compatible_disasters.push_back(DisasterType::Hurricane);
+            }
+            break;
+
+        case WeatherType::Heavy_Snow:
+            compatible_disasters.push_back(DisasterType::Blizzard);
+            compatible_disasters.push_back(DisasterType::Hailstorm);
+            break;
+
+        case WeatherType::Windy:
+            if (state.intensity >= WeatherIntensity::Severe) {
+                compatible_disasters.push_back(DisasterType::Tornado);
+                compatible_disasters.push_back(DisasterType::Hurricane);
+            }
+            break;
+
+        case WeatherType::Hot:
+            if (state.intensity >= WeatherIntensity::Severe) {
+                compatible_disasters.push_back(DisasterType::Heatwave);
+                compatible_disasters.push_back(DisasterType::Sandstorm);
+            }
+            break;
+
+        case WeatherType::Cold:
+            if (state.intensity >= WeatherIntensity::Severe) {
+                compatible_disasters.push_back(DisasterType::Blizzard);
+            }
+            break;
+
+        default:
+            // Earthquake can happen any time (not weather-dependent)
+            if (std::uniform_real_distribution<float>(0.0f, 1.0f)(rng_) < 0.01f) {
+                compatible_disasters.push_back(DisasterType::Earthquake);
+            }
+            break;
+    }
+
+    // Select random disaster from compatible types
+    if (compatible_disasters.empty()) {
+        return DisasterType::None;
+    }
+
+    std::uniform_int_distribution<size_t> dist(0, compatible_disasters.size() - 1);
+    return compatible_disasters[dist(rng_)];
+}
+
+bool WeatherSystem::is_disaster_compatible_with_weather(DisasterType disaster, const WeatherState& state) const {
+    switch (disaster) {
+        case DisasterType::None:
+            return true;
+
+        case DisasterType::Tornado:
+        case DisasterType::Hurricane:
+            return state.type == WeatherType::Windy ||
+                   state.type == WeatherType::Thunderstorm ||
+                   state.type == WeatherType::Heavy_Rain;
+
+        case DisasterType::Blizzard:
+            return state.type == WeatherType::Heavy_Snow ||
+                   state.type == WeatherType::Cold;
+
+        case DisasterType::Flood:
+            return state.type == WeatherType::Heavy_Rain ||
+                   state.type == WeatherType::Thunderstorm;
+
+        case DisasterType::Hailstorm:
+            return state.type == WeatherType::Thunderstorm ||
+                   state.type == WeatherType::Heavy_Snow;
+
+        case DisasterType::Sandstorm:
+            return state.type == WeatherType::Windy ||
+                   state.type == WeatherType::Hot;
+
+        case DisasterType::Heatwave:
+            return state.type == WeatherType::Hot;
+
+        case DisasterType::Earthquake:
+            // Earthquakes are not weather-dependent
+            return true;
+
+        case DisasterType::Tsunami:
+        case DisasterType::Waterspout:
+            // Coastal/oceanic disasters
+            return state.type == WeatherType::Windy ||
+                   state.type == WeatherType::Thunderstorm ||
+                   state.type == WeatherType::Heavy_Rain;
+    }
+
+    return false;
 }

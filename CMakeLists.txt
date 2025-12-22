@@ -19,8 +19,16 @@ CPMAddPackage("gh:Neargye/magic_enum#v0.9.7")
 CPMAddPackage("gh:jarro2783/cxxopts#v3.3.1")
 CPMAddPackage("gh:catchorg/Catch2#v3.6.0")
 
+# PostgreSQL C++ client library for database integration
+CPMAddPackage(
+    NAME libpqxx
+    GITHUB_REPOSITORY jtv/libpqxx
+    GIT_TAG 7.9.2
+)
+
 # Standalone Asio for networking with SSL support
 find_package(OpenSSL REQUIRED)
+find_package(PostgreSQL REQUIRED)
 
 CPMAddPackage(
     NAME asio
@@ -70,14 +78,20 @@ set(SOURCES
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/text/text_format.cpp
+    src/text/string_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/combat.cpp
+    src/core/formula_parser.cpp
+    src/core/effect_system.cpp
+    src/core/ability_executor.cpp
     src/core/spell_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
     src/world/weather.cpp
+    src/world/time_system.cpp
     src/server/world_server.cpp
     src/server/mud_server.cpp
     src/server/network_manager.cpp
@@ -87,18 +101,30 @@ set(SOURCES
     src/game/login_system.cpp
     src/server/persistence_manager.cpp
     src/server/configuration_manager.cpp
+    src/database/database_config.cpp
+    src/database/connection_pool.cpp
+    src/database/world_queries.cpp
+    src/database/player_queries.cpp
+    src/database/social_queries.cpp
+    src/database/db_parsing_utils.cpp
+    src/database/game_data_cache.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
-    src/commands/rich_text.cpp
-    src/commands/terminal_capabilities.cpp
+    src/text/rich_text.cpp
+    src/text/terminal_capabilities.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
     src/commands/information_commands.cpp
+    src/commands/magic_commands.cpp
+    src/commands/character_commands.cpp
     src/commands/communication_commands.cpp
+    src/commands/group_commands.cpp
     src/commands/movement_commands.cpp
+    src/commands/position_commands.cpp
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
@@ -110,8 +136,12 @@ set(SIMPLE_TEST_SOURCES
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/text/text_format.cpp
     src/core/object.cpp
     src/core/combat.cpp
+    src/core/formula_parser.cpp
+    src/core/effect_system.cpp
+    src/core/ability_executor.cpp
     src/core/spell_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
@@ -124,11 +154,16 @@ set(SIMPLE_TEST_SOURCES
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
     src/commands/information_commands.cpp
+    src/commands/magic_commands.cpp
+    src/commands/character_commands.cpp
     src/commands/communication_commands.cpp
+    src/commands/group_commands.cpp
     src/commands/movement_commands.cpp
+    src/commands/position_commands.cpp
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     src/testing/test_simple_functionality.cpp
@@ -139,13 +174,17 @@ add_executable(fierymud ${SOURCES})
 
 target_include_directories(fierymud PRIVATE src)
 
-target_link_libraries(fierymud PRIVATE 
-    fmt::fmt 
+target_link_libraries(fierymud PRIVATE
+    fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
     magic_enum::magic_enum
     cxxopts::cxxopts
     asio
+    pqxx
+    PostgreSQL::PostgreSQL
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(fierymud PRIVATE
@@ -167,38 +206,55 @@ set(CORE_TEST_SOURCES
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/text/text_format.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/combat.cpp
+    src/core/formula_parser.cpp
+    src/core/effect_system.cpp
+    src/core/ability_executor.cpp
     src/core/spell_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
     src/world/weather.cpp
+    src/world/time_system.cpp
     src/server/world_server.cpp
     src/server/network_manager.cpp
     src/server/persistence_manager.cpp
+    src/database/database_config.cpp
+    src/database/connection_pool.cpp
+    src/database/world_queries.cpp
+    src/database/player_queries.cpp
+    src/database/social_queries.cpp
+    src/database/db_parsing_utils.cpp
+    src/database/game_data_cache.cpp
     src/net/player_connection.cpp
     src/net/tls_context.cpp
     src/net/mssp_handler.cpp
     src/game/login_system.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
-    src/commands/rich_text.cpp
-    src/commands/terminal_capabilities.cpp
+    src/text/rich_text.cpp
+    src/text/terminal_capabilities.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
     src/commands/information_commands.cpp
+    src/commands/magic_commands.cpp
+    src/commands/character_commands.cpp
     src/commands/communication_commands.cpp
+    src/commands/group_commands.cpp
     src/commands/movement_commands.cpp
+    src/commands/position_commands.cpp
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
     src/core/arguments.cpp
-    src/core/string_utils.cpp
+    src/text/string_utils.cpp
 )
 
 # Unit test sources
@@ -243,19 +299,23 @@ add_executable(tests
 )
 
 # Configure unit tests executable
-target_include_directories(unit_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+target_include_directories(unit_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
 
 # Configure stable tests executable
-target_include_directories(stable_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+target_include_directories(stable_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
 
-target_link_libraries(unit_tests PRIVATE 
-    fmt::fmt 
+target_link_libraries(unit_tests PRIVATE
+    fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
     magic_enum::magic_enum
     cxxopts::cxxopts
     asio
+    pqxx
+    PostgreSQL::PostgreSQL
     Catch2::Catch2WithMain
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(unit_tests PRIVATE
@@ -271,14 +331,18 @@ target_compile_options(unit_tests PRIVATE
     -g
 )
 
-target_link_libraries(stable_tests PRIVATE 
-    fmt::fmt 
+target_link_libraries(stable_tests PRIVATE
+    fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
     magic_enum::magic_enum
     cxxopts::cxxopts
     asio
+    pqxx
+    PostgreSQL::PostgreSQL
     Catch2::Catch2WithMain
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(stable_tests PRIVATE
@@ -295,7 +359,7 @@ target_compile_options(stable_tests PRIVATE
 )
 
 # Configure integration tests executable
-target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
 
 target_link_libraries(integration_tests PRIVATE 
     fmt::fmt 
@@ -321,7 +385,7 @@ target_compile_options(integration_tests PRIVATE
 )
 
 # Configure combined tests executable (legacy)
-target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands)
+target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
 
 target_link_libraries(tests PRIVATE 
     fmt::fmt 
@@ -424,6 +488,164 @@ set_tests_properties(Integration_Tests_Filter PROPERTIES
 set_tests_properties(Session_Tests_Filter PROPERTIES
     TIMEOUT 180
     LABELS "session"
+)
+
+# Database integration test executable (uses same sources as fierymud except main.cpp)
+add_executable(test_database
+    src/database/test_database.cpp
+    src/core/logging.cpp
+    src/core/config.cpp
+    src/core/entity.cpp
+    src/core/actor.cpp
+    src/text/text_format.cpp
+    src/core/object.cpp
+    src/core/shopkeeper.cpp
+    src/core/combat.cpp
+    src/core/spell_system.cpp
+    src/world/room.cpp
+    src/world/zone.cpp
+    src/world/world_manager.cpp
+    src/world/weather.cpp
+    src/world/time_system.cpp
+    src/server/world_server.cpp
+    src/server/mud_server.cpp
+    src/server/network_manager.cpp
+    src/net/player_connection.cpp
+    src/net/mssp_handler.cpp
+    src/net/tls_context.cpp
+    src/game/login_system.cpp
+    src/server/persistence_manager.cpp
+    src/server/configuration_manager.cpp
+    src/database/database_config.cpp
+    src/database/connection_pool.cpp
+    src/database/world_queries.cpp
+    src/database/player_queries.cpp
+    src/database/social_queries.cpp
+    src/database/db_parsing_utils.cpp
+    src/database/game_data_cache.cpp
+    src/commands/command_system.cpp
+    src/commands/command_context.cpp
+    src/text/rich_text.cpp
+    src/text/terminal_capabilities.cpp
+    src/commands/command_parser.cpp
+    src/commands/builtin_commands.cpp
+    src/commands/information_commands.cpp
+    src/commands/magic_commands.cpp
+    src/commands/character_commands.cpp
+    src/commands/communication_commands.cpp
+    src/commands/group_commands.cpp
+    src/commands/movement_commands.cpp
+    src/commands/position_commands.cpp
+    src/commands/object_commands.cpp
+    src/commands/admin_commands.cpp
+    src/commands/combat_commands.cpp
+    src/commands/economy_commands.cpp
+    src/commands/social_commands.cpp
+    src/commands/system_commands.cpp
+)
+
+target_include_directories(test_database PRIVATE src)
+
+target_link_libraries(test_database PRIVATE
+    fmt::fmt
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
+    magic_enum::magic_enum
+    asio
+    pqxx
+    PostgreSQL::PostgreSQL
+)
+
+target_compile_definitions(test_database PRIVATE
+    SPDLOG_COMPILED_LIB
+    SPDLOG_FMT_EXTERNAL
+)
+
+target_compile_options(test_database PRIVATE
+    -std=gnu++23
+    -Wall
+    -Wextra
+    -O3
+    -g
+)
+
+# Comprehensive database test executable (same sources as test_database for consistency)
+add_executable(test_database_comprehensive
+    src/database/test_database_comprehensive.cpp
+    src/core/logging.cpp
+    src/core/config.cpp
+    src/core/entity.cpp
+    src/core/actor.cpp
+    src/text/text_format.cpp
+    src/core/object.cpp
+    src/core/shopkeeper.cpp
+    src/core/combat.cpp
+    src/core/spell_system.cpp
+    src/world/room.cpp
+    src/world/zone.cpp
+    src/world/world_manager.cpp
+    src/world/weather.cpp
+    src/world/time_system.cpp
+    src/server/world_server.cpp
+    src/server/mud_server.cpp
+    src/server/network_manager.cpp
+    src/net/player_connection.cpp
+    src/net/mssp_handler.cpp
+    src/net/tls_context.cpp
+    src/game/login_system.cpp
+    src/server/persistence_manager.cpp
+    src/server/configuration_manager.cpp
+    src/database/database_config.cpp
+    src/database/connection_pool.cpp
+    src/database/world_queries.cpp
+    src/database/player_queries.cpp
+    src/database/social_queries.cpp
+    src/database/db_parsing_utils.cpp
+    src/database/game_data_cache.cpp
+    src/commands/command_system.cpp
+    src/commands/command_context.cpp
+    src/text/rich_text.cpp
+    src/text/terminal_capabilities.cpp
+    src/commands/command_parser.cpp
+    src/commands/builtin_commands.cpp
+    src/commands/information_commands.cpp
+    src/commands/magic_commands.cpp
+    src/commands/character_commands.cpp
+    src/commands/communication_commands.cpp
+    src/commands/group_commands.cpp
+    src/commands/movement_commands.cpp
+    src/commands/position_commands.cpp
+    src/commands/object_commands.cpp
+    src/commands/admin_commands.cpp
+    src/commands/combat_commands.cpp
+    src/commands/economy_commands.cpp
+    src/commands/social_commands.cpp
+    src/commands/system_commands.cpp
+)
+
+target_include_directories(test_database_comprehensive PRIVATE src)
+
+target_link_libraries(test_database_comprehensive PRIVATE
+    fmt::fmt
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
+    magic_enum::magic_enum
+    asio
+    pqxx
+    PostgreSQL::PostgreSQL
+)
+
+target_compile_definitions(test_database_comprehensive PRIVATE
+    SPDLOG_COMPILED_LIB
+    SPDLOG_FMT_EXTERNAL
+)
+
+target_compile_options(test_database_comprehensive PRIVATE
+    -std=gnu++23
+    -Wall
+    -Wextra
+    -O3
+    -g
 )
 
 # Legacy FieryMUD Server (fierymud_legacy) - Currently disabled

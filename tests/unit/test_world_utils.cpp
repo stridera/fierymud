@@ -20,7 +20,7 @@ TEST_CASE("World Utils: Directions", "[world][utils][direction]") {
         REQUIRE(RoomUtils::get_direction_name(Direction::None) == "None");
     }
 
-    SECTION("Direction parsing") {
+    SECTION("Direction parsing - lowercase") {
         auto north = RoomUtils::parse_direction("north");
         REQUIRE(north.has_value());
         REQUIRE(north.value() == Direction::North);
@@ -31,6 +31,52 @@ TEST_CASE("World Utils: Directions", "[world][utils][direction]") {
 
         auto invalid = RoomUtils::parse_direction("invalid");
         REQUIRE_FALSE(invalid.has_value());
+    }
+
+    SECTION("Direction parsing - uppercase (database format)") {
+        // These tests verify the fix for PostgreSQL enum values which are stored uppercase
+        auto north = RoomUtils::parse_direction("NORTH");
+        REQUIRE(north.has_value());
+        REQUIRE(north.value() == Direction::North);
+
+        auto east = RoomUtils::parse_direction("EAST");
+        REQUIRE(east.has_value());
+        REQUIRE(east.value() == Direction::East);
+
+        auto south = RoomUtils::parse_direction("SOUTH");
+        REQUIRE(south.has_value());
+        REQUIRE(south.value() == Direction::South);
+
+        auto west = RoomUtils::parse_direction("WEST");
+        REQUIRE(west.has_value());
+        REQUIRE(west.value() == Direction::West);
+
+        auto up = RoomUtils::parse_direction("UP");
+        REQUIRE(up.has_value());
+        REQUIRE(up.value() == Direction::Up);
+
+        auto down = RoomUtils::parse_direction("DOWN");
+        REQUIRE(down.has_value());
+        REQUIRE(down.value() == Direction::Down);
+
+        auto northeast = RoomUtils::parse_direction("NORTHEAST");
+        REQUIRE(northeast.has_value());
+        REQUIRE(northeast.value() == Direction::Northeast);
+
+        auto southwest = RoomUtils::parse_direction("SOUTHWEST");
+        REQUIRE(southwest.has_value());
+        REQUIRE(southwest.value() == Direction::Southwest);
+    }
+
+    SECTION("Direction parsing - PascalCase (enum names)") {
+        // magic_enum should handle the exact enum names
+        auto north = RoomUtils::parse_direction("North");
+        REQUIRE(north.has_value());
+        REQUIRE(north.value() == Direction::North);
+
+        auto southeast = RoomUtils::parse_direction("Southeast");
+        REQUIRE(southeast.has_value());
+        REQUIRE(southeast.value() == Direction::Southeast);
     }
 
     SECTION("Opposite directions") {

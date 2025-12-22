@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/admin_commands.cpp                 Part of FieryMUD *
- *  Usage: Administrative command implementations                            *
- *                                                                           *
- *  All rights reserved.  See license.doc for complete information.         *
- *                                                                           *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "admin_commands.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
@@ -154,10 +145,10 @@ Result<CommandResult> cmd_weather_control(const CommandContext &ctx) {
     std::string action{ctx.arg(0)};
 
     if (action == "list") {
-        ctx.send("&C--- Available Weather Types ---&n");
+        ctx.send("<b:cyan>--- Available Weather Types ---</>");
         ctx.send("Clear, Partly_Cloudy, Cloudy, Light_Rain, Heavy_Rain,");
         ctx.send("Thunderstorm, Light_Snow, Heavy_Snow, Fog, Windy, Hot, Cold, Magical_Storm");
-        ctx.send("\n&YAvailable Intensities:&n");
+        ctx.send("\n<b:yellow>Available Intensities:</>");
         ctx.send("Calm, Light, Moderate, Severe, Extreme");
         return CommandResult::Success;
     }
@@ -389,6 +380,76 @@ Result<CommandResult> cmd_dump_world(const CommandContext &ctx) {
     WorldManager::instance().dump_world_state(filename);
     ctx.send_success(fmt::format("World state dumped to {}.", filename));
     return CommandResult::Success;
+}
+
+// =============================================================================
+// Command Registration
+// =============================================================================
+
+Result<void> register_commands() {
+    // Administrative commands
+    Commands()
+        .command("shutdown", cmd_shutdown)
+        .category("Admin")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("goto", cmd_goto)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("teleport", cmd_teleport)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("summon", cmd_summon)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("setweather", cmd_weather_control)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    // Zone development commands
+    Commands()
+        .command("reloadzone", cmd_reload_zone)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("savezone", cmd_save_zone)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("reloadallzones", cmd_reload_all_zones)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("filewatch", cmd_toggle_file_watching)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("dumpworld", cmd_dump_world)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    return Success();
 }
 
 } // namespace AdminCommands

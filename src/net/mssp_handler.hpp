@@ -1,11 +1,4 @@
-/***************************************************************************
- *   File: src/net/mssp_handler.hpp                        Part of FieryMUD *
- *  Usage: MUD Server Status Protocol (MSSP) implementation               *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
+// MSSP (MUD Server Status Protocol) for crawler discovery
 
 #pragma once
 

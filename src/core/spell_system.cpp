@@ -2,6 +2,7 @@
 #include "actor.hpp"
 #include "commands/command_system.hpp"
 #include "core/logging.hpp"
+#include "text/string_utils.hpp"
 #include <algorithm>
 #include <chrono>
 #include <sstream>
@@ -19,7 +20,7 @@ bool Spell::can_cast(const Actor& caster) const {
     
     // Check class restrictions - for now, only allow casters
     if (const auto* player = dynamic_cast<const Player*>(&caster)) {
-        std::string player_class = player->player_class();
+        std::string player_class = to_lowercase(player->player_class());
         if (player_class != "cleric" && player_class != "sorcerer") {
             return false;
         }
@@ -319,13 +320,11 @@ const Spell* SpellRegistry::find_spell(std::string_view name) const {
     }
     
     // Try partial match (case-insensitive)
-    std::string lower_name;
-    std::transform(name.begin(), name.end(), std::back_inserter(lower_name), ::tolower);
-    
+    std::string lower_name = to_lowercase(name);
+
     for (const auto& [spell_name, spell] : spells_) {
-        std::string lower_spell_name;
-        std::transform(spell_name.begin(), spell_name.end(), std::back_inserter(lower_spell_name), ::tolower);
-        
+        std::string lower_spell_name = to_lowercase(spell_name);
+
         if (lower_spell_name.find(lower_name) == 0) { // Starts with the search term
             return &spell;
         }

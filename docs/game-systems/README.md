@@ -25,7 +25,6 @@ This directory contains comprehensive documentation of FieryMUD's game mechanics
   - Cast time mechanics
   - Effect system
 
-- **[DAMAGE_SPELL_FORMULAS.md](DAMAGE_SPELL_FORMULAS.md)** - Offensive spell damage calculations
 - **[ALIGNMENT_DAMAGE_EXAMPLES.md](ALIGNMENT_DAMAGE_EXAMPLES.md)** - Alignment-based damage mechanics
 - **[SPELL_PARAMS_SCHEMA.md](SPELL_PARAMS_SCHEMA.md)** - Spell parameter definitions
 - **[MAGIC_SYSTEM_COMPLETENESS.md](MAGIC_SYSTEM_COMPLETENESS.md)** - Magic system implementation status
@@ -50,11 +49,10 @@ This directory contains comprehensive documentation of FieryMUD's game mechanics
 
 ## Ability System
 
-- **[ABILITIES.md](ABILITIES.md)** - Unified spell/skill ability system overview
-- **[ABILITIES_COMPLETE.md](ABILITIES_COMPLETE.md)** - Complete ability catalog
-- **[ABILITIES_INDEX.md](ABILITIES_INDEX.md)** - Quick reference index
-- **[ABILITIES_IMPLEMENTATION_EXAMPLES.md](ABILITIES_IMPLEMENTATION_EXAMPLES.md)** - Implementation patterns
 - **[PROPOSED_ABILITY_SYSTEM.md](PROPOSED_ABILITY_SYSTEM.md)** - Future ability system design
+
+> **Note**: Previous ability extraction files were removed due to incorrect damage type mappings.
+> For authoritative ability data, see [fierylib/docs/extraction-reports/abilities.csv](../../fierylib/docs/extraction-reports/abilities.csv)
 
 ## Related Documentation
 

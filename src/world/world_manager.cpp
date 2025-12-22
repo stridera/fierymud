@@ -1,23 +1,34 @@
-/***************************************************************************
- *   File: src/world/world_manager.cpp                    Part of FieryMUD *
- *  Usage: World management system implementation                          *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "world_manager.hpp"
 #include "weather.hpp"
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
+#include "../database/connection_pool.hpp"
+#include "../database/game_data_cache.hpp"
+#include "../database/world_queries.hpp"
 
 #include <filesystem>
 #include <fstream>
 #include <algorithm>
 #include <queue>
 #include <unordered_set>
+
+// World manager constants
+namespace {
+    // Zone ID remapping (zone 0 conflicts with modern system)
+    constexpr uint64_t REMAPPED_ZONE_ZERO_ID = 1000;
+
+    // Pathfinding constants
+    constexpr int INVALID_ROOM_MOVEMENT_COST = 1000;  // Very high cost for unreachable rooms
+    constexpr int FLYING_OPTIMAL_COST = 1;            // Minimal cost for flying in air
+
+    // Test zone room IDs
+    constexpr uint64_t TEST_STARTING_ROOM_ID = 100;
+    constexpr uint64_t TEST_TRAINING_ROOM_ID = 102;
+
+    // Mobile inventory constraints
+    constexpr int MOBILE_INVENTORY_MAX_WEIGHT = 100;
+}
 
 // WorldManager Implementation
 
@@ -91,6 +102,7 @@ void WorldManager::clear_state() {
     mobile_prototypes_.clear();
     mobiles_.clear();
     spawned_mobiles_.clear();  // Clear mobile instance tracking
+    last_spawned_objects_.clear();  // Clear object instance tracking for containers
     scheduled_resets_.clear();
     file_timestamps_.clear();
     start_room_ = INVALID_ENTITY_ID;
@@ -133,9 +145,16 @@ Result<void> WorldManager::load_world() {
     zones_.clear();
     stats_ = WorldStats{};
     stats_.startup_time = start_time;
-    
-    // Load zones with embedded rooms, objects, and mobs directly from world directory
-    TRY(load_zones_from_directory(world_path_));
+
+    // Load game data cache (classes, races) before world data
+    auto cache_result = GameDataCache::instance().load_all();
+    if (!cache_result) {
+        logger->warn("Failed to load game data cache: {}", cache_result.error().message);
+        // Continue loading - the cache will use fallback values
+    }
+
+    // Load zones and rooms from PostgreSQL database
+    TRY(load_zones_from_database());
     
     // Rooms are now loaded from embedded zone data, no separate room directory needed
     
@@ -205,9 +224,9 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
         if (zone_data.contains("id") && zone_data["id"].is_string()) {
             try {
                 auto id_value = std::stoull(zone_data["id"].get<std::string>());
-                // Convert 0 to 1 since the modern system doesn't like ID 0
+                // Convert 0 to a high number since the modern system doesn't like ID 0
                 if (id_value == 0) {
-                    id_value = 1000;  // Use a high number for zone 0 to avoid conflicts
+                    id_value = REMAPPED_ZONE_ZERO_ID;
                 }
                 zone_data["id"] = id_value;
             } catch (const std::exception& e) {
@@ -384,7 +403,27 @@ Result<void> WorldManager::reload_all_zones() {
 std::shared_ptr<Room> WorldManager::get_room(EntityId room_id) const {
     std::shared_lock lock(world_mutex_);
     auto it = rooms_.find(room_id);
-    return it != rooms_.end() ? it->second : nullptr;
+    auto logger = Log::game();
+    if (it != rooms_.end()) {
+        auto room = it->second;
+        // Debug: log room retrieval for the temple
+        if (room_id.zone_id() == 30 && room_id.local_id() == 1) {
+            logger->info("DEBUG get_room: Found temple room {} '{}', flags_count={}",
+                        room_id.value(), room->name(), room->flags().size());
+            if (room->has_flag(RoomFlag::AlwaysLit)) {
+                logger->info("DEBUG get_room: Temple has AlwaysLit flag");
+            } else {
+                logger->info("DEBUG get_room: Temple MISSING AlwaysLit flag!");
+            }
+        }
+        return room;
+    }
+    // Debug: log failed lookups for starting room
+    if (room_id.zone_id() == 30 && room_id.local_id() == 1) {
+        logger->warn("DEBUG get_room: Temple room {} NOT FOUND in rooms_ (size={})",
+                    room_id.value(), rooms_.size());
+    }
+    return nullptr;
 }
 
 std::shared_ptr<Room> WorldManager::get_first_available_room() const {
@@ -696,21 +735,21 @@ void WorldManager::schedule_zone_reset(EntityId zone_id, std::chrono::seconds de
 
 ValidationResult WorldManager::validate_world() const {
     ValidationResult result;
-    
+
     std::shared_lock lock(world_mutex_);
-    
+
     // Validate zones
     for (const auto& [id, zone] : zones_) {
         if (zone) {
             validate_zone_integrity(zone, result);
         }
     }
-    
+
     // Validate rooms
     for (const auto& [id, room] : rooms_) {
         if (room) {
             validate_room_exits(room, result);
-            
+
             // Check if room belongs to a zone
             bool found_in_zone = false;
             for (const auto& [zone_id, zone] : zones_) {
@@ -719,48 +758,186 @@ ValidationResult WorldManager::validate_world() const {
                     break;
                 }
             }
-            
+
             if (!found_in_zone) {
                 result.orphaned_rooms++;
-                result.add_warning(fmt::format("Room {} ({}) is not in any zone", 
+                result.add_warning(fmt::format("Room {} ({}) is not in any zone",
                                               room->name(), room->id()));
             }
         }
     }
-    
-    // TODO: Check for unreachable rooms using pathfinding from start room
-    
+
+    // Check for unreachable rooms using pathfinding from start room
+    if (start_room_.is_valid() && get_room(start_room_)) {
+        std::unordered_set<EntityId> reachable;
+        std::queue<EntityId> to_visit;
+
+        to_visit.push(start_room_);
+        reachable.insert(start_room_);
+
+        // BFS to find all reachable rooms
+        while (!to_visit.empty()) {
+            EntityId current_id = to_visit.front();
+            to_visit.pop();
+
+            auto current_room = get_room(current_id);
+            if (!current_room) continue;
+
+            for (Direction dir : current_room->get_available_exits()) {
+                auto exit = current_room->get_exit(dir);
+                if (exit && exit->to_room.is_valid() && !reachable.contains(exit->to_room)) {
+                    reachable.insert(exit->to_room);
+                    to_visit.push(exit->to_room);
+                }
+            }
+        }
+
+        // Check for unreachable rooms
+        for (const auto& [id, room] : rooms_) {
+            if (room && !reachable.contains(id)) {
+                result.unreachable_rooms++;
+                result.add_warning(fmt::format("Room {} ({}) is not reachable from start room",
+                                              room->name(), id));
+            }
+        }
+    }
+
     return result;
 }
 
 Result<void> WorldManager::repair_world_issues() {
     auto validation = validate_world();
-    
+
     if (validation.is_valid) {
         return Success();
     }
-    
+
     auto logger = Log::game();
-    logger->info("Attempting to repair {} world issues", validation.errors.size());
-    
-    // TODO: Implement automatic world repair
-    // For now, just log the issues
-    for (const auto& error : validation.errors) {
-        logger->error("World repair needed: {}", error);
+    logger->info("Attempting to repair {} world issues ({} errors, {} warnings)",
+                validation.errors.size() + validation.warnings.size(),
+                validation.errors.size(), validation.warnings.size());
+
+    int repairs_made = 0;
+    std::unique_lock lock(world_mutex_);
+
+    // Repair 1: Fix orphaned rooms by adding them to a default zone or creating one
+    if (validation.orphaned_rooms > 0) {
+        // Find or create a "limbo" zone for orphaned rooms
+        EntityId limbo_zone_id{999};  // Convention: zone 999 for limbo/orphaned content
+        std::shared_ptr<Zone> limbo_zone = nullptr;
+
+        auto it = zones_.find(limbo_zone_id);
+        if (it != zones_.end()) {
+            limbo_zone = it->second;
+        } else {
+            // Create the limbo zone with default reset settings
+            // Zone::create(EntityId, name, reset_minutes, reset_mode)
+            auto zone_result = Zone::create(limbo_zone_id, "Limbo", 0, ResetMode::Never);
+            if (zone_result) {
+                limbo_zone = std::shared_ptr<Zone>(zone_result.value().release());
+                limbo_zone->set_description("A holding zone for orphaned content");
+                zones_[limbo_zone_id] = limbo_zone;
+                logger->info("Created limbo zone {} for orphaned rooms", limbo_zone_id);
+            }
+        }
+
+        if (limbo_zone) {
+            for (const auto& [id, room] : rooms_) {
+                if (!room) continue;
+
+                bool found_in_zone = false;
+                for (const auto& [zone_id, zone] : zones_) {
+                    if (zone && zone->contains_room(room->id())) {
+                        found_in_zone = true;
+                        break;
+                    }
+                }
+
+                if (!found_in_zone) {
+                    limbo_zone->add_room(room->id());
+                    room->set_zone_id(limbo_zone_id);
+                    logger->info("Moved orphaned room {} ({}) to limbo zone", room->name(), room->id());
+                    repairs_made++;
+                }
+            }
+        }
     }
-    
-    return std::unexpected(Errors::NotImplemented("World repair"));
+
+    // Repair 2: Remove or mark invalid exits
+    if (validation.missing_exits > 0) {
+        for (const auto& [id, room] : rooms_) {
+            if (!room) continue;
+
+            auto exits = room->get_available_exits();
+            for (Direction dir : exits) {
+                auto exit = room->get_exit(dir);
+                if (!exit) continue;
+
+                // Check if destination room exists
+                if (!exit->to_room.is_valid() || !get_room(exit->to_room)) {
+                    // Remove the invalid exit
+                    room->remove_exit(dir);
+                    logger->warn("Removed invalid exit {} from room {} (destination {} not found)",
+                               dir, room->id(), exit->to_room);
+                    repairs_made++;
+                }
+            }
+        }
+    }
+
+    // Repair 3: Log unreachable rooms (we can't auto-fix these without knowing intent)
+    if (validation.unreachable_rooms > 0) {
+        logger->warn("{} rooms are unreachable from start room - manual intervention recommended",
+                    validation.unreachable_rooms);
+        // We don't auto-fix unreachable rooms as the fix requires understanding zone design
+    }
+
+    has_unsaved_changes_.store(true);
+
+    logger->info("World repair completed: {} issues fixed", repairs_made);
+
+    // Re-validate to check remaining issues
+    lock.unlock();
+    auto post_validation = validate_world();
+    if (!post_validation.is_valid) {
+        logger->warn("World still has {} remaining issues after repair",
+                    post_validation.errors.size() + post_validation.warnings.size());
+        for (const auto& error : post_validation.errors) {
+            logger->error("Remaining issue: {}", error);
+        }
+    }
+
+    return Success();
 }
 
 void WorldManager::update_statistics() {
     std::shared_lock lock(world_mutex_);
-    
+
     stats_.zones_loaded = static_cast<int>(zones_.size());
     stats_.rooms_loaded = static_cast<int>(rooms_.size());
-    
-    // TODO: Count objects and mobiles
-    stats_.objects_loaded = 0;
-    stats_.mobiles_loaded = 0;
+
+    // Count object prototypes
+    stats_.objects_loaded = static_cast<int>(object_prototypes_.size());
+
+    // Count mobile prototypes
+    stats_.mobiles_loaded = static_cast<int>(mobile_prototypes_.size());
+
+    // Additionally count spawned instances for runtime statistics
+    int spawned_objects = 0;
+    int spawned_mobiles = static_cast<int>(spawned_mobiles_.size());
+
+    // Count objects in rooms
+    for (const auto& [id, room] : rooms_) {
+        if (room) {
+            spawned_objects += static_cast<int>(room->contents().objects.size());
+        }
+    }
+
+    auto logger = Log::game();
+    logger->debug("Statistics updated: {} zones, {} rooms, {} object protos ({} spawned), {} mobile protos ({} spawned)",
+                 stats_.zones_loaded, stats_.rooms_loaded,
+                 stats_.objects_loaded, spawned_objects,
+                 stats_.mobiles_loaded, spawned_mobiles);
 }
 
 std::vector<std::shared_ptr<Room>> WorldManager::find_rooms_with_flag(RoomFlag flag) const {
@@ -904,15 +1081,56 @@ void WorldManager::check_for_file_changes() {
     
     for (const auto& filename : changed_files) {
         logger->debug("File changed: {}", filename);
-        
-        // Try to reload the file
+
+        // Try to reload the file based on extension
         if (filename.ends_with(".json")) {
+            // Zone files (modern format) - rooms are embedded in zone files
             auto result = load_zone_file(filename);
             if (!result) {
                 logger->error("Failed to reload zone file {}: {}", filename, result.error().message);
+            } else {
+                logger->info("Successfully reloaded zone file: {}", filename);
+            }
+        } else if (filename.ends_with(".wld")) {
+            // Legacy room files - attempt to parse and update rooms
+            logger->info("Detected legacy room file change: {}", filename);
+
+            std::ifstream file(filename);
+            if (!file.is_open()) {
+                logger->error("Failed to open room file: {}", filename);
+                continue;
+            }
+
+            // Parse room JSON (legacy files may contain room array)
+            try {
+                nlohmann::json room_data;
+                file >> room_data;
+
+                if (room_data.is_array()) {
+                    int updated_count = 0;
+                    for (const auto& room_json : room_data) {
+                        auto room_result = Room::from_json(room_json);
+                        if (room_result) {
+                            auto room = std::shared_ptr<Room>(room_result.value().release());
+                            std::unique_lock lock(world_mutex_);
+                            rooms_[room->id()] = room;
+                            updated_count++;
+                        }
+                    }
+                    logger->info("Updated {} rooms from {}", updated_count, filename);
+                } else if (room_data.is_object()) {
+                    auto room_result = Room::from_json(room_data);
+                    if (room_result) {
+                        auto room = std::shared_ptr<Room>(room_result.value().release());
+                        std::unique_lock lock(world_mutex_);
+                        rooms_[room->id()] = room;
+                        logger->info("Updated room {} from {}", room->id(), filename);
+                    }
+                }
+            } catch (const nlohmann::json::exception& e) {
+                logger->error("Failed to parse room file {}: {}", filename, e.what());
             }
         }
-        // TODO: Handle room file changes
     }
     
     update_file_timestamps();
@@ -1090,6 +1308,261 @@ Result<void> WorldManager::load_zones_from_directory(const std::string& world_di
     return Success();
 }
 
+Result<void> WorldManager::load_zones_from_database() {
+    auto logger = Log::database();
+    logger->info("Loading zones from database");
+
+    // Execute database query in a transaction
+    auto load_result = ConnectionPool::instance().execute([&](pqxx::work& txn) -> Result<void> {
+        // Load all zones
+        auto zones_result = WorldQueries::load_all_zones(txn);
+        if (!zones_result) {
+            return std::unexpected(zones_result.error());
+        }
+
+        logger->info("Loaded {} zones from database", zones_result->size());
+
+        // Process each zone
+        for (auto& zone_ptr : *zones_result) {
+            int zone_id = zone_ptr->id().zone_id();
+            logger->debug("Processing zone {}: {}", zone_id, zone_ptr->name());
+
+            // Load rooms for this zone
+            auto rooms_result = WorldQueries::load_rooms_in_zone(txn, zone_id);
+            if (!rooms_result) {
+                logger->error("Failed to load rooms for zone {}: {}", zone_id, rooms_result.error().message);
+                return std::unexpected(rooms_result.error());
+            }
+
+            logger->debug("Loaded {} rooms for zone {}", rooms_result->size(), zone_id);
+
+            // Register rooms in the global rooms map
+            for (auto& room_ptr : *rooms_result) {
+                EntityId room_id = room_ptr->id();
+
+                // Add room to the rooms map (zone reference retrieved via zone_id as needed)
+                rooms_[room_id] = std::shared_ptr<Room>(room_ptr.release());
+                stats_.rooms_loaded++;
+            }
+
+            // Note: Exits are loaded in second pass after all rooms are registered
+            // to properly handle cross-zone exit references
+
+            // Load mobs for this zone
+            auto mobs_result = WorldQueries::load_mobs_in_zone(txn, zone_id);
+            if (!mobs_result) {
+                logger->error("Failed to load mobs for zone {}: {}", zone_id, mobs_result.error().message);
+                return std::unexpected(mobs_result.error());
+            }
+
+            logger->debug("Loaded {} mobs for zone {}", mobs_result->size(), zone_id);
+
+            // Register mobile prototypes in both global vector AND lookup map
+            for (auto& mob_ptr : *mobs_result) {
+                EntityId mob_id = mob_ptr->id();
+                // Store raw pointer in mobiles_ map for lookup during spawning
+                mobiles_[mob_id] = mob_ptr.get();
+                // Store ownership in mobile_prototypes_ vector
+                mobile_prototypes_.push_back(std::move(mob_ptr));
+                stats_.mobiles_loaded++;
+            }
+
+            // Load objects for this zone
+            auto objects_result = WorldQueries::load_objects_in_zone(txn, zone_id);
+            if (!objects_result) {
+                logger->error("Failed to load objects for zone {}: {}", zone_id, objects_result.error().message);
+                return std::unexpected(objects_result.error());
+            }
+
+            logger->debug("Loaded {} objects for zone {}", objects_result->size(), zone_id);
+
+            // Register object prototypes in both global vector AND lookup map
+            for (auto& obj_ptr : *objects_result) {
+                EntityId obj_id = obj_ptr->id();
+                // Store raw pointer in objects_ map for lookup during spawning
+                objects_[obj_id] = obj_ptr.get();
+                // Store ownership in object_prototypes_ vector
+                object_prototypes_.push_back(std::move(obj_ptr));
+                stats_.objects_loaded++;
+            }
+
+            // Register zone in the global zones map
+            // Note: Store the ID before releasing the unique_ptr
+            EntityId zone_entity_id = zone_ptr->id();
+            zones_[zone_entity_id] = std::shared_ptr<Zone>(zone_ptr.release());
+            stats_.zones_loaded++;
+        }
+
+        // Second pass: Load exits for all rooms now that rooms are registered
+        // This allows cross-zone exit resolution
+        logger->debug("Loading room exits (second pass)");
+        for (const auto& [room_id, room] : rooms_) {
+            int room_zone_id = room_id.zone_id();
+            int room_local_id = room_id.local_id();
+
+            auto exits_result = WorldQueries::load_room_exits(txn, room_zone_id, room_local_id);
+            if (!exits_result) {
+                logger->warn("Failed to load exits for room ({}, {}): {}",
+                            room_zone_id, room_local_id, exits_result.error().message);
+                continue;
+            }
+
+            for (const auto& exit_data : *exits_result) {
+                ExitInfo exit;
+                exit.to_room = exit_data.to_room;
+                exit.description = exit_data.description;
+
+                // Set first keyword as the door keyword
+                if (!exit_data.keywords.empty()) {
+                    exit.keyword = exit_data.keywords[0];
+                }
+
+                // Parse exit flags
+                for (const auto& flag : exit_data.flags) {
+                    if (flag == "IS_DOOR") {
+                        exit.has_door = true;
+                    } else if (flag == "CLOSED") {
+                        exit.is_closed = true;
+                    } else if (flag == "LOCKED") {
+                        exit.is_locked = true;
+                    } else if (flag == "PICKPROOF") {
+                        exit.is_pickproof = true;
+                    } else if (flag == "HIDDEN") {
+                        exit.is_hidden = true;
+                    }
+                }
+
+                // Apply exit to room
+                auto set_result = room->set_exit(exit_data.direction, exit);
+                if (!set_result) {
+                    logger->warn("Failed to set exit {} for room ({}, {}): {}",
+                                exit_data.direction, room_zone_id, room_local_id,
+                                set_result.error().message);
+                }
+            }
+        }
+
+        // Third pass: Load mob and object resets for each zone
+        logger->debug("Loading zone resets (third pass)");
+        for (auto& [zone_entity_id, zone] : zones_) {
+            int zone_id = zone_entity_id.zone_id();
+
+            // Load mob resets
+            auto mob_resets_result = WorldQueries::load_mob_resets_in_zone(txn, zone_id);
+            if (!mob_resets_result) {
+                logger->warn("Failed to load mob resets for zone {}: {}",
+                            zone_id, mob_resets_result.error().message);
+            } else {
+                logger->debug("Loaded {} mob resets for zone {}", mob_resets_result->size(), zone_id);
+
+                // Load all equipment for this zone at once for efficiency
+                auto equipment_result = WorldQueries::load_all_mob_equipment_in_zone(txn, zone_id);
+                std::unordered_map<int, std::vector<WorldQueries::MobEquipmentData>> equipment_by_reset;
+                if (equipment_result) {
+                    for (const auto& equip : *equipment_result) {
+                        equipment_by_reset[equip.reset_id].push_back(equip);
+                    }
+                }
+
+                // Convert to zone reset commands
+                for (const auto& reset : *mob_resets_result) {
+                    ZoneCommand cmd;
+                    cmd.command_type = ZoneCommandType::Load_Mobile;
+                    cmd.entity_id = reset.mob_id;
+                    cmd.room_id = reset.room_id;
+                    cmd.max_count = reset.max_instances;
+                    cmd.if_flag = 0;  // Always execute
+                    cmd.comment = reset.comment;
+
+                    zone->add_command(cmd);
+
+                    // Add equipment commands for this mob reset
+                    auto equip_it = equipment_by_reset.find(reset.id);
+                    if (equip_it != equipment_by_reset.end()) {
+                        for (const auto& equip : equip_it->second) {
+                            ZoneCommand equip_cmd;
+                            if (equip.wear_location.empty()) {
+                                equip_cmd.command_type = ZoneCommandType::Give_Object;
+                            } else {
+                                equip_cmd.command_type = ZoneCommandType::Equip_Object;
+                                // Parse wear_location string to equipment slot number
+                                // Use ObjectUtils::parse_equip_slot for case-insensitive and DB value mapping
+                                auto slot = ObjectUtils::parse_equip_slot(equip.wear_location);
+                                if (slot) {
+                                    equip_cmd.max_count = static_cast<int>(*slot);
+                                } else {
+                                    logger->warn("Unknown wear_location '{}' for object {} on mob {}, defaulting to inventory",
+                                                equip.wear_location, equip.object_id, reset.mob_id);
+                                    // Fall back to Give_Object (inventory) if we can't parse the slot
+                                    equip_cmd.command_type = ZoneCommandType::Give_Object;
+                                    equip_cmd.max_count = 0;
+                                }
+                            }
+                            equip_cmd.entity_id = equip.object_id;
+                            equip_cmd.container_id = reset.mob_id;  // The mobile to equip on
+                            equip_cmd.if_flag = 1;  // Only if previous command succeeded
+
+                            zone->add_command(equip_cmd);
+                        }
+                    }
+                }
+            }
+
+            // Load object resets
+            auto obj_resets_result = WorldQueries::load_object_resets_in_zone(txn, zone_id);
+            if (!obj_resets_result) {
+                logger->warn("Failed to load object resets for zone {}: {}",
+                            zone_id, obj_resets_result.error().message);
+            } else {
+                logger->debug("Loaded {} object resets for zone {}", obj_resets_result->size(), zone_id);
+
+                // Build a map from reset_id -> object_id for container lookups
+                std::unordered_map<int, EntityId> reset_to_object;
+                for (const auto& reset : *obj_resets_result) {
+                    reset_to_object[reset.id] = reset.object_id;
+                }
+
+                for (const auto& reset : *obj_resets_result) {
+                    ZoneCommand cmd;
+                    if (reset.container_reset_id > 0) {
+                        cmd.command_type = ZoneCommandType::Put_Object;
+                        // Look up the container's object_id from the referenced reset
+                        auto container_it = reset_to_object.find(reset.container_reset_id);
+                        if (container_it != reset_to_object.end()) {
+                            cmd.container_id = container_it->second;
+                        } else {
+                            logger->warn("Object reset {} references non-existent container reset {}",
+                                        reset.id, reset.container_reset_id);
+                            cmd.container_id = INVALID_ENTITY_ID;
+                        }
+                    } else {
+                        cmd.command_type = ZoneCommandType::Load_Object;
+                    }
+                    cmd.entity_id = reset.object_id;
+                    cmd.room_id = reset.room_id;
+                    cmd.max_count = reset.max_instances;
+                    cmd.if_flag = 0;  // Always execute
+                    cmd.comment = reset.comment;
+
+                    zone->add_command(cmd);
+                }
+            }
+        }
+
+        // Fourth pass: Set up zone callbacks for mob/object spawning
+        logger->debug("Setting up zone callbacks (fourth pass)");
+        for (auto& [zone_entity_id, zone] : zones_) {
+            setup_zone_callbacks(zone);
+        }
+
+        logger->info("Successfully loaded {} zones, {} rooms, {} mobs, {} objects from database",
+                    stats_.zones_loaded, stats_.rooms_loaded, stats_.mobiles_loaded, stats_.objects_loaded);
+        return Success();
+    });
+
+    return load_result;
+}
+
 Result<void> WorldManager::load_rooms_from_directory(const std::string& /* room_dir */) {
     // For now, rooms are loaded as part of zone files
     // TODO: Implement separate room file loading if needed
@@ -1141,9 +1614,56 @@ MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> 
     if (!to_room->can_accommodate(actor.get())) {
         return MovementResult("Destination room is full");
     }
-    
-    // TODO: Check level restrictions, PK flags, etc.
-    
+
+    // Check if actor is a Player to access god_level
+    auto* player = dynamic_cast<const Player*>(actor.get());
+    bool is_god = player && player->is_god();
+    bool is_mobile = (dynamic_cast<const Mobile*>(actor.get()) != nullptr) && !player;
+
+    // Check Godroom - only immortals can enter
+    if (to_room->has_flag(RoomFlag::Godroom) && !is_god) {
+        return MovementResult("Only immortals may enter this divine sanctum");
+    }
+
+    // Check NoMob - mobiles (NPCs) cannot enter
+    if (to_room->has_flag(RoomFlag::NoMob) && is_mobile) {
+        return MovementResult("Mobiles cannot enter this area");
+    }
+
+    // Check Tunnel - only one person at a time
+    if (to_room->has_flag(RoomFlag::Tunnel) && !to_room->contents().actors.empty()) {
+        // Allow gods to bypass tunnel restriction
+        if (!is_god) {
+            return MovementResult("The passage is too narrow for more than one person");
+        }
+    }
+
+    // Check Private room - maximum 2 occupants
+    if (to_room->has_flag(RoomFlag::Private)) {
+        if (to_room->contents().actors.size() >= 2 && !is_god) {
+            return MovementResult("This is a private room");
+        }
+    }
+
+    // Check zone level restrictions
+    auto zone = get_zone(to_room->zone_id());
+    if (zone && !is_god) {
+        int actor_level = actor->stats().level;
+
+        if (!zone->allows_level(actor_level)) {
+            if (actor_level < zone->min_level()) {
+                return MovementResult(fmt::format(
+                    "You must be at least level {} to enter this area", zone->min_level()));
+            } else {
+                return MovementResult(fmt::format(
+                    "This area is for characters level {} and below", zone->max_level()));
+            }
+        }
+    }
+
+    // Check death trap (warn but don't block - player's choice)
+    // Death trap logic is handled elsewhere after movement completes
+
     return MovementResult(true);
 }
 
@@ -1239,27 +1759,128 @@ bool WorldManager::is_passable_for_actor(std::shared_ptr<Room> room, std::shared
     if (!room) {
         return false;
     }
-    
+
     if (!room->can_accommodate(actor.get())) {
         return false;
     }
-    
-    // TODO: Check actor-specific restrictions (level, alignment, etc.)
-    
+
+    // Check actor-specific restrictions
+    auto* player = dynamic_cast<const Player*>(actor.get());
+    bool is_god = player && player->is_god();
+    bool is_mobile = (dynamic_cast<const Mobile*>(actor.get()) != nullptr) && !player;
+
+    // Gods can go anywhere
+    if (is_god) {
+        return true;
+    }
+
+    // Godroom restriction
+    if (room->has_flag(RoomFlag::Godroom)) {
+        return false;
+    }
+
+    // NoMob restriction for NPCs
+    if (room->has_flag(RoomFlag::NoMob) && is_mobile) {
+        return false;
+    }
+
+    // Check zone level restrictions
+    auto zone = get_zone(room->zone_id());
+    if (zone) {
+        int actor_level = actor->stats().level;
+        if (!zone->allows_level(actor_level)) {
+            return false;
+        }
+    }
+
+    // Check sector-based restrictions
+    SectorType sector = room->sector_type();
+
+    // Water sectors require swimming ability (unless flying or walking on water)
+    if (RoomUtils::requires_swimming(sector)) {
+        // Check if actor can swim or has water walking ability
+        if (!actor->has_flag(ActorFlag::Waterwalk) &&
+            !actor->has_flag(ActorFlag::Flying)) {
+            // Check if actor can swim (basic ability for now)
+            // In a full implementation, we'd check SKILL_SWIM
+            return false;
+        }
+    }
+
+    // Flying sector requires flying ability
+    if (sector == SectorType::Flying) {
+        if (!actor->has_flag(ActorFlag::Flying)) {
+            return false;
+        }
+    }
+
+    // Underwater requires water breathing
+    if (sector == SectorType::Underwater) {
+        if (!actor->has_flag(ActorFlag::Underwater_Breathing)) {
+            return false;
+        }
+    }
+
     return true;
 }
 
 int WorldManager::get_movement_cost(std::shared_ptr<Room> /* from_room */, std::shared_ptr<Room> to_room,
-                                   std::shared_ptr<Actor> /* actor */) const {
+                                   std::shared_ptr<Actor> actor) const {
     if (!to_room) {
-        return 1000; // Very high cost for invalid rooms
+        return INVALID_ROOM_MOVEMENT_COST;
     }
-    
+
     int base_cost = RoomUtils::get_movement_cost(to_room->sector_type());
-    
-    // TODO: Apply actor-specific modifiers
-    
-    return base_cost;
+
+    // Apply actor-specific modifiers
+    if (actor) {
+        SectorType sector = to_room->sector_type();
+
+        // Flying reduces movement cost in most sectors
+        if (actor->has_flag(ActorFlag::Flying)) {
+            // Flying is efficient in air and reduces ground movement costs
+            if (sector == SectorType::Flying) {
+                base_cost = FLYING_OPTIMAL_COST;
+            } else if (!RoomUtils::is_water_sector(sector)) {
+                base_cost = std::max(1, base_cost / 2);  // Half cost on ground while flying
+            }
+        }
+
+        // Water walking reduces water sector costs
+        if (actor->has_flag(ActorFlag::Waterwalk)) {
+            if (RoomUtils::is_water_sector(sector)) {
+                base_cost = std::max(1, base_cost - 2);  // Reduced water movement cost
+            }
+        }
+
+        // TODO: Add Haste flag support when spell system is integrated
+        // Haste would reduce all movement costs by 1
+
+        // Encumbrance increases movement cost
+        // Higher weight carried = higher cost modifier
+        float encumbrance_ratio = 0.0f;
+        if (actor->max_carry_weight() > 0) {
+            encumbrance_ratio = static_cast<float>(actor->current_carry_weight()) /
+                               static_cast<float>(actor->max_carry_weight());
+        }
+        if (encumbrance_ratio > 0.75f) {
+            base_cost += 2;  // Heavy load
+        } else if (encumbrance_ratio > 0.5f) {
+            base_cost += 1;  // Medium load
+        }
+
+        // Low constitution increases cost slightly
+        if (actor->stats().constitution < 10) {
+            base_cost += 1;
+        }
+
+        // Sneaking increases movement cost
+        if (actor->has_flag(ActorFlag::Sneak)) {
+            base_cost += 1;  // Moving carefully takes more effort
+        }
+    }
+
+    return std::max(1, base_cost);  // Minimum cost of 1
 }
 
 Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone_id) {
@@ -1281,12 +1902,38 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
     }
     
     auto new_mobile = std::move(new_mobile_result.value());
-    
+
     // Copy stats and properties from prototype
+    new_mobile->set_keywords(prototype->keywords());
+    new_mobile->set_short_description(prototype->short_description());
+    new_mobile->set_description(prototype->description());
+    new_mobile->set_ground(prototype->ground());  // Room description (shown when mob is in room)
     new_mobile->stats() = prototype->stats();
     new_mobile->set_aggressive(prototype->is_aggressive());
     new_mobile->set_aggression_level(prototype->aggression_level());
-    
+
+    // Copy mobile-specific properties
+    new_mobile->set_race(prototype->race());
+    new_mobile->set_gender(prototype->gender());
+    new_mobile->set_size(prototype->size());
+    new_mobile->set_life_force(prototype->life_force());
+    new_mobile->set_composition(prototype->composition());
+    new_mobile->set_damage_type(prototype->damage_type());
+
+    // Copy HP dice and calculate HP for this instance
+    new_mobile->set_hp_dice(prototype->hp_dice_num(), prototype->hp_dice_size(), prototype->hp_dice_bonus());
+    new_mobile->calculate_hp_from_dice();
+
+    // Copy bare hand damage dice
+    new_mobile->set_bare_hand_damage(prototype->bare_hand_damage_dice_num(),
+                                      prototype->bare_hand_damage_dice_size(),
+                                      prototype->bare_hand_damage_dice_bonus());
+
+    // Copy special role flags
+    new_mobile->set_teacher(prototype->is_teacher());
+    new_mobile->set_shopkeeper(prototype->is_shopkeeper());
+    new_mobile->set_class_id(prototype->class_id());
+
     // Find appropriate room for spawning - for now, spawn in the first room of the zone
     auto zone_rooms = get_rooms_in_zone(zone_id);
     if (zone_rooms.empty()) {
@@ -1298,11 +1945,11 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
     std::shared_ptr<Room> spawn_room = nullptr;
     
     if (prototype->name() == "a practice dummy") {
-        // Spawn practice dummy in training room (102)
-        spawn_room = get_room(EntityId{102});
+        // Spawn practice dummy in training room
+        spawn_room = get_room(EntityId{TEST_TRAINING_ROOM_ID});
     } else if (prototype->name() == "a training guard") {
-        // Spawn training guard in starting room (100)
-        spawn_room = get_room(EntityId{100});
+        // Spawn training guard in starting room
+        spawn_room = get_room(EntityId{TEST_STARTING_ROOM_ID});
     }
     
     // Fallback to first room if specific placement didn't work
@@ -1383,24 +2030,47 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
     new_mobile->set_keywords(prototype->keywords());
     new_mobile->set_short_description(prototype->short_description());
     new_mobile->set_description(prototype->description());
+    new_mobile->set_ground(prototype->ground());  // Room description (shown when mob is in room)
     new_mobile->stats() = prototype->stats();
     new_mobile->set_aggressive(prototype->is_aggressive());
     new_mobile->set_aggression_level(prototype->aggression_level());
-    
+
+    // Copy mobile-specific properties
+    new_mobile->set_race(prototype->race());
+    new_mobile->set_gender(prototype->gender());
+    new_mobile->set_size(prototype->size());
+    new_mobile->set_life_force(prototype->life_force());
+    new_mobile->set_composition(prototype->composition());
+    new_mobile->set_damage_type(prototype->damage_type());
+
+    // Copy HP dice and calculate HP for this instance
+    new_mobile->set_hp_dice(prototype->hp_dice_num(), prototype->hp_dice_size(), prototype->hp_dice_bonus());
+    new_mobile->calculate_hp_from_dice();
+
+    // Copy bare hand damage dice
+    new_mobile->set_bare_hand_damage(prototype->bare_hand_damage_dice_num(),
+                                      prototype->bare_hand_damage_dice_size(),
+                                      prototype->bare_hand_damage_dice_bonus());
+
+    // Copy special role flags
+    new_mobile->set_teacher(prototype->is_teacher());
+    new_mobile->set_shopkeeper(prototype->is_shopkeeper());
+    new_mobile->set_class_id(prototype->class_id());
+
     // Place the mobile in the specified room
     auto actor_ptr = std::shared_ptr<Actor>(new_mobile.release());
     auto move_result = move_actor_to_room(actor_ptr, room_id);
     if (!move_result.success) {
-        logger->error("Failed to place spawned mobile in room {}: {}", 
+        logger->error("Failed to place spawned mobile in room {}: {}",
                      room_id, move_result.failure_reason);
         return nullptr;
     }
-    
+
     auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
-    
+
     // Register the spawned mobile for efficient lookups
     register_spawned_mobile(mobile_ptr);
-    
+
     return mobile_ptr;
 }
 
@@ -1436,46 +2106,54 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
     
-    // Check if this is an encoded equipment request (mobile_id | (equipment_slot << 32))
-    // or an inventory request (just mobile_id)
-    uint64_t room_id_value = room_id.value();
-    uint64_t potential_mobile_id = room_id_value & 0xFFFFFFFF; // Lower 32 bits
-    uint64_t potential_equipment_slot = room_id_value >> 32;   // Upper 32 bits
-    
-    // First check if this is a simple inventory request (no upper bits set)
-    if (potential_equipment_slot == 0) {
+    // Check if this is an encoded equipment request
+    // Equipment encoding: zone_id = slot (0-31), local_id = (mobile_zone << 16) | mobile_local_id
+    // Detection: slot must be valid (0-31) AND packed_mobile looks like a packed value (>= 65536)
+    // since any mobile in zone >= 1 will have packed_mobile >= 65536 (1 << 16 = 65536)
+    uint32_t potential_slot = room_id.zone_id();
+    uint32_t packed_mobile = room_id.local_id();
+    bool is_equipment_request = (potential_slot < 32 && packed_mobile >= 65536);
+
+    // First check if this is a simple inventory request (room_id is a mobile's EntityId)
+    if (!is_equipment_request) {
         // Check if object is suitable for mobile inventory (not too heavy, appropriate type)
         // Allow OTHER type objects since they include toys, dolls, and other items mobiles can carry
-        bool suitable_for_mobile = (new_object->weight() <= 100 && 
+        bool suitable_for_mobile = (new_object->weight() <= MOBILE_INVENTORY_MAX_WEIGHT &&
                                    new_object->type() != ObjectType::Fountain);
-        
+
         if (suitable_for_mobile) {
-            // This might be an inventory request - try to find a mobile with this ID
-            std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(EntityId{potential_mobile_id});
-            
+            // This might be an inventory request - try to find a mobile with this EntityId
+            // room_id is passed directly from zone.cpp (the mobile's actual EntityId)
+            std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(room_id);
+
             if (target_mobile) {
                 // This is an inventory request - give the item to the mobile
                 auto shared_object = std::shared_ptr<Object>(new_object.release());
-                
+
                 auto give_result = target_mobile->give_item(shared_object);
                 if (!give_result) {
-                    logger->error("Failed to give object {} to mobile {}: {}", 
-                                object_id, potential_mobile_id, give_result.error().message);
+                    logger->error("Failed to give object {} to mobile {}: {}",
+                                object_id, room_id, give_result.error().message);
                     return nullptr;
                 }
-                
-                logger->debug("Successfully gave object {} to mobile {} inventory", 
-                             object_id, potential_mobile_id);
+
+                logger->debug("Successfully gave object {} to mobile {} inventory",
+                             object_id, room_id);
+                // Register for container lookups (e.g., bags given to mobiles)
+                register_spawned_object(shared_object, object_id);
                 return shared_object;
             }
         }
         // If unsuitable for mobile or no mobile found, continue to standard room placement logic
     }
-    
-    // If upper 32 bits contain data, this is likely an equipment request
-    if (potential_equipment_slot > 0 && potential_equipment_slot < 32) {
-        // This looks like an equipment request - find the mobile and equip the item
-        EntityId mobile_id{potential_mobile_id};
+
+    // If this is an equipment request (zone_id 0-31 = slot, local_id = packed mobile ID)
+    if (is_equipment_request) {
+        // Decode the mobile ID from the packed local_id
+        // local_id = (mobile_zone_id << 16) | mobile_local_id
+        uint32_t mobile_zone = packed_mobile >> 16;
+        uint32_t mobile_local_id = packed_mobile & 0xFFFF;
+        EntityId mobile_id(mobile_zone, mobile_local_id);
         
         // Use efficient O(1) lookup for the mobile
         std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(mobile_id);
@@ -1486,7 +2164,7 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         }
         
         // Convert equipment slot number to EquipSlot enum
-        EquipSlot equip_slot = static_cast<EquipSlot>(potential_equipment_slot);
+        EquipSlot equip_slot = static_cast<EquipSlot>(potential_slot);
         
         auto shared_object = std::shared_ptr<Object>(new_object.release());
         
@@ -1507,21 +2185,52 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
             }
         }
         
-        logger->debug("Successfully equipped object {} on mobile {} in slot {}", 
-                     object_id, mobile_id, potential_equipment_slot);
+        logger->debug("Successfully equipped object {} on mobile {} in slot {}",
+                     object_id, mobile_id, potential_slot);
+        // Register for container lookups (e.g., equipped containers)
+        register_spawned_object(shared_object, object_id);
         return shared_object;
     }
     
+    // Check if this is a container placement (room_id is a container's prototype ID)
+    // This happens for Put_Object commands where room_id is actually the container's EntityId
+    auto container = find_last_spawned_object(room_id);
+    if (container && container->is_container()) {
+        // This is a container placement - cast to Container to access add_item
+        auto* container_ptr = dynamic_cast<Container*>(container.get());
+        if (container_ptr) {
+            auto shared_object = std::shared_ptr<Object>(new_object.release());
+
+            // Add to container's contents using the proper add_item method
+            auto add_result = container_ptr->add_item(shared_object);
+            if (!add_result) {
+                logger->warn("Failed to place object {} in container {}: {}",
+                            object_id, room_id, add_result.error().message);
+                return nullptr;
+            }
+
+            logger->debug("Placed object {} in container {}", object_id, room_id);
+
+            // Register this object as well for potential nested containers
+            register_spawned_object(shared_object, object_id);
+            return shared_object;
+        }
+    }
+
     // Standard room placement
     auto room = get_room(room_id);
     if (!room) {
         logger->error("Cannot place object {} - room {} not found", object_id, room_id);
         return nullptr;
     }
-    
+
     auto shared_object = std::shared_ptr<Object>(new_object.release());
     room->add_object(shared_object);
-    
+
+    // Register this spawned object for future container lookups
+    // This allows Put_Object commands to find this container
+    register_spawned_object(shared_object, object_id);
+
     return shared_object;
 }
 
@@ -1539,12 +2248,38 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
     }
     
     auto new_mobile = std::move(new_mobile_result.value());
-    
+
     // Copy stats and properties from prototype
+    new_mobile->set_keywords(prototype->keywords());
+    new_mobile->set_short_description(prototype->short_description());
+    new_mobile->set_description(prototype->description());
+    new_mobile->set_ground(prototype->ground());  // Room description (shown when mob is in room)
     new_mobile->stats() = prototype->stats();
     new_mobile->set_aggressive(prototype->is_aggressive());
     new_mobile->set_aggression_level(prototype->aggression_level());
-    
+
+    // Copy mobile-specific properties
+    new_mobile->set_race(prototype->race());
+    new_mobile->set_gender(prototype->gender());
+    new_mobile->set_size(prototype->size());
+    new_mobile->set_life_force(prototype->life_force());
+    new_mobile->set_composition(prototype->composition());
+    new_mobile->set_damage_type(prototype->damage_type());
+
+    // Copy HP dice and calculate HP for this instance
+    new_mobile->set_hp_dice(prototype->hp_dice_num(), prototype->hp_dice_size(), prototype->hp_dice_bonus());
+    new_mobile->calculate_hp_from_dice();
+
+    // Copy bare hand damage dice
+    new_mobile->set_bare_hand_damage(prototype->bare_hand_damage_dice_num(),
+                                      prototype->bare_hand_damage_dice_size(),
+                                      prototype->bare_hand_damage_dice_bonus());
+
+    // Copy special role flags
+    new_mobile->set_teacher(prototype->is_teacher());
+    new_mobile->set_shopkeeper(prototype->is_shopkeeper());
+    new_mobile->set_class_id(prototype->class_id());
+
     // Place the mobile in the specified room
     auto spawn_room = get_room(room_id);
     if (!spawn_room) {
@@ -1648,6 +2383,31 @@ void WorldManager::cleanup_zone_mobiles(EntityId zone_id) {
     if (!mobiles_to_remove.empty()) {
         logger->info("Cleaned up {} mobiles from zone {}", mobiles_to_remove.size(), zone_id);
     }
+}
+
+// Object instance tracking for container lookups
+void WorldManager::register_spawned_object(std::shared_ptr<Object> object, EntityId prototype_id) {
+    if (!object) return;
+
+    std::lock_guard<std::shared_mutex> lock(world_mutex_);
+    last_spawned_objects_[prototype_id] = object;
+
+    auto logger = Log::game();
+    logger->debug("Registered spawned object {} (prototype {})", object->display_name(), prototype_id);
+}
+
+std::shared_ptr<Object> WorldManager::find_last_spawned_object(EntityId prototype_id) const {
+    std::shared_lock<std::shared_mutex> lock(world_mutex_);
+    auto it = last_spawned_objects_.find(prototype_id);
+    return (it != last_spawned_objects_.end()) ? it->second : nullptr;
+}
+
+void WorldManager::clear_spawned_objects() {
+    std::lock_guard<std::shared_mutex> lock(world_mutex_);
+    last_spawned_objects_.clear();
+
+    auto logger = Log::game();
+    logger->debug("Cleared spawned object tracking");
 }
 
 // Weather Integration Implementation

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/server/world_server.cpp                    Part of FieryMUD *
- *  Usage: Strand-based world server implementation                       *
- ***************************************************************************/
-
 #include "world_server.hpp"
 
 #include "../commands/builtin_commands.hpp"
@@ -20,6 +15,33 @@
 #include <algorithm>
 #include <memory>
 #include <nlohmann/json.hpp>
+
+// World server constants
+namespace {
+    // Timer intervals
+    constexpr auto CLEANUP_INTERVAL = std::chrono::minutes(5);
+    constexpr auto HEARTBEAT_INTERVAL = std::chrono::seconds(30);
+    constexpr auto COMBAT_PROCESSING_INTERVAL = std::chrono::milliseconds(100);
+
+    // Game time defaults
+    constexpr int DEFAULT_LORE_YEAR = 1000;
+    constexpr int DEFAULT_START_HOUR = 12;  // Noon
+
+    // Starting room IDs
+    constexpr std::uint64_t DEFAULT_START_ROOM_ID = 3001;  // Forest Temple of Mielikki
+    constexpr std::uint64_t TEST_START_ROOM_ID = 100;      // Test world starting room
+
+    // Combat condition thresholds (HP percentage)
+    constexpr int CONDITION_PERFECT = 95;
+    constexpr int CONDITION_SCRATCHED = 85;
+    constexpr int CONDITION_HURT = 70;
+    constexpr int CONDITION_WOUNDED = 50;
+    constexpr int CONDITION_BLEEDING = 30;
+    constexpr int CONDITION_CRITICAL = 15;
+
+    // Percentage calculation base
+    constexpr int PERCENT_MULTIPLIER = 100;
+}
 
 // Static instance pointer for singleton access
 static WorldServer* g_world_server_instance = nullptr;
@@ -59,6 +81,82 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         return std::unexpected(command_init.error());
     }
 
+    // Initialize time system with default starting time
+    GameTime start_time;
+    start_time.hour = DEFAULT_START_HOUR;
+    start_time.day = 0;
+    start_time.month = Month::Deepwinter;
+    start_time.year = DEFAULT_LORE_YEAR;
+
+    auto time_init = TimeSystem::instance().initialize(start_time);
+    if (!time_init) {
+        return std::unexpected(time_init.error());
+    }
+
+    // Register callbacks for time events
+    TimeSystem::instance().on_sunlight_changed([this](SunlightState /* old_state */, SunlightState new_state, Hemisphere /* hemisphere */) {
+        // Broadcast sunlight changes to outdoor players
+        std::string message;
+
+        switch (new_state) {
+            case SunlightState::Rise:
+                message = "\x1B[33mThe sun rises in the east, painting the sky with brilliant colors.\x1B[0m\r\n";
+                break;
+            case SunlightState::Light:
+                message = "\x1B[33mThe bright sun shines warmly upon the land.\x1B[0m\r\n";
+                break;
+            case SunlightState::Set:
+                message = "\x1B[35mThe sun slowly sinks below the western horizon.\x1B[0m\r\n";
+                break;
+            case SunlightState::Dark:
+                message = "\x1B[34mThe night falls, shrouding the land in darkness.\x1B[0m\r\n";
+                break;
+        }
+
+        // Send message to all outdoor players in this hemisphere
+        // Post to world strand to ensure thread safety
+        asio::post(world_strand_, [this, message]() {
+            for (auto& conn : active_connections_) {
+                if (auto player = conn->get_player()) {
+                    // TODO: Check if player is outdoor and in correct hemisphere
+                    // For now, send to all connected players
+                    conn->send_message(message);
+                }
+            }
+        });
+    });
+
+    // Register callback for month changes to update season
+    TimeSystem::instance().on_month_changed([this](const GameTime& /* old_time */, const GameTime& new_time) {
+        Season new_season = new_time.get_season();
+        WeatherSystem::instance().set_season(new_season);
+
+        // Broadcast season change to all players
+        std::string season_message;
+        switch (new_season) {
+            case Season::Spring:
+                season_message = "\x1B[32mSpring has arrived! The world awakens with new life and growth.\x1B[0m\r\n";
+                break;
+            case Season::Summer:
+                season_message = "\x1B[33mSummer begins! The days grow long and warm under the bright sun.\x1B[0m\r\n";
+                break;
+            case Season::Autumn:
+                season_message = "\x1B[31mAutumn descends! Leaves turn golden and the air grows crisp.\x1B[0m\r\n";
+                break;
+            case Season::Winter:
+                season_message = "\x1B[36mWinter arrives! The cold settles in and frost covers the land.\x1B[0m\r\n";
+                break;
+        }
+
+        asio::post(world_strand_, [this, season_message]() {
+            for (auto& conn : active_connections_) {
+                if (auto player = conn->get_player()) {
+                    conn->send_message(season_message);
+                }
+            }
+        });
+    });
+
     // Register all built-in commands
     auto register_result = BuiltinCommands::register_all_commands();
     if (!register_result) {
@@ -86,7 +184,7 @@ Result<void> WorldServer::start() {
 
             // Create default world directly (we're already on the world strand)
             // Create a simple starting room
-            auto room_result = Room::create(EntityId{3001}, "The Forest Temple of Mielikki", SectorType::Inside);
+            auto room_result = Room::create(EntityId{DEFAULT_START_ROOM_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
             if (!room_result) {
                 Log::error("Failed to create starting room: {}", room_result.error().message);
                 return;
@@ -104,12 +202,12 @@ Result<void> WorldServer::start() {
                 return;
             }
 
-            world_manager_->set_start_room(EntityId{3001});
-            Log::info("Default world created with starting room [3001] - The Forest Temple of Mielikki");
+            world_manager_->set_start_room(EntityId{DEFAULT_START_ROOM_ID});
+            Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki", DEFAULT_START_ROOM_ID);
         } else {
             Log::info("World data loaded successfully on world strand");
-            world_manager_->set_start_room(EntityId{3001});
-            Log::info("Default starting room set to [3001] - The Forest Temple of Mielikki");
+            world_manager_->set_start_room(EntityId{DEFAULT_START_ROOM_ID});
+            Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki", DEFAULT_START_ROOM_ID);
         }
         world_loaded_promise_.set_value();
     });
@@ -372,18 +470,18 @@ void WorldServer::handle_player_disconnection(std::shared_ptr<PlayerConnection> 
 
 void WorldServer::schedule_periodic_cleanup() {
     cleanup_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
-    schedule_timer(std::chrono::minutes(5), [this]() { perform_cleanup(); }, cleanup_timer_);
+    schedule_timer(CLEANUP_INTERVAL, [this]() { perform_cleanup(); }, cleanup_timer_);
 }
 
 void WorldServer::schedule_heartbeat() {
     heartbeat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
-    schedule_timer(std::chrono::seconds(30), [this]() { perform_heartbeat(); }, heartbeat_timer_);
+    schedule_timer(HEARTBEAT_INTERVAL, [this]() { perform_heartbeat(); }, heartbeat_timer_);
 }
 
 void WorldServer::schedule_combat_processing() {
-    Log::info("Scheduling combat processing timer (100ms interval)");
+    Log::info("Scheduling combat processing timer ({}ms interval)", COMBAT_PROCESSING_INTERVAL.count());
     combat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
-    schedule_timer(std::chrono::milliseconds(100), [this]() { perform_combat_processing(); }, combat_timer_);
+    schedule_timer(COMBAT_PROCESSING_INTERVAL, [this]() { perform_combat_processing(); }, combat_timer_);
 }
 
 void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::function<void()> task,
@@ -431,11 +529,24 @@ void WorldServer::perform_cleanup() {
 void WorldServer::perform_heartbeat() {
     // This runs on the world strand - thread safe!
 
-    auto uptime =
-        std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - start_time_).count();
+    auto now = std::chrono::steady_clock::now();
+    auto uptime = std::chrono::duration_cast<std::chrono::seconds>(now - start_time_).count();
 
-    Log::trace("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}", uptime,
-               active_connections_.size(), commands_processed_.load());
+    // Update game time system (30 seconds real time since last heartbeat)
+    static auto last_heartbeat_time = now;
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_heartbeat_time);
+    TimeSystem::instance().update(elapsed);
+    last_heartbeat_time = now;
+
+    // Log current game time
+    auto& time = TimeSystem::instance().current_time();
+    Log::trace("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}, Game time: {} of {}, Year {}",
+               uptime,
+               active_connections_.size(),
+               commands_processed_.load(),
+               time.hour,
+               time.month_name(),
+               time.year);
 }
 
 void WorldServer::perform_combat_processing() {
@@ -472,7 +583,7 @@ Result<void> WorldServer::create_default_world() {
         Log::info("Creating default world...");
 
         // Create a simple starting room
-        auto room_result = Room::create(EntityId{3001}, "The Forest Temple of Mielikki", SectorType::Inside);
+        auto room_result = Room::create(EntityId{DEFAULT_START_ROOM_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
         if (!room_result) {
             Log::error("Failed to create starting room: {}", room_result.error().message);
             return;
@@ -490,9 +601,9 @@ Result<void> WorldServer::create_default_world() {
             return;
         }
 
-        world_manager_->set_start_room(EntityId{3001});
+        world_manager_->set_start_room(EntityId{DEFAULT_START_ROOM_ID});
 
-        Log::info("Default world created with starting room [3001] - The Forest Temple of Mielikki");
+        Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki", DEFAULT_START_ROOM_ID);
     });
     return Success();
 }
@@ -510,9 +621,9 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
         room = actor_it->second->current_room();
     }
 
-    // If no room found, try to find a starting room (ID 100)
+    // If no room found, try to find a starting room
     if (!room) {
-        room = world_manager_->get_room(EntityId{100}); // Test world starting room
+        room = world_manager_->get_room(EntityId{TEST_START_ROOM_ID});
     }
 
     if (room) {
@@ -558,20 +669,20 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
         if (opponent) {
             // Calculate condition based on HP percentage
             const auto &opp_stats = opponent->stats();
-            int hp_percent = (opp_stats.hit_points * 100) / std::max(1, opp_stats.max_hit_points);
+            int hp_percent = (opp_stats.hit_points * PERCENT_MULTIPLIER) / std::max(1, opp_stats.max_hit_points);
 
             std::string condition;
-            if (hp_percent >= 95)
+            if (hp_percent >= CONDITION_PERFECT)
                 condition = "perfect";
-            else if (hp_percent >= 85)
+            else if (hp_percent >= CONDITION_SCRATCHED)
                 condition = "scratched";
-            else if (hp_percent >= 70)
+            else if (hp_percent >= CONDITION_HURT)
                 condition = "hurt";
-            else if (hp_percent >= 50)
+            else if (hp_percent >= CONDITION_WOUNDED)
                 condition = "wounded";
-            else if (hp_percent >= 30)
+            else if (hp_percent >= CONDITION_BLEEDING)
                 condition = "bleeding";
-            else if (hp_percent >= 15)
+            else if (hp_percent >= CONDITION_CRITICAL)
                 condition = "critical";
             else
                 condition = "dying";

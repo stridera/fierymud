@@ -1,15 +1,6 @@
-/***************************************************************************
- *  File: arguments.h                                     Part of FieryMUD *
- *  Usage: Allow easily parsing arguments from the user.                   *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.        *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
-#include "string_utils.hpp"
+#include "text/string_utils.hpp"
 
 #include <limits>
 #include <optional>

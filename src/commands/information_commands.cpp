@@ -1,27 +1,80 @@
-/***************************************************************************
- *   File: src/commands/information_commands.cpp           Part of FieryMUD *
- *  Usage: Information and status command implementations                    *
- *                                                                           *
- *  All rights reserved.  See license.doc for complete information.         *
- *                                                                           *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "information_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../database/game_data_cache.hpp"
 #include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/weather.hpp"
+#include "../world/world_manager.hpp"
 #include "builtin_commands.hpp"
 
 #include <algorithm>
+#include <array>
 #include <chrono>
 #include <iomanip>
 #include <sstream>
 
 namespace InformationCommands {
+
+// Helper function to get class display name with colors from cache
+std::string get_class_display_name(std::string_view player_class) {
+    if (player_class.empty()) return "Unknown";
+
+    const auto* class_data = GameDataCache::instance().find_class_by_name(player_class);
+    if (class_data) {
+        return class_data->name;  // Returns name with color codes
+    }
+
+    // Fallback: simple title case
+    std::string result;
+    bool capitalize_next = true;
+    for (char c : player_class) {
+        if (c == '_') {
+            result += '-';
+            capitalize_next = true;
+        } else if (capitalize_next) {
+            result += static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+            capitalize_next = false;
+        } else {
+            result += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+    }
+    return result;
+}
+
+// Helper function to get race display name with colors from cache
+std::string get_race_display_name(std::string_view race) {
+    if (race.empty()) return "Human";
+
+    const auto* race_data = GameDataCache::instance().find_race_by_name(race);
+    if (race_data) {
+        return race_data->name;  // Returns name with color codes
+    }
+
+    // Also try by key (for "HALF_ELF" style lookups)
+    race_data = GameDataCache::instance().find_race_by_key(race);
+    if (race_data) {
+        return race_data->name;
+    }
+
+    // Fallback: simple title case
+    std::string result;
+    bool capitalize_next = true;
+    for (char c : race) {
+        if (c == '_') {
+            result += '-';
+            capitalize_next = true;
+        } else if (capitalize_next) {
+            result += static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+            capitalize_next = false;
+        } else {
+            result += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+    }
+    return result;
+}
 
 // =============================================================================
 // Information Commands
@@ -35,6 +88,14 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             ctx.send_error("You are not in a room.");
             return CommandResult::InvalidState;
         }
+
+        // DEBUG: Log room info for temple
+        auto logger = Log::game();
+        logger->info("DEBUG cmd_look: Room {} '{}' (zone_id={}, local_id={}), can_see={}, light={}",
+                    current_room->id().value(), current_room->name(),
+                    current_room->id().zone_id(), current_room->id().local_id(),
+                    current_room->can_see_in_room(ctx.actor.get()),
+                    current_room->calculate_effective_light());
 
         // Use the room's own get_room_description method which properly handles lighting
         std::string description = current_room->get_room_description(ctx.actor.get());
@@ -77,7 +138,18 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                     full_desc << "\nAlso here:\n";
                     found_others = true;
                 }
-                full_desc << fmt::format("  {}\n", actor->display_name());
+
+                // Check if the actor is a ghost
+                bool is_ghost = (actor->position() == Position::Ghost);
+                std::string ghost_prefix = is_ghost ? "<cyan>(ghost)</> " : "";
+
+                // Use ground description (room_description) if available, fall back to display_name
+                auto ground_desc = actor->ground();
+                if (!ground_desc.empty()) {
+                    full_desc << fmt::format("  {}{}\n", ghost_prefix, ground_desc);
+                } else {
+                    full_desc << fmt::format("  {}{}\n", ghost_prefix, actor->display_name());
+                }
             }
         }
 
@@ -147,6 +219,10 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
     std::string description;
     switch (target_info.type) {
+    case TargetType::Self:
+        // Looking at yourself
+        description = BuiltinCommands::Helpers::format_actor_description(ctx.actor, ctx.actor);
+        break;
     case TargetType::Actor:
         description = BuiltinCommands::Helpers::format_actor_description(target_info.actor, ctx.actor);
         break;
@@ -430,8 +506,27 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     int padding = std::max(0, (45 - static_cast<int>(name.length())) / 2);
     score << fmt::format("{:{}}{}\n\n", "", padding, fmt::format("Character attributes for {}", name));
 
+    // Get player-specific info if available
+    std::string player_class = "Unknown";
+    std::string race = "Human";
+
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (player) {
+        player_class = get_class_display_name(player->player_class());
+        race = get_race_display_name(player->race());
+    }
+
+    // Get size and gender from the actor
+    std::string_view size = ctx.actor->size();
+    std::string gender_str = std::string(ctx.actor->gender());
+    // Capitalize first letter
+    if (!gender_str.empty()) {
+        gender_str[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(gender_str[0])));
+    }
+
     // Basic character info
-    score << fmt::format("Level: {}  Class: {}  Race: Human  Size: Medium  Gender: Neutral\n", stats.level, "Warrior");
+    score << fmt::format("Level: {}  Class: {}  Race: {}  Size: {}  Gender: {}\n",
+                         stats.level, player_class, race, size, gender_str);
 
     // Age, height, weight (placeholder values)
     score << fmt::format("Age: {} years, {} months  Height: 5'10\"  Weight: 180 lbs\n", 20 + stats.level,
@@ -467,15 +562,66 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     int max_weight = ctx.actor->max_carry_weight();
     score << fmt::format("Encumbrance: {}/{} lbs  ", current_weight, max_weight);
 
-    // Experience and gold
+    // Experience, progress bar, and gold
     if (stats.level < 100) { // Not immortal
-        score << fmt::format("Experience: {}  ", stats.experience);
+        long current_exp = stats.experience;
+        long current_level_exp = ActorUtils::experience_for_level(stats.level);
+        long next_level_exp = ActorUtils::experience_for_level(stats.level + 1);
+        long exp_this_level = current_exp - current_level_exp;
+        long exp_needed = next_level_exp - current_level_exp;
+
+        // Calculate percentage and progress bar
+        int percent = 0;
+        if (exp_needed > 0) {
+            percent = static_cast<int>((exp_this_level * 100) / exp_needed);
+            percent = std::clamp(percent, 0, 100);
+        }
+
+        // Build progress bar (20 chars wide)
+        constexpr int bar_width = 20;
+        int filled = (percent * bar_width) / 100;
+        std::string bar;
+        bar += "<green>";
+        for (int i = 0; i < filled; ++i) bar += "=";
+        bar += "</>";
+        bar += "<red>";
+        for (int i = filled; i < bar_width; ++i) bar += "-";
+        bar += "</>";
+
+        score << fmt::format("Exp: {} / {}  [{}] {}%\n",
+                             current_exp, next_level_exp, bar, percent);
     }
     score << fmt::format("Gold: {}\n", stats.gold);
 
     // Current location
     if (ctx.room) {
         score << fmt::format("Location: {} [{}]\n", ctx.room->name(), ctx.room->id().value());
+    }
+
+    // Active effects (spells, buffs, etc.)
+    const auto& effects = ctx.actor->active_effects();
+    if (!effects.empty()) {
+        score << "\n<cyan>Active Effects:</>\n";
+        for (const auto& effect : effects) {
+            std::string duration_str;
+            if (effect.is_permanent()) {
+                duration_str = "permanent";
+            } else if (effect.duration_rounds == 1) {
+                duration_str = "1 round";
+            } else {
+                duration_str = fmt::format("{} rounds", effect.duration_rounds);
+            }
+
+            // Show modifier if applicable
+            if (!effect.modifier_stat.empty() && effect.modifier_value != 0) {
+                std::string sign = effect.modifier_value > 0 ? "+" : "";
+                score << fmt::format("  <green>{}</> ({}{} {}) - {}\n",
+                                     effect.name, sign, effect.modifier_value,
+                                     effect.modifier_stat, duration_str);
+            } else {
+                score << fmt::format("  <green>{}</> - {}\n", effect.name, duration_str);
+            }
+        }
     }
 
     ctx.send(score.str());
@@ -508,7 +654,7 @@ Result<CommandResult> cmd_weather(const CommandContext &ctx) {
 
     // Format weather description
     std::ostringstream weather_report;
-    weather_report << "\n&C--- Weather Report ---&n\n";
+    weather_report << "\n<b:cyan>--- Weather Report ---</>\n";
     weather_report << weather_state.get_description() << "\n\n";
 
     // Add weather effects information
@@ -531,7 +677,7 @@ Result<CommandResult> cmd_weather(const CommandContext &ctx) {
     // Add forecast if available
     auto forecast = Weather().get_forecast(zone_id, std::chrono::hours(6));
     if (!forecast.empty()) {
-        weather_report << "\n&YUpcoming Weather:&n\n";
+        weather_report << "\n<b:yellow>Upcoming Weather:</>\n";
         for (const auto &entry : forecast) {
             weather_report << entry.describe() << "\n";
         }
@@ -584,6 +730,501 @@ Result<CommandResult> cmd_stat(const CommandContext &ctx) {
         ctx.send_error("You can't get statistics for that.");
         return CommandResult::InvalidTarget;
     }
+}
+
+// =============================================================================
+// Target Evaluation Commands
+// =============================================================================
+
+Result<CommandResult> cmd_consider(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Consider who?");
+        return CommandResult::InvalidTarget;
+    }
+
+    auto target = ctx.find_actor_target(ctx.arg(0));
+    if (!target) {
+        ctx.send_error(fmt::format("You don't see {} here.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    if (target == ctx.actor) {
+        ctx.send("Easy! Very easy indeed!");
+        return CommandResult::Success;
+    }
+
+    // Calculate level difference
+    int level_diff = target->stats().level - ctx.actor->stats().level;
+
+    std::string assessment;
+    if (level_diff <= -10) {
+        assessment = fmt::format("{} looks like an easy kill.", target->display_name());
+    } else if (level_diff <= -5) {
+        assessment = fmt::format("{} is no match for you.", target->display_name());
+    } else if (level_diff <= -2) {
+        assessment = fmt::format("{} shouldn't be too tough.", target->display_name());
+    } else if (level_diff <= 0) {
+        assessment = fmt::format("You are fairly evenly matched with {}.", target->display_name());
+    } else if (level_diff <= 2) {
+        assessment = fmt::format("{} looks slightly tougher than you.", target->display_name());
+    } else if (level_diff <= 5) {
+        assessment = fmt::format("{} looks pretty tough.", target->display_name());
+    } else if (level_diff <= 10) {
+        assessment = fmt::format("{} looks very dangerous!", target->display_name());
+    } else {
+        assessment = fmt::format("Are you CRAZY?! {} would destroy you!", target->display_name());
+    }
+
+    ctx.send(assessment);
+
+    // Add health assessment if in combat range
+    if (level_diff >= -5 && level_diff <= 5) {
+        float hp_percent = static_cast<float>(target->stats().hit_points) /
+                          static_cast<float>(target->stats().max_hit_points);
+
+        std::string health_note;
+        if (hp_percent >= 0.95) {
+            health_note = "They appear to be in perfect health.";
+        } else if (hp_percent >= 0.75) {
+            health_note = "They have a few scratches.";
+        } else if (hp_percent >= 0.50) {
+            health_note = "They look moderately wounded.";
+        } else if (hp_percent >= 0.25) {
+            health_note = "They look badly hurt.";
+        } else {
+            health_note = "They appear to be near death!";
+        }
+        ctx.send(health_note);
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_diagnose(const CommandContext &ctx) {
+    std::shared_ptr<Actor> target;
+
+    if (ctx.arg_count() == 0) {
+        target = ctx.actor;
+    } else {
+        target = ctx.find_actor_target(ctx.arg(0));
+        if (!target) {
+            ctx.send_error(fmt::format("You don't see {} here.", ctx.arg(0)));
+            return CommandResult::InvalidTarget;
+        }
+    }
+
+    const auto& stats = target->stats();
+    float hp_percent = static_cast<float>(stats.hit_points) / static_cast<float>(stats.max_hit_points);
+
+    std::ostringstream diagnosis;
+
+    if (target == ctx.actor) {
+        diagnosis << "You diagnose yourself:\n";
+    } else {
+        diagnosis << fmt::format("You diagnose {}:\n", target->display_name());
+    }
+
+    // Health status
+    std::string health_status;
+    if (hp_percent >= 1.0) {
+        health_status = "in perfect health";
+    } else if (hp_percent >= 0.90) {
+        health_status = "in excellent condition";
+    } else if (hp_percent >= 0.75) {
+        health_status = "in good condition with minor wounds";
+    } else if (hp_percent >= 0.50) {
+        health_status = "moderately wounded";
+    } else if (hp_percent >= 0.25) {
+        health_status = "badly wounded";
+    } else if (hp_percent >= 0.10) {
+        health_status = "near death";
+    } else {
+        health_status = "barely clinging to life";
+    }
+
+    if (target == ctx.actor) {
+        diagnosis << fmt::format("  You are {}.\n", health_status);
+        diagnosis << fmt::format("  HP: {}/{}, Mana: {}/{}, Move: {}/{}\n",
+            stats.hit_points, stats.max_hit_points,
+            stats.mana, stats.max_mana,
+            stats.movement, stats.max_movement);
+    } else {
+        diagnosis << fmt::format("  {} is {}.\n", target->display_name(), health_status);
+    }
+
+    // Position status
+    std::string_view pos_name = magic_enum::enum_name(target->position());
+    if (target == ctx.actor) {
+        diagnosis << fmt::format("  You are currently {}.\n", pos_name);
+    } else {
+        diagnosis << fmt::format("  {} is currently {}.\n", target->display_name(), pos_name);
+    }
+
+    ctx.send(diagnosis.str());
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_glance(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Glance at who or what?");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Try to find an actor first
+    auto target_actor = ctx.find_actor_target(ctx.arg(0));
+    if (target_actor) {
+        const auto& stats = target_actor->stats();
+        float hp_percent = static_cast<float>(stats.hit_points) / static_cast<float>(stats.max_hit_points);
+
+        std::string condition;
+        if (hp_percent >= 0.95) {
+            condition = "in excellent condition";
+        } else if (hp_percent >= 0.75) {
+            condition = "has some small wounds";
+        } else if (hp_percent >= 0.50) {
+            condition = "has quite a few wounds";
+        } else if (hp_percent >= 0.25) {
+            condition = "has some big nasty wounds";
+        } else {
+            condition = "is in awful condition";
+        }
+
+        ctx.send(fmt::format("{} is {}.", target_actor->display_name(), condition));
+        ctx.send(fmt::format("{} is {}.", target_actor->display_name(),
+            magic_enum::enum_name(target_actor->position())));
+
+        return CommandResult::Success;
+    }
+
+    // Try to find an object
+    auto target_info = ctx.resolve_target(ctx.arg(0));
+    if (target_info.type == TargetType::Object && target_info.object) {
+        ctx.send(fmt::format("You glance at {}.", target_info.object->short_description()));
+        ctx.send(target_info.object->description());
+        return CommandResult::Success;
+    }
+
+    ctx.send_error(fmt::format("You don't see {} here.", ctx.arg(0)));
+    return CommandResult::InvalidTarget;
+}
+
+// =============================================================================
+// Game Information Commands
+// =============================================================================
+
+Result<CommandResult> cmd_credits(const CommandContext &ctx) {
+    ctx.send("<b:white>=== FieryMUD Credits ===</>\n");
+    ctx.send("FieryMUD is based on CircleMUD, which was developed by:");
+    ctx.send("  Jeremy Elson (creator)");
+    ctx.send("  George Greer (maintainer)");
+    ctx.send("\nCircleMUD is based on DikuMUD, created by:");
+    ctx.send("  Hans Henrik Staerfeldt, Katja Nyboe, Tom Madsen,");
+    ctx.send("  Michael Seifert, and Sebastian Hammer");
+    ctx.send("\nFieryMUD development and modernization by the Fiery Consortium.");
+    ctx.send("\nType 'help' for more information on available commands.");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_motd(const CommandContext &ctx) {
+    ctx.send("<b:cyan>=== Message of the Day ===</>\n");
+    ctx.send("Welcome to FieryMUD!");
+    ctx.send("This is a modern implementation of a classic MUD experience.");
+    ctx.send("Please be respectful of other players and have fun!");
+    ctx.send("\nType 'help' to see available commands.");
+    ctx.send("Type 'who' to see who else is online.");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_news(const CommandContext &ctx) {
+    ctx.send("<b:yellow>=== FieryMUD News ===</>\n");
+    ctx.send("No current news items.");
+    ctx.send("\nCheck back later for updates!");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_policy(const CommandContext &ctx) {
+    ctx.send("<b:red>=== FieryMUD Policies ===</>\n");
+    ctx.send("1. Be respectful to other players.");
+    ctx.send("2. No harassment, hate speech, or discriminatory behavior.");
+    ctx.send("3. No cheating, exploiting bugs, or using automation.");
+    ctx.send("4. Player killing requires consent from both parties.");
+    ctx.send("5. Report bugs using the 'bug' command.");
+    ctx.send("6. The staff reserves the right to remove players who violate policies.");
+    ctx.send("\nViolation of these policies may result in removal from the game.");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_version(const CommandContext &ctx) {
+    ctx.send("<b:green>=== FieryMUD Version Information ===</>\n");
+    ctx.send("FieryMUD Modern C++23 Edition");
+    ctx.send("Version: 1.0.0-dev");
+    ctx.send("Based on: CircleMUD 3.0 bpl 21");
+    ctx.send("\nBuilt with modern C++23 features including:");
+    ctx.send("  - std::expected for error handling");
+    ctx.send("  - std::ranges for data processing");
+    ctx.send("  - ASIO for asynchronous networking");
+    ctx.send("  - nlohmann/json for world data");
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Scanning Commands
+// =============================================================================
+
+Result<CommandResult> cmd_scan(const CommandContext &ctx) {
+    auto current_room = ctx.actor->current_room();
+    if (!current_room) {
+        ctx.send_error("You can't scan from here.");
+        return CommandResult::InvalidState;
+    }
+
+    // Check if the room is visible
+    if (!current_room->can_see_in_room(ctx.actor.get())) {
+        ctx.send_error("It's too dark to see anything.");
+        return CommandResult::InvalidState;
+    }
+
+    // List of directions to check in a sensible order
+    constexpr std::array<Direction, 10> directions = {
+        Direction::North, Direction::East, Direction::South, Direction::West,
+        Direction::Up, Direction::Down,
+        Direction::Northeast, Direction::Northwest, Direction::Southeast, Direction::Southwest
+    };
+
+    std::ostringstream scan_output;
+    bool found_anything = false;
+
+    for (Direction dir : directions) {
+        if (!current_room->has_exit(dir)) {
+            continue;
+        }
+
+        const auto* exit = current_room->get_exit(dir);
+        if (!exit || !exit->to_room.is_valid()) {
+            continue;
+        }
+
+        // Check if door is closed
+        if (exit->has_door && exit->is_closed) {
+            continue; // Can't see through closed doors
+        }
+
+        // Get the destination room
+        auto dest_room = WorldManager::instance().get_room(exit->to_room);
+        if (!dest_room) {
+            continue;
+        }
+
+        // Get actors in that room
+        auto actors = dest_room->contents().actors;
+        if (actors.empty()) {
+            continue;
+        }
+
+        // Found something - build the output
+        std::string dir_name{RoomUtils::get_direction_name(dir)};
+        // Capitalize first letter
+        if (!dir_name.empty()) {
+            dir_name[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(dir_name[0])));
+        }
+
+        scan_output << fmt::format("<b:cyan>{}:</>\n", dir_name);
+
+        for (const auto& actor : actors) {
+            if (!actor) continue;
+
+            // Get actor display info
+            auto ground_desc = actor->ground();
+            std::string actor_display;
+            if (!ground_desc.empty()) {
+                actor_display = std::string(ground_desc);
+            } else {
+                actor_display = std::string(actor->display_name());
+            }
+
+            // Add health/status indicator
+            std::string condition;
+            if (actor->position() == Position::Ghost) {
+                condition = "<cyan>(ghost)</>";
+            } else {
+                const auto& stats = actor->stats();
+                float hp_percent = static_cast<float>(stats.hit_points) /
+                                  static_cast<float>(stats.max_hit_points);
+
+                if (hp_percent >= 0.95) {
+                    condition = "<green>(healthy)</>";
+                } else if (hp_percent >= 0.75) {
+                    condition = "<yellow>(wounded)</>";
+                } else if (hp_percent >= 0.50) {
+                    condition = "<yellow>(hurt)</>";
+                } else if (hp_percent >= 0.25) {
+                    condition = "<red>(badly hurt)</>";
+                } else {
+                    condition = "<b:red>(near death)</>";
+                }
+            }
+
+            scan_output << fmt::format("  {} {}\n", actor_display, condition);
+        }
+
+        found_anything = true;
+    }
+
+    if (!found_anything) {
+        ctx.send("You scan the area but don't see anyone nearby.");
+    } else {
+        ctx.send("You scan the area and see:\n" + scan_output.str());
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Command Registration
+// =============================================================================
+
+Result<void> register_commands() {
+    Commands()
+        .command("look", cmd_look)
+        .alias("l")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("examine", cmd_examine)
+        .alias("exa")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("who", cmd_who)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("where", cmd_where)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("inventory", cmd_inventory)
+        .alias("i")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("equipment", cmd_equipment)
+        .alias("eq")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("score", cmd_score)
+        .alias("sc")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("time", cmd_time)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("weather", cmd_weather)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Stat command - detailed information about targets (temporarily available to all for testing)
+    Commands()
+        .command("stat", cmd_stat)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .description("View detailed statistics for a target")
+        .usage("stat <target|room|me>")
+        .build();
+
+    // Target Evaluation Commands
+    Commands()
+        .command("consider", cmd_consider)
+        .alias("con")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("diagnose", cmd_diagnose)
+        .alias("diag")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    Commands()
+        .command("glance", cmd_glance)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Scanning Commands
+    Commands()
+        .command("scan", cmd_scan)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .description("Scan adjacent rooms for creatures")
+        .build();
+
+    // Game Information Commands
+    Commands()
+        .command("credits", cmd_credits)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    Commands()
+        .command("motd", cmd_motd)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    Commands()
+        .command("news", cmd_news)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    Commands()
+        .command("policy", cmd_policy)
+        .alias("policies")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    Commands()
+        .command("version", cmd_version)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    return Success();
 }
 
 } // namespace InformationCommands

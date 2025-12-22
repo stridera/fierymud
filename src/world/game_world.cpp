@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/world/world_server.cpp           Part of FieryMUD *
- *  Usage: World server and game state management                          *
- ***************************************************************************/
-
 #include "game_world.hpp"
 
 #include "../commands/command_system.hpp"

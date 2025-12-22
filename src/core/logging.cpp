@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/core/logging.cpp                           Part of FieryMUD *
- *  Usage: Modern structured logging implementation                         *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "logging.hpp"
 
 #include <spdlog/pattern_formatter.h>
@@ -15,6 +6,9 @@
 // Static member definition
 std::unordered_map<std::string, std::shared_ptr<Logger>> Logger::loggers_;
 
+// Static member for shared sinks
+std::vector<spdlog::sink_ptr> Logger::sinks_;
+
 void Logger::initialize(const std::string& log_file, LogLevel level, bool console_output) {
     try {
         // Create logs directory if it doesn't exist
@@ -22,45 +16,67 @@ void Logger::initialize(const std::string& log_file, LogLevel level, bool consol
         if (log_path.has_parent_path()) {
             std::filesystem::create_directories(log_path.parent_path());
         }
-        
+
+        // Clear existing sinks and loggers
+        sinks_.clear();
+        loggers_.clear();
+        spdlog::drop_all();
+
         // Set up sinks
-        std::vector<spdlog::sink_ptr> sinks;
-        
         if (console_output) {
             auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
             console_sink->set_level(static_cast<spdlog::level::level_enum>(level));
             console_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%f] [%n] [%l] %v");
-            sinks.push_back(console_sink);
+            sinks_.push_back(console_sink);
         }
-        
+
         // Rotating file sink (10MB max, 5 files)
         auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
             log_file, 10 * 1024 * 1024, 5);
         file_sink->set_level(static_cast<spdlog::level::level_enum>(level));
         file_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%f] [%n] [%l] %v");
-        sinks.push_back(file_sink);
-        
+        sinks_.push_back(file_sink);
+
+        // Create and register default logger with our sinks
+        auto default_logger = std::make_shared<spdlog::logger>("fierymud", sinks_.begin(), sinks_.end());
+        default_logger->set_level(static_cast<spdlog::level::level_enum>(level));
+        spdlog::set_default_logger(default_logger);
+
         // Set global log level
         spdlog::set_level(static_cast<spdlog::level::level_enum>(level));
-        
-        // Flush policy - flush on warning or higher
-        spdlog::flush_on(spdlog::level::warn);
-        
+
+        // Flush policy - flush on debug or higher (ensures file writes)
+        spdlog::flush_on(spdlog::level::debug);
+
+        // Also set periodic flush every 1 second
+        spdlog::flush_every(std::chrono::seconds(1));
+
         // Set pattern for all loggers
         spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%f] [%n] [%l] %v");
-        
-        // Clear any existing loggers to start fresh
-        loggers_.clear();
-        
+
     } catch (const std::exception& ex) {
         // Fallback to console-only logging if file setup fails
         auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
         console_sink->set_level(static_cast<spdlog::level::level_enum>(level));
-        
+
         auto logger = std::make_shared<spdlog::logger>("fierymud", console_sink);
         logger->error("Failed to initialize file logging: {}. Using console only.", ex.what());
-        spdlog::register_logger(logger);
+        spdlog::set_default_logger(logger);
     }
+}
+
+void Logger::shutdown() {
+    // Flush all loggers before shutdown
+    spdlog::apply_all([](std::shared_ptr<spdlog::logger> logger) {
+        logger->flush();
+    });
+
+    // Clear our cached loggers
+    loggers_.clear();
+    sinks_.clear();
+
+    // Shutdown spdlog
+    spdlog::shutdown();
 }
 
 std::shared_ptr<Logger> Logger::get(std::string_view component) {
@@ -149,6 +165,11 @@ namespace Log {
     
     std::shared_ptr<Logger> scripting() {
         static auto logger = Logger::get("scripting");
+        return logger;
+    }
+
+    std::shared_ptr<Logger> database() {
+        static auto logger = Logger::get("database");
         return logger;
     }
 }

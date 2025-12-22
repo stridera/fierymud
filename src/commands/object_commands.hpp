@@ -1,17 +1,11 @@
-/***************************************************************************
- *   File: src/commands/object_commands.hpp                Part of FieryMUD *
- *  Usage: Object interaction command declarations                           *
- *                                                                           *
- *  All rights reserved.  See license.doc for complete information.         *
- *                                                                           *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "command_system.hpp"
 
 namespace ObjectCommands {
+
+// Module registration
+Result<void> register_commands();
 
 // Object interaction commands
 Result<CommandResult> cmd_get(const CommandContext &ctx);
@@ -37,5 +31,19 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx);
 Result<CommandResult> cmd_list(const CommandContext &ctx);
 Result<CommandResult> cmd_buy(const CommandContext &ctx);
 Result<CommandResult> cmd_sell(const CommandContext &ctx);
+
+// Additional object manipulation commands (Phase 1.4)
+Result<CommandResult> cmd_hold(const CommandContext &ctx);
+Result<CommandResult> cmd_grab(const CommandContext &ctx);
+Result<CommandResult> cmd_quaff(const CommandContext &ctx);
+Result<CommandResult> cmd_recite(const CommandContext &ctx);
+Result<CommandResult> cmd_use(const CommandContext &ctx);
+Result<CommandResult> cmd_junk(const CommandContext &ctx);
+Result<CommandResult> cmd_donate(const CommandContext &ctx);
+Result<CommandResult> cmd_compare(const CommandContext &ctx);
+
+// Liquid container commands
+Result<CommandResult> cmd_fill(const CommandContext &ctx);
+Result<CommandResult> cmd_pour(const CommandContext &ctx);
 
 } // namespace ObjectCommands

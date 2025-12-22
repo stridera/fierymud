@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/server/network_manager.cpp                 Part of FieryMUD *
- *  Usage: Modern network management with Asio                            *
- ***************************************************************************/
-
 #include "network_manager.hpp"
 
 #include "../core/logging.hpp"

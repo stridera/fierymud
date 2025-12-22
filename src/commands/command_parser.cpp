@@ -1,16 +1,8 @@
-/***************************************************************************
- *   File: src/commands/command_parser.cpp                Part of FieryMUD *
- *  Usage: Modern command parsing and dispatch system implementation       *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "command_parser.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../text/string_utils.hpp"
 #include "../world/room.hpp"
 
 #include <algorithm>
@@ -388,21 +380,12 @@ bool CommandParser::is_comment_line(std::string_view input) const {
 
 namespace CommandParserUtils {
 std::string_view trim(std::string_view str) {
-    auto start = str.find_first_not_of(" \t\n\r");
-    if (start == std::string_view::npos) {
-        return "";
-    }
-
-    auto end = str.find_last_not_of(" \t\n\r");
-    return str.substr(start, end - start + 1);
+    // Delegate to the global trim function from string_utils.hpp
+    return ::trim(str);
 }
 
 std::string to_lower(std::string_view str) {
-    std::string result;
-    result.reserve(str.length());
-
-    std::transform(str.begin(), str.end(), std::back_inserter(result), [](char c) { return std::tolower(c); });
-    return result;
+    return to_lowercase(str);
 }
 
 bool starts_with_ci(std::string_view str, std::string_view prefix) {

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/main.cpp                             Part of FieryMUD *
- *  Usage: Modern FieryMUD server main entry point                        *
- ***************************************************************************/
-
 #include "core/logging.hpp"
 #include "server/mud_server.hpp"
 

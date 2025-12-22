@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/core/config.cpp                 Part of FieryMUD *
- *  Usage: Modern server configuration implementation                      *
- ***************************************************************************/
-
 #include "config.hpp"
 
 #include "logging.hpp"

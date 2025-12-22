@@ -100,7 +100,7 @@ public:
     /**
      * @brief Convert string race name to enum (for Player class compatibility)
      */
-    static CharacterRace string_to_race(const std::string& race_name);
+    static CharacterRace string_to_race(std::string_view race_name);
     
     /**
      * @brief Perform a modern combat attack with all modifiers

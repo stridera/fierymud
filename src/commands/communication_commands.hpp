@@ -1,24 +1,27 @@
-/***************************************************************************
- *   File: src/commands/communication_commands.hpp         Part of FieryMUD *
- *  Usage: Communication command declarations                                *
- *                                                                           *
- *  All rights reserved.  See license.doc for complete information.         *
- *                                                                           *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "command_system.hpp"
 
 namespace CommunicationCommands {
 
-// Communication commands
+// Module registration
+Result<void> register_commands();
+
+// Basic communication commands
 Result<CommandResult> cmd_say(const CommandContext &ctx);
 Result<CommandResult> cmd_tell(const CommandContext &ctx);
 Result<CommandResult> cmd_emote(const CommandContext &ctx);
 Result<CommandResult> cmd_whisper(const CommandContext &ctx);
 Result<CommandResult> cmd_shout(const CommandContext &ctx);
 Result<CommandResult> cmd_gossip(const CommandContext &ctx);
+
+// Additional communication commands
+Result<CommandResult> cmd_reply(const CommandContext &ctx);
+Result<CommandResult> cmd_ask(const CommandContext &ctx);
+Result<CommandResult> cmd_petition(const CommandContext &ctx);
+Result<CommandResult> cmd_lasttells(const CommandContext &ctx);
+
+// Group communication (requires group system)
+Result<CommandResult> cmd_gtell(const CommandContext &ctx);
 
 } // namespace CommunicationCommands

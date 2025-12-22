@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: s../core/actor.hpp                           Part of FieryMUD *
- *  Usage: Actor base class with stats, inventory, and equipment           *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "entity.hpp"
@@ -218,7 +209,41 @@ enum class ActorFlag {
     Follow,             // Following someone
     Wimpy,              // Flees when low on HP
     No_Summon,          // Cannot be summoned
-    No_Teleport         // Cannot be teleported
+    No_Teleport,        // Cannot be teleported
+    // Spell-applied status flags
+    Bless,              // Blessed (+hitroll, +saves)
+    Armor,              // Magical armor (+AC)
+    Shield,             // Shield spell (+AC)
+    Stoneskin,          // Stoneskin protection
+    Haste,              // Moving faster
+    Slow,               // Moving slower
+    Strength,           // Enhanced strength
+    Weakness,           // Reduced strength
+    Blur,               // Hard to hit
+    Mirror_Image,       // Has illusory copies
+    Protection_Evil,    // Protected from evil
+    Protection_Good,    // Protected from good
+    Fireshield,         // Fire shield active
+    Coldshield,         // Cold shield active
+    Aware,              // Cannot be surprised
+    Berserk,            // In berserker rage
+    Taunted,            // Must attack taunter
+    Webbed,             // Stuck in webs
+    Paralyzed,          // Cannot move
+    Glowing             // Emitting light
+};
+
+/** Active effect on an actor (spell effect, buff, debuff) */
+struct ActiveEffect {
+    std::string name;           // Effect name (e.g., "Armor", "Bless")
+    std::string source;         // What applied this (spell name, item, etc.)
+    ActorFlag flag;             // Associated flag (if any)
+    int duration_rounds;        // Remaining duration in game rounds (-1 = permanent)
+    int modifier_value;         // Stat modifier value (e.g., +10 AC)
+    std::string modifier_stat;  // What stat is modified (e.g., "armor_class")
+    std::chrono::steady_clock::time_point applied_at;  // When effect was applied
+
+    bool is_permanent() const { return duration_rounds < 0; }
 };
 
 /** Base Actor class for all living beings */
@@ -315,7 +340,16 @@ public:
     void update_spell_slots();
     const SpellSlots& spell_slots() const;
     SpellSlots& spell_slots();
-    
+
+    /** Active effect management */
+    void add_effect(const ActiveEffect& effect);
+    void remove_effect(const std::string& effect_name);
+    bool has_effect(const std::string& effect_name) const;
+    const ActiveEffect* get_effect(const std::string& effect_name) const;
+    const std::vector<ActiveEffect>& active_effects() const { return active_effects_; }
+    void tick_effects();  // Called each game round to decrement durations
+    void clear_effects();
+
 protected:
     /** Constructor for derived classes */
     Actor(EntityId id, std::string_view name);
@@ -325,12 +359,23 @@ protected:
           const Stats& stats, const Inventory& inventory, const Equipment& equipment);
     
     /** Room change notification (override in derived classes) */
-    virtual void on_room_change([[maybe_unused]] std::shared_ptr<Room> old_room, 
+    virtual void on_room_change([[maybe_unused]] std::shared_ptr<Room> old_room,
                                [[maybe_unused]] std::shared_ptr<Room> new_room) {}
-    
+
     /** Level up notification (override in derived classes) */
     virtual void on_level_up([[maybe_unused]] int old_level, [[maybe_unused]] int new_level) {}
-    
+
+public:
+    /** Gender and size - common to all actors (players and mobiles) */
+    std::string_view gender() const { return gender_; }
+    void set_gender(std::string_view g) { gender_ = g; }
+
+    std::string_view size() const { return size_; }
+    void set_size(std::string_view s) { size_ = s; }
+
+    virtual std::string_view race() const { return race_; }
+    void set_race(std::string_view r) { race_ = r; }
+
 private:
     Stats stats_;
     Inventory inventory_;
@@ -339,6 +384,10 @@ private:
     std::unordered_set<ActorFlag> flags_;
     std::weak_ptr<Room> current_room_;
     std::unique_ptr<SpellSlots> spell_slots_;
+    std::string gender_ = "Neuter";
+    std::string size_ = "Medium";
+    std::string race_ = "Human";
+    std::vector<ActiveEffect> active_effects_;
 };
 
 /** Mobile (NPC) class */
@@ -367,26 +416,99 @@ public:
     /** Shopkeeper properties */
     bool is_shopkeeper() const { return is_shopkeeper_; }
     void set_shopkeeper(bool value) { is_shopkeeper_ = value; }
+
+    /** Teacher/Trainer properties */
+    bool is_teacher() const { return is_teacher_; }
+    void set_teacher(bool value) { is_teacher_ = value; }
     
     /** Description management */
     std::string_view description() const { return description_; }
     void set_description(std::string_view desc) { description_ = desc; }
-    
+
     /** Memory for received messages (for AI) */
     const std::vector<std::string>& get_received_messages() const { return received_messages_; }
     void clear_received_messages() { received_messages_.clear(); }
-    
+
+    /** Mobile-specific properties loaded from database */
+    std::string_view life_force() const { return life_force_; }
+    void set_life_force(std::string_view lf) { life_force_ = lf; }
+
+    std::string_view composition() const { return composition_; }
+    void set_composition(std::string_view c) { composition_ = c; }
+
+    std::string_view damage_type() const { return damage_type_; }
+    void set_damage_type(std::string_view dt) { damage_type_ = dt; }
+
+    /** Combat stats */
+    int bare_hand_damage_dice_num() const { return bare_hand_dice_num_; }
+    int bare_hand_damage_dice_size() const { return bare_hand_dice_size_; }
+    int bare_hand_damage_dice_bonus() const { return bare_hand_dice_bonus_; }
+    void set_bare_hand_damage(int num, int size, int bonus = 0) {
+        bare_hand_dice_num_ = num;
+        bare_hand_dice_size_ = size;
+        bare_hand_dice_bonus_ = bonus;
+    }
+
+    /** HP dice (used to calculate HP when spawned) */
+    int hp_dice_num() const { return hp_dice_num_; }
+    int hp_dice_size() const { return hp_dice_size_; }
+    int hp_dice_bonus() const { return hp_dice_bonus_; }
+    void set_hp_dice(int num, int size, int bonus = 0) {
+        hp_dice_num_ = num;
+        hp_dice_size_ = size;
+        hp_dice_bonus_ = bonus;
+    }
+
+    /** Class ID for class-specific guildmasters (0 = no class, matches player's class for training) */
+    int class_id() const { return class_id_; }
+    void set_class_id(int id) { class_id_ = id; }
+
+    /** Calculate and set HP from dice - returns the calculated max HP */
+    int calculate_hp_from_dice();
+
 protected:
     Mobile(EntityId id, std::string_view name, int level = 1);
-    
+
 private:
     bool aggressive_ = false;
     int aggression_level_ = 5;  // 0-10 scale
     bool is_shopkeeper_ = false;
+    bool is_teacher_ = false;
     std::vector<std::string> received_messages_;
     std::string description_ = "";  // Detailed description for NPCs
-    
+
+    // Mobile-specific properties from database
+    std::string life_force_ = "Life";
+    std::string composition_ = "Flesh";
+    std::string damage_type_ = "Hit";
+    int bare_hand_dice_num_ = 1;
+    int bare_hand_dice_size_ = 4;
+    int bare_hand_dice_bonus_ = 0;
+
+    // HP dice for calculating HP on spawn
+    int hp_dice_num_ = 1;
+    int hp_dice_size_ = 8;
+    int hp_dice_bonus_ = 0;
+
+    // Class ID for guildmasters (0 = no class, matches player class for training)
+    int class_id_ = 0;
+
     void initialize_for_level(int level);
+};
+
+/** Learned ability data stored on Player */
+struct LearnedAbility {
+    int ability_id = 0;
+    std::string name;               // Cached ability name
+    std::string plain_name;         // Plain text name for lookups
+    bool known = false;             // Has the player learned this?
+    int proficiency = 0;            // 0-100 skill percentage
+    std::chrono::system_clock::time_point last_used{};  // Last usage time
+
+    // Ability metadata (cached from database)
+    std::string type;               // SPELL, SKILL, CHANT, SONG
+    int min_level = 1;              // Minimum level to use
+    bool violent = false;           // Is this a combat ability?
 };
 
 /** Player class */
@@ -411,9 +533,16 @@ public:
     void send_message(std::string_view message) override;
     void receive_message(std::string_view message) override;
     
+    /** Database persistence */
+    std::string_view database_id() const { return database_id_; }
+    void set_database_id(std::string_view id) { database_id_ = id; }
+
     /** Player-specific properties */
     std::string_view account() const { return account_; }
     void set_account(std::string_view account) { account_ = account; }
+
+    /** Level management */
+    void set_level(int level) { stats().level = std::max(1, level); }
     
     bool is_online() const { return online_; }
     void set_online(bool value) { online_ = value; }
@@ -444,18 +573,19 @@ public:
     void set_output(std::shared_ptr<class PlayerOutput> output) { output_ = output; }
     std::shared_ptr<class PlayerOutput> get_output() const { return output_; }
     
-    /** Convenience methods for network layer */  
+    /** Convenience methods for network layer */
     std::shared_ptr<Room> current_room_ptr() const { return current_room(); }
     int level() const { return stats().level; }
     std::string player_class() const { return player_class_; }
-    std::string race() const { return race_; }
-    
-    /** Set character class and race */
-    void set_class(std::string_view character_class) { 
-        player_class_ = character_class; 
+
+    /** Override race() to return string instead of string_view for compatibility */
+    std::string_view race() const override { return Actor::race(); }
+
+    /** Set character class */
+    void set_class(std::string_view character_class) {
+        player_class_ = character_class;
         initialize_spell_slots();
     }
-    void set_race(std::string_view character_race) { race_ = character_race; }
     
     /** Player title management */
     std::string_view title() const { return title_; }
@@ -467,7 +597,30 @@ public:
     std::chrono::seconds total_play_time() const { return total_play_time_; }
     void set_last_logon(std::time_t time) { last_logon_time_ = time; }
     void add_play_time(std::chrono::seconds time) { total_play_time_ += time; }
-    
+
+    /** Clan/Guild membership */
+    bool in_clan() const { return clan_id_ > 0; }
+    unsigned int clan_id() const { return clan_id_; }
+    int clan_rank_index() const { return clan_rank_index_; }
+    std::string_view clan_name() const { return clan_name_; }
+    std::string_view clan_abbreviation() const { return clan_abbreviation_; }
+    std::string_view clan_rank_title() const { return clan_rank_title_; }
+    void set_clan(unsigned int clan_id, std::string_view name, std::string_view abbreviation,
+                  int rank_index, std::string_view rank_title) {
+        clan_id_ = clan_id;
+        clan_name_ = name;
+        clan_abbreviation_ = abbreviation;
+        clan_rank_index_ = rank_index;
+        clan_rank_title_ = rank_title;
+    }
+    void clear_clan() {
+        clan_id_ = 0;
+        clan_rank_index_ = -1;
+        clan_name_.clear();
+        clan_abbreviation_.clear();
+        clan_rank_title_.clear();
+    }
+
     /** Initialize spell slots based on class and level */
     void initialize_spell_slots();
     
@@ -481,6 +634,7 @@ protected:
     void on_level_up(int old_level, int new_level) override;
     
 private:
+    std::string database_id_;  // UUID from database for persistence
     std::string account_;
     bool online_ = false;
     bool linkdead_ = false;  // Player connection lost but still in world
@@ -491,13 +645,192 @@ private:
     
     // Character creation fields
     std::string player_class_ = "warrior";  // Default class
-    std::string race_ = "human";            // Default race
     std::string title_ = "";                // Player title
-    
+
     // Time tracking fields
     std::time_t creation_time_ = std::time(nullptr);  // Time of character creation
     std::time_t last_logon_time_ = 0;                 // Time of last logon
     std::chrono::seconds total_play_time_{0};         // Total accumulated play time
+
+    // Clan/Guild membership
+    unsigned int clan_id_ = 0;               // Clan ID (0 = no clan)
+    int clan_rank_index_ = -1;               // Rank within clan (-1 = not in clan)
+    std::string clan_name_;                  // Cached clan name for display
+    std::string clan_abbreviation_;          // Cached clan abbreviation
+    std::string clan_rank_title_;            // Cached rank title for display
+
+    // Communication tracking
+    std::string last_tell_sender_;           // Name of last player who sent us a tell
+    std::vector<std::string> tell_history_;  // Recent tell history
+    static constexpr size_t MAX_TELL_HISTORY = 20;
+
+    // Ability/Skill system
+    std::unordered_map<int, LearnedAbility> abilities_;  // ability_id -> learned ability data
+
+    // Group/follow system
+    std::weak_ptr<Actor> leader_;            // Who we are following (empty = we are leader or solo)
+    std::vector<std::weak_ptr<Actor>> followers_; // Who is following us
+    bool group_flag_ = true;                 // Whether we accept group invites
+
+public:
+    // Communication tracking methods
+    void set_last_tell_sender(std::string_view sender) { last_tell_sender_ = sender; }
+    std::string_view last_tell_sender() const { return last_tell_sender_; }
+
+    void add_tell_to_history(std::string_view entry) {
+        tell_history_.push_back(std::string(entry));
+        if (tell_history_.size() > MAX_TELL_HISTORY) {
+            tell_history_.erase(tell_history_.begin());
+        }
+    }
+    const std::vector<std::string>& tell_history() const { return tell_history_; }
+    void clear_tell_history() { tell_history_.clear(); }
+
+    // Group/follow system methods
+    bool has_group() const {
+        return !leader_.expired() || !followers_.empty();
+    }
+
+    bool is_group_leader() const {
+        return leader_.expired() && !followers_.empty();
+    }
+
+    bool is_following() const {
+        return !leader_.expired();
+    }
+
+    std::shared_ptr<Actor> get_leader() const {
+        return leader_.lock();
+    }
+
+    const std::vector<std::weak_ptr<Actor>>& get_followers() const {
+        return followers_;
+    }
+
+    void set_leader(std::shared_ptr<Actor> leader) {
+        leader_ = leader;
+    }
+
+    void clear_leader() {
+        leader_.reset();
+    }
+
+    void add_follower(std::shared_ptr<Actor> follower) {
+        // Clean up any expired weak pointers first
+        followers_.erase(
+            std::remove_if(followers_.begin(), followers_.end(),
+                [](const std::weak_ptr<Actor>& wp) { return wp.expired(); }),
+            followers_.end());
+        followers_.push_back(follower);
+    }
+
+    void remove_follower(std::shared_ptr<Actor> follower) {
+        followers_.erase(
+            std::remove_if(followers_.begin(), followers_.end(),
+                [&follower](const std::weak_ptr<Actor>& wp) {
+                    auto sp = wp.lock();
+                    return !sp || sp == follower;
+                }),
+            followers_.end());
+    }
+
+    bool group_flag() const { return group_flag_; }
+    void set_group_flag(bool value) { group_flag_ = value; }
+
+    void send_to_group(std::string_view message);
+
+    // ============================================================================
+    // Ability/Skill System
+    // ============================================================================
+
+    /** Check if player has learned an ability (at any proficiency) */
+    bool has_ability(int ability_id) const {
+        auto it = abilities_.find(ability_id);
+        return it != abilities_.end() && it->second.known;
+    }
+
+    /** Get a specific learned ability (nullptr if not found) */
+    const LearnedAbility* get_ability(int ability_id) const {
+        auto it = abilities_.find(ability_id);
+        return (it != abilities_.end()) ? &it->second : nullptr;
+    }
+
+    /** Get mutable ability (nullptr if not found) */
+    LearnedAbility* get_ability_mutable(int ability_id) {
+        auto it = abilities_.find(ability_id);
+        return (it != abilities_.end()) ? &it->second : nullptr;
+    }
+
+    /** Get all learned abilities (const reference) */
+    const std::unordered_map<int, LearnedAbility>& get_abilities() const {
+        return abilities_;
+    }
+
+    /** Add or update a learned ability */
+    void set_ability(const LearnedAbility& ability) {
+        abilities_[ability.ability_id] = ability;
+    }
+
+    /** Get proficiency for a specific ability (0 if not learned) */
+    int get_proficiency(int ability_id) const {
+        auto it = abilities_.find(ability_id);
+        return (it != abilities_.end() && it->second.known) ? it->second.proficiency : 0;
+    }
+
+    /** Set proficiency for an ability (must already exist) */
+    bool set_proficiency(int ability_id, int proficiency) {
+        auto it = abilities_.find(ability_id);
+        if (it != abilities_.end()) {
+            it->second.proficiency = std::clamp(proficiency, 0, 100);
+            return true;
+        }
+        return false;
+    }
+
+    /** Mark ability as known/learned */
+    bool learn_ability(int ability_id) {
+        auto it = abilities_.find(ability_id);
+        if (it != abilities_.end()) {
+            it->second.known = true;
+            return true;
+        }
+        return false;
+    }
+
+    /** Get abilities filtered by type (SPELL, SKILL, CHANT, SONG) */
+    std::vector<const LearnedAbility*> get_abilities_by_type(std::string_view type) const {
+        std::vector<const LearnedAbility*> result;
+        for (const auto& [id, ability] : abilities_) {
+            if (ability.type == type) {
+                result.push_back(&ability);
+            }
+        }
+        return result;
+    }
+
+    /** Get all known abilities (learned with proficiency > 0) */
+    std::vector<const LearnedAbility*> get_known_abilities() const {
+        std::vector<const LearnedAbility*> result;
+        for (const auto& [id, ability] : abilities_) {
+            if (ability.known) {
+                result.push_back(&ability);
+            }
+        }
+        return result;
+    }
+
+    /** Record ability usage time */
+    void record_ability_use(int ability_id) {
+        auto it = abilities_.find(ability_id);
+        if (it != abilities_.end()) {
+            it->second.last_used = std::chrono::system_clock::now();
+        }
+    }
+
+    /** Clear all abilities (for reloading from database) */
+    void clear_abilities() {
+        abilities_.clear();
+    }
 };
 
 /** Actor utility functions */

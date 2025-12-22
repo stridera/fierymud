@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/builtin_commands.hpp           Part of FieryMUD *
- *  Usage: Core built-in command implementations                          *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "command_system.hpp"

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/game/login_system.hpp            Part of FieryMUD *
- *  Usage: Modern login and character creation system                     *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/actor.hpp"
@@ -13,14 +8,26 @@
 #include <memory>
 #include <string>
 #include <string_view>
+#include <tuple>
+#include <vector>
 
 // Forward declarations
 class PlayerConnection;
 
 /**
  * @brief Login states for the connection state machine
+ *
+ * Supports both legacy character-based login and modern account-based login:
+ * - Legacy: GetName -> GetPassword -> Playing
+ * - Account: GetAccount -> GetAccountPassword -> SelectCharacter -> Playing
  */
 enum class LoginState {
+    // Account-based login flow
+    GetAccount,         // Asking for account username or email
+    GetAccountPassword, // Asking for account password
+    SelectCharacter,    // Showing character selection menu
+
+    // Legacy character-based login (also used for character creation)
     GetName,         // Asking for character name
     GetPassword,     // Asking for password (existing character)
     ConfirmNewName,  // Confirming new character name
@@ -29,6 +36,8 @@ enum class LoginState {
     SelectClass,     // Choosing character class
     SelectRace,      // Choosing character race
     ConfirmCreation, // Final confirmation before creation
+
+    // Terminal states
     Playing,         // Successfully logged in and playing
     Disconnected     // Connection closed
 };
@@ -82,7 +91,12 @@ class LoginSystem {
     void set_player_loaded_callback(PlayerLoadedCallback callback) { player_loaded_callback_ = std::move(callback); }
 
   private:
-    // State machine handlers
+    // Account-based login handlers
+    void handle_get_account(std::string_view input);
+    void handle_get_account_password(std::string_view input);
+    void handle_select_character(std::string_view input);
+
+    // Legacy/character creation handlers
     void handle_get_name(std::string_view input);
     void handle_get_password(std::string_view input);
     void handle_confirm_new_name(std::string_view input);
@@ -100,13 +114,20 @@ class LoginSystem {
     void send_class_menu();
     void send_race_menu();
     void send_creation_summary();
+    void send_character_menu();
     void disconnect_with_message(std::string_view message);
+
+    // User/account management
+    Result<bool> user_exists(std::string_view username_or_email);
+    Result<bool> verify_user(std::string_view username_or_email, std::string_view password);
+    void load_user_characters();
 
     // Character management
     Result<bool> character_exists(std::string_view name);
     Result<std::shared_ptr<Player>> load_character(std::string_view name, std::string_view password);
     Result<std::shared_ptr<Player>> create_character();
     Result<void> save_character(std::shared_ptr<Player> player);
+    void load_player_abilities(std::shared_ptr<Player>& player);
 
     // Validation
     bool is_valid_name(std::string_view name) const;
@@ -125,10 +146,16 @@ class LoginSystem {
     PlayerFileValidation validate_player_file(std::string_view name) const;
 
     // State
-    LoginState state_{LoginState::GetName};
+    LoginState state_{LoginState::GetAccount};  // Start with account-based login
     std::shared_ptr<PlayerConnection> connection_;
     CharacterCreationData creation_data_;
     std::shared_ptr<Player> player_;
+
+    // User/account state
+    std::string user_id_;           // UUID of logged-in user
+    std::string account_name_;      // Username or email used to login
+    std::vector<std::tuple<std::string, std::string, int, std::string>> user_characters_;
+    // Characters: (id, name, level, class)
 
     // Callbacks
     PlayerLoadedCallback player_loaded_callback_;

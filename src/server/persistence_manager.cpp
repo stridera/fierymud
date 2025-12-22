@@ -1,14 +1,12 @@
-/***************************************************************************
- *   File: src/server/persistence_manager.cpp             Part of FieryMUD *
- *  Usage: Modern data persistence implementation                          *
- ***************************************************************************/
-
 #include "persistence_manager.hpp"
 
 #include "../core/logging.hpp"
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
+#include "../text/string_utils.hpp"
 #include "mud_server.hpp"
+#include "../database/connection_pool.hpp"
+#include "../database/player_queries.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -50,9 +48,8 @@ Result<void> PersistenceManager::save_player(const Player& player) {
         }
         
         // Convert player name to lowercase for consistent file naming
-        std::string player_name{player.name()};
-        std::transform(player_name.begin(), player_name.end(), player_name.begin(), ::tolower);
-        
+        std::string player_name = to_lowercase(player.name());
+
         // Save to JSON file
         std::string filename = player_dir + "/" + player_name + ".json";
         
@@ -79,41 +76,19 @@ Result<std::shared_ptr<Player>> PersistenceManager::load_player(std::string_view
     if (!config_) {
         return std::unexpected(Errors::InvalidState("PersistenceManager not initialized"));
     }
-    
-    try {
-        // Convert player name to lowercase for consistent file naming
-        std::string player_name{name};
-        std::transform(player_name.begin(), player_name.end(), player_name.begin(), ::tolower);
-        
-        std::string player_dir = config_->player_directory;
-        std::string filename = player_dir + "/" + player_name + ".json";
-        
-        if (!std::filesystem::exists(filename)) {
-            return std::unexpected(Errors::NotFound("Player file not found: " + std::string{name}));
-        }
-        
-        std::ifstream file(filename);
-        if (!file.is_open()) {
-            return std::unexpected(Errors::FileSystem("Cannot open player file for reading: " + filename));
-        }
-        
-        nlohmann::json player_data;
-        file >> player_data;
-        file.close();
-        
-        // Load player from JSON
-        auto player_result = Player::from_json(player_data);
-        if (!player_result) {
-            return std::unexpected(player_result.error());
-        }
-        
-        Log::info("Loaded player {} from {}", name, filename);
-        // Convert unique_ptr to shared_ptr
-        return std::shared_ptr<Player>(player_result.value().release());
-        
-    } catch (const nlohmann::json::exception& e) {
-        return std::unexpected(Errors::ParseError("Failed to parse player JSON", e.what()));
-    } catch (const std::exception& e) {
-        return std::unexpected(Errors::FileSystem("Failed to load player: " + std::string(e.what())));
+
+    // Load player from database using connection pool
+    auto player_result = ConnectionPool::instance().execute([name](pqxx::work& txn) {
+        return PlayerQueries::load_player_by_name(txn, name);
+    });
+
+    if (!player_result) {
+        Log::debug("Failed to load player '{}' from database: {}", name, player_result.error().message);
+        return std::unexpected(player_result.error());
     }
+
+    Log::info("Loaded player '{}' from database", name);
+
+    // Convert unique_ptr to shared_ptr
+    return std::shared_ptr<Player>(player_result.value().release());
 }

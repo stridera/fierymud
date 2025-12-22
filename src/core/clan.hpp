@@ -1,12 +1,3 @@
-/***************************************************************************
- *  File: clan.hpp                                          Part of FieryMUD *
- *  Usage: Modern clan system header file                                   *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- *  FieryMUD is based on HubisMUD Copyright (C) 1997, 1998.                *
- *  HubisMUD is based on DikuMUD, Copyright (C) 1990, 1991.                *
- ***************************************************************************/
-
 #pragma once
 
 // Forward declarations  
@@ -332,9 +323,17 @@ private:
 extern ClanRepository clan_repository;
 
 // Clan snoop system for administration
-extern std::unordered_map<ClanID, std::unordered_set<CharData*>> clan_snoop_table;
+// Uses character names instead of raw pointers to avoid dangling pointer issues
+extern std::unordered_map<ClanID, std::unordered_set<std::string>> clan_snoop_table;
 
-// Clan snoop management functions
+// Clan snoop management functions (use character name for safe lookup)
+void add_clan_snoop(std::string_view char_name, ClanID clan_id);
+void remove_clan_snoop(std::string_view char_name, ClanID clan_id);
+void remove_all_clan_snoops(std::string_view char_name);
+bool is_snooping_clan(std::string_view char_name, ClanID clan_id);
+std::vector<ClanID> get_snooped_clans(std::string_view char_name);
+
+// Legacy interface wrappers (extract name from CharData)
 void add_clan_snoop(CharData* ch, ClanID clan_id);
 void remove_clan_snoop(CharData* ch, ClanID clan_id);
 void remove_all_clan_snoops(CharData* ch);

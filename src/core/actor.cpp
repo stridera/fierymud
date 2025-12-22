@@ -1,16 +1,8 @@
-/***************************************************************************
- *   File: s../core/actor.cpp                           Part of FieryMUD *
- *  Usage: Actor system implementation                                      *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "actor.hpp"
 #include "spell_system.hpp"
 #include "../core/logging.hpp"
 #include "../game/player_output.hpp"
+#include "../text/string_utils.hpp"
 #include "../world/room.hpp"
 #include "../net/player_connection.hpp"
 
@@ -18,26 +10,70 @@
 #include <cmath>
 #include <sstream>
 
+// Gameplay constants
+namespace {
+    // Attribute bounds
+    constexpr int MIN_ATTRIBUTE = 1;
+    constexpr int MAX_ATTRIBUTE = 25;
+
+    // Level bounds
+    constexpr int MIN_LEVEL = 1;
+    constexpr int MAX_LEVEL = 100;
+
+    // Carry capacity calculation
+    constexpr int BASE_CARRY_CAPACITY = 50;
+    constexpr int CARRY_CAPACITY_PER_STR_MOD = 10;
+
+    // Money conversion rates (copper as base)
+    constexpr int SILVER_TO_COPPER = 10;
+    constexpr int GOLD_TO_COPPER = 100;
+    constexpr int PLATINUM_TO_COPPER = 1000;
+
+    // Message queue limits
+    constexpr size_t MAX_RECEIVED_MESSAGES = 10;
+
+    // Experience calculation constants
+    constexpr double EXP_LEVEL_EXPONENT = 2.5;
+    constexpr int EXP_BASE_MULTIPLIER = 1000;
+
+    // Hit points calculation
+    constexpr int HP_BASE_LEVEL_MULTIPLIER = 2;
+    constexpr int HP_BASE_START = 100;
+    constexpr int HP_MINIMUM = 50;
+
+    // Player age base (cosmetic)
+    constexpr int PLAYER_BASE_AGE = 20;
+
+    // Time conversions
+    constexpr int SECONDS_PER_HOUR = 3600;
+}
+
 // Stats Implementation
 
 Result<void> Stats::validate() const {
-    if (strength < 1 || strength > 25) {
-        return std::unexpected(Errors::InvalidState("Strength must be between 1 and 25"));
+    if (strength < MIN_ATTRIBUTE || strength > MAX_ATTRIBUTE) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Strength must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
-    if (dexterity < 1 || dexterity > 25) {
-        return std::unexpected(Errors::InvalidState("Dexterity must be between 1 and 25"));
+    if (dexterity < MIN_ATTRIBUTE || dexterity > MAX_ATTRIBUTE) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Dexterity must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
-    if (intelligence < 1 || intelligence > 25) {
-        return std::unexpected(Errors::InvalidState("Intelligence must be between 1 and 25"));
+    if (intelligence < MIN_ATTRIBUTE || intelligence > MAX_ATTRIBUTE) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Intelligence must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
-    if (wisdom < 1 || wisdom > 25) {
-        return std::unexpected(Errors::InvalidState("Wisdom must be between 1 and 25"));
+    if (wisdom < MIN_ATTRIBUTE || wisdom > MAX_ATTRIBUTE) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Wisdom must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
-    if (constitution < 1 || constitution > 25) {
-        return std::unexpected(Errors::InvalidState("Constitution must be between 1 and 25"));
+    if (constitution < MIN_ATTRIBUTE || constitution > MAX_ATTRIBUTE) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Constitution must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
-    if (charisma < 1 || charisma > 25) {
-        return std::unexpected(Errors::InvalidState("Charisma must be between 1 and 25"));
+    if (charisma < MIN_ATTRIBUTE || charisma > MAX_ATTRIBUTE) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Charisma must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
     
     if (hit_points < 0 || hit_points > max_hit_points) {
@@ -50,8 +86,9 @@ Result<void> Stats::validate() const {
         return std::unexpected(Errors::InvalidState("Movement invalid"));
     }
     
-    if (level < 1 || level > 100) {
-        return std::unexpected(Errors::InvalidState("Level must be between 1 and 100"));
+    if (level < MIN_LEVEL || level > MAX_LEVEL) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Level must be between {} and {}", MIN_LEVEL, MAX_LEVEL)));
     }
     if (experience < 0) {
         return std::unexpected(Errors::InvalidState("Experience cannot be negative"));
@@ -617,7 +654,7 @@ std::shared_ptr<Object> Actor::unequip(EquipSlot slot) {
 int Actor::max_carry_weight() const {
     // Base capacity increased for better gameplay balance
     // Typical objects weigh 1-20 pounds, so we need reasonable capacity
-    return 50 + Stats::attribute_modifier(stats_.strength) * 10;
+    return BASE_CARRY_CAPACITY + Stats::attribute_modifier(stats_.strength) * CARRY_CAPACITY_PER_STR_MOD;
 }
 
 int Actor::current_carry_weight() const {
@@ -642,7 +679,7 @@ void Actor::gain_experience(long amount) {
     int old_level = stats_.level;
     stats_.experience += amount;
     
-    while (stats_.can_level_up() && stats_.level < 100) {
+    while (stats_.can_level_up() && stats_.level < MAX_LEVEL) {
         auto result = level_up();
         if (!result) {
             Log::error("Failed to level up {}: {}", name(), result.error().message);
@@ -749,6 +786,85 @@ SpellSlots& Actor::spell_slots() {
     return *spell_slots_;
 }
 
+// Active Effect Management
+
+void Actor::add_effect(const ActiveEffect& effect) {
+    // Remove any existing effect with the same name first (refresh/overwrite)
+    remove_effect(effect.name);
+
+    // Add the new effect
+    active_effects_.push_back(effect);
+
+    // Apply the associated flag if set
+    if (effect.flag != ActorFlag::Blind) {  // Blind is 0, so we use a real check
+        set_flag(effect.flag, true);
+    }
+
+    Log::game()->debug("Effect '{}' applied to {} (duration: {} rounds)",
+                      effect.name, name(), effect.duration_rounds);
+}
+
+void Actor::remove_effect(const std::string& effect_name) {
+    auto it = std::find_if(active_effects_.begin(), active_effects_.end(),
+                          [&effect_name](const ActiveEffect& e) {
+                              return e.name == effect_name;
+                          });
+
+    if (it != active_effects_.end()) {
+        // Remove the associated flag
+        if (it->flag != ActorFlag::Blind) {
+            set_flag(it->flag, false);
+        }
+
+        Log::game()->debug("Effect '{}' removed from {}", effect_name, name());
+        active_effects_.erase(it);
+    }
+}
+
+bool Actor::has_effect(const std::string& effect_name) const {
+    return std::any_of(active_effects_.begin(), active_effects_.end(),
+                      [&effect_name](const ActiveEffect& e) {
+                          return e.name == effect_name;
+                      });
+}
+
+const ActiveEffect* Actor::get_effect(const std::string& effect_name) const {
+    auto it = std::find_if(active_effects_.begin(), active_effects_.end(),
+                          [&effect_name](const ActiveEffect& e) {
+                              return e.name == effect_name;
+                          });
+    return it != active_effects_.end() ? &(*it) : nullptr;
+}
+
+void Actor::tick_effects() {
+    // Decrement durations and remove expired effects
+    for (auto it = active_effects_.begin(); it != active_effects_.end(); ) {
+        if (!it->is_permanent()) {
+            it->duration_rounds--;
+            if (it->duration_rounds <= 0) {
+                // Remove the associated flag
+                if (it->flag != ActorFlag::Blind) {
+                    set_flag(it->flag, false);
+                }
+                Log::game()->debug("Effect '{}' expired on {}", it->name, name());
+                it = active_effects_.erase(it);
+                continue;
+            }
+        }
+        ++it;
+    }
+}
+
+void Actor::clear_effects() {
+    // Remove all flags
+    for (const auto& effect : active_effects_) {
+        if (effect.flag != ActorFlag::Blind) {
+            set_flag(effect.flag, false);
+        }
+    }
+    active_effects_.clear();
+}
+
 // Mobile Implementation
 
 Mobile::Mobile(EntityId id, std::string_view name, int level) 
@@ -765,8 +881,9 @@ Result<std::unique_ptr<Mobile>> Mobile::create(EntityId id, std::string_view nam
         return std::unexpected(Errors::InvalidArgument("name", "cannot be empty"));
     }
     
-    if (level < 1 || level > 100) {
-        return std::unexpected(Errors::InvalidArgument("level", "must be between 1 and 100"));
+    if (level < MIN_LEVEL || level > MAX_LEVEL) {
+        return std::unexpected(Errors::InvalidArgument("level",
+            fmt::format("must be between {} and {}", MIN_LEVEL, MAX_LEVEL)));
     }
     
     auto mobile = std::unique_ptr<Mobile>(new Mobile(id, name, level));
@@ -822,13 +939,23 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
         // Parse mob flags (array of strings or comma-separated string)
         if (json.contains("mob_flags")) {
             try {
+                // Helper lambda to process a single flag name
+                auto process_flag = [&mobile](const std::string& flag_name) {
+                    // Handle MobFlags that don't map to ActorFlags
+                    if (flag_name == "TEACHER") {
+                        mobile->set_teacher(true);
+                    } else if (flag_name == "AGGRESSIVE") {
+                        mobile->set_aggressive(true);
+                    } else if (auto flag = ActorUtils::parse_flag(flag_name)) {
+                        // Standard ActorFlag
+                        mobile->set_flag(flag.value(), true);
+                    }
+                };
+
                 if (json["mob_flags"].is_array()) {
                     // Handle array format (modern JSON structure)
                     for (const auto& flag_json : json["mob_flags"]) {
-                        std::string flag_name = flag_json.get<std::string>();
-                        if (auto flag = ActorUtils::parse_flag(flag_name)) {
-                            mobile->set_flag(flag.value(), true);
-                        }
+                        process_flag(flag_json.get<std::string>());
                     }
                 } else {
                     // Handle comma-separated string format (legacy)
@@ -837,13 +964,8 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                         std::istringstream iss(flags_str);
                         std::string flag_name;
                         while (std::getline(iss, flag_name, ',')) {
-                            // Trim whitespace
-                            flag_name.erase(0, flag_name.find_first_not_of(" \t"));
-                            flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
-                            
-                            if (auto flag = ActorUtils::parse_flag(flag_name)) {
-                                mobile->set_flag(flag.value(), true);
-                            }
+                            flag_name = std::string(trim(flag_name));
+                            process_flag(flag_name);
                         }
                     }
                 }
@@ -870,10 +992,8 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                         std::istringstream iss(effects_str);
                         std::string flag_name;
                         while (std::getline(iss, flag_name, ',')) {
-                            // Trim whitespace
-                            flag_name.erase(0, flag_name.find_first_not_of(" \t"));
-                            flag_name.erase(flag_name.find_last_not_of(" \t") + 1);
-                            
+                            flag_name = std::string(trim(flag_name));
+
                             if (auto flag = ActorUtils::parse_flag(flag_name)) {
                                 mobile->set_flag(flag.value(), true);
                             }
@@ -943,13 +1063,13 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                 total_copper += parse_money_value(money["copper"]);
             }
             if (money.contains("silver")) {
-                total_copper += parse_money_value(money["silver"]) * 10;
+                total_copper += parse_money_value(money["silver"]) * SILVER_TO_COPPER;
             }
             if (money.contains("gold")) {
-                total_copper += parse_money_value(money["gold"]) * 100;
+                total_copper += parse_money_value(money["gold"]) * GOLD_TO_COPPER;
             }
             if (money.contains("platinum")) {
-                total_copper += parse_money_value(money["platinum"]) * 1000;
+                total_copper += parse_money_value(money["platinum"]) * PLATINUM_TO_COPPER;
             }
             stats.gold = total_copper;
         }
@@ -973,11 +1093,30 @@ void Mobile::send_message(std::string_view message) {
 
 void Mobile::receive_message(std::string_view message) {
     received_messages_.emplace_back(message);
-    
-    // Keep only the last 10 messages to avoid memory bloat
-    if (received_messages_.size() > 10) {
+
+    // Keep only the last N messages to avoid memory bloat
+    if (received_messages_.size() > MAX_RECEIVED_MESSAGES) {
         received_messages_.erase(received_messages_.begin());
     }
+}
+
+int Mobile::calculate_hp_from_dice() {
+    // Roll HP dice: num d size + bonus
+    // For example: 50d20+20783 means roll 50 d20s and add 20783
+    int total = hp_dice_bonus_;
+
+    // Roll each die
+    for (int i = 0; i < hp_dice_num_; ++i) {
+        // Random roll from 1 to size (use average for consistency in spawning)
+        // Using average: (1 + size) / 2
+        total += (1 + hp_dice_size_) / 2;
+    }
+
+    // Set the HP
+    stats().max_hit_points = total;
+    stats().hit_points = total;
+
+    return total;
 }
 
 void Mobile::initialize_for_level(int level) {
@@ -1083,8 +1222,9 @@ std::string Player::display_name(bool /* with_article */) const {
 
 void Player::send_message(std::string_view message) {
     output_queue_.emplace_back(message);
-    
+
     // If we have an output interface (e.g., PlayerConnection), send immediately
+    // Color processing happens at the PlayerConnection level for ALL output paths
     if (output_) {
         output_->send_message(message);
     }
@@ -1129,7 +1269,7 @@ nlohmann::json Player::get_status_gmcp() const {
         {"name", name()},
         {"level", stats.level},
         {"class", player_class_},
-        {"race", race_},
+        {"race", std::string(race())},
         {"room", room ? room->id().value() : 0},
         {"gold", stats.gold}
     };
@@ -1164,9 +1304,40 @@ void Player::initialize_spell_slots() {
 void Player::on_level_up(int /* old_level */, int /* new_level */) {
     // Update spell slots for new level
     initialize_spell_slots();
-    
+
     // Send GMCP vitals update when player levels up (vitals change)
     send_gmcp_vitals_update();
+}
+
+void Player::send_to_group(std::string_view message) {
+    // If we're following someone, get the leader's group
+    auto leader = get_leader();
+    if (leader) {
+        // Send to leader (who is a Player)
+        if (auto leader_player = std::dynamic_pointer_cast<Player>(leader)) {
+            leader_player->send_message(std::string(message));
+
+            // Send to all of leader's followers
+            for (const auto& weak_follower : leader_player->get_followers()) {
+                if (auto follower = weak_follower.lock()) {
+                    if (auto follower_player = std::dynamic_pointer_cast<Player>(follower)) {
+                        follower_player->send_message(std::string(message));
+                    }
+                }
+            }
+        }
+    } else {
+        // We are the leader or solo - send to self and all followers
+        send_message(std::string(message));
+
+        for (const auto& weak_follower : followers_) {
+            if (auto follower = weak_follower.lock()) {
+                if (auto follower_player = std::dynamic_pointer_cast<Player>(follower)) {
+                    follower_player->send_message(std::string(message));
+                }
+            }
+        }
+    }
 }
 
 nlohmann::json Player::to_json() const {
@@ -1177,7 +1348,7 @@ nlohmann::json Player::to_json() const {
     json["account"] = account_;
     json["god_level"] = god_level_;
     json["player_class"] = player_class_;
-    json["race"] = race_;
+    json["race"] = std::string(race());
     json["start_room"] = start_room_.value();
     
     return json;
@@ -1187,10 +1358,10 @@ nlohmann::json Player::to_json() const {
 
 namespace ActorUtils {
     long experience_for_level(int level) {
-        if (level <= 1) return 0;
-        
-        // Use a progressive scale: level^2.5 * 1000
-        return static_cast<long>(std::pow(level, 2.5) * 1000);
+        if (level <= MIN_LEVEL) return 0;
+
+        // Use a progressive scale: level^EXP_LEVEL_EXPONENT * EXP_BASE_MULTIPLIER
+        return static_cast<long>(std::pow(level, EXP_LEVEL_EXPONENT) * EXP_BASE_MULTIPLIER);
     }
     
     int calculate_hit_points(int level, int constitution) {
@@ -1287,36 +1458,57 @@ std::string Actor::get_stat_info() const {
     auto player = dynamic_cast<const Player*>(this);
     auto mobile = dynamic_cast<const Mobile*>(this);
     
-    // Vital character data - similar to legacy format
-    output << fmt::format("{} '{}'  IDNum: [{:5}], In room [{}]\n", 
-        player ? "PC" : (mobile ? "MOB" : "NPC"), 
-        name(), 
-        static_cast<uint32_t>(id().value()), 
-        current_room() ? static_cast<uint32_t>(current_room()->id().value()) : 0);
+    // Helper to format EntityId as zone:local_id
+    auto format_id = [](const EntityId& eid) -> std::string {
+        return fmt::format("{}:{}", eid.zone_id(), eid.local_id());
+    };
+
+    // Vital character data - modern format with zone:local_id IDs
+    std::string room_str = current_room() ? format_id(current_room()->id()) : "none";
+    output << fmt::format("{} '{}'  ID: [{}], In room [{}]\n",
+        player ? "PC" : (mobile ? "MOB" : "NPC"),
+        name(),
+        format_id(id()),
+        room_str);
     
     // Mobile-specific data
     if (mobile) {
-        // For now, use the same name as alias since we don't have separate alias field
-        output << fmt::format("Alias: {}\n", name());
+        // Show keywords (what players can use to target this mob)
+        auto kw = keywords();
+        std::string keywords_str;
+        for (size_t i = 0; i < kw.size(); ++i) {
+            if (i > 0) keywords_str += " ";
+            keywords_str += kw[i];
+        }
+        output << fmt::format("Keywords: {}\n", keywords_str.empty() ? name() : keywords_str);
     }
-    
+
     // Descriptions
     if (mobile) {
-        output << fmt::format("L-Des: {}\n", short_description().empty() ? "<None>" : short_description());
-        output << fmt::format("Description: {}\n", mobile->description().empty() ? "<None>" : mobile->description());
+        output << fmt::format("Short Desc: {}\n", short_description().empty() ? "<None>" : short_description());
+        output << fmt::format("Room Desc: {}\n", ground().empty() ? "<None>" : ground());
+        output << fmt::format("Look Desc: {}\n", mobile->description().empty() ? "<None>" : mobile->description());
     } else if (player) {
         output << fmt::format("Title: {}\n", player->title().empty() ? "<None>" : player->title());
     }
     
     // Character stats and abilities
     const auto& stats_ = stats();
-    output << fmt::format("Race: {}, Race Align: N/A, ", "Unknown");
-    output << fmt::format("Size: {}, Gender: {}\n", "Medium", "Neuter");
-    output << fmt::format("Life force: Unknown, Composition: Unknown\n");
-    output << fmt::format("Class: {}, Lev: [{:2d}], XP: [{:7}], Align: [{:4d}]\n", 
-        player ? player->player_class() : "NPC", 
-        stats_.level, 
-        stats_.experience, 
+
+    // Get race, gender, size, life force, composition - available on all Actors via base class
+    std::string race_str = std::string(race());  // Actor::race() works for both Mobile and Player
+    std::string gender_str = std::string(gender());
+    std::string size_str = std::string(size());
+    std::string life_force_str = mobile ? std::string(mobile->life_force()) : "Life";
+    std::string composition_str = mobile ? std::string(mobile->composition()) : "Flesh";
+
+    output << fmt::format("Race: {}, Race Align: N/A, ", race_str);
+    output << fmt::format("Size: {}, Gender: {}\n", size_str, gender_str);
+    output << fmt::format("Life force: {}, Composition: {}\n", life_force_str, composition_str);
+    output << fmt::format("Class: {}, Lev: [{:2d}], XP: [{:7}], Align: [{:4d}]\n",
+        player ? player->player_class() : "NPC",
+        stats_.level,
+        stats_.experience,
         stats_.alignment);
     
     // Player-specific data
@@ -1332,15 +1524,21 @@ std::string Actor::get_stat_info() const {
         
         auto creation = format_time(player->creation_time());
         auto last_logon = format_time(player->last_logon_time());
-        auto play_hours = player->total_play_time().count() / 3600;
-        
+        auto play_hours = player->total_play_time().count() / SECONDS_PER_HOUR;
+
         output << fmt::format("Created: [{}], Last Logon: [{}], Played: [{}h]\n",
             creation, last_logon, play_hours);
-        output << fmt::format("Age: [{}], Homeroom: [{}]", 
-            20 + stats_.level, 
-            static_cast<uint32_t>(player->start_room().value()));
-        
-        // TODO: Add clan/guild support
+        output << fmt::format("Age: [{}], Homeroom: [{}]",
+            PLAYER_BASE_AGE + stats_.level,
+            format_id(player->start_room()));
+
+        // Clan/Guild information
+        if (player->in_clan()) {
+            output << fmt::format(", Clan: [{} ({})] Rank: [{}]",
+                player->clan_name(),
+                player->clan_abbreviation(),
+                player->clan_rank_title().empty() ? "Member" : player->clan_rank_title());
+        }
         output << "\n";
     }
     
@@ -1361,22 +1559,27 @@ std::string Actor::get_stat_info() const {
         stats_.movement, stats_.max_movement, 1);
     output << fmt::format("Focus: [{}]\n", stats_.mana);
     
-    // Money (convert from gold to coins)
-    long gold = stats_.gold;
-    long platinum = gold / 1000; gold %= 1000;
-    long silver = gold / 10; gold %= 10;
-    long copper = gold;
+    // Money (convert from copper base to coins)
+    long total_copper = stats_.gold;
+    long platinum = total_copper / PLATINUM_TO_COPPER; total_copper %= PLATINUM_TO_COPPER;
+    long gold = total_copper / GOLD_TO_COPPER; total_copper %= GOLD_TO_COPPER;
+    long silver = total_copper / SILVER_TO_COPPER; total_copper %= SILVER_TO_COPPER;
+    long copper = total_copper;
     
     output << fmt::format(
         "Coins: [{}p / {}g / {}s / {}c], "
         "Bank: [0p / 0g / 0s / 0c]\n",
         platinum, gold, silver, copper);
     
-    // Combat stats
-    output << fmt::format("AC: [{}], Hitroll: [{:2}], Damroll: [{:2}], ", 
-        stats_.armor_class, stats_.hit_roll, stats_.damage_roll);
-    output << fmt::format("Saving throws: [0/0/0/0/0]\n");
-    output << fmt::format("Perception: [   0], Hiddenness: [   0], Rage: [   0]\n");
+    // Combat stats (modern terms for clarity)
+    // Accuracy = hit_roll (bonus to attack rolls)
+    // Evasion = 10 - armor_class (higher armor class = lower evasion)
+    // Damage Bonus = damage_roll
+    int evasion = 10 - stats_.armor_class;  // Convert AC to evasion (10 AC = 0 evasion, 0 AC = +10 evasion)
+    output << fmt::format("Accuracy: [{:2}], Evasion: [{:2}], Damage Bonus: [{:2}]\n",
+        stats_.hit_roll, evasion, stats_.damage_roll);
+    output << fmt::format("Saving throws: [Para: 0, Rod: 0, Petr: 0, Breath: 0, Spell: 0]\n");
+    output << fmt::format("Perception: [{:4}], Stealth: [{:4}], Rage: [{:4}]\n", 0, 0, 0);
     
     // Position and status
     output << fmt::format("Pos: {}", magic_enum::enum_name(position()));
@@ -1393,7 +1596,27 @@ std::string Actor::get_stat_info() const {
     
     // Mobile combat info
     if (mobile) {
-        output << fmt::format("Mob Spec-Proc: None, NPC Bare Hand Dam: 1d4, Attack type: punch\n");
+        // HP dice
+        int hp_bonus = mobile->hp_dice_bonus();
+        std::string hp_dice = fmt::format("{}d{}",
+            mobile->hp_dice_num(),
+            mobile->hp_dice_size());
+        if (hp_bonus != 0) {
+            hp_dice += fmt::format("{:+}", hp_bonus);
+        }
+
+        // Damage dice
+        int dam_bonus = mobile->bare_hand_damage_dice_bonus();
+        std::string damage_dice = fmt::format("{}d{}",
+            mobile->bare_hand_damage_dice_num(),
+            mobile->bare_hand_damage_dice_size());
+        if (dam_bonus != 0) {
+            damage_dice += fmt::format("{:+}", dam_bonus);
+        }
+
+        output << fmt::format("HP Dice: {}, Damage Dice: {}, Attack type: {}\n",
+            hp_dice, damage_dice, mobile->damage_type());
+        output << fmt::format("Mob Spec-Proc: None\n");
     }
     
     // Character flags
@@ -1431,9 +1654,9 @@ std::string Actor::get_stat_info() const {
         output << "Carrying:\n";
         for (const auto& item : inventory_items) {
             if (item) {
-                output << fmt::format("  - {} (ID: {}, Weight: {})\n", 
-                    item->short_description(), 
-                    static_cast<uint32_t>(item->id().value()), 
+                output << fmt::format("  - {} [{}] (Weight: {})\n",
+                    item->short_description(),
+                    format_id(item->id()),
                     item->weight());
             }
         }

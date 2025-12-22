@@ -1,30 +1,35 @@
-/***************************************************************************
- *   File: src/world/zone.cpp                             Part of FieryMUD *
- *  Usage: Modern zone system implementation                               *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "zone.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../text/string_utils.hpp"
 #include "room.hpp"
 
 #include <algorithm>
 #include <fstream>
 #include <regex>
 #include <sstream>
+#include <thread>
 
 // ZoneCommand Implementation
 
 bool ZoneCommand::should_execute() const {
-    // TODO: Implement condition checking based on if_flag
-    // For now, always execute
-    return true;
+    // if_flag determines execution based on previous command result:
+    // 0 = always execute
+    // 1 = execute only if previous command succeeded (object/mobile loaded)
+    // -1 = execute only if previous command failed (nothing loaded, typically for max count)
+    //
+    // Note: The actual check against last_command_succeeded is done in execute_reset()
+    // This method returns true by default since the flag check happens externally
+    // where we have access to the execution context
+
+    // Comment commands always execute
+    if (command_type == ZoneCommandType::Comment) {
+        return true;
+    }
+
+    return true;  // Default: always eligible, actual if_flag check done in execute_reset()
 }
 
 std::string ZoneCommand::to_string() const {
@@ -267,8 +272,10 @@ bool Zone::needs_reset() const {
     }
 
     if (reset_mode_ == ResetMode::OnReboot) {
-        // TODO: Check if this is a reboot situation
-        return false;
+        // OnReboot zones only reset once at server startup
+        // After their first reset (reset_count > 0), they don't reset again until next reboot
+        // The first reset is handled by force_reset() during world loading
+        return stats_.reset_count == 0;  // Only needs reset if never reset yet
     }
 
     auto time_since_reset = stats_.time_since_reset();
@@ -309,19 +316,53 @@ Result<void> Zone::execute_reset() {
     auto logger = Log::game();
     logger->debug("Executing reset for zone {} ({})", name(), id());
 
-    for (const auto &cmd : commands_) {
+    bool last_command_succeeded = true;  // Track previous command result for if_flag
+
+    // Make a copy of commands to iterate over, since process_mobile_equipment()
+    // may modify commands_ during iteration (erasing equipment commands after processing)
+    std::vector<ZoneCommand> commands_snapshot = commands_;
+
+    for (const auto &cmd : commands_snapshot) {
         if (!cmd.should_execute()) {
+            continue;
+        }
+
+        // Skip Equip_Object and Give_Object commands - these are handled by
+        // process_mobile_equipment() inside execute_load_mobile() to ensure
+        // equipment is assigned to the correct mobile instance
+        if (cmd.command_type == ZoneCommandType::Equip_Object ||
+            cmd.command_type == ZoneCommandType::Give_Object) {
+            continue;
+        }
+
+        // Check if_flag condition against last command result
+        // if_flag 0 = always execute
+        // if_flag 1 = execute only if previous succeeded
+        // if_flag -1 = execute only if previous failed
+        if (cmd.if_flag > 0 && !last_command_succeeded) {
+            logger->debug("Zone {} skipping command (if_flag={}, last_succeeded=false): {}",
+                         name(), cmd.if_flag, cmd.to_string());
+            continue;
+        }
+        if (cmd.if_flag < 0 && last_command_succeeded) {
+            logger->debug("Zone {} skipping command (if_flag={}, last_succeeded=true): {}",
+                         name(), cmd.if_flag, cmd.to_string());
             continue;
         }
 
         auto result = execute_command(cmd);
         if (!result) {
             logger->warn("Zone {} command failed: {} - {}", name(), cmd.to_string(), result.error().message);
+            last_command_succeeded = false;
             continue;
         }
 
-        // If command returned false, halt processing
-        if (!result.value()) {
+        // Track if the command "succeeded" for if_flag purposes
+        // Commands that spawn/load something return true on success
+        last_command_succeeded = result.value();
+
+        // If command returned false for Halt, stop processing
+        if (cmd.command_type == ZoneCommandType::Halt) {
             logger->debug("Zone {} reset halted at command: {}", name(), cmd.to_string());
             break;
         }
@@ -444,8 +485,15 @@ Result<bool> Zone::execute_command(const ZoneCommand &cmd) {
         return false; // Stop processing
 
     case ZoneCommandType::Wait:
-        // TODO: Implement wait functionality
-        logger->debug("Zone {} executing wait command ({}s)", name(), cmd.max_count);
+        // Wait command introduces a delay in zone reset processing
+        // In synchronous reset context, this is a brief pause to spread load
+        // max_count represents the wait duration in seconds (typically 0-5)
+        if (cmd.max_count > 0) {
+            logger->debug("Zone {} waiting {}s during reset", name(), cmd.max_count);
+            // Cap wait to prevent excessive delays during zone reset
+            int wait_seconds = std::min(cmd.max_count, 5);
+            std::this_thread::sleep_for(std::chrono::seconds(wait_seconds));
+        }
         return true;
 
     case ZoneCommandType::Load_Mobile:
@@ -470,9 +518,7 @@ Result<bool> Zone::execute_command(const ZoneCommand &cmd) {
     case ZoneCommandType::Close_Door:
     case ZoneCommandType::Lock_Door:
     case ZoneCommandType::Unlock_Door:
-        // TODO: Implement door manipulation
-        logger->debug("Zone {} door command {} room {} dir {}", name(), cmd.command_type, cmd.room_id, cmd.entity_id);
-        return true;
+        return execute_door_command(cmd);
 
     default:
         logger->warn("Zone {} unknown command type: {}", name(), cmd.command_type);
@@ -481,14 +527,70 @@ Result<bool> Zone::execute_command(const ZoneCommand &cmd) {
 }
 
 bool Zone::is_empty_of_players() const {
-    // TODO: Check if any players are in zone rooms
-    return stats_.player_count == 0;
+    // Check if any players are currently in zone rooms
+    if (!get_room_callback_) {
+        // No room callback - fall back to cached count
+        return stats_.player_count == 0;
+    }
+
+    // Iterate through all rooms in this zone and check for players
+    for (EntityId room_id : rooms_) {
+        auto room = get_room_callback_(room_id);
+        if (!room) continue;
+
+        // Check actors in room for players (non-NPCs)
+        // A player is an actor that isn't a Mobile-only instance
+        for (const auto& actor : room->contents().actors) {
+            if (actor) {
+                // If it's not a Mobile (NPC), it's a player
+                auto* mobile = dynamic_cast<const Mobile*>(actor.get());
+                auto* player = dynamic_cast<const Player*>(actor.get());
+                if (player || !mobile) {
+                    return false;  // Found a player
+                }
+            }
+        }
+    }
+
+    return true;  // No players found
 }
 
 void Zone::update_statistics() {
-    // TODO: Count actual players, mobiles, and objects in zone
-    // For now, just update the reset time
     stats_.last_reset = std::chrono::steady_clock::now();
+
+    // Count actual entities in zone rooms if callback available
+    if (!get_room_callback_) {
+        return;  // Keep cached counts
+    }
+
+    int player_count = 0;
+    int mobile_count = 0;
+    int object_count = 0;
+
+    for (EntityId room_id : rooms_) {
+        auto room = get_room_callback_(room_id);
+        if (!room) continue;
+
+        // Count objects in room
+        object_count += static_cast<int>(room->contents().objects.size());
+
+        // Count actors (distinguish players from mobiles)
+        for (const auto& actor : room->contents().actors) {
+            if (actor) {
+                // Check if it's a Mobile (NPC) vs Player
+                auto* player = dynamic_cast<const Player*>(actor.get());
+                if (player) {
+                    player_count++;
+                } else {
+                    mobile_count++;
+                }
+            }
+        }
+    }
+
+    stats_.player_count = player_count;
+    stats_.mobile_count = mobile_count;
+    stats_.object_count = object_count;
 }
 
 // ZoneCommandParser Implementation
@@ -535,9 +637,7 @@ Result<std::vector<ZoneCommand>> ZoneCommandParser::parse_commands(std::string_v
     std::string line;
 
     while (std::getline(stream, line)) {
-        // Trim whitespace
-        line.erase(0, line.find_first_not_of(" \t\r\n"));
-        line.erase(line.find_last_not_of(" \t\r\n") + 1);
+        line = std::string(trim(line));
 
         if (line.empty()) {
             continue;
@@ -729,10 +829,11 @@ void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mob
         bool processed = false;
         
         if (it->container_id == mobile_id) {
-            if (it->command_type == ZoneCommandType::Give_Object && 
+            if (it->command_type == ZoneCommandType::Give_Object &&
                 inventory_items_processed < MAX_INVENTORY_ITEMS_PER_MOBILE) {
                 // Give object to mobile's inventory
-                auto object = spawn_object_callback_(it->entity_id, EntityId{mobile_id.value()});
+                // Pass mobile_id directly to preserve full EntityId (don't use legacy constructor)
+                auto object = spawn_object_callback_(it->entity_id, mobile_id);
                 if (object) {
                     logger->debug("Zone {} gave object '{}' ({}) to mobile '{}' ({})", 
                                  name(), object->display_name(), it->entity_id, 
@@ -746,10 +847,14 @@ void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mob
                 }
             } else if (it->command_type == ZoneCommandType::Equip_Object) {
                 int equipment_slot = it->max_count; // Equipment slot stored in max_count field
-                
+
                 // Only process this slot if we haven't already equipped something there
                 if (processed_slots.find(equipment_slot) == processed_slots.end()) {
-                    EntityId equip_room_id{mobile_id.value() | (static_cast<uint64_t>(equipment_slot) << 32)};
+                    // Encode equipment request: zone_id=slot (1-31), local_id=packed mobile ID
+                    // Pack mobile ID as: (mobile_zone_id << 16) | mobile_local_id
+                    // This preserves both zone and local_id without legacy encoding issues
+                    uint32_t packed_mobile = (mobile_id.zone_id() << 16) | mobile_id.local_id();
+                    EntityId equip_room_id(static_cast<uint32_t>(equipment_slot), packed_mobile);
                     auto object = spawn_object_callback_(it->entity_id, equip_room_id);
                     if (object) {
                         logger->debug("Zone {} equipped object '{}' ({}) on mobile '{}' ({}) slot {}", 
@@ -827,8 +932,9 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
                             
                             if (location_field.is_string()) {
                                 // Modern format: string name like "Wrist", "Hands", etc.
+                                // Use ObjectUtils::parse_equip_slot for case-insensitive and DB value mapping
                                 std::string location_str = location_field.get<std::string>();
-                                auto slot_opt = magic_enum::enum_cast<EquipSlot>(location_str);
+                                auto slot_opt = ObjectUtils::parse_equip_slot(location_str);
                                 slot_value = slot_opt ? static_cast<int>(*slot_opt) : 0;
                             } else if (location_field.is_number()) {
                                 // Legacy format: numeric slot ID
@@ -1069,6 +1175,72 @@ Result<bool> Zone::execute_remove_object(const ZoneCommand &cmd) {
     } else {
         logger->warn("Zone {} failed to remove object {} from room {}", name(), object_id, room_id);
     }
-    
+
+    return true; // Continue processing
+}
+
+Result<bool> Zone::execute_door_command(const ZoneCommand &cmd) {
+    auto logger = Log::game();
+
+    EntityId room_id = cmd.room_id;
+    // Direction is encoded in entity_id
+    auto direction = static_cast<Direction>(cmd.entity_id.value());
+
+    logger->debug("Zone {} executing door command {} room {} direction {}",
+                 name(), cmd.command_type, room_id, direction);
+
+    if (!get_room_callback_) {
+        logger->warn("Zone {} has no get room callback set", name());
+        return true; // Continue processing but don't manipulate door
+    }
+
+    auto room = get_room_callback_(room_id);
+    if (!room) {
+        logger->warn("Zone {} door command - room {} not found", name(), room_id);
+        return true; // Continue processing
+    }
+
+    // Get the exit in the specified direction
+    auto* exit = room->get_exit_mutable(direction);
+    if (!exit) {
+        logger->warn("Zone {} door command - no exit {} in room {}", name(), direction, room_id);
+        return true; // Continue processing
+    }
+
+    // Check if exit has a door
+    if (!exit->has_door) {
+        logger->warn("Zone {} door command - exit {} in room {} has no door", name(), direction, room_id);
+        return true; // Continue processing
+    }
+
+    // Execute the door command
+    switch (cmd.command_type) {
+    case ZoneCommandType::Open_Door:
+        exit->is_closed = false;
+        exit->is_locked = false;
+        logger->debug("Zone {} opened door {} in room {}", name(), direction, room_id);
+        break;
+
+    case ZoneCommandType::Close_Door:
+        exit->is_closed = true;
+        logger->debug("Zone {} closed door {} in room {}", name(), direction, room_id);
+        break;
+
+    case ZoneCommandType::Lock_Door:
+        exit->is_closed = true;
+        exit->is_locked = true;
+        logger->debug("Zone {} locked door {} in room {}", name(), direction, room_id);
+        break;
+
+    case ZoneCommandType::Unlock_Door:
+        exit->is_locked = false;
+        logger->debug("Zone {} unlocked door {} in room {}", name(), direction, room_id);
+        break;
+
+    default:
+        logger->warn("Zone {} unexpected door command type: {}", name(), cmd.command_type);
+        break;
+    }
+
     return true; // Continue processing
 }

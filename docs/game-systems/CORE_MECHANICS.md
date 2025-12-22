@@ -639,7 +639,7 @@ if (EFF_FLAGGED(ch, EFF_PROT_FIRE))
 
 **What You Need**:
 
-1. ✅ **Spell Definitions**: ABILITIES_COMPLETE.md (all 368)
+1. ✅ **Spell Definitions**: `fierylib/docs/extraction-reports/abilities.csv` (authoritative)
 2. ✅ **Effect Flags**: EFFECT_FLAGS_REFERENCE.md (90 flags)
 3. ✅ **APPLY Locations**: This document (31 stat modifiers)
 4. ✅ **Damage Types**: This document (13 types + susceptibility)
@@ -662,11 +662,9 @@ if (EFF_FLAGGED(ch, EFF_PROT_FIRE))
 ## Cross-References
 
 ### Related Documentation
-- `ABILITIES_COMPLETE.md` - All 368 abilities with formulas
+- `fierylib/docs/extraction-reports/abilities.csv` - Authoritative ability data from `skills.cpp`
 - `EFFECT_FLAGS_REFERENCE.md` - What each effect flag does
-- `DAMAGE_SPELL_FORMULAS.md` - All damage spell formulas
-- `SKILL_MECHANICS.md` - All skill implementations
-- `all_spell_implementations.json` - Machine-readable data
+- `fierylib/docs/mapping/effects_reference.csv` - Effect definitions and usage
 
 ### Key Source Files
 - `magic.cpp` - Spell casting and mag_*() functions
@@ -686,4 +684,4 @@ if (EFF_FLAGGED(ch, EFF_PROT_FIRE))
 
 ---
 
-*This document combined with ABILITIES_COMPLETE.md provides everything needed to rebuild the FieryMUD magic system from scratch.*
+*This document combined with `fierylib/docs/extraction-reports/abilities.csv` provides everything needed to rebuild the FieryMUD magic system from scratch.*

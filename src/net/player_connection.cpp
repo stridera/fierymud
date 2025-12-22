@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/net/player_connection.cpp     Part of FieryMUD *
- *  Usage: Modern player connection implementation                            *
- ***************************************************************************/
-
 #include "player_connection.hpp"
 
 #include "../commands/command_system.hpp"
@@ -11,6 +6,7 @@
 #include "../core/logging.hpp"
 #include "../server/network_manager.hpp"
 #include "../server/world_server.hpp"
+#include "../text/text_format.hpp"
 #include "../world/world_manager.hpp"
 #include "mssp_handler.hpp"
 
@@ -600,7 +596,7 @@ void PlayerConnection::send_telnet_negotiation() {
     
     // Don't immediately request capabilities - wait for client response first
     // This prevents potential infinite loops with aggressive clients
-    // TODO: Request capabilities after initial GMCP handshake is complete
+    // Capabilities are requested in handle_telnet_option() when client responds with DO
 }
 
 void PlayerConnection::start_read() {
@@ -658,6 +654,14 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
             telnet_buffer_.clear();
             telnet_buffer_.push_back(byte);
         } else if (in_telnet_negotiation_) {
+            // Check size limit before adding to buffer (prevent DoS)
+            if (telnet_buffer_.size() >= MAX_TELNET_SUBNEG_LENGTH) {
+                Log::warn("Telnet subnegotiation from {} exceeded max size ({}), aborting",
+                          remote_address(), MAX_TELNET_SUBNEG_LENGTH);
+                in_telnet_negotiation_ = false;
+                telnet_buffer_.clear();
+                continue;
+            }
             telnet_buffer_.push_back(byte);
 
             // Check for complete telnet commands
@@ -838,7 +842,9 @@ void PlayerConnection::send_message(std::string_view message) {
     if (!is_connected())
         return;
 
-    queue_output(fmt::format("{}\r\n", message));
+    // Process XML-lite markup (e.g., <red>, <b:green>) to ANSI escape codes
+    std::string processed = TextFormat::apply_colors(message);
+    queue_output(fmt::format("{}\r\n", processed));
 }
 
 void PlayerConnection::send_prompt(std::string_view prompt) {
@@ -853,7 +859,9 @@ void PlayerConnection::send_line(std::string_view line) {
     if (!is_connected())
         return;
 
-    queue_output(fmt::format("{}\r\n", line));
+    // Process XML-lite markup (e.g., <red>, <b:green>) to ANSI escape codes
+    std::string processed = TextFormat::apply_colors(line);
+    queue_output(fmt::format("{}\r\n", processed));
 }
 
 void PlayerConnection::send_ga() {
@@ -900,8 +908,19 @@ void PlayerConnection::flush_output() {
 void PlayerConnection::handle_write(const asio::error_code &error, std::size_t /*bytes_transferred*/) {
     write_in_progress_ = false;
 
+    // If we're already disconnecting/disconnected, don't process further
+    if (state_ == ConnectionState::Disconnecting || state_ == ConnectionState::Disconnected) {
+        output_queue_.clear();
+        return;
+    }
+
     if (error) {
-        Log::error("Write error to {}: {}", remote_address(), error.message());
+        // Log at debug level for expected errors (broken pipe during disconnect)
+        if (error == asio::error::broken_pipe || error == asio::error::connection_reset) {
+            Log::debug("Write error to {} (expected during disconnect): {}", remote_address(), error.message());
+        } else {
+            Log::error("Write error to {}: {}", remote_address(), error.message());
+        }
         disconnect("Write error");
         return;
     }
@@ -959,15 +978,22 @@ void PlayerConnection::send_status() {
 }
 
 void PlayerConnection::disconnect(std::string_view reason) {
-    if (state_ == ConnectionState::Disconnected)
+    // Check if already disconnecting or disconnected to prevent re-entry
+    if (state_ == ConnectionState::Disconnected || state_ == ConnectionState::Disconnecting)
         return;
 
     Log::info("Disconnecting {} ({})", remote_address(), reason);
 
     transition_to(ConnectionState::Disconnecting);
 
-    if (!reason.empty()) {
-        send_message(fmt::format("Disconnecting: {}", reason));
+    // Only try to send farewell message if socket is still valid and open
+    if (!reason.empty() && connection_socket_ && connection_socket_->is_open()) {
+        // Check if socket is actually writable (not already errored)
+        try {
+            send_message(fmt::format("Disconnecting: {}", reason));
+        } catch (...) {
+            // Socket already broken, ignore
+        }
     }
 
     force_disconnect();

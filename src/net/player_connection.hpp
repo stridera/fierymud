@@ -1,7 +1,4 @@
-/***************************************************************************
- *   File: src/net/player_connection.hpp     Part of FieryMUD *
- *  Usage: Modern player connection with GMCP and login support               *
- ***************************************************************************/
+// Async TCP connection with telnet protocol, GMCP, and MTTS support
 
 #pragma once
 
@@ -10,7 +7,7 @@
 #include "../game/login_system.hpp"
 #include "../game/player_output.hpp"
 #include "../world/room.hpp"
-#include "../commands/terminal_capabilities.hpp"
+#include "../text/terminal_capabilities.hpp"
 #include "tls_context.hpp"
 
 #include <asio.hpp>
@@ -300,4 +297,5 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead
     static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{100};
     static constexpr size_t MAX_INPUT_LINE_LENGTH{512};
+    static constexpr size_t MAX_TELNET_SUBNEG_LENGTH{8192}; // Max GMCP/subneg message size
 };

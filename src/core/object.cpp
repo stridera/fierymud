@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: s../core/object.cpp                          Part of FieryMUD *
- *  Usage: Object hierarchy implementation                                  *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "object.hpp"
 #include "../core/logging.hpp"
 
@@ -14,6 +5,30 @@
 #include <iostream>
 #include <sstream>
 #include <unordered_map>
+
+// Object system constants
+namespace {
+    // Container defaults
+    constexpr int DEFAULT_CONTAINER_CAPACITY = 10;      // Number of items
+    constexpr int DEFAULT_WEIGHT_CAPACITY = 100;        // Weight units
+
+    // Light defaults
+    constexpr int DEFAULT_LIGHT_DURATION = 100;         // Time units
+    constexpr int DEFAULT_LIGHT_BRIGHTNESS = 1;
+    constexpr int BRIGHTNESS_CAPACITY_DIVISOR = 100;    // Scale capacity to brightness
+
+    // Object condition constants
+    constexpr int MIN_CONDITION = 0;
+    constexpr int MAX_CONDITION = 100;
+    constexpr int CONDITION_PERFECT = 90;
+    constexpr int CONDITION_SLIGHTLY_WORN = 80;
+    constexpr int CONDITION_WORN = 60;
+    constexpr int CONDITION_DAMAGED = 40;
+    constexpr int CONDITION_BADLY_DAMAGED = 20;
+
+    // Spawn constraints
+    constexpr int MOBILE_MAX_SPAWN_WEIGHT = 100;
+}
 
 // DamageProfile Implementation
 
@@ -56,8 +71,7 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
         case ObjectType::Container:
         case ObjectType::Liquid_Container: {
             // Default capacity for containers created via Object::create
-            int container_capacity = 10;
-            auto container_result = Container::create(id, name, container_capacity);
+            auto container_result = Container::create(id, name, DEFAULT_CONTAINER_CAPACITY);
             if (!container_result.has_value()) {
                 return std::unexpected(container_result.error());
             }
@@ -399,8 +413,8 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             } catch (const std::exception& e) {
                 // If parsing legacy values fails, use defaults but continue loading
                 ContainerInfo default_container;
-                default_container.capacity = 10;        // Default capacity
-                default_container.weight_capacity = 100; // Default weight capacity
+                default_container.capacity = DEFAULT_CONTAINER_CAPACITY;
+                default_container.weight_capacity = DEFAULT_WEIGHT_CAPACITY;
                 default_container.closeable = true;
                 default_container.closed = false;
                 object->set_container_info(default_container);
@@ -443,7 +457,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                     std::string capacity_str = values_json["Capacity"].get<std::string>();
                     if (!capacity_str.empty()) {
                         int capacity = std::stoi(capacity_str);
-                        light.brightness = std::max(1, capacity / 100);  // Scale down capacity to brightness
+                        light.brightness = std::max(1, capacity / BRIGHTNESS_CAPACITY_DIVISOR);
                     }
                 }
                 if (values_json.contains("Is_Lit:")) {
@@ -457,8 +471,8 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 // If parsing legacy values fails, use defaults but continue loading
                 // This prevents server crashes from malformed legacy data
                 LightInfo default_light;
-                default_light.duration = 100;  // Default duration for legacy lights
-                default_light.brightness = 1;
+                default_light.duration = DEFAULT_LIGHT_DURATION;
+                default_light.brightness = DEFAULT_LIGHT_BRIGHTNESS;
                 default_light.lit = false;
                 object->set_light_info(default_light);
             }
@@ -606,8 +620,9 @@ Result<void> Object::validate() const {
         return std::unexpected(Errors::InvalidState("Object value cannot be negative"));
     }
     
-    if (condition_ < 0 || condition_ > 100) {
-        return std::unexpected(Errors::InvalidState("Object condition must be between 0 and 100"));
+    if (condition_ < MIN_CONDITION || condition_ > MAX_CONDITION) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("Object condition must be between {} and {}", MIN_CONDITION, MAX_CONDITION)));
     }
     
     return Success();
@@ -616,21 +631,21 @@ Result<void> Object::validate() const {
 std::string Object::display_name_with_condition(bool with_article) const {
     std::string base_name = display_name(with_article);
     std::string_view quality = quality_description();
-    
-    if (!quality.empty() && condition_ < 100) {
+
+    if (!quality.empty() && condition_ < MAX_CONDITION) {
         return fmt::format("{} {}", quality, base_name);
     }
-    
+
     return base_name;
 }
 
 std::string_view Object::quality_description() const {
-    if (condition_ >= 90) return "";           // Perfect condition
-    if (condition_ >= 80) return "slightly worn";
-    if (condition_ >= 60) return "worn";
-    if (condition_ >= 40) return "damaged";
-    if (condition_ >= 20) return "badly damaged";
-    if (condition_ > 0)   return "nearly broken";
+    if (condition_ >= CONDITION_PERFECT) return "";                // Perfect condition
+    if (condition_ >= CONDITION_SLIGHTLY_WORN) return "slightly worn";
+    if (condition_ >= CONDITION_WORN) return "worn";
+    if (condition_ >= CONDITION_DAMAGED) return "damaged";
+    if (condition_ >= CONDITION_BADLY_DAMAGED) return "badly damaged";
+    if (condition_ > MIN_CONDITION)   return "nearly broken";
     return "broken";
 }
 
@@ -831,7 +846,54 @@ namespace ObjectUtils {
     }
     
     std::optional<EquipSlot> parse_equip_slot(std::string_view slot_name) {
-        return magic_enum::enum_cast<EquipSlot>(slot_name);
+        // First try exact match with magic_enum
+        if (auto slot = magic_enum::enum_cast<EquipSlot>(slot_name)) {
+            return slot;
+        }
+
+        // Try case-insensitive match with magic_enum
+        if (auto slot = magic_enum::enum_cast<EquipSlot>(slot_name, magic_enum::case_insensitive)) {
+            return slot;
+        }
+
+        // Handle database-specific values that don't match enum names
+        // Convert to uppercase for consistent comparison
+        std::string upper_name(slot_name);
+        for (auto& c : upper_name) {
+            c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+        }
+
+        // Map database values to EquipSlot
+        static const std::unordered_map<std::string_view, EquipSlot> db_mappings = {
+            // Standard mappings (uppercase version of enum names with underscores)
+            {"FINGER_L", EquipSlot::Finger_L},
+            {"FINGER_R", EquipSlot::Finger_R},
+            {"NECK_1", EquipSlot::Neck1},
+            {"NECK_2", EquipSlot::Neck2},
+            {"WRIST_L", EquipSlot::Wrist_L},
+            {"WRIST_R", EquipSlot::Wrist_R},
+
+            // Legacy CircleMUD naming variations
+            {"HOVER", EquipSlot::Float},          // Float slot
+            {"EYES", EquipSlot::Eye},             // Eye slot (singular)
+            {"LEAR", EquipSlot::Ear},             // Left ear → Ear slot
+            {"REAR", EquipSlot::Ear},             // Right ear → Ear slot
+            {"OBELT", EquipSlot::Waist},          // Outer belt → Waist
+            {"HOLD2", EquipSlot::Hold},           // Second hold → Hold (same slot)
+            {"TWO_HAND_WIELD", EquipSlot::Wield}, // Two-handed weapon → Wield
+
+            // Common variations
+            {"NONE", EquipSlot::None},
+            {"", EquipSlot::None}
+        };
+
+        auto it = db_mappings.find(upper_name);
+        if (it != db_mappings.end()) {
+            return it->second;
+        }
+
+        // No match found
+        return std::nullopt;
     }
     
     bool can_equip_in_slot(ObjectType type, EquipSlot slot) {

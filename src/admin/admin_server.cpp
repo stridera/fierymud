@@ -9,6 +9,22 @@ using json = nlohmann::json;
 using namespace asio;
 using namespace asio::ip;
 
+// Admin server constants
+namespace {
+    // Buffer sizes
+    constexpr size_t HTTP_REQUEST_BUFFER_SIZE = 8192;
+
+    // HTTP status codes
+    constexpr int HTTP_OK = 200;
+    constexpr int HTTP_BAD_REQUEST = 400;
+    constexpr int HTTP_UNAUTHORIZED = 401;
+    constexpr int HTTP_NOT_FOUND = 404;
+    constexpr int HTTP_INTERNAL_ERROR = 500;
+
+    // HTTP header parsing
+    constexpr size_t AUTH_BEARER_PREFIX_LEN = 22;  // Length of "Authorization: Bearer "
+}
+
 namespace fierymud {
 
 AdminServer::AdminServer(uint16_t port, const std::string& bind_address)
@@ -102,7 +118,7 @@ void AdminServer::run_server() {
 void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
     try {
         // Read HTTP request
-        std::array<char, 8192> buffer;
+        std::array<char, HTTP_REQUEST_BUFFER_SIZE> buffer;
         std::error_code ec;
         size_t bytes_read = socket->read_some(asio::buffer(buffer), ec);
 
@@ -121,18 +137,18 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
         if (!auth_token_.empty()) {
             size_t auth_pos = request.find("Authorization: Bearer ");
             if (auth_pos == std::string::npos) {
-                std::string response = build_response(401, "application/json",
+                std::string response = build_response(HTTP_UNAUTHORIZED, "application/json",
                     R"({"error": "Unauthorized", "message": "Missing authentication token"})");
                 asio::write(*socket, asio::buffer(response), ec);
                 return;
             }
 
-            size_t token_start = auth_pos + 22; // Length of "Authorization: Bearer "
+            size_t token_start = auth_pos + AUTH_BEARER_PREFIX_LEN;
             size_t token_end = request.find("\r\n", token_start);
             std::string provided_token = request.substr(token_start, token_end - token_start);
 
             if (provided_token != auth_token_) {
-                std::string response = build_response(401, "application/json",
+                std::string response = build_response(HTTP_UNAUTHORIZED, "application/json",
                     R"({"error": "Unauthorized", "message": "Invalid authentication token"})");
                 asio::write(*socket, asio::buffer(response), ec);
                 return;
@@ -144,7 +160,7 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
         if (handler_it != handlers_.end()) {
             try {
                 std::string response_body = handler_it->second(path, body);
-                std::string response = build_response(200, "application/json", response_body);
+                std::string response = build_response(HTTP_OK, "application/json", response_body);
                 asio::write(*socket, asio::buffer(response), ec);
             } catch (const std::exception& e) {
                 spdlog::error("Handler error for {}: {}", path, e.what());
@@ -152,7 +168,7 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
                     {"error", "Internal Server Error"},
                     {"message", e.what()}
                 };
-                std::string response = build_response(500, "application/json", error_json.dump());
+                std::string response = build_response(HTTP_INTERNAL_ERROR, "application/json", error_json.dump());
                 asio::write(*socket, asio::buffer(response), ec);
             }
         } else {
@@ -160,7 +176,7 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
                 {"error", "Not Found"},
                 {"message", fmt::format("No handler registered for path: {}", path)}
             };
-            std::string response = build_response(404, "application/json", error_json.dump());
+            std::string response = build_response(HTTP_NOT_FOUND, "application/json", error_json.dump());
             asio::write(*socket, asio::buffer(response), ec);
         }
 
@@ -193,11 +209,11 @@ std::string AdminServer::parse_request(const std::string& request, std::string& 
 std::string AdminServer::build_response(int status_code, const std::string& content_type, const std::string& body) {
     std::string status_text;
     switch (status_code) {
-        case 200: status_text = "OK"; break;
-        case 400: status_text = "Bad Request"; break;
-        case 401: status_text = "Unauthorized"; break;
-        case 404: status_text = "Not Found"; break;
-        case 500: status_text = "Internal Server Error"; break;
+        case HTTP_OK: status_text = "OK"; break;
+        case HTTP_BAD_REQUEST: status_text = "Bad Request"; break;
+        case HTTP_UNAUTHORIZED: status_text = "Unauthorized"; break;
+        case HTTP_NOT_FOUND: status_text = "Not Found"; break;
+        case HTTP_INTERNAL_ERROR: status_text = "Internal Server Error"; break;
         default: status_text = "Unknown"; break;
     }
 

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/net/tls_context.hpp             Part of FieryMUD *
- *  Usage: TLS/SSL context management for secure connections               *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/result.hpp"

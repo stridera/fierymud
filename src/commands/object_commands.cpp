@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/object_commands.cpp                Part of FieryMUD *
- *  Usage: Object interaction command implementations                        *
- *                                                                           *
- *  All rights reserved.  See license.doc for complete information.         *
- *                                                                           *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "object_commands.hpp"
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
@@ -1360,6 +1351,719 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
     ctx.send(fmt::format("(Note: Actual sale mechanics with currency integration pending)"));
     
     return CommandResult::Success;
+}
+
+// =============================================================================
+// Additional Object Manipulation Commands (Phase 1.4)
+// =============================================================================
+
+Result<CommandResult> cmd_hold(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("hold <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find object in actor's inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> target_object = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            target_object = obj;
+            break;
+        }
+    }
+
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Try to equip the item in the held slot
+    auto equip_result = ctx.actor->equipment().equip_item(target_object);
+    if (!equip_result) {
+        ctx.send_error(
+            fmt::format("You can't hold {}: {}", ctx.format_object_name(target_object), equip_result.error().message));
+        return CommandResult::ResourceError;
+    }
+
+    // Remove from inventory since it's now equipped
+    ctx.actor->inventory().remove_item(target_object);
+
+    ctx.send_success(fmt::format("You hold {}.", ctx.format_object_name(target_object)));
+    ctx.send_to_room(fmt::format("{} holds {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_grab(const CommandContext &ctx) {
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("grab <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor || !ctx.room) {
+        return std::unexpected(Errors::InvalidState("No actor or room context"));
+    }
+
+    auto &room_objects = ctx.room->contents_mutable().objects;
+    std::shared_ptr<Object> target_object = nullptr;
+
+    for (auto &obj : room_objects) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            target_object = obj;
+            break;
+        }
+    }
+
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if actor can carry more weight
+    int object_weight = target_object->weight();
+    if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
+        ctx.send_error("You can't carry any more.");
+        return CommandResult::ResourceError;
+    }
+
+    // Remove from room and add to inventory
+    auto it = std::find(room_objects.begin(), room_objects.end(), target_object);
+    if (it != room_objects.end()) {
+        room_objects.erase(it);
+    }
+
+    auto add_result = ctx.actor->inventory().add_item(target_object);
+    if (!add_result) {
+        room_objects.push_back(target_object);
+        ctx.send_error(add_result.error().message);
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("You quickly grab {}.", ctx.format_object_name(target_object)));
+    ctx.send_to_room(fmt::format("{} quickly grabs {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_quaff(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<potion>"); !result) {
+        ctx.send_usage("quaff <potion>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find potion in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> potion = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj->type() == ObjectType::Potion) {
+                potion = obj;
+                break;
+            }
+        }
+    }
+
+    if (!potion) {
+        ctx.send_error(fmt::format("You don't have a potion called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Consume the potion
+    if (!ctx.actor->inventory().remove_item(potion)) {
+        ctx.send_error("Failed to drink the potion.");
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("You quaff {}. Magical energies course through your body!",
+                                 ctx.format_object_name(potion)));
+    ctx.send_to_room(fmt::format("{} quaffs {} and is surrounded by a brief magical glow.",
+                                 ctx.actor->display_name(), ctx.format_object_name(potion)), true);
+
+    // TODO: Apply potion effects when spell system is integrated
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_recite(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<scroll> [target]"); !result) {
+        ctx.send_usage("recite <scroll> [target]");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find scroll in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> scroll = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj->type() == ObjectType::Scroll) {
+                scroll = obj;
+                break;
+            }
+        }
+    }
+
+    if (!scroll) {
+        ctx.send_error(fmt::format("You don't have a scroll called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Consume the scroll
+    if (!ctx.actor->inventory().remove_item(scroll)) {
+        ctx.send_error("Failed to use the scroll.");
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("You recite {}. The scroll crumbles to dust as its magic is released!",
+                                 ctx.format_object_name(scroll)));
+    ctx.send_to_room(fmt::format("{} recites {} and the scroll crumbles to dust.",
+                                 ctx.actor->display_name(), ctx.format_object_name(scroll)), true);
+
+    // TODO: Apply scroll effects when spell system is integrated
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_use(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<item> [target]"); !result) {
+        ctx.send_usage("use <item> [target]");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find item in inventory or equipment
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    auto equipped_items = ctx.actor->equipment().get_all_equipped();
+    std::shared_ptr<Object> target_object = nullptr;
+
+    // Check inventory first
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            target_object = obj;
+            break;
+        }
+    }
+
+    // If not in inventory, check equipment
+    if (!target_object) {
+        for (const auto &obj : equipped_items) {
+            if (obj && obj->matches_keyword(ctx.arg(0))) {
+                target_object = obj;
+                break;
+            }
+        }
+    }
+
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Handle different object types
+    switch (target_object->type()) {
+        case ObjectType::Wand:
+        case ObjectType::Staff:
+            ctx.send_success(fmt::format("You wave {} and it flashes with magical energy!",
+                                         ctx.format_object_name(target_object)));
+            ctx.send_to_room(fmt::format("{} waves {} and it flashes with magical energy.",
+                                         ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+            break;
+        case ObjectType::Potion:
+            ctx.send("Use 'quaff' to drink potions.");
+            return CommandResult::InvalidSyntax;
+        case ObjectType::Scroll:
+            ctx.send("Use 'recite' to use scrolls.");
+            return CommandResult::InvalidSyntax;
+        default:
+            ctx.send_success(fmt::format("You use {}.", ctx.format_object_name(target_object)));
+            ctx.send_to_room(fmt::format("{} uses {}.", ctx.actor->display_name(),
+                                         ctx.format_object_name(target_object)), true);
+            break;
+    }
+
+    // TODO: Apply item effects when appropriate systems are in place
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_junk(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("junk <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find object in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> target_object = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            target_object = obj;
+            break;
+        }
+    }
+
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Remove and destroy the item
+    if (!ctx.actor->inventory().remove_item(target_object)) {
+        ctx.send_error("You can't junk that.");
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("You junk {} - it disintegrates into nothing.", ctx.format_object_name(target_object)));
+    ctx.send_to_room(fmt::format("{} junks {} which disintegrates.", ctx.actor->display_name(),
+                                 ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_donate(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<object>"); !result) {
+        ctx.send_usage("donate <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find object in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> target_object = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            target_object = obj;
+            break;
+        }
+    }
+
+    if (!target_object) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Remove from inventory
+    if (!ctx.actor->inventory().remove_item(target_object)) {
+        ctx.send_error("You can't donate that.");
+        return CommandResult::ResourceError;
+    }
+
+    // TODO: Move item to donation room when donation system is implemented
+    // For now, the item is simply removed
+
+    ctx.send_success(fmt::format("You donate {}. It vanishes in a puff of smoke to help those in need.",
+                                 ctx.format_object_name(target_object)));
+    ctx.send_to_room(fmt::format("{} donates {} which vanishes in a puff of smoke.",
+                                 ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_compare(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(2, "<item1> <item2>"); !result) {
+        ctx.send_usage("compare <item1> <item2>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find both items
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    auto equipped_items = ctx.actor->equipment().get_all_equipped();
+
+    std::shared_ptr<Object> item1 = nullptr;
+    std::shared_ptr<Object> item2 = nullptr;
+
+    // Search for first item
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            item1 = obj;
+            break;
+        }
+    }
+    if (!item1) {
+        for (const auto &obj : equipped_items) {
+            if (obj && obj->matches_keyword(ctx.arg(0))) {
+                item1 = obj;
+                break;
+            }
+        }
+    }
+
+    // Search for second item
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(1)) && obj != item1) {
+            item2 = obj;
+            break;
+        }
+    }
+    if (!item2) {
+        for (const auto &obj : equipped_items) {
+            if (obj && obj->matches_keyword(ctx.arg(1)) && obj != item1) {
+                item2 = obj;
+                break;
+            }
+        }
+    }
+
+    if (!item1) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    if (!item2) {
+        ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(1)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Compare the items
+    ctx.send(fmt::format("Comparing {} and {}:", ctx.format_object_name(item1), ctx.format_object_name(item2)));
+
+    // Weight comparison
+    if (item1->weight() < item2->weight()) {
+        ctx.send(fmt::format("  {} is lighter.", ctx.format_object_name(item1)));
+    } else if (item1->weight() > item2->weight()) {
+        ctx.send(fmt::format("  {} is heavier.", ctx.format_object_name(item1)));
+    } else {
+        ctx.send("  They weigh about the same.");
+    }
+
+    // Value comparison
+    if (item1->value() < item2->value()) {
+        ctx.send(fmt::format("  {} appears less valuable.", ctx.format_object_name(item1)));
+    } else if (item1->value() > item2->value()) {
+        ctx.send(fmt::format("  {} appears more valuable.", ctx.format_object_name(item1)));
+    } else {
+        ctx.send("  They appear to be of similar value.");
+    }
+
+    // Type comparison
+    if (item1->type() != item2->type()) {
+        ctx.send("  They are different types of items.");
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Liquid Container Commands
+// =============================================================================
+
+Result<CommandResult> cmd_fill(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<container> [from <source>]"); !result) {
+        ctx.send_usage("fill <container> [from <source>]");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor || !ctx.room) {
+        return std::unexpected(Errors::InvalidState("No actor or room context"));
+    }
+
+    // Find container in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> container = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj->type() == ObjectType::Liquid_Container) {
+                container = obj;
+                break;
+            }
+        }
+    }
+
+    if (!container) {
+        ctx.send_error(fmt::format("You don't have a container called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // TODO: Find water source (fountain in room) and fill container
+    // For now, just provide feedback
+
+    ctx.send_success(fmt::format("You fill {} with water.", ctx.format_object_name(container)));
+    ctx.send_to_room(fmt::format("{} fills {} with water.", ctx.actor->display_name(),
+                                 ctx.format_object_name(container)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_pour(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(2, "<from-container> <to-container|out>"); !result) {
+        ctx.send_usage("pour <from-container> <to-container|out>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find source container in inventory
+    auto inventory_items = ctx.actor->inventory().get_all_items();
+    std::shared_ptr<Object> source = nullptr;
+
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj->type() == ObjectType::Liquid_Container) {
+                source = obj;
+                break;
+            }
+        }
+    }
+
+    if (!source) {
+        ctx.send_error(fmt::format("You don't have a container called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if pouring out
+    if (ctx.arg(1) == "out") {
+        ctx.send_success(fmt::format("You pour the contents of {} out onto the ground.",
+                                     ctx.format_object_name(source)));
+        ctx.send_to_room(fmt::format("{} pours the contents of {} onto the ground.",
+                                     ctx.actor->display_name(), ctx.format_object_name(source)), true);
+        return CommandResult::Success;
+    }
+
+    // Find target container
+    std::shared_ptr<Object> target = nullptr;
+    for (const auto &obj : inventory_items) {
+        if (obj && obj->matches_keyword(ctx.arg(1)) && obj != source) {
+            if (obj->type() == ObjectType::Liquid_Container) {
+                target = obj;
+                break;
+            }
+        }
+    }
+
+    if (!target) {
+        ctx.send_error(fmt::format("You don't have a container called '{}'.", ctx.arg(1)));
+        return CommandResult::InvalidTarget;
+    }
+
+    ctx.send_success(fmt::format("You pour the contents of {} into {}.",
+                                 ctx.format_object_name(source), ctx.format_object_name(target)));
+    ctx.send_to_room(fmt::format("{} pours from {} into {}.",
+                                 ctx.actor->display_name(), ctx.format_object_name(source),
+                                 ctx.format_object_name(target)), true);
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Command Registration
+// =============================================================================
+
+Result<void> register_commands() {
+    // Object interaction commands
+    Commands()
+        .command("get", cmd_get)
+        .alias("g")
+        .alias("take")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("drop", cmd_drop)
+        .alias("dr")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("put", cmd_put)
+        .alias("p")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("give", cmd_give)
+        .alias("gi")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("wear", cmd_wear)
+        .alias("we")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("wield", cmd_wield)
+        .alias("wi")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("remove", cmd_remove)
+        .alias("rem")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Container and object interaction commands
+    Commands()
+        .command("open", cmd_open)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("close", cmd_close)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("lock", cmd_lock)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("unlock", cmd_unlock)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Consumable and utility commands
+    Commands()
+        .command("light", cmd_light)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("eat", cmd_eat)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("drink", cmd_drink)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Shop commands
+    Commands()
+        .command("list", cmd_list)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("buy", cmd_buy)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("sell", cmd_sell)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Phase 1.4 object manipulation commands
+    Commands()
+        .command("hold", cmd_hold)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("grab", cmd_grab)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("quaff", cmd_quaff)
+        .alias("qu")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("recite", cmd_recite)
+        .alias("rec")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("use", cmd_use)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("junk", cmd_junk)
+        .alias("trash")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("donate", cmd_donate)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("compare", cmd_compare)
+        .alias("comp")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Liquid container commands
+    Commands()
+        .command("fill", cmd_fill)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("pour", cmd_pour)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    return Success();
 }
 
 } // namespace ObjectCommands

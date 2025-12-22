@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/testing/game_test_harness.hpp    Part of FieryMUD *
- *  Usage: Test harness for game functionality without networking           *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/ids.hpp"

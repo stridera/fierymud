@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/world/zone.hpp                             Part of FieryMUD *
- *  Usage: Modern zone system with JSON loading and command processing     *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/entity.hpp"
@@ -313,7 +304,8 @@ private:
     Result<bool> execute_equip_object(const ZoneCommand& cmd);
     Result<bool> execute_put_object(const ZoneCommand& cmd);
     Result<bool> execute_remove_object(const ZoneCommand& cmd);
-    
+    Result<bool> execute_door_command(const ZoneCommand& cmd);
+
     /** Process equipment and inventory for a specific mobile instance */
     void process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id);
     

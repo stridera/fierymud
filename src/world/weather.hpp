@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/world/weather.hpp                          Part of FieryMUD *
- *  Usage: Modern weather system with environmental effects                *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/entity.hpp"
@@ -85,6 +76,21 @@ enum class Season {
     Winter              // Cold, snow and ice
 };
 
+/** Natural disaster types */
+enum class DisasterType {
+    None = 0,           // No active disaster
+    Tornado,            // Violent windstorm
+    Blizzard,           // Severe snowstorm
+    Earthquake,         // Ground shaking
+    Flood,              // Water overflow
+    Hailstorm,          // Ice precipitation
+    Sandstorm,          // Desert windstorm
+    Heatwave,           // Extreme heat
+    Hurricane,          // Tropical cyclone
+    Tsunami,            // Tidal wave
+    Waterspout          // Water tornado
+};
+
 /** Weather effects on gameplay */
 struct WeatherEffects {
     float visibility_modifier = 1.0f;      // 0.0 = no visibility, 1.0 = full visibility
@@ -110,10 +116,12 @@ struct WeatherState {
     WeatherType type = WeatherType::Clear;
     WeatherIntensity intensity = WeatherIntensity::Calm;
     Season season = Season::Spring;
-    
+    DisasterType disaster = DisasterType::None;
+
     std::chrono::steady_clock::time_point last_change;
     std::chrono::minutes duration{0};      // How long this weather has lasted
     std::chrono::minutes predicted_duration{60}; // How long weather will likely last
+    std::chrono::minutes disaster_duration{0};   // How long disaster has lasted
     
     /** Get weather effects based on current state */
     WeatherEffects get_effects() const;
@@ -204,6 +212,13 @@ public:
     void update_weather(std::chrono::minutes elapsed);
     void process_weather_effects();
     
+    // Disaster Management
+    void trigger_disaster(EntityId zone_id, DisasterType type, std::chrono::minutes duration = std::chrono::minutes(60));
+    void end_disaster(EntityId zone_id);
+    DisasterType get_active_disaster(EntityId zone_id) const;
+    bool has_active_disaster(EntityId zone_id) const;
+    std::string get_disaster_description(DisasterType type) const;
+
     // Administrative Functions
     void force_weather_change(EntityId zone_id = INVALID_ENTITY_ID);
     void reset_weather_to_default(EntityId zone_id = INVALID_ENTITY_ID);
@@ -249,6 +264,12 @@ private:
     void initialize_default_transitions();
     void initialize_seasonal_modifiers();
     float get_seasonal_modifier(WeatherType type, Season season) const;
+
+    // Disaster helper methods
+    void update_disasters(std::chrono::minutes elapsed);
+    float calculate_disaster_probability(const WeatherState& state) const;
+    DisasterType select_disaster_type(const WeatherState& state, Season season) const;
+    bool is_disaster_compatible_with_weather(DisasterType disaster, const WeatherState& state) const;
     
     static std::unique_ptr<WeatherSystem> instance_;
     static bool initialized_;
@@ -285,9 +306,21 @@ namespace WeatherUtils {
     
     /** Check if weather type is extreme */
     bool is_extreme_weather(WeatherType type);
-    
+
     /** Get default weather effects for type and intensity */
     WeatherEffects get_default_effects(WeatherType type, WeatherIntensity intensity);
+
+    /** Get disaster type name */
+    std::string_view get_disaster_name(DisasterType type);
+
+    /** Parse disaster type from string */
+    std::optional<DisasterType> parse_disaster_type(std::string_view name);
+
+    /** Get disaster color code for display */
+    std::string get_disaster_color(DisasterType type);
+
+    /** Get disaster icon/symbol */
+    std::string get_disaster_symbol(DisasterType type);
 }
 
 /** Global weather system access */
@@ -337,9 +370,21 @@ struct fmt::formatter<WeatherPattern> {
     constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
-    
+
     template<typename FormatContext>
     auto format(const WeatherPattern& pattern, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), "{}", magic_enum::enum_name(pattern));
+    }
+};
+
+template<>
+struct fmt::formatter<DisasterType> {
+    constexpr auto parse(format_parse_context& ctx) {
+        return ctx.begin();
+    }
+
+    template<typename FormatContext>
+    auto format(const DisasterType& type, FormatContext& ctx) const {
+        return fmt::format_to(ctx.out(), "{}", WeatherUtils::get_disaster_name(type));
     }
 };

@@ -1,7 +1,4 @@
-/***************************************************************************
- *   File: src/server/gmcp_handler.hpp                    Part of FieryMUD *
- *  Usage: GMCP (Generic Mud Communication Protocol) implementation        *
- ***************************************************************************/
+// GMCP (Generic MUD Communication Protocol) handler for modern clients
 
 #pragma once
 

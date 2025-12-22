@@ -1,19 +1,16 @@
-/***************************************************************************
- *   File: s../core/entity.cpp                          Part of FieryMUD *
- *  Usage: Base Entity class implementation                                 *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "entity.hpp"
 #include "../core/logging.hpp"
+#include "../text/string_utils.hpp"
 
 #include <algorithm>
 #include <cctype>
 #include <regex>
 #include <sstream>
+
+namespace {
+    // Entity validation constants
+    constexpr size_t MAX_KEYWORD_LENGTH = 50;
+}
 
 // Entity Implementation
 
@@ -24,29 +21,30 @@ Entity::Entity(EntityId id, std::string_view name)
     }
 }
 
-Entity::Entity(EntityId id, std::string_view name, 
+Entity::Entity(EntityId id, std::string_view name,
                std::span<const std::string> keywords,
                std::string_view ground,
                std::string_view short_desc)
     : id_(id), name_(name), ground_(ground), short_(short_desc) {
-    
+
     keywords_.reserve(keywords.size() + 1);
     for (const auto& keyword : keywords) {
         if (EntityUtils::is_valid_keyword(keyword)) {
-            keywords_.push_back(EntityUtils::normalize_keyword(keyword));
+            std::string normalized = EntityUtils::normalize_keyword(keyword);
+            if (keyword_set_.find(normalized) == keyword_set_.end()) {
+                keywords_.push_back(normalized);
+                keyword_set_.insert(normalized);
+            }
         }
     }
-    
+
     ensure_name_in_keywords();
 }
 
 bool Entity::matches_keyword(std::string_view keyword) const {
     std::string normalized = EntityUtils::normalize_keyword(keyword);
-    
-    return std::any_of(keywords_.begin(), keywords_.end(),
-        [&normalized](const std::string& kw) {
-            return kw == normalized;
-        });
+    // O(1) lookup using unordered_set instead of O(n) linear search
+    return keyword_set_.find(normalized) != keyword_set_.end();
 }
 
 bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
@@ -58,19 +56,21 @@ bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
 
 void Entity::set_keywords(std::span<const std::string> new_keywords) {
     keywords_.clear();
+    keyword_set_.clear();
     keywords_.reserve(new_keywords.size() + 1);
-    
+
     for (const auto& keyword : new_keywords) {
         if (EntityUtils::is_valid_keyword(keyword)) {
             std::string normalized = EntityUtils::normalize_keyword(keyword);
-            
-            // Avoid duplicates
-            if (std::find(keywords_.begin(), keywords_.end(), normalized) == keywords_.end()) {
-                keywords_.push_back(std::move(normalized));
+
+            // O(1) duplicate check using set
+            if (keyword_set_.find(normalized) == keyword_set_.end()) {
+                keywords_.push_back(normalized);
+                keyword_set_.insert(std::move(normalized));
             }
         }
     }
-    
+
     ensure_name_in_keywords();
 }
 
@@ -78,24 +78,27 @@ void Entity::add_keyword(std::string_view keyword) {
     if (!EntityUtils::is_valid_keyword(keyword)) {
         return;
     }
-    
+
     std::string normalized = EntityUtils::normalize_keyword(keyword);
-    
-    // Check for duplicates
-    if (std::find(keywords_.begin(), keywords_.end(), normalized) == keywords_.end()) {
-        keywords_.push_back(std::move(normalized));
+
+    // O(1) duplicate check using set
+    if (keyword_set_.find(normalized) == keyword_set_.end()) {
+        keywords_.push_back(normalized);
+        keyword_set_.insert(std::move(normalized));
     }
 }
 
 void Entity::remove_keyword(std::string_view keyword) {
     std::string normalized = EntityUtils::normalize_keyword(keyword);
-    
+
     // Don't allow removing the primary name
     std::string normalized_name = EntityUtils::normalize_keyword(name_);
     if (normalized == normalized_name) {
         return;
     }
-    
+
+    // Remove from both vector and set
+    keyword_set_.erase(normalized);
     keywords_.erase(
         std::remove(keywords_.begin(), keywords_.end(), normalized),
         keywords_.end());
@@ -227,12 +230,13 @@ void Entity::ensure_name_in_keywords() {
     if (name_.empty()) {
         return;
     }
-    
+
     std::string normalized_name = EntityUtils::normalize_keyword(name_);
-    
-    // Check if name is already in keywords
-    if (std::find(keywords_.begin(), keywords_.end(), normalized_name) == keywords_.end()) {
+
+    // O(1) check if name is already in keywords using set
+    if (keyword_set_.find(normalized_name) == keyword_set_.end()) {
         keywords_.insert(keywords_.begin(), normalized_name);
+        keyword_set_.insert(std::move(normalized_name));
     }
 }
 
@@ -363,10 +367,10 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
 
 namespace EntityUtils {
     bool is_valid_keyword(std::string_view keyword) {
-        if (keyword.empty() || keyword.length() > 50) {
+        if (keyword.empty() || keyword.length() > MAX_KEYWORD_LENGTH) {
             return false;
         }
-        
+
         // Check for printable ASCII characters only
         return std::all_of(keyword.begin(), keyword.end(), [](char c) {
             return std::isprint(c) && c != '"' && c != '\'';
@@ -468,9 +472,8 @@ namespace EntityUtils {
     
     if (with_article) {
         // Check if display_name already starts with an article
-        std::string lower_display = display_name;
-        std::transform(lower_display.begin(), lower_display.end(), lower_display.begin(), ::tolower);
-        
+        std::string lower_display = to_lowercase(display_name);
+
         // Common articles and demonstratives
         if (lower_display.starts_with("a ") || 
             lower_display.starts_with("an ") || 

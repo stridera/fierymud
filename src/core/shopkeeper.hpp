@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/core/shopkeeper.hpp                          Part of FieryMUD *
- *  Usage: Shopkeeper system for buy/sell mechanics                         *
- *                                                                           *
- *  All rights reserved.  See license.doc for complete information.         *
- *                                                                           *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "ids.hpp"

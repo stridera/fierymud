@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/command_parser.hpp                Part of FieryMUD *
- *  Usage: Modern command parsing and dispatch system                      *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/result.hpp"

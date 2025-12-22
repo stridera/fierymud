@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/game/player_output.hpp          Part of FieryMUD *
- *  Usage: Player output interface for dependency inversion                 *
- ***************************************************************************/
-
 #pragma once
 
 #include <string_view>

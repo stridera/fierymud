@@ -1,11 +1,4 @@
-/***************************************************************************
- *   File: src/core/result.hpp                            Part of FieryMUD *
- *  Usage: Modern error handling with std::expected                        *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
+// Error handling with std::expected and typed error codes
 
 #pragma once
 
@@ -66,6 +59,9 @@ enum class ErrorCode {
     ScriptError,
     ScriptTimeout,
     
+    // Database errors
+    DatabaseError,
+
     // Internal errors
     InternalError,
     NotImplemented,
@@ -148,6 +144,10 @@ namespace Errors {
     
     inline Error ScriptError(std::string_view script_name, std::string_view details) {
         return Error{ErrorCode::ScriptError, fmt::format("Script error in {}: {}", script_name, details)};
+    }
+
+    inline Error DatabaseError(std::string_view details) {
+        return Error{ErrorCode::DatabaseError, fmt::format("Database error: {}", details)};
     }
     
     inline Error InternalError(std::string_view function, std::string_view details) {

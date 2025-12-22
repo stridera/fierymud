@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/command_context.cpp           Part of FieryMUD *
- *  Usage: Command execution context implementation                        *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "command_context.hpp"
 
 #include "../core/actor.hpp"
@@ -14,10 +5,11 @@
 #include "../core/object.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
+#include "../text/rich_text.hpp"
+#include "../text/string_utils.hpp"
+#include "../text/terminal_capabilities.hpp"
 #include "command_parser.hpp"
 #include "command_system.hpp"
-#include "rich_text.hpp"
-#include "terminal_capabilities.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -272,6 +264,14 @@ TargetInfo CommandContext::resolve_target(std::string_view name) const {
         return info;
     }
 
+    // Check if the name matches the current actor (allows "stat samui" to work on yourself)
+    if (actor && actor->matches_keyword(name)) {
+        TargetInfo info;
+        info.type = TargetType::Self;
+        info.actor = actor;
+        return info;
+    }
+
     if (name == "room" || name == "here") {
         TargetInfo info;
         info.type = TargetType::Room;
@@ -496,10 +496,7 @@ std::vector<std::string> parse_target_list(std::string_view target_string) {
     std::string token;
 
     while ((pos = str.find(delimiter)) != std::string::npos) {
-        token = str.substr(0, pos);
-        // Trim whitespace
-        token.erase(0, token.find_first_not_of(" \t"));
-        token.erase(token.find_last_not_of(" \t") + 1);
+        token = std::string(trim(str.substr(0, pos)));
         if (!token.empty()) {
             targets.push_back(token);
         }
@@ -507,10 +504,9 @@ std::vector<std::string> parse_target_list(std::string_view target_string) {
     }
 
     // Add the last token
-    str.erase(0, str.find_first_not_of(" \t"));
-    str.erase(str.find_last_not_of(" \t") + 1);
-    if (!str.empty()) {
-        targets.push_back(str);
+    std::string last_token{trim(str)};
+    if (!last_token.empty()) {
+        targets.push_back(last_token);
     }
 
     return targets;
@@ -519,9 +515,7 @@ std::vector<std::string> parse_target_list(std::string_view target_string) {
 std::string describe_target(const TargetInfo &target) { return target.describe(); }
 
 bool is_direction_string(std::string_view str) {
-    std::string lower_str;
-    lower_str.reserve(str.size());
-    std::transform(str.begin(), str.end(), std::back_inserter(lower_str), [](char c) { return std::tolower(c); });
+    std::string lower_str = to_lowercase(str);
 
     return lower_str == "north" || lower_str == "n" || lower_str == "south" || lower_str == "s" ||
            lower_str == "east" || lower_str == "e" || lower_str == "west" || lower_str == "w" || lower_str == "up" ||
@@ -551,9 +545,7 @@ bool is_numeric_string(std::string_view str) {
 }
 
 Direction parse_direction_string(std::string_view str) {
-    std::string lower_str;
-    lower_str.reserve(str.size());
-    std::transform(str.begin(), str.end(), std::back_inserter(lower_str), [](char c) { return std::tolower(c); });
+    std::string lower_str = to_lowercase(str);
 
     if (lower_str == "north" || lower_str == "n")
         return Direction::North;

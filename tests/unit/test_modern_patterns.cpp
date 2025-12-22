@@ -241,7 +241,7 @@ TEST_CASE("Concepts: Type-Safe Actor Testing", "[unit][concepts][actor]") {
         
         // Additional player-specific tests
         REQUIRE(player.value()->player_class() == "warrior"); // Default class
-        REQUIRE(player.value()->race() == "human"); // Default race
+        REQUIRE(player.value()->race() == "Human"); // Default race (capitalized)
     }
     
     SECTION("Mobile satisfies ActorLike concept") {

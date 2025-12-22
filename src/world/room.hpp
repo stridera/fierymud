@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/world/room.hpp                             Part of FieryMUD *
- *  Usage: Modern room system with exits and contents                      *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/entity.hpp"
@@ -94,6 +85,7 @@ enum class SectorType {
 
 /** Room flags affecting behavior and access */
 enum class RoomFlag {
+    // Core flags (from legacy CircleMUD)
     Dark = 0,           // Always dark
     Death,              // Death trap
     NoMob,              // Mobiles cannot enter
@@ -123,16 +115,40 @@ enum class RoomFlag {
     NoLocate,           // Cannot locate in
     NoTeleport,         // Cannot teleport to/from
     AlwaysLit,          // Always lit (never dark)
-    
+
     // Clan system flags
     ClanEntrance,       // Clan entrance room
     ClanStorage,        // Clan storage room
-    
+
     // Special flags
     Arena,              // Arena room
     Shop,               // Shop room
     Temple,             // Temple room
-    Bank                // Bank room
+    Bank,               // Bank room
+
+    // Map and navigation flags
+    Worldmap,           // Part of world map
+    FerryDest,          // Ferry destination
+    Isolated,           // Isolated from main world
+    AltExit,            // Has alternative exit display
+    Observatory,        // Observatory room
+
+    // Room size flags (combat/capacity)
+    Large,              // Large room
+    MediumLarge,        // Medium-large room
+    Medium,             // Medium room
+    MediumSmall,        // Medium-small room
+    Small,              // Small room
+    VerySmall,          // Very small room
+    OnePerson,          // Single occupant only
+
+    // Special ability flags
+    Guildhall,          // Guild hall room
+    NoWell,             // Cannot use well of souls
+    NoScan,             // Cannot scan in room
+    Underdark,          // Underdark area
+    NoShift,            // Cannot plane shift
+    EffectsNext         // Effects carry to next room
 };
 
 /** Exit information with door states and access control */
@@ -326,7 +342,10 @@ namespace RoomUtils {
     
     /** Parse sector type from string */
     std::optional<SectorType> parse_sector_type(std::string_view sector_name);
-    
+
+    /** Convert legacy numeric sector to SectorType enum */
+    SectorType sector_from_number(int sector_num);
+
     /** Get room flag name */
     std::string_view get_flag_name(RoomFlag flag);
     

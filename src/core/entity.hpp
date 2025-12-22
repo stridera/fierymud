@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: s../core/entity.hpp                          Part of FieryMUD *
- *  Usage: Base Entity class for all game objects                          *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "../core/ids.hpp"
@@ -20,6 +11,7 @@
 #include <span>
 #include <memory>
 #include <optional>
+#include <unordered_set>
 
 /**
  * Base Entity class for all game objects.
@@ -131,7 +123,8 @@ protected:
 private:
     EntityId id_;
     std::string name_;
-    std::vector<std::string> keywords_;
+    std::vector<std::string> keywords_;           // Ordered list for iteration/serialization
+    std::unordered_set<std::string> keyword_set_; // O(1) lookup cache
     std::string ground_;
     std::string short_;
 };

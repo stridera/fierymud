@@ -1,17 +1,11 @@
-/***************************************************************************
- *   File: src/server/mud_server.cpp               Part of FieryMUD *
- *  Usage: Standalone modern MUD server implementation                     *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "mud_server.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
+#include "../database/connection_pool.hpp"
+#include "../database/database_config.hpp"
+#include "../text/string_utils.hpp"
 #include "configuration_manager.hpp"
 #include "network_manager.hpp"
 #include "persistence_manager.hpp"
@@ -60,6 +54,7 @@ Result<ServerConfig> ServerConfig::load_from_file(const std::string &filename) {
             config.world_directory = game.value("world_directory", config.world_directory);
             config.player_directory = game.value("player_directory", config.player_directory);
             config.log_directory = game.value("log_directory", config.log_directory);
+            config.log_level = game.value("log_level", config.log_level);
             config.default_starting_room = game.value("default_starting_room", config.default_starting_room);
         }
 
@@ -107,6 +102,7 @@ Result<void> ServerConfig::save_to_file(const std::string &filename) const {
                      {"world_directory", world_directory},
                      {"player_directory", player_directory},
                      {"log_directory", log_directory},
+                     {"log_level", log_level},
                      {"default_starting_room", default_starting_room}};
 
         j["performance"] = {{"target_tps", target_tps},
@@ -203,6 +199,13 @@ Result<void> ModernMUDServer::initialize() {
     if (!dirs_result) {
         set_state(ServerState::Error);
         return dirs_result;
+    }
+
+    // Initialize database connection pool before game systems
+    auto db_result = initialize_database();
+    if (!db_result) {
+        set_state(ServerState::Error);
+        return db_result;
     }
 
     auto systems_result = initialize_game_systems();
@@ -325,6 +328,9 @@ void ModernMUDServer::stop() {
 
     set_state(ServerState::Stopped);
     Log::info("Modern FieryMUD Server stopped");
+
+    // Flush all logs before shutdown
+    Logger::shutdown();
 }
 
 void ModernMUDServer::restart() {
@@ -410,6 +416,31 @@ Result<void> ModernMUDServer::initialize_directories() {
         }
     }
 
+    return Success();
+}
+
+Result<void> ModernMUDServer::initialize_database() {
+    auto logger = Log::database();
+    logger->info("Initializing database connection pool");
+
+    // Load database configuration from .env file
+    auto db_config_result = DatabaseConfig::from_env("../.env");
+    if (!db_config_result) {
+        logger->error("Failed to load database configuration: {}", db_config_result.error().message);
+        return std::unexpected(db_config_result.error());
+    }
+
+    logger->info("Database configuration loaded: {}:{}/{}",
+                db_config_result->host, db_config_result->port, db_config_result->dbname);
+
+    // Initialize connection pool with 10 connections
+    auto pool_init = ConnectionPool::instance().initialize(*db_config_result, 10);
+    if (!pool_init) {
+        logger->error("Failed to initialize connection pool: {}", pool_init.error().message);
+        return std::unexpected(pool_init.error());
+    }
+
+    logger->info("Database connection pool initialized successfully");
     return Success();
 }
 
@@ -700,10 +731,7 @@ Result<void> validate_environment() {
 Result<void> setup_logging(const ServerConfig &config) {
     // Parse log level string to enum
     LogLevel level = LogLevel::Info; // default
-    std::string level_str = config.log_level;
-
-    // Convert to lowercase for case-insensitive matching
-    std::transform(level_str.begin(), level_str.end(), level_str.begin(), ::tolower);
+    std::string level_str = to_lowercase(config.log_level);
 
     if (level_str == "trace") {
         level = LogLevel::Trace;

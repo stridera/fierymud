@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/core/logging.hpp                           Part of FieryMUD *
- *  Usage: Modern structured logging with spdlog integration               *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "ids.hpp"
@@ -67,6 +58,9 @@ class Logger {
     /** Initialize logging system */
     static void initialize(const std::string &log_file = "fierymud.log", LogLevel level = LogLevel::Info,
                            bool console_output = true);
+
+    /** Shutdown logging system - flushes all logs */
+    static void shutdown();
 
     /** Get logger instance for component */
     static std::shared_ptr<Logger> get(std::string_view component);
@@ -193,6 +187,7 @@ class Logger {
 
     std::shared_ptr<spdlog::logger> logger_;
     static std::unordered_map<std::string, std::shared_ptr<Logger>> loggers_;
+    static std::vector<spdlog::sink_ptr> sinks_;
 };
 
 /** Global logging functions for common use cases */
@@ -217,6 +212,9 @@ std::shared_ptr<Logger> persistence();
 
 /** Get scripting logger */
 std::shared_ptr<Logger> scripting();
+
+/** Get database logger */
+std::shared_ptr<Logger> database();
 
 /** Quick error logging with source location */
 template <typename... Args> void error(std::string_view format, Args &&...args) {

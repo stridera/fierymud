@@ -1,17 +1,9 @@
-/***************************************************************************
- *   File: src/commands/clan_commands.cpp                Part of FieryMUD *
- *  Usage: Clan-related command implementations                            *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "clan_commands.hpp"
 
 #include "../core/clan.hpp"
 #include "../core/logging.hpp"
 #include "../game/player_output.hpp"
+#include "../text/string_utils.hpp"
 #include "command_context.hpp"
 
 #include <algorithm>
@@ -41,8 +33,7 @@ Result<CommandResult> cmd_clan(const CommandContext &ctx) {
         return cmd_clan_info(ctx, **clan);
     }
     
-    std::string subcmd = args.first();
-    std::transform(subcmd.begin(), subcmd.end(), subcmd.begin(), ::tolower);
+    std::string subcmd = to_lowercase(args.first());
     
     if (subcmd == "info" || subcmd == "information") {
         return cmd_clan_info(ctx);
@@ -77,17 +68,17 @@ Result<CommandResult> cmd_clan_info(const CommandContext &ctx) {
 Result<CommandResult> cmd_clan_info(const CommandContext &ctx, const Clan &clan) {
     std::ostringstream output;
     
-    output << fmt::format("&c&b--- {} ({}) ---&0\n", clan.name(), clan.abbreviation());
-    
+    output << fmt::format("<b:cyan>--- {} ({}) ---</>\n", clan.name(), clan.abbreviation());
+
     if (!clan.description().empty()) {
-        output << fmt::format("&cDescription:&0 {}\n", clan.description());
+        output << fmt::format("<cyan>Description:</> {}\n", clan.description());
     }
-    
-    output << fmt::format("&cMembers:&0 {}\n", clan.member_count());
-    output << fmt::format("&cRanks:&0 {}\n", clan.rank_count());
-    
+
+    output << fmt::format("<cyan>Members:</> {}\n", clan.member_count());
+    output << fmt::format("<cyan>Ranks:</> {}\n", clan.rank_count());
+
     if (!clan.motd().empty()) {
-        output << fmt::format("&cMessage of the Day:&0\n{}\n", clan.motd());
+        output << fmt::format("<cyan>Message of the Day:</>\n{}\n", clan.motd());
     }
     
     PlayerOutput::send_to_actor(ctx.actor(), output.str());
@@ -105,7 +96,7 @@ Result<CommandResult> cmd_clan_who(const CommandContext &ctx) {
     }
     
     std::ostringstream output;
-    output << fmt::format("&c&b--- {} Members ---&0\n", (*clan)->name());
+    output << fmt::format("<b:cyan>--- {} Members ---</>\n", (*clan)->name());
     
     const auto& ranks = (*clan)->ranks();
     
@@ -115,12 +106,12 @@ Result<CommandResult> cmd_clan_who(const CommandContext &ctx) {
         auto members_in_rank = (*clan)->get_members_by_rank_index(static_cast<int>(rank_idx));
         
         if (!members_in_rank.empty()) {
-            output << fmt::format("&c{}:&0\n", rank.title());
-            
+            output << fmt::format("<cyan>{}:</>\n", rank.title());
+
             for (const auto& member : members_in_rank) {
                 // Check if member is online
                 CharData* online_char = clan_security::find_player_safe(member.name);
-                std::string status = online_char ? "&g[Online]&0" : "&r[Offline]&0";
+                std::string status = online_char ? "<green>[Online]</>" : "<red>[Offline]</>";
                 
                 output << fmt::format("  {} {}\n", member.name, status);
             }
@@ -146,7 +137,7 @@ Result<CommandResult> cmd_clan_motd(const CommandContext &ctx) {
         PlayerOutput::send_to_actor(ctx.actor(), "Your clan has no message of the day set.");
     } else {
         std::ostringstream output;
-        output << fmt::format("&c&b--- {} Message of the Day ---&0\n{}\n", 
+        output << fmt::format("<b:cyan>--- {} Message of the Day ---</>\n{}\n",
                              (*clan)->name(), motd);
         PlayerOutput::send_to_actor(ctx.actor(), output.str());
     }
@@ -189,7 +180,7 @@ Result<CommandResult> cmd_clan_chat(const CommandContext &ctx) {
     auto member = get_clan_member(ctx.actor()->legacy_character());
     std::string rank_title = member ? (*clan)->ranks()[member->rank_index].title() : "Member";
     
-    std::string formatted_message = fmt::format("&c[Clan] {} ({}): {}&0", 
+    std::string formatted_message = fmt::format("<cyan>[Clan] {} ({}): {}</>",
                                                ctx.actor()->name(), rank_title, message.str());
     
     // Send to all clan members (including self)
@@ -209,14 +200,14 @@ Result<CommandResult> cmd_clan_ranks(const CommandContext &ctx) {
     }
     
     std::ostringstream output;
-    output << fmt::format("&c&b--- {} Rank Structure ---&0\n", (*clan)->name());
+    output << fmt::format("<b:cyan>--- {} Rank Structure ---</>\n", (*clan)->name());
     
     const auto& ranks = (*clan)->ranks();
     for (size_t i = 0; i < ranks.size(); ++i) {
         const auto& rank = ranks[i];
         auto members_in_rank = (*clan)->get_members_by_rank_index(static_cast<int>(i));
         
-        output << fmt::format("&c{}:&0 {} member{}\n", 
+        output << fmt::format("<cyan>{}:</> {} member{}\n",
                              rank.title(), members_in_rank.size(),
                              members_in_rank.size() == 1 ? "" : "s");
     }
@@ -264,7 +255,7 @@ Result<CommandResult> cmd_cset(const CommandContext &ctx) {
         return Ok(CommandResult::Success);
     }
     
-    std::transform(property.begin(), property.end(), property.begin(), ::tolower);
+    property = to_lowercase(property);
     
     if (property == "motd") {
         // Build complete message from remaining args

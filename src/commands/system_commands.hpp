@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: src/commands/system_commands.hpp         Part of FieryMUD *
- *  Usage: System command implementations                                  *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "command_system.hpp"
@@ -20,11 +11,15 @@
  */
 
 namespace SystemCommands {
+    // Module registration
+    Result<void> register_commands();
+
     // System Commands
     Result<CommandResult> cmd_quit(const CommandContext& ctx);
     Result<CommandResult> cmd_save(const CommandContext& ctx);
     Result<CommandResult> cmd_help(const CommandContext& ctx);
     Result<CommandResult> cmd_commands(const CommandContext& ctx);
+    Result<CommandResult> cmd_socials(const CommandContext& ctx);
     Result<CommandResult> cmd_prompt(const CommandContext& ctx);
     Result<CommandResult> cmd_richtest(const CommandContext& ctx);
     Result<CommandResult> cmd_clientinfo(const CommandContext& ctx);

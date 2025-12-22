@@ -1,20 +1,27 @@
 {
-  "game": {
-    "name": "FieryMUD Test Server",
+  "network": {
+    "bind_address": "0.0.0.0",
     "port": 4002,
-    "data_directory": "data_test",
-    "world_directory": "data_test/world",
-    "players_directory": "data_test/players",
-    "logs_directory": "logs",
-    "autosave_interval": 300,
-    "crash_save": true,
-    "backup_enabled": false
+    "max_connections": 50,
+    "connection_timeout_seconds": 300
   },
-  "world": {
-    "format_version": "2.0",
-    "validate_on_load": true,
-    "zone_auto_reset": true,
-    "max_zones": 1000
+  "game": {
+    "mud_name": "FieryMUD Test Server",
+    "world_directory": "data_test/world",
+    "player_directory": "data_test/players",
+    "log_directory": "logs",
+    "default_starting_room": 3001,
+    "log_level": "debug"
+  },
+  "performance": {
+    "target_tps": 10,
+    "max_command_queue_size": 1000,
+    "enable_monitoring": true
+  },
+  "persistence": {
+    "auto_save_interval_seconds": 300,
+    "backup_interval_seconds": 3600,
+    "max_backups": 5
   },
   "testing": {
     "enabled": true,

@@ -1,18 +1,9 @@
-
-/***************************************************************************
- *   File: src/world/room.cpp                             Part of FieryMUD *
- *  Usage: Modern room system implementation                               *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "room.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../text/string_utils.hpp"
 
 #include <algorithm>
 #include <sstream>
@@ -334,15 +325,15 @@ Result<std::unique_ptr<Room>> Room::from_json(const nlohmann::json &json) {
                 } else {
                     // Try converting numeric string to SectorType
                     try {
-                        [[maybe_unused]] int sector_num = std::stoi(sector_str);
-                        // TODO: Map numeric sector to SectorType enum when available
+                        int sector_num = std::stoi(sector_str);
+                        sector = RoomUtils::sector_from_number(sector_num);
                     } catch (...) {
                         // Use default sector
                     }
                 }
             } else {
-                [[maybe_unused]] int sector_num = json["sector"].get<int>();
-                // TODO: Map numeric sector to SectorType enum when available
+                int sector_num = json["sector"].get<int>();
+                sector = RoomUtils::sector_from_number(sector_num);
             }
         }
 
@@ -370,9 +361,7 @@ Result<std::unique_ptr<Room>> Room::from_json(const nlohmann::json &json) {
                 std::istringstream iss(flags_str);
                 std::string flag;
                 while (std::getline(iss, flag, ',')) {
-                    // Trim whitespace
-                    flag.erase(0, flag.find_first_not_of(" \t"));
-                    flag.erase(flag.find_last_not_of(" \t") + 1);
+                    flag = std::string(trim(flag));
 
                     if (!flag.empty()) {
                         if (auto parsed_flag = RoomUtils::parse_room_flag(flag)) {
@@ -496,16 +485,34 @@ bool Room::is_dark() const { return has_flag(RoomFlag::Dark) || calculate_effect
 bool Room::is_naturally_lit() const { return sector_provides_light() && !has_flag(RoomFlag::Dark); }
 
 int Room::calculate_effective_light() const {
+    auto logger = Log::game();
+
+    // Debug: log only for the temple to trace the darkness issue
+    bool is_temple = (id().zone_id() == 30 && id().local_id() == 1);
+    if (is_temple) {
+        logger->info("DEBUG calculate_effective_light: Temple room {} flags_count={} has_AlwaysLit={}",
+                    id().value(), flags_.size(), has_flag(RoomFlag::AlwaysLit));
+    }
+
     // AlwaysLit rooms are always lit regardless of other factors
     if (has_flag(RoomFlag::AlwaysLit)) {
+        if (is_temple) {
+            logger->info("DEBUG Temple has AlwaysLit, returning 10");
+        }
         return 10; // High light level
     }
 
     if (has_flag(RoomFlag::Dark)) {
+        if (is_temple) {
+            logger->info("DEBUG Temple has Dark flag, returning 0");
+        }
         return 0;
     }
 
     int total_light = light_level_;
+    if (is_temple) {
+        logger->info("DEBUG Temple base light_level_: {}", light_level_);
+    }
 
     // Add natural sector light
     if (sector_provides_light()) {
@@ -539,8 +546,29 @@ bool Room::can_see_in_room(const Actor *observer) const {
         return false;
     }
 
-    // TODO: Check actor's infravision, blindness, etc.
-    return calculate_effective_light() > 0;
+    // Check if actor is blind (ActorFlag::Blind in actor.hpp)
+    if (observer->has_flag(ActorFlag::Blind)) {
+        return false;
+    }
+
+    // Get effective light level
+    int light = calculate_effective_light();
+
+    // Dark room - check for special vision abilities
+    if (light <= 0) {
+        // Infravision allows seeing in dark rooms (but not magical darkness)
+        if (observer->has_flag(ActorFlag::Infravision)) {
+            return true;
+        }
+        // Check if actor is an immortal/god
+        auto* player = dynamic_cast<const Player*>(observer);
+        if (player && player->is_god()) {
+            return true;
+        }
+        return false;
+    }
+
+    return true;
 }
 
 int Room::max_occupants() const {
@@ -561,21 +589,26 @@ bool Room::can_accommodate(const Actor *actor) const {
         return false;
     }
 
+    // Check if actor is a Mobile (NPC)
+    bool is_mobile = (dynamic_cast<const Mobile*>(actor) != nullptr);
+
     // Check capacity
     if (static_cast<int>(contents_.actors.size()) >= max_occupants()) {
         return false;
     }
 
-    // Check god room restriction
+    // Check god room restriction - only immortals may enter
+    // For now, mobiles cannot enter god rooms
     if (has_flag(RoomFlag::Godroom)) {
-        // TODO: Check if actor is god
-        return false;
+        if (is_mobile) {
+            return false;  // NPCs cannot enter god rooms
+        }
+        // Players need god level check - handled in movement restrictions
     }
 
-    // Check no-mob restriction
-    if (has_flag(RoomFlag::NoMob)) {
-        // TODO: Check if actor is NPC
-        return false;
+    // Check no-mob restriction - NPCs cannot enter
+    if (has_flag(RoomFlag::NoMob) && is_mobile) {
+        return false;  // NPCs blocked from NoMob rooms
     }
 
     return true;
@@ -731,14 +764,15 @@ std::string_view get_direction_name(Direction dir) {
 }
 
 std::optional<Direction> parse_direction(std::string_view dir_name) {
-    // Try full name first
+    // Try full name first (PascalCase - matches enum names)
     auto result = magic_enum::enum_cast<Direction>(dir_name);
     if (result) {
         return result;
     }
 
-    // Try abbreviations
-    static const std::unordered_map<std::string_view, Direction> abbrevs = {
+    // Try lowercase, uppercase, and abbreviations (for database and user input)
+    static const std::unordered_map<std::string_view, Direction> dir_map = {
+        // Lowercase
         {"n", Direction::North},      {"north", Direction::North},
         {"e", Direction::East},       {"east", Direction::East},
         {"s", Direction::South},      {"south", Direction::South},
@@ -748,10 +782,21 @@ std::optional<Direction> parse_direction(std::string_view dir_name) {
         {"ne", Direction::Northeast}, {"northeast", Direction::Northeast},
         {"nw", Direction::Northwest}, {"northwest", Direction::Northwest},
         {"se", Direction::Southeast}, {"southeast", Direction::Southeast},
-        {"sw", Direction::Southwest}, {"southwest", Direction::Southwest}};
+        {"sw", Direction::Southwest}, {"southwest", Direction::Southwest},
+        // Uppercase (for database enum values)
+        {"NORTH", Direction::North},
+        {"EAST", Direction::East},
+        {"SOUTH", Direction::South},
+        {"WEST", Direction::West},
+        {"UP", Direction::Up},
+        {"DOWN", Direction::Down},
+        {"NORTHEAST", Direction::Northeast},
+        {"NORTHWEST", Direction::Northwest},
+        {"SOUTHEAST", Direction::Southeast},
+        {"SOUTHWEST", Direction::Southwest}};
 
-    auto it = abbrevs.find(dir_name);
-    return it != abbrevs.end() ? std::optional<Direction>{it->second} : std::nullopt;
+    auto it = dir_map.find(dir_name);
+    return it != dir_map.end() ? std::optional<Direction>{it->second} : std::nullopt;
 }
 
 Direction get_opposite_direction(Direction dir) {
@@ -790,6 +835,38 @@ std::string_view get_sector_name(SectorType sector) {
 
 std::optional<SectorType> parse_sector_type(std::string_view sector_name) {
     return magic_enum::enum_cast<SectorType>(sector_name);
+}
+
+SectorType sector_from_number(int sector_num) {
+    // Map legacy CircleMUD sector numbers to modern SectorType enum
+    // CircleMUD sector values: 0=Inside, 1=City, 2=Field, 3=Forest, 4=Hills,
+    // 5=Mountain, 6=Water_Swim, 7=Water_NoSwim, 8=Air/Flying, 9=Underwater
+    switch (sector_num) {
+    case 0: return SectorType::Inside;
+    case 1: return SectorType::City;
+    case 2: return SectorType::Field;
+    case 3: return SectorType::Forest;
+    case 4: return SectorType::Hills;
+    case 5: return SectorType::Mountains;
+    case 6: return SectorType::Water_Swim;
+    case 7: return SectorType::Water_Noswim;
+    case 8: return SectorType::Flying;
+    case 9: return SectorType::Underwater;
+    case 10: return SectorType::Desert;
+    case 11: return SectorType::Swamp;
+    case 12: return SectorType::Beach;
+    case 13: return SectorType::Road;
+    case 14: return SectorType::Underground;
+    case 15: return SectorType::Lava;
+    case 16: return SectorType::Ice;
+    case 17: return SectorType::Astral;
+    case 18: return SectorType::Fire;
+    case 19: return SectorType::Lightning;
+    case 20: return SectorType::Spirit;
+    case 21: return SectorType::Badlands;
+    case 22: return SectorType::Void;
+    default: return SectorType::Undefined;
+    }
 }
 
 std::string_view get_flag_name(RoomFlag flag) {
@@ -905,7 +982,8 @@ std::string Room::get_stat_info() const {
     output << fmt::format("Description:\n{}\n", description().empty() ? "  None." : description());
 
     // Extra descriptions
-    // TODO: Add extra descriptions when supported
+    // Note: Extra descriptions feature pending Entity::extra_descriptions implementation
+    output << "Extra descs: <None>\n";
 
     // Characters in room
     const auto &contents = contents_;

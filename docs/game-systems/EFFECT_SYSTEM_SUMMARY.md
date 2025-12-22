@@ -1,5 +1,10 @@
 # FieryMUD Effect Composition System - Summary
 
+> **DEPRECATION NOTICE**: This document describes the legacy 15-effect system.
+> The effect system is being consolidated to 18 effects with a cleaner, more orthogonal design.
+> See the Effect System Consolidation Plan for the new system design.
+> This document is retained for historical reference only.
+
 This document summarizes the composable effect system extracted from the FieryMUD C++ codebase and applied to ability documentation.
 
 ## What Was Done

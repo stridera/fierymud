@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/testing/test_simple_functionality.cpp Part of FieryMUD *
- *  Usage: Simple test program to verify core game functionality             *
- ***************************************************************************/
-
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../game/player.hpp"

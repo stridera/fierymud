@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/net/tls_context.cpp             Part of FieryMUD *
- *  Usage: TLS/SSL context management implementation                       *
- ***************************************************************************/
-
 #include "tls_context.hpp"
 #include "../server/mud_server.hpp"
 #include "../core/logging.hpp"

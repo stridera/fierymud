@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: s../core/object.hpp                          Part of FieryMUD *
- *  Usage: Object hierarchy with modern APIs                               *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #pragma once
 
 #include "entity.hpp"

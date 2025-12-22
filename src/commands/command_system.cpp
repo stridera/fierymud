@@ -1,16 +1,8 @@
-/***************************************************************************
- *   File: src/commands/command_system.cpp                Part of FieryMUD *
- *  Usage: Command registration and privilege system implementation        *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "command_system.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../text/string_utils.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 #include "command_parser.hpp"
@@ -76,6 +68,7 @@ Result<void> CommandSystem::initialize() {
     // Register default categories
     register_category(CommandCategory("Communication", "Commands for talking to other players"));
     register_category(CommandCategory("Movement", "Commands for moving around the world"));
+    register_category(CommandCategory("Position", "Commands for changing position (sit, stand, rest)"));
     register_category(CommandCategory("Information", "Commands for getting information"));
     register_category(CommandCategory("Object", "Commands for manipulating objects"));
     register_category(CommandCategory("Combat", "Commands used in combat"));
@@ -612,8 +605,7 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
     // Check if actor is dead or ghost - allow informational commands for both states
     if (actor->position() == Position::Ghost || actor->position() == Position::Dead) {
         // Allow informational commands and release for dead/ghost players
-        std::string cmd_name = command.name;
-        std::transform(cmd_name.begin(), cmd_name.end(), cmd_name.begin(), ::tolower);
+        std::string cmd_name = to_lowercase(command.name);
 
         // List of commands dead/ghost players can use
         static const std::set<std::string> ghost_allowed_commands = {
@@ -643,8 +635,7 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
 
         // Check aliases too
         for (const auto &alias : command.aliases) {
-            std::string alias_lower = alias;
-            std::transform(alias_lower.begin(), alias_lower.end(), alias_lower.begin(), ::tolower);
+            std::string alias_lower = to_lowercase(alias);
             if (ghost_allowed_commands.contains(alias_lower)) {
                 return true;
             }
@@ -657,8 +648,7 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
     Position actor_position = actor->position();
 
     // Get command name for position checks
-    std::string cmd_name = command.name;
-    std::transform(cmd_name.begin(), cmd_name.end(), cmd_name.begin(), ::tolower);
+    std::string cmd_name = to_lowercase(command.name);
 
     // Commands that require the actor to be awake
     static const std::unordered_set<std::string> awake_commands = {

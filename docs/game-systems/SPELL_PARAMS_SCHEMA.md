@@ -644,7 +644,7 @@ When updating from old format to new:
 ```
 
 Migration script should:
-1. Parse `all_spell_implementations.json` for rich data
-2. Extract bonus strings and parse into structured bonuses
-3. Extract requirement strings and parse into restrictions
+1. Parse `fierylib/docs/extraction-reports/abilities.csv` for authoritative metadata
+2. Extract requirement strings and parse into restrictions
+3. Query database AbilityEffect records for effect parameters
 4. Store in new params format

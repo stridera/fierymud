@@ -28,7 +28,10 @@ We're **missing** documentation for:
 
 ### 1. Spell and Skill Definitions ✅
 
-**File**: `ABILITIES_COMPLETE.md` (7,441 lines, 172 KB)
+**File**: `fierylib/docs/extraction-reports/abilities.csv` (authoritative source)
+
+> **Note**: Previous ABILITIES_COMPLETE.md was removed due to incorrect damage type mappings. The
+> CSV extraction from `skills.cpp` spello() calls is now the authoritative source.
 
 **Coverage**: 368/368 abilities (100%)
 - 251 spells
@@ -38,27 +41,16 @@ We're **missing** documentation for:
 
 **What's Included**:
 - ✅ Spell/skill names and IDs
-- ✅ Command syntax
-- ✅ Target types (SELF, SINGLE, GROUP, AREA)
+- ✅ Target types
 - ✅ Position requirements (STANDING, FIGHTING, etc.)
-- ✅ Wearoff messages
-- ✅ Implementation details (where available)
-
-**Example Entry**:
-```markdown
-#### Harm (ID 27)
-- **Type**: SPELL
-- **Command**: `harm`
-- **Target**: SINGLE (OFFENSIVE, SAME_ROOM)
-- **Damage Type**: DAM_ALIGN
-- **Damage Formula**: `(pow(skill,2)*41)/5000`
-- **Source**: magic.cpp:665-668
-```
+- ✅ Damage types (extracted from spello() - authoritative)
+- ✅ Combat flags (violent, canUseInCombat)
+- ✅ Class assignments
 
 **Gaps**:
-- Some abilities lack detailed implementation (message-only spells)
 - Spell circle system not documented
 - Learning requirements not included
+- Implementation messages (available in source code)
 
 ---
 
@@ -431,13 +423,13 @@ Backstab:
 - Prohibited spells/skills by alignment
 
 **Impact**: **Medium**
-- Have partial data in ABILITIES_COMPLETE.md
+- Have partial data in `abilities.csv`
 - Need complete class spell lists
 - Need racial ability implementations
 
 **Partial Data Available**:
 ```markdown
-# From ABILITIES_COMPLETE.md
+# From abilities.csv
 Classes: Cleric, Druid, Shaman, Diabolist, Priest (all good)
 Min Level: 11 (Cleric)
 ```
@@ -517,21 +509,16 @@ Min Level: 11 (Cleric)
 
 **Answer**: YES ✅
 
-**From ABILITIES_COMPLETE.md**:
-```markdown
-#### Color Spray (ID 55)
-- **Type**: SPELL
-- **Command**: `color spray`
-- **Target**: SINGLE (OFFENSIVE, SAME_ROOM)
+**From `abilities.csv`**:
+```csv
+name,type,damageType,targets,minPosition,violent,canUseInCombat
+color spray,SPELL,SHOCK,SINGLE,STANDING,true,true
 ```
 
-**From DAMAGE_SPELL_FORMULAS.md**:
-```markdown
-### Color Spray
-- **Damage Type**: DAM_ENERGY
-- **Formula**: sorcerer_single_target
-- **Additional Effect**: May blind victim
-- **Source**: magic.cpp:654
+**From `skills.cpp` spello() definition**:
+```cpp
+// Damage type is SHOCK (not ENERGY), target validation, etc.
+// See legacy/src/skills.cpp for full definition
 ```
 
 **From EFFECT_FLAGS_REFERENCE.md**:
@@ -629,14 +616,12 @@ void cast_color_spray(CharData *caster, CharData *victim, int skill) {
 
 | File | Size | Coverage | Purpose |
 |------|------|----------|---------|
-| `ABILITIES_COMPLETE.md` | 172 KB | 368/368 (100%) | All spells/skills with formulas |
 | `EFFECT_FLAGS_REFERENCE.md` | 18 KB | 90/90 (100%) | What each effect flag does |
 | `CORE_MECHANICS.md` | 21 KB | 100% | All game systems and formulas |
-| `DAMAGE_SPELL_FORMULAS.md` | 5 KB | 79/79 (100%) | Damage spell reference |
-| `SKILL_MECHANICS.md` | 4 KB | 94/94 (100%) | Skill implementations |
-| `all_spell_implementations.json` | 140 KB | 434 entries | Machine-readable data |
+| `fierylib/docs/extraction-reports/abilities.csv` | 40 KB | 368/368 (100%) | Authoritative ability data |
+| `fierylib/docs/mapping/effects_reference.csv` | 12 KB | 30 effects | Effect definitions and usage |
 
-**Total Documentation**: ~360 KB of implementation details
+**Total Documentation**: ~90 KB of implementation details (streamlined from previous 360 KB)
 
 ---
 

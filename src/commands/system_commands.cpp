@@ -1,21 +1,15 @@
-/***************************************************************************
- *   File: src/commands/system_commands.cpp         Part of FieryMUD *
- *  Usage: System command implementations                                  *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "system_commands.hpp"
-#include "rich_text.hpp"
-#include "terminal_capabilities.hpp"
+#include "../text/rich_text.hpp"
+#include "../text/terminal_capabilities.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../database/social_queries.hpp"
 #include "../net/player_connection.hpp"
 #include "../server/persistence_manager.hpp"
 
+#include <algorithm>
 #include <fmt/format.h>
+#include <map>
 
 namespace SystemCommands {
 
@@ -73,21 +67,72 @@ Result<CommandResult> cmd_save(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_help(const CommandContext &ctx) {
+    auto& cmd_system = CommandSystem::instance();
+
     if (ctx.arg_count() == 0) {
         ctx.send("FieryMUD Help System");
         ctx.send("===================");
         ctx.send("Use 'help <topic>' for specific help on:");
-        ctx.send("  commands - List all available commands");
-        ctx.send("  movement - Moving around the world");
-        ctx.send("  combat   - Fighting and combat");
-        ctx.send("  objects  - Interacting with items");
+        ctx.send("  commands      - List all available commands");
+        ctx.send("  socials       - List available social commands");
+        ctx.send("  <command>     - Help on a specific command");
+        ctx.send("\nGeneral Topics:");
+        ctx.send("  movement      - Moving around the world");
+        ctx.send("  combat        - Fighting and combat");
+        ctx.send("  objects       - Interacting with items");
         ctx.send("  communication - Talking to other players");
         ctx.send("\nFor a complete command list, type 'commands'.");
         return CommandResult::Success;
     }
 
     std::string topic{ctx.arg(0)};
-    
+
+    // First, check if it's a registered command
+    const CommandInfo* cmd_info = cmd_system.find_command(topic);
+    if (cmd_info) {
+        // Display command help
+        ctx.send(fmt::format("Help: {}", cmd_info->name));
+        ctx.send(std::string(6 + cmd_info->name.length(), '='));
+
+        // Show description if available
+        if (!cmd_info->description.empty()) {
+            ctx.send(fmt::format("\n{}", cmd_info->description));
+        }
+
+        // Show usage if available
+        if (!cmd_info->usage.empty()) {
+            ctx.send(fmt::format("\nUsage: {}", cmd_info->usage));
+        }
+
+        // Show extended help if available
+        if (!cmd_info->help_text.empty()) {
+            ctx.send(fmt::format("\n{}", cmd_info->help_text));
+        }
+
+        // Show aliases
+        if (!cmd_info->aliases.empty()) {
+            std::string alias_str;
+            for (size_t i = 0; i < cmd_info->aliases.size(); ++i) {
+                if (i > 0) alias_str += ", ";
+                alias_str += cmd_info->aliases[i];
+            }
+            ctx.send(fmt::format("\nAliases: {}", alias_str));
+        }
+
+        // Show category
+        if (!cmd_info->category.empty()) {
+            ctx.send(fmt::format("Category: {}", cmd_info->category));
+        }
+
+        // If no description, usage, or help_text, show a minimal message
+        if (cmd_info->description.empty() && cmd_info->usage.empty() && cmd_info->help_text.empty()) {
+            ctx.send("\nNo detailed help available for this command yet.");
+        }
+
+        return CommandResult::Success;
+    }
+
+    // Check for general topic help
     if (topic == "commands") {
         return cmd_commands(ctx);
     } else if (topic == "movement") {
@@ -123,8 +168,14 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
         ctx.send("whisper <player> <message> - Whisper to someone nearby");
         ctx.send("shout <message> - Shout to nearby areas");
         ctx.send("gossip <message> - Talk on gossip channel");
+    } else if (topic == "socials") {
+        // Redirect to socials command
+        ctx.send("Use the 'socials' command to see available social actions.");
+        ctx.send("Socials are loaded from the database and include actions like:");
+        ctx.send("  smile, nod, wave, bow, laugh, hug, etc.");
     } else {
         ctx.send_error(fmt::format("No help available for '{}'.", topic));
+        ctx.send("Try 'help' for a list of topics, or 'commands' for all commands.");
         return CommandResult::InvalidTarget;
     }
 
@@ -132,37 +183,170 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_commands(const CommandContext &ctx) {
+    auto& cmd_system = CommandSystem::instance();
+
     ctx.send("Available Commands:");
     ctx.send("===================");
-    
-    ctx.send("\nInformation:");
-    ctx.send("  look/l, examine, who, where, inventory/i, equipment, score, time, weather");
-    
-    ctx.send("\nCommunication:");
-    ctx.send("  say/'<msg>, tell, emote, whisper, shout, gossip");
-    
-    ctx.send("\nMovement:");
-    ctx.send("  north/n, south/s, east/e, west/w, up/u, down/d, exits");
-    
-    ctx.send("\nObjects:");
-    ctx.send("  get, drop, put, give, wear, wield, remove, light, eat, drink");
-    ctx.send("  open, close, lock, unlock");
-    
-    ctx.send("\nCombat:");
-    ctx.send("  kill, hit, cast, flee, release");
-    
-    ctx.send("\nSocial:");
-    ctx.send("  smile, nod, wave, bow, laugh");
-    
-    ctx.send("\nSystem:");
-    ctx.send("  quit, save, help, commands");
-    
-    // Only show admin commands to privileged users
-    if (ctx.actor && ctx.actor->stats().level >= 30) {  // Assuming level 30+ for gods/admins
-        ctx.send("\nAdministrative:");
-        ctx.send("  goto, teleport, summon, setweather, shutdown");
-        ctx.send("  reloadzone, savezone, reloadallzones, filewatch, dumpworld");
+
+    // Get all categories
+    auto categories = cmd_system.get_categories();
+
+    // Build a map of category -> commands that the actor can use
+    std::map<std::string, std::vector<std::string>> category_commands;
+
+    // Get all commands available to this actor
+    auto available_commands = cmd_system.get_available_commands(ctx.actor);
+
+    // Group commands by category
+    for (const auto& cmd_name : available_commands) {
+        const CommandInfo* info = cmd_system.find_command(cmd_name);
+        if (info) {
+            std::string category = info->category.empty() ? "Other" : info->category;
+
+            // Build command string with aliases
+            std::string cmd_display = info->name;
+            if (!info->aliases.empty()) {
+                // Show first alias as shortcut
+                cmd_display += "/" + info->aliases[0];
+            }
+
+            // Avoid duplicates (aliases might cause the same command to appear multiple times)
+            auto& cmds = category_commands[category];
+            if (std::find(cmds.begin(), cmds.end(), cmd_display) == cmds.end()) {
+                cmds.push_back(cmd_display);
+            }
+        }
     }
+
+    // Define category display order (most common first)
+    std::vector<std::string> category_order = {
+        "Information", "Communication", "Movement", "Position",
+        "Object", "Combat", "Social", "System",
+        "Building", "Administration", "Other"
+    };
+
+    // Display commands by category
+    for (const auto& cat_name : category_order) {
+        auto it = category_commands.find(cat_name);
+        if (it != category_commands.end() && !it->second.empty()) {
+            ctx.send(fmt::format("\n{}:", cat_name));
+
+            // Sort commands in this category
+            auto& cmds = it->second;
+            std::sort(cmds.begin(), cmds.end());
+
+            // Format commands in columns (roughly 4 per line, 18 chars each)
+            constexpr int COLUMN_WIDTH = 18;
+            constexpr int COLUMNS = 4;
+
+            std::string line = "  ";
+            int col = 0;
+            for (const auto& cmd : cmds) {
+                // Truncate if too long
+                std::string display = cmd;
+                if (display.length() > COLUMN_WIDTH - 2) {
+                    display = display.substr(0, COLUMN_WIDTH - 4) + "..";
+                }
+
+                line += fmt::format("{:<{}}", display, COLUMN_WIDTH);
+                col++;
+
+                if (col >= COLUMNS) {
+                    ctx.send(line);
+                    line = "  ";
+                    col = 0;
+                }
+            }
+
+            // Send remaining commands
+            if (col > 0) {
+                ctx.send(line);
+            }
+        }
+    }
+
+    // Show any categories not in the predefined order
+    for (const auto& [cat_name, cmds] : category_commands) {
+        if (std::find(category_order.begin(), category_order.end(), cat_name) == category_order.end()) {
+            if (!cmds.empty()) {
+                ctx.send(fmt::format("\n{}:", cat_name));
+
+                std::string line = "  ";
+                int col = 0;
+                for (const auto& cmd : cmds) {
+                    line += fmt::format("{:<18}", cmd);
+                    col++;
+                    if (col >= 4) {
+                        ctx.send(line);
+                        line = "  ";
+                        col = 0;
+                    }
+                }
+                if (col > 0) {
+                    ctx.send(line);
+                }
+            }
+        }
+    }
+
+    ctx.send("\nUse 'help <command>' for more information on a specific command.");
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_socials(const CommandContext &ctx) {
+    auto& cache = SocialCache::instance();
+
+    if (!cache.is_loaded()) {
+        ctx.send_error("Socials have not been loaded from the database.");
+        return CommandResult::SystemError;
+    }
+
+    const auto& socials = cache.all();
+
+    ctx.send("Available Social Commands:");
+    ctx.send("==========================");
+    ctx.send(fmt::format("({} socials loaded from database)\n", socials.size()));
+
+    // Collect all social names and sort them
+    std::vector<std::string> names;
+    names.reserve(socials.size());
+    for (const auto& [name, social] : socials) {
+        if (!social.hide) {
+            names.push_back(name);
+        }
+    }
+    std::sort(names.begin(), names.end());
+
+    // Display in columns (6 per line, 12 chars each)
+    constexpr int COLUMN_WIDTH = 12;
+    constexpr int COLUMNS = 6;
+
+    std::string line = "  ";
+    int col = 0;
+    for (const auto& name : names) {
+        std::string display = name;
+        if (display.length() > COLUMN_WIDTH - 1) {
+            display = display.substr(0, COLUMN_WIDTH - 2) + ".";
+        }
+
+        line += fmt::format("{:<{}}", display, COLUMN_WIDTH);
+        col++;
+
+        if (col >= COLUMNS) {
+            ctx.send(line);
+            line = "  ";
+            col = 0;
+        }
+    }
+
+    // Send remaining socials
+    if (col > 0) {
+        ctx.send(line);
+    }
+
+    ctx.send("\nUse a social with no argument, or with a target name.");
+    ctx.send("Example: smile, wave bob, hug self");
 
     return CommandResult::Success;
 }
@@ -489,6 +673,68 @@ Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
     ctx.send_rich(support_level);
     
     return CommandResult::Success;
+}
+
+// =============================================================================
+// Command Registration
+// =============================================================================
+
+Result<void> register_commands() {
+    Commands()
+        .command("quit", cmd_quit)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("save", cmd_save)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("help", cmd_help)
+        .alias("h")
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .description("Get help on commands and topics")
+        .usage("help [topic|command]")
+        .build();
+
+    Commands()
+        .command("commands", cmd_commands)
+        .alias("comm")
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .description("List all available commands")
+        .build();
+
+    Commands()
+        .command("socials", cmd_socials)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .description("List all available social commands")
+        .build();
+
+    Commands()
+        .command("prompt", cmd_prompt)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("richtest", cmd_richtest)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("clientinfo", cmd_clientinfo)
+        .category("System")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    return Success();
 }
 
 } // namespace SystemCommands
