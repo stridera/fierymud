@@ -10,105 +10,73 @@
 
 namespace FieryMUD {
 
-// Combat system constants
-namespace {
-    // Combat modifier caps
-    constexpr double MAX_CRITICAL_CHANCE = 0.95;    // Cap at 95%
-    constexpr double MAX_DAMAGE_RESISTANCE = 0.9;   // Cap at 90%
-
-    // Class combat scaling per level
-    constexpr double WARRIOR_HIT_PER_LEVEL = 0.75;
-    constexpr double WARRIOR_DAMAGE_PER_LEVEL = 0.5;
-    constexpr double WARRIOR_AC_PER_LEVEL = 0.25;
-    constexpr double WARRIOR_CRIT_BASE = 0.05;
-    constexpr double WARRIOR_CRIT_PER_LEVEL = 0.002;
-
-    constexpr double CLERIC_HIT_PER_LEVEL = 0.5;
-    constexpr double CLERIC_DAMAGE_PER_LEVEL = 0.25;
-    constexpr double CLERIC_AC_PER_LEVEL = 0.15;
-    constexpr double CLERIC_RESIST_PER_LEVEL = 0.005;
-
-    constexpr double SORCERER_HIT_PER_LEVEL = 0.25;
-    constexpr double SORCERER_DAMAGE_PER_LEVEL = 0.1;
-
-    constexpr double ROGUE_HIT_PER_LEVEL = 0.6;
-    constexpr double ROGUE_DAMAGE_PER_LEVEL = 0.3;
-    constexpr double ROGUE_AC_PER_LEVEL = 0.2;
-    constexpr double ROGUE_CRIT_BASE = 0.1;
-    constexpr double ROGUE_CRIT_PER_LEVEL = 0.003;
-
-    // Race bonus constants - hit/damage/AC
-    constexpr double HUMAN_HIT_BONUS = 1.0;
-    constexpr double HUMAN_DAMAGE_BONUS = 1.0;
-    constexpr double HUMAN_AC_BONUS = 0.5;
-
-    constexpr double ELF_HIT_BONUS = 2.0;
-    constexpr double ELF_DAMAGE_BONUS = 0.5;
-    constexpr double ELF_AC_BONUS = 1.5;
-    constexpr double ELF_CRIT_BONUS = 0.02;
-
-    constexpr double DWARF_HIT_BONUS = 0.5;
-    constexpr double DWARF_DAMAGE_BONUS = 2.0;
-    constexpr double DWARF_AC_BONUS = 0.0;
-    constexpr double DWARF_RESIST_BONUS = 0.05;
-
-    constexpr double HALFLING_HIT_BONUS = 1.5;
-    constexpr double HALFLING_DAMAGE_BONUS = -0.5;
-    constexpr double HALFLING_AC_BONUS = 2.0;
-    constexpr double HALFLING_CRIT_BONUS = 0.03;
-
-    // Experience calculation
-    constexpr int EXP_BASE_PER_LEVEL = 100;
-    constexpr double EXP_HIGHER_LEVEL_BONUS = 0.1;   // Bonus per level when fighting higher
-    constexpr double EXP_LOWER_LEVEL_PENALTY = 0.05; // Penalty per level when fighting lower
-    constexpr double EXP_MIN_MULTIPLIER = 0.1;
-
-    // Extra attack level thresholds (warrior class)
-    constexpr int EXTRA_ATTACK_LEVEL_1 = 6;
-    constexpr int EXTRA_ATTACK_LEVEL_2 = 11;
-    constexpr int EXTRA_ATTACK_LEVEL_3 = 16;
-    constexpr int EXTRA_ATTACK_LEVEL_4 = 20;
-
-    // Combat round timing (ms)
-    constexpr int COMBAT_ROUND_MS = 3000;
-    constexpr int COMBAT_LOG_SPAM_THRESHOLD_MS = 5000;
-
-    // Die bounds
-    constexpr int D20_MIN = 1;
-    constexpr int D20_MAX = 20;
-    constexpr double D6_MIN = 1.0;
-    constexpr double D6_MAX = 6.0;
-
-    // Damage constants
-    constexpr double CRITICAL_HIT_MULTIPLIER = 2.0;
-    constexpr double MIN_DAMAGE = 1.0;
-
-    // Sneak attack scaling
-    constexpr int SNEAK_ATTACK_LEVEL_DIVISOR = 2;
-
-    // Cleric abilities
-    constexpr int CLERIC_TURN_UNDEAD_MIN_LEVEL = 2;
-
-    // Sorcerer spell damage scaling
-    constexpr double SORCERER_SPELL_LEVEL_BONUS = 0.5;
-    constexpr double SORCERER_INT_BONUS_MULTIPLIER = 2.0;
-}
-
 // Static member definitions
 std::vector<std::pair<CombatEvent::EventType, CombatEventHandler>> CombatSystem::event_handlers_;
 std::vector<CombatPair> CombatManager::active_combats_;
 
+// Thread-local random generators
+static thread_local std::random_device rd;
+static thread_local std::mt19937 gen(rd());
+
 // ============================================================================
-// CombatModifiers Implementation
+// CombatStats Implementation
 // ============================================================================
 
-CombatModifiers CombatModifiers::operator+(const CombatModifiers& other) const {
-    CombatModifiers result;
-    result.hit_bonus = hit_bonus + other.hit_bonus;
-    result.damage_bonus = damage_bonus + other.damage_bonus;
-    result.armor_class_bonus = armor_class_bonus + other.armor_class_bonus;
-    result.critical_chance = std::min(MAX_CRITICAL_CHANCE, critical_chance + other.critical_chance);
-    result.damage_resistance = std::min(MAX_DAMAGE_RESISTANCE, damage_resistance + other.damage_resistance);
+double CombatStats::calculate_dr_percent(double ar, int level) {
+    if (ar <= 0) return 0.0;
+
+    double k = get_dr_k_constant(level);
+    double dr = ar / (ar + k);
+
+    // Cap at 75%
+    return std::min(dr, CombatConstants::DR_CAP);
+}
+
+double CombatStats::get_dr_k_constant(int level) {
+    if (level <= 20) {
+        return CombatConstants::DR_K_LOW_TIER;
+    } else if (level <= 50) {
+        return CombatConstants::DR_K_MID_TIER;
+    } else {
+        return CombatConstants::DR_K_HIGH_TIER;
+    }
+}
+
+CombatStats CombatStats::operator+(const CombatStats& other) const {
+    CombatStats result;
+
+    // Offensive stats (additive)
+    result.acc = acc + other.acc;
+    result.ap = ap + other.ap;
+    result.pen_flat = pen_flat + other.pen_flat;
+    result.pen_pct = std::min(CombatConstants::PEN_PCT_CAP, pen_pct + other.pen_pct);
+    result.crit_bonus = crit_bonus + other.crit_bonus;
+
+    // Defensive stats (additive)
+    result.eva = eva + other.eva;
+    result.ar = ar + other.ar;
+    result.soak = soak + other.soak;
+    result.ward_pct = ward_pct + other.ward_pct;
+
+    // Resistances - use most favorable (lowest)
+    result.res_fire = std::min(res_fire, other.res_fire);
+    result.res_cold = std::min(res_cold, other.res_cold);
+    result.res_shock = std::min(res_shock, other.res_shock);
+    result.res_acid = std::min(res_acid, other.res_acid);
+    result.res_poison = std::min(res_poison, other.res_poison);
+    result.res_physical = std::min(res_physical, other.res_physical);
+
+    // Weapon stats - use first non-default
+    if (weapon_dice_num > 1 || weapon_dice_size > 6 || weapon_base_damage > 0) {
+        result.weapon_dice_num = weapon_dice_num;
+        result.weapon_dice_size = weapon_dice_size;
+        result.weapon_base_damage = weapon_base_damage;
+    } else {
+        result.weapon_dice_num = other.weapon_dice_num;
+        result.weapon_dice_size = other.weapon_dice_size;
+        result.weapon_base_damage = other.weapon_base_damage;
+    }
+
     return result;
 }
 
@@ -116,110 +84,155 @@ CombatModifiers CombatModifiers::operator+(const CombatModifiers& other) const {
 // CombatSystem Implementation
 // ============================================================================
 
-CombatModifiers CombatSystem::calculate_combat_modifiers(const Actor& actor) {
-    CombatModifiers total_mods;
-    
-    // Try to cast to Player to get class and race
+int CombatSystem::roll_d100() {
+    std::uniform_int_distribution<int> dist(CombatConstants::D100_MIN, CombatConstants::D100_MAX);
+    return dist(gen);
+}
+
+double CombatSystem::roll_damage(int num_dice, int dice_size, int bonus) {
+    if (num_dice <= 0 || dice_size <= 0) {
+        return static_cast<double>(std::max(0, bonus));
+    }
+
+    std::uniform_int_distribution<int> die(1, dice_size);
+    double total = 0.0;
+    for (int i = 0; i < num_dice; ++i) {
+        total += die(gen);
+    }
+    return total + bonus;
+}
+
+CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
+    CombatStats stats;
+    const Stats& actor_stats = actor.stats();
+    int level = actor_stats.level;
+
+    // Base ACC from level
+    stats.acc = CombatConstants::ACC_BASE;
+
+    // Class-specific ACC rate
     if (const auto* player = dynamic_cast<const Player*>(&actor)) {
         CharacterClass char_class = string_to_class(player->player_class());
+        double acc_rate = get_class_acc_rate(char_class);
+        stats.acc += level * acc_rate;
+
+        // Add race bonuses
         CharacterRace char_race = string_to_race(player->race());
-        
-        CombatModifiers class_mods = get_class_combat_bonus(char_class, actor.stats().level);
-        CombatModifiers race_mods = get_race_combat_bonus(char_race);
-        
-        total_mods = total_mods + class_mods + race_mods;
+        CombatStats race_bonus = get_race_combat_bonus(char_race);
+        stats = stats + race_bonus;
+    } else {
+        // Mobs get a moderate ACC rate
+        stats.acc += level * 0.5;
     }
-    
-    // Add base attribute modifiers
-    const Stats& stats = actor.stats();
-    total_mods.hit_bonus += Stats::attribute_modifier(stats.dexterity);
-    total_mods.damage_bonus += Stats::attribute_modifier(stats.strength);
-    total_mods.armor_class_bonus += Stats::attribute_modifier(stats.dexterity); // DEX improves AC
-    
-    // Add equipment bonuses (from existing stats)
-    total_mods.hit_bonus += stats.hit_roll;
-    total_mods.damage_bonus += stats.damage_roll;
-    
-    return total_mods;
+
+    // Stat contributions to ACC
+    // STR: (STR - 50) / 5 = -10 to +10
+    stats.acc += (actor_stats.strength - CombatConstants::STAT_NEUTRAL) / CombatConstants::STR_TO_ACC_DIVISOR;
+    // INT: (INT - 50) / 10 = -5 to +5
+    stats.acc += (actor_stats.intelligence - CombatConstants::STAT_NEUTRAL) / CombatConstants::INT_TO_ACC_DIVISOR;
+    // WIS: (WIS - 50) / 10 = -5 to +5
+    stats.acc += (actor_stats.wisdom - CombatConstants::STAT_NEUTRAL) / CombatConstants::WIS_TO_ACC_DIVISOR;
+
+    // Hitroll from gear adds directly to ACC
+    stats.acc += actor_stats.hit_roll;
+
+    // Cap ACC
+    stats.acc = std::min(stats.acc, static_cast<double>(CombatConstants::ACC_SOFT_CAP));
+
+    // Base EVA from level
+    stats.eva = CombatConstants::EVA_BASE + (level * CombatConstants::EVA_LEVEL_RATE);
+
+    // DEX contribution to EVA: (DEX - 50) / 3 = -16 to +16
+    stats.eva += (actor_stats.dexterity - CombatConstants::STAT_NEUTRAL) / CombatConstants::DEX_TO_EVA_DIVISOR;
+
+    // TODO: Add skill contributions (dodge, parry, riposte) when skill system is integrated
+    // stats.eva += dodge_skill * CombatConstants::DODGE_TO_EVA;
+    // stats.eva += parry_skill * CombatConstants::PARRY_TO_EVA;
+    // stats.eva += riposte_skill * CombatConstants::RIPOSTE_TO_EVA;
+
+    // Cap EVA
+    stats.eva = std::min(stats.eva, static_cast<double>(CombatConstants::EVA_SOFT_CAP));
+
+    // Attack Power from damroll + STR modifier
+    stats.ap = actor_stats.damage_roll;
+    stats.ap += Stats::attribute_modifier(actor_stats.strength);
+
+    // Armor Rating from AC (inverted: lower AC = higher AR)
+    // AR = 100 - AC (so AC of -50 = AR of 150)
+    stats.ar = std::max(0.0, 100.0 - actor_stats.armor_class);
+
+    // Calculate DR% from AR
+    stats.dr_pct = CombatStats::calculate_dr_percent(stats.ar, level);
+
+    // Get weapon stats from mob if applicable
+    if (const auto* mobile = dynamic_cast<const Mobile*>(&actor)) {
+        stats.weapon_dice_num = mobile->bare_hand_damage_dice_num();
+        stats.weapon_dice_size = mobile->bare_hand_damage_dice_size();
+        stats.weapon_base_damage = mobile->bare_hand_damage_dice_bonus();
+    } else {
+        // Default player unarmed
+        stats.weapon_dice_num = 1;
+        stats.weapon_dice_size = 4;
+        stats.weapon_base_damage = 0;
+    }
+
+    return stats;
 }
 
-CombatModifiers CombatSystem::get_class_combat_bonus(CharacterClass character_class, int level) {
-    CombatModifiers mods;
-
+double CombatSystem::get_class_acc_rate(CharacterClass character_class) {
     switch (character_class) {
         case CharacterClass::Warrior:
-            // Warriors get significant combat bonuses
-            mods.hit_bonus = level * WARRIOR_HIT_PER_LEVEL;
-            mods.damage_bonus = level * WARRIOR_DAMAGE_PER_LEVEL;
-            mods.armor_class_bonus = level * WARRIOR_AC_PER_LEVEL;
-            mods.critical_chance = WARRIOR_CRIT_BASE + (level * WARRIOR_CRIT_PER_LEVEL);
-            break;
-
-        case CharacterClass::Cleric:
-            // Moderate combat with some defensive bonuses
-            mods.hit_bonus = level * CLERIC_HIT_PER_LEVEL;
-            mods.damage_bonus = level * CLERIC_DAMAGE_PER_LEVEL;
-            mods.armor_class_bonus = level * CLERIC_AC_PER_LEVEL;
-            mods.damage_resistance = level * CLERIC_RESIST_PER_LEVEL;
-            break;
-
-        case CharacterClass::Sorcerer:
-            // Weak physical combat but will get spell bonuses later
-            mods.hit_bonus = level * SORCERER_HIT_PER_LEVEL;
-            mods.damage_bonus = level * SORCERER_DAMAGE_PER_LEVEL;
-            mods.armor_class_bonus = 0; // No AC improvement
-            // Sorcerers get spell damage bonuses (handled in ClassAbilities)
-            break;
-
+            return ClassAccRates::WARRIOR;
         case CharacterClass::Rogue:
-            // High precision, lower raw damage, but critical hits
-            mods.hit_bonus = level * ROGUE_HIT_PER_LEVEL;
-            mods.damage_bonus = level * ROGUE_DAMAGE_PER_LEVEL;
-            mods.armor_class_bonus = level * ROGUE_AC_PER_LEVEL;
-            mods.critical_chance = ROGUE_CRIT_BASE + (level * ROGUE_CRIT_PER_LEVEL);
-            break;
+            return ClassAccRates::ROGUE;
+        case CharacterClass::Cleric:
+            return ClassAccRates::CLERIC;
+        case CharacterClass::Sorcerer:
+            return ClassAccRates::SORCERER;
+        default:
+            return 0.5; // Default moderate rate
     }
-
-    return mods;
 }
 
-CombatModifiers CombatSystem::get_race_combat_bonus(CharacterRace race) {
-    CombatModifiers mods;
+CombatStats CombatSystem::get_race_combat_bonus(CharacterRace race) {
+    CombatStats bonus;
 
     switch (race) {
         case CharacterRace::Human:
-            // Versatile - small bonuses to everything
-            mods.hit_bonus = HUMAN_HIT_BONUS;
-            mods.damage_bonus = HUMAN_DAMAGE_BONUS;
-            mods.armor_class_bonus = HUMAN_AC_BONUS;
+            // Versatile - small bonuses
+            bonus.acc = 2.0;
+            bonus.eva = 2.0;
+            bonus.ap = 1.0;
             break;
 
         case CharacterRace::Elf:
-            // Dexterous and magical
-            mods.hit_bonus = ELF_HIT_BONUS;
-            mods.damage_bonus = ELF_DAMAGE_BONUS;
-            mods.armor_class_bonus = ELF_AC_BONUS;
-            mods.critical_chance = ELF_CRIT_BONUS;
+            // Dexterous - high EVA, crit bonus
+            bonus.acc = 3.0;
+            bonus.eva = 5.0;
+            bonus.crit_bonus = 5.0;  // +5 to critical margin
             break;
 
         case CharacterRace::Dwarf:
-            // Tough and strong
-            mods.hit_bonus = DWARF_HIT_BONUS;
-            mods.damage_bonus = DWARF_DAMAGE_BONUS;
-            mods.armor_class_bonus = DWARF_AC_BONUS;
-            mods.damage_resistance = DWARF_RESIST_BONUS;
+            // Tough - high AR/DR, damage resistance
+            bonus.acc = 0.0;
+            bonus.eva = -2.0;
+            bonus.ap = 3.0;
+            bonus.ar = 10.0;
+            bonus.res_physical = 90.0;  // 10% physical resistance
             break;
 
         case CharacterRace::Halfling:
             // Lucky and evasive
-            mods.hit_bonus = HALFLING_HIT_BONUS;
-            mods.damage_bonus = HALFLING_DAMAGE_BONUS;
-            mods.armor_class_bonus = HALFLING_AC_BONUS;
-            mods.critical_chance = HALFLING_CRIT_BONUS;
+            bonus.acc = 2.0;
+            bonus.eva = 8.0;
+            bonus.crit_bonus = 3.0;
+            break;
+
+        default:
             break;
     }
 
-    return mods;
+    return bonus;
 }
 
 CharacterClass CombatSystem::string_to_class(const std::string& class_name) {
@@ -227,10 +240,10 @@ CharacterClass CombatSystem::string_to_class(const std::string& class_name) {
         {"warrior", CharacterClass::Warrior},
         {"cleric", CharacterClass::Cleric},
         {"sorcerer", CharacterClass::Sorcerer},
-        {"rogue", CharacterClass::Rogue}
+        {"rogue", CharacterClass::Rogue},
+        {"thief", CharacterClass::Rogue},  // Alias
     };
 
-    // Convert to lowercase for case-insensitive matching
     std::string lower_name;
     lower_name.reserve(class_name.size());
     for (char c : class_name) {
@@ -245,13 +258,12 @@ CharacterRace CombatSystem::string_to_race(std::string_view race_name) {
     static const std::unordered_map<std::string, CharacterRace> race_map = {
         {"human", CharacterRace::Human},
         {"elf", CharacterRace::Elf},
-        {"halfelf", CharacterRace::Elf},  // Half-elf uses elf bonuses
+        {"halfelf", CharacterRace::Elf},
         {"half-elf", CharacterRace::Elf},
         {"dwarf", CharacterRace::Dwarf},
-        {"halfling", CharacterRace::Halfling}
+        {"halfling", CharacterRace::Halfling},
     };
 
-    // Convert to lowercase for case-insensitive matching
     std::string lower_name;
     lower_name.reserve(race_name.size());
     for (char c : race_name) {
@@ -262,9 +274,122 @@ CharacterRace CombatSystem::string_to_race(std::string_view race_name) {
     return (it != race_map.end()) ? it->second : CharacterRace::Human;
 }
 
+HitCalcResult CombatSystem::calculate_hit(const CombatStats& attacker_stats,
+                                          const CombatStats& defender_stats) {
+    HitCalcResult result;
+
+    // Roll d100 for each side
+    result.attacker_roll = roll_d100();
+    result.defender_roll = roll_d100();
+
+    // Check for auto-hit/miss
+    if (result.attacker_roll == 1) {
+        result.auto_miss = true;
+        result.result = HitResult::Miss;
+        return result;
+    }
+    if (result.attacker_roll == 100) {
+        result.auto_hit = true;
+        result.result = HitResult::Critical;  // Natural 100 = crit
+        return result;
+    }
+
+    // Calculate totals
+    result.attacker_total = result.attacker_roll + attacker_stats.acc;
+    result.defender_total = result.defender_roll + defender_stats.eva;
+
+    // Calculate margin (with crit bonus applied)
+    result.margin = static_cast<int>(result.attacker_total - result.defender_total + attacker_stats.crit_bonus);
+
+    // Determine hit result based on margin
+    if (result.margin >= CombatConstants::CRITICAL_HIT_MARGIN) {
+        result.result = HitResult::Critical;
+    } else if (result.margin >= CombatConstants::HIT_MARGIN) {
+        result.result = HitResult::Hit;
+    } else if (result.margin >= CombatConstants::GLANCING_MARGIN) {
+        result.result = HitResult::Glancing;
+    } else {
+        result.result = HitResult::Miss;
+    }
+
+    return result;
+}
+
+double CombatSystem::apply_mitigation(double raw_damage,
+                                      const CombatStats& attacker_stats,
+                                      const CombatStats& defender_stats,
+                                      int /* damage_type */) {
+    if (raw_damage <= 0) return 0.0;
+
+    // Step 1: Apply Soak (flat reduction) - reduced by attacker's flat penetration
+    double effective_soak = std::max(0.0, defender_stats.soak - attacker_stats.pen_flat);
+    double damage_after_soak = std::max(1.0, raw_damage - effective_soak);
+
+    // Step 2: Apply DR% - reduced by attacker's percentage penetration
+    double effective_dr = defender_stats.dr_pct * (1.0 - attacker_stats.pen_pct);
+    effective_dr = std::min(effective_dr, CombatConstants::DR_CAP);
+    double damage_after_dr = damage_after_soak * (1.0 - effective_dr);
+
+    // Step 3: Apply elemental/type resistances (TODO: implement damage types)
+    // For now, apply physical resistance
+    double resistance_mult = defender_stats.res_physical / 100.0;
+    double final_damage = damage_after_dr * resistance_mult;
+
+    // Minimum 1 damage
+    return std::max(CombatConstants::MIN_DAMAGE, final_damage);
+}
+
+double CombatSystem::calculate_damage(const Actor& attacker, const CombatStats& attacker_stats,
+                                      const Actor& /* defender */, const CombatStats& defender_stats,
+                                      HitResult hit_result) {
+    if (hit_result == HitResult::Miss) {
+        return 0.0;
+    }
+
+    // Roll weapon damage
+    double base_damage = roll_damage(attacker_stats.weapon_dice_num,
+                                     attacker_stats.weapon_dice_size,
+                                     attacker_stats.weapon_base_damage);
+
+    // Add Attack Power
+    base_damage += attacker_stats.ap;
+
+    // Apply hit type multiplier
+    double multiplier = 1.0;
+    switch (hit_result) {
+        case HitResult::Critical:
+            multiplier = CombatConstants::CRITICAL_MULTIPLIER;
+            break;
+        case HitResult::Glancing:
+            multiplier = CombatConstants::GLANCING_MULTIPLIER;
+            break;
+        case HitResult::Hit:
+        default:
+            multiplier = 1.0;
+            break;
+    }
+    base_damage *= multiplier;
+
+    // Apply sneak attack for rogues
+    if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
+        CharacterClass char_class = string_to_class(player->player_class());
+        if (char_class == CharacterClass::Rogue) {
+            // TODO: Check sneak attack conditions
+            double sneak_bonus = ClassAbilities::rogue_sneak_attack_damage(attacker.stats().level);
+            base_damage += sneak_bonus;
+        }
+    }
+
+    // Apply mitigation
+    double final_damage = apply_mitigation(base_damage, attacker_stats, defender_stats, 0);
+
+    return final_damage;
+}
+
 CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target) {
+    CombatResult result;
+
     if (!attacker || !target) {
-        CombatResult result;
         result.attacker_message = "Invalid combat participants.";
         return result;
     }
@@ -274,174 +399,121 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         CombatManager::start_combat(attacker, target);
         fire_event(CombatEvent(CombatEvent::EventType::CombatStart, attacker, target));
     }
-    
-    // Fire combat start event
+
     fire_event(CombatEvent(CombatEvent::EventType::AttackAttempt, attacker, target));
-    
-    // Calculate modifiers for both participants
-    CombatModifiers attacker_mods = calculate_combat_modifiers(*attacker);
-    CombatModifiers target_mods = calculate_combat_modifiers(*target);
-    
-    CombatResult result;
-    int roll, target_number;
-    
-    // Check for hit
-    bool hit = calculate_hit(*attacker, attacker_mods, *target, target_mods, roll, target_number);
-    
-    if (!hit) {
+
+    // Calculate combat stats for both participants
+    CombatStats attacker_stats = calculate_combat_stats(*attacker);
+    CombatStats defender_stats = calculate_combat_stats(*target);
+
+    // Calculate hit using opposed d100 rolls
+    result.hit_calc = calculate_hit(attacker_stats, defender_stats);
+
+    // Handle miss
+    if (result.hit_calc.result == HitResult::Miss) {
         result.type = CombatResult::Type::Miss;
-        result.attacker_message = "Your attack misses.";
-        result.target_message = fmt::format("{} misses you.", attacker->display_name());
+        result.attacker_message = fmt::format("Your attack misses {} (roll: {} vs {}).",
+            target->display_name(), result.hit_calc.attacker_roll, result.hit_calc.defender_roll);
+        result.target_message = fmt::format("{}'s attack misses you.", attacker->display_name());
         result.room_message = fmt::format("{}'s attack misses {}.", attacker->display_name(), target->display_name());
-        
+
         fire_event(CombatEvent(CombatEvent::EventType::AttackMiss, attacker, target));
         return result;
     }
-    
-    // Check for critical hit
-    bool is_crit = is_critical_hit(attacker_mods);
-    result.type = is_crit ? CombatResult::Type::CriticalHit : CombatResult::Type::Hit;
-    
+
     // Calculate damage
-    double damage = calculate_damage(*attacker, attacker_mods, *target, target_mods, is_crit);
+    double damage = calculate_damage(*attacker, attacker_stats, *target, defender_stats, result.hit_calc.result);
     result.damage_dealt = damage;
-    
-    // Apply damage
+
+    // Set result type based on hit type
+    switch (result.hit_calc.result) {
+        case HitResult::Critical:
+            result.type = CombatResult::Type::CriticalHit;
+            fire_event(CombatEvent(CombatEvent::EventType::AttackCritical, attacker, target));
+            break;
+        case HitResult::Glancing:
+            result.type = CombatResult::Type::Glancing;
+            fire_event(CombatEvent(CombatEvent::EventType::AttackGlancing, attacker, target));
+            break;
+        case HitResult::Hit:
+        default:
+            result.type = CombatResult::Type::Hit;
+            fire_event(CombatEvent(CombatEvent::EventType::AttackHit, attacker, target));
+            break;
+    }
+
+    // Apply damage to target
     auto& target_stats = target->stats();
     int damage_int = static_cast<int>(std::round(damage));
     target_stats.hit_points -= damage_int;
-    
-    // Fire damage event
+
     fire_event(CombatEvent(CombatEvent::EventType::DamageDealt, attacker, target));
-    
+
     // Create combat messages
-    std::string crit_text = is_crit ? " CRITICALLY" : "";
-    result.attacker_message = fmt::format("You{} hit {} for {:.1f} damage.", crit_text, target->name(), damage);
-    result.target_message = fmt::format("{}{} hits you for {:.1f} damage.", attacker->name(), crit_text, damage);
-    result.room_message = fmt::format("{}{} hits {} for {:.1f} damage.", attacker->name(), crit_text, target->name(), damage);
-    
-    // Send GMCP vitals update if target is a player
+    std::string hit_type_text;
+    switch (result.hit_calc.result) {
+        case HitResult::Critical:
+            hit_type_text = " CRITICALLY";
+            break;
+        case HitResult::Glancing:
+            hit_type_text = " glancingly";
+            break;
+        default:
+            hit_type_text = "";
+            break;
+    }
+
+    result.attacker_message = fmt::format("You{} hit {} for {:.0f} damage (margin: {:+d}).",
+        hit_type_text, target->name(), damage, result.hit_calc.margin);
+    result.target_message = fmt::format("{}{} hits you for {:.0f} damage.",
+        attacker->name(), hit_type_text, damage);
+    result.room_message = fmt::format("{}{} hits {} for {:.0f} damage.",
+        attacker->name(), hit_type_text, target->name(), damage);
+
+    // Send GMCP vitals update
     if (auto player = std::dynamic_pointer_cast<Player>(target)) {
         player->send_gmcp_vitals_update();
     }
-    
-    fire_event(CombatEvent(CombatEvent::EventType::AttackHit, attacker, target));
-    
+
     // Check for death
     if (target_stats.hit_points <= 0) {
         target_stats.hit_points = 0;
         target->set_position(Position::Ghost);
-        
+
         Log::info("DEATH: {} killed {} - ending combat", attacker->name(), target->name());
-        
-        // End combat for both participants
+
         CombatManager::end_combat(attacker);
         CombatManager::end_combat(target);
         attacker->set_position(Position::Standing);
-        
+
         Log::info("DEATH: Combat ended");
-        
-        // Calculate experience gain
+
         long exp_gain = calculate_experience_gain(*attacker, *target);
         result.experience_gained = exp_gain;
         attacker->gain_experience(exp_gain);
-        
+
         result.type = CombatResult::Type::Death;
         result.attacker_message += fmt::format(" You have killed {}! You gain {} experience.",
                                                target->display_name(), exp_gain);
         result.target_message += "\r\nYou are DEAD!";
         result.room_message += fmt::format(" {} is DEAD!", target->display_name());
-        
+
         fire_event(CombatEvent(CombatEvent::EventType::ActorDeath, attacker, target));
         fire_event(CombatEvent(CombatEvent::EventType::CombatEnd, attacker, target));
     }
-    
+
     return result;
 }
 
-double CombatSystem::calculate_damage(const Actor& attacker, const CombatModifiers& attacker_mods,
-                                     const Actor& target, const CombatModifiers& target_mods,
-                                     bool is_critical) {
-    // Base damage calculation
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
-
-    double base_damage = 0.0;
-
-    // Check if attacker is a Mobile with custom damage dice
-    if (const auto* mobile = dynamic_cast<const Mobile*>(&attacker)) {
-        // Use mob's bare hand damage dice: num d size + bonus
-        int dice_num = mobile->bare_hand_damage_dice_num();
-        int dice_size = mobile->bare_hand_damage_dice_size();
-        int dice_bonus = mobile->bare_hand_damage_dice_bonus();
-
-        // Roll each die and sum
-        std::uniform_int_distribution<int> die(1, std::max(1, dice_size));
-        for (int i = 0; i < dice_num; ++i) {
-            base_damage += die(gen);
-        }
-        base_damage += dice_bonus;
-    } else {
-        // Default to 1d6 for players (will be replaced with weapon damage later)
-        std::uniform_real_distribution<double> damage_die(D6_MIN, D6_MAX);
-        base_damage = damage_die(gen);
-    }
-
-    double total_damage = base_damage + attacker_mods.damage_bonus;
-
-    // Critical hit multiplies damage
-    if (is_critical) {
-        total_damage *= CRITICAL_HIT_MULTIPLIER;
-    }
-    
-    // Check for class-specific bonuses (rogue sneak attack)
-    if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
-        CharacterClass char_class = string_to_class(player->player_class());
-        if (char_class == CharacterClass::Rogue && ClassAbilities::rogue_sneak_attack_available(attacker, target)) {
-            double sneak_bonus = ClassAbilities::rogue_sneak_attack_damage(attacker.stats().level);
-            total_damage += sneak_bonus;
-        }
-    }
-    
-    // Apply target damage resistance
-    total_damage *= (1.0 - target_mods.damage_resistance);
-    
-    // Ensure minimum damage
-    return std::max(MIN_DAMAGE, total_damage);
-}
-
-bool CombatSystem::calculate_hit(const Actor& attacker, const CombatModifiers& attacker_mods,
-                                const Actor& target, const CombatModifiers& target_mods,
-                                int& roll, int& target_number) {
-    // d20 roll + modifiers vs target AC
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> d20(D20_MIN, D20_MAX);
-    
-    roll = d20(gen);
-    double total_hit = roll + attacker_mods.hit_bonus + attacker.stats().level;
-    
-    // Calculate effective AC (base AC - bonuses)
-    double effective_ac = target.stats().armor_class - target_mods.armor_class_bonus;
-    target_number = static_cast<int>(effective_ac);
-    
-    return total_hit >= effective_ac;
-}
-
-bool CombatSystem::is_critical_hit(const CombatModifiers& attacker_mods) {
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
-    std::uniform_real_distribution<double> chance(0.0, 1.0);
-    
-    return chance(gen) < attacker_mods.critical_chance;
-}
-
 long CombatSystem::calculate_experience_gain(const Actor& victor, const Actor& defeated) {
-    // Experience based on level difference and defeated actor's level
+    constexpr int EXP_BASE_PER_LEVEL = 100;
+    constexpr double EXP_HIGHER_LEVEL_BONUS = 0.1;
+    constexpr double EXP_LOWER_LEVEL_PENALTY = 0.05;
+    constexpr double EXP_MIN_MULTIPLIER = 0.1;
+
     int level_diff = defeated.stats().level - victor.stats().level;
     long base_exp = defeated.stats().level * EXP_BASE_PER_LEVEL;
 
-    // Bonus/penalty for level difference
     double multiplier = 1.0;
     if (level_diff > 0) {
         multiplier = 1.0 + (level_diff * EXP_HIGHER_LEVEL_BONUS);
@@ -469,18 +541,15 @@ void CombatSystem::fire_event(const CombatEvent& event) {
 }
 
 // ============================================================================
-// ClassAbilities Implementation  
+// ClassAbilities Implementation
 // ============================================================================
 
 bool ClassAbilities::warrior_extra_attack_available(const Actor& actor) {
-    // Warriors get extra attacks at levels 6, 11, 16, 20
-    int level = actor.stats().level;
-    return level >= EXTRA_ATTACK_LEVEL_1;
+    constexpr int EXTRA_ATTACK_LEVEL = 6;
+    return actor.stats().level >= EXTRA_ATTACK_LEVEL;
 }
 
 bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const Actor& /* target */) {
-    // For now, simple check: rogue vs non-rogue
-    // In future: check if target is unaware, flanked, etc.
     if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
         return CombatSystem::string_to_class(player->player_class()) == CharacterClass::Rogue;
     }
@@ -488,11 +557,9 @@ bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const A
 }
 
 double ClassAbilities::rogue_sneak_attack_damage(int level) {
-    // Sneak attack damage scales with level: 1d6 per 2 levels
-    int dice_count = (level + 1) / SNEAK_ATTACK_LEVEL_DIVISOR;
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
-    std::uniform_real_distribution<double> d6(D6_MIN, D6_MAX);
+    // Sneak attack: 1d6 per 2 levels
+    int dice_count = (level + 1) / 2;
+    std::uniform_real_distribution<double> d6(1.0, 6.0);
 
     double total = 0.0;
     for (int i = 0; i < dice_count; ++i) {
@@ -502,18 +569,17 @@ double ClassAbilities::rogue_sneak_attack_damage(int level) {
 }
 
 bool ClassAbilities::cleric_can_turn_undead(const Actor& actor) {
-    // Placeholder for future undead system
+    constexpr int TURN_UNDEAD_MIN_LEVEL = 2;
     if (const auto* player = dynamic_cast<const Player*>(&actor)) {
         return CombatSystem::string_to_class(player->player_class()) == CharacterClass::Cleric &&
-               actor.stats().level >= CLERIC_TURN_UNDEAD_MIN_LEVEL;
+               actor.stats().level >= TURN_UNDEAD_MIN_LEVEL;
     }
     return false;
 }
 
 double ClassAbilities::sorcerer_spell_damage_bonus(int level, int intelligence) {
-    // Sorcerers get spell damage bonuses based on level and intelligence
-    double level_bonus = level * SORCERER_SPELL_LEVEL_BONUS;
-    double int_bonus = Stats::attribute_modifier(intelligence) * SORCERER_INT_BONUS_MULTIPLIER;
+    double level_bonus = level * 0.5;
+    double int_bonus = Stats::attribute_modifier(intelligence) * 2.0;
     return level_bonus + int_bonus;
 }
 
@@ -523,39 +589,36 @@ double ClassAbilities::sorcerer_spell_damage_bonus(int level, int intelligence) 
 
 void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<Actor> actor2) {
     if (!actor1 || !actor2) return;
-    
-    // Check if either actor is already in combat with the other
+
+    // Check if already in combat with each other
     for (const auto& combat : active_combats_) {
         if (combat.involves_actor(*actor1) && combat.involves_actor(*actor2)) {
-            // Already fighting each other
             return;
         }
     }
-    
-    // End any existing combat for both actors first
+
+    // End existing combat for both actors
     end_combat(actor1);
     end_combat(actor2);
-    
-    // Set both actors to fighting position
+
+    // Set fighting position
     actor1->set_position(Position::Fighting);
     actor2->set_position(Position::Fighting);
-    
-    // Add new combat pair
+
+    // Add combat pair
     active_combats_.emplace_back(actor1, actor2);
-    
-    Log::info("Combat started between {} and {} - {} active combats", 
+
+    Log::info("Combat started between {} and {} - {} active combats",
                actor1->name(), actor2->name(), active_combats_.size());
 }
 
 void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
     if (!actor) return;
-    
-    // Remove all combat pairs involving this actor
+
     auto it = std::remove_if(active_combats_.begin(), active_combats_.end(),
         [&actor](const CombatPair& combat) {
             bool involves = combat.involves_actor(*actor);
             if (involves) {
-                // Set opponents back to standing if they're not dead
                 if (combat.actor1 && combat.actor1->is_alive()) {
                     combat.actor1->set_position(Position::Standing);
                 }
@@ -566,33 +629,25 @@ void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
             }
             return involves;
         });
-    
+
     active_combats_.erase(it, active_combats_.end());
 }
 
 bool CombatManager::process_combat_rounds() {
     cleanup_invalid_combats();
-    
-    // Process combat rounds
-    // auto now = std::chrono::steady_clock::now();
+
     bool rounds_processed = false;
-    
+
     for (auto& combat : active_combats_) {
         if (combat.is_ready_for_next_round()) {
-            Log::info("Executing combat round between {} and {}", 
+            Log::info("Executing combat round between {} and {}",
                       combat.actor1->name(), combat.actor2->name());
             execute_round(combat);
             combat.update_last_round();
             rounds_processed = true;
-        } else {
-            auto now = std::chrono::steady_clock::now();
-            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - combat.last_round).count();
-            if (elapsed < COMBAT_LOG_SPAM_THRESHOLD_MS) {
-                Log::info("Combat not ready - elapsed: {}ms (need {}ms)", elapsed, COMBAT_ROUND_MS);
-            }
         }
     }
-    
+
     return rounds_processed;
 }
 
@@ -613,7 +668,6 @@ std::shared_ptr<Actor> CombatManager::get_opponent(const Actor& actor) {
 }
 
 void CombatManager::clear_all_combat() {
-    // Set all fighting actors back to standing
     for (const auto& combat : active_combats_) {
         if (combat.actor1 && combat.actor1->position() == Position::Fighting) {
             combat.actor1->set_position(Position::Standing);
@@ -622,7 +676,7 @@ void CombatManager::clear_all_combat() {
             combat.actor2->set_position(Position::Standing);
         }
     }
-    
+
     active_combats_.clear();
     Log::debug("All combat cleared");
 }
@@ -630,26 +684,17 @@ void CombatManager::clear_all_combat() {
 void CombatManager::cleanup_invalid_combats() {
     auto it = std::remove_if(active_combats_.begin(), active_combats_.end(),
         [](const CombatPair& combat) {
-            // Remove if either actor is null, dead, or no longer in fighting position
             bool invalid = !combat.actor1 || !combat.actor2 ||
                           (!combat.actor1->is_alive()) ||
                           (!combat.actor2->is_alive());
-            
-            // Also remove if actors are no longer in the same room
+
             if (!invalid && combat.actor1->current_room() != combat.actor2->current_room()) {
                 invalid = true;
                 Log::debug("Combat ended: actors in different rooms");
             }
-            
+
             if (invalid) {
-                Log::info("Cleaning up invalid combat pair - actor1: {} (alive: {}, pos: {}), actor2: {} (alive: {}, pos: {})", 
-                         combat.actor1 ? combat.actor1->name() : "null", 
-                         combat.actor1 ? (combat.actor1->is_alive() ? "yes" : "no") : "n/a",
-                         combat.actor1 ? magic_enum::enum_name(combat.actor1->position()) : "n/a",
-                         combat.actor2 ? combat.actor2->name() : "null",
-                         combat.actor2 ? (combat.actor2->is_alive() ? "yes" : "no") : "n/a",
-                         combat.actor2 ? magic_enum::enum_name(combat.actor2->position()) : "n/a");
-                // Set survivors back to standing
+                Log::info("Cleaning up invalid combat pair");
                 if (combat.actor1 && combat.actor1->is_alive()) {
                     combat.actor1->set_position(Position::Standing);
                 }
@@ -657,21 +702,19 @@ void CombatManager::cleanup_invalid_combats() {
                     combat.actor2->set_position(Position::Standing);
                 }
             }
-            
+
             return invalid;
         });
-    
+
     active_combats_.erase(it, active_combats_.end());
 }
 
 void CombatManager::execute_round(CombatPair& combat_pair) {
     if (!combat_pair.actor1 || !combat_pair.actor2) return;
-    
-    // Randomly determine who attacks first this round
-    static thread_local std::random_device rd;
-    static thread_local std::mt19937 gen(rd());
+
+    // Random initiative
     std::uniform_int_distribution<int> coinflip(0, 1);
-    
+
     std::shared_ptr<Actor> first_attacker, first_target;
     if (coinflip(gen) == 0) {
         first_attacker = combat_pair.actor1;
@@ -680,59 +723,48 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
         first_attacker = combat_pair.actor2;
         first_target = combat_pair.actor1;
     }
-    
-    // First actor attacks
+
+    // First attack
     if (first_attacker->is_alive() && first_target->is_alive()) {
         auto result1 = CombatSystem::perform_attack(first_attacker, first_target);
-        
-        // Send messages to room and participants
+
         if (auto room = first_attacker->current_room()) {
-            Log::info("Combat round - {}: {} | {}: {} | Room: {}", 
+            Log::info("Combat round - {}: {} | {}: {} | Room: {}",
                       first_attacker->name(), result1.attacker_message,
                       first_target->name(), result1.target_message,
                       result1.room_message);
-            
-            // Send messages to the actors
+
             first_attacker->send_message(result1.attacker_message + "\r\n");
             first_target->send_message(result1.target_message + "\r\n");
-            
-            // Send room message to others in room
+
             if (!result1.room_message.empty()) {
-                if (auto room = first_target->current_room()) {
-                    // Send message to everyone except the combatants
-                    for (const auto& actor : room->contents().actors) {
-                        if (actor && actor != first_attacker && actor != first_target) {
-                            actor->send_message(result1.room_message + "\r\n");
-                        }
+                for (const auto& actor : room->contents().actors) {
+                    if (actor && actor != first_attacker && actor != first_target) {
+                        actor->send_message(result1.room_message + "\r\n");
                     }
                 }
             }
         }
-        
-        // If target died, combat will be ended by perform_attack
+
         if (result1.type == CombatResult::Type::Death) {
             return;
         }
     }
-    
-    // Second actor counter-attacks if still alive
+
+    // Counter-attack
     if (first_target->is_alive() && first_attacker->is_alive()) {
         auto result2 = CombatSystem::perform_attack(first_target, first_attacker);
-        
-        // Send messages to room and participants
+
         if (auto room = first_target->current_room()) {
-            Log::info("Combat counter - {}: {} | {}: {} | Room: {}", 
+            Log::info("Combat counter - {}: {} | {}: {} | Room: {}",
                       first_target->name(), result2.attacker_message,
                       first_attacker->name(), result2.target_message,
                       result2.room_message);
-            
-            // Send messages to the actors
+
             first_target->send_message(result2.attacker_message + "\r\n");
             first_attacker->send_message(result2.target_message + "\r\n");
-            
-            // Send room message to others in room
+
             if (!result2.room_message.empty()) {
-                // Send message to everyone except the combatants
                 for (const auto& actor : room->contents().actors) {
                     if (actor && actor != first_target && actor != first_attacker) {
                         actor->send_message(result2.room_message + "\r\n");
@@ -745,12 +777,12 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
 
 std::vector<std::shared_ptr<Actor>> CombatManager::get_all_fighting_actors() {
     std::vector<std::shared_ptr<Actor>> fighting_actors;
-    
+
     for (const auto& combat : active_combats_) {
         fighting_actors.push_back(combat.actor1);
         fighting_actors.push_back(combat.actor2);
     }
-    
+
     return fighting_actors;
 }
 
