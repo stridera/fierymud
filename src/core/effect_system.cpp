@@ -284,7 +284,7 @@ void EffectContext::build_formula_context() {
     if (target) {
         const auto& target_stats = target->stats();
         formula_ctx.target_level = target_stats.level;
-        formula_ctx.armor_class = target_stats.armor_class;
+        formula_ctx.armor_rating = target_stats.armor_rating;
     }
 }
 
@@ -494,21 +494,21 @@ std::expected<EffectResult, Error> EffectExecutor::execute_modify(
     // Determine the effect name and flag based on damage_type (which holds target type for modify)
     std::string effect_name = "armor";  // Default
     ActorFlag effect_flag = ActorFlag::Armor;
-    std::string modifier_stat = "armor_class";
+    std::string modifier_stat = "armor_rating";
 
     // Map common modification targets
     if (params.damage_type == "ward" || params.damage_type == "armor") {
         effect_name = "armor";
         effect_flag = ActorFlag::Armor;
-        modifier_stat = "armor_class";
-    } else if (params.damage_type == "hitroll") {
+        modifier_stat = "armor_rating";
+    } else if (params.damage_type == "hitroll" || params.damage_type == "accuracy") {
         effect_name = "enhanced_accuracy";
-        effect_flag = ActorFlag::Bless;  // Bless improves hitroll
-        modifier_stat = "hitroll";
-    } else if (params.damage_type == "damroll") {
+        effect_flag = ActorFlag::Bless;
+        modifier_stat = "accuracy";
+    } else if (params.damage_type == "damroll" || params.damage_type == "attack_power") {
         effect_name = "enhanced_damage";
         effect_flag = ActorFlag::Strength;
-        modifier_stat = "damroll";
+        modifier_stat = "attack_power";
     }
 
     // Create the active effect - use ability display name if available

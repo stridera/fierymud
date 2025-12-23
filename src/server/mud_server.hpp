@@ -82,6 +82,10 @@ struct ServerConfig {
     // Load from JSON configuration file
     static Result<ServerConfig> load_from_file(const std::string &filename);
 
+    // Load from database (GameConfig table)
+    // This is the preferred method - makes the MUD fully data-driven
+    static Result<ServerConfig> load_from_database();
+
     // Save to JSON configuration file
     Result<void> save_to_file(const std::string &filename) const;
 

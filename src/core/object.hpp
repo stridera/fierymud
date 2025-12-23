@@ -129,35 +129,57 @@ struct LightInfo {
 
 /** Object flags for special properties */
 enum class ObjectFlag {
+    // Core flags
     Glow = 0,           // Glows with magical light
-    Hum = 1,            // Hums with magical energy  
+    Hum = 1,            // Hums with magical energy
     NoRent = 2,         // Cannot be rented/saved
     NoDonate = 3,       // Cannot be donated
-    NoInvis = 4,        // Cannot be made invisible
+    NoInvisible = 4,    // Cannot be made invisible
     Invisible = 5,      // Currently invisible
     Magic = 6,          // Has magical properties
     NoDrop = 7,         // Cannot be dropped
     Bless = 8,          // Blessed by gods
-    AntiGood = 9,       // Harmful to good alignments
-    AntiEvil = 10,      // Harmful to evil alignments
-    AntiNeutral = 11,   // Harmful to neutral alignments
-    AntiMage = 12,      // Cannot be used by mages
-    AntiCleric = 13,    // Cannot be used by clerics
-    AntiThief = 14,     // Cannot be used by thieves
-    AntiWarrior = 15,   // Cannot be used by warriors
-    NoSell = 16,        // Cannot be sold to shops
+    Permanent = 9,      // Cannot be destroyed
+
+    // Alignment restrictions
+    AntiGood = 10,      // Harmful to good alignments
+    AntiEvil = 11,      // Harmful to evil alignments
+    AntiNeutral = 12,   // Harmful to neutral alignments
+
+    // Class restrictions
+    AntiSorcerer = 13,  // Cannot be used by sorcerers
+    AntiCleric = 14,    // Cannot be used by clerics
+    AntiRogue = 15,     // Cannot be used by rogues
+    AntiWarrior = 16,   // Cannot be used by warriors
     AntiPaladin = 17,   // Cannot be used by paladins
-    AntiRanger = 18,    // Cannot be used by rangers
-    AntiBarbarian = 19, // Cannot be used by barbarians
-    AntiSorcerer = 20,  // Cannot be used by sorcerers
-    AntiRogue = 21,     // Cannot be used by rogues
-    Unique = 22,        // Only one can exist
-    Cursed = 23,        // Cursed item
-    Identified = 24,    // Properties have been identified
-    TwoHanded = 25,     // Requires both hands to wield
-    Thrown = 26,        // Can be thrown as weapon
-    Poison = 27,        // Coated with poison
-    Enhanced = 28       // Magically enhanced
+    AntiAntiPaladin = 18, // Cannot be used by anti-paladins
+    AntiRanger = 19,    // Cannot be used by rangers
+    AntiDruid = 20,     // Cannot be used by druids
+    AntiShaman = 21,    // Cannot be used by shamans
+    AntiAssassin = 22,  // Cannot be used by assassins
+    AntiMercenary = 23, // Cannot be used by mercenaries
+    AntiNecromancer = 24, // Cannot be used by necromancers
+    AntiConjurer = 25,  // Cannot be used by conjurers
+    AntiBerserker = 26, // Cannot be used by berserkers
+
+    // Shop/economy flags
+    NoSell = 27,        // Cannot be sold to shops
+
+    // Special properties
+    NoBurn = 28,        // Cannot be burned
+    NoLocate = 29,      // Cannot be located magically
+    Decomposing = 30,   // Item is decomposing
+    Float = 31,         // Floats in water/air
+    NoFall = 32,        // Doesn't fall when dropped
+
+    // Legacy compatibility
+    Unique = 33,        // Only one can exist
+    Cursed = 34,        // Cursed item
+    Identified = 35,    // Properties have been identified
+    TwoHanded = 36,     // Requires both hands to wield
+    Thrown = 37,        // Can be thrown as weapon
+    Poison = 38,        // Coated with poison
+    Enhanced = 39       // Magically enhanced
 };
 
 /** Modern Object class inheriting from Entity */

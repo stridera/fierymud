@@ -59,9 +59,87 @@ const std::unordered_map<std::string, std::string> COLOR_CODES = {
     {"mana", "\033[96m"},
     {"stamina", "\033[93m"},
     {"experience", "\033[95m"},
+
+    // Additional styles
+    {"dim", "\033[2m"},
+    {"blink", "\033[5m"},
+    {"reverse", "\033[7m"},
 };
 
 constexpr std::string_view RESET_CODE = "\033[0m";
+
+// Parse indexed color format: cN (foreground) or bgcN (background)
+// Returns ANSI escape sequence or empty string if not valid
+std::string parse_indexed_color(std::string_view tag) {
+    // Check for background color first (bgcN)
+    if (tag.size() > 3 && tag.substr(0, 3) == "bgc") {
+        std::string_view num_str = tag.substr(3);
+        int value = 0;
+        for (char c : num_str) {
+            if (!std::isdigit(static_cast<unsigned char>(c))) {
+                return "";
+            }
+            value = value * 10 + (c - '0');
+        }
+        if (value >= 0 && value <= 255) {
+            return fmt::format("\033[48;5;{}m", value);
+        }
+        return "";
+    }
+
+    // Check for foreground color (cN)
+    if (tag.size() > 1 && tag[0] == 'c') {
+        std::string_view num_str = tag.substr(1);
+        int value = 0;
+        for (char c : num_str) {
+            if (!std::isdigit(static_cast<unsigned char>(c))) {
+                return "";
+            }
+            value = value * 10 + (c - '0');
+        }
+        if (value >= 0 && value <= 255) {
+            return fmt::format("\033[38;5;{}m", value);
+        }
+    }
+
+    return "";
+}
+
+// Parse combined tags like "b:c196" (bold + indexed color)
+std::string parse_combined_tag(std::string_view tag) {
+    // Check for style:color format (e.g., "b:c196", "b:red")
+    auto colon_pos = tag.find(':');
+    if (colon_pos != std::string_view::npos) {
+        std::string_view style_part = tag.substr(0, colon_pos);
+        std::string_view color_part = tag.substr(colon_pos + 1);
+
+        std::string result;
+
+        // Handle style
+        std::string style_lower = to_lower(style_part);
+        auto style_it = COLOR_CODES.find(style_lower);
+        if (style_it != COLOR_CODES.end()) {
+            result += style_it->second;
+        }
+
+        // Handle indexed color (cN)
+        std::string indexed = parse_indexed_color(color_part);
+        if (!indexed.empty()) {
+            result += indexed;
+            return result;
+        }
+
+        // Handle named color
+        std::string color_lower = to_lower(color_part);
+        auto color_it = COLOR_CODES.find(color_lower);
+        if (color_it != COLOR_CODES.end()) {
+            result += color_it->second;
+            return result;
+        }
+    }
+
+    return "";
+}
 
 // =============================================================================
 // Helper Functions
@@ -176,7 +254,7 @@ std::string apply_colors(std::string_view message) {
             if (end != std::string_view::npos) {
                 std::string_view tag_content = message.substr(i + 1, end - i - 1);
 
-                // Hex color
+                // Hex color (#RRGGBB or #RGB)
                 if (!tag_content.empty() && tag_content[0] == '#') {
                     std::string ansi = hex_to_ansi(tag_content);
                     if (!ansi.empty()) {
@@ -184,6 +262,22 @@ std::string apply_colors(std::string_view message) {
                         i = end + 1;
                         continue;
                     }
+                }
+
+                // Indexed color (c0-c255) or background indexed (bgc0-bgc255)
+                std::string indexed = parse_indexed_color(tag_content);
+                if (!indexed.empty()) {
+                    result += indexed;
+                    i = end + 1;
+                    continue;
+                }
+
+                // Combined format (b:c196, b:red, etc.)
+                std::string combined = parse_combined_tag(tag_content);
+                if (!combined.empty()) {
+                    result += combined;
+                    i = end + 1;
+                    continue;
                 }
 
                 // Named color or style

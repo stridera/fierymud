@@ -22,6 +22,9 @@ class PlayerConnection;
  * - Account: GetAccount -> GetAccountPassword -> SelectCharacter -> Playing
  */
 enum class LoginState {
+    // Initial state - waiting for login system to initialize
+    Connecting,         // Connection established, waiting for start_login()
+
     // Account-based login flow
     GetAccount,         // Asking for account username or email
     GetAccountPassword, // Asking for account password
@@ -111,6 +114,10 @@ class LoginSystem {
     void send_prompt();
     void send_message(std::string_view message);
     void send_welcome_message();
+    void send_logo_full();           // Full dragon logo (256-color + Unicode)
+    void send_logo_extended();       // Extended logo (256-color, simpler art)
+    void send_logo_basic();          // Basic ASCII fallback
+    void send_login_instructions();  // Common footer with login info
     void send_class_menu();
     void send_race_menu();
     void send_creation_summary();
@@ -146,7 +153,8 @@ class LoginSystem {
     PlayerFileValidation validate_player_file(std::string_view name) const;
 
     // State
-    LoginState state_{LoginState::GetAccount};  // Start with account-based login
+    LoginState state_{LoginState::Connecting};  // Start in connecting state until start_login()
+    std::vector<std::string> buffered_input_;   // Input received before login started
     std::shared_ptr<PlayerConnection> connection_;
     CharacterCreationData creation_data_;
     std::shared_ptr<Player> player_;

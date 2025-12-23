@@ -21,9 +21,11 @@ enum class SocialPosition {
     Sleeping = 4,
     Resting = 5,
     Sitting = 6,
-    Fighting = 7,
-    Standing = 8,
-    Flying = 9
+    Prone = 7,           // Lying down
+    Kneeling = 8,        // Kneeling position
+    Fighting = 9,
+    Standing = 10,
+    Flying = 11
 };
 
 /**

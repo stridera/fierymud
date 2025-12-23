@@ -103,6 +103,7 @@ set(SOURCES
     src/server/configuration_manager.cpp
     src/database/database_config.cpp
     src/database/connection_pool.cpp
+    src/database/config_loader.cpp
     src/database/world_queries.cpp
     src/database/player_queries.cpp
     src/database/social_queries.cpp
@@ -224,6 +225,7 @@ set(CORE_TEST_SOURCES
     src/server/persistence_manager.cpp
     src/database/database_config.cpp
     src/database/connection_pool.cpp
+    src/database/config_loader.cpp
     src/database/world_queries.cpp
     src/database/player_queries.cpp
     src/database/social_queries.cpp
@@ -361,14 +363,18 @@ target_compile_options(stable_tests PRIVATE
 # Configure integration tests executable
 target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
 
-target_link_libraries(integration_tests PRIVATE 
-    fmt::fmt 
+target_link_libraries(integration_tests PRIVATE
+    fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
     magic_enum::magic_enum
     cxxopts::cxxopts
     asio
+    pqxx
+    PostgreSQL::PostgreSQL
     Catch2::Catch2WithMain
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(integration_tests PRIVATE
@@ -387,14 +393,18 @@ target_compile_options(integration_tests PRIVATE
 # Configure combined tests executable (legacy)
 target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
 
-target_link_libraries(tests PRIVATE 
-    fmt::fmt 
+target_link_libraries(tests PRIVATE
+    fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
     magic_enum::magic_enum
     cxxopts::cxxopts
     asio
+    pqxx
+    PostgreSQL::PostgreSQL
     Catch2::Catch2WithMain
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(tests PRIVATE
@@ -498,10 +508,14 @@ add_executable(test_database
     src/core/entity.cpp
     src/core/actor.cpp
     src/text/text_format.cpp
+    src/text/string_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/combat.cpp
     src/core/spell_system.cpp
+    src/core/ability_executor.cpp
+    src/core/formula_parser.cpp
+    src/core/effect_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -518,6 +532,7 @@ add_executable(test_database
     src/server/configuration_manager.cpp
     src/database/database_config.cpp
     src/database/connection_pool.cpp
+    src/database/config_loader.cpp
     src/database/world_queries.cpp
     src/database/player_queries.cpp
     src/database/social_queries.cpp
@@ -554,6 +569,8 @@ target_link_libraries(test_database PRIVATE
     asio
     pqxx
     PostgreSQL::PostgreSQL
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(test_database PRIVATE
@@ -577,10 +594,14 @@ add_executable(test_database_comprehensive
     src/core/entity.cpp
     src/core/actor.cpp
     src/text/text_format.cpp
+    src/text/string_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/combat.cpp
     src/core/spell_system.cpp
+    src/core/ability_executor.cpp
+    src/core/formula_parser.cpp
+    src/core/effect_system.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -597,6 +618,7 @@ add_executable(test_database_comprehensive
     src/server/configuration_manager.cpp
     src/database/database_config.cpp
     src/database/connection_pool.cpp
+    src/database/config_loader.cpp
     src/database/world_queries.cpp
     src/database/player_queries.cpp
     src/database/social_queries.cpp
@@ -633,6 +655,8 @@ target_link_libraries(test_database_comprehensive PRIVATE
     asio
     pqxx
     PostgreSQL::PostgreSQL
+    OpenSSL::Crypto
+    crypt
 )
 
 target_compile_definitions(test_database_comprehensive PRIVATE

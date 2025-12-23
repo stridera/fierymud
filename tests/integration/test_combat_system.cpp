@@ -133,16 +133,16 @@ TEST_CASE("Combat System - Warrior vs Sorcerer Combat", "[combat][integration]")
         sorcerer.value()->stats().level = 10;
         sorcerer.value()->stats().hit_points = 50;
         
-        // Calculate combat modifiers
-        CombatModifiers warrior_mods = CombatSystem::calculate_combat_modifiers(*warrior.value());
-        CombatModifiers sorcerer_mods = CombatSystem::calculate_combat_modifiers(*sorcerer.value());
-        
+        // Calculate combat stats using modern ACC/EVA system
+        CombatStats warrior_stats = CombatSystem::calculate_combat_stats(*warrior.value());
+        CombatStats sorcerer_stats = CombatSystem::calculate_combat_stats(*sorcerer.value());
+
         // Warrior should have significantly higher combat bonuses
-        REQUIRE(warrior_mods.hit_bonus > sorcerer_mods.hit_bonus);
-        REQUIRE(warrior_mods.damage_bonus > sorcerer_mods.damage_bonus);
-        
-        // Human warrior should have better AC than elf sorcerer (higher AC bonus is better)
-        REQUIRE(warrior_mods.armor_class_bonus > sorcerer_mods.armor_class_bonus);
+        REQUIRE(warrior_stats.acc > sorcerer_stats.acc);     // ACC replaces hit_bonus
+        REQUIRE(warrior_stats.ap > sorcerer_stats.ap);        // AP replaces damage_bonus
+
+        // Human warrior should have better armor than elf sorcerer
+        REQUIRE(warrior_stats.ar >= sorcerer_stats.ar);       // AR replaces armor_class_bonus
     });
 }
 

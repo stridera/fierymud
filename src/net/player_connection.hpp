@@ -121,6 +121,7 @@ class GMCPHandler {
     // Helper methods
     std::string escape_telnet_data(std::string_view data);
     Result<void> send_telnet_option(uint8_t command, uint8_t option);
+    void merge_terminal_capabilities(const TerminalCapabilities::Capabilities& new_caps);
 };
 
 /**
@@ -200,6 +201,9 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
 
     // Raw data sending for telnet protocol
     void send_raw_data(const std::vector<uint8_t> &data);
+
+    // Forward a command to the game (used by LoginSystem for buffered commands after login)
+    void forward_command_to_game(std::string_view command);
 
     // Connection info
     std::string remote_address() const override;

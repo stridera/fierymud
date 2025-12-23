@@ -25,7 +25,7 @@ struct FormulaContext {
     int wis_bonus = 0;        // Wisdom modifier
     int cha_bonus = 0;        // Charisma modifier
     int weapon_damage = 0;    // Base weapon damage
-    int armor_class = 0;      // Target's armor class
+    int armor_rating = 0;     // Target's armor rating
     int target_level = 1;     // Target's level
 
     // Custom variables can be added here

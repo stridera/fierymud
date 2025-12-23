@@ -67,9 +67,11 @@ Position convert_position(SocialPosition db_pos) {
         case SocialPosition::Sleeping: return Position::Sleeping;
         case SocialPosition::Resting: return Position::Resting;
         case SocialPosition::Sitting: return Position::Sitting;
+        case SocialPosition::Prone: return Position::Prone;
+        case SocialPosition::Kneeling: return Position::Sitting; // Map Kneeling to Sitting for now
         case SocialPosition::Fighting: return Position::Fighting;
         case SocialPosition::Standing: return Position::Standing;
-        case SocialPosition::Flying: return Position::Standing; // Map Flying to Standing for now
+        case SocialPosition::Flying: return Position::Flying;
     }
     return Position::Standing;
 }
@@ -94,11 +96,8 @@ Result<void> initialize() {
     registered_socials_.clear();
 
     for (const auto& [name, social] : socials) {
-        if (social.hide) {
-            // Skip hidden socials
-            continue;
-        }
-
+        // Note: The 'hide' flag means "hide from socials list", NOT "disable the command"
+        // Hidden socials still work, they're just not shown in the socials list command
         auto handler = create_social_handler(name);
         auto result = cmd.command(name, handler)
             .category("Social")

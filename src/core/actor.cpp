@@ -135,9 +135,24 @@ nlohmann::json Stats::to_json() const {
         {"max_mana", max_mana},
         {"movement", movement},
         {"max_movement", max_movement},
-        {"armor_class", armor_class},
-        {"hit_roll", hit_roll},
-        {"damage_roll", damage_roll},
+        // New combat stats
+        {"accuracy", accuracy},
+        {"attack_power", attack_power},
+        {"spell_power", spell_power},
+        {"penetration_flat", penetration_flat},
+        {"penetration_percent", penetration_percent},
+        {"evasion", evasion},
+        {"armor_rating", armor_rating},
+        {"damage_reduction_percent", damage_reduction_percent},
+        {"soak", soak},
+        {"hardness", hardness},
+        {"ward_percent", ward_percent},
+        // Elemental resistances
+        {"resistance_fire", resistance_fire},
+        {"resistance_cold", resistance_cold},
+        {"resistance_lightning", resistance_lightning},
+        {"resistance_acid", resistance_acid},
+        {"resistance_poison", resistance_poison},
         {"level", level},
         {"experience", experience},
         {"gold", gold},
@@ -163,10 +178,26 @@ Result<Stats> Stats::from_json(const nlohmann::json& json) {
         if (json.contains("movement")) stats.movement = json["movement"].get<int>();
         if (json.contains("max_movement")) stats.max_movement = json["max_movement"].get<int>();
         
-        if (json.contains("armor_class")) stats.armor_class = json["armor_class"].get<int>();
-        if (json.contains("hit_roll")) stats.hit_roll = json["hit_roll"].get<int>();
-        if (json.contains("damage_roll")) stats.damage_roll = json["damage_roll"].get<int>();
-        
+        // New combat stats
+        if (json.contains("accuracy")) stats.accuracy = json["accuracy"].get<int>();
+        if (json.contains("attack_power")) stats.attack_power = json["attack_power"].get<int>();
+        if (json.contains("spell_power")) stats.spell_power = json["spell_power"].get<int>();
+        if (json.contains("penetration_flat")) stats.penetration_flat = json["penetration_flat"].get<int>();
+        if (json.contains("penetration_percent")) stats.penetration_percent = json["penetration_percent"].get<int>();
+        if (json.contains("evasion")) stats.evasion = json["evasion"].get<int>();
+        if (json.contains("armor_rating")) stats.armor_rating = json["armor_rating"].get<int>();
+        if (json.contains("damage_reduction_percent")) stats.damage_reduction_percent = json["damage_reduction_percent"].get<int>();
+        if (json.contains("soak")) stats.soak = json["soak"].get<int>();
+        if (json.contains("hardness")) stats.hardness = json["hardness"].get<int>();
+        if (json.contains("ward_percent")) stats.ward_percent = json["ward_percent"].get<int>();
+
+        // Elemental resistances
+        if (json.contains("resistance_fire")) stats.resistance_fire = json["resistance_fire"].get<int>();
+        if (json.contains("resistance_cold")) stats.resistance_cold = json["resistance_cold"].get<int>();
+        if (json.contains("resistance_lightning")) stats.resistance_lightning = json["resistance_lightning"].get<int>();
+        if (json.contains("resistance_acid")) stats.resistance_acid = json["resistance_acid"].get<int>();
+        if (json.contains("resistance_poison")) stats.resistance_poison = json["resistance_poison"].get<int>();
+
         if (json.contains("level")) stats.level = json["level"].get<int>();
         if (json.contains("experience")) stats.experience = json["experience"].get<long>();
         if (json.contains("gold")) stats.gold = json["gold"].get<long>();
@@ -1028,19 +1059,26 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                 stats.hit_points = stats.max_hit_points;
             }
         }
+        // Convert legacy AC to new armor_rating (100 - AC)
         if (json.contains("ac")) {
-            stats.armor_class = json["ac"].get<int>();
+            stats.armor_rating = std::max(0, 100 - json["ac"].get<int>());
         }
+        // Convert legacy hit_roll to new accuracy
         if (json.contains("hit_roll")) {
-            stats.hit_roll = json["hit_roll"].get<int>();
+            stats.accuracy = json["hit_roll"].get<int>();
         }
+        // Convert legacy damage_dice bonus to new attack_power
         if (json.contains("damage_dice")) {
-            // Handle damage dice - store bonus as damage_roll
             const auto& dmg_dice = json["damage_dice"];
             if (dmg_dice.contains("bonus")) {
-                stats.damage_roll = dmg_dice["bonus"].get<int>();
+                stats.attack_power = dmg_dice["bonus"].get<int>();
             }
         }
+        // Also load new stats if present
+        if (json.contains("accuracy")) stats.accuracy = json["accuracy"].get<int>();
+        if (json.contains("attack_power")) stats.attack_power = json["attack_power"].get<int>();
+        if (json.contains("evasion")) stats.evasion = json["evasion"].get<int>();
+        if (json.contains("armor_rating")) stats.armor_rating = json["armor_rating"].get<int>();
         
         // Parse money object - handle both string and number values
         if (json.contains("money")) {
@@ -1383,11 +1421,11 @@ namespace ActorUtils {
     }
     
     std::string format_stats(const Stats& stats) {
-        return fmt::format("HP: {}/{}, Mana: {}/{}, Move: {}/{}, AC: {}, Level: {}", 
+        return fmt::format("HP: {}/{}, Mana: {}/{}, Move: {}/{}, ACC: {}, EVA: {}, AR: {}, Level: {}",
                           stats.hit_points, stats.max_hit_points,
-                          stats.mana, stats.max_mana, 
+                          stats.mana, stats.max_mana,
                           stats.movement, stats.max_movement,
-                          stats.armor_class, stats.level);
+                          stats.accuracy, stats.evasion, stats.armor_rating, stats.level);
     }
     
     std::string_view get_position_name(Position position) {
@@ -1571,13 +1609,11 @@ std::string Actor::get_stat_info() const {
         "Bank: [0p / 0g / 0s / 0c]\n",
         platinum, gold, silver, copper);
     
-    // Combat stats (modern terms for clarity)
-    // Accuracy = hit_roll (bonus to attack rolls)
-    // Evasion = 10 - armor_class (higher armor class = lower evasion)
-    // Damage Bonus = damage_roll
-    int evasion = 10 - stats_.armor_class;  // Convert AC to evasion (10 AC = 0 evasion, 0 AC = +10 evasion)
-    output << fmt::format("Accuracy: [{:2}], Evasion: [{:2}], Damage Bonus: [{:2}]\n",
-        stats_.hit_roll, evasion, stats_.damage_roll);
+    // Combat stats (new ACC/EVA system)
+    output << fmt::format("Accuracy: [{:2}], Evasion: [{:2}], Attack Power: [{:2}]\n",
+        stats_.accuracy, stats_.evasion, stats_.attack_power);
+    output << fmt::format("Armor Rating: [{:2}], DR%: [{:2}], Spell Power: [{:2}]\n",
+        stats_.armor_rating, stats_.damage_reduction_percent, stats_.spell_power);
     output << fmt::format("Saving throws: [Para: 0, Rod: 0, Petr: 0, Breath: 0, Spell: 0]\n");
     output << fmt::format("Perception: [{:4}], Stealth: [{:4}], Rage: [{:4}]\n", 0, 0, 0);
     

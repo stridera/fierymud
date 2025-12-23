@@ -63,6 +63,8 @@ SocialPosition parse_position(std::string_view str) {
         {"SLEEPING", SocialPosition::Sleeping},
         {"RESTING", SocialPosition::Resting},
         {"SITTING", SocialPosition::Sitting},
+        {"PRONE", SocialPosition::Prone},
+        {"KNEELING", SocialPosition::Kneeling},
         {"FIGHTING", SocialPosition::Fighting},
         {"STANDING", SocialPosition::Standing},
         {"FLYING", SocialPosition::Flying}
@@ -91,6 +93,8 @@ std::string_view position_to_string(SocialPosition pos) {
         case SocialPosition::Sleeping: return "SLEEPING";
         case SocialPosition::Resting: return "RESTING";
         case SocialPosition::Sitting: return "SITTING";
+        case SocialPosition::Prone: return "PRONE";
+        case SocialPosition::Kneeling: return "KNEELING";
         case SocialPosition::Fighting: return "FIGHTING";
         case SocialPosition::Standing: return "STANDING";
         case SocialPosition::Flying: return "FLYING";

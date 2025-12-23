@@ -299,44 +299,100 @@ void GMCPHandler::handle_terminal_type(std::string_view ttype) {
     // Parse MTTS terminal type - format is "terminal-name-MTTS n"
     std::string ttype_str{ttype};
     size_t mtts_pos = ttype_str.find("-MTTS ");
-    
+
     if (mtts_pos != std::string::npos) {
         // Extract terminal name and MTTS number
         std::string terminal_name = ttype_str.substr(0, mtts_pos);
         std::string mtts_str = ttype_str.substr(mtts_pos + 6);
-        
+
         try {
             uint32_t mtts_bitvector = std::stoul(mtts_str);
             handle_mtts_capability(mtts_bitvector);
-            
+
             // Also update terminal name
             terminal_capabilities_.terminal_name = terminal_name;
             Log::info("MTTS terminal type: {} with bitvector: {}", terminal_name, mtts_bitvector);
         } catch (const std::exception& e) {
             Log::warn("Failed to parse MTTS bitvector from '{}': {}", ttype, e.what());
-            // Fall back to basic terminal type detection
-            terminal_capabilities_ = TerminalCapabilities::get_capabilities_for_terminal(ttype);
+            // Fall back to basic terminal type detection - but don't overwrite GMCP
+            merge_terminal_capabilities(TerminalCapabilities::get_capabilities_for_terminal(ttype));
         }
     } else {
-        // Standard terminal type without MTTS
-        terminal_capabilities_ = TerminalCapabilities::get_capabilities_for_terminal(ttype);
-        Log::info("Standard terminal type: {}", ttype);
+        // Standard terminal type without MTTS - don't overwrite better GMCP detection
+        auto ttype_caps = TerminalCapabilities::get_capabilities_for_terminal(ttype);
+
+        // Only update terminal name, don't downgrade capabilities
+        if (!ttype_str.empty()) {
+            terminal_capabilities_.terminal_name = ttype_str;
+        }
+
+        // Merge only if TTYPE provides better capabilities
+        if (ttype_caps.overall_level > terminal_capabilities_.overall_level) {
+            merge_terminal_capabilities(ttype_caps);
+            Log::info("TTYPE upgraded capabilities: terminal={}, level={}",
+                      ttype_str, static_cast<int>(terminal_capabilities_.overall_level));
+        } else {
+            Log::debug("TTYPE terminal type: {} (not overwriting existing level {})",
+                      ttype_str, static_cast<int>(terminal_capabilities_.overall_level));
+        }
     }
 }
 
 void GMCPHandler::handle_mtts_capability(uint32_t bitvector) {
-    terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_mtts(bitvector, terminal_capabilities_.terminal_name);
-    Log::info("MTTS capabilities detected (bitvector: {}): terminal={}, color={}, 256color={}, truecolor={}, unicode={}, mouse={}, screen_reader={}, tls={}, level={}", 
+    auto mtts_caps = TerminalCapabilities::detect_capabilities_from_mtts(bitvector, terminal_capabilities_.terminal_name);
+
+    // MTTS is reliable - merge with existing capabilities
+    // Detection priority: GMCP > MTTS > others, but MTTS can provide complementary info
+    using TerminalCapabilities::DetectionMethod;
+
+    if (terminal_capabilities_.detection_method == DetectionMethod::GMCP) {
+        // GMCP already detected, only upgrade from MTTS if it provides better level
+        if (mtts_caps.overall_level > terminal_capabilities_.overall_level) {
+            merge_terminal_capabilities(mtts_caps);
+            terminal_capabilities_.detection_method = DetectionMethod::MTTS;
+            Log::info("MTTS upgraded GMCP-detected capabilities to level {}",
+                      static_cast<int>(terminal_capabilities_.overall_level));
+        } else {
+            Log::debug("MTTS bitvector {} parsed, but not overwriting GMCP level {}",
+                      bitvector, static_cast<int>(terminal_capabilities_.overall_level));
+        }
+    } else {
+        // No GMCP, use MTTS as authoritative
+        merge_terminal_capabilities(mtts_caps);
+        terminal_capabilities_.detection_method = DetectionMethod::MTTS;
+    }
+
+    Log::info("MTTS capabilities (bitvector: {}): terminal={}, color={}, 256color={}, truecolor={}, unicode={}, mouse={}, screen_reader={}, tls={}, level={}",
               bitvector,
               terminal_capabilities_.terminal_name,
               terminal_capabilities_.supports_color,
-              terminal_capabilities_.supports_256_color, 
+              terminal_capabilities_.supports_256_color,
               terminal_capabilities_.supports_true_color,
               terminal_capabilities_.supports_unicode,
               terminal_capabilities_.supports_mouse,
               terminal_capabilities_.supports_screen_reader,
               terminal_capabilities_.supports_tls,
               static_cast<int>(terminal_capabilities_.overall_level));
+}
+
+void GMCPHandler::merge_terminal_capabilities(const TerminalCapabilities::Capabilities& new_caps) {
+    // Merge capabilities - only upgrade, never downgrade individual features
+    if (new_caps.supports_color) terminal_capabilities_.supports_color = true;
+    if (new_caps.supports_256_color) terminal_capabilities_.supports_256_color = true;
+    if (new_caps.supports_true_color) terminal_capabilities_.supports_true_color = true;
+    if (new_caps.supports_unicode) terminal_capabilities_.supports_unicode = true;
+    if (new_caps.supports_bold) terminal_capabilities_.supports_bold = true;
+    if (new_caps.supports_italic) terminal_capabilities_.supports_italic = true;
+    if (new_caps.supports_underline) terminal_capabilities_.supports_underline = true;
+    if (new_caps.supports_mouse) terminal_capabilities_.supports_mouse = true;
+    if (new_caps.supports_screen_reader) terminal_capabilities_.supports_screen_reader = true;
+    if (new_caps.supports_tls) terminal_capabilities_.supports_tls = true;
+    if (new_caps.supports_hyperlinks) terminal_capabilities_.supports_hyperlinks = true;
+
+    // Update overall level only if improved
+    if (new_caps.overall_level > terminal_capabilities_.overall_level) {
+        terminal_capabilities_.overall_level = new_caps.overall_level;
+    }
 }
 
 std::unordered_map<std::string, std::string> GMCPHandler::parse_new_environ_data(std::string_view data) {
@@ -396,21 +452,103 @@ std::unordered_map<std::string, std::string> GMCPHandler::parse_new_environ_data
 }
 
 void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, std::string>& env_vars) {
-    terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_new_environ(env_vars);
-    Log::info("NEW-ENVIRON capabilities detected from {} variables: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}", 
+    // Get NEW-ENVIRON capabilities
+    auto new_caps = TerminalCapabilities::detect_capabilities_from_new_environ(env_vars);
+
+    // Log what NEW-ENVIRON provided
+    Log::debug("NEW-ENVIRON raw detection from {} variables: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}",
               env_vars.size(),
-              terminal_capabilities_.terminal_name,
-              terminal_capabilities_.client_name,
-              terminal_capabilities_.client_version,
-              terminal_capabilities_.supports_color,
-              terminal_capabilities_.supports_256_color,
-              terminal_capabilities_.supports_true_color,
-              terminal_capabilities_.supports_unicode,
-              static_cast<int>(terminal_capabilities_.overall_level));
-    
+              new_caps.terminal_name,
+              new_caps.client_name,
+              new_caps.client_version,
+              new_caps.supports_color,
+              new_caps.supports_256_color,
+              new_caps.supports_true_color,
+              new_caps.supports_unicode,
+              static_cast<int>(new_caps.overall_level));
+
     // Log some key environment variables for debugging
     for (const auto& [key, value] : env_vars) {
         Log::debug("NEW-ENVIRON {}: {}", key, value);
+    }
+
+    // Detection priority: GMCP > MTTS > NewEnviron > Environment
+    // Only merge NEW-ENVIRON data if it provides BETTER capabilities, never downgrade
+    using TerminalCapabilities::DetectionMethod;
+    using TerminalCapabilities::SupportLevel;
+
+    bool should_merge = false;
+
+    // If we have GMCP detection, it's the most reliable - don't downgrade
+    if (terminal_capabilities_.detection_method == DetectionMethod::GMCP) {
+        // Only upgrade from GMCP if NEW-ENVIRON provides better level (unlikely)
+        if (new_caps.overall_level > terminal_capabilities_.overall_level) {
+            should_merge = true;
+            Log::info("NEW-ENVIRON upgrading GMCP-detected capabilities from level {} to {}",
+                      static_cast<int>(terminal_capabilities_.overall_level),
+                      static_cast<int>(new_caps.overall_level));
+        } else {
+            Log::debug("Ignoring NEW-ENVIRON: GMCP already detected level {} (NEW-ENVIRON: {})",
+                      static_cast<int>(terminal_capabilities_.overall_level),
+                      static_cast<int>(new_caps.overall_level));
+        }
+    }
+    // If we have MTTS detection, it's also reliable
+    else if (terminal_capabilities_.detection_method == DetectionMethod::MTTS) {
+        if (new_caps.overall_level > terminal_capabilities_.overall_level) {
+            should_merge = true;
+            Log::info("NEW-ENVIRON upgrading MTTS-detected capabilities from level {} to {}",
+                      static_cast<int>(terminal_capabilities_.overall_level),
+                      static_cast<int>(new_caps.overall_level));
+        } else {
+            Log::debug("Ignoring NEW-ENVIRON: MTTS already detected level {} (NEW-ENVIRON: {})",
+                      static_cast<int>(terminal_capabilities_.overall_level),
+                      static_cast<int>(new_caps.overall_level));
+        }
+    }
+    // For Environment or unknown detection, NEW-ENVIRON can upgrade
+    else {
+        if (new_caps.overall_level >= terminal_capabilities_.overall_level) {
+            should_merge = true;
+        }
+    }
+
+    if (should_merge) {
+        // Merge capabilities - only upgrade, never downgrade individual features
+        if (new_caps.supports_color) terminal_capabilities_.supports_color = true;
+        if (new_caps.supports_256_color) terminal_capabilities_.supports_256_color = true;
+        if (new_caps.supports_true_color) terminal_capabilities_.supports_true_color = true;
+        if (new_caps.supports_unicode) terminal_capabilities_.supports_unicode = true;
+        if (new_caps.supports_bold) terminal_capabilities_.supports_bold = true;
+        if (new_caps.supports_italic) terminal_capabilities_.supports_italic = true;
+        if (new_caps.supports_underline) terminal_capabilities_.supports_underline = true;
+
+        // Update terminal/client info if NEW-ENVIRON provides useful data
+        if (!new_caps.terminal_name.empty() && new_caps.terminal_name != "unknown") {
+            terminal_capabilities_.terminal_name = new_caps.terminal_name;
+        }
+        if (!new_caps.client_name.empty() && new_caps.client_name != "Unknown") {
+            terminal_capabilities_.client_name = new_caps.client_name;
+        }
+        if (!new_caps.client_version.empty()) {
+            terminal_capabilities_.client_version = new_caps.client_version;
+        }
+
+        // Update overall level only if improved
+        if (new_caps.overall_level > terminal_capabilities_.overall_level) {
+            terminal_capabilities_.overall_level = new_caps.overall_level;
+            terminal_capabilities_.detection_method = DetectionMethod::NewEnviron;
+        }
+
+        Log::info("NEW-ENVIRON merged: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}",
+                  terminal_capabilities_.terminal_name,
+                  terminal_capabilities_.client_name,
+                  terminal_capabilities_.client_version,
+                  terminal_capabilities_.supports_color,
+                  terminal_capabilities_.supports_256_color,
+                  terminal_capabilities_.supports_true_color,
+                  terminal_capabilities_.supports_unicode,
+                  static_cast<int>(terminal_capabilities_.overall_level));
     }
 }
 
@@ -576,15 +714,24 @@ void PlayerConnection::start() {
 void PlayerConnection::handle_connect() {
     transition_to(ConnectionState::Login);
 
-    // Send immediate welcome to keep connection alive
-    send_line("=== Welcome to FieryMUD ===");
-
-    // Begin reading
+    // Begin reading first so we can receive telnet responses
     start_read();
 
-    // Send telnet negotiation and start login
+    // Send telnet negotiation (GMCP offer)
     send_telnet_negotiation();
-    login_system_->start_login();
+
+    // Delay the login welcome message by 200ms to allow capability negotiation
+    // This gives GMCP clients time to send Core.Hello before we display the logo
+    // IMPORTANT: Must run on strand to avoid race conditions with input processing
+    auto self = shared_from_this();
+    auto welcome_timer = std::make_shared<asio::steady_timer>(io_context_);
+    welcome_timer->expires_after(std::chrono::milliseconds(200));
+    welcome_timer->async_wait(asio::bind_executor(strand_,
+        [self, welcome_timer](const asio::error_code& error) {
+            if (!error && self->is_connected()) {
+                self->login_system_->start_login();
+            }
+        }));
 }
 
 void PlayerConnection::send_telnet_negotiation() {
@@ -941,6 +1088,18 @@ void PlayerConnection::send_raw_data(const std::vector<uint8_t> &data) {
 
     std::string str_data(data.begin(), data.end());
     queue_output(std::move(str_data));
+}
+
+void PlayerConnection::forward_command_to_game(std::string_view command) {
+    if (state_ != ConnectionState::Playing || !player_) {
+        Log::warn("Cannot forward command - not in Playing state or no player");
+        return;
+    }
+
+    Log::debug("Forwarding buffered command to game: '{}'", command);
+    if (world_server_) {
+        world_server_->process_command(player_, command);
+    }
 }
 
 Result<void> PlayerConnection::send_gmcp(std::string_view module, const nlohmann::json &data) {

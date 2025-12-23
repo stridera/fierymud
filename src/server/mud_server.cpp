@@ -3,6 +3,7 @@
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
+#include "../database/config_loader.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/database_config.hpp"
 #include "../text/string_utils.hpp"
@@ -87,6 +88,82 @@ Result<ServerConfig> ServerConfig::load_from_file(const std::string &filename) {
     } catch (const std::exception &e) {
         return std::unexpected(Errors::SystemError(fmt::format("Error loading config: {}", e.what())));
     }
+}
+
+Result<ServerConfig> ServerConfig::load_from_database() {
+    using namespace fierymud::config;
+
+    Log::info("Loading server configuration from database...");
+
+    // Load all config from database
+    auto &loader = ConfigLoader::instance();
+    auto load_result = loader.load_from_database();
+    if (!load_result) {
+        return std::unexpected(Errors::SystemError(
+            fmt::format("Failed to load config from database: {}", load_result.error())));
+    }
+
+    ServerConfig config;
+
+    // Network settings from "server" category
+    config.port = loader.get_int_or("server", "port", 4000);
+    config.tls_port = loader.get_int_or("server", "tls_port", 4443);
+    config.max_connections = loader.get_int_or("server", "max_connections", 200);
+    config.connection_timeout =
+        loader.get_seconds("server", "connection_timeout_seconds").value_or(std::chrono::seconds{300});
+    config.target_tps = loader.get_int_or("server", "target_tps", 10);
+    config.max_command_queue_size =
+        static_cast<size_t>(loader.get_int_or("server", "max_command_queue_size", 10000));
+
+    // Persistence settings
+    config.auto_save_interval =
+        loader.get_seconds("server", "auto_save_interval_seconds").value_or(std::chrono::seconds{300});
+    config.backup_interval =
+        loader.get_seconds("server", "backup_interval_seconds").value_or(std::chrono::seconds{3600});
+    config.max_backups = loader.get_int_or("server", "max_backups", 24);
+
+    // Display settings
+    config.mud_name = loader.get_string_or("display", "mud_name", "FieryMUD");
+    config.default_starting_room =
+        static_cast<uint64_t>(loader.get_int_or("display", "default_starting_room", 3001));
+
+    // Security settings
+    config.max_login_attempts = loader.get_int_or("security", "max_login_attempts", 3);
+    config.login_timeout =
+        loader.get_minutes("security", "login_timeout_minutes").value_or(std::chrono::minutes{15});
+    config.enable_new_player_creation = loader.get_bool_or("security", "enable_new_player_creation", true);
+    config.enable_debug_commands = loader.get_bool_or("security", "enable_debug_commands", false);
+    config.enable_tls = loader.get_bool_or("security", "enable_tls", true);
+
+    // TLS certificate paths - stay in .env or use defaults (security-sensitive)
+    const char *tls_cert = std::getenv("TLS_CERTIFICATE_FILE");
+    const char *tls_key = std::getenv("TLS_PRIVATE_KEY_FILE");
+    const char *tls_dh = std::getenv("TLS_DH_PARAMS_FILE");
+    config.tls_certificate_file = tls_cert ? tls_cert : "certs/server.crt";
+    config.tls_private_key_file = tls_key ? tls_key : "certs/server.key";
+    config.tls_dh_params_file = tls_dh ? tls_dh : "certs/dhparams.pem";
+
+    // Paths stay in .env or use defaults (needed before database is available)
+    const char *log_dir = std::getenv("LOG_DIRECTORY");
+    config.log_directory = log_dir ? log_dir : "logs";
+
+    // World/player directories are N/A for database-driven MUD (data in PostgreSQL)
+    // Keep defaults for any legacy code that might reference them
+    config.world_directory = "data/world";
+    config.player_directory = "data/players";
+
+    // Log level from environment (needed before database)
+    const char *log_level = std::getenv("LOG_LEVEL");
+    config.log_level = log_level ? log_level : "info";
+
+    // Validate the loaded configuration
+    auto validation_result = config.validate();
+    if (!validation_result) {
+        return std::unexpected(validation_result.error());
+    }
+
+    Log::info("Server configuration loaded from database ({} entries)", loader.entry_count());
+    return config;
 }
 
 Result<void> ServerConfig::save_to_file(const std::string &filename) const {

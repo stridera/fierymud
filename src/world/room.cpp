@@ -485,34 +485,16 @@ bool Room::is_dark() const { return has_flag(RoomFlag::Dark) || calculate_effect
 bool Room::is_naturally_lit() const { return sector_provides_light() && !has_flag(RoomFlag::Dark); }
 
 int Room::calculate_effective_light() const {
-    auto logger = Log::game();
-
-    // Debug: log only for the temple to trace the darkness issue
-    bool is_temple = (id().zone_id() == 30 && id().local_id() == 1);
-    if (is_temple) {
-        logger->info("DEBUG calculate_effective_light: Temple room {} flags_count={} has_AlwaysLit={}",
-                    id().value(), flags_.size(), has_flag(RoomFlag::AlwaysLit));
-    }
-
     // AlwaysLit rooms are always lit regardless of other factors
     if (has_flag(RoomFlag::AlwaysLit)) {
-        if (is_temple) {
-            logger->info("DEBUG Temple has AlwaysLit, returning 10");
-        }
         return 10; // High light level
     }
 
     if (has_flag(RoomFlag::Dark)) {
-        if (is_temple) {
-            logger->info("DEBUG Temple has Dark flag, returning 0");
-        }
         return 0;
     }
 
     int total_light = light_level_;
-    if (is_temple) {
-        logger->info("DEBUG Temple base light_level_: {}", light_level_);
-    }
 
     // Add natural sector light
     if (sector_provides_light()) {

@@ -353,7 +353,7 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
     stats_.zones_loaded++;
     has_unsaved_changes_.store(true);
     
-    logger->info("Loaded zone: {} ({})", zone_name, zone_id);
+    logger->debug("Loaded zone: {} ({})", zone_name, zone_id);
     
     return Success();
 }
@@ -1310,7 +1310,7 @@ Result<void> WorldManager::load_zones_from_directory(const std::string& world_di
 
 Result<void> WorldManager::load_zones_from_database() {
     auto logger = Log::database();
-    logger->info("Loading zones from database");
+    logger->debug("Loading zones from database");
 
     // Execute database query in a transaction
     auto load_result = ConnectionPool::instance().execute([&](pqxx::work& txn) -> Result<void> {
@@ -1320,7 +1320,7 @@ Result<void> WorldManager::load_zones_from_database() {
             return std::unexpected(zones_result.error());
         }
 
-        logger->info("Loaded {} zones from database", zones_result->size());
+        logger->debug("Loaded {} zones from database", zones_result->size());
 
         // Process each zone
         for (auto& zone_ptr : *zones_result) {
@@ -1966,9 +1966,9 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
         return std::unexpected(Errors::InvalidState(move_result.failure_reason));
     }
     
-    logger->info("Spawned mobile '{}' in room '{}' ({})", 
+    logger->debug("Spawned mobile '{}' in room '{}' ({})",
                 prototype->name(), spawn_room->name(), spawn_room->id());
-    
+
     return Success();
 }
 
@@ -2299,9 +2299,9 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
     auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
     register_spawned_mobile(mobile_ptr);
     
-    logger->info("Spawned mobile '{}' in room '{}' ({})", 
+    logger->debug("Spawned mobile '{}' in room '{}' ({})",
                 prototype->name(), spawn_room->name(), spawn_room->id());
-    
+
     return Success();
 }
 

@@ -133,8 +133,8 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     // WIS: (WIS - 50) / 10 = -5 to +5
     stats.acc += (actor_stats.wisdom - CombatConstants::STAT_NEUTRAL) / CombatConstants::WIS_TO_ACC_DIVISOR;
 
-    // Hitroll from gear adds directly to ACC
-    stats.acc += actor_stats.hit_roll;
+    // Use new accuracy stat directly (replaces legacy hit_roll)
+    stats.acc += actor_stats.accuracy;
 
     // Cap ACC
     stats.acc = std::min(stats.acc, static_cast<double>(CombatConstants::ACC_SOFT_CAP));
@@ -145,6 +145,9 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     // DEX contribution to EVA: (DEX - 50) / 3 = -16 to +16
     stats.eva += (actor_stats.dexterity - CombatConstants::STAT_NEUTRAL) / CombatConstants::DEX_TO_EVA_DIVISOR;
 
+    // Add evasion stat directly (replaces legacy AC conversion)
+    stats.eva += actor_stats.evasion;
+
     // TODO: Add skill contributions (dodge, parry, riposte) when skill system is integrated
     // stats.eva += dodge_skill * CombatConstants::DODGE_TO_EVA;
     // stats.eva += parry_skill * CombatConstants::PARRY_TO_EVA;
@@ -153,16 +156,18 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     // Cap EVA
     stats.eva = std::min(stats.eva, static_cast<double>(CombatConstants::EVA_SOFT_CAP));
 
-    // Attack Power from damroll + STR modifier
-    stats.ap = actor_stats.damage_roll;
+    // Attack Power from new stat + STR modifier (replaces legacy damage_roll)
+    stats.ap = actor_stats.attack_power;
     stats.ap += Stats::attribute_modifier(actor_stats.strength);
 
-    // Armor Rating from AC (inverted: lower AC = higher AR)
-    // AR = 100 - AC (so AC of -50 = AR of 150)
-    stats.ar = std::max(0.0, 100.0 - actor_stats.armor_class);
+    // Use armor_rating directly (replaces legacy AC inversion)
+    stats.ar = actor_stats.armor_rating;
 
-    // Calculate DR% from AR
-    stats.dr_pct = CombatStats::calculate_dr_percent(stats.ar, level);
+    // Add damage reduction percent directly from stat
+    stats.dr_pct = actor_stats.damage_reduction_percent;
+
+    // Add additional DR from armor rating scaled by level
+    stats.dr_pct += CombatStats::calculate_dr_percent(stats.ar, level);
 
     // Get weapon stats from mob if applicable
     if (const auto* mobile = dynamic_cast<const Mobile*>(&actor)) {

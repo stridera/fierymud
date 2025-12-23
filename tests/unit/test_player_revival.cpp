@@ -268,9 +268,9 @@ TEST_CASE("Player Stats and HP System", "[unit][player][stats][hp]") {
         REQUIRE(stats.movement >= 0);
         REQUIRE(stats.max_movement >= 0);
         
-        // Derived stats
-        REQUIRE(stats.armor_class >= -10); // Can be negative (good armor)
-        REQUIRE(stats.armor_class <= 50);  // Reasonable upper bound
+        // Combat stats (new system uses armor_rating 0-100+)
+        REQUIRE(stats.armor_rating >= 0);
+        REQUIRE(stats.armor_rating <= 200);  // Reasonable upper bound
         
         // Alignment range
         REQUIRE(stats.alignment >= -1000);

@@ -104,6 +104,27 @@ void LoginSystem::start_login() {
     transition_to(LoginState::GetAccount);
     send_welcome_message();
     send_prompt();
+
+    // Process any input that was buffered during the connection phase
+    // This handles cases where clients send input before the welcome message
+    if (!buffered_input_.empty()) {
+        Log::debug("Processing {} buffered input(s)", buffered_input_.size());
+        auto buffered = std::move(buffered_input_);
+        buffered_input_.clear();
+        for (size_t i = 0; i < buffered.size(); ++i) {
+            // If login completed, forward remaining commands to the game
+            if (state_ == LoginState::Playing && connection_) {
+                Log::debug("Login complete, forwarding {} remaining commands to game",
+                          buffered.size() - i);
+                for (size_t j = i; j < buffered.size(); ++j) {
+                    // Route through connection's process_input which will send to world_server
+                    connection_->forward_command_to_game(buffered[j]);
+                }
+                break;
+            }
+            process_input(buffered[i]);
+        }
+    }
 }
 
 void LoginSystem::process_input(std::string_view input) {
@@ -117,6 +138,15 @@ void LoginSystem::process_input(std::string_view input) {
     Log::debug("Processing login input in state {}: '{}'", static_cast<int>(state_), trimmed_input);
 
     switch (state_) {
+    // Initial state - buffer input until start_login() is called
+    case LoginState::Connecting:
+        // Buffer input received before welcome message is displayed
+        if (!trimmed_input.empty()) {
+            Log::debug("Buffering early input: '{}'", trimmed_input);
+            buffered_input_.push_back(trimmed_input);
+        }
+        break;
+
     // Account-based login flow
     case LoginState::GetAccount:
         handle_get_account(trimmed_input);
@@ -432,10 +462,10 @@ void LoginSystem::handle_select_character(std::string_view input) {
         stats.movement = char_data.movement;
         stats.max_movement = char_data.movement_max;
 
-        // Set combat stats
-        stats.armor_class = char_data.armor_class;
-        stats.hit_roll = char_data.hit_roll;
-        stats.damage_roll = char_data.damage_roll;
+        // Convert legacy DB combat stats to new system
+        stats.accuracy = char_data.hit_roll;
+        stats.attack_power = char_data.damage_roll;
+        stats.armor_rating = std::max(0, 100 - char_data.armor_class);
 
         // Set experience
         stats.experience = char_data.experience;
@@ -847,17 +877,122 @@ void LoginSystem::send_message(std::string_view message) {
 }
 
 void LoginSystem::send_welcome_message() {
+    // Select logo based on terminal capabilities detected via GMCP/MTTS/NEW-ENVIRON.
+    // The connection delays login by 200ms to allow capability negotiation, so
+    // by the time we get here, GMCP clients should have reported their capabilities.
+    using TerminalCapabilities::SupportLevel;
+    using TerminalCapabilities::DetectionMethod;
+
+    auto level = SupportLevel::Full;  // Default to full for modern MUD clients
+    if (connection_) {
+        auto caps = connection_->get_terminal_capabilities();
+
+        // Use detected level if we have actual client detection
+        // Environment detection means "basic telnet client" - still default to Full
+        // since the 200ms delay should have allowed GMCP detection if supported
+        if (caps.detection_method == DetectionMethod::GMCP ||
+            caps.detection_method == DetectionMethod::MTTS ||
+            caps.detection_method == DetectionMethod::NewEnviron) {
+            level = caps.overall_level;
+            Log::info("Logo selection: Using detected level {} from {} (client: {} {})",
+                      static_cast<int>(level),
+                      caps.detection_method == DetectionMethod::GMCP ? "GMCP" :
+                      caps.detection_method == DetectionMethod::MTTS ? "MTTS" : "NEW-ENVIRON",
+                      caps.client_name, caps.client_version);
+        } else {
+            Log::info("Logo selection: No client detection, defaulting to Full");
+        }
+    }
+
+    switch (level) {
+        case SupportLevel::Basic:
+            send_logo_basic();
+            break;
+        case SupportLevel::Standard:
+            send_logo_extended();
+            break;
+        default:
+            // Full, Extended, or undetected - use full logo
+            send_logo_full();
+            break;
+    }
+
+    // Common footer with login instructions
+    send_login_instructions();
+}
+
+void LoginSystem::send_logo_full() {
+    // Dragon perched on FIERYMUD text - 256-color
+    // Dragon design inspired by Jeff Ferris ASCII art
     send_message("");
-    send_message("=== Welcome to Modern FieryMUD ===");
+
+    send_message("<c196>  ███████╗<c202>██╗<c208>███████╗<c214>██████╗ <c220>██╗   ██╗<c214>███╗   ███╗<c208>██╗   ██╗<c202>██████╗");
+    send_message("<c196>  ██╔════╝<c202>██║<c208>██╔════╝<c214>██╔══██╗<c220>╚██╗ ██╔╝<c214>████╗ ████║<c208>██║   ██║<c202>██╔══██╗");
+    send_message("<c196>  █████╗  <c202>██║<c208>█████╗  <c214>██████╔╝<c220> ╚████╔╝ <c214>██╔████╔██║<c208>██║   ██║<c202>██║  ██║");
+    send_message("<c196>  ██╔══╝  <c202>██║<c208>██╔══╝  <c214>██╔══██╗<c220>  ╚██╔╝  <c214>██║╚██╔╝██║<c208>██║   ██║<c202>██║  ██║");
+    send_message("<c196>  ██║     <c202>██║<c208>███████╗<c214>██║  ██║<c220>   ██║   <c214>██║ ╚═╝ ██║<c208>╚██████╔╝<c202>██████╔╝");
+    send_message("<c196>  ╚═╝     <c202>╚═╝<c208>╚══════╝<c214>╚═╝  ╚═╝<c220>   ╚═╝   <c214>╚═╝     ╚═╝<c208> ╚═════╝ <c202>╚═════╝");
     send_message("");
-    send_message("A classic fantasy MUD with modern features:");
-    send_message("• Health/Movement vitals (no mana!)");
-    send_message("• Circle-based spell slot system");
-    send_message("• GMCP support for modern clients");
-    send_message("• Four classic classes: Warrior, Cleric, Sorcerer, Rogue");
+}
+
+void LoginSystem::send_logo_extended() {
+    // Simplified logo with 256-color but less complex dragon
+    send_message("");
+
+    // Simple flame header
+    send_message("<c196>            )  (  (     <c202>)<c208>)<c214>)</c214>");
+    send_message("<c202>           (   ) )<c208>)   <c214>(<c220>(<c214>(</c214>");
+    send_message("<c208>            )_(_<c214>)_<c220>(<c214>_<c208>)<c202>_</c202>");
+    send_message("");
+
+    // "FIERY" text with fire gradient
+    send_message("<c196>       ███████╗<c202>██╗<c208>███████╗<c214>██████╗ <c220>██╗   ██╗</c220>");
+    send_message("<c196>       ██╔════╝<c202>██║<c208>██╔════╝<c214>██╔══██╗<c220>╚██╗ ██╔╝</c220>");
+    send_message("<c196>       █████╗  <c202>██║<c208>█████╗  <c214>██████╔╝<c220> ╚████╔╝</c220>");
+    send_message("<c196>       ██╔══╝  <c202>██║<c208>██╔══╝  <c214>██╔══██╗<c220>  ╚██╔╝</c220>");
+    send_message("<c196>       ██║     <c202>██║<c208>███████╗<c214>██║  ██║<c220>   ██║</c220>");
+    send_message("<c196>       ╚═╝     <c202>╚═╝<c208>╚══════╝<c214>╚═╝  ╚═╝<c220>   ╚═╝</c220>");
+    send_message("");
+
+    // "MUD" text
+    send_message("<c208>            ███╗   ███╗<c214>██╗   ██╗<c220>██████╗</c220>");
+    send_message("<c208>            ████╗ ████║<c214>██║   ██║<c220>██╔══██╗</c220>");
+    send_message("<c208>            ██╔████╔██║<c214>██║   ██║<c220>██║  ██║</c220>");
+    send_message("<c208>            ██║╚██╔╝██║<c214>██║   ██║<c220>██║  ██║</c220>");
+    send_message("<c208>            ██║ ╚═╝ ██║<c214>╚██████╔╝<c220>██████╔╝</c220>");
+    send_message("<c208>            ╚═╝     ╚═╝<c214> ╚═════╝ <c220>╚═════╝</c220>");
+    send_message("");
+}
+
+void LoginSystem::send_logo_basic() {
+    // ASCII-only fallback for basic terminals
+    send_message("");
+    send_message("            )  (  (       )  )");
+    send_message("           (   ) ))     ( ( (");
+    send_message("            )_(_)_(     _)_)_)");
+    send_message("       .'~'`~.'~'`~.'~'`~.'~'`~.'");
+    send_message("");
+    send_message("       FFFFF III EEEEE RRRR  Y   Y");
+    send_message("       F      I  E     R   R  Y Y");
+    send_message("       FFFF   I  EEEE  RRRR    Y");
+    send_message("       F      I  E     R  R    Y");
+    send_message("       F     III EEEEE R   R   Y");
+    send_message("");
+    send_message("             M   M U   U DDDD");
+    send_message("             MM MM U   U D   D");
+    send_message("             M M M U   U D   D");
+    send_message("             M   M  UUU  DDDD");
+    send_message("");
+}
+
+void LoginSystem::send_login_instructions() {
+    send_message("<dim>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</dim>");
+    send_message("<c245>         A classic fantasy MUD, forged in fire.</c245>");
+    send_message("<c245>                  www.fierymud.org</c245>");
+    send_message("<dim>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</dim>");
     send_message("");
     send_message("Login with your account username, email, or character name.");
-    send_message("Quick login: username:password or character:password");
+    send_message("Quick login: <b>username:password</b> or <b>character:password</b>");
     send_message("");
 }
 
@@ -1097,10 +1232,10 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
         stats.movement = char_data.movement;
         stats.max_movement = char_data.movement_max;
 
-        // Set combat stats
-        stats.armor_class = char_data.armor_class;
-        stats.hit_roll = char_data.hit_roll;
-        stats.damage_roll = char_data.damage_roll;
+        // Convert legacy DB combat stats to new system
+        stats.accuracy = char_data.hit_roll;
+        stats.attack_power = char_data.damage_roll;
+        stats.armor_rating = std::max(0, 100 - char_data.armor_class);
 
         // Set experience
         stats.experience = char_data.experience;
@@ -1262,10 +1397,10 @@ Result<void> LoginSystem::save_character(std::shared_ptr<Player> player) {
     char_data.movement = stats.movement;
     char_data.movement_max = stats.max_movement;
 
-    // Combat stats
-    char_data.armor_class = stats.armor_class;
-    char_data.hit_roll = stats.hit_roll;
-    char_data.damage_roll = stats.damage_roll;
+    // Convert new combat stats back to legacy DB format for saving
+    char_data.armor_class = std::max(0, 100 - stats.armor_rating);
+    char_data.hit_roll = stats.accuracy;
+    char_data.damage_roll = stats.attack_power;
 
     // Experience
     char_data.experience = stats.experience;

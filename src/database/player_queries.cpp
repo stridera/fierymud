@@ -82,9 +82,10 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         stats.max_hit_points = row["hit_points_max"].as<int>(100);
         stats.movement = row["movement"].as<int>(100);
         stats.max_movement = row["movement_max"].as<int>(100);
-        stats.hit_roll = row["hit_roll"].as<int>(0);
-        stats.damage_roll = row["damage_roll"].as<int>(0);
-        stats.armor_class = row["armor_class"].as<int>(100);
+        // Convert legacy DB stats to new combat system
+        stats.accuracy = row["hit_roll"].as<int>(0);
+        stats.attack_power = row["damage_roll"].as<int>(0);
+        stats.armor_rating = std::max(0, 100 - row["armor_class"].as<int>(100));
 
         // Currency - stored in stats.gold as copper coins
         // Convert from separate currency columns to total copper
@@ -94,7 +95,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
                           row["platinum"].as<int>(0) * 1000;
         stats.gold = total_copper;
 
-        logger->info("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database",
+        logger->debug("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database",
                     player_name, player_id, level,
                     row["player_class"].is_null() ? "Unknown" : row["player_class"].as<std::string>(),
                     row["race"].is_null() ? "Unknown" : row["race"].as<std::string>());

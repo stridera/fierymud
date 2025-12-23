@@ -89,19 +89,14 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
 
-        // DEBUG: Log room info for temple
-        auto logger = Log::game();
-        logger->info("DEBUG cmd_look: Room {} '{}' (zone_id={}, local_id={}), can_see={}, light={}",
-                    current_room->id().value(), current_room->name(),
-                    current_room->id().zone_id(), current_room->id().local_id(),
-                    current_room->can_see_in_room(ctx.actor.get()),
-                    current_room->calculate_effective_light());
+        // Cache visibility check to avoid redundant calculate_effective_light calls
+        bool can_see = current_room->can_see_in_room(ctx.actor.get());
 
         // Use the room's own get_room_description method which properly handles lighting
         std::string description = current_room->get_room_description(ctx.actor.get());
 
         // Only add additional formatting (exits, objects, actors) if the room is visible
-        if (!current_room->can_see_in_room(ctx.actor.get())) {
+        if (!can_see) {
             // Room is dark, just send the darkness message
             ctx.send(description);
             return CommandResult::Success;
@@ -540,9 +535,10 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     score << fmt::format("Hit points: {}/{}   Mana: {}/{}   Moves: {}/{}\n", stats.hit_points, stats.max_hit_points,
                          stats.mana, stats.max_mana, stats.movement, stats.max_movement);
 
-    // Armor class and combat stats
-    score << fmt::format("Armor Class: {}   Hit roll: {}   Damage roll: {}\n", stats.armor_class, stats.hit_roll,
-                         stats.damage_roll);
+    // Combat stats (new ACC/EVA system)
+    score << fmt::format("Accuracy: {}   Evasion: {}   Attack Power: {}\n", stats.accuracy, stats.evasion,
+                         stats.attack_power);
+    score << fmt::format("Armor Rating: {}   Damage Reduction: {}%\n", stats.armor_rating, stats.damage_reduction_percent);
 
     // Alignment
     std::string align_desc;

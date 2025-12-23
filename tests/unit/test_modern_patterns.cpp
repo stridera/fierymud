@@ -298,8 +298,8 @@ TEST_CASE("Performance: Critical Path Benchmarking", "[unit][performance][benchm
         // Set up for combat benchmark (with new ACC/EVA system, stats contribute to ACC/EVA)
         attacker.value()->stats().level = 10;      // Higher level = higher ACC
         attacker.value()->stats().strength = 18;   // Better damage + some ACC
-        attacker.value()->stats().hit_roll = 20;   // +20 to ACC from gear
-        target.value()->stats().armor_class = 80;  // Lower AC = low AR = low DR%
+        attacker.value()->stats().accuracy = 20;    // +20 to ACC from gear
+        target.value()->stats().armor_rating = 20; // Low AR = low DR%
 
         // Convert to shared_ptr as expected by combat system
         auto attacker_ptr = std::shared_ptr<Actor>(attacker.value().release());

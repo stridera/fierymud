@@ -22,7 +22,7 @@ std::expected<int, Error> FormulaContext::get_variable(std::string_view name) co
     if (name == "wis_bonus" || name == "wis") return wis_bonus;
     if (name == "cha_bonus" || name == "cha") return cha_bonus;
     if (name == "weapon_damage" || name == "weapon") return weapon_damage;
-    if (name == "armor_class" || name == "ac") return armor_class;
+    if (name == "armor_rating" || name == "ar") return armor_rating;
     if (name == "target_level") return target_level;
 
     // Check custom variables

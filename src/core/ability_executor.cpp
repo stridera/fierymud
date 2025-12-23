@@ -43,7 +43,7 @@ Result<void> AbilityCache::initialize() {
 
 Result<void> AbilityCache::reload() {
     auto logger = Log::game();
-    logger->info("Loading ability cache from database...");
+    logger->debug("Loading ability cache from database...");
 
     auto result = ConnectionPool::instance().execute([this](pqxx::work& txn) -> Result<void> {
         // Load all abilities

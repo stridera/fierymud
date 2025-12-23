@@ -11,6 +11,7 @@
 #include <span>
 #include <chrono>
 #include <ctime>
+#include <bitset>
 
 #include "spell_system.hpp"
 
@@ -36,10 +37,27 @@ struct Stats {
     int movement = 100;     // Current movement points
     int max_movement = 100; // Maximum movement points
     
-    // Combat stats
-    int armor_class = 10;   // Defensive rating (lower is better)
-    int hit_roll = 0;       // Attack bonus
-    int damage_roll = 0;    // Damage bonus
+    // Offensive Stats (ACC/EVA combat system)
+    int accuracy = 0;           // Attack accuracy (replaces THAC0/hitroll)
+    int attack_power = 0;       // Physical damage bonus (replaces damroll)
+    int spell_power = 0;        // Magical damage bonus
+    int penetration_flat = 0;   // Flat armor penetration
+    int penetration_percent = 0; // Percent armor penetration (0-100)
+
+    // New Defensive Stats
+    int evasion = 0;            // Dodge chance (replaces AC partially)
+    int armor_rating = 0;       // Damage reduction from armor (replaces AC partially)
+    int damage_reduction_percent = 0; // Percent damage reduction (0-100, capped at 75%)
+    int soak = 0;               // Flat damage reduction per hit
+    int hardness = 0;           // Damage threshold (ignore hits below this)
+    int ward_percent = 0;       // Percent magical damage reduction (0-100)
+
+    // Elemental Resistances (0-100, can be negative for vulnerability)
+    int resistance_fire = 0;
+    int resistance_cold = 0;
+    int resistance_lightning = 0;
+    int resistance_acid = 0;
+    int resistance_poison = 0;
     
     // Experience and progression
     int level = 1;          // Character level
@@ -179,8 +197,10 @@ enum class Position {
     Sleeping,           // Asleep
     Resting,            // Resting to recover
     Sitting,            // Sitting down
+    Prone,              // Lying down (knocked down or resting flat)
     Fighting,           // In combat
-    Standing            // Normal standing position
+    Standing,           // Normal standing position
+    Flying              // Flying/hovering in the air
 };
 
 /** Actor state flags */
@@ -390,6 +410,51 @@ private:
     std::vector<ActiveEffect> active_effects_;
 };
 
+/** Mobile (NPC) behavior flags */
+enum class MobFlag {
+    // Core behavior
+    Spec = 0,           // Has special procedure
+    Sentinel,           // Stays in one room
+    Scavenger,          // Picks up items
+    IsNpc,              // Is an NPC (always set)
+    Aware,              // Can't be backstabbed
+    Aggressive,         // Attacks players on sight
+    StayZone,           // Won't leave zone
+    Wimpy,              // Flees when hurt
+
+    // Aggression targeting
+    AggroEvil,          // Attacks evil characters
+    AggroGood,          // Attacks good characters
+    AggroNeutral,       // Attacks neutral characters
+
+    // AI behavior
+    Memory,             // Remembers attackers
+    Helper,             // Helps other mobs in combat
+    NoCharm,            // Cannot be charmed
+    NoSummon,           // Cannot be summoned
+    NoSleep,            // Immune to sleep
+    NoBash,             // Cannot be bashed
+    NoBlind,            // Immune to blindness
+    SlowTrack,          // Tracks slowly
+    NoSilence,          // Immune to silence
+
+    // Special roles
+    Peaceful,           // Won't attack
+    Protector,          // Protects players
+    Peacekeeper,        // Stops fights
+    Teacher,            // Can train players
+    Mountable,          // Can be mounted
+
+    // Restrictions
+    NoVicious,          // No vicious attacks
+    NoClassAi,          // No class-based AI
+    FastTrack,          // Tracks quickly
+    Aquatic,            // Water-dwelling
+    NoEqRestrict,       // No equipment restrictions
+    SummonedMount,      // Summoned mount
+    NoPoison            // Immune to poison
+};
+
 /** Mobile (NPC) class */
 class Mobile : public Actor {
 public:
@@ -466,14 +531,28 @@ public:
     /** Calculate and set HP from dice - returns the calculated max HP */
     int calculate_hp_from_dice();
 
+    /** Mobile behavior flags */
+    using Actor::set_flag;  // Bring base class ActorFlag version into scope
+    bool has_flag(MobFlag flag) const {
+        return mob_flags_.test(static_cast<size_t>(flag));
+    }
+    void set_flag(MobFlag flag, bool value = true) {
+        mob_flags_.set(static_cast<size_t>(flag), value);
+        // Sync legacy booleans for commonly-used flags
+        if (flag == MobFlag::Aggressive) aggressive_ = value;
+        if (flag == MobFlag::Teacher) is_teacher_ = value;
+    }
+    void clear_flag(MobFlag flag) { set_flag(flag, false); }
+
 protected:
     Mobile(EntityId id, std::string_view name, int level = 1);
 
 private:
-    bool aggressive_ = false;
-    int aggression_level_ = 5;  // 0-10 scale
+    std::bitset<64> mob_flags_;     // MobFlag bitset
+    bool aggressive_ = false;       // Legacy: synced with MobFlag::Aggressive
+    int aggression_level_ = 5;      // 0-10 scale
     bool is_shopkeeper_ = false;
-    bool is_teacher_ = false;
+    bool is_teacher_ = false;       // Legacy: synced with MobFlag::Teacher
     std::vector<std::string> received_messages_;
     std::string description_ = "";  // Detailed description for NPCs
 

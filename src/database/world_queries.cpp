@@ -75,6 +75,29 @@ static std::vector<std::string> parse_pg_array(const std::string& pg_array) {
     return result;
 }
 
+// Helper function to convert SCREAMING_SNAKE_CASE to PascalCase
+// e.g., "NO_RENT" -> "NoRent", "ANTI_BERSERKER" -> "AntiBerserker"
+static std::string screaming_to_pascal(const std::string& input) {
+    if (input.empty()) return input;
+
+    std::string result;
+    result.reserve(input.size());
+
+    bool capitalize_next = true;
+    for (char c : input) {
+        if (c == '_') {
+            capitalize_next = true;
+        } else if (capitalize_next) {
+            result += static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+            capitalize_next = false;
+        } else {
+            result += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+    }
+
+    return result;
+}
+
 // Helper function to map database Sector enum to C++ SectorType
 static SectorType sector_from_db_string(const std::string& sector_str) {
     static const std::unordered_map<std::string, SectorType> sector_map = {
@@ -146,6 +169,13 @@ static std::optional<RoomFlag> room_flag_from_db_string(const std::string& flag_
         {"SHOP", RoomFlag::Shop},
         {"TEMPLE", RoomFlag::Temple},
         {"BANK", RoomFlag::Bank},
+        {"GUILDHALL", RoomFlag::Guildhall},
+        {"NO_WELL", RoomFlag::NoWell},
+        {"NO_SCAN", RoomFlag::NoScan},
+        {"UNDERDARK", RoomFlag::Underdark},
+        {"NO_SHIFT", RoomFlag::NoShift},
+        {"ALT_EXIT", RoomFlag::AltExit},
+        {"OBSERVATORY", RoomFlag::Observatory},
     };
 
     auto it = flag_map.find(flag_str);
@@ -207,7 +237,7 @@ Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work& txn) {
             }
         }
 
-        logger->info("Loaded {} zones from database", zones.size());
+        logger->debug("Loaded {} zones from database", zones.size());
         return zones;
 
     } catch (const pqxx::sql_error& e) {
@@ -303,18 +333,10 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
                 if (!row["flags"].is_null()) {
                     std::string flags_str = row["flags"].as<std::string>();
                     auto flag_names = parse_pg_array(flags_str);
-                    // Only log for zone 30 room 1 (temple) to debug the darkness issue
-                    if (zone_id == 30 && local_id == 1) {
-                        logger->info("DEBUG Temple ({}, {}) raw flags: '{}', parsed {} flags",
-                                     zone_id, local_id, flags_str, flag_names.size());
-                    }
                     for (const auto& flag_name : flag_names) {
                         auto flag = room_flag_from_db_string(flag_name);
                         if (flag) {
                             room->set_flag(*flag);
-                            if (zone_id == 30 && local_id == 1) {
-                                logger->info("DEBUG Temple ({}, {}): set flag {}", zone_id, local_id, flag_name);
-                            }
                         } else {
                             logger->warn("Room ({}, {}): unknown flag '{}'", zone_id, local_id, flag_name);
                         }
@@ -325,7 +347,7 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
             }
         }
 
-        logger->info("Loaded {} rooms for zone {}", rooms.size(), zone_id);
+        logger->debug("Loaded {} rooms for zone {}", rooms.size(), zone_id);
         return rooms;
 
     } catch (const pqxx::sql_error& e) {
@@ -432,12 +454,15 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
         // Query all mobs in this zone
         auto result = txn.exec_params(R"(
             SELECT zone_id, id, name, keywords, room_description, examine_description,
-                   level, alignment, armor_class, hit_roll, damage_dice_num,
+                   level, alignment, damage_dice_num,
                    damage_dice_size, damage_dice_bonus, hp_dice_num, hp_dice_size, hp_dice_bonus,
                    strength, intelligence, wisdom, dexterity, constitution, charisma,
                    copper, silver, gold, platinum,
                    race, gender, size, "lifeForce" AS life_force, composition, "damageType" AS damage_type,
-                   "mobFlags" AS mob_flags, class_id
+                   "mobFlags" AS mob_flags, class_id,
+                   accuracy, attack_power, spell_power, penetration_flat, penetration_percent,
+                   evasion, armor_rating, damage_reduction_percent, soak, hardness, ward_percent,
+                   resistances
             FROM "Mobs"
             WHERE zone_id = $1
             ORDER BY id
@@ -480,10 +505,37 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row["constitution"].is_null()) mob_stats.constitution = row["constitution"].as<int>();
             if (!row["charisma"].is_null()) mob_stats.charisma = row["charisma"].as<int>();
 
-            // Combat values
-            if (!row["armor_class"].is_null()) mob_stats.armor_class = row["armor_class"].as<int>();
-            if (!row["hit_roll"].is_null()) mob_stats.hit_roll = row["hit_roll"].as<int>();
+            // Alignment
             if (!row["alignment"].is_null()) mob_stats.alignment = row["alignment"].as<int>();
+
+            // Offensive stats
+            if (!row["accuracy"].is_null()) mob_stats.accuracy = row["accuracy"].as<int>();
+            if (!row["attack_power"].is_null()) mob_stats.attack_power = row["attack_power"].as<int>();
+            if (!row["spell_power"].is_null()) mob_stats.spell_power = row["spell_power"].as<int>();
+            if (!row["penetration_flat"].is_null()) mob_stats.penetration_flat = row["penetration_flat"].as<int>();
+            if (!row["penetration_percent"].is_null()) mob_stats.penetration_percent = row["penetration_percent"].as<int>();
+
+            // New defensive stats
+            if (!row["evasion"].is_null()) mob_stats.evasion = row["evasion"].as<int>();
+            if (!row["armor_rating"].is_null()) mob_stats.armor_rating = row["armor_rating"].as<int>();
+            if (!row["damage_reduction_percent"].is_null()) mob_stats.damage_reduction_percent = row["damage_reduction_percent"].as<int>();
+            if (!row["soak"].is_null()) mob_stats.soak = row["soak"].as<int>();
+            if (!row["hardness"].is_null()) mob_stats.hardness = row["hardness"].as<int>();
+            if (!row["ward_percent"].is_null()) mob_stats.ward_percent = row["ward_percent"].as<int>();
+
+            // Elemental resistances (from JSONB column)
+            if (!row["resistances"].is_null()) {
+                try {
+                    auto resistances_json = nlohmann::json::parse(row["resistances"].as<std::string>());
+                    if (resistances_json.contains("FIRE")) mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
+                    if (resistances_json.contains("COLD")) mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
+                    if (resistances_json.contains("LIGHTNING")) mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
+                    if (resistances_json.contains("ACID")) mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
+                    if (resistances_json.contains("POISON")) mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
+                } catch (const nlohmann::json::exception& e) {
+                    logger->warn("Failed to parse resistances JSON for mob {}: {}", row["name"].as<std::string>("unknown"), e.what());
+                }
+            }
 
             // HP dice - used to calculate HP when spawned
             int hp_num = row["hp_dice_num"].as<int>(1);
@@ -535,16 +587,18 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             mob->set_bare_hand_damage(dam_num, dam_size, dam_bonus);
 
             // Process mob flags (PostgreSQL array of enums)
+            // Database uses SCREAMING_SNAKE_CASE, C++ enum uses PascalCase
             if (!row["mob_flags"].is_null()) {
                 std::string flags_str = row["mob_flags"].as<std::string>();
                 auto flags = parse_pg_array(flags_str);
-                for (const auto& flag : flags) {
-                    if (flag == "TEACHER") {
-                        mob->set_teacher(true);
-                    } else if (flag == "AGGRESSIVE") {
-                        mob->set_aggressive(true);
+                for (const auto& flag_name : flags) {
+                    auto pascal_name = screaming_to_pascal(flag_name);
+                    auto flag = magic_enum::enum_cast<MobFlag>(pascal_name);
+                    if (flag) {
+                        mob->set_flag(flag.value());
+                    } else {
+                        logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_id, flag_name);
                     }
-                    // Add more MobFlags as needed
                 }
             }
 
@@ -556,7 +610,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             mobs.push_back(std::move(mob));
         }
 
-        logger->info("Loaded {} mobs for zone {}", mobs.size(), zone_id);
+        logger->debug("Loaded {} mobs for zone {}", mobs.size(), zone_id);
         return mobs;
 
     } catch (const pqxx::sql_error& e) {
@@ -575,12 +629,15 @@ Result<std::unique_ptr<Mobile>> load_mob(
     try {
         auto result = txn.exec_params(R"(
             SELECT zone_id, id, name, keywords, room_description, examine_description,
-                   level, alignment, armor_class, hit_roll, damage_dice_num,
+                   level, alignment, damage_dice_num,
                    damage_dice_size, damage_dice_bonus, hp_dice_num, hp_dice_size, hp_dice_bonus,
                    strength, intelligence, wisdom, dexterity, constitution, charisma,
                    copper, silver, gold, platinum,
                    race, gender, size, "lifeForce" AS life_force, composition, "damageType" AS damage_type,
-                   "mobFlags" AS mob_flags, class_id
+                   "mobFlags" AS mob_flags, class_id,
+                   accuracy, attack_power, spell_power, penetration_flat, penetration_percent,
+                   evasion, armor_rating, damage_reduction_percent, soak, hardness, ward_percent,
+                   resistances
             FROM "Mobs"
             WHERE zone_id = $1 AND id = $2
         )", zone_id, mob_local_id);
@@ -615,9 +672,38 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row["dexterity"].is_null()) mob_stats.dexterity = row["dexterity"].as<int>();
         if (!row["constitution"].is_null()) mob_stats.constitution = row["constitution"].as<int>();
         if (!row["charisma"].is_null()) mob_stats.charisma = row["charisma"].as<int>();
-        if (!row["armor_class"].is_null()) mob_stats.armor_class = row["armor_class"].as<int>();
-        if (!row["hit_roll"].is_null()) mob_stats.hit_roll = row["hit_roll"].as<int>();
+
+        // Alignment
         if (!row["alignment"].is_null()) mob_stats.alignment = row["alignment"].as<int>();
+
+        // Offensive stats
+        if (!row["accuracy"].is_null()) mob_stats.accuracy = row["accuracy"].as<int>();
+        if (!row["attack_power"].is_null()) mob_stats.attack_power = row["attack_power"].as<int>();
+        if (!row["spell_power"].is_null()) mob_stats.spell_power = row["spell_power"].as<int>();
+        if (!row["penetration_flat"].is_null()) mob_stats.penetration_flat = row["penetration_flat"].as<int>();
+        if (!row["penetration_percent"].is_null()) mob_stats.penetration_percent = row["penetration_percent"].as<int>();
+
+        // New defensive stats
+        if (!row["evasion"].is_null()) mob_stats.evasion = row["evasion"].as<int>();
+        if (!row["armor_rating"].is_null()) mob_stats.armor_rating = row["armor_rating"].as<int>();
+        if (!row["damage_reduction_percent"].is_null()) mob_stats.damage_reduction_percent = row["damage_reduction_percent"].as<int>();
+        if (!row["soak"].is_null()) mob_stats.soak = row["soak"].as<int>();
+        if (!row["hardness"].is_null()) mob_stats.hardness = row["hardness"].as<int>();
+        if (!row["ward_percent"].is_null()) mob_stats.ward_percent = row["ward_percent"].as<int>();
+
+        // Elemental resistances (from JSONB column)
+        if (!row["resistances"].is_null()) {
+            try {
+                auto resistances_json = nlohmann::json::parse(row["resistances"].as<std::string>());
+                if (resistances_json.contains("FIRE")) mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
+                if (resistances_json.contains("COLD")) mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
+                if (resistances_json.contains("LIGHTNING")) mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
+                if (resistances_json.contains("ACID")) mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
+                if (resistances_json.contains("POISON")) mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
+            } catch (const nlohmann::json::exception& e) {
+                logger->warn("Failed to parse resistances JSON for mob {}: {}", mob_name, e.what());
+            }
+        }
 
         // HP dice - used to calculate HP when spawned
         int hp_num = row["hp_dice_num"].as<int>(1);
@@ -792,7 +878,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             objects.push_back(std::move(obj));
         }
 
-        logger->info("Loaded {} objects for zone {}", objects.size(), zone_id);
+        logger->debug("Loaded {} objects for zone {}", objects.size(), zone_id);
         return objects;
 
     } catch (const pqxx::sql_error& e) {
@@ -925,13 +1011,17 @@ Result<std::unique_ptr<Object>> load_object(
         }
 
         // Parse object flags (PostgreSQL array format)
+        // Database uses SCREAMING_SNAKE_CASE, C++ enum uses PascalCase
         if (!row["flags"].is_null()) {
             std::string flags_str = row["flags"].as<std::string>();
             auto flag_names = parse_pg_array(flags_str);
             for (const auto& flag_name : flag_names) {
-                auto flag = magic_enum::enum_cast<ObjectFlag>(flag_name);
+                auto pascal_name = screaming_to_pascal(flag_name);
+                auto flag = magic_enum::enum_cast<ObjectFlag>(pascal_name);
                 if (flag) {
                     obj->set_flag(flag.value());
+                } else {
+                    logger->warn("Object ({}, {}): unknown flag '{}'", zone_id, object_local_id, flag_name);
                 }
             }
         }
@@ -1008,7 +1098,7 @@ Result<std::vector<ExitData>> load_all_exits_in_zone(pqxx::work& txn, int zone_i
             exits.push_back(std::move(exit));
         }
 
-        logger->info("Loaded {} exits for zone {}", exits.size(), zone_id);
+        logger->debug("Loaded {} exits for zone {}", exits.size(), zone_id);
         return exits;
 
     } catch (const pqxx::sql_error& e) {
@@ -1054,7 +1144,7 @@ Result<std::vector<MobResetData>> load_mob_resets_in_zone(pqxx::work& txn, int z
             resets.push_back(std::move(reset));
         }
 
-        logger->info("Loaded {} mob resets for zone {}", resets.size(), zone_id);
+        logger->debug("Loaded {} mob resets for zone {}", resets.size(), zone_id);
         return resets;
 
     } catch (const pqxx::sql_error& e) {
@@ -1138,7 +1228,7 @@ Result<std::vector<MobEquipmentData>> load_all_mob_equipment_in_zone(pqxx::work&
             equipment.push_back(std::move(equip));
         }
 
-        logger->info("Loaded {} mob equipment items for zone {}", equipment.size(), zone_id);
+        logger->debug("Loaded {} mob equipment items for zone {}", equipment.size(), zone_id);
         return equipment;
 
     } catch (const pqxx::sql_error& e) {
@@ -1195,7 +1285,7 @@ Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn,
             resets.push_back(std::move(reset));
         }
 
-        logger->info("Loaded {} object resets for zone {}", resets.size(), zone_id);
+        logger->debug("Loaded {} object resets for zone {}", resets.size(), zone_id);
         return resets;
 
     } catch (const pqxx::sql_error& e) {
@@ -1269,7 +1359,7 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
             abilities.push_back(std::move(ability));
         }
 
-        logger->info("Loaded {} abilities from database", abilities.size());
+        logger->debug("Loaded {} abilities from database", abilities.size());
         return abilities;
 
     } catch (const pqxx::sql_error& e) {
@@ -2059,7 +2149,7 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         character.experience = row["experience"].as<int>(0);
         character.skill_points = row["skill_points"].as<int>(0);
 
-        logger->info("Loaded character '{}' (id: {})", character.name, character.id);
+        logger->debug("Loaded character '{}' (id: {})", character.name, character.id);
         return character;
 
     } catch (const pqxx::sql_error& e) {
@@ -2172,7 +2262,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         character.experience = row["experience"].as<int>(0);
         character.skill_points = row["skill_points"].as<int>(0);
 
-        logger->info("Loaded character '{}' by ID", character.name);
+        logger->debug("Loaded character '{}' by ID", character.name);
         return character;
 
     } catch (const pqxx::sql_error& e) {
@@ -2210,7 +2300,7 @@ Result<bool> verify_character_password(
                 UPDATE "Characters" SET password_hash = $1, updated_at = NOW()
                 WHERE id = $2
             )", new_hash, character_id);
-            logger->info("Upgraded password hash for character '{}' from legacy to SHA-512", name);
+            logger->debug("Upgraded password hash for character '{}' from legacy to SHA-512", name);
         }
 
         logger->debug("Password verification for '{}': {}", name, matches ? "success" : "failed");
@@ -2458,7 +2548,7 @@ Result<UserData> load_user_by_username(pqxx::work& txn, const std::string& usern
         }
 
         auto user = row_to_user_data(result[0]);
-        logger->info("Loaded user '{}' (id: {})", user.username, user.id);
+        logger->debug("Loaded user '{}' (id: {})", user.username, user.id);
         return user;
 
     } catch (const pqxx::sql_error& e) {
@@ -2488,7 +2578,7 @@ Result<UserData> load_user_by_email(pqxx::work& txn, const std::string& email) {
         }
 
         auto user = row_to_user_data(result[0]);
-        logger->info("Loaded user '{}' by email", user.username);
+        logger->debug("Loaded user '{}' by email", user.username);
         return user;
 
     } catch (const pqxx::sql_error& e) {
@@ -2518,7 +2608,7 @@ Result<UserData> load_user_by_id(pqxx::work& txn, const std::string& id) {
         }
 
         auto user = row_to_user_data(result[0]);
-        logger->info("Loaded user '{}' by ID", user.username);
+        logger->debug("Loaded user '{}' by ID", user.username);
         return user;
 
     } catch (const pqxx::sql_error& e) {
@@ -2567,7 +2657,7 @@ Result<bool> verify_user_password(
                     UPDATE "Users" SET password_hash = $1, updated_at = NOW()
                     WHERE id = $2
                 )", new_hash, user_id);
-                logger->info("Upgraded password hash for user '{}' from legacy to SHA-512", username_or_email);
+                logger->debug("Upgraded password hash for user '{}' from legacy to SHA-512", username_or_email);
             }
         }
 
@@ -2611,7 +2701,7 @@ Result<std::vector<CharacterSummary>> get_user_characters(
             characters.push_back(std::move(summary));
         }
 
-        logger->info("Loaded {} characters for user {}", characters.size(), user_id);
+        logger->debug("Loaded {} characters for user {}", characters.size(), user_id);
         return characters;
 
     } catch (const pqxx::sql_error& e) {

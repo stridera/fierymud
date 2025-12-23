@@ -152,12 +152,12 @@ TEST_CASE("Property-Based Testing: Combat Mechanics", "[integration][property]")
                 .build();
             
             // Properties: Warriors should always have better physical combat stats
-            auto warrior_mods = CombatSystem::calculate_combat_modifiers(*warrior);
-            auto sorcerer_mods = CombatSystem::calculate_combat_modifiers(*sorcerer);
-            
-            REQUIRE(warrior_mods.hit_bonus >= sorcerer_mods.hit_bonus);
-            REQUIRE(warrior_mods.damage_bonus >= sorcerer_mods.damage_bonus);
-            REQUIRE(warrior_mods.armor_class_bonus >= sorcerer_mods.armor_class_bonus);
+            auto warrior_stats = CombatSystem::calculate_combat_stats(*warrior);
+            auto sorcerer_stats = CombatSystem::calculate_combat_stats(*sorcerer);
+
+            REQUIRE(warrior_stats.acc >= sorcerer_stats.acc);     // ACC replaces hit_bonus
+            REQUIRE(warrior_stats.ap >= sorcerer_stats.ap);        // AP replaces damage_bonus
+            REQUIRE(warrior_stats.ar >= sorcerer_stats.ar);        // AR replaces armor_class_bonus
             
             INFO("Testing level: " << level);
         }
