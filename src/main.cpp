@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 
         options.add_options()("h,help", "Show help message")(
             "c,config", "Configuration file path", cxxopts::value<std::string>()->default_value("config/prod.json"))(
-            "p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4001"))(
+            "p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4003"))(
             "l,log-level", "Log level (debug, info, warn, error)", cxxopts::value<std::string>()->default_value("info"))(
             "s,tls", "Enable TLS/SSL support")(
             "d,daemon", "Run as daemon")("t,test", "Test configuration and exit")("v,version",
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
             std::cout << "\nExamples:\n";
             std::cout << "  fierymud                         # Run with default config\n";
             std::cout << "  fierymud -c my_config.json       # Use custom config\n";
-            std::cout << "  fierymud -p 4000                 # Override port\n";
+            std::cout << "  fierymud -p 4003                 # Default port (v3), legacy uses 4000\n";
             std::cout << "  fierymud -l debug                # Enable debug logging\n";
             return 0;
         }

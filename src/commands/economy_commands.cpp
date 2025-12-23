@@ -98,6 +98,37 @@ Result<CommandResult> cmd_repair(const CommandContext &ctx) {
 // Banking Commands
 // =============================================================================
 
+// Currency type enumeration for banking operations
+enum class CurrencyType {
+    Copper,
+    Silver,
+    Gold,
+    Platinum,
+    Invalid
+};
+
+CurrencyType parse_currency(std::string_view input) {
+    std::string lower;
+    for (char c : input) {
+        lower += static_cast<char>(std::tolower(c));
+    }
+    if (lower == "copper" || lower == "cop" || lower == "c") return CurrencyType::Copper;
+    if (lower == "silver" || lower == "sil" || lower == "s") return CurrencyType::Silver;
+    if (lower == "gold" || lower == "gol" || lower == "g") return CurrencyType::Gold;
+    if (lower == "platinum" || lower == "plat" || lower == "p") return CurrencyType::Platinum;
+    return CurrencyType::Invalid;
+}
+
+std::string_view currency_name(CurrencyType type) {
+    switch (type) {
+        case CurrencyType::Copper: return "copper";
+        case CurrencyType::Silver: return "silver";
+        case CurrencyType::Gold: return "gold";
+        case CurrencyType::Platinum: return "platinum";
+        default: return "coins";
+    }
+}
+
 Result<CommandResult> cmd_deposit(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
@@ -127,17 +158,56 @@ Result<CommandResult> cmd_deposit(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string currency = "gold";
+    CurrencyType currency = CurrencyType::Gold;  // Default to gold
     if (ctx.arg_count() > 1) {
-        currency = std::string(ctx.arg(1));
+        currency = parse_currency(ctx.arg(1));
+        if (currency == CurrencyType::Invalid) {
+            ctx.send_error("Invalid currency type. Use copper, silver, gold, or platinum.");
+            return CommandResult::InvalidSyntax;
+        }
     }
 
-    // TODO: Actually transfer from player to bank
-    // Characters table has: gold, copper, silver, platinum
-    // Characters table has: bankGold, bankCopper, bankSilver, bankPlatinum
+    // Check if player has enough currency and perform transfer
+    bool success = false;
+    switch (currency) {
+        case CurrencyType::Copper:
+            if (player->copper() >= amount) {
+                player->set_copper(player->copper() - amount);
+                player->set_bank_copper(player->bank_copper() + amount);
+                success = true;
+            }
+            break;
+        case CurrencyType::Silver:
+            if (player->silver() >= amount) {
+                player->set_silver(player->silver() - amount);
+                player->set_bank_silver(player->bank_silver() + amount);
+                success = true;
+            }
+            break;
+        case CurrencyType::Gold:
+            if (player->gold() >= amount) {
+                player->set_gold(player->gold() - amount);
+                player->set_bank_gold(player->bank_gold() + amount);
+                success = true;
+            }
+            break;
+        case CurrencyType::Platinum:
+            if (player->platinum() >= amount) {
+                player->set_platinum(player->platinum() - amount);
+                player->set_bank_platinum(player->bank_platinum() + amount);
+                success = true;
+            }
+            break;
+        default:
+            break;
+    }
 
-    ctx.send(fmt::format("You deposit {} {}.", amount, currency));
-    ctx.send("Note: Banking system not yet connected to database.");
+    if (success) {
+        ctx.send(fmt::format("You deposit {} {}.", amount, currency_name(currency)));
+    } else {
+        ctx.send_error(fmt::format("You don't have {} {}.", amount, currency_name(currency)));
+        return CommandResult::InvalidState;
+    }
 
     return CommandResult::Success;
 }
@@ -171,15 +241,56 @@ Result<CommandResult> cmd_withdraw(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string currency = "gold";
+    CurrencyType currency = CurrencyType::Gold;  // Default to gold
     if (ctx.arg_count() > 1) {
-        currency = std::string(ctx.arg(1));
+        currency = parse_currency(ctx.arg(1));
+        if (currency == CurrencyType::Invalid) {
+            ctx.send_error("Invalid currency type. Use copper, silver, gold, or platinum.");
+            return CommandResult::InvalidSyntax;
+        }
     }
 
-    // TODO: Check bank balance and transfer to player
+    // Check if bank has enough currency and perform transfer
+    bool success = false;
+    switch (currency) {
+        case CurrencyType::Copper:
+            if (player->bank_copper() >= amount) {
+                player->set_bank_copper(player->bank_copper() - amount);
+                player->set_copper(player->copper() + amount);
+                success = true;
+            }
+            break;
+        case CurrencyType::Silver:
+            if (player->bank_silver() >= amount) {
+                player->set_bank_silver(player->bank_silver() - amount);
+                player->set_silver(player->silver() + amount);
+                success = true;
+            }
+            break;
+        case CurrencyType::Gold:
+            if (player->bank_gold() >= amount) {
+                player->set_bank_gold(player->bank_gold() - amount);
+                player->set_gold(player->gold() + amount);
+                success = true;
+            }
+            break;
+        case CurrencyType::Platinum:
+            if (player->bank_platinum() >= amount) {
+                player->set_bank_platinum(player->bank_platinum() - amount);
+                player->set_platinum(player->platinum() + amount);
+                success = true;
+            }
+            break;
+        default:
+            break;
+    }
 
-    ctx.send(fmt::format("You withdraw {} {}.", amount, currency));
-    ctx.send("Note: Banking system not yet connected to database.");
+    if (success) {
+        ctx.send(fmt::format("You withdraw {} {}.", amount, currency_name(currency)));
+    } else {
+        ctx.send_error(fmt::format("You don't have {} {} in your bank account.", amount, currency_name(currency)));
+        return CommandResult::InvalidState;
+    }
 
     return CommandResult::Success;
 }
@@ -192,15 +303,13 @@ Result<CommandResult> cmd_balance(const CommandContext &ctx) {
     }
 
     // TODO: Check if there's a bank/banker in the room
-    // TODO: Query Characters.bankGold, bankSilver, etc.
 
     ctx.send("--- Bank Balance ---");
-    ctx.send("  Platinum: 0");
-    ctx.send("  Gold: 0");
-    ctx.send("  Silver: 0");
-    ctx.send("  Copper: 0");
+    ctx.send(fmt::format("  Platinum: {}", player->bank_platinum()));
+    ctx.send(fmt::format("  Gold:     {}", player->bank_gold()));
+    ctx.send(fmt::format("  Silver:   {}", player->bank_silver()));
+    ctx.send(fmt::format("  Copper:   {}", player->bank_copper()));
     ctx.send("--- End of Balance ---");
-    ctx.send("Note: Banking system not yet connected to database.");
 
     return CommandResult::Success;
 }
@@ -290,6 +399,23 @@ Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_coins(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can check their coins.");
+        return CommandResult::InvalidState;
+    }
+
+    ctx.send("--- Your Coins ---");
+    ctx.send(fmt::format("  Platinum: {}", player->platinum()));
+    ctx.send(fmt::format("  Gold:     {}", player->gold()));
+    ctx.send(fmt::format("  Silver:   {}", player->silver()));
+    ctx.send(fmt::format("  Copper:   {}", player->copper()));
+    ctx.send("--- End of Coins ---");
+
+    return CommandResult::Success;
+}
+
 // =============================================================================
 // Command Registration
 // =============================================================================
@@ -348,6 +474,14 @@ Result<void> register_commands() {
     Commands()
         .command("exchange", cmd_exchange)
         .alias("exch")
+        .category("Economy")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("coins", cmd_coins)
+        .alias("gold")
+        .alias("money")
         .category("Economy")
         .privilege(PrivilegeLevel::Player)
         .build();

@@ -294,6 +294,7 @@ struct CharacterData {
     // Preferences
     std::string prompt = "<%%h/%%Hhp %%v/%%Vmv>";
     int page_length = 25;
+    int wimpy_threshold = 0;
 
     // Flags (stored as arrays in database)
     std::vector<std::string> player_flags;

@@ -1378,9 +1378,85 @@ void Player::send_to_group(std::string_view message) {
     }
 }
 
+// Player flag name mapping for database persistence
+namespace {
+    const std::unordered_map<PlayerFlag, std::string> player_flag_names = {
+        {PlayerFlag::Brief, "BRIEF"},
+        {PlayerFlag::Compact, "COMPACT"},
+        {PlayerFlag::NoRepeat, "NOREPEAT"},
+        {PlayerFlag::AutoLoot, "AUTOLOOT"},
+        {PlayerFlag::AutoGold, "AUTOGOLD"},
+        {PlayerFlag::AutoSplit, "AUTOSPLIT"},
+        {PlayerFlag::AutoExit, "AUTOEXIT"},
+        {PlayerFlag::AutoAssist, "AUTOASSIST"},
+        {PlayerFlag::Wimpy, "WIMPY"},
+        {PlayerFlag::Afk, "AFK"},
+        {PlayerFlag::Deaf, "DEAF"},
+        {PlayerFlag::NoTell, "NOTELL"},
+        {PlayerFlag::NoSummon, "NOSUMMON"},
+        {PlayerFlag::Quest, "QUEST"},
+        {PlayerFlag::PkEnabled, "PKENABLED"},
+        {PlayerFlag::Consent, "CONSENT"},
+        {PlayerFlag::ColorBlind, "COLORBLIND"},
+        {PlayerFlag::Msp, "MSP"},
+        {PlayerFlag::MxpEnabled, "MXP"},
+    };
+
+    const std::unordered_map<std::string, PlayerFlag> player_flag_from_string = {
+        {"BRIEF", PlayerFlag::Brief},
+        {"COMPACT", PlayerFlag::Compact},
+        {"NOREPEAT", PlayerFlag::NoRepeat},
+        {"AUTOLOOT", PlayerFlag::AutoLoot},
+        {"AUTOGOLD", PlayerFlag::AutoGold},
+        {"AUTOSPLIT", PlayerFlag::AutoSplit},
+        {"AUTOEXIT", PlayerFlag::AutoExit},
+        {"AUTOASSIST", PlayerFlag::AutoAssist},
+        {"WIMPY", PlayerFlag::Wimpy},
+        {"AFK", PlayerFlag::Afk},
+        {"DEAF", PlayerFlag::Deaf},
+        {"NOTELL", PlayerFlag::NoTell},
+        {"NOSUMMON", PlayerFlag::NoSummon},
+        {"QUEST", PlayerFlag::Quest},
+        {"PKENABLED", PlayerFlag::PkEnabled},
+        {"CONSENT", PlayerFlag::Consent},
+        {"COLORBLIND", PlayerFlag::ColorBlind},
+        {"MSP", PlayerFlag::Msp},
+        {"MXP", PlayerFlag::MxpEnabled},
+    };
+}
+
+std::vector<std::string> Player::get_player_flags_as_strings() const {
+    std::vector<std::string> flags;
+    for (const auto& [flag, name] : player_flag_names) {
+        if (has_player_flag(flag)) {
+            flags.push_back(name);
+        }
+    }
+    return flags;
+}
+
+void Player::set_player_flags_from_strings(const std::vector<std::string>& flags) {
+    // Clear all flags first
+    player_flags_.reset();
+
+    for (const auto& flag_str : flags) {
+        // Convert to uppercase for comparison
+        std::string upper = flag_str;
+        std::transform(upper.begin(), upper.end(), upper.begin(),
+                       [](unsigned char c) { return std::toupper(c); });
+
+        auto it = player_flag_from_string.find(upper);
+        if (it != player_flag_from_string.end()) {
+            set_player_flag(it->second, true);
+        } else {
+            Log::warn("Unknown player flag: {}", flag_str);
+        }
+    }
+}
+
 nlohmann::json Player::to_json() const {
     nlohmann::json json = Actor::to_json();
-    
+
     // Add Player-specific fields
     json["type"] = "Player";
     json["account"] = account_;
@@ -1388,7 +1464,11 @@ nlohmann::json Player::to_json() const {
     json["player_class"] = player_class_;
     json["race"] = std::string(race());
     json["start_room"] = start_room_.value();
-    
+    json["player_flags"] = get_player_flags_as_strings();
+    json["wimpy_threshold"] = wimpy_threshold_;
+    json["title"] = title_;
+    json["description"] = description_;
+
     return json;
 }
 

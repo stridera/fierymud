@@ -475,7 +475,8 @@ Result<CommandResult> cmd_wimpy(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Store threshold in player
+    player->set_wimpy_threshold(threshold);
+
     if (threshold == 0) {
         ctx.send("Wimpy disabled. You will fight to the death!");
     } else {
@@ -492,10 +493,13 @@ Result<CommandResult> cmd_brief(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add brief_mode flag to Player and use in look command
+    player->toggle_player_flag(PlayerFlag::Brief);
 
-    ctx.send("Brief mode toggled. (Room descriptions will be shorter)");
-    ctx.send("Note: Brief mode not yet fully implemented.");
+    if (player->is_brief()) {
+        ctx.send("Brief mode ON. Room descriptions will be shortened.");
+    } else {
+        ctx.send("Brief mode OFF. Full room descriptions will be shown.");
+    }
 
     return CommandResult::Success;
 }
@@ -507,10 +511,13 @@ Result<CommandResult> cmd_compact(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add compact_mode flag to Player and reduce blank lines in output
+    player->toggle_player_flag(PlayerFlag::Compact);
 
-    ctx.send("Compact mode toggled. (Less blank lines in output)");
-    ctx.send("Note: Compact mode not yet fully implemented.");
+    if (player->is_compact()) {
+        ctx.send("Compact mode ON. Less blank lines in output.");
+    } else {
+        ctx.send("Compact mode OFF. Normal spacing restored.");
+    }
 
     return CommandResult::Success;
 }
@@ -522,10 +529,13 @@ Result<CommandResult> cmd_autoloot(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add autoloot flag to Player and use in combat death handling
+    player->toggle_player_flag(PlayerFlag::AutoLoot);
 
-    ctx.send("Autoloot toggled. (Automatically loot corpses after kills)");
-    ctx.send("Note: Autoloot not yet fully implemented.");
+    if (player->is_autoloot()) {
+        ctx.send("Autoloot ON. You will automatically loot corpses after kills.");
+    } else {
+        ctx.send("Autoloot OFF. You must manually loot corpses.");
+    }
 
     return CommandResult::Success;
 }
@@ -537,10 +547,13 @@ Result<CommandResult> cmd_autogold(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add autogold flag to Player
+    player->toggle_player_flag(PlayerFlag::AutoGold);
 
-    ctx.send("Autogold toggled. (Automatically take gold from corpses)");
-    ctx.send("Note: Autogold not yet fully implemented.");
+    if (player->is_autogold()) {
+        ctx.send("Autogold ON. You will automatically take gold from corpses.");
+    } else {
+        ctx.send("Autogold OFF. You must manually take gold from corpses.");
+    }
 
     return CommandResult::Success;
 }
@@ -552,10 +565,13 @@ Result<CommandResult> cmd_autosplit(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add autosplit flag to Player and integrate with group gold collection
+    player->toggle_player_flag(PlayerFlag::AutoSplit);
 
-    ctx.send("Autosplit toggled. (Automatically split gold with group)");
-    ctx.send("Note: Autosplit not yet fully implemented.");
+    if (player->is_autosplit()) {
+        ctx.send("Autosplit ON. Gold will be automatically split with your group.");
+    } else {
+        ctx.send("Autosplit OFF. You must manually split gold with your group.");
+    }
 
     return CommandResult::Success;
 }
@@ -571,17 +587,26 @@ Result<CommandResult> cmd_afk(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add afk flag and message to Player class
+    // Toggle AFK status
+    player->toggle_player_flag(PlayerFlag::Afk);
 
-    if (ctx.arg_count() == 0) {
-        ctx.send("You are now marked as AFK (away from keyboard).");
-        ctx.send("Type 'afk' again to return.");
+    if (player->is_afk()) {
+        // Going AFK
+        if (ctx.arg_count() > 0) {
+            std::string message = std::string(ctx.command.full_argument_string);
+            player->set_afk_message(message);
+            ctx.send(fmt::format("You are now AFK: {}", message));
+        } else {
+            player->set_afk_message("");
+            ctx.send("You are now marked as AFK (away from keyboard).");
+        }
+        ctx.send_to_room(fmt::format("{} has gone AFK.", player->display_name()), true);
     } else {
-        std::string message = std::string(ctx.command.full_argument_string);
-        ctx.send(fmt::format("You are now AFK: {}", message));
+        // Returning from AFK
+        player->set_afk_message("");
+        ctx.send("You are no longer AFK. Welcome back!");
+        ctx.send_to_room(fmt::format("{} has returned from AFK.", player->display_name()), true);
     }
-
-    ctx.send_to_room(fmt::format("{} has gone AFK.", player->display_name()), true);
 
     return CommandResult::Success;
 }
@@ -594,13 +619,24 @@ Result<CommandResult> cmd_title(const CommandContext &ctx) {
     }
 
     if (ctx.arg_count() == 0) {
-        ctx.send("Your current title: (none set)");
-        ctx.send("Usage: title <your title>");
+        if (player->title().empty()) {
+            ctx.send("You have no title set.");
+        } else {
+            ctx.send(fmt::format("Your current title: {} {}", player->name(), player->title()));
+        }
+        ctx.send("Usage: title <your title>  or  title clear");
         ctx.send("Example: title the Brave");
         return CommandResult::Success;
     }
 
     std::string new_title = std::string(ctx.command.full_argument_string);
+
+    // Handle clearing the title
+    if (new_title == "clear" || new_title == "none") {
+        player->set_title("");
+        ctx.send("Your title has been cleared.");
+        return CommandResult::Success;
+    }
 
     // Validate title length
     if (new_title.length() > 45) {
@@ -608,8 +644,7 @@ Result<CommandResult> cmd_title(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Store title in player and display in who/look
-
+    player->set_title(new_title);
     ctx.send(fmt::format("Your title is now: {} {}", player->name(), new_title));
 
     return CommandResult::Success;
@@ -624,14 +659,25 @@ Result<CommandResult> cmd_description(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 0) {
         ctx.send("Your current description:");
-        ctx.send("  (No description set)");
+        if (player->description().empty()) {
+            ctx.send("  (No description set)");
+        } else {
+            ctx.send(fmt::format("  {}", player->description()));
+        }
         ctx.send("");
-        ctx.send("Usage: description <your description>");
+        ctx.send("Usage: description <your description>  or  description clear");
         ctx.send("This is what others see when they look at you.");
         return CommandResult::Success;
     }
 
     std::string new_desc = std::string(ctx.command.full_argument_string);
+
+    // Handle clearing the description
+    if (new_desc == "clear" || new_desc == "none") {
+        player->set_description("");
+        ctx.send("Your description has been cleared.");
+        return CommandResult::Success;
+    }
 
     // Validate description length
     if (new_desc.length() > 500) {
@@ -639,8 +685,7 @@ Result<CommandResult> cmd_description(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Store description in player
-
+    player->set_description(new_desc);
     ctx.send("Your description has been updated.");
     ctx.send(fmt::format("New description: {}", new_desc));
 
@@ -654,18 +699,21 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    // Helper to format on/off
+    auto on_off = [](bool value) { return value ? "ON " : "OFF"; };
+
     if (ctx.arg_count() == 0) {
-        // Show all toggles
+        // Show all toggles with current values
         ctx.send("--- Character Options ---");
-        ctx.send("  brief       : OFF  - Show brief room descriptions");
-        ctx.send("  compact     : OFF  - Reduce blank lines in output");
-        ctx.send("  autoloot    : OFF  - Automatically loot corpses");
-        ctx.send("  autogold    : OFF  - Automatically take gold from corpses");
-        ctx.send("  autosplit   : OFF  - Automatically split gold with group");
-        ctx.send("  color       : ON   - Enable color output");
-        ctx.send("  noshout     : OFF  - Block shout channel");
-        ctx.send("  nogossip    : OFF  - Block gossip channel");
-        ctx.send("  notell      : OFF  - Block tells");
+        ctx.send(fmt::format("  brief       : {}  - Show brief room descriptions", on_off(player->is_brief())));
+        ctx.send(fmt::format("  compact     : {}  - Reduce blank lines in output", on_off(player->is_compact())));
+        ctx.send(fmt::format("  autoloot    : {}  - Automatically loot corpses", on_off(player->is_autoloot())));
+        ctx.send(fmt::format("  autogold    : {}  - Automatically take gold from corpses", on_off(player->is_autogold())));
+        ctx.send(fmt::format("  autosplit   : {}  - Automatically split gold with group", on_off(player->is_autosplit())));
+        ctx.send(fmt::format("  autoexit    : {}  - Automatically show exits", on_off(player->is_autoexit())));
+        ctx.send(fmt::format("  deaf        : {}  - Block shouts and gossip", on_off(player->is_deaf())));
+        ctx.send(fmt::format("  notell      : {}  - Block tells from non-gods", on_off(player->is_notell())));
+        ctx.send(fmt::format("  afk         : {}  - Away from keyboard", on_off(player->is_afk())));
         ctx.send("--- End of Options ---");
         ctx.send("Usage: toggle <option> to flip a setting");
         return CommandResult::Success;
@@ -673,26 +721,34 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
 
     std::string_view option = ctx.arg(0);
 
-    // TODO: Actually toggle the flags when Player has them
-
+    // Toggle the appropriate flag
     if (option == "brief") {
-        ctx.send("Brief mode toggled.");
+        player->toggle_player_flag(PlayerFlag::Brief);
+        ctx.send(fmt::format("Brief mode is now {}.", player->is_brief() ? "ON" : "OFF"));
     } else if (option == "compact") {
-        ctx.send("Compact mode toggled.");
+        player->toggle_player_flag(PlayerFlag::Compact);
+        ctx.send(fmt::format("Compact mode is now {}.", player->is_compact() ? "ON" : "OFF"));
     } else if (option == "autoloot") {
-        ctx.send("Autoloot toggled.");
+        player->toggle_player_flag(PlayerFlag::AutoLoot);
+        ctx.send(fmt::format("Autoloot is now {}.", player->is_autoloot() ? "ON" : "OFF"));
     } else if (option == "autogold") {
-        ctx.send("Autogold toggled.");
+        player->toggle_player_flag(PlayerFlag::AutoGold);
+        ctx.send(fmt::format("Autogold is now {}.", player->is_autogold() ? "ON" : "OFF"));
     } else if (option == "autosplit") {
-        ctx.send("Autosplit toggled.");
-    } else if (option == "color") {
-        ctx.send("Color toggled.");
-    } else if (option == "noshout") {
-        ctx.send("Noshout toggled.");
-    } else if (option == "nogossip") {
-        ctx.send("Nogossip toggled.");
+        player->toggle_player_flag(PlayerFlag::AutoSplit);
+        ctx.send(fmt::format("Autosplit is now {}.", player->is_autosplit() ? "ON" : "OFF"));
+    } else if (option == "autoexit") {
+        player->toggle_player_flag(PlayerFlag::AutoExit);
+        ctx.send(fmt::format("Autoexit is now {}.", player->is_autoexit() ? "ON" : "OFF"));
+    } else if (option == "deaf" || option == "noshout" || option == "nogossip") {
+        player->toggle_player_flag(PlayerFlag::Deaf);
+        ctx.send(fmt::format("Deaf mode is now {}.", player->is_deaf() ? "ON" : "OFF"));
     } else if (option == "notell") {
-        ctx.send("Notell toggled.");
+        player->toggle_player_flag(PlayerFlag::NoTell);
+        ctx.send(fmt::format("Notell is now {}.", player->is_notell() ? "ON" : "OFF"));
+    } else if (option == "afk") {
+        player->toggle_player_flag(PlayerFlag::Afk);
+        ctx.send(fmt::format("AFK is now {}.", player->is_afk() ? "ON" : "OFF"));
     } else {
         ctx.send_error(fmt::format("Unknown toggle option: {}", option));
         ctx.send("Type 'toggle' with no arguments to see available options.");

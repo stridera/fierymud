@@ -1243,6 +1243,22 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
         // Store the database character ID for saving later
         player->set_database_id(char_data.id);
 
+        // Load player preferences
+        player->set_title(char_data.title);
+        player->set_description(char_data.description);
+        player->set_wimpy_threshold(char_data.wimpy_threshold);
+        player->set_player_flags_from_strings(char_data.player_flags);
+
+        // Load currency
+        player->set_copper(char_data.copper);
+        player->set_silver(char_data.silver);
+        player->set_gold(char_data.gold);
+        player->set_platinum(char_data.platinum);
+        player->set_bank_copper(char_data.bank_copper);
+        player->set_bank_silver(char_data.bank_silver);
+        player->set_bank_gold(char_data.bank_gold);
+        player->set_bank_platinum(char_data.bank_platinum);
+
         // Update last login and online status
         WorldQueries::update_last_login(txn, char_data.id);
         WorldQueries::set_character_online(txn, char_data.id, true);

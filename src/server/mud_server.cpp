@@ -106,7 +106,7 @@ Result<ServerConfig> ServerConfig::load_from_database() {
     ServerConfig config;
 
     // Network settings from "server" category
-    config.port = loader.get_int_or("server", "port", 4000);
+    config.port = loader.get_int_or("server", "port", 4003);  // v3 uses 4003, legacy uses 4000
     config.tls_port = loader.get_int_or("server", "tls_port", 4443);
     config.max_connections = loader.get_int_or("server", "max_connections", 200);
     config.connection_timeout =

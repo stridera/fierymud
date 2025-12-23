@@ -2041,7 +2041,7 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
                 last_login, time_played, is_online,
                 hunger, thirst,
                 description, title,
-                prompt, page_length,
+                prompt, page_length, wimpy_threshold,
                 player_flags, effect_flags, privilege_flags,
                 experience, skill_points,
                 created_at, updated_at
@@ -2133,6 +2133,7 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         // Preferences
         character.prompt = row["prompt"].as<std::string>("<%%h/%%Hhp %%v/%%Vmv>");
         character.page_length = row["page_length"].as<int>(25);
+        character.wimpy_threshold = row["wimpy_threshold"].as<int>(0);
 
         // Flags (PostgreSQL arrays)
         if (!row["player_flags"].is_null()) {
@@ -2177,7 +2178,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
                 last_login, time_played, is_online,
                 hunger, thirst,
                 description, title,
-                prompt, page_length,
+                prompt, page_length, wimpy_threshold,
                 player_flags, effect_flags, privilege_flags,
                 experience, skill_points,
                 created_at, updated_at
@@ -2250,6 +2251,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         }
         character.prompt = row["prompt"].as<std::string>("<%%h/%%Hhp %%v/%%Vmv>");
         character.page_length = row["page_length"].as<int>(25);
+        character.wimpy_threshold = row["wimpy_threshold"].as<int>(0);
         if (!row["player_flags"].is_null()) {
             character.player_flags = parse_pg_string_array(row["player_flags"].as<std::string>());
         }
@@ -2380,6 +2382,9 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
     logger->debug("Saving character '{}' (id: {})", character.name, character.id);
 
     try {
+        // Convert player_flags to PostgreSQL array format
+        std::string player_flags_array = to_pg_array(character.player_flags);
+
         txn.exec_params(R"(
             UPDATE "Characters" SET
                 level = $2, alignment = $3,
@@ -2392,6 +2397,9 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 hit_roll = $25, damage_roll = $26, armor_class = $27,
                 time_played = $28, hunger = $29, thirst = $30,
                 experience = $31, skill_points = $32,
+                title = $33, description = $34,
+                prompt = $35, page_length = $36, wimpy_threshold = $37,
+                player_flags = $38::text[],
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -2405,7 +2413,10 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
             character.current_room.value_or(0), character.save_room.value_or(0),
             character.hit_roll, character.damage_roll, character.armor_class,
             character.time_played, character.hunger, character.thirst,
-            character.experience, character.skill_points
+            character.experience, character.skill_points,
+            character.title, character.description,
+            character.prompt, character.page_length, character.wimpy_threshold,
+            player_flags_array
         );
 
         logger->debug("Saved character '{}' successfully", character.name);

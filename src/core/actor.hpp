@@ -590,6 +590,43 @@ struct LearnedAbility {
     bool violent = false;           // Is this a combat ability?
 };
 
+/** Player preference flags */
+enum class PlayerFlag {
+    // Display preferences
+    Brief = 0,          // Show shortened room descriptions
+    Compact,            // Reduce blank lines in output
+    NoRepeat,           // Don't echo commands back
+
+    // Auto-actions
+    AutoLoot,           // Automatically loot corpses after kills
+    AutoGold,           // Automatically take gold from corpses
+    AutoSplit,          // Automatically split gold with group
+    AutoExit,           // Automatically show exits
+    AutoAssist,         // Automatically assist group members
+
+    // Combat preferences
+    Wimpy,              // Flee when HP is low (threshold stored separately)
+
+    // Social/Status
+    Afk,                // Away from keyboard
+    Deaf,               // Ignore shouts and gossip
+    NoTell,             // Refuse tells from non-gods
+    NoSummon,           // Refuse summon spells
+    Quest,              // Currently on a quest
+
+    // PK/Consent
+    PkEnabled,          // Player killing enabled
+    Consent,            // Consent to dangerous actions from other players
+
+    // Misc
+    ColorBlind,         // Use colorblind-friendly colors
+    Msp,                // MUD Sound Protocol enabled
+    MxpEnabled,         // MUD eXtension Protocol enabled
+
+    // Count for bitset sizing
+    MAX_PLAYER_FLAGS
+};
+
 /** Player class */
 class Player : public Actor {
 public:
@@ -669,7 +706,86 @@ public:
     /** Player title management */
     std::string_view title() const { return title_; }
     void set_title(std::string_view player_title) { title_ = player_title; }
-    
+
+    /** Player description */
+    std::string_view description() const { return description_; }
+    void set_description(std::string_view desc) { description_ = desc; }
+
+    /** Player preference flags */
+    bool has_player_flag(PlayerFlag flag) const {
+        return player_flags_.test(static_cast<size_t>(flag));
+    }
+    void set_player_flag(PlayerFlag flag, bool value = true) {
+        player_flags_.set(static_cast<size_t>(flag), value);
+    }
+    void toggle_player_flag(PlayerFlag flag) {
+        player_flags_.flip(static_cast<size_t>(flag));
+    }
+    void clear_player_flag(PlayerFlag flag) { set_player_flag(flag, false); }
+
+    /** Convenience flag accessors */
+    bool is_brief() const { return has_player_flag(PlayerFlag::Brief); }
+    bool is_compact() const { return has_player_flag(PlayerFlag::Compact); }
+    bool is_autoloot() const { return has_player_flag(PlayerFlag::AutoLoot); }
+    bool is_autogold() const { return has_player_flag(PlayerFlag::AutoGold); }
+    bool is_autosplit() const { return has_player_flag(PlayerFlag::AutoSplit); }
+    bool is_autoexit() const { return has_player_flag(PlayerFlag::AutoExit); }
+    bool is_afk() const { return has_player_flag(PlayerFlag::Afk); }
+    bool is_deaf() const { return has_player_flag(PlayerFlag::Deaf); }
+    bool is_notell() const { return has_player_flag(PlayerFlag::NoTell); }
+    bool is_pk_enabled() const { return has_player_flag(PlayerFlag::PkEnabled); }
+
+    /** AFK message (displayed to people who try to interact) */
+    std::string_view afk_message() const { return afk_message_; }
+    void set_afk_message(std::string_view msg) { afk_message_ = msg; }
+
+    /** Wimpy threshold - flee when HP falls below this value */
+    int wimpy_threshold() const { return wimpy_threshold_; }
+    void set_wimpy_threshold(int threshold) {
+        wimpy_threshold_ = std::max(0, threshold);
+        set_player_flag(PlayerFlag::Wimpy, wimpy_threshold_ > 0);
+    }
+
+    /** Get player flags as strings (for database persistence) */
+    std::vector<std::string> get_player_flags_as_strings() const;
+
+    /** Set player flags from strings (from database load) */
+    void set_player_flags_from_strings(const std::vector<std::string>& flags);
+
+    /** Currency - wallet (on person) */
+    int copper() const { return copper_; }
+    int silver() const { return silver_; }
+    int gold() const { return gold_; }
+    int platinum() const { return platinum_; }
+    void set_copper(int amount) { copper_ = std::max(0, amount); }
+    void set_silver(int amount) { silver_ = std::max(0, amount); }
+    void set_gold(int amount) { gold_ = std::max(0, amount); }
+    void set_platinum(int amount) { platinum_ = std::max(0, amount); }
+
+    /** Convert wallet to total copper value */
+    long total_copper_value() const {
+        return copper_ + (silver_ * 10L) + (gold_ * 100L) + (platinum_ * 1000L);
+    }
+
+    /** Currency - bank account */
+    int bank_copper() const { return bank_copper_; }
+    int bank_silver() const { return bank_silver_; }
+    int bank_gold() const { return bank_gold_; }
+    int bank_platinum() const { return bank_platinum_; }
+    void set_bank_copper(int amount) { bank_copper_ = std::max(0, amount); }
+    void set_bank_silver(int amount) { bank_silver_ = std::max(0, amount); }
+    void set_bank_gold(int amount) { bank_gold_ = std::max(0, amount); }
+    void set_bank_platinum(int amount) { bank_platinum_ = std::max(0, amount); }
+
+    /** Convert bank to total copper value */
+    long bank_total_copper_value() const {
+        return bank_copper_ + (bank_silver_ * 10L) + (bank_gold_ * 100L) + (bank_platinum_ * 1000L);
+    }
+
+    /** Currency manipulation helpers */
+    bool can_afford(int copper_cost) const { return total_copper_value() >= copper_cost; }
+    bool bank_can_afford(int copper_cost) const { return bank_total_copper_value() >= copper_cost; }
+
     /** Time tracking */
     std::time_t creation_time() const { return creation_time_; }
     std::time_t last_logon_time() const { return last_logon_time_; }
@@ -725,6 +841,24 @@ private:
     // Character creation fields
     std::string player_class_ = "warrior";  // Default class
     std::string title_ = "";                // Player title
+    std::string description_ = "";          // Player description
+
+    // Player preferences
+    std::bitset<static_cast<size_t>(PlayerFlag::MAX_PLAYER_FLAGS)> player_flags_;
+    int wimpy_threshold_ = 0;               // Flee when HP falls below this
+    std::string afk_message_ = "";          // AFK message to display
+
+    // Currency system (wallet)
+    int copper_ = 0;
+    int silver_ = 0;
+    int gold_ = 0;
+    int platinum_ = 0;
+
+    // Currency system (bank)
+    int bank_copper_ = 0;
+    int bank_silver_ = 0;
+    int bank_gold_ = 0;
+    int bank_platinum_ = 0;
 
     // Time tracking fields
     std::time_t creation_time_ = std::time(nullptr);  // Time of character creation
