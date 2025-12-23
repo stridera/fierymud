@@ -769,15 +769,18 @@ Result<CommandResult> cmd_consent(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add consent system to Player class
     // Consent allows specific players to attack/steal/etc from you
+    // Currently only implements "consent all" - per-player consent is a future TODO
 
     if (ctx.arg_count() == 0) {
         ctx.send("--- Consent Status ---");
-        ctx.send("You have not given consent to anyone.");
+        if (player->has_player_flag(PlayerFlag::Consent)) {
+            ctx.send("You are consenting to ALL players (dangerous!)");
+        } else {
+            ctx.send("You have not given consent to anyone.");
+        }
         ctx.send("");
         ctx.send("Usage:");
-        ctx.send("  consent <player>   - Toggle consent for a player");
         ctx.send("  consent all        - Allow anyone (dangerous!)");
         ctx.send("  consent none       - Revoke all consent");
         ctx.send("--- End of Consent ---");
@@ -787,22 +790,24 @@ Result<CommandResult> cmd_consent(const CommandContext &ctx) {
     std::string_view arg = ctx.arg(0);
 
     if (arg == "all") {
+        if (player->has_player_flag(PlayerFlag::Consent)) {
+            ctx.send("You are already consenting to all players.");
+            return CommandResult::InvalidState;
+        }
+        player->set_player_flag(PlayerFlag::Consent, true);
         ctx.send("You are now consenting to ALL players. Be careful!");
         ctx.send_to_room(fmt::format("{} throws caution to the wind!", player->display_name()), true);
     } else if (arg == "none") {
+        if (!player->has_player_flag(PlayerFlag::Consent)) {
+            ctx.send("You are not currently consenting to anyone.");
+            return CommandResult::InvalidState;
+        }
+        player->set_player_flag(PlayerFlag::Consent, false);
         ctx.send("You have revoked consent from everyone.");
     } else {
-        // Try to find the player
-        auto target = ctx.find_actor_target(arg);
-        if (!target) {
-            ctx.send(fmt::format("You toggle consent for '{}' (not currently present).", arg));
-        } else if (target == ctx.actor) {
-            ctx.send("You can't consent to yourself.");
-            return CommandResult::InvalidTarget;
-        } else {
-            ctx.send(fmt::format("You toggle consent for {}.", target->display_name()));
-            ctx.send_to_actor(target, fmt::format("{} has changed their consent toward you.", player->display_name()));
-        }
+        ctx.send_error("Usage: consent all|none");
+        ctx.send("Note: Per-player consent is not yet implemented.");
+        return CommandResult::InvalidSyntax;
     }
 
     return CommandResult::Success;
@@ -815,12 +820,11 @@ Result<CommandResult> cmd_pk(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add pk_enabled flag to Player class
     // PK mode allows you to attack and be attacked by other PK players
 
     if (ctx.arg_count() == 0) {
         ctx.send("--- PK Status ---");
-        ctx.send("PK Mode: OFF");
+        ctx.send(fmt::format("PK Mode: {}", player->is_pk_enabled() ? "ON" : "OFF"));
         ctx.send("");
         ctx.send("PK (Player Killing) mode allows you to engage in combat");
         ctx.send("with other players who also have PK mode enabled.");
@@ -834,18 +838,31 @@ Result<CommandResult> cmd_pk(const CommandContext &ctx) {
     std::string_view arg = ctx.arg(0);
 
     if (arg == "on" || arg == "yes" || arg == "enable") {
+        if (player->is_pk_enabled()) {
+            ctx.send("PK mode is already enabled.");
+            return CommandResult::InvalidState;
+        }
         ctx.send("*** WARNING ***");
         ctx.send("Enabling PK mode allows other PK players to attack you!");
         ctx.send("Once enabled, you cannot disable it for 24 real-world hours.");
         ctx.send("Type 'pk confirm' to enable PK mode.");
         return CommandResult::Success;
     } else if (arg == "confirm") {
+        if (player->is_pk_enabled()) {
+            ctx.send("PK mode is already enabled.");
+            return CommandResult::InvalidState;
+        }
+        player->set_player_flag(PlayerFlag::PkEnabled, true);
         ctx.send("PK Mode: ENABLED");
         ctx.send("You may now attack and be attacked by other PK players.");
         ctx.send_to_room(fmt::format("{} has enabled PK mode!", player->display_name()), true);
     } else if (arg == "off" || arg == "no" || arg == "disable") {
+        if (!player->is_pk_enabled()) {
+            ctx.send("PK mode is not enabled.");
+            return CommandResult::InvalidState;
+        }
+        // TODO: Add 24-hour lockout timer before allowing disable
         ctx.send("PK mode cannot be disabled yet. (24-hour lockout active)");
-        ctx.send("Note: PK system not yet fully implemented.");
     } else {
         ctx.send_error("Usage: pk on|off");
         return CommandResult::InvalidSyntax;
