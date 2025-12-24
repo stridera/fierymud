@@ -162,12 +162,14 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
 
     // Add objects in room
     auto objects = room->contents().objects;
-    if (!objects.empty()) {
-        desc << "\nYou see:\n";
-        for (const auto &obj : objects) {
-            if (obj) {
-                desc << fmt::format("  {}\n", obj->short_description());
+    bool found_objects = false;
+    for (const auto &obj : objects) {
+        if (obj) {
+            if (!found_objects) {
+                desc << "\nYou see:\n";
+                found_objects = true;
             }
+            desc << fmt::format("  {}\n", obj->short_description());
         }
     }
 
@@ -340,11 +342,34 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
         return "You are not carrying anything.";
     }
 
+    // Stack items by prototype ID for display
+    // Use a vector of pairs to preserve insertion order
+    std::vector<std::pair<EntityId, int>> item_counts;
+    std::unordered_map<EntityId, size_t> id_to_index;
+    std::unordered_map<EntityId, std::string> id_to_description;
+
+    for (const auto &item : inventory) {
+        if (!item) continue;
+
+        EntityId proto_id = item->id();  // Items share prototype ID
+        auto it = id_to_index.find(proto_id);
+        if (it != id_to_index.end()) {
+            item_counts[it->second].second++;
+        } else {
+            id_to_index[proto_id] = item_counts.size();
+            item_counts.emplace_back(proto_id, 1);
+            id_to_description[proto_id] = std::string(item->short_description());
+        }
+    }
+
     std::ostringstream inv;
     inv << "You are carrying:\n";
-    for (const auto &item : inventory) {
-        if (item) {
-            inv << fmt::format("  {}\n", item->short_description());
+    for (const auto &[proto_id, count] : item_counts) {
+        const auto &desc = id_to_description[proto_id];
+        if (count > 1) {
+            inv << fmt::format("  ({}) {}\n", count, desc);
+        } else {
+            inv << fmt::format("  {}\n", desc);
         }
     }
 

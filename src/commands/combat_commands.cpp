@@ -511,8 +511,8 @@ void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> ro
     // Add corpse to the room
     room->add_object(corpse);
 
-    Log::info("Created corpse for {} in room {}", 
-             actor->display_name(), room->id().value());
+    Log::info("Created corpse for {} in room {}",
+             actor->display_name(), room->id());
 }
 
 // =============================================================================

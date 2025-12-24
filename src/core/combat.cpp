@@ -1,5 +1,6 @@
 #include "combat.hpp"
 #include "actor.hpp"
+#include "ability_executor.hpp"
 #include "logging.hpp"
 #include "../world/room.hpp"
 #include <random>
@@ -148,10 +149,24 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     // Add evasion stat directly (replaces legacy AC conversion)
     stats.eva += actor_stats.evasion;
 
-    // TODO: Add skill contributions (dodge, parry, riposte) when skill system is integrated
-    // stats.eva += dodge_skill * CombatConstants::DODGE_TO_EVA;
-    // stats.eva += parry_skill * CombatConstants::PARRY_TO_EVA;
-    // stats.eva += riposte_skill * CombatConstants::RIPOSTE_TO_EVA;
+    // Add skill contributions (dodge, parry, riposte) from player abilities
+    if (const auto* player = dynamic_cast<const Player*>(&actor)) {
+        auto& cache = AbilityCache::instance();
+
+        // Look up skill abilities and get proficiency
+        if (const auto* dodge = cache.get_ability_by_name("dodge")) {
+            int dodge_skill = player->get_proficiency(dodge->id);
+            stats.eva += dodge_skill * CombatConstants::DODGE_TO_EVA;
+        }
+        if (const auto* parry = cache.get_ability_by_name("parry")) {
+            int parry_skill = player->get_proficiency(parry->id);
+            stats.eva += parry_skill * CombatConstants::PARRY_TO_EVA;
+        }
+        if (const auto* riposte = cache.get_ability_by_name("riposte")) {
+            int riposte_skill = player->get_proficiency(riposte->id);
+            stats.eva += riposte_skill * CombatConstants::RIPOSTE_TO_EVA;
+        }
+    }
 
     // Cap EVA
     stats.eva = std::min(stats.eva, static_cast<double>(CombatConstants::EVA_SOFT_CAP));

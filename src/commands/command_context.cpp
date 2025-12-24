@@ -219,7 +219,18 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
         }
     }
 
-    // Then search in current room using proper keyword matching
+    // Then search in actor's equipped items
+    auto equipped_items = actor->equipment().get_all_equipped();
+    for (const auto &obj : equipped_items) {
+        if (!obj)
+            continue;
+
+        if (obj->matches_keyword(name)) {
+            return obj;
+        }
+    }
+
+    // Finally search in current room using proper keyword matching
     if (room) {
         const auto &room_objects = room->contents().objects;
         for (const auto &obj : room_objects) {

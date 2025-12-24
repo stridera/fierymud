@@ -99,7 +99,7 @@ std::shared_ptr<Room> GameWorld::get_room(EntityId room_id) const {
         return it->second;
     }
 
-    Log::debug("Room {} not found", room_id.value());
+    Log::debug("Room {} not found", room_id);
     return nullptr;
 }
 

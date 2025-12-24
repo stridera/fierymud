@@ -280,9 +280,9 @@ TEST_CASE("Performance: Critical Path Benchmarking", "[unit][performance][benchm
 
         // Performance requirement: Should complete in < 10ms
         REQUIRE(duration.count() < 10000);
-        // EntityId(0) is invalid, so we expect (iterations / 2) - 1 valid IDs
-        // IDs 1 to 49999 = 49999 IDs (not 50000 because 0 is invalid)
-        REQUIRE(found_count == (iterations / 2) - 1);
+        // EntityId(legacy_id) constructor always creates a valid ID
+        // So all iterations / 2 IDs with value < 50000 are valid
+        REQUIRE(found_count == iterations / 2);
 
         INFO("Entity ID operations: " << iterations << " iterations in " << duration.count() << "μs");
     }

@@ -437,15 +437,18 @@ namespace EntityUtils {
         if (keywords.empty()) {
             return "";
         }
-        
+
         std::string result;
         for (size_t i = 0; i < keywords.size(); ++i) {
             if (i > 0) {
                 result += " ";
             }
+            // Wrap each keyword in single quotes for clear separation
+            result += "'";
             result += keywords[i];
+            result += "'";
         }
-        
+
         return result;
     }
     

@@ -13,7 +13,9 @@ TEST_CASE("Core: EntityId", "[core][ids]") {
     SECTION("Default construction creates invalid ID") {
         EntityId id;
         REQUIRE_FALSE(id.is_valid());
-        REQUIRE(id.value() == 0);
+        // Default constructor creates an invalid ID
+        REQUIRE(id.zone_id() == 0);
+        REQUIRE(id.local_id() == 0);
         REQUIRE(id == INVALID_ENTITY_ID);
     }
 
@@ -22,6 +24,15 @@ TEST_CASE("Core: EntityId", "[core][ids]") {
         REQUIRE(id.is_valid());
         REQUIRE(id.value() == 42);
         REQUIRE(id != INVALID_ENTITY_ID);
+    }
+
+    SECTION("Zero-valued entity is valid") {
+        // EntityId(0,0) is valid - it's a real entity ("a bug" object in zone 0)
+        EntityId zero_entity{0, 0};
+        REQUIRE(zero_entity.is_valid());
+        REQUIRE(zero_entity.zone_id() == 0);
+        REQUIRE(zero_entity.local_id() == 0);
+        REQUIRE(zero_entity != INVALID_ENTITY_ID);
     }
 
     SECTION("Comparison operators") {

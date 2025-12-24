@@ -219,6 +219,14 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         return std::unexpected(effects_result.error());
     }
 
+    // Record cooldown after successful execution
+    // Note: FieryMUD uses spell circles (memorization), not mana costs
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (player) {
+        // Record ability use for cooldown tracking
+        player->record_ability_use(ability->id);
+    }
+
     // Build result
     AbilityExecutionResult result;
     result.success = true;
@@ -280,8 +288,28 @@ std::expected<void, Error> AbilityExecutor::check_prerequisites(
             fmt::format("{} requires a target", ability.plain_name)));
     }
 
-    // TODO: Add cooldown check
-    // TODO: Add resource check (mana, etc.)
+    // Cooldown check (for players only)
+    if (ability.cooldown_ms > 0) {
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (player) {
+            const auto* learned = player->get_ability(ability.id);
+            if (learned) {
+                auto now = std::chrono::system_clock::now();
+                auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    now - learned->last_used).count();
+                if (elapsed_ms < ability.cooldown_ms) {
+                    int remaining_sec = static_cast<int>((ability.cooldown_ms - elapsed_ms) / 1000) + 1;
+                    return std::unexpected(Errors::InvalidState(
+                        fmt::format("You must wait {} more second{} to use {}.",
+                                   remaining_sec, remaining_sec == 1 ? "" : "s",
+                                   ability.plain_name)));
+                }
+            }
+        }
+    }
+
+    // Note: FieryMUD uses spell circles (memorization), not mana costs
+    // TODO: Add spell circle validation when spell memorization system is implemented
 
     return {};
 }
@@ -374,8 +402,21 @@ Result<CommandResult> execute_skill_command(
         return CommandResult::InvalidState;
     }
 
-    // TODO: Get actual skill proficiency from character
-    int skill_level = 50; // Default for now
+    // Get actual skill proficiency from character
+    int skill_level = 50; // Default for non-players or unknown abilities
+    auto& cache = AbilityCache::instance();
+    const auto* ability = cache.get_ability_by_name(skill_name);
+    if (ability) {
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (player) {
+            skill_level = player->get_proficiency(ability->id);
+            if (skill_level == 0) {
+                // Player doesn't know this ability
+                ctx.send_error(fmt::format("You don't know how to {}.", skill_name));
+                return CommandResult::InvalidState;
+            }
+        }
+    }
 
     // Execute the ability
     auto result = AbilityExecutor::execute(ctx, skill_name, target, skill_level);

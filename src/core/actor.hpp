@@ -136,7 +136,10 @@ class Equipment {
 public:
     /** Equip item in appropriate slot */
     Result<void> equip_item(std::shared_ptr<Object> item);
-    
+
+    /** Equip item to a specific slot (for loading from database) */
+    Result<void> equip_to_slot(std::shared_ptr<Object> item, EquipSlot slot);
+
     /** Unequip item from specific slot */
     std::shared_ptr<Object> unequip_item(EquipSlot slot);
     
@@ -482,6 +485,10 @@ public:
     bool is_shopkeeper() const { return is_shopkeeper_; }
     void set_shopkeeper(bool value) { is_shopkeeper_ = value; }
 
+    /** Prototype ID (for spawned mobs, references the prototype they were created from) */
+    EntityId prototype_id() const { return prototype_id_; }
+    void set_prototype_id(EntityId id) { prototype_id_ = id; }
+
     /** Teacher/Trainer properties */
     bool is_teacher() const { return is_teacher_; }
     void set_teacher(bool value) { is_teacher_ = value; }
@@ -553,6 +560,7 @@ private:
     int aggression_level_ = 5;      // 0-10 scale
     bool is_shopkeeper_ = false;
     bool is_teacher_ = false;       // Legacy: synced with MobFlag::Teacher
+    EntityId prototype_id_;         // For spawned mobs, the prototype they came from
     std::vector<std::string> received_messages_;
     std::string description_ = "";  // Detailed description for NPCs
 
@@ -785,6 +793,81 @@ public:
     /** Currency manipulation helpers */
     bool can_afford(int copper_cost) const { return total_copper_value() >= copper_cost; }
     bool bank_can_afford(int copper_cost) const { return bank_total_copper_value() >= copper_cost; }
+
+    /** Spend copper from wallet - deducts from lowest denominations first
+     *  Returns true if successful, false if insufficient funds */
+    bool spend_copper(int amount) {
+        if (!can_afford(amount)) return false;
+
+        // Deduct from copper first
+        if (copper_ >= amount) {
+            copper_ -= amount;
+            return true;
+        }
+        amount -= copper_;
+        copper_ = 0;
+
+        // Convert silver to copper and deduct
+        int silver_needed = (amount + 9) / 10;  // Round up
+        if (silver_ >= silver_needed) {
+            int change = (silver_needed * 10) - amount;
+            silver_ -= silver_needed;
+            copper_ = change;
+            return true;
+        }
+        amount -= silver_ * 10;
+        silver_ = 0;
+
+        // Convert gold to copper and deduct
+        int gold_needed = (amount + 99) / 100;  // Round up
+        if (gold_ >= gold_needed) {
+            int change = (gold_needed * 100) - amount;
+            gold_ -= gold_needed;
+            // Convert change back to smaller denominations
+            silver_ = change / 10;
+            copper_ = change % 10;
+            return true;
+        }
+        amount -= gold_ * 100;
+        gold_ = 0;
+
+        // Convert platinum to copper and deduct
+        int plat_needed = (amount + 999) / 1000;  // Round up
+        if (platinum_ >= plat_needed) {
+            int change = (plat_needed * 1000) - amount;
+            platinum_ -= plat_needed;
+            // Convert change back to smaller denominations
+            gold_ = change / 100;
+            change %= 100;
+            silver_ = change / 10;
+            copper_ = change % 10;
+            return true;
+        }
+
+        // Shouldn't reach here if can_afford() passed
+        return false;
+    }
+
+    /** Receive copper and convert to optimal denominations */
+    void receive_copper(int amount) {
+        // Add to copper and let player decide when to exchange
+        // Or auto-convert to larger denominations
+        copper_ += amount;
+
+        // Auto-convert excess copper to larger denominations
+        if (copper_ >= 10) {
+            silver_ += copper_ / 10;
+            copper_ %= 10;
+        }
+        if (silver_ >= 10) {
+            gold_ += silver_ / 10;
+            silver_ %= 10;
+        }
+        if (gold_ >= 10) {
+            platinum_ += gold_ / 10;
+            gold_ %= 10;
+        }
+    }
 
     /** Time tracking */
     std::time_t creation_time() const { return creation_time_; }

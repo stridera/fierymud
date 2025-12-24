@@ -1,9 +1,11 @@
 #include "object_commands.hpp"
+#include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
 #include "../core/shopkeeper.hpp"
 #include "../world/room.hpp"
+#include "../world/world_manager.hpp"
 
 #include <algorithm>
 
@@ -1131,9 +1133,32 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
                                    ctx.format_object_name(drink_item)));
         ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
     } else if (drink_item->type() == ObjectType::Liquid_Container) {
-        // Liquid containers can be drunk from multiple times
-        ctx.send_success(fmt::format("You drink from the {}. The liquid is refreshing.", 
-                                   ctx.format_object_name(drink_item)));
+        // Check if container has liquid
+        const auto& liquid = drink_item->liquid_info();
+        if (liquid.remaining <= 0) {
+            ctx.send_error(fmt::format("The {} is empty.", ctx.format_object_name(drink_item)));
+            return CommandResult::InvalidState;
+        }
+
+        // Consume some liquid (one drink = about 1 unit)
+        LiquidInfo updated_liquid = liquid;
+        int drink_amount = std::min(liquid.remaining, 1);
+        updated_liquid.remaining -= drink_amount;
+        drink_item->set_liquid_info(updated_liquid);
+
+        // Format the liquid type nicely (lowercase)
+        std::string liquid_name = liquid.liquid_type;
+        std::transform(liquid_name.begin(), liquid_name.end(), liquid_name.begin(),
+                      [](unsigned char c) { return std::tolower(c); });
+
+        if (liquid.poisoned) {
+            ctx.send_error(fmt::format("You drink some {} from the {}... it tastes strange!",
+                                     liquid_name, ctx.format_object_name(drink_item)));
+            // TODO: Apply poison effect
+        } else {
+            ctx.send_success(fmt::format("You drink some {} from the {}. Refreshing!",
+                                       liquid_name, ctx.format_object_name(drink_item)));
+        }
         ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
     } else {
         // Food items (like fruits with juice)
@@ -1179,9 +1204,13 @@ Result<CommandResult> cmd_list(const CommandContext &ctx) {
     
     // Use the first shopkeeper found (could be enhanced to let user choose)
     auto shopkeeper_actor = shopkeepers[0];
+    auto shopkeeper_mobile = std::dynamic_pointer_cast<Mobile>(shopkeeper_actor);
+
+    // Look up shop by the mob's prototype ID (which is how shops are registered)
     auto& shop_manager = ShopManager::instance();
-    const auto* shop = shop_manager.get_shopkeeper(shopkeeper_actor->id());
-    
+    EntityId lookup_id = shopkeeper_mobile ? shopkeeper_mobile->prototype_id() : shopkeeper_actor->id();
+    const auto* shop = shop_manager.get_shopkeeper(lookup_id);
+
     if (!shop) {
         ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
         return CommandResult::ResourceError;
@@ -1232,41 +1261,63 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
     
     // Use the first shopkeeper found
     auto shopkeeper_actor = shopkeepers[0];
+    auto shopkeeper_mobile = std::dynamic_pointer_cast<Mobile>(shopkeeper_actor);
+
+    // Look up shop by the mob's prototype ID (which is how shops are registered)
     auto& shop_manager = ShopManager::instance();
-    const auto* shop = shop_manager.get_shopkeeper(shopkeeper_actor->id());
-    
+    EntityId lookup_id = shopkeeper_mobile ? shopkeeper_mobile->prototype_id() : shopkeeper_actor->id();
+    const auto* shop = shop_manager.get_shopkeeper(lookup_id);
+
     if (!shop) {
         ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
         return CommandResult::ResourceError;
     }
-    
+
     // Find item by name in shop inventory
     auto available_items = shop->get_available_items();
     const ShopItem* target_item = nullptr;
-    
+
     for (const auto& item : available_items) {
-        if (item.name.find(item_name) != std::string::npos || 
+        if (item.name.find(item_name) != std::string::npos ||
             item.name == item_name) {
             target_item = &item;
             break;
         }
     }
-    
+
     if (!target_item) {
         ctx.send_error(fmt::format("The shopkeeper doesn't have '{}' for sale.", item_name));
         return CommandResult::InvalidTarget;
     }
-    
+
     // Calculate price and attempt purchase
     int price = shop->calculate_buy_price(*target_item);
-    
+
     // Attempt to purchase the item
-    auto result = ShopManager::instance().buy_item(ctx.actor, shopkeeper_actor->id(), target_item->prototype_id);
-    
+    auto result = ShopManager::instance().buy_item(ctx.actor, lookup_id, target_item->prototype_id);
+
     switch (result) {
-        case ShopResult::Success:
+        case ShopResult::Success: {
+            // Create an instance of the object from the prototype
+            auto new_object = WorldManager::instance().create_object_instance(target_item->prototype_id);
+            if (!new_object) {
+                ctx.send_error("The shopkeeper hands you something, but it crumbles to dust!");
+                Log::error("Failed to create object instance for prototype {} after successful purchase",
+                          target_item->prototype_id);
+                return CommandResult::InvalidState;
+            }
+
+            // Add the object to the player's inventory
+            auto add_result = ctx.actor->inventory().add_item(new_object);
+            if (!add_result) {
+                ctx.send_error("You can't carry any more items!");
+                // TODO: Refund the player
+                return CommandResult::InvalidState;
+            }
+
             ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_item->name, price));
             break;
+        }
         case ShopResult::InsufficientFunds:
             ctx.send_error("You don't have enough money to buy that.");
             return CommandResult::InvalidSyntax;
@@ -1277,7 +1328,7 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
             ctx.send_error("You cannot buy that item.");
             return CommandResult::InvalidTarget;
     }
-    
+
     return CommandResult::Success;
 }
 
@@ -1318,14 +1369,18 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
     
     // Use the first shopkeeper found
     auto shopkeeper_actor = shopkeepers[0];
+    auto shopkeeper_mobile = std::dynamic_pointer_cast<Mobile>(shopkeeper_actor);
+
+    // Look up shop by the mob's prototype ID (which is how shops are registered)
     auto& shop_manager = ShopManager::instance();
-    const auto* shop = shop_manager.get_shopkeeper(shopkeeper_actor->id());
-    
+    EntityId lookup_id = shopkeeper_mobile ? shopkeeper_mobile->prototype_id() : shopkeeper_actor->id();
+    const auto* shop = shop_manager.get_shopkeeper(lookup_id);
+
     if (!shop) {
         ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
         return CommandResult::ResourceError;
     }
-    
+
     // Find item in player's inventory (simplified search for now)
     auto inventory_items = ctx.actor->inventory().get_all_items();
     std::shared_ptr<Object> target_object = nullptr;
@@ -1490,7 +1545,18 @@ Result<CommandResult> cmd_quaff(const CommandContext &ctx) {
     ctx.send_to_room(fmt::format("{} quaffs {} and is surrounded by a brief magical glow.",
                                  ctx.actor->display_name(), ctx.format_object_name(potion)), true);
 
-    // TODO: Apply potion effects when spell system is integrated
+    // Apply potion spell effects (target is always self for potions)
+    for (int spell_id : potion->spell_ids()) {
+        if (spell_id > 0) {
+            auto result = FieryMUD::AbilityExecutor::execute_by_id(ctx, spell_id, ctx.actor, potion->spell_level());
+            if (result) {
+                // Send any effect messages
+                if (!result->attacker_message.empty()) {
+                    ctx.send(result->attacker_message);
+                }
+            }
+        }
+    }
 
     return CommandResult::Success;
 }
@@ -1523,6 +1589,16 @@ Result<CommandResult> cmd_recite(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
+    // Determine target (optional second argument)
+    std::shared_ptr<Actor> target = ctx.actor; // Default to self
+    if (ctx.arg_count() > 1) {
+        target = ctx.find_actor_target(ctx.arg(1));
+        if (!target) {
+            ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(1)));
+            return CommandResult::InvalidTarget;
+        }
+    }
+
     // Consume the scroll
     if (!ctx.actor->inventory().remove_item(scroll)) {
         ctx.send_error("Failed to use the scroll.");
@@ -1534,7 +1610,22 @@ Result<CommandResult> cmd_recite(const CommandContext &ctx) {
     ctx.send_to_room(fmt::format("{} recites {} and the scroll crumbles to dust.",
                                  ctx.actor->display_name(), ctx.format_object_name(scroll)), true);
 
-    // TODO: Apply scroll effects when spell system is integrated
+    // Apply scroll spell effects on target
+    for (int spell_id : scroll->spell_ids()) {
+        if (spell_id > 0) {
+            auto result = FieryMUD::AbilityExecutor::execute_by_id(ctx, spell_id, target, scroll->spell_level());
+            if (result) {
+                // Send attacker messages to caster
+                if (!result->attacker_message.empty()) {
+                    ctx.send(result->attacker_message);
+                }
+                // Send target messages if target is different from caster
+                if (target != ctx.actor && !result->target_message.empty()) {
+                    ctx.send_to_actor(target, result->target_message);
+                }
+            }
+        }
+    }
 
     return CommandResult::Success;
 }
@@ -1580,12 +1671,56 @@ Result<CommandResult> cmd_use(const CommandContext &ctx) {
     // Handle different object types
     switch (target_object->type()) {
         case ObjectType::Wand:
-        case ObjectType::Staff:
+        case ObjectType::Staff: {
+            // Check if item has charges
+            if (target_object->charges() <= 0) {
+                ctx.send_error(fmt::format("{} has no charges left.",
+                                          ctx.format_object_name(target_object)));
+                return CommandResult::ResourceError;
+            }
+
+            // Determine target for wand/staff
+            std::shared_ptr<Actor> spell_target = ctx.actor; // Default to self
+            if (ctx.arg_count() > 1) {
+                spell_target = ctx.find_actor_target(ctx.arg(1));
+                if (!spell_target) {
+                    ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(1)));
+                    return CommandResult::InvalidTarget;
+                }
+            }
+
+            // Use a charge
+            target_object->set_charges(target_object->charges() - 1);
+
             ctx.send_success(fmt::format("You wave {} and it flashes with magical energy!",
                                          ctx.format_object_name(target_object)));
             ctx.send_to_room(fmt::format("{} waves {} and it flashes with magical energy.",
                                          ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+
+            // Apply spell effects from wand/staff (typically just the first spell)
+            for (int spell_id : target_object->spell_ids()) {
+                if (spell_id > 0) {
+                    auto result = FieryMUD::AbilityExecutor::execute_by_id(ctx, spell_id, spell_target,
+                                                                 target_object->spell_level());
+                    if (result) {
+                        if (!result->attacker_message.empty()) {
+                            ctx.send(result->attacker_message);
+                        }
+                        if (spell_target != ctx.actor && !result->target_message.empty()) {
+                            ctx.send_to_actor(spell_target, result->target_message);
+                        }
+                    }
+                }
+            }
+
+            // Notify when charges run out
+            if (target_object->charges() == 0) {
+                ctx.send(fmt::format("{} is now depleted.", ctx.format_object_name(target_object)));
+            } else if (target_object->charges() <= 3) {
+                ctx.send(fmt::format("{} is running low on charges.", ctx.format_object_name(target_object)));
+            }
             break;
+        }
         case ObjectType::Potion:
             ctx.send("Use 'quaff' to drink potions.");
             return CommandResult::InvalidSyntax;
@@ -1598,8 +1733,6 @@ Result<CommandResult> cmd_use(const CommandContext &ctx) {
                                          ctx.format_object_name(target_object)), true);
             break;
     }
-
-    // TODO: Apply item effects when appropriate systems are in place
 
     return CommandResult::Success;
 }

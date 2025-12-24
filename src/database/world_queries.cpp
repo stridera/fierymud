@@ -1,6 +1,8 @@
 #include "database/world_queries.hpp"
 #include "core/logging.hpp"
+#include "core/object.hpp"
 #include "text/string_utils.hpp"
+#include <magic_enum/magic_enum.hpp>
 #include <fmt/format.h>
 #include <sstream>
 #include <regex>
@@ -363,7 +365,7 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
 
     try {
         auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, room_description, sector
+            SELECT zone_id, id, name, room_description, sector, flags
             FROM "Room"
             WHERE zone_id = $1 AND id = $2
         )", zone_id, room_local_id);
@@ -377,13 +379,47 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
         std::string name = row["name"].as<std::string>();
         std::string description = row["room_description"].as<std::string>("");
 
-        auto room = Room::create(
+        // Parse sector type from database enum
+        SectorType sector = SectorType::Inside;
+        if (!row["sector"].is_null()) {
+            std::string sector_str = row["sector"].as<std::string>();
+            sector = sector_from_db_string(sector_str);
+        }
+
+        auto room_result = Room::create(
             EntityId(zone_id, room_local_id),
             name,
-            SectorType::Inside  // Default sector type
+            sector
         );
 
-        return room;
+        if (room_result) {
+            auto& room = *room_result;
+
+            // Set room description
+            room->set_description(description);
+
+            // Set zone ID
+            room->set_zone_id(EntityId(zone_id, 1));
+
+            // Parse and set room flags (PostgreSQL array)
+            if (!row["flags"].is_null()) {
+                std::string flags_str = row["flags"].as<std::string>();
+                auto flag_names = parse_pg_array(flags_str);
+                for (const auto& flag_name : flag_names) {
+                    auto flag = room_flag_from_db_string(flag_name);
+                    if (flag) {
+                        room->set_flag(*flag);
+                    } else {
+                        logger->warn("Room ({}, {}): unknown flag '{}'", zone_id, room_local_id, flag_name);
+                    }
+                }
+            }
+
+            return std::move(room);
+        }
+
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to create room ({}, {})", zone_id, room_local_id)});
 
     } catch (const pqxx::sql_error& e) {
         logger->error("SQL error loading room ({}, {}): {}", zone_id, room_local_id, e.what());
@@ -791,7 +827,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
         // Query all objects in this zone
         auto result = txn.exec_params(R"(
             SELECT zone_id, id, name, keywords, type, room_description, examine_description,
-                   weight, cost, level, timer, values, flags
+                   weight, cost, level, timer, values, flags, "wearFlags"
             FROM "Objects"
             WHERE zone_id = $1
             ORDER BY id
@@ -875,6 +911,53 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 obj->set_timer(row["timer"].as<int>());
             }
 
+            // Set equip slot from wearFlags
+            // Use column index (13) instead of name to work around pqxx case-sensitivity issue
+            if (!row[13].is_null()) {
+                std::string wear_flags_str = row[13].as<std::string>();
+                auto wear_flags = parse_pg_array(wear_flags_str);
+                for (const auto& flag : wear_flags) {
+                    // Skip TAKE flag - it just means the object can be picked up
+                    if (flag == "TAKE") continue;
+
+                    // Try to parse this flag as an equip slot
+                    auto slot_opt = ObjectUtils::parse_equip_slot(flag);
+                    if (slot_opt && *slot_opt != EquipSlot::None) {
+                        obj->set_equip_slot(*slot_opt);
+                        break;  // Use the first valid wear position found
+                    }
+                }
+            }
+
+            // Parse values JSON for object-specific data
+            if (!row["values"].is_null()) {
+                try {
+                    std::string values_str = row["values"].as<std::string>();
+                    auto values_json = nlohmann::json::parse(values_str);
+
+                    // Parse liquid info for drink containers
+                    if (obj_type == ObjectType::Liquid_Container && values_json.is_object()) {
+                        LiquidInfo liquid;
+                        if (values_json.contains("Liquid")) {
+                            liquid.liquid_type = values_json["Liquid"].get<std::string>();
+                        }
+                        if (values_json.contains("Capacity")) {
+                            liquid.capacity = values_json["Capacity"].get<int>();
+                        }
+                        if (values_json.contains("Remaining")) {
+                            liquid.remaining = values_json["Remaining"].get<int>();
+                        }
+                        if (values_json.contains("Poisoned")) {
+                            liquid.poisoned = values_json["Poisoned"].get<bool>();
+                        }
+                        obj->set_liquid_info(liquid);
+                    }
+                } catch (const nlohmann::json::exception& e) {
+                    logger->warn("Failed to parse values JSON for object ({}, {}): {}",
+                                obj_zone_id, obj_id, e.what());
+                }
+            }
+
             objects.push_back(std::move(obj));
         }
 
@@ -897,7 +980,7 @@ Result<std::unique_ptr<Object>> load_object(
     try {
         auto result = txn.exec_params(R"(
             SELECT zone_id, id, name, keywords, type, room_description, examine_description,
-                   weight, cost, level, timer, values, flags
+                   weight, cost, level, timer, values, flags, "wearFlags"
             FROM "Objects"
             WHERE zone_id = $1 AND id = $2
         )", zone_id, object_local_id);
@@ -1001,8 +1084,23 @@ Result<std::unique_ptr<Object>> load_object(
                         obj->set_value(values_json[0].get<int>());
                     }
                 } else if (values_json.is_object()) {
-                    // New format: JSON object with named keys
-                    // Could be used to store weapon damage, armor values, etc.
+                    // Parse liquid info for drink containers
+                    if (obj_type == ObjectType::Liquid_Container) {
+                        LiquidInfo liquid;
+                        if (values_json.contains("Liquid")) {
+                            liquid.liquid_type = values_json["Liquid"].get<std::string>();
+                        }
+                        if (values_json.contains("Capacity")) {
+                            liquid.capacity = values_json["Capacity"].get<int>();
+                        }
+                        if (values_json.contains("Remaining")) {
+                            liquid.remaining = values_json["Remaining"].get<int>();
+                        }
+                        if (values_json.contains("Poisoned")) {
+                            liquid.poisoned = values_json["Poisoned"].get<bool>();
+                        }
+                        obj->set_liquid_info(liquid);
+                    }
                 }
             } catch (const nlohmann::json::exception& e) {
                 logger->warn("Failed to parse values for object ({}, {}): {}",
@@ -1022,6 +1120,24 @@ Result<std::unique_ptr<Object>> load_object(
                     obj->set_flag(flag.value());
                 } else {
                     logger->warn("Object ({}, {}): unknown flag '{}'", zone_id, object_local_id, flag_name);
+                }
+            }
+        }
+
+        // Set equip slot from wearFlags
+        // Use column index (13) instead of name to work around pqxx case-sensitivity issue
+        if (!row[13].is_null()) {
+            std::string wear_flags_str = row[13].as<std::string>();
+            auto wear_flags = parse_pg_array(wear_flags_str);
+            for (const auto& flag : wear_flags) {
+                // Skip TAKE flag - it just means the object can be picked up
+                if (flag == "TAKE") continue;
+
+                // Try to parse this flag as an equip slot
+                auto slot_opt = ObjectUtils::parse_equip_slot(flag);
+                if (slot_opt && *slot_opt != EquipSlot::None) {
+                    obj->set_equip_slot(*slot_opt);
+                    break;  // Use the first valid wear position found
                 }
             }
         }
@@ -1330,7 +1446,7 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
                 "abilityType" AS ability_type, "minPosition" AS min_position, violent,
                 cast_time_rounds, cooldown_ms,
                 is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only
+                pages, memorization_time, quest_only, humanoid_only, cost
             FROM "Ability"
             ORDER BY id
         )");
@@ -1356,6 +1472,7 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
             ability.memorization_time = row["memorization_time"].as<int>(0);
             ability.quest_only = row["quest_only"].as<bool>(false);
             ability.humanoid_only = row["humanoid_only"].as<bool>(false);
+            ability.cost = row["cost"].as<int>(0);
             abilities.push_back(std::move(ability));
         }
 
@@ -1384,7 +1501,7 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
                 "abilityType" AS ability_type, "minPosition" AS min_position, violent,
                 cast_time_rounds, cooldown_ms,
                 is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only
+                pages, memorization_time, quest_only, humanoid_only, cost
             FROM "Ability"
             WHERE id = $1
         )", ability_id);
@@ -1412,6 +1529,7 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
         ability.memorization_time = row["memorization_time"].as<int>(0);
         ability.quest_only = row["quest_only"].as<bool>(false);
         ability.humanoid_only = row["humanoid_only"].as<bool>(false);
+        ability.cost = row["cost"].as<int>(0);
 
         return ability;
 
@@ -1434,7 +1552,7 @@ Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& nam
                 "abilityType" AS ability_type, "minPosition" AS min_position, violent,
                 cast_time_rounds, cooldown_ms,
                 is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only
+                pages, memorization_time, quest_only, humanoid_only, cost
             FROM "Ability"
             WHERE UPPER(plain_name) = UPPER($1)
         )", name);
@@ -1462,6 +1580,7 @@ Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& nam
         ability.memorization_time = row["memorization_time"].as<int>(0);
         ability.quest_only = row["quest_only"].as<bool>(false);
         ability.humanoid_only = row["humanoid_only"].as<bool>(false);
+        ability.cost = row["cost"].as<int>(0);
 
         return ability;
 
@@ -2820,6 +2939,311 @@ Result<void> link_character_to_user(
         logger->error("SQL error linking character to user: {}", e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to link character to user: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Shop System Queries
+// =============================================================================
+
+Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all shops from database");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT id, zone_id, keeper_zone_id, keeper_id,
+                   buy_profit, sell_profit, temper,
+                   no_such_item_messages, do_not_buy_messages,
+                   missing_cash_messages, buy_messages, sell_messages,
+                   flags::text[] AS flags, "tradesWithFlags"::text[] AS trades_with_flags
+            FROM "Shops"
+            WHERE keeper_zone_id IS NOT NULL AND keeper_id IS NOT NULL
+            ORDER BY zone_id, id
+        )");
+
+        std::vector<ShopData> shops;
+        shops.reserve(result.size());
+
+        for (const auto& row : result) {
+            ShopData shop;
+            shop.id = row["id"].as<int>();
+            int keeper_zone = row["keeper_zone_id"].as<int>();
+            int keeper_id = row["keeper_id"].as<int>();
+            shop.keeper_id = EntityId(keeper_zone, keeper_id);
+            shop.buy_profit = row["buy_profit"].as<float>();
+            shop.sell_profit = row["sell_profit"].as<float>();
+            shop.temper = row["temper"].as<int>();
+
+            // Parse message arrays
+            if (!row["no_such_item_messages"].is_null()) {
+                shop.no_such_item_messages = parse_pg_array(row["no_such_item_messages"].as<std::string>());
+            }
+            if (!row["do_not_buy_messages"].is_null()) {
+                shop.do_not_buy_messages = parse_pg_array(row["do_not_buy_messages"].as<std::string>());
+            }
+            if (!row["missing_cash_messages"].is_null()) {
+                shop.missing_cash_messages = parse_pg_array(row["missing_cash_messages"].as<std::string>());
+            }
+            if (!row["buy_messages"].is_null()) {
+                shop.buy_messages = parse_pg_array(row["buy_messages"].as<std::string>());
+            }
+            if (!row["sell_messages"].is_null()) {
+                shop.sell_messages = parse_pg_array(row["sell_messages"].as<std::string>());
+            }
+            if (!row["flags"].is_null()) {
+                shop.flags = parse_pg_array(row["flags"].as<std::string>());
+            }
+            if (!row["trades_with_flags"].is_null()) {
+                shop.trades_with_flags = parse_pg_array(row["trades_with_flags"].as<std::string>());
+            }
+
+            shops.push_back(std::move(shop));
+        }
+
+        logger->debug("Loaded {} shops from database", shops.size());
+        return shops;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading shops: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load shops: {}", e.what())});
+    }
+}
+
+Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id) {
+    auto logger = Log::database();
+    logger->debug("Loading shops for zone {}", zone_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, zone_id, keeper_zone_id, keeper_id,
+                   buy_profit, sell_profit, temper,
+                   no_such_item_messages, do_not_buy_messages,
+                   missing_cash_messages, buy_messages, sell_messages,
+                   flags::text[] AS flags, "tradesWithFlags"::text[] AS trades_with_flags
+            FROM "Shops"
+            WHERE zone_id = $1
+              AND keeper_zone_id IS NOT NULL AND keeper_id IS NOT NULL
+            ORDER BY id
+        )", zone_id);
+
+        std::vector<ShopData> shops;
+        shops.reserve(result.size());
+
+        for (const auto& row : result) {
+            ShopData shop;
+            shop.id = row["id"].as<int>();
+            int keeper_zone = row["keeper_zone_id"].as<int>();
+            int keeper_id = row["keeper_id"].as<int>();
+            shop.keeper_id = EntityId(keeper_zone, keeper_id);
+            shop.buy_profit = row["buy_profit"].as<float>();
+            shop.sell_profit = row["sell_profit"].as<float>();
+            shop.temper = row["temper"].as<int>();
+
+            // Parse message arrays
+            if (!row["no_such_item_messages"].is_null()) {
+                shop.no_such_item_messages = parse_pg_array(row["no_such_item_messages"].as<std::string>());
+            }
+            if (!row["do_not_buy_messages"].is_null()) {
+                shop.do_not_buy_messages = parse_pg_array(row["do_not_buy_messages"].as<std::string>());
+            }
+            if (!row["missing_cash_messages"].is_null()) {
+                shop.missing_cash_messages = parse_pg_array(row["missing_cash_messages"].as<std::string>());
+            }
+            if (!row["buy_messages"].is_null()) {
+                shop.buy_messages = parse_pg_array(row["buy_messages"].as<std::string>());
+            }
+            if (!row["sell_messages"].is_null()) {
+                shop.sell_messages = parse_pg_array(row["sell_messages"].as<std::string>());
+            }
+            if (!row["flags"].is_null()) {
+                shop.flags = parse_pg_array(row["flags"].as<std::string>());
+            }
+            if (!row["trades_with_flags"].is_null()) {
+                shop.trades_with_flags = parse_pg_array(row["trades_with_flags"].as<std::string>());
+            }
+
+            shops.push_back(std::move(shop));
+        }
+
+        logger->debug("Loaded {} shops for zone {}", shops.size(), zone_id);
+        return shops;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading shops for zone {}: {}", zone_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load shops for zone {}: {}", zone_id, e.what())});
+    }
+}
+
+Result<std::vector<ShopItemData>> load_shop_items(
+    pqxx::work& txn, int shop_zone_id, int shop_id) {
+    auto logger = Log::database();
+    logger->debug("Loading items for shop ({}, {})", shop_zone_id, shop_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT object_zone_id, object_id, amount
+            FROM "ShopItems"
+            WHERE shop_zone_id = $1 AND shop_id = $2
+            ORDER BY id
+        )", shop_zone_id, shop_id);
+
+        std::vector<ShopItemData> items;
+        items.reserve(result.size());
+
+        for (const auto& row : result) {
+            ShopItemData item;
+            int obj_zone = row["object_zone_id"].as<int>();
+            int obj_id = row["object_id"].as<int>();
+            item.object_id = EntityId(obj_zone, obj_id);
+            item.amount = row["amount"].as<int>();
+            // Convert 0 to -1 for unlimited stock
+            if (item.amount == 0) {
+                item.amount = -1;
+            }
+            items.push_back(item);
+        }
+
+        logger->debug("Loaded {} items for shop ({}, {})", items.size(), shop_zone_id, shop_id);
+        return items;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading shop items: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load shop items: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Character Item Queries
+// =============================================================================
+
+Result<std::vector<CharacterItemData>> load_character_items(
+    pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+    logger->debug("Loading items for character {}", character_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, character_id, object_zone_id, object_id,
+                   container_id, equipped_location, condition, charges,
+                   instance_flags::text[], custom_name, custom_examine_description
+            FROM "CharacterItems"
+            WHERE character_id = $1
+            ORDER BY id
+        )", character_id);
+
+        std::vector<CharacterItemData> items;
+        items.reserve(result.size());
+
+        for (const auto& row : result) {
+            CharacterItemData item;
+            item.id = row["id"].as<int>();
+            item.character_id = row["character_id"].as<std::string>();
+            int obj_zone = row["object_zone_id"].as<int>();
+            int obj_id = row["object_id"].as<int>();
+            item.object_id = EntityId(obj_zone, obj_id);
+
+            if (!row["container_id"].is_null()) {
+                item.container_id = row["container_id"].as<int>();
+            }
+
+            if (!row["equipped_location"].is_null()) {
+                item.equipped_location = row["equipped_location"].as<std::string>();
+            }
+
+            item.condition = row["condition"].as<int>();
+            item.charges = row["charges"].as<int>();
+
+            if (!row["instance_flags"].is_null()) {
+                item.instance_flags = parse_pg_array(row["instance_flags"].as<std::string>());
+            }
+
+            if (!row["custom_name"].is_null()) {
+                item.custom_name = row["custom_name"].as<std::string>();
+            }
+
+            if (!row["custom_examine_description"].is_null()) {
+                item.custom_description = row["custom_examine_description"].as<std::string>();
+            }
+
+            items.push_back(std::move(item));
+        }
+
+        logger->debug("Loaded {} items for character {}", items.size(), character_id);
+        return items;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading character items: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load character items: {}", e.what())});
+    }
+}
+
+Result<void> save_character_items(
+    pqxx::work& txn,
+    const std::string& character_id,
+    const std::vector<CharacterItemData>& items) {
+    auto logger = Log::database();
+    logger->debug("Saving {} items for character {}", items.size(), character_id);
+
+    try {
+        // Delete existing items for this character
+        txn.exec_params(R"(
+            DELETE FROM "CharacterItems" WHERE character_id = $1
+        )", character_id);
+
+        // Insert new items
+        for (const auto& item : items) {
+            std::optional<int> container_id_param;
+            if (item.container_id) {
+                container_id_param = *item.container_id;
+            }
+
+            std::string equipped_loc_param = item.equipped_location.empty()
+                ? "" : item.equipped_location;
+
+            // Build instance flags as PostgreSQL array literal
+            std::string flags_array = "{}";
+            if (!item.instance_flags.empty()) {
+                flags_array = "{";
+                for (size_t i = 0; i < item.instance_flags.size(); ++i) {
+                    if (i > 0) flags_array += ",";
+                    flags_array += "\"" + item.instance_flags[i] + "\"";
+                }
+                flags_array += "}";
+            }
+
+            txn.exec_params(R"(
+                INSERT INTO "CharacterItems" (
+                    character_id, object_zone_id, object_id,
+                    container_id, equipped_location, condition, charges,
+                    instance_flags, custom_name, custom_examine_description,
+                    updated_at
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::text[], $9, $10, NOW())
+            )",
+                character_id,
+                item.object_id.zone_id(),
+                item.object_id.local_id(),
+                container_id_param,
+                equipped_loc_param.empty() ? std::optional<std::string>{} : equipped_loc_param,
+                item.condition,
+                item.charges,
+                flags_array,
+                item.custom_name.empty() ? std::optional<std::string>{} : item.custom_name,
+                item.custom_description.empty() ? std::optional<std::string>{} : item.custom_description
+            );
+        }
+
+        logger->debug("Saved {} items for character {}", items.size(), character_id);
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error saving character items: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to save character items: {}", e.what())});
     }
 }
 

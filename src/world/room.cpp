@@ -937,8 +937,7 @@ std::string Room::get_stat_info() const {
     output << fmt::format("Room name: {}\n", name());
 
     output << fmt::format("Zone: [{}], ID: [{}], Sector: {}\n",
-                          zone_id().is_valid() ? static_cast<uint32_t>(zone_id().value()) : 0,
-                          static_cast<uint32_t>(id().value()), magic_enum::enum_name(sector_type()));
+                          id().zone_id(), id(), magic_enum::enum_name(sector_type()));
 
     // Room flags
     std::string flag_str = "<None>";

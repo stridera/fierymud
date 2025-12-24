@@ -17,7 +17,7 @@ void test_player_creation() {
     assert(player->current_room() == EntityId{1001}); // Default from config
 
     std::cout << "✓ Player creation successful\n";
-    std::cout << "✓ Player '" << player->name() << "' created in room " << player->current_room().value() << "\n";
+    std::cout << "✓ Player '" << player->name() << "' created in room " << player->current_room() << "\n";
 }
 
 void test_world_server() {
@@ -71,7 +71,7 @@ void test_room_functionality() {
             if (!exits.empty()) {
                 std::cout << "  Exits: ";
                 for (const auto &[direction, exit] : exits) {
-                    std::cout << direction << "->" << exit.destination().value() << " ";
+                    std::cout << direction << "->" << exit.destination() << " ";
                 }
                 std::cout << "\n";
             }
@@ -106,12 +106,12 @@ void test_player_movement() {
 
     // Test room changes
     EntityId original_room = player->current_room();
-    std::cout << "Original room: " << original_room.value() << "\n";
+    std::cout << "Original room: " << original_room << "\n";
 
     // Move to different room
     player->set_current_room(EntityId{1002});
     EntityId new_room = player->current_room();
-    std::cout << "New room: " << new_room.value() << "\n";
+    std::cout << "New room: " << new_room << "\n";
 
     assert(new_room != original_room);
     std::cout << "✓ Player movement successful\n";

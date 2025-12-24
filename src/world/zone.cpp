@@ -1144,7 +1144,7 @@ Result<bool> Zone::execute_put_object(const ZoneCommand &cmd) {
     // Use a special encoding: container object ID as the room ID
     auto object = spawn_object_callback_(object_id, container_id);
     if (object) {
-        logger->info("Zone {} put object '{}' ({}) in container {}", name(), object->display_name(), object_id,
+        logger->trace("Zone {} put object '{}' ({}) in container {}", name(), object->display_name(), object_id,
                      container_id);
         stats_.object_count++; // Track spawning stats
     } else {

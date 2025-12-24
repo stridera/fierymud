@@ -11,18 +11,18 @@
 // =============================================================================
 
 Shopkeeper::Shopkeeper(EntityId shop_id) : shop_id_(shop_id), shop_name_("Generic Shop") {
-    Log::debug("Created shopkeeper with ID {}", shop_id_.value());
+    Log::debug("Created shopkeeper with ID {}", shop_id_);
 }
 
 void Shopkeeper::add_item(const ShopItem& item) {
     items_[item.prototype_id] = item;
-    Log::debug("Added item '{}' (ID: {}) to shop {} with price {}", 
-               item.name, item.prototype_id.value(), shop_id_.value(), item.cost);
+    Log::debug("Added item '{}' (ID: {}) to shop {} with price {}",
+               item.name, item.prototype_id, shop_id_, item.cost);
 }
 
 void Shopkeeper::remove_item(EntityId prototype_id) {
     if (auto it = items_.find(prototype_id); it != items_.end()) {
-        Log::debug("Removed item '{}' from shop {}", it->second.name, shop_id_.value());
+        Log::debug("Removed item '{}' from shop {}", it->second.name, shop_id_);
         items_.erase(it);
     }
 }
@@ -43,8 +43,8 @@ void Shopkeeper::restock_item(EntityId prototype_id, int quantity) {
         auto& item = it->second;
         if (item.max_stock >= 0) {
             item.stock = std::min(item.stock + quantity, item.max_stock);
-            Log::debug("Restocked item '{}' in shop {}, now has {} items", 
-                      item.name, shop_id_.value(), item.stock);
+            Log::debug("Restocked item '{}' in shop {}, now has {} items",
+                      item.name, shop_id_, item.stock);
         }
     }
 }
@@ -55,7 +55,7 @@ void Shopkeeper::restock_all() {
             item.stock = item.max_stock;
         }
     }
-    Log::debug("Fully restocked shop {}", shop_id_.value());
+    Log::debug("Fully restocked shop {}", shop_id_);
 }
 
 bool Shopkeeper::reduce_stock(EntityId prototype_id, int quantity) {
@@ -66,8 +66,8 @@ bool Shopkeeper::reduce_stock(EntityId prototype_id, int quantity) {
         }
         if (item.stock >= quantity) {
             item.stock -= quantity;
-            Log::debug("Reduced stock for item '{}' in shop {}, {} remaining", 
-                      item.name, shop_id_.value(), item.stock);
+            Log::debug("Reduced stock for item '{}' in shop {}, {} remaining",
+                      item.name, shop_id_, item.stock);
             return true;
         }
     }
@@ -135,13 +135,13 @@ ShopManager& ShopManager::instance() {
 
 void ShopManager::register_shopkeeper(EntityId shopkeeper_id, std::unique_ptr<Shopkeeper> shop) {
     shops_[shopkeeper_id] = std::move(shop);
-    Log::info("Registered shopkeeper {} with shop '{}'", 
-              shopkeeper_id.value(), shops_[shopkeeper_id]->get_name());
+    Log::info("Registered shopkeeper {} with shop '{}'",
+              shopkeeper_id, shops_[shopkeeper_id]->get_name());
 }
 
 void ShopManager::unregister_shopkeeper(EntityId shopkeeper_id) {
     if (shops_.erase(shopkeeper_id)) {
-        Log::info("Unregistered shopkeeper {}", shopkeeper_id.value());
+        Log::info("Unregistered shopkeeper {}", shopkeeper_id);
     }
 }
 
@@ -163,39 +163,48 @@ ShopResult ShopManager::buy_item(std::shared_ptr<Actor> buyer, EntityId shopkeep
     if (!buyer) {
         return ShopResult::InvalidItem;
     }
-    
+
+    // Only players can buy items
+    auto player = std::dynamic_pointer_cast<Player>(buyer);
+    if (!player) {
+        return ShopResult::InvalidItem;
+    }
+
     auto* shop = get_shopkeeper(shopkeeper_id);
     if (!shop) {
         return ShopResult::NoShopkeeper;
     }
-    
+
     const auto* shop_item = shop->get_item(item_id);
     if (!shop_item) {
         return ShopResult::ItemNotFound;
     }
-    
+
     if (shop_item->stock == 0) {
         return ShopResult::InsufficientStock;
     }
-    
+
     int price = shop->calculate_buy_price(*shop_item);
-    
-    // Check if player has enough money (in copper coins)
-    if (buyer->stats().gold < price) {
+
+    // Check if player has enough money (price is in copper)
+    if (!player->can_afford(price)) {
         return ShopResult::InsufficientFunds;
     }
-    
+
     // Reduce stock and deduct payment
     if (!shop->reduce_stock(item_id, 1)) {
         return ShopResult::InsufficientStock;
     }
-    
-    // Deduct money from buyer
-    buyer->stats().gold -= price;
-    
-    Log::info("Player {} bought item '{}' from shopkeeper {} for {} copper", 
-              buyer->name(), shop_item->name, shopkeeper_id.value(), price);
-    
+
+    // Deduct money from buyer's wallet
+    if (!player->spend_copper(price)) {
+        // Shouldn't happen since we already checked can_afford()
+        return ShopResult::InsufficientFunds;
+    }
+
+    Log::info("Player {} bought item '{}' from shopkeeper {} for {} copper",
+              player->name(), shop_item->name, shopkeeper_id, price);
+
     return ShopResult::Success;
 }
 
@@ -203,25 +212,31 @@ ShopResult ShopManager::sell_item(std::shared_ptr<Actor> seller, EntityId shopke
     if (!seller || !item) {
         return ShopResult::InvalidItem;
     }
-    
+
+    // Only players can sell items
+    auto player = std::dynamic_pointer_cast<Player>(seller);
+    if (!player) {
+        return ShopResult::InvalidItem;
+    }
+
     auto* shop = get_shopkeeper(shopkeeper_id);
     if (!shop) {
         return ShopResult::NoShopkeeper;
     }
-    
+
     int price = shop->calculate_sell_price(*item);
-    
+
     // Remove item from player inventory and give money
-    if (!seller->inventory().remove_item(item->id())) {
+    if (!player->inventory().remove_item(item->id())) {
         return ShopResult::InvalidItem; // Player doesn't have the item
     }
-    
-    // Give money to seller  
-    seller->stats().gold += price;
-    
-    Log::info("Player {} sold item '{}' to shopkeeper {} for {} copper", 
-              seller->name(), item->name(), shopkeeper_id.value(), price);
-    
+
+    // Give money to seller (auto-converts to optimal denominations)
+    player->receive_copper(price);
+
+    Log::info("Player {} sold item '{}' to shopkeeper {} for {} copper",
+              player->name(), item->name(), shopkeeper_id, price);
+
     return ShopResult::Success;
 }
 

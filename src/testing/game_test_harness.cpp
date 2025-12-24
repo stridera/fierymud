@@ -40,7 +40,7 @@ Result<std::shared_ptr<Player>> GameTestHarness::create_test_player(std::string_
     // Initialize output capture
     player_output_[player_id] = {};
 
-    Log::info("Created test player '{}' (ID: {}) in room {}", name, player_id.value(), starting_room.value());
+    Log::info("Created test player '{}' (ID: {}) in room {}", name, player_id, starting_room);
 
     return player;
 }
@@ -58,7 +58,7 @@ void GameTestHarness::remove_test_player(std::shared_ptr<Player> player) {
     mock_connections_.erase(player_id);
     player_output_.erase(player_id);
 
-    Log::info("Removed test player '{}' (ID: {})", player->name(), player_id.value());
+    Log::info("Removed test player '{}' (ID: {})", player->name(), player_id);
 }
 
 Result<std::string> GameTestHarness::execute_command(std::shared_ptr<Player> player, std::string_view command_line) {

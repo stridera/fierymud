@@ -482,6 +482,7 @@ Result<void> register_commands() {
         .command("coins", cmd_coins)
         .alias("gold")
         .alias("money")
+        .alias("wealth")
         .category("Economy")
         .privilege(PrivilegeLevel::Player)
         .build();

@@ -129,6 +129,7 @@ struct AbilityData {
     int memorization_time;      // Additional memorization rounds
     bool quest_only;            // Quest-restricted ability
     bool humanoid_only;         // Only available to humanoids
+    int cost = 0;               // Mana/stamina cost to use ability
 };
 
 /** Class-specific ability availability */
@@ -430,5 +431,69 @@ Result<void> link_character_to_user(
     pqxx::work& txn,
     const std::string& character_id,
     const std::string& user_id);
+
+// =============================================================================
+// Shop System Queries
+// =============================================================================
+
+/** Shop data from the Shops table */
+struct ShopData {
+    int id;
+    EntityId keeper_id;             // Mob that runs this shop (zone_id, local_id)
+    float buy_profit = 1.0f;        // Rate shopkeeper charges (1.0 = no markup)
+    float sell_profit = 1.0f;       // Rate shopkeeper pays for items (1.0 = full price)
+    int temper = 0;                 // Shopkeeper's temperament
+    std::vector<std::string> no_such_item_messages;
+    std::vector<std::string> do_not_buy_messages;
+    std::vector<std::string> missing_cash_messages;
+    std::vector<std::string> buy_messages;
+    std::vector<std::string> sell_messages;
+    std::vector<std::string> flags;
+    std::vector<std::string> trades_with_flags;
+};
+
+/** Shop item data from the ShopItems table */
+struct ShopItemData {
+    EntityId object_id;             // Object prototype (zone_id, local_id)
+    int amount = -1;                // Stock quantity (-1 = unlimited)
+};
+
+/** Load all shops from the database */
+Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn);
+
+/** Load shops for a specific zone */
+Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id);
+
+/** Load items sold by a specific shop */
+Result<std::vector<ShopItemData>> load_shop_items(
+    pqxx::work& txn, int shop_zone_id, int shop_id);
+
+// =============================================================================
+// Character Item Queries
+// =============================================================================
+
+/** Character item data from the CharacterItems table */
+struct CharacterItemData {
+    int id;                         // Auto-increment primary key
+    std::string character_id;       // Character UUID
+    EntityId object_id;             // Object prototype (zone_id, local_id)
+    std::optional<int> container_id; // Parent container item ID (if in a container)
+    std::string equipped_location;  // Equipment slot name (empty = inventory)
+    int condition = 100;            // Item condition (0-100)
+    int charges = -1;               // Charges remaining (-1 = unlimited)
+    std::vector<std::string> instance_flags;  // Per-instance flags
+    std::string custom_name;        // Custom name override
+    std::string custom_description; // Custom description override
+};
+
+/** Load all items for a character */
+Result<std::vector<CharacterItemData>> load_character_items(
+    pqxx::work& txn, const std::string& character_id);
+
+/** Save a character's items (replaces all existing items) */
+Result<void> save_character_items(
+    pqxx::work& txn,
+    const std::string& character_id,
+    const std::vector<CharacterItemData>& items);
 
 } // namespace WorldQueries

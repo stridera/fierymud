@@ -562,7 +562,7 @@ void CommandSystem::log_command_execution(const CommandContext &context, Command
                                           std::chrono::milliseconds duration) {
     Log::trace("Command executed: {} by {} in room {} - {} ({}ms)", context.command.command,
                context.actor ? context.actor->name() : "unknown",
-               context.room ? std::to_string(context.room->id().value()) : "none",
+               context.room ? fmt::format("{}", context.room->id()) : "none",
                CommandSystemUtils::result_to_string(result), duration.count());
 }
 

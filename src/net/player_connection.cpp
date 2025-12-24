@@ -917,10 +917,10 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
         auto move_result = WorldManager::instance().move_actor_to_room(player_, starting_room_id);
         
         if (!move_result.success) {
-            Log::warn("Failed to place player '{}' in starting room {}: {}", 
-                     player_->name(), starting_room_id.value(), move_result.failure_reason);
+            Log::warn("Failed to place player '{}' in starting room {}: {}",
+                     player_->name(), starting_room_id, move_result.failure_reason);
         } else {
-            Log::info("Placed player '{}' in starting room {}", player_->name(), starting_room_id.value());
+            Log::info("Placed player '{}' in starting room {}", player_->name(), starting_room_id);
         }
     }
 

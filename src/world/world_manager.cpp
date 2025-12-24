@@ -3,6 +3,7 @@
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
+#include "../core/shopkeeper.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
 #include "../database/world_queries.hpp"
@@ -403,25 +404,8 @@ Result<void> WorldManager::reload_all_zones() {
 std::shared_ptr<Room> WorldManager::get_room(EntityId room_id) const {
     std::shared_lock lock(world_mutex_);
     auto it = rooms_.find(room_id);
-    auto logger = Log::game();
     if (it != rooms_.end()) {
-        auto room = it->second;
-        // Debug: log room retrieval for the temple
-        if (room_id.zone_id() == 30 && room_id.local_id() == 1) {
-            logger->info("DEBUG get_room: Found temple room {} '{}', flags_count={}",
-                        room_id.value(), room->name(), room->flags().size());
-            if (room->has_flag(RoomFlag::AlwaysLit)) {
-                logger->info("DEBUG get_room: Temple has AlwaysLit flag");
-            } else {
-                logger->info("DEBUG get_room: Temple MISSING AlwaysLit flag!");
-            }
-        }
-        return room;
-    }
-    // Debug: log failed lookups for starting room
-    if (room_id.zone_id() == 30 && room_id.local_id() == 1) {
-        logger->warn("DEBUG get_room: Temple room {} NOT FOUND in rooms_ (size={})",
-                    room_id.value(), rooms_.size());
+        return it->second;
     }
     return nullptr;
 }
@@ -1555,6 +1539,72 @@ Result<void> WorldManager::load_zones_from_database() {
             setup_zone_callbacks(zone);
         }
 
+        // Fifth pass: Load shops and register shopkeepers
+        logger->debug("Loading shops (fifth pass)");
+        auto shops_result = WorldQueries::load_all_shops(txn);
+        if (!shops_result) {
+            logger->warn("Failed to load shops: {}", shops_result.error().message);
+        } else {
+            auto& shop_manager = ShopManager::instance();
+            int shops_loaded = 0;
+
+            for (const auto& shop_data : *shops_result) {
+                // Find the mob prototype for this shopkeeper
+                auto mob_it = mobiles_.find(shop_data.keeper_id);
+                if (mob_it == mobiles_.end()) {
+                    logger->warn("Shop {} references non-existent mob {}",
+                                shop_data.id, shop_data.keeper_id);
+                    continue;
+                }
+
+                // Mark the mob prototype as a shopkeeper
+                mob_it->second->set_shopkeeper(true);
+
+                // Create the shop with the keeper's mob ID
+                auto shop = std::make_unique<Shopkeeper>(shop_data.keeper_id);
+
+                // Use the mob's name for the shop name
+                shop->set_name(fmt::format("{}'s Shop", mob_it->second->name()));
+
+                // Set shop rates (buy_profit is what shopkeeper charges, sell_profit is what they pay)
+                shop->set_buy_rate(shop_data.buy_profit);
+                shop->set_sell_rate(shop_data.sell_profit);
+
+                // Load items for this shop
+                auto items_result = WorldQueries::load_shop_items(txn,
+                    shop_data.keeper_id.zone_id(), shop_data.id);
+                if (items_result) {
+                    for (const auto& item_data : *items_result) {
+                        // Find the object prototype
+                        auto obj_it = objects_.find(item_data.object_id);
+                        if (obj_it == objects_.end()) {
+                            logger->warn("Shop {} item references non-existent object {}",
+                                        shop_data.id, item_data.object_id);
+                            continue;
+                        }
+
+                        // Create shop item from prototype
+                        const auto* obj_proto = obj_it->second;
+                        ShopItem shop_item;
+                        shop_item.prototype_id = item_data.object_id;
+                        shop_item.name = obj_proto->name();
+                        shop_item.description = obj_proto->short_description();
+                        shop_item.cost = obj_proto->value();
+                        shop_item.stock = item_data.amount;
+                        shop_item.max_stock = item_data.amount;
+
+                        shop->add_item(shop_item);
+                    }
+                }
+
+                // Register the shop with ShopManager
+                shop_manager.register_shopkeeper(shop_data.keeper_id, std::move(shop));
+                shops_loaded++;
+            }
+
+            logger->info("Loaded {} shops from database", shops_loaded);
+        }
+
         logger->info("Successfully loaded {} zones, {} rooms, {} mobs, {} objects from database",
                     stats_.zones_loaded, stats_.rooms_loaded, stats_.mobiles_loaded, stats_.objects_loaded);
         return Success();
@@ -1933,6 +1983,7 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
     new_mobile->set_teacher(prototype->is_teacher());
     new_mobile->set_shopkeeper(prototype->is_shopkeeper());
     new_mobile->set_class_id(prototype->class_id());
+    new_mobile->set_prototype_id(prototype->id());  // Track prototype for shop lookups
 
     // Find appropriate room for spawning - for now, spawn in the first room of the zone
     auto zone_rooms = get_rooms_in_zone(zone_id);
@@ -2056,6 +2107,7 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
     new_mobile->set_teacher(prototype->is_teacher());
     new_mobile->set_shopkeeper(prototype->is_shopkeeper());
     new_mobile->set_class_id(prototype->class_id());
+    new_mobile->set_prototype_id(prototype->id());  // Track prototype for shop lookups
 
     // Place the mobile in the specified room
     auto actor_ptr = std::shared_ptr<Actor>(new_mobile.release());
@@ -2234,6 +2286,42 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     return shared_object;
 }
 
+std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_id) {
+    auto logger = Log::game();
+
+    // Find object prototype
+    auto object_it = objects_.find(prototype_id);
+    if (object_it == objects_.end()) {
+        logger->error("Cannot create object instance {} - prototype not found", prototype_id);
+        return nullptr;
+    }
+
+    Object* prototype = object_it->second;
+
+    // Create new object instance from prototype
+    auto new_object_result = Object::create(prototype->id(), prototype->name(), prototype->type());
+    if (!new_object_result) {
+        logger->error("Failed to create object instance: {}", new_object_result.error().message);
+        return nullptr;
+    }
+
+    auto new_object = std::move(new_object_result.value());
+
+    // Copy properties from prototype
+    new_object->set_short_description(prototype->short_description());
+    new_object->set_description(prototype->description());
+    new_object->set_weight(prototype->weight());
+    new_object->set_value(prototype->value());
+    new_object->set_equip_slot(prototype->equip_slot());
+    new_object->set_armor_class(prototype->armor_class());
+    new_object->set_damage_profile(prototype->damage_profile());
+    new_object->set_container_info(prototype->container_info());
+    new_object->set_light_info(prototype->light_info());
+    new_object->set_liquid_info(prototype->liquid_info());
+
+    return std::shared_ptr<Object>(new_object.release());
+}
+
 Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, EntityId room_id) {
     if (!prototype) {
         return std::unexpected(Errors::InvalidArgument("prototype", "cannot be null"));
@@ -2279,6 +2367,7 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
     new_mobile->set_teacher(prototype->is_teacher());
     new_mobile->set_shopkeeper(prototype->is_shopkeeper());
     new_mobile->set_class_id(prototype->class_id());
+    new_mobile->set_prototype_id(prototype->id());  // Track prototype for shop lookups
 
     // Place the mobile in the specified room
     auto spawn_room = get_room(room_id);

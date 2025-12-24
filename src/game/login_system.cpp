@@ -2,6 +2,7 @@
 
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
+#include "../core/object.hpp"
 #include "../net/player_connection.hpp"
 #include "../server/network_manager.hpp"
 #include "../text/string_utils.hpp"
@@ -97,6 +98,122 @@ void LoginSystem::load_player_abilities(std::shared_ptr<Player>& player) {
     }
 
     Log::info("Loaded {} abilities for player '{}'", result->size(), player->name());
+}
+
+void LoginSystem::load_player_items(std::shared_ptr<Player>& player) {
+    if (player->database_id().empty()) {
+        Log::warn("Cannot load items: player {} has no database_id", player->name());
+        return;
+    }
+
+    std::string char_id{player->database_id()};
+    auto result = ConnectionPool::instance().execute([&char_id](pqxx::work& txn)
+        -> Result<std::vector<WorldQueries::CharacterItemData>> {
+        return WorldQueries::load_character_items(txn, char_id);
+    });
+
+    if (!result) {
+        Log::warn("Failed to load items for player {}: {}",
+                 player->name(), result.error().message);
+        return;
+    }
+
+    const auto& items_data = *result;
+    if (items_data.empty()) {
+        Log::debug("No items to load for player '{}'", player->name());
+        return;
+    }
+
+    auto& world = WorldManager::instance();
+
+    // Map from CharacterItems.id to created object (for container nesting)
+    std::unordered_map<int, std::shared_ptr<Object>> created_objects;
+
+    // First pass: create all objects
+    for (const auto& item_data : items_data) {
+        auto object = world.create_object_instance(item_data.object_id);
+        if (!object) {
+            Log::warn("Failed to create object instance for prototype {} for player {}",
+                     item_data.object_id, player->name());
+            continue;
+        }
+
+        // Apply custom name if set
+        if (!item_data.custom_name.empty()) {
+            object->set_name(item_data.custom_name);
+        }
+
+        // Apply custom description if set
+        if (!item_data.custom_description.empty()) {
+            object->set_description(item_data.custom_description);
+        }
+
+        // Store for second pass
+        created_objects[item_data.id] = object;
+    }
+
+    // Second pass: place items (handle containers, equipment, inventory)
+    int equipped_count = 0;
+    int inventory_count = 0;
+    int container_count = 0;
+
+    for (const auto& item_data : items_data) {
+        auto it = created_objects.find(item_data.id);
+        if (it == created_objects.end()) {
+            continue; // Object creation failed in first pass
+        }
+
+        auto object = it->second;
+
+        // If this item is inside a container
+        if (item_data.container_id.has_value()) {
+            auto container_it = created_objects.find(*item_data.container_id);
+            if (container_it != created_objects.end() && container_it->second->is_container()) {
+                auto* container_ptr = dynamic_cast<Container*>(container_it->second.get());
+                if (container_ptr) {
+                    auto add_result = container_ptr->add_item(object);
+                    if (add_result) {
+                        container_count++;
+                        continue;
+                    }
+                    Log::warn("Failed to add item {} to container for player {}",
+                             object->name(), player->name());
+                }
+            }
+            // Fallback: put in inventory
+            player->inventory().add_item(object);
+            inventory_count++;
+            continue;
+        }
+
+        // If this item is equipped
+        if (!item_data.equipped_location.empty()) {
+            auto slot = ObjectUtils::parse_equip_slot(item_data.equipped_location);
+            if (slot.has_value()) {
+                auto equip_result = player->equipment().equip_to_slot(object, *slot);
+                if (equip_result) {
+                    equipped_count++;
+                    continue;
+                }
+                Log::warn("Failed to equip item {} in slot {} for player {}",
+                         object->name(), item_data.equipped_location, player->name());
+            } else {
+                Log::warn("Unknown equipment slot '{}' for item {} for player {}",
+                         item_data.equipped_location, object->name(), player->name());
+            }
+            // Fallback: put in inventory
+            player->inventory().add_item(object);
+            inventory_count++;
+            continue;
+        }
+
+        // Regular inventory item
+        player->inventory().add_item(object);
+        inventory_count++;
+    }
+
+    Log::info("Loaded {} items for player '{}' ({} equipped, {} inventory, {} in containers)",
+             created_objects.size(), player->name(), equipped_count, inventory_count, container_count);
 }
 
 void LoginSystem::start_login() {
@@ -238,8 +355,11 @@ void LoginSystem::handle_get_account(std::string_view input) {
 
                     // Check for existing connection and handle reconnection
                     if (auto *network_manager = connection_->get_network_manager()) {
-                        if (network_manager->handle_reconnection(connection_, player_->name())) {
-                            Log::info("Player '{}' reconnected successfully", player_->name());
+                        std::string player_name = std::string(player_->name());
+                        if (network_manager->handle_reconnection(connection_, player_name)) {
+                            player_.reset();  // Clear freshly-loaded player, using transferred one
+                            transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+                            Log::info("Player '{}' reconnected successfully", player_name);
                             return;
                         }
                     }
@@ -498,8 +618,11 @@ void LoginSystem::handle_select_character(std::string_view input) {
 
     // Check for existing connection and handle reconnection
     if (auto *network_manager = connection_->get_network_manager()) {
-        if (network_manager->handle_reconnection(connection_, player_->name())) {
-            Log::info("Player '{}' reconnected successfully", player_->name());
+        std::string player_name = std::string(player_->name());
+        if (network_manager->handle_reconnection(connection_, player_name)) {
+            player_.reset();  // Clear freshly-loaded player, using transferred one
+            transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+            Log::info("Player '{}' reconnected successfully", player_name);
             return;
         }
     }
@@ -586,8 +709,11 @@ void LoginSystem::handle_get_name(std::string_view input) {
 
             // Check for existing connection and handle reconnection
             if (auto *network_manager = connection_->get_network_manager()) {
-                if (network_manager->handle_reconnection(connection_, player_->name())) {
-                    Log::info("Player '{}' reconnected successfully", player_->name());
+                std::string player_name = std::string(player_->name());
+                if (network_manager->handle_reconnection(connection_, player_name)) {
+                    player_.reset();  // Clear freshly-loaded player, using transferred one
+                    transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+                    Log::info("Player '{}' reconnected successfully", player_name);
                     return;
                 }
             }
@@ -666,10 +792,14 @@ void LoginSystem::handle_get_password(std::string_view input) {
 
     // Check for existing connection and handle reconnection
     if (auto *network_manager = connection_->get_network_manager()) {
-        if (network_manager->handle_reconnection(connection_, player_->name())) {
+        std::string player_name = std::string(player_->name());  // Copy name before potential reset
+        if (network_manager->handle_reconnection(connection_, player_name)) {
             // Existing connection was found and player transferred to this connection
             // The reconnection handler already sent appropriate messages
-            Log::info("Player '{}' reconnected successfully", player_->name());
+            // Clear our freshly-loaded player since we're using the transferred player instead
+            player_.reset();
+            transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+            Log::info("Player '{}' reconnected successfully", player_name);
             return; // Early return since reconnection handled everything
         }
     }
@@ -1275,6 +1405,9 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
 
     // Load character abilities from database
     load_player_abilities(player);
+
+    // Load character items (equipment and inventory) from database
+    load_player_items(player);
 
     // Refresh the player's start room to match the current world's default
     auto world_start_room = WorldManager::instance().get_start_room();

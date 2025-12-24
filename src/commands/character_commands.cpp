@@ -448,10 +448,13 @@ Result<CommandResult> cmd_wimpy(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add wimpy_threshold to Player class and implement auto-flee
-
     if (ctx.arg_count() == 0) {
-        ctx.send("Your current wimpy level is 0 hit points.");
+        int current = player->wimpy_threshold();
+        if (current == 0) {
+            ctx.send("Wimpy is currently disabled.");
+        } else {
+            ctx.send(fmt::format("Your current wimpy level is {} hit points.", current));
+        }
         ctx.send("Usage: wimpy <hp threshold> - automatically flee when HP drops below this");
         return CommandResult::Success;
     }

@@ -200,6 +200,9 @@ class WorldManager {
     void dump_world_state(const std::string &filename) const;
     Result<void> import_world_state(const std::string &filename);
 
+    // Object Instance Creation (for player inventory loading)
+    std::shared_ptr<Object> create_object_instance(EntityId prototype_id);
+
     // Weather Integration
     void update_weather_system(std::chrono::minutes elapsed);
     void initialize_weather_callbacks();

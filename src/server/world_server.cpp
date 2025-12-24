@@ -27,9 +27,11 @@ namespace {
     constexpr int DEFAULT_LORE_YEAR = 1000;
     constexpr int DEFAULT_START_HOUR = 12;  // Noon
 
-    // Starting room IDs
-    constexpr std::uint64_t DEFAULT_START_ROOM_ID = 3001;  // Forest Temple of Mielikki
-    constexpr std::uint64_t TEST_START_ROOM_ID = 100;      // Test world starting room
+    // Starting room IDs (zone_id, local_id composite keys)
+    constexpr std::uint32_t DEFAULT_START_ZONE_ID = 30;
+    constexpr std::uint32_t DEFAULT_START_LOCAL_ID = 1;   // Forest Temple of Mielikki
+    constexpr std::uint32_t TEST_START_ZONE_ID = 1;
+    constexpr std::uint32_t TEST_START_LOCAL_ID = 0;      // Test world starting room
 
     // Combat condition thresholds (HP percentage)
     constexpr int CONDITION_PERFECT = 95;
@@ -184,7 +186,7 @@ Result<void> WorldServer::start() {
 
             // Create default world directly (we're already on the world strand)
             // Create a simple starting room
-            auto room_result = Room::create(EntityId{DEFAULT_START_ROOM_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
+            auto room_result = Room::create(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
             if (!room_result) {
                 Log::error("Failed to create starting room: {}", room_result.error().message);
                 return;
@@ -202,12 +204,14 @@ Result<void> WorldServer::start() {
                 return;
             }
 
-            world_manager_->set_start_room(EntityId{DEFAULT_START_ROOM_ID});
-            Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki", DEFAULT_START_ROOM_ID);
+            world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
+            Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki",
+                     EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
         } else {
             Log::info("World data loaded successfully on world strand");
-            world_manager_->set_start_room(EntityId{DEFAULT_START_ROOM_ID});
-            Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki", DEFAULT_START_ROOM_ID);
+            world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
+            Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki",
+                     EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
         }
         world_loaded_promise_.set_value();
     });
@@ -583,7 +587,7 @@ Result<void> WorldServer::create_default_world() {
         Log::info("Creating default world...");
 
         // Create a simple starting room
-        auto room_result = Room::create(EntityId{DEFAULT_START_ROOM_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
+        auto room_result = Room::create(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
         if (!room_result) {
             Log::error("Failed to create starting room: {}", room_result.error().message);
             return;
@@ -601,9 +605,10 @@ Result<void> WorldServer::create_default_world() {
             return;
         }
 
-        world_manager_->set_start_room(EntityId{DEFAULT_START_ROOM_ID});
+        world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
 
-        Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki", DEFAULT_START_ROOM_ID);
+        Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki",
+                 EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
     });
     return Success();
 }
@@ -623,7 +628,7 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
 
     // If no room found, try to find a starting room
     if (!room) {
-        room = world_manager_->get_room(EntityId{TEST_START_ROOM_ID});
+        room = world_manager_->get_room(EntityId{TEST_START_ZONE_ID, TEST_START_LOCAL_ID});
     }
 
     if (room) {

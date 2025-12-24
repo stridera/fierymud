@@ -115,12 +115,21 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         // Add objects in room
         auto objects = current_room->contents().objects;
-        if (!objects.empty()) {
-            full_desc << "\nYou see:\n";
-            for (const auto &obj : objects) {
-                if (obj) {
-                    full_desc << fmt::format("  {}\n", obj->ground());
+        bool found_objects = false;
+        for (const auto &obj : objects) {
+            if (obj) {
+                auto ground_desc = obj->ground();
+                if (ground_desc.empty()) {
+                    ground_desc = obj->short_description();
                 }
+                if (ground_desc.empty()) {
+                    continue;  // Skip objects with no description
+                }
+                if (!found_objects) {
+                    full_desc << "\nYou see:\n";
+                    found_objects = true;
+                }
+                full_desc << fmt::format("  {}\n", ground_desc);
             }
         }
 
@@ -129,6 +138,15 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         bool found_others = false;
         for (const auto &actor : actors) {
             if (actor && actor != ctx.actor) {
+                // Get description - prefer ground(), fall back to display_name()
+                auto actor_desc = actor->ground();
+                if (actor_desc.empty()) {
+                    actor_desc = actor->display_name();
+                }
+                if (actor_desc.empty()) {
+                    continue;  // Skip actors with no description
+                }
+
                 if (!found_others) {
                     full_desc << "\nAlso here:\n";
                     found_others = true;
@@ -138,13 +156,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 bool is_ghost = (actor->position() == Position::Ghost);
                 std::string ghost_prefix = is_ghost ? "<cyan>(ghost)</> " : "";
 
-                // Use ground description (room_description) if available, fall back to display_name
-                auto ground_desc = actor->ground();
-                if (!ground_desc.empty()) {
-                    full_desc << fmt::format("  {}{}\n", ghost_prefix, ground_desc);
-                } else {
-                    full_desc << fmt::format("  {}{}\n", ghost_prefix, actor->display_name());
-                }
+                full_desc << fmt::format("  {}{}\n", ghost_prefix, actor_desc);
             }
         }
 
@@ -444,7 +456,7 @@ Result<CommandResult> cmd_where(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
 
-        ctx.send_line(fmt::format("You are in: {} [{}]", ctx.room->name(), ctx.room->id().value()));
+        ctx.send_line(fmt::format("You are in: {} [{}]", ctx.room->name(), ctx.room->id()));
         return CommandResult::Success;
     }
 
@@ -460,7 +472,7 @@ Result<CommandResult> cmd_where(const CommandContext &ctx) {
         ctx.send_line(fmt::format("{} is nowhere.", target->display_name()));
     } else {
         ctx.send_line(fmt::format("{} is in: {} [{}]", target->display_name(), target_room->display_name(),
-                                  target_room->id().value()));
+                                  target_room->id()));
     }
 
     return CommandResult::Success;
@@ -531,9 +543,9 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     score << fmt::format("Str: {}    Int: {}     Wis: {}\n", stats.strength, stats.intelligence, stats.wisdom);
     score << fmt::format("Dex: {}    Con: {}     Cha: {}\n", stats.dexterity, stats.constitution, stats.charisma);
 
-    // Hit points, mana, movement
-    score << fmt::format("Hit points: {}/{}   Mana: {}/{}   Moves: {}/{}\n", stats.hit_points, stats.max_hit_points,
-                         stats.mana, stats.max_mana, stats.movement, stats.max_movement);
+    // Hit points and stamina
+    score << fmt::format("Hit points: {}/{}   Stamina: {}/{}\n", stats.hit_points, stats.max_hit_points,
+                         stats.movement, stats.max_movement);
 
     // Combat stats (new ACC/EVA system)
     score << fmt::format("Accuracy: {}   Evasion: {}   Attack Power: {}\n", stats.accuracy, stats.evasion,
@@ -587,11 +599,17 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
         score << fmt::format("Exp: {} / {}  [{}] {}%\n",
                              current_exp, next_level_exp, bar, percent);
     }
-    score << fmt::format("Gold: {}\n", stats.gold);
+    // Currency - show full breakdown for players
+    if (player) {
+        score << fmt::format("Coins: {} plat, {} gold, {} silver, {} copper\n",
+                             player->platinum(), player->gold(), player->silver(), player->copper());
+    } else {
+        score << fmt::format("Gold: {}\n", stats.gold);
+    }
 
     // Current location
     if (ctx.room) {
-        score << fmt::format("Location: {} [{}]\n", ctx.room->name(), ctx.room->id().value());
+        score << fmt::format("Location: {} [{}]\n", ctx.room->name(), ctx.room->id());
     }
 
     // Active effects (spells, buffs, etc.)
@@ -840,9 +858,8 @@ Result<CommandResult> cmd_diagnose(const CommandContext &ctx) {
 
     if (target == ctx.actor) {
         diagnosis << fmt::format("  You are {}.\n", health_status);
-        diagnosis << fmt::format("  HP: {}/{}, Mana: {}/{}, Move: {}/{}\n",
+        diagnosis << fmt::format("  HP: {}/{}, Stamina: {}/{}\n",
             stats.hit_points, stats.max_hit_points,
-            stats.mana, stats.max_mana,
             stats.movement, stats.max_movement);
     } else {
         diagnosis << fmt::format("  {} is {}.\n", target->display_name(), health_status);

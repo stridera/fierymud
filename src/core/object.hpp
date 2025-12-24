@@ -3,6 +3,7 @@
 #include "entity.hpp"
 #include "../core/result.hpp"
 
+#include <array>
 #include <magic_enum/magic_enum.hpp>
 #include <optional>
 #include <unordered_map>
@@ -127,6 +128,14 @@ struct LightInfo {
     bool lit = false;           // Currently providing light
 };
 
+/** Liquid container properties */
+struct LiquidInfo {
+    std::string liquid_type;    // Type of liquid (WATER, ALE, WINE, etc.)
+    int capacity = 0;           // Maximum liquid capacity
+    int remaining = 0;          // Current amount of liquid
+    bool poisoned = false;      // Whether the liquid is poisoned
+};
+
 /** Object flags for special properties */
 enum class ObjectFlag {
     // Core flags
@@ -227,6 +236,40 @@ public:
     
     /** Check if object is a light source */
     bool is_light_source() const { return type_ == ObjectType::Light; }
+
+    /** Check if object is a magic item (scroll, potion, wand, staff) */
+    bool is_magic_item() const {
+        return type_ == ObjectType::Scroll || type_ == ObjectType::Potion ||
+               type_ == ObjectType::Wand || type_ == ObjectType::Staff;
+    }
+
+    /** Check if object is a potion */
+    bool is_potion() const { return type_ == ObjectType::Potion; }
+
+    /** Check if object is a scroll */
+    bool is_scroll() const { return type_ == ObjectType::Scroll; }
+
+    /** Check if object is a wand */
+    bool is_wand() const { return type_ == ObjectType::Wand; }
+
+    /** Check if object is a staff */
+    bool is_staff() const { return type_ == ObjectType::Staff; }
+
+    /** Get spell level for magic items */
+    int spell_level() const { return spell_level_; }
+    void set_spell_level(int level) { spell_level_ = std::max(1, level); }
+
+    /** Get spell IDs stored in this magic item (up to 3 spells) */
+    const std::array<int, 3>& spell_ids() const { return spell_ids_; }
+    void set_spell_id(int index, int spell_id) {
+        if (index >= 0 && index < 3) spell_ids_[index] = spell_id;
+    }
+
+    /** Get remaining charges for wands/staves */
+    int charges() const { return charges_; }
+    void set_charges(int c) { charges_ = std::max(0, c); }
+    int max_charges() const { return max_charges_; }
+    void set_max_charges(int c) { max_charges_ = std::max(0, c); }
     
     /** Check if object has a specific flag */
     bool has_flag(ObjectFlag flag) const;
@@ -254,7 +297,16 @@ public:
     
     /** Set light properties */
     void set_light_info(const LightInfo& info) { light_info_ = info; }
-    
+
+    /** Get liquid info (for drink containers) */
+    const LiquidInfo& liquid_info() const { return liquid_info_; }
+
+    /** Set liquid properties */
+    void set_liquid_info(const LiquidInfo& info) { liquid_info_ = info; }
+
+    /** Check if container has liquid */
+    bool has_liquid() const { return liquid_info_.remaining > 0; }
+
     /** Get armor class bonus (for armor) */
     int armor_class() const { return armor_class_; }
     
@@ -325,11 +377,18 @@ private:
     bool has_timer_ = false;    // Whether timer is active
     EquipSlot equip_slot_ = EquipSlot::None;
     int armor_class_ = 0;       // AC bonus for armor
-    
+
+    // Magic item properties (potions, scrolls, wands, staves)
+    int spell_level_ = 1;                       // Spell level/power
+    std::array<int, 3> spell_ids_ = {0, 0, 0};  // Up to 3 spell IDs
+    int charges_ = 0;                            // Current charges (wands/staves)
+    int max_charges_ = 0;                        // Maximum charges
+
     std::unordered_set<ObjectFlag> flags_;
     DamageProfile damage_profile_;
     ContainerInfo container_info_;
     LightInfo light_info_;
+    LiquidInfo liquid_info_;
     std::vector<ExtraDescription> extra_descriptions_;
 };
 

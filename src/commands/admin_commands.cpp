@@ -93,7 +93,7 @@ Result<CommandResult> cmd_teleport(const CommandContext &ctx) {
         return CommandResult::ResourceError;
     }
 
-    ctx.send_success(fmt::format("Teleported {} to room {}.", target->display_name(), room_id.value()));
+    ctx.send_success(fmt::format("Teleported {} to room {}.", target->display_name(), room_id));
 
     ctx.send_to_actor(target, "You have been teleported!");
 

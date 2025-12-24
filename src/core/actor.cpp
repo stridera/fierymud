@@ -390,17 +390,32 @@ Result<void> Equipment::equip_item(std::shared_ptr<Object> item) {
     if (!item) {
         return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
     }
-    
+
     if (!item->is_wearable()) {
         return std::unexpected(Errors::InvalidArgument("item", "is not wearable"));
     }
-    
+
     EquipSlot slot = item->equip_slot();
     std::string conflict_message = get_slot_conflict_message(slot, *item);
     if (!conflict_message.empty()) {
         return std::unexpected(Errors::InvalidState(conflict_message));
     }
-    
+
+    equipped_[slot] = std::move(item);
+    return Success();
+}
+
+Result<void> Equipment::equip_to_slot(std::shared_ptr<Object> item, EquipSlot slot) {
+    if (!item) {
+        return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
+    }
+
+    if (slot == EquipSlot::None) {
+        return std::unexpected(Errors::InvalidArgument("slot", "cannot be None"));
+    }
+
+    // For loading from database, we trust the saved slot and don't check conflicts
+    // The item may have different equip_slot() than where it was saved
     equipped_[slot] = std::move(item);
     return Success();
 }
@@ -1274,29 +1289,24 @@ void Player::receive_message(std::string_view message) {
 
 nlohmann::json Player::get_vitals_gmcp() const {
     const auto& stats = this->stats();
-    
+
     // Calculate percentages for UI display
     int hp_percent = (stats.max_hit_points > 0) ? (stats.hit_points * 100) / stats.max_hit_points : 0;
-    int mana_percent = (stats.max_mana > 0) ? (stats.mana * 100) / stats.max_mana : 0;
     int move_percent = (stats.max_movement > 0) ? (stats.movement * 100) / stats.max_movement : 0;
-    
+
     return {
         {"hp", stats.hit_points},
         {"maxhp", stats.max_hit_points},
         {"hp_percent", hp_percent},
-        {"sp", stats.mana},  // "sp" = spell points (common GMCP convention)
-        {"maxsp", stats.max_mana},
-        {"sp_percent", mana_percent},
-        {"ep", stats.movement},  // "ep" = endurance points (movement)
-        {"maxep", stats.max_movement},
-        {"ep_percent", move_percent},
+        {"stamina", stats.movement},
+        {"maxstamina", stats.max_movement},
+        {"stamina_percent", move_percent},
         {"level", stats.level},
         {"experience", stats.experience},
         {"tnl", stats.experience_to_next_level()},  // "tnl" = to next level
         {"gold", stats.gold},
         {"alignment", stats.alignment}
-        // Note: Enhanced GMCP vitals with standard field names and percentages
-        // Compatible with most MUD clients while preserving FieryMUD's spell slot system
+        // Note: FieryMUD uses spell circles, not mana - no sp/maxsp fields
     };
 }
 

@@ -4,6 +4,7 @@
 
 #include <cstdint>
 #include <functional>
+#include <ostream>
 #include <unordered_map>
 #include <unordered_set>
 #include <optional>
@@ -27,18 +28,17 @@
 class EntityId {
 public:
     /** Default constructor creates invalid ID */
-    constexpr EntityId() : zone_id_(0), local_id_(0) {}
+    constexpr EntityId() : zone_id_(0), local_id_(0), valid_(false) {}
 
-    /** Composite key constructor for database integration */
+    /** Composite key constructor for database integration - always valid */
     constexpr explicit EntityId(std::uint32_t zone_id, std::uint32_t local_id)
-        : zone_id_(zone_id), local_id_(local_id) {}
+        : zone_id_(zone_id), local_id_(local_id), valid_(true) {}
 
-    /** Legacy constructor for backward compatibility with JSON files */
-    constexpr explicit EntityId(std::uint64_t legacy_id) {
-        // Extract zone and local_id from legacy ID (e.g., 3045 → zone 30, local_id 45)
-        zone_id_ = static_cast<std::uint32_t>(legacy_id / 100);
-        local_id_ = static_cast<std::uint32_t>(legacy_id % 100);
-    }
+    /** Legacy constructor for backward compatibility with JSON files - always valid */
+    constexpr explicit EntityId(std::uint64_t legacy_id)
+        : zone_id_(static_cast<std::uint32_t>(legacy_id / 100)),
+          local_id_(static_cast<std::uint32_t>(legacy_id % 100)),
+          valid_(true) {}
 
     /** Get zone ID component (for database composite keys) */
     constexpr std::uint32_t zone_id() const { return zone_id_; }
@@ -51,16 +51,33 @@ public:
         return static_cast<std::uint64_t>(zone_id_) * 100 + local_id_;
     }
 
-    /** Check if ID is valid (non-zero) */
-    constexpr bool is_valid() const { return zone_id_ != 0 || local_id_ != 0; }
+    /** Check if ID is valid */
+    constexpr bool is_valid() const { return valid_; }
 
     /** Comparison operators for std::unordered_map compatibility */
-    constexpr bool operator==(const EntityId& other) const = default;
-    constexpr auto operator<=>(const EntityId& other) const = default;
+    constexpr bool operator==(const EntityId& other) const {
+        // Two invalid IDs are considered equal
+        if (!valid_ && !other.valid_) return true;
+        // An invalid ID is never equal to a valid ID
+        if (valid_ != other.valid_) return false;
+        // Both valid - compare components
+        return zone_id_ == other.zone_id_ && local_id_ == other.local_id_;
+    }
+
+    constexpr auto operator<=>(const EntityId& other) const {
+        // Invalid IDs compare less than valid IDs
+        if (!valid_ && other.valid_) return std::strong_ordering::less;
+        if (valid_ && !other.valid_) return std::strong_ordering::greater;
+        if (!valid_ && !other.valid_) return std::strong_ordering::equal;
+        // Both valid - compare by zone first, then local_id
+        if (auto cmp = zone_id_ <=> other.zone_id_; cmp != 0) return cmp;
+        return local_id_ <=> other.local_id_;
+    }
 
     /** Hash support for unordered containers */
     struct Hash {
         std::size_t operator()(const EntityId& id) const noexcept {
+            if (!id.valid_) return 0;
             // Combine hash of both components for better distribution
             std::size_t h1 = std::hash<std::uint32_t>{}(id.zone_id_);
             std::size_t h2 = std::hash<std::uint32_t>{}(id.local_id_);
@@ -71,6 +88,7 @@ public:
 private:
     std::uint32_t zone_id_;
     std::uint32_t local_id_;
+    bool valid_;
 };
 
 /** Invalid entity ID constant */
@@ -198,6 +216,12 @@ struct fmt::formatter<EntityId> {
 
     template<typename FormatContext>
     auto format(const EntityId& id, FormatContext& ctx) const {
-        return fmt::format_to(ctx.out(), "{}", id.value());
+        // Format as composite key (zone:local) for clarity
+        return fmt::format_to(ctx.out(), "{}:{}", id.zone_id(), id.local_id());
     }
 };
+
+/** Stream output support for EntityId */
+inline std::ostream& operator<<(std::ostream& os, const EntityId& id) {
+    return os << id.zone_id() << ':' << id.local_id();
+}
