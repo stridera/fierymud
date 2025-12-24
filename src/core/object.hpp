@@ -136,6 +136,59 @@ struct LiquidInfo {
     bool poisoned = false;      // Whether the liquid is poisoned
 };
 
+/** Effect flags - magical effects granted by objects when equipped */
+enum class EffectFlag {
+    Blind = 0,
+    Invisible = 1,
+    DetectAlign = 2,
+    DetectInvis = 3,
+    DetectMagic = 4,
+    SenseLife = 5,
+    Waterwalk = 6,
+    Sanctuary = 7,
+    Confusion = 8,
+    Curse = 9,
+    Infravision = 10,
+    Poison = 11,
+    ProtectEvil = 12,
+    ProtectGood = 13,
+    Sleep = 14,
+    NoTrack = 15,
+    Tamed = 16,
+    Berserk = 17,
+    Sneak = 18,
+    Stealth = 19,
+    Fly = 20,
+    Charm = 21,
+    StoneSkin = 22,
+    Farsee = 23,
+    Haste = 24,
+    Blur = 25,
+    Vitality = 26,
+    Glory = 27,
+    MajorParalysis = 28,
+    Familiarity = 29,
+    Mesmerized = 30,
+    Immobilized = 31,
+    Light = 32,
+    MinorParalysis = 33,
+    HurtThroat = 34,
+    FeatherFall = 35,
+    Waterbreath = 36,
+    Soulshield = 37,
+    Silence = 38,
+    ProtectFire = 39,
+    ProtectCold = 40,
+    ProtectAir = 41,
+    ProtectEarth = 42,
+    Fireshield = 43,
+    Coldshield = 44,
+    MinorGlobe = 45,
+    MajorGlobe = 46,
+    Harness = 47,
+    OnFire = 48
+};
+
 /** Object flags for special properties */
 enum class ObjectFlag {
     // Core flags
@@ -273,12 +326,24 @@ public:
     
     /** Check if object has a specific flag */
     bool has_flag(ObjectFlag flag) const;
-    
+
     /** Set object flag */
     void set_flag(ObjectFlag flag, bool value = true);
-    
+
     /** Remove object flag */
     void remove_flag(ObjectFlag flag) { set_flag(flag, false); }
+
+    /** Check if object grants a specific effect when equipped */
+    bool has_effect(EffectFlag effect) const;
+
+    /** Set effect flag (effect granted when equipped) */
+    void set_effect(EffectFlag effect, bool value = true);
+
+    /** Remove effect flag */
+    void remove_effect(EffectFlag effect) { set_effect(effect, false); }
+
+    /** Get all effect flags */
+    const std::unordered_set<EffectFlag>& effect_flags() const { return effect_flags_; }
     
     /** Get damage profile (for weapons) */
     const DamageProfile& damage_profile() const { return damage_profile_; }
@@ -385,6 +450,7 @@ private:
     int max_charges_ = 0;                        // Maximum charges
 
     std::unordered_set<ObjectFlag> flags_;
+    std::unordered_set<EffectFlag> effect_flags_;  // Effects granted when equipped
     DamageProfile damage_profile_;
     ContainerInfo container_info_;
     LightInfo light_info_;

@@ -528,6 +528,18 @@ void Object::set_flag(ObjectFlag flag, bool value) {
     }
 }
 
+bool Object::has_effect(EffectFlag effect) const {
+    return effect_flags_.contains(effect);
+}
+
+void Object::set_effect(EffectFlag effect, bool value) {
+    if (value) {
+        effect_flags_.insert(effect);
+    } else {
+        effect_flags_.erase(effect);
+    }
+}
+
 nlohmann::json Object::to_json() const {
     nlohmann::json json = Entity::to_json();
     

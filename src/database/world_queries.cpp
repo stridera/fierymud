@@ -1,4 +1,6 @@
 #include "database/world_queries.hpp"
+#include "database/generated/db_tables.hpp"
+#include "database/generated/db_enums.hpp"
 #include "core/logging.hpp"
 #include "core/object.hpp"
 #include "text/string_utils.hpp"
@@ -824,27 +826,35 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
     logger->debug("Loading objects for zone {} from database", zone_id);
 
     try {
-        // Query all objects in this zone
-        auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, keywords, type, room_description, examine_description,
-                   weight, cost, level, timer, values, flags, "wearFlags"
-            FROM "Objects"
-            WHERE zone_id = $1
-            ORDER BY id
-        )", zone_id);
+        // Query all objects in this zone using generated column constants
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {}, {}, "{}"
+                FROM "{}"
+                WHERE {} = $1
+                ORDER BY {}
+            )",
+            db::Objects::ZONE_ID, db::Objects::ID, db::Objects::NAME,
+            db::Objects::KEYWORDS, db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION,
+            db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
+            db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
+            db::Objects::FLAGS, db::Objects::EFFECT_FLAGS, db::Objects::WEAR_FLAGS,
+            db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
+        ), zone_id);
 
         std::vector<std::unique_ptr<Object>> objects;
         objects.reserve(result.size());
 
         for (const auto& row : result) {
-            int obj_zone_id = row["zone_id"].as<int>();
-            int obj_id = row["id"].as<int>();
+            int obj_zone_id = row[db::Objects::ZONE_ID.data()].as<int>();
+            int obj_id = row[db::Objects::ID.data()].as<int>();
             EntityId obj_entity_id(obj_zone_id, obj_id);
 
-            std::string obj_name = row["name"].as<std::string>();
+            std::string obj_name = row[db::Objects::NAME.data()].as<std::string>();
 
             // Parse object type from string enum
-            std::string type_str = row["type"].as<std::string>();
+            std::string type_str = row[db::Objects::TYPE.data()].as<std::string>();
             ObjectType obj_type = ObjectType::Other;  // Default to Other instead of Undefined
 
             // Map database ObjectType enum to C++ enum
@@ -892,29 +902,28 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             auto obj = std::move(*obj_result);
 
             // Set weight
-            if (!row["weight"].is_null()) {
-                obj->set_weight(static_cast<int>(row["weight"].as<double>()));
+            if (!row[db::Objects::WEIGHT.data()].is_null()) {
+                obj->set_weight(static_cast<int>(row[db::Objects::WEIGHT.data()].as<double>()));
             }
 
             // Set cost/value
-            if (!row["cost"].is_null()) {
-                obj->set_value(row["cost"].as<int>());
+            if (!row[db::Objects::COST.data()].is_null()) {
+                obj->set_value(row[db::Objects::COST.data()].as<int>());
             }
 
             // Set level
-            if (!row["level"].is_null()) {
-                obj->set_level(row["level"].as<int>());
+            if (!row[db::Objects::LEVEL.data()].is_null()) {
+                obj->set_level(row[db::Objects::LEVEL.data()].as<int>());
             }
 
             // Set timer
-            if (!row["timer"].is_null()) {
-                obj->set_timer(row["timer"].as<int>());
+            if (!row[db::Objects::TIMER.data()].is_null()) {
+                obj->set_timer(row[db::Objects::TIMER.data()].as<int>());
             }
 
-            // Set equip slot from wearFlags
-            // Use column index (13) instead of name to work around pqxx case-sensitivity issue
-            if (!row[13].is_null()) {
-                std::string wear_flags_str = row[13].as<std::string>();
+            // Set equip slot from wearFlags (using generated constant, not hardcoded index)
+            if (!row[db::Objects::WEAR_FLAGS.data()].is_null()) {
+                std::string wear_flags_str = row[db::Objects::WEAR_FLAGS.data()].as<std::string>();
                 auto wear_flags = parse_pg_array(wear_flags_str);
                 for (const auto& flag : wear_flags) {
                     // Skip TAKE flag - it just means the object can be picked up
@@ -930,9 +939,9 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             }
 
             // Parse values JSON for object-specific data
-            if (!row["values"].is_null()) {
+            if (!row[db::Objects::VALUES.data()].is_null()) {
                 try {
-                    std::string values_str = row["values"].as<std::string>();
+                    std::string values_str = row[db::Objects::VALUES.data()].as<std::string>();
                     auto values_json = nlohmann::json::parse(values_str);
 
                     // Parse liquid info for drink containers
@@ -958,6 +967,22 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 }
             }
 
+            // Parse effect flags (effects granted when equipped)
+            if (!row[db::Objects::EFFECT_FLAGS.data()].is_null()) {
+                std::string effect_flags_str = row[db::Objects::EFFECT_FLAGS.data()].as<std::string>();
+                auto effect_flags = parse_pg_array(effect_flags_str);
+                for (const auto& flag_name : effect_flags) {
+                    auto pascal_name = screaming_to_pascal(flag_name);
+                    auto flag = magic_enum::enum_cast<EffectFlag>(pascal_name);
+                    if (flag) {
+                        obj->set_effect(flag.value());
+                    } else {
+                        logger->warn("Object ({}, {}): unknown effect flag '{}'",
+                                    obj_zone_id, obj_id, flag_name);
+                    }
+                }
+            }
+
             objects.push_back(std::move(obj));
         }
 
@@ -978,12 +1003,20 @@ Result<std::unique_ptr<Object>> load_object(
     logger->debug("Loading object ({}, {})", zone_id, object_local_id);
 
     try {
-        auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, keywords, type, room_description, examine_description,
-                   weight, cost, level, timer, values, flags, "wearFlags"
-            FROM "Objects"
-            WHERE zone_id = $1 AND id = $2
-        )", zone_id, object_local_id);
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {}, {}, "{}"
+                FROM "{}"
+                WHERE {} = $1 AND {} = $2
+            )",
+            db::Objects::ZONE_ID, db::Objects::ID, db::Objects::NAME,
+            db::Objects::KEYWORDS, db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION,
+            db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
+            db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
+            db::Objects::FLAGS, db::Objects::EFFECT_FLAGS, db::Objects::WEAR_FLAGS,
+            db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
+        ), zone_id, object_local_id);
 
         if (result.empty()) {
             return std::unexpected(Error{ErrorCode::NotFound,
@@ -992,12 +1025,12 @@ Result<std::unique_ptr<Object>> load_object(
 
         const auto& row = result[0];
         EntityId obj_entity_id(zone_id, object_local_id);
-        std::string obj_name = row["name"].as<std::string>();
+        std::string obj_name = row[db::Objects::NAME.data()].as<std::string>();
 
         // Parse object type from database
         ObjectType obj_type = ObjectType::Other;  // Default to Other
-        if (!row["type"].is_null()) {
-            std::string type_str = row["type"].as<std::string>();
+        if (!row[db::Objects::TYPE.data()].is_null()) {
+            std::string type_str = row[db::Objects::TYPE.data()].as<std::string>();
             // Map database ObjectType enum to C++ enum
             if (type_str == "NOTHING") obj_type = ObjectType::Other;
             else if (type_str == "LIGHT") obj_type = ObjectType::Light;
@@ -1040,31 +1073,31 @@ Result<std::unique_ptr<Object>> load_object(
         auto obj = std::move(*obj_result);
 
         // Set descriptions
-        if (!row["room_description"].is_null()) {
-            obj->set_description(row["room_description"].as<std::string>());
+        if (!row[db::Objects::ROOM_DESCRIPTION.data()].is_null()) {
+            obj->set_description(row[db::Objects::ROOM_DESCRIPTION.data()].as<std::string>());
         }
         // examine_description stored in short_desc for detailed look
-        if (!row["examine_description"].is_null()) {
-            obj->set_short_description(row["examine_description"].as<std::string>());
+        if (!row[db::Objects::EXAMINE_DESCRIPTION.data()].is_null()) {
+            obj->set_short_description(row[db::Objects::EXAMINE_DESCRIPTION.data()].as<std::string>());
         }
 
         // Set basic properties
-        if (!row["weight"].is_null()) {
-            obj->set_weight(row["weight"].as<int>());
+        if (!row[db::Objects::WEIGHT.data()].is_null()) {
+            obj->set_weight(row[db::Objects::WEIGHT.data()].as<int>());
         }
-        if (!row["cost"].is_null()) {
-            obj->set_value(row["cost"].as<int>());
+        if (!row[db::Objects::COST.data()].is_null()) {
+            obj->set_value(row[db::Objects::COST.data()].as<int>());
         }
-        if (!row["level"].is_null()) {
-            obj->set_level(row["level"].as<int>());
+        if (!row[db::Objects::LEVEL.data()].is_null()) {
+            obj->set_level(row[db::Objects::LEVEL.data()].as<int>());
         }
-        if (!row["timer"].is_null()) {
-            obj->set_timer(row["timer"].as<int>());
+        if (!row[db::Objects::TIMER.data()].is_null()) {
+            obj->set_timer(row[db::Objects::TIMER.data()].as<int>());
         }
 
         // Set keywords (parse PostgreSQL array format)
-        if (!row["keywords"].is_null()) {
-            std::string keywords_str = row["keywords"].as<std::string>();
+        if (!row[db::Objects::KEYWORDS.data()].is_null()) {
+            std::string keywords_str = row[db::Objects::KEYWORDS.data()].as<std::string>();
             auto keywords = parse_pg_array(keywords_str);
             if (!keywords.empty()) {
                 obj->set_keywords(std::span<const std::string>(keywords));
@@ -1073,14 +1106,14 @@ Result<std::unique_ptr<Object>> load_object(
 
         // Parse object values JSON - can be JSON object or array
         // Note: Modern Object class uses a single value, not legacy values[0-3]
-        if (!row["values"].is_null()) {
+        if (!row[db::Objects::VALUES.data()].is_null()) {
             try {
-                std::string values_str = row["values"].as<std::string>();
+                std::string values_str = row[db::Objects::VALUES.data()].as<std::string>();
                 auto values_json = nlohmann::json::parse(values_str);
                 if (values_json.is_array() && !values_json.empty() && values_json[0].is_number()) {
                     // First value often represents primary object-specific data
                     // For now, we store it in object value if cost wasn't set
-                    if (row["cost"].is_null()) {
+                    if (row[db::Objects::COST.data()].is_null()) {
                         obj->set_value(values_json[0].get<int>());
                     }
                 } else if (values_json.is_object()) {
@@ -1110,8 +1143,8 @@ Result<std::unique_ptr<Object>> load_object(
 
         // Parse object flags (PostgreSQL array format)
         // Database uses SCREAMING_SNAKE_CASE, C++ enum uses PascalCase
-        if (!row["flags"].is_null()) {
-            std::string flags_str = row["flags"].as<std::string>();
+        if (!row[db::Objects::FLAGS.data()].is_null()) {
+            std::string flags_str = row[db::Objects::FLAGS.data()].as<std::string>();
             auto flag_names = parse_pg_array(flags_str);
             for (const auto& flag_name : flag_names) {
                 auto pascal_name = screaming_to_pascal(flag_name);
@@ -1124,10 +1157,25 @@ Result<std::unique_ptr<Object>> load_object(
             }
         }
 
-        // Set equip slot from wearFlags
-        // Use column index (13) instead of name to work around pqxx case-sensitivity issue
-        if (!row[13].is_null()) {
-            std::string wear_flags_str = row[13].as<std::string>();
+        // Parse effect flags (effects granted when equipped)
+        if (!row[db::Objects::EFFECT_FLAGS.data()].is_null()) {
+            std::string effect_flags_str = row[db::Objects::EFFECT_FLAGS.data()].as<std::string>();
+            auto effect_flags = parse_pg_array(effect_flags_str);
+            for (const auto& flag_name : effect_flags) {
+                auto pascal_name = screaming_to_pascal(flag_name);
+                auto flag = magic_enum::enum_cast<EffectFlag>(pascal_name);
+                if (flag) {
+                    obj->set_effect(flag.value());
+                } else {
+                    logger->warn("Object ({}, {}): unknown effect flag '{}'",
+                                zone_id, object_local_id, flag_name);
+                }
+            }
+        }
+
+        // Set equip slot from wearFlags (using generated constant)
+        if (!row[db::Objects::WEAR_FLAGS.data()].is_null()) {
+            std::string wear_flags_str = row[db::Objects::WEAR_FLAGS.data()].as<std::string>();
             auto wear_flags = parse_pg_array(wear_flags_str);
             for (const auto& flag : wear_flags) {
                 // Skip TAKE flag - it just means the object can be picked up
