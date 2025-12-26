@@ -16,8 +16,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
             SELECT id, name, level, alignment,
                    strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
                    hit_points, hit_points_max, movement, movement_max,
-                   copper, silver, gold, platinum,
-                   bank_copper, bank_silver, bank_gold, bank_platinum,
+                   wealth, bank_wealth,
                    password_hash, race, gender, player_class,
                    height, weight, base_height, base_weight, base_size, current_size,
                    hit_roll, damage_roll, armor_class,
@@ -98,13 +97,8 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         stats.attack_power = row["damage_roll"].as<int>(0);
         stats.armor_rating = std::max(0, 100 - row["armor_class"].as<int>(100));
 
-        // Currency - stored in stats.gold as copper coins
-        // Convert from separate currency columns to total copper
-        int total_copper = row["copper"].as<int>(0) +
-                          row["silver"].as<int>(0) * 10 +
-                          row["gold"].as<int>(0) * 100 +
-                          row["platinum"].as<int>(0) * 1000;
-        stats.gold = total_copper;
+        // Currency - wealth is already stored in copper
+        stats.gold = row["wealth"].as<long>(0);
 
         // Description and title
         if (!row["description"].is_null()) {
@@ -137,8 +131,7 @@ Result<std::unique_ptr<Player>> load_player_by_id(pqxx::work& txn, std::string_v
             SELECT id, name, level, alignment,
                    strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
                    hit_points, hit_points_max, movement, movement_max,
-                   copper, silver, gold, platinum,
-                   bank_copper, bank_silver, bank_gold, bank_platinum,
+                   wealth, bank_wealth,
                    password_hash, race, gender, player_class
             FROM "Characters"
             WHERE id = $1

@@ -517,7 +517,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                 SELECT {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       {}, {}, {}, {},
+                       {},
                        {}, {}, {},
                        "{}" AS life_force, {}, "{}" AS damage_type,
                        "{}" AS mob_flags, {},
@@ -539,8 +539,8 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             // Row 3: Attributes
             db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
             db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
-            // Row 4: Currency
-            db::Mobs::COPPER, db::Mobs::SILVER, db::Mobs::GOLD, db::Mobs::PLATINUM,
+            // Row 4: Currency (single wealth column in copper)
+            db::Mobs::WEALTH,
             // Row 5: Race/physical
             db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
             // Row 5b: camelCase columns with aliases
@@ -619,13 +619,9 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
             if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
-            // Currency - convert to total copper value for stats.gold
-            {
-                int copper = row[db::Mobs::COPPER.data()].as<int>(0);
-                int silver = row[db::Mobs::SILVER.data()].as<int>(0);
-                int gold = row[db::Mobs::GOLD.data()].as<int>(0);
-                int platinum = row[db::Mobs::PLATINUM.data()].as<int>(0);
-                mob_stats.gold = copper + (silver * 10L) + (gold * 100L) + (platinum * 1000L);
+            // Currency - wealth is already stored in copper
+            if (!row[db::Mobs::WEALTH.data()].is_null()) {
+                mob_stats.gold = row[db::Mobs::WEALTH.data()].as<long>(0);
             }
 
             // Elemental resistances (from JSONB column)
@@ -697,12 +693,24 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
 
             // Process mob flags (PostgreSQL array of enums)
             // Use generated db::mob_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
+            // Note: SQL uses alias "mob_flags" for the camelCase column "mobFlags"
             if (!row["mob_flags"].is_null()) {
                 std::string flags_str = row["mob_flags"].as<std::string>();
                 auto flags = parse_pg_array(flags_str);
                 for (const auto& flag_name : flags) {
                     if (auto flag = db::mob_flag_from_db(flag_name)) {
-                        mob->set_flag(to_game(*flag));
+                        auto game_flag = to_game(*flag);
+                        mob->set_flag(game_flag);
+                        // Special role flags set dedicated member variables
+                        if (game_flag == MobFlag::Banker) {
+                            mob->set_banker(true);
+                        }
+                        if (game_flag == MobFlag::Receptionist) {
+                            mob->set_receptionist(true);
+                        }
+                        if (game_flag == MobFlag::Postmaster) {
+                            mob->set_postmaster(true);
+                        }
                     } else {
                         logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_id, flag_name);
                     }
@@ -755,7 +763,7 @@ Result<std::unique_ptr<Mobile>> load_mob(
                 SELECT {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       {}, {}, {}, {},
+                       {},
                        {}, {}, {},
                        "{}" AS life_force, {}, "{}" AS damage_type,
                        "{}" AS mob_flags, {},
@@ -776,8 +784,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
             // Row 3: Attributes
             db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
             db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
-            // Row 4: Currency
-            db::Mobs::COPPER, db::Mobs::SILVER, db::Mobs::GOLD, db::Mobs::PLATINUM,
+            // Row 4: Currency (single wealth column in copper)
+            db::Mobs::WEALTH,
             // Row 5: Race/physical
             db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
             // Row 5b: camelCase columns with aliases
@@ -852,13 +860,9 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
         if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
-        // Currency - convert to total copper value for stats.gold
-        {
-            int copper = row[db::Mobs::COPPER.data()].as<int>(0);
-            int silver = row[db::Mobs::SILVER.data()].as<int>(0);
-            int gold = row[db::Mobs::GOLD.data()].as<int>(0);
-            int platinum = row[db::Mobs::PLATINUM.data()].as<int>(0);
-            mob_stats.gold = copper + (silver * 10L) + (gold * 100L) + (platinum * 1000L);
+        // Currency - wealth is already stored in copper
+        if (!row[db::Mobs::WEALTH.data()].is_null()) {
+            mob_stats.gold = row[db::Mobs::WEALTH.data()].as<long>(0);
         }
 
         // Elemental resistances (from JSONB column)
@@ -935,7 +939,18 @@ Result<std::unique_ptr<Mobile>> load_mob(
             auto flags = parse_pg_array(flags_str);
             for (const auto& flag_name : flags) {
                 if (auto flag = db::mob_flag_from_db(flag_name)) {
-                    mob->set_flag(to_game(*flag));
+                    auto game_flag = to_game(*flag);
+                    mob->set_flag(game_flag);
+                    // Special role flags set dedicated member variables
+                    if (game_flag == MobFlag::Banker) {
+                        mob->set_banker(true);
+                    }
+                    if (game_flag == MobFlag::Receptionist) {
+                        mob->set_receptionist(true);
+                    }
+                    if (game_flag == MobFlag::Postmaster) {
+                        mob->set_postmaster(true);
+                    }
                 } else {
                     logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_local_id, flag_name);
                 }
@@ -2720,8 +2735,7 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
                 id, name, level, alignment,
                 strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
                 hit_points, hit_points_max, movement, movement_max,
-                copper, silver, gold, platinum,
-                bank_copper, bank_silver, bank_gold, bank_platinum,
+                wealth, bank_wealth,
                 password_hash, race_type, gender, player_class, class_id,
                 current_room_zone_id, current_room_id,
                 save_room_zone_id, save_room_id,
@@ -2766,15 +2780,9 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         character.movement = row["movement"].as<int>(100);
         character.movement_max = row["movement_max"].as<int>(100);
 
-        // Currency
-        character.copper = row["copper"].as<int>(0);
-        character.silver = row["silver"].as<int>(0);
-        character.gold = row["gold"].as<int>(0);
-        character.platinum = row["platinum"].as<int>(0);
-        character.bank_copper = row["bank_copper"].as<int>(0);
-        character.bank_silver = row["bank_silver"].as<int>(0);
-        character.bank_gold = row["bank_gold"].as<int>(0);
-        character.bank_platinum = row["bank_platinum"].as<int>(0);
+        // Currency (stored as copper)
+        character.wealth = row["wealth"].as<long>(0);
+        character.bank_wealth = row["bank_wealth"].as<long>(0);
 
         // Character info
         character.password_hash = row["password_hash"].as<std::string>("");
@@ -2868,8 +2876,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
                 id, name, level, alignment,
                 strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
                 hit_points, hit_points_max, movement, movement_max,
-                copper, silver, gold, platinum,
-                bank_copper, bank_silver, bank_gold, bank_platinum,
+                wealth, bank_wealth,
                 password_hash, race_type, gender, player_class, class_id,
                 current_room_zone_id, current_room_id,
                 save_room_zone_id, save_room_id,
@@ -2910,14 +2917,8 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         character.hit_points_max = row["hit_points_max"].as<int>(100);
         character.movement = row["movement"].as<int>(100);
         character.movement_max = row["movement_max"].as<int>(100);
-        character.copper = row["copper"].as<int>(0);
-        character.silver = row["silver"].as<int>(0);
-        character.gold = row["gold"].as<int>(0);
-        character.platinum = row["platinum"].as<int>(0);
-        character.bank_copper = row["bank_copper"].as<int>(0);
-        character.bank_silver = row["bank_silver"].as<int>(0);
-        character.bank_gold = row["bank_gold"].as<int>(0);
-        character.bank_platinum = row["bank_platinum"].as<int>(0);
+        character.wealth = row["wealth"].as<long>(0);
+        character.bank_wealth = row["bank_wealth"].as<long>(0);
         character.password_hash = row["password_hash"].as<std::string>("");
         character.race_type = row["race_type"].as<std::string>("human");
         character.gender = row["gender"].as<std::string>("neutral");
@@ -3100,16 +3101,15 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 strength = $4, intelligence = $5, wisdom = $6, dexterity = $7,
                 constitution = $8, charisma = $9, luck = $10,
                 hit_points = $11, hit_points_max = $12, movement = $13, movement_max = $14,
-                copper = $15, silver = $16, gold = $17, platinum = $18,
-                bank_copper = $19, bank_silver = $20, bank_gold = $21, bank_platinum = $22,
-                current_room_zone_id = $23, current_room_id = $24,
-                save_room_zone_id = $25, save_room_id = $26,
-                hit_roll = $27, damage_roll = $28, armor_class = $29,
-                time_played = $30, hunger = $31, thirst = $32,
-                experience = $33, skill_points = $34,
-                title = $35, description = $36,
-                prompt = $37, page_length = $38, wimpy_threshold = $39,
-                player_flags = $40::text[],
+                wealth = $15, bank_wealth = $16,
+                current_room_zone_id = $17, current_room_id = $18,
+                save_room_zone_id = $19, save_room_id = $20,
+                hit_roll = $21, damage_roll = $22, armor_class = $23,
+                time_played = $24, hunger = $25, thirst = $26,
+                experience = $27, skill_points = $28,
+                title = $29, description = $30,
+                prompt = $31, page_length = $32, wimpy_threshold = $33,
+                player_flags = $34::text[],
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -3118,8 +3118,7 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
             character.strength, character.intelligence, character.wisdom, character.dexterity,
             character.constitution, character.charisma, character.luck,
             character.hit_points, character.hit_points_max, character.movement, character.movement_max,
-            character.copper, character.silver, character.gold, character.platinum,
-            character.bank_copper, character.bank_silver, character.bank_gold, character.bank_platinum,
+            character.wealth, character.bank_wealth,
             character.current_room_zone_id.value_or(0), character.current_room_id.value_or(0),
             character.save_room_zone_id.value_or(0), character.save_room_id.value_or(0),
             character.hit_roll, character.damage_roll, character.armor_class,

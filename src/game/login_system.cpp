@@ -2,6 +2,7 @@
 
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
+#include "../core/money.hpp"
 #include "../core/object.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
@@ -493,6 +494,11 @@ void LoginSystem::handle_get_account(std::string_view input) {
                     if (load_result && *load_result) {
                         player_ = *load_result;
 
+                        // Link player to their account
+                        if (!user_id_.empty()) {
+                            player_->set_account(user_id_);
+                        }
+
                         // Check for existing connection and handle reconnection
                         if (auto *network_manager = connection_->get_network_manager()) {
                             std::string player_name = std::string(player_->name());
@@ -737,6 +743,11 @@ void LoginSystem::handle_select_character(std::string_view input) {
     }
 
     player_ = *result;
+
+    // Link player to their account
+    if (!user_id_.empty()) {
+        player_->set_account(user_id_);
+    }
 
     // Load character abilities from database
     load_player_abilities(player_);
@@ -1045,6 +1056,11 @@ void LoginSystem::handle_confirm_creation(std::string_view input) {
         }
 
         player_ = create_result.value();
+
+        // Link player to their account
+        if (!user_id_.empty()) {
+            player_->set_account(user_id_);
+        }
 
         auto save_result = save_character(player_);
         if (!save_result) {
@@ -1511,15 +1527,9 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             player->set_wimpy_threshold(char_data.wimpy_threshold);
             player->set_player_flags_from_strings(char_data.player_flags);
 
-            // Load currency
-            player->set_copper(char_data.copper);
-            player->set_silver(char_data.silver);
-            player->set_gold(char_data.gold);
-            player->set_platinum(char_data.platinum);
-            player->set_bank_copper(char_data.bank_copper);
-            player->set_bank_silver(char_data.bank_silver);
-            player->set_bank_gold(char_data.bank_gold);
-            player->set_bank_platinum(char_data.bank_platinum);
+            // Load currency (stored as copper)
+            player->set_wallet(fiery::Money(char_data.wealth));
+            player->set_bank(fiery::Money(char_data.bank_wealth));
 
             // Set start room from saved location if available
             // Priority: save_room (rent location) > current_room > world default
@@ -1751,11 +1761,8 @@ Result<void> LoginSystem::save_character(std::shared_ptr<Player> player) {
     // Alignment
     char_data.alignment = stats.alignment;
 
-    // Currency (from stats.gold, convert to copper)
-    char_data.copper = static_cast<int>(stats.gold % 100);
-    char_data.silver = static_cast<int>((stats.gold / 100) % 100);
-    char_data.gold = static_cast<int>((stats.gold / 10000) % 100);
-    char_data.platinum = static_cast<int>(stats.gold / 1000000);
+    // Currency (stats.gold is stored in copper)
+    char_data.wealth = stats.gold;
 
     // Save to database
     auto result = ConnectionPool::instance().execute(

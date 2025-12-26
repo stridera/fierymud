@@ -2141,9 +2141,20 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
                                       prototype->bare_hand_damage_dice_size(),
                                       prototype->bare_hand_damage_dice_bonus());
 
-    // Copy special role flags
+    // Copy mob flags from prototype (the bitset with all MobFlag values)
+    for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
+        auto flag = static_cast<MobFlag>(i);
+        if (prototype->has_flag(flag)) {
+            new_mobile->set_flag(flag, true);
+        }
+    }
+
+    // Copy special role flags (legacy boolean members synced with mob flags)
     new_mobile->set_teacher(prototype->is_teacher());
     new_mobile->set_shopkeeper(prototype->is_shopkeeper());
+    new_mobile->set_banker(prototype->is_banker());
+    new_mobile->set_receptionist(prototype->is_receptionist());
+    new_mobile->set_postmaster(prototype->is_postmaster());
     new_mobile->set_class_id(prototype->class_id());
     new_mobile->set_prototype_id(prototype->id());  // Track prototype for shop lookups
 
@@ -2265,9 +2276,20 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
                                       prototype->bare_hand_damage_dice_size(),
                                       prototype->bare_hand_damage_dice_bonus());
 
-    // Copy special role flags
+    // Copy mob flags from prototype (the bitset with all MobFlag values)
+    for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
+        auto flag = static_cast<MobFlag>(i);
+        if (prototype->has_flag(flag)) {
+            new_mobile->set_flag(flag, true);
+        }
+    }
+
+    // Copy special role flags (legacy boolean members synced with mob flags)
     new_mobile->set_teacher(prototype->is_teacher());
     new_mobile->set_shopkeeper(prototype->is_shopkeeper());
+    new_mobile->set_banker(prototype->is_banker());
+    new_mobile->set_receptionist(prototype->is_receptionist());
+    new_mobile->set_postmaster(prototype->is_postmaster());
     new_mobile->set_class_id(prototype->class_id());
     new_mobile->set_prototype_id(prototype->id());  // Track prototype for shop lookups
 
@@ -2578,9 +2600,20 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
                                       prototype->bare_hand_damage_dice_size(),
                                       prototype->bare_hand_damage_dice_bonus());
 
-    // Copy special role flags
+    // Copy mob flags from prototype (the bitset with all MobFlag values)
+    for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
+        auto flag = static_cast<MobFlag>(i);
+        if (prototype->has_flag(flag)) {
+            new_mobile->set_flag(flag, true);
+        }
+    }
+
+    // Copy special role flags (legacy boolean members synced with mob flags)
     new_mobile->set_teacher(prototype->is_teacher());
     new_mobile->set_shopkeeper(prototype->is_shopkeeper());
+    new_mobile->set_banker(prototype->is_banker());
+    new_mobile->set_receptionist(prototype->is_receptionist());
+    new_mobile->set_postmaster(prototype->is_postmaster());
     new_mobile->set_class_id(prototype->class_id());
     new_mobile->set_prototype_id(prototype->id());  // Track prototype for shop lookups
 

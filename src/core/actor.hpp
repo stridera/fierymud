@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity.hpp"
+#include "money.hpp"
 #include "object.hpp"
 #include "active_effect.hpp"
 #include "../core/result.hpp"
@@ -571,54 +572,95 @@ private:
     std::optional<QueuedSpell> queued_spell_{};
 };
 
-/** Mobile (NPC) behavior flags */
+/** Mobile (NPC) behavior flags - must match Prisma schema MobFlag enum exactly */
 enum class MobFlag {
-    // Core behavior
+    // Core behavior (0-7)
     Spec = 0,           // Has special procedure
-    Sentinel,           // Stays in one room
-    Scavenger,          // Picks up items
-    IsNpc,              // Is an NPC (always set)
-    Aware,              // Can't be backstabbed
-    Aggressive,         // Attacks players on sight
-    StayZone,           // Won't leave zone
-    Wimpy,              // Flees when hurt
+    Sentinel = 1,       // Stays in one room
+    Scavenger = 2,      // Picks up items
+    IsNpc = 3,          // Is an NPC (always set)
+    Aware = 4,          // Can't be backstabbed
+    Aggressive = 5,     // Attacks players on sight
+    StayZone = 6,       // Won't leave zone
+    Wimpy = 7,          // Flees when hurt
 
-    // Aggression targeting
-    AggroEvil,          // Attacks evil characters
-    AggroGood,          // Attacks good characters
-    AggroNeutral,       // Attacks neutral characters
+    // Aggression targeting (8-10)
+    AggroEvil = 8,      // Attacks evil characters
+    AggroGood = 9,      // Attacks good characters
+    AggroNeutral = 10,  // Attacks neutral characters
 
-    // AI behavior
-    Memory,             // Remembers attackers
-    Helper,             // Helps other mobs in combat
-    NoCharm,            // Cannot be charmed
-    NoSummon,           // Cannot be summoned
-    NoSleep,            // Immune to sleep
-    NoBash,             // Cannot be bashed
-    NoBlind,            // Immune to blindness
-    SlowTrack,          // Tracks slowly
-    NoSilence,          // Immune to silence
+    // AI behavior (11-17)
+    Memory = 11,        // Remembers attackers
+    Helper = 12,        // Helps other mobs in combat
+    NoCharm = 13,       // Cannot be charmed
+    NoSummon = 14,      // Cannot be summoned
+    NoSleep = 15,       // Immune to sleep
+    NoBash = 16,        // Cannot be bashed
+    NoBlind = 17,       // Immune to blindness
 
-    // Special roles
-    Peaceful,           // Won't attack
-    Protector,          // Protects players
-    Peacekeeper,        // Stops fights
-    Teacher,            // Can train players
-    Mountable,          // Can be mounted
+    // Movement/environment (18-21)
+    Mount = 18,         // Can be used as a mount
+    StaySect = 19,      // Stays in sector type
+    HatesSun = 20,      // Avoids sunlight
+    NoKill = 21,        // Cannot be killed
 
-    // Restrictions
-    NoVicious,          // No vicious attacks
-    NoClassAi,          // No class-based AI
-    FastTrack,          // Tracks quickly
-    Aquatic,            // Water-dwelling
-    NoEqRestrict,       // No equipment restrictions
-    SummonedMount,      // Summoned mount
-    NoPoison            // Immune to poison
+    // Special abilities (22-24)
+    Track = 22,         // Can track players
+    Illusion = 23,      // Is an illusion
+    PoisonBite = 24,    // Has poisonous bite
+
+    // Class-based AI (25-40)
+    Thief = 25,         // Thief AI
+    Warrior = 26,       // Warrior AI
+    Sorcerer = 27,      // Sorcerer AI
+    Cleric = 28,        // Cleric AI
+    Paladin = 29,       // Paladin AI
+    AntiPaladin = 30,   // Anti-paladin AI
+    Ranger = 31,        // Ranger AI
+    Druid = 32,         // Druid AI
+    Shaman = 33,        // Shaman AI
+    Assassin = 34,      // Assassin AI
+    Mercenary = 35,     // Mercenary AI
+    Necromancer = 36,   // Necromancer AI
+    Conjurer = 37,      // Conjurer AI
+    Monk = 38,          // Monk AI
+    Berserker = 39,     // Berserker AI
+    Diabolist = 40,     // Diabolist AI
+
+    // Tracking/combat modifiers (41-42)
+    SlowTrack = 41,     // Tracks slowly
+    NoSilence = 42,     // Immune to silence
+
+    // Special roles (43-49)
+    Peaceful = 43,      // Won't attack
+    Protector = 44,     // Protects players
+    Peacekeeper = 45,   // Stops fights
+    Haste = 46,         // Has haste effect
+    Blur = 47,          // Has blur effect
+    Teacher = 48,       // Can train players
+    Mountable = 49,     // Can be mounted by players
+
+    // Restrictions (50-56)
+    NoVicious = 50,     // No vicious attacks
+    NoClassAi = 51,     // No class-based AI
+    FastTrack = 52,     // Tracks quickly
+    Aquatic = 53,       // Water-dwelling
+    NoEqRestrict = 54,  // No equipment restrictions
+    SummonedMount = 55, // Summoned mount
+    NoPoison = 56,      // Immune to poison
+
+    // Special NPC roles (57+)
+    Banker = 57,        // Can manage bank/vault access
+    Receptionist = 58,  // Can manage inn/lodging check-in
+    Postmaster = 59     // Can send/receive mail
 };
 
 /** Mobile (NPC) class */
 class Mobile : public Actor {
 public:
+    /** Size of the mob_flags_ bitset - use this instead of magic numbers */
+    static constexpr size_t MOB_FLAG_CAPACITY = 64;
+
     /** Create mobile */
     static Result<std::unique_ptr<Mobile>> create(EntityId id, std::string_view name, int level = 1);
     
@@ -646,6 +688,18 @@ public:
     /** Shopkeeper properties */
     bool is_shopkeeper() const { return is_shopkeeper_; }
     void set_shopkeeper(bool value) { is_shopkeeper_ = value; }
+
+    /** Banker properties */
+    bool is_banker() const { return is_banker_; }
+    void set_banker(bool value) { is_banker_ = value; }
+
+    /** Receptionist properties (inn/lodging) */
+    bool is_receptionist() const { return is_receptionist_; }
+    void set_receptionist(bool value) { is_receptionist_ = value; }
+
+    /** Postmaster properties (mail) */
+    bool is_postmaster() const { return is_postmaster_; }
+    void set_postmaster(bool value) { is_postmaster_ = value; }
 
     /** Prototype ID (for spawned mobs, references the prototype they were created from) */
     EntityId prototype_id() const { return prototype_id_; }
@@ -732,14 +786,29 @@ public:
     void set_stance(db::Stance s) { stance_ = s; }
     void set_stance(std::string_view s);  // Parse from database string
 
+    /** Money carried by this mobile (for loot drops) */
+    fiery::Money& money() { return money_; }
+    const fiery::Money& money() const { return money_; }
+    void set_money(const fiery::Money& m) { money_ = m; }
+
+    /** Take all money from this mobile and return it */
+    fiery::Money take_all_money() {
+        fiery::Money taken = money_;
+        money_ = fiery::Money();
+        return taken;
+    }
+
 protected:
     Mobile(EntityId id, std::string_view name, int level = 1);
 
 private:
-    std::bitset<64> mob_flags_;     // MobFlag bitset
+    std::bitset<MOB_FLAG_CAPACITY> mob_flags_;     // MobFlag bitset
     bool aggressive_ = false;       // Legacy: synced with MobFlag::Aggressive
     int aggression_level_ = 5;      // 0-10 scale
     bool is_shopkeeper_ = false;
+    bool is_banker_ = false;
+    bool is_receptionist_ = false;
+    bool is_postmaster_ = false;
     bool is_teacher_ = false;       // Legacy: synced with MobFlag::Teacher
     EntityId prototype_id_;         // For spawned mobs, the prototype they came from
     std::vector<std::string> received_messages_;
@@ -766,6 +835,9 @@ private:
 
     // Effect flags (magical effects like Invisible, Fly, Sanctuary, etc)
     std::unordered_set<EffectFlag> effect_flags_;
+
+    // Money carried by this mobile
+    fiery::Money money_;
 
     void initialize_for_level(int level);
 };
@@ -958,114 +1030,69 @@ public:
     /** Set player flags from strings (from database load) */
     void set_player_flags_from_strings(const std::vector<std::string>& flags);
 
-    /** Currency - wallet (on person) */
-    int copper() const { return copper_; }
-    int silver() const { return silver_; }
-    int gold() const { return gold_; }
-    int platinum() const { return platinum_; }
-    void set_copper(int amount) { copper_ = std::max(0, amount); }
-    void set_silver(int amount) { silver_ = std::max(0, amount); }
-    void set_gold(int amount) { gold_ = std::max(0, amount); }
-    void set_platinum(int amount) { platinum_ = std::max(0, amount); }
+    // =========================================================================
+    // Currency (Money-based API)
+    // =========================================================================
 
-    /** Convert wallet to total copper value */
-    long total_copper_value() const {
-        return copper_ + (silver_ * 10L) + (gold_ * 100L) + (platinum_ * 1000L);
-    }
+    /** Get wallet (money on person) */
+    fiery::Money& wallet() { return wallet_; }
+    const fiery::Money& wallet() const { return wallet_; }
 
-    /** Currency - bank account */
-    int bank_copper() const { return bank_copper_; }
-    int bank_silver() const { return bank_silver_; }
-    int bank_gold() const { return bank_gold_; }
-    int bank_platinum() const { return bank_platinum_; }
-    void set_bank_copper(int amount) { bank_copper_ = std::max(0, amount); }
-    void set_bank_silver(int amount) { bank_silver_ = std::max(0, amount); }
-    void set_bank_gold(int amount) { bank_gold_ = std::max(0, amount); }
-    void set_bank_platinum(int amount) { bank_platinum_ = std::max(0, amount); }
+    /** Set wallet */
+    void set_wallet(const fiery::Money& money) { wallet_ = money; }
 
-    /** Convert bank to total copper value */
-    long bank_total_copper_value() const {
-        return bank_copper_ + (bank_silver_ * 10L) + (bank_gold_ * 100L) + (bank_platinum_ * 1000L);
-    }
+    /** Get bank account */
+    fiery::Money& bank() { return bank_; }
+    const fiery::Money& bank() const { return bank_; }
 
-    /** Currency manipulation helpers */
-    bool can_afford(int copper_cost) const { return total_copper_value() >= copper_cost; }
-    bool bank_can_afford(int copper_cost) const { return bank_total_copper_value() >= copper_cost; }
+    /** Set bank account */
+    void set_bank(const fiery::Money& money) { bank_ = money; }
 
-    /** Spend copper from wallet - deducts from lowest denominations first
+    /** Check if wallet can afford an amount */
+    bool can_afford(const fiery::Money& cost) const { return wallet_.can_afford(cost); }
+    bool can_afford(long copper_cost) const { return wallet_.can_afford(copper_cost); }
+
+    /** Check if bank can afford an amount */
+    bool bank_can_afford(const fiery::Money& cost) const { return bank_.can_afford(cost); }
+    bool bank_can_afford(long copper_cost) const { return bank_.can_afford(copper_cost); }
+
+    /** Spend from wallet (uses highest denominations first, makes change)
      *  Returns true if successful, false if insufficient funds */
-    bool spend_copper(int amount) {
-        if (!can_afford(amount)) return false;
+    bool spend(const fiery::Money& cost) { return wallet_.charge(cost); }
+    bool spend(long copper_cost) { return wallet_.charge(copper_cost); }
 
-        // Deduct from copper first
-        if (copper_ >= amount) {
-            copper_ -= amount;
-            return true;
-        }
-        amount -= copper_;
-        copper_ = 0;
+    /** Spend from bank
+     *  Returns true if successful, false if insufficient funds */
+    bool spend_from_bank(const fiery::Money& cost) { return bank_.charge(cost); }
+    bool spend_from_bank(long copper_cost) { return bank_.charge(copper_cost); }
 
-        // Convert silver to copper and deduct
-        int silver_needed = (amount + 9) / 10;  // Round up
-        if (silver_ >= silver_needed) {
-            int change = (silver_needed * 10) - amount;
-            silver_ -= silver_needed;
-            copper_ = change;
-            return true;
-        }
-        amount -= silver_ * 10;
-        silver_ = 0;
+    /** Receive money into wallet */
+    void receive(const fiery::Money& money) { wallet_ += money; }
+    void receive(long copper_amount) { wallet_.receive(copper_amount); }
 
-        // Convert gold to copper and deduct
-        int gold_needed = (amount + 99) / 100;  // Round up
-        if (gold_ >= gold_needed) {
-            int change = (gold_needed * 100) - amount;
-            gold_ -= gold_needed;
-            // Convert change back to smaller denominations
-            silver_ = change / 10;
-            copper_ = change % 10;
-            return true;
-        }
-        amount -= gold_ * 100;
-        gold_ = 0;
-
-        // Convert platinum to copper and deduct
-        int plat_needed = (amount + 999) / 1000;  // Round up
-        if (platinum_ >= plat_needed) {
-            int change = (plat_needed * 1000) - amount;
-            platinum_ -= plat_needed;
-            // Convert change back to smaller denominations
-            gold_ = change / 100;
-            change %= 100;
-            silver_ = change / 10;
-            copper_ = change % 10;
-            return true;
-        }
-
-        // Shouldn't reach here if can_afford() passed
-        return false;
+    /** Deposit from wallet to bank */
+    bool deposit(const fiery::Money& amount) {
+        if (!wallet_.charge(amount)) return false;
+        bank_ += amount;
+        return true;
     }
 
-    /** Receive copper and convert to optimal denominations */
-    void receive_copper(int amount) {
-        // Add to copper and let player decide when to exchange
-        // Or auto-convert to larger denominations
-        copper_ += amount;
-
-        // Auto-convert excess copper to larger denominations
-        if (copper_ >= 10) {
-            silver_ += copper_ / 10;
-            copper_ %= 10;
-        }
-        if (silver_ >= 10) {
-            gold_ += silver_ / 10;
-            silver_ %= 10;
-        }
-        if (gold_ >= 10) {
-            platinum_ += gold_ / 10;
-            gold_ %= 10;
-        }
+    /** Withdraw from bank to wallet */
+    bool withdraw(const fiery::Money& amount) {
+        if (!bank_.charge(amount)) return false;
+        wallet_ += amount;
+        return true;
     }
+
+    /** Transfer money to another player */
+    bool transfer_to(Player& recipient, const fiery::Money& amount) {
+        if (!wallet_.charge(amount)) return false;
+        recipient.wallet() += amount;
+        return true;
+    }
+
+    /** Take all money from a Mobile (for loot) */
+    fiery::Money loot_money_from(class Mobile& mob);
 
     /** Time tracking */
     std::time_t creation_time() const { return creation_time_; }
@@ -1129,17 +1156,9 @@ private:
     int wimpy_threshold_ = 0;               // Flee when HP falls below this
     std::string afk_message_ = "";          // AFK message to display
 
-    // Currency system (wallet)
-    int copper_ = 0;
-    int silver_ = 0;
-    int gold_ = 0;
-    int platinum_ = 0;
-
-    // Currency system (bank)
-    int bank_copper_ = 0;
-    int bank_silver_ = 0;
-    int bank_gold_ = 0;
-    int bank_platinum_ = 0;
+    // Currency
+    fiery::Money wallet_;  // Money on person
+    fiery::Money bank_;    // Money in bank account
 
     // Time tracking fields
     std::time_t creation_time_ = std::time(nullptr);  // Time of character creation

@@ -2314,6 +2314,14 @@ void Player::set_player_flags_from_strings(const std::vector<std::string>& flags
     }
 }
 
+fiery::Money Player::loot_money_from(Mobile& mob) {
+    fiery::Money loot = mob.take_all_money();
+    if (!loot.is_zero()) {
+        wallet_ += loot;
+    }
+    return loot;
+}
+
 nlohmann::json Player::to_json() const {
     nlohmann::json json = Actor::to_json();
 
@@ -2597,7 +2605,31 @@ std::string Actor::get_stat_info() const {
     
     // Character flags
     if (mobile) {
-        output << fmt::format("NPC flags: <None>\n");
+        // Build list of set mob flags
+        // Iterate through all bits in the mob_flags_ bitset
+        // magic_enum::enum_name() returns empty string for undefined indices
+        std::vector<std::string> flag_names;
+
+        for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
+            auto flag = static_cast<MobFlag>(i);
+            if (mobile->has_flag(flag)) {
+                auto name = magic_enum::enum_name(flag);
+                if (!name.empty()) {
+                    flag_names.emplace_back(name);
+                }
+            }
+        }
+
+        if (flag_names.empty()) {
+            output << fmt::format("NPC flags: <None>\n");
+        } else {
+            std::string joined;
+            for (size_t i = 0; i < flag_names.size(); ++i) {
+                if (i > 0) joined += " ";
+                joined += flag_names[i];
+            }
+            output << fmt::format("NPC flags: {}\n", joined);
+        }
     } else {
         output << fmt::format("PLR: <None>\n");
         output << fmt::format("PRF: <None>\n");

@@ -1,6 +1,7 @@
 #include "group_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/money.hpp"
 
 namespace GroupCommands {
 
@@ -284,21 +285,19 @@ Result<CommandResult> cmd_split(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    int amount = 0;
-    try {
-        amount = std::stoi(std::string(ctx.arg(0)));
-    } catch (...) {
-        ctx.send_error("Invalid amount. Usage: split <amount>");
+    // Parse money amount - can be "100" (copper), "5g", "2p3g", etc.
+    auto money = fiery::parse_money(ctx.args_from(0));
+    if (!money || money->is_zero()) {
+        ctx.send_error("Invalid amount. Usage: split <amount> [currency]");
+        ctx.send("Examples: split 100 gold, split 5p3g, split 500");
         return CommandResult::InvalidSyntax;
     }
 
-    if (amount <= 0) {
-        ctx.send_error("You must split a positive amount.");
-        return CommandResult::InvalidSyntax;
+    // Check if player can afford to split this amount
+    if (!player->wallet().can_afford(*money)) {
+        ctx.send_error(fmt::format("You don't have {} to split.", money->to_string()));
+        return CommandResult::InvalidState;
     }
-
-    // TODO: Check player's gold and deduct
-    // For now just show the split calculation
 
     // Count group members in the same room
     int members_in_room = 1; // Include self
@@ -332,19 +331,34 @@ Result<CommandResult> cmd_split(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    int share = amount / members_in_room;
-    int remainder = amount % members_in_room;
+    // Calculate share in copper for fair division
+    long total_copper = money->value();
+    long share_copper = total_copper / members_in_room;
+    long remainder_copper = total_copper % members_in_room;
 
-    // TODO: Actually transfer gold when gold system is implemented
-    ctx.send(fmt::format("You split {} gold coins among {} group members.", amount, members_in_room));
-    ctx.send(fmt::format("Each person receives {} gold coins.", share));
-    if (remainder > 0) {
-        ctx.send(fmt::format("({} gold left over)", remainder));
+    // Deduct the full amount from the splitter
+    player->spend(*money);
+
+    // Create share amount
+    auto share = fiery::Money::from_copper(share_copper);
+
+    // Splitter gets their share (plus any remainder)
+    player->receive(share);
+    if (remainder_copper > 0) {
+        player->wallet().receive(remainder_copper);
     }
 
+    // Give each recipient their share
     for (auto& recipient : recipients) {
-        ctx.send_to_actor(recipient, fmt::format("{} splits {} gold; you receive {} coins.",
-            player->display_name(), amount, share));
+        recipient->receive(share);
+        ctx.send_to_actor(recipient, fmt::format("{} splits {}; you receive {}.",
+            player->display_name(), money->to_string(), share.to_string()));
+    }
+
+    ctx.send(fmt::format("You split {} among {} group members.", money->to_string(), members_in_room));
+    ctx.send(fmt::format("Each person receives {}.", share.to_string()));
+    if (remainder_copper > 0) {
+        ctx.send(fmt::format("(You keep the {} copper remainder)", remainder_copper));
     }
 
     return CommandResult::Success;

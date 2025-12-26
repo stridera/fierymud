@@ -78,6 +78,7 @@ set(SOURCES
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/core/money.cpp
     src/text/text_format.cpp
     src/text/string_utils.cpp
     src/core/object.cpp
@@ -138,6 +139,7 @@ set(SIMPLE_TEST_SOURCES
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/core/money.cpp
     src/text/text_format.cpp
     src/core/object.cpp
     src/core/combat.cpp
@@ -208,6 +210,7 @@ set(CORE_TEST_SOURCES
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/core/money.cpp
     src/text/text_format.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
@@ -509,6 +512,7 @@ add_executable(test_database
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/core/money.cpp
     src/text/text_format.cpp
     src/text/string_utils.cpp
     src/core/object.cpp
@@ -596,6 +600,7 @@ add_executable(test_database_comprehensive
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
+    src/core/money.cpp
     src/text/text_format.cpp
     src/text/string_utils.cpp
     src/core/object.cpp

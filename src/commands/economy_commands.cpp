@@ -1,10 +1,55 @@
 #include "economy_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/money.hpp"
 #include "../core/object.hpp"
 #include "command_context.hpp"
 
 namespace EconomyCommands {
+
+// =============================================================================
+// NPC Role Detection Helpers
+// =============================================================================
+
+namespace {
+
+/**
+ * Find a shopkeeper in the current room
+ * @return The first shopkeeper found, or nullptr if none
+ */
+std::shared_ptr<Mobile> find_shopkeeper(const CommandContext& ctx) {
+    if (!ctx.room) return nullptr;
+
+    const auto& room_contents = ctx.room->contents();
+    for (const auto& actor : room_contents.actors) {
+        if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
+            if (mobile->is_shopkeeper()) {
+                return mobile;
+            }
+        }
+    }
+    return nullptr;
+}
+
+/**
+ * Find a banker in the current room
+ * @return The first banker found, or nullptr if none
+ */
+std::shared_ptr<Mobile> find_banker(const CommandContext& ctx) {
+    if (!ctx.room) return nullptr;
+
+    const auto& room_contents = ctx.room->contents();
+    for (const auto& actor : room_contents.actors) {
+        if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
+            if (mobile->is_banker()) {
+                return mobile;
+            }
+        }
+    }
+    return nullptr;
+}
+
+} // anonymous namespace
 
 // =============================================================================
 // Shop Enhancement Commands
@@ -98,37 +143,6 @@ Result<CommandResult> cmd_repair(const CommandContext &ctx) {
 // Banking Commands
 // =============================================================================
 
-// Currency type enumeration for banking operations
-enum class CurrencyType {
-    Copper,
-    Silver,
-    Gold,
-    Platinum,
-    Invalid
-};
-
-CurrencyType parse_currency(std::string_view input) {
-    std::string lower;
-    for (char c : input) {
-        lower += static_cast<char>(std::tolower(c));
-    }
-    if (lower == "copper" || lower == "cop" || lower == "c") return CurrencyType::Copper;
-    if (lower == "silver" || lower == "sil" || lower == "s") return CurrencyType::Silver;
-    if (lower == "gold" || lower == "gol" || lower == "g") return CurrencyType::Gold;
-    if (lower == "platinum" || lower == "plat" || lower == "p") return CurrencyType::Platinum;
-    return CurrencyType::Invalid;
-}
-
-std::string_view currency_name(CurrencyType type) {
-    switch (type) {
-        case CurrencyType::Copper: return "copper";
-        case CurrencyType::Silver: return "silver";
-        case CurrencyType::Gold: return "gold";
-        case CurrencyType::Platinum: return "platinum";
-        default: return "coins";
-    }
-}
-
 Result<CommandResult> cmd_deposit(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
@@ -140,75 +154,42 @@ Result<CommandResult> cmd_deposit(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 0) {
         ctx.send("Deposit how much?");
-        ctx.send("Usage: deposit <amount> [currency]");
-        ctx.send("Example: deposit 100 gold");
+        ctx.send("Usage: deposit <amount> [currency] or deposit all");
+        ctx.send("Examples: deposit 100 gold, deposit 5p3g, deposit all");
         return CommandResult::InvalidSyntax;
     }
 
-    int amount = 0;
-    try {
-        amount = std::stoi(std::string(ctx.arg(0)));
-    } catch (...) {
-        ctx.send_error("Invalid amount.");
+    // Handle "deposit all"
+    if (ctx.arg(0) == "all") {
+        if (player->wallet().is_zero()) {
+            ctx.send("You have no money to deposit.");
+            return CommandResult::InvalidState;
+        }
+        fiery::Money to_deposit = player->wallet();
+        player->wallet() = fiery::Money();
+        player->bank() += to_deposit;
+        ctx.send(fmt::format("You deposit {}.", to_deposit.to_string()));
+        return CommandResult::Success;
+    }
+
+    // Parse the money amount
+    auto money = fiery::parse_money(ctx.args_from(0));
+    if (!money) {
+        ctx.send_error("Invalid amount. Use: deposit 100 gold, deposit 5p3g, etc.");
         return CommandResult::InvalidSyntax;
     }
 
-    if (amount <= 0) {
+    if (money->is_zero()) {
         ctx.send_error("You must deposit a positive amount.");
         return CommandResult::InvalidSyntax;
     }
 
-    CurrencyType currency = CurrencyType::Gold;  // Default to gold
-    if (ctx.arg_count() > 1) {
-        currency = parse_currency(ctx.arg(1));
-        if (currency == CurrencyType::Invalid) {
-            ctx.send_error("Invalid currency type. Use copper, silver, gold, or platinum.");
-            return CommandResult::InvalidSyntax;
-        }
-    }
-
-    // Check if player has enough currency and perform transfer
-    bool success = false;
-    switch (currency) {
-        case CurrencyType::Copper:
-            if (player->copper() >= amount) {
-                player->set_copper(player->copper() - amount);
-                player->set_bank_copper(player->bank_copper() + amount);
-                success = true;
-            }
-            break;
-        case CurrencyType::Silver:
-            if (player->silver() >= amount) {
-                player->set_silver(player->silver() - amount);
-                player->set_bank_silver(player->bank_silver() + amount);
-                success = true;
-            }
-            break;
-        case CurrencyType::Gold:
-            if (player->gold() >= amount) {
-                player->set_gold(player->gold() - amount);
-                player->set_bank_gold(player->bank_gold() + amount);
-                success = true;
-            }
-            break;
-        case CurrencyType::Platinum:
-            if (player->platinum() >= amount) {
-                player->set_platinum(player->platinum() - amount);
-                player->set_bank_platinum(player->bank_platinum() + amount);
-                success = true;
-            }
-            break;
-        default:
-            break;
-    }
-
-    if (success) {
-        ctx.send(fmt::format("You deposit {} {}.", amount, currency_name(currency)));
-    } else {
-        ctx.send_error(fmt::format("You don't have {} {}.", amount, currency_name(currency)));
+    if (!player->deposit(*money)) {
+        ctx.send_error(fmt::format("You don't have {}.", money->to_string()));
         return CommandResult::InvalidState;
     }
 
+    ctx.send(fmt::format("You deposit {}.", money->to_string()));
     return CommandResult::Success;
 }
 
@@ -223,75 +204,42 @@ Result<CommandResult> cmd_withdraw(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 0) {
         ctx.send("Withdraw how much?");
-        ctx.send("Usage: withdraw <amount> [currency]");
-        ctx.send("Example: withdraw 50 gold");
+        ctx.send("Usage: withdraw <amount> [currency] or withdraw all");
+        ctx.send("Examples: withdraw 50 gold, withdraw 2p5g, withdraw all");
         return CommandResult::InvalidSyntax;
     }
 
-    int amount = 0;
-    try {
-        amount = std::stoi(std::string(ctx.arg(0)));
-    } catch (...) {
-        ctx.send_error("Invalid amount.");
+    // Handle "withdraw all"
+    if (ctx.arg(0) == "all") {
+        if (player->bank().is_zero()) {
+            ctx.send("You have no money in your bank account.");
+            return CommandResult::InvalidState;
+        }
+        fiery::Money to_withdraw = player->bank();
+        player->bank() = fiery::Money();
+        player->wallet() += to_withdraw;
+        ctx.send(fmt::format("You withdraw {}.", to_withdraw.to_string()));
+        return CommandResult::Success;
+    }
+
+    // Parse the money amount
+    auto money = fiery::parse_money(ctx.args_from(0));
+    if (!money) {
+        ctx.send_error("Invalid amount. Use: withdraw 50 gold, withdraw 2p5g, etc.");
         return CommandResult::InvalidSyntax;
     }
 
-    if (amount <= 0) {
+    if (money->is_zero()) {
         ctx.send_error("You must withdraw a positive amount.");
         return CommandResult::InvalidSyntax;
     }
 
-    CurrencyType currency = CurrencyType::Gold;  // Default to gold
-    if (ctx.arg_count() > 1) {
-        currency = parse_currency(ctx.arg(1));
-        if (currency == CurrencyType::Invalid) {
-            ctx.send_error("Invalid currency type. Use copper, silver, gold, or platinum.");
-            return CommandResult::InvalidSyntax;
-        }
-    }
-
-    // Check if bank has enough currency and perform transfer
-    bool success = false;
-    switch (currency) {
-        case CurrencyType::Copper:
-            if (player->bank_copper() >= amount) {
-                player->set_bank_copper(player->bank_copper() - amount);
-                player->set_copper(player->copper() + amount);
-                success = true;
-            }
-            break;
-        case CurrencyType::Silver:
-            if (player->bank_silver() >= amount) {
-                player->set_bank_silver(player->bank_silver() - amount);
-                player->set_silver(player->silver() + amount);
-                success = true;
-            }
-            break;
-        case CurrencyType::Gold:
-            if (player->bank_gold() >= amount) {
-                player->set_bank_gold(player->bank_gold() - amount);
-                player->set_gold(player->gold() + amount);
-                success = true;
-            }
-            break;
-        case CurrencyType::Platinum:
-            if (player->bank_platinum() >= amount) {
-                player->set_bank_platinum(player->bank_platinum() - amount);
-                player->set_platinum(player->platinum() + amount);
-                success = true;
-            }
-            break;
-        default:
-            break;
-    }
-
-    if (success) {
-        ctx.send(fmt::format("You withdraw {} {}.", amount, currency_name(currency)));
-    } else {
-        ctx.send_error(fmt::format("You don't have {} {} in your bank account.", amount, currency_name(currency)));
+    if (!player->withdraw(*money)) {
+        ctx.send_error(fmt::format("You don't have {} in your bank account.", money->to_string()));
         return CommandResult::InvalidState;
     }
 
+    ctx.send(fmt::format("You withdraw {}.", money->to_string()));
     return CommandResult::Success;
 }
 
@@ -304,12 +252,12 @@ Result<CommandResult> cmd_balance(const CommandContext &ctx) {
 
     // TODO: Check if there's a bank/banker in the room
 
-    ctx.send("--- Bank Balance ---");
-    ctx.send(fmt::format("  Platinum: {}", player->bank_platinum()));
-    ctx.send(fmt::format("  Gold:     {}", player->bank_gold()));
-    ctx.send(fmt::format("  Silver:   {}", player->bank_silver()));
-    ctx.send(fmt::format("  Copper:   {}", player->bank_copper()));
-    ctx.send("--- End of Balance ---");
+    const auto& bank = player->bank();
+    if (bank.is_zero()) {
+        ctx.send("Your bank account is empty.");
+    } else {
+        ctx.send(fmt::format("Bank balance: {}", bank.to_string()));
+    }
 
     return CommandResult::Success;
 }
@@ -329,29 +277,24 @@ Result<CommandResult> cmd_transfer(const CommandContext &ctx) {
     }
 
     std::string_view target_name = ctx.arg(0);
-    int amount = 0;
-    try {
-        amount = std::stoi(std::string(ctx.arg(1)));
-    } catch (...) {
-        ctx.send_error("Invalid amount.");
+
+    // Parse the money amount from remaining arguments
+    std::string money_str;
+    for (size_t i = 1; i < ctx.arg_count(); ++i) {
+        if (!money_str.empty()) money_str += " ";
+        money_str += ctx.arg(i);
+    }
+
+    auto money = fiery::parse_money(money_str);
+    if (!money || money->is_zero()) {
+        ctx.send_error("Invalid amount. Use: transfer Bob 100 gold");
         return CommandResult::InvalidSyntax;
     }
 
-    if (amount <= 0) {
-        ctx.send_error("You must transfer a positive amount.");
-        return CommandResult::InvalidSyntax;
-    }
-
-    std::string currency = "gold";
-    if (ctx.arg_count() > 2) {
-        currency = std::string(ctx.arg(2));
-    }
-
-    // TODO: Verify target player exists
-    // TODO: Transfer between bank accounts
-
-    ctx.send(fmt::format("You transfer {} {} to {}'s account.", amount, currency, target_name));
-    ctx.send("Note: Banking system not yet connected to database.");
+    // TODO: Find target player and transfer
+    // For now, just show what would happen
+    ctx.send(fmt::format("You would transfer {} to {}'s bank account.", money->to_string(), target_name));
+    ctx.send("Note: Inter-player transfers not yet connected to database.");
 
     return CommandResult::Success;
 }
@@ -360,45 +303,6 @@ Result<CommandResult> cmd_transfer(const CommandContext &ctx) {
 // Currency Commands
 // =============================================================================
 
-Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
-    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
-    if (!player) {
-        ctx.send_error("Only players can exchange currency.");
-        return CommandResult::InvalidState;
-    }
-
-    // TODO: Check if there's a money changer in the room
-
-    if (ctx.arg_count() < 3) {
-        ctx.send("Exchange rates:");
-        ctx.send("  1 platinum = 10 gold");
-        ctx.send("  1 gold = 10 silver");
-        ctx.send("  1 silver = 10 copper");
-        ctx.send("");
-        ctx.send("Usage: exchange <amount> <from_currency> <to_currency>");
-        ctx.send("Example: exchange 100 gold platinum");
-        return CommandResult::Success;
-    }
-
-    int amount = 0;
-    try {
-        amount = std::stoi(std::string(ctx.arg(0)));
-    } catch (...) {
-        ctx.send_error("Invalid amount.");
-        return CommandResult::InvalidSyntax;
-    }
-
-    std::string from_currency = std::string(ctx.arg(1));
-    std::string to_currency = std::string(ctx.arg(2));
-
-    // TODO: Calculate exchange and perform transaction
-
-    ctx.send(fmt::format("You exchange {} {} for {}.", amount, from_currency, to_currency));
-    ctx.send("Note: Currency exchange not yet implemented.");
-
-    return CommandResult::Success;
-}
-
 Result<CommandResult> cmd_coins(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
@@ -406,14 +310,110 @@ Result<CommandResult> cmd_coins(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    ctx.send("--- Your Coins ---");
-    ctx.send(fmt::format("  Platinum: {}", player->platinum()));
-    ctx.send(fmt::format("  Gold:     {}", player->gold()));
-    ctx.send(fmt::format("  Silver:   {}", player->silver()));
-    ctx.send(fmt::format("  Copper:   {}", player->copper()));
-    ctx.send("--- End of Coins ---");
+    const auto& wallet = player->wallet();
+    if (wallet.is_zero()) {
+        ctx.send("You are broke.");
+    } else {
+        ctx.send(fmt::format("You have {}.", wallet.to_string()));
+    }
 
     return CommandResult::Success;
+}
+
+// =============================================================================
+// Account Storage Commands
+// =============================================================================
+
+Result<CommandResult> cmd_account(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can use account storage.");
+        return CommandResult::InvalidState;
+    }
+
+    // Check if player has a linked account
+    if (player->account().empty()) {
+        ctx.send_error("Account storage requires your character to be linked to an account.");
+        ctx.send("Create an account at our website to access this feature!");
+        ctx.send("Benefits: Store items accessible by all your characters.");
+        return CommandResult::InvalidState;
+    }
+
+    // Check if there's a banker in the room
+    auto banker = find_banker(ctx);
+    if (!banker) {
+        ctx.send_error("You need to visit a banker to access account storage.");
+        return CommandResult::InvalidState;
+    }
+
+    // No arguments = list items
+    if (ctx.arg_count() == 0) {
+        ctx.send("--- Account Storage ---");
+        ctx.send("Your account storage is currently empty.");
+        ctx.send("Note: Account storage database integration not yet implemented.");
+        ctx.send("--- End of Storage ---");
+        ctx.send("");
+        ctx.send("Usage:");
+        ctx.send("  account             - List stored items");
+        ctx.send("  account store <item> - Store an item");
+        ctx.send("  account get <item>   - Retrieve an item");
+        return CommandResult::Success;
+    }
+
+    std::string_view subcommand = ctx.arg(0);
+
+    // Handle "store" subcommand
+    if (subcommand == "store" || subcommand == "deposit" || subcommand == "put") {
+        if (ctx.arg_count() < 2) {
+            ctx.send("Store what item?");
+            ctx.send("Usage: account store <item>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        auto target = ctx.resolve_target(ctx.arg(1));
+        if (!target.object) {
+            ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(1)));
+            return CommandResult::InvalidTarget;
+        }
+
+        // TODO: Actually store the item in database
+        ctx.send(fmt::format("{} says, 'I'll keep {} safe for you.'",
+            banker->display_name(), target.object->display_name()));
+        ctx.send(fmt::format("You store {} in your account.", target.object->display_name()));
+        ctx.send("Note: Account storage database integration not yet implemented.");
+        return CommandResult::Success;
+    }
+
+    // Handle "retrieve/get/withdraw" subcommand
+    if (subcommand == "get" || subcommand == "retrieve" || subcommand == "withdraw" || subcommand == "take") {
+        if (ctx.arg_count() < 2) {
+            ctx.send("Retrieve what item?");
+            ctx.send("Usage: account get <item>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // TODO: Query database for matching item
+        ctx.send_error(fmt::format("No item matching '{}' found in your account storage.", ctx.arg(1)));
+        ctx.send("Note: Account storage database integration not yet implemented.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Handle "list" explicitly
+    if (subcommand == "list" || subcommand == "items") {
+        ctx.send("--- Account Storage ---");
+        ctx.send("Your account storage is currently empty.");
+        ctx.send("Note: Account storage database integration not yet implemented.");
+        ctx.send("--- End of Storage ---");
+        return CommandResult::Success;
+    }
+
+    // Unknown subcommand
+    ctx.send_error(fmt::format("Unknown account command: {}", subcommand));
+    ctx.send("Usage:");
+    ctx.send("  account             - List stored items");
+    ctx.send("  account store <item> - Store an item");
+    ctx.send("  account get <item>   - Retrieve an item");
+    return CommandResult::InvalidSyntax;
 }
 
 // =============================================================================
@@ -472,17 +472,19 @@ Result<void> register_commands() {
 
     // Currency commands
     Commands()
-        .command("exchange", cmd_exchange)
-        .alias("exch")
-        .category("Economy")
-        .privilege(PrivilegeLevel::Player)
-        .build();
-
-    Commands()
         .command("coins", cmd_coins)
         .alias("gold")
         .alias("money")
         .alias("wealth")
+        .category("Economy")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Account storage commands
+    Commands()
+        .command("account", cmd_account)
+        .alias("storage")
+        .alias("vault")
         .category("Economy")
         .privilege(PrivilegeLevel::Player)
         .build();

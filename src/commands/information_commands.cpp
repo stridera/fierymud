@@ -709,8 +709,7 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     }
     // Currency - show full breakdown for players
     if (player) {
-        score << fmt::format("Coins: {} plat, {} gold, {} silver, {} copper\n",
-                             player->platinum(), player->gold(), player->silver(), player->copper());
+        score << fmt::format("Coins: {}\n", player->wallet().to_string());
     } else {
         score << fmt::format("Gold: {}\n", stats.gold);
     }

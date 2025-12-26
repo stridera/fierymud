@@ -5,6 +5,7 @@
 #include "../core/actor.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
+#include "../core/money.hpp"
 #include "../core/object.hpp"
 #include "../core/spell_system.hpp"
 #include "../text/string_utils.hpp"
@@ -312,9 +313,10 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                             if (item && item->type() == ObjectType::Money) {
                                 int coin_value = item->value();
                                 if (coin_value > 0) {
-                                    player->receive_copper(coin_value);
+                                    player->receive(coin_value);
                                     corpse->remove_item(item);
-                                    ctx.send(fmt::format("You get {} coins from the corpse.", coin_value));
+                                    auto received = fiery::Money::from_copper(coin_value);
+                                    ctx.send(fmt::format("You get {} from the corpse.", received.to_string()));
                                 }
                             }
                         }

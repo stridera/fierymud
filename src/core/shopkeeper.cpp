@@ -186,8 +186,11 @@ ShopResult ShopManager::buy_item(std::shared_ptr<Actor> buyer, EntityId shopkeep
 
     int price = shop->calculate_buy_price(*shop_item);
 
-    // Check if player has enough money (price is in copper)
-    if (!player->can_afford(price)) {
+    // Gods get items for free
+    bool is_god = player->is_god();
+
+    // Check if player has enough money (price is in copper) - gods bypass this
+    if (!is_god && !player->can_afford(price)) {
         return ShopResult::InsufficientFunds;
     }
 
@@ -196,14 +199,18 @@ ShopResult ShopManager::buy_item(std::shared_ptr<Actor> buyer, EntityId shopkeep
         return ShopResult::InsufficientStock;
     }
 
-    // Deduct money from buyer's wallet
-    if (!player->spend_copper(price)) {
-        // Shouldn't happen since we already checked can_afford()
-        return ShopResult::InsufficientFunds;
+    // Deduct money from buyer's wallet (gods don't pay)
+    if (!is_god) {
+        if (!player->spend(price)) {
+            // Shouldn't happen since we already checked can_afford()
+            return ShopResult::InsufficientFunds;
+        }
+        Log::info("Player {} bought item '{}' from shopkeeper {} for {} copper",
+                  player->name(), shop_item->name, shopkeeper_id, price);
+    } else {
+        Log::info("God {} took item '{}' from shopkeeper {} (free)",
+                  player->name(), shop_item->name, shopkeeper_id);
     }
-
-    Log::info("Player {} bought item '{}' from shopkeeper {} for {} copper",
-              player->name(), shop_item->name, shopkeeper_id, price);
 
     return ShopResult::Success;
 }
@@ -232,7 +239,7 @@ ShopResult ShopManager::sell_item(std::shared_ptr<Actor> seller, EntityId shopke
     }
 
     // Give money to seller (auto-converts to optimal denominations)
-    player->receive_copper(price);
+    player->receive(price);
 
     Log::info("Player {} sold item '{}' to shopkeeper {} for {} copper",
               player->name(), item->name(), shopkeeper_id, price);

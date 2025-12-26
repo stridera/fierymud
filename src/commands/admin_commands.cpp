@@ -37,17 +37,32 @@ Result<CommandResult> cmd_shutdown(const CommandContext &ctx) {
 
 Result<CommandResult> cmd_goto(const CommandContext &ctx) {
     if (auto result = ctx.require_args(1, "<room_id>"); !result) {
-        ctx.send_usage("goto <room_id>");
+        ctx.send_usage("goto <room_id> (format: zone:local_id or single number)");
         return CommandResult::InvalidSyntax;
     }
 
-    auto room_id_str = ctx.arg(0);
+    auto room_id_str = std::string{ctx.arg(0)};
     EntityId room_id;
-    try {
-        room_id = EntityId{std::stoull(std::string{room_id_str})};
-    } catch (const std::exception &e) {
-        ctx.send_error(fmt::format("Invalid room ID format: {}.", room_id_str));
-        return CommandResult::InvalidSyntax;
+
+    // Check for zone:local_id format (e.g., "30:89")
+    auto colon_pos = room_id_str.find(':');
+    if (colon_pos != std::string::npos) {
+        try {
+            int zone_id = std::stoi(room_id_str.substr(0, colon_pos));
+            int local_id = std::stoi(room_id_str.substr(colon_pos + 1));
+            room_id = EntityId(zone_id, local_id);
+        } catch (const std::exception &e) {
+            ctx.send_error(fmt::format("Invalid room ID format: {}. Use zone:local_id (e.g., 30:89).", room_id_str));
+            return CommandResult::InvalidSyntax;
+        }
+    } else {
+        // Fall back to legacy single number format
+        try {
+            room_id = EntityId{std::stoull(room_id_str)};
+        } catch (const std::exception &e) {
+            ctx.send_error(fmt::format("Invalid room ID format: {}.", room_id_str));
+            return CommandResult::InvalidSyntax;
+        }
     }
 
     if (!room_id.is_valid()) {
@@ -61,7 +76,7 @@ Result<CommandResult> cmd_goto(const CommandContext &ctx) {
         return CommandResult::ResourceError;
     }
 
-    ctx.send_success("Teleported.");
+    ctx.send_success(fmt::format("Teleported to room {}:{}.", room_id.zone_id(), room_id.local_id()));
 
     return CommandResult::Success;
 }

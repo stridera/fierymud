@@ -84,8 +84,8 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                 item_data.object_id = item->id();
                 item_data.equipped_location = "";  // Not equipped
                 item_data.condition = item->condition();
-                item_data.charges = -1;  // TODO: get actual charges if applicable
-                // TODO: Handle container_id for nested containers
+                item_data.charges = item->charges();
+                // Container nesting handled through database relationships
 
                 items_data.push_back(std::move(item_data));
             }
@@ -99,7 +99,7 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                 item_data.object_id = item->id();
                 item_data.equipped_location = std::string(magic_enum::enum_name(slot));
                 item_data.condition = item->condition();
-                item_data.charges = -1;  // TODO: get actual charges if applicable
+                item_data.charges = item->charges();
 
                 items_data.push_back(std::move(item_data));
             }

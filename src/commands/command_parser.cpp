@@ -494,6 +494,21 @@ std::optional<int> parse_int(std::string_view arg) {
 }
 
 std::optional<EntityId> parse_entity_id(std::string_view arg) {
+    std::string arg_str{arg};
+
+    // Check for zone:local_id format (e.g., "30:89")
+    auto colon_pos = arg_str.find(':');
+    if (colon_pos != std::string::npos) {
+        try {
+            int zone_id = std::stoi(arg_str.substr(0, colon_pos));
+            int local_id = std::stoi(arg_str.substr(colon_pos + 1));
+            return EntityId(zone_id, local_id);
+        } catch (...) {
+            return std::nullopt;
+        }
+    }
+
+    // Fall back to single number format
     auto num = parse_int(arg);
     return num ? std::make_optional(EntityId{static_cast<std::uint64_t>(*num)}) : std::nullopt;
 }

@@ -2,6 +2,7 @@
 #include "actor.hpp"
 #include "ability_executor.hpp"
 #include "logging.hpp"
+#include "money.hpp"
 #include "../world/room.hpp"
 #include <random>
 #include <algorithm>
@@ -543,9 +544,10 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
                         if (item && item->type() == ObjectType::Money) {
                             int coin_value = item->value();
                             if (coin_value > 0) {
-                                player->receive_copper(coin_value);
+                                player->receive(coin_value);
                                 corpse->remove_item(item);
-                                result.attacker_message += fmt::format("\r\nYou get {} coins from the corpse.", coin_value);
+                                auto received = fiery::Money::from_copper(coin_value);
+                                result.attacker_message += fmt::format("\r\nYou get {} from the corpse.", received.to_string());
                             }
                         }
                     }

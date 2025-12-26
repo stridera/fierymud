@@ -325,15 +325,9 @@ struct CharacterData {
     int movement = 100;
     int movement_max = 100;
 
-    // Currency (copper/silver/gold/platinum)
-    int copper = 0;
-    int silver = 0;
-    int gold = 0;
-    int platinum = 0;
-    int bank_copper = 0;
-    int bank_silver = 0;
-    int bank_gold = 0;
-    int bank_platinum = 0;
+    // Currency (stored as copper)
+    long wealth = 0;
+    long bank_wealth = 0;
 
     // Character info
     std::string password_hash;

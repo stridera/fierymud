@@ -19,6 +19,9 @@ Result<CommandResult> cmd_balance(const CommandContext &ctx);
 Result<CommandResult> cmd_transfer(const CommandContext &ctx);
 
 // Currency commands
-Result<CommandResult> cmd_exchange(const CommandContext &ctx);
+Result<CommandResult> cmd_coins(const CommandContext &ctx);
+
+// Account storage commands
+Result<CommandResult> cmd_account(const CommandContext &ctx);
 
 } // namespace EconomyCommands
