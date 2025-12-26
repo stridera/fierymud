@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "core/active_effect.hpp"
 #include "core/result.hpp"
 #include "core/formula_parser.hpp"
 
@@ -38,6 +39,8 @@ enum class EffectType {
     Globe,
     Room,
     Inspect,
+    Dot,        // Damage over time (poison, fire, etc.)
+    Hot,        // Heal over time (regeneration, etc.)
     Unknown
 };
 
@@ -89,6 +92,27 @@ struct EffectParams {
     std::string move_type;                  // "knockback", "pull"
     std::string move_distance_formula;      // Formula for distance
     int move_distance = 0;                  // Rooms to move (for fixed values)
+
+    // DoT (Damage Over Time) effect params
+    std::string cure_category = "poison";   // "poison", "fire", "disease", "curse", etc.
+    std::string potency_formula = "5";      // "4 + (skill / 33)" - determines cure resistance
+    std::string flat_damage_formula;        // Flat damage per tick: "1 + (skill / 20)"
+    std::string percent_damage_formula;     // % of max HP per tick: "2"
+    std::string dot_duration_formula;       // Duration in ticks: "level + 5"
+    int tick_interval = 1;                  // Ticks between damage/heal applications
+    bool blocks_regen = false;              // Completely blocks natural HP regen
+    std::string reduces_regen_formula;      // 0-100 percentage reduction: "25"
+    int max_resistance = 75;                // Cap on damage reduction from resistance
+    bool stackable = false;                 // Can this DoT/HoT stack?
+    int max_stacks = 1;                     // Maximum number of stacks
+
+    // HoT (Heal Over Time) effect params - uses tick_interval, stackable, max_stacks from above
+    std::string hot_category = "heal";      // "heal", "regen", "divine", "nature", etc.
+    std::string flat_heal_formula;          // Flat healing per tick: "2 + (skill / 15)"
+    std::string percent_heal_formula;       // % of max HP per tick: "3"
+    std::string hot_duration_formula;       // Duration in ticks: "level + 10"
+    bool boosts_regen = false;              // Enhances natural HP regen
+    std::string boosts_regen_formula;       // 0-100 percentage boost: "50"
 
     // Generic
     std::string chance_formula;             // Formula for chance
@@ -149,6 +173,8 @@ struct EffectContext {
     FormulaContext formula_ctx;        // Variables for formula evaluation
     int skill_level = 0;               // Proficiency in this ability (0-100)
     std::string ability_name;          // Display name of the ability (for effect names)
+    int ability_id = 0;                // Database ID of the ability
+    int effect_id = 0;                 // Database ID of the effect being executed
 
     // Build formula context from actor and skill
     void build_formula_context();
@@ -193,6 +219,12 @@ private:
         const EffectParams& params, EffectContext& context);
 
     static std::expected<EffectResult, Error> execute_move(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_dot(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_hot(
         const EffectParams& params, EffectContext& context);
 
     // Roll for effect chance

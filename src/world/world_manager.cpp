@@ -2779,15 +2779,44 @@ void WorldManager::initialize_weather_callbacks() {
 }
 
 void WorldManager::tick_all_effects() {
-    // Iterate through all rooms and tick effects on all actors
+    // Iterate through all rooms and perform periodic ticks on all actors
+    // This handles: HP/move regeneration, effect durations, poison damage, dying damage
+
+    // Collect actors that died during the tick (can't modify room contents while iterating)
+    std::vector<std::shared_ptr<Actor>> died_actors;
+
     for (const auto& [room_id, room] : rooms_) {
         if (!room) continue;
 
-        // Get all actors in this room and tick their effects
+        // Get all actors in this room and perform their periodic tick
         for (auto& actor : room->contents().actors) {
-            if (actor) {
-                actor->tick_effects();
+            if (actor && actor->is_alive()) {
+                auto tick_result = actor->perform_tick();
+
+                // Log significant regen for debugging
+                if (tick_result.hp_gained > 0 || tick_result.move_gained > 0) {
+                    Log::game()->trace("Tick: {} regenerated {} HP, {} move",
+                                      actor->name(), tick_result.hp_gained, tick_result.move_gained);
+                }
+
+                // Track if actor died during the tick
+                if (tick_result.died) {
+                    died_actors.push_back(actor);
+                }
             }
+        }
+    }
+
+    // Handle deaths that occurred during tick processing
+    for (auto& actor : died_actors) {
+        // Polymorphic death handling - Player becomes ghost, Mobile creates corpse
+        auto corpse = actor->die();
+
+        // Log the death
+        if (actor->type_name() == "Player") {
+            Log::game()->info("Player {} died during tick (poison/dying damage)", actor->name());
+        } else {
+            Log::game()->debug("Mobile {} died during tick", actor->name());
         }
     }
 }

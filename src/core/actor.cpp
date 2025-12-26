@@ -965,6 +965,203 @@ void Actor::clear_effects() {
     active_effects_.clear();
 }
 
+// =============================================================================
+// Periodic Character Tick System
+// =============================================================================
+
+double Actor::get_regen_multiplier() const {
+    // Position-based regeneration multipliers (from legacy limits.cpp)
+    // Sleeping = 5x, Resting = 3x, Sitting = 1.5x, Fighting = 0.5x, Standing = 1x
+    switch (position_) {
+        case Position::Sleeping:
+            return 5.0;
+        case Position::Resting:
+            return 3.0;
+        case Position::Sitting:
+            return 1.5;
+        case Position::Fighting:
+            return 0.5;
+        case Position::Dead:
+        case Position::Ghost:
+        case Position::Mortally_Wounded:
+        case Position::Incapacitated:
+        case Position::Stunned:
+            return 0.0;  // No regen while dying/stunned
+        default:
+            return 1.0;  // Standing, Flying, Prone
+    }
+}
+
+int Actor::calculate_hit_gain() const {
+    // Check if any DoT effect blocks regeneration completely
+    if (is_regen_blocked_by_dot()) {
+        return 0;
+    }
+
+    // Base regeneration: 5% of max HP per MUD hour
+    int max_hp = stats_.max_hit_points;
+    int gain = std::max(1, max_hp / 20);  // At least 1 HP
+
+    // Add hitgain stat bonus (if any) + 2
+    // In legacy this was "char_hitgain" stat, we'll use constitution modifier
+    int con_mod = Stats::attribute_modifier(stats_.constitution);
+    gain += std::max(0, con_mod + 2);
+
+    // Apply position multiplier
+    double multiplier = get_regen_multiplier();
+    gain = static_cast<int>(gain * multiplier);
+
+    // Song of Rest effect bonus (triple gain when resting/sleeping)
+    if (has_effect("Song of Rest") &&
+        (position_ == Position::Sleeping || position_ == Position::Resting)) {
+        gain *= 3;
+    }
+
+    // Race bonus: Trolls regenerate at 2x rate
+    if (race_ == "Troll") {
+        gain *= 2;
+    }
+
+    // Apply regen reduction from DoT effects (stacks additively)
+    int regen_reduction = get_dot_regen_reduction();
+    if (regen_reduction > 0) {
+        gain = gain * (100 - regen_reduction) / 100;
+    }
+
+    // Apply regen boost from HoT effects (stacks additively)
+    int regen_boost = get_hot_regen_boost();
+    if (regen_boost > 0) {
+        gain = gain * (100 + regen_boost) / 100;
+    }
+
+    return std::max(0, gain);
+}
+
+int Actor::calculate_move_gain() const {
+    // Check if any DoT effect blocks regeneration completely
+    if (is_regen_blocked_by_dot()) {
+        return 0;
+    }
+
+    // Base regeneration: 10% of max move per MUD hour
+    int max_move = stats_.max_movement;
+    int gain = std::max(1, max_move / 10);  // At least 1 move
+
+    // Apply position multiplier
+    double multiplier = get_regen_multiplier();
+    gain = static_cast<int>(gain * multiplier);
+
+    // Song of Rest effect bonus
+    if (has_effect("Song of Rest") &&
+        (position_ == Position::Sleeping || position_ == Position::Resting)) {
+        gain = static_cast<int>(gain * 1.5);
+    }
+
+    // Apply regen reduction from DoT effects (stacks additively)
+    int regen_reduction = get_dot_regen_reduction();
+    if (regen_reduction > 0) {
+        gain = gain * (100 - regen_reduction) / 100;
+    }
+
+    return std::max(0, gain);
+}
+
+Actor::TickResult Actor::perform_tick() {
+    TickResult result;
+
+    // Handle dying characters (stunned/incapacitated/mortally wounded)
+    if (position_ == Position::Stunned ||
+        position_ == Position::Incapacitated ||
+        position_ == Position::Mortally_Wounded) {
+        // Take 1 HP damage per tick while dying
+        result.dying_damage = 1;
+        stats_.hit_points -= 1;
+
+        if (stats_.hit_points <= 0) {
+            stats_.hit_points = 0;
+            result.died = true;
+            send_message("You have died!\r\n");
+        } else {
+            send_message("You feel your life slipping away...\r\n");
+        }
+        return result;  // No other processing while dying
+    }
+
+    // Skip processing for dead/ghost
+    if (position_ == Position::Dead || position_ == Position::Ghost) {
+        return result;
+    }
+
+    // Process all DoT effects first (before regen) - data-driven system
+    if (!dot_effects_.empty()) {
+        auto dot_result = process_dot_effects();
+        result.poison_damage = dot_result.total_damage;
+
+        // Copy expired effect names
+        for (const auto& expired : dot_result.expired_effects) {
+            result.expired_effects.push_back(expired);
+        }
+
+        if (dot_result.died) {
+            result.died = true;
+            return result;
+        }
+    }
+
+    // Process all HoT effects - data-driven system
+    if (!hot_effects_.empty()) {
+        auto hot_result = process_hot_effects();
+        result.hot_healing = hot_result.total_healing;
+
+        // Copy expired effect names
+        for (const auto& expired : hot_result.expired_effects) {
+            result.expired_effects.push_back(expired);
+        }
+    }
+
+    // HP Regeneration
+    if (stats_.hit_points < stats_.max_hit_points) {
+        int hp_gain = calculate_hit_gain();
+        if (hp_gain > 0) {
+            int old_hp = stats_.hit_points;
+            stats_.hit_points = std::min(stats_.hit_points + hp_gain, stats_.max_hit_points);
+            result.hp_gained = stats_.hit_points - old_hp;
+        }
+    }
+
+    // Movement Regeneration
+    if (stats_.movement < stats_.max_movement) {
+        int move_gain = calculate_move_gain();
+        if (move_gain > 0) {
+            int old_move = stats_.movement;
+            stats_.movement = std::min(stats_.movement + move_gain, stats_.max_movement);
+            result.move_gained = stats_.movement - old_move;
+        }
+    }
+
+    // Tick effect durations (existing functionality, but collect expired names)
+    for (auto it = active_effects_.begin(); it != active_effects_.end(); ) {
+        if (!it->is_permanent()) {
+            it->duration_hours--;
+            if (it->duration_hours <= 0) {
+                result.expired_effects.push_back(it->name);
+                send_message(fmt::format("Your {} effect wears off.\r\n", it->name));
+
+                // Remove the associated flag
+                if (it->flag != ActorFlag::Blind) {
+                    set_flag(it->flag, false);
+                }
+                Log::game()->debug("Effect '{}' expired on {}", it->name, name());
+                it = active_effects_.erase(it);
+                continue;
+            }
+        }
+        ++it;
+    }
+
+    return result;
+}
+
 bool Actor::interrupt_concentration() {
     // List of concentration-based effects that can be interrupted
     static const std::vector<std::string> concentration_effects = {
@@ -1021,6 +1218,370 @@ std::optional<Actor::QueuedSpell> Actor::pop_queued_spell() {
     auto spell = std::move(queued_spell_);
     queued_spell_.reset();
     return spell;
+}
+
+// ============================================================================
+// Data-Driven DoT Effect System Implementation
+// ============================================================================
+
+void Actor::add_dot_effect(const fiery::DotEffect& effect) {
+    // Check for stacking
+    if (effect.stackable) {
+        // Find existing effect of same type
+        for (auto& existing : dot_effects_) {
+            if (existing.ability_id == effect.ability_id &&
+                existing.effect_id == effect.effect_id) {
+                if (existing.stack_count < existing.max_stacks) {
+                    existing.stack_count++;
+                    // Refresh duration
+                    existing.remaining_ticks = effect.remaining_ticks;
+                    Log::game()->debug("DoT effect {} stacked to {} on {}",
+                                       effect.damage_type, existing.stack_count, name());
+                }
+                return;
+            }
+        }
+    }
+
+    // Add new effect
+    dot_effects_.push_back(effect);
+    update_dot_flags();
+    Log::game()->debug("DoT effect {} (potency {}) applied to {}",
+                       effect.damage_type, effect.potency, name());
+}
+
+void Actor::remove_dot_effects_by_category(const std::string& cure_category) {
+    auto it = std::remove_if(dot_effects_.begin(), dot_effects_.end(),
+        [&cure_category](const fiery::DotEffect& e) {
+            return e.matches_cure_category(cure_category);
+        });
+    dot_effects_.erase(it, dot_effects_.end());
+    update_dot_flags();
+}
+
+bool Actor::has_dot_effect(const std::string& cure_category) const {
+    return std::any_of(dot_effects_.begin(), dot_effects_.end(),
+        [&cure_category](const fiery::DotEffect& e) {
+            return e.matches_cure_category(cure_category);
+        });
+}
+
+bool Actor::is_regen_blocked_by_dot() const {
+    return std::any_of(dot_effects_.begin(), dot_effects_.end(),
+        [](const fiery::DotEffect& e) {
+            return e.blocks_regen;
+        });
+}
+
+int Actor::get_dot_regen_reduction() const {
+    int total_reduction = 0;
+    for (const auto& effect : dot_effects_) {
+        total_reduction += effect.reduces_regen;
+    }
+    return std::min(100, total_reduction);  // Cap at 100%
+}
+
+fiery::CureAttemptResult Actor::attempt_cure(const std::string& cure_category,
+                                              int cure_power,
+                                              bool cure_all,
+                                              bool partial_on_fail) {
+    fiery::CureAttemptResult result;
+    result.result = fiery::CureResult::NoEffect;
+
+    // Find effects matching the cure category, sorted by potency (highest first)
+    std::vector<size_t> matching_indices;
+    for (size_t i = 0; i < dot_effects_.size(); ++i) {
+        if (dot_effects_[i].matches_cure_category(cure_category)) {
+            matching_indices.push_back(i);
+        }
+    }
+
+    if (matching_indices.empty()) {
+        result.result = fiery::CureResult::WrongCategory;
+        result.message = fmt::format("You have no {} effects to cure.", cure_category);
+        return result;
+    }
+
+    // Sort by potency descending
+    std::sort(matching_indices.begin(), matching_indices.end(),
+        [this](size_t a, size_t b) {
+            return dot_effects_[a].potency > dot_effects_[b].potency;
+        });
+
+    std::vector<size_t> to_remove;
+
+    for (size_t idx : matching_indices) {
+        auto& effect = dot_effects_[idx];
+
+        if (cure_power >= effect.potency) {
+            // Full cure - mark for removal
+            to_remove.push_back(idx);
+            result.effects_removed++;
+            result.result = fiery::CureResult::FullCure;
+        } else if (partial_on_fail && cure_power >= effect.potency - 2) {
+            // Partial cure - reduce duration by 50% and potency by 1
+            effect.remaining_ticks = std::max(1, effect.remaining_ticks / 2);
+            effect.potency = std::max(1, effect.potency - 1);
+            result.effects_reduced++;
+            if (result.result != fiery::CureResult::FullCure) {
+                result.result = fiery::CureResult::PartialCure;
+            }
+        } else {
+            // Cure too weak
+            if (result.result == fiery::CureResult::NoEffect) {
+                result.result = fiery::CureResult::TooPowerful;
+                result.message = fmt::format("The {} is too powerful for your cure!",
+                                             effect.damage_type);
+            }
+        }
+
+        // If not curing all, stop after first attempt
+        if (!cure_all) break;
+    }
+
+    // Remove fully cured effects (reverse order to preserve indices)
+    std::sort(to_remove.begin(), to_remove.end(), std::greater<size_t>());
+    for (size_t idx : to_remove) {
+        dot_effects_.erase(dot_effects_.begin() + static_cast<ptrdiff_t>(idx));
+    }
+
+    // Update flags
+    update_dot_flags();
+
+    // Build result message
+    if (result.effects_removed > 0 && result.effects_reduced > 0) {
+        result.message = fmt::format("You cure {} effect{} and weaken {} more.",
+                                     result.effects_removed,
+                                     result.effects_removed == 1 ? "" : "s",
+                                     result.effects_reduced);
+    } else if (result.effects_removed > 0) {
+        result.message = fmt::format("You cure {} {} effect{}.",
+                                     result.effects_removed,
+                                     cure_category,
+                                     result.effects_removed == 1 ? "" : "s");
+    } else if (result.effects_reduced > 0) {
+        result.message = fmt::format("You weaken {} {} effect{}, but cannot fully cure them.",
+                                     result.effects_reduced,
+                                     cure_category,
+                                     result.effects_reduced == 1 ? "" : "s");
+    }
+
+    return result;
+}
+
+Actor::DotTickResult Actor::process_dot_effects() {
+    DotTickResult result;
+    std::vector<size_t> expired_indices;
+
+    for (size_t i = 0; i < dot_effects_.size(); ++i) {
+        auto& effect = dot_effects_[i];
+
+        // Advance tick counter
+        effect.advance_tick();
+
+        // Check if it's time to apply damage
+        if (!effect.should_tick()) continue;
+        effect.reset_tick_counter();
+
+        // Calculate damage
+        int damage = effect.flat_damage;
+        if (effect.percent_damage > 0) {
+            damage += (stats_.max_hit_points * effect.percent_damage) / 100;
+        }
+
+        // Apply stack multiplier
+        damage *= effect.stack_count;
+        damage = std::max(1, damage);
+
+        // Apply resistance based on damage type
+        int resistance = 0;
+        if (effect.damage_type == "poison") {
+            resistance = stats_.resistance_poison;
+        } else if (effect.damage_type == "fire") {
+            resistance = stats_.resistance_fire;
+        } else if (effect.damage_type == "cold") {
+            resistance = stats_.resistance_cold;
+        } else if (effect.damage_type == "acid") {
+            resistance = stats_.resistance_acid;
+        } else if (effect.damage_type == "lightning" || effect.damage_type == "shock") {
+            resistance = stats_.resistance_lightning;
+        }
+
+        if (resistance > 0) {
+            int max_resist = effect.max_resistance;
+            resistance = std::min(resistance, max_resist);
+            damage = damage * (100 - resistance) / 100;
+            damage = std::max(1, damage);
+        }
+
+        // Apply damage
+        result.total_damage += damage;
+        result.damage_by_type.emplace_back(effect.damage_type, damage);
+        stats_.hit_points -= damage;
+
+        // Send damage message
+        send_message(fmt::format("The {} courses through you! ({} damage)\r\n",
+                                 effect.damage_type, damage));
+
+        if (stats_.hit_points <= 0) {
+            stats_.hit_points = 0;
+            result.died = true;
+            send_message(fmt::format("The {} has claimed your life!\r\n", effect.damage_type));
+            return result;  // Stop processing, we're dead
+        }
+
+        // Decrement duration
+        effect.decrement_duration();
+        if (effect.is_expired()) {
+            expired_indices.push_back(i);
+        }
+    }
+
+    // Remove expired effects (reverse order to preserve indices)
+    std::sort(expired_indices.begin(), expired_indices.end(), std::greater<size_t>());
+    for (size_t idx : expired_indices) {
+        result.expired_effects.push_back(dot_effects_[idx].damage_type);
+        send_message(fmt::format("The {} effect wears off.\r\n", dot_effects_[idx].damage_type));
+        dot_effects_.erase(dot_effects_.begin() + static_cast<ptrdiff_t>(idx));
+    }
+
+    // Update flags
+    update_dot_flags();
+
+    return result;
+}
+
+void Actor::update_dot_flags() {
+    // Set Poison flag if any poison DoT is active
+    bool has_poison = std::any_of(dot_effects_.begin(), dot_effects_.end(),
+        [](const fiery::DotEffect& e) {
+            return e.cure_category == "poison";
+        });
+    set_flag(ActorFlag::Poison, has_poison);
+
+    // Set On_Fire flag if any fire DoT is active
+    bool has_fire = std::any_of(dot_effects_.begin(), dot_effects_.end(),
+        [](const fiery::DotEffect& e) {
+            return e.cure_category == "fire";
+        });
+    set_flag(ActorFlag::On_Fire, has_fire);
+}
+
+// ============================================================================
+// Data-Driven HoT Effect System Implementation
+// ============================================================================
+
+void Actor::add_hot_effect(const fiery::HotEffect& effect) {
+    // Check for stacking
+    if (effect.stackable) {
+        // Find existing effect of same type
+        for (auto& existing : hot_effects_) {
+            if (existing.ability_id == effect.ability_id &&
+                existing.effect_id == effect.effect_id) {
+                if (existing.stack_count < existing.max_stacks) {
+                    existing.stack_count++;
+                    // Refresh duration
+                    existing.remaining_ticks = effect.remaining_ticks;
+                    Log::game()->debug("HoT effect {} stacked to {} on {}",
+                                       effect.heal_type, existing.stack_count, name());
+                }
+                return;
+            }
+        }
+    }
+
+    // Add new effect
+    hot_effects_.push_back(effect);
+    Log::game()->debug("HoT effect {} applied to {}",
+                       effect.heal_type, name());
+}
+
+void Actor::remove_hot_effects_by_category(const std::string& dispel_category) {
+    auto it = std::remove_if(hot_effects_.begin(), hot_effects_.end(),
+        [&dispel_category](const fiery::HotEffect& e) {
+            return e.matches_dispel_category(dispel_category);
+        });
+    hot_effects_.erase(it, hot_effects_.end());
+}
+
+bool Actor::has_hot_effect(const std::string& hot_category) const {
+    return std::any_of(hot_effects_.begin(), hot_effects_.end(),
+        [&hot_category](const fiery::HotEffect& e) {
+            return e.matches_dispel_category(hot_category);
+        });
+}
+
+bool Actor::is_regen_boosted_by_hot() const {
+    return std::any_of(hot_effects_.begin(), hot_effects_.end(),
+        [](const fiery::HotEffect& e) {
+            return e.boosts_regen;
+        });
+}
+
+int Actor::get_hot_regen_boost() const {
+    int total_boost = 0;
+    for (const auto& effect : hot_effects_) {
+        total_boost += effect.regen_boost;
+    }
+    return total_boost;  // No cap - can stack to high values
+}
+
+fiery::HotTickResult Actor::process_hot_effects() {
+    fiery::HotTickResult result;
+    std::vector<size_t> expired_indices;
+
+    for (size_t i = 0; i < hot_effects_.size(); ++i) {
+        auto& effect = hot_effects_[i];
+
+        // Advance tick counter
+        effect.advance_tick();
+
+        // Check if it's time to apply healing
+        if (!effect.should_tick()) continue;
+        effect.reset_tick_counter();
+
+        // Calculate healing
+        int healing = effect.flat_heal;
+        if (effect.percent_heal > 0) {
+            healing += (stats_.max_hit_points * effect.percent_heal) / 100;
+        }
+
+        // Apply stack multiplier
+        healing *= effect.stack_count;
+        healing = std::max(1, healing);
+
+        // Don't overheal
+        int max_heal = stats_.max_hit_points - stats_.hit_points;
+        if (healing > max_heal) {
+            healing = max_heal;
+        }
+
+        // Apply healing
+        if (healing > 0) {
+            result.total_healing += healing;
+            stats_.hit_points += healing;
+
+            // Send healing message
+            send_message(fmt::format("You feel {} energy flow through you. (+{} HP)\r\n",
+                                     effect.heal_type, healing));
+        }
+
+        // Decrement duration
+        effect.decrement_duration();
+        if (effect.is_expired()) {
+            expired_indices.push_back(i);
+        }
+    }
+
+    // Remove expired effects (reverse order to preserve indices)
+    std::sort(expired_indices.begin(), expired_indices.end(), std::greater<size_t>());
+    for (size_t idx : expired_indices) {
+        result.expired_effects.push_back(hot_effects_[idx].heal_type);
+        send_message(fmt::format("The {} effect fades away.\r\n", hot_effects_[idx].heal_type));
+        hot_effects_.erase(hot_effects_.begin() + static_cast<ptrdiff_t>(idx));
+    }
+
+    return result;
 }
 
 // Mobile Implementation

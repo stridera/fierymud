@@ -2,6 +2,7 @@
 
 #include "entity.hpp"
 #include "object.hpp"
+#include "active_effect.hpp"
 #include "../core/result.hpp"
 #include "../database/generated/db_enums.hpp"
 
@@ -398,7 +399,7 @@ public:
     const SpellSlots& spell_slots() const;
     SpellSlots& spell_slots();
 
-    /** Active effect management */
+    /** Active effect management (legacy spell effects) */
     void add_effect(const ActiveEffect& effect);
     void remove_effect(const std::string& effect_name);
     bool has_effect(const std::string& effect_name) const;
@@ -406,6 +407,102 @@ public:
     const std::vector<ActiveEffect>& active_effects() const { return active_effects_; }
     void tick_effects();  // Called each game round to decrement durations
     void clear_effects();
+
+    // =========================================================================
+    // Data-Driven DoT Effect System
+    // =========================================================================
+
+    /** Add a DoT effect to this actor */
+    void add_dot_effect(const fiery::DotEffect& effect);
+
+    /** Remove all DoT effects matching a cure category */
+    void remove_dot_effects_by_category(const std::string& cure_category);
+
+    /** Get all active DoT effects */
+    const std::vector<fiery::DotEffect>& dot_effects() const { return dot_effects_; }
+    std::vector<fiery::DotEffect>& dot_effects() { return dot_effects_; }
+
+    /** Check if actor has any DoT effects of a given category */
+    bool has_dot_effect(const std::string& cure_category) const;
+
+    /** Check if any DoT effect blocks regeneration */
+    bool is_regen_blocked_by_dot() const;
+
+    /** Get total regen reduction from all DoT effects (0-100) */
+    int get_dot_regen_reduction() const;
+
+    /** Attempt to cure DoT effects of a given category
+     * @param cure_category Category to cure ("poison", "fire", "disease", "all")
+     * @param cure_power Power of the cure (must be >= effect potency for full cure)
+     * @param cure_all If true, attempt to cure all matching effects; if false, only strongest
+     * @param partial_on_fail If true, partial cure when underpowered; if false, total failure
+     * @return Result of the cure attempt with message and counts
+     */
+    fiery::CureAttemptResult attempt_cure(const std::string& cure_category,
+                                          int cure_power,
+                                          bool cure_all = false,
+                                          bool partial_on_fail = true);
+
+    /** Process all DoT effects for one tick - returns damage dealt by type */
+    struct DotTickResult {
+        int total_damage = 0;
+        std::vector<std::pair<std::string, int>> damage_by_type;  // (damage_type, amount)
+        std::vector<std::string> expired_effects;
+        bool died = false;
+    };
+    DotTickResult process_dot_effects();
+
+    /** Update actor flags based on active DoT effects (e.g., set Poison flag if poisoned) */
+    void update_dot_flags();
+
+    // =========================================================================
+    // Data-Driven HoT (Heal Over Time) Effect System
+    // =========================================================================
+
+    /** Add a HoT effect to this actor */
+    void add_hot_effect(const fiery::HotEffect& effect);
+
+    /** Remove all HoT effects matching a dispel category */
+    void remove_hot_effects_by_category(const std::string& dispel_category);
+
+    /** Get all active HoT effects */
+    const std::vector<fiery::HotEffect>& hot_effects() const { return hot_effects_; }
+    std::vector<fiery::HotEffect>& hot_effects() { return hot_effects_; }
+
+    /** Check if actor has any HoT effects of a given category */
+    bool has_hot_effect(const std::string& hot_category) const;
+
+    /** Check if any HoT effect boosts regeneration */
+    bool is_regen_boosted_by_hot() const;
+
+    /** Get total regen boost from all HoT effects (0-100+) */
+    int get_hot_regen_boost() const;
+
+    /** Process all HoT effects for one tick - returns healing done */
+    fiery::HotTickResult process_hot_effects();
+
+    /** Periodic character tick - called each MUD hour
+     * Handles: HP/move regeneration, effect durations, poison damage, dying damage
+     * Returns info about what happened for messaging */
+    struct TickResult {
+        int hp_gained = 0;
+        int move_gained = 0;
+        int hot_healing = 0;          // Healing from HoT effects
+        int poison_damage = 0;
+        int dying_damage = 0;
+        std::vector<std::string> expired_effects;
+        bool died = false;
+    };
+    virtual TickResult perform_tick();
+
+    /** Calculate HP regeneration per MUD hour (before applying) */
+    virtual int calculate_hit_gain() const;
+
+    /** Calculate movement regeneration per MUD hour (before applying) */
+    virtual int calculate_move_gain() const;
+
+    /** Get position-based regeneration multiplier (1.0 = normal) */
+    double get_regen_multiplier() const;
 
     /** Interrupt concentration-based activities like meditation */
     bool interrupt_concentration();
@@ -466,6 +563,8 @@ private:
     std::string size_ = "Medium";
     std::string race_ = "Human";
     std::vector<ActiveEffect> active_effects_;
+    std::vector<fiery::DotEffect> dot_effects_;  // Data-driven DoT effects
+    std::vector<fiery::HotEffect> hot_effects_;  // Data-driven HoT effects
 
     // Casting blackout system
     std::chrono::steady_clock::time_point casting_blackout_end_{};

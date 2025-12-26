@@ -78,6 +78,8 @@ EffectType parse_effect_type(std::string_view type_str) {
     if (type_str == "globe") return EffectType::Globe;
     if (type_str == "room") return EffectType::Room;
     if (type_str == "inspect") return EffectType::Inspect;
+    if (type_str == "dot") return EffectType::Dot;
+    if (type_str == "hot") return EffectType::Hot;
     return EffectType::Unknown;
 }
 
@@ -163,6 +165,81 @@ EffectParams EffectParams::from_json_string(std::string_view json_str) {
             }
         }
 
+        // DoT params
+        if (j.contains("cureCategory")) params.cure_category = j["cureCategory"].get<std::string>();
+        if (j.contains("potency")) {
+            if (j["potency"].is_string()) {
+                params.potency_formula = j["potency"].get<std::string>();
+            } else if (j["potency"].is_number()) {
+                params.potency_formula = std::to_string(j["potency"].get<int>());
+            }
+        }
+        if (j.contains("flatDamage")) {
+            if (j["flatDamage"].is_string()) {
+                params.flat_damage_formula = j["flatDamage"].get<std::string>();
+            } else if (j["flatDamage"].is_number()) {
+                params.flat_damage_formula = std::to_string(j["flatDamage"].get<int>());
+            }
+        }
+        if (j.contains("percentDamage")) {
+            if (j["percentDamage"].is_string()) {
+                params.percent_damage_formula = j["percentDamage"].get<std::string>();
+            } else if (j["percentDamage"].is_number()) {
+                params.percent_damage_formula = std::to_string(j["percentDamage"].get<int>());
+            }
+        }
+        if (j.contains("dotDuration")) {
+            if (j["dotDuration"].is_string()) {
+                params.dot_duration_formula = j["dotDuration"].get<std::string>();
+            } else if (j["dotDuration"].is_number()) {
+                params.dot_duration_formula = std::to_string(j["dotDuration"].get<int>());
+            }
+        }
+        if (j.contains("tickInterval")) params.tick_interval = j["tickInterval"].get<int>();
+        if (j.contains("blocksRegen")) params.blocks_regen = j["blocksRegen"].get<bool>();
+        if (j.contains("reducesRegen")) {
+            if (j["reducesRegen"].is_string()) {
+                params.reduces_regen_formula = j["reducesRegen"].get<std::string>();
+            } else if (j["reducesRegen"].is_number()) {
+                params.reduces_regen_formula = std::to_string(j["reducesRegen"].get<int>());
+            }
+        }
+        if (j.contains("maxResistance")) params.max_resistance = j["maxResistance"].get<int>();
+        if (j.contains("stackable")) params.stackable = j["stackable"].get<bool>();
+        if (j.contains("maxStacks")) params.max_stacks = j["maxStacks"].get<int>();
+
+        // HoT params
+        if (j.contains("hotCategory")) params.hot_category = j["hotCategory"].get<std::string>();
+        if (j.contains("flatHeal")) {
+            if (j["flatHeal"].is_string()) {
+                params.flat_heal_formula = j["flatHeal"].get<std::string>();
+            } else if (j["flatHeal"].is_number()) {
+                params.flat_heal_formula = std::to_string(j["flatHeal"].get<int>());
+            }
+        }
+        if (j.contains("percentHeal")) {
+            if (j["percentHeal"].is_string()) {
+                params.percent_heal_formula = j["percentHeal"].get<std::string>();
+            } else if (j["percentHeal"].is_number()) {
+                params.percent_heal_formula = std::to_string(j["percentHeal"].get<int>());
+            }
+        }
+        if (j.contains("hotDuration")) {
+            if (j["hotDuration"].is_string()) {
+                params.hot_duration_formula = j["hotDuration"].get<std::string>();
+            } else if (j["hotDuration"].is_number()) {
+                params.hot_duration_formula = std::to_string(j["hotDuration"].get<int>());
+            }
+        }
+        if (j.contains("boostsRegen")) params.boosts_regen = j["boostsRegen"].get<bool>();
+        if (j.contains("regenBoost")) {
+            if (j["regenBoost"].is_string()) {
+                params.boosts_regen_formula = j["regenBoost"].get<std::string>();
+            } else if (j["regenBoost"].is_number()) {
+                params.boosts_regen_formula = std::to_string(j["regenBoost"].get<int>());
+            }
+        }
+
         // Generic
         if (j.contains("chance")) {
             if (j["chance"].is_string()) {
@@ -237,6 +314,79 @@ void EffectParams::merge_override(std::string_view override_json) {
             } else if (j["distance"].is_number()) {
                 move_distance = j["distance"].get<int>();
                 move_distance_formula = std::to_string(move_distance);
+            }
+        }
+        // DoT params
+        if (j.contains("cureCategory")) cure_category = j["cureCategory"].get<std::string>();
+        if (j.contains("potency")) {
+            if (j["potency"].is_string()) {
+                potency_formula = j["potency"].get<std::string>();
+            } else if (j["potency"].is_number()) {
+                potency_formula = std::to_string(j["potency"].get<int>());
+            }
+        }
+        if (j.contains("flatDamage")) {
+            if (j["flatDamage"].is_string()) {
+                flat_damage_formula = j["flatDamage"].get<std::string>();
+            } else if (j["flatDamage"].is_number()) {
+                flat_damage_formula = std::to_string(j["flatDamage"].get<int>());
+            }
+        }
+        if (j.contains("percentDamage")) {
+            if (j["percentDamage"].is_string()) {
+                percent_damage_formula = j["percentDamage"].get<std::string>();
+            } else if (j["percentDamage"].is_number()) {
+                percent_damage_formula = std::to_string(j["percentDamage"].get<int>());
+            }
+        }
+        if (j.contains("dotDuration")) {
+            if (j["dotDuration"].is_string()) {
+                dot_duration_formula = j["dotDuration"].get<std::string>();
+            } else if (j["dotDuration"].is_number()) {
+                dot_duration_formula = std::to_string(j["dotDuration"].get<int>());
+            }
+        }
+        if (j.contains("tickInterval")) tick_interval = j["tickInterval"].get<int>();
+        if (j.contains("blocksRegen")) blocks_regen = j["blocksRegen"].get<bool>();
+        if (j.contains("reducesRegen")) {
+            if (j["reducesRegen"].is_string()) {
+                reduces_regen_formula = j["reducesRegen"].get<std::string>();
+            } else if (j["reducesRegen"].is_number()) {
+                reduces_regen_formula = std::to_string(j["reducesRegen"].get<int>());
+            }
+        }
+        if (j.contains("maxResistance")) max_resistance = j["maxResistance"].get<int>();
+        if (j.contains("stackable")) stackable = j["stackable"].get<bool>();
+        if (j.contains("maxStacks")) max_stacks = j["maxStacks"].get<int>();
+        // HoT params
+        if (j.contains("hotCategory")) hot_category = j["hotCategory"].get<std::string>();
+        if (j.contains("flatHeal")) {
+            if (j["flatHeal"].is_string()) {
+                flat_heal_formula = j["flatHeal"].get<std::string>();
+            } else if (j["flatHeal"].is_number()) {
+                flat_heal_formula = std::to_string(j["flatHeal"].get<int>());
+            }
+        }
+        if (j.contains("percentHeal")) {
+            if (j["percentHeal"].is_string()) {
+                percent_heal_formula = j["percentHeal"].get<std::string>();
+            } else if (j["percentHeal"].is_number()) {
+                percent_heal_formula = std::to_string(j["percentHeal"].get<int>());
+            }
+        }
+        if (j.contains("hotDuration")) {
+            if (j["hotDuration"].is_string()) {
+                hot_duration_formula = j["hotDuration"].get<std::string>();
+            } else if (j["hotDuration"].is_number()) {
+                hot_duration_formula = std::to_string(j["hotDuration"].get<int>());
+            }
+        }
+        if (j.contains("boostsRegen")) boosts_regen = j["boostsRegen"].get<bool>();
+        if (j.contains("regenBoost")) {
+            if (j["regenBoost"].is_string()) {
+                boosts_regen_formula = j["regenBoost"].get<std::string>();
+            } else if (j["regenBoost"].is_number()) {
+                boosts_regen_formula = std::to_string(j["regenBoost"].get<int>());
             }
         }
         if (j.contains("chance")) {
@@ -363,6 +513,10 @@ std::expected<EffectResult, Error> EffectExecutor::execute(
             return execute_status(params, context);
         case EffectType::Move:
             return execute_move(params, context);
+        case EffectType::Dot:
+            return execute_dot(params, context);
+        case EffectType::Hot:
+            return execute_hot(params, context);
         default:
             return std::unexpected(Errors::NotImplemented(
                 fmt::format("Effect type '{}' not yet implemented", effect_def.name)));
@@ -390,6 +544,10 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
                      ability_effect.effect_id, ability_effect.ability_id);
             continue;
         }
+
+        // Set context IDs for this effect execution
+        context.ability_id = ability_effect.ability_id;
+        context.effect_id = ability_effect.effect_id;
 
         // Execute the effect
         auto result = execute(def_it->second, ability_effect.params, context);
@@ -817,6 +975,217 @@ std::expected<EffectResult, Error> EffectExecutor::execute_move(
         context.actor->display_name(), move_type, context.target->display_name());
 
     return EffectResult::success_result(params.move_distance, attacker_msg, target_msg, room_msg);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_dot(
+    const EffectParams& params, EffectContext& context) {
+
+    if (!context.target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for DoT effect"));
+    }
+
+    // Evaluate potency from formula
+    int potency = 5;  // Default
+    if (!params.potency_formula.empty()) {
+        auto potency_result = FormulaParser::evaluate(params.potency_formula, context.formula_ctx);
+        if (potency_result) {
+            potency = std::clamp(*potency_result, 1, 10);  // Clamp to 1-10 range
+        }
+    }
+
+    // Evaluate flat damage per tick
+    int flat_damage = 0;
+    if (!params.flat_damage_formula.empty()) {
+        auto flat_result = FormulaParser::evaluate(params.flat_damage_formula, context.formula_ctx);
+        if (flat_result) {
+            flat_damage = std::max(0, *flat_result);
+        }
+    }
+
+    // Evaluate percent damage per tick
+    int percent_damage = 0;
+    if (!params.percent_damage_formula.empty()) {
+        auto pct_result = FormulaParser::evaluate(params.percent_damage_formula, context.formula_ctx);
+        if (pct_result) {
+            percent_damage = std::clamp(*pct_result, 0, 100);
+        }
+    }
+
+    // Evaluate duration in ticks
+    int duration = -1;  // Default: permanent until cured
+    if (!params.dot_duration_formula.empty()) {
+        auto dur_result = FormulaParser::evaluate(params.dot_duration_formula, context.formula_ctx);
+        if (dur_result) {
+            duration = std::max(1, *dur_result);
+        }
+    }
+
+    // Evaluate regen reduction
+    int reduces_regen = 0;
+    if (!params.reduces_regen_formula.empty()) {
+        auto regen_result = FormulaParser::evaluate(params.reduces_regen_formula, context.formula_ctx);
+        if (regen_result) {
+            reduces_regen = std::clamp(*regen_result, 0, 100);
+        }
+    }
+
+    // Create the DoT effect with resolved parameters
+    fiery::DotEffect dot;
+    dot.ability_id = context.ability_id;
+    dot.effect_id = context.effect_id;
+    dot.effect_type = "dot";
+    dot.damage_type = params.damage_type;
+    dot.cure_category = params.cure_category;
+    dot.potency = potency;
+    dot.flat_damage = flat_damage;
+    dot.percent_damage = percent_damage;
+    dot.blocks_regen = params.blocks_regen;
+    dot.reduces_regen = reduces_regen;
+    dot.max_resistance = params.max_resistance;
+    dot.remaining_ticks = duration;
+    dot.tick_interval = params.tick_interval;
+    dot.ticks_since_last = 0;
+    if (context.actor && context.actor->id().is_valid()) {
+        dot.source_actor_id = fmt::format("{}:{}",
+            context.actor->id().zone_id(),
+            context.actor->id().local_id());
+    }
+    dot.source_level = context.formula_ctx.actor_level;
+    dot.stack_count = 1;
+    dot.max_stacks = params.max_stacks;
+    dot.stackable = params.stackable;
+
+    // Apply the DoT effect to the target
+    context.target->add_dot_effect(dot);
+
+    // Generate messages
+    std::string effect_desc = params.cure_category;
+    if (effect_desc == "poison") {
+        effect_desc = "poisoned";
+    } else if (effect_desc == "fire") {
+        effect_desc = "burning";
+    } else if (effect_desc == "disease") {
+        effect_desc = "diseased";
+    } else if (effect_desc == "bleed") {
+        effect_desc = "bleeding";
+    } else if (effect_desc == "acid") {
+        effect_desc = "corroding";
+    }
+
+    std::string attacker_msg = fmt::format("You inflict {} on {}!",
+        effect_desc, context.target->display_name());
+    std::string target_msg = fmt::format("{} inflicts {} on you!",
+        context.actor->display_name(), effect_desc);
+    std::string room_msg = fmt::format("{} inflicts {} on {}!",
+        context.actor->display_name(), effect_desc, context.target->display_name());
+
+    return EffectResult::success_result(potency, attacker_msg, target_msg, room_msg);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_hot(
+    const EffectParams& params, EffectContext& context) {
+
+    if (!context.target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for HoT effect"));
+    }
+
+    // Parse formulas to get resolved values
+    FormulaParser parser;
+
+    // Calculate flat healing per tick
+    int flat_heal = 0;
+    if (!params.flat_heal_formula.empty()) {
+        auto result = parser.evaluate(params.flat_heal_formula, context.formula_ctx);
+        if (result) {
+            flat_heal = static_cast<int>(*result);
+        }
+    }
+
+    // Calculate percent healing per tick
+    int percent_heal = 0;
+    if (!params.percent_heal_formula.empty()) {
+        auto result = parser.evaluate(params.percent_heal_formula, context.formula_ctx);
+        if (result) {
+            percent_heal = static_cast<int>(*result);
+        }
+    }
+
+    // Calculate duration
+    int duration = 10; // Default 10 ticks
+    if (!params.hot_duration_formula.empty()) {
+        auto result = parser.evaluate(params.hot_duration_formula, context.formula_ctx);
+        if (result) {
+            duration = static_cast<int>(*result);
+        }
+    }
+
+    // Calculate regen boost percentage
+    int regen_boost = 0;
+    if (params.boosts_regen && !params.boosts_regen_formula.empty()) {
+        auto result = parser.evaluate(params.boosts_regen_formula, context.formula_ctx);
+        if (result) {
+            regen_boost = static_cast<int>(*result);
+        }
+    }
+
+    // Create the HoT effect
+    fiery::HotEffect hot;
+    hot.ability_id = context.ability_id;
+    hot.effect_id = context.effect_id;
+    hot.effect_type = "hot";
+    hot.heal_type = params.heal_resource;
+    hot.hot_category = params.hot_category;
+    hot.flat_heal = flat_heal;
+    hot.percent_heal = percent_heal;
+    hot.boosts_regen = params.boosts_regen;
+    hot.regen_boost = regen_boost;
+    hot.remaining_ticks = duration;
+    hot.tick_interval = params.tick_interval;
+    hot.ticks_since_last = 0;
+    if (context.actor && context.actor->id().is_valid()) {
+        hot.source_actor_id = fmt::format("{}:{}",
+            context.actor->id().zone_id(),
+            context.actor->id().local_id());
+    }
+    hot.source_level = context.formula_ctx.actor_level;
+    hot.stack_count = 1;
+    hot.max_stacks = params.max_stacks;
+    hot.stackable = params.stackable;
+
+    // Apply the HoT effect to the target
+    context.target->add_hot_effect(hot);
+
+    // Generate messages based on heal type
+    std::string effect_desc = params.hot_category;
+    if (effect_desc == "heal") {
+        effect_desc = "healing";
+    } else if (effect_desc == "regen" || effect_desc == "regeneration") {
+        effect_desc = "regenerating";
+    } else if (effect_desc == "divine") {
+        effect_desc = "divine healing";
+    } else if (effect_desc == "nature") {
+        effect_desc = "natural healing";
+    }
+
+    std::string attacker_msg;
+    std::string target_msg;
+    std::string room_msg;
+
+    if (context.actor == context.target) {
+        // Self-cast
+        attacker_msg = fmt::format("You begin {}.", effect_desc);
+        room_msg = fmt::format("{} begins {}.",
+            context.actor->display_name(), effect_desc);
+    } else {
+        attacker_msg = fmt::format("You grant {} to {}!",
+            effect_desc, context.target->display_name());
+        target_msg = fmt::format("{} grants you {}!",
+            context.actor->display_name(), effect_desc);
+        room_msg = fmt::format("{} grants {} to {}!",
+            context.actor->display_name(), effect_desc, context.target->display_name());
+    }
+
+    return EffectResult::success_result(flat_heal, attacker_msg, target_msg, room_msg);
 }
 
 } // namespace FieryMUD
