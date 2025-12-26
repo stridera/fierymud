@@ -12,9 +12,9 @@ namespace {
 // Static Data
 // =============================================================================
 
-constexpr Pronouns MALE_PRONOUNS = {"he", "him", "his", "himself"};
-constexpr Pronouns FEMALE_PRONOUNS = {"she", "her", "her", "herself"};
-constexpr Pronouns NEUTRAL_PRONOUNS = {"they", "them", "their", "themselves"};
+constexpr Pronouns MALE_PRONOUNS = {"he", "him", "his", "himself", "is"};
+constexpr Pronouns FEMALE_PRONOUNS = {"she", "her", "her", "herself", "is"};
+constexpr Pronouns NEUTRAL_PRONOUNS = {"they", "them", "their", "themselves", "are"};
 
 const std::unordered_map<std::string, std::string> COLOR_CODES = {
     // Standard colors

@@ -669,10 +669,10 @@ std::string Room::get_contents_description(const Actor *observer) const {
         }
     }
 
-    // Describe other actors
+    // Describe other actors (check visibility)
     for (const auto &actor : contents_.actors) {
-        if (actor && actor.get() != observer) {
-            contents_desc += fmt::format("{} is here.\n", actor->display_name());
+        if (actor && actor.get() != observer && actor->is_visible_to(*observer)) {
+            contents_desc += fmt::format("{} is here.\n", actor->display_name_for_observer(*observer));
         }
     }
 

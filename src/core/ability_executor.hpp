@@ -37,6 +37,44 @@ struct AbilityExecutionResult {
 };
 
 /**
+ * Cached ability messages for fast lookup.
+ */
+struct CachedAbilityMessages {
+    std::string start_to_caster;
+    std::string start_to_victim;
+    std::string start_to_room;
+    std::string success_to_caster;
+    std::string success_to_victim;
+    std::string success_to_room;
+    std::string success_to_self;    // Message to caster when targeting self
+    std::string success_self_room;  // Room message when caster targets self
+    std::string fail_to_caster;
+    std::string fail_to_victim;
+    std::string fail_to_room;
+    std::string wearoff_to_target;
+    std::string wearoff_to_room;
+    std::string look_message;       // Message when looking at someone affected by this ability
+};
+
+/**
+ * Cached ability restrictions for fast lookup.
+ */
+struct CachedAbilityRestrictions {
+    std::vector<WorldQueries::AbilityRequirement> requirements;
+    std::string custom_lua;
+};
+
+/**
+ * Cached damage components for abilities.
+ */
+struct CachedDamageComponent {
+    std::string element;
+    std::string damage_formula;
+    int percentage;
+    int sequence;
+};
+
+/**
  * AbilityCache stores loaded abilities and effects for fast access.
  * Call initialize() at startup to load all abilities from database.
  */
@@ -62,6 +100,15 @@ public:
     /** Get all effects for an ability */
     std::vector<AbilityEffect> get_ability_effects(int ability_id) const;
 
+    /** Get custom messages for an ability (nullptr if not set) */
+    const CachedAbilityMessages* get_ability_messages(int ability_id) const;
+
+    /** Get restrictions for an ability (nullptr if none) */
+    const CachedAbilityRestrictions* get_ability_restrictions(int ability_id) const;
+
+    /** Get damage components for an ability (empty if none) */
+    std::vector<CachedDamageComponent> get_damage_components(int ability_id) const;
+
     /** Reload cache from database */
     Result<void> reload();
 
@@ -73,6 +120,9 @@ private:
     std::unordered_map<std::string, int> ability_name_index_;  // lowercase name -> id
     std::unordered_map<int, EffectDefinition> effects_;
     std::unordered_map<int, std::vector<AbilityEffect>> ability_effects_;  // ability_id -> effects
+    std::unordered_map<int, CachedAbilityMessages> ability_messages_;      // ability_id -> messages
+    std::unordered_map<int, CachedAbilityRestrictions> ability_restrictions_; // ability_id -> restrictions
+    std::unordered_map<int, std::vector<CachedDamageComponent>> damage_components_; // ability_id -> damage components
 };
 
 /**

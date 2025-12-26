@@ -2,6 +2,8 @@
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../core/ability_executor.hpp"
+#include "../database/world_queries.hpp"
 #include "../text/string_utils.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
@@ -196,6 +198,48 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
     }
 
     if (!cmd_copy_opt) {
+        // Try data-driven skill lookup from ability database
+        auto& ability_cache = FieryMUD::AbilityCache::instance();
+        if (!ability_cache.is_initialized()) {
+            auto init_result = ability_cache.initialize();
+            if (!init_result) {
+                Log::game()->warn("Failed to initialize ability cache: {}", init_result.error().message);
+            }
+        }
+        const auto* ability = ability_cache.get_ability_by_name(command.command);
+
+        // Check if it's a non-spell ability (skills, chants, songs can be used as commands)
+        if (ability && ability->type != WorldQueries::AbilityType::Spell) {
+            // Create execution context for the skill
+            auto context_result = create_context(actor, command);
+            if (!context_result) {
+                actor->send_message(fmt::format("Error executing {}\n", command.command));
+                return CommandResult::SystemError;
+            }
+            auto context = std::move(context_result.value());
+
+            // Determine if this is a toggle skill (check if actor already has this effect)
+            if (ability->is_toggle && actor->has_effect(ability->name)) {
+                // Toggle off
+                actor->remove_effect(ability->name);
+                const auto* messages = ability_cache.get_ability_messages(ability->id);
+                if (messages && !messages->wearoff_to_target.empty()) {
+                    actor->send_message(messages->wearoff_to_target + "\n");
+                } else {
+                    actor->send_message(fmt::format("You stop {}.\n", to_lowercase(ability->name)));
+                }
+                return CommandResult::Success;
+            }
+
+            // Execute via data-driven ability system
+            // For now, assume non-violent skills are self-targeted toggles
+            bool requires_target = ability->violent;
+            bool can_initiate_combat = ability->violent;
+
+            return FieryMUD::execute_skill_command(context, command.command,
+                                                    requires_target, can_initiate_combat);
+        }
+
         // Compute suggestions without holding the global lock
         auto suggestions = get_command_suggestions(command.command, actor);
         if (!suggestions.empty()) {
@@ -215,7 +259,19 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
             actor->send_message("You don't have sufficient privileges for that command.\n");
             return CommandResult::InsufficientPrivs;
         }
-        actor->send_message("You can't use that command right now.\n");
+        // Provide specific error messages based on position
+        Position pos = actor->position();
+        if (pos == Position::Dead || pos == Position::Ghost) {
+            actor->send_message("You can't do that while dead!\n");
+        } else if (pos == Position::Sleeping) {
+            actor->send_message("You can't do that while sleeping. Try 'wake' first.\n");
+        } else if (pos == Position::Sitting || pos == Position::Resting) {
+            actor->send_message("You need to stand up first.\n");
+        } else if (pos == Position::Fighting) {
+            actor->send_message("You can't do that while fighting!\n");
+        } else {
+            actor->send_message("You can't do that right now.\n");
+        }
         return CommandResult::InvalidState;
     }
 

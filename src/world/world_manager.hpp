@@ -203,9 +203,19 @@ class WorldManager {
     // Object Instance Creation (for player inventory loading)
     std::shared_ptr<Object> create_object_instance(EntityId prototype_id);
 
+    // Mobile Instance Creation (for load command and zone resets)
+    std::shared_ptr<Mobile> spawn_mobile_to_room(EntityId prototype_id, EntityId room_id);
+
+    // Prototype Access (for load command and similar admin features)
+    Mobile* get_mobile_prototype(EntityId prototype_id) const;
+    Object* get_object_prototype(EntityId prototype_id) const;
+
     // Weather Integration
     void update_weather_system(std::chrono::minutes elapsed);
     void initialize_weather_callbacks();
+
+    // Effect System - called each game round to tick down effect durations
+    void tick_all_effects();
 
   private:
     WorldManager() = default;

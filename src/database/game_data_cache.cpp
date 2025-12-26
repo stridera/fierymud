@@ -154,7 +154,8 @@ Result<void> GameDataCache::load_races() {
                        bonus_hitroll, bonus_damroll, default_size,
                        max_strength, max_dexterity, max_intelligence,
                        max_wisdom, max_constitution, max_charisma,
-                       exp_factor, hp_factor, hit_damage_factor, ac_factor
+                       exp_factor, hp_factor, hit_damage_factor, ac_factor,
+                       start_room_zone_id, start_room_id
                 FROM "Races"
                 ORDER BY race
             )");
@@ -202,6 +203,12 @@ Result<void> GameDataCache::load_races() {
                 data.hp_factor = row["hp_factor"].as<int>();
                 data.damage_factor = row["hit_damage_factor"].as<int>();
                 data.ac_factor = row["ac_factor"].as<int>();
+
+                // Load optional start room
+                if (!row["start_room_zone_id"].is_null() && !row["start_room_id"].is_null()) {
+                    data.start_room_zone_id = row["start_room_zone_id"].as<int>();
+                    data.start_room_id = row["start_room_id"].as<int>();
+                }
 
                 size_t index = races_.size();
                 races_.push_back(std::move(data));

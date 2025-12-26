@@ -122,6 +122,9 @@ public:
     void add_player_connection(std::shared_ptr<PlayerConnection> connection);
     void remove_player_connection(std::shared_ptr<PlayerConnection> connection);
     void set_actor_for_connection(std::shared_ptr<PlayerConnection> connection, std::shared_ptr<Actor> actor);
+    void handle_player_reconnection(std::shared_ptr<PlayerConnection> old_connection,
+                                    std::shared_ptr<PlayerConnection> new_connection,
+                                    std::shared_ptr<Player> player);
     void add_player(std::shared_ptr<Player> player);
     void remove_player(std::shared_ptr<Player> player);
     
@@ -162,9 +165,9 @@ private:
     void send_prompt_to_actor(std::shared_ptr<Actor> actor);
     
     // Timer management
-    void schedule_timer(std::chrono::milliseconds interval, 
+    void schedule_timer(std::chrono::milliseconds interval,
                        std::function<void()> task,
-                       std::shared_ptr<asio::steady_timer>& timer);
+                       const std::shared_ptr<asio::steady_timer>& timer);
     
     // Configuration and state
     asio::io_context& io_context_;

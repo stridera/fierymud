@@ -6,17 +6,26 @@
 #include "text/string_utils.hpp"
 #include <magic_enum/magic_enum.hpp>
 #include <fmt/format.h>
+#include <fmt/chrono.h>
 #include <sstream>
 #include <regex>
 #include <random>
 #include <functional>
 #include <algorithm>
+#include <utility>
 #include <crypt.h>
 #include <openssl/rand.h>
 #include <openssl/evp.h>
+#include <array>
 #include <cstring>
 
 namespace WorldQueries {
+
+// Helper functions to convert db:: enums to game enums
+// Both enum sets have matching integer values (verified by generator)
+inline MobFlag to_game(db::MobFlag f) { return static_cast<MobFlag>(std::to_underlying(f)); }
+inline EffectFlag to_game(db::EffectFlag f) { return static_cast<EffectFlag>(std::to_underlying(f)); }
+inline ObjectFlag to_game(db::ObjectFlag f) { return static_cast<ObjectFlag>(std::to_underlying(f)); }
 
 // Helper function to parse PostgreSQL array format: {elem1,elem2,elem3} or {"elem 1","elem 2"}
 static std::vector<std::string> parse_pg_array(const std::string& pg_array) {
@@ -74,29 +83,6 @@ static std::vector<std::string> parse_pg_array(const std::string& pg_array) {
     // Don't forget the last element
     if (!current.empty()) {
         result.push_back(current);
-    }
-
-    return result;
-}
-
-// Helper function to convert SCREAMING_SNAKE_CASE to PascalCase
-// e.g., "NO_RENT" -> "NoRent", "ANTI_BERSERKER" -> "AntiBerserker"
-static std::string screaming_to_pascal(const std::string& input) {
-    if (input.empty()) return input;
-
-    std::string result;
-    result.reserve(input.size());
-
-    bool capitalize_next = true;
-    for (char c : input) {
-        if (c == '_') {
-            capitalize_next = true;
-        } else if (capitalize_next) {
-            result += static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
-            capitalize_next = false;
-        } else {
-            result += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
-        }
     }
 
     return result;
@@ -212,19 +198,26 @@ Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work& txn) {
     logger->debug("Loading all zones from database");
 
     try {
-        auto result = txn.exec(R"(
-            SELECT id, name, lifespan, "resetMode"
-            FROM "Zones"
-            ORDER BY id
-        )");
+        // Query zones using generated column constants
+        // Note: camelCase columns use aliases for reliable pqxx access
+        auto result = txn.exec(
+            fmt::format(R"(
+                SELECT {}, {}, {}, "{}" AS reset_mode
+                FROM "{}"
+                ORDER BY {}
+            )",
+            db::Zones::ID, db::Zones::NAME, db::Zones::LIFESPAN, db::Zones::RESET_MODE,
+            db::Zones::TABLE,
+            db::Zones::ID
+        ));
 
         std::vector<std::unique_ptr<Zone>> zones;
         zones.reserve(result.size());
 
         for (const auto& row : result) {
-            int zone_id = row["id"].as<int>();
-            std::string name = row["name"].as<std::string>();
-            int lifespan = row["lifespan"].as<int>(30);
+            int zone_id = row[db::Zones::ID.data()].as<int>();
+            std::string name = row[db::Zones::NAME.data()].as<std::string>();
+            int lifespan = row[db::Zones::LIFESPAN.data()].as<int>(30);
 
             // Create zone with composite EntityId using factory method
             // Zones use (zoneId, 1) as their ID to ensure zone 0 is valid
@@ -256,11 +249,18 @@ Result<std::unique_ptr<Zone>> load_zone(pqxx::work& txn, int zone_id) {
     logger->debug("Loading zone {} from database", zone_id);
 
     try {
-        auto result = txn.exec_params(R"(
-            SELECT id, name, lifespan, "resetMode"
-            FROM "Zones"
-            WHERE id = $1
-        )", zone_id);
+        // Query zone using generated column constants
+        // Note: camelCase columns use aliases for reliable pqxx access
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, "{}" AS reset_mode
+                FROM "{}"
+                WHERE {} = $1
+            )",
+            db::Zones::ID, db::Zones::NAME, db::Zones::LIFESPAN, db::Zones::RESET_MODE,
+            db::Zones::TABLE,
+            db::Zones::ID
+        ), zone_id);
 
         if (result.empty()) {
             return std::unexpected(Error{ErrorCode::NotFound,
@@ -268,8 +268,8 @@ Result<std::unique_ptr<Zone>> load_zone(pqxx::work& txn, int zone_id) {
         }
 
         const auto& row = result[0];
-        std::string name = row["name"].as<std::string>();
-        int lifespan = row["lifespan"].as<int>(30);
+        std::string name = row[db::Zones::NAME.data()].as<std::string>();
+        int lifespan = row[db::Zones::LIFESPAN.data()].as<int>(30);
 
         // Zones use (zoneId, 1) to ensure zone 0 is valid
         auto zone = Zone::create(
@@ -295,25 +295,32 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
     logger->debug("Loading rooms for zone {} from database", zone_id);
 
     try {
-        auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, room_description, sector, flags
-            FROM "Room"
-            WHERE zone_id = $1 AND deleted_at IS NULL
-            ORDER BY id
-        )", zone_id);
+        // Query rooms using generated column constants
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}, {}, {}
+                FROM "{}"
+                WHERE {} = $1 AND {} IS NULL
+                ORDER BY {}
+            )",
+            db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
+            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::FLAGS,
+            db::Room::TABLE,
+            db::Room::ZONE_ID, db::Room::DELETED_AT, db::Room::ID
+        ), zone_id);
 
         std::vector<std::unique_ptr<Room>> rooms;
         rooms.reserve(result.size());
 
         for (const auto& row : result) {
-            int local_id = row["id"].as<int>();
-            std::string name = row["name"].as<std::string>();
-            std::string description = row["room_description"].as<std::string>("");
+            int local_id = row[db::Room::ID.data()].as<int>();
+            std::string name = row[db::Room::NAME.data()].as<std::string>();
+            std::string description = row[db::Room::ROOM_DESCRIPTION.data()].as<std::string>("");
 
             // Parse sector type from database enum
             SectorType sector = SectorType::Inside;
-            if (!row["sector"].is_null()) {
-                std::string sector_str = row["sector"].as<std::string>();
+            if (!row[db::Room::SECTOR.data()].is_null()) {
+                std::string sector_str = row[db::Room::SECTOR.data()].as<std::string>();
                 sector = sector_from_db_string(sector_str);
             }
 
@@ -334,8 +341,8 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
                 room->set_zone_id(EntityId(zone_id, 1));
 
                 // Parse and set room flags (PostgreSQL array)
-                if (!row["flags"].is_null()) {
-                    std::string flags_str = row["flags"].as<std::string>();
+                if (!row[db::Room::FLAGS.data()].is_null()) {
+                    std::string flags_str = row[db::Room::FLAGS.data()].as<std::string>();
                     auto flag_names = parse_pg_array(flags_str);
                     for (const auto& flag_name : flag_names) {
                         auto flag = room_flag_from_db_string(flag_name);
@@ -366,11 +373,18 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
     logger->debug("Loading room ({}, {}) from database", zone_id, room_local_id);
 
     try {
-        auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, room_description, sector, flags
-            FROM "Room"
-            WHERE zone_id = $1 AND id = $2
-        )", zone_id, room_local_id);
+        // Query room using generated column constants
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}, {}, {}
+                FROM "{}"
+                WHERE {} = $1 AND {} = $2
+            )",
+            db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
+            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::FLAGS,
+            db::Room::TABLE,
+            db::Room::ZONE_ID, db::Room::ID
+        ), zone_id, room_local_id);
 
         if (result.empty()) {
             return std::unexpected(Error{ErrorCode::NotFound,
@@ -378,13 +392,13 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
         }
 
         const auto& row = result[0];
-        std::string name = row["name"].as<std::string>();
-        std::string description = row["room_description"].as<std::string>("");
+        std::string name = row[db::Room::NAME.data()].as<std::string>();
+        std::string description = row[db::Room::ROOM_DESCRIPTION.data()].as<std::string>("");
 
         // Parse sector type from database enum
         SectorType sector = SectorType::Inside;
-        if (!row["sector"].is_null()) {
-            std::string sector_str = row["sector"].as<std::string>();
+        if (!row[db::Room::SECTOR.data()].is_null()) {
+            std::string sector_str = row[db::Room::SECTOR.data()].as<std::string>();
             sector = sector_from_db_string(sector_str);
         }
 
@@ -404,8 +418,8 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
             room->set_zone_id(EntityId(zone_id, 1));
 
             // Parse and set room flags (PostgreSQL array)
-            if (!row["flags"].is_null()) {
-                std::string flags_str = row["flags"].as<std::string>();
+            if (!row[db::Room::FLAGS.data()].is_null()) {
+                std::string flags_str = row[db::Room::FLAGS.data()].as<std::string>();
                 auto flag_names = parse_pg_array(flags_str);
                 for (const auto& flag_name : flag_names) {
                     auto flag = room_flag_from_db_string(flag_name);
@@ -437,11 +451,18 @@ Result<std::vector<ExitData>> load_room_exits(
     logger->debug("Loading exits for room ({}, {})", zone_id, room_local_id);
 
     try {
-        auto result = txn.exec_params(R"(
-            SELECT direction, to_zone_id, to_room_id, description
-            FROM "RoomExit"
-            WHERE room_zone_id = $1 AND room_id = $2
-        )", zone_id, room_local_id);
+        // Query exits using generated column constants
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}
+                FROM "{}"
+                WHERE {} = $1 AND {} = $2
+            )",
+            db::RoomExit::DIRECTION, db::RoomExit::TO_ZONE_ID,
+            db::RoomExit::TO_ROOM_ID, db::RoomExit::DESCRIPTION,
+            db::RoomExit::TABLE,
+            db::RoomExit::ROOM_ZONE_ID, db::RoomExit::ROOM_ID
+        ), zone_id, room_local_id);
 
         std::vector<ExitData> exits;
         exits.reserve(result.size());
@@ -450,7 +471,7 @@ Result<std::vector<ExitData>> load_room_exits(
             ExitData exit;
 
             // Parse direction enum from database string value
-            std::string dir_str = row["direction"].as<std::string>("");
+            std::string dir_str = row[db::RoomExit::DIRECTION.data()].as<std::string>("");
             auto parsed_dir = RoomUtils::parse_direction(dir_str);
             if (!parsed_dir) {
                 logger->warn("Invalid direction '{}' for exit in room ({}, {})", dir_str, zone_id, room_local_id);
@@ -459,14 +480,14 @@ Result<std::vector<ExitData>> load_room_exits(
             exit.direction = parsed_dir.value();
 
             // Handle nullable destination - skip exits with no destination
-            if (row["to_zone_id"].is_null() || row["to_room_id"].is_null()) {
+            if (row[db::RoomExit::TO_ZONE_ID.data()].is_null() || row[db::RoomExit::TO_ROOM_ID.data()].is_null()) {
                 logger->debug("Exit in room ({}, {}) has null destination, skipping", zone_id, room_local_id);
                 continue;
             }
-            int to_zone = row["to_zone_id"].as<int>();
-            int to_room = row["to_room_id"].as<int>();
+            int to_zone = row[db::RoomExit::TO_ZONE_ID.data()].as<int>();
+            int to_room = row[db::RoomExit::TO_ROOM_ID.data()].as<int>();
             exit.to_room = EntityId(to_zone, to_room);
-            exit.description = row["description"].as<std::string>("");
+            exit.description = row[db::RoomExit::DESCRIPTION.data()].as<std::string>("");
 
             exits.push_back(std::move(exit));
         }
@@ -489,33 +510,66 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
     logger->debug("Loading mobs for zone {} from database", zone_id);
 
     try {
-        // Query all mobs in this zone
-        auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, keywords, room_description, examine_description,
-                   level, alignment, damage_dice_num,
-                   damage_dice_size, damage_dice_bonus, hp_dice_num, hp_dice_size, hp_dice_bonus,
-                   strength, intelligence, wisdom, dexterity, constitution, charisma,
-                   copper, silver, gold, platinum,
-                   race, gender, size, "lifeForce" AS life_force, composition, "damageType" AS damage_type,
-                   "mobFlags" AS mob_flags, class_id,
-                   accuracy, attack_power, spell_power, penetration_flat, penetration_percent,
-                   evasion, armor_rating, damage_reduction_percent, soak, hardness, ward_percent,
-                   resistances
-            FROM "Mobs"
-            WHERE zone_id = $1
-            ORDER BY id
-        )", zone_id);
+        // Query all mobs in this zone using generated column constants
+        // Note: camelCase columns use aliases for reliable pqxx access
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {},
+                       {}, {}, {},
+                       "{}" AS life_force, {}, "{}" AS damage_type,
+                       "{}" AS mob_flags, {},
+                       "{}" AS effect_flags, {},
+                       {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {},
+                       {}, {}, {}
+                FROM "{}"
+                WHERE {} = $1
+                ORDER BY {}
+            )",
+            // Row 1: Basic info
+            db::Mobs::ZONE_ID, db::Mobs::ID, db::Mobs::NAME, db::Mobs::KEYWORDS,
+            db::Mobs::ROOM_DESCRIPTION, db::Mobs::EXAMINE_DESCRIPTION,
+            // Row 2: Level/dice info
+            db::Mobs::LEVEL, db::Mobs::ALIGNMENT, db::Mobs::DAMAGE_DICE_NUM,
+            db::Mobs::DAMAGE_DICE_SIZE, db::Mobs::DAMAGE_DICE_BONUS,
+            db::Mobs::HP_DICE_NUM, db::Mobs::HP_DICE_SIZE, db::Mobs::HP_DICE_BONUS,
+            // Row 3: Attributes
+            db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
+            db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
+            // Row 4: Currency
+            db::Mobs::COPPER, db::Mobs::SILVER, db::Mobs::GOLD, db::Mobs::PLATINUM,
+            // Row 5: Race/physical
+            db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
+            // Row 5b: camelCase columns with aliases
+            db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
+            // Row 6: Flags/class (camelCase columns with aliases)
+            db::Mobs::MOB_FLAGS, db::Mobs::CLASS_ID,
+            db::Mobs::EFFECT_FLAGS, db::Mobs::STANCE,
+            // Row 7: Offensive stats
+            db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
+            db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
+            // Row 8: Defensive stats
+            db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
+            db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
+            // Row 9: Other
+            db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
+            // Table and WHERE
+            db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
+        ), zone_id);
 
         std::vector<std::unique_ptr<Mobile>> mobs;
         mobs.reserve(result.size());
 
         for (const auto& row : result) {
-            int mob_zone_id = row["zone_id"].as<int>();
-            int mob_id = row["id"].as<int>();
+            int mob_zone_id = row[db::Mobs::ZONE_ID.data()].as<int>();
+            int mob_id = row[db::Mobs::ID.data()].as<int>();
             EntityId mob_entity_id(mob_zone_id, mob_id);
 
-            std::string mob_name = row["name"].as<std::string>();
-            int mob_level = std::max(1, row["level"].as<int>(1));  // Clamp to minimum 1
+            std::string mob_name = row[db::Mobs::NAME.data()].as<std::string>();
+            int mob_level = std::max(1, row[db::Mobs::LEVEL.data()].as<int>(1));  // Clamp to minimum 1
 
             // Create the mobile
             auto mob_result = Mobile::create(mob_entity_id, mob_name, mob_level);
@@ -528,65 +582,69 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             auto mob = std::move(*mob_result);
 
             // Set room description (shown when mob is in room)
-            if (!row["room_description"].is_null()) {
-                mob->set_ground(row["room_description"].as<std::string>());
+            if (!row[db::Mobs::ROOM_DESCRIPTION.data()].is_null()) {
+                mob->set_ground(row[db::Mobs::ROOM_DESCRIPTION.data()].as<std::string>());
             }
 
             // Set stats from database
             Stats& mob_stats = mob->stats();
 
             // Base attributes
-            if (!row["strength"].is_null()) mob_stats.strength = row["strength"].as<int>();
-            if (!row["intelligence"].is_null()) mob_stats.intelligence = row["intelligence"].as<int>();
-            if (!row["wisdom"].is_null()) mob_stats.wisdom = row["wisdom"].as<int>();
-            if (!row["dexterity"].is_null()) mob_stats.dexterity = row["dexterity"].as<int>();
-            if (!row["constitution"].is_null()) mob_stats.constitution = row["constitution"].as<int>();
-            if (!row["charisma"].is_null()) mob_stats.charisma = row["charisma"].as<int>();
+            if (!row[db::Mobs::STRENGTH.data()].is_null()) mob_stats.strength = row[db::Mobs::STRENGTH.data()].as<int>();
+            if (!row[db::Mobs::INTELLIGENCE.data()].is_null()) mob_stats.intelligence = row[db::Mobs::INTELLIGENCE.data()].as<int>();
+            if (!row[db::Mobs::WISDOM.data()].is_null()) mob_stats.wisdom = row[db::Mobs::WISDOM.data()].as<int>();
+            if (!row[db::Mobs::DEXTERITY.data()].is_null()) mob_stats.dexterity = row[db::Mobs::DEXTERITY.data()].as<int>();
+            if (!row[db::Mobs::CONSTITUTION.data()].is_null()) mob_stats.constitution = row[db::Mobs::CONSTITUTION.data()].as<int>();
+            if (!row[db::Mobs::CHARISMA.data()].is_null()) mob_stats.charisma = row[db::Mobs::CHARISMA.data()].as<int>();
 
             // Alignment
-            if (!row["alignment"].is_null()) mob_stats.alignment = row["alignment"].as<int>();
+            if (!row[db::Mobs::ALIGNMENT.data()].is_null()) mob_stats.alignment = row[db::Mobs::ALIGNMENT.data()].as<int>();
 
             // Offensive stats
-            if (!row["accuracy"].is_null()) mob_stats.accuracy = row["accuracy"].as<int>();
-            if (!row["attack_power"].is_null()) mob_stats.attack_power = row["attack_power"].as<int>();
-            if (!row["spell_power"].is_null()) mob_stats.spell_power = row["spell_power"].as<int>();
-            if (!row["penetration_flat"].is_null()) mob_stats.penetration_flat = row["penetration_flat"].as<int>();
-            if (!row["penetration_percent"].is_null()) mob_stats.penetration_percent = row["penetration_percent"].as<int>();
+            if (!row[db::Mobs::ACCURACY.data()].is_null()) mob_stats.accuracy = row[db::Mobs::ACCURACY.data()].as<int>();
+            if (!row[db::Mobs::ATTACK_POWER.data()].is_null()) mob_stats.attack_power = row[db::Mobs::ATTACK_POWER.data()].as<int>();
+            if (!row[db::Mobs::SPELL_POWER.data()].is_null()) mob_stats.spell_power = row[db::Mobs::SPELL_POWER.data()].as<int>();
+            if (!row[db::Mobs::PENETRATION_FLAT.data()].is_null()) mob_stats.penetration_flat = row[db::Mobs::PENETRATION_FLAT.data()].as<int>();
+            if (!row[db::Mobs::PENETRATION_PERCENT.data()].is_null()) mob_stats.penetration_percent = row[db::Mobs::PENETRATION_PERCENT.data()].as<int>();
 
-            // New defensive stats
-            if (!row["evasion"].is_null()) mob_stats.evasion = row["evasion"].as<int>();
-            if (!row["armor_rating"].is_null()) mob_stats.armor_rating = row["armor_rating"].as<int>();
-            if (!row["damage_reduction_percent"].is_null()) mob_stats.damage_reduction_percent = row["damage_reduction_percent"].as<int>();
-            if (!row["soak"].is_null()) mob_stats.soak = row["soak"].as<int>();
-            if (!row["hardness"].is_null()) mob_stats.hardness = row["hardness"].as<int>();
-            if (!row["ward_percent"].is_null()) mob_stats.ward_percent = row["ward_percent"].as<int>();
+            // Defensive stats
+            if (!row[db::Mobs::EVASION.data()].is_null()) mob_stats.evasion = row[db::Mobs::EVASION.data()].as<int>();
+            if (!row[db::Mobs::ARMOR_RATING.data()].is_null()) mob_stats.armor_rating = row[db::Mobs::ARMOR_RATING.data()].as<int>();
+            if (!row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].is_null()) mob_stats.damage_reduction_percent = row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].as<int>();
+            if (!row[db::Mobs::SOAK.data()].is_null()) mob_stats.soak = row[db::Mobs::SOAK.data()].as<int>();
+            if (!row[db::Mobs::HARDNESS.data()].is_null()) mob_stats.hardness = row[db::Mobs::HARDNESS.data()].as<int>();
+            if (!row[db::Mobs::WARD_PERCENT.data()].is_null()) mob_stats.ward_percent = row[db::Mobs::WARD_PERCENT.data()].as<int>();
+
+            // Perception and concealment
+            if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
+            if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
             // Elemental resistances (from JSONB column)
-            if (!row["resistances"].is_null()) {
+            if (!row[db::Mobs::RESISTANCES.data()].is_null()) {
                 try {
-                    auto resistances_json = nlohmann::json::parse(row["resistances"].as<std::string>());
+                    auto resistances_json = nlohmann::json::parse(row[db::Mobs::RESISTANCES.data()].as<std::string>());
                     if (resistances_json.contains("FIRE")) mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
                     if (resistances_json.contains("COLD")) mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
                     if (resistances_json.contains("LIGHTNING")) mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
                     if (resistances_json.contains("ACID")) mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
                     if (resistances_json.contains("POISON")) mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
                 } catch (const nlohmann::json::exception& e) {
-                    logger->warn("Failed to parse resistances JSON for mob {}: {}", row["name"].as<std::string>("unknown"), e.what());
+                    logger->warn("Failed to parse resistances JSON for mob {}: {}", row[db::Mobs::NAME.data()].as<std::string>("unknown"), e.what());
                 }
             }
 
             // HP dice - used to calculate HP when spawned
-            int hp_num = row["hp_dice_num"].as<int>(1);
-            int hp_size = row["hp_dice_size"].as<int>(8);
-            int hp_bonus = row["hp_dice_bonus"].as<int>(0);
+            int hp_num = row[db::Mobs::HP_DICE_NUM.data()].as<int>(1);
+            int hp_size = row[db::Mobs::HP_DICE_SIZE.data()].as<int>(8);
+            int hp_bonus = row[db::Mobs::HP_DICE_BONUS.data()].as<int>(0);
             mob->set_hp_dice(hp_num, hp_size, hp_bonus);
 
             // Calculate HP from dice for the prototype
             mob->calculate_hp_from_dice();
 
             // Set keywords (parse PostgreSQL array format)
-            if (!row["keywords"].is_null()) {
-                std::string keywords_str = row["keywords"].as<std::string>();
+            if (!row[db::Mobs::KEYWORDS.data()].is_null()) {
+                std::string keywords_str = row[db::Mobs::KEYWORDS.data()].as<std::string>();
                 auto keywords = parse_pg_array(keywords_str);
                 if (!keywords.empty()) {
                     mob->set_keywords(std::span<const std::string>(keywords));
@@ -594,55 +652,71 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             }
 
             // Set examine description (detailed look text)
-            if (!row["examine_description"].is_null()) {
-                mob->set_description(row["examine_description"].as<std::string>());
+            if (!row[db::Mobs::EXAMINE_DESCRIPTION.data()].is_null()) {
+                mob->set_description(row[db::Mobs::EXAMINE_DESCRIPTION.data()].as<std::string>());
             }
 
             // Set mob-specific properties
-            if (!row["race"].is_null()) {
-                mob->set_race(row["race"].as<std::string>());
+            if (!row[db::Mobs::RACE.data()].is_null()) {
+                mob->set_race(row[db::Mobs::RACE.data()].as<std::string>());
             }
-            if (!row["gender"].is_null()) {
-                mob->set_gender(row["gender"].as<std::string>());
+            if (!row[db::Mobs::GENDER.data()].is_null()) {
+                mob->set_gender(row[db::Mobs::GENDER.data()].as<std::string>());
             }
-            if (!row["size"].is_null()) {
-                mob->set_size(row["size"].as<std::string>());
+            if (!row[db::Mobs::SIZE.data()].is_null()) {
+                mob->set_size(row[db::Mobs::SIZE.data()].as<std::string>());
             }
+            // Use lowercase aliases for camelCase columns (pqxx column access quirk)
             if (!row["life_force"].is_null()) {
                 mob->set_life_force(row["life_force"].as<std::string>());
             }
-            if (!row["composition"].is_null()) {
-                mob->set_composition(row["composition"].as<std::string>());
+            if (!row[db::Mobs::COMPOSITION.data()].is_null()) {
+                mob->set_composition(row[db::Mobs::COMPOSITION.data()].as<std::string>());
             }
             if (!row["damage_type"].is_null()) {
                 mob->set_damage_type(row["damage_type"].as<std::string>());
             }
+            if (!row[db::Mobs::STANCE.data()].is_null()) {
+                mob->set_stance(row[db::Mobs::STANCE.data()].as<std::string>());
+            }
 
             // Set damage dice for bare hand attacks
-            int dam_num = row["damage_dice_num"].as<int>(1);
-            int dam_size = row["damage_dice_size"].as<int>(4);
-            int dam_bonus = row["damage_dice_bonus"].as<int>(0);
+            int dam_num = row[db::Mobs::DAMAGE_DICE_NUM.data()].as<int>(1);
+            int dam_size = row[db::Mobs::DAMAGE_DICE_SIZE.data()].as<int>(4);
+            int dam_bonus = row[db::Mobs::DAMAGE_DICE_BONUS.data()].as<int>(0);
             mob->set_bare_hand_damage(dam_num, dam_size, dam_bonus);
 
             // Process mob flags (PostgreSQL array of enums)
-            // Database uses SCREAMING_SNAKE_CASE, C++ enum uses PascalCase
+            // Use generated db::mob_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
             if (!row["mob_flags"].is_null()) {
                 std::string flags_str = row["mob_flags"].as<std::string>();
                 auto flags = parse_pg_array(flags_str);
                 for (const auto& flag_name : flags) {
-                    auto pascal_name = screaming_to_pascal(flag_name);
-                    auto flag = magic_enum::enum_cast<MobFlag>(pascal_name);
-                    if (flag) {
-                        mob->set_flag(flag.value());
+                    if (auto flag = db::mob_flag_from_db(flag_name)) {
+                        mob->set_flag(to_game(*flag));
                     } else {
                         logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_id, flag_name);
                     }
                 }
             }
 
+            // Process effect flags (magical effects on the mob)
+            // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
+            if (!row["effect_flags"].is_null()) {
+                std::string effect_flags_str = row["effect_flags"].as<std::string>();
+                auto effect_flags = parse_pg_array(effect_flags_str);
+                for (const auto& flag_name : effect_flags) {
+                    if (auto flag = db::effect_flag_from_db(flag_name)) {
+                        mob->set_effect(to_game(*flag));
+                    } else {
+                        logger->warn("Mob ({}, {}): unknown effect flag '{}'", zone_id, mob_id, flag_name);
+                    }
+                }
+            }
+
             // Set class_id for class-specific guildmasters
-            if (!row["class_id"].is_null()) {
-                mob->set_class_id(row["class_id"].as<int>());
+            if (!row[db::Mobs::CLASS_ID.data()].is_null()) {
+                mob->set_class_id(row[db::Mobs::CLASS_ID.data()].as<int>());
             }
 
             mobs.push_back(std::move(mob));
@@ -665,20 +739,54 @@ Result<std::unique_ptr<Mobile>> load_mob(
     logger->debug("Loading mob ({}, {})", zone_id, mob_local_id);
 
     try {
-        auto result = txn.exec_params(R"(
-            SELECT zone_id, id, name, keywords, room_description, examine_description,
-                   level, alignment, damage_dice_num,
-                   damage_dice_size, damage_dice_bonus, hp_dice_num, hp_dice_size, hp_dice_bonus,
-                   strength, intelligence, wisdom, dexterity, constitution, charisma,
-                   copper, silver, gold, platinum,
-                   race, gender, size, "lifeForce" AS life_force, composition, "damageType" AS damage_type,
-                   "mobFlags" AS mob_flags, class_id,
-                   accuracy, attack_power, spell_power, penetration_flat, penetration_percent,
-                   evasion, armor_rating, damage_reduction_percent, soak, hardness, ward_percent,
-                   resistances
-            FROM "Mobs"
-            WHERE zone_id = $1 AND id = $2
-        )", zone_id, mob_local_id);
+        // Query using generated column constants
+        // Note: camelCase columns use aliases for reliable pqxx access
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {},
+                       {}, {}, {},
+                       "{}" AS life_force, {}, "{}" AS damage_type,
+                       "{}" AS mob_flags, {},
+                       "{}" AS effect_flags, {},
+                       {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {},
+                       {}, {}, {}
+                FROM "{}"
+                WHERE {} = $1 AND {} = $2
+            )",
+            // Row 1: Basic info
+            db::Mobs::ZONE_ID, db::Mobs::ID, db::Mobs::NAME, db::Mobs::KEYWORDS,
+            db::Mobs::ROOM_DESCRIPTION, db::Mobs::EXAMINE_DESCRIPTION,
+            // Row 2: Level/dice info
+            db::Mobs::LEVEL, db::Mobs::ALIGNMENT, db::Mobs::DAMAGE_DICE_NUM,
+            db::Mobs::DAMAGE_DICE_SIZE, db::Mobs::DAMAGE_DICE_BONUS,
+            db::Mobs::HP_DICE_NUM, db::Mobs::HP_DICE_SIZE, db::Mobs::HP_DICE_BONUS,
+            // Row 3: Attributes
+            db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
+            db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
+            // Row 4: Currency
+            db::Mobs::COPPER, db::Mobs::SILVER, db::Mobs::GOLD, db::Mobs::PLATINUM,
+            // Row 5: Race/physical
+            db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
+            // Row 5b: camelCase columns with aliases
+            db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
+            // Row 6: Flags/class (camelCase columns with aliases)
+            db::Mobs::MOB_FLAGS, db::Mobs::CLASS_ID,
+            db::Mobs::EFFECT_FLAGS, db::Mobs::STANCE,
+            // Row 7: Offensive stats
+            db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
+            db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
+            // Row 8: Defensive stats
+            db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
+            db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
+            // Row 9: Other
+            db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
+            // Table and WHERE
+            db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
+        ), zone_id, mob_local_id);
 
         if (result.empty()) {
             return std::unexpected(Error{ErrorCode::NotFound,
@@ -687,8 +795,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
 
         const auto& row = result[0];
         EntityId mob_entity_id(zone_id, mob_local_id);
-        std::string mob_name = row["name"].as<std::string>();
-        int mob_level = std::max(1, row["level"].as<int>(1));  // Clamp to minimum 1
+        std::string mob_name = row[db::Mobs::NAME.data()].as<std::string>();
+        int mob_level = std::max(1, row[db::Mobs::LEVEL.data()].as<int>(1));
 
         auto mob_result = Mobile::create(mob_entity_id, mob_name, mob_level);
         if (!mob_result) {
@@ -698,41 +806,47 @@ Result<std::unique_ptr<Mobile>> load_mob(
         auto mob = std::move(*mob_result);
 
         // Set room description (shown when mob is in room)
-        if (!row["room_description"].is_null()) {
-            mob->set_ground(row["room_description"].as<std::string>());
+        if (!row[db::Mobs::ROOM_DESCRIPTION.data()].is_null()) {
+            mob->set_ground(row[db::Mobs::ROOM_DESCRIPTION.data()].as<std::string>());
         }
 
-        // Set stats
+        // Set stats from database
         Stats& mob_stats = mob->stats();
-        if (!row["strength"].is_null()) mob_stats.strength = row["strength"].as<int>();
-        if (!row["intelligence"].is_null()) mob_stats.intelligence = row["intelligence"].as<int>();
-        if (!row["wisdom"].is_null()) mob_stats.wisdom = row["wisdom"].as<int>();
-        if (!row["dexterity"].is_null()) mob_stats.dexterity = row["dexterity"].as<int>();
-        if (!row["constitution"].is_null()) mob_stats.constitution = row["constitution"].as<int>();
-        if (!row["charisma"].is_null()) mob_stats.charisma = row["charisma"].as<int>();
+
+        // Base attributes
+        if (!row[db::Mobs::STRENGTH.data()].is_null()) mob_stats.strength = row[db::Mobs::STRENGTH.data()].as<int>();
+        if (!row[db::Mobs::INTELLIGENCE.data()].is_null()) mob_stats.intelligence = row[db::Mobs::INTELLIGENCE.data()].as<int>();
+        if (!row[db::Mobs::WISDOM.data()].is_null()) mob_stats.wisdom = row[db::Mobs::WISDOM.data()].as<int>();
+        if (!row[db::Mobs::DEXTERITY.data()].is_null()) mob_stats.dexterity = row[db::Mobs::DEXTERITY.data()].as<int>();
+        if (!row[db::Mobs::CONSTITUTION.data()].is_null()) mob_stats.constitution = row[db::Mobs::CONSTITUTION.data()].as<int>();
+        if (!row[db::Mobs::CHARISMA.data()].is_null()) mob_stats.charisma = row[db::Mobs::CHARISMA.data()].as<int>();
 
         // Alignment
-        if (!row["alignment"].is_null()) mob_stats.alignment = row["alignment"].as<int>();
+        if (!row[db::Mobs::ALIGNMENT.data()].is_null()) mob_stats.alignment = row[db::Mobs::ALIGNMENT.data()].as<int>();
 
         // Offensive stats
-        if (!row["accuracy"].is_null()) mob_stats.accuracy = row["accuracy"].as<int>();
-        if (!row["attack_power"].is_null()) mob_stats.attack_power = row["attack_power"].as<int>();
-        if (!row["spell_power"].is_null()) mob_stats.spell_power = row["spell_power"].as<int>();
-        if (!row["penetration_flat"].is_null()) mob_stats.penetration_flat = row["penetration_flat"].as<int>();
-        if (!row["penetration_percent"].is_null()) mob_stats.penetration_percent = row["penetration_percent"].as<int>();
+        if (!row[db::Mobs::ACCURACY.data()].is_null()) mob_stats.accuracy = row[db::Mobs::ACCURACY.data()].as<int>();
+        if (!row[db::Mobs::ATTACK_POWER.data()].is_null()) mob_stats.attack_power = row[db::Mobs::ATTACK_POWER.data()].as<int>();
+        if (!row[db::Mobs::SPELL_POWER.data()].is_null()) mob_stats.spell_power = row[db::Mobs::SPELL_POWER.data()].as<int>();
+        if (!row[db::Mobs::PENETRATION_FLAT.data()].is_null()) mob_stats.penetration_flat = row[db::Mobs::PENETRATION_FLAT.data()].as<int>();
+        if (!row[db::Mobs::PENETRATION_PERCENT.data()].is_null()) mob_stats.penetration_percent = row[db::Mobs::PENETRATION_PERCENT.data()].as<int>();
 
-        // New defensive stats
-        if (!row["evasion"].is_null()) mob_stats.evasion = row["evasion"].as<int>();
-        if (!row["armor_rating"].is_null()) mob_stats.armor_rating = row["armor_rating"].as<int>();
-        if (!row["damage_reduction_percent"].is_null()) mob_stats.damage_reduction_percent = row["damage_reduction_percent"].as<int>();
-        if (!row["soak"].is_null()) mob_stats.soak = row["soak"].as<int>();
-        if (!row["hardness"].is_null()) mob_stats.hardness = row["hardness"].as<int>();
-        if (!row["ward_percent"].is_null()) mob_stats.ward_percent = row["ward_percent"].as<int>();
+        // Defensive stats
+        if (!row[db::Mobs::EVASION.data()].is_null()) mob_stats.evasion = row[db::Mobs::EVASION.data()].as<int>();
+        if (!row[db::Mobs::ARMOR_RATING.data()].is_null()) mob_stats.armor_rating = row[db::Mobs::ARMOR_RATING.data()].as<int>();
+        if (!row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].is_null()) mob_stats.damage_reduction_percent = row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].as<int>();
+        if (!row[db::Mobs::SOAK.data()].is_null()) mob_stats.soak = row[db::Mobs::SOAK.data()].as<int>();
+        if (!row[db::Mobs::HARDNESS.data()].is_null()) mob_stats.hardness = row[db::Mobs::HARDNESS.data()].as<int>();
+        if (!row[db::Mobs::WARD_PERCENT.data()].is_null()) mob_stats.ward_percent = row[db::Mobs::WARD_PERCENT.data()].as<int>();
+
+        // Perception and concealment
+        if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
+        if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
         // Elemental resistances (from JSONB column)
-        if (!row["resistances"].is_null()) {
+        if (!row[db::Mobs::RESISTANCES.data()].is_null()) {
             try {
-                auto resistances_json = nlohmann::json::parse(row["resistances"].as<std::string>());
+                auto resistances_json = nlohmann::json::parse(row[db::Mobs::RESISTANCES.data()].as<std::string>());
                 if (resistances_json.contains("FIRE")) mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
                 if (resistances_json.contains("COLD")) mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
                 if (resistances_json.contains("LIGHTNING")) mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
@@ -744,69 +858,89 @@ Result<std::unique_ptr<Mobile>> load_mob(
         }
 
         // HP dice - used to calculate HP when spawned
-        int hp_num = row["hp_dice_num"].as<int>(1);
-        int hp_size = row["hp_dice_size"].as<int>(8);
-        int hp_bonus = row["hp_dice_bonus"].as<int>(0);
+        int hp_num = row[db::Mobs::HP_DICE_NUM.data()].as<int>(1);
+        int hp_size = row[db::Mobs::HP_DICE_SIZE.data()].as<int>(8);
+        int hp_bonus = row[db::Mobs::HP_DICE_BONUS.data()].as<int>(0);
         mob->set_hp_dice(hp_num, hp_size, hp_bonus);
 
         // Calculate HP from dice for the prototype
         mob->calculate_hp_from_dice();
 
         // Set keywords (parse PostgreSQL array format)
-        if (!row["keywords"].is_null()) {
-            std::string keywords_str = row["keywords"].as<std::string>();
+        if (!row[db::Mobs::KEYWORDS.data()].is_null()) {
+            std::string keywords_str = row[db::Mobs::KEYWORDS.data()].as<std::string>();
             auto keywords = parse_pg_array(keywords_str);
             if (!keywords.empty()) {
                 mob->set_keywords(std::span<const std::string>(keywords));
             }
         }
+
         // Set examine description (detailed look text)
-        if (!row["examine_description"].is_null()) {
-            mob->set_description(row["examine_description"].as<std::string>());
+        if (!row[db::Mobs::EXAMINE_DESCRIPTION.data()].is_null()) {
+            mob->set_description(row[db::Mobs::EXAMINE_DESCRIPTION.data()].as<std::string>());
         }
 
         // Set mob-specific properties
-        if (!row["race"].is_null()) {
-            mob->set_race(row["race"].as<std::string>());
+        if (!row[db::Mobs::RACE.data()].is_null()) {
+            mob->set_race(row[db::Mobs::RACE.data()].as<std::string>());
         }
-        if (!row["gender"].is_null()) {
-            mob->set_gender(row["gender"].as<std::string>());
+        if (!row[db::Mobs::GENDER.data()].is_null()) {
+            mob->set_gender(row[db::Mobs::GENDER.data()].as<std::string>());
         }
-        if (!row["size"].is_null()) {
-            mob->set_size(row["size"].as<std::string>());
+        if (!row[db::Mobs::SIZE.data()].is_null()) {
+            mob->set_size(row[db::Mobs::SIZE.data()].as<std::string>());
         }
+        // Use lowercase aliases for camelCase columns (pqxx column access quirk)
         if (!row["life_force"].is_null()) {
             mob->set_life_force(row["life_force"].as<std::string>());
         }
-        if (!row["composition"].is_null()) {
-            mob->set_composition(row["composition"].as<std::string>());
+        if (!row[db::Mobs::COMPOSITION.data()].is_null()) {
+            mob->set_composition(row[db::Mobs::COMPOSITION.data()].as<std::string>());
         }
         if (!row["damage_type"].is_null()) {
             mob->set_damage_type(row["damage_type"].as<std::string>());
         }
+        if (!row[db::Mobs::STANCE.data()].is_null()) {
+            mob->set_stance(row[db::Mobs::STANCE.data()].as<std::string>());
+        }
 
         // Set damage dice for bare hand attacks
-        int dam_num = row["damage_dice_num"].as<int>(1);
-        int dam_size = row["damage_dice_size"].as<int>(4);
-        int dam_bonus = row["damage_dice_bonus"].as<int>(0);
+        int dam_num = row[db::Mobs::DAMAGE_DICE_NUM.data()].as<int>(1);
+        int dam_size = row[db::Mobs::DAMAGE_DICE_SIZE.data()].as<int>(4);
+        int dam_bonus = row[db::Mobs::DAMAGE_DICE_BONUS.data()].as<int>(0);
         mob->set_bare_hand_damage(dam_num, dam_size, dam_bonus);
 
         // Process mob flags (PostgreSQL array of enums)
+        // Use generated db::mob_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
         if (!row["mob_flags"].is_null()) {
             std::string flags_str = row["mob_flags"].as<std::string>();
             auto flags = parse_pg_array(flags_str);
-            for (const auto& flag : flags) {
-                if (flag == "TEACHER") {
-                    mob->set_teacher(true);
-                } else if (flag == "AGGRESSIVE") {
-                    mob->set_aggressive(true);
+            for (const auto& flag_name : flags) {
+                if (auto flag = db::mob_flag_from_db(flag_name)) {
+                    mob->set_flag(to_game(*flag));
+                } else {
+                    logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_local_id, flag_name);
+                }
+            }
+        }
+
+        // Process effect flags (magical effects on the mob)
+        // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
+        if (!row["effect_flags"].is_null()) {
+            std::string effect_flags_str = row["effect_flags"].as<std::string>();
+            auto effect_flags = parse_pg_array(effect_flags_str);
+            for (const auto& flag_name : effect_flags) {
+                if (auto flag = db::effect_flag_from_db(flag_name)) {
+                    mob->set_effect(to_game(*flag));
+                } else {
+                    logger->warn("Mob ({}, {}): unknown effect flag '{}'", zone_id, mob_local_id, flag_name);
                 }
             }
         }
 
         // Set class_id for class-specific guildmasters
-        if (!row["class_id"].is_null()) {
-            mob->set_class_id(row["class_id"].as<int>());
+        if (!row[db::Mobs::CLASS_ID.data()].is_null()) {
+            mob->set_class_id(row[db::Mobs::CLASS_ID.data()].as<int>());
         }
 
         logger->debug("Loaded mob '{}' ({}, {})", mob_name, zone_id, mob_local_id);
@@ -827,10 +961,12 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
 
     try {
         // Query all objects in this zone using generated column constants
+        // Note: camelCase columns use aliases for reliable pqxx access
         auto result = txn.exec_params(
             fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {},
-                       {}, {}, {}, {}, {}, {}, {}, "{}"
+                       {}, {}, {}, {}, {}, {},
+                       "{}" AS effect_flags, "{}" AS wear_flags
                 FROM "{}"
                 WHERE {} = $1
                 ORDER BY {}
@@ -921,9 +1057,14 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 obj->set_timer(row[db::Objects::TIMER.data()].as<int>());
             }
 
-            // Set equip slot from wearFlags (using generated constant, not hardcoded index)
-            if (!row[db::Objects::WEAR_FLAGS.data()].is_null()) {
-                std::string wear_flags_str = row[db::Objects::WEAR_FLAGS.data()].as<std::string>();
+            // Set examine description (detailed description when looking at object)
+            if (!row[db::Objects::EXAMINE_DESCRIPTION.data()].is_null()) {
+                obj->set_examine_description(row[db::Objects::EXAMINE_DESCRIPTION.data()].as<std::string>());
+            }
+
+            // Set equip slot from wearFlags (using lowercase alias for pqxx access)
+            if (!row["wear_flags"].is_null()) {
+                std::string wear_flags_str = row["wear_flags"].as<std::string>();
                 auto wear_flags = parse_pg_array(wear_flags_str);
                 for (const auto& flag : wear_flags) {
                     // Skip TAKE flag - it just means the object can be picked up
@@ -961,6 +1102,26 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                         }
                         obj->set_liquid_info(liquid);
                     }
+
+                    // Parse light info for light sources
+                    if (obj_type == ObjectType::Light && values_json.is_object()) {
+                        LightInfo light;
+                        // Remaining is the fuel duration in hours
+                        if (values_json.contains("Remaining")) {
+                            light.duration = values_json["Remaining"].get<int>();
+                        }
+                        // Handle typo in database key "Is_Lit:" as well as "Is_Lit"
+                        if (values_json.contains("Is_Lit:")) {
+                            light.lit = values_json["Is_Lit:"].get<bool>();
+                        } else if (values_json.contains("Is_Lit")) {
+                            light.lit = values_json["Is_Lit"].get<bool>();
+                        }
+                        // Brightness defaults to 1 if not specified
+                        if (values_json.contains("Brightness")) {
+                            light.brightness = values_json["Brightness"].get<int>();
+                        }
+                        obj->set_light_info(light);
+                    }
                 } catch (const nlohmann::json::exception& e) {
                     logger->warn("Failed to parse values JSON for object ({}, {}): {}",
                                 obj_zone_id, obj_id, e.what());
@@ -968,14 +1129,13 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             }
 
             // Parse effect flags (effects granted when equipped)
-            if (!row[db::Objects::EFFECT_FLAGS.data()].is_null()) {
-                std::string effect_flags_str = row[db::Objects::EFFECT_FLAGS.data()].as<std::string>();
+            // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
+            if (!row["effect_flags"].is_null()) {
+                std::string effect_flags_str = row["effect_flags"].as<std::string>();
                 auto effect_flags = parse_pg_array(effect_flags_str);
                 for (const auto& flag_name : effect_flags) {
-                    auto pascal_name = screaming_to_pascal(flag_name);
-                    auto flag = magic_enum::enum_cast<EffectFlag>(pascal_name);
-                    if (flag) {
-                        obj->set_effect(flag.value());
+                    if (auto flag = db::effect_flag_from_db(flag_name)) {
+                        obj->set_effect(to_game(*flag));
                     } else {
                         logger->warn("Object ({}, {}): unknown effect flag '{}'",
                                     obj_zone_id, obj_id, flag_name);
@@ -986,7 +1146,49 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             objects.push_back(std::move(obj));
         }
 
-        logger->debug("Loaded {} objects for zone {}", objects.size(), zone_id);
+        // Load extra descriptions for all objects in this zone
+        auto extras_result = txn.exec_params(
+            fmt::format(R"(
+                SELECT {}, {}, {}
+                FROM "{}"
+                WHERE {} = $1
+                ORDER BY {}, {}
+            )",
+            db::ObjectExtraDescriptions::OBJECT_ID,
+            db::ObjectExtraDescriptions::KEYWORDS,
+            db::ObjectExtraDescriptions::DESCRIPTION,
+            db::ObjectExtraDescriptions::TABLE,
+            db::ObjectExtraDescriptions::OBJECT_ZONE_ID,
+            db::ObjectExtraDescriptions::OBJECT_ID,
+            db::ObjectExtraDescriptions::ID
+        ), zone_id);
+
+        // Build a map from object_id to extra descriptions
+        std::unordered_map<int, std::vector<ExtraDescription>> extras_by_obj_id;
+        for (const auto& row : extras_result) {
+            int obj_id = row[db::ObjectExtraDescriptions::OBJECT_ID.data()].as<int>();
+            std::string keywords_str = row[db::ObjectExtraDescriptions::KEYWORDS.data()].as<std::string>();
+            std::string description = row[db::ObjectExtraDescriptions::DESCRIPTION.data()].as<std::string>();
+
+            ExtraDescription extra;
+            extra.keywords = parse_pg_array(keywords_str);
+            extra.description = description;
+            extras_by_obj_id[obj_id].push_back(std::move(extra));
+        }
+
+        // Assign extra descriptions to objects
+        for (auto& obj : objects) {
+            int obj_local_id = obj->id().local_id();
+            auto it = extras_by_obj_id.find(obj_local_id);
+            if (it != extras_by_obj_id.end()) {
+                for (const auto& extra : it->second) {
+                    obj->add_extra_description(extra);
+                }
+            }
+        }
+
+        logger->debug("Loaded {} objects with {} extra descriptions for zone {}",
+                     objects.size(), extras_result.size(), zone_id);
         return objects;
 
     } catch (const pqxx::sql_error& e) {
@@ -1004,9 +1206,11 @@ Result<std::unique_ptr<Object>> load_object(
 
     try {
         auto result = txn.exec_params(
+            // Note: camelCase columns use aliases for reliable pqxx access
             fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {},
-                       {}, {}, {}, {}, {}, {}, {}, "{}"
+                       {}, {}, {}, {}, {}, {},
+                       "{}" AS effect_flags, "{}" AS wear_flags
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
@@ -1134,6 +1338,26 @@ Result<std::unique_ptr<Object>> load_object(
                         }
                         obj->set_liquid_info(liquid);
                     }
+
+                    // Parse light info for light sources
+                    if (obj_type == ObjectType::Light) {
+                        LightInfo light;
+                        // Remaining is the fuel duration in hours
+                        if (values_json.contains("Remaining")) {
+                            light.duration = values_json["Remaining"].get<int>();
+                        }
+                        // Handle typo in database key "Is_Lit:" as well as "Is_Lit"
+                        if (values_json.contains("Is_Lit:")) {
+                            light.lit = values_json["Is_Lit:"].get<bool>();
+                        } else if (values_json.contains("Is_Lit")) {
+                            light.lit = values_json["Is_Lit"].get<bool>();
+                        }
+                        // Brightness defaults to 1 if not specified
+                        if (values_json.contains("Brightness")) {
+                            light.brightness = values_json["Brightness"].get<int>();
+                        }
+                        obj->set_light_info(light);
+                    }
                 }
             } catch (const nlohmann::json::exception& e) {
                 logger->warn("Failed to parse values for object ({}, {}): {}",
@@ -1142,15 +1366,13 @@ Result<std::unique_ptr<Object>> load_object(
         }
 
         // Parse object flags (PostgreSQL array format)
-        // Database uses SCREAMING_SNAKE_CASE, C++ enum uses PascalCase
+        // Use generated db::object_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
         if (!row[db::Objects::FLAGS.data()].is_null()) {
             std::string flags_str = row[db::Objects::FLAGS.data()].as<std::string>();
             auto flag_names = parse_pg_array(flags_str);
             for (const auto& flag_name : flag_names) {
-                auto pascal_name = screaming_to_pascal(flag_name);
-                auto flag = magic_enum::enum_cast<ObjectFlag>(pascal_name);
-                if (flag) {
-                    obj->set_flag(flag.value());
+                if (auto flag = db::object_flag_from_db(flag_name)) {
+                    obj->set_flag(to_game(*flag));
                 } else {
                     logger->warn("Object ({}, {}): unknown flag '{}'", zone_id, object_local_id, flag_name);
                 }
@@ -1158,14 +1380,13 @@ Result<std::unique_ptr<Object>> load_object(
         }
 
         // Parse effect flags (effects granted when equipped)
-        if (!row[db::Objects::EFFECT_FLAGS.data()].is_null()) {
-            std::string effect_flags_str = row[db::Objects::EFFECT_FLAGS.data()].as<std::string>();
+        // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
+        if (!row["effect_flags"].is_null()) {
+            std::string effect_flags_str = row["effect_flags"].as<std::string>();
             auto effect_flags = parse_pg_array(effect_flags_str);
             for (const auto& flag_name : effect_flags) {
-                auto pascal_name = screaming_to_pascal(flag_name);
-                auto flag = magic_enum::enum_cast<EffectFlag>(pascal_name);
-                if (flag) {
-                    obj->set_effect(flag.value());
+                if (auto flag = db::effect_flag_from_db(flag_name)) {
+                    obj->set_effect(to_game(*flag));
                 } else {
                     logger->warn("Object ({}, {}): unknown effect flag '{}'",
                                 zone_id, object_local_id, flag_name);
@@ -1173,9 +1394,9 @@ Result<std::unique_ptr<Object>> load_object(
             }
         }
 
-        // Set equip slot from wearFlags (using generated constant)
-        if (!row[db::Objects::WEAR_FLAGS.data()].is_null()) {
-            std::string wear_flags_str = row[db::Objects::WEAR_FLAGS.data()].as<std::string>();
+        // Set equip slot from wearFlags (using lowercase alias for pqxx access)
+        if (!row["wear_flags"].is_null()) {
+            std::string wear_flags_str = row["wear_flags"].as<std::string>();
             auto wear_flags = parse_pg_array(wear_flags_str);
             for (const auto& flag : wear_flags) {
                 // Skip TAKE flag - it just means the object can be picked up
@@ -1493,8 +1714,9 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
                 id, name, plain_name, description,
                 "abilityType" AS ability_type, "minPosition" AS min_position, violent,
                 cast_time_rounds, cooldown_ms,
-                is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only, cost
+                is_area, is_toggle, combat_ok, in_combat_only,
+                sphere, damage_type,
+                pages, memorization_time, quest_only, humanoid_only
             FROM "Ability"
             ORDER BY id
         )");
@@ -1514,13 +1736,15 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
             ability.cast_time_rounds = row["cast_time_rounds"].as<int>(1);
             ability.cooldown_ms = row["cooldown_ms"].as<int>(0);
             ability.is_area = row["is_area"].as<bool>(false);
+            ability.is_toggle = row["is_toggle"].as<bool>(false);
+            ability.combat_ok = row["combat_ok"].as<bool>(true);
+            ability.in_combat_only = row["in_combat_only"].as<bool>(false);
             ability.sphere = row["sphere"].is_null() ? "" : row["sphere"].as<std::string>();
             ability.damage_type = row["damage_type"].is_null() ? "" : row["damage_type"].as<std::string>();
             ability.pages = row["pages"].is_null() ? 0 : row["pages"].as<int>();
             ability.memorization_time = row["memorization_time"].as<int>(0);
             ability.quest_only = row["quest_only"].as<bool>(false);
             ability.humanoid_only = row["humanoid_only"].as<bool>(false);
-            ability.cost = row["cost"].as<int>(0);
             abilities.push_back(std::move(ability));
         }
 
@@ -1549,7 +1773,7 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
                 "abilityType" AS ability_type, "minPosition" AS min_position, violent,
                 cast_time_rounds, cooldown_ms,
                 is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only, cost
+                pages, memorization_time, quest_only, humanoid_only
             FROM "Ability"
             WHERE id = $1
         )", ability_id);
@@ -1577,7 +1801,6 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
         ability.memorization_time = row["memorization_time"].as<int>(0);
         ability.quest_only = row["quest_only"].as<bool>(false);
         ability.humanoid_only = row["humanoid_only"].as<bool>(false);
-        ability.cost = row["cost"].as<int>(0);
 
         return ability;
 
@@ -1600,7 +1823,7 @@ Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& nam
                 "abilityType" AS ability_type, "minPosition" AS min_position, violent,
                 cast_time_rounds, cooldown_ms,
                 is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only, cost
+                pages, memorization_time, quest_only, humanoid_only
             FROM "Ability"
             WHERE UPPER(plain_name) = UPPER($1)
         )", name);
@@ -1628,7 +1851,6 @@ Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& nam
         ability.memorization_time = row["memorization_time"].as<int>(0);
         ability.quest_only = row["quest_only"].as<bool>(false);
         ability.humanoid_only = row["humanoid_only"].as<bool>(false);
-        ability.cost = row["cost"].as<int>(0);
 
         return ability;
 
@@ -1754,6 +1976,7 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
                 ca.ability_id,
                 a.name,
                 a.plain_name,
+                a.description,
                 ca.known,
                 ca.proficiency,
                 a."abilityType" AS ability_type,
@@ -1772,6 +1995,7 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
             ability.ability_id = row["ability_id"].as<int>();
             ability.name = row["name"].as<std::string>("");
             ability.plain_name = row["plain_name"].as<std::string>("");
+            ability.description = row["description"].as<std::string>("");
             ability.known = row["known"].as<bool>(false);
             ability.proficiency = row["proficiency"].as<int>(0);
             ability.violent = row["violent"].as<bool>(false);
@@ -1974,6 +2198,291 @@ Result<std::vector<AbilityEffectData>> load_abilities_effects(
 }
 
 // =============================================================================
+// Ability Messages, Restrictions, and Damage Components
+// =============================================================================
+
+Result<std::vector<AbilityMessagesData>> load_all_ability_messages(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all ability messages from database");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT
+                ability_id,
+                start_to_caster, start_to_victim, start_to_room,
+                success_to_caster, success_to_victim, success_to_room,
+                success_to_self, success_self_room,
+                fail_to_caster, fail_to_victim, fail_to_room,
+                wearoff_to_target, wearoff_to_room,
+                look_message
+            FROM "AbilityMessages"
+        )");
+
+        std::vector<AbilityMessagesData> messages;
+        messages.reserve(result.size());
+
+        for (const auto& row : result) {
+            AbilityMessagesData msg;
+            msg.ability_id = row["ability_id"].as<int>();
+            msg.start_to_caster = row["start_to_caster"].is_null() ? "" : row["start_to_caster"].as<std::string>();
+            msg.start_to_victim = row["start_to_victim"].is_null() ? "" : row["start_to_victim"].as<std::string>();
+            msg.start_to_room = row["start_to_room"].is_null() ? "" : row["start_to_room"].as<std::string>();
+            msg.success_to_caster = row["success_to_caster"].is_null() ? "" : row["success_to_caster"].as<std::string>();
+            msg.success_to_victim = row["success_to_victim"].is_null() ? "" : row["success_to_victim"].as<std::string>();
+            msg.success_to_room = row["success_to_room"].is_null() ? "" : row["success_to_room"].as<std::string>();
+            msg.success_to_self = row["success_to_self"].is_null() ? "" : row["success_to_self"].as<std::string>();
+            msg.success_self_room = row["success_self_room"].is_null() ? "" : row["success_self_room"].as<std::string>();
+            msg.fail_to_caster = row["fail_to_caster"].is_null() ? "" : row["fail_to_caster"].as<std::string>();
+            msg.fail_to_victim = row["fail_to_victim"].is_null() ? "" : row["fail_to_victim"].as<std::string>();
+            msg.fail_to_room = row["fail_to_room"].is_null() ? "" : row["fail_to_room"].as<std::string>();
+            msg.wearoff_to_target = row["wearoff_to_target"].is_null() ? "" : row["wearoff_to_target"].as<std::string>();
+            msg.wearoff_to_room = row["wearoff_to_room"].is_null() ? "" : row["wearoff_to_room"].as<std::string>();
+            msg.look_message = row["look_message"].is_null() ? "" : row["look_message"].as<std::string>();
+            messages.push_back(std::move(msg));
+        }
+
+        logger->debug("Loaded {} ability messages from database", messages.size());
+        return messages;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability messages: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability messages: {}", e.what())});
+    }
+}
+
+Result<std::optional<AbilityMessagesData>> load_ability_messages(
+    pqxx::work& txn, int ability_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT
+                ability_id,
+                start_to_caster, start_to_victim, start_to_room,
+                success_to_caster, success_to_victim, success_to_room,
+                success_to_self, success_self_room,
+                fail_to_caster, fail_to_victim, fail_to_room,
+                wearoff_to_target, wearoff_to_room,
+                look_message
+            FROM "AbilityMessages"
+            WHERE ability_id = $1
+        )", ability_id);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        AbilityMessagesData msg;
+        msg.ability_id = row["ability_id"].as<int>();
+        msg.start_to_caster = row["start_to_caster"].is_null() ? "" : row["start_to_caster"].as<std::string>();
+        msg.start_to_victim = row["start_to_victim"].is_null() ? "" : row["start_to_victim"].as<std::string>();
+        msg.start_to_room = row["start_to_room"].is_null() ? "" : row["start_to_room"].as<std::string>();
+        msg.success_to_caster = row["success_to_caster"].is_null() ? "" : row["success_to_caster"].as<std::string>();
+        msg.success_to_victim = row["success_to_victim"].is_null() ? "" : row["success_to_victim"].as<std::string>();
+        msg.success_to_room = row["success_to_room"].is_null() ? "" : row["success_to_room"].as<std::string>();
+        msg.success_to_self = row["success_to_self"].is_null() ? "" : row["success_to_self"].as<std::string>();
+        msg.success_self_room = row["success_self_room"].is_null() ? "" : row["success_self_room"].as<std::string>();
+        msg.fail_to_caster = row["fail_to_caster"].is_null() ? "" : row["fail_to_caster"].as<std::string>();
+        msg.fail_to_victim = row["fail_to_victim"].is_null() ? "" : row["fail_to_victim"].as<std::string>();
+        msg.fail_to_room = row["fail_to_room"].is_null() ? "" : row["fail_to_room"].as<std::string>();
+        msg.wearoff_to_target = row["wearoff_to_target"].is_null() ? "" : row["wearoff_to_target"].as<std::string>();
+        msg.wearoff_to_room = row["wearoff_to_room"].is_null() ? "" : row["wearoff_to_room"].as<std::string>();
+        msg.look_message = row["look_message"].is_null() ? "" : row["look_message"].as<std::string>();
+
+        return msg;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability messages for {}: {}", ability_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability messages: {}", e.what())});
+    }
+}
+
+Result<std::vector<AbilityRestrictionsData>> load_all_ability_restrictions(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all ability restrictions from database");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT
+                ability_id,
+                COALESCE(array_to_json(requirements)::text, '[]') AS requirements,
+                custom_requirement_lua
+            FROM "AbilityRestrictions"
+        )");
+
+        std::vector<AbilityRestrictionsData> restrictions;
+        restrictions.reserve(result.size());
+
+        for (const auto& row : result) {
+            AbilityRestrictionsData restr;
+            restr.ability_id = row["ability_id"].as<int>();
+            restr.requirements_json = row["requirements"].is_null() ? "[]" : row["requirements"].as<std::string>();
+            restr.custom_requirement_lua = row["custom_requirement_lua"].is_null() ? "" : row["custom_requirement_lua"].as<std::string>();
+            restrictions.push_back(std::move(restr));
+        }
+
+        logger->debug("Loaded {} ability restrictions from database", restrictions.size());
+        return restrictions;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability restrictions: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability restrictions: {}", e.what())});
+    }
+}
+
+Result<std::optional<AbilityRestrictionsData>> load_ability_restrictions(
+    pqxx::work& txn, int ability_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT
+                ability_id,
+                COALESCE(array_to_json(requirements)::text, '[]') AS requirements,
+                custom_requirement_lua
+            FROM "AbilityRestrictions"
+            WHERE ability_id = $1
+        )", ability_id);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        AbilityRestrictionsData restr;
+        restr.ability_id = row["ability_id"].as<int>();
+        restr.requirements_json = row["requirements"].is_null() ? "[]" : row["requirements"].as<std::string>();
+        restr.custom_requirement_lua = row["custom_requirement_lua"].is_null() ? "" : row["custom_requirement_lua"].as<std::string>();
+
+        return restr;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability restrictions for {}: {}", ability_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability restrictions: {}", e.what())});
+    }
+}
+
+Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_components(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all ability damage components from database");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT
+                ability_id, element, damage_formula, percentage, sequence
+            FROM "AbilityDamageComponent"
+            ORDER BY ability_id, sequence
+        )");
+
+        std::vector<AbilityDamageComponentData> components;
+        components.reserve(result.size());
+
+        for (const auto& row : result) {
+            AbilityDamageComponentData comp;
+            comp.ability_id = row["ability_id"].as<int>();
+            comp.element = row["element"].is_null() ? "PHYSICAL" : row["element"].as<std::string>();
+            comp.damage_formula = row["damage_formula"].is_null() ? "1d6" : row["damage_formula"].as<std::string>();
+            comp.percentage = row["percentage"].as<int>(100);
+            comp.sequence = row["sequence"].as<int>(0);
+            components.push_back(std::move(comp));
+        }
+
+        logger->debug("Loaded {} ability damage components from database", components.size());
+        return components;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability damage components: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability damage components: {}", e.what())});
+    }
+}
+
+Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
+    pqxx::work& txn, int ability_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT
+                ability_id, element, damage_formula, percentage, sequence
+            FROM "AbilityDamageComponent"
+            WHERE ability_id = $1
+            ORDER BY sequence
+        )", ability_id);
+
+        std::vector<AbilityDamageComponentData> components;
+        components.reserve(result.size());
+
+        for (const auto& row : result) {
+            AbilityDamageComponentData comp;
+            comp.ability_id = row["ability_id"].as<int>();
+            comp.element = row["element"].is_null() ? "PHYSICAL" : row["element"].as<std::string>();
+            comp.damage_formula = row["damage_formula"].is_null() ? "1d6" : row["damage_formula"].as<std::string>();
+            comp.percentage = row["percentage"].as<int>(100);
+            comp.sequence = row["sequence"].as<int>(0);
+            components.push_back(std::move(comp));
+        }
+
+        return components;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability damage components for {}: {}", ability_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability damage components: {}", e.what())});
+    }
+}
+
+std::vector<AbilityRequirement> parse_ability_requirements(
+    std::string_view json_str, int ability_id) {
+    std::vector<AbilityRequirement> requirements;
+    if (json_str.empty() || json_str == "[]") {
+        return requirements;
+    }
+
+    try {
+        auto j = nlohmann::json::parse(json_str);
+        if (!j.is_array()) {
+            return requirements;
+        }
+
+        for (const auto& item : j) {
+            if (!item.is_object()) continue;
+
+            AbilityRequirement req;
+            if (item.contains("type")) {
+                req.type = item["type"].get<std::string>();
+            }
+            if (item.contains("value")) {
+                if (item["value"].is_string()) {
+                    req.value = item["value"].get<std::string>();
+                } else if (item["value"].is_boolean()) {
+                    req.value = item["value"].get<bool>() ? "true" : "false";
+                } else if (item["value"].is_number()) {
+                    req.value = std::to_string(item["value"].get<int>());
+                }
+            }
+            if (item.contains("negated")) {
+                req.negated = item["negated"].get<bool>();
+            }
+            requirements.push_back(std::move(req));
+        }
+    } catch (const nlohmann::json::exception& e) {
+        // Include ability ID and truncated JSON in error for easier debugging
+        std::string json_preview(json_str.substr(0, std::min(json_str.size(), size_t(200))));
+        if (json_str.size() > 200) json_preview += "...";
+        Log::warn("Failed to parse ability requirements JSON for ability_id={}: {} | JSON: {}",
+                  ability_id, e.what(), json_preview);
+    }
+
+    return requirements;
+}
+
+// =============================================================================
 // Character/Player System Queries
 // =============================================================================
 
@@ -2041,36 +2550,32 @@ namespace {
         uint64_t a = dist(gen);
         uint64_t b = dist(gen);
 
-        // Format as UUID string
-        char uuid[37];
-        snprintf(uuid, sizeof(uuid),
-            "%08x-%04x-%04x-%04x-%012llx",
+        // Format as UUID string using fmt::format
+        return fmt::format("{:08x}-{:04x}-{:04x}-{:04x}-{:012x}",
             static_cast<unsigned int>(a >> 32),
             static_cast<unsigned int>((a >> 16) & 0xFFFF),
             static_cast<unsigned int>(a & 0xFFFF),
             static_cast<unsigned int>(b >> 48),
             static_cast<unsigned long long>(b & 0xFFFFFFFFFFFFULL));
-        return std::string(uuid);
     }
 
     // Bcrypt-style password hashing using crypt() with SHA-512
     // Format: $6$<salt>$<hash> (SHA-512 crypt)
     std::string hash_password(const std::string& password) {
         // Generate random salt for SHA-512 crypt
-        unsigned char salt_bytes[16];
-        RAND_bytes(salt_bytes, sizeof(salt_bytes));
+        std::array<unsigned char, 16> salt_bytes{};
+        RAND_bytes(salt_bytes.data(), salt_bytes.size());
 
         // Encode salt as base64-like string
-        static const char* b64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        constexpr std::string_view b64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         std::string salt = "$6$";  // SHA-512 prefix
-        for (int i = 0; i < 16; ++i) {
-            salt += b64[salt_bytes[i] % 64];
+        for (const auto& byte : salt_bytes) {
+            salt += b64[byte % 64];
         }
         salt += "$";
 
         // Use crypt_r for thread safety
-        struct crypt_data data;
-        memset(&data, 0, sizeof(data));
+        struct crypt_data data{};  // Zero-initialize with {}
         char* result = crypt_r(password.c_str(), salt.c_str(), &data);
 
         if (result == nullptr) {
@@ -2119,8 +2624,7 @@ namespace {
         switch (type) {
             case HashType::SHA512Crypt: {
                 // Modern SHA-512 crypt - use crypt_r with stored hash as salt
-                struct crypt_data data;
-                memset(&data, 0, sizeof(data));
+                struct crypt_data data{};  // Zero-initialize with {}
                 char* result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
                 return result && stored_hash == result;
             }
@@ -2128,8 +2632,7 @@ namespace {
             case HashType::BcryptHash: {
                 // Bcrypt hash ($2a$, $2b$, $2y$ format) - use crypt_r if supported
                 // libxcrypt on modern Linux supports bcrypt via crypt_r
-                struct crypt_data data;
-                memset(&data, 0, sizeof(data));
+                struct crypt_data data{};  // Zero-initialize with {}
                 char* result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
                 if (!result) {
                     // crypt_r doesn't support bcrypt on this system
@@ -2143,8 +2646,7 @@ namespace {
             case HashType::LegacyCrypt: {
                 // Legacy Unix crypt (DES) - 10-13 character hash
                 // Salt is first 2 characters of the hash
-                struct crypt_data data;
-                memset(&data, 0, sizeof(data));
+                struct crypt_data data{};  // Zero-initialize with {}
                 char* result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
                 if (!result) return false;
                 // Legacy hashes compare first 10 characters
@@ -2203,7 +2705,9 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
                 copper, silver, gold, platinum,
                 bank_copper, bank_silver, bank_gold, bank_platinum,
                 password_hash, race_type, gender, player_class, class_id,
-                current_room, save_room, home_room,
+                current_room_zone_id, current_room_id,
+                save_room_zone_id, save_room_id,
+                home_room_zone_id, home_room_id,
                 hit_roll, damage_roll, armor_class,
                 last_login, time_played, is_online,
                 hunger, thirst,
@@ -2265,15 +2769,24 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
             character.class_id = row["class_id"].as<int>();
         }
 
-        // Location
-        if (!row["current_room"].is_null()) {
-            character.current_room = row["current_room"].as<int>();
+        // Location (composite keys)
+        if (!row["current_room_zone_id"].is_null()) {
+            character.current_room_zone_id = row["current_room_zone_id"].as<int>();
         }
-        if (!row["save_room"].is_null()) {
-            character.save_room = row["save_room"].as<int>();
+        if (!row["current_room_id"].is_null()) {
+            character.current_room_id = row["current_room_id"].as<int>();
         }
-        if (!row["home_room"].is_null()) {
-            character.home_room = row["home_room"].as<int>();
+        if (!row["save_room_zone_id"].is_null()) {
+            character.save_room_zone_id = row["save_room_zone_id"].as<int>();
+        }
+        if (!row["save_room_id"].is_null()) {
+            character.save_room_id = row["save_room_id"].as<int>();
+        }
+        if (!row["home_room_zone_id"].is_null()) {
+            character.home_room_zone_id = row["home_room_zone_id"].as<int>();
+        }
+        if (!row["home_room_id"].is_null()) {
+            character.home_room_id = row["home_room_id"].as<int>();
         }
 
         // Combat stats
@@ -2340,7 +2853,9 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
                 copper, silver, gold, platinum,
                 bank_copper, bank_silver, bank_gold, bank_platinum,
                 password_hash, race_type, gender, player_class, class_id,
-                current_room, save_room, home_room,
+                current_room_zone_id, current_room_id,
+                save_room_zone_id, save_room_id,
+                home_room_zone_id, home_room_id,
                 hit_roll, damage_roll, armor_class,
                 last_login, time_played, is_online,
                 hunger, thirst,
@@ -2394,14 +2909,23 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         if (!row["class_id"].is_null()) {
             character.class_id = row["class_id"].as<int>();
         }
-        if (!row["current_room"].is_null()) {
-            character.current_room = row["current_room"].as<int>();
+        if (!row["current_room_zone_id"].is_null()) {
+            character.current_room_zone_id = row["current_room_zone_id"].as<int>();
         }
-        if (!row["save_room"].is_null()) {
-            character.save_room = row["save_room"].as<int>();
+        if (!row["current_room_id"].is_null()) {
+            character.current_room_id = row["current_room_id"].as<int>();
         }
-        if (!row["home_room"].is_null()) {
-            character.home_room = row["home_room"].as<int>();
+        if (!row["save_room_zone_id"].is_null()) {
+            character.save_room_zone_id = row["save_room_zone_id"].as<int>();
+        }
+        if (!row["save_room_id"].is_null()) {
+            character.save_room_id = row["save_room_id"].as<int>();
+        }
+        if (!row["home_room_zone_id"].is_null()) {
+            character.home_room_zone_id = row["home_room_zone_id"].as<int>();
+        }
+        if (!row["home_room_id"].is_null()) {
+            character.home_room_id = row["home_room_id"].as<int>();
         }
         character.hit_roll = row["hit_roll"].as<int>(0);
         character.damage_roll = row["damage_roll"].as<int>(0);
@@ -2560,13 +3084,14 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 hit_points = $11, hit_points_max = $12, movement = $13, movement_max = $14,
                 copper = $15, silver = $16, gold = $17, platinum = $18,
                 bank_copper = $19, bank_silver = $20, bank_gold = $21, bank_platinum = $22,
-                current_room = $23, save_room = $24,
-                hit_roll = $25, damage_roll = $26, armor_class = $27,
-                time_played = $28, hunger = $29, thirst = $30,
-                experience = $31, skill_points = $32,
-                title = $33, description = $34,
-                prompt = $35, page_length = $36, wimpy_threshold = $37,
-                player_flags = $38::text[],
+                current_room_zone_id = $23, current_room_id = $24,
+                save_room_zone_id = $25, save_room_id = $26,
+                hit_roll = $27, damage_roll = $28, armor_class = $29,
+                time_played = $30, hunger = $31, thirst = $32,
+                experience = $33, skill_points = $34,
+                title = $35, description = $36,
+                prompt = $37, page_length = $38, wimpy_threshold = $39,
+                player_flags = $40::text[],
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -2577,7 +3102,8 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
             character.hit_points, character.hit_points_max, character.movement, character.movement_max,
             character.copper, character.silver, character.gold, character.platinum,
             character.bank_copper, character.bank_silver, character.bank_gold, character.bank_platinum,
-            character.current_room.value_or(0), character.save_room.value_or(0),
+            character.current_room_zone_id.value_or(0), character.current_room_id.value_or(0),
+            character.save_room_zone_id.value_or(0), character.save_room_id.value_or(0),
             character.hit_roll, character.damage_roll, character.armor_class,
             character.time_played, character.hunger, character.thirst,
             character.experience, character.skill_points,
@@ -2638,14 +3164,19 @@ Result<void> update_last_login(pqxx::work& txn, const std::string& character_id)
 Result<void> save_character_location(
     pqxx::work& txn,
     const std::string& character_id,
+    int zone_id,
     int room_id) {
     auto logger = Log::database();
-    logger->debug("Saving location for character {}: room {}", character_id, room_id);
+    logger->debug("Saving location for character {}: zone {} room {}", character_id, zone_id, room_id);
 
     try {
         txn.exec_params(R"(
-            UPDATE "Characters" SET current_room = $2, save_room = $2, updated_at = NOW() WHERE id = $1
-        )", character_id, room_id);
+            UPDATE "Characters" SET
+                current_room_zone_id = $2, current_room_id = $3,
+                save_room_zone_id = $2, save_room_id = $3,
+                updated_at = NOW()
+            WHERE id = $1
+        )", character_id, zone_id, room_id);
 
         return {};
 
@@ -2942,21 +3473,17 @@ Result<void> lock_user_account(
     logger->debug("Locking user account {}", user_id);
 
     try {
-        // Convert time_point to timestamp
-        auto time_t_until = std::chrono::system_clock::to_time_t(until);
-        std::tm tm_until;
-        gmtime_r(&time_t_until, &tm_until);
-        char buffer[32];
-        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm_until);
+        // Convert time_point to timestamp string using fmt
+        auto timestamp = fmt::format("{:%Y-%m-%d %H:%M:%S}", until);
 
         txn.exec_params(R"(
             UPDATE "Users"
             SET locked_until = $2::timestamp,
                 updated_at = NOW()
             WHERE id = $1
-        )", user_id, std::string(buffer));
+        )", user_id, timestamp);
 
-        logger->info("Locked user account {} until {}", user_id, buffer);
+        logger->info("Locked user account {} until {}", user_id, timestamp);
         return {};
 
     } catch (const pqxx::sql_error& e) {
@@ -3292,6 +3819,124 @@ Result<void> save_character_items(
         logger->error("SQL error saving character items: {}", e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to save character items: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Command Queries
+// =============================================================================
+
+Result<std::vector<CommandData>> load_all_commands(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all commands from database");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT name, aliases, category, description, usage,
+                   immortal_only, permissions, ability_id
+            FROM "Command"
+            ORDER BY name
+        )");
+
+        std::vector<CommandData> commands;
+        commands.reserve(result.size());
+
+        for (const auto& row : result) {
+            CommandData cmd;
+            cmd.name = row["name"].as<std::string>();
+
+            if (!row["aliases"].is_null()) {
+                cmd.aliases = parse_pg_array(row["aliases"].as<std::string>());
+            }
+
+            if (!row["category"].is_null()) {
+                cmd.category = row["category"].as<std::string>();
+            }
+
+            if (!row["description"].is_null()) {
+                cmd.description = row["description"].as<std::string>();
+            }
+
+            if (!row["usage"].is_null()) {
+                cmd.usage = row["usage"].as<std::string>();
+            }
+
+            cmd.immortal_only = row["immortal_only"].as<bool>();
+
+            if (!row["permissions"].is_null()) {
+                cmd.permissions = parse_pg_array(row["permissions"].as<std::string>());
+            }
+
+            if (!row["ability_id"].is_null()) {
+                cmd.ability_id = row["ability_id"].as<int>();
+            }
+
+            commands.push_back(std::move(cmd));
+        }
+
+        logger->debug("Loaded {} commands from database", commands.size());
+        return commands;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading commands: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load commands: {}", e.what())});
+    }
+}
+
+Result<std::optional<CommandData>> load_command_by_name(
+    pqxx::work& txn, const std::string& name) {
+    auto logger = Log::database();
+    logger->debug("Loading command: {}", name);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT name, aliases, category, description, usage,
+                   immortal_only, permissions, ability_id
+            FROM "Command"
+            WHERE LOWER(name) = LOWER($1)
+        )", name);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        CommandData cmd;
+        cmd.name = row["name"].as<std::string>();
+
+        if (!row["aliases"].is_null()) {
+            cmd.aliases = parse_pg_array(row["aliases"].as<std::string>());
+        }
+
+        if (!row["category"].is_null()) {
+            cmd.category = row["category"].as<std::string>();
+        }
+
+        if (!row["description"].is_null()) {
+            cmd.description = row["description"].as<std::string>();
+        }
+
+        if (!row["usage"].is_null()) {
+            cmd.usage = row["usage"].as<std::string>();
+        }
+
+        cmd.immortal_only = row["immortal_only"].as<bool>();
+
+        if (!row["permissions"].is_null()) {
+            cmd.permissions = parse_pg_array(row["permissions"].as<std::string>());
+        }
+
+        if (!row["ability_id"].is_null()) {
+            cmd.ability_id = row["ability_id"].as<int>();
+        }
+
+        return cmd;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading command '{}': {}", name, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load command '{}': {}", name, e.what())});
     }
 }
 

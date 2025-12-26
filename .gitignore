@@ -16,12 +16,14 @@ __pycache__
 data/
 data_test/
 
-#logs
+# Test results (generated)
+test_results/
+test_output.xml
+
+# Logs
 log/
 logs/
 *.log
 
 # Development certificates (keep local, don't commit)
-certs/*.key
-certs/*.pem
-certs/*.crt
+certs/

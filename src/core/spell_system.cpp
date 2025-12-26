@@ -29,38 +29,36 @@ bool Spell::can_cast(const Actor& caster) const {
     return true;
 }
 
-Result<void> Spell::cast(const Actor& caster, const CommandContext& ctx) const {
+Result<void> Spell::cast(Actor& caster, const CommandContext& ctx) const {
     // Basic spell casting implementation
     Log::info("SPELL: {} casts '{}' (Circle {})", caster.name(), name, circle);
-    
+
     // Send messages to all participants
     std::string cast_message = fmt::format("You cast '{}'!", name);
     std::string room_message = fmt::format("{} casts '{}'!", caster.display_name(), name);
-    
+
     ctx.send(cast_message);
     ctx.send_to_room(room_message, true);
-    
+
     // Basic spell effects based on type
     switch (type) {
         case SpellType::Healing: {
-            if (auto* mutable_caster = const_cast<Actor*>(&caster)) {
-                int heal_amount = circle * 10 + 5; // Simple healing formula
-                auto& stats = mutable_caster->stats();
-                int old_hp = stats.hit_points;
-                stats.hit_points = std::min(stats.max_hit_points, stats.hit_points + heal_amount);
-                int actual_heal = stats.hit_points - old_hp;
-                
-                if (actual_heal > 0) {
-                    ctx.send(fmt::format("You are healed for {} hit points!", actual_heal));
-                    ctx.send_to_room(fmt::format("{} glows with healing energy!", caster.display_name()), true);
-                    
-                    // Send GMCP vitals update if caster is a player
-                    if (auto player = dynamic_cast<Player*>(mutable_caster)) {
-                        player->send_gmcp_vitals_update();
-                    }
-                } else {
-                    ctx.send("You are already at full health.");
+            int heal_amount = circle * 10 + 5; // Simple healing formula
+            auto& stats = caster.stats();
+            int old_hp = stats.hit_points;
+            stats.hit_points = std::min(stats.max_hit_points, stats.hit_points + heal_amount);
+            int actual_heal = stats.hit_points - old_hp;
+
+            if (actual_heal > 0) {
+                ctx.send(fmt::format("You are healed for {} hit points!", actual_heal));
+                ctx.send_to_room(fmt::format("{} glows with healing energy!", caster.display_name()), true);
+
+                // Send GMCP vitals update if caster is a player
+                if (auto* player = dynamic_cast<Player*>(&caster)) {
+                    player->send_gmcp_vitals_update();
                 }
+            } else {
+                ctx.send("You are already at full health.");
             }
             break;
         }
@@ -318,8 +316,8 @@ const Spell* SpellRegistry::find_spell(std::string_view name) const {
     if (it != spells_.end()) {
         return &it->second;
     }
-    
-    // Try partial match (case-insensitive)
+
+    // Try partial match (case-insensitive) - whole string prefix
     std::string lower_name = to_lowercase(name);
 
     for (const auto& [spell_name, spell] : spells_) {
@@ -329,7 +327,15 @@ const Spell* SpellRegistry::find_spell(std::string_view name) const {
             return &spell;
         }
     }
-    
+
+    // Try per-word fuzzy match: "det inv" matches "detect invisibility"
+    for (const auto& [spell_name, spell] : spells_) {
+        std::string lower_spell_name = to_lowercase(spell_name);
+        if (matches_words(lower_name, lower_spell_name)) {
+            return &spell;
+        }
+    }
+
     return nullptr;
 }
 

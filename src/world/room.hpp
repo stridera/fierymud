@@ -123,8 +123,10 @@ enum class RoomFlag {
     // Special flags
     Arena,              // Arena room
     Shop,               // Shop room
-    Temple,             // Temple room
+    Temple,             // Temple/holy place - player rises from meditation on return
     Bank,               // Bank room
+    Inn,                // Rentable room - player checks out on return
+    Campsite,           // Designated camping area - player breaks camp on return
 
     // Map and navigation flags
     Worldmap,           // Part of world map

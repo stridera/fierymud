@@ -4,6 +4,9 @@
 
 namespace PlayerQueries {
 
+// Level at which characters become immortals
+constexpr int kImmortalLevel = 100;
+
 Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string_view name) {
     auto logger = Log::database();
     logger->debug("Loading player '{}' from database", name);
@@ -17,7 +20,8 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
                    bank_copper, bank_silver, bank_gold, bank_platinum,
                    password_hash, race, gender, player_class,
                    height, weight, base_height, base_weight, base_size, current_size,
-                   hit_roll, damage_roll, armor_class
+                   hit_roll, damage_roll, armor_class,
+                   description, title
             FROM "Characters"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
@@ -70,6 +74,13 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         // Stats - modify directly via stats() reference
         auto& stats = player->stats();
         stats.level = level;
+
+        // Set god level for immortals (level 100+)
+        // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
+        if (level >= kImmortalLevel) {
+            player->set_god_level(level - (kImmortalLevel - 1));
+        }
+
         stats.alignment = row["alignment"].as<int>(0);
         stats.strength = row["strength"].as<int>(10);
         stats.intelligence = row["intelligence"].as<int>(10);
@@ -94,6 +105,14 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
                           row["gold"].as<int>(0) * 100 +
                           row["platinum"].as<int>(0) * 1000;
         stats.gold = total_copper;
+
+        // Description and title
+        if (!row["description"].is_null()) {
+            player->set_description(row["description"].as<std::string>());
+        }
+        if (!row["title"].is_null()) {
+            player->set_title(row["title"].as<std::string>());
+        }
 
         logger->debug("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database",
                     player_name, player_id, level,

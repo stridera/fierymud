@@ -71,7 +71,8 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
         case ObjectType::Container:
         case ObjectType::Liquid_Container: {
             // Default capacity for containers created via Object::create
-            auto container_result = Container::create(id, name, DEFAULT_CONTAINER_CAPACITY);
+            // Pass the actual type to preserve Liquid_Container vs Container distinction
+            auto container_result = Container::create(id, name, DEFAULT_CONTAINER_CAPACITY, type);
             if (!container_result.has_value()) {
                 return std::unexpected(container_result.error());
             }
@@ -229,7 +230,8 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         switch (type) {
             case ObjectType::Container:
             case ObjectType::Liquid_Container: {
-                auto container_result = Container::create(base_entity->id(), base_entity->name(), container_capacity);
+                // Pass the actual type to preserve Liquid_Container vs Container distinction
+                auto container_result = Container::create(base_entity->id(), base_entity->name(), container_capacity, type);
                 if (!container_result.has_value()) {
                     return std::unexpected(container_result.error());
                 }
@@ -703,23 +705,23 @@ Result<std::unique_ptr<Armor>> Armor::create(EntityId id, std::string_view name,
 
 // Container Implementation
 
-Container::Container(EntityId id, std::string_view name, int capacity) 
-    : Object(id, name, ObjectType::Container) {
+Container::Container(EntityId id, std::string_view name, int capacity, ObjectType type)
+    : Object(id, name, type) {
     ContainerInfo info;
     info.capacity = capacity;
     info.weight_capacity = capacity * 10; // Default weight capacity
     set_container_info(info);
 }
 
-Result<std::unique_ptr<Container>> Container::create(EntityId id, std::string_view name, int capacity) {
+Result<std::unique_ptr<Container>> Container::create(EntityId id, std::string_view name, int capacity, ObjectType type) {
     if (capacity <= 0) {
         return std::unexpected(Errors::InvalidArgument("capacity", "must be positive"));
     }
-    
-    auto container = std::unique_ptr<Container>(new Container(id, name, capacity));
-    
+
+    auto container = std::unique_ptr<Container>(new Container(id, name, capacity, type));
+
     TRY(container->validate());
-    
+
     return container;
 }
 

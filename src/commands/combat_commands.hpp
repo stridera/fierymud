@@ -19,6 +19,7 @@ Result<CommandResult> cmd_rescue(const CommandContext &ctx);
 Result<CommandResult> cmd_assist(const CommandContext &ctx);
 Result<CommandResult> cmd_kick(const CommandContext &ctx);
 Result<CommandResult> cmd_bash(const CommandContext &ctx);
+Result<CommandResult> cmd_backstab(const CommandContext &ctx);
 
 // Combat helper functions
 Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<Actor> target);

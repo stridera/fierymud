@@ -188,3 +188,49 @@ std::string join_strings(const std::vector<std::string> &strings, const std::str
                            }) +
            std::string(last_separator) + strings.back();
 }
+
+bool matches_words(std::string_view search, std::string_view target) {
+    // Split search term into words (separated by spaces or underscores)
+    std::vector<std::string_view> search_words;
+    std::string_view remaining = search;
+    while (!remaining.empty()) {
+        size_t start = remaining.find_first_not_of(" _");
+        if (start == std::string_view::npos) break;
+        remaining = remaining.substr(start);
+        size_t end = remaining.find_first_of(" _");
+        if (end == std::string_view::npos) {
+            search_words.push_back(remaining);
+            break;
+        }
+        search_words.push_back(remaining.substr(0, end));
+        remaining = remaining.substr(end);
+    }
+
+    if (search_words.empty()) return false;
+
+    // Split target into words
+    std::vector<std::string_view> target_words;
+    remaining = target;
+    while (!remaining.empty()) {
+        size_t start = remaining.find_first_not_of(" _");
+        if (start == std::string_view::npos) break;
+        remaining = remaining.substr(start);
+        size_t end = remaining.find_first_of(" _");
+        if (end == std::string_view::npos) {
+            target_words.push_back(remaining);
+            break;
+        }
+        target_words.push_back(remaining.substr(0, end));
+        remaining = remaining.substr(end);
+    }
+
+    // Each search word must be a prefix of the corresponding target word
+    if (search_words.size() > target_words.size()) return false;
+
+    for (size_t i = 0; i < search_words.size(); ++i) {
+        if (!matches_start(search_words[i], target_words[i])) {
+            return false;
+        }
+    }
+    return true;
+}

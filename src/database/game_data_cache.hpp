@@ -69,6 +69,14 @@ struct RaceData {
     int damage_factor{100};
     int ac_factor{100};
 
+    // Start room (optional - race-specific starting location, e.g., Drow start in Underdark)
+    std::optional<int> start_room_zone_id;
+    std::optional<int> start_room_id;
+
+    bool has_start_room() const {
+        return start_room_zone_id.has_value() && start_room_id.has_value();
+    }
+
     // Normalized name for case-insensitive lookups
     std::string lookup_key() const;
 };

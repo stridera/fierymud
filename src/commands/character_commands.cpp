@@ -13,16 +13,40 @@ namespace CharacterCommands {
 // Character Status Commands
 // =============================================================================
 
-Result<CommandResult> cmd_affects(const CommandContext &ctx) {
-    // TODO: Implement full affect/spell effect tracking system
-    // This will need:
-    // - ActiveEffect struct with spell ID, duration, stat modifiers
-    // - Vector of active effects on Actor
-    // - Tick-based expiration processing
-    // - Integration with stat calculations
+/**
+ * Convert effect duration from rounds to human-readable MUD time.
+ * 1 round = 4 real seconds, 1 MUD hour = 75 real seconds
+ * So approximately 19 rounds = 1 MUD hour
+ */
+static std::string format_effect_duration(int hours) {
+    if (hours < 0) {
+        return "permanent";
+    }
+    if (hours == 1) {
+        return "1 hour";
+    }
+    return fmt::format("{} hours", hours);
+}
 
+Result<CommandResult> cmd_affects(const CommandContext &ctx) {
     ctx.send("--- Active Effects ---");
-    ctx.send("You are not affected by any spells.");
+
+    const auto& effects = ctx.actor->active_effects();
+    if (effects.empty()) {
+        ctx.send("You are not affected by any spells.");
+    } else {
+        for (const auto& effect : effects) {
+            std::string duration_str = format_effect_duration(effect.duration_hours);
+
+            std::string modifier_str;
+            if (effect.modifier_value != 0 && !effect.modifier_stat.empty()) {
+                modifier_str = fmt::format(" ({:+} {})", effect.modifier_value, effect.modifier_stat);
+            }
+
+            ctx.send(fmt::format("  {} - {}{}", effect.name, duration_str, modifier_str));
+        }
+    }
+
     ctx.send("--- End of Effects ---");
 
     return CommandResult::Success;
@@ -717,6 +741,12 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
         ctx.send(fmt::format("  deaf        : {}  - Block shouts and gossip", on_off(player->is_deaf())));
         ctx.send(fmt::format("  notell      : {}  - Block tells from non-gods", on_off(player->is_notell())));
         ctx.send(fmt::format("  afk         : {}  - Away from keyboard", on_off(player->is_afk())));
+        // Immortal-only options
+        if (player->is_god()) {
+            ctx.send("--- Immortal Options ---");
+            ctx.send(fmt::format("  holylight   : {}  - See everything (invis, dark, hidden)", on_off(player->is_holylight())));
+            ctx.send(fmt::format("  showids     : {}  - Show entity IDs on mobs/objects", on_off(player->is_show_ids())));
+        }
         ctx.send("--- End of Options ---");
         ctx.send("Usage: toggle <option> to flip a setting");
         return CommandResult::Success;
@@ -752,6 +782,23 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
     } else if (option == "afk") {
         player->toggle_player_flag(PlayerFlag::Afk);
         ctx.send(fmt::format("AFK is now {}.", player->is_afk() ? "ON" : "OFF"));
+    } else if (option == "holylight") {
+        if (!player->is_god()) {
+            ctx.send_error("Only immortals can toggle holylight.");
+            return CommandResult::InsufficientPrivs;
+        }
+        player->toggle_player_flag(PlayerFlag::HolyLight);
+        ctx.send(fmt::format("Holylight is now {}.", player->is_holylight() ? "ON" : "OFF"));
+        if (player->is_holylight()) {
+            ctx.send("You can now see invisible, hidden, and in darkness.");
+        }
+    } else if (option == "showids") {
+        if (!player->is_god()) {
+            ctx.send_error("Only immortals can toggle showids.");
+            return CommandResult::InsufficientPrivs;
+        }
+        player->toggle_player_flag(PlayerFlag::ShowIds);
+        ctx.send(fmt::format("ShowIds is now {}.", player->is_show_ids() ? "ON" : "OFF"));
     } else {
         ctx.send_error(fmt::format("Unknown toggle option: {}", option));
         ctx.send("Type 'toggle' with no arguments to see available options.");

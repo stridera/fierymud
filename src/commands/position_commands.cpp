@@ -136,6 +136,9 @@ Result<CommandResult> cmd_stand(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    // Interrupt concentration-based activities (like meditation)
+    ctx.actor->interrupt_concentration();
+
     ctx.actor->set_position(Position::Standing);
 
     if (current == Position::Sitting) {

@@ -382,6 +382,78 @@ Result<CommandResult> cmd_dump_world(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_load(const CommandContext &ctx) {
+    if (ctx.arg_count() < 2) {
+        ctx.send_usage("load <obj|mob> <zone:id>");
+        ctx.send_info("Examples: load obj 30:31, load mob 30:0");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string type_str{ctx.arg(0)};
+    std::string id_str{ctx.arg(1)};
+
+    // Parse zone:id format
+    auto colon_pos = id_str.find(':');
+    if (colon_pos == std::string::npos) {
+        ctx.send_error("Invalid ID format. Use zone:id (e.g., 30:31)");
+        return CommandResult::InvalidSyntax;
+    }
+
+    int zone_id = 0;
+    int local_id = 0;
+    try {
+        zone_id = std::stoi(id_str.substr(0, colon_pos));
+        local_id = std::stoi(id_str.substr(colon_pos + 1));
+    } catch (const std::exception&) {
+        ctx.send_error("Invalid ID format. Zone and ID must be numbers.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    EntityId prototype_id(zone_id, local_id);
+
+    if (type_str == "obj" || type_str == "object") {
+        // Load an object
+        auto new_object = WorldManager::instance().create_object_instance(prototype_id);
+        if (!new_object) {
+            ctx.send_error(fmt::format("Object prototype {}:{} not found.", zone_id, local_id));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Add to player's inventory
+        auto add_result = ctx.actor->inventory().add_item(new_object);
+        if (!add_result) {
+            ctx.send_error("You can't carry any more items!");
+            return CommandResult::InvalidState;
+        }
+
+        ctx.send_success(fmt::format("You create {} [{}:{}].",
+                                     new_object->short_description(), zone_id, local_id));
+        Log::info("LOAD: {} loaded object {}:{} ({})",
+                 ctx.actor->name(), zone_id, local_id, new_object->short_description());
+
+    } else if (type_str == "mob" || type_str == "mobile") {
+        // Load a mobile - spawn it in the current room
+        auto spawned_mobile = WorldManager::instance().spawn_mobile_to_room(
+            prototype_id, ctx.room->id());
+        if (!spawned_mobile) {
+            ctx.send_error(fmt::format("Failed to spawn mobile {}:{}.", zone_id, local_id));
+            return CommandResult::InvalidTarget;
+        }
+
+        ctx.send_success(fmt::format("You create {} [{}:{}].",
+                                     spawned_mobile->short_description(), zone_id, local_id));
+        Log::info("LOAD: {} loaded mobile {}:{} ({}) in room {}",
+                 ctx.actor->name(), zone_id, local_id, spawned_mobile->short_description(),
+                 ctx.room->id());
+
+    } else {
+        ctx.send_error("Invalid type. Use 'obj' or 'mob'.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    return CommandResult::Success;
+}
+
 // =============================================================================
 // Command Registration
 // =============================================================================
@@ -414,6 +486,12 @@ Result<void> register_commands() {
 
     Commands()
         .command("setweather", cmd_weather_control)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("load", cmd_load)
         .category("Admin")
         .privilege(PrivilegeLevel::God)
         .build();

@@ -123,13 +123,15 @@ struct AbilityData {
     int cast_time_rounds;       // Casting time in rounds
     int cooldown_ms;            // Cooldown in milliseconds
     bool is_area;               // Area effect?
+    bool is_toggle;             // Toggle ability (on/off state like sneak, meditate)
+    bool combat_ok;             // Can be used during combat
+    bool in_combat_only;        // Can ONLY be used during combat
     std::string sphere;         // Spell sphere (fire, water, healing, etc.)
     std::string damage_type;    // Primary damage type
     int pages;                  // Spellbook pages required
     int memorization_time;      // Additional memorization rounds
     bool quest_only;            // Quest-restricted ability
     bool humanoid_only;         // Only available to humanoids
-    int cost = 0;               // Mana/stamina cost to use ability
 };
 
 /** Class-specific ability availability */
@@ -164,6 +166,7 @@ struct CharacterAbilityWithMetadata {
     int ability_id;
     std::string name;           // Ability display name
     std::string plain_name;     // Plain name for lookups (e.g., "LIGHTNING_BOLT")
+    std::string description;    // Description for help system
     bool known;
     int proficiency;            // 0-1000 proficiency (10x of percentage)
     AbilityType type;           // SKILL, SPELL, etc.
@@ -212,6 +215,48 @@ struct AbilityEffectData {
     std::string condition;          // Optional Lua condition
 };
 
+/** Custom messages for abilities from AbilityMessages table */
+struct AbilityMessagesData {
+    int ability_id;
+    std::string start_to_caster;    // Message to caster when starting
+    std::string start_to_victim;    // Message to victim when starting
+    std::string start_to_room;      // Message to room when starting
+    std::string success_to_caster;  // Message to caster on success
+    std::string success_to_victim;  // Message to victim on success
+    std::string success_to_room;    // Message to room on success
+    std::string success_to_self;    // Message to caster when targeting self
+    std::string success_self_room;  // Room message when caster targets self
+    std::string fail_to_caster;     // Message to caster on failure
+    std::string fail_to_victim;     // Message to victim on failure
+    std::string fail_to_room;       // Message to room on failure
+    std::string wearoff_to_target;  // Message when effect wears off
+    std::string wearoff_to_room;    // Room message when effect wears off
+    std::string look_message;       // Message when looking at someone affected
+};
+
+/** Restriction requirements for abilities from AbilityRestrictions table */
+struct AbilityRestrictionsData {
+    int ability_id;
+    std::string requirements_json;       // JSON array of requirement objects
+    std::string custom_requirement_lua;  // Optional Lua script for custom checks
+};
+
+/** Single requirement parsed from requirements_json */
+struct AbilityRequirement {
+    std::string type;          // "hidden", "weapon_type", "position", "has_effect", etc.
+    std::string value;         // The required value (e.g., "piercing", "standing")
+    bool negated = false;      // If true, requirement is inverted (must NOT have)
+};
+
+/** Damage component for multi-element abilities from AbilityDamageComponent table */
+struct AbilityDamageComponentData {
+    int ability_id;
+    std::string element;       // Element type (FIRE, COLD, LIGHTNING, etc.)
+    std::string damage_formula; // Damage formula (e.g., "8d6", "2d6+level")
+    int percentage;            // Percentage of total damage (should sum to 100)
+    int sequence;              // Order of application
+};
+
 /** Load all effect definitions */
 Result<std::vector<EffectData>> load_all_effects(pqxx::work& txn);
 
@@ -225,6 +270,34 @@ Result<std::vector<AbilityEffectData>> load_ability_effects(
 /** Load effects for multiple abilities (batch load for efficiency) */
 Result<std::vector<AbilityEffectData>> load_abilities_effects(
     pqxx::work& txn, const std::vector<int>& ability_ids);
+
+/** Load messages for all abilities (batch load) */
+Result<std::vector<AbilityMessagesData>> load_all_ability_messages(pqxx::work& txn);
+
+/** Load messages for a single ability */
+Result<std::optional<AbilityMessagesData>> load_ability_messages(
+    pqxx::work& txn, int ability_id);
+
+/** Load restrictions for all abilities (batch load) */
+Result<std::vector<AbilityRestrictionsData>> load_all_ability_restrictions(pqxx::work& txn);
+
+/** Load restrictions for a single ability */
+Result<std::optional<AbilityRestrictionsData>> load_ability_restrictions(
+    pqxx::work& txn, int ability_id);
+
+/** Load damage components for all abilities (batch load) */
+Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_components(pqxx::work& txn);
+
+/** Load damage components for a single ability */
+Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
+    pqxx::work& txn, int ability_id);
+
+/** Parse requirements JSON into structured requirements.
+ *  @param json_str The JSON string to parse
+ *  @param ability_id Optional ability ID for better error messages
+ */
+std::vector<AbilityRequirement> parse_ability_requirements(
+    std::string_view json_str, int ability_id = -1);
 
 // =============================================================================
 // Character/Player System Queries
@@ -269,10 +342,13 @@ struct CharacterData {
     std::string player_class;       // "Warrior", "Cleric", etc.
     int class_id = 0;
 
-    // Location
-    std::optional<int> current_room;
-    std::optional<int> save_room;
-    std::optional<int> home_room;
+    // Location (composite keys: zone_id + room_id)
+    std::optional<int> current_room_zone_id;
+    std::optional<int> current_room_id;
+    std::optional<int> save_room_zone_id;
+    std::optional<int> save_room_id;
+    std::optional<int> home_room_zone_id;
+    std::optional<int> home_room_id;
 
     // Combat stats
     int hit_roll = 0;
@@ -346,10 +422,11 @@ Result<void> set_character_online(
 /** Update character's last login time */
 Result<void> update_last_login(pqxx::work& txn, const std::string& character_id);
 
-/** Update character's location */
+/** Update character's location (using composite zone_id + room_id) */
 Result<void> save_character_location(
     pqxx::work& txn,
     const std::string& character_id,
+    int zone_id,
     int room_id);
 
 // =============================================================================
@@ -495,5 +572,28 @@ Result<void> save_character_items(
     pqxx::work& txn,
     const std::string& character_id,
     const std::vector<CharacterItemData>& items);
+
+// =============================================================================
+// Command Queries
+// =============================================================================
+
+/** Command data from the Command table */
+struct CommandData {
+    std::string name;                     // Primary command name (PK)
+    std::vector<std::string> aliases;     // Alternative names
+    std::string category;                 // CommandCategory enum value
+    std::string description;              // Brief help text
+    std::string usage;                    // Syntax example
+    bool immortal_only = false;           // Requires immortal level
+    std::vector<std::string> permissions; // Required permission flags
+    std::optional<int> ability_id;        // Linked ability (if any)
+};
+
+/** Load all commands from database */
+Result<std::vector<CommandData>> load_all_commands(pqxx::work& txn);
+
+/** Load a single command by name */
+Result<std::optional<CommandData>> load_command_by_name(
+    pqxx::work& txn, const std::string& name);
 
 } // namespace WorldQueries

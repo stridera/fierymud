@@ -51,15 +51,34 @@ Result<CommandResult> cmd_exits(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_fly(const CommandContext &ctx) {
-    // Check if already flying
-    if (ctx.actor->has_flag(ActorFlag::Flying)) {
+    // Check if already flying (position)
+    if (ctx.actor->position() == Position::Flying) {
         ctx.send("You are already flying.");
         return CommandResult::InvalidState;
     }
 
-    // Check if actor has the ability to fly (magic, race, item, etc.)
-    // TODO: Add proper fly ability check (spell effect, race, equipment)
-    // For now, allow anyone to fly for testing purposes
+    // Check if actor has the ability to fly
+    bool can_fly = false;
+
+    // Gods can always fly
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        if (player->is_god()) {
+            can_fly = true;
+        }
+    }
+
+    // Check for Flying effect (from spell, race ability, or equipment)
+    if (ctx.actor->has_flag(ActorFlag::Flying)) {
+        can_fly = true;
+    }
+
+    // TODO: Add race-based flying check when race system is implemented
+    // TODO: Add equipment-based flying check (wings, flying carpet, etc.)
+
+    if (!can_fly) {
+        ctx.send_error("You don't have the ability to fly.");
+        return CommandResult::InvalidState;
+    }
 
     // Check if in combat
     if (ctx.actor->is_fighting()) {
@@ -73,8 +92,8 @@ Result<CommandResult> cmd_fly(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Start flying
-    ctx.actor->set_flag(ActorFlag::Flying, true);
+    // Start flying - change position to flying
+    ctx.actor->set_position(Position::Flying);
 
     ctx.send("You rise into the air and begin flying.");
     ctx.send_to_room(fmt::format("{} rises into the air and begins flying.", ctx.actor->display_name()), true);
@@ -83,14 +102,14 @@ Result<CommandResult> cmd_fly(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_land(const CommandContext &ctx) {
-    // Check if actually flying
-    if (!ctx.actor->has_flag(ActorFlag::Flying)) {
+    // Check if actually flying (position, not flag)
+    if (ctx.actor->position() != Position::Flying) {
         ctx.send("You aren't flying.");
         return CommandResult::InvalidState;
     }
 
-    // Stop flying
-    ctx.actor->set_flag(ActorFlag::Flying, false);
+    // Land - change position back to standing
+    ctx.actor->set_position(Position::Standing);
 
     ctx.send("You gently descend and land on the ground.");
     ctx.send_to_room(fmt::format("{} gently descends and lands on the ground.", ctx.actor->display_name()), true);

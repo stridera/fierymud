@@ -2308,10 +2308,13 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
     auto new_object = std::move(new_object_result.value());
 
     // Copy properties from prototype
+    new_object->set_keywords(prototype->keywords());
     new_object->set_short_description(prototype->short_description());
     new_object->set_description(prototype->description());
+    new_object->set_examine_description(prototype->examine_description());
     new_object->set_weight(prototype->weight());
     new_object->set_value(prototype->value());
+    new_object->set_level(prototype->level());
     new_object->set_equip_slot(prototype->equip_slot());
     new_object->set_armor_class(prototype->armor_class());
     new_object->set_damage_profile(prototype->damage_profile());
@@ -2319,7 +2322,53 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
     new_object->set_light_info(prototype->light_info());
     new_object->set_liquid_info(prototype->liquid_info());
 
+    // Copy extra descriptions
+    for (const auto& extra : prototype->get_all_extra_descriptions()) {
+        new_object->add_extra_description(extra);
+    }
+
+    // Copy object flags and effect flags
+    for (auto flag : prototype->flags()) {
+        new_object->set_flag(flag);
+    }
+    for (auto effect : prototype->effect_flags()) {
+        new_object->set_effect(effect);
+    }
+
     return std::shared_ptr<Object>(new_object.release());
+}
+
+Mobile* WorldManager::get_mobile_prototype(EntityId prototype_id) const {
+    auto it = mobiles_.find(prototype_id);
+    return (it != mobiles_.end()) ? it->second : nullptr;
+}
+
+Object* WorldManager::get_object_prototype(EntityId prototype_id) const {
+    auto it = objects_.find(prototype_id);
+    return (it != objects_.end()) ? it->second : nullptr;
+}
+
+std::shared_ptr<Mobile> WorldManager::spawn_mobile_to_room(EntityId prototype_id, EntityId room_id) {
+    auto logger = Log::game();
+
+    // Find mobile prototype
+    auto* prototype = get_mobile_prototype(prototype_id);
+    if (!prototype) {
+        logger->error("Cannot spawn mobile {} - prototype not found", prototype_id);
+        return nullptr;
+    }
+
+    // Spawn to specific room using internal method
+    auto result = spawn_mobile_in_specific_room(prototype, room_id);
+    if (!result) {
+        logger->error("Failed to spawn mobile {} to room {}: {}",
+            prototype_id, room_id, result.error().message);
+        return nullptr;
+    }
+
+    // Find and return the spawned mobile
+    // The mobile was registered in spawned_mobiles_ by spawn_mobile_in_specific_room
+    return find_spawned_mobile(prototype_id);
 }
 
 Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, EntityId room_id) {
@@ -2561,6 +2610,20 @@ void WorldManager::initialize_weather_callbacks() {
     }
     
     logger->info("Weather system integration initialized");
+}
+
+void WorldManager::tick_all_effects() {
+    // Iterate through all rooms and tick effects on all actors
+    for (const auto& [room_id, room] : rooms_) {
+        if (!room) continue;
+
+        // Get all actors in this room and tick their effects
+        for (auto& actor : room->contents().actors) {
+            if (actor) {
+                actor->tick_effects();
+            }
+        }
+    }
 }
 
 // WorldUtils Implementation

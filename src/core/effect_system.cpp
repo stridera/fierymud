@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <nlohmann/json.hpp>
+#include <optional>
 #include <random>
 
 // Effect system constants
@@ -135,9 +136,16 @@ EffectParams EffectParams::from_json_string(std::string_view json_str) {
         // Status params
         if (j.contains("status")) params.status_name = j["status"].get<std::string>();
         if (j.contains("flag")) params.status_name = j["flag"].get<std::string>();  // alias
+        if (j.contains("stat")) params.status_modifier_stat = j["stat"].get<std::string>();
         if (j.contains("duration")) {
             if (j["duration"].is_string()) {
-                params.status_duration_formula = j["duration"].get<std::string>();
+                std::string dur_str = j["duration"].get<std::string>();
+                if (dur_str == "toggle") {
+                    params.is_toggle_duration = true;
+                    params.status_duration = -1;  // Permanent until toggled off
+                } else {
+                    params.status_duration_formula = dur_str;
+                }
             } else if (j["duration"].is_number()) {
                 params.status_duration = j["duration"].get<int>();
                 params.status_duration_formula = std::to_string(params.status_duration);
@@ -207,9 +215,16 @@ void EffectParams::merge_override(std::string_view override_json) {
         }
         if (j.contains("status")) status_name = j["status"].get<std::string>();
         if (j.contains("flag")) status_name = j["flag"].get<std::string>();  // alias
+        if (j.contains("stat")) status_modifier_stat = j["stat"].get<std::string>();
         if (j.contains("duration")) {
             if (j["duration"].is_string()) {
-                status_duration_formula = j["duration"].get<std::string>();
+                std::string dur_str = j["duration"].get<std::string>();
+                if (dur_str == "toggle") {
+                    is_toggle_duration = true;
+                    status_duration = -1;  // Permanent until toggled off
+                } else {
+                    status_duration_formula = dur_str;
+                }
             } else if (j["duration"].is_number()) {
                 status_duration = j["duration"].get<int>();
                 status_duration_formula = std::to_string(status_duration);
@@ -281,10 +296,29 @@ void EffectContext::build_formula_context() {
     formula_ctx.wis_bonus = (stats.wisdom - 10) / 2;
     formula_ctx.cha_bonus = (stats.charisma - 10) / 2;
 
+    // Actor's detection stats
+    formula_ctx.perception = stats.perception;
+    formula_ctx.concealment = stats.concealment;
+
+    // Calculate weapon damage from equipped weapon
+    formula_ctx.weapon_damage = 0;
+    auto weapon = actor->equipment().get_main_weapon();
+    if (weapon) {
+        const auto& damage_profile = weapon->damage_profile();
+        // Use average dice roll as the weapon damage value
+        formula_ctx.weapon_damage = damage_profile.base_damage + damage_profile.damage_bonus +
+            (damage_profile.dice_count * (damage_profile.dice_sides + 1)) / 2;
+    } else {
+        // Bare-handed attack - use base unarmed damage (1d4 = ~2.5)
+        formula_ctx.weapon_damage = 2;
+    }
+
     if (target) {
         const auto& target_stats = target->stats();
         formula_ctx.target_level = target_stats.level;
         formula_ctx.armor_rating = target_stats.armor_rating;
+        formula_ctx.target_perception = target_stats.perception;
+        formula_ctx.target_concealment = target_stats.concealment;
     }
 }
 
@@ -480,15 +514,15 @@ std::expected<EffectResult, Error> EffectExecutor::execute_modify(
         }
     }
 
-    // Calculate duration from formula or use default
-    int duration = 10;  // Default 10 rounds
+    // Calculate duration from formula or use default (in MUD hours)
+    int duration_hours = 1;  // Default 1 MUD hour
     if (!params.status_duration_formula.empty()) {
         auto duration_result = FormulaParser::evaluate(params.status_duration_formula, context.formula_ctx);
         if (duration_result) {
-            duration = std::max(1, *duration_result);
+            duration_hours = std::max(1, *duration_result);
         }
     } else if (params.status_duration > 0) {
-        duration = params.status_duration;
+        duration_hours = params.status_duration;
     }
 
     // Determine the effect name and flag based on damage_type (which holds target type for modify)
@@ -514,9 +548,9 @@ std::expected<EffectResult, Error> EffectExecutor::execute_modify(
     // Create the active effect - use ability display name if available
     ActiveEffect effect;
     effect.name = context.ability_name.empty() ? format_effect_name(effect_name) : context.ability_name;
-    effect.source = "spell";
+    effect.source = context.ability_name.empty() ? "spell" : context.ability_name;
     effect.flag = effect_flag;
-    effect.duration_rounds = duration;
+    effect.duration_hours = duration_hours;
     effect.modifier_value = modifier;
     effect.modifier_stat = modifier_stat;
     effect.applied_at = std::chrono::steady_clock::now();
@@ -577,37 +611,49 @@ std::expected<EffectResult, Error> EffectExecutor::execute_interrupt(
 }
 
 // Helper to convert status name string to ActorFlag
-static ActorFlag parse_status_flag(std::string_view status_name) {
+static std::optional<ActorFlag> parse_status_flag(std::string_view status_name) {
     std::string lower_name = to_lowercase(status_name);
 
     // Map common status names to flags
     static const std::unordered_map<std::string, ActorFlag> flag_map = {
+        // Stealth/detection
+        {"hidden", ActorFlag::Hide},
+        {"hide", ActorFlag::Hide},
+        {"sneak", ActorFlag::Sneak},
+        {"sneaking", ActorFlag::Sneak},
+        {"invisible", ActorFlag::Invisible},
+        {"detect_invis", ActorFlag::Detect_Invis},
+        {"detect_invisible", ActorFlag::Detect_Invis},
+        {"detect_magic", ActorFlag::Detect_Magic},
+        {"detect_align", ActorFlag::Detect_Align},
+        {"infravision", ActorFlag::Infravision},
+        {"sense_life", ActorFlag::Sense_Life},
+        {"aware", ActorFlag::Aware},
+        // Buffs
         {"bless", ActorFlag::Bless},
         {"blessed", ActorFlag::Bless},
         {"armor", ActorFlag::Armor},
         {"shield", ActorFlag::Shield},
         {"sanctuary", ActorFlag::Sanctuary},
-        {"invisible", ActorFlag::Invisible},
-        {"detect_invis", ActorFlag::Detect_Invis},
-        {"detect_magic", ActorFlag::Detect_Magic},
-        {"detect_align", ActorFlag::Detect_Align},
-        {"infravision", ActorFlag::Infravision},
-        {"sense_life", ActorFlag::Sense_Life},
+        {"stoneskin", ActorFlag::Stoneskin},
+        {"barkskin", ActorFlag::Barkskin},
+        {"haste", ActorFlag::Haste},
+        {"blur", ActorFlag::Blur},
+        {"fireshield", ActorFlag::Fireshield},
+        {"coldshield", ActorFlag::Coldshield},
+        // Movement
         {"waterwalk", ActorFlag::Waterwalk},
         {"fly", ActorFlag::Flying},
         {"flying", ActorFlag::Flying},
-        {"haste", ActorFlag::Haste},
-        {"slow", ActorFlag::Slow},
-        {"blur", ActorFlag::Blur},
-        {"stoneskin", ActorFlag::Stoneskin},
-        {"fireshield", ActorFlag::Fireshield},
-        {"coldshield", ActorFlag::Coldshield},
-        {"aware", ActorFlag::Aware},
+        // Toggle states
+        {"meditate", ActorFlag::Meditating},
+        {"meditating", ActorFlag::Meditating},
         {"berserk", ActorFlag::Berserk},
+        // Debuffs
+        {"slow", ActorFlag::Slow},
         {"taunted", ActorFlag::Taunted},
         {"webbed", ActorFlag::Webbed},
         {"paralyzed", ActorFlag::Paralyzed},
-        {"glowing", ActorFlag::Glowing},
         {"poison", ActorFlag::Poison},
         {"curse", ActorFlag::Curse},
         {"cursed", ActorFlag::Curse},
@@ -616,6 +662,8 @@ static ActorFlag parse_status_flag(std::string_view status_name) {
         {"sleep", ActorFlag::Sleep},
         {"blind", ActorFlag::Blind},
         {"blindness", ActorFlag::Blind},
+        // Visual
+        {"glowing", ActorFlag::Glowing},
     };
 
     auto it = flag_map.find(lower_name);
@@ -623,8 +671,39 @@ static ActorFlag parse_status_flag(std::string_view status_name) {
         return it->second;
     }
 
-    // Default - we'll still track the effect even without a matching flag
-    return ActorFlag::Bless;  // Placeholder, will be handled specially
+    // Return nullopt if no matching flag - effect will still be tracked by name
+    return std::nullopt;
+}
+
+// Helper to infer which stat a status effect should modify based on the flag
+static std::string infer_status_modifier_stat(std::string_view status_name) {
+    std::string lower_name = to_lowercase(status_name);
+
+    // Stealth effects modify concealment
+    if (lower_name == "hidden" || lower_name == "hide" ||
+        lower_name == "sneak" || lower_name == "sneaking" ||
+        lower_name == "invisible") {
+        return "concealment";
+    }
+
+    // Detection effects modify perception
+    if (lower_name == "aware" || lower_name == "sense_life" ||
+        lower_name == "detect_invis") {
+        return "perception";
+    }
+
+    // Movement effects modify evasion
+    if (lower_name == "haste" || lower_name == "blur") {
+        return "evasion";
+    }
+
+    // Meditative effects modify focus (spell memorization speed)
+    if (lower_name == "meditating" || lower_name == "meditate") {
+        return "focus";
+    }
+
+    // Default - no stat modification
+    return "";
 }
 
 std::expected<EffectResult, Error> EffectExecutor::execute_status(
@@ -641,48 +720,80 @@ std::expected<EffectResult, Error> EffectExecutor::execute_status(
         return std::unexpected(Errors::InvalidArgument("status", "name is required"));
     }
 
-    // Calculate duration from formula or use default
-    int duration = 10;  // Default 10 rounds
-    if (!params.status_duration_formula.empty()) {
+    // Calculate duration in MUD hours - toggle abilities use -1 for permanent
+    int duration_hours = 1;  // Default 1 MUD hour
+    if (params.is_toggle_duration) {
+        duration_hours = -1;  // Permanent until toggled off
+    } else if (!params.status_duration_formula.empty()) {
         auto duration_result = FormulaParser::evaluate(params.status_duration_formula, context.formula_ctx);
         if (duration_result) {
-            duration = std::max(1, *duration_result);
+            duration_hours = std::max(1, *duration_result);
         }
-    } else if (params.status_duration > 0) {
-        duration = params.status_duration;
+    } else if (params.status_duration != 0) {
+        duration_hours = params.status_duration;
     }
+
+    // Calculate modifier value from amount formula if specified
+    int modifier_value = 0;
+    if (!params.amount_formula.empty()) {
+        auto mod_result = FormulaParser::evaluate(params.amount_formula, context.formula_ctx);
+        if (mod_result) {
+            modifier_value = *mod_result;
+        }
+    }
+
+    // Determine which stat to modify - use explicit stat or infer from flag
+    std::string modifier_stat = params.status_modifier_stat;
+    if (modifier_stat.empty() && modifier_value != 0) {
+        modifier_stat = infer_status_modifier_stat(status);
+    }
+
+    // Parse the flag (optional - effect can exist without a matching flag)
+    auto parsed_flag = parse_status_flag(status);
 
     // Create the active effect - use ability display name if available
     ActiveEffect effect;
     effect.name = context.ability_name.empty() ? format_effect_name(status) : context.ability_name;
-    effect.source = "spell";  // Could be spell name, item, etc.
-    effect.flag = parse_status_flag(status);
-    effect.duration_rounds = duration;
-    effect.modifier_value = 0;
-    effect.modifier_stat = "";
+    effect.source = context.ability_name.empty() ? "spell" : context.ability_name;  // Could be spell name, item, etc.
+    effect.flag = parsed_flag.value_or(ActorFlag::Bless);  // Use Bless as placeholder if no match
+    effect.duration_hours = duration_hours;
+    effect.modifier_value = modifier_value;
+    effect.modifier_stat = modifier_stat;
     effect.applied_at = std::chrono::steady_clock::now();
+
+    // If we have a valid flag, set it on the actor for quick flag checks
+    if (parsed_flag.has_value()) {
+        effect_target->set_flag(*parsed_flag, true);
+    }
 
     // Apply the effect to the target
     effect_target->add_effect(effect);
 
-    // Generate appropriate messages
+    // Generate appropriate messages (fallback - ability executor uses database messages when available)
     std::string attacker_msg, target_msg, room_msg;
     bool self_cast = (effect_target == context.actor);
+    std::string formatted_status = format_effect_name(status);
 
     if (self_cast) {
-        attacker_msg = fmt::format("You are now affected by {}.", status);
-        room_msg = fmt::format("{} is now affected by {}.",
-            context.actor->display_name(), status);
+        if (modifier_value > 0) {
+            attacker_msg = fmt::format("You are now {} (+{} {}).",
+                formatted_status, modifier_value, modifier_stat);
+        } else {
+            attacker_msg = fmt::format("You are now {}.", formatted_status);
+        }
+        room_msg = fmt::format("{} is now {}.",
+            context.actor->display_name(), formatted_status);
     } else {
-        attacker_msg = fmt::format("You cast {} on {}!",
-            status, effect_target->display_name());
-        target_msg = fmt::format("{} casts {} on you!",
-            context.actor->display_name(), status);
-        room_msg = fmt::format("{} casts {} on {}!",
-            context.actor->display_name(), status, effect_target->display_name());
+        attacker_msg = fmt::format("You apply {} to {}!",
+            formatted_status, effect_target->display_name());
+        target_msg = fmt::format("{} applies {} to you!",
+            context.actor->display_name(), formatted_status);
+        room_msg = fmt::format("{} applies {} to {}!",
+            context.actor->display_name(), formatted_status, effect_target->display_name());
     }
 
-    return EffectResult::success_result(duration, attacker_msg, target_msg, room_msg);
+    return EffectResult::success_result(modifier_value > 0 ? modifier_value : duration_hours,
+                                        attacker_msg, target_msg, room_msg);
 }
 
 std::expected<EffectResult, Error> EffectExecutor::execute_move(

@@ -6,6 +6,7 @@
 #include "../database/game_data_cache.hpp"
 #include "../server/world_server.hpp"
 #include "../world/room.hpp"
+#include "../world/time_system.hpp"
 #include "../world/weather.hpp"
 #include "../world/world_manager.hpp"
 #include "builtin_commands.hpp"
@@ -17,6 +18,21 @@
 #include <sstream>
 
 namespace InformationCommands {
+
+/**
+ * Convert effect duration from rounds to human-readable MUD time.
+ * 1 round = 4 real seconds, 1 MUD hour = 75 real seconds
+ * So approximately 19 rounds = 1 MUD hour
+ */
+static std::string format_effect_duration(int hours) {
+    if (hours < 0) {
+        return "permanent";
+    }
+    if (hours == 1) {
+        return "1 hour";
+    }
+    return fmt::format("{} hours", hours);
+}
 
 // Helper function to get class display name with colors from cache
 std::string get_class_display_name(std::string_view player_class) {
@@ -133,18 +149,74 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             }
         }
 
-        // Add other actors
+        // Add other actors (check visibility)
         auto actors = current_room->contents().actors;
         bool found_others = false;
         for (const auto &actor : actors) {
-            if (actor && actor != ctx.actor) {
-                // Get description - prefer ground(), fall back to display_name()
-                auto actor_desc = actor->ground();
-                if (actor_desc.empty()) {
+            if (actor && actor != ctx.actor && actor->is_visible_to(*ctx.actor)) {
+                // Get description - prefer ground(), fall back to display_name
+                auto ground_desc = actor->ground();
+                std::string actor_desc;
+                if (!ground_desc.empty()) {
+                    actor_desc = std::string(ground_desc);
+                } else {
                     actor_desc = actor->display_name();
                 }
                 if (actor_desc.empty()) {
                     continue;  // Skip actors with no description
+                }
+
+                // Build status indicator prefix
+                std::string indicators;
+                bool has_holylight = ctx.actor->is_holylight();
+
+                if (actor->position() == Position::Ghost) {
+                    indicators = "<cyan>(ghost)</> ";
+                }
+                // Invisible - holylight sees all invisible
+                if (actor->has_flag(ActorFlag::Invisible) &&
+                    (ctx.actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
+                    indicators += "(invis) ";
+                }
+                // Alignment - holylight sees all alignments
+                if (ctx.actor->has_flag(ActorFlag::Detect_Align) || has_holylight) {
+                    int alignment = actor->stats().alignment;
+                    if (alignment <= -350) {
+                        indicators += "(evil) ";
+                    } else if (alignment >= 350) {
+                        indicators += "(good) ";
+                    }
+                }
+                // Magic detection - holylight sees all magical auras
+                if ((ctx.actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) &&
+                    !actor->active_effects().empty()) {
+                    indicators += "(magical) ";
+                }
+                // Hidden - holylight sees all hidden
+                if (actor->has_flag(ActorFlag::Hide) &&
+                    (ctx.actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
+                    indicators += "(hidden) ";
+                }
+                // Poison detection - holylight sees all poisoned
+                if (actor->has_flag(ActorFlag::Poison) &&
+                    (ctx.actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
+                    indicators += "<magenta>(poisoned)</> ";
+                }
+                // Status effects visible to all
+                if (actor->has_flag(ActorFlag::On_Fire)) {
+                    indicators += "<red>(burning)</> ";
+                }
+                if (actor->has_flag(ActorFlag::Immobilized) || actor->has_flag(ActorFlag::Paralyzed)) {
+                    indicators += "<red>(immobilized)</> ";
+                }
+                // AFK indicator for players
+                if (actor->is_afk()) {
+                    indicators += "<yellow>[AFK]</> ";
+                }
+                // Show ID for immortals with ShowIds enabled
+                if (ctx.actor->is_show_ids()) {
+                    indicators += fmt::format("<cyan>[{}.{}]</> ",
+                        actor->id().zone_id(), actor->id().local_id());
                 }
 
                 if (!found_others) {
@@ -152,11 +224,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                     found_others = true;
                 }
 
-                // Check if the actor is a ghost
-                bool is_ghost = (actor->position() == Position::Ghost);
-                std::string ghost_prefix = is_ghost ? "<cyan>(ghost)</> " : "";
-
-                full_desc << fmt::format("  {}{}\n", ghost_prefix, actor_desc);
+                full_desc << fmt::format("  {}{}\n", indicators, actor_desc);
             }
         }
 
@@ -219,9 +287,43 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
     // Look at target
     auto target_info = ctx.resolve_target(ctx.arg(0));
-    if (!target_info.is_valid()) {
-        ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
-        return CommandResult::InvalidTarget;
+
+    // If target is a string (not found as object/actor/room), try extra descriptions first
+    // This allows "look words" to work when "words" is an extra desc keyword
+    if (!target_info.is_valid() || target_info.type == TargetType::String) {
+        std::string keyword(ctx.arg(0));
+
+        // Search inventory for extra descriptions
+        if (ctx.actor) {
+            for (const auto& item : ctx.actor->inventory().get_all_items()) {
+                if (item) {
+                    auto extra = item->get_extra_description(keyword);
+                    if (extra.has_value()) {
+                        ctx.send(std::string(extra.value()));
+                        return CommandResult::Success;
+                    }
+                }
+            }
+        }
+
+        // Search room objects for extra descriptions
+        if (ctx.room) {
+            for (const auto& item : ctx.room->contents().objects) {
+                if (item) {
+                    auto extra = item->get_extra_description(keyword);
+                    if (extra.has_value()) {
+                        ctx.send(std::string(extra.value()));
+                        return CommandResult::Success;
+                    }
+                }
+            }
+        }
+
+        // Nothing found - report the error
+        if (!target_info.is_valid() || target_info.type == TargetType::String) {
+            ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
+            return CommandResult::InvalidTarget;
+        }
     }
 
     std::string description;
@@ -617,14 +719,7 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     if (!effects.empty()) {
         score << "\n<cyan>Active Effects:</>\n";
         for (const auto& effect : effects) {
-            std::string duration_str;
-            if (effect.is_permanent()) {
-                duration_str = "permanent";
-            } else if (effect.duration_rounds == 1) {
-                duration_str = "1 round";
-            } else {
-                duration_str = fmt::format("{} rounds", effect.duration_rounds);
-            }
+            std::string duration_str = format_effect_duration(effect.duration_hours);
 
             // Show modifier if applicable
             if (!effect.modifier_stat.empty() && effect.modifier_value != 0) {
@@ -643,13 +738,50 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_time(const CommandContext &ctx) {
-    auto now = std::chrono::system_clock::now();
-    auto time_t = std::chrono::system_clock::to_time_t(now);
+    // Get in-game time from TimeSystem
+    const auto& game_time = TimeSystem::instance().current_time();
 
+    // Day names for the week (7 days)
+    static constexpr std::array<std::string_view, 7> DAY_NAMES = {
+        "the Moon",
+        "the Bull",
+        "the Deception",
+        "Thunder",
+        "Freedom",
+        "the Great Gods",
+        "the Sun"
+    };
+
+    // Format hour as 12-hour time with am/pm
+    int display_hour = game_time.hour % 12;
+    if (display_hour == 0) display_hour = 12;
+    std::string_view am_pm = (game_time.hour >= 12) ? "pm" : "am";
+
+    // Get day of week (0-6)
+    int day_of_week = game_time.day % 7;
+    std::string_view day_name = DAY_NAMES[day_of_week];
+
+    // Get ordinal suffix for day of month
+    int day_of_month = game_time.day + 1;  // 1-indexed for display
+    std::string ordinal;
+    if (day_of_month == 1 || day_of_month == 21) {
+        ordinal = "st";
+    } else if (day_of_month == 2 || day_of_month == 22) {
+        ordinal = "nd";
+    } else if (day_of_month == 3 || day_of_month == 23) {
+        ordinal = "rd";
+    } else {
+        ordinal = "th";
+    }
+
+    // Format the time display like legacy
     std::ostringstream time_str;
-    time_str << "Current time: " << std::put_time(std::localtime(&time_t), "%Y-%m-%d %H:%M:%S");
+    time_str << "\nIt is " << display_hour << " o'clock " << am_pm
+             << ", on the Day of " << day_name << ";\n"
+             << "The " << day_of_month << ordinal << " Day of "
+             << game_time.month_name() << ", Year " << (game_time.year + 1000) << ".\n";
 
-    ctx.send_line(time_str.str());
+    ctx.send(time_str.str());
     return CommandResult::Success;
 }
 
@@ -1034,17 +1166,12 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
             continue;
         }
 
-        // Found something - build the output
-        std::string dir_name{RoomUtils::get_direction_name(dir)};
-        // Capitalize first letter
-        if (!dir_name.empty()) {
-            dir_name[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(dir_name[0])));
-        }
-
-        scan_output << fmt::format("<b:cyan>{}:</>\n", dir_name);
+        // Build the list of visible actors first
+        std::ostringstream dir_actors;
+        bool found_visible = false;
 
         for (const auto& actor : actors) {
-            if (!actor) continue;
+            if (!actor || !actor->is_visible_to(*ctx.actor)) continue;
 
             // Get actor display info
             auto ground_desc = actor->ground();
@@ -1052,14 +1179,65 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
             if (!ground_desc.empty()) {
                 actor_display = std::string(ground_desc);
             } else {
-                actor_display = std::string(actor->display_name());
+                actor_display = actor->display_name();
+            }
+
+            // Build status indicator prefix
+            std::string indicators;
+            bool has_holylight = ctx.actor->is_holylight();
+
+            if (actor->position() == Position::Ghost) {
+                indicators = "<cyan>(ghost)</> ";
+            }
+            // Invisible - holylight sees all invisible
+            if (actor->has_flag(ActorFlag::Invisible) &&
+                (ctx.actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
+                indicators += "(invis) ";
+            }
+            // Alignment - holylight sees all alignments
+            if (ctx.actor->has_flag(ActorFlag::Detect_Align) || has_holylight) {
+                int alignment = actor->stats().alignment;
+                if (alignment <= -350) {
+                    indicators += "(evil) ";
+                } else if (alignment >= 350) {
+                    indicators += "(good) ";
+                }
+            }
+            // Magic detection - holylight sees all magical auras
+            if ((ctx.actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) &&
+                !actor->active_effects().empty()) {
+                indicators += "(magical) ";
+            }
+            // Hidden - holylight sees all hidden
+            if (actor->has_flag(ActorFlag::Hide) &&
+                (ctx.actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
+                indicators += "(hidden) ";
+            }
+            // Poison detection - holylight sees all poisoned
+            if (actor->has_flag(ActorFlag::Poison) &&
+                (ctx.actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
+                indicators += "<magenta>(poisoned)</> ";
+            }
+            // Status effects visible to all
+            if (actor->has_flag(ActorFlag::On_Fire)) {
+                indicators += "<red>(burning)</> ";
+            }
+            if (actor->has_flag(ActorFlag::Immobilized) || actor->has_flag(ActorFlag::Paralyzed)) {
+                indicators += "<red>(immobilized)</> ";
+            }
+            // AFK indicator for players
+            if (actor->is_afk()) {
+                indicators += "<yellow>[AFK]</> ";
+            }
+            // Show ID for immortals with ShowIds enabled
+            if (ctx.actor->is_show_ids()) {
+                indicators += fmt::format("<cyan>[{}.{}]</> ",
+                    actor->id().zone_id(), actor->id().local_id());
             }
 
             // Add health/status indicator
             std::string condition;
-            if (actor->position() == Position::Ghost) {
-                condition = "<cyan>(ghost)</>";
-            } else {
+            if (actor->position() != Position::Ghost) {
                 const auto& stats = actor->stats();
                 float hp_percent = static_cast<float>(stats.hit_points) /
                                   static_cast<float>(stats.max_hit_points);
@@ -1077,10 +1255,21 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
                 }
             }
 
-            scan_output << fmt::format("  {} {}\n", actor_display, condition);
+            dir_actors << fmt::format("  {}{} {}\n", indicators, actor_display, condition);
+            found_visible = true;
         }
 
-        found_anything = true;
+        // Only output direction header if we found visible actors
+        if (found_visible) {
+            std::string dir_name{RoomUtils::get_direction_name(dir)};
+            // Capitalize first letter
+            if (!dir_name.empty()) {
+                dir_name[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(dir_name[0])));
+            }
+            scan_output << fmt::format("<b:cyan>{}:</>\n", dir_name);
+            scan_output << dir_actors.str();
+            found_anything = true;
+        }
     }
 
     if (!found_anything) {

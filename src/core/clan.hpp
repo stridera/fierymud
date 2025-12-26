@@ -229,6 +229,7 @@ public:
     
     // Permission system
     bool has_permission(const CharacterPtr& character, ClanPermission permission) const;
+    bool has_permission(const CharData* character, ClanPermission permission) const;
     bool grant_permission(const CharacterPtr& character, ClanPermission permission);
     
     // Communication
@@ -427,7 +428,6 @@ inline std::optional<ClanRank> get_clan_rank(const CharData* ch) {
 inline bool has_clan_permission(const CharData* ch, ClanPermission permission) {
     auto clan = get_clan(ch);
     if (!clan) return false;
-    
-    CharacterPtr char_ptr(const_cast<CharData*>(ch), [](CharData*) { /* no-op deleter */ });
-    return (*clan)->has_permission(char_ptr, permission);
+
+    return (*clan)->has_permission(ch, permission);
 }

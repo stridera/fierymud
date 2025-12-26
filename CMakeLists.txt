@@ -125,6 +125,7 @@ set(SOURCES
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
@@ -164,10 +165,10 @@ set(SIMPLE_TEST_SOURCES
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
-    src/testing/test_simple_functionality.cpp
 )
 
 # Modern FieryMUD Server (fierymud)
@@ -251,6 +252,7 @@ set(CORE_TEST_SOURCES
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
@@ -554,6 +556,7 @@ add_executable(test_database
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
@@ -640,6 +643,7 @@ add_executable(test_database_comprehensive
     src/commands/object_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
+    src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp

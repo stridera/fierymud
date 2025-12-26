@@ -4,6 +4,7 @@
 #include "admin_commands.hpp"
 #include "character_commands.hpp"
 #include "combat_commands.hpp"
+#include "skill_commands.hpp"
 #include "communication_commands.hpp"
 #include "economy_commands.hpp"
 #include "group_commands.hpp"
@@ -16,13 +17,17 @@
 #include "system_commands.hpp"
 
 // Core dependencies used by helper functions
+#include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
 #include "../text/string_utils.hpp"
+#include "../text/text_format.hpp"
+#include "../text/rich_text.hpp"
 #include "../world/room.hpp"
 
 #include <algorithm>
+#include <set>
 #include <sstream>
 
 namespace BuiltinCommands {
@@ -72,6 +77,11 @@ Result<void> register_all_commands() {
 
     if (auto result = CharacterCommands::register_commands(); !result) {
         Log::error("Failed to register character commands: {}", result.error().message);
+        return result;
+    }
+
+    if (auto result = SkillCommands::register_commands(); !result) {
+        Log::error("Failed to register skill commands: {}", result.error().message);
         return result;
     }
 
@@ -145,6 +155,9 @@ Result<void> unregister_all_commands() {
 
 namespace Helpers {
 
+// Forward declaration
+std::string get_equipment_slot_display_name(EquipSlot slot);
+
 std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<Actor> viewer) {
     if (!room) {
         return "You are in the void.";
@@ -173,16 +186,37 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
         }
     }
 
-    // Add other actors
+    // Add other actors (check visibility)
     auto actors = room->contents().actors;
     bool found_others = false;
     for (const auto &actor : actors) {
-        if (actor && actor != viewer) {
+        if (actor && actor != viewer && actor->is_visible_to(*viewer)) {
             if (!found_others) {
                 desc << "\nAlso here:\n";
                 found_others = true;
             }
-            desc << fmt::format("  {}\n", actor->short_description());
+            // Use display_name_for_observer for detection indicators, fall back to short_description
+            auto short_desc = actor->short_description();
+            std::string actor_desc;
+            if (short_desc.empty()) {
+                actor_desc = actor->display_name_for_observer(*viewer);
+            } else {
+                // Prepend detection indicators to short_description
+                std::string indicators;
+                if (actor->has_flag(ActorFlag::Invisible) && viewer->has_flag(ActorFlag::Detect_Invis)) {
+                    indicators = "(invis) ";
+                }
+                if (viewer->has_flag(ActorFlag::Detect_Align)) {
+                    int alignment = actor->stats().alignment;
+                    if (alignment <= -350) {
+                        indicators += "(evil) ";
+                    } else if (alignment >= 350) {
+                        indicators += "(good) ";
+                    }
+                }
+                actor_desc = indicators + std::string(short_desc);
+            }
+            desc << fmt::format("  {}\n", actor_desc);
         }
     }
 
@@ -196,7 +230,13 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
 
     std::ostringstream desc;
     desc << fmt::format("{}\n", obj->short_description());
-    desc << fmt::format("{}\n", obj->description());
+
+    // Show examine description if available, otherwise show ground description
+    if (!obj->examine_description().empty()) {
+        desc << fmt::format("{}\n", obj->examine_description());
+    } else if (!obj->description().empty()) {
+        desc << fmt::format("{}\n", obj->description());
+    }
 
     // Add object-specific details based on type
     if (obj->is_container()) {
@@ -237,20 +277,27 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
     desc << ".\n";
 
     // Show extra descriptions available (if any exist)
+    // Collect all unique keywords from all extra descriptions
     const auto &extras = obj->get_all_extra_descriptions();
     if (!extras.empty()) {
-        desc << "\nYou notice some details you could examine more closely: ";
-        bool first = true;
+        std::set<std::string> unique_keywords;
         for (const auto &extra : extras) {
-            if (!first)
-                desc << ", ";
-            // Show the first keyword as the examinable feature name
-            if (!extra.keywords.empty()) {
-                desc << extra.keywords[0];
+            for (const auto &keyword : extra.keywords) {
+                unique_keywords.insert(keyword);
             }
-            first = false;
         }
-        desc << "\n";
+
+        if (!unique_keywords.empty()) {
+            desc << "\nYou notice some details you could examine more closely: ";
+            bool first = true;
+            for (const auto &keyword : unique_keywords) {
+                if (!first)
+                    desc << ", ";
+                desc << keyword;
+                first = false;
+            }
+            desc << "\n";
+        }
     }
 
     return desc.str();
@@ -263,17 +310,28 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
 
     std::ostringstream desc;
 
-    // Show the actor's name and short description
-    desc << fmt::format("{}\n", target->short_description());
+    // Get gender-appropriate pronouns
+    auto gender = TextFormat::get_actor_gender(*target);
+    const auto& pronouns = TextFormat::get_pronouns(gender);
 
-    // Show the longer description if available and different from short description
-    if (!target->description().empty() && target->description() != target->short_description()) {
+    // Capitalize first letter of pronoun for sentence start
+    auto cap_subjective = [&pronouns]() {
+        std::string s{pronouns.subjective};
+        if (!s.empty()) s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
+        return s;
+    };
+    auto cap_possessive = [&pronouns]() {
+        std::string s{pronouns.possessive};
+        if (!s.empty()) s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
+        return s;
+    };
+
+    // Show the longer description first (like "Before you stands a mage.")
+    if (!target->description().empty()) {
         desc << fmt::format("{}\n", target->description());
-    }
-
-    // Show position and status information
-    if (target->position() != Position::Standing) {
-        desc << fmt::format("{} is {}.\n", target->display_name(), ActorUtils::get_position_name(target->position()));
+    } else if (!target->short_description().empty()) {
+        // Fallback to short description if no long description
+        desc << fmt::format("{}\n", target->short_description());
     }
 
     // Show health status for living actors
@@ -294,22 +352,66 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
         }
     }
 
-    // Show equipment highlights - main weapon and armor
-    if (auto main_weapon = target->equipment().get_main_weapon()) {
-        desc << fmt::format("{} is wielding {}.\n", target->display_name(), main_weapon->short_description());
+    // Show position if not standing
+    if (target->position() != Position::Standing && target->position() != Position::Fighting) {
+        desc << fmt::format("{} is {}.\n", target->display_name(), ActorUtils::get_position_name(target->position()));
     }
 
-    if (auto off_weapon = target->equipment().get_off_weapon()) {
-        desc << fmt::format("{} is holding {} in the off-hand.\n", target->display_name(),
-                            off_weapon->short_description());
+    // Show size if available
+    auto size_str = target->size();
+    if (!size_str.empty()) {
+        // Convert to lowercase for display
+        std::string size_lower{size_str};
+        for (char& c : size_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        desc << fmt::format("{} {} {} in size.\n", cap_subjective(), pronouns.verb_be, size_lower);
     }
 
-    // Show visible armor or clothing
-    auto equipped_items = target->equipment().get_all_equipped();
-    for (const auto &item : equipped_items) {
-        if (item && item->is_armor()) {
-            desc << fmt::format("{} is wearing {}.\n", target->display_name(), item->short_description());
-            break; // Just show one piece of notable armor
+    // Show spell effects from active effects (data-driven from database)
+    auto& ability_cache = FieryMUD::AbilityCache::instance();
+    for (const auto& effect : target->active_effects()) {
+        // Look up the ability that applied this effect
+        auto* ability = ability_cache.get_ability_by_name(effect.source);
+        if (ability) {
+            auto* messages = ability_cache.get_ability_messages(ability->id);
+            if (messages && !messages->look_message.empty()) {
+                // Process template: replace {pronoun.possessive}, {pronoun.subjective}, {actor}
+                std::string msg = messages->look_message;
+                // Simple template replacement
+                auto replace_all = [](std::string& str, std::string_view from, std::string_view to) {
+                    size_t pos = 0;
+                    while ((pos = str.find(from, pos)) != std::string::npos) {
+                        str.replace(pos, from.length(), to);
+                        pos += to.length();
+                    }
+                };
+                replace_all(msg, "{pronoun.possessive}", cap_possessive());
+                replace_all(msg, "{pronoun.subjective}", cap_subjective());
+                replace_all(msg, "{actor}", std::string{target->display_name()});
+                desc << msg << "\n";
+            }
+        }
+    }
+
+    // Show composition for mobiles (NPCs)
+    auto mobile = std::dynamic_pointer_cast<Mobile>(target);
+    if (mobile) {
+        auto composition = mobile->composition();
+        if (!composition.empty() && composition != "Flesh") {
+            // Convert to lowercase for display
+            std::string comp_lower{composition};
+            for (char& c : comp_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            desc << fmt::format("{} body seems to be made of {}!\n", cap_possessive(), comp_lower);
+        }
+    }
+
+    // Show life force for undead/construct mobiles
+    if (mobile) {
+        auto life_force = mobile->life_force();
+        if (!life_force.empty() && life_force != "Life") {
+            // Convert to lowercase for display
+            std::string lf_lower{life_force};
+            for (char& c : lf_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            desc << fmt::format("{} is animated by {}.\n", cap_subjective(), lf_lower);
         }
     }
 
@@ -318,15 +420,25 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
         desc << fmt::format("{} is engaged in combat!\n", target->display_name());
     }
 
-    // Show special flags/conditions
+    // Show invisible (special case - they might not have an active effect for this)
     if (target->has_flag(ActorFlag::Invisible)) {
         desc << fmt::format("{} appears translucent.\n", target->display_name());
     }
-    if (target->has_flag(ActorFlag::Sanctuary)) {
-        desc << fmt::format("{} glows with a white aura.\n", target->display_name());
-    }
+
+    // Show flying (might be natural ability, not spell)
     if (target->has_flag(ActorFlag::Flying)) {
         desc << fmt::format("{} is hovering above the ground.\n", target->display_name());
+    }
+
+    // Show equipment
+    auto equipment = target->equipment().get_all_equipped_with_slots();
+    if (!equipment.empty()) {
+        desc << fmt::format("{} is using:\n", target->display_name());
+        for (const auto &[slot, item] : equipment) {
+            if (item) {
+                desc << fmt::format("{} {}\n", get_equipment_slot_display_name(slot), item->short_description());
+            }
+        }
     }
 
     return desc.str();
@@ -377,47 +489,54 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
 }
 
 std::string get_equipment_slot_display_name(EquipSlot slot) {
+    // ANSI color codes: cyan for most slots, bright yellow for wielded/held
+    constexpr std::string_view cyan = "\033[36m";       // Cyan for worn items
+    constexpr std::string_view bright_cyan = "\033[96m"; // Bright cyan for light
+    constexpr std::string_view yellow = "\033[33m";     // Yellow for wielded/held
+    constexpr std::string_view magenta = "\033[35m";    // Magenta for floating
+    constexpr std::string_view reset = "\033[0m";
+
     switch (slot) {
     case EquipSlot::Light:
-        return "<used as light>";
+        return fmt::format("{}<used as light>{}", bright_cyan, reset);
     case EquipSlot::Finger_R:
-        return "<worn on right finger>";
+        return fmt::format("{}<worn on right finger>{}", cyan, reset);
     case EquipSlot::Finger_L:
-        return "<worn on left finger>";
+        return fmt::format("{}<worn on left finger>{}", cyan, reset);
     case EquipSlot::Neck1:
-        return "<worn around neck>";
+        return fmt::format("{}<worn around neck>{}", cyan, reset);
     case EquipSlot::Neck2:
-        return "<worn around neck>";
+        return fmt::format("{}<worn around neck>{}", cyan, reset);
     case EquipSlot::Body:
-        return "<worn on body>";
+        return fmt::format("{}<worn on body>{}", cyan, reset);
     case EquipSlot::Head:
-        return "<worn on head>";
+        return fmt::format("{}<worn on head>{}", cyan, reset);
     case EquipSlot::Legs:
-        return "<worn on legs>";
+        return fmt::format("{}<worn on legs>{}", cyan, reset);
     case EquipSlot::Feet:
-        return "<worn on feet>";
+        return fmt::format("{}<worn on feet>{}", cyan, reset);
     case EquipSlot::Hands:
-        return "<worn on hands>";
+        return fmt::format("{}<worn on hands>{}", cyan, reset);
     case EquipSlot::Arms:
-        return "<worn on arms>";
+        return fmt::format("{}<worn on arms>{}", cyan, reset);
     case EquipSlot::Shield:
-        return "<worn as shield>";
+        return fmt::format("{}<worn as shield>{}", cyan, reset);
     case EquipSlot::About:
-        return "<worn about body>";
+        return fmt::format("{}<worn about body>{}", cyan, reset);
     case EquipSlot::Waist:
-        return "<worn around waist>";
+        return fmt::format("{}<worn around waist>{}", cyan, reset);
     case EquipSlot::Wrist_R:
-        return "<worn on right wrist>";
+        return fmt::format("{}<worn on right wrist>{}", cyan, reset);
     case EquipSlot::Wrist_L:
-        return "<worn on left wrist>";
+        return fmt::format("{}<worn on left wrist>{}", cyan, reset);
     case EquipSlot::Wield:
-        return "<wielded>";
+        return fmt::format("{}<wielded>{}", yellow, reset);
     case EquipSlot::Hold:
-        return "<held>";
+        return fmt::format("{}<held>{}", yellow, reset);
     case EquipSlot::Float:
-        return "<floating nearby>";
+        return fmt::format("{}<floating nearby>{}", magenta, reset);
     default:
-        return "<worn>";
+        return fmt::format("{}<worn>{}", cyan, reset);
     }
 }
 
@@ -428,11 +547,11 @@ std::string format_equipment(std::shared_ptr<Actor> actor) {
 
     auto equipment = actor->equipment().get_all_equipped_with_slots();
     if (equipment.empty()) {
-        return "You are not wearing anything.";
+        return "You are not using anything.";
     }
 
     std::ostringstream eq;
-    eq << "You are wearing:\n";
+    eq << "You are using:\n";
     for (const auto &[slot, item] : equipment) {
         if (item) {
             eq << fmt::format("{} {}\n", get_equipment_slot_display_name(slot), item->short_description());
@@ -524,6 +643,9 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
         ctx.send_error(fmt::format("Cannot move {}: {}", magic_enum::enum_name(dir), failure_reason));
         return CommandResult::InvalidState;
     }
+
+    // Interrupt concentration-based activities (like meditation)
+    ctx.actor->interrupt_concentration();
 
     auto result = ctx.move_actor_direction(dir);
     if (!result) {

@@ -3,10 +3,12 @@
 #include "entity.hpp"
 #include "object.hpp"
 #include "../core/result.hpp"
+#include "../database/generated/db_enums.hpp"
 
 #include <memory>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <optional>
 #include <span>
 #include <chrono>
@@ -58,7 +60,14 @@ struct Stats {
     int resistance_lightning = 0;
     int resistance_acid = 0;
     int resistance_poison = 0;
-    
+
+    // Detection and stealth
+    int perception = 0;     // Ability to detect hidden things
+    int concealment = 0;    // Ability to hide from detection
+
+    // Spell memorization
+    int focus = 0;          // Improves spell memorization speed
+
     // Experience and progression
     int level = 1;          // Character level
     long experience = 0;    // Experience points
@@ -238,6 +247,7 @@ enum class ActorFlag {
     Armor,              // Magical armor (+AC)
     Shield,             // Shield spell (+AC)
     Stoneskin,          // Stoneskin protection
+    Barkskin,           // Barkskin protection (thick, brown skin)
     Haste,              // Moving faster
     Slow,               // Moving slower
     Strength,           // Enhanced strength
@@ -253,7 +263,12 @@ enum class ActorFlag {
     Taunted,            // Must attack taunter
     Webbed,             // Stuck in webs
     Paralyzed,          // Cannot move
-    Glowing             // Emitting light
+    Glowing,            // Emitting light
+    Meditating,         // In meditative state
+    // Additional detection and status flags
+    Detect_Poison,      // Can see poisoned creatures
+    On_Fire,            // Currently burning
+    Immobilized         // Cannot move (roots, webs, etc.)
 };
 
 /** Active effect on an actor (spell effect, buff, debuff) */
@@ -261,12 +276,12 @@ struct ActiveEffect {
     std::string name;           // Effect name (e.g., "Armor", "Bless")
     std::string source;         // What applied this (spell name, item, etc.)
     ActorFlag flag;             // Associated flag (if any)
-    int duration_rounds;        // Remaining duration in game rounds (-1 = permanent)
+    int duration_hours;         // Remaining duration in MUD hours (-1 = permanent)
     int modifier_value;         // Stat modifier value (e.g., +10 AC)
     std::string modifier_stat;  // What stat is modified (e.g., "armor_class")
     std::chrono::steady_clock::time_point applied_at;  // When effect was applied
 
-    bool is_permanent() const { return duration_rounds < 0; }
+    bool is_permanent() const { return duration_hours < 0; }
 };
 
 /** Base Actor class for all living beings */
@@ -327,6 +342,17 @@ public:
     bool is_visible_to(const Actor& observer) const;
     bool can_see(const Actor& target) const;
     bool can_see(const Object& object) const;
+
+    /** Status checks (virtual for Player override) */
+    virtual bool is_afk() const { return false; }
+    virtual bool is_holylight() const { return false; }
+    virtual bool is_show_ids() const { return false; }
+
+    /** Get display name with detection indicators for an observer
+     * Returns display_name() plus any applicable indicators like (invis), (evil), (good)
+     * based on what the observer can detect via Detect_Invis, Detect_Align, etc.
+     */
+    std::string display_name_for_observer(const Actor& observer) const;
     
     /** Item management convenience methods */
     Result<void> give_item(std::shared_ptr<Object> item);
@@ -348,6 +374,10 @@ public:
     
     /** Get entity type name */
     std::string_view type_name() const override { return "Actor"; }
+
+    /** Get actor's look description (virtual so subclasses can override) */
+    virtual std::string_view description() const { return ""; }
+    virtual void set_description(std::string_view desc) { (void)desc; }  // Base does nothing
     
     /** Validation */
     Result<void> validate() const override;
@@ -372,6 +402,9 @@ public:
     const std::vector<ActiveEffect>& active_effects() const { return active_effects_; }
     void tick_effects();  // Called each game round to decrement durations
     void clear_effects();
+
+    /** Interrupt concentration-based activities like meditation */
+    bool interrupt_concentration();
 
 protected:
     /** Constructor for derived classes */
@@ -494,8 +527,8 @@ public:
     void set_teacher(bool value) { is_teacher_ = value; }
     
     /** Description management */
-    std::string_view description() const { return description_; }
-    void set_description(std::string_view desc) { description_ = desc; }
+    std::string_view description() const override { return description_; }
+    void set_description(std::string_view desc) override { description_ = desc; }
 
     /** Memory for received messages (for AI) */
     const std::vector<std::string>& get_received_messages() const { return received_messages_; }
@@ -551,6 +584,25 @@ public:
     }
     void clear_flag(MobFlag flag) { set_flag(flag, false); }
 
+    /** Effect flags (magical effects on this mob like Invisible, Fly, etc) */
+    bool has_effect(EffectFlag effect) const {
+        return effect_flags_.contains(effect);
+    }
+    void set_effect(EffectFlag effect, bool value = true) {
+        if (value) {
+            effect_flags_.insert(effect);
+        } else {
+            effect_flags_.erase(effect);
+        }
+    }
+    void remove_effect(EffectFlag effect) { set_effect(effect, false); }
+    const std::unordered_set<EffectFlag>& effect_flags() const { return effect_flags_; }
+
+    /** Stance (combat posture: Dead, Sleeping, Resting, Alert, Fighting) */
+    db::Stance stance() const { return stance_; }
+    void set_stance(db::Stance s) { stance_ = s; }
+    void set_stance(std::string_view s);  // Parse from database string
+
 protected:
     Mobile(EntityId id, std::string_view name, int level = 1);
 
@@ -580,6 +632,12 @@ private:
     // Class ID for guildmasters (0 = no class, matches player class for training)
     int class_id_ = 0;
 
+    // Combat stance (Dead, Sleeping, Resting, Alert, Fighting)
+    db::Stance stance_ = db::Stance::Alert;
+
+    // Effect flags (magical effects like Invisible, Fly, Sanctuary, etc)
+    std::unordered_set<EffectFlag> effect_flags_;
+
     void initialize_for_level(int level);
 };
 
@@ -588,6 +646,7 @@ struct LearnedAbility {
     int ability_id = 0;
     std::string name;               // Cached ability name
     std::string plain_name;         // Plain text name for lookups
+    std::string description;        // Cached description for help system
     bool known = false;             // Has the player learned this?
     int proficiency = 0;            // 0-100 skill percentage
     std::chrono::system_clock::time_point last_used{};  // Last usage time
@@ -630,6 +689,10 @@ enum class PlayerFlag {
     ColorBlind,         // Use colorblind-friendly colors
     Msp,                // MUD Sound Protocol enabled
     MxpEnabled,         // MUD eXtension Protocol enabled
+
+    // Immortal preferences
+    HolyLight,          // See everything (invisible, dark, hidden, etc.)
+    ShowIds,            // Show entity IDs on mobs/objects/rooms
 
     // Count for bitset sizing
     MAX_PLAYER_FLAGS
@@ -716,8 +779,8 @@ public:
     void set_title(std::string_view player_title) { title_ = player_title; }
 
     /** Player description */
-    std::string_view description() const { return description_; }
-    void set_description(std::string_view desc) { description_ = desc; }
+    std::string_view description() const override { return description_; }
+    void set_description(std::string_view desc) override { description_ = desc; }
 
     /** Player preference flags */
     bool has_player_flag(PlayerFlag flag) const {
@@ -738,10 +801,12 @@ public:
     bool is_autogold() const { return has_player_flag(PlayerFlag::AutoGold); }
     bool is_autosplit() const { return has_player_flag(PlayerFlag::AutoSplit); }
     bool is_autoexit() const { return has_player_flag(PlayerFlag::AutoExit); }
-    bool is_afk() const { return has_player_flag(PlayerFlag::Afk); }
+    bool is_afk() const override { return has_player_flag(PlayerFlag::Afk); }
     bool is_deaf() const { return has_player_flag(PlayerFlag::Deaf); }
     bool is_notell() const { return has_player_flag(PlayerFlag::NoTell); }
     bool is_pk_enabled() const { return has_player_flag(PlayerFlag::PkEnabled); }
+    bool is_holylight() const override { return has_player_flag(PlayerFlag::HolyLight); }
+    bool is_show_ids() const override { return has_player_flag(PlayerFlag::ShowIds); }
 
     /** AFK message (displayed to people who try to interact) */
     std::string_view afk_message() const { return afk_message_; }
@@ -1113,6 +1178,25 @@ public:
             }
         }
         return result;
+    }
+
+    /** Find an ability by name (partial match, case-insensitive) */
+    const LearnedAbility* find_ability_by_name(std::string_view search) const {
+        std::string search_lower{search};
+        std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+        for (const auto& [id, ability] : abilities_) {
+            std::string name_lower = ability.name;
+            std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+            std::string plain_lower = ability.plain_name;
+            std::transform(plain_lower.begin(), plain_lower.end(), plain_lower.begin(), ::tolower);
+
+            // Match from beginning of either name format
+            if (name_lower.find(search_lower) == 0 || plain_lower.find(search_lower) == 0) {
+                return &ability;
+            }
+        }
+        return nullptr;
     }
 
     /** Record ability usage time */

@@ -182,6 +182,9 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     // Reconnection support - attach existing player to new connection
     void attach_player(std::shared_ptr<Player> player);
 
+    // Mark connection as replaced by reconnection (prevents cleanup from removing from WorldServer)
+    void mark_as_replaced() { was_replaced_ = true; }
+
     // Message sending (thread-safe)
     void send_message(std::string_view message) override;
     void send_prompt(std::string_view prompt = "> ") override;
@@ -278,6 +281,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     std::chrono::steady_clock::time_point afk_start_time_{};
     bool is_afk_{false};
     bool is_linkdead_{false};
+    bool was_replaced_{false};  // Set when connection is replaced by reconnection
     std::string disconnect_reason_;
     std::string original_host_;  // For reconnection validation
 

@@ -190,6 +190,13 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             known_spell = ability;
             break;
         }
+
+        // Try per-word fuzzy match: "det inv" matches "detect invisible"
+        if (matches_words(search_lower, name_lower) ||
+            matches_words(search_normalized, plain_lower)) {
+            known_spell = ability;
+            break;
+        }
     }
 
     if (!known_spell) {
@@ -244,8 +251,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             ctx.send_to_room(exec_result->room_message, true);
         }
 
-        // Check if we dealt damage
-        if (target && exec_result->total_damage > 0) {
+        // Check if we dealt damage (only violent spells trigger combat)
+        if (target && known_spell->violent && exec_result->total_damage > 0) {
             if (target->stats().hit_points <= 0) {
                 // Target died
                 target->stats().hit_points = 0;
@@ -648,6 +655,35 @@ Result<CommandResult> cmd_bash(const CommandContext &ctx) {
     return FieryMUD::execute_skill_command(ctx, "bash", true, true);
 }
 
+Result<CommandResult> cmd_backstab(const CommandContext &ctx) {
+    // Backstab requires being hidden or sneaking and initiates combat from stealth
+    if (!ctx.actor->has_flag(ActorFlag::Hide) && !ctx.actor->has_flag(ActorFlag::Sneak)) {
+        ctx.send_error("You need to be hidden to backstab someone!");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't backstab while already in combat
+    if (ctx.actor->position() == Position::Fighting) {
+        ctx.send_error("You can't backstab while fighting!");
+        return CommandResult::InvalidState;
+    }
+
+    // Need a weapon to backstab
+    auto weapon = ctx.actor->equipment().get_main_weapon();
+    if (!weapon) {
+        ctx.send_error("You need a weapon to backstab!");
+        return CommandResult::InvalidState;
+    }
+
+    // Clear hide/sneak flags on backstab attempt (reveals you)
+    ctx.actor->set_flag(ActorFlag::Hide, false);
+    ctx.actor->set_flag(ActorFlag::Sneak, false);
+    ctx.actor->stats().concealment = 0;
+
+    // Execute backstab via data-driven ability system
+    return FieryMUD::execute_skill_command(ctx, "backstab", true, true);
+}
+
 // =============================================================================
 // Command Registration
 // =============================================================================
@@ -706,6 +742,13 @@ Result<void> register_commands() {
 
     Commands()
         .command("bash", cmd_bash)
+        .category("Combat")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("backstab", cmd_backstab)
+        .alias("bs")
         .category("Combat")
         .privilege(PrivilegeLevel::Player)
         .build();

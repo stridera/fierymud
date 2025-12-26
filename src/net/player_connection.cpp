@@ -927,6 +927,9 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     // Add player to the world server's online players list
     world_server_->add_player(player_);
 
+    // Update the connection->actor mapping (replaces the initial Guest NetworkedPlayer)
+    world_server_->set_actor_for_connection(shared_from_this(), player_);
+
     transition_to(ConnectionState::Playing);
 
     // Store original host for reconnection validation
@@ -1171,10 +1174,10 @@ void PlayerConnection::cleanup_connection() {
     if (connection_socket_ && connection_socket_->is_open()) {
         connection_socket_->close();
     }
-    
+
     // Cancel any pending timers
     idle_check_timer_.cancel();
-    
+
     // Clear I/O state
     output_queue_.clear();
     write_in_progress_ = false;
@@ -1182,7 +1185,13 @@ void PlayerConnection::cleanup_connection() {
     // Clean up resources
     if (player_) {
         Log::debug("Cleaning up connection for player: {}", player_->name());
-        // Skip world server removal during shutdown to avoid strand deadlock
+
+        // If this connection was replaced by a reconnection, WorldServer was already updated
+        // by handle_player_reconnection() - skip duplicate cleanup
+        if (!was_replaced_ && world_server_) {
+            // Normal disconnect: remove this connection from WorldServer tracking
+            world_server_->remove_player_connection(shared_from_this());
+        }
     }
 
     player_.reset();

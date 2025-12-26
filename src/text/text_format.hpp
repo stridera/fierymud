@@ -55,6 +55,7 @@ struct Pronouns {
     std::string_view objective;    // him/her/them
     std::string_view possessive;   // his/her/their
     std::string_view reflexive;    // himself/herself/themselves
+    std::string_view verb_be;      // is/is/are (for subject-verb agreement)
 };
 
 /**

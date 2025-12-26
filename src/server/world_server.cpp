@@ -2,6 +2,7 @@
 
 #include "../commands/builtin_commands.hpp"
 #include "../commands/command_system.hpp"
+#include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
@@ -83,6 +84,13 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         return std::unexpected(command_init.error());
     }
 
+    // Initialize ability cache (spells/skills database)
+    auto ability_init = FieryMUD::AbilityCache::instance().initialize();
+    if (!ability_init) {
+        Log::warn("Failed to initialize ability cache: {}", ability_init.error().message);
+        // Non-fatal - abilities will be looked up on-demand
+    }
+
     // Initialize time system with default starting time
     GameTime start_time;
     start_time.hour = DEFAULT_START_HOUR;
@@ -159,6 +167,14 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         });
     });
 
+    // Register callback for hour changes to tick spell effects
+    TimeSystem::instance().on_hour_changed([this](const GameTime& /* old_time */, const GameTime& /* new_time */) {
+        // Tick down spell effect durations for all actors in the world
+        asio::post(world_strand_, [this]() {
+            world_manager_->tick_all_effects();
+        });
+    });
+
     // Register all built-in commands
     auto register_result = BuiltinCommands::register_all_commands();
     if (!register_result) {
@@ -181,38 +197,28 @@ Result<void> WorldServer::start() {
     asio::post(world_strand_, [this]() {
         auto world_load = world_manager_->load_world();
         if (!world_load) {
-            Log::warn("Failed to load world data: {}", world_load.error().message);
-            Log::info("Creating default world as fallback...");
+            // Database loading failed - this is a critical error, not recoverable
+            Log::error("FATAL: Failed to load world data from database: {}", world_load.error().message);
+            Log::error("The server cannot start without a valid database connection.");
+            Log::error("Please check your database configuration and ensure PostgreSQL is running.");
 
-            // Create default world directly (we're already on the world strand)
-            // Create a simple starting room
-            auto room_result = Room::create(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
-            if (!room_result) {
-                Log::error("Failed to create starting room: {}", room_result.error().message);
-                return;
+            // Signal failure via exception in the promise
+            try {
+                throw std::runtime_error(fmt::format(
+                    "Failed to load world data: {}", world_load.error().message));
+            } catch (...) {
+                world_loaded_promise_.set_exception(std::current_exception());
             }
 
-            auto start_room = std::shared_ptr<Room>(room_result.value().release());
-            start_room->set_description(
-                "This is the Forest Temple of Mielikki, a peaceful sanctuary in the heart of nature. "
-                "Ancient trees surround this sacred grove, and a gentle breeze carries the scent of wildflowers. "
-                "You feel safe and welcome here.");
-
-            auto add_result = world_manager_->add_room(start_room);
-            if (!add_result) {
-                Log::error("Failed to add starting room to world manager: {}", add_result.error().message);
-                return;
-            }
-
-            world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
-            Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki",
-                     EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
-        } else {
-            Log::info("World data loaded successfully on world strand");
-            world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
-            Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki",
-                     EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
+            // Mark server as not running to trigger shutdown
+            running_.store(false);
+            return;
         }
+
+        Log::info("World data loaded successfully on world strand");
+        world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
+        Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki",
+                 EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
         world_loaded_promise_.set_value();
     });
 
@@ -367,6 +373,32 @@ void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> con
     asio::post(world_strand_, [this, connection, actor]() { connection_actors_[connection] = actor; });
 }
 
+void WorldServer::handle_player_reconnection(std::shared_ptr<PlayerConnection> old_connection,
+                                             std::shared_ptr<PlayerConnection> new_connection,
+                                             std::shared_ptr<Player> player) {
+    asio::post(world_strand_, [this, old_connection, new_connection, player]() {
+        // Remove old connection's entry from connection_actors_
+        auto old_it = connection_actors_.find(old_connection);
+        if (old_it != connection_actors_.end()) {
+            Log::debug("Removing old connection from connection_actors_ for player: {}", player->name());
+            connection_actors_.erase(old_it);
+        }
+
+        // Remove old connection from active_connections_
+        auto active_it = std::find(active_connections_.begin(), active_connections_.end(), old_connection);
+        if (active_it != active_connections_.end()) {
+            active_connections_.erase(active_it);
+        }
+
+        // Add new connection with the player as its actor
+        connection_actors_[new_connection] = player;
+        active_connections_.push_back(new_connection);
+
+        Log::info("Player '{}' reconnection: transferred from old to new connection in WorldServer",
+                  player->name());
+    });
+}
+
 void WorldServer::add_player(std::shared_ptr<Player> player) {
     // Players are managed through their connections
     // This method can be used for additional player-specific logic if needed
@@ -489,7 +521,7 @@ void WorldServer::schedule_combat_processing() {
 }
 
 void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::function<void()> task,
-                                 std::shared_ptr<asio::steady_timer> &timer) {
+                                 const std::shared_ptr<asio::steady_timer> &timer) {
     if (!running_.load()) {
         return;
     }
@@ -501,7 +533,7 @@ void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::functi
             asio::post(world_strand_, [this, task, interval, timer]() {
                 task();
                 // Reschedule
-                schedule_timer(interval, task, const_cast<std::shared_ptr<asio::steady_timer> &>(timer));
+                schedule_timer(interval, task, timer);
             });
         }
     });

@@ -80,8 +80,10 @@ struct EffectParams {
 
     // Status effect params
     std::string status_name;                // "poison", "stun", "invisible"
-    std::string status_duration_formula;    // "level", "level * 2", or fixed "10"
+    std::string status_duration_formula;    // "level", "level * 2", "toggle", or fixed "10"
     int status_duration = 0;                // Duration in ticks (for fixed values)
+    std::string status_modifier_stat;       // Optional stat to modify (e.g., "concealment")
+    bool is_toggle_duration = false;        // True if duration is "toggle" (permanent until toggled off)
 
     // Move effect params
     std::string move_type;                  // "knockback", "pull"

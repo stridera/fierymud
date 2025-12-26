@@ -342,6 +342,9 @@ public:
     /** Remove effect flag */
     void remove_effect(EffectFlag effect) { set_effect(effect, false); }
 
+    /** Get all object flags */
+    const std::unordered_set<ObjectFlag>& flags() const { return flags_; }
+
     /** Get all effect flags */
     const std::unordered_set<EffectFlag>& effect_flags() const { return effect_flags_; }
     
@@ -420,6 +423,10 @@ public:
     /** Get quality description based on condition */
     std::string_view quality_description() const;
     
+    /** Examine description - detailed text shown when looking at the object */
+    std::string_view examine_description() const { return examine_description_; }
+    void set_examine_description(std::string_view desc) { examine_description_ = desc; }
+
     /** Extra description management */
     void add_extra_description(const ExtraDescription& extra_desc);
     std::optional<std::string_view> get_extra_description(std::string_view keyword) const;
@@ -455,6 +462,7 @@ private:
     ContainerInfo container_info_;
     LightInfo light_info_;
     LiquidInfo liquid_info_;
+    std::string examine_description_;  // Detailed description when examined
     std::vector<ExtraDescription> extra_descriptions_;
 };
 
@@ -513,7 +521,8 @@ private:
 class Container : public Object {
 public:
     static Result<std::unique_ptr<Container>> create(EntityId id, std::string_view name,
-                                                   int capacity = 10);
+                                                   int capacity = 10,
+                                                   ObjectType type = ObjectType::Container);
     
     std::string_view type_name() const override { return "Container"; }
     
@@ -547,7 +556,7 @@ public:
     }
     
 protected:
-    Container(EntityId id, std::string_view name, int capacity);
+    Container(EntityId id, std::string_view name, int capacity, ObjectType type = ObjectType::Container);
     
 private:
     std::vector<std::shared_ptr<Object>> contents_;

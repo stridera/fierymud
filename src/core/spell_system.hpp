@@ -35,8 +35,8 @@ struct Spell {
     /** Check if spell can be cast by actor */
     bool can_cast(const Actor& caster) const;
     
-    /** Execute spell effect */
-    Result<void> cast(const Actor& caster, const CommandContext& ctx) const;
+    /** Execute spell effect (modifies caster for healing, buffs, etc.) */
+    Result<void> cast(Actor& caster, const CommandContext& ctx) const;
     
     /** JSON serialization */
     nlohmann::json to_json() const;

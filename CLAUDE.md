@@ -105,10 +105,24 @@ When working on the MUD codebase, follow these modern C++23 practices:
 - No manual memory management or C-style arrays
 - No bare numbers/magic numbers - use named constants
 
+### Terminology Changes from Legacy
+- **IDs not VNUMs**: The modern codebase uses `EntityId` (composite of zone_id + local_id), NOT legacy "vnums". Never use the term "vnum" in modern code - use "ID" or "entity ID" instead.
+- **Actors not Characters**: Use `Actor` for living beings, not `CharData` or "character"
+- **Objects not Items**: Use `Object` class, not `ObjData`
+- **Rooms**: Use `Room` class, not `RoomData`
+
 ### Code Cleanup Requirements
 - Remove unused `#include` headers from legacy code
 - Replace magic numbers with named constants
 - Clean up commented-out code and obsolete functions
+
+### Data-Driven Design Principles
+- **Database over hard-coding**: Store messages, descriptions, and configurable values in the database rather than hard-coding them in C++. This allows content to be edited via Muditor without recompiling.
+- **Effect messages**: Spell effect descriptions (what you see when looking at someone affected) should come from the Effects table, not hard-coded strings.
+- **Ability messages**: All ability/spell messages (cast, success, failure, wear-off) should come from the AbilityMessages table.
+- **Room/mob/object descriptions**: All world content comes from database tables, never hard-coded.
+- **Configuration**: Game constants and tunable values should be stored in configuration tables when they might need adjustment.
+- **Template system**: Use `{actor}`, `{target}`, `{damage}` placeholders in database messages for dynamic substitution at runtime.
 
 ### Code Style Examples
 ```cpp
@@ -245,6 +259,15 @@ FieryMUD is a modern C++ MUD (Multi-User Dungeon) evolved from CircleMUD. Key ar
 ### Key Data Structures
 - **Modern**: Core classes in `src/core/` (Actor, Object, Entity)
 - **Legacy**: Traditional structs in `legacy/src/structs.hpp` (CharData, ObjData, RoomData, DescriptorData)
+
+### Magic System
+FieryMUD uses a **circle-based spell memorization system** (similar to D&D), NOT a mana system:
+- Spellcasters memorize spells by circle (1st through 9th)
+- Each class/level grants a number of spell slots per circle
+- Once a spell is cast, it must be re-memorized
+- **Focus** stat determines memorization speed
+- **Meditate** skill improves focus, accelerating spell memorization
+- There is no mana pool or mana regeneration in this game
 
 ### Game Systems
 - **Modern Combat**: Turn-based combat in `src/core/combat.cpp`

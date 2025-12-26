@@ -12,7 +12,7 @@ thread_local std::mt19937 FormulaParser::rng_;
 bool FormulaParser::rng_initialized_ = false;
 
 std::expected<int, Error> FormulaContext::get_variable(std::string_view name) const {
-    // Check built-in variables
+    // Check built-in actor variables
     if (name == "skill") return skill_level;
     if (name == "level") return actor_level;
     if (name == "str_bonus" || name == "str") return str_bonus;
@@ -22,8 +22,16 @@ std::expected<int, Error> FormulaContext::get_variable(std::string_view name) co
     if (name == "wis_bonus" || name == "wis") return wis_bonus;
     if (name == "cha_bonus" || name == "cha") return cha_bonus;
     if (name == "weapon_damage" || name == "weapon") return weapon_damage;
+
+    // Actor's detection stats
+    if (name == "perception") return perception;
+    if (name == "concealment") return concealment;
+
+    // Target stats for contested checks
     if (name == "armor_rating" || name == "ar") return armor_rating;
     if (name == "target_level") return target_level;
+    if (name == "target_perception") return target_perception;
+    if (name == "target_concealment") return target_concealment;
 
     // Check custom variables
     std::string name_str(name);

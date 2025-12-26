@@ -3,12 +3,14 @@
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../database/connection_pool.hpp"
+#include "../database/game_data_cache.hpp"
+#include "../database/player_queries.hpp"
+#include "../database/world_queries.hpp"
 #include "../net/player_connection.hpp"
 #include "../server/network_manager.hpp"
 #include "../text/string_utils.hpp"
 #include "../world/world_manager.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/world_queries.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -58,40 +60,96 @@ std::string CharacterCreationData::get_race_name() const {
 LoginSystem::LoginSystem(std::shared_ptr<PlayerConnection> connection) : connection_(std::move(connection)) {}
 
 // Helper function to load character abilities from database
-void LoginSystem::load_player_abilities(std::shared_ptr<Player>& player) {
+void LoginSystem::load_player_abilities(std::shared_ptr<Player> &player) {
+    // Gods get ALL abilities at max proficiency
+    if (player->is_god()) {
+        auto all_abilities_result =
+            ConnectionPool::instance().execute([](pqxx::work &txn) -> Result<std::vector<WorldQueries::AbilityData>> {
+                return WorldQueries::load_all_abilities(txn);
+            });
+
+        if (!all_abilities_result) {
+            Log::warn("Failed to load all abilities for god {}: {}", player->name(),
+                      all_abilities_result.error().message);
+            return;
+        }
+
+        for (const auto &ability_data : *all_abilities_result) {
+            LearnedAbility learned;
+            learned.ability_id = ability_data.id;
+            learned.name = ability_data.name;
+            learned.plain_name = ability_data.plain_name;
+            learned.description = ability_data.description;
+            learned.known = true;
+            learned.proficiency = 1000; // Max proficiency for gods
+            learned.violent = ability_data.violent;
+            learned.min_level = 1; // Gods can use everything
+
+            // Convert enum to string
+            switch (ability_data.type) {
+            case WorldQueries::AbilityType::Spell:
+                learned.type = "SPELL";
+                break;
+            case WorldQueries::AbilityType::Skill:
+                learned.type = "SKILL";
+                break;
+            case WorldQueries::AbilityType::Chant:
+                learned.type = "CHANT";
+                break;
+            case WorldQueries::AbilityType::Song:
+                learned.type = "SONG";
+                break;
+            }
+
+            player->set_ability(learned);
+        }
+
+        Log::info("Granted {} abilities to god '{}'", all_abilities_result->size(), player->name());
+        return;
+    }
+
+    // Regular players load from CharacterAbilities
     if (player->database_id().empty()) {
         Log::warn("Cannot load abilities: player {} has no database_id", player->name());
         return;
     }
 
     std::string char_id{player->database_id()};
-    auto result = ConnectionPool::instance().execute([&char_id](pqxx::work& txn)
-        -> Result<std::vector<WorldQueries::CharacterAbilityWithMetadata>> {
-        return WorldQueries::load_character_abilities_with_metadata(txn, char_id);
-    });
+    auto result = ConnectionPool::instance().execute(
+        [&char_id](pqxx::work &txn) -> Result<std::vector<WorldQueries::CharacterAbilityWithMetadata>> {
+            return WorldQueries::load_character_abilities_with_metadata(txn, char_id);
+        });
 
     if (!result) {
-        Log::warn("Failed to load abilities for player {}: {}",
-                 player->name(), result.error().message);
+        Log::warn("Failed to load abilities for player {}: {}", player->name(), result.error().message);
         return;
     }
 
     // Apply abilities to player
-    for (const auto& ability_data : *result) {
+    for (const auto &ability_data : *result) {
         LearnedAbility learned;
         learned.ability_id = ability_data.ability_id;
         learned.name = ability_data.name;
         learned.plain_name = ability_data.plain_name;
+        learned.description = ability_data.description;
         learned.known = ability_data.known;
         learned.proficiency = ability_data.proficiency;
         learned.violent = ability_data.violent;
 
         // Convert enum to string
         switch (ability_data.type) {
-            case WorldQueries::AbilityType::Spell: learned.type = "SPELL"; break;
-            case WorldQueries::AbilityType::Skill: learned.type = "SKILL"; break;
-            case WorldQueries::AbilityType::Chant: learned.type = "CHANT"; break;
-            case WorldQueries::AbilityType::Song:  learned.type = "SONG"; break;
+        case WorldQueries::AbilityType::Spell:
+            learned.type = "SPELL";
+            break;
+        case WorldQueries::AbilityType::Skill:
+            learned.type = "SKILL";
+            break;
+        case WorldQueries::AbilityType::Chant:
+            learned.type = "CHANT";
+            break;
+        case WorldQueries::AbilityType::Song:
+            learned.type = "SONG";
+            break;
         }
 
         player->set_ability(learned);
@@ -100,41 +158,40 @@ void LoginSystem::load_player_abilities(std::shared_ptr<Player>& player) {
     Log::info("Loaded {} abilities for player '{}'", result->size(), player->name());
 }
 
-void LoginSystem::load_player_items(std::shared_ptr<Player>& player) {
+void LoginSystem::load_player_items(std::shared_ptr<Player> &player) {
     if (player->database_id().empty()) {
         Log::warn("Cannot load items: player {} has no database_id", player->name());
         return;
     }
 
     std::string char_id{player->database_id()};
-    auto result = ConnectionPool::instance().execute([&char_id](pqxx::work& txn)
-        -> Result<std::vector<WorldQueries::CharacterItemData>> {
-        return WorldQueries::load_character_items(txn, char_id);
-    });
+    auto result = ConnectionPool::instance().execute(
+        [&char_id](pqxx::work &txn) -> Result<std::vector<WorldQueries::CharacterItemData>> {
+            return WorldQueries::load_character_items(txn, char_id);
+        });
 
     if (!result) {
-        Log::warn("Failed to load items for player {}: {}",
-                 player->name(), result.error().message);
+        Log::warn("Failed to load items for player {}: {}", player->name(), result.error().message);
         return;
     }
 
-    const auto& items_data = *result;
+    const auto &items_data = *result;
     if (items_data.empty()) {
         Log::debug("No items to load for player '{}'", player->name());
         return;
     }
 
-    auto& world = WorldManager::instance();
+    auto &world = WorldManager::instance();
 
     // Map from CharacterItems.id to created object (for container nesting)
     std::unordered_map<int, std::shared_ptr<Object>> created_objects;
 
     // First pass: create all objects
-    for (const auto& item_data : items_data) {
+    for (const auto &item_data : items_data) {
         auto object = world.create_object_instance(item_data.object_id);
         if (!object) {
-            Log::warn("Failed to create object instance for prototype {} for player {}",
-                     item_data.object_id, player->name());
+            Log::warn("Failed to create object instance for prototype {} for player {}", item_data.object_id,
+                      player->name());
             continue;
         }
 
@@ -157,7 +214,7 @@ void LoginSystem::load_player_items(std::shared_ptr<Player>& player) {
     int inventory_count = 0;
     int container_count = 0;
 
-    for (const auto& item_data : items_data) {
+    for (const auto &item_data : items_data) {
         auto it = created_objects.find(item_data.id);
         if (it == created_objects.end()) {
             continue; // Object creation failed in first pass
@@ -169,15 +226,14 @@ void LoginSystem::load_player_items(std::shared_ptr<Player>& player) {
         if (item_data.container_id.has_value()) {
             auto container_it = created_objects.find(*item_data.container_id);
             if (container_it != created_objects.end() && container_it->second->is_container()) {
-                auto* container_ptr = dynamic_cast<Container*>(container_it->second.get());
+                auto *container_ptr = dynamic_cast<Container *>(container_it->second.get());
                 if (container_ptr) {
                     auto add_result = container_ptr->add_item(object);
                     if (add_result) {
                         container_count++;
                         continue;
                     }
-                    Log::warn("Failed to add item {} to container for player {}",
-                             object->name(), player->name());
+                    Log::warn("Failed to add item {} to container for player {}", object->name(), player->name());
                 }
             }
             // Fallback: put in inventory
@@ -195,11 +251,11 @@ void LoginSystem::load_player_items(std::shared_ptr<Player>& player) {
                     equipped_count++;
                     continue;
                 }
-                Log::warn("Failed to equip item {} in slot {} for player {}",
-                         object->name(), item_data.equipped_location, player->name());
+                Log::warn("Failed to equip item {} in slot {} for player {}", object->name(),
+                          item_data.equipped_location, player->name());
             } else {
-                Log::warn("Unknown equipment slot '{}' for item {} for player {}",
-                         item_data.equipped_location, object->name(), player->name());
+                Log::warn("Unknown equipment slot '{}' for item {} for player {}", item_data.equipped_location,
+                          object->name(), player->name());
             }
             // Fallback: put in inventory
             player->inventory().add_item(object);
@@ -212,8 +268,8 @@ void LoginSystem::load_player_items(std::shared_ptr<Player>& player) {
         inventory_count++;
     }
 
-    Log::info("Loaded {} items for player '{}' ({} equipped, {} inventory, {} in containers)",
-             created_objects.size(), player->name(), equipped_count, inventory_count, container_count);
+    Log::info("Loaded {} items for player '{}' ({} equipped, {} inventory, {} in containers)", created_objects.size(),
+              player->name(), equipped_count, inventory_count, container_count);
 }
 
 void LoginSystem::start_login() {
@@ -231,8 +287,7 @@ void LoginSystem::start_login() {
         for (size_t i = 0; i < buffered.size(); ++i) {
             // If login completed, forward remaining commands to the game
             if (state_ == LoginState::Playing && connection_) {
-                Log::debug("Login complete, forwarding {} remaining commands to game",
-                          buffered.size() - i);
+                Log::debug("Login complete, forwarding {} remaining commands to game", buffered.size() - i);
                 for (size_t j = i; j < buffered.size(); ++j) {
                     // Route through connection's process_input which will send to world_server
                     connection_->forward_command_to_game(buffered[j]);
@@ -323,15 +378,27 @@ void LoginSystem::handle_get_account(std::string_view input) {
         return;
     }
 
-    // Check for user:password format for quick login
+    // Check for user:password[:character] format for quick login
     auto colon_pos = input.find(':');
     if (colon_pos != std::string::npos) {
         std::string username = std::string(input.substr(0, colon_pos));
-        std::string password = std::string(input.substr(colon_pos + 1));
+        std::string rest = std::string(input.substr(colon_pos + 1));
+        std::string password;
+        std::string quick_character;  // Optional character name for direct login
+
+        // Check for second colon (username:password:character format)
+        auto second_colon = rest.find(':');
+        if (second_colon != std::string::npos) {
+            password = rest.substr(0, second_colon);
+            quick_character = rest.substr(second_colon + 1);
+        } else {
+            password = rest;
+        }
 
         // Trim whitespace
         username = std::string(trim(username));
         password = std::string(trim(password));
+        quick_character = std::string(trim(quick_character));
 
         if (username.empty() || password.empty()) {
             send_message("Invalid format. Use 'username:password' or just 'username'.");
@@ -357,8 +424,8 @@ void LoginSystem::handle_get_account(std::string_view input) {
                     if (auto *network_manager = connection_->get_network_manager()) {
                         std::string player_name = std::string(player_->name());
                         if (network_manager->handle_reconnection(connection_, player_name)) {
-                            player_.reset();  // Clear freshly-loaded player, using transferred one
-                            transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+                            player_.reset();                    // Clear freshly-loaded player, using transferred one
+                            transition_to(LoginState::Playing); // Must transition so buffered commands are forwarded
                             Log::info("Player '{}' reconnected successfully", player_name);
                             return;
                         }
@@ -397,6 +464,65 @@ void LoginSystem::handle_get_account(std::string_view input) {
             transition_to(LoginState::GetName);
             send_message("Please enter a name for your new character:");
             send_prompt();
+        } else if (!quick_character.empty()) {
+            // Character specified in quick login - try to select it directly
+            bool found = false;
+            std::string lower_quick = to_lowercase(quick_character);
+            for (size_t i = 0; i < user_characters_.size(); ++i) {
+                std::string char_id = std::get<0>(user_characters_[i]);
+                std::string char_name = std::get<1>(user_characters_[i]);
+                std::string lower_char_name = to_lowercase(char_name);
+
+                if (lower_char_name == lower_quick || lower_char_name.starts_with(lower_quick)) {
+                    // Found the character - load it via connection pool
+                    auto load_result = ConnectionPool::instance().execute(
+                        [&char_id, &char_name, this](pqxx::work &txn) -> Result<std::shared_ptr<Player>> {
+                            auto char_result = WorldQueries::load_character_by_id(txn, char_id);
+                            if (!char_result) {
+                                return std::unexpected(char_result.error());
+                            }
+
+                            auto player_result = PlayerQueries::load_player_by_name(txn, char_name);
+                            if (!player_result) {
+                                return std::unexpected(player_result.error());
+                            }
+
+                            return std::move(*player_result);
+                        });
+
+                    if (load_result && *load_result) {
+                        player_ = *load_result;
+
+                        // Check for existing connection and handle reconnection
+                        if (auto *network_manager = connection_->get_network_manager()) {
+                            std::string player_name = std::string(player_->name());
+                            if (network_manager->handle_reconnection(connection_, player_name)) {
+                                player_.reset();
+                                transition_to(LoginState::Playing);
+                                Log::info("Player '{}' reconnected via quick login", player_name);
+                                return;
+                            }
+                        }
+
+                        transition_to(LoginState::Playing);
+                        send_message(fmt::format("Welcome to FieryMUD, {}!", player_->name()));
+
+                        if (player_loaded_callback_) {
+                            player_loaded_callback_(player_);
+                        }
+
+                        Log::info("Player '{}' logged in via quick login (account:password:character)", player_->name());
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (!found) {
+                send_message(fmt::format("Character '{}' not found on this account.", quick_character));
+                transition_to(LoginState::SelectCharacter);
+                send_character_menu();
+                send_prompt();
+            }
         } else {
             transition_to(LoginState::SelectCharacter);
             send_character_menu();
@@ -527,83 +653,82 @@ void LoginSystem::handle_select_character(std::string_view input) {
     }
 
     // Load the selected character
-    const auto& selected = user_characters_[choice - 1];
+    const auto &selected = user_characters_[choice - 1];
     std::string char_id = std::get<0>(selected);
     std::string char_name = std::get<1>(selected);
 
     Log::debug("Loading character '{}' (id: {}) for user {}", char_name, char_id, user_id_);
 
     // Load character by ID (without password verification since user is already authenticated)
-    auto result = ConnectionPool::instance().execute([&char_id, &char_name, this](pqxx::work& txn)
-        -> Result<std::shared_ptr<Player>> {
+    auto result = ConnectionPool::instance().execute(
+        [&char_id, &char_name, this](pqxx::work &txn) -> Result<std::shared_ptr<Player>> {
+            auto char_result = WorldQueries::load_character_by_id(txn, char_id);
+            if (!char_result) {
+                return std::unexpected(char_result.error());
+            }
 
-        auto char_result = WorldQueries::load_character_by_id(txn, char_id);
-        if (!char_result) {
-            return std::unexpected(char_result.error());
-        }
+            const auto &char_data = char_result.value();
 
-        const auto& char_data = char_result.value();
+            // Create Player from database data
+            std::size_t hash = std::hash<std::string>{}(char_data.id);
+            EntityId player_id(static_cast<int>(hash & 0x7FFFFFFF));
 
-        // Create Player from database data
-        std::size_t hash = std::hash<std::string>{}(char_data.id);
-        EntityId player_id(static_cast<int>(hash & 0x7FFFFFFF));
+            auto player_result = Player::create(player_id, char_data.name);
+            if (!player_result) {
+                return std::unexpected(player_result.error());
+            }
 
-        auto player_result = Player::create(player_id, char_data.name);
-        if (!player_result) {
-            return std::unexpected(player_result.error());
-        }
+            auto player = std::shared_ptr<Player>(player_result.value().release());
 
-        auto player = std::shared_ptr<Player>(player_result.value().release());
+            // Set character data from database
+            player->set_level(char_data.level);
+            player->set_class(char_data.player_class);
+            player->set_race(char_data.race_type);
+            player->set_gender(char_data.gender);
 
-        // Set character data from database
-        player->set_level(char_data.level);
-        player->set_class(char_data.player_class);
-        player->set_race(char_data.race_type);
-        player->set_gender(char_data.gender);
+            // Set god level for immortals (level 100+)
+            // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
+            if (char_data.level >= kImmortalLevel) {
+                player->set_god_level(char_data.level - (kImmortalLevel - 1));
+            }
 
-        // Set god level for immortals (level 100+)
-        // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
-        if (char_data.level >= kImmortalLevel) {
-            player->set_god_level(char_data.level - (kImmortalLevel - 1));
-        }
+            // Set stats
+            auto &stats = player->stats();
+            stats.strength = char_data.strength;
+            stats.intelligence = char_data.intelligence;
+            stats.wisdom = char_data.wisdom;
+            stats.dexterity = char_data.dexterity;
+            stats.constitution = char_data.constitution;
+            stats.charisma = char_data.charisma;
 
-        // Set stats
-        auto& stats = player->stats();
-        stats.strength = char_data.strength;
-        stats.intelligence = char_data.intelligence;
-        stats.wisdom = char_data.wisdom;
-        stats.dexterity = char_data.dexterity;
-        stats.constitution = char_data.constitution;
-        stats.charisma = char_data.charisma;
+            // Set vitals
+            stats.hit_points = char_data.hit_points;
+            stats.max_hit_points = char_data.hit_points_max;
+            stats.movement = char_data.movement;
+            stats.max_movement = char_data.movement_max;
 
-        // Set vitals
-        stats.hit_points = char_data.hit_points;
-        stats.max_hit_points = char_data.hit_points_max;
-        stats.movement = char_data.movement;
-        stats.max_movement = char_data.movement_max;
+            // Convert legacy DB combat stats to new system
+            stats.accuracy = char_data.hit_roll;
+            stats.attack_power = char_data.damage_roll;
+            stats.armor_rating = std::max(0, 100 - char_data.armor_class);
 
-        // Convert legacy DB combat stats to new system
-        stats.accuracy = char_data.hit_roll;
-        stats.attack_power = char_data.damage_roll;
-        stats.armor_rating = std::max(0, 100 - char_data.armor_class);
+            // Set experience
+            stats.experience = char_data.experience;
 
-        // Set experience
-        stats.experience = char_data.experience;
+            // Store the database character ID
+            player->set_database_id(char_data.id);
 
-        // Store the database character ID
-        player->set_database_id(char_data.id);
+            // Update last login and online status
+            WorldQueries::update_last_login(txn, char_data.id);
+            WorldQueries::set_character_online(txn, char_data.id, true);
 
-        // Update last login and online status
-        WorldQueries::update_last_login(txn, char_data.id);
-        WorldQueries::set_character_online(txn, char_data.id, true);
+            // Also update user's last login
+            if (!user_id_.empty()) {
+                WorldQueries::update_user_last_login(txn, user_id_);
+            }
 
-        // Also update user's last login
-        if (!user_id_.empty()) {
-            WorldQueries::update_user_last_login(txn, user_id_);
-        }
-
-        return player;
-    });
+            return player;
+        });
 
     if (!result) {
         send_message(fmt::format("Error loading character '{}'. Please try again.", char_name));
@@ -620,17 +745,20 @@ void LoginSystem::handle_select_character(std::string_view input) {
     if (auto *network_manager = connection_->get_network_manager()) {
         std::string player_name = std::string(player_->name());
         if (network_manager->handle_reconnection(connection_, player_name)) {
-            player_.reset();  // Clear freshly-loaded player, using transferred one
-            transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+            player_.reset();                    // Clear freshly-loaded player, using transferred one
+            transition_to(LoginState::Playing); // Must transition so buffered commands are forwarded
             Log::info("Player '{}' reconnected successfully", player_name);
             return;
         }
     }
 
-    // Set start room
-    auto world_start_room = WorldManager::instance().get_start_room();
-    if (world_start_room.is_valid()) {
-        player_->set_start_room(world_start_room);
+    // Use player's saved start room if valid, otherwise world default
+    // The saved room was already set during load_character()
+    if (!player_->start_room().is_valid()) {
+        auto world_start_room = WorldManager::instance().get_start_room();
+        if (world_start_room.is_valid()) {
+            player_->set_start_room(world_start_room);
+        }
     }
 
     transition_to(LoginState::Playing);
@@ -711,8 +839,8 @@ void LoginSystem::handle_get_name(std::string_view input) {
             if (auto *network_manager = connection_->get_network_manager()) {
                 std::string player_name = std::string(player_->name());
                 if (network_manager->handle_reconnection(connection_, player_name)) {
-                    player_.reset();  // Clear freshly-loaded player, using transferred one
-                    transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+                    player_.reset();                    // Clear freshly-loaded player, using transferred one
+                    transition_to(LoginState::Playing); // Must transition so buffered commands are forwarded
                     Log::info("Player '{}' reconnected successfully", player_name);
                     return;
                 }
@@ -792,13 +920,13 @@ void LoginSystem::handle_get_password(std::string_view input) {
 
     // Check for existing connection and handle reconnection
     if (auto *network_manager = connection_->get_network_manager()) {
-        std::string player_name = std::string(player_->name());  // Copy name before potential reset
+        std::string player_name = std::string(player_->name()); // Copy name before potential reset
         if (network_manager->handle_reconnection(connection_, player_name)) {
             // Existing connection was found and player transferred to this connection
             // The reconnection handler already sent appropriate messages
             // Clear our freshly-loaded player since we're using the transferred player instead
             player_.reset();
-            transition_to(LoginState::Playing);  // Must transition so buffered commands are forwarded
+            transition_to(LoginState::Playing); // Must transition so buffered commands are forwarded
             Log::info("Player '{}' reconnected successfully", player_name);
             return; // Early return since reconnection handled everything
         }
@@ -1010,24 +1138,23 @@ void LoginSystem::send_welcome_message() {
     // Select logo based on terminal capabilities detected via GMCP/MTTS/NEW-ENVIRON.
     // The connection delays login by 200ms to allow capability negotiation, so
     // by the time we get here, GMCP clients should have reported their capabilities.
-    using TerminalCapabilities::SupportLevel;
     using TerminalCapabilities::DetectionMethod;
+    using TerminalCapabilities::SupportLevel;
 
-    auto level = SupportLevel::Full;  // Default to full for modern MUD clients
+    auto level = SupportLevel::Full; // Default to full for modern MUD clients
     if (connection_) {
         auto caps = connection_->get_terminal_capabilities();
 
         // Use detected level if we have actual client detection
         // Environment detection means "basic telnet client" - still default to Full
         // since the 200ms delay should have allowed GMCP detection if supported
-        if (caps.detection_method == DetectionMethod::GMCP ||
-            caps.detection_method == DetectionMethod::MTTS ||
+        if (caps.detection_method == DetectionMethod::GMCP || caps.detection_method == DetectionMethod::MTTS ||
             caps.detection_method == DetectionMethod::NewEnviron) {
             level = caps.overall_level;
-            Log::info("Logo selection: Using detected level {} from {} (client: {} {})",
-                      static_cast<int>(level),
-                      caps.detection_method == DetectionMethod::GMCP ? "GMCP" :
-                      caps.detection_method == DetectionMethod::MTTS ? "MTTS" : "NEW-ENVIRON",
+            Log::info("Logo selection: Using detected level {} from {} (client: {} {})", static_cast<int>(level),
+                      caps.detection_method == DetectionMethod::GMCP   ? "GMCP"
+                      : caps.detection_method == DetectionMethod::MTTS ? "MTTS"
+                                                                       : "NEW-ENVIRON",
                       caps.client_name, caps.client_version);
         } else {
             Log::info("Logo selection: No client detection, defaulting to Full");
@@ -1035,16 +1162,16 @@ void LoginSystem::send_welcome_message() {
     }
 
     switch (level) {
-        case SupportLevel::Basic:
-            send_logo_basic();
-            break;
-        case SupportLevel::Standard:
-            send_logo_extended();
-            break;
-        default:
-            // Full, Extended, or undetected - use full logo
-            send_logo_full();
-            break;
+    case SupportLevel::Basic:
+        send_logo_basic();
+        break;
+    case SupportLevel::Standard:
+        send_logo_extended();
+        break;
+    default:
+        // Full, Extended, or undetected - use full logo
+        send_logo_full();
+        break;
     }
 
     // Common footer with login instructions
@@ -1056,12 +1183,24 @@ void LoginSystem::send_logo_full() {
     // Dragon design inspired by Jeff Ferris ASCII art
     send_message("");
 
-    send_message("<c196>  ███████╗<c202>██╗<c208>███████╗<c214>██████╗ <c220>██╗   ██╗<c214>███╗   ███╗<c208>██╗   ██╗<c202>██████╗");
-    send_message("<c196>  ██╔════╝<c202>██║<c208>██╔════╝<c214>██╔══██╗<c220>╚██╗ ██╔╝<c214>████╗ ████║<c208>██║   ██║<c202>██╔══██╗");
-    send_message("<c196>  █████╗  <c202>██║<c208>█████╗  <c214>██████╔╝<c220> ╚████╔╝ <c214>██╔████╔██║<c208>██║   ██║<c202>██║  ██║");
-    send_message("<c196>  ██╔══╝  <c202>██║<c208>██╔══╝  <c214>██╔══██╗<c220>  ╚██╔╝  <c214>██║╚██╔╝██║<c208>██║   ██║<c202>██║  ██║");
-    send_message("<c196>  ██║     <c202>██║<c208>███████╗<c214>██║  ██║<c220>   ██║   <c214>██║ ╚═╝ ██║<c208>╚██████╔╝<c202>██████╔╝");
-    send_message("<c196>  ╚═╝     <c202>╚═╝<c208>╚══════╝<c214>╚═╝  ╚═╝<c220>   ╚═╝   <c214>╚═╝     ╚═╝<c208> ╚═════╝ <c202>╚═════╝");
+    send_message(
+        "<c196>  ███████╗<c202>██╗<c208>███████╗<c214>██████╗ <c220>██╗   ██╗<c214>███╗   ███╗<c208>██╗   "
+        "██╗<c202>██████╗");
+    send_message(
+        "<c196>  ██╔════╝<c202>██║<c208>██╔════╝<c214>██╔══██╗<c220>╚██╗ ██╔╝<c214>████╗ ████║<c208>██║   "
+        "██║<c202>██╔══██╗");
+    send_message(
+        "<c196>  █████╗  <c202>██║<c208>█████╗  <c214>██████╔╝<c220> ╚████╔╝ <c214>██╔████╔██║<c208>██║   ██║<c202>██║ "
+        " ██║");
+    send_message(
+        "<c196>  ██╔══╝  <c202>██║<c208>██╔══╝  <c214>██╔══██╗<c220>  ╚██╔╝  <c214>██║╚██╔╝██║<c208>██║   ██║<c202>██║ "
+        " ██║");
+    send_message(
+        "<c196>  ██║     <c202>██║<c208>███████╗<c214>██║  ██║<c220>   ██║   <c214>██║ ╚═╝ "
+        "██║<c208>╚██████╔╝<c202>██████╔╝");
+    send_message(
+        "<c196>  ╚═╝     <c202>╚═╝<c208>╚══════╝<c214>╚═╝  ╚═╝<c220>   ╚═╝   <c214>╚═╝     ╚═╝<c208> ╚═════╝ "
+        "<c202>╚═════╝");
     send_message("");
 }
 
@@ -1122,7 +1261,7 @@ void LoginSystem::send_login_instructions() {
     send_message("<dim>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</dim>");
     send_message("");
     send_message("Login with your account username, email, or character name.");
-    send_message("Quick login: <b>username:password</b> or <b>character:password</b>");
+    send_message("Quick login: <b>username:password[:character]</b>, or <b>character:password</b>");
     send_message("");
 }
 
@@ -1164,7 +1303,7 @@ void LoginSystem::send_character_menu() {
         send_message("No characters found.");
     } else {
         for (size_t i = 0; i < user_characters_.size(); ++i) {
-            const auto& [id, name, level, char_class] = user_characters_[i];
+            const auto &[id, name, level, char_class] = user_characters_[i];
             send_message(fmt::format("  {}) {} - Level {} {}", i + 1, name, level, char_class));
         }
     }
@@ -1179,7 +1318,7 @@ void LoginSystem::send_character_menu() {
 // =============================================================================
 
 Result<bool> LoginSystem::user_exists(std::string_view username_or_email) {
-    auto result = ConnectionPool::instance().execute([&username_or_email](pqxx::work& txn) {
+    auto result = ConnectionPool::instance().execute([&username_or_email](pqxx::work &txn) {
         return WorldQueries::user_exists(txn, std::string(username_or_email));
     });
 
@@ -1191,56 +1330,55 @@ Result<bool> LoginSystem::user_exists(std::string_view username_or_email) {
 }
 
 Result<bool> LoginSystem::verify_user(std::string_view username_or_email, std::string_view password) {
-    auto result = ConnectionPool::instance().execute([&username_or_email, &password, this](pqxx::work& txn)
-        -> Result<bool> {
-
-        // First, try to load the user to get their ID
-        auto user_result = WorldQueries::load_user_by_username(txn, std::string(username_or_email));
-        if (!user_result) {
-            // Try by email
-            user_result = WorldQueries::load_user_by_email(txn, std::string(username_or_email));
-        }
-
-        if (!user_result) {
-            return false;  // User not found
-        }
-
-        const auto& user_data = user_result.value();
-
-        // Check if account is locked
-        if (user_data.locked_until) {
-            auto now = std::chrono::system_clock::now();
-            if (user_data.locked_until.value() > now) {
-                Log::warn("User '{}' account is locked until {}",
-                    username_or_email,
-                    std::chrono::system_clock::to_time_t(user_data.locked_until.value()));
-                return std::unexpected(Error{ErrorCode::PermissionDenied, "Account is temporarily locked"});
-            }
-        }
-
-        // Verify password
-        auto verify_result = WorldQueries::verify_user_password(txn, std::string(username_or_email), std::string(password));
-        if (!verify_result || !verify_result.value()) {
-            // Increment failed login attempts
-            WorldQueries::increment_failed_login(txn, user_data.id);
-
-            // Lock account after too many attempts
-            if (user_data.failed_login_attempts + 1 >= 5) {
-                auto lock_until = std::chrono::system_clock::now() + std::chrono::minutes(15);
-                WorldQueries::lock_user_account(txn, user_data.id, lock_until);
-                Log::warn("User '{}' locked for 15 minutes after {} failed attempts",
-                    username_or_email, user_data.failed_login_attempts + 1);
+    auto result =
+        ConnectionPool::instance().execute([&username_or_email, &password, this](pqxx::work &txn) -> Result<bool> {
+            // First, try to load the user to get their ID
+            auto user_result = WorldQueries::load_user_by_username(txn, std::string(username_or_email));
+            if (!user_result) {
+                // Try by email
+                user_result = WorldQueries::load_user_by_email(txn, std::string(username_or_email));
             }
 
-            return false;
-        }
+            if (!user_result) {
+                return false; // User not found
+            }
 
-        // Password verified - store user ID and update last login
-        user_id_ = user_data.id;
-        WorldQueries::update_user_last_login(txn, user_data.id);
+            const auto &user_data = user_result.value();
 
-        return true;
-    });
+            // Check if account is locked
+            if (user_data.locked_until) {
+                auto now = std::chrono::system_clock::now();
+                if (user_data.locked_until.value() > now) {
+                    Log::warn("User '{}' account is locked until {}", username_or_email,
+                              std::chrono::system_clock::to_time_t(user_data.locked_until.value()));
+                    return std::unexpected(Error{ErrorCode::PermissionDenied, "Account is temporarily locked"});
+                }
+            }
+
+            // Verify password
+            auto verify_result =
+                WorldQueries::verify_user_password(txn, std::string(username_or_email), std::string(password));
+            if (!verify_result || !verify_result.value()) {
+                // Increment failed login attempts
+                WorldQueries::increment_failed_login(txn, user_data.id);
+
+                // Lock account after too many attempts
+                if (user_data.failed_login_attempts + 1 >= 5) {
+                    auto lock_until = std::chrono::system_clock::now() + std::chrono::minutes(15);
+                    WorldQueries::lock_user_account(txn, user_data.id, lock_until);
+                    Log::warn("User '{}' locked for 15 minutes after {} failed attempts", username_or_email,
+                              user_data.failed_login_attempts + 1);
+                }
+
+                return false;
+            }
+
+            // Password verified - store user ID and update last login
+            user_id_ = user_data.id;
+            WorldQueries::update_user_last_login(txn, user_data.id);
+
+            return true;
+        });
 
     if (!result) {
         Log::error("Failed to verify user: {}", result.error().message);
@@ -1257,24 +1395,20 @@ void LoginSystem::load_user_characters() {
         return;
     }
 
-    auto result = ConnectionPool::instance().execute([this](pqxx::work& txn)
-        -> Result<std::vector<WorldQueries::CharacterSummary>> {
-        return WorldQueries::get_user_characters(txn, user_id_);
-    });
+    auto result = ConnectionPool::instance().execute(
+        [this](pqxx::work &txn) -> Result<std::vector<WorldQueries::CharacterSummary>> {
+            return WorldQueries::get_user_characters(txn, user_id_);
+        });
 
     if (!result) {
         Log::error("Failed to load characters for user {}: {}", user_id_, result.error().message);
         return;
     }
 
-    const auto& characters = result.value();
-    for (const auto& char_summary : characters) {
-        user_characters_.emplace_back(
-            char_summary.id,
-            char_summary.name,
-            char_summary.level,
-            char_summary.player_class
-        );
+    const auto &characters = result.value();
+    for (const auto &char_summary : characters) {
+        user_characters_.emplace_back(char_summary.id, char_summary.name, char_summary.level,
+                                      char_summary.player_class);
     }
 
     Log::debug("Loaded {} characters for user {}", user_characters_.size(), user_id_);
@@ -1290,9 +1424,8 @@ void LoginSystem::disconnect_with_message(std::string_view message) {
 
 // Character management - Database-backed implementation
 Result<bool> LoginSystem::character_exists(std::string_view name) {
-    auto result = ConnectionPool::instance().execute([&name](pqxx::work& txn) {
-        return WorldQueries::character_exists(txn, std::string(name));
-    });
+    auto result = ConnectionPool::instance().execute(
+        [&name](pqxx::work &txn) { return WorldQueries::character_exists(txn, std::string(name)); });
 
     if (!result) {
         Log::error("Failed to check character existence: {}", result.error().message);
@@ -1303,98 +1436,112 @@ Result<bool> LoginSystem::character_exists(std::string_view name) {
 
 Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view name, std::string_view password) {
     // Database-backed character loading
-    auto result = ConnectionPool::instance().execute([&name, &password](pqxx::work& txn)
-        -> Result<std::shared_ptr<Player>> {
+    auto result =
+        ConnectionPool::instance().execute([&name, &password](pqxx::work &txn) -> Result<std::shared_ptr<Player>> {
+            // Verify password
+            auto verify_result = WorldQueries::verify_character_password(txn, std::string(name), std::string(password));
+            if (!verify_result) {
+                return std::unexpected(verify_result.error());
+            }
+            if (!verify_result.value()) {
+                return std::unexpected(Error{ErrorCode::PermissionDenied, "Invalid password"});
+            }
 
-        // Verify password
-        auto verify_result = WorldQueries::verify_character_password(txn, std::string(name), std::string(password));
-        if (!verify_result) {
-            return std::unexpected(verify_result.error());
-        }
-        if (!verify_result.value()) {
-            return std::unexpected(Error{ErrorCode::PermissionDenied, "Invalid password"});
-        }
+            // Load character data
+            auto char_result = WorldQueries::load_character_by_name(txn, std::string(name));
+            if (!char_result) {
+                return std::unexpected(char_result.error());
+            }
 
-        // Load character data
-        auto char_result = WorldQueries::load_character_by_name(txn, std::string(name));
-        if (!char_result) {
-            return std::unexpected(char_result.error());
-        }
+            const auto &char_data = char_result.value();
 
-        const auto& char_data = char_result.value();
+            // Create Player from database data
+            // Generate an EntityId for the player from the database UUID
+            // We'll use a hash of the UUID to get a numeric ID
+            std::size_t hash = std::hash<std::string>{}(char_data.id);
+            EntityId player_id(static_cast<int>(hash & 0x7FFFFFFF));
 
-        // Create Player from database data
-        // Generate an EntityId for the player from the database UUID
-        // We'll use a hash of the UUID to get a numeric ID
-        std::size_t hash = std::hash<std::string>{}(char_data.id);
-        EntityId player_id(static_cast<int>(hash & 0x7FFFFFFF));
+            auto player_result = Player::create(player_id, char_data.name);
+            if (!player_result) {
+                return std::unexpected(player_result.error());
+            }
 
-        auto player_result = Player::create(player_id, char_data.name);
-        if (!player_result) {
-            return std::unexpected(player_result.error());
-        }
+            auto player = std::shared_ptr<Player>(player_result.value().release());
 
-        auto player = std::shared_ptr<Player>(player_result.value().release());
+            // Set character data from database
+            player->set_level(char_data.level);
+            player->set_class(char_data.player_class);
+            player->set_race(char_data.race_type);
+            player->set_gender(char_data.gender);
 
-        // Set character data from database
-        player->set_level(char_data.level);
-        player->set_class(char_data.player_class);
-        player->set_race(char_data.race_type);
-        player->set_gender(char_data.gender);
+            // Set god level for immortals (level 100+)
+            if (char_data.level >= kImmortalLevel) {
+                player->set_god_level(char_data.level - (kImmortalLevel - 1));
+            }
 
-        // Set god level for immortals (level 100+)
-        if (char_data.level >= kImmortalLevel) {
-            player->set_god_level(char_data.level - (kImmortalLevel - 1));
-        }
+            // Set stats
+            auto &stats = player->stats();
+            stats.strength = char_data.strength;
+            stats.intelligence = char_data.intelligence;
+            stats.wisdom = char_data.wisdom;
+            stats.dexterity = char_data.dexterity;
+            stats.constitution = char_data.constitution;
+            stats.charisma = char_data.charisma;
 
-        // Set stats
-        auto& stats = player->stats();
-        stats.strength = char_data.strength;
-        stats.intelligence = char_data.intelligence;
-        stats.wisdom = char_data.wisdom;
-        stats.dexterity = char_data.dexterity;
-        stats.constitution = char_data.constitution;
-        stats.charisma = char_data.charisma;
+            // Set vitals
+            stats.hit_points = char_data.hit_points;
+            stats.max_hit_points = char_data.hit_points_max;
+            stats.movement = char_data.movement;
+            stats.max_movement = char_data.movement_max;
 
-        // Set vitals
-        stats.hit_points = char_data.hit_points;
-        stats.max_hit_points = char_data.hit_points_max;
-        stats.movement = char_data.movement;
-        stats.max_movement = char_data.movement_max;
+            // Convert legacy DB combat stats to new system
+            stats.accuracy = char_data.hit_roll;
+            stats.attack_power = char_data.damage_roll;
+            stats.armor_rating = std::max(0, 100 - char_data.armor_class);
 
-        // Convert legacy DB combat stats to new system
-        stats.accuracy = char_data.hit_roll;
-        stats.attack_power = char_data.damage_roll;
-        stats.armor_rating = std::max(0, 100 - char_data.armor_class);
+            // Set experience
+            stats.experience = char_data.experience;
 
-        // Set experience
-        stats.experience = char_data.experience;
+            // Store the database character ID for saving later
+            player->set_database_id(char_data.id);
 
-        // Store the database character ID for saving later
-        player->set_database_id(char_data.id);
+            // Load player preferences
+            player->set_title(char_data.title);
+            player->set_description(char_data.description);
+            player->set_wimpy_threshold(char_data.wimpy_threshold);
+            player->set_player_flags_from_strings(char_data.player_flags);
 
-        // Load player preferences
-        player->set_title(char_data.title);
-        player->set_description(char_data.description);
-        player->set_wimpy_threshold(char_data.wimpy_threshold);
-        player->set_player_flags_from_strings(char_data.player_flags);
+            // Load currency
+            player->set_copper(char_data.copper);
+            player->set_silver(char_data.silver);
+            player->set_gold(char_data.gold);
+            player->set_platinum(char_data.platinum);
+            player->set_bank_copper(char_data.bank_copper);
+            player->set_bank_silver(char_data.bank_silver);
+            player->set_bank_gold(char_data.bank_gold);
+            player->set_bank_platinum(char_data.bank_platinum);
 
-        // Load currency
-        player->set_copper(char_data.copper);
-        player->set_silver(char_data.silver);
-        player->set_gold(char_data.gold);
-        player->set_platinum(char_data.platinum);
-        player->set_bank_copper(char_data.bank_copper);
-        player->set_bank_silver(char_data.bank_silver);
-        player->set_bank_gold(char_data.bank_gold);
-        player->set_bank_platinum(char_data.bank_platinum);
+            // Set start room from saved location if available
+            // Priority: save_room (rent location) > current_room > world default
+            // Room locations are stored as composite keys (zone_id, room_id)
+            if (char_data.save_room_zone_id && char_data.save_room_id) {
+                player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.save_room_zone_id),
+                                                static_cast<std::uint32_t>(*char_data.save_room_id)));
+                Log::debug("Player {} has save_room ({}, {}) -> {}", char_data.name, *char_data.save_room_zone_id,
+                           *char_data.save_room_id, player->start_room());
+            } else if (char_data.current_room_zone_id && char_data.current_room_id) {
+                player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.current_room_zone_id),
+                                                static_cast<std::uint32_t>(*char_data.current_room_id)));
+                Log::debug("Player {} has current_room ({}, {}) -> {}", char_data.name, *char_data.current_room_zone_id,
+                           *char_data.current_room_id, player->start_room());
+            }
 
-        // Update last login and online status
-        WorldQueries::update_last_login(txn, char_data.id);
-        WorldQueries::set_character_online(txn, char_data.id, true);
+            // Update last login and online status
+            WorldQueries::update_last_login(txn, char_data.id);
+            WorldQueries::set_character_online(txn, char_data.id, true);
 
-        return player;
-    });
+            return player;
+        });
 
     if (!result) {
         Log::error("Failed to load character '{}': {}", name, result.error().message);
@@ -1409,13 +1556,47 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     // Load character items (equipment and inventory) from database
     load_player_items(player);
 
-    // Refresh the player's start room to match the current world's default
-    auto world_start_room = WorldManager::instance().get_start_room();
-    if (world_start_room.is_valid()) {
-        player->set_start_room(world_start_room);
-        Log::debug("Refreshed loaded player {} start room to: {}", player->name(), world_start_room);
-    } else {
-        Log::warn("World start room is invalid for loaded player {}", player->name());
+    // Determine start room with priority: saveRoom > raceRoom > mudDefault
+    auto &world_manager = WorldManager::instance();
+    auto &game_data = GameDataCache::instance();
+    auto saved_room = player->start_room();
+
+    if (saved_room.is_valid()) {
+        // Player has a saved room - verify it exists
+        if (world_manager.get_room(saved_room)) {
+            Log::debug("Player {} will load at saved room {}", player->name(), saved_room);
+        } else {
+            // Saved room doesn't exist, clear it and fall through to alternatives
+            Log::info("Player {} saved room {} doesn't exist, trying alternatives", player->name(), saved_room);
+            saved_room = EntityId{}; // Invalidate
+        }
+    }
+
+    if (!saved_room.is_valid()) {
+        // No valid saved room - try race-specific start room from cache
+        std::string race_key(player->race());
+        if (auto race_data = game_data.find_race_by_key(race_key)) {
+            if (race_data->has_start_room()) {
+                EntityId race_room(static_cast<std::uint32_t>(*race_data->start_room_zone_id),
+                                   static_cast<std::uint32_t>(*race_data->start_room_id));
+
+                if (world_manager.get_room(race_room)) {
+                    player->set_start_room(race_room);
+                    Log::debug("Player {} using race '{}' start room: {}", player->name(), race_key, race_room);
+                }
+            }
+        }
+    }
+
+    if (!player->start_room().is_valid()) {
+        // Fall back to world default
+        auto world_start_room = world_manager.get_start_room();
+        if (world_start_room.is_valid()) {
+            player->set_start_room(world_start_room);
+            Log::debug("Player {} using world default start room: {}", player->name(), world_start_room);
+        } else {
+            Log::warn("World start room is invalid for loaded player {}", player->name());
+        }
     }
 
     Log::info("Player '{}' loaded from database", player->name());
@@ -1431,22 +1612,16 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
     std::string race_name = std::string(magic_enum::enum_name(creation_data_.race));
 
     // Create character in database
-    auto result = ConnectionPool::instance().execute([this, &class_name, &race_name](pqxx::work& txn)
-        -> Result<std::shared_ptr<Player>> {
-
-        auto create_result = WorldQueries::create_character(
-            txn,
-            creation_data_.name,
-            creation_data_.password,
-            class_name,
-            race_name
-        );
+    auto result = ConnectionPool::instance().execute([this, &class_name,
+                                                      &race_name](pqxx::work &txn) -> Result<std::shared_ptr<Player>> {
+        auto create_result =
+            WorldQueries::create_character(txn, creation_data_.name, creation_data_.password, class_name, race_name);
 
         if (!create_result) {
             return std::unexpected(create_result.error());
         }
 
-        const auto& char_data = create_result.value();
+        const auto &char_data = create_result.value();
 
         // Generate EntityId from database UUID
         std::size_t hash = std::hash<std::string>{}(char_data.id);
@@ -1472,7 +1647,7 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
         }
 
         // Set stats
-        auto& stats = player->stats();
+        auto &stats = player->stats();
         stats.strength = char_data.strength;
         stats.intelligence = char_data.intelligence;
         stats.wisdom = char_data.wisdom;
@@ -1498,14 +1673,33 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
     }
 
     auto player = *result;
+    auto &world_manager = WorldManager::instance();
+    auto &game_data = GameDataCache::instance();
 
-    // Set the player's start room to the world's default start room
-    auto world_start_room = WorldManager::instance().get_start_room();
-    if (world_start_room.is_valid()) {
-        player->set_start_room(world_start_room);
-        Log::debug("Set new player {} start room to: {}", player->name(), world_start_room);
-    } else {
-        Log::warn("World start room is invalid for new player {}", player->name());
+    // Determine start room with priority: raceRoom > mudDefault
+    // (New characters don't have a saved room)
+    std::string race_key(player->race());
+    if (auto race_data = game_data.find_race_by_key(race_key)) {
+        if (race_data->has_start_room()) {
+            EntityId race_room(static_cast<std::uint32_t>(*race_data->start_room_zone_id),
+                               static_cast<std::uint32_t>(*race_data->start_room_id));
+
+            if (world_manager.get_room(race_room)) {
+                player->set_start_room(race_room);
+                Log::debug("New player {} using race '{}' start room: {}", player->name(), race_key, race_room);
+            }
+        }
+    }
+
+    if (!player->start_room().is_valid()) {
+        // Fall back to world default
+        auto world_start_room = world_manager.get_start_room();
+        if (world_start_room.is_valid()) {
+            player->set_start_room(world_start_room);
+            Log::debug("New player {} using world default start room: {}", player->name(), world_start_room);
+        } else {
+            Log::warn("World start room is invalid for new player {}", player->name());
+        }
     }
 
     Log::info("Created new character '{}' in database", player->name());
@@ -1532,7 +1726,7 @@ Result<void> LoginSystem::save_character(std::shared_ptr<Player> player) {
     char_data.race_type = player->race();
 
     // Stats
-    const auto& stats = player->stats();
+    const auto &stats = player->stats();
     char_data.strength = stats.strength;
     char_data.intelligence = stats.intelligence;
     char_data.wisdom = stats.wisdom;
@@ -1564,9 +1758,8 @@ Result<void> LoginSystem::save_character(std::shared_ptr<Player> player) {
     char_data.platinum = static_cast<int>(stats.gold / 1000000);
 
     // Save to database
-    auto result = ConnectionPool::instance().execute([&char_data](pqxx::work& txn) {
-        return WorldQueries::save_character(txn, char_data);
-    });
+    auto result = ConnectionPool::instance().execute(
+        [&char_data](pqxx::work &txn) { return WorldQueries::save_character(txn, char_data); });
 
     if (!result) {
         Log::error("Failed to save character '{}': {}", player->name(), result.error().message);

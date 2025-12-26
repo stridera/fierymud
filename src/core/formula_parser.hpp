@@ -25,8 +25,16 @@ struct FormulaContext {
     int wis_bonus = 0;        // Wisdom modifier
     int cha_bonus = 0;        // Charisma modifier
     int weapon_damage = 0;    // Base weapon damage
+
+    // Actor's detection stats
+    int perception = 0;       // Actor's perception stat
+    int concealment = 0;      // Actor's concealment stat
+
+    // Target stats for contested checks
     int armor_rating = 0;     // Target's armor rating
     int target_level = 1;     // Target's level
+    int target_perception = 0;  // Target's perception stat
+    int target_concealment = 0; // Target's concealment stat
 
     // Custom variables can be added here
     std::unordered_map<std::string, int> custom_vars;

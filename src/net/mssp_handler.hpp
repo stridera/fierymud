@@ -39,8 +39,8 @@ public:
     // Generate MSSP data based on current server state
     std::vector<uint8_t> generate_mssp_data(const NetworkManager* network_manager = nullptr) const;
     
-    // Update dynamic server statistics
-    void update_statistics(const NetworkManager* network_manager);
+    // Update dynamic server statistics (const because dynamic_stats_ is mutable cache)
+    void update_statistics(const NetworkManager* network_manager) const;
     
 private:
     const ServerConfig& config_;

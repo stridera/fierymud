@@ -57,3 +57,8 @@ void skip_spaces(std::string_view str);
 
 [[nodiscard]] std::string join_strings(const std::vector<std::string> &strings, const std::string_view separator,
                                        const std::string_view last_separator);
+
+// Per-word prefix matching: "det inv" matches "detect invisible"
+// Each word in 'search' must be a prefix of the corresponding word in 'target'
+// Words can be separated by spaces or underscores
+[[nodiscard]] bool matches_words(std::string_view search, std::string_view target);

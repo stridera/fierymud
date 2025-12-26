@@ -1,6 +1,7 @@
 #include "tls_context.hpp"
 #include "../server/mud_server.hpp"
 #include "../core/logging.hpp"
+#include <array>
 #include <filesystem>
 #include <fstream>
 
@@ -176,11 +177,11 @@ Result<void> TLSContextManager::setup_cipher_list() {
 
 bool TLSContextManager::verify_certificate(bool preverified, asio::ssl::verify_context& ctx) {
     // Basic certificate verification - can be extended for more sophisticated validation
-    char subject_name[256];
+    std::array<char, 256> subject_name{};
     X509* cert = X509_STORE_CTX_get_current_cert(ctx.native_handle());
-    X509_NAME_oneline(X509_get_subject_name(cert), subject_name, 256);
-    
-    Log::debug("TLS certificate verification: subject={}, preverified={}", subject_name, preverified);
+    X509_NAME_oneline(X509_get_subject_name(cert), subject_name.data(), subject_name.size());
+
+    Log::debug("TLS certificate verification: subject={}, preverified={}", subject_name.data(), preverified);
     
     // For now, accept the certificate if it passed OpenSSL's built-in verification
     return preverified;
@@ -285,14 +286,14 @@ void TLSSocket::async_write_some(asio::const_buffer buffer,
 
 void TLSSocket::close() {
     try {
-        if (is_tls_ && tls_stream_ && handshake_complete_) {
-            // Graceful TLS shutdown
-            tls_stream_->async_shutdown([](const asio::error_code&) {
-                // Shutdown complete or failed - either way, continue with close
-            });
-        }
+        // Note: We skip the async TLS shutdown because it causes crashes when the
+        // socket is closed immediately after (race condition). For a forceful close
+        // like reconnection, graceful TLS shutdown is not required - just close
+        // the underlying TCP socket which will terminate the TLS connection.
         if (tcp_socket_.is_open()) {
-            tcp_socket_.close();
+            asio::error_code ec;
+            tcp_socket_.shutdown(asio::ip::tcp::socket::shutdown_both, ec);
+            tcp_socket_.close(ec);
         }
     } catch (const std::exception& e) {
         Log::warn("Error during TLS socket close: {}", e.what());

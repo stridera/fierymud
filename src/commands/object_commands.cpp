@@ -992,14 +992,24 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find light source in inventory
-    auto inventory_items = ctx.actor->inventory().get_all_items();
+    // Find light source in inventory or equipped
     std::shared_ptr<Object> light_source = nullptr;
 
-    for (const auto &obj : inventory_items) {
+    // First check inventory
+    for (const auto &obj : ctx.actor->inventory().get_all_items()) {
         if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
             light_source = obj;
             break;
+        }
+    }
+
+    // If not found in inventory, check equipped items
+    if (!light_source) {
+        for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
+            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+                light_source = obj;
+                break;
+            }
         }
     }
 

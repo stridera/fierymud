@@ -6,6 +6,7 @@
 #include "../world/room.hpp"
 #include "../net/player_connection.hpp"
 
+#include <magic_enum/magic_enum.hpp>
 #include <algorithm>
 #include <cmath>
 #include <sstream>
@@ -616,18 +617,23 @@ Result<void> Actor::move_to(std::shared_ptr<Room> new_room) {
 }
 
 bool Actor::is_visible_to(const Actor& observer) const {
+    // HolyLight bypasses all visibility checks
+    if (observer.is_holylight()) {
+        return true;
+    }
+
     if (has_flag(ActorFlag::Invisible) && !observer.has_flag(ActorFlag::Detect_Invis)) {
         return false;
     }
-    
+
     if (has_flag(ActorFlag::Hide) && !observer.has_flag(ActorFlag::Sense_Life)) {
         return false;
     }
-    
+
     if (observer.has_flag(ActorFlag::Blind)) {
         return false;
     }
-    
+
     return true;
 }
 
@@ -640,15 +646,58 @@ bool Actor::can_see(const Actor& target) const {
 }
 
 bool Actor::can_see(const Object& object) const {
+    // HolyLight bypasses all visibility checks
+    if (is_holylight()) {
+        return true;
+    }
+
     if (has_flag(ActorFlag::Blind)) {
         return false;
     }
-    
+
     if (object.has_flag(ObjectFlag::Invisible) && !has_flag(ActorFlag::Detect_Invis)) {
         return false;
     }
-    
+
     return true;
+}
+
+std::string Actor::display_name_for_observer(const Actor& observer) const {
+    std::string result = display_name();
+    std::string indicators;
+
+    // Check if observer can see invisible status (via Detect_Invis)
+    if (has_flag(ActorFlag::Invisible) && observer.has_flag(ActorFlag::Detect_Invis)) {
+        indicators += "(invis)";
+    }
+
+    // Check if observer can see alignment (via Detect_Align)
+    if (observer.has_flag(ActorFlag::Detect_Align)) {
+        int alignment = stats().alignment;
+        if (alignment <= -350) {
+            indicators += indicators.empty() ? "(evil)" : " (evil)";
+        } else if (alignment >= 350) {
+            indicators += indicators.empty() ? "(good)" : " (good)";
+        }
+    }
+
+    // Check for magical aura (via Detect_Magic)
+    if (observer.has_flag(ActorFlag::Detect_Magic)) {
+        if (!active_effects_.empty()) {
+            indicators += indicators.empty() ? "(magical)" : " (magical)";
+        }
+    }
+
+    // Check for hidden status (via Sense_Life)
+    if (has_flag(ActorFlag::Hide) && observer.has_flag(ActorFlag::Sense_Life)) {
+        indicators += indicators.empty() ? "(hidden)" : " (hidden)";
+    }
+
+    if (!indicators.empty()) {
+        result = indicators + " " + result;
+    }
+
+    return result;
 }
 
 Result<void> Actor::give_item(std::shared_ptr<Object> item) {
@@ -846,8 +895,8 @@ void Actor::add_effect(const ActiveEffect& effect) {
         set_flag(effect.flag, true);
     }
 
-    Log::game()->debug("Effect '{}' applied to {} (duration: {} rounds)",
-                      effect.name, name(), effect.duration_rounds);
+    Log::game()->debug("Effect '{}' applied to {} (duration: {} hours)",
+                      effect.name, name(), effect.duration_hours);
 }
 
 void Actor::remove_effect(const std::string& effect_name) {
@@ -883,11 +932,14 @@ const ActiveEffect* Actor::get_effect(const std::string& effect_name) const {
 }
 
 void Actor::tick_effects() {
-    // Decrement durations and remove expired effects
+    // Decrement durations and remove expired effects (called each MUD hour)
     for (auto it = active_effects_.begin(); it != active_effects_.end(); ) {
         if (!it->is_permanent()) {
-            it->duration_rounds--;
-            if (it->duration_rounds <= 0) {
+            it->duration_hours--;
+            if (it->duration_hours <= 0) {
+                // Notify the actor that the effect has worn off
+                send_message(fmt::format("Your {} effect wears off.\r\n", it->name));
+
                 // Remove the associated flag
                 if (it->flag != ActorFlag::Blind) {
                     set_flag(it->flag, false);
@@ -909,6 +961,24 @@ void Actor::clear_effects() {
         }
     }
     active_effects_.clear();
+}
+
+bool Actor::interrupt_concentration() {
+    // List of concentration-based effects that can be interrupted
+    static const std::vector<std::string> concentration_effects = {
+        "Meditate"
+    };
+
+    bool interrupted = false;
+    for (const auto& effect_name : concentration_effects) {
+        if (has_effect(effect_name)) {
+            remove_effect(effect_name);
+            send_message("Your concentration is broken.\n");
+            interrupted = true;
+        }
+    }
+
+    return interrupted;
 }
 
 // Mobile Implementation
@@ -1170,6 +1240,31 @@ int Mobile::calculate_hp_from_dice() {
     stats().hit_points = total;
 
     return total;
+}
+
+void Mobile::set_stance(std::string_view s) {
+    // Convert SCREAMING_SNAKE_CASE database value to PascalCase enum
+    std::string pascal_name;
+    pascal_name.reserve(s.size());
+    bool capitalize_next = true;
+    for (char c : s) {
+        if (c == '_') {
+            capitalize_next = true;
+        } else if (capitalize_next) {
+            pascal_name += static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+            capitalize_next = false;
+        } else {
+            pascal_name += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+    }
+
+    auto stance = magic_enum::enum_cast<db::Stance>(pascal_name);
+    if (stance) {
+        stance_ = *stance;
+    } else {
+        // Default to Alert if unknown
+        stance_ = db::Stance::Alert;
+    }
 }
 
 void Mobile::initialize_for_level(int level) {
@@ -1798,7 +1893,24 @@ std::string Actor::get_stat_info() const {
     output << fmt::format("Group Master is: <none>, groupees are:\n");
     
     // Effects
-    output << fmt::format("EFF: <None>\n");
+    const auto& effects = active_effects_;
+    if (effects.empty()) {
+        output << "EFF: <None>\n";
+    } else {
+        output << "EFF: ";
+        bool first = true;
+        for (const auto& effect : effects) {
+            if (!first) output << ", ";
+            first = false;
+            output << effect.name;
+            if (effect.is_permanent()) {
+                output << " (perm)";
+            } else if (effect.duration_hours > 0) {
+                output << fmt::format(" ({}h)", effect.duration_hours);
+            }
+        }
+        output << "\n";
+    }
     
     // Events
     output << "No events.\n";

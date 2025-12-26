@@ -132,6 +132,28 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
+    // Check if it's a spell, skill, or ability
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        const LearnedAbility* ability = player->find_ability_by_name(topic);
+        if (ability) {
+            ctx.send(fmt::format("Help: {}", ability->name));
+            ctx.send(std::string(6 + ability->name.length(), '='));
+            ctx.send(fmt::format("Type: {}", ability->type));
+
+            if (!ability->description.empty()) {
+                ctx.send(fmt::format("\n{}", ability->description));
+            } else {
+                ctx.send("\nNo description available.");
+            }
+
+            if (ability->violent) {
+                ctx.send("\nThis is a combat ability that requires a target.");
+            }
+
+            return CommandResult::Success;
+        }
+    }
+
     // Check for general topic help
     if (topic == "commands") {
         return cmd_commands(ctx);

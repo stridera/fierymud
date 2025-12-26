@@ -176,19 +176,23 @@ std::vector<CharacterPtr> Clan::get_members_by_rank(const ClanRank &rank) const 
 }
 
 bool Clan::has_permission(const CharacterPtr &character, ClanPermission permission) const {
-    if (!is_member(character)) {
+    return has_permission(character ? character.get() : nullptr, permission);
+}
+
+bool Clan::has_permission(const CharData* character, ClanPermission permission) const {
+    if (!character || !is_member(character)) {
         return false;
     }
-    
+
     auto member = get_member_by_name(character->player.short_descr);
     if (!member.has_value()) {
         return false;
     }
-    
+
     if (member->rank_index < 0 || member->rank_index >= static_cast<int>(ranks_.size())) {
         return false;
     }
-    
+
     return ranks_[member->rank_index].has_permission(permission);
 }
 

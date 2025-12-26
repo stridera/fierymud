@@ -5,6 +5,7 @@
 #include "core/logging.hpp"
 #include "database/connection_pool.hpp"
 #include "database/world_queries.hpp"
+#include "world/room.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -12,6 +13,43 @@
 #include <fmt/format.h>
 
 namespace FieryMUD {
+
+// =============================================================================
+// Message Template Processing
+// =============================================================================
+
+/**
+ * Format message template with named arguments using fmt::format style.
+ * Supported placeholders:
+ *   {actor}  - actor's display name
+ *   {target} - target's display name
+ *   {damage} - damage value
+ *   {healing} - healing value (alias for damage in healing context)
+ *
+ * Example: "You strike {target} for {damage} damage!"
+ */
+static std::string process_message_template(
+    std::string_view template_str,
+    const std::shared_ptr<Actor>& actor,
+    const std::shared_ptr<Actor>& target,
+    int damage = 0) {
+
+    if (template_str.empty()) return "";
+
+    try {
+        return fmt::format(
+            fmt::runtime(template_str),
+            fmt::arg("actor", actor ? actor->display_name() : "someone"),
+            fmt::arg("target", target ? target->display_name() : "someone"),
+            fmt::arg("damage", damage),
+            fmt::arg("healing", damage)
+        );
+    } catch (const fmt::format_error& e) {
+        // If template is malformed, return it as-is with a warning
+        Log::warn("Invalid message template '{}': {}", template_str, e.what());
+        return std::string(template_str);
+    }
+}
 
 // =============================================================================
 // AbilityExecutionResult
@@ -58,11 +96,17 @@ Result<void> AbilityCache::reload() {
         for (auto& ability : *abilities_result) {
             int id = ability.id;
 
-            // Build name index (lowercase)
-            std::string lower_name = ability.plain_name;
-            std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(),
+            // Build name index (lowercase) - index by both plain_name and display name
+            std::string lower_plain_name = ability.plain_name;
+            std::transform(lower_plain_name.begin(), lower_plain_name.end(), lower_plain_name.begin(),
                           [](unsigned char c) { return std::tolower(c); });
-            ability_name_index_[lower_name] = id;
+            ability_name_index_[lower_plain_name] = id;
+
+            // Also index by display name for lookups from effect.source
+            std::string lower_display_name = ability.name;
+            std::transform(lower_display_name.begin(), lower_display_name.end(), lower_display_name.begin(),
+                          [](unsigned char c) { return std::tolower(c); });
+            ability_name_index_[lower_display_name] = id;
 
             abilities_.emplace(id, std::move(ability));
         }
@@ -116,6 +160,66 @@ Result<void> AbilityCache::reload() {
             ability_effects_[effect_data.ability_id].push_back(std::move(effect));
         }
 
+        // Load ability messages
+        auto messages_result = WorldQueries::load_all_ability_messages(txn);
+        if (!messages_result) {
+            Log::warn("Failed to load ability messages: {}", messages_result.error().message);
+            // Non-fatal, continue without messages
+        } else {
+            ability_messages_.clear();
+            for (const auto& msg_data : *messages_result) {
+                CachedAbilityMessages msg;
+                msg.start_to_caster = msg_data.start_to_caster;
+                msg.start_to_victim = msg_data.start_to_victim;
+                msg.start_to_room = msg_data.start_to_room;
+                msg.success_to_caster = msg_data.success_to_caster;
+                msg.success_to_victim = msg_data.success_to_victim;
+                msg.success_to_room = msg_data.success_to_room;
+                msg.success_to_self = msg_data.success_to_self;
+                msg.success_self_room = msg_data.success_self_room;
+                msg.fail_to_caster = msg_data.fail_to_caster;
+                msg.fail_to_victim = msg_data.fail_to_victim;
+                msg.fail_to_room = msg_data.fail_to_room;
+                msg.wearoff_to_target = msg_data.wearoff_to_target;
+                msg.wearoff_to_room = msg_data.wearoff_to_room;
+                msg.look_message = msg_data.look_message;
+                ability_messages_[msg_data.ability_id] = std::move(msg);
+            }
+        }
+
+        // Load ability restrictions
+        auto restrictions_result = WorldQueries::load_all_ability_restrictions(txn);
+        if (!restrictions_result) {
+            Log::warn("Failed to load ability restrictions: {}", restrictions_result.error().message);
+            // Non-fatal, continue without restrictions
+        } else {
+            ability_restrictions_.clear();
+            for (const auto& restr_data : *restrictions_result) {
+                CachedAbilityRestrictions restr;
+                restr.requirements = WorldQueries::parse_ability_requirements(
+                    restr_data.requirements_json, restr_data.ability_id);
+                restr.custom_lua = restr_data.custom_requirement_lua;
+                ability_restrictions_[restr_data.ability_id] = std::move(restr);
+            }
+        }
+
+        // Load damage components
+        auto damage_result = WorldQueries::load_all_ability_damage_components(txn);
+        if (!damage_result) {
+            Log::warn("Failed to load ability damage components: {}", damage_result.error().message);
+            // Non-fatal, continue without damage components
+        } else {
+            damage_components_.clear();
+            for (const auto& comp_data : *damage_result) {
+                CachedDamageComponent comp;
+                comp.element = comp_data.element;
+                comp.damage_formula = comp_data.damage_formula;
+                comp.percentage = comp_data.percentage;
+                comp.sequence = comp_data.sequence;
+                damage_components_[comp_data.ability_id].push_back(std::move(comp));
+            }
+        }
+
         return {};
     });
 
@@ -125,8 +229,9 @@ Result<void> AbilityCache::reload() {
     }
 
     initialized_ = true;
-    logger->info("Ability cache loaded: {} abilities, {} effects",
-                abilities_.size(), effects_.size());
+    logger->info("Ability cache loaded: {} abilities, {} effect types, {} ability-effects, {} messages, {} restrictions",
+                abilities_.size(), effects_.size(), ability_effects_.size(),
+                ability_messages_.size(), ability_restrictions_.size());
     return {};
 }
 
@@ -158,6 +263,21 @@ std::vector<AbilityEffect> AbilityCache::get_ability_effects(int ability_id) con
     return it != ability_effects_.end() ? it->second : std::vector<AbilityEffect>{};
 }
 
+const CachedAbilityMessages* AbilityCache::get_ability_messages(int ability_id) const {
+    auto it = ability_messages_.find(ability_id);
+    return it != ability_messages_.end() ? &it->second : nullptr;
+}
+
+const CachedAbilityRestrictions* AbilityCache::get_ability_restrictions(int ability_id) const {
+    auto it = ability_restrictions_.find(ability_id);
+    return it != ability_restrictions_.end() ? &it->second : nullptr;
+}
+
+std::vector<CachedDamageComponent> AbilityCache::get_damage_components(int ability_id) const {
+    auto it = damage_components_.find(ability_id);
+    return it != damage_components_.end() ? it->second : std::vector<CachedDamageComponent>{};
+}
+
 // =============================================================================
 // AbilityExecutor
 // =============================================================================
@@ -180,6 +300,7 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute(
     // Find ability by name
     const auto* ability = cache.get_ability_by_name(ability_name);
     if (!ability) {
+        Log::game()->debug("Ability '{}' not found in cache", ability_name);
         return std::unexpected(Errors::NotFound(fmt::format("ability '{}'", ability_name)));
     }
 
@@ -205,64 +326,221 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         return std::unexpected(prereq_check.error());
     }
 
-    // Build effect context
-    EffectContext effect_ctx;
-    effect_ctx.actor = ctx.actor;
-    effect_ctx.target = target;
-    effect_ctx.skill_level = skill_level;
-    effect_ctx.ability_name = ability->name;  // Display name for effect tracking
-    effect_ctx.build_formula_context();
+    // Handle toggle abilities
+    if (ability->is_toggle) {
+        // Check if this toggle is already active
+        if (ctx.actor->has_effect(ability->plain_name)) {
+            // Toggle off - remove the effect
+            ctx.actor->remove_effect(ability->plain_name);
 
-    // Execute effects - spells use OnCast trigger
-    auto effects_result = execute_effects(*ability, effect_ctx, EffectTrigger::OnCast);
-    if (!effects_result) {
-        return std::unexpected(effects_result.error());
+            AbilityExecutionResult result;
+            result.success = true;
+
+            // Check for custom wearoff messages
+            const auto* custom_msgs = cache.get_ability_messages(ability->id);
+            if (custom_msgs && !custom_msgs->wearoff_to_target.empty()) {
+                result.attacker_message = process_message_template(
+                    custom_msgs->wearoff_to_target, ctx.actor, nullptr, 0);
+                result.room_message = process_message_template(
+                    custom_msgs->wearoff_to_room, ctx.actor, nullptr, 0);
+            } else {
+                result.attacker_message = fmt::format("You stop {}.", ability->name);
+                result.room_message = fmt::format("{} stops {}.",
+                    ctx.actor->display_name(), ability->name);
+            }
+
+            return result;
+        }
+        // Otherwise, continue to activate the toggle (apply effects below)
     }
 
+    // Determine targets for this ability
+    std::vector<std::shared_ptr<Actor>> targets;
+
+    if (ability->is_area) {
+        // AOE ability - target all enemies in the room
+        auto room = ctx.actor->current_room();
+        if (room) {
+            for (const auto& room_actor : room->contents().actors) {
+                // Skip self, skip non-visible, skip allies (for violent AOE)
+                if (room_actor && room_actor != ctx.actor &&
+                    room_actor->is_visible_to(*ctx.actor)) {
+                    // For violent AOE spells, only target enemies
+                    // For now, we consider all other actors as valid targets
+                    // TODO: Add faction/group checking for proper ally detection
+                    if (ability->violent) {
+                        // Skip players for NPC-cast violent spells, skip NPCs if in same group, etc.
+                        // For simplicity, just target all visible actors that aren't the caster
+                        targets.push_back(room_actor);
+                    } else {
+                        // Non-violent AOE (like mass heal) - target everyone including self
+                        targets.push_back(room_actor);
+                    }
+                }
+            }
+            // For non-violent AOE, include self
+            if (!ability->violent) {
+                targets.insert(targets.begin(), ctx.actor);
+            }
+        }
+
+        if (targets.empty() && ability->violent) {
+            return std::unexpected(Errors::InvalidState("There's no one here to target."));
+        }
+
+        Log::game()->debug("AOE ability {} targeting {} actors", ability->plain_name, targets.size());
+    } else {
+        // Single target ability
+        if (target) {
+            targets.push_back(target);
+        } else if (!ability->violent) {
+            // Self-targeting for non-violent abilities without explicit target
+            targets.push_back(ctx.actor);
+        }
+    }
+
+    // Execute effects against all targets
+    AbilityExecutionResult result;
+    std::vector<std::string> all_attacker_msgs;
+    std::vector<std::string> all_room_msgs;
+    bool any_effect_succeeded = false;
+
+    for (const auto& current_target : targets) {
+        // Build effect context for this target
+        EffectContext effect_ctx;
+        effect_ctx.actor = ctx.actor;
+        effect_ctx.target = current_target;
+        effect_ctx.skill_level = skill_level;
+        effect_ctx.ability_name = ability->name;
+        effect_ctx.build_formula_context();
+
+        // Execute effects - spells use OnCast trigger
+        auto effects_result = execute_effects(*ability, effect_ctx, EffectTrigger::OnCast);
+        if (!effects_result) {
+            // Log but continue with other targets
+            Log::game()->warn("Effect execution failed for target {}: {}",
+                current_target->display_name(), effects_result.error().message);
+            continue;
+        }
+
+        // Aggregate results
+        int target_damage = 0;
+        for (const auto& effect_result : *effects_result) {
+            result.effect_results.push_back(effect_result);
+            if (effect_result.success) {
+                any_effect_succeeded = true;
+                target_damage += effect_result.value;
+                result.total_damage += effect_result.value;
+                if (effect_result.value < 0) {
+                    result.total_healing += -effect_result.value;
+                }
+            }
+        }
+
+        // Build per-target messages
+        if (target_damage > 0) {
+            all_attacker_msgs.push_back(fmt::format("{} takes {} damage!",
+                current_target->display_name(), target_damage));
+        }
+
+        // Send damage message to target
+        if (current_target != ctx.actor && target_damage > 0) {
+            current_target->send_message(fmt::format("{} hits you for {} damage!",
+                ctx.actor->display_name(), target_damage));
+        }
+    }
+
+    result.success = any_effect_succeeded || result.effect_results.empty();
+
     // Record cooldown after successful execution
-    // Note: FieryMUD uses spell circles (memorization), not mana costs
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (player) {
-        // Record ability use for cooldown tracking
         player->record_ability_use(ability->id);
     }
 
-    // Build result
-    AbilityExecutionResult result;
-    result.success = true;
-    result.effect_results = std::move(*effects_result);
+    // Check for custom ability messages from database
+    const auto* custom_msgs = cache.get_ability_messages(ability->id);
 
-    // Consolidate messages and calculate totals
-    std::vector<std::string> attacker_msgs, target_msgs, room_msgs;
+    if (custom_msgs) {
+        // Use custom database messages (processed with template variables)
+        if (result.success) {
+            if (ability->is_area) {
+                // For AOE, use a generic message about the area effect
+                result.attacker_message = process_message_template(
+                    custom_msgs->success_to_caster, ctx.actor, nullptr, result.total_damage);
+                result.room_message = process_message_template(
+                    custom_msgs->success_to_room, ctx.actor, nullptr, result.total_damage);
+                // Append individual damage if any
+                for (const auto& msg : all_attacker_msgs) {
+                    result.attacker_message += " " + msg;
+                }
+            } else {
+                // Check if this is a self-cast (target is the caster, or null for non-violent self-target)
+                bool self_cast = (target == ctx.actor) ||
+                                 (target == nullptr && !ability->violent);
 
-    for (const auto& effect_result : result.effect_results) {
-        if (!effect_result.success) continue;
+                // For message processing, use actual target (self if null for non-violent)
+                auto msg_target = target ? target : ctx.actor;
 
-        result.total_damage += effect_result.value;
-
-        if (!effect_result.attacker_message.empty()) {
-            attacker_msgs.push_back(effect_result.attacker_message);
+                if (self_cast && !custom_msgs->success_to_self.empty()) {
+                    // Use self-specific messages when casting on self
+                    result.attacker_message = process_message_template(
+                        custom_msgs->success_to_self, ctx.actor, msg_target, result.total_damage);
+                    // No target message for self-cast (caster IS the target)
+                    result.room_message = process_message_template(
+                        !custom_msgs->success_self_room.empty()
+                            ? custom_msgs->success_self_room
+                            : custom_msgs->success_to_room,
+                        ctx.actor, msg_target, result.total_damage);
+                } else {
+                    // Normal caster/target messages
+                    result.attacker_message = process_message_template(
+                        custom_msgs->success_to_caster, ctx.actor, msg_target, result.total_damage);
+                    result.target_message = process_message_template(
+                        custom_msgs->success_to_victim, ctx.actor, msg_target, result.total_damage);
+                    result.room_message = process_message_template(
+                        custom_msgs->success_to_room, ctx.actor, msg_target, result.total_damage);
+                }
+            }
+        } else {
+            result.attacker_message = process_message_template(
+                custom_msgs->fail_to_caster, ctx.actor, target, 0);
+            result.target_message = process_message_template(
+                custom_msgs->fail_to_victim, ctx.actor, target, 0);
+            result.room_message = process_message_template(
+                custom_msgs->fail_to_room, ctx.actor, target, 0);
         }
-        if (!effect_result.target_message.empty()) {
-            target_msgs.push_back(effect_result.target_message);
-        }
-        if (!effect_result.room_message.empty()) {
-            room_msgs.push_back(effect_result.room_message);
-        }
-    }
+    } else {
+        // Fall back to effect-generated messages
+        std::vector<std::string> attacker_msgs, target_msgs, room_msgs;
 
-    // Join messages
-    for (size_t i = 0; i < attacker_msgs.size(); ++i) {
-        if (i > 0) result.attacker_message += " ";
-        result.attacker_message += attacker_msgs[i];
-    }
-    for (size_t i = 0; i < target_msgs.size(); ++i) {
-        if (i > 0) result.target_message += " ";
-        result.target_message += target_msgs[i];
-    }
-    for (size_t i = 0; i < room_msgs.size(); ++i) {
-        if (i > 0) result.room_message += " ";
-        result.room_message += room_msgs[i];
+        for (const auto& effect_result : result.effect_results) {
+            if (!effect_result.success) continue;
+
+            if (!effect_result.attacker_message.empty()) {
+                attacker_msgs.push_back(effect_result.attacker_message);
+            }
+            if (!effect_result.target_message.empty()) {
+                target_msgs.push_back(effect_result.target_message);
+            }
+            if (!effect_result.room_message.empty()) {
+                room_msgs.push_back(effect_result.room_message);
+            }
+        }
+
+        // Join messages
+        for (size_t i = 0; i < attacker_msgs.size(); ++i) {
+            if (i > 0) result.attacker_message += " ";
+            result.attacker_message += attacker_msgs[i];
+        }
+        for (size_t i = 0; i < target_msgs.size(); ++i) {
+            if (i > 0) result.target_message += " ";
+            result.target_message += target_msgs[i];
+        }
+        for (size_t i = 0; i < room_msgs.size(); ++i) {
+            if (i > 0) result.room_message += " ";
+            result.room_message += room_msgs[i];
+        }
     }
 
     return result;
@@ -288,6 +566,17 @@ std::expected<void, Error> AbilityExecutor::check_prerequisites(
             fmt::format("{} requires a target", ability.plain_name)));
     }
 
+    // Check combat restrictions
+    bool is_fighting = ctx.actor->is_fighting();
+    if (ability.in_combat_only && !is_fighting) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("You can only use {} while fighting!", ability.plain_name)));
+    }
+    if (!ability.combat_ok && is_fighting) {
+        return std::unexpected(Errors::InvalidState(
+            fmt::format("You can't use {} while fighting!", ability.plain_name)));
+    }
+
     // Cooldown check (for players only)
     if (ability.cooldown_ms > 0) {
         auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
@@ -310,6 +599,93 @@ std::expected<void, Error> AbilityExecutor::check_prerequisites(
 
     // Note: FieryMUD uses spell circles (memorization), not mana costs
     // TODO: Add spell circle validation when spell memorization system is implemented
+
+    // Check ability restrictions from database
+    auto& cache = AbilityCache::instance();
+    const auto* restrictions = cache.get_ability_restrictions(ability.id);
+    if (restrictions) {
+        for (const auto& req : restrictions->requirements) {
+            bool met = false;
+            std::string error_msg;
+
+            if (req.type == "hidden") {
+                // Must be hidden (sneaking)
+                met = ctx.actor->has_flag(ActorFlag::Hide) || ctx.actor->has_flag(ActorFlag::Sneak);
+                error_msg = "You must be hidden to use that ability.";
+            }
+            else if (req.type == "weapon_type") {
+                // Check if wielded weapon is of specified type
+                auto weapon = ctx.actor->equipment().get_main_weapon();
+                if (weapon) {
+                    // TODO: Implement proper weapon damage type checking once
+                    // weapons have damage_type property (piercing, slashing, etc.)
+                    // For now, we just check if a weapon is equipped
+                    // and allow the ability if the type matches common patterns
+                    std::string req_type = req.value;
+                    std::transform(req_type.begin(), req_type.end(), req_type.begin(),
+                                  [](unsigned char c) { return std::tolower(c); });
+
+                    // Check by object type for now
+                    if (req_type == "ranged" || req_type == "bow" || req_type == "crossbow") {
+                        met = weapon->is_weapon() && weapon->type() == ObjectType::Fireweapon;
+                    } else if (req_type == "melee") {
+                        met = weapon->is_weapon() && weapon->type() == ObjectType::Weapon;
+                    } else {
+                        // For specific damage types (piercing, slashing, etc.),
+                        // assume any weapon works until we implement proper tracking
+                        met = weapon->is_weapon();
+                    }
+
+                    if (!met) {
+                        error_msg = fmt::format("You need a {} weapon for that ability.", req.value);
+                    }
+                } else {
+                    error_msg = "You need a weapon to use that ability.";
+                }
+            }
+            else if (req.type == "position") {
+                // Check position requirement
+                std::string pos_str = req.value;
+                std::transform(pos_str.begin(), pos_str.end(), pos_str.begin(),
+                              [](unsigned char c) { return std::tolower(c); });
+                auto required_pos = ActorUtils::parse_position(pos_str);
+                if (required_pos) {
+                    met = (ctx.actor->position() >= *required_pos);
+                    error_msg = fmt::format("You must be {} to use that.", req.value);
+                } else {
+                    met = true; // Unknown position, allow it
+                }
+            }
+            else if (req.type == "has_effect") {
+                // Must have a specific effect active
+                met = ctx.actor->has_effect(req.value);
+                error_msg = fmt::format("You must be affected by {} to use that.", req.value);
+            }
+            else if (req.type == "in_combat") {
+                // Must be in combat
+                met = ctx.actor->is_fighting();
+                error_msg = "You must be fighting to use that ability.";
+            }
+            else if (req.type == "not_in_combat") {
+                // Must NOT be in combat
+                met = !ctx.actor->is_fighting();
+                error_msg = "You can't use that while fighting!";
+            }
+            else {
+                // Unknown requirement type - skip (allow by default)
+                met = true;
+            }
+
+            // Apply negation if specified
+            if (req.negated) {
+                met = !met;
+            }
+
+            if (!met) {
+                return std::unexpected(Errors::InvalidState(error_msg));
+            }
+        }
+    }
 
     return {};
 }
@@ -352,6 +728,9 @@ Result<CommandResult> execute_skill_command(
     std::string_view skill_name,
     bool requires_target,
     bool can_initiate_combat) {
+
+    // Interrupt concentration-based activities (like meditation) when using abilities
+    ctx.actor->interrupt_concentration();
 
     std::shared_ptr<Actor> target;
 

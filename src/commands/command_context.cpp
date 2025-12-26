@@ -160,11 +160,20 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
     if (!room)
         return nullptr;
 
+    // Check for self-targeting keywords
+    if (name == "self" || name == "me" || name == "myself") {
+        return actor;
+    }
+
     // Search for actor by keyword in current room
     const auto &actors = room->contents().actors;
     for (const auto &room_actor : actors) {
         if (!room_actor || room_actor == actor)
-            continue; // Skip self
+            continue; // Skip self in normal search
+
+        // Check visibility - can't target what you can't see
+        if (!room_actor->is_visible_to(*actor))
+            continue;
 
         if (room_actor->matches_keyword(name)) {
             return room_actor;

@@ -31,7 +31,7 @@ std::vector<uint8_t> MSSPHandler::generate_mssp_data(const NetworkManager* netwo
     
     // Add current statistics (updated with network manager if available)
     if (network_manager) {
-        const_cast<MSSPHandler*>(this)->update_statistics(network_manager);
+        update_statistics(network_manager);
     }
     auto stats = get_statistics();
     for (const auto& [key, value] : stats) {
@@ -46,7 +46,7 @@ std::vector<uint8_t> MSSPHandler::generate_mssp_data(const NetworkManager* netwo
     return data;
 }
 
-void MSSPHandler::update_statistics(const NetworkManager* network_manager) {
+void MSSPHandler::update_statistics(const NetworkManager* network_manager) const {
     if (!network_manager) {
         return;
     }
