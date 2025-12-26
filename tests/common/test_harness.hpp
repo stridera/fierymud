@@ -3,6 +3,7 @@
 #include "commands/builtin_commands.hpp"
 #include "commands/command_system.hpp"
 #include "core/actor.hpp"
+#include "core/object.hpp"
 #include "server/mud_server.hpp"
 #include "server/world_server.hpp"
 #include "world/room.hpp"
@@ -49,6 +50,7 @@ class TestableNPC : public Actor {
 
     void send_message([[maybe_unused]] std::string_view message) override {}
     void receive_message([[maybe_unused]] std::string_view message) override {}
+    std::shared_ptr<Container> die() override { set_position(Position::Dead); return nullptr; }
 };
 
 class TestHarness {

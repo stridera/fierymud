@@ -139,6 +139,7 @@ public:
     void schedule_periodic_cleanup();
     void schedule_heartbeat();
     void schedule_combat_processing();
+    void schedule_periodic_save();
     
     // Statistics (thread-safe)
     size_t active_player_count() const;
@@ -157,6 +158,7 @@ private:
     void perform_cleanup();
     void perform_heartbeat();
     void perform_combat_processing();
+    void perform_player_save();
     
     // GMCP support
     void send_room_info_to_player(std::shared_ptr<PlayerConnection> connection);

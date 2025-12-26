@@ -1,8 +1,10 @@
 #include "character_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/logging.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/world_queries.hpp"
+#include "../server/persistence_manager.hpp"
 #include "../text/string_utils.hpp"
 #include <fmt/format.h>
 #include <algorithm>
@@ -803,6 +805,13 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
         ctx.send_error(fmt::format("Unknown toggle option: {}", option));
         ctx.send("Type 'toggle' with no arguments to see available options.");
         return CommandResult::InvalidSyntax;
+    }
+
+    // Save the player to persist preference changes
+    auto save_result = PersistenceManager::instance().save_player(*player);
+    if (!save_result) {
+        Log::warn("Failed to save player {} after toggle change: {}",
+                  player->name(), save_result.error().message);
     }
 
     return CommandResult::Success;

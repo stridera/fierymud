@@ -25,6 +25,7 @@
 #include "../text/text_format.hpp"
 #include "../text/rich_text.hpp"
 #include "../world/room.hpp"
+#include "../world/world_manager.hpp"
 
 #include <algorithm>
 #include <set>
@@ -239,7 +240,25 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
     }
 
     // Add object-specific details based on type
-    if (obj->is_container()) {
+    if (obj->type() == ObjectType::Liquid_Container) {
+        // Drink container - show liquid info, not item capacity
+        const auto& liquid = obj->liquid_info();
+        if (liquid.remaining > 0) {
+            std::string fullness;
+            int percent = (liquid.capacity > 0) ? (liquid.remaining * 100 / liquid.capacity) : 0;
+            if (percent >= 90) fullness = "full";
+            else if (percent >= 60) fullness = "mostly full";
+            else if (percent >= 40) fullness = "about half full";
+            else if (percent >= 20) fullness = "less than half full";
+            else fullness = "almost empty";
+
+            std::string liquid_name = liquid.liquid_type.empty() ? "liquid" : to_lowercase(liquid.liquid_type);
+            desc << fmt::format("It is {} of {}.\n", fullness, liquid_name);
+        } else {
+            desc << "It is empty.\n";
+        }
+    } else if (obj->type() == ObjectType::Container) {
+        // Regular container - show item capacity
         const auto &container_info = obj->container_info();
         if (container_info.closeable) {
             desc << fmt::format("It appears to be {}.\n", container_info.closed ? "closed" : "open");
@@ -252,6 +271,18 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
             if (container_info.capacity > 0) {
                 desc << fmt::format("It can hold {} items.\n", container_info.capacity);
             }
+        }
+    }
+
+    // Show lit status for light sources
+    if (obj->is_light_source()) {
+        const auto& light = obj->light_info();
+        if (light.lit) {
+            desc << "It is lit and providing light.\n";
+        } else if (light.duration > 0) {
+            desc << "It is not lit.\n";
+        } else {
+            desc << "It has burned out.\n";
         }
     }
 
@@ -270,6 +301,7 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
     }
 
     // Show weight and value for examination
+    // weight() is polymorphic - containers include contents automatically
     desc << fmt::format("It weighs {} pounds", obj->weight());
     if (obj->value() > 0) {
         desc << fmt::format(" and is worth {} gold coins", obj->value());
@@ -411,7 +443,7 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
             // Convert to lowercase for display
             std::string lf_lower{life_force};
             for (char& c : lf_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
-            desc << fmt::format("{} is animated by {}.\n", cap_subjective(), lf_lower);
+            desc << fmt::format("{} {} animated by {}.\n", cap_subjective(), pronouns.verb_be, lf_lower);
         }
     }
 
@@ -628,7 +660,57 @@ bool can_move_direction(std::shared_ptr<Actor> actor, Direction dir, std::string
     }
     // Ghosts can move but with restrictions (this will be handled elsewhere)
 
-    // TODO: Add more movement checks (doors, etc.)
+    // Check sector-based restrictions for the destination room
+    auto exit = room->get_exit(dir);
+    if (exit) {
+        auto dest_room = World().get_room(exit->to_room);
+        if (dest_room) {
+            SectorType sector = dest_room->sector_type();
+
+            // Check if trying to go UP into a flying sector without flying ability
+            if (sector == SectorType::Flying && dir == Direction::Up) {
+                // Check if actor can fly
+                bool can_fly = actor->has_flag(ActorFlag::Flying);
+
+                // Check if actor is a god
+                if (auto* player = dynamic_cast<const Player*>(actor.get())) {
+                    if (player->is_god()) {
+                        can_fly = true;
+                    }
+                }
+
+                if (!can_fly) {
+                    failure_reason = "You can't fly up there!";
+                    return false;
+                }
+            }
+
+            // Check underwater sector
+            if (sector == SectorType::Underwater) {
+                bool can_breathe = actor->has_flag(ActorFlag::Underwater_Breathing);
+                if (auto* player = dynamic_cast<const Player*>(actor.get())) {
+                    if (player->is_god()) can_breathe = true;
+                }
+                if (!can_breathe) {
+                    failure_reason = "You can't breathe underwater!";
+                    return false;
+                }
+            }
+
+            // Check water sectors
+            if (RoomUtils::requires_swimming(sector)) {
+                bool can_traverse = actor->has_flag(ActorFlag::Waterwalk) ||
+                                   actor->has_flag(ActorFlag::Flying);
+                if (auto* player = dynamic_cast<const Player*>(actor.get())) {
+                    if (player->is_god()) can_traverse = true;
+                }
+                if (!can_traverse) {
+                    failure_reason = "You need to be able to swim or walk on water!";
+                    return false;
+                }
+            }
+        }
+    }
 
     return true;
 }
@@ -657,7 +739,10 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     std::string dir_name = to_lowercase(magic_enum::enum_name(dir));
     ctx.send(fmt::format("You move {}.", dir_name));
 
-    // Automatically show the new room after movement
+    // Check if actor falls (if in flying sector without flight ability)
+    World().check_and_handle_falling(ctx.actor);
+
+    // Automatically show the new room after movement (or after falling)
     auto look_result = InformationCommands::cmd_look(ctx);
     if (!look_result) {
         ctx.send_error("Movement succeeded but could not display new room");

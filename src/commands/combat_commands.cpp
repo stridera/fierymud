@@ -16,6 +16,10 @@
 
 namespace CombatCommands {
 
+// Default casting blackout duration (in milliseconds)
+// This prevents spam-casting and gives combat more strategic pacing
+constexpr auto DEFAULT_CAST_BLACKOUT_MS = std::chrono::milliseconds{3000};
+
 // =============================================================================
 // Combat Commands
 // =============================================================================
@@ -101,6 +105,31 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     if (!player) {
         ctx.send_error("Only players can cast spells.");
         return CommandResult::InvalidState;
+    }
+
+    // Check if player is in casting blackout
+    if (ctx.actor->is_casting_blocked()) {
+        auto remaining = ctx.actor->get_blackout_remaining();
+        auto remaining_sec = std::chrono::duration_cast<std::chrono::milliseconds>(remaining).count() / 1000.0;
+
+        // Store the full argument string for queuing
+        std::string full_args = ctx.command.full_argument_string;
+
+        // If they don't already have a spell queued, offer to queue this one
+        if (!ctx.actor->has_queued_spell()) {
+            // Parse spell name to display
+            std::string spell_display = std::string(trim(full_args));
+            if (spell_display.length() > 30) {
+                spell_display = spell_display.substr(0, 27) + "...";
+            }
+            ctx.actor->queue_spell(full_args, "");  // Store full args for later parsing
+            ctx.send(fmt::format("You are still recovering from your last spell ({:.1f}s remaining).", remaining_sec));
+            ctx.send(fmt::format("Your next spell '{}' has been queued.", spell_display));
+        } else {
+            ctx.send(fmt::format("You are still recovering from your last spell ({:.1f}s remaining).", remaining_sec));
+            ctx.send("You already have a spell queued - wait for it to cast first.");
+        }
+        return CommandResult::Cooldown;
     }
 
     // Parse spell name and optional target from arguments
@@ -257,7 +286,69 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                 // Target died
                 target->stats().hit_points = 0;
                 FieryMUD::CombatManager::end_combat(target);
-                target->set_position(Position::Ghost);
+
+                // Send death messages based on actor type
+                bool target_is_player = (target->type_name() == "Player");
+
+                if (target_is_player) {
+                    ctx.send_to_actor(target, "You are DEAD! You feel your spirit leave your body...");
+                    ctx.send_to_room(fmt::format("{} is DEAD! Their spirit rises from their body.", target->display_name()), true);
+                } else {
+                    ctx.send_to_room(fmt::format("{} is DEAD! {} corpse falls to the ground.",
+                                                target->display_name(), target->display_name()), true);
+                }
+
+                // Polymorphic death handling - Player becomes ghost, Mobile creates corpse and despawns
+                // die() returns the corpse for Mobiles, nullptr for Players
+                auto corpse = target->die();
+
+                // Handle autoloot and autogold for Player attackers killing Mobiles
+                if (!target_is_player && player && corpse) {
+                    // Autogold: Find and take money from corpse
+                    if (player->is_autogold()) {
+                        auto contents = corpse->get_contents();
+                        std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
+                        for (const auto& item : items_copy) {
+                            if (item && item->type() == ObjectType::Money) {
+                                int coin_value = item->value();
+                                if (coin_value > 0) {
+                                    player->receive_copper(coin_value);
+                                    corpse->remove_item(item);
+                                    ctx.send(fmt::format("You get {} coins from the corpse.", coin_value));
+                                }
+                            }
+                        }
+                    }
+
+                    // Autoloot: Take all non-money items from corpse
+                    if (player->is_autoloot()) {
+                        auto contents = corpse->get_contents();
+                        std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
+                        int looted_count = 0;
+                        for (const auto& item : items_copy) {
+                            if (!item || item->type() == ObjectType::Money) continue;
+
+                            int obj_weight = item->weight();
+                            if (!player->inventory().can_carry(obj_weight, player->max_carry_weight())) {
+                                ctx.send("You can't carry any more weight.");
+                                break;
+                            }
+
+                            if (corpse->remove_item(item)) {
+                                auto add_result = player->inventory().add_item(item);
+                                if (add_result) {
+                                    looted_count++;
+                                } else {
+                                    corpse->add_item(item);
+                                }
+                            }
+                        }
+                        if (looted_count > 0) {
+                            ctx.send(fmt::format("You autoloot {} item{}.",
+                                looted_count, looted_count == 1 ? "" : "s"));
+                        }
+                    }
+                }
 
                 // Award experience
                 long exp_gain = FieryMUD::CombatSystem::calculate_experience_gain(*ctx.actor, *target);
@@ -265,8 +356,6 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
 
                 ctx.send(fmt::format("You have killed {}! You gain {} experience.",
                                     target->display_name(), exp_gain));
-                ctx.send_to_actor(target, "You are DEAD!");
-                ctx.send_to_room(fmt::format("{} is DEAD!", target->display_name()), true);
             } else {
                 // Target survived - start combat if not already fighting
                 if (ctx.actor->position() != Position::Fighting) {
@@ -291,6 +380,11 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
         }
         Log::info("SPELL_CAST: {} cast '{}' (generic - no effects defined)", ctx.actor->name(), known_spell->name);
     }
+
+    // Apply casting blackout to prevent spam-casting
+    // Clear any queued spell since we just cast successfully
+    ctx.actor->clear_queued_spell();
+    ctx.actor->set_casting_blackout(DEFAULT_CAST_BLACKOUT_MS);
 
     return CommandResult::Success;
 }
@@ -347,7 +441,7 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
     // Create a corpse with the player's items in their current location
     auto current_room = ctx.actor->current_room();
     if (current_room) {
-        create_player_corpse(ctx.actor, current_room);
+        create_actor_corpse(ctx.actor, current_room);
         ctx.send_to_room(fmt::format("The ghost of {} fades away, leaving behind a corpse.", ctx.actor->display_name()), true);
     }
 
@@ -452,65 +546,67 @@ bool is_valid_target(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> tar
 // Death Helper Functions
 // =============================================================================
 
-void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room) {
-    // Create a unique ID for the corpse (using player ID + offset for corpses)
+void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room) {
+    if (!actor || !room) {
+        Log::error("create_actor_corpse called with null actor or room");
+        return;
+    }
+
+    // Calculate corpse capacity based on items to transfer
+    auto equipped_items = actor->equipment().get_all_equipped();
+    auto inventory_items = actor->inventory().get_all_items();
+    int corpse_capacity = static_cast<int>(equipped_items.size() + inventory_items.size() + 5); // +5 buffer
+
+    // Create a unique ID for the corpse (using actor ID + offset for corpses)
     EntityId corpse_id{actor->id().value() + 100000}; // Add offset to avoid conflicts
 
-    // Create corpse object
+    // Create corpse as a Container to hold items
     std::string corpse_name = fmt::format("the corpse of {}", actor->display_name());
-    auto corpse_result = Object::create(corpse_id, corpse_name, ObjectType::Corpse);
+    auto corpse_result = Container::create(corpse_id, corpse_name, corpse_capacity, ObjectType::Corpse);
     if (!corpse_result) {
         Log::error("Failed to create corpse for {}: {}", actor->name(), corpse_result.error().message);
         return;
     }
 
-    auto corpse = std::shared_ptr<Object>(corpse_result.value().release());
+    auto corpse = std::shared_ptr<Container>(corpse_result.value().release());
 
     // Set corpse description
     corpse->set_description(fmt::format("The lifeless body of {} lies here, still and cold.", actor->display_name()));
 
+    // Add keywords: "corpse" plus all keywords from the dead actor
+    corpse->add_keyword("corpse");
+    for (const auto& kw : actor->keywords()) {
+        corpse->add_keyword(kw);
+    }
+
     // Transfer all equipment to the corpse
-    auto equipped_items = actor->equipment().get_all_equipped();
     for (auto &item : equipped_items) {
         if (item) {
-            // Remove from player equipment and add to corpse
             actor->equipment().unequip_item(item->id());
-            
-            // Add item to corpse container
-            if (auto* container = dynamic_cast<Container*>(corpse.get())) {
-                auto result = container->add_item(item);
-                if (result.has_value()) {
-                    Log::info("Transferred equipped item '{}' to {}'s corpse", item->display_name(), 
-                             actor->display_name());
-                } else {
-                    Log::warn("Failed to add equipped item '{}' to corpse: {}", 
-                             item->display_name(), result.error().message);
-                    // If corpse is full, drop item in room
-                    room->add_object(item);
-                }
+            auto result = corpse->add_item(item);
+            if (result.has_value()) {
+                Log::debug("Transferred equipped item '{}' to {}'s corpse", item->display_name(),
+                         actor->display_name());
+            } else {
+                Log::warn("Failed to add equipped item '{}' to corpse: {}",
+                         item->display_name(), result.error().message);
+                room->add_object(item); // Drop in room if corpse full
             }
         }
     }
 
     // Transfer all inventory to the corpse
-    auto inventory_items = actor->inventory().get_all_items();
     for (auto &item : inventory_items) {
         if (item) {
-            // Remove from player inventory and add to corpse
             actor->inventory().remove_item(item->id());
-            
-            // Add item to corpse container
-            if (auto* container = dynamic_cast<Container*>(corpse.get())) {
-                auto result = container->add_item(item);
-                if (result.has_value()) {
-                    Log::info("Transferred inventory item '{}' to {}'s corpse", item->display_name(), 
-                             actor->display_name());
-                } else {
-                    Log::warn("Failed to add inventory item '{}' to corpse: {}", 
-                             item->display_name(), result.error().message);
-                    // If corpse is full, drop item in room
-                    room->add_object(item);
-                }
+            auto result = corpse->add_item(item);
+            if (result.has_value()) {
+                Log::debug("Transferred inventory item '{}' to {}'s corpse", item->display_name(),
+                         actor->display_name());
+            } else {
+                Log::warn("Failed to add inventory item '{}' to corpse: {}",
+                         item->display_name(), result.error().message);
+                room->add_object(item); // Drop in room if corpse full
             }
         }
     }
@@ -518,8 +614,11 @@ void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> ro
     // Add corpse to the room
     room->add_object(corpse);
 
-    Log::info("Created corpse for {} in room {}",
-             actor->display_name(), room->id());
+    // Check if corpse should fall (if in flying sector)
+    World().check_and_handle_object_falling(corpse, room);
+
+    Log::info("Created corpse for {} with {} items in room {}",
+              actor->display_name(), corpse->current_capacity(), room->id());
 }
 
 // =============================================================================
@@ -703,6 +802,7 @@ Result<void> register_commands() {
 
     Commands()
         .command("cast", cmd_cast)
+        .alias("c")
         .category("Combat")
         .privilege(PrivilegeLevel::Player)
         .build();

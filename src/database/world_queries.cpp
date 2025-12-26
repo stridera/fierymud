@@ -619,6 +619,15 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
             if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
+            // Currency - convert to total copper value for stats.gold
+            {
+                int copper = row[db::Mobs::COPPER.data()].as<int>(0);
+                int silver = row[db::Mobs::SILVER.data()].as<int>(0);
+                int gold = row[db::Mobs::GOLD.data()].as<int>(0);
+                int platinum = row[db::Mobs::PLATINUM.data()].as<int>(0);
+                mob_stats.gold = copper + (silver * 10L) + (gold * 100L) + (platinum * 1000L);
+            }
+
             // Elemental resistances (from JSONB column)
             if (!row[db::Mobs::RESISTANCES.data()].is_null()) {
                 try {
@@ -842,6 +851,15 @@ Result<std::unique_ptr<Mobile>> load_mob(
         // Perception and concealment
         if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
         if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
+
+        // Currency - convert to total copper value for stats.gold
+        {
+            int copper = row[db::Mobs::COPPER.data()].as<int>(0);
+            int silver = row[db::Mobs::SILVER.data()].as<int>(0);
+            int gold = row[db::Mobs::GOLD.data()].as<int>(0);
+            int platinum = row[db::Mobs::PLATINUM.data()].as<int>(0);
+            mob_stats.gold = copper + (silver * 10L) + (gold * 100L) + (platinum * 1000L);
+        }
 
         // Elemental resistances (from JSONB column)
         if (!row[db::Mobs::RESISTANCES.data()].is_null()) {

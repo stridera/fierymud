@@ -1660,7 +1660,7 @@ void WorldManager::validate_zone_integrity(std::shared_ptr<Zone> zone, Validatio
 MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> actor,
                                                         std::shared_ptr<Room> /* from_room */,
                                                         std::shared_ptr<Room> to_room,
-                                                        Direction /* direction */) const {
+                                                        Direction direction) const {
     if (!to_room->can_accommodate(actor.get())) {
         return MovementResult("Destination room is full");
     }
@@ -1714,6 +1714,32 @@ MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> 
     // Check death trap (warn but don't block - player's choice)
     // Death trap logic is handled elsewhere after movement completes
 
+    // Check sector-based restrictions
+    SectorType sector = to_room->sector_type();
+
+    // Flying sector requires flying ability when going UP
+    // (You can enter a flying room from the side and fall, but can't climb up into one)
+    if (sector == SectorType::Flying && direction == Direction::Up) {
+        if (!actor->has_flag(ActorFlag::Flying) && !is_god) {
+            return MovementResult("You can't fly up there!");
+        }
+    }
+
+    // Underwater requires water breathing
+    if (sector == SectorType::Underwater) {
+        if (!actor->has_flag(ActorFlag::Underwater_Breathing) && !is_god) {
+            return MovementResult("You can't breathe underwater!");
+        }
+    }
+
+    // Water sectors require swimming ability (unless flying or walking on water)
+    if (RoomUtils::requires_swimming(sector)) {
+        if (!actor->has_flag(ActorFlag::Waterwalk) &&
+            !actor->has_flag(ActorFlag::Flying) && !is_god) {
+            return MovementResult("You need to be able to swim or walk on water!");
+        }
+    }
+
     return MovementResult(true);
 }
 
@@ -1739,6 +1765,142 @@ void WorldManager::notify_object_create(std::shared_ptr<Object> object) {
     if (object_create_callback_) {
         object_create_callback_(object);
     }
+}
+
+bool WorldManager::check_and_handle_falling(std::shared_ptr<Actor> actor) {
+    if (!actor) {
+        return false;
+    }
+
+    auto current_room = actor->current_room();
+    if (!current_room) {
+        return false;
+    }
+
+    // Check if room is a flying sector
+    if (current_room->sector_type() != SectorType::Flying) {
+        return false;
+    }
+
+    // Check if actor can fly (gods always can)
+    if (actor->has_flag(ActorFlag::Flying)) {
+        return false;
+    }
+
+    // Check if actor is a god (immune to falling)
+    auto* player = dynamic_cast<const Player*>(actor.get());
+    if (player && player->is_god()) {
+        return false;
+    }
+
+    // Find the down exit
+    auto down_exit = current_room->get_exit(Direction::Down);
+    if (!down_exit || !down_exit->is_passable()) {
+        // No down exit - actor is stuck floating somehow
+        actor->send_message("You flail helplessly in the air!");
+        return false;
+    }
+
+    auto destination_room = get_room(down_exit->to_room);
+    if (!destination_room) {
+        return false;
+    }
+
+    // Start falling!
+    actor->send_message("\033[1;31mYou plummet downward!\033[0m");
+
+    // Notify others in the room
+    for (const auto& other_actor : current_room->contents().actors) {
+        if (other_actor != actor) {
+            other_actor->send_message(fmt::format("{} plummets downward!", actor->display_name()));
+        }
+    }
+
+    // Execute the fall movement
+    current_room->remove_actor(actor->id());
+    destination_room->add_actor(actor);
+    actor->set_current_room(destination_room);
+
+    // Notify callbacks
+    notify_room_exit(actor, current_room);
+    notify_room_enter(actor, destination_room);
+
+    // Notify others in the destination room
+    for (const auto& other_actor : destination_room->contents().actors) {
+        if (other_actor != actor) {
+            other_actor->send_message(fmt::format("{} falls in from above!", actor->display_name()));
+        }
+    }
+
+    // Calculate and apply fall damage (1d6 per room fallen)
+    constexpr int FALL_DAMAGE_DICE = 6;
+    int fall_damage = (std::rand() % FALL_DAMAGE_DICE) + 1;
+
+    // Apply damage
+    auto& stats = actor->stats();
+    stats.hit_points -= fall_damage;
+
+    if (stats.hit_points <= 0) {
+        actor->send_message(fmt::format("\033[1;31mThe fall kills you! ({} damage)\033[0m", fall_damage));
+        // Set position to dead so they can't keep moving
+        actor->set_position(Position::Dead);
+        // Death will be handled by the game loop checking for dead actors
+        return true;  // Don't continue falling if dead
+    } else {
+        actor->send_message(fmt::format("\033[1;33mOuch! You take {} damage from the fall.\033[0m", fall_damage));
+    }
+
+    // Check if still in a flying sector - recursively fall
+    if (destination_room->sector_type() == SectorType::Flying) {
+        check_and_handle_falling(actor);
+    }
+
+    return true;
+}
+
+bool WorldManager::check_and_handle_object_falling(std::shared_ptr<Object> object, std::shared_ptr<Room> room) {
+    if (!object || !room) {
+        return false;
+    }
+
+    // Check if room is a flying sector
+    if (room->sector_type() != SectorType::Flying) {
+        return false;
+    }
+
+    // Find the down exit
+    auto down_exit = room->get_exit(Direction::Down);
+    if (!down_exit || !down_exit->is_passable()) {
+        // No down exit - object stays floating somehow
+        return false;
+    }
+
+    auto destination_room = get_room(down_exit->to_room);
+    if (!destination_room) {
+        return false;
+    }
+
+    // Object falls!
+    // Notify others in the current room
+    for (const auto& actor : room->contents().actors) {
+        actor->send_message(fmt::format("{} falls downward.", object->short_description()));
+    }
+
+    // Move object to destination room
+    room->remove_object(object->id());
+    destination_room->add_object(object);
+
+    // Notify others in the destination room
+    for (const auto& actor : destination_room->contents().actors) {
+        actor->send_message(fmt::format("{} falls in from above.", object->short_description()));
+    }
+
+    // Check if still in a flying sector - recursively fall
+    if (destination_room->sector_type() == SectorType::Flying) {
+        check_and_handle_object_falling(object, destination_room);
+    }
+
+    return true;
 }
 
 void WorldManager::update_file_timestamps() {
@@ -2369,6 +2531,10 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_to_room(EntityId prototype_id
     // Find and return the spawned mobile
     // The mobile was registered in spawned_mobiles_ by spawn_mobile_in_specific_room
     return find_spawned_mobile(prototype_id);
+}
+
+void WorldManager::despawn_mobile(EntityId mobile_id) {
+    unregister_spawned_mobile(mobile_id);
 }
 
 Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, EntityId room_id) {

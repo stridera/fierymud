@@ -123,10 +123,16 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         full_desc << current_room->name() << "\n";
         full_desc << description << "\n";
 
-        // Add exits
-        std::string exits = BuiltinCommands::Helpers::format_exits(current_room);
-        if (!exits.empty()) {
-            full_desc << fmt::format("\n{}\n", exits);
+        // Add exits (only if player has autoexit enabled)
+        bool show_exits = true;
+        if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+            show_exits = player->is_autoexit();
+        }
+        if (show_exits) {
+            std::string exits = BuiltinCommands::Helpers::format_exits(current_room);
+            if (!exits.empty()) {
+                full_desc << fmt::format("\n{}\n", exits);
+            }
         }
 
         // Add objects in room

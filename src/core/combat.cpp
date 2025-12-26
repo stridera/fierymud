@@ -498,7 +498,6 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     // Check for death
     if (target_stats.hit_points <= 0) {
         target_stats.hit_points = 0;
-        target->set_position(Position::Ghost);
 
         Log::info("DEATH: {} killed {} - ending combat", attacker->name(), target->name());
 
@@ -515,8 +514,73 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         result.type = CombatResult::Type::Death;
         result.attacker_message += fmt::format(" You have killed {}! You gain {} experience.",
                                                target->display_name(), exp_gain);
-        result.target_message += "\r\nYou are DEAD!";
-        result.room_message += fmt::format(" {} is DEAD!", target->display_name());
+
+        // Set death messages based on actor type (before die() modifies state)
+        bool is_player = (target->type_name() == "Player");
+
+        if (is_player) {
+            result.target_message += "\r\nYou are DEAD! You feel your spirit leave your body...";
+            result.room_message += fmt::format(" {} is DEAD! Their spirit rises from their body.", target->display_name());
+        } else {
+            result.target_message += "\r\nYou are DEAD!";
+            result.room_message += fmt::format(" {} is DEAD! {} corpse falls to the ground.",
+                                               target->display_name(), target->display_name());
+        }
+
+        // Polymorphic death handling - Player becomes ghost, Mobile creates corpse and despawns
+        // die() returns the corpse for Mobiles, nullptr for Players
+        auto corpse = target->die();
+
+        // Handle autoloot and autogold for Player attackers killing Mobiles
+        if (!is_player && attacker->type_name() == "Player" && corpse) {
+            auto* player = dynamic_cast<Player*>(attacker.get());
+            if (player) {
+                // Autogold: Find and take money from corpse
+                if (player->is_autogold()) {
+                    auto contents = corpse->get_contents();
+                    std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
+                    for (const auto& item : items_copy) {
+                        if (item && item->type() == ObjectType::Money) {
+                            int coin_value = item->value();
+                            if (coin_value > 0) {
+                                player->receive_copper(coin_value);
+                                corpse->remove_item(item);
+                                result.attacker_message += fmt::format("\r\nYou get {} coins from the corpse.", coin_value);
+                            }
+                        }
+                    }
+                }
+
+                // Autoloot: Take all non-money items from corpse
+                if (player->is_autoloot()) {
+                    auto contents = corpse->get_contents();
+                    std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
+                    int looted_count = 0;
+                    for (const auto& item : items_copy) {
+                        if (!item || item->type() == ObjectType::Money) continue;
+
+                        int obj_weight = item->weight();
+                        if (!player->inventory().can_carry(obj_weight, player->max_carry_weight())) {
+                            result.attacker_message += "\r\nYou can't carry any more weight.";
+                            break;
+                        }
+
+                        if (corpse->remove_item(item)) {
+                            auto add_result = player->inventory().add_item(item);
+                            if (add_result) {
+                                looted_count++;
+                            } else {
+                                corpse->add_item(item);
+                            }
+                        }
+                    }
+                    if (looted_count > 0) {
+                        result.attacker_message += fmt::format("\r\nYou autoloot {} item{}.",
+                            looted_count, looted_count == 1 ? "" : "s");
+                    }
+                }
+            }
+        }
 
         fire_event(CombatEvent(CombatEvent::EventType::ActorDeath, attacker, target));
         fire_event(CombatEvent(CombatEvent::EventType::CombatEnd, attacker, target));

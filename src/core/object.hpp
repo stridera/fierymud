@@ -259,8 +259,11 @@ public:
     /** Get object type */
     ObjectType type() const { return type_; }
     
-    /** Get weight in pounds */
-    int weight() const { return weight_; }
+    /** Get total weight in pounds (virtual - containers override to include contents) */
+    virtual int weight() const { return weight_; }
+
+    /** Get base weight (excluding contents for containers) */
+    int base_weight() const { return weight_; }
     
     /** Get base value in copper coins */
     int value() const { return value_; }
@@ -282,9 +285,9 @@ public:
     /** Check if object is armor */
     bool is_armor() const { return type_ == ObjectType::Armor; }
     
-    /** Check if object is a container */
-    bool is_container() const { 
-        return type_ == ObjectType::Container || type_ == ObjectType::Liquid_Container; 
+    /** Check if object is a container (includes corpses which hold loot) */
+    bool is_container() const {
+        return type_ == ObjectType::Container || type_ == ObjectType::Liquid_Container || type_ == ObjectType::Corpse;
     }
     
     /** Check if object is a light source */
@@ -525,14 +528,17 @@ public:
                                                    ObjectType type = ObjectType::Container);
     
     std::string_view type_name() const override { return "Container"; }
-    
+
+    /** Override weight to include contents */
+    int weight() const override { return base_weight() + current_weight_; }
+
     /** Get comprehensive stat information including container details */
     std::string get_stat_info() const override;
-    
+
     /** Container-specific operations */
     bool can_store_item(const Object& item) const;
     int current_capacity() const { return current_items_; }
-    int current_weight() const { return current_weight_; }
+    int contents_weight() const { return current_weight_; }
     
     /** Container inventory management */
     Result<void> add_item(std::shared_ptr<Object> item);

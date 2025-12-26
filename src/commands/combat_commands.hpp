@@ -25,7 +25,7 @@ Result<CommandResult> cmd_backstab(const CommandContext &ctx);
 Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<Actor> target);
 bool is_valid_target(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target);
 
-// Death helper functions
-void create_player_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room);
+// Death helper functions (for player release - mobs use Mobile::die() directly)
+void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room);
 
 } // namespace CombatCommands

@@ -3,16 +3,19 @@
 #include "../core/logging.hpp"
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
+#include "../core/object.hpp"
 #include "../text/string_utils.hpp"
 #include "mud_server.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/player_queries.hpp"
+#include "../database/world_queries.hpp"
 
 #include <filesystem>
 #include <fstream>
 #include <algorithm>
 #include <chrono>
 #include <nlohmann/json.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 PersistenceManager& PersistenceManager::instance() {
     static PersistenceManager instance;
@@ -39,34 +42,89 @@ Result<void> PersistenceManager::save_player(const Player& player) {
     if (!config_) {
         return std::unexpected(Errors::InvalidState("PersistenceManager not initialized"));
     }
-    
+
     try {
         // Create player data directory if it doesn't exist
         std::string player_dir = config_->player_directory;
         if (!std::filesystem::exists(player_dir)) {
             std::filesystem::create_directories(player_dir);
         }
-        
+
         // Convert player name to lowercase for consistent file naming
         std::string player_name = to_lowercase(player.name());
 
-        // Save to JSON file
+        // Save to JSON file (backup/debugging purposes)
         std::string filename = player_dir + "/" + player_name + ".json";
-        
+
         nlohmann::json player_data = player.to_json();
         player_data["saved_at"] = std::chrono::system_clock::now().time_since_epoch().count();
-        
+
         std::ofstream file(filename);
         if (!file.is_open()) {
             return std::unexpected(Errors::FileSystem("Cannot open player file for writing: " + filename));
         }
-        
+
         file << player_data.dump(2); // Pretty-print with 2-space indentation
         file.close();
-        
-        Log::info("Saved player {} to {}", player.name(), filename);
+
+        Log::debug("Saved player {} to JSON file {}", player.name(), filename);
+
+        // Save items to database
+        std::string char_id{player.database_id()};
+        if (!char_id.empty()) {
+            // Build CharacterItemData from inventory and equipment
+            std::vector<WorldQueries::CharacterItemData> items_data;
+
+            // Add inventory items
+            for (const auto& item : player.inventory().get_all_items()) {
+                if (!item) continue;
+
+                WorldQueries::CharacterItemData item_data;
+                item_data.character_id = char_id;
+                item_data.object_id = item->id();
+                item_data.equipped_location = "";  // Not equipped
+                item_data.condition = item->condition();
+                item_data.charges = -1;  // TODO: get actual charges if applicable
+                // TODO: Handle container_id for nested containers
+
+                items_data.push_back(std::move(item_data));
+            }
+
+            // Add equipped items
+            for (const auto& [slot, item] : player.equipment().get_all_equipped_with_slots()) {
+                if (!item) continue;
+
+                WorldQueries::CharacterItemData item_data;
+                item_data.character_id = char_id;
+                item_data.object_id = item->id();
+                item_data.equipped_location = std::string(magic_enum::enum_name(slot));
+                item_data.condition = item->condition();
+                item_data.charges = -1;  // TODO: get actual charges if applicable
+
+                items_data.push_back(std::move(item_data));
+            }
+
+            // Save to database
+            auto save_result = ConnectionPool::instance().execute(
+                [&char_id, &items_data](pqxx::work& txn) {
+                    return WorldQueries::save_character_items(txn, char_id, items_data);
+                });
+
+            if (!save_result) {
+                Log::error("Failed to save items for player {}: {}",
+                          player.name(), save_result.error().message);
+                // Don't fail the entire save - JSON backup was successful
+            } else {
+                Log::info("Saved {} items to database for player {}",
+                         items_data.size(), player.name());
+            }
+        } else {
+            Log::warn("Cannot save items to database: player {} has no database_id", player.name());
+        }
+
+        Log::info("Saved player {}", player.name());
         return Success();
-        
+
     } catch (const std::exception& e) {
         return std::unexpected(Errors::FileSystem("Failed to save player: " + std::string(e.what())));
     }

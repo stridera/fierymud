@@ -48,6 +48,58 @@ std::string TargetInfo::describe() const {
 }
 
 //////////////////////////////////////////////////////////////////////////////
+// Targeting Helper - Parse "N.keyword" numbered targeting syntax
+//////////////////////////////////////////////////////////////////////////////
+
+namespace {
+
+/**
+ * Parse numbered targeting syntax like "2.guard" or "all.sword"
+ * Returns: (keyword, match_index, match_all)
+ *   - match_index is 1-indexed (1 = first match)
+ *   - match_all is true for "all.keyword" syntax
+ */
+struct TargetSpec {
+    std::string keyword;
+    int match_index = 1;
+    bool match_all = false;
+
+    static TargetSpec parse(std::string_view name) {
+        TargetSpec spec;
+
+        size_t dot_pos = name.find('.');
+        if (dot_pos != std::string_view::npos) {
+            std::string_view prefix = name.substr(0, dot_pos);
+            spec.keyword = std::string{name.substr(dot_pos + 1)};
+
+            // Check for "all" prefix
+            if (prefix == "all") {
+                spec.match_all = true;
+                spec.match_index = 1;
+            } else {
+                // Try to parse prefix as number
+                try {
+                    spec.match_index = std::stoi(std::string{prefix});
+                    if (spec.match_index < 1) {
+                        spec.match_index = 1;
+                    }
+                } catch (...) {
+                    // Not a number, treat whole thing as keyword
+                    spec.keyword = std::string{name};
+                    spec.match_index = 1;
+                }
+            }
+        } else {
+            spec.keyword = std::string{name};
+        }
+
+        return spec;
+    }
+};
+
+}  // namespace
+
+//////////////////////////////////////////////////////////////////////////////
 // CommandExecutionState Implementation
 //////////////////////////////////////////////////////////////////////////////
 
@@ -165,6 +217,15 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
         return actor;
     }
 
+    // Parse dot-notation: "N.keyword" for Nth match, or just "keyword" for first match
+    auto spec = TargetSpec::parse(name);
+    if (spec.keyword.empty()) {
+        return nullptr;
+    }
+
+    // Count matches and return the Nth one
+    int current_match = 0;
+
     // Search for actor by keyword in current room
     const auto &actors = room->contents().actors;
     for (const auto &room_actor : actors) {
@@ -175,8 +236,11 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
         if (!room_actor->is_visible_to(*actor))
             continue;
 
-        if (room_actor->matches_keyword(name)) {
-            return room_actor;
+        if (room_actor->matches_keyword(spec.keyword)) {
+            current_match++;
+            if (current_match == spec.match_index) {
+                return room_actor;
+            }
         }
     }
 
@@ -184,6 +248,15 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
 }
 
 std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) const {
+    // Parse dot-notation: "N.keyword" for Nth match, or just "keyword" for first match
+    auto spec = TargetSpec::parse(name);
+    if (spec.keyword.empty()) {
+        return nullptr;
+    }
+
+    // Count matches and return the Nth one
+    int current_match = 0;
+
     // Search for actor by keyword globally across all rooms
     auto &world = WorldManager::instance();
 
@@ -194,17 +267,20 @@ std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) 
             continue;
 
         auto rooms = world.get_rooms_in_zone(EntityId{zone_id});
-        for (const auto &room : rooms) {
-            if (!room)
+        for (const auto &room_ptr : rooms) {
+            if (!room_ptr)
                 continue;
 
-            const auto &actors = room->contents().actors;
+            const auto &actors = room_ptr->contents().actors;
             for (const auto &room_actor : actors) {
                 if (!room_actor || room_actor == actor)
                     continue; // Skip self
 
-                if (room_actor->matches_keyword(name)) {
-                    return room_actor;
+                if (room_actor->matches_keyword(spec.keyword)) {
+                    current_match++;
+                    if (current_match == spec.match_index) {
+                        return room_actor;
+                    }
                 }
             }
         }
@@ -217,42 +293,150 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
     if (!actor)
         return nullptr;
 
-    // First search in actor's inventory using proper keyword matching
-    auto inventory_items = actor->inventory().get_all_items();
-    for (const auto &obj : inventory_items) {
-        if (!obj)
-            continue;
-
-        if (obj->matches_keyword(name)) {
-            return obj;
-        }
+    // Parse dot-notation: "N.keyword" for Nth match, or just "keyword" for first match
+    auto spec = TargetSpec::parse(name);
+    if (spec.keyword.empty()) {
+        return nullptr;
     }
 
-    // Then search in actor's equipped items
+    // Count matches and return the Nth one
+    int current_match = 0;
+
+    // First search in actor's equipped items (prioritize what you're holding/wearing)
     auto equipped_items = actor->equipment().get_all_equipped();
     for (const auto &obj : equipped_items) {
         if (!obj)
             continue;
 
-        if (obj->matches_keyword(name)) {
-            return obj;
+        if (obj->matches_keyword(spec.keyword)) {
+            current_match++;
+            if (current_match == spec.match_index) {
+                return obj;
+            }
         }
     }
 
-    // Finally search in current room using proper keyword matching
+    // Then search in actor's inventory
+    auto inventory_items = actor->inventory().get_all_items();
+    for (const auto &obj : inventory_items) {
+        if (!obj)
+            continue;
+
+        if (obj->matches_keyword(spec.keyword)) {
+            current_match++;
+            if (current_match == spec.match_index) {
+                return obj;
+            }
+        }
+    }
+
+    // Finally search in current room
     if (room) {
         const auto &room_objects = room->contents().objects;
         for (const auto &obj : room_objects) {
             if (!obj)
                 continue;
 
-            if (obj->matches_keyword(name)) {
-                return obj;
+            if (obj->matches_keyword(spec.keyword)) {
+                current_match++;
+                if (current_match == spec.match_index) {
+                    return obj;
+                }
             }
         }
     }
 
     return nullptr;
+}
+
+std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
+    std::string_view name, bool search_room) const {
+    std::vector<std::shared_ptr<Object>> results;
+
+    if (!actor)
+        return results;
+
+    // Parse dot-notation: "all.keyword", "N.keyword", or just "keyword"
+    std::string keyword;
+    bool match_all = false;
+    int match_index = 0;  // 0 means first match (default), N means Nth match
+
+    size_t dot_pos = name.find('.');
+    if (dot_pos != std::string_view::npos) {
+        std::string_view prefix = name.substr(0, dot_pos);
+        keyword = std::string{name.substr(dot_pos + 1)};
+
+        if (prefix == "all") {
+            match_all = true;
+        } else {
+            // Try to parse as number
+            try {
+                match_index = std::stoi(std::string{prefix});
+                if (match_index < 1) {
+                    match_index = 1;  // Minimum is 1 (1-indexed)
+                }
+            } catch (...) {
+                // Not a number, treat whole thing as keyword
+                keyword = std::string{name};
+            }
+        }
+    } else {
+        keyword = std::string{name};
+    }
+
+    if (keyword.empty()) {
+        return results;
+    }
+
+    // Collect all matching objects (equipped first, then inventory)
+    std::vector<std::shared_ptr<Object>> all_matches;
+
+    // Search equipped items first (prioritize what you're holding/wearing)
+    for (const auto &obj : actor->equipment().get_all_equipped()) {
+        if (!obj)
+            continue;
+        if (obj->matches_keyword(keyword)) {
+            all_matches.push_back(obj);
+        }
+    }
+
+    // Then search inventory
+    for (const auto &obj : actor->inventory().get_all_items()) {
+        if (!obj)
+            continue;
+        if (obj->matches_keyword(keyword)) {
+            all_matches.push_back(obj);
+        }
+    }
+
+    // Optionally search room
+    if (search_room && room) {
+        for (const auto &obj : room->contents().objects) {
+            if (!obj)
+                continue;
+            if (obj->matches_keyword(keyword)) {
+                all_matches.push_back(obj);
+            }
+        }
+    }
+
+    // Apply selection logic
+    if (match_all) {
+        // Return all matching objects
+        results = std::move(all_matches);
+    } else if (match_index > 0) {
+        // Return Nth matching object (1-indexed)
+        if (static_cast<size_t>(match_index) <= all_matches.size()) {
+            results.push_back(all_matches[match_index - 1]);
+        }
+    } else {
+        // Return first matching object (default)
+        if (!all_matches.empty()) {
+            results.push_back(all_matches[0]);
+        }
+    }
+
+    return results;
 }
 
 std::shared_ptr<Room> CommandContext::find_room_target(std::string_view name) const {

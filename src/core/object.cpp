@@ -1205,7 +1205,7 @@ std::string Container::get_stat_info() const {
     // Add container-specific details
     output << "\n=== Container Details ===\n";
     output << fmt::format("Current contents: {}/{} items\n", contents_count(), container_info().capacity);
-    output << fmt::format("Current weight: {}/{} lbs\n", current_weight(), container_info().weight_capacity);
+    output << fmt::format("Contents weight: {}/{} lbs\n", contents_weight(), container_info().weight_capacity);
     
     if (!is_empty()) {
         output << "Contains:\n";

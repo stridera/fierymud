@@ -106,7 +106,8 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
 
             int gotten_count = 0;
             std::vector<std::string> gotten_names;
-            auto items_to_get = all_items; // Copy to avoid iterator invalidation
+            // Make a proper copy - span is just a view, copying it doesn't copy the data
+            std::vector<std::shared_ptr<Object>> items_to_get(all_items.begin(), all_items.end());
 
             for (const auto &item : items_to_get) {
                 if (!item) continue;
@@ -322,6 +323,8 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
                     ctx.room->contents_mutable().objects.push_back(obj);
                     dropped_count++;
                     dropped_names.push_back(ctx.format_object_name(obj));
+                    // Check if object falls (in flying sector)
+                    World().check_and_handle_object_falling(obj, ctx.room);
                 }
             }
         }
@@ -369,25 +372,67 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     ctx.send_success(fmt::format("You drop {}.", ctx.format_object_name(target_object)));
     ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
+    // Check if object falls (in flying sector)
+    World().check_and_handle_object_falling(target_object, ctx.room);
+
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_put(const CommandContext &ctx) {
     if (ctx.arg_count() < 2) {
         ctx.send_usage("put <object> [in] <container>");
+        ctx.send_info("  Examples:");
+        ctx.send_info("    put bread bag       - put one bread");
+        ctx.send_info("    put 3 bread bag     - put 3 pieces of bread");
+        ctx.send_info("    put all.bread bag   - put all bread");
+        ctx.send_info("    put 3.bread bag     - put the 3rd bread");
         return CommandResult::InvalidSyntax;
     }
-    
-    // Handle both "put object container" and "put object in container" syntax
-    std::string_view object_name = ctx.arg(0);
+
+    // Parse arguments - handle multiple syntaxes:
+    // "put object container"
+    // "put object in container"
+    // "put N object container" (put N items)
+    // "put N object in container"
+    std::string_view object_name;
     std::string_view container_name;
-    
-    if (ctx.arg_count() >= 3 && ctx.arg(1) == "in") {
-        // "put object in container" syntax
-        container_name = ctx.arg(2);
+    int put_count = 0;  // 0 means use dot-notation logic, >0 means put exactly N items
+
+    // Check if first arg is a pure number (count syntax)
+    bool first_arg_is_count = true;
+    for (char c : ctx.arg(0)) {
+        if (!std::isdigit(static_cast<unsigned char>(c))) {
+            first_arg_is_count = false;
+            break;
+        }
+    }
+
+    if (first_arg_is_count && ctx.arg_count() >= 3) {
+        // "put N object container" or "put N object in container" syntax
+        try {
+            put_count = std::stoi(std::string{ctx.arg(0)});
+            if (put_count < 1) put_count = 1;
+        } catch (...) {
+            put_count = 1;
+        }
+        object_name = ctx.arg(1);
+
+        if (ctx.arg_count() >= 4 && ctx.arg(2) == "in") {
+            container_name = ctx.arg(3);
+        } else {
+            container_name = ctx.arg(2);
+        }
     } else {
-        // "put object container" syntax  
-        container_name = ctx.arg(1);
+        // Standard syntax
+        object_name = ctx.arg(0);
+
+        if (ctx.arg_count() >= 3 && ctx.arg(1) == "in") {
+            // "put object in container" syntax
+            container_name = ctx.arg(2);
+        } else {
+            // "put object container" syntax
+            container_name = ctx.arg(1);
+        }
     }
 
     if (!ctx.actor) {
@@ -399,18 +444,35 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Find object in actor's inventory
-    auto inventory_items = ctx.actor->inventory().get_all_items();
-    std::shared_ptr<Object> item_to_put = nullptr;
+    // Find objects matching the pattern
+    std::vector<std::shared_ptr<Object>> inventory_items_to_put;
 
-    for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(object_name)) {
-            item_to_put = obj;
-            break;
+    if (put_count > 0) {
+        // Count syntax: "put 3 bread bag" - find up to N matching items
+        std::string keyword{object_name};
+        for (const auto &obj : ctx.actor->inventory().get_all_items()) {
+            if (!obj)
+                continue;
+            if (obj->matches_keyword(keyword)) {
+                inventory_items_to_put.push_back(obj);
+                if (static_cast<int>(inventory_items_to_put.size()) >= put_count) {
+                    break;
+                }
+            }
+        }
+    } else {
+        // Dot-notation syntax: supports all.keyword, N.keyword, or keyword
+        auto items_to_put = ctx.find_objects_matching(object_name, false);
+
+        // Filter to only inventory items (can't put equipped items without removing first)
+        for (const auto &item : items_to_put) {
+            if (ctx.actor->inventory().find_item(item->id())) {
+                inventory_items_to_put.push_back(item);
+            }
         }
     }
 
-    if (!item_to_put) {
+    if (inventory_items_to_put.empty()) {
         ctx.send_error(fmt::format("You don't have '{}'.", object_name));
         return CommandResult::InvalidTarget;
     }
@@ -419,9 +481,20 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     std::shared_ptr<Object> container = nullptr;
     std::shared_ptr<Object> potential_container = nullptr;
 
-    // First check inventory 
-    for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(container_name) && obj != item_to_put) {
+    // First check inventory
+    auto all_inventory = ctx.actor->inventory().get_all_items();
+    for (const auto &obj : all_inventory) {
+        if (obj && obj->matches_keyword(container_name)) {
+            // Don't use an item we're trying to put as the container
+            bool is_item_to_put = false;
+            for (const auto &item : inventory_items_to_put) {
+                if (obj == item) {
+                    is_item_to_put = true;
+                    break;
+                }
+            }
+            if (is_item_to_put) continue;
+
             potential_container = obj;
             if (obj->is_container()) {
                 container = obj;
@@ -450,7 +523,8 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     }
 
     if (!container) {
-        ctx.send_error(fmt::format("You can't put anything in {} - it's not a container.", ctx.format_object_name(potential_container)));
+        ctx.send_error(fmt::format("You can't put anything in {} - it's not a container.",
+                                   ctx.format_object_name(potential_container)));
         return CommandResult::InvalidTarget;
     }
 
@@ -463,48 +537,67 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // DEBUG: Add comprehensive container debugging information
-    spdlog::info("=== PUT COMMAND DEBUG ===");
-    spdlog::info("Container name: {}", container->name());
-    spdlog::info("Container type_name(): {}", container->type_name());
-    spdlog::info("Container is_container(): {}", container->is_container());
-    spdlog::info("Container object type: {}", static_cast<int>(container->type()));
-    spdlog::info("Container ptr address: {}", static_cast<void*>(container.get()));
-    
     // Try to cast to Container to access container functionality
     auto container_obj = std::dynamic_pointer_cast<Container>(container);
-    spdlog::info("dynamic_pointer_cast<Container> result: {}", static_cast<void*>(container_obj.get()));
-    
+
     if (!container_obj) {
-        spdlog::error("CONTAINER CAST FAILED - Object claims to be container but cast failed!");
-        spdlog::error("This indicates object was created as base Object, not Container subclass");
-        ctx.send_error(fmt::format("You can't put anything in {} [DEBUG: cast failed].", ctx.format_object_name(container)));
-        return CommandResult::InvalidState;
-    }
-    
-    spdlog::info("Container cast successful! Capacity: {}", container_obj->container_info().capacity);
-    spdlog::info("=========================");
-
-    // Try to add item to container
-    auto add_result = container_obj->add_item(item_to_put);
-    if (!add_result) {
-        ctx.send_error(fmt::format("The {} is full.", ctx.format_object_name(container)));
+        ctx.send_error(fmt::format("You can't put anything in {}.", ctx.format_object_name(container)));
         return CommandResult::InvalidState;
     }
 
-    // Remove from actor's inventory
-    if (!ctx.actor->inventory().remove_item(item_to_put)) {
-        // If we can't remove from inventory, remove from container to maintain consistency
-        container_obj->remove_item(item_to_put);
-        ctx.send_error("Failed to remove item from inventory.");
-        return CommandResult::ResourceError;
+    // Don't allow putting items in corpses
+    if (container->type() == ObjectType::Corpse) {
+        ctx.send_error("You can't put items in a corpse.");
+        return CommandResult::InvalidTarget;
     }
 
-    ctx.send_success(
-        fmt::format("You put {} in {}.", ctx.format_object_name(item_to_put), ctx.format_object_name(container)));
-    ctx.send_to_room(fmt::format("{} puts {} in {}.", ctx.actor->display_name(), ctx.format_object_name(item_to_put),
-                                 ctx.format_object_name(container)),
-                     true);
+    // Put each item in the container
+    int success_count = 0;
+    int fail_count = 0;
+
+    for (const auto &item_to_put : inventory_items_to_put) {
+        // Try to add item to container
+        auto add_result = container_obj->add_item(item_to_put);
+        if (!add_result) {
+            ctx.send_error(fmt::format("The {} is full - couldn't put {}.",
+                                       ctx.format_object_name(container),
+                                       ctx.format_object_name(item_to_put)));
+            fail_count++;
+            continue;
+        }
+
+        // Remove from actor's inventory
+        if (!ctx.actor->inventory().remove_item(item_to_put)) {
+            // If we can't remove from inventory, remove from container to maintain consistency
+            container_obj->remove_item(item_to_put);
+            fail_count++;
+            continue;
+        }
+
+        success_count++;
+
+        // Send individual messages for each item
+        ctx.send_success(fmt::format("You put {} in {}.",
+                                     ctx.format_object_name(item_to_put),
+                                     ctx.format_object_name(container)));
+        ctx.send_to_room(fmt::format("{} puts {} in {}.",
+                                     ctx.actor->display_name(),
+                                     ctx.format_object_name(item_to_put),
+                                     ctx.format_object_name(container)),
+                         true);
+    }
+
+    // Summary for multiple items
+    if (inventory_items_to_put.size() > 1 && success_count > 0) {
+        ctx.send_info(fmt::format("Put {} item{} in {}.",
+                                  success_count,
+                                  success_count == 1 ? "" : "s",
+                                  ctx.format_object_name(container)));
+    }
+
+    if (success_count == 0) {
+        return CommandResult::InvalidState;
+    }
 
     return CommandResult::Success;
 }
@@ -992,20 +1085,20 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find light source in inventory or equipped
+    // Find light source in equipped or inventory (prefer held items)
     std::shared_ptr<Object> light_source = nullptr;
 
-    // First check inventory
-    for (const auto &obj : ctx.actor->inventory().get_all_items()) {
+    // First check equipped items (prioritize what you're holding)
+    for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
         if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
             light_source = obj;
             break;
         }
     }
 
-    // If not found in inventory, check equipped items
+    // If not found in equipped, check inventory
     if (!light_source) {
-        for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
+        for (const auto &obj : ctx.actor->inventory().get_all_items()) {
             if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
                 light_source = obj;
                 break;
@@ -1111,15 +1204,61 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find drinkable item in inventory
-    auto inventory_items = ctx.actor->inventory().get_all_items();
+    // Helper to check if object matches by keyword OR liquid type
+    auto matches_drink_target = [&target_name](const std::shared_ptr<Object>& obj) -> bool {
+        if (!obj) return false;
+
+        // Must be a drinkable type
+        if (obj->type() != ObjectType::Liquid_Container &&
+            obj->type() != ObjectType::Potion &&
+            obj->type() != ObjectType::Food) {
+            return false;
+        }
+
+        // Check if it matches by object keyword
+        if (obj->matches_keyword(target_name)) {
+            return true;
+        }
+
+        // For liquid containers, also check if target matches the liquid type
+        if (obj->type() == ObjectType::Liquid_Container) {
+            const auto& liquid = obj->liquid_info();
+            if (!liquid.liquid_type.empty() && liquid.remaining > 0) {
+                // Case-insensitive comparison of liquid type
+                std::string lower_target;
+                lower_target.reserve(target_name.size());
+                for (char c : target_name) {
+                    lower_target.push_back(std::tolower(static_cast<unsigned char>(c)));
+                }
+                std::string lower_liquid;
+                lower_liquid.reserve(liquid.liquid_type.size());
+                for (char c : liquid.liquid_type) {
+                    lower_liquid.push_back(std::tolower(static_cast<unsigned char>(c)));
+                }
+                if (lower_liquid == lower_target) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    };
+
+    // Find drinkable item - check equipped first, then inventory
     std::shared_ptr<Object> drink_item = nullptr;
 
-    for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(target_name)) {
-            if (obj->type() == ObjectType::Liquid_Container || 
-                obj->type() == ObjectType::Potion || 
-                obj->type() == ObjectType::Food) {
+    // First check equipped items (prioritize what you're holding)
+    for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
+        if (matches_drink_target(obj)) {
+            drink_item = obj;
+            break;
+        }
+    }
+
+    // Then check inventory
+    if (!drink_item) {
+        for (const auto &obj : ctx.actor->inventory().get_all_items()) {
+            if (matches_drink_target(obj)) {
                 drink_item = obj;
                 break;
             }

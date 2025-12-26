@@ -366,15 +366,32 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
 // EntityUtils Implementation
 
 namespace EntityUtils {
+    // Common articles that should not be keywords
+    static const std::unordered_set<std::string> ARTICLES = {"a", "an", "the", "some"};
+
     bool is_valid_keyword(std::string_view keyword) {
         if (keyword.empty() || keyword.length() > MAX_KEYWORD_LENGTH) {
             return false;
         }
 
         // Check for printable ASCII characters only
-        return std::all_of(keyword.begin(), keyword.end(), [](char c) {
+        if (!std::all_of(keyword.begin(), keyword.end(), [](char c) {
             return std::isprint(c) && c != '"' && c != '\'';
-        });
+        })) {
+            return false;
+        }
+
+        // Reject common articles
+        std::string lower_kw;
+        lower_kw.reserve(keyword.size());
+        for (char c : keyword) {
+            lower_kw.push_back(std::tolower(c));
+        }
+        if (ARTICLES.contains(lower_kw)) {
+            return false;
+        }
+
+        return true;
     }
     
     std::string normalize_keyword(std::string_view keyword) {

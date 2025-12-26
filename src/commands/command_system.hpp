@@ -168,7 +168,17 @@ struct CommandContext {
     std::shared_ptr<Actor> find_actor_global(std::string_view name) const;
     std::shared_ptr<Object> find_object_target(std::string_view name) const;
     std::shared_ptr<Room> find_room_target(std::string_view name) const;
-    
+
+    /**
+     * Find multiple objects matching a name with dot-notation support.
+     * Supports: "all.keyword", "N.keyword" (Nth item), or "keyword" (first match)
+     * @param name The name/keyword to search for (may include dot-notation prefix)
+     * @param search_room Whether to also search the current room
+     * @return Vector of matching objects (may be empty, one item, or multiple)
+     */
+    std::vector<std::shared_ptr<Object>> find_objects_matching(
+        std::string_view name, bool search_room = false) const;
+
     // Target resolution
     TargetInfo resolve_target(std::string_view name) const;
 

@@ -150,6 +150,25 @@ class WorldManager {
     bool can_move_direction(std::shared_ptr<Actor> actor, Direction direction) const;
     std::shared_ptr<Room> get_room_in_direction(EntityId from_room, Direction direction) const;
 
+    /**
+     * Check if actor should fall in current room and handle falling.
+     * If actor is in a Flying sector room without flying ability, they will fall
+     * down through any down exits until reaching solid ground.
+     * @param actor The actor to check
+     * @return True if actor fell, false if no falling occurred
+     */
+    bool check_and_handle_falling(std::shared_ptr<Actor> actor);
+
+    /**
+     * Check if object should fall in current room and handle falling.
+     * If object is in a Flying sector room, it will fall down through
+     * any down exits until reaching solid ground.
+     * @param object The object to check
+     * @param room The room the object is in
+     * @return True if object fell, false if no falling occurred
+     */
+    bool check_and_handle_object_falling(std::shared_ptr<Object> object, std::shared_ptr<Room> room);
+
     // World State Management
     Result<void> load_world_state();
     bool has_unsaved_changes() const { return has_unsaved_changes_; }
@@ -205,6 +224,9 @@ class WorldManager {
 
     // Mobile Instance Creation (for load command and zone resets)
     std::shared_ptr<Mobile> spawn_mobile_to_room(EntityId prototype_id, EntityId room_id);
+
+    // Mobile Despawning (for mob death)
+    void despawn_mobile(EntityId mobile_id);
 
     // Prototype Access (for load command and similar admin features)
     Mobile* get_mobile_prototype(EntityId prototype_id) const;

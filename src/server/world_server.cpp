@@ -12,6 +12,7 @@
 #include "../world/world_manager.hpp"
 #include "mud_server.hpp"
 #include "networked_actor.hpp"
+#include "persistence_manager.hpp"
 
 #include <algorithm>
 #include <memory>
@@ -23,6 +24,7 @@ namespace {
     constexpr auto CLEANUP_INTERVAL = std::chrono::minutes(5);
     constexpr auto HEARTBEAT_INTERVAL = std::chrono::seconds(30);
     constexpr auto COMBAT_PROCESSING_INTERVAL = std::chrono::milliseconds(100);
+    constexpr auto PLAYER_SAVE_INTERVAL = std::chrono::minutes(5);
 
     // Game time defaults
     constexpr int DEFAULT_LORE_YEAR = 1000;
@@ -226,6 +228,7 @@ Result<void> WorldServer::start() {
     schedule_periodic_cleanup();
     schedule_heartbeat();
     schedule_combat_processing();
+    schedule_periodic_save();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -520,6 +523,13 @@ void WorldServer::schedule_combat_processing() {
     schedule_timer(COMBAT_PROCESSING_INTERVAL, [this]() { perform_combat_processing(); }, combat_timer_);
 }
 
+void WorldServer::schedule_periodic_save() {
+    Log::info("Scheduling periodic player save timer ({}min interval)",
+              std::chrono::duration_cast<std::chrono::minutes>(PLAYER_SAVE_INTERVAL).count());
+    save_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(PLAYER_SAVE_INTERVAL, [this]() { perform_player_save(); }, save_timer_);
+}
+
 void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::function<void()> task,
                                  const std::shared_ptr<asio::steady_timer> &timer) {
     if (!running_.load()) {
@@ -598,6 +608,55 @@ void WorldServer::perform_combat_processing() {
                 send_prompt_to_actor(actor);
             }
         }
+    }
+
+    // Process queued spells for players whose blackout has expired
+    for (auto& conn : active_connections_) {
+        auto it = connection_actors_.find(conn);
+        if (it == connection_actors_.end() || !it->second) {
+            continue;
+        }
+
+        auto& actor = it->second;
+
+        // Check if actor has a queued spell and blackout has expired
+        if (actor->has_queued_spell() && !actor->is_casting_blocked()) {
+            auto queued = actor->pop_queued_spell();
+            if (queued) {
+                // Execute the queued spell command
+                actor->send_message("Your queued spell is ready to cast!\n");
+
+                // Build and execute the cast command with the queued spell args
+                std::string cast_command = "cast " + queued->spell_name;
+                process_command(actor, cast_command);
+
+                Log::debug("Processed queued spell for {}: {}", actor->name(), queued->spell_name);
+            }
+        }
+    }
+}
+
+void WorldServer::perform_player_save() {
+    // This runs on the world strand - thread safe!
+    // Periodically save all online players to persist their state
+    int saved_count = 0;
+    int failed_count = 0;
+
+    for (auto& conn : active_connections_) {
+        if (auto player = conn->get_player()) {
+            auto save_result = PersistenceManager::instance().save_player(*player);
+            if (save_result) {
+                saved_count++;
+            } else {
+                failed_count++;
+                Log::warn("Failed to auto-save player {}: {}",
+                         player->name(), save_result.error().message);
+            }
+        }
+    }
+
+    if (saved_count > 0 || failed_count > 0) {
+        Log::debug("Periodic player save: {} saved, {} failed", saved_count, failed_count);
     }
 }
 

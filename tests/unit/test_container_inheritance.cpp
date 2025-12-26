@@ -77,6 +77,6 @@ TEST_CASE("Container objects are created as Container subclass from JSON", "[con
         REQUIRE(container->is_empty() == false);
         REQUIRE(container->contents_count() == 1);
         REQUIRE(container->current_capacity() == 1);
-        REQUIRE(container->current_weight() == 1);
+        REQUIRE(container->contents_weight() == 1);
     }
 }

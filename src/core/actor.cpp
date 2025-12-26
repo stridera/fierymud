@@ -1,9 +1,11 @@
 #include "actor.hpp"
+#include "object.hpp"
 #include "spell_system.hpp"
 #include "../core/logging.hpp"
 #include "../game/player_output.hpp"
 #include "../text/string_utils.hpp"
 #include "../world/room.hpp"
+#include "../world/world_manager.hpp"
 #include "../net/player_connection.hpp"
 
 #include <magic_enum/magic_enum.hpp>
@@ -981,6 +983,46 @@ bool Actor::interrupt_concentration() {
     return interrupted;
 }
 
+// Casting blackout system implementation
+
+bool Actor::is_casting_blocked() const {
+    auto now = std::chrono::steady_clock::now();
+    return casting_blackout_end_ > now;
+}
+
+std::chrono::milliseconds Actor::get_blackout_remaining() const {
+    auto now = std::chrono::steady_clock::now();
+    if (casting_blackout_end_ <= now) {
+        return std::chrono::milliseconds{0};
+    }
+    return std::chrono::duration_cast<std::chrono::milliseconds>(casting_blackout_end_ - now);
+}
+
+void Actor::set_casting_blackout(std::chrono::milliseconds duration) {
+    casting_blackout_end_ = std::chrono::steady_clock::now() + duration;
+}
+
+void Actor::clear_casting_blackout() {
+    casting_blackout_end_ = std::chrono::steady_clock::time_point{};
+}
+
+void Actor::queue_spell(std::string_view spell_name, std::string_view target_name) {
+    queued_spell_ = QueuedSpell{
+        .spell_name = std::string{spell_name},
+        .target_name = std::string{target_name},
+        .queued_at = std::chrono::steady_clock::now()
+    };
+}
+
+std::optional<Actor::QueuedSpell> Actor::pop_queued_spell() {
+    if (!queued_spell_.has_value()) {
+        return std::nullopt;
+    }
+    auto spell = std::move(queued_spell_);
+    queued_spell_.reset();
+    return spell;
+}
+
 // Mobile Implementation
 
 Mobile::Mobile(EntityId id, std::string_view name, int level) 
@@ -1223,6 +1265,146 @@ void Mobile::receive_message(std::string_view message) {
     }
 }
 
+std::shared_ptr<Container> Mobile::die() {
+    auto room = current_room();
+    if (!room) {
+        Log::error("Mobile::die() called but mobile {} has no room", name());
+        return nullptr;
+    }
+
+    // Set position to dead
+    set_position(Position::Dead);
+
+    // Calculate corpse capacity based on items to transfer
+    auto equipped_items = equipment().get_all_equipped();
+    auto inv_items = inventory().get_all_items();
+    int corpse_capacity = static_cast<int>(equipped_items.size() + inv_items.size() + 5); // +5 buffer
+
+    Log::info("Mobile::die() - {} has {} equipped items and {} inventory items",
+              name(), equipped_items.size(), inv_items.size());
+
+    // Create corpse as a Container to hold items
+    EntityId corpse_id{id().value() + 100000}; // Add offset to avoid ID conflicts
+    std::string corpse_name = fmt::format("the corpse of {}", display_name());
+    auto corpse_result = Container::create(corpse_id, corpse_name, corpse_capacity, ObjectType::Corpse);
+
+    std::shared_ptr<Container> created_corpse = nullptr;
+
+    if (corpse_result) {
+        auto corpse = std::shared_ptr<Container>(corpse_result.value().release());
+        created_corpse = corpse;
+        corpse->set_description(fmt::format("The lifeless body of {} lies here, still and cold.", display_name()));
+
+        // Add keywords: "corpse" plus all keywords from the dead actor
+        corpse->add_keyword("corpse");
+        for (const auto& kw : keywords()) {
+            corpse->add_keyword(kw);
+        }
+
+        // Transfer equipment to corpse
+        for (auto& item : equipped_items) {
+            if (item) {
+                Log::debug("Transferring equipment '{}' (id {}) to corpse", item->display_name(), item->id());
+                equipment().unequip_item(item->id());
+                auto result = corpse->add_item(item);
+                if (!result.has_value()) {
+                    Log::warn("Failed to add equipment '{}' to corpse: {}", item->display_name(), result.error().message);
+                    room->add_object(item); // Drop in room if corpse full
+                } else {
+                    Log::debug("Successfully added '{}' to corpse", item->display_name());
+                }
+            }
+        }
+
+        // Transfer inventory to corpse
+        for (auto& item : inv_items) {
+            if (item) {
+                inventory().remove_item(item->id());
+                auto result = corpse->add_item(item);
+                if (!result.has_value()) {
+                    Log::warn("Failed to add inventory '{}' to corpse, dropping in room", item->display_name());
+                    room->add_object(item); // Drop in room if corpse full
+                }
+            }
+        }
+
+        // Create coins object if mob had money
+        // Note: stats().gold stores total wealth in copper value for mobs
+        long total_coins = stats().gold;
+        if (total_coins > 0) {
+            // Generate a descriptive name based on the amount
+            std::string coins_name;
+            if (total_coins >= 1000) {
+                coins_name = "a large pile of coins";
+            } else if (total_coins >= 100) {
+                coins_name = "a pile of coins";
+            } else if (total_coins >= 10) {
+                coins_name = "some coins";
+            } else {
+                coins_name = "a few coins";
+            }
+
+            EntityId coins_id{id().value() + 200000}; // Different offset than corpse
+            auto coins_result = Object::create(coins_id, coins_name, ObjectType::Money);
+            if (coins_result) {
+                auto coins = std::shared_ptr<Object>(coins_result.value().release());
+                coins->set_value(static_cast<int>(total_coins));
+                coins->add_keyword("coins");
+                coins->add_keyword("money");
+                coins->add_keyword("gold"); // Generic keyword for finding
+
+                // Convert total copper to coin breakdown for description
+                long remaining = total_coins;
+                int plat = static_cast<int>(remaining / 1000);
+                remaining %= 1000;
+                int gold_coins = static_cast<int>(remaining / 100);
+                remaining %= 100;
+                int silver_coins = static_cast<int>(remaining / 10);
+                int copper_coins = static_cast<int>(remaining % 10);
+
+                // Generate description showing coin amounts
+                std::string coin_desc;
+                if (plat > 0) coin_desc += fmt::format("{} platinum, ", plat);
+                if (gold_coins > 0) coin_desc += fmt::format("{} gold, ", gold_coins);
+                if (silver_coins > 0) coin_desc += fmt::format("{} silver, ", silver_coins);
+                if (copper_coins > 0) coin_desc += fmt::format("{} copper, ", copper_coins);
+                // Remove trailing ", "
+                if (!coin_desc.empty()) {
+                    coin_desc = coin_desc.substr(0, coin_desc.length() - 2);
+                }
+                coins->set_description(fmt::format("A pile of coins: {}.", coin_desc));
+
+                auto result = corpse->add_item(coins);
+                if (result.has_value()) {
+                    Log::debug("Added {} coins (value: {}) to corpse", coins_name, total_coins);
+                } else {
+                    Log::warn("Failed to add coins to corpse, dropping in room");
+                    room->add_object(coins);
+                }
+            }
+        }
+
+        // Add corpse to room
+        room->add_object(corpse);
+
+        // Handle falling if in flying room
+        WorldManager::instance().check_and_handle_object_falling(corpse, room);
+
+        Log::info("Created corpse for mobile {} with {} items in room {}",
+                  name(), corpse->current_capacity(), room->id());
+    } else {
+        Log::error("Failed to create corpse for mobile {}: {}", name(), corpse_result.error().message);
+    }
+
+    // Remove from room and despawn from world
+    room->remove_actor(id());
+    WorldManager::instance().despawn_mobile(id());
+
+    Log::info("Mobile {} died and was removed from world", name());
+
+    return created_corpse;
+}
+
 int Mobile::calculate_hp_from_dice() {
     // Roll HP dice: num d size + bonus
     // For example: 50d20+20783 means roll 50 d20s and add 20783
@@ -1283,8 +1465,13 @@ void Mobile::initialize_for_level(int level) {
 
 // Player Implementation
 
-Player::Player(EntityId id, std::string_view name) 
-    : Actor(id, name) {}
+Player::Player(EntityId id, std::string_view name)
+    : Actor(id, name) {
+    // Set sensible defaults for new players
+    set_player_flag(PlayerFlag::AutoExit);   // Show exits when entering rooms
+    set_player_flag(PlayerFlag::AutoLoot);   // Auto-loot corpses
+    set_player_flag(PlayerFlag::AutoGold);   // Auto-collect gold from corpses
+}
 
 Result<std::unique_ptr<Player>> Player::create(EntityId id, std::string_view name) {
     if (!id.is_valid()) {
@@ -1380,6 +1567,13 @@ void Player::send_message(std::string_view message) {
 
 void Player::receive_message(std::string_view message) {
     send_message(message); // Players receive messages by sending them to output
+}
+
+std::shared_ptr<Container> Player::die() {
+    // Players become ghosts - corpse is created when they use 'release' command
+    set_position(Position::Ghost);
+    Log::info("Player {} died and became a ghost", name());
+    return nullptr;  // Player corpse is created on release, not death
 }
 
 nlohmann::json Player::get_vitals_gmcp() const {
@@ -1696,12 +1890,12 @@ std::string Actor::get_stat_info() const {
     
     // Mobile-specific data
     if (mobile) {
-        // Show keywords (what players can use to target this mob)
+        // Show keywords (what players can use to target this mob) in a visible format
         auto kw = keywords();
         std::string keywords_str;
         for (size_t i = 0; i < kw.size(); ++i) {
-            if (i > 0) keywords_str += " ";
-            keywords_str += kw[i];
+            if (i > 0) keywords_str += ", ";
+            keywords_str += fmt::format("'{}'", kw[i]);
         }
         output << fmt::format("Keywords: {}\n", keywords_str.empty() ? name() : keywords_str);
     }

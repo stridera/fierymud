@@ -333,10 +333,14 @@ public:
     /** Combat state */
     bool is_fighting() const { return position_ == Position::Fighting; }
     bool is_alive() const { return position_ != Position::Dead && position_ != Position::Ghost; }
-    bool can_act() const { 
-        return is_alive() && position_ != Position::Incapacitated && 
+    bool can_act() const {
+        return is_alive() && position_ != Position::Incapacitated &&
                position_ != Position::Stunned && position_ != Position::Sleeping;
     }
+
+    /** Handle death - implemented differently by Player (becomes ghost) and Mobile (creates corpse, despawns)
+     *  Returns the corpse for Mobile deaths, nullptr for Player deaths */
+    virtual std::shared_ptr<Container> die() = 0;
     
     /** Visibility checks */
     bool is_visible_to(const Actor& observer) const;
@@ -406,6 +410,24 @@ public:
     /** Interrupt concentration-based activities like meditation */
     bool interrupt_concentration();
 
+    /** Casting blackout system - prevents spam-casting */
+    bool is_casting_blocked() const;
+    std::chrono::milliseconds get_blackout_remaining() const;
+    void set_casting_blackout(std::chrono::milliseconds duration);
+    void clear_casting_blackout();
+
+    /** Spell queue system - allows queuing next spell during blackout */
+    struct QueuedSpell {
+        std::string spell_name;
+        std::string target_name;
+        std::chrono::steady_clock::time_point queued_at;
+    };
+    bool has_queued_spell() const { return queued_spell_.has_value(); }
+    const std::optional<QueuedSpell>& queued_spell() const { return queued_spell_; }
+    void queue_spell(std::string_view spell_name, std::string_view target_name);
+    void clear_queued_spell() { queued_spell_.reset(); }
+    std::optional<QueuedSpell> pop_queued_spell();
+
 protected:
     /** Constructor for derived classes */
     Actor(EntityId id, std::string_view name);
@@ -444,6 +466,10 @@ private:
     std::string size_ = "Medium";
     std::string race_ = "Human";
     std::vector<ActiveEffect> active_effects_;
+
+    // Casting blackout system
+    std::chrono::steady_clock::time_point casting_blackout_end_{};
+    std::optional<QueuedSpell> queued_spell_{};
 };
 
 /** Mobile (NPC) behavior flags */
@@ -506,6 +532,10 @@ public:
     /** Communication (NPCs store messages for AI processing) */
     void send_message(std::string_view message) override;
     void receive_message(std::string_view message) override;
+
+    /** Death handling - creates corpse, removes from room, despawns
+     *  Returns the created corpse */
+    std::shared_ptr<Container> die() override;
     
     /** AI behavior properties */
     bool is_aggressive() const { return aggressive_; }
@@ -719,6 +749,10 @@ public:
     /** Communication (Players queue output to session) */
     void send_message(std::string_view message) override;
     void receive_message(std::string_view message) override;
+
+    /** Death handling - becomes ghost (corpse created on release)
+     *  Returns nullptr (player corpse created on release, not death) */
+    std::shared_ptr<Container> die() override;
     
     /** Database persistence */
     std::string_view database_id() const { return database_id_; }
