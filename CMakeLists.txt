@@ -1,6 +1,6 @@
 # FieryMUD Server Build System - Modern and Legacy
 cmake_minimum_required(VERSION 3.20)
-project(FieryMUD VERSION 3.0.0 LANGUAGES CXX)
+project(FieryMUD VERSION 3.0.0 LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,6 +18,63 @@ CPMAddPackage("gh:nlohmann/json#v3.11.3")
 CPMAddPackage("gh:Neargye/magic_enum#v0.9.7")
 CPMAddPackage("gh:jarro2783/cxxopts#v3.3.1")
 CPMAddPackage("gh:catchorg/Catch2#v3.6.0")
+
+# Lua 5.4 for scripting system
+CPMAddPackage(
+    NAME lua
+    GITHUB_REPOSITORY lua/lua
+    GIT_TAG v5.4.7
+    DOWNLOAD_ONLY YES
+)
+
+if(lua_ADDED)
+    # Build Lua as a static library from source
+    set(LUA_SOURCES
+        ${lua_SOURCE_DIR}/lapi.c
+        ${lua_SOURCE_DIR}/lauxlib.c
+        ${lua_SOURCE_DIR}/lbaselib.c
+        ${lua_SOURCE_DIR}/lcode.c
+        ${lua_SOURCE_DIR}/lcorolib.c
+        ${lua_SOURCE_DIR}/lctype.c
+        ${lua_SOURCE_DIR}/ldblib.c
+        ${lua_SOURCE_DIR}/ldebug.c
+        ${lua_SOURCE_DIR}/ldo.c
+        ${lua_SOURCE_DIR}/ldump.c
+        ${lua_SOURCE_DIR}/lfunc.c
+        ${lua_SOURCE_DIR}/lgc.c
+        ${lua_SOURCE_DIR}/linit.c
+        ${lua_SOURCE_DIR}/liolib.c
+        ${lua_SOURCE_DIR}/llex.c
+        ${lua_SOURCE_DIR}/lmathlib.c
+        ${lua_SOURCE_DIR}/lmem.c
+        ${lua_SOURCE_DIR}/loadlib.c
+        ${lua_SOURCE_DIR}/lobject.c
+        ${lua_SOURCE_DIR}/lopcodes.c
+        ${lua_SOURCE_DIR}/loslib.c
+        ${lua_SOURCE_DIR}/lparser.c
+        ${lua_SOURCE_DIR}/lstate.c
+        ${lua_SOURCE_DIR}/lstring.c
+        ${lua_SOURCE_DIR}/lstrlib.c
+        ${lua_SOURCE_DIR}/ltable.c
+        ${lua_SOURCE_DIR}/ltablib.c
+        ${lua_SOURCE_DIR}/ltm.c
+        ${lua_SOURCE_DIR}/lundump.c
+        ${lua_SOURCE_DIR}/lutf8lib.c
+        ${lua_SOURCE_DIR}/lvm.c
+        ${lua_SOURCE_DIR}/lzio.c
+    )
+    add_library(lua STATIC ${LUA_SOURCES})
+    target_include_directories(lua PUBLIC ${lua_SOURCE_DIR})
+    target_compile_definitions(lua PUBLIC LUA_USE_POSIX LUA_USE_DLOPEN)
+    set_target_properties(lua PROPERTIES C_STANDARD 11)
+endif()
+
+# Sol3 - Modern C++ Lua bindings (header-only)
+CPMAddPackage(
+    NAME sol2
+    GITHUB_REPOSITORY ThePhD/sol2
+    GIT_TAG v3.3.0
+)
 
 # PostgreSQL C++ client library for database integration
 CPMAddPackage(
@@ -134,6 +191,9 @@ set(SOURCES
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
+    # Scripting system
+    src/scripting/script_engine.cpp
+    src/database/trigger_queries.cpp
 )
 
 # Test sources (without main.cpp and networking)
@@ -194,6 +254,8 @@ target_link_libraries(fierymud PRIVATE
     PostgreSQL::PostgreSQL
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
 )
 
 target_compile_definitions(fierymud PRIVATE
@@ -270,6 +332,9 @@ set(CORE_TEST_SOURCES
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
     src/core/arguments.cpp
     src/text/string_utils.cpp
+    # Scripting system
+    src/scripting/script_engine.cpp
+    src/database/trigger_queries.cpp
 )
 
 # Unit test sources
@@ -331,6 +396,8 @@ target_link_libraries(unit_tests PRIVATE
     Catch2::Catch2WithMain
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
 )
 
 target_compile_definitions(unit_tests PRIVATE
@@ -358,6 +425,8 @@ target_link_libraries(stable_tests PRIVATE
     Catch2::Catch2WithMain
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
 )
 
 target_compile_definitions(stable_tests PRIVATE
@@ -388,6 +457,8 @@ target_link_libraries(integration_tests PRIVATE
     Catch2::Catch2WithMain
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
 )
 
 target_compile_definitions(integration_tests PRIVATE

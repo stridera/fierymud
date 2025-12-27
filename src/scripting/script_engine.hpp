@@ -1,0 +1,128 @@
+#pragma once
+
+#include <expected>
+#include <memory>
+#include <string>
+#include <string_view>
+#include <unordered_map>
+
+#define SOL_ALL_SAFETIES_ON 1
+#include <sol/sol.hpp>
+
+#include <spdlog/spdlog.h>
+
+namespace FieryMUD {
+
+/// Error types for script operations
+enum class ScriptError {
+    NotInitialized,
+    CompilationFailed,
+    ExecutionFailed,
+    SandboxViolation,
+    InvalidState
+};
+
+/// Result type for script operations
+template<typename T>
+using ScriptResult = std::expected<T, ScriptError>;
+
+/**
+ * ScriptEngine - Central Lua scripting system manager
+ *
+ * Manages the Sol3/Lua state, provides sandboxed script execution,
+ * and caches compiled scripts for performance.
+ *
+ * Thread Safety: NOT thread-safe. Must be called from game loop strand.
+ */
+class ScriptEngine {
+public:
+    /// Get the singleton instance
+    static ScriptEngine& instance();
+
+    /// Initialize the Lua engine (call once at startup)
+    ScriptResult<void> initialize();
+
+    /// Shutdown and clean up resources
+    void shutdown();
+
+    /// Check if engine is initialized
+    [[nodiscard]] bool is_initialized() const { return initialized_; }
+
+    /// Compile a script and cache the bytecode
+    /// @param script_code The Lua source code
+    /// @param script_name Identifier for error messages
+    /// @return Success or compilation error
+    ScriptResult<void> compile_script(std::string_view script_code,
+                                       std::string_view script_name);
+
+    /// Create an isolated thread for trigger execution
+    /// Each trigger runs in its own thread to support coroutines
+    [[nodiscard]] sol::thread create_thread();
+
+    /// Execute a script in the main state (for simple expressions)
+    /// @param script_code The Lua code to execute
+    /// @param script_name Identifier for error messages
+    /// @return Success or execution error
+    ScriptResult<sol::protected_function_result> execute(
+        std::string_view script_code,
+        std::string_view script_name = "script");
+
+    /// Execute a pre-compiled function with error handling
+    template<typename... Args>
+    ScriptResult<sol::protected_function_result> safe_call(
+        sol::protected_function& func, Args&&... args);
+
+    /// Access the main Lua state (for binding registration)
+    [[nodiscard]] sol::state& lua_state() { return lua_; }
+
+    /// Get error message for last failed operation
+    [[nodiscard]] std::string_view last_error() const { return last_error_; }
+
+    // Delete copy/move operations (singleton)
+    ScriptEngine(const ScriptEngine&) = delete;
+    ScriptEngine& operator=(const ScriptEngine&) = delete;
+    ScriptEngine(ScriptEngine&&) = delete;
+    ScriptEngine& operator=(ScriptEngine&&) = delete;
+
+private:
+    ScriptEngine() = default;
+    ~ScriptEngine();
+
+    /// Configure sandbox by removing dangerous functions
+    void configure_sandbox();
+
+    /// Register all game API bindings
+    void register_bindings();
+
+    /// Register utility functions (dice, random, wait, etc.)
+    void register_utility_functions();
+
+    sol::state lua_;
+    std::unordered_map<std::string, sol::bytecode> bytecode_cache_;
+    std::string last_error_;
+    bool initialized_ = false;
+};
+
+// Template implementation
+template<typename... Args>
+ScriptResult<sol::protected_function_result> ScriptEngine::safe_call(
+    sol::protected_function& func, Args&&... args)
+{
+    if (!initialized_) {
+        last_error_ = "ScriptEngine not initialized";
+        return std::unexpected(ScriptError::NotInitialized);
+    }
+
+    auto result = func(std::forward<Args>(args)...);
+
+    if (!result.valid()) {
+        sol::error err = result;
+        last_error_ = err.what();
+        spdlog::error("Lua execution error: {}", last_error_);
+        return std::unexpected(ScriptError::ExecutionFailed);
+    }
+
+    return result;
+}
+
+} // namespace FieryMUD
