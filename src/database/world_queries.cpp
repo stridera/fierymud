@@ -8,6 +8,7 @@
 #include <fmt/format.h>
 #include <fmt/chrono.h>
 #include <sstream>
+#include <iomanip>
 #include <regex>
 #include <random>
 #include <functional>
@@ -699,18 +700,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                 auto flags = parse_pg_array(flags_str);
                 for (const auto& flag_name : flags) {
                     if (auto flag = db::mob_flag_from_db(flag_name)) {
-                        auto game_flag = to_game(*flag);
-                        mob->set_flag(game_flag);
-                        // Special role flags set dedicated member variables
-                        if (game_flag == MobFlag::Banker) {
-                            mob->set_banker(true);
-                        }
-                        if (game_flag == MobFlag::Receptionist) {
-                            mob->set_receptionist(true);
-                        }
-                        if (game_flag == MobFlag::Postmaster) {
-                            mob->set_postmaster(true);
-                        }
+                        mob->set_flag(to_game(*flag));
                     } else {
                         logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_id, flag_name);
                     }
@@ -939,18 +929,7 @@ Result<std::unique_ptr<Mobile>> load_mob(
             auto flags = parse_pg_array(flags_str);
             for (const auto& flag_name : flags) {
                 if (auto flag = db::mob_flag_from_db(flag_name)) {
-                    auto game_flag = to_game(*flag);
-                    mob->set_flag(game_flag);
-                    // Special role flags set dedicated member variables
-                    if (game_flag == MobFlag::Banker) {
-                        mob->set_banker(true);
-                    }
-                    if (game_flag == MobFlag::Receptionist) {
-                        mob->set_receptionist(true);
-                    }
-                    if (game_flag == MobFlag::Postmaster) {
-                        mob->set_postmaster(true);
-                    }
+                    mob->set_flag(to_game(*flag));
                 } else {
                     logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_local_id, flag_name);
                 }
@@ -2732,24 +2711,27 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
     try {
         auto result = txn.exec_params(R"(
             SELECT
-                id, name, level, alignment,
-                strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
-                hit_points, hit_points_max, movement, movement_max,
-                wealth, bank_wealth,
-                password_hash, race_type, gender, player_class, class_id,
-                current_room_zone_id, current_room_id,
-                save_room_zone_id, save_room_id,
-                home_room_zone_id, home_room_id,
-                hit_roll, damage_roll, armor_class,
-                last_login, time_played, is_online,
-                hunger, thirst,
-                description, title,
-                prompt, page_length, wimpy_threshold,
-                player_flags, effect_flags, privilege_flags,
-                experience, skill_points,
-                created_at, updated_at
-            FROM "Characters"
-            WHERE UPPER(name) = UPPER($1)
+                c.id, c.name, c.level, c.alignment,
+                c.strength, c.intelligence, c.wisdom, c.dexterity, c.constitution, c.charisma, c.luck,
+                c.hit_points, c.hit_points_max, c.movement, c.movement_max,
+                c.wealth, c.bank_wealth,
+                c.password_hash, c.race_type, c.gender, c.player_class, c.class_id,
+                c.current_room_zone_id, c.current_room_id,
+                c.save_room_zone_id, c.save_room_id,
+                c.home_room_zone_id, c.home_room_id,
+                c.hit_roll, c.damage_roll, c.armor_class,
+                c.last_login, c.time_played, c.is_online,
+                c.hunger, c.thirst,
+                c.description, c.title,
+                c.prompt, c.page_length, c.wimpy_threshold,
+                c.player_flags, c.effect_flags, c.privilege_flags,
+                c.experience, c.skill_points,
+                c.created_at, c.updated_at,
+                c.user_id,
+                COALESCE(u.account_wealth, 0) as account_wealth
+            FROM "Characters" c
+            LEFT JOIN "Users" u ON c.user_id = u.id
+            WHERE UPPER(c.name) = UPPER($1)
         )", name);
 
         if (result.empty()) {
@@ -2783,6 +2765,12 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         // Currency (stored as copper)
         character.wealth = row["wealth"].as<long>(0);
         character.bank_wealth = row["bank_wealth"].as<long>(0);
+        character.account_wealth = row["account_wealth"].as<long>(0);
+
+        // User link
+        if (!row["user_id"].is_null()) {
+            character.user_id = row["user_id"].as<std::string>();
+        }
 
         // Character info
         character.password_hash = row["password_hash"].as<std::string>("");
@@ -2873,24 +2861,27 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
     try {
         auto result = txn.exec_params(R"(
             SELECT
-                id, name, level, alignment,
-                strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
-                hit_points, hit_points_max, movement, movement_max,
-                wealth, bank_wealth,
-                password_hash, race_type, gender, player_class, class_id,
-                current_room_zone_id, current_room_id,
-                save_room_zone_id, save_room_id,
-                home_room_zone_id, home_room_id,
-                hit_roll, damage_roll, armor_class,
-                last_login, time_played, is_online,
-                hunger, thirst,
-                description, title,
-                prompt, page_length, wimpy_threshold,
-                player_flags, effect_flags, privilege_flags,
-                experience, skill_points,
-                created_at, updated_at
-            FROM "Characters"
-            WHERE id = $1
+                c.id, c.name, c.level, c.alignment,
+                c.strength, c.intelligence, c.wisdom, c.dexterity, c.constitution, c.charisma, c.luck,
+                c.hit_points, c.hit_points_max, c.movement, c.movement_max,
+                c.wealth, c.bank_wealth,
+                c.password_hash, c.race_type, c.gender, c.player_class, c.class_id,
+                c.current_room_zone_id, c.current_room_id,
+                c.save_room_zone_id, c.save_room_id,
+                c.home_room_zone_id, c.home_room_id,
+                c.hit_roll, c.damage_roll, c.armor_class,
+                c.last_login, c.time_played, c.is_online,
+                c.hunger, c.thirst,
+                c.description, c.title,
+                c.prompt, c.page_length, c.wimpy_threshold,
+                c.player_flags, c.effect_flags, c.privilege_flags,
+                c.experience, c.skill_points,
+                c.created_at, c.updated_at,
+                c.user_id,
+                COALESCE(u.account_wealth, 0) as account_wealth
+            FROM "Characters" c
+            LEFT JOIN "Users" u ON c.user_id = u.id
+            WHERE c.id = $1
         )", id);
 
         if (result.empty()) {
@@ -2919,6 +2910,10 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         character.movement_max = row["movement_max"].as<int>(100);
         character.wealth = row["wealth"].as<long>(0);
         character.bank_wealth = row["bank_wealth"].as<long>(0);
+        character.account_wealth = row["account_wealth"].as<long>(0);
+        if (!row["user_id"].is_null()) {
+            character.user_id = row["user_id"].as<std::string>();
+        }
         character.password_hash = row["password_hash"].as<std::string>("");
         character.race_type = row["race_type"].as<std::string>("human");
         character.gender = row["gender"].as<std::string>("neutral");
@@ -3534,6 +3529,30 @@ Result<void> link_character_to_user(
     }
 }
 
+Result<void> save_account_wealth(
+    pqxx::work& txn,
+    const std::string& user_id,
+    long account_wealth) {
+    auto logger = Log::database();
+    logger->debug("Saving account wealth {} for user {}", account_wealth, user_id);
+
+    try {
+        txn.exec_params(R"(
+            UPDATE "Users"
+            SET account_wealth = $2, updated_at = NOW()
+            WHERE id = $1
+        )", user_id, account_wealth);
+
+        logger->info("Saved account wealth {} for user {}", account_wealth, user_id);
+        return {};
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error saving account wealth: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to save account wealth: {}", e.what())});
+    }
+}
+
 // =============================================================================
 // Shop System Queries
 // =============================================================================
@@ -3954,6 +3973,943 @@ Result<std::optional<CommandData>> load_command_by_name(
         logger->error("SQL error loading command '{}': {}", name, e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to load command '{}': {}", name, e.what())});
+    }
+}
+
+// =============================================================================
+// Account Item Storage Queries
+// =============================================================================
+
+Result<std::vector<AccountItemData>> load_account_items(
+    pqxx::work& txn, const std::string& user_id) {
+    auto logger = Log::database();
+    logger->debug("Loading account items for user {}", user_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, user_id, slot, object_zone_id, object_id,
+                   quantity, custom_data::text, stored_at, stored_by_character_id
+            FROM "account_items"
+            WHERE user_id = $1
+            ORDER BY slot, id
+        )", user_id);
+
+        std::vector<AccountItemData> items;
+        items.reserve(result.size());
+
+        for (const auto& row : result) {
+            AccountItemData item;
+            item.id = row["id"].as<int>();
+            item.user_id = row["user_id"].as<std::string>();
+            item.slot = row["slot"].as<int>();
+
+            int obj_zone = row["object_zone_id"].as<int>();
+            int obj_id = row["object_id"].as<int>();
+            item.object_id = EntityId(obj_zone, obj_id);
+
+            item.quantity = row["quantity"].as<int>();
+
+            if (!row["custom_data"].is_null()) {
+                item.custom_data = row["custom_data"].as<std::string>();
+            } else {
+                item.custom_data = "{}";
+            }
+
+            // Parse stored_at timestamp
+            if (!row["stored_at"].is_null()) {
+                std::string ts_str = row["stored_at"].as<std::string>();
+                // Convert PostgreSQL timestamp to time_point
+                std::tm tm = {};
+                std::istringstream ss(ts_str);
+                ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+                item.stored_at = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+            } else {
+                item.stored_at = std::chrono::system_clock::now();
+            }
+
+            if (!row["stored_by_character_id"].is_null()) {
+                item.stored_by_character_id = row["stored_by_character_id"].as<std::string>();
+            }
+
+            items.push_back(std::move(item));
+        }
+
+        logger->debug("Loaded {} account items for user {}", items.size(), user_id);
+        return items;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading account items for user {}: {}", user_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load account items: {}", e.what())});
+    }
+}
+
+Result<int> store_account_item(
+    pqxx::work& txn,
+    const std::string& user_id,
+    EntityId object_id,
+    int quantity,
+    const std::optional<std::string>& character_id,
+    const std::string& custom_data) {
+    auto logger = Log::database();
+    logger->debug("Storing item ({},{}) for user {}", object_id.zone_id(), object_id.local_id(), user_id);
+
+    try {
+        // Get the next slot number for this user
+        auto slot_result = txn.exec_params(R"(
+            SELECT COALESCE(MAX(slot) + 1, 0) as next_slot
+            FROM "account_items"
+            WHERE user_id = $1
+        )", user_id);
+
+        int next_slot = slot_result[0]["next_slot"].as<int>();
+
+        // Insert the new item
+        auto result = txn.exec_params(R"(
+            INSERT INTO "account_items" (
+                user_id, slot, object_zone_id, object_id,
+                quantity, custom_data, stored_at, stored_by_character_id
+            ) VALUES ($1, $2, $3, $4, $5, $6::json, NOW(), $7)
+            RETURNING id
+        )",
+            user_id,
+            next_slot,
+            object_id.zone_id(),
+            object_id.local_id(),
+            quantity,
+            custom_data,
+            character_id ? *character_id : std::optional<std::string>{}
+        );
+
+        int new_id = result[0]["id"].as<int>();
+        logger->info("Stored account item {} for user {} (object {},{})",
+            new_id, user_id, object_id.zone_id(), object_id.local_id());
+
+        return new_id;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error storing account item: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to store account item: {}", e.what())});
+    }
+}
+
+Result<AccountItemData> remove_account_item(
+    pqxx::work& txn, int item_id) {
+    auto logger = Log::database();
+    logger->debug("Removing account item {}", item_id);
+
+    try {
+        // First, fetch the item data before deleting
+        auto select_result = txn.exec_params(R"(
+            SELECT id, user_id, slot, object_zone_id, object_id,
+                   quantity, custom_data::text, stored_at, stored_by_character_id
+            FROM "account_items"
+            WHERE id = $1
+        )", item_id);
+
+        if (select_result.empty()) {
+            return std::unexpected(Error{ErrorCode::NotFound,
+                fmt::format("Account item {} not found", item_id)});
+        }
+
+        const auto& row = select_result[0];
+        AccountItemData item;
+        item.id = row["id"].as<int>();
+        item.user_id = row["user_id"].as<std::string>();
+        item.slot = row["slot"].as<int>();
+
+        int obj_zone = row["object_zone_id"].as<int>();
+        int obj_id = row["object_id"].as<int>();
+        item.object_id = EntityId(obj_zone, obj_id);
+
+        item.quantity = row["quantity"].as<int>();
+
+        if (!row["custom_data"].is_null()) {
+            item.custom_data = row["custom_data"].as<std::string>();
+        } else {
+            item.custom_data = "{}";
+        }
+
+        if (!row["stored_at"].is_null()) {
+            std::string ts_str = row["stored_at"].as<std::string>();
+            std::tm tm = {};
+            std::istringstream ss(ts_str);
+            ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            item.stored_at = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+        } else {
+            item.stored_at = std::chrono::system_clock::now();
+        }
+
+        if (!row["stored_by_character_id"].is_null()) {
+            item.stored_by_character_id = row["stored_by_character_id"].as<std::string>();
+        }
+
+        // Now delete the item
+        txn.exec_params(R"(
+            DELETE FROM "account_items" WHERE id = $1
+        )", item_id);
+
+        logger->info("Removed account item {} from user {}", item_id, item.user_id);
+        return item;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error removing account item {}: {}", item_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to remove account item: {}", e.what())});
+    }
+}
+
+Result<std::optional<AccountItemData>> find_account_item(
+    pqxx::work& txn,
+    const std::string& user_id,
+    EntityId object_id) {
+    auto logger = Log::database();
+    logger->debug("Finding account item ({},{}) for user {}",
+        object_id.zone_id(), object_id.local_id(), user_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, user_id, slot, object_zone_id, object_id,
+                   quantity, custom_data::text, stored_at, stored_by_character_id
+            FROM "account_items"
+            WHERE user_id = $1 AND object_zone_id = $2 AND object_id = $3
+            ORDER BY id
+            LIMIT 1
+        )", user_id, object_id.zone_id(), object_id.local_id());
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        AccountItemData item;
+        item.id = row["id"].as<int>();
+        item.user_id = row["user_id"].as<std::string>();
+        item.slot = row["slot"].as<int>();
+
+        int obj_zone = row["object_zone_id"].as<int>();
+        int obj_id = row["object_id"].as<int>();
+        item.object_id = EntityId(obj_zone, obj_id);
+
+        item.quantity = row["quantity"].as<int>();
+
+        if (!row["custom_data"].is_null()) {
+            item.custom_data = row["custom_data"].as<std::string>();
+        } else {
+            item.custom_data = "{}";
+        }
+
+        if (!row["stored_at"].is_null()) {
+            std::string ts_str = row["stored_at"].as<std::string>();
+            std::tm tm = {};
+            std::istringstream ss(ts_str);
+            ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            item.stored_at = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+        } else {
+            item.stored_at = std::chrono::system_clock::now();
+        }
+
+        if (!row["stored_by_character_id"].is_null()) {
+            item.stored_by_character_id = row["stored_by_character_id"].as<std::string>();
+        }
+
+        return item;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error finding account item: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to find account item: {}", e.what())});
+    }
+}
+
+Result<int> count_account_items(
+    pqxx::work& txn, const std::string& user_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT COUNT(*) as count
+            FROM "account_items"
+            WHERE user_id = $1
+        )", user_id);
+
+        return result[0]["count"].as<int>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error counting account items: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to count account items: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Player Mail Queries (Postmaster System)
+// =============================================================================
+
+namespace {
+
+// Helper to parse PostgreSQL timestamp string to time_point
+std::chrono::system_clock::time_point parse_timestamp(const std::string& timestamp_str) {
+    // PostgreSQL timestamp format: "2024-01-15 10:30:45.123456" or "2024-01-15 10:30:45"
+    std::tm tm = {};
+    std::istringstream ss(timestamp_str);
+    ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+    if (ss.fail()) {
+        // Return epoch on parse failure
+        return std::chrono::system_clock::time_point{};
+    }
+    return std::chrono::system_clock::from_time_t(std::mktime(&tm));
+}
+
+// Helper to parse a PlayerMailData from a database row
+PlayerMailData parse_mail_row(const pqxx::row& row) {
+    PlayerMailData mail;
+    mail.id = row["id"].as<int>();
+
+    // Legacy IDs
+    if (!row["legacy_sender_id"].is_null()) {
+        mail.legacy_sender_id = row["legacy_sender_id"].as<int>();
+    }
+    if (!row["legacy_recipient_id"].is_null()) {
+        mail.legacy_recipient_id = row["legacy_recipient_id"].as<int>();
+    }
+
+    // Modern character IDs
+    if (!row["sender_character_id"].is_null()) {
+        mail.sender_character_id = row["sender_character_id"].as<std::string>();
+    }
+    if (!row["recipient_character_id"].is_null()) {
+        mail.recipient_character_id = row["recipient_character_id"].as<std::string>();
+    }
+
+    // Content
+    mail.body = row["body"].as<std::string>();
+    mail.sent_at = parse_timestamp(row["sent_at"].as<std::string>());
+    if (!row["read_at"].is_null()) {
+        mail.read_at = parse_timestamp(row["read_at"].as<std::string>());
+    }
+
+    // Wealth attachments
+    mail.attached_copper = row["attached_copper"].as<int>();
+    mail.attached_silver = row["attached_silver"].as<int>();
+    mail.attached_gold = row["attached_gold"].as<int>();
+    mail.attached_platinum = row["attached_platinum"].as<int>();
+
+    // Object attachment
+    if (!row["attached_object_zone_id"].is_null() && !row["attached_object_id"].is_null()) {
+        mail.attached_object_id = EntityId(
+            row["attached_object_zone_id"].as<int>(),
+            row["attached_object_id"].as<int>()
+        );
+    }
+
+    // Retrieval tracking
+    if (!row["wealth_retrieved_at"].is_null()) {
+        mail.wealth_retrieved_at = parse_timestamp(row["wealth_retrieved_at"].as<std::string>());
+    }
+    if (!row["wealth_retrieved_by_character_id"].is_null()) {
+        mail.wealth_retrieved_by_character_id = row["wealth_retrieved_by_character_id"].as<std::string>();
+    }
+    if (!row["object_retrieved_at"].is_null()) {
+        mail.object_retrieved_at = parse_timestamp(row["object_retrieved_at"].as<std::string>());
+    }
+    if (!row["object_retrieved_by_character_id"].is_null()) {
+        mail.object_retrieved_by_character_id = row["object_retrieved_by_character_id"].as<std::string>();
+    }
+    mail.object_moved_to_account_storage = row["object_moved_to_account_storage"].as<bool>();
+
+    // Status
+    mail.is_deleted = row["is_deleted"].as<bool>();
+
+    return mail;
+}
+} // anonymous namespace
+
+Result<std::vector<PlayerMailData>> load_character_mail(
+    pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+    logger->debug("Loading mail for character {}", character_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, legacy_sender_id, legacy_recipient_id,
+                   sender_character_id, recipient_character_id,
+                   body, sent_at, read_at,
+                   attached_copper, attached_silver, attached_gold, attached_platinum,
+                   attached_object_zone_id, attached_object_id,
+                   wealth_retrieved_at, wealth_retrieved_by_character_id,
+                   object_retrieved_at, object_retrieved_by_character_id,
+                   object_moved_to_account_storage, is_deleted
+            FROM "PlayerMail"
+            WHERE recipient_character_id = $1 AND is_deleted = false
+            ORDER BY sent_at DESC
+        )", character_id);
+
+        std::vector<PlayerMailData> mails;
+        mails.reserve(result.size());
+        for (const auto& row : result) {
+            mails.push_back(parse_mail_row(row));
+        }
+
+        logger->debug("Loaded {} mail messages for character {}", mails.size(), character_id);
+        return mails;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading character mail: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load mail: {}", e.what())});
+    }
+}
+
+Result<int> count_unread_mail(
+    pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT COUNT(*) as count
+            FROM "PlayerMail"
+            WHERE recipient_character_id = $1
+              AND is_deleted = false
+              AND read_at IS NULL
+        )", character_id);
+
+        return result[0]["count"].as<int>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error counting unread mail: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to count unread mail: {}", e.what())});
+    }
+}
+
+Result<int> count_all_mail(
+    pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT COUNT(*) as count
+            FROM "PlayerMail"
+            WHERE recipient_character_id = $1
+              AND is_deleted = false
+        )", character_id);
+
+        return result[0]["count"].as<int>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error counting mail: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to count mail: {}", e.what())});
+    }
+}
+
+Result<std::optional<PlayerMailData>> load_mail_by_id(
+    pqxx::work& txn, int mail_id) {
+    auto logger = Log::database();
+    logger->debug("Loading mail by ID {}", mail_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, legacy_sender_id, legacy_recipient_id,
+                   sender_character_id, recipient_character_id,
+                   body, sent_at, read_at,
+                   attached_copper, attached_silver, attached_gold, attached_platinum,
+                   attached_object_zone_id, attached_object_id,
+                   wealth_retrieved_at, wealth_retrieved_by_character_id,
+                   object_retrieved_at, object_retrieved_by_character_id,
+                   object_moved_to_account_storage, is_deleted
+            FROM "PlayerMail"
+            WHERE id = $1
+        )", mail_id);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        return parse_mail_row(result[0]);
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading mail by ID: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load mail: {}", e.what())});
+    }
+}
+
+Result<int> send_player_mail(
+    pqxx::work& txn,
+    const std::string& sender_character_id,
+    const std::string& recipient_character_id,
+    const std::string& body,
+    int attached_copper,
+    int attached_silver,
+    int attached_gold,
+    int attached_platinum,
+    const std::optional<EntityId>& attached_object_id) {
+    auto logger = Log::database();
+    logger->info("Sending mail from {} to {}", sender_character_id, recipient_character_id);
+
+    try {
+        std::optional<int> obj_zone_id;
+        std::optional<int> obj_id;
+        if (attached_object_id) {
+            obj_zone_id = attached_object_id->zone_id();
+            obj_id = attached_object_id->local_id();
+        }
+
+        auto result = txn.exec_params(R"(
+            INSERT INTO "PlayerMail" (
+                sender_character_id, recipient_character_id, body, sent_at,
+                attached_copper, attached_silver, attached_gold, attached_platinum,
+                attached_object_zone_id, attached_object_id,
+                created_at, updated_at
+            ) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8, $9, NOW(), NOW())
+            RETURNING id
+        )",
+            sender_character_id,
+            recipient_character_id,
+            body,
+            attached_copper,
+            attached_silver,
+            attached_gold,
+            attached_platinum,
+            obj_zone_id ? std::optional<int>(*obj_zone_id) : std::nullopt,
+            obj_id ? std::optional<int>(*obj_id) : std::nullopt
+        );
+
+        int new_id = result[0]["id"].as<int>();
+        logger->info("Mail sent successfully with ID {}", new_id);
+        return new_id;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error sending mail: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to send mail: {}", e.what())});
+    }
+}
+
+Result<void> mark_mail_read(
+    pqxx::work& txn, int mail_id) {
+    auto logger = Log::database();
+    logger->debug("Marking mail {} as read", mail_id);
+
+    try {
+        txn.exec_params(R"(
+            UPDATE "PlayerMail"
+            SET read_at = NOW()
+            WHERE id = $1 AND read_at IS NULL
+        )", mail_id);
+
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error marking mail read: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to mark mail read: {}", e.what())});
+    }
+}
+
+Result<void> mark_mail_wealth_retrieved(
+    pqxx::work& txn, int mail_id, const std::string& retrieved_by_character_id) {
+    auto logger = Log::database();
+    logger->debug("Marking wealth retrieved from mail {} by {}", mail_id, retrieved_by_character_id);
+
+    try {
+        txn.exec_params(R"(
+            UPDATE "PlayerMail"
+            SET wealth_retrieved_at = NOW(),
+                wealth_retrieved_by_character_id = $2
+            WHERE id = $1 AND wealth_retrieved_at IS NULL
+        )", mail_id, retrieved_by_character_id);
+
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error marking wealth retrieved: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to mark wealth retrieved: {}", e.what())});
+    }
+}
+
+Result<void> mark_mail_object_retrieved(
+    pqxx::work& txn, int mail_id, const std::string& retrieved_by_character_id,
+    bool moved_to_account_storage) {
+    auto logger = Log::database();
+    logger->debug("Marking object retrieved from mail {} by {} (to_account: {})",
+        mail_id, retrieved_by_character_id, moved_to_account_storage);
+
+    try {
+        txn.exec_params(R"(
+            UPDATE "PlayerMail"
+            SET object_retrieved_at = NOW(),
+                object_retrieved_by_character_id = $2,
+                object_moved_to_account_storage = $3
+            WHERE id = $1 AND object_retrieved_at IS NULL
+        )", mail_id, retrieved_by_character_id, moved_to_account_storage);
+
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error marking object retrieved: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to mark object retrieved: {}", e.what())});
+    }
+}
+
+Result<void> delete_mail(
+    pqxx::work& txn, int mail_id) {
+    auto logger = Log::database();
+    logger->debug("Soft-deleting mail {}", mail_id);
+
+    try {
+        txn.exec_params(R"(
+            UPDATE "PlayerMail"
+            SET is_deleted = true
+            WHERE id = $1
+        )", mail_id);
+
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error deleting mail: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to delete mail: {}", e.what())});
+    }
+}
+
+Result<std::optional<std::string>> find_character_id_by_name(
+    pqxx::work& txn, const std::string& name) {
+    auto logger = Log::database();
+    logger->debug("Finding character by name: {}", name);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id FROM "Characters"
+            WHERE LOWER(name) = LOWER($1)
+            LIMIT 1
+        )", name);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        return result[0]["id"].as<std::string>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error finding character by name: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to find character: {}", e.what())});
+    }
+}
+
+Result<std::optional<std::string>> get_character_name_by_id(
+    pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT name FROM "Characters"
+            WHERE id = $1
+            LIMIT 1
+        )", character_id);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        return result[0]["name"].as<std::string>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error getting character name: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to get character name: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// System Text Queries (MOTD, Credits, News, Policy)
+// =============================================================================
+
+Result<std::optional<SystemTextData>> load_system_text(
+    pqxx::work& txn, const std::string& key) {
+    auto logger = Log::database();
+    logger->debug("Loading system text: {}", key);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, key, category, title, content, min_level, is_active
+            FROM "SystemText"
+            WHERE key = $1 AND is_active = true
+            LIMIT 1
+        )", key);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        SystemTextData data;
+        data.id = row["id"].as<int>();
+        data.key = row["key"].as<std::string>();
+        data.category = row["category"].as<std::string>();
+        if (!row["title"].is_null()) {
+            data.title = row["title"].as<std::string>();
+        }
+        data.content = row["content"].as<std::string>();
+        data.min_level = row["min_level"].as<int>();
+        data.is_active = row["is_active"].as<bool>();
+
+        return data;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading system text '{}': {}", key, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load system text '{}': {}", key, e.what())});
+    }
+}
+
+Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all system text entries");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT id, key, category, title, content, min_level, is_active
+            FROM "SystemText"
+            WHERE is_active = true
+            ORDER BY category, key
+        )");
+
+        std::vector<SystemTextData> entries;
+        entries.reserve(result.size());
+
+        for (const auto& row : result) {
+            SystemTextData data;
+            data.id = row["id"].as<int>();
+            data.key = row["key"].as<std::string>();
+            data.category = row["category"].as<std::string>();
+            if (!row["title"].is_null()) {
+                data.title = row["title"].as<std::string>();
+            }
+            data.content = row["content"].as<std::string>();
+            data.min_level = row["min_level"].as<int>();
+            data.is_active = row["is_active"].as<bool>();
+            entries.push_back(std::move(data));
+        }
+
+        logger->debug("Loaded {} system text entries", entries.size());
+        return entries;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading system text: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load system text: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Help Entry Queries
+// =============================================================================
+
+Result<std::optional<HelpEntryData>> load_help_entry(
+    pqxx::work& txn, const std::string& keyword) {
+    auto logger = Log::database();
+    logger->debug("Searching help for keyword: {}", keyword);
+
+    try {
+        // Search for exact match first, then partial match
+        // Uses PostgreSQL array containment with case-insensitive comparison
+        auto result = txn.exec_params(R"(
+            SELECT id, keywords, title, content, min_level, category,
+                   usage, duration, sphere
+            FROM "HelpEntry"
+            WHERE EXISTS (
+                SELECT 1 FROM unnest(keywords) AS kw
+                WHERE LOWER(kw) = LOWER($1)
+            )
+            LIMIT 1
+        )", keyword);
+
+        // If no exact match, try partial match
+        if (result.empty()) {
+            result = txn.exec_params(R"(
+                SELECT id, keywords, title, content, min_level, category,
+                       usage, duration, sphere
+                FROM "HelpEntry"
+                WHERE EXISTS (
+                    SELECT 1 FROM unnest(keywords) AS kw
+                    WHERE LOWER(kw) LIKE LOWER($1) || '%'
+                )
+                ORDER BY title
+                LIMIT 1
+            )", keyword);
+        }
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        HelpEntryData data;
+        data.id = row["id"].as<int>();
+        if (!row["keywords"].is_null()) {
+            data.keywords = parse_pg_array(row["keywords"].as<std::string>());
+        }
+        data.title = row["title"].as<std::string>();
+        data.content = row["content"].as<std::string>();
+        data.min_level = row["min_level"].as<int>();
+
+        if (!row["category"].is_null()) {
+            data.category = row["category"].as<std::string>();
+        }
+        if (!row["usage"].is_null()) {
+            data.usage = row["usage"].as<std::string>();
+        }
+        if (!row["duration"].is_null()) {
+            data.duration = row["duration"].as<std::string>();
+        }
+        if (!row["sphere"].is_null()) {
+            data.sphere = row["sphere"].as<std::string>();
+        }
+
+        return data;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error searching help for '{}': {}", keyword, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to search help: {}", e.what())});
+    }
+}
+
+Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all help entries");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT id, keywords, title, content, min_level, category,
+                   usage, duration, sphere
+            FROM "HelpEntry"
+            ORDER BY title
+        )");
+
+        std::vector<HelpEntryData> entries;
+        entries.reserve(result.size());
+
+        for (const auto& row : result) {
+            HelpEntryData data;
+            data.id = row["id"].as<int>();
+            if (!row["keywords"].is_null()) {
+                data.keywords = parse_pg_array(row["keywords"].as<std::string>());
+            }
+            data.title = row["title"].as<std::string>();
+            data.content = row["content"].as<std::string>();
+            data.min_level = row["min_level"].as<int>();
+
+            if (!row["category"].is_null()) {
+                data.category = row["category"].as<std::string>();
+            }
+            if (!row["usage"].is_null()) {
+                data.usage = row["usage"].as<std::string>();
+            }
+            if (!row["duration"].is_null()) {
+                data.duration = row["duration"].as<std::string>();
+            }
+            if (!row["sphere"].is_null()) {
+                data.sphere = row["sphere"].as<std::string>();
+            }
+
+            entries.push_back(std::move(data));
+        }
+
+        logger->debug("Loaded {} help entries", entries.size());
+        return entries;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading help entries: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load help entries: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Player Toggle Queries
+// =============================================================================
+
+Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all player toggle definitions");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT id, name, display_name, description, default_value,
+                   min_level, category, sort_order
+            FROM "PlayerToggle"
+            ORDER BY sort_order, category, name
+        )");
+
+        std::vector<PlayerToggleData> toggles;
+        toggles.reserve(result.size());
+
+        for (const auto& row : result) {
+            PlayerToggleData data;
+            data.id = row["id"].as<int>();
+            data.name = row["name"].as<std::string>();
+            data.display_name = row["display_name"].as<std::string>();
+            data.description = row["description"].as<std::string>();
+            data.default_value = row["default_value"].as<bool>();
+            data.min_level = row["min_level"].as<int>();
+            data.category = row["category"].as<std::string>();
+            data.sort_order = row["sort_order"].as<int>();
+            toggles.push_back(std::move(data));
+        }
+
+        logger->debug("Loaded {} player toggle definitions", toggles.size());
+        return toggles;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading player toggles: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load player toggles: {}", e.what())});
+    }
+}
+
+Result<std::optional<PlayerToggleData>> load_player_toggle(
+    pqxx::work& txn, const std::string& name) {
+    auto logger = Log::database();
+    logger->debug("Loading player toggle: {}", name);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, name, display_name, description, default_value,
+                   min_level, category, sort_order
+            FROM "PlayerToggle"
+            WHERE LOWER(name) = LOWER($1)
+            LIMIT 1
+        )", name);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        PlayerToggleData data;
+        data.id = row["id"].as<int>();
+        data.name = row["name"].as<std::string>();
+        data.display_name = row["display_name"].as<std::string>();
+        data.description = row["description"].as<std::string>();
+        data.default_value = row["default_value"].as<bool>();
+        data.min_level = row["min_level"].as<int>();
+        data.category = row["category"].as<std::string>();
+        data.sort_order = row["sort_order"].as<int>();
+
+        return data;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading player toggle '{}': {}", name, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load player toggle '{}': {}", name, e.what())});
     }
 }
 

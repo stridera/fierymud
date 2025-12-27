@@ -7,6 +7,7 @@
 #include "skill_commands.hpp"
 #include "communication_commands.hpp"
 #include "economy_commands.hpp"
+#include "postmaster_commands.hpp"
 #include "group_commands.hpp"
 #include "information_commands.hpp"
 #include "magic_commands.hpp"
@@ -68,6 +69,11 @@ Result<void> register_all_commands() {
 
     if (auto result = EconomyCommands::register_commands(); !result) {
         Log::error("Failed to register economy commands: {}", result.error().message);
+        return result;
+    }
+
+    if (auto result = PostmasterCommands::register_commands(); !result) {
+        Log::error("Failed to register postmaster commands: {}", result.error().message);
         return result;
     }
 

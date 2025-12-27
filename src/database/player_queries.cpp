@@ -51,6 +51,9 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
 
         auto player = std::move(*player_result);
 
+        // Set the database ID for persistence operations (mail, saving, etc.)
+        player->set_database_id(player_id);
+
         // Set properties from database
         // Race and class
         if (!row["race"].is_null()) {

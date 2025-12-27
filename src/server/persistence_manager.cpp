@@ -118,6 +118,25 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                 Log::info("Saved {} items to database for player {}",
                          items_data.size(), player.name());
             }
+
+            // Save account wealth if player has a linked user account
+            if (player.has_user_account()) {
+                std::string user_id{player.user_id()};
+                long account_wealth = player.account_bank().value();
+
+                auto account_save_result = ConnectionPool::instance().execute(
+                    [&user_id, account_wealth](pqxx::work& txn) {
+                        return WorldQueries::save_account_wealth(txn, user_id, account_wealth);
+                    });
+
+                if (!account_save_result) {
+                    Log::error("Failed to save account wealth for player {}: {}",
+                              player.name(), account_save_result.error().message);
+                } else {
+                    Log::debug("Saved account wealth {} for player {}",
+                              account_wealth, player.name());
+                }
+            }
         } else {
             Log::warn("Cannot save items to database: player {} has no database_id", player.name());
         }

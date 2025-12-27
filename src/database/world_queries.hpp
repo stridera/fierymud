@@ -328,6 +328,10 @@ struct CharacterData {
     // Currency (stored as copper)
     long wealth = 0;
     long bank_wealth = 0;
+    long account_wealth = 0;  // Shared account bank (from Users table)
+
+    // User link
+    std::optional<std::string> user_id;  // UUID of linked user account
 
     // Character info
     std::string password_hash;
@@ -503,6 +507,12 @@ Result<void> link_character_to_user(
     const std::string& character_id,
     const std::string& user_id);
 
+/** Save account wealth (shared across all characters on account) */
+Result<void> save_account_wealth(
+    pqxx::work& txn,
+    const std::string& user_id,
+    long account_wealth);
+
 // =============================================================================
 // Shop System Queries
 // =============================================================================
@@ -568,6 +578,174 @@ Result<void> save_character_items(
     const std::vector<CharacterItemData>& items);
 
 // =============================================================================
+// Account Item Storage Queries
+// =============================================================================
+
+/** Account item data from the AccountItems table
+ *  Stores items accessible by all characters on a user account.
+ *  Requires the character to be linked to a user account.
+ */
+struct AccountItemData {
+    int id = 0;                         // Auto-increment primary key (0 for new items)
+    std::string user_id;                // User account UUID
+    int slot = 0;                       // Position in storage for ordering
+    EntityId object_id;                 // Object prototype (zone_id, local_id)
+    int quantity = 1;                   // For stackable items
+    std::string custom_data;            // JSON for item modifications (enchants, etc.)
+    std::chrono::system_clock::time_point stored_at;  // When the item was stored
+    std::optional<std::string> stored_by_character_id; // Which character deposited it
+};
+
+/** Load all items stored in a user's account */
+Result<std::vector<AccountItemData>> load_account_items(
+    pqxx::work& txn, const std::string& user_id);
+
+/** Store an item in a user's account
+ *  Returns the new item's database ID on success.
+ */
+Result<int> store_account_item(
+    pqxx::work& txn,
+    const std::string& user_id,
+    EntityId object_id,
+    int quantity,
+    const std::optional<std::string>& character_id,
+    const std::string& custom_data = "{}");
+
+/** Remove an item from a user's account by database ID
+ *  Returns the removed item data on success.
+ */
+Result<AccountItemData> remove_account_item(
+    pqxx::work& txn, int item_id);
+
+/** Find a specific item in account storage by object ID
+ *  Returns the first matching item, or empty optional if not found.
+ */
+Result<std::optional<AccountItemData>> find_account_item(
+    pqxx::work& txn,
+    const std::string& user_id,
+    EntityId object_id);
+
+/** Get count of items in account storage */
+Result<int> count_account_items(
+    pqxx::work& txn, const std::string& user_id);
+
+// =============================================================================
+// Player Mail Queries (Postmaster System)
+// =============================================================================
+
+/** Player mail data from the PlayerMail table
+ *  Character-to-character mail with optional wealth and item attachments.
+ *  Mail is retrieved via in-game postmaster NPCs.
+ */
+struct PlayerMailData {
+    int id = 0;                         // Auto-increment primary key
+
+    // Legacy IDs (for imported mail from CircleMUD)
+    std::optional<int> legacy_sender_id;
+    std::optional<int> legacy_recipient_id;
+
+    // Modern character references (UUID strings)
+    std::optional<std::string> sender_character_id;
+    std::optional<std::string> recipient_character_id;
+
+    // Mail content
+    std::string body;
+    std::chrono::system_clock::time_point sent_at;
+    std::optional<std::chrono::system_clock::time_point> read_at;
+
+    // Wealth attachments (coin amounts)
+    int attached_copper = 0;
+    int attached_silver = 0;
+    int attached_gold = 0;
+    int attached_platinum = 0;
+
+    // Object attachment (optional) - uses composite key
+    std::optional<EntityId> attached_object_id;
+
+    // Retrieval tracking
+    std::optional<std::chrono::system_clock::time_point> wealth_retrieved_at;
+    std::optional<std::string> wealth_retrieved_by_character_id;
+    std::optional<std::chrono::system_clock::time_point> object_retrieved_at;
+    std::optional<std::string> object_retrieved_by_character_id;
+    bool object_moved_to_account_storage = false;
+
+    // Status
+    bool is_deleted = false;
+
+    // Helper: Check if mail has any unretrieved attachments
+    bool has_unretrieved_wealth() const {
+        return !wealth_retrieved_at.has_value() &&
+               (attached_copper > 0 || attached_silver > 0 ||
+                attached_gold > 0 || attached_platinum > 0);
+    }
+
+    bool has_unretrieved_object() const {
+        return !object_retrieved_at.has_value() && attached_object_id.has_value();
+    }
+
+    bool has_any_unretrieved() const {
+        return has_unretrieved_wealth() || has_unretrieved_object();
+    }
+};
+
+/** Load all mail for a character by their database ID (UUID) */
+Result<std::vector<PlayerMailData>> load_character_mail(
+    pqxx::work& txn, const std::string& character_id);
+
+/** Check if a character has any unread mail */
+Result<int> count_unread_mail(
+    pqxx::work& txn, const std::string& character_id);
+
+/** Check if a character has any mail at all */
+Result<int> count_all_mail(
+    pqxx::work& txn, const std::string& character_id);
+
+/** Get a single mail by ID */
+Result<std::optional<PlayerMailData>> load_mail_by_id(
+    pqxx::work& txn, int mail_id);
+
+/** Send a new mail message
+ *  Returns the new mail's database ID on success.
+ */
+Result<int> send_player_mail(
+    pqxx::work& txn,
+    const std::string& sender_character_id,
+    const std::string& recipient_character_id,
+    const std::string& body,
+    int attached_copper = 0,
+    int attached_silver = 0,
+    int attached_gold = 0,
+    int attached_platinum = 0,
+    const std::optional<EntityId>& attached_object_id = std::nullopt);
+
+/** Mark mail as read */
+Result<void> mark_mail_read(
+    pqxx::work& txn, int mail_id);
+
+/** Mark wealth as retrieved from mail */
+Result<void> mark_mail_wealth_retrieved(
+    pqxx::work& txn, int mail_id, const std::string& retrieved_by_character_id);
+
+/** Mark object as retrieved from mail */
+Result<void> mark_mail_object_retrieved(
+    pqxx::work& txn, int mail_id, const std::string& retrieved_by_character_id,
+    bool moved_to_account_storage = false);
+
+/** Delete a mail (soft delete - marks as deleted) */
+Result<void> delete_mail(
+    pqxx::work& txn, int mail_id);
+
+/** Find character by name (case-insensitive)
+ *  Returns the character's database ID (UUID) if found.
+ */
+Result<std::optional<std::string>> find_character_id_by_name(
+    pqxx::work& txn, const std::string& name);
+
+/** Get character name by database ID */
+Result<std::optional<std::string>> get_character_name_by_id(
+    pqxx::work& txn, const std::string& character_id);
+
+// =============================================================================
 // Command Queries
 // =============================================================================
 
@@ -588,6 +766,82 @@ Result<std::vector<CommandData>> load_all_commands(pqxx::work& txn);
 
 /** Load a single command by name */
 Result<std::optional<CommandData>> load_command_by_name(
+    pqxx::work& txn, const std::string& name);
+
+// =============================================================================
+// System Text (MOTD, Credits, News, Policy, etc.)
+// =============================================================================
+
+/**
+ * Data structure for system text entries (MOTD, credits, news, policy, etc.)
+ */
+struct SystemTextData {
+    int id;
+    std::string key;            // Unique key: "motd", "credits", "news", "policy"
+    std::string category;       // SYSTEM, LOGIN, COMBAT, IMMORTAL
+    std::optional<std::string> title;
+    std::string content;
+    int min_level = 0;
+    bool is_active = true;
+};
+
+/** Load a system text entry by key (e.g., "motd", "credits") */
+Result<std::optional<SystemTextData>> load_system_text(
+    pqxx::work& txn, const std::string& key);
+
+/** Load all system text entries */
+Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work& txn);
+
+// =============================================================================
+// Help Entries
+// =============================================================================
+
+/**
+ * Data structure for help entries from the HelpEntry table.
+ */
+struct HelpEntryData {
+    int id;
+    std::vector<std::string> keywords;  // Multiple keywords for lookup
+    std::string title;
+    std::string content;
+    int min_level = 0;
+    std::optional<std::string> category;
+    std::optional<std::string> usage;
+    std::optional<std::string> duration;
+    std::optional<std::string> sphere;
+};
+
+/** Search help entries by keyword (case-insensitive, partial match) */
+Result<std::optional<HelpEntryData>> load_help_entry(
+    pqxx::work& txn, const std::string& keyword);
+
+/** Load all help entries */
+Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work& txn);
+
+// =============================================================================
+// Player Toggles (DB-driven player preference options)
+// =============================================================================
+
+/**
+ * Data structure for player toggle options.
+ * These define the available toggles that players can set.
+ */
+struct PlayerToggleData {
+    int id;
+    std::string name;           // Internal name (e.g., "brief", "autoloot")
+    std::string display_name;   // Display name (e.g., "Brief Mode")
+    std::string description;    // Help text for this toggle
+    bool default_value = false;
+    int min_level = 0;          // Minimum level to use (0 = all, 100+ = immortal)
+    std::string category;       // "display", "combat", "social", "immortal"
+    int sort_order = 0;         // For display ordering
+};
+
+/** Load all player toggle definitions */
+Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work& txn);
+
+/** Load a specific toggle by name */
+Result<std::optional<PlayerToggleData>> load_player_toggle(
     pqxx::work& txn, const std::string& name);
 
 } // namespace WorldQueries

@@ -764,6 +764,9 @@ public:
         // Sync legacy booleans for commonly-used flags
         if (flag == MobFlag::Aggressive) aggressive_ = value;
         if (flag == MobFlag::Teacher) is_teacher_ = value;
+        if (flag == MobFlag::Banker) is_banker_ = value;
+        if (flag == MobFlag::Receptionist) is_receptionist_ = value;
+        if (flag == MobFlag::Postmaster) is_postmaster_ = value;
     }
     void clear_flag(MobFlag flag) { set_flag(flag, false); }
 
@@ -1084,6 +1087,40 @@ public:
         return true;
     }
 
+    // =========================================================================
+    // Account Bank (shared across all characters on account)
+    // =========================================================================
+
+    /** Get account bank (shared wealth accessible by all characters on account) */
+    fiery::Money& account_bank() { return account_bank_; }
+    const fiery::Money& account_bank() const { return account_bank_; }
+
+    /** Set account bank */
+    void set_account_bank(const fiery::Money& money) { account_bank_ = money; }
+
+    /** Check if account bank can afford an amount */
+    bool account_can_afford(const fiery::Money& cost) const { return account_bank_.can_afford(cost); }
+    bool account_can_afford(long copper_cost) const { return account_bank_.can_afford(copper_cost); }
+
+    /** Deposit from wallet to account bank */
+    bool account_deposit(const fiery::Money& amount) {
+        if (!wallet_.charge(amount)) return false;
+        account_bank_ += amount;
+        return true;
+    }
+
+    /** Withdraw from account bank to wallet */
+    bool account_withdraw(const fiery::Money& amount) {
+        if (!account_bank_.charge(amount)) return false;
+        wallet_ += amount;
+        return true;
+    }
+
+    /** User account link for database persistence */
+    std::string_view user_id() const { return user_id_; }
+    void set_user_id(std::string_view id) { user_id_ = id; }
+    bool has_user_account() const { return !user_id_.empty(); }
+
     /** Transfer money to another player */
     bool transfer_to(Player& recipient, const fiery::Money& amount) {
         if (!wallet_.charge(amount)) return false;
@@ -1157,8 +1194,10 @@ private:
     std::string afk_message_ = "";          // AFK message to display
 
     // Currency
-    fiery::Money wallet_;  // Money on person
-    fiery::Money bank_;    // Money in bank account
+    fiery::Money wallet_;        // Money on person
+    fiery::Money bank_;          // Money in character's bank account
+    fiery::Money account_bank_;  // Money in shared account bank (all characters)
+    std::string user_id_;        // UUID of linked user account (for account bank persistence)
 
     // Time tracking fields
     std::time_t creation_time_ = std::time(nullptr);  // Time of character creation

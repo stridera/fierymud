@@ -3,7 +3,9 @@
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
+#include "../database/world_queries.hpp"
 #include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/time_system.hpp"
@@ -1059,61 +1061,91 @@ Result<CommandResult> cmd_glance(const CommandContext &ctx) {
 }
 
 // =============================================================================
-// Game Information Commands
+// Game Information Commands (Database-Driven)
 // =============================================================================
 
+// Helper function to display system text from database with fallback
+static void display_system_text(const CommandContext& ctx, const std::string& key,
+                                 const std::string& fallback_title,
+                                 const std::string& fallback_content) {
+    // Try to load from database
+    auto result = ConnectionPool::instance().execute([&key](pqxx::work& txn)
+        -> Result<std::optional<WorldQueries::SystemTextData>> {
+        return WorldQueries::load_system_text(txn, key);
+    });
+
+    if (result && *result) {
+        const auto& text = **result;
+        // Display title if present
+        if (text.title) {
+            ctx.send(fmt::format("=== {} ===\n", *text.title));
+        }
+        // Display content (supports rich text color codes)
+        ctx.send(text.content);
+    } else {
+        // Fallback to hardcoded content if database unavailable
+        ctx.send(fmt::format("=== {} ===\n", fallback_title));
+        ctx.send(fallback_content);
+    }
+}
+
 Result<CommandResult> cmd_credits(const CommandContext &ctx) {
-    ctx.send("<b:white>=== FieryMUD Credits ===</>\n");
-    ctx.send("FieryMUD is based on CircleMUD, which was developed by:");
-    ctx.send("  Jeremy Elson (creator)");
-    ctx.send("  George Greer (maintainer)");
-    ctx.send("\nCircleMUD is based on DikuMUD, created by:");
-    ctx.send("  Hans Henrik Staerfeldt, Katja Nyboe, Tom Madsen,");
-    ctx.send("  Michael Seifert, and Sebastian Hammer");
-    ctx.send("\nFieryMUD development and modernization by the Fiery Consortium.");
-    ctx.send("\nType 'help' for more information on available commands.");
+    display_system_text(ctx, "credits",
+        "FieryMUD Credits",
+        "FieryMUD is based on CircleMUD, which was developed by:\n"
+        "  Jeremy Elson (creator)\n"
+        "  George Greer (maintainer)\n"
+        "\nCircleMUD is based on DikuMUD, created by:\n"
+        "  Hans Henrik Staerfeldt, Katja Nyboe, Tom Madsen,\n"
+        "  Michael Seifert, and Sebastian Hammer\n"
+        "\nFieryMUD development and modernization by the Fiery Consortium.\n"
+        "\nType 'help' for more information on available commands.");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_motd(const CommandContext &ctx) {
-    ctx.send("<b:cyan>=== Message of the Day ===</>\n");
-    ctx.send("Welcome to FieryMUD!");
-    ctx.send("This is a modern implementation of a classic MUD experience.");
-    ctx.send("Please be respectful of other players and have fun!");
-    ctx.send("\nType 'help' to see available commands.");
-    ctx.send("Type 'who' to see who else is online.");
+    display_system_text(ctx, "motd",
+        "Message of the Day",
+        "Welcome to FieryMUD!\n"
+        "This is a modern implementation of a classic MUD experience.\n"
+        "Please be respectful of other players and have fun!\n"
+        "\nType 'help' to see available commands.\n"
+        "Type 'who' to see who else is online.");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_news(const CommandContext &ctx) {
-    ctx.send("<b:yellow>=== FieryMUD News ===</>\n");
-    ctx.send("No current news items.");
-    ctx.send("\nCheck back later for updates!");
+    display_system_text(ctx, "news",
+        "FieryMUD News",
+        "No current news items.\n"
+        "\nCheck back later for updates!");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_policy(const CommandContext &ctx) {
-    ctx.send("<b:red>=== FieryMUD Policies ===</>\n");
-    ctx.send("1. Be respectful to other players.");
-    ctx.send("2. No harassment, hate speech, or discriminatory behavior.");
-    ctx.send("3. No cheating, exploiting bugs, or using automation.");
-    ctx.send("4. Player killing requires consent from both parties.");
-    ctx.send("5. Report bugs using the 'bug' command.");
-    ctx.send("6. The staff reserves the right to remove players who violate policies.");
-    ctx.send("\nViolation of these policies may result in removal from the game.");
+    display_system_text(ctx, "policy",
+        "FieryMUD Policies",
+        "1. Be respectful to other players.\n"
+        "2. No harassment, hate speech, or discriminatory behavior.\n"
+        "3. No cheating, exploiting bugs, or using automation.\n"
+        "4. Player killing requires consent from both parties.\n"
+        "5. Report bugs using the 'bug' command.\n"
+        "6. The staff reserves the right to remove players who violate policies.\n"
+        "\nViolation of these policies may result in removal from the game.");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_version(const CommandContext &ctx) {
-    ctx.send("<b:green>=== FieryMUD Version Information ===</>\n");
-    ctx.send("FieryMUD Modern C++23 Edition");
-    ctx.send("Version: 1.0.0-dev");
-    ctx.send("Based on: CircleMUD 3.0 bpl 21");
-    ctx.send("\nBuilt with modern C++23 features including:");
-    ctx.send("  - std::expected for error handling");
-    ctx.send("  - std::ranges for data processing");
-    ctx.send("  - ASIO for asynchronous networking");
-    ctx.send("  - nlohmann/json for world data");
+    display_system_text(ctx, "version",
+        "FieryMUD Version Information",
+        "FieryMUD Modern C++23 Edition\n"
+        "Version: 1.0.0-dev\n"
+        "Based on: CircleMUD 3.0 bpl 21\n"
+        "\nBuilt with modern C++23 features including:\n"
+        "  - std::expected for error handling\n"
+        "  - std::ranges for data processing\n"
+        "  - ASIO for asynchronous networking\n"
+        "  - nlohmann/json for world data");
     return CommandResult::Success;
 }
 

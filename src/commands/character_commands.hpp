@@ -17,17 +17,12 @@ Result<CommandResult> cmd_train(const CommandContext &ctx);
 
 // Toggle commands
 Result<CommandResult> cmd_wimpy(const CommandContext &ctx);
-Result<CommandResult> cmd_brief(const CommandContext &ctx);
-Result<CommandResult> cmd_compact(const CommandContext &ctx);
-Result<CommandResult> cmd_autoloot(const CommandContext &ctx);
-Result<CommandResult> cmd_autogold(const CommandContext &ctx);
-Result<CommandResult> cmd_autosplit(const CommandContext &ctx);
+Result<CommandResult> cmd_toggle(const CommandContext &ctx);
 
 // Social interaction commands
 Result<CommandResult> cmd_afk(const CommandContext &ctx);
 Result<CommandResult> cmd_title(const CommandContext &ctx);
 Result<CommandResult> cmd_description(const CommandContext &ctx);
-Result<CommandResult> cmd_toggle(const CommandContext &ctx);
 
 // Consent/PvP commands
 Result<CommandResult> cmd_consent(const CommandContext &ctx);

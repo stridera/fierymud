@@ -128,6 +128,7 @@ set(SOURCES
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
+    src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
@@ -169,6 +170,7 @@ set(SIMPLE_TEST_SOURCES
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
+    src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
 )
@@ -257,6 +259,7 @@ set(CORE_TEST_SOURCES
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
+    src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
@@ -562,6 +565,7 @@ add_executable(test_database
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
+    src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
 )
@@ -650,6 +654,7 @@ add_executable(test_database_comprehensive
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
     src/commands/economy_commands.cpp
+    src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
 )

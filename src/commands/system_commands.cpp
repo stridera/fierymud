@@ -3,7 +3,9 @@
 #include "../text/terminal_capabilities.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../database/connection_pool.hpp"
 #include "../database/social_queries.hpp"
+#include "../database/world_queries.hpp"
 #include "../net/player_connection.hpp"
 #include "../server/persistence_manager.hpp"
 
@@ -154,10 +156,77 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
         }
     }
 
-    // Check for general topic help
+    // Check for general topic help - special cases first
     if (topic == "commands") {
         return cmd_commands(ctx);
-    } else if (topic == "movement") {
+    } else if (topic == "socials") {
+        // Redirect to socials command
+        ctx.send("Use the 'socials' command to see available social actions.");
+        ctx.send("Socials are loaded from the database and include actions like:");
+        ctx.send("  smile, nod, wave, bow, laugh, hug, etc.");
+        return CommandResult::Success;
+    }
+
+    // Try to find help entry in database (covers all topics including lore, cities, etc.)
+    auto help_result = ConnectionPool::instance().execute([&topic](pqxx::work& txn)
+        -> Result<std::optional<WorldQueries::HelpEntryData>> {
+        return WorldQueries::load_help_entry(txn, topic);
+    });
+
+    if (help_result && *help_result) {
+        const auto& entry = **help_result;
+
+        // Check level requirement
+        int player_level = 0;
+        if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+            player_level = player->level();
+        }
+        if (entry.min_level > player_level) {
+            ctx.send_error(fmt::format("No help available for '{}'.", topic));
+            ctx.send("Try 'help' for a list of topics, or 'commands' for all commands.");
+            return CommandResult::InvalidTarget;
+        }
+
+        // Display help entry
+        ctx.send(fmt::format("Help: {}", entry.title));
+        ctx.send(std::string(6 + entry.title.length(), '='));
+
+        // Show category and sphere if present
+        if (entry.category) {
+            ctx.send(fmt::format("Category: {}", *entry.category));
+        }
+        if (entry.sphere) {
+            ctx.send(fmt::format("Sphere: {}", *entry.sphere));
+        }
+
+        // Show content
+        ctx.send(fmt::format("\n{}", entry.content));
+
+        // Show usage if present
+        if (entry.usage) {
+            ctx.send(fmt::format("\nUsage: {}", *entry.usage));
+        }
+
+        // Show duration if present (for spells)
+        if (entry.duration) {
+            ctx.send(fmt::format("Duration: {}", *entry.duration));
+        }
+
+        // Show related keywords
+        if (entry.keywords.size() > 1) {
+            std::string keywords_str;
+            for (size_t i = 0; i < entry.keywords.size(); ++i) {
+                if (i > 0) keywords_str += ", ";
+                keywords_str += entry.keywords[i];
+            }
+            ctx.send(fmt::format("\nSee also: {}", keywords_str));
+        }
+
+        return CommandResult::Success;
+    }
+
+    // Fallback to hardcoded topics (backward compatibility)
+    if (topic == "movement") {
         ctx.send("Movement Help");
         ctx.send("=============");
         ctx.send("north/n, south/s, east/e, west/w - Move in cardinal directions");
@@ -190,11 +259,6 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
         ctx.send("whisper <player> <message> - Whisper to someone nearby");
         ctx.send("shout <message> - Shout to nearby areas");
         ctx.send("gossip <message> - Talk on gossip channel");
-    } else if (topic == "socials") {
-        // Redirect to socials command
-        ctx.send("Use the 'socials' command to see available social actions.");
-        ctx.send("Socials are loaded from the database and include actions like:");
-        ctx.send("  smile, nod, wave, bow, laugh, hug, etc.");
     } else {
         ctx.send_error(fmt::format("No help available for '{}'.", topic));
         ctx.send("Try 'help' for a list of topics, or 'commands' for all commands.");

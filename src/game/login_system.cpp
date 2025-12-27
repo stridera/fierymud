@@ -1530,6 +1530,12 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             // Load currency (stored as copper)
             player->set_wallet(fiery::Money(char_data.wealth));
             player->set_bank(fiery::Money(char_data.bank_wealth));
+            player->set_account_bank(fiery::Money(char_data.account_wealth));
+
+            // Link to user account for persistence
+            if (char_data.user_id) {
+                player->set_user_id(*char_data.user_id);
+            }
 
             // Set start room from saved location if available
             // Priority: save_room (rent location) > current_room > world default

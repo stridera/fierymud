@@ -515,99 +515,11 @@ Result<CommandResult> cmd_wimpy(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
-Result<CommandResult> cmd_brief(const CommandContext &ctx) {
-    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
-    if (!player) {
-        ctx.send_error("Only players can toggle brief mode.");
-        return CommandResult::InvalidState;
-    }
-
-    player->toggle_player_flag(PlayerFlag::Brief);
-
-    if (player->is_brief()) {
-        ctx.send("Brief mode ON. Room descriptions will be shortened.");
-    } else {
-        ctx.send("Brief mode OFF. Full room descriptions will be shown.");
-    }
-
-    return CommandResult::Success;
-}
-
-Result<CommandResult> cmd_compact(const CommandContext &ctx) {
-    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
-    if (!player) {
-        ctx.send_error("Only players can toggle compact mode.");
-        return CommandResult::InvalidState;
-    }
-
-    player->toggle_player_flag(PlayerFlag::Compact);
-
-    if (player->is_compact()) {
-        ctx.send("Compact mode ON. Less blank lines in output.");
-    } else {
-        ctx.send("Compact mode OFF. Normal spacing restored.");
-    }
-
-    return CommandResult::Success;
-}
-
-Result<CommandResult> cmd_autoloot(const CommandContext &ctx) {
-    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
-    if (!player) {
-        ctx.send_error("Only players can toggle autoloot.");
-        return CommandResult::InvalidState;
-    }
-
-    player->toggle_player_flag(PlayerFlag::AutoLoot);
-
-    if (player->is_autoloot()) {
-        ctx.send("Autoloot ON. You will automatically loot corpses after kills.");
-    } else {
-        ctx.send("Autoloot OFF. You must manually loot corpses.");
-    }
-
-    return CommandResult::Success;
-}
-
-Result<CommandResult> cmd_autogold(const CommandContext &ctx) {
-    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
-    if (!player) {
-        ctx.send_error("Only players can toggle autogold.");
-        return CommandResult::InvalidState;
-    }
-
-    player->toggle_player_flag(PlayerFlag::AutoGold);
-
-    if (player->is_autogold()) {
-        ctx.send("Autogold ON. You will automatically take gold from corpses.");
-    } else {
-        ctx.send("Autogold OFF. You must manually take gold from corpses.");
-    }
-
-    return CommandResult::Success;
-}
-
-Result<CommandResult> cmd_autosplit(const CommandContext &ctx) {
-    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
-    if (!player) {
-        ctx.send_error("Only players can toggle autosplit.");
-        return CommandResult::InvalidState;
-    }
-
-    player->toggle_player_flag(PlayerFlag::AutoSplit);
-
-    if (player->is_autosplit()) {
-        ctx.send("Autosplit ON. Gold will be automatically split with your group.");
-    } else {
-        ctx.send("Autosplit OFF. You must manually split gold with your group.");
-    }
-
-    return CommandResult::Success;
-}
-
 // =============================================================================
 // Social Interaction Commands
 // =============================================================================
+// Note: Individual toggle commands (brief, compact, autoloot, autogold, autosplit)
+// have been removed. Use the unified "toggle" command instead.
 
 Result<CommandResult> cmd_afk(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
@@ -721,6 +633,59 @@ Result<CommandResult> cmd_description(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+// Toggle definition structure for database-driven toggles
+struct ToggleDefinition {
+    std::string name;
+    std::string display_name;
+    std::string description;
+    PlayerFlag flag;
+    int min_level;      // 0 = all players, 100+ = immortal
+    std::string category;
+    std::function<bool(Player*)> getter;
+};
+
+// Static toggle definitions - maps to PlayerFlag enum
+// Descriptions can be overridden from database
+static const std::vector<ToggleDefinition> TOGGLE_DEFINITIONS = {
+    {"brief", "Brief", "Show brief room descriptions", PlayerFlag::Brief, 0, "DISPLAY",
+        [](Player* p) { return p->is_brief(); }},
+    {"compact", "Compact", "Reduce blank lines in output", PlayerFlag::Compact, 0, "DISPLAY",
+        [](Player* p) { return p->is_compact(); }},
+    {"autoexit", "Auto Exit", "Automatically show exits", PlayerFlag::AutoExit, 0, "DISPLAY",
+        [](Player* p) { return p->is_autoexit(); }},
+    {"autoloot", "Auto Loot", "Automatically loot corpses", PlayerFlag::AutoLoot, 0, "COMBAT",
+        [](Player* p) { return p->is_autoloot(); }},
+    {"autogold", "Auto Gold", "Automatically take gold from corpses", PlayerFlag::AutoGold, 0, "COMBAT",
+        [](Player* p) { return p->is_autogold(); }},
+    {"autosplit", "Auto Split", "Automatically split gold with group", PlayerFlag::AutoSplit, 0, "COMBAT",
+        [](Player* p) { return p->is_autosplit(); }},
+    {"deaf", "Deaf", "Block shouts and gossip", PlayerFlag::Deaf, 0, "SOCIAL",
+        [](Player* p) { return p->is_deaf(); }},
+    {"notell", "No Tell", "Block tells from non-gods", PlayerFlag::NoTell, 0, "SOCIAL",
+        [](Player* p) { return p->is_notell(); }},
+    {"afk", "AFK", "Away from keyboard", PlayerFlag::Afk, 0, "SOCIAL",
+        [](Player* p) { return p->is_afk(); }},
+    {"holylight", "Holy Light", "See everything (invis, dark, hidden)", PlayerFlag::HolyLight, 100, "IMMORTAL",
+        [](Player* p) { return p->is_holylight(); }},
+    {"showids", "Show IDs", "Show entity IDs on mobs/objects", PlayerFlag::ShowIds, 100, "IMMORTAL",
+        [](Player* p) { return p->is_show_ids(); }},
+};
+
+// Helper to find a toggle definition by name
+static const ToggleDefinition* find_toggle(std::string_view name) {
+    std::string lower_name = to_lowercase(name);
+    for (const auto& toggle : TOGGLE_DEFINITIONS) {
+        if (toggle.name == lower_name) {
+            return &toggle;
+        }
+    }
+    // Also check common aliases
+    if (lower_name == "noshout" || lower_name == "nogossip") {
+        return find_toggle("deaf");
+    }
+    return nullptr;
+}
+
 Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
@@ -731,24 +696,58 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
     // Helper to format on/off
     auto on_off = [](bool value) { return value ? "ON " : "OFF"; };
 
-    if (ctx.arg_count() == 0) {
-        // Show all toggles with current values
-        ctx.send("--- Character Options ---");
-        ctx.send(fmt::format("  brief       : {}  - Show brief room descriptions", on_off(player->is_brief())));
-        ctx.send(fmt::format("  compact     : {}  - Reduce blank lines in output", on_off(player->is_compact())));
-        ctx.send(fmt::format("  autoloot    : {}  - Automatically loot corpses", on_off(player->is_autoloot())));
-        ctx.send(fmt::format("  autogold    : {}  - Automatically take gold from corpses", on_off(player->is_autogold())));
-        ctx.send(fmt::format("  autosplit   : {}  - Automatically split gold with group", on_off(player->is_autosplit())));
-        ctx.send(fmt::format("  autoexit    : {}  - Automatically show exits", on_off(player->is_autoexit())));
-        ctx.send(fmt::format("  deaf        : {}  - Block shouts and gossip", on_off(player->is_deaf())));
-        ctx.send(fmt::format("  notell      : {}  - Block tells from non-gods", on_off(player->is_notell())));
-        ctx.send(fmt::format("  afk         : {}  - Away from keyboard", on_off(player->is_afk())));
-        // Immortal-only options
-        if (player->is_god()) {
-            ctx.send("--- Immortal Options ---");
-            ctx.send(fmt::format("  holylight   : {}  - See everything (invis, dark, hidden)", on_off(player->is_holylight())));
-            ctx.send(fmt::format("  showids     : {}  - Show entity IDs on mobs/objects", on_off(player->is_show_ids())));
+    // Try to load toggle definitions from database for display
+    std::unordered_map<std::string, WorldQueries::PlayerToggleData> db_toggles;
+    auto db_result = ConnectionPool::instance().execute([](pqxx::work& txn)
+        -> Result<std::vector<WorldQueries::PlayerToggleData>> {
+        return WorldQueries::load_all_player_toggles(txn);
+    });
+    if (db_result) {
+        for (auto& t : *db_result) {
+            db_toggles[t.name] = std::move(t);
         }
+    }
+
+    if (ctx.arg_count() == 0) {
+        // Show all toggles grouped by category
+        bool is_immortal = player->is_god();
+
+        // Group toggles by category
+        std::map<std::string, std::vector<const ToggleDefinition*>> by_category;
+        for (const auto& toggle : TOGGLE_DEFINITIONS) {
+            // Check level requirement
+            if (toggle.min_level > 0 && !is_immortal) continue;
+            by_category[toggle.category].push_back(&toggle);
+        }
+
+        // Display order
+        std::vector<std::pair<std::string, std::string>> category_order = {
+            {"DISPLAY", "Display Options"},
+            {"COMBAT", "Combat Options"},
+            {"SOCIAL", "Social Options"},
+            {"IMMORTAL", "Immortal Options"},
+        };
+
+        for (const auto& [cat_key, cat_name] : category_order) {
+            auto it = by_category.find(cat_key);
+            if (it == by_category.end() || it->second.empty()) continue;
+
+            ctx.send(fmt::format("--- {} ---", cat_name));
+            for (const auto* toggle : it->second) {
+                bool value = toggle->getter(player.get());
+
+                // Use DB description if available, else use hardcoded
+                std::string description = toggle->description;
+                auto db_it = db_toggles.find(toggle->name);
+                if (db_it != db_toggles.end()) {
+                    description = db_it->second.description;
+                }
+
+                ctx.send(fmt::format("  {:<12}: {}  - {}",
+                    toggle->name, on_off(value), description));
+            }
+        }
+
         ctx.send("--- End of Options ---");
         ctx.send("Usage: toggle <option> to flip a setting");
         return CommandResult::Success;
@@ -756,55 +755,36 @@ Result<CommandResult> cmd_toggle(const CommandContext &ctx) {
 
     std::string_view option = ctx.arg(0);
 
-    // Toggle the appropriate flag
-    if (option == "brief") {
-        player->toggle_player_flag(PlayerFlag::Brief);
-        ctx.send(fmt::format("Brief mode is now {}.", player->is_brief() ? "ON" : "OFF"));
-    } else if (option == "compact") {
-        player->toggle_player_flag(PlayerFlag::Compact);
-        ctx.send(fmt::format("Compact mode is now {}.", player->is_compact() ? "ON" : "OFF"));
-    } else if (option == "autoloot") {
-        player->toggle_player_flag(PlayerFlag::AutoLoot);
-        ctx.send(fmt::format("Autoloot is now {}.", player->is_autoloot() ? "ON" : "OFF"));
-    } else if (option == "autogold") {
-        player->toggle_player_flag(PlayerFlag::AutoGold);
-        ctx.send(fmt::format("Autogold is now {}.", player->is_autogold() ? "ON" : "OFF"));
-    } else if (option == "autosplit") {
-        player->toggle_player_flag(PlayerFlag::AutoSplit);
-        ctx.send(fmt::format("Autosplit is now {}.", player->is_autosplit() ? "ON" : "OFF"));
-    } else if (option == "autoexit") {
-        player->toggle_player_flag(PlayerFlag::AutoExit);
-        ctx.send(fmt::format("Autoexit is now {}.", player->is_autoexit() ? "ON" : "OFF"));
-    } else if (option == "deaf" || option == "noshout" || option == "nogossip") {
-        player->toggle_player_flag(PlayerFlag::Deaf);
-        ctx.send(fmt::format("Deaf mode is now {}.", player->is_deaf() ? "ON" : "OFF"));
-    } else if (option == "notell") {
-        player->toggle_player_flag(PlayerFlag::NoTell);
-        ctx.send(fmt::format("Notell is now {}.", player->is_notell() ? "ON" : "OFF"));
-    } else if (option == "afk") {
-        player->toggle_player_flag(PlayerFlag::Afk);
-        ctx.send(fmt::format("AFK is now {}.", player->is_afk() ? "ON" : "OFF"));
-    } else if (option == "holylight") {
-        if (!player->is_god()) {
-            ctx.send_error("Only immortals can toggle holylight.");
-            return CommandResult::InsufficientPrivs;
-        }
-        player->toggle_player_flag(PlayerFlag::HolyLight);
-        ctx.send(fmt::format("Holylight is now {}.", player->is_holylight() ? "ON" : "OFF"));
-        if (player->is_holylight()) {
-            ctx.send("You can now see invisible, hidden, and in darkness.");
-        }
-    } else if (option == "showids") {
-        if (!player->is_god()) {
-            ctx.send_error("Only immortals can toggle showids.");
-            return CommandResult::InsufficientPrivs;
-        }
-        player->toggle_player_flag(PlayerFlag::ShowIds);
-        ctx.send(fmt::format("ShowIds is now {}.", player->is_show_ids() ? "ON" : "OFF"));
-    } else {
+    // Find the toggle definition
+    const ToggleDefinition* toggle = find_toggle(option);
+    if (!toggle) {
         ctx.send_error(fmt::format("Unknown toggle option: {}", option));
         ctx.send("Type 'toggle' with no arguments to see available options.");
         return CommandResult::InvalidSyntax;
+    }
+
+    // Check level requirement
+    if (toggle->min_level > 0 && !player->is_god()) {
+        ctx.send_error(fmt::format("Only immortals can toggle {}.", toggle->name));
+        return CommandResult::InsufficientPrivs;
+    }
+
+    // Toggle the flag
+    player->toggle_player_flag(toggle->flag);
+    bool new_value = toggle->getter(player.get());
+
+    // Get display name from DB if available
+    std::string display_name = toggle->display_name;
+    auto db_it = db_toggles.find(toggle->name);
+    if (db_it != db_toggles.end()) {
+        display_name = db_it->second.display_name;
+    }
+
+    ctx.send(fmt::format("{} is now {}.", display_name, new_value ? "ON" : "OFF"));
+
+    // Special messages for certain toggles
+    if (toggle->flag == PlayerFlag::HolyLight && new_value) {
+        ctx.send("You can now see invisible, hidden, and in darkness.");
     }
 
     // Save the player to persist preference changes
@@ -971,37 +951,8 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("brief", cmd_brief)
-        .category("Character")
-        .privilege(PrivilegeLevel::Player)
-        .build();
-
-    Commands()
-        .command("compact", cmd_compact)
-        .category("Character")
-        .privilege(PrivilegeLevel::Player)
-        .build();
-
-    Commands()
-        .command("autoloot", cmd_autoloot)
-        .category("Character")
-        .privilege(PrivilegeLevel::Player)
-        .build();
-
-    Commands()
-        .command("autogold", cmd_autogold)
-        .category("Character")
-        .privilege(PrivilegeLevel::Player)
-        .build();
-
-    Commands()
-        .command("autosplit", cmd_autosplit)
-        .category("Character")
-        .privilege(PrivilegeLevel::Player)
-        .build();
-
     // Social interaction commands
+    // Note: afk has special message functionality so it's kept as a standalone command
     Commands()
         .command("afk", cmd_afk)
         .category("Character")
