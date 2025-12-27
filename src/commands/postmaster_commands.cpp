@@ -15,10 +15,17 @@
 namespace PostmasterCommands {
 
 // =============================================================================
-// NPC Role Detection Helpers
+// Helper Functions
 // =============================================================================
 
 namespace {
+
+/**
+ * Sanitize player-provided message content by closing any unclosed markup tags.
+ */
+std::string sanitize_player_message(std::string_view message) {
+    return fmt::format("{}</>", message);
+}
 
 /**
  * Find a postmaster in the current room
@@ -104,7 +111,7 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = ctx.args_from(1);
+    std::string message = sanitize_player_message(ctx.args_from(1));
 
     // Find the recipient character
     auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)

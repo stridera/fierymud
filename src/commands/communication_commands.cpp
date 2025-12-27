@@ -6,6 +6,23 @@
 namespace CommunicationCommands {
 
 // =============================================================================
+// Helper Functions
+// =============================================================================
+
+/**
+ * Sanitize player-provided message content by closing any unclosed markup tags.
+ * This prevents players from accidentally or intentionally breaking color rendering
+ * for other players by leaving tags unclosed (e.g., "<b:blue>text" without "</>").
+ *
+ * @param message The raw player-provided message
+ * @return The message with a closing tag appended
+ */
+std::string sanitize_player_message(std::string_view message) {
+    // Always append a reset tag to close any unclosed formatting
+    return fmt::format("{}</>", message);
+}
+
+// =============================================================================
 // Communication Commands
 // =============================================================================
 
@@ -15,7 +32,7 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = ctx.args_from(0);
+    std::string message = sanitize_player_message(ctx.args_from(0));
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Say, "say");
 
     return CommandResult::Success;
@@ -38,7 +55,7 @@ Result<CommandResult> cmd_tell(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string message = ctx.args_from(1);
+    std::string message = sanitize_player_message(ctx.args_from(1));
 
     // Send to target
     std::string target_msg = fmt::format("{} tells you, '{}'", ctx.actor->display_name(), message);
@@ -68,7 +85,7 @@ Result<CommandResult> cmd_emote(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string action = ctx.args_from(0);
+    std::string action = sanitize_player_message(ctx.args_from(0));
     std::string emote_msg = fmt::format("{} {}", ctx.actor->display_name(), action);
 
     // Send to everyone in the room including self - emotes show the same message to everyone
@@ -94,7 +111,7 @@ Result<CommandResult> cmd_whisper(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string message = ctx.args_from(1);
+    std::string message = sanitize_player_message(ctx.args_from(1));
 
     // Send to target
     std::string target_msg = fmt::format("{} whispers to you, '{}'", ctx.actor->display_name(), message);
@@ -117,7 +134,7 @@ Result<CommandResult> cmd_shout(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = ctx.args_from(0);
+    std::string message = sanitize_player_message(ctx.args_from(0));
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Broadcast, "shout");
 
     return CommandResult::Success;
@@ -129,7 +146,7 @@ Result<CommandResult> cmd_gossip(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = ctx.args_from(0);
+    std::string message = sanitize_player_message(ctx.args_from(0));
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Channel, "gossip");
 
     return CommandResult::Success;
@@ -163,7 +180,7 @@ Result<CommandResult> cmd_reply(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string message = ctx.args_from(0);
+    std::string message = sanitize_player_message(ctx.args_from(0));
 
     // Send to target
     std::string target_msg = fmt::format("{} tells you, '{}'", ctx.actor->display_name(), message);
@@ -201,7 +218,7 @@ Result<CommandResult> cmd_ask(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string question = ctx.args_from(1);
+    std::string question = sanitize_player_message(ctx.args_from(1));
 
     // Send to target
     std::string target_msg = fmt::format("{} asks you, '{}'", ctx.actor->display_name(), question);
@@ -225,7 +242,7 @@ Result<CommandResult> cmd_petition(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = ctx.args_from(0);
+    std::string message = sanitize_player_message(ctx.args_from(0));
 
     // Format the petition message for immortals
     // TODO: Add privilege-based filtering when send_to_all_with_privilege is implemented
@@ -281,7 +298,7 @@ Result<CommandResult> cmd_gtell(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    std::string message = ctx.args_from(0);
+    std::string message = sanitize_player_message(ctx.args_from(0));
 
     // Format and send to group members
     std::string group_msg = fmt::format("[GROUP] {} tells the group: {}", ctx.actor->display_name(), message);
