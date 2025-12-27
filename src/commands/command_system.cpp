@@ -4,6 +4,7 @@
 #include "../core/logging.hpp"
 #include "../core/ability_executor.hpp"
 #include "../database/world_queries.hpp"
+#include "../scripting/trigger_manager.hpp"
 #include "../text/string_utils.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
@@ -186,6 +187,39 @@ Result<CommandResult> CommandSystem::execute_command(std::shared_ptr<Actor> acto
 Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Actor> actor,
                                                             const ParsedCommand &command) {
     auto start_time = std::chrono::steady_clock::now();
+
+    // Check for COMMAND triggers on mobs in the room
+    // Triggers can intercept commands before normal processing
+    if (auto room = actor->current_room()) {
+        auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            // Check each mob in the room for COMMAND triggers
+            for (const auto& other : room->contents().actors) {
+                // Skip self and players (only mobs have triggers)
+                if (other == actor || other->type_name() != "Mobile") {
+                    continue;
+                }
+
+                // Build the argument string from parsed command
+                std::string argument = command.args_from(0);
+
+                // Dispatch to mob's COMMAND triggers
+                auto result = trigger_mgr.dispatch_command(
+                    other,      // The mob owning the trigger
+                    actor,      // The actor who typed the command
+                    command.command,
+                    argument
+                );
+
+                // If trigger returned Halt, the command was handled by the script
+                if (result == FieryMUD::TriggerResult::Halt) {
+                    Log::debug("Command '{}' intercepted by trigger on {}",
+                        command.command, other->name());
+                    return CommandResult::Success;  // Trigger handled it
+                }
+            }
+        }
+    }
 
     // Lookup command under lock and make a local copy to avoid holding the lock during execution
     std::optional<CommandInfo> cmd_copy_opt;

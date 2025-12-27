@@ -1,4 +1,8 @@
 #include "script_engine.hpp"
+#include "coroutine_scheduler.hpp"
+#include "bindings/lua_actor.hpp"
+#include "bindings/lua_room.hpp"
+#include "bindings/lua_object.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
@@ -155,14 +159,32 @@ void ScriptEngine::register_utility_functions() {
         return result;
     });
 
+    // wait(seconds) - Yield coroutine for delayed execution
+    // The actual scheduling is handled by TriggerManager when it sees the yield
+    // This function yields with the delay value using sol::yielding wrapper
+    lua_.set_function("wait", sol::yielding([](double seconds) -> double {
+        // Clamp delay to valid range
+        seconds = std::clamp(seconds,
+                             CoroutineScheduler::MIN_DELAY_SECONDS,
+                             CoroutineScheduler::MAX_DELAY_SECONDS);
+
+        spdlog::debug("[Lua] wait({}) called - yielding coroutine", seconds);
+
+        // Return the delay value - it will be yielded to the caller
+        // TriggerManager will read this value and schedule resume
+        return seconds;
+    }));
+
     spdlog::debug("Lua utility functions registered");
 }
 
 void ScriptEngine::register_bindings() {
-    // Placeholder - full bindings will be implemented in Phase 2
-    // This will register Actor, Room, Object, and other game object types
+    // Register game object bindings
+    register_actor_bindings(lua_);
+    register_room_bindings(lua_);
+    register_object_bindings(lua_);
 
-    spdlog::debug("Lua game bindings registered (placeholder)");
+    spdlog::debug("Lua game bindings registered");
 }
 
 sol::thread ScriptEngine::create_thread() {

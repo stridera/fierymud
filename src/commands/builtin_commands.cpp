@@ -1,5 +1,7 @@
 #include "builtin_commands.hpp"
 
+#include "../scripting/trigger_manager.hpp"
+
 // Command module headers for registration
 #include "admin_commands.hpp"
 #include "character_commands.hpp"
@@ -735,10 +737,59 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     // Interrupt concentration-based activities (like meditation)
     ctx.actor->interrupt_concentration();
 
+    // Get the current room before movement for LEAVE triggers
+    auto old_room = ctx.actor->current_room();
+
+    // Dispatch LEAVE triggers to mobs in the old room
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    if (trigger_mgr.is_initialized() && old_room) {
+        for (const auto& other : old_room->contents().actors) {
+            // Only mobs have triggers, skip self and players
+            if (other == ctx.actor || other->type_name() != "Mobile") {
+                continue;
+            }
+
+            auto result = trigger_mgr.dispatch_leave(other, ctx.actor, dir);
+            if (result == FieryMUD::TriggerResult::Halt) {
+                // Movement blocked by LEAVE trigger
+                Log::debug("Movement blocked by LEAVE trigger on {}", other->name());
+                ctx.send_error("Something prevents you from leaving.");
+                return CommandResult::InvalidState;
+            }
+        }
+    }
+
     auto result = ctx.move_actor_direction(dir);
     if (!result) {
         ctx.send_error(fmt::format("Movement failed: {}", result.error().message));
         return CommandResult::ResourceError;
+    }
+
+    // Get the new room after movement
+    auto new_room = ctx.actor->current_room();
+
+    // Dispatch GREET triggers to mobs in the new room
+    if (trigger_mgr.is_initialized() && new_room) {
+        // Calculate the direction the actor came FROM (opposite of movement)
+        Direction from_direction = RoomUtils::get_opposite_direction(dir);
+
+        for (const auto& other : new_room->contents().actors) {
+            // Only mobs have triggers, skip self and players
+            if (other == ctx.actor || other->type_name() != "Mobile") {
+                continue;
+            }
+
+            // GREET triggers fire for all arrivals
+            trigger_mgr.dispatch_greet(other, ctx.actor, from_direction);
+
+            // GREET_ALL fires even for mobs entering (not just players)
+            // This is handled by checking the flag inside dispatch_greet_all if implemented
+        }
+
+        // If the moving actor is a mob, dispatch ENTRY triggers on itself
+        if (ctx.actor->type_name() == "Mobile") {
+            trigger_mgr.dispatch_entry(ctx.actor, new_room, from_direction);
+        }
     }
 
     // Send movement confirmation message

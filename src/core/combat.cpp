@@ -4,6 +4,7 @@
 #include "logging.hpp"
 #include "money.hpp"
 #include "../game/composer_system.hpp"
+#include "../scripting/coroutine_scheduler.hpp"
 #include "../world/room.hpp"
 #include <random>
 #include <algorithm>
@@ -527,6 +528,12 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
             result.target_message += "\r\nYou are DEAD!";
             result.room_message += fmt::format(" {} is DEAD! {} corpse falls to the ground.",
                                                target->display_name(), target->display_name());
+        }
+
+        // Cancel any pending Lua script coroutines for the dying entity
+        auto& scheduler = get_coroutine_scheduler();
+        if (scheduler.is_initialized()) {
+            scheduler.cancel_for_entity(target->id());
         }
 
         // Polymorphic death handling - Player becomes ghost, Mobile creates corpse and despawns

@@ -193,6 +193,11 @@ set(SOURCES
     # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
     # Scripting system
     src/scripting/script_engine.cpp
+    src/scripting/trigger_manager.cpp
+    src/scripting/coroutine_scheduler.cpp
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
     src/database/trigger_queries.cpp
 )
 
@@ -334,6 +339,11 @@ set(CORE_TEST_SOURCES
     src/text/string_utils.cpp
     # Scripting system
     src/scripting/script_engine.cpp
+    src/scripting/trigger_manager.cpp
+    src/scripting/coroutine_scheduler.cpp
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
     src/database/trigger_queries.cpp
 )
 
@@ -489,6 +499,8 @@ target_link_libraries(tests PRIVATE
     Catch2::Catch2WithMain
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
 )
 
 target_compile_definitions(tests PRIVATE

@@ -51,6 +51,19 @@ class TestableNPC : public Actor {
     void send_message([[maybe_unused]] std::string_view message) override {}
     void receive_message([[maybe_unused]] std::string_view message) override {}
     std::shared_ptr<Container> die() override { set_position(Position::Dead); return nullptr; }
+
+    // Wealth interface (simple implementation for testing)
+    long wealth() const override { return wealth_; }
+    void give_wealth(long amount) override { if (amount > 0) wealth_ += amount; }
+    bool take_wealth(long amount) override {
+        if (amount <= 0 || wealth_ < amount) return false;
+        wealth_ -= amount;
+        return true;
+    }
+    bool can_afford(long amount) const override { return wealth_ >= amount; }
+
+  private:
+    long wealth_ = 0;
 };
 
 class TestHarness {

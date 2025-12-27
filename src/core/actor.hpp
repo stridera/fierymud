@@ -371,7 +371,23 @@ public:
     int max_carry_weight() const;
     int current_carry_weight() const;
     bool is_overloaded() const;
-    
+
+    // =========================================================================
+    // Unified Wealth Interface (in copper)
+    // =========================================================================
+
+    /** Get wealth in copper (Players use wallet, Mobiles use money) */
+    virtual long wealth() const = 0;
+
+    /** Give wealth in copper */
+    virtual void give_wealth(long copper_amount) = 0;
+
+    /** Take wealth in copper - returns true if sufficient funds */
+    virtual bool take_wealth(long copper_amount) = 0;
+
+    /** Check if actor can afford amount in copper */
+    virtual bool can_afford(long copper_amount) const = 0;
+
     /** Experience and leveling */
     void gain_experience(long amount);
     virtual Result<void> level_up();
@@ -802,6 +818,20 @@ public:
         return taken;
     }
 
+    // Unified Wealth Interface implementation
+    long wealth() const override { return money_.value(); }
+    void give_wealth(long copper_amount) override {
+        if (copper_amount > 0) money_ += fiery::Money(copper_amount);
+    }
+    bool take_wealth(long copper_amount) override {
+        if (copper_amount <= 0 || money_.value() < copper_amount) return false;
+        money_ -= fiery::Money(copper_amount);
+        return true;
+    }
+    bool can_afford(long copper_amount) const override {
+        return money_.value() >= copper_amount;
+    }
+
 protected:
     Mobile(EntityId id, std::string_view name, int level = 1);
 
@@ -1061,7 +1091,16 @@ public:
 
     /** Check if wallet can afford an amount */
     bool can_afford(const fiery::Money& cost) const { return wallet_.can_afford(cost); }
-    bool can_afford(long copper_cost) const { return wallet_.can_afford(copper_cost); }
+    bool can_afford(long copper_cost) const override { return wallet_.can_afford(copper_cost); }
+
+    // Unified Wealth Interface implementation (uses wallet)
+    long wealth() const override { return wallet_.value(); }
+    void give_wealth(long copper_amount) override {
+        if (copper_amount > 0) wallet_.receive(copper_amount);
+    }
+    bool take_wealth(long copper_amount) override {
+        return spend(copper_amount);
+    }
 
     /** Check if bank can afford an amount */
     bool bank_can_afford(const fiery::Money& cost) const { return bank_.can_afford(cost); }

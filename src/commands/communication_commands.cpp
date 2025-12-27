@@ -2,6 +2,9 @@
 #include "builtin_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/logging.hpp"
+#include "../scripting/trigger_manager.hpp"
+#include "../world/room.hpp"
 
 namespace CommunicationCommands {
 
@@ -33,6 +36,27 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
     }
 
     std::string message = sanitize_player_message(ctx.args_from(0));
+
+    // Check for SPEECH triggers on mobs in the room
+    if (auto room = ctx.actor->current_room()) {
+        auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            for (const auto& other : room->contents().actors) {
+                // Only mobs have triggers
+                if (other == ctx.actor || other->type_name() != "Mobile") {
+                    continue;
+                }
+
+                // Dispatch SPEECH trigger - triggers can react to what was said
+                auto result = trigger_mgr.dispatch_speech(other, ctx.actor, message);
+                if (result == FieryMUD::TriggerResult::Halt) {
+                    Log::debug("Speech intercepted by trigger on {}", other->name());
+                    // Note: We still show the say to the room, trigger just reacted
+                }
+            }
+        }
+    }
+
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Say, "say");
 
     return CommandResult::Success;
