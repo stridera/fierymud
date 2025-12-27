@@ -3,6 +3,8 @@
 #include "trigger_manager.hpp"
 #include "script_engine.hpp"
 #include "coroutine_scheduler.hpp"
+#include "../database/connection_pool.hpp"
+#include "../database/trigger_queries.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
@@ -59,12 +61,35 @@ std::expected<std::size_t, std::string> TriggerManager::load_zone_triggers(std::
         return 0;
     }
 
-    // TODO: Load from database via TriggerQueries
-    // For now, just mark the zone as loaded (triggers will be registered manually)
-    loaded_zones_.insert(zone_id);
-    spdlog::debug("Zone {} marked as loaded (database loading not yet implemented)", zone_id);
+    // Check if connection pool is available
+    auto& pool = ConnectionPool::instance();
+    if (!pool.is_initialized()) {
+        spdlog::debug("Database not initialized, skipping trigger load for zone {}", zone_id);
+        return 0;
+    }
 
-    return 0;
+    // Load triggers from database using execute pattern
+    auto result = pool.execute([zone_id](pqxx::work& txn)
+        -> Result<std::vector<FieryMUD::TriggerDataPtr>> {
+        return TriggerQueries::load_triggers_for_zone(txn, static_cast<int>(zone_id));
+    });
+
+    if (!result) {
+        return std::unexpected(fmt::format("Failed to load triggers for zone {}: {}",
+                                           zone_id, result.error().message));
+    }
+
+    // Register all loaded triggers
+    std::size_t count = 0;
+    for (const auto& trigger : *result) {
+        register_trigger(trigger);
+        count++;
+    }
+
+    loaded_zones_.insert(zone_id);
+    spdlog::info("Loaded {} triggers for zone {}", count, zone_id);
+
+    return count;
 }
 
 std::expected<std::size_t, std::string> TriggerManager::reload_zone_triggers(std::uint32_t zone_id) {
@@ -222,12 +247,16 @@ void TriggerManager::setup_lua_context(sol::state_view lua, const ScriptContext&
 
 TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, ScriptContext& context) {
     if (!trigger) {
+        ++stats_.failed_executions;
         return TriggerResult::Error;
     }
+
+    ++stats_.total_executions;
 
     auto& engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         last_error_ = "ScriptEngine not initialized";
+        ++stats_.failed_executions;
         return TriggerResult::Error;
     }
 
@@ -238,25 +267,34 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
     // Set up the Lua environment with context on the thread
     setup_lua_context(thread_lua, context);
 
-    // Load the script in the thread's state
-    sol::load_result loaded = thread_lua.load(trigger->commands, trigger->name);
-    if (!loaded.valid()) {
-        sol::error err = loaded;
-        last_error_ = fmt::format("Trigger '{}' load error: {}", trigger->name, err.what());
+    // Load the script using bytecode cache for performance
+    auto loaded = engine.load_cached(thread_lua, trigger->commands, trigger->cache_key());
+    if (!loaded) {
+        last_error_ = fmt::format("Trigger '{}' (id:{}) load error: {}",
+                                   trigger->name, trigger->id, engine.last_error());
         spdlog::error("{}", last_error_);
+        ++stats_.failed_executions;
         return TriggerResult::Error;
     }
 
     // Create coroutine from the loaded function
-    sol::coroutine coro(thread.state(), loaded.get<sol::function>());
+    sol::coroutine coro(thread.state(), *loaded);
 
     // Run the coroutine
     auto result = coro();
 
     if (!result.valid()) {
         sol::error err = result;
-        last_error_ = fmt::format("Trigger '{}' execution failed: {}", trigger->name, err.what());
+        // Include entity context in error message for easier debugging
+        std::string entity_info;
+        if (auto actor = context.owner_as_actor()) {
+            entity_info = fmt::format(" [owner: {} ({}:{})]",
+                                       actor->name(), actor->id().zone_id(), actor->id().local_id());
+        }
+        last_error_ = fmt::format("Trigger '{}' (id:{}) execution failed: {}{}",
+                                   trigger->name, trigger->id, err.what(), entity_info);
         spdlog::error("{}", last_error_);
+        ++stats_.failed_executions;
         return TriggerResult::Error;
     }
 
@@ -285,11 +323,13 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
             scheduler.schedule_wait(std::move(thread), std::move(coro),
                                     std::move(context), owner_id, delay);
 
-            spdlog::debug("Trigger '{}' yielded for {} seconds", trigger->name, delay);
+            spdlog::debug("Trigger '{}' (id:{}) yielded for {} seconds",
+                          trigger->name, trigger->id, delay);
         } else {
-            spdlog::warn("Trigger '{}' called wait() but CoroutineScheduler not initialized",
-                         trigger->name);
+            spdlog::warn("Trigger '{}' (id:{}) called wait() but CoroutineScheduler not initialized",
+                         trigger->name, trigger->id);
         }
+        ++stats_.yielded_executions;
         return TriggerResult::Continue;
     }
 
@@ -297,10 +337,12 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
     // If script returns false, halt further processing
     if (result.get_type() == sol::type::boolean) {
         if (!result.get<bool>()) {
+            ++stats_.halted_executions;
             return TriggerResult::Halt;
         }
     }
 
+    ++stats_.successful_executions;
     return TriggerResult::Continue;
 }
 

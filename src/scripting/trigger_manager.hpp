@@ -240,6 +240,21 @@ public:
     /// Get last script error message
     [[nodiscard]] std::string_view last_error() const { return last_error_; }
 
+    /// Execution statistics
+    struct ExecutionStats {
+        std::size_t total_executions = 0;
+        std::size_t successful_executions = 0;
+        std::size_t halted_executions = 0;
+        std::size_t failed_executions = 0;
+        std::size_t yielded_executions = 0;  // Scripts that called wait()
+    };
+
+    /// Get execution statistics
+    [[nodiscard]] const ExecutionStats& stats() const { return stats_; }
+
+    /// Reset execution statistics
+    void reset_stats() { stats_ = ExecutionStats{}; }
+
     // Delete copy/move operations (singleton)
     TriggerManager(const TriggerManager&) = delete;
     TriggerManager& operator=(const TriggerManager&) = delete;
@@ -285,6 +300,9 @@ private:
 
     std::string last_error_;
     bool initialized_ = false;
+
+    /// Execution statistics
+    ExecutionStats stats_;
 };
 
 } // namespace FieryMUD

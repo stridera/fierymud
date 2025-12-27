@@ -1,6 +1,8 @@
 #include "admin_commands.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../scripting/script_engine.hpp"
+#include "../scripting/trigger_manager.hpp"
 #include "../world/weather.hpp"
 #include "../world/world_manager.hpp"
 
@@ -470,6 +472,200 @@ Result<CommandResult> cmd_load(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Trigger Management Commands
+// =============================================================================
+
+Result<CommandResult> cmd_tstat(const CommandContext &ctx) {
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+
+    if (!trigger_mgr.is_initialized()) {
+        ctx.send_error("Trigger system is not initialized.");
+        return CommandResult::ResourceError;
+    }
+
+    if (ctx.arg_count() == 0) {
+        // Show global trigger statistics
+        ctx.send("<b:cyan>--- Trigger System Status ---</>");
+        ctx.send(fmt::format("Total triggers cached: {}", trigger_mgr.trigger_count()));
+        ctx.send(fmt::format("  MOB triggers: {}", trigger_mgr.trigger_count(FieryMUD::ScriptType::MOB)));
+        ctx.send(fmt::format("  OBJECT triggers: {}", trigger_mgr.trigger_count(FieryMUD::ScriptType::OBJECT)));
+        ctx.send(fmt::format("  WORLD triggers: {}", trigger_mgr.trigger_count(FieryMUD::ScriptType::WORLD)));
+
+        // Show execution statistics
+        const auto& stats = trigger_mgr.stats();
+        ctx.send("\n<b:yellow>Execution Statistics:</>");
+        ctx.send(fmt::format("  Total executions: {}", stats.total_executions));
+        ctx.send(fmt::format("  Successful: {}", stats.successful_executions));
+        ctx.send(fmt::format("  Halted: {}", stats.halted_executions));
+        ctx.send(fmt::format("  Yielded (wait): {}", stats.yielded_executions));
+        ctx.send(fmt::format("  Failed: {}", stats.failed_executions));
+
+        // Show bytecode cache statistics
+        auto& engine = FieryMUD::ScriptEngine::instance();
+        if (engine.is_initialized()) {
+            ctx.send(fmt::format("\nBytecode cache entries: {}", engine.cache_size()));
+        }
+
+        if (!trigger_mgr.last_error().empty()) {
+            ctx.send(fmt::format("\n<b:red>Last error:</> {}", trigger_mgr.last_error()));
+        }
+
+        return CommandResult::Success;
+    }
+
+    // Parse entity ID from argument
+    std::string id_str{ctx.arg(0)};
+    auto colon_pos = id_str.find(':');
+    if (colon_pos == std::string::npos) {
+        ctx.send_error("Invalid entity ID format. Use zone:id (e.g., 30:0)");
+        return CommandResult::InvalidSyntax;
+    }
+
+    int zone_id = 0;
+    int local_id = 0;
+    try {
+        zone_id = std::stoi(id_str.substr(0, colon_pos));
+        local_id = std::stoi(id_str.substr(colon_pos + 1));
+    } catch (const std::exception&) {
+        ctx.send_error("Invalid ID format. Zone and ID must be numbers.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    EntityId entity_id(zone_id, local_id);
+
+    // Show triggers for this entity
+    ctx.send(fmt::format("<b:cyan>--- Triggers for Entity {}:{} ---</>", zone_id, local_id));
+
+    auto mob_triggers = trigger_mgr.get_mob_triggers(entity_id);
+    if (!mob_triggers.empty()) {
+        ctx.send("<b:yellow>MOB triggers:</>");
+        for (const auto& trigger : mob_triggers) {
+            ctx.send(fmt::format("  {} - flags: {}", trigger->name, trigger->flags_string()));
+        }
+    }
+
+    auto obj_triggers = trigger_mgr.get_object_triggers(entity_id);
+    if (!obj_triggers.empty()) {
+        ctx.send("<b:yellow>OBJECT triggers:</>");
+        for (const auto& trigger : obj_triggers) {
+            ctx.send(fmt::format("  {} - flags: {}", trigger->name, trigger->flags_string()));
+        }
+    }
+
+    if (local_id == 0) {
+        auto world_triggers = trigger_mgr.get_world_triggers(zone_id);
+        if (!world_triggers.empty()) {
+            ctx.send("<b:yellow>WORLD triggers:</>");
+            for (const auto& trigger : world_triggers) {
+                ctx.send(fmt::format("  {} - flags: {}", trigger->name, trigger->flags_string()));
+            }
+        }
+    }
+
+    if (mob_triggers.empty() && obj_triggers.empty()) {
+        ctx.send("No triggers found for this entity.");
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_treload(const CommandContext &ctx) {
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+
+    if (!trigger_mgr.is_initialized()) {
+        ctx.send_error("Trigger system is not initialized.");
+        return CommandResult::ResourceError;
+    }
+
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("treload <zone_id|all>");
+        ctx.send("Reload triggers for a zone or all zones from the database.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string target{ctx.arg(0)};
+
+    if (target == "all") {
+        // Reload all triggers
+        trigger_mgr.clear_all_triggers();
+        ctx.send("Cleared all cached triggers.");
+
+        // Load triggers for all loaded zones
+        auto zones = WorldManager::instance().get_all_zones();
+        std::size_t total = 0;
+        for (const auto& zone : zones) {
+            auto result = trigger_mgr.load_zone_triggers(zone->id().zone_id());
+            if (result) {
+                total += *result;
+            }
+        }
+
+        ctx.send_success(fmt::format("Reloaded {} triggers from {} zones.", total, zones.size()));
+        return CommandResult::Success;
+    }
+
+    // Parse zone ID
+    int zone_id = 0;
+    try {
+        zone_id = std::stoi(target);
+    } catch (const std::exception&) {
+        ctx.send_error("Invalid zone ID. Use a number or 'all'.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto result = trigger_mgr.reload_zone_triggers(static_cast<std::uint32_t>(zone_id));
+    if (!result) {
+        ctx.send_error(fmt::format("Failed to reload triggers: {}", result.error()));
+        return CommandResult::ResourceError;
+    }
+
+    ctx.send_success(fmt::format("Reloaded {} triggers for zone {}.", *result, zone_id));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_tlist(const CommandContext &ctx) {
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+
+    if (!trigger_mgr.is_initialized()) {
+        ctx.send_error("Trigger system is not initialized.");
+        return CommandResult::ResourceError;
+    }
+
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("tlist <zone_id>");
+        ctx.send("List all triggers for a zone.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    int zone_id = 0;
+    try {
+        zone_id = std::stoi(std::string{ctx.arg(0)});
+    } catch (const std::exception&) {
+        ctx.send_error("Invalid zone ID.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Get world triggers for the zone
+    auto world_triggers = trigger_mgr.get_world_triggers(zone_id);
+
+    ctx.send(fmt::format("<b:cyan>--- Triggers in Zone {} ---</>", zone_id));
+
+    if (world_triggers.empty()) {
+        ctx.send("No triggers loaded for this zone.");
+        ctx.send("Use 'treload <zone_id>' to load triggers from database.");
+    } else {
+        for (const auto& trigger : world_triggers) {
+            ctx.send(fmt::format("  [{}] {} - {}",
+                static_cast<int>(trigger->attach_type),
+                trigger->name,
+                trigger->flags_string()));
+        }
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -538,6 +734,25 @@ Result<void> register_commands() {
 
     Commands()
         .command("dumpworld", cmd_dump_world)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    // Trigger management commands
+    Commands()
+        .command("tstat", cmd_tstat)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("treload", cmd_treload)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    Commands()
+        .command("tlist", cmd_tlist)
         .category("Development")
         .privilege(PrivilegeLevel::Coder)
         .build();

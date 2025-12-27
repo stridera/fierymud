@@ -55,6 +55,24 @@ public:
     ScriptResult<void> compile_script(std::string_view script_code,
                                        std::string_view script_name);
 
+    /// Load a script, using cached bytecode if available
+    /// @param thread_state The thread's Lua state to load into
+    /// @param script_code The Lua source code
+    /// @param cache_key Unique key for bytecode caching (e.g., "trigger:30:0:quest_start")
+    /// @return Loaded function or error
+    ScriptResult<sol::function> load_cached(sol::state_view thread_state,
+                                             std::string_view script_code,
+                                             std::string_view cache_key);
+
+    /// Check if a script is in the bytecode cache
+    [[nodiscard]] bool is_cached(std::string_view cache_key) const;
+
+    /// Get bytecode cache statistics
+    [[nodiscard]] std::size_t cache_size() const { return bytecode_cache_.size(); }
+
+    /// Clear the bytecode cache
+    void clear_cache() { bytecode_cache_.clear(); }
+
     /// Create an isolated thread for trigger execution
     /// Each trigger runs in its own thread to support coroutines
     [[nodiscard]] sol::thread create_thread();

@@ -6,8 +6,10 @@
 #include <cstdint>
 #include <memory>
 #include <optional>
+#include <sstream>
 #include <string>
 #include <vector>
+#include <fmt/format.h>
 #include <nlohmann/json.hpp>
 
 namespace FieryMUD {
@@ -84,6 +86,42 @@ struct TriggerData {
         }
         return result;
     }
+
+    /// Generate a unique cache key for bytecode caching
+    [[nodiscard]] std::string cache_key() const {
+        // Format: "trigger:<id>:<name_hash>"
+        // Using ID + name hash to handle script updates
+        std::size_t name_hash = std::hash<std::string>{}(name + commands);
+        return fmt::format("trigger:{}:{:x}", id, name_hash);
+    }
+
+    /// Get human-readable string of all active flags
+    [[nodiscard]] std::string flags_string() const {
+        std::ostringstream oss;
+        bool first = true;
+
+        // Check each possible flag
+        constexpr TriggerFlag all_flags[] = {
+            TriggerFlag::GLOBAL, TriggerFlag::RANDOM, TriggerFlag::COMMAND,
+            TriggerFlag::SPEECH, TriggerFlag::ACT, TriggerFlag::DEATH,
+            TriggerFlag::GREET, TriggerFlag::GREET_ALL, TriggerFlag::ENTRY,
+            TriggerFlag::RECEIVE, TriggerFlag::FIGHT, TriggerFlag::HIT_PERCENT,
+            TriggerFlag::BRIBE, TriggerFlag::LOAD, TriggerFlag::MEMORY,
+            TriggerFlag::CAST, TriggerFlag::LEAVE, TriggerFlag::DOOR,
+            TriggerFlag::TIME, TriggerFlag::AUTO, TriggerFlag::SPEECH_TO,
+            TriggerFlag::LOOK
+        };
+
+        for (auto flag : all_flags) {
+            if (has_flag(flag)) {
+                if (!first) oss << " ";
+                oss << trigger_flag_to_string(flag);
+                first = false;
+            }
+        }
+
+        return oss.str();
+    }
 };
 
 /// Shared pointer type for trigger data
@@ -123,6 +161,17 @@ struct TriggerSet {
     [[nodiscard]] std::size_t size() const {
         return triggers.size();
     }
+
+    // Iterator support for range-based for loops
+    using iterator = std::vector<TriggerDataPtr>::iterator;
+    using const_iterator = std::vector<TriggerDataPtr>::const_iterator;
+
+    [[nodiscard]] iterator begin() { return triggers.begin(); }
+    [[nodiscard]] iterator end() { return triggers.end(); }
+    [[nodiscard]] const_iterator begin() const { return triggers.begin(); }
+    [[nodiscard]] const_iterator end() const { return triggers.end(); }
+    [[nodiscard]] const_iterator cbegin() const { return triggers.cbegin(); }
+    [[nodiscard]] const_iterator cend() const { return triggers.cend(); }
 };
 
 } // namespace FieryMUD

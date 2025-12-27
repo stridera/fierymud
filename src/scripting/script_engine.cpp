@@ -191,6 +191,74 @@ sol::thread ScriptEngine::create_thread() {
     return sol::thread::create(lua_.lua_state());
 }
 
+bool ScriptEngine::is_cached(std::string_view cache_key) const {
+    return bytecode_cache_.contains(std::string{cache_key});
+}
+
+ScriptResult<sol::function> ScriptEngine::load_cached(
+    sol::state_view thread_state,
+    std::string_view script_code,
+    std::string_view cache_key)
+{
+    if (!initialized_) {
+        last_error_ = "ScriptEngine not initialized";
+        return std::unexpected(ScriptError::NotInitialized);
+    }
+
+    std::string key{cache_key};
+
+    // Check if bytecode is already cached
+    auto it = bytecode_cache_.find(key);
+    if (it != bytecode_cache_.end()) {
+        // Load from cached bytecode
+        try {
+            sol::load_result loaded = thread_state.load(it->second.as_string_view(), key,
+                                                         sol::load_mode::binary);
+            if (!loaded.valid()) {
+                sol::error err = loaded;
+                last_error_ = fmt::format("Failed to load cached bytecode '{}': {}",
+                                           cache_key, err.what());
+                spdlog::error("{}", last_error_);
+                // Fall through to recompile
+            } else {
+                spdlog::trace("Loaded script from bytecode cache: {}", cache_key);
+                return loaded.get<sol::function>();
+            }
+        } catch (const sol::error& e) {
+            spdlog::warn("Failed to load bytecode for '{}', recompiling: {}",
+                         cache_key, e.what());
+            // Fall through to recompile
+        }
+    }
+
+    // Compile the script
+    try {
+        sol::load_result loaded = thread_state.load(script_code, key);
+
+        if (!loaded.valid()) {
+            sol::error err = loaded;
+            last_error_ = fmt::format("Compilation error in '{}': {}",
+                                       cache_key, err.what());
+            spdlog::error("{}", last_error_);
+            return std::unexpected(ScriptError::CompilationFailed);
+        }
+
+        // Cache the bytecode
+        sol::function func = loaded;
+        sol::bytecode bc = func.dump();
+        bytecode_cache_[key] = std::move(bc);
+
+        spdlog::debug("Compiled and cached script: {}", cache_key);
+        return func;
+
+    } catch (const sol::error& e) {
+        last_error_ = fmt::format("Unexpected error compiling '{}': {}",
+                                   cache_key, e.what());
+        spdlog::error("{}", last_error_);
+        return std::unexpected(ScriptError::CompilationFailed);
+    }
+}
+
 ScriptResult<void> ScriptEngine::compile_script(
     std::string_view script_code,
     std::string_view script_name)
