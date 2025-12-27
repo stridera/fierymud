@@ -4,6 +4,7 @@
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
 #include "../core/shopkeeper.hpp"
+#include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 
@@ -639,7 +640,20 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
         ctx.send_error(fmt::format("{} cannot carry any more items.", target->display_name()));
         return CommandResult::ResourceError;
     }
-    
+
+    // Fire RECEIVE trigger for mobs receiving items
+    // For money objects, fire BRIBE trigger instead
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    if (trigger_mgr.is_initialized()) {
+        if (obj->type() == ObjectType::Money && obj->value() > 0) {
+            // BRIBE trigger for gold
+            trigger_mgr.dispatch_bribe(target, ctx.actor, obj->value());
+        } else {
+            // RECEIVE trigger for other items
+            trigger_mgr.dispatch_receive(target, ctx.actor, removed_obj);
+        }
+    }
+
     ctx.send_success(fmt::format("You give {} to {}.", ctx.format_object_name(obj), target->display_name()));
 
     ctx.send_to_actor(target, fmt::format("{} gives you {}.", ctx.actor->display_name(), ctx.format_object_name(obj)));

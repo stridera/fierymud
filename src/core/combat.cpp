@@ -5,6 +5,7 @@
 #include "money.hpp"
 #include "../game/composer_system.hpp"
 #include "../scripting/coroutine_scheduler.hpp"
+#include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 #include <random>
 #include <algorithm>
@@ -472,6 +473,15 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
 
     fire_event(CombatEvent(CombatEvent::EventType::DamageDealt, attacker, target));
 
+    // Check HIT_PERCENT triggers for mobs
+    if (target_stats.max_hit_points > 0) {
+        int hp_percent = (target_stats.hit_points * 100) / target_stats.max_hit_points;
+        auto& trigger_mgr = TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            trigger_mgr.dispatch_hit_percent(target, attacker, hp_percent);
+        }
+    }
+
     // Create combat messages
     std::string hit_type_text;
     switch (result.hit_calc.result) {
@@ -528,6 +538,12 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
             result.target_message += "\r\nYou are DEAD!";
             result.room_message += fmt::format(" {} is DEAD! {} corpse falls to the ground.",
                                                target->display_name(), target->display_name());
+        }
+
+        // Execute DEATH trigger for mobs before they die
+        auto& trigger_mgr = TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            trigger_mgr.dispatch_death(target, attacker);
         }
 
         // Cancel any pending Lua script coroutines for the dying entity
@@ -817,6 +833,13 @@ void CombatManager::cleanup_invalid_combats() {
 
 void CombatManager::execute_round(CombatPair& combat_pair) {
     if (!combat_pair.actor1 || !combat_pair.actor2) return;
+
+    // Execute FIGHT triggers for both combatants (allows scripted combat behavior)
+    auto& trigger_mgr = TriggerManager::instance();
+    if (trigger_mgr.is_initialized()) {
+        trigger_mgr.dispatch_fight(combat_pair.actor1, combat_pair.actor2);
+        trigger_mgr.dispatch_fight(combat_pair.actor2, combat_pair.actor1);
+    }
 
     // Random initiative
     std::uniform_int_distribution<int> coinflip(0, 1);

@@ -185,6 +185,16 @@ public:
         std::shared_ptr<Actor> owner,
         std::shared_ptr<Actor> opponent);
 
+    /// Execute a HIT_PERCENT trigger (HP dropped below threshold)
+    /// @param owner The mob that was hit
+    /// @param attacker The actor that hit them
+    /// @param hp_percent Current HP as percentage of max (0-100)
+    /// @return Continue or Halt
+    TriggerResult dispatch_hit_percent(
+        std::shared_ptr<Actor> owner,
+        std::shared_ptr<Actor> attacker,
+        int hp_percent);
+
     /// Execute a RANDOM trigger (periodic random chance)
     /// @param owner The mob/object with random trigger
     /// @return Continue
@@ -198,6 +208,24 @@ public:
     TriggerResult dispatch_load(
         std::shared_ptr<Actor> owner,
         std::shared_ptr<Room> room);
+
+    /// Execute a CAST trigger (spell cast on mob)
+    /// @param owner The mob that was the target of the spell
+    /// @param caster The actor who cast the spell
+    /// @param spell_name Name of the spell cast
+    /// @return Continue or Halt (to block the spell)
+    TriggerResult dispatch_cast(
+        std::shared_ptr<Actor> owner,
+        std::shared_ptr<Actor> caster,
+        std::string_view spell_name);
+
+    /// Execute a TIME trigger (fires at specific game time)
+    /// @param owner The mob/object with the time trigger
+    /// @param hour Current game hour (0-23)
+    /// @return Continue
+    TriggerResult dispatch_time(
+        std::shared_ptr<Actor> owner,
+        int hour);
 
     // ========================================================================
     // Diagnostics

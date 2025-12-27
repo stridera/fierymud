@@ -228,6 +228,16 @@ class WorldManager {
     // Mobile Despawning (for mob death)
     void despawn_mobile(EntityId mobile_id);
 
+    // Mobile Iteration (for scripting triggers, effects, etc.)
+    template<typename Func>
+    void for_each_mobile(Func&& func) const {
+        for (const auto& [id, mobile] : spawned_mobiles_) {
+            if (mobile) {
+                func(mobile);
+            }
+        }
+    }
+
     // Prototype Access (for load command and similar admin features)
     Mobile* get_mobile_prototype(EntityId prototype_id) const;
     Object* get_object_prototype(EntityId prototype_id) const;

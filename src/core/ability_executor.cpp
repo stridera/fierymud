@@ -5,6 +5,7 @@
 #include "core/logging.hpp"
 #include "database/connection_pool.hpp"
 #include "database/world_queries.hpp"
+#include "scripting/trigger_manager.hpp"
 #include "world/room.hpp"
 
 #include <algorithm>
@@ -406,6 +407,20 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
     bool any_effect_succeeded = false;
 
     for (const auto& current_target : targets) {
+        // Fire CAST trigger for mobs being targeted by spells
+        // This allows mobs to react to or potentially block spells
+        auto& trigger_mgr = TriggerManager::instance();
+        if (trigger_mgr.is_initialized() && current_target != ctx.actor) {
+            auto trigger_result = trigger_mgr.dispatch_cast(
+                current_target, ctx.actor, ability->name);
+            if (trigger_result == TriggerResult::Halt) {
+                // Mob blocked this spell on itself
+                Log::game()->debug("Spell {} on {} blocked by CAST trigger",
+                    ability->name, current_target->display_name());
+                continue;
+            }
+        }
+
         // Build effect context for this target
         EffectContext effect_ctx;
         effect_ctx.actor = ctx.actor;

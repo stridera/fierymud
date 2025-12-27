@@ -9,6 +9,7 @@
 #include "../core/logging.hpp"
 #include "../core/result.hpp"
 #include "../net/player_connection.hpp"
+#include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 #include "mud_server.hpp"
@@ -175,6 +176,21 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         // Tick down spell effect durations for all actors in the world
         asio::post(world_strand_, [this]() {
             world_manager_->tick_all_effects();
+        });
+    });
+
+    // Register callback for hour changes to fire TIME triggers
+    TimeSystem::instance().on_hour_changed([this](const GameTime& /* old_time */, const GameTime& new_time) {
+        // Fire TIME triggers for all mobs in the world
+        asio::post(world_strand_, [this, hour = new_time.hour]() {
+            auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+            if (!trigger_mgr.is_initialized()) {
+                return;
+            }
+            // Process TIME triggers for all loaded mobs
+            world_manager_->for_each_mobile([&trigger_mgr, hour](std::shared_ptr<Mobile> mob) {
+                trigger_mgr.dispatch_time(mob, hour);
+            });
         });
     });
 

@@ -594,6 +594,43 @@ TriggerResult TriggerManager::dispatch_fight(
     return TriggerResult::Continue;
 }
 
+TriggerResult TriggerManager::dispatch_hit_percent(
+    std::shared_ptr<Actor> owner,
+    std::shared_ptr<Actor> attacker,
+    int hp_percent)
+{
+    if (!initialized_ || !owner) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = owner->id();
+    auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::HIT_PERCENT);
+
+    for (const auto& trigger : triggers) {
+        // Check if HP is below the trigger threshold
+        // numeric_arg stores the HP percentage threshold (e.g., 50 for 50%)
+        int threshold = trigger->numeric_arg > 0 ? trigger->numeric_arg : 25;
+        if (hp_percent > threshold) {
+            continue;
+        }
+
+        auto context = ScriptContext::Builder()
+            .set_trigger(trigger)
+            .set_owner(owner)
+            .set_actor(attacker)
+            .set_room(owner->current_room())
+            .set_amount(hp_percent)  // Current HP percentage
+            .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
 TriggerResult TriggerManager::dispatch_random(std::shared_ptr<Actor> owner) {
     if (!initialized_ || !owner) {
         return TriggerResult::Continue;
@@ -644,6 +681,69 @@ TriggerResult TriggerManager::dispatch_load(
 
         execute_trigger(trigger, context);
         // Load triggers don't halt
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_cast(
+    std::shared_ptr<Actor> owner,
+    std::shared_ptr<Actor> caster,
+    std::string_view spell_name)
+{
+    if (!initialized_ || !owner) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = owner->id();
+    auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::CAST);
+
+    for (const auto& trigger : triggers) {
+        auto context = ScriptContext::Builder()
+            .set_trigger(trigger)
+            .set_owner(owner)
+            .set_actor(caster)
+            .set_room(owner->current_room())
+            .set_argument(std::string(spell_name))
+            .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;  // Spell can be blocked
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_time(
+    std::shared_ptr<Actor> owner,
+    int hour)
+{
+    if (!initialized_ || !owner) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = owner->id();
+    auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::TIME);
+
+    for (const auto& trigger : triggers) {
+        // Check if this trigger should fire at the current hour
+        // numeric_arg stores the hour (0-23)
+        int target_hour = trigger->numeric_arg;
+        if (target_hour >= 0 && target_hour < 24 && target_hour != hour) {
+            continue;
+        }
+
+        auto context = ScriptContext::Builder()
+            .set_trigger(trigger)
+            .set_owner(owner)
+            .set_room(owner->current_room())
+            .set_amount(hour)  // Current hour as amount
+            .build();
+
+        execute_trigger(trigger, context);
+        // Time triggers don't halt
     }
 
     return TriggerResult::Continue;
