@@ -1151,6 +1151,9 @@ std::string Object::get_stat_info() const {
         case ObjectType::Portal:
             output << fmt::format("To room: 0\n");
             break;
+        case ObjectType::Board:
+            output << fmt::format("Board Number: {}\n", board_number_);
+            break;
         default:
             output << fmt::format("Values: [0] [0] [0] [0] [0] [0] [0]\n");
             break;

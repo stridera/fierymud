@@ -293,6 +293,13 @@ public:
     /** Check if object is a light source */
     bool is_light_source() const { return type_ == ObjectType::Light; }
 
+    /** Check if object is a message board */
+    bool is_board() const { return type_ == ObjectType::Board; }
+
+    /** Get board number for board objects (maps to Board.id in database) */
+    int board_number() const { return board_number_; }
+    void set_board_number(int num) { board_number_ = num; }
+
     /** Check if object is a magic item (scroll, potion, wand, staff) */
     bool is_magic_item() const {
         return type_ == ObjectType::Scroll || type_ == ObjectType::Potion ||
@@ -458,6 +465,9 @@ private:
     std::array<int, 3> spell_ids_ = {0, 0, 0};  // Up to 3 spell IDs
     int charges_ = 0;                            // Current charges (wands/staves)
     int max_charges_ = 0;                        // Maximum charges
+
+    // Board properties
+    int board_number_ = 0;                      // Board ID (maps to Board.id in database)
 
     std::unordered_set<ObjectFlag> flags_;
     std::unordered_set<EffectFlag> effect_flags_;  // Effects granted when equipped

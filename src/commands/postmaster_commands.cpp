@@ -5,6 +5,7 @@
 #include "../core/object.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/world_queries.hpp"
+#include "../game/composer_system.hpp"
 #include "../world/world_manager.hpp"
 #include "command_context.hpp"
 
@@ -74,6 +75,35 @@ std::string get_sender_name(pqxx::work& txn, const WorldQueries::PlayerMailData&
     return "<deleted>";
 }
 
+/**
+ * Send mail after composer completes
+ */
+void send_composed_mail(std::shared_ptr<Player> player,
+                        const std::string& recipient_id,
+                        const std::string& recipient_name,
+                        const std::string& message) {
+    // Sanitize and send the mail
+    std::string sanitized = sanitize_player_message(message);
+
+    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
+        return WorldQueries::send_player_mail(
+            txn,
+            std::string{player->database_id()},
+            recipient_id,
+            sanitized,
+            0, 0, 0, 0,  // No wealth attachment
+            std::nullopt  // No object attachment
+        );
+    });
+
+    if (!result) {
+        player->send_message("Failed to send mail. Please try again later.");
+        return;
+    }
+
+    player->send_message(fmt::format("You send mail to {}.", recipient_name));
+}
+
 } // anonymous namespace
 
 // =============================================================================
@@ -96,25 +126,16 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 0) {
         ctx.send("Send mail to whom?");
-        ctx.send("Usage: mail <player name> <message>");
-        ctx.send("Example: mail Bob Hello, how are you doing?");
+        ctx.send("Usage: mail <player> [message]");
+        ctx.send("       mail <player>         - Opens multi-line composer");
+        ctx.send("       mail <player> <text>  - Send single-line message");
         return CommandResult::InvalidSyntax;
     }
 
     std::string recipient_input = std::string{ctx.arg(0)};
 
-    // Get the message (everything after the recipient name)
-    if (ctx.arg_count() < 2) {
-        ctx.send("What message do you want to send?");
-        ctx.send("Usage: mail <player name> <message>");
-        ctx.send("       mail <email@address> <message>");
-        return CommandResult::InvalidSyntax;
-    }
-
-    std::string message = sanitize_player_message(ctx.args_from(1));
-
-    // Find the recipient character
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
+    // Validate recipient exists before starting composer
+    auto validate_result = ConnectionPool::instance().execute([&](pqxx::work& txn)
         -> Result<std::pair<std::string, std::string>> {
         std::string recipient_id;
         std::string actual_name;
@@ -133,7 +154,7 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
                 return std::unexpected(Error{ErrorCode::NotFound, "That account has no characters"});
             }
 
-            // Use the first character (could be enhanced to pick most recently active)
+            // Use the first character
             auto& first_char = (*chars_result)[0];
             recipient_id = first_char.id;
             actual_name = first_char.name;
@@ -159,8 +180,52 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
             actual_name = **name_result;
         }
 
-        // Send the mail
-        auto send_result = WorldQueries::send_player_mail(
+        return std::make_pair(recipient_id, actual_name);
+    });
+
+    if (!validate_result) {
+        ctx.send_error(fmt::format("{}", validate_result.error().message));
+        return CommandResult::InvalidTarget;
+    }
+
+    auto& [recipient_id, recipient_name] = *validate_result;
+
+    // If no message provided, use the composer
+    if (ctx.arg_count() < 2) {
+        ComposerConfig config;
+        config.header_message = fmt::format("Composing mail to {}:", recipient_name);
+        config.save_message = "Mail composed.";
+        config.cancel_message = "Mail cancelled.";
+
+        // Capture recipient info for the callback
+        std::string captured_id = recipient_id;
+        std::string captured_name = recipient_name;
+
+        auto composer = std::make_shared<ComposerSystem>(
+            std::weak_ptr<Player>(player), config);
+
+        composer->set_completion_callback([player, captured_id, captured_name](ComposerResult result) {
+            if (result.success && !result.combined_text.empty()) {
+                send_composed_mail(player, captured_id, captured_name, result.combined_text);
+            } else if (result.success && result.combined_text.empty()) {
+                player->send_message("No message entered. Mail not sent.");
+            }
+            // Cancelled mail doesn't need additional message - composer already sent "Mail cancelled."
+        });
+
+        player->start_composing(composer);
+
+        ctx.send(fmt::format("{} says, 'Take your time composing your message to {}.'",
+            postmaster->display_name(), recipient_name));
+
+        return CommandResult::Success;
+    }
+
+    // Single-line message - send directly
+    std::string message = sanitize_player_message(ctx.args_from(1));
+
+    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
+        return WorldQueries::send_player_mail(
             txn,
             std::string{player->database_id()},
             recipient_id,
@@ -168,27 +233,16 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
             0, 0, 0, 0,  // No wealth attachment for now
             std::nullopt  // No object attachment
         );
-
-        if (!send_result) {
-            return std::unexpected(send_result.error());
-        }
-
-        return std::make_pair(actual_name, std::to_string(*send_result));
     });
 
     if (!result) {
-        if (result.error().code == ErrorCode::NotFound) {
-            ctx.send_error(fmt::format("{}", result.error().message));
-        } else {
-            ctx.send_error("Failed to send mail. Please try again later.");
-        }
-        return CommandResult::InvalidTarget;
+        ctx.send_error("Failed to send mail. Please try again later.");
+        return CommandResult::SystemError;
     }
 
-    auto& [actual_name, mail_id] = *result;
     ctx.send(fmt::format("{} says, 'I'll make sure {} gets your message.'",
-        postmaster->display_name(), actual_name));
-    ctx.send(fmt::format("You send mail to {}.", actual_name));
+        postmaster->display_name(), recipient_name));
+    ctx.send(fmt::format("You send mail to {}.", recipient_name));
 
     return CommandResult::Success;
 }

@@ -1,6 +1,7 @@
 #include "world_manager.hpp"
 #include "weather.hpp"
 #include "../core/actor.hpp"
+#include "../core/board.hpp"
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
 #include "../core/shopkeeper.hpp"
@@ -103,7 +104,6 @@ void WorldManager::clear_state() {
     mobile_prototypes_.clear();
     mobiles_.clear();
     spawned_mobiles_.clear();  // Clear mobile instance tracking
-    last_spawned_objects_.clear();  // Clear object instance tracking for containers
     scheduled_resets_.clear();
     file_timestamps_.clear();
     start_room_ = INVALID_ENTITY_ID;
@@ -156,8 +156,11 @@ Result<void> WorldManager::load_world() {
 
     // Load zones and rooms from PostgreSQL database
     TRY(load_zones_from_database());
-    
+
     // Rooms are now loaded from embedded zone data, no separate room directory needed
+
+    // Load board data from database
+    board_system().load_boards();
     
     // Update statistics
     auto end_time = std::chrono::steady_clock::now();
@@ -188,7 +191,8 @@ Result<void> WorldManager::load_world() {
     logger->info("Performing initial zone resets to populate world...");
     for (const auto& [zone_id, zone] : zones_) {
         if (zone) {
-            logger->debug("Force resetting zone {} ({}) for initial population", zone_id, zone->name());
+            logger->info("Force resetting zone {} ({}) with {} commands",
+                        zone_id, zone->name(), zone->commands().size());
             zone->force_reset();
         }
     }
@@ -1498,35 +1502,40 @@ Result<void> WorldManager::load_zones_from_database() {
                 logger->warn("Failed to load object resets for zone {}: {}",
                             zone_id, obj_resets_result.error().message);
             } else {
-                logger->debug("Loaded {} object resets for zone {}", obj_resets_result->size(), zone_id);
+                logger->info("Loaded {} object resets for zone {}", obj_resets_result->size(), zone_id);
 
-                // Build a map from reset_id -> object_id for container lookups
-                std::unordered_map<int, EntityId> reset_to_object;
-                for (const auto& reset : *obj_resets_result) {
-                    reset_to_object[reset.id] = reset.object_id;
-                }
+                // Helper lambda to convert ObjectResetContentData to ObjectContent recursively
+                std::function<ObjectContent(const WorldQueries::ObjectResetContentData&)> convert_content;
+                convert_content = [&convert_content](const WorldQueries::ObjectResetContentData& data) -> ObjectContent {
+                    ObjectContent content;
+                    content.object_id = data.object_id;
+                    content.quantity = data.quantity;
+                    content.comment = data.comment;
+                    for (const auto& child : data.contents) {
+                        content.contents.push_back(convert_content(child));
+                    }
+                    return content;
+                };
 
                 for (const auto& reset : *obj_resets_result) {
                     ZoneCommand cmd;
-                    if (reset.container_reset_id > 0) {
-                        cmd.command_type = ZoneCommandType::Put_Object;
-                        // Look up the container's object_id from the referenced reset
-                        auto container_it = reset_to_object.find(reset.container_reset_id);
-                        if (container_it != reset_to_object.end()) {
-                            cmd.container_id = container_it->second;
-                        } else {
-                            logger->warn("Object reset {} references non-existent container reset {}",
-                                        reset.id, reset.container_reset_id);
-                            cmd.container_id = INVALID_ENTITY_ID;
-                        }
-                    } else {
-                        cmd.command_type = ZoneCommandType::Load_Object;
-                    }
+                    cmd.command_type = ZoneCommandType::Load_Object;
                     cmd.entity_id = reset.object_id;
                     cmd.room_id = reset.room_id;
                     cmd.max_count = reset.max_instances;
                     cmd.if_flag = 0;  // Always execute
                     cmd.comment = reset.comment;
+
+                    // Convert hierarchical contents to ObjectContent tree
+                    for (const auto& content_data : reset.contents) {
+                        cmd.contents.push_back(convert_content(content_data));
+                    }
+
+                    // Debug: Log each object reset being added
+                    if (zone_id == 30) {
+                        logger->info("Zone 30: Adding object reset {} -> room {} (contents={})",
+                                    reset.object_id, reset.room_id, cmd.contents.size());
+                    }
 
                     zone->add_command(cmd);
                 }
@@ -2311,37 +2320,75 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
 }
 
 std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, EntityId room_id) {
-    auto logger = Log::game();
-    
+    auto logger = Log::database();  // Temporarily use database logger for visibility
+
+    logger->info("spawn_object_for_zone called: object {} -> room {}", object_id, room_id);
+
     // Find object prototype
     auto object_it = objects_.find(object_id);
     if (object_it == objects_.end()) {
         logger->error("Cannot spawn object {} - prototype not found", object_id);
         return nullptr;
     }
-    
+
     Object* prototype = object_it->second;
-    
+
     // Create new object instance from prototype
     auto new_object_result = Object::create(prototype->id(), prototype->name(), prototype->type());
     if (!new_object_result) {
         logger->error("Failed to create object instance: {}", new_object_result.error().message);
         return nullptr;
     }
-    
+
     auto new_object = std::move(new_object_result.value());
-    
+
     // Copy properties from prototype
+    new_object->set_keywords(prototype->keywords());
     new_object->set_short_description(prototype->short_description());
     new_object->set_description(prototype->description());
+    new_object->set_examine_description(prototype->examine_description());
     new_object->set_weight(prototype->weight());
     new_object->set_value(prototype->value());
+    new_object->set_level(prototype->level());
     new_object->set_equip_slot(prototype->equip_slot());
     new_object->set_armor_class(prototype->armor_class());
     new_object->set_damage_profile(prototype->damage_profile());
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
-    
+    new_object->set_liquid_info(prototype->liquid_info());
+
+    // Copy board number for bulletin boards
+    new_object->set_board_number(prototype->board_number());
+
+    // Copy magic item properties (potions, scrolls, wands, staves)
+    new_object->set_spell_level(prototype->spell_level());
+    for (int i = 0; i < 3; ++i) {
+        new_object->set_spell_id(i, prototype->spell_ids()[i]);
+    }
+    new_object->set_charges(prototype->charges());
+    new_object->set_max_charges(prototype->max_charges());
+
+    // Copy extra descriptions
+    for (const auto& extra : prototype->get_all_extra_descriptions()) {
+        new_object->add_extra_description(extra);
+    }
+
+    // Copy object flags and effect flags
+    for (auto flag : prototype->flags()) {
+        new_object->set_flag(flag);
+    }
+    for (auto effect : prototype->effect_flags()) {
+        new_object->set_effect(effect);
+    }
+
+    // Special case: INVALID_ENTITY_ID means just create the object without placing it
+    // Used by hierarchical spawning where the caller will place the object in a container
+    if (room_id == INVALID_ENTITY_ID) {
+        auto shared_object = std::shared_ptr<Object>(new_object.release());
+        logger->debug("Created object {} without placement (for container nesting)", object_id);
+        return shared_object;
+    }
+
     // Check if this is an encoded equipment request
     // Equipment encoding: zone_id = slot (0-31), local_id = (mobile_zone << 16) | mobile_local_id
     // Detection: slot must be valid (0-31) AND packed_mobile looks like a packed value (>= 65536)
@@ -2375,8 +2422,6 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
 
                 logger->debug("Successfully gave object {} to mobile {} inventory",
                              object_id, room_id);
-                // Register for container lookups (e.g., bags given to mobiles)
-                register_spawned_object(shared_object, object_id);
                 return shared_object;
             }
         }
@@ -2423,51 +2468,20 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         
         logger->debug("Successfully equipped object {} on mobile {} in slot {}",
                      object_id, mobile_id, potential_slot);
-        // Register for container lookups (e.g., equipped containers)
-        register_spawned_object(shared_object, object_id);
         return shared_object;
-    }
-    
-    // Check if this is a container placement (room_id is a container's prototype ID)
-    // This happens for Put_Object commands where room_id is actually the container's EntityId
-    auto container = find_last_spawned_object(room_id);
-    if (container && container->is_container()) {
-        // This is a container placement - cast to Container to access add_item
-        auto* container_ptr = dynamic_cast<Container*>(container.get());
-        if (container_ptr) {
-            auto shared_object = std::shared_ptr<Object>(new_object.release());
-
-            // Add to container's contents using the proper add_item method
-            auto add_result = container_ptr->add_item(shared_object);
-            if (!add_result) {
-                logger->warn("Failed to place object {} in container {}: {}",
-                            object_id, room_id, add_result.error().message);
-                return nullptr;
-            }
-
-            logger->debug("Placed object {} in container {}", object_id, room_id);
-
-            // Register this object as well for potential nested containers
-            register_spawned_object(shared_object, object_id);
-            return shared_object;
-        }
     }
 
     // Standard room placement
     auto room = get_room(room_id);
-    if (!room) {
-        logger->error("Cannot place object {} - room {} not found", object_id, room_id);
-        return nullptr;
+    if (room) {
+        auto shared_object = std::shared_ptr<Object>(new_object.release());
+        room->add_object(shared_object);
+        return shared_object;
     }
 
-    auto shared_object = std::shared_ptr<Object>(new_object.release());
-    room->add_object(shared_object);
-
-    // Register this spawned object for future container lookups
-    // This allows Put_Object commands to find this container
-    register_spawned_object(shared_object, object_id);
-
-    return shared_object;
+    // Room not found
+    logger->error("Cannot place object {} - room {} not found", object_id, room_id);
+    return nullptr;
 }
 
 std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_id) {
@@ -2505,6 +2519,17 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
     new_object->set_liquid_info(prototype->liquid_info());
+
+    // Copy board number for bulletin boards
+    new_object->set_board_number(prototype->board_number());
+
+    // Copy magic item properties (potions, scrolls, wands, staves)
+    new_object->set_spell_level(prototype->spell_level());
+    for (int i = 0; i < 3; ++i) {
+        new_object->set_spell_id(i, prototype->spell_ids()[i]);
+    }
+    new_object->set_charges(prototype->charges());
+    new_object->set_max_charges(prototype->max_charges());
 
     // Copy extra descriptions
     for (const auto& extra : prototype->get_all_extra_descriptions()) {
@@ -2720,31 +2745,6 @@ void WorldManager::cleanup_zone_mobiles(EntityId zone_id) {
     if (!mobiles_to_remove.empty()) {
         logger->info("Cleaned up {} mobiles from zone {}", mobiles_to_remove.size(), zone_id);
     }
-}
-
-// Object instance tracking for container lookups
-void WorldManager::register_spawned_object(std::shared_ptr<Object> object, EntityId prototype_id) {
-    if (!object) return;
-
-    std::lock_guard<std::shared_mutex> lock(world_mutex_);
-    last_spawned_objects_[prototype_id] = object;
-
-    auto logger = Log::game();
-    logger->debug("Registered spawned object {} (prototype {})", object->display_name(), prototype_id);
-}
-
-std::shared_ptr<Object> WorldManager::find_last_spawned_object(EntityId prototype_id) const {
-    std::shared_lock<std::shared_mutex> lock(world_mutex_);
-    auto it = last_spawned_objects_.find(prototype_id);
-    return (it != last_spawned_objects_.end()) ? it->second : nullptr;
-}
-
-void WorldManager::clear_spawned_objects() {
-    std::lock_guard<std::shared_mutex> lock(world_mutex_);
-    last_spawned_objects_.clear();
-
-    auto logger = Log::game();
-    logger->debug("Cleared spawned object tracking");
 }
 
 // Weather Integration Implementation

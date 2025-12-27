@@ -22,6 +22,7 @@
 // Forward declarations
 class Room;
 class PlayerConnection;
+class ComposerSystem;
 
 /** Basic stats for all actors (players and NPCs) */
 struct Stats {
@@ -958,7 +959,14 @@ public:
     /** Linkdead state management */
     bool is_linkdead() const { return linkdead_; }
     void set_linkdead(bool linkdead) { linkdead_ = linkdead; }
-    
+
+    /** Composer system - multi-line text input mode */
+    void start_composing(std::shared_ptr<ComposerSystem> composer);
+    void stop_composing();
+    void interrupt_composing(std::string_view reason = "");  // Cancel due to external event
+    bool is_composing() const { return active_composer_ != nullptr; }
+    std::shared_ptr<ComposerSystem> get_composer() const { return active_composer_; }
+
     /** GMCP support methods */
     nlohmann::json get_vitals_gmcp() const;
     nlohmann::json get_status_gmcp() const;
@@ -1179,6 +1187,7 @@ private:
     bool online_ = false;
     bool linkdead_ = false;  // Player connection lost but still in world
     int god_level_ = 0;
+    std::shared_ptr<ComposerSystem> active_composer_;  // Multi-line text composer
     EntityId start_room_ = INVALID_ENTITY_ID;  // Player's start room for revival
     std::vector<std::string> output_queue_;
     std::shared_ptr<class PlayerOutput> output_;

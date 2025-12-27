@@ -1069,9 +1069,23 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 obj->set_timer(row[db::Objects::TIMER.data()].as<int>());
             }
 
+            // Set room/ground description (shown when object is on the ground)
+            if (!row[db::Objects::ROOM_DESCRIPTION.data()].is_null()) {
+                obj->set_ground(row[db::Objects::ROOM_DESCRIPTION.data()].as<std::string>());
+            }
+
             // Set examine description (detailed description when looking at object)
             if (!row[db::Objects::EXAMINE_DESCRIPTION.data()].is_null()) {
                 obj->set_examine_description(row[db::Objects::EXAMINE_DESCRIPTION.data()].as<std::string>());
+            }
+
+            // Set keywords (parse PostgreSQL array format)
+            if (!row[db::Objects::KEYWORDS.data()].is_null()) {
+                std::string keywords_str = row[db::Objects::KEYWORDS.data()].as<std::string>();
+                auto keywords = parse_pg_array(keywords_str);
+                if (!keywords.empty()) {
+                    obj->set_keywords(std::span<const std::string>(keywords));
+                }
             }
 
             // Set equip slot from wearFlags (using lowercase alias for pqxx access)
@@ -1133,6 +1147,18 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                             light.brightness = values_json["Brightness"].get<int>();
                         }
                         obj->set_light_info(light);
+                    }
+
+                    // Parse board number for message boards
+                    if (obj_type == ObjectType::Board) {
+                        logger->info("Loading board object ({}, {}), values: {}",
+                                    obj_zone_id, obj_id, values_str);
+                        if (values_json.is_object() && values_json.contains("Pages")) {
+                            int board_num = values_json["Pages"].get<int>();
+                            obj->set_board_number(board_num);
+                            logger->info("Set board number {} for board ({}, {})",
+                                        board_num, obj_zone_id, obj_id);
+                        }
                     }
                 } catch (const nlohmann::json::exception& e) {
                     logger->warn("Failed to parse values JSON for object ({}, {}): {}",
@@ -1369,6 +1395,13 @@ Result<std::unique_ptr<Object>> load_object(
                             light.brightness = values_json["Brightness"].get<int>();
                         }
                         obj->set_light_info(light);
+                    }
+
+                    // Parse board number for message boards
+                    if (obj_type == ObjectType::Board) {
+                        if (values_json.contains("Pages")) {
+                            obj->set_board_number(values_json["Pages"].get<int>());
+                        }
                     }
                 }
             } catch (const nlohmann::json::exception& e) {
@@ -1635,54 +1668,124 @@ Result<std::vector<MobEquipmentData>> load_all_mob_equipment_in_zone(pqxx::work&
     }
 }
 
+namespace {
+    // Helper to build content tree from flat results (used by load_object_resets_in_zone)
+    std::vector<ObjectResetContentData> build_content_tree(
+        const std::unordered_map<int, std::vector<int>>& children_map,
+        const std::unordered_map<int, ObjectResetContentData>& content_map,
+        int parent_id  // 0 means root (direct child of reset)
+    ) {
+        std::vector<ObjectResetContentData> result;
+
+        auto it = children_map.find(parent_id);
+        if (it == children_map.end()) {
+            return result;
+        }
+
+        for (int child_id : it->second) {
+            auto content_it = content_map.find(child_id);
+            if (content_it != content_map.end()) {
+                ObjectResetContentData content = content_it->second;
+                // Recursively build nested contents
+                content.contents = build_content_tree(children_map, content_map, child_id);
+                result.push_back(std::move(content));
+            }
+        }
+
+        return result;
+    }
+}
+
 Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading object resets for zone {} from database", zone_id);
 
     try {
-        auto result = txn.exec_params(R"(
+        // Load base object resets (root objects that spawn in rooms)
+        auto reset_result = txn.exec_params(R"(
             SELECT
                 id, object_zone_id, object_id,
-                room_zone_id, room_id, container_reset_id,
+                room_zone_id, room_id,
                 max_instances, probability, comment
             FROM "ObjectResets"
             WHERE zone_id = $1
             ORDER BY id
         )", zone_id);
 
-        std::vector<ObjectResetData> resets;
-        resets.reserve(result.size());
+        // Load all contents for this zone's resets in one query
+        auto content_result = txn.exec_params(R"(
+            SELECT
+                orc.id, orc.reset_id, orc.parent_content_id,
+                orc.object_zone_id, orc.object_id,
+                orc.quantity, orc.comment
+            FROM "ObjectResetContents" orc
+            JOIN "ObjectResets" r ON r.id = orc.reset_id
+            WHERE r.zone_id = $1
+            ORDER BY orc.id
+        )", zone_id);
 
-        for (const auto& row : result) {
+        // Build lookup maps for nested content construction
+        // Maps: reset_id -> { parent_id -> [child_ids] } and content_id -> ContentData
+        std::unordered_map<int, std::unordered_map<int, std::vector<int>>> reset_children;
+        std::unordered_map<int, std::unordered_map<int, ObjectResetContentData>> reset_contents;
+
+        for (const auto& row : content_result) {
+            int content_id = row["id"].as<int>();
+            int reset_id = row["reset_id"].as<int>();
+            int parent_id = row["parent_content_id"].is_null() ? 0 : row["parent_content_id"].as<int>();
+
+            ObjectResetContentData content;
+            content.id = content_id;
+            content.object_id = EntityId(
+                row["object_zone_id"].as<int>(),
+                row["object_id"].as<int>()
+            );
+            content.quantity = row["quantity"].as<int>(1);
+            if (!row["comment"].is_null()) {
+                content.comment = row["comment"].as<std::string>();
+            }
+
+            reset_children[reset_id][parent_id].push_back(content_id);
+            reset_contents[reset_id][content_id] = std::move(content);
+        }
+
+        // Build reset data with hierarchical contents
+        std::vector<ObjectResetData> resets;
+        resets.reserve(reset_result.size());
+
+        for (const auto& row : reset_result) {
             ObjectResetData reset;
             reset.id = row["id"].as<int>();
             reset.object_id = EntityId(
                 row["object_zone_id"].as<int>(),
                 row["object_id"].as<int>()
             );
-
-            // Room is optional (null for objects inside containers)
-            if (!row["room_zone_id"].is_null() && !row["room_id"].is_null()) {
-                reset.room_id = EntityId(
-                    row["room_zone_id"].as<int>(),
-                    row["room_id"].as<int>()
-                );
-            } else {
-                reset.room_id = INVALID_ENTITY_ID;
-            }
-
-            // Container reset ID (0 if not inside a container)
-            reset.container_reset_id = row["container_reset_id"].as<int>(0);
-
+            reset.room_id = EntityId(
+                row["room_zone_id"].as<int>(),
+                row["room_id"].as<int>()
+            );
             reset.max_instances = row["max_instances"].as<int>(1);
             reset.probability = row["probability"].as<float>(1.0f);
             if (!row["comment"].is_null()) {
                 reset.comment = row["comment"].as<std::string>();
             }
+
+            // Build hierarchical contents for this reset
+            auto children_it = reset_children.find(reset.id);
+            auto contents_it = reset_contents.find(reset.id);
+            if (children_it != reset_children.end() && contents_it != reset_contents.end()) {
+                reset.contents = build_content_tree(
+                    children_it->second,
+                    contents_it->second,
+                    0  // Start with root contents (parent_id = 0/null)
+                );
+            }
+
             resets.push_back(std::move(reset));
         }
 
-        logger->debug("Loaded {} object resets for zone {}", resets.size(), zone_id);
+        logger->debug("Loaded {} object resets for zone {} ({} total content items)",
+            resets.size(), zone_id, content_result.size());
         return resets;
 
     } catch (const pqxx::sql_error& e) {
@@ -4910,6 +5013,304 @@ Result<std::optional<PlayerToggleData>> load_player_toggle(
         logger->error("SQL error loading player toggle '{}': {}", name, e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to load player toggle '{}': {}", name, e.what())});
+    }
+}
+
+// =============================================================================
+// Board System Queries
+// =============================================================================
+
+Result<std::vector<BoardMessageEditData>> load_message_edits(
+    pqxx::work& txn, int message_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, message_id, editor, edited_at
+            FROM "BoardMessageEdit"
+            WHERE message_id = $1
+            ORDER BY edited_at ASC
+        )", message_id);
+
+        std::vector<BoardMessageEditData> edits;
+        edits.reserve(result.size());
+
+        for (const auto& row : result) {
+            BoardMessageEditData edit;
+            edit.id = row["id"].as<int>();
+            edit.message_id = row["message_id"].as<int>();
+            edit.editor = row["editor"].as<std::string>();
+
+            // Parse timestamp
+            std::string timestamp_str = row["edited_at"].as<std::string>();
+            std::tm tm = {};
+            std::istringstream ss(timestamp_str);
+            ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            edit.edited_at = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+
+            edits.push_back(std::move(edit));
+        }
+
+        return edits;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading message edits for message {}: {}",
+                     message_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load message edits: {}", e.what())});
+    }
+}
+
+Result<std::vector<BoardMessageData>> load_board_messages(
+    pqxx::work& txn, int board_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, board_id, poster, poster_level, posted_at,
+                   subject, content, sticky
+            FROM "BoardMessage"
+            WHERE board_id = $1
+            ORDER BY sticky DESC, posted_at DESC
+        )", board_id);
+
+        std::vector<BoardMessageData> messages;
+        messages.reserve(result.size());
+
+        for (const auto& row : result) {
+            BoardMessageData msg;
+            msg.id = row["id"].as<int>();
+            msg.board_id = row["board_id"].as<int>();
+            msg.poster = row["poster"].as<std::string>();
+            msg.poster_level = row["poster_level"].as<int>();
+
+            // Parse timestamp
+            std::string timestamp_str = row["posted_at"].as<std::string>();
+            std::tm tm = {};
+            std::istringstream ss(timestamp_str);
+            ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            msg.posted_at = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+
+            msg.subject = row["subject"].as<std::string>();
+            msg.content = row["content"].as<std::string>();
+            msg.sticky = row["sticky"].as<bool>();
+
+            // Load edit history for this message
+            auto edits_result = load_message_edits(txn, msg.id);
+            if (edits_result) {
+                msg.edits = std::move(*edits_result);
+            }
+
+            messages.push_back(std::move(msg));
+        }
+
+        logger->debug("Loaded {} messages for board {}", messages.size(), board_id);
+        return messages;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading messages for board {}: {}",
+                     board_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load board messages: {}", e.what())});
+    }
+}
+
+Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work& txn) {
+    auto logger = Log::database();
+    logger->debug("Loading all boards from database");
+
+    try {
+        auto result = txn.exec(R"(
+            SELECT id, alias, title, locked, privileges
+            FROM "Board"
+            ORDER BY id
+        )");
+
+        std::vector<BoardDataDB> boards;
+        boards.reserve(result.size());
+
+        for (const auto& row : result) {
+            BoardDataDB board;
+            board.id = row["id"].as<int>();
+            board.alias = row["alias"].as<std::string>();
+            board.title = row["title"].as<std::string>();
+            board.locked = row["locked"].as<bool>();
+
+            if (!row["privileges"].is_null()) {
+                board.privileges = row["privileges"].as<std::string>();
+            } else {
+                board.privileges = "[]";
+            }
+
+            // Load messages for this board
+            auto messages_result = load_board_messages(txn, board.id);
+            if (messages_result) {
+                board.messages = std::move(*messages_result);
+            }
+
+            boards.push_back(std::move(board));
+        }
+
+        logger->info("Loaded {} boards from database", boards.size());
+        return boards;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading boards: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load boards: {}", e.what())});
+    }
+}
+
+Result<std::optional<BoardDataDB>> load_board(pqxx::work& txn, int board_id) {
+    auto logger = Log::database();
+    logger->debug("Loading board {}", board_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, alias, title, locked, privileges
+            FROM "Board"
+            WHERE id = $1
+            LIMIT 1
+        )", board_id);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        BoardDataDB board;
+        board.id = row["id"].as<int>();
+        board.alias = row["alias"].as<std::string>();
+        board.title = row["title"].as<std::string>();
+        board.locked = row["locked"].as<bool>();
+
+        if (!row["privileges"].is_null()) {
+            board.privileges = row["privileges"].as<std::string>();
+        } else {
+            board.privileges = "[]";
+        }
+
+        // Load messages for this board
+        auto messages_result = load_board_messages(txn, board.id);
+        if (messages_result) {
+            board.messages = std::move(*messages_result);
+        }
+
+        return board;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading board {}: {}", board_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load board {}: {}", board_id, e.what())});
+    }
+}
+
+Result<std::optional<BoardDataDB>> load_board_by_alias(
+    pqxx::work& txn, const std::string& alias) {
+    auto logger = Log::database();
+    logger->debug("Loading board by alias: {}", alias);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, alias, title, locked, privileges
+            FROM "Board"
+            WHERE LOWER(alias) = LOWER($1)
+            LIMIT 1
+        )", alias);
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        const auto& row = result[0];
+        BoardDataDB board;
+        board.id = row["id"].as<int>();
+        board.alias = row["alias"].as<std::string>();
+        board.title = row["title"].as<std::string>();
+        board.locked = row["locked"].as<bool>();
+
+        if (!row["privileges"].is_null()) {
+            board.privileges = row["privileges"].as<std::string>();
+        } else {
+            board.privileges = "[]";
+        }
+
+        // Load messages for this board
+        auto messages_result = load_board_messages(txn, board.id);
+        if (messages_result) {
+            board.messages = std::move(*messages_result);
+        }
+
+        return board;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading board '{}': {}", alias, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load board '{}': {}", alias, e.what())});
+    }
+}
+
+Result<int> count_boards(pqxx::work& txn) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec(R"(SELECT COUNT(*) as count FROM "Board")");
+        return result[0]["count"].as<int>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error counting boards: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to count boards: {}", e.what())});
+    }
+}
+
+Result<int> post_board_message(
+    pqxx::work& txn, int board_id, const std::string& poster,
+    int poster_level, const std::string& subject, const std::string& content) {
+
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            INSERT INTO "BoardMessage" (board_id, poster, poster_level, posted_at, subject, content, updated_at)
+            VALUES ($1, $2, $3, NOW(), $4, $5, NOW())
+            RETURNING id
+        )", board_id, poster, poster_level, subject, content);
+
+        if (result.empty()) {
+            return std::unexpected(Error{ErrorCode::InternalError,
+                "Failed to insert board message"});
+        }
+
+        int message_id = result[0]["id"].as<int>();
+        logger->info("Posted message {} to board {} by {}", message_id, board_id, poster);
+        return message_id;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error posting board message: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to post message: {}", e.what())});
+    }
+}
+
+Result<bool> delete_board_message(pqxx::work& txn, int message_id) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            DELETE FROM "BoardMessage" WHERE id = $1
+        )", message_id);
+
+        bool deleted = result.affected_rows() > 0;
+        if (deleted) {
+            logger->info("Deleted board message {}", message_id);
+        }
+        return deleted;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error deleting board message: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to delete message: {}", e.what())});
     }
 }
 

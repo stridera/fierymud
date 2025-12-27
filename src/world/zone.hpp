@@ -22,6 +22,8 @@ class Room;
 class Object;
 class Actor;
 class Mobile;
+class Container;
+class Logger;
 
 /** Zone reset callback types */
 using SpawnMobileCallback = std::function<std::shared_ptr<Mobile>(EntityId mobile_id, EntityId room_id)>;
@@ -88,11 +90,10 @@ enum class ZoneCommandType {
     Load_Mobile = 0,    // Load mobile in room
     Follow_Mobile,      // Make mobile follow another
     
-    // Object commands  
-    Load_Object,        // Load object in room
+    // Object commands
+    Load_Object,        // Load object in room (with hierarchical contents)
     Give_Object,        // Give object to mobile
     Equip_Object,       // Equip object on mobile
-    Put_Object,         // Put object in container
     
     // Door commands
     Open_Door,          // Open door
@@ -117,25 +118,36 @@ enum class ZoneCommandType {
     Halt                // Stop processing commands
 };
 
+/** Nested object content for hierarchical spawning */
+struct ObjectContent {
+    EntityId object_id = INVALID_ENTITY_ID;   // Object prototype ID
+    int quantity = 1;                          // Number to spawn
+    std::string comment;                       // Optional comment
+    std::vector<ObjectContent> contents;       // Nested contents (arbitrary depth)
+};
+
 /** Zone command structure */
 struct ZoneCommand {
     ZoneCommandType command_type;
     int if_flag;                    // Condition flag
-    
+
     // Meaningful command parameters based on command type
     EntityId entity_id = INVALID_ENTITY_ID;    // ID of mobile/object to load
     EntityId room_id = INVALID_ENTITY_ID;      // Target room ID
     EntityId container_id = INVALID_ENTITY_ID; // Container/mobile ID for Give/Put commands
     int max_count = 1;                         // Maximum number to spawn
-    
+
     std::string comment;            // Comment for documentation
-    
+
+    // Hierarchical object contents (for Load_Object commands with containers)
+    std::vector<ObjectContent> contents;
+
     /** Check if command should execute based on conditions */
     bool should_execute() const;
-    
+
     /** Get command description for debugging */
     std::string to_string() const;
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
 };
@@ -302,13 +314,16 @@ private:
     Result<bool> execute_load_object(const ZoneCommand& cmd);
     Result<bool> execute_give_object(const ZoneCommand& cmd);
     Result<bool> execute_equip_object(const ZoneCommand& cmd);
-    Result<bool> execute_put_object(const ZoneCommand& cmd);
     Result<bool> execute_remove_object(const ZoneCommand& cmd);
     Result<bool> execute_door_command(const ZoneCommand& cmd);
 
     /** Process equipment and inventory for a specific mobile instance */
     void process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id);
-    
+
+    /** Recursively spawn nested objects into a container */
+    void spawn_contents_recursive(Container* container, const std::vector<ObjectContent>& contents,
+                                  std::shared_ptr<Logger> logger);
+
     /** Check if zone is empty of players */
     bool is_empty_of_players() const;
     

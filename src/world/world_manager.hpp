@@ -257,8 +257,6 @@ class WorldManager {
 
     // Spawned instance tracking (for efficient equipment lookups)
     std::unordered_map<EntityId, std::shared_ptr<Mobile>> spawned_mobiles_; // Live mobile instances by ID
-    // Last spawned object by prototype ID (for Put_Object container lookups)
-    std::unordered_map<EntityId, std::shared_ptr<Object>, EntityId::Hash> last_spawned_objects_;
 
     EntityId start_room_ = INVALID_ENTITY_ID;
     std::string world_path_;
@@ -303,11 +301,6 @@ class WorldManager {
     void unregister_spawned_mobile(EntityId mobile_id);
     std::shared_ptr<Mobile> find_spawned_mobile(EntityId mobile_id) const;
     void cleanup_zone_mobiles(EntityId zone_id);
-
-    // Object instance tracking for container lookups
-    void register_spawned_object(std::shared_ptr<Object> object, EntityId prototype_id);
-    std::shared_ptr<Object> find_last_spawned_object(EntityId prototype_id) const;
-    void clear_spawned_objects();
 
     void validate_room_exits(std::shared_ptr<Room> room, ValidationResult &result) const;
     void validate_zone_integrity(std::shared_ptr<Zone> zone, ValidationResult &result) const;

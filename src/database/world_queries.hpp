@@ -66,15 +66,24 @@ struct MobEquipmentData {
     float probability;          // Spawn probability
 };
 
-// Object Reset data structure
+// Object Reset Content - nested objects that spawn inside a container
+struct ObjectResetContentData {
+    int id;                     // Content ID
+    EntityId object_id;         // Object prototype (zone_id, obj_local_id)
+    int quantity;               // Number to spawn
+    std::string comment;        // Optional comment
+    std::vector<ObjectResetContentData> contents; // Nested contents (arbitrary depth)
+};
+
+// Object Reset data structure - root objects that spawn in rooms
 struct ObjectResetData {
     int id;                     // Reset ID
     EntityId object_id;         // Object prototype (zone_id, obj_local_id)
-    EntityId room_id;           // Room to place in (zone_id, room_local_id) - may be invalid for containers
-    int container_reset_id;     // If > 0, place inside this container reset
+    EntityId room_id;           // Room to place in (always valid now)
     int max_instances;          // Maximum instances
     float probability;          // Spawn probability
     std::string comment;        // Optional comment
+    std::vector<ObjectResetContentData> contents; // Objects that spawn inside this container
 };
 
 // Reset queries
@@ -843,5 +852,75 @@ Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work& txn);
 /** Load a specific toggle by name */
 Result<std::optional<PlayerToggleData>> load_player_toggle(
     pqxx::work& txn, const std::string& name);
+
+// =============================================================================
+// Board System Queries (Bulletin Boards)
+// =============================================================================
+
+/**
+ * Edit record for a board message.
+ */
+struct BoardMessageEditData {
+    int id;
+    int message_id;
+    std::string editor;     // Character name who edited
+    std::chrono::system_clock::time_point edited_at;
+};
+
+/**
+ * Board message data from the BoardMessage table.
+ */
+struct BoardMessageData {
+    int id;
+    int board_id;
+    std::string poster;         // Character name who posted
+    int poster_level;           // Poster's level at time of posting
+    std::chrono::system_clock::time_point posted_at;
+    std::string subject;
+    std::string content;        // Message body with color codes
+    bool sticky;                // Sticky messages float to top
+    std::vector<BoardMessageEditData> edits;
+};
+
+/**
+ * Board data from the Board table.
+ */
+struct BoardDataDB {
+    int id;                     // Board ID (matches object's board_number)
+    std::string alias;          // Short name used as filename (e.g., "mortal", "god")
+    std::string title;          // Display title
+    bool locked;                // If true, no new posts allowed
+    std::string privileges;     // JSON privileges (parsed separately)
+    std::vector<BoardMessageData> messages;
+};
+
+/** Load all boards from the database */
+Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work& txn);
+
+/** Load a single board by ID */
+Result<std::optional<BoardDataDB>> load_board(pqxx::work& txn, int board_id);
+
+/** Load a single board by alias */
+Result<std::optional<BoardDataDB>> load_board_by_alias(
+    pqxx::work& txn, const std::string& alias);
+
+/** Load messages for a specific board */
+Result<std::vector<BoardMessageData>> load_board_messages(
+    pqxx::work& txn, int board_id);
+
+/** Load edit history for a specific message */
+Result<std::vector<BoardMessageEditData>> load_message_edits(
+    pqxx::work& txn, int message_id);
+
+/** Get count of boards */
+Result<int> count_boards(pqxx::work& txn);
+
+/** Post a new message to a board */
+Result<int> post_board_message(
+    pqxx::work& txn, int board_id, const std::string& poster,
+    int poster_level, const std::string& subject, const std::string& content);
+
+/** Delete a board message */
+Result<bool> delete_board_message(pqxx::work& txn, int message_id);
 
 } // namespace WorldQueries

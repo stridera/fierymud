@@ -2,6 +2,7 @@
 #include "object.hpp"
 #include "spell_system.hpp"
 #include "../core/logging.hpp"
+#include "../game/composer_system.hpp"
 #include "../game/player_output.hpp"
 #include "../text/string_utils.hpp"
 #include "../world/room.hpp"
@@ -2128,6 +2129,41 @@ void Player::send_message(std::string_view message) {
 
 void Player::receive_message(std::string_view message) {
     send_message(message); // Players receive messages by sending them to output
+}
+
+void Player::start_composing(std::shared_ptr<ComposerSystem> composer) {
+    if (active_composer_) {
+        Log::warn("Player {} starting new composer while one is already active", name());
+    }
+    active_composer_ = std::move(composer);
+    if (active_composer_) {
+        active_composer_->start();
+    }
+}
+
+void Player::stop_composing() {
+    active_composer_.reset();
+}
+
+void Player::interrupt_composing(std::string_view reason) {
+    if (!active_composer_) return;
+
+    // Notify player that their composition was interrupted
+    if (reason.empty()) {
+        send_message("\nYour text composition has been interrupted!");
+    } else {
+        send_message(fmt::format("\nYour text composition has been interrupted: {}", reason));
+    }
+
+    // Get current buffer in case we want to save it later
+    auto lines = active_composer_->lines();
+    if (!lines.empty()) {
+        send_message(fmt::format("({} line{} of text was lost. Use 'redo' to recover.)",
+            lines.size(), lines.size() == 1 ? "" : "s"));
+        // TODO: Store buffer in player for 'redo' command recovery
+    }
+
+    active_composer_.reset();
 }
 
 std::shared_ptr<Container> Player::die() {

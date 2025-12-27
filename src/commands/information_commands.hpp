@@ -34,4 +34,7 @@ Result<CommandResult> cmd_version(const CommandContext &ctx);
 // Scanning commands
 Result<CommandResult> cmd_scan(const CommandContext &ctx);
 
+// Board commands
+Result<CommandResult> cmd_board(const CommandContext &ctx);
+
 } // namespace InformationCommands

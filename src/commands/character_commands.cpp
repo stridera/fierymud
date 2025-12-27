@@ -4,6 +4,7 @@
 #include "../core/logging.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/world_queries.hpp"
+#include "../game/composer_system.hpp"
 #include "../server/persistence_manager.hpp"
 #include "../text/string_utils.hpp"
 #include <fmt/format.h>
@@ -598,16 +599,50 @@ Result<CommandResult> cmd_description(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    // Show current description and start composer if no arguments
     if (ctx.arg_count() == 0) {
         ctx.send("Your current description:");
         if (player->description().empty()) {
             ctx.send("  (No description set)");
         } else {
-            ctx.send(fmt::format("  {}", player->description()));
+            // Split multi-line descriptions for display
+            std::string desc{player->description()};
+            size_t pos = 0;
+            while ((pos = desc.find('\n')) != std::string::npos) {
+                ctx.send(fmt::format("  {}", desc.substr(0, pos)));
+                desc = desc.substr(pos + 1);
+            }
+            if (!desc.empty()) {
+                ctx.send(fmt::format("  {}", desc));
+            }
         }
         ctx.send("");
-        ctx.send("Usage: description <your description>  or  description clear");
-        ctx.send("This is what others see when they look at you.");
+        ctx.send("Starting description editor...");
+
+        // Start composer for multi-line description
+        ComposerConfig config;
+        config.header_message = "Enter your description (what others see when they look at you):";
+        config.save_message = "Description saved.";
+        config.cancel_message = "Description unchanged.";
+        config.max_lines = 20;  // Reasonable limit for descriptions
+
+        auto composer = std::make_shared<ComposerSystem>(
+            std::weak_ptr<Player>(player), config);
+
+        composer->set_completion_callback([player](ComposerResult result) {
+            if (result.success) {
+                if (result.combined_text.empty()) {
+                    player->send_message("No description entered. Description unchanged.");
+                } else if (result.combined_text.length() > 2000) {
+                    player->send_message("Description too long. Maximum 2000 characters. Description unchanged.");
+                } else {
+                    player->set_description(result.combined_text);
+                    player->send_message("Your description has been updated.");
+                }
+            }
+        });
+
+        player->start_composing(composer);
         return CommandResult::Success;
     }
 
@@ -620,9 +655,10 @@ Result<CommandResult> cmd_description(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    // Validate description length
+    // Single-line description (legacy behavior)
     if (new_desc.length() > 500) {
-        ctx.send_error("Description is too long. Maximum 500 characters.");
+        ctx.send_error("Single-line description is too long. Maximum 500 characters.");
+        ctx.send("Use 'description' without arguments for the multi-line editor.");
         return CommandResult::InvalidSyntax;
     }
 

@@ -3,6 +3,7 @@
 #include "ability_executor.hpp"
 #include "logging.hpp"
 #include "money.hpp"
+#include "../game/composer_system.hpp"
 #include "../world/room.hpp"
 #include <random>
 #include <algorithm>
@@ -680,6 +681,18 @@ void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<
     for (const auto& combat : active_combats_) {
         if (combat.involves_actor(*actor1) && combat.involves_actor(*actor2)) {
             return;
+        }
+    }
+
+    // Interrupt any text composition in progress (combat takes priority)
+    if (auto player1 = std::dynamic_pointer_cast<Player>(actor1)) {
+        if (player1->is_composing()) {
+            player1->interrupt_composing("You are under attack!");
+        }
+    }
+    if (auto player2 = std::dynamic_pointer_cast<Player>(actor2)) {
+        if (player2->is_composing()) {
+            player2->interrupt_composing("You are under attack!");
         }
     }
 

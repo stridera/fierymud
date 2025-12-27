@@ -4,6 +4,7 @@
 #include "../commands/command_system.hpp"
 #include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
+#include "../game/composer_system.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
 #include "../core/result.hpp"
@@ -314,6 +315,21 @@ void WorldServer::process_command(std::shared_ptr<PlayerConnection> connection, 
 
             auto actor = actor_it->second;
 
+            // Check if player is in composer mode - route input to composer instead
+            if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+                if (player->is_composing()) {
+                    auto composer = player->get_composer();
+                    if (composer) {
+                        composer->process_input(cmd.command);
+                        // If composer finished, clean up
+                        if (!composer->is_active()) {
+                            player->stop_composing();
+                        }
+                        return;
+                    }
+                }
+            }
+
             // Use CommandSystem to execute the command
             auto result = command_system_->execute_command(actor, cmd.command);
             if (!result) {
@@ -347,6 +363,23 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
         if (!cmd.command.empty()) {
             Log::debug("Processing command '{}' on world strand", cmd.command);
 
+            // Check if player is in composer mode - route input to composer instead
+            if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+                if (player->is_composing()) {
+                    auto composer = player->get_composer();
+                    if (composer) {
+                        composer->process_input(cmd.command);
+                        // If composer finished, clean up and send normal prompt
+                        if (!composer->is_active()) {
+                            player->stop_composing();
+                            send_prompt_to_actor(actor);
+                        }
+                        // No prompt while composing - composer sends its own
+                        return;
+                    }
+                }
+            }
+
             // Use CommandSystem to execute the command
             auto result = command_system_->execute_command(actor, cmd.command);
             if (!result) {
@@ -356,7 +389,12 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
                 // No need to send additional response here
             }
 
-            // Send prompt after command execution
+            // Send prompt after command execution (unless player entered composer mode)
+            if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+                if (player->is_composing()) {
+                    return;  // Don't send game prompt while composing
+                }
+            }
             send_prompt_to_actor(actor);
         }
     });

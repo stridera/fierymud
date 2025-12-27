@@ -83,6 +83,7 @@ set(SOURCES
     src/text/string_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
+    src/core/board.cpp
     src/core/combat.cpp
     src/core/formula_parser.cpp
     src/core/effect_system.cpp
@@ -100,6 +101,7 @@ set(SOURCES
     src/net/mssp_handler.cpp
     src/net/tls_context.cpp
     src/game/login_system.cpp
+    src/game/composer_system.cpp
     src/server/persistence_manager.cpp
     src/server/configuration_manager.cpp
     src/database/database_config.cpp
@@ -143,6 +145,7 @@ set(SIMPLE_TEST_SOURCES
     src/core/money.cpp
     src/text/text_format.cpp
     src/core/object.cpp
+    src/core/board.cpp
     src/core/combat.cpp
     src/core/formula_parser.cpp
     src/core/effect_system.cpp
@@ -216,6 +219,7 @@ set(CORE_TEST_SOURCES
     src/text/text_format.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
+    src/core/board.cpp
     src/core/combat.cpp
     src/core/formula_parser.cpp
     src/core/effect_system.cpp
@@ -241,6 +245,7 @@ set(CORE_TEST_SOURCES
     src/net/tls_context.cpp
     src/net/mssp_handler.cpp
     src/game/login_system.cpp
+    src/game/composer_system.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
     src/text/rich_text.cpp
@@ -520,6 +525,7 @@ add_executable(test_database
     src/text/string_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
+    src/core/board.cpp
     src/core/combat.cpp
     src/core/spell_system.cpp
     src/core/ability_executor.cpp
@@ -537,6 +543,7 @@ add_executable(test_database
     src/net/mssp_handler.cpp
     src/net/tls_context.cpp
     src/game/login_system.cpp
+    src/game/composer_system.cpp
     src/server/persistence_manager.cpp
     src/server/configuration_manager.cpp
     src/database/database_config.cpp
@@ -609,6 +616,7 @@ add_executable(test_database_comprehensive
     src/text/string_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
+    src/core/board.cpp
     src/core/combat.cpp
     src/core/spell_system.cpp
     src/core/ability_executor.cpp
@@ -626,6 +634,7 @@ add_executable(test_database_comprehensive
     src/net/mssp_handler.cpp
     src/net/tls_context.cpp
     src/game/login_system.cpp
+    src/game/composer_system.cpp
     src/server/persistence_manager.cpp
     src/server/configuration_manager.cpp
     src/database/database_config.cpp

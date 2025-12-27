@@ -1,11 +1,13 @@
 #include "information_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/board.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
 #include "../database/world_queries.hpp"
+#include "../game/composer_system.hpp"
 #include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/time_system.hpp"
@@ -345,6 +347,11 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         break;
     case TargetType::Object:
         description = BuiltinCommands::Helpers::format_object_description(target_info.object, ctx.actor);
+
+        // For boards, append a hint about the board command
+        if (target_info.object->is_board()) {
+            description += "\n<yellow>Use 'board' to view and interact with this bulletin board.</>";
+        }
 
         // Check for extra descriptions if there's a second argument
         if (ctx.arg_count() >= 2) {
@@ -1319,6 +1326,274 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Board Commands
+// =============================================================================
+
+/**
+ * Find a board object in the current room.
+ */
+static std::shared_ptr<Object> find_board_in_room(const CommandContext& ctx) {
+    if (!ctx.room) return nullptr;
+
+    for (const auto& obj : ctx.room->contents().objects) {
+        if (obj && obj->is_board()) {
+            return obj;
+        }
+    }
+    return nullptr;
+}
+
+/**
+ * Display the list of messages on a board.
+ */
+static void show_board_list(const CommandContext& ctx, const BoardData* board) {
+    std::ostringstream output;
+    output << fmt::format("<cyan>{}</>\n", board->title);
+
+    if (board->locked) {
+        output << "<red>(This board is currently locked - no new posts allowed)</>\n";
+    }
+
+    if (board->messages.empty()) {
+        output << "\nThe board is empty.\n";
+    } else {
+        output << fmt::format("\nThis board has {} message{}.\n",
+            board->messages.size(), board->messages.size() == 1 ? "" : "s");
+        output << "Usage: board read <number>, board write <subject>, board remove <number>\n\n";
+
+        // Display messages (numbered from 1, newest first)
+        int msg_num = static_cast<int>(board->messages.size());
+        for (const auto& msg : board->messages) {
+            std::string sticky_marker = msg.sticky ? "<yellow>[STICKY]</> " : "";
+            auto msg_time = std::chrono::system_clock::to_time_t(msg.posted_at);
+            std::tm msg_tm = *std::localtime(&msg_time);
+            output << fmt::format("{:3}. {}{} ({:04d}-{:02d}-{:02d}) :: {}\n",
+                msg_num--, sticky_marker, msg.poster,
+                msg_tm.tm_year + 1900, msg_tm.tm_mon + 1, msg_tm.tm_mday,
+                msg.subject);
+        }
+    }
+
+    ctx.send(output.str());
+}
+
+/**
+ * Display a specific message on a board.
+ */
+static CommandResult show_board_message(const CommandContext& ctx, const BoardData* board,
+                                         int msg_num) {
+    // Messages are displayed in reverse order (newest first), but numbered 1-N from newest
+    if (msg_num < 1 || msg_num > static_cast<int>(board->messages.size())) {
+        ctx.send_error(fmt::format("That message doesn't exist. Valid range: 1-{}.",
+                                   board->messages.size()));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Get message (index from the end since messages are sorted newest first)
+    size_t index = board->messages.size() - static_cast<size_t>(msg_num);
+    const auto& msg = board->messages[index];
+
+    // Format the message for display
+    std::ostringstream output;
+    output << fmt::format("<cyan>Message {} on {}</>\n\n", msg_num, board->title);
+
+    // Format the posted_at time
+    auto posted_time = std::chrono::system_clock::to_time_t(msg.posted_at);
+    std::tm posted_tm = *std::localtime(&posted_time);
+    output << fmt::format("<yellow>Date:</> {:04d}-{:02d}-{:02d} {:02d}:{:02d}\n",
+        posted_tm.tm_year + 1900, posted_tm.tm_mon + 1, posted_tm.tm_mday,
+        posted_tm.tm_hour, posted_tm.tm_min);
+    output << fmt::format("<yellow>Author:</> {} (level {})\n", msg.poster, msg.poster_level);
+    output << fmt::format("<yellow>Subject:</> {}\n\n", msg.subject);
+    output << msg.content;
+
+    if (!msg.edits.empty()) {
+        auto edit_time = std::chrono::system_clock::to_time_t(msg.edits.back().edited_at);
+        std::tm edit_tm = *std::localtime(&edit_time);
+        output << fmt::format("\n\n<red>(Edited {} time{} - last by {} on {:04d}-{:02d}-{:02d} {:02d}:{:02d})</>",
+            msg.edits.size(), msg.edits.size() == 1 ? "" : "s",
+            msg.edits.back().editor,
+            edit_tm.tm_year + 1900, edit_tm.tm_mon + 1, edit_tm.tm_mday,
+            edit_tm.tm_hour, edit_tm.tm_min);
+    }
+
+    ctx.send(output.str());
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_board(const CommandContext& ctx) {
+    // Find a board in the room
+    auto board_obj = find_board_in_room(ctx);
+    if (!board_obj) {
+        ctx.send_error("There is no bulletin board here.");
+        return CommandResult::InvalidTarget;
+    }
+
+    int board_id = board_obj->board_number();
+    const auto* board = board_system().get_board(board_id);
+
+    if (!board) {
+        ctx.send_error("This board appears to be broken.");
+        return CommandResult::InvalidState;
+    }
+
+    // No arguments or "list" - show the message list
+    if (ctx.arg_count() == 0) {
+        show_board_list(ctx, board);
+        return CommandResult::Success;
+    }
+
+    std::string subcmd(ctx.arg(0));
+    std::transform(subcmd.begin(), subcmd.end(), subcmd.begin(), ::tolower);
+
+    // board list
+    if (subcmd == "list" || subcmd == "l") {
+        show_board_list(ctx, board);
+        return CommandResult::Success;
+    }
+
+    // board read <number>
+    if (subcmd == "read" || subcmd == "r") {
+        if (ctx.arg_count() < 2) {
+            ctx.send_error("Usage: board read <message number>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        std::string num_str(ctx.arg(1));
+        bool is_number = !num_str.empty() && std::all_of(num_str.begin(), num_str.end(), ::isdigit);
+        if (!is_number) {
+            ctx.send_error("Please specify a message number.");
+            return CommandResult::InvalidSyntax;
+        }
+
+        int msg_num = std::stoi(num_str);
+        return show_board_message(ctx, board, msg_num);
+    }
+
+    // board write <subject>
+    if (subcmd == "write" || subcmd == "w" || subcmd == "post") {
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (!player) {
+            ctx.send_error("Only players can post to boards.");
+            return CommandResult::InvalidState;
+        }
+
+        if (board->locked) {
+            ctx.send_error("This board is currently locked. No new posts allowed.");
+            return CommandResult::InvalidState;
+        }
+
+        if (ctx.arg_count() < 2) {
+            ctx.send_error("Usage: board write <subject>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // Get the subject (everything after "write")
+        std::string subject;
+        for (size_t i = 1; i < ctx.arg_count(); ++i) {
+            if (!subject.empty()) subject += " ";
+            subject += ctx.arg(i);
+        }
+
+        // Configure the composer
+        ComposerConfig config;
+        config.header_message = fmt::format("Composing post: {}\n(. to save, ~q to cancel, ~h for help):", subject);
+        config.save_message = "Post composed.";
+        config.cancel_message = "Post cancelled.";
+
+        // Capture values for the callback
+        std::string captured_subject = subject;
+        std::string captured_poster(player->name());
+        int captured_level = player->stats().level;
+        std::string captured_board_title = board->title;
+
+        auto composer = std::make_shared<ComposerSystem>(
+            std::weak_ptr<Player>(player), config);
+
+        composer->set_completion_callback([player, board_id, captured_subject, captured_poster,
+                                           captured_level, captured_board_title](ComposerResult result) {
+            if (result.success && !result.combined_text.empty()) {
+                auto post_result = board_system().post_message(
+                    board_id, captured_poster, captured_level,
+                    captured_subject, result.combined_text);
+
+                if (post_result) {
+                    player->send_message(fmt::format("<green>Message posted to {}.</> (Message #{})",
+                                                     captured_board_title, *post_result));
+                } else {
+                    player->send_message(fmt::format("<red>Failed to post message: {}</>",
+                                                     post_result.error().message));
+                }
+            } else if (result.success && result.combined_text.empty()) {
+                player->send_message("No message entered. Post not saved.");
+            }
+            // Cancelled post doesn't need additional message - composer already sent "Post cancelled."
+        });
+
+        player->start_composing(composer);
+        return CommandResult::Success;
+    }
+
+    // board remove <number>
+    if (subcmd == "remove" || subcmd == "delete" || subcmd == "rem" || subcmd == "del") {
+        if (!ctx.actor) {
+            ctx.send_error("You must be logged in to remove messages.");
+            return CommandResult::InvalidState;
+        }
+
+        if (ctx.arg_count() < 2) {
+            ctx.send_error("Usage: board remove <message number>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        std::string num_str(ctx.arg(1));
+        bool is_number = !num_str.empty() && std::all_of(num_str.begin(), num_str.end(), ::isdigit);
+        if (!is_number) {
+            ctx.send_error("Please specify a message number.");
+            return CommandResult::InvalidSyntax;
+        }
+
+        int msg_num = std::stoi(num_str);
+
+        // Get the message to check ownership
+        const auto* msg = board_system().get_message(board_id, msg_num);
+        if (!msg) {
+            ctx.send_error(fmt::format("Message {} not found.", msg_num));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Check if user can remove this message
+        // Can remove if: own message, or god level (level >= 60)
+        bool is_owner = (msg->poster == ctx.actor->name());
+        bool is_god = (ctx.actor->stats().level >= 60);  // LVL_GOD
+
+        if (!is_owner && !is_god) {
+            ctx.send_error("You can only remove your own messages.");
+            return CommandResult::InsufficientPrivs;
+        }
+
+        auto result = board_system().remove_message(board_id, msg_num);
+        if (!result || !*result) {
+            ctx.send_error("Failed to remove message.");
+            return CommandResult::SystemError;
+        }
+
+        ctx.send(fmt::format("<green>Message {} removed from {}.</>", msg_num, board->title));
+        return CommandResult::Success;
+    }
+
+    // Unknown subcommand - maybe it's a number for reading
+    bool is_number = !subcmd.empty() && std::all_of(subcmd.begin(), subcmd.end(), ::isdigit);
+    if (is_number) {
+        int msg_num = std::stoi(subcmd);
+        return show_board_message(ctx, board, msg_num);
+    }
+
+    ctx.send_error("Usage: board [list|read <n>|write <subject>|remove <n>]");
+    return CommandResult::InvalidSyntax;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -1419,6 +1694,14 @@ Result<void> register_commands() {
         .category("Information")
         .privilege(PrivilegeLevel::Player)
         .description("Scan adjacent rooms for creatures")
+        .build();
+
+    // Board Commands
+    Commands()
+        .command("board", cmd_board)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .description("Interact with bulletin boards")
         .build();
 
     // Game Information Commands
