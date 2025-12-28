@@ -1011,200 +1011,178 @@ void from_json(const nlohmann::json& json, std::unique_ptr<Object>& object) {
 
 std::string Object::get_stat_info() const {
     std::ostringstream output;
-    
-    // Basic object information - similar to legacy format
-    // Show the display name and keywords for identification
+
+    // Basic object information
     std::string keyword_list = EntityUtils::create_keyword_string(keywords());
-    output << fmt::format("Name: '{}', Keywords: {}, Level: {}\n", 
-        short_description().empty() ? "<None>" : short_description(), 
-        keyword_list.empty() ? name() : keyword_list,
+    output << fmt::format("Name: '{}', Keywords: {}\n",
+        short_description().empty() ? "<None>" : short_description(),
+        keyword_list.empty() ? name() : keyword_list);
+
+    output << fmt::format("ID: {}:{}, Type: {}, Level: {}\n",
+        id().zone_id(), id().local_id(),
+        magic_enum::enum_name(type()),
         level());
 
-    output << fmt::format("ID: [    {}], Type: {}, SpecProc: None\n", 
-        id(), magic_enum::enum_name(type()));
+    if (!description().empty()) {
+        output << fmt::format("Description: {}\n", description());
+    }
 
-    output << fmt::format("L-Des: {}\n", 
-        description().empty() ? "None" : description());
-    
-    // Action description (placeholder for future implementation)
-    output << fmt::format("Action Description: None\n");
-    
-    // Wear flags
-    std::string wear_flags = "<None>";
+    // Wear slot
     if (is_wearable()) {
-        wear_flags = "TAKE";
-        // Add specific wear location flags based on equip_slot
-        switch (equip_slot()) {
-            case EquipSlot::Light: wear_flags += " LIGHT"; break;
-            case EquipSlot::Finger_R: 
-            case EquipSlot::Finger_L: wear_flags += " FINGER"; break;
-            case EquipSlot::Neck1: 
-            case EquipSlot::Neck2: wear_flags += " NECK"; break;
-            case EquipSlot::Body: wear_flags += " BODY"; break;
-            case EquipSlot::Head: wear_flags += " HEAD"; break;
-            case EquipSlot::Legs: wear_flags += " LEGS"; break;
-            case EquipSlot::Feet: wear_flags += " FEET"; break;
-            case EquipSlot::Hands: wear_flags += " HANDS"; break;
-            case EquipSlot::Arms: wear_flags += " ARMS"; break;
-            case EquipSlot::Shield: wear_flags += " SHIELD"; break;
-            case EquipSlot::About: wear_flags += " ABOUT"; break;
-            case EquipSlot::Waist: wear_flags += " WAIST"; break;
-            case EquipSlot::Wrist_R:
-            case EquipSlot::Wrist_L: wear_flags += " WRIST"; break;
-            case EquipSlot::Wield: wear_flags += " WIELD"; break;
-            case EquipSlot::Hold: wear_flags += " HOLD"; break;
-            case EquipSlot::Float: wear_flags += " FLOAT"; break;
-            case EquipSlot::Wield2: wear_flags += " WIELD2"; break;
-            case EquipSlot::Eye: wear_flags += " EYE"; break;
-            case EquipSlot::Ear: wear_flags += " EAR"; break;
-            case EquipSlot::Badge: wear_flags += " BADGE"; break;
-            case EquipSlot::Focus: wear_flags += " FOCUS"; break;
-            case EquipSlot::Throat: wear_flags += " THROAT"; break;
-            case EquipSlot::Face: wear_flags += " FACE"; break;
-            case EquipSlot::Wings: wear_flags += " WINGS"; break;
-            case EquipSlot::Disguise: wear_flags += " DISGUISE"; break;
-            default: break;
-        }
+        output << fmt::format("Wear Slot: {}\n", magic_enum::enum_name(equip_slot()));
+    } else if (can_take()) {
+        output << "Wear Slot: TAKE only\n";
     }
-    output << fmt::format("Can be worn on: {}\n", wear_flags);
-    
-    // Extra flags
-    std::string extra_flags = "<None>";
+
+    // Object flags
     if (!flags_.empty()) {
-        std::vector<std::string> flag_names;
+        output << "Flags: ";
+        bool first = true;
         for (const auto& flag : flags_) {
-            flag_names.push_back(std::string(magic_enum::enum_name(flag)));
+            if (!first) output << " ";
+            output << magic_enum::enum_name(flag);
+            first = false;
         }
-        extra_flags = "";
-        for (size_t i = 0; i < flag_names.size(); ++i) {
-            if (i > 0) extra_flags += " ";
-            extra_flags += flag_names[i];
-        }
+        output << "\n";
     }
-    output << fmt::format("Extra flags   : {}\n", extra_flags);
-    
-    // Spell effects
-    output << fmt::format("Spell Effects : <None>\n");
-    
-    // Weight, value, timer
-    output << fmt::format("Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, Hiddenness: {}\n",
-        static_cast<float>(weight()), 
-        static_cast<float>(weight()), 
-        value(), 
-        timer(), 0, 0); // Decomp time and hiddenness not yet implemented
-    
-    // Location information
-    output << fmt::format("In room: {}, In object: None, Carried by: Nobody, Worn by: Nobody\n",
-        0); // Location tracking not yet implemented
-    
+
+    // Effect flags (effects granted when equipped)
+    if (!effect_flags_.empty()) {
+        output << "Effects: ";
+        bool first = true;
+        for (const auto& effect : effect_flags_) {
+            if (!first) output << " ";
+            output << magic_enum::enum_name(effect);
+            first = false;
+        }
+        output << "\n";
+    }
+
+    // Weight, value, condition
+    output << fmt::format("Weight: {} lbs, Value: {} copper, Condition: {}%\n",
+        weight(), value(), condition());
+
+    if (timer() > 0) {
+        output << fmt::format("Timer: {} ticks remaining\n", timer());
+    }
+
     // Type-specific information
     switch (type()) {
         case ObjectType::Weapon:
         case ObjectType::Fireweapon: {
             const auto& dmg = damage_profile();
-            output << fmt::format("Todam: {}d{} (avg {:.1f}), Message type: 0, 'punch'\n",
-                dmg.dice_count > 0 ? dmg.dice_count : 1,
-                dmg.dice_sides > 0 ? dmg.dice_sides : 4,
-                dmg.dice_count > 0 && dmg.dice_sides > 0 ? 
-                    static_cast<float>(dmg.dice_count * (dmg.dice_sides + 1)) / 2.0f : 2.5f);
+            output << fmt::format("Damage: {}d{}+{} (avg {:.1f})\n",
+                dmg.dice_count, dmg.dice_sides, dmg.damage_bonus,
+                dmg.average_damage());
             break;
         }
         case ObjectType::Armor:
-            output << fmt::format("AC-apply: [{}]\n", armor_class());
+        case ObjectType::Treasure:
+            output << fmt::format("Armor Class: {}\n", armor_class());
             break;
         case ObjectType::Container:
+        case ObjectType::Corpse: {
+            const auto& info = container_info();
+            output << fmt::format("Capacity: {} items, {} lbs\n",
+                info.capacity, info.weight_capacity);
+            if (info.closeable) {
+                output << fmt::format("Door: {} {}\n",
+                    info.closed ? "closed" : "open",
+                    info.lockable ? (info.locked ? "(locked)" : "(unlocked)") : "");
+            }
+            if (info.key_id.is_valid()) {
+                output << fmt::format("Key: {}:{}\n",
+                    info.key_id.zone_id(), info.key_id.local_id());
+            }
+            break;
+        }
+        case ObjectType::Light: {
+            const auto& light = light_info();
+            if (light.permanent) {
+                output << "Light: Permanent (infinite duration)\n";
+            } else {
+                output << fmt::format("Light: {} hours remaining, brightness {}\n",
+                    light.duration, light.brightness);
+            }
+            output << fmt::format("Currently: {}\n", light.lit ? "lit" : "unlit");
+            break;
+        }
         case ObjectType::Liquid_Container:
-            if (is_container()) {
-                const auto& info = container_info();
-                output << fmt::format(
-                    "Weight capacity: {}, Lock Type: {}, Key Num: {}, Weight Reduction: {}%, Corpse: {}\n",
-                    info.weight_capacity, 
-                    info.lockable ? (info.locked ? "LOCKED" : "CLOSEABLE") : "NONE",
-                    info.key_id.is_valid() ? static_cast<uint32_t>(info.key_id.value()) : 0,
-                    0, "No");
-            } else {
-                output << fmt::format("Weight capacity: 0, Lock Type: NONE, Key Num: 0, Weight Reduction: 0%, Corpse: No\n");
+        case ObjectType::Fountain: {
+            const auto& liq = liquid_info();
+            output << fmt::format("Liquid: {} ({}/{})\n",
+                liq.liquid_type.empty() ? "water" : liq.liquid_type,
+                liq.remaining, liq.capacity);
+            if (liq.poisoned) {
+                output << "*** POISONED ***\n";
             }
             break;
-        case ObjectType::Light:
-            if (is_light_source()) {
-                const auto& light = light_info();
-                if (light.duration == -1) {
-                    output << fmt::format("Hours left: Infinite\n");
-                } else {
-                    output << fmt::format("Hours left: [{}]  Initial hours: [{}]\n", 
-                        light.duration, light.brightness);
-                }
-            } else {
-                output << fmt::format("Hours left: [0]  Initial hours: [0]\n");
-            }
-            break;
+        }
         case ObjectType::Food:
-            output << fmt::format("Makes full: 1, Poisoned: No\n");
-            break;
-        case ObjectType::Money:
-            output << fmt::format("Coins: 0p 1g 0s 0c\n");
+            // Food doesn't have specific tracked properties in modern codebase yet
             break;
         case ObjectType::Scroll:
-        case ObjectType::Potion:
-            output << fmt::format("Spells: (Level 1) <none>, <none>, <none>\n");
+        case ObjectType::Potion: {
+            output << fmt::format("Spell Level: {}\n", spell_level());
+            for (int i = 0; i < 3; ++i) {
+                if (spell_ids_[i] > 0) {
+                    output << fmt::format("  Spell {}: #{}\n", i + 1, spell_ids_[i]);
+                }
+            }
             break;
+        }
         case ObjectType::Wand:
-        case ObjectType::Staff:
-            output << fmt::format("Spell: <none> at level 1, 0 (of 0) charges remaining\n");
+        case ObjectType::Staff: {
+            output << fmt::format("Spell Level: {}\n", spell_level());
+            if (spell_ids_[0] > 0) {
+                output << fmt::format("Spell: #{}\n", spell_ids_[0]);
+            }
+            output << fmt::format("Charges: {}/{}\n", charges(), max_charges());
             break;
-        case ObjectType::Fountain:
-            output << fmt::format("Capacity: 0, Contains: 0, Poisoned: No, Liquid: water\n");
-            break;
-        case ObjectType::Note:
-            output << fmt::format("Tongue: 0\n");
-            break;
+        }
         case ObjectType::Portal:
-            output << fmt::format("To room: 0\n");
+            // Portal destination would be stored if we had it
             break;
         case ObjectType::Board:
-            output << fmt::format("Board Number: {}\n", board_number_);
+            output << fmt::format("Board ID: {}\n", board_number_);
+            break;
+        case ObjectType::Key:
+            // Keys are simple - no extra data
             break;
         default:
-            output << fmt::format("Values: [0] [0] [0] [0] [0] [0] [0]\n");
+            // No type-specific data for this object type
             break;
     }
-    
+
     // Container contents
     if (is_container()) {
-        // Use dynamic_cast on this pointer instead of shared_from_this
         const auto* container = dynamic_cast<const Container*>(this);
         if (container && !container->is_empty()) {
             output << fmt::format("Contents ({} items):\n", container->contents_count());
             for (const auto& item : container->get_contents()) {
                 if (item) {
-                    output << fmt::format("  - {}\n", item->display_name());
+                    output << fmt::format("  [{}:{}] {}\n",
+                        item->id().zone_id(), item->id().local_id(),
+                        item->short_description());
                 }
             }
-        } else {
-            output << "Contents: Empty\n";
         }
     }
-    
-    // Apply effects
-    output << "Applies: None\n";
-    
+
     // Extra descriptions
     const auto& extra_descs = get_all_extra_descriptions();
     if (!extra_descs.empty()) {
-        output << "Extra descriptions:\n";
+        output << fmt::format("Extra Descriptions: {}\n", extra_descs.size());
         for (const auto& desc : extra_descs) {
-            // Use a descriptive label instead of showing keyword arrays to admins
-            std::string label = desc.keywords.empty() ? "unknown" : 
-                               (desc.keywords.size() == 1 ? desc.keywords[0] : 
-                                fmt::format("{} (and {} others)", desc.keywords[0], desc.keywords.size() - 1));
-            output << fmt::format("  {}: {}\n", label, desc.description);
+            std::string kw_list;
+            for (const auto& kw : desc.keywords) {
+                if (!kw_list.empty()) kw_list += ", ";
+                kw_list += kw;
+            }
+            output << fmt::format("  [{}]\n", kw_list);
         }
     }
-    
-    // Events
-    output << "No events.\n";
-    
+
     return output.str();
 }
 

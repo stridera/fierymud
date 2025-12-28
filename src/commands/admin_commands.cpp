@@ -697,6 +697,891 @@ Result<CommandResult> cmd_tlist(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Stat Commands
+// =============================================================================
+
+/**
+ * Helper to parse entity ID from string in format "zone:id" or just "id"
+ * Returns std::nullopt if parsing fails
+ */
+std::optional<EntityId> parse_stat_entity_id(std::string_view id_str) {
+    auto colon_pos = id_str.find(':');
+    if (colon_pos != std::string::npos) {
+        try {
+            int zone_id = std::stoi(std::string(id_str.substr(0, colon_pos)));
+            int local_id = std::stoi(std::string(id_str.substr(colon_pos + 1)));
+            return EntityId(zone_id, local_id);
+        } catch (const std::exception&) {
+            return std::nullopt;
+        }
+    }
+    // Legacy single number format
+    try {
+        return EntityId{std::stoull(std::string(id_str))};
+    } catch (const std::exception&) {
+        return std::nullopt;
+    }
+}
+
+/**
+ * Check if string looks like an ID (contains digits and optionally a colon)
+ */
+bool looks_like_id(std::string_view str) {
+    if (str.empty()) return false;
+    // Check for zone:id format
+    auto colon_pos = str.find(':');
+    if (colon_pos != std::string::npos) {
+        // Check that both parts are numeric
+        auto zone_part = str.substr(0, colon_pos);
+        auto id_part = str.substr(colon_pos + 1);
+        if (zone_part.empty() || id_part.empty()) return false;
+        return std::all_of(zone_part.begin(), zone_part.end(), ::isdigit) &&
+               std::all_of(id_part.begin(), id_part.end(), ::isdigit);
+    }
+    // Check for single number
+    return std::all_of(str.begin(), str.end(), ::isdigit);
+}
+
+Result<CommandResult> cmd_rstat(const CommandContext &ctx) {
+    std::shared_ptr<Room> room = nullptr;
+
+    if (ctx.arg_count() == 0) {
+        // Default to current room
+        room = ctx.room;
+        if (!room) {
+            ctx.send_error("You are not in a room.");
+            return CommandResult::InvalidState;
+        }
+    } else {
+        // Parse room ID from argument
+        auto room_id_opt = parse_stat_entity_id(ctx.arg(0));
+        if (!room_id_opt || !room_id_opt->is_valid()) {
+            ctx.send_error("Invalid room ID format. Use zone:id (e.g., 30:89).");
+            return CommandResult::InvalidSyntax;
+        }
+        room = WorldManager::instance().get_room(*room_id_opt);
+        if (!room) {
+            ctx.send_error(fmt::format("Room {}:{} not found.",
+                room_id_opt->zone_id(), room_id_opt->local_id()));
+            return CommandResult::InvalidTarget;
+        }
+    }
+
+    // Display room statistics
+    ctx.send(fmt::format("<b:cyan>--- Room Statistics: {} ---</>", room->name()));
+    ctx.send(fmt::format("ID: <b:yellow>{}:{}</>", room->id().zone_id(), room->id().local_id()));
+    ctx.send(fmt::format("Zone: <b:white>{}</>", room->zone_id()));
+    ctx.send(fmt::format("Sector: <b:green>{}</>", room->sector_type()));
+    ctx.send(fmt::format("Light Level: {}", room->light_level()));
+
+    // Flags
+    const auto& flags = room->flags();
+    if (!flags.empty()) {
+        std::string flag_str;
+        for (const auto& flag : flags) {
+            if (!flag_str.empty()) flag_str += ", ";
+            flag_str += std::string(RoomUtils::get_flag_name(flag));
+        }
+        ctx.send(fmt::format("Flags: <b:yellow>{}</>", flag_str));
+    } else {
+        ctx.send("Flags: <dim>none</>");
+    }
+
+    // Exits
+    auto exits = room->get_available_exits();
+    if (!exits.empty()) {
+        ctx.send("\n<b:white>Exits:</>");
+        for (const auto& dir : exits) {
+            const auto* exit = room->get_exit(dir);
+            if (exit && exit->to_room.is_valid()) {
+                std::string door_info;
+                if (exit->has_door) {
+                    door_info = fmt::format(" [Door: {}{}{}, key: {}]",
+                        exit->is_closed ? "closed" : "open",
+                        exit->is_locked ? ", locked" : "",
+                        exit->is_hidden ? ", hidden" : "",
+                        exit->key_id.is_valid() ? fmt::format("{}:{}", exit->key_id.zone_id(), exit->key_id.local_id()) : "none");
+                }
+                ctx.send(fmt::format("  {} → {}:{}{}",
+                    RoomUtils::get_direction_name(dir),
+                    exit->to_room.zone_id(), exit->to_room.local_id(),
+                    door_info));
+            }
+        }
+    } else {
+        ctx.send("\n<dim>No exits</>");
+    }
+
+    // Contents
+    const auto& contents = room->contents();
+    if (!contents.actors.empty()) {
+        ctx.send(fmt::format("\n<b:white>Actors ({}):</>", contents.actors.size()));
+        int count = 0;
+        for (const auto& actor : contents.actors) {
+            if (!actor) continue;
+            ctx.send(fmt::format("  [{}:{}] {}",
+                actor->id().zone_id(), actor->id().local_id(),
+                actor->short_description()));
+            if (++count >= 20) {
+                ctx.send(fmt::format("  ... and {} more", contents.actors.size() - count));
+                break;
+            }
+        }
+    }
+
+    if (!contents.objects.empty()) {
+        ctx.send(fmt::format("\n<b:white>Objects ({}):</>", contents.objects.size()));
+        int count = 0;
+        for (const auto& obj : contents.objects) {
+            if (!obj) continue;
+            ctx.send(fmt::format("  [{}:{}] {}",
+                obj->id().zone_id(), obj->id().local_id(),
+                obj->short_description()));
+            if (++count >= 20) {
+                ctx.send(fmt::format("  ... and {} more", contents.objects.size() - count));
+                break;
+            }
+        }
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_zstat(const CommandContext &ctx) {
+    std::shared_ptr<Zone> zone = nullptr;
+
+    if (ctx.arg_count() == 0) {
+        // Default to current zone
+        if (!ctx.room) {
+            ctx.send_error("You are not in a room.");
+            return CommandResult::InvalidState;
+        }
+        zone = WorldManager::instance().get_zone(ctx.room->zone_id());
+        if (!zone) {
+            ctx.send_error("Could not find your current zone.");
+            return CommandResult::ResourceError;
+        }
+    } else {
+        // Parse zone ID from argument
+        std::string zone_id_str{ctx.arg(0)};
+        try {
+            int zone_num = std::stoi(zone_id_str);
+            zone = WorldManager::instance().get_zone(EntityId(zone_num, 0));
+            if (!zone) {
+                ctx.send_error(fmt::format("Zone {} not found.", zone_num));
+                return CommandResult::InvalidTarget;
+            }
+        } catch (const std::exception&) {
+            ctx.send_error("Invalid zone ID. Use a zone number (e.g., 30).");
+            return CommandResult::InvalidSyntax;
+        }
+    }
+
+    // Display zone statistics
+    ctx.send(fmt::format("<b:cyan>--- Zone Statistics: {} ---</>", zone->name()));
+    ctx.send(fmt::format("ID: <b:yellow>{}</>", zone->id().zone_id()));
+    ctx.send(fmt::format("Builders: <b:white>{}</>",
+        zone->builders().empty() ? "none" : zone->builders()));
+    ctx.send(fmt::format("Level Range: {}-{}", zone->min_level(), zone->max_level()));
+    ctx.send(fmt::format("Reset Mode: <b:green>{}</>", zone->reset_mode()));
+    ctx.send(fmt::format("Reset Timer: {} minutes", zone->reset_minutes()));
+
+    // Flags
+    const auto& flags = zone->flags();
+    if (!flags.empty()) {
+        std::string flag_str;
+        for (const auto& flag : flags) {
+            if (!flag_str.empty()) flag_str += ", ";
+            flag_str += std::string(ZoneUtils::get_flag_name(flag));
+        }
+        ctx.send(fmt::format("Flags: <b:yellow>{}</>", flag_str));
+    } else {
+        ctx.send("Flags: <dim>none</>");
+    }
+
+    // Room range
+    ctx.send(fmt::format("Room Range: {}:{} to {}:{}",
+        zone->first_room().zone_id(), zone->first_room().local_id(),
+        zone->last_room().zone_id(), zone->last_room().local_id()));
+    ctx.send(fmt::format("Total Rooms: {}", zone->rooms().size()));
+
+    // Statistics
+    const auto& stats = zone->stats();
+    ctx.send(fmt::format("\n<b:white>Statistics:</>"));
+    ctx.send(fmt::format("  Reset Count: {}", stats.reset_count));
+    ctx.send(fmt::format("  Time Since Last Reset: {}s", stats.time_since_reset().count()));
+    ctx.send(fmt::format("  Players in Zone: {}", stats.player_count));
+    ctx.send(fmt::format("  Mobiles in Zone: {}", stats.mobile_count));
+    ctx.send(fmt::format("  Objects in Zone: {}", stats.object_count));
+
+    // Zone commands summary
+    const auto& commands = zone->commands();
+    if (!commands.empty()) {
+        int mob_loads = 0, obj_loads = 0, door_cmds = 0, other_cmds = 0;
+        for (const auto& cmd : commands) {
+            switch (cmd.command_type) {
+                case ZoneCommandType::Load_Mobile: mob_loads++; break;
+                case ZoneCommandType::Load_Object:
+                case ZoneCommandType::Give_Object:
+                case ZoneCommandType::Equip_Object: obj_loads++; break;
+                case ZoneCommandType::Open_Door:
+                case ZoneCommandType::Close_Door:
+                case ZoneCommandType::Lock_Door:
+                case ZoneCommandType::Unlock_Door: door_cmds++; break;
+                default: other_cmds++; break;
+            }
+        }
+        ctx.send(fmt::format("\n<b:white>Zone Commands ({} total):</>", commands.size()));
+        ctx.send(fmt::format("  Mob Loads: {}", mob_loads));
+        ctx.send(fmt::format("  Object Commands: {}", obj_loads));
+        ctx.send(fmt::format("  Door Commands: {}", door_cmds));
+        if (other_cmds > 0) ctx.send(fmt::format("  Other: {}", other_cmds));
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_mstat(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("mstat <zone:id | name>");
+        ctx.send("Display statistics for a mobile by ID or name.");
+        ctx.send("  mstat 30:0       - Show mobile with ID 30:0");
+        ctx.send("  mstat guard      - Find and show guard mobile");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string search_term = ctx.command.join_args();
+    std::shared_ptr<Mobile> target = nullptr;
+
+    // Check if it looks like an ID (zone:id format or just a number)
+    if (looks_like_id(ctx.arg(0))) {
+        auto entity_id = parse_stat_entity_id(ctx.arg(0));
+        if (entity_id && entity_id->is_valid()) {
+            // Search spawned mobiles for this ID
+            WorldManager::instance().for_each_mobile([&](const std::shared_ptr<Mobile>& mobile) {
+                if (!target && mobile && mobile->id() == *entity_id) {
+                    target = mobile;
+                }
+            });
+            // Also check if it's a prototype ID and mobile is in current room
+            if (!target && ctx.room) {
+                for (const auto& actor : ctx.room->contents().actors) {
+                    auto mob = std::dynamic_pointer_cast<Mobile>(actor);
+                    if (mob && (mob->id() == *entity_id || mob->prototype_id() == *entity_id)) {
+                        target = mob;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // If not found by ID, search by name
+    if (!target) {
+        std::string search_lower = search_term;
+        std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+        // First search current room
+        if (ctx.room) {
+            for (const auto& actor : ctx.room->contents().actors) {
+                auto mob = std::dynamic_pointer_cast<Mobile>(actor);
+                if (!mob) continue;
+
+                std::string mob_name = std::string(mob->short_description());
+                std::string mob_name_lower = mob_name;
+                std::transform(mob_name_lower.begin(), mob_name_lower.end(), mob_name_lower.begin(), ::tolower);
+
+                if (mob_name_lower.find(search_lower) != std::string::npos) {
+                    target = mob;
+                    break;
+                }
+
+                // Check keywords
+                for (const auto& kw : mob->keywords()) {
+                    std::string kw_lower = kw;
+                    std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+                    if (kw_lower.find(search_lower) != std::string::npos) {
+                        target = mob;
+                        break;
+                    }
+                }
+                if (target) break;
+            }
+        }
+
+        // If not in room, search globally
+        if (!target) {
+            WorldManager::instance().for_each_mobile([&](const std::shared_ptr<Mobile>& mobile) {
+                if (target) return; // Already found
+
+                std::string mob_name = std::string(mobile->short_description());
+                std::string mob_name_lower = mob_name;
+                std::transform(mob_name_lower.begin(), mob_name_lower.end(), mob_name_lower.begin(), ::tolower);
+
+                if (mob_name_lower.find(search_lower) != std::string::npos) {
+                    target = mobile;
+                    return;
+                }
+
+                for (const auto& kw : mobile->keywords()) {
+                    std::string kw_lower = kw;
+                    std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+                    if (kw_lower.find(search_lower) != std::string::npos) {
+                        target = mobile;
+                        return;
+                    }
+                }
+            });
+        }
+    }
+
+    if (!target) {
+        ctx.send_error(fmt::format("Mobile '{}' not found.", search_term));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Display mobile statistics
+    ctx.send(fmt::format("<b:cyan>--- Mobile Statistics: {} ---</>", target->short_description()));
+    ctx.send(fmt::format("ID: <b:yellow>{}:{}</>", target->id().zone_id(), target->id().local_id()));
+    if (target->prototype_id().is_valid()) {
+        ctx.send(fmt::format("Prototype: {}:{}",
+            target->prototype_id().zone_id(), target->prototype_id().local_id()));
+    }
+    // Format keywords as comma-separated string
+    std::string mob_keywords_str;
+    for (const auto& kw : target->keywords()) {
+        if (!mob_keywords_str.empty()) mob_keywords_str += ", ";
+        mob_keywords_str += kw;
+    }
+    ctx.send(fmt::format("Keywords: <b:white>{}</>", mob_keywords_str));
+
+    // Location
+    auto room = target->current_room();
+    if (room) {
+        ctx.send(fmt::format("Location: {}:{} ({})",
+            room->id().zone_id(), room->id().local_id(), room->name()));
+    } else {
+        ctx.send("Location: <dim>nowhere</>");
+    }
+
+    // Stats
+    const auto& stats = target->stats();
+    ctx.send(fmt::format("\n<b:white>Combat Stats:</>"));
+    ctx.send(fmt::format("  Level: {} | HP: {}/{} | Move: {}/{}",
+        stats.level, stats.hit_points, stats.max_hit_points,
+        stats.movement, stats.max_movement));
+    ctx.send(fmt::format("  Accuracy: {} | Attack Power: {} | Evasion: {} | Armor: {}",
+        stats.accuracy, stats.attack_power, stats.evasion, stats.armor_rating));
+
+    ctx.send(fmt::format("\n<b:white>Attributes:</>"));
+    ctx.send(fmt::format("  STR: {} | DEX: {} | CON: {} | INT: {} | WIS: {} | CHA: {}",
+        stats.strength, stats.dexterity, stats.constitution,
+        stats.intelligence, stats.wisdom, stats.charisma));
+
+    // Properties
+    ctx.send(fmt::format("\n<b:white>Properties:</>"));
+    ctx.send(fmt::format("  Race: {} | Gender: {} | Size: {}",
+        target->race(), target->gender(), target->size()));
+    ctx.send(fmt::format("  Life Force: {} | Composition: {} | Damage Type: {}",
+        target->life_force(), target->composition(), target->damage_type()));
+    ctx.send(fmt::format("  Bare Hand Damage: {}d{}+{}",
+        target->bare_hand_damage_dice_num(),
+        target->bare_hand_damage_dice_size(),
+        target->bare_hand_damage_dice_bonus()));
+    ctx.send(fmt::format("  Position: {} | Stance: {}",
+        target->position(), magic_enum::enum_name(target->stance())));
+
+    // Money
+    const auto& money = target->money();
+    if (money.value() > 0) {
+        ctx.send(fmt::format("  Money: {}", money.to_string(false)));
+    }
+
+    // Flags - iterate through all set flags using magic_enum
+    ctx.send(fmt::format("\n<b:white>Behavior Flags:</>"));
+    std::string behavior_flags;
+    for (auto flag : magic_enum::enum_values<MobFlag>()) {
+        if (flag == MobFlag::IsNpc) continue; // Skip the always-set IsNpc flag
+        if (target->has_flag(flag)) {
+            if (!behavior_flags.empty()) behavior_flags += " ";
+            behavior_flags += std::string(magic_enum::enum_name(flag));
+        }
+    }
+    if (target->is_shopkeeper()) {
+        if (!behavior_flags.empty()) behavior_flags += " ";
+        behavior_flags += "SHOPKEEPER";
+    }
+    ctx.send(fmt::format("  {}", behavior_flags.empty() ? "none" : behavior_flags));
+
+    // Effect flags
+    const auto& effects = target->effect_flags();
+    if (!effects.empty()) {
+        std::string effect_str;
+        for (const auto& effect : effects) {
+            if (!effect_str.empty()) effect_str += ", ";
+            effect_str += std::string(magic_enum::enum_name(effect));
+        }
+        ctx.send(fmt::format("  Effects: <b:green>{}</>", effect_str));
+    }
+
+    // Equipment summary
+    auto equipped = target->equipment().get_all_equipped();
+    if (!equipped.empty()) {
+        ctx.send(fmt::format("\n<b:white>Equipment ({} items):</>", equipped.size()));
+        for (const auto& item : equipped) {
+            if (!item) continue;
+            ctx.send(fmt::format("  [{}:{}] {}",
+                item->id().zone_id(), item->id().local_id(), item->short_description()));
+        }
+    }
+
+    // Inventory summary
+    if (target->inventory().item_count() > 0) {
+        ctx.send(fmt::format("\n<b:white>Inventory ({} items):</>", target->inventory().item_count()));
+        int count = 0;
+        for (const auto& item : target->inventory().get_all_items()) {
+            if (!item) continue;
+            ctx.send(fmt::format("  [{}:{}] {}",
+                item->id().zone_id(), item->id().local_id(), item->short_description()));
+            if (++count >= 10) {
+                ctx.send(fmt::format("  ... and {} more", target->inventory().item_count() - count));
+                break;
+            }
+        }
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_ostat(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("ostat <zone:id | name>");
+        ctx.send("Display statistics for an object by ID or name.");
+        ctx.send("  ostat 30:31      - Show object with ID 30:31");
+        ctx.send("  ostat sword      - Find and show sword object");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string search_term = ctx.command.join_args();
+    std::shared_ptr<Object> target = nullptr;
+    std::string location_info;
+
+    // Helper to search container contents
+    std::function<std::shared_ptr<Object>(const Object&, const std::string&, std::string&)> search_container;
+    search_container = [&search_container](const Object& container, const std::string& search_lower, std::string& loc) -> std::shared_ptr<Object> {
+        if (!container.is_container()) return nullptr;
+        auto* cont = dynamic_cast<const Container*>(&container);
+        if (!cont) return nullptr;
+
+        for (const auto& obj : cont->get_contents()) {
+            if (!obj) continue;
+
+            std::string obj_name = std::string(obj->short_description());
+            std::string obj_name_lower = obj_name;
+            std::transform(obj_name_lower.begin(), obj_name_lower.end(), obj_name_lower.begin(), ::tolower);
+
+            if (obj_name_lower.find(search_lower) != std::string::npos) {
+                loc = fmt::format("in {}", container.short_description());
+                return obj;
+            }
+
+            for (const auto& kw : obj->keywords()) {
+                std::string kw_lower = kw;
+                std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+                if (kw_lower.find(search_lower) != std::string::npos) {
+                    loc = fmt::format("in {}", container.short_description());
+                    return obj;
+                }
+            }
+
+            // Recursively search nested containers
+            if (obj->is_container()) {
+                auto found = search_container(*obj, search_lower, loc);
+                if (found) {
+                    loc = fmt::format("in {} > {}", container.short_description(), loc);
+                    return found;
+                }
+            }
+        }
+        return nullptr;
+    };
+
+    // Check if it looks like an ID
+    if (looks_like_id(ctx.arg(0))) {
+        auto entity_id = parse_stat_entity_id(ctx.arg(0));
+        if (entity_id && entity_id->is_valid()) {
+            // Search all rooms for this object
+            for (const auto& zone : WorldManager::instance().get_all_zones()) {
+                for (const auto& room : WorldManager::instance().get_rooms_in_zone(zone->id())) {
+                    if (!room) continue;
+
+                    for (const auto& obj : room->contents().objects) {
+                        if (obj && obj->id() == *entity_id) {
+                            target = obj;
+                            location_info = fmt::format("in room {}:{} ({})",
+                                room->id().zone_id(), room->id().local_id(), room->name());
+                            break;
+                        }
+                    }
+                    if (target) break;
+
+                    // Check actors' inventories
+                    for (const auto& actor : room->contents().actors) {
+                        if (!actor) continue;
+                        for (const auto& item : actor->inventory().get_all_items()) {
+                            if (item && item->id() == *entity_id) {
+                                target = item;
+                                location_info = fmt::format("carried by {}", actor->short_description());
+                                break;
+                            }
+                        }
+                        if (target) break;
+                    }
+                    if (target) break;
+                }
+                if (target) break;
+            }
+        }
+    }
+
+    // If not found by ID, search by name
+    if (!target) {
+        std::string search_lower = search_term;
+        std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+        // Lambda to check object match
+        auto matches = [&search_lower](const Object& obj) -> bool {
+            std::string obj_name = std::string(obj.short_description());
+            std::string obj_name_lower = obj_name;
+            std::transform(obj_name_lower.begin(), obj_name_lower.end(), obj_name_lower.begin(), ::tolower);
+
+            if (obj_name_lower.find(search_lower) != std::string::npos) return true;
+
+            for (const auto& kw : obj.keywords()) {
+                std::string kw_lower = kw;
+                std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+                if (kw_lower.find(search_lower) != std::string::npos) return true;
+            }
+            return false;
+        };
+
+        // First search current room
+        if (ctx.room) {
+            for (const auto& obj : ctx.room->contents().objects) {
+                if (!obj) continue;
+                if (matches(*obj)) {
+                    target = obj;
+                    location_info = "in current room";
+                    break;
+                }
+                // Check container contents
+                if (obj->is_container()) {
+                    auto found = search_container(*obj, search_lower, location_info);
+                    if (found) {
+                        target = found;
+                        location_info = "in current room, " + location_info;
+                        break;
+                    }
+                }
+            }
+
+            // Check player inventory
+            if (!target) {
+                for (const auto& item : ctx.actor->inventory().get_all_items()) {
+                    if (!item) continue;
+                    if (matches(*item)) {
+                        target = item;
+                        location_info = "in your inventory";
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Global search if not found
+        if (!target) {
+            for (const auto& zone : WorldManager::instance().get_all_zones()) {
+                for (const auto& room : WorldManager::instance().get_rooms_in_zone(zone->id())) {
+                    if (!room) continue;
+
+                    for (const auto& obj : room->contents().objects) {
+                        if (!obj) continue;
+                        if (matches(*obj)) {
+                            target = obj;
+                            location_info = fmt::format("in room {}:{} ({})",
+                                room->id().zone_id(), room->id().local_id(), room->name());
+                            break;
+                        }
+                    }
+                    if (target) break;
+                }
+                if (target) break;
+            }
+        }
+    }
+
+    if (!target) {
+        ctx.send_error(fmt::format("Object '{}' not found.", search_term));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Display object statistics
+    ctx.send(fmt::format("<b:cyan>--- Object Statistics: {} ---</>", target->short_description()));
+    ctx.send(fmt::format("ID: <b:yellow>{}:{}</>", target->id().zone_id(), target->id().local_id()));
+    // Format keywords as comma-separated string
+    std::string obj_keywords_str;
+    for (const auto& kw : target->keywords()) {
+        if (!obj_keywords_str.empty()) obj_keywords_str += ", ";
+        obj_keywords_str += kw;
+    }
+    ctx.send(fmt::format("Keywords: <b:white>{}</>", obj_keywords_str));
+    ctx.send(fmt::format("Location: {}", location_info));
+
+    // Basic properties
+    ctx.send(fmt::format("\n<b:white>Properties:</>"));
+    ctx.send(fmt::format("  Type: <b:green>{}</>", target->type()));
+    ctx.send(fmt::format("  Weight: {} lbs | Value: {} copper | Level: {}",
+        target->weight(), target->value(), target->level()));
+    ctx.send(fmt::format("  Condition: {}%", target->condition()));
+
+    if (target->is_wearable()) {
+        ctx.send(fmt::format("  Wear Slot: <b:yellow>{}</>", target->equip_slot()));
+    }
+
+    // Type-specific info
+    if (target->is_weapon()) {
+        const auto& dmg = target->damage_profile();
+        ctx.send(fmt::format("\n<b:white>Weapon Stats:</>"));
+        ctx.send(fmt::format("  Damage: {}d{}+{} (avg: {:.1f})",
+            dmg.dice_count, dmg.dice_sides, dmg.damage_bonus, dmg.average_damage()));
+    }
+
+    if (target->is_armor()) {
+        ctx.send(fmt::format("\n<b:white>Armor Stats:</>"));
+        ctx.send(fmt::format("  Armor Class: {}", target->armor_class()));
+    }
+
+    if (target->is_container()) {
+        const auto& cont = target->container_info();
+        ctx.send(fmt::format("\n<b:white>Container Stats:</>"));
+        ctx.send(fmt::format("  Capacity: {} items / {} lbs", cont.capacity, cont.weight_capacity));
+        ctx.send(fmt::format("  Closeable: {} | Closed: {} | Lockable: {} | Locked: {}",
+            cont.closeable ? "yes" : "no",
+            cont.closed ? "yes" : "no",
+            cont.lockable ? "yes" : "no",
+            cont.locked ? "yes" : "no"));
+        if (cont.key_id.is_valid()) {
+            ctx.send(fmt::format("  Key: {}:{}", cont.key_id.zone_id(), cont.key_id.local_id()));
+        }
+
+        auto* container = dynamic_cast<Container*>(target.get());
+        if (container && !container->is_empty()) {
+            ctx.send(fmt::format("  Contents ({} items):", container->contents_count()));
+            int count = 0;
+            for (const auto& item : container->get_contents()) {
+                if (!item) continue;
+                ctx.send(fmt::format("    [{}:{}] {}",
+                    item->id().zone_id(), item->id().local_id(), item->short_description()));
+                if (++count >= 10) {
+                    ctx.send(fmt::format("    ... and {} more", container->contents_count() - count));
+                    break;
+                }
+            }
+        }
+    }
+
+    if (target->is_light_source()) {
+        const auto& light = target->light_info();
+        ctx.send(fmt::format("\n<b:white>Light Stats:</>"));
+        ctx.send(fmt::format("  Duration: {} hours | Brightness: {} | Lit: {} | Permanent: {}",
+            light.duration, light.brightness,
+            light.lit ? "yes" : "no",
+            light.permanent ? "yes" : "no"));
+    }
+
+    if (target->is_magic_item()) {
+        ctx.send(fmt::format("\n<b:white>Magic Item Stats:</>"));
+        ctx.send(fmt::format("  Spell Level: {}", target->spell_level()));
+        const auto& spells = target->spell_ids();
+        for (int i = 0; i < 3; ++i) {
+            if (spells[i] > 0) {
+                ctx.send(fmt::format("  Spell {}: {}", i + 1, spells[i]));
+            }
+        }
+        if (target->is_wand() || target->is_staff()) {
+            ctx.send(fmt::format("  Charges: {}/{}", target->charges(), target->max_charges()));
+        }
+    }
+
+    // Flags
+    const auto& flags = target->flags();
+    if (!flags.empty()) {
+        std::string flag_str;
+        for (const auto& flag : flags) {
+            if (!flag_str.empty()) flag_str += ", ";
+            flag_str += std::string(magic_enum::enum_name(flag));
+        }
+        ctx.send(fmt::format("\n<b:white>Flags:</> <b:yellow>{}</>", flag_str));
+    }
+
+    // Effect flags
+    const auto& effects = target->effect_flags();
+    if (!effects.empty()) {
+        std::string effect_str;
+        for (const auto& effect : effects) {
+            if (!effect_str.empty()) effect_str += ", ";
+            effect_str += std::string(magic_enum::enum_name(effect));
+        }
+        ctx.send(fmt::format("<b:white>Effects:</> <b:green>{}</>", effect_str));
+    }
+
+    // Extra descriptions
+    const auto& extras = target->get_all_extra_descriptions();
+    if (!extras.empty()) {
+        ctx.send(fmt::format("\n<b:white>Extra Descriptions ({}):</>", extras.size()));
+        for (const auto& extra : extras) {
+            std::string kw_str;
+            for (const auto& kw : extra.keywords) {
+                if (!kw_str.empty()) kw_str += ", ";
+                kw_str += kw;
+            }
+            ctx.send(fmt::format("  [{}]", kw_str));
+        }
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_stat(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("stat <target>");
+        ctx.send("Display statistics for a mobile or object.");
+        ctx.send("Automatically determines whether target is a mobile or object.");
+        ctx.send("\nRelated commands:");
+        ctx.send("  rstat [room_id]  - Room statistics (default: current room)");
+        ctx.send("  zstat [zone_id]  - Zone statistics (default: current zone)");
+        ctx.send("  mstat <target>   - Mobile statistics");
+        ctx.send("  ostat <target>   - Object statistics");
+        ctx.send("  tstat [zone:id]  - Trigger statistics");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string search_term = ctx.command.join_args();
+    std::string search_lower = search_term;
+    std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+    // First check if it's an ID and try to find the entity
+    if (looks_like_id(ctx.arg(0))) {
+        auto entity_id = parse_stat_entity_id(ctx.arg(0));
+        if (entity_id && entity_id->is_valid()) {
+            // Check if it's a mobile
+            std::shared_ptr<Mobile> mob = nullptr;
+            WorldManager::instance().for_each_mobile([&](const std::shared_ptr<Mobile>& mobile) {
+                if (!mob && mobile && mobile->id() == *entity_id) {
+                    mob = mobile;
+                }
+            });
+            if (mob) {
+                return cmd_mstat(ctx);
+            }
+
+            // If not a mobile, assume it's an object
+            return cmd_ostat(ctx);
+        }
+    }
+
+    // Search by name - check current room first for both mobs and objects
+    if (ctx.room) {
+        // Check actors first
+        for (const auto& actor : ctx.room->contents().actors) {
+            auto mob = std::dynamic_pointer_cast<Mobile>(actor);
+            if (!mob) continue;
+
+            std::string mob_name = std::string(mob->short_description());
+            std::string mob_name_lower = mob_name;
+            std::transform(mob_name_lower.begin(), mob_name_lower.end(), mob_name_lower.begin(), ::tolower);
+
+            if (mob_name_lower.find(search_lower) != std::string::npos) {
+                return cmd_mstat(ctx);
+            }
+
+            for (const auto& kw : mob->keywords()) {
+                std::string kw_lower = kw;
+                std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+                if (kw_lower.find(search_lower) != std::string::npos) {
+                    return cmd_mstat(ctx);
+                }
+            }
+        }
+
+        // Check objects
+        for (const auto& obj : ctx.room->contents().objects) {
+            if (!obj) continue;
+
+            std::string obj_name = std::string(obj->short_description());
+            std::string obj_name_lower = obj_name;
+            std::transform(obj_name_lower.begin(), obj_name_lower.end(), obj_name_lower.begin(), ::tolower);
+
+            if (obj_name_lower.find(search_lower) != std::string::npos) {
+                return cmd_ostat(ctx);
+            }
+
+            for (const auto& kw : obj->keywords()) {
+                std::string kw_lower = kw;
+                std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+                if (kw_lower.find(search_lower) != std::string::npos) {
+                    return cmd_ostat(ctx);
+                }
+            }
+        }
+
+        // Check player inventory
+        for (const auto& item : ctx.actor->inventory().get_all_items()) {
+            if (!item) continue;
+
+            std::string obj_name = std::string(item->short_description());
+            std::string obj_name_lower = obj_name;
+            std::transform(obj_name_lower.begin(), obj_name_lower.end(), obj_name_lower.begin(), ::tolower);
+
+            if (obj_name_lower.find(search_lower) != std::string::npos) {
+                return cmd_ostat(ctx);
+            }
+        }
+    }
+
+    // Global search - try mobiles first, then objects
+    bool found_mob = false;
+    WorldManager::instance().for_each_mobile([&](const std::shared_ptr<Mobile>& mobile) {
+        if (found_mob) return;
+
+        std::string mob_name = std::string(mobile->short_description());
+        std::string mob_name_lower = mob_name;
+        std::transform(mob_name_lower.begin(), mob_name_lower.end(), mob_name_lower.begin(), ::tolower);
+
+        if (mob_name_lower.find(search_lower) != std::string::npos) {
+            found_mob = true;
+            return;
+        }
+
+        for (const auto& kw : mobile->keywords()) {
+            std::string kw_lower = kw;
+            std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+            if (kw_lower.find(search_lower) != std::string::npos) {
+                found_mob = true;
+                return;
+            }
+        }
+    });
+
+    if (found_mob) {
+        return cmd_mstat(ctx);
+    }
+
+    // Default to object search
+    return cmd_ostat(ctx);
+}
+
+// =============================================================================
 // Search Commands
 // =============================================================================
 
@@ -965,6 +1850,37 @@ Result<void> register_commands() {
         .command("tlist", cmd_tlist)
         .category("Development")
         .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    // Entity stat commands
+    Commands()
+        .command("stat", cmd_stat)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("rstat", cmd_rstat)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("zstat", cmd_zstat)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("mstat", cmd_mstat)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("ostat", cmd_ostat)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
         .build();
 
     // Search commands for debugging

@@ -277,6 +277,10 @@ public:
     
     /** Check if object can be worn/wielded */
     bool is_wearable() const { return equip_slot_ != EquipSlot::None; }
+
+    /** Check if object can be picked up (has TAKE wear flag) */
+    bool can_take() const { return can_take_; }
+    void set_can_take(bool value) { can_take_ = value; }
     
     /** Check if object is a weapon */
     bool is_weapon() const { 
@@ -459,6 +463,7 @@ private:
     int timer_ = -1;            // Timer for temporary objects
     bool has_timer_ = false;    // Whether timer is active
     EquipSlot equip_slot_ = EquipSlot::None;
+    bool can_take_ = true;      // Can be picked up (TAKE wear flag)
     int armor_class_ = 0;       // AC bonus for armor
 
     // Magic item properties (potions, scrolls, wands, staves)
