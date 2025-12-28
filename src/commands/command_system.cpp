@@ -193,12 +193,16 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
     if (auto room = actor->current_room()) {
         auto& trigger_mgr = FieryMUD::TriggerManager::instance();
         if (trigger_mgr.is_initialized()) {
+            Log::debug("execute_parsed_command: checking COMMAND triggers in room");
             // Check each mob in the room for COMMAND triggers
+            int mob_count = 0;
             for (const auto& other : room->contents().actors) {
                 // Skip self and players (only mobs have triggers)
                 if (other == actor || other->type_name() != "Mobile") {
                     continue;
                 }
+                mob_count++;
+                Log::debug("execute_parsed_command: checking mob #{} '{}'", mob_count, other->name());
 
                 // Build the argument string from parsed command
                 std::string argument = command.args_from(0);
@@ -210,6 +214,7 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
                     command.command,
                     argument
                 );
+                Log::debug("execute_parsed_command: dispatch_command returned {}", static_cast<int>(result));
 
                 // If trigger returned Halt, the command was handled by the script
                 if (result == FieryMUD::TriggerResult::Halt) {
@@ -218,8 +223,10 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
                     return CommandResult::Success;  // Trigger handled it
                 }
             }
+            Log::debug("execute_parsed_command: finished checking {} mobs", mob_count);
         }
     }
+    Log::debug("execute_parsed_command: proceeding to command lookup");
 
     // Lookup command under lock and make a local copy to avoid holding the lock during execution
     std::optional<CommandInfo> cmd_copy_opt;
@@ -495,7 +502,21 @@ PrivilegeLevel CommandSystem::get_actor_privilege(std::shared_ptr<Actor> actor) 
     // Try to cast to Player to check god level
     if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
         if (player->is_god()) {
-            return PrivilegeLevel::God;
+            // Use player's actual level to determine privilege
+            int level = player->level();
+            if (level >= static_cast<int>(PrivilegeLevel::Overlord)) {
+                return PrivilegeLevel::Overlord;
+            } else if (level >= static_cast<int>(PrivilegeLevel::Coder)) {
+                return PrivilegeLevel::Coder;
+            } else if (level >= static_cast<int>(PrivilegeLevel::Builder)) {
+                return PrivilegeLevel::Builder;
+            } else if (level >= static_cast<int>(PrivilegeLevel::God)) {
+                return PrivilegeLevel::God;
+            } else if (level >= static_cast<int>(PrivilegeLevel::DemiGod)) {
+                return PrivilegeLevel::DemiGod;
+            } else {
+                return PrivilegeLevel::Helper;
+            }
         }
         return PrivilegeLevel::Player;
     }

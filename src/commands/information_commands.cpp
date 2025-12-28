@@ -20,8 +20,44 @@
 #include <chrono>
 #include <iomanip>
 #include <sstream>
+#include <unordered_map>
 
 namespace InformationCommands {
+
+// Helper to format container contents with grouping of identical items
+std::vector<std::string> format_grouped_contents(
+    std::span<const std::shared_ptr<Object>> contents) {
+
+    std::vector<std::string> result;
+
+    // Group items by their entity ID (same template = same item type)
+    std::unordered_map<std::string, int> item_counts;
+    std::unordered_map<std::string, std::string> item_names;
+    std::vector<std::string> order; // Preserve display order
+
+    for (const auto& item : contents) {
+        if (!item) continue;
+
+        std::string key = fmt::format("{}", item->id());
+        if (item_counts.find(key) == item_counts.end()) {
+            order.push_back(key);
+            item_names[key] = std::string(item->short_description());
+        }
+        item_counts[key]++;
+    }
+
+    // Format output with counts
+    for (const auto& key : order) {
+        int count = item_counts[key];
+        if (count > 1) {
+            result.push_back(fmt::format("  {} (x{})", item_names[key], count));
+        } else {
+            result.push_back(fmt::format("  {}", item_names[key]));
+        }
+    }
+
+    return result;
+}
 
 /**
  * Convert effect duration from rounds to human-readable MUD time.
@@ -285,10 +321,8 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             ctx.send(fmt::format("The {} is empty.", ctx.format_object_name(container)));
         } else {
             ctx.send(fmt::format("Looking inside {}, you see:", ctx.format_object_name(container)));
-            for (const auto &item : contents) {
-                if (item) {
-                    ctx.send(fmt::format("  {}", item->short_description()));
-                }
+            for (const auto& line : format_grouped_contents(contents)) {
+                ctx.send(line);
             }
         }
 
@@ -464,10 +498,8 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
                     const auto &contents = container_obj->get_contents();
                     if (!contents.empty()) {
                         detailed_desc << "\n--- Contents ---\n";
-                        for (const auto &item : contents) {
-                            if (item) {
-                                detailed_desc << fmt::format("  {}\n", item->short_description());
-                            }
+                        for (const auto& line : format_grouped_contents(contents)) {
+                            detailed_desc << line << "\n";
                         }
                     } else {
                         detailed_desc << "The container is empty.\n";
@@ -481,8 +513,15 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
             const auto &light_info = obj->light_info();
             detailed_desc << "\n--- Light Properties ---\n";
             detailed_desc << fmt::format("Brightness: {}\n", light_info.brightness);
-            detailed_desc << fmt::format("Duration: {} hours\n", light_info.duration);
-            detailed_desc << fmt::format("Status: {}\n", light_info.lit ? "lit" : "unlit");
+            if (light_info.permanent) {
+                detailed_desc << "Duration: permanent\n";
+                detailed_desc << "Status: always lit\n";
+            } else {
+                detailed_desc << fmt::format("Duration: {} hours{}\n",
+                    light_info.duration,
+                    light_info.duration < 0 ? " (infinite)" : "");
+                detailed_desc << fmt::format("Status: {}\n", light_info.lit ? "lit" : "unlit");
+            }
         }
 
         // Object flags

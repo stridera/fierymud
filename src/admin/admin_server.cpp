@@ -61,22 +61,20 @@ void AdminServer::start() {
 }
 
 void AdminServer::stop() {
-    if (!running_.load()) {
-        return;
-    }
-
-    spdlog::info("Stopping admin server");
+    // Always try to join the thread, even if running_ is false
+    // (it could have failed to start but still have a thread to join)
     running_.store(false);
 
     if (io_context_) {
         io_context_->stop();
     }
 
+    // Must join thread before destruction to avoid std::terminate
     if (server_thread_ && server_thread_->joinable()) {
+        spdlog::info("Stopping admin server, joining thread...");
         server_thread_->join();
+        spdlog::info("Admin server stopped");
     }
-
-    spdlog::info("Admin server stopped");
 }
 
 void AdminServer::register_handler(const std::string& path, CommandHandler handler) {
@@ -86,7 +84,7 @@ void AdminServer::register_handler(const std::string& path, CommandHandler handl
 
 void AdminServer::run_server() {
     try {
-        tcp::acceptor acceptor(*io_context_, tcp::endpoint(address::from_string(bind_address_), port_));
+        tcp::acceptor acceptor(*io_context_, tcp::endpoint(asio::ip::make_address(bind_address_), port_));
         acceptor.set_option(socket_base::reuse_address(true));
 
         spdlog::info("Admin server listening on {}:{}", bind_address_, port_);

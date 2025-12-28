@@ -1,6 +1,7 @@
 #include "mud_server.hpp"
 
 #include "../core/actor.hpp"
+#include "../game/player_output.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../database/config_loader.hpp"
@@ -12,8 +13,10 @@
 #include "persistence_manager.hpp"
 
 #include <algorithm>
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <future>
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
 #include <sstream>
@@ -332,7 +335,11 @@ Result<void> ModernMUDServer::start() {
         io_thread_ = std::thread([this]() {
             Log::info("I/O context thread started");
             try {
-                io_context_.run();
+                // Use run() but check for stopped periodically
+                while (!io_context_.stopped()) {
+                    // Run handlers for up to 100ms, then check if stopped
+                    io_context_.run_for(std::chrono::milliseconds(100));
+                }
             } catch (const std::exception &e) {
                 Log::error("I/O context error: {}", e.what());
             }
@@ -370,7 +377,7 @@ Result<void> ModernMUDServer::start() {
     }
 }
 
-void ModernMUDServer::stop() {
+void ModernMUDServer::stop(bool exit_process) {
     if (!is_running() && state_.load() != ServerState::Starting) {
         return;
     }
@@ -380,24 +387,78 @@ void ModernMUDServer::stop() {
 
     Log::info("Stopping Modern FieryMUD Server...");
 
-    // Stop networking FIRST to cleanly disconnect all players
-    // This must happen before world server stops to avoid strand deadlocks
+    // CRITICAL: Signal world server to stop accepting new strand work BEFORE network cleanup.
+    // When network_manager_->stop() closes connections, the cleanup code posts work to the
+    // world strand (remove_player_connection). If running_ is still true, that work will be
+    // accepted and try to run during/after shutdown, causing io_context to hang waiting for
+    // strand work that never completes.
+    if (world_server_) {
+        world_server_->begin_shutdown();  // Sets running_ = false, cancels timers
+    }
+
+    // Stop networking - disconnect all players
+    // Any cleanup work posted to the strand will now be rejected (running_ = false)
     if (network_manager_) {
         network_manager_->stop();
     }
 
-    // Stop world server (handles save and cleanup)
+    // Complete world server shutdown (cleanup active connections, save state)
     if (world_server_) {
         world_server_->stop();
     }
 
-    // Stop I/O context
+    // Release work guard so io_context can stop naturally when work is done
+    Log::info("Releasing work guard...");
     if (work_guard_) {
-        work_guard_.reset(); // Release work guard to allow I/O context to stop
+        work_guard_.reset();
     }
+
+    // Stop the io_context first - this causes io_context_.run() to return
+    Log::info("Stopping io_context...");
     io_context_.stop();
+
+    // Now join the io_thread - it should complete quickly since io_context is stopped
     if (io_thread_.joinable()) {
-        io_thread_.join();
+        Log::info("Waiting for io_thread to finish...");
+
+        // Use a shared_ptr for the flag so it stays valid even if we detach the watcher
+        auto join_completed = std::make_shared<std::atomic<bool>>(false);
+        std::thread join_watcher([this, join_completed]() {
+            io_thread_.join();
+            join_completed->store(true);
+        });
+
+        // Wait up to 2 seconds for the join to complete
+        auto start = std::chrono::steady_clock::now();
+        while (!join_completed->load()) {
+            auto elapsed = std::chrono::steady_clock::now() - start;
+            if (elapsed > std::chrono::seconds(2)) {
+                Log::error("io_thread failed to stop within 2 seconds - forcing termination");
+                // Detach the watcher thread - it holds a shared_ptr to keep the flag alive
+                join_watcher.detach();
+                break;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+
+        if (join_completed->load() && join_watcher.joinable()) {
+            join_watcher.join();
+            Log::info("io_thread finished cleanly");
+        } else {
+            // io_thread didn't stop - we have a detached watcher thread that may cause
+            // issues during static destruction. Use quick_exit to avoid segfault.
+            Log::warn("io_thread didn't stop cleanly - using quick_exit to avoid segfault");
+
+            // Cleanup what we can
+            set_state(ServerState::Stopped);
+            Log::info("Modern FieryMUD Server stopped (forced)");
+            Logger::shutdown();
+
+            // Use quick_exit to skip static destructors (which would segfault)
+            std::quick_exit(0);
+        }
+    } else {
+        Log::info("io_thread not joinable");
     }
 
     // Clean up resources
@@ -408,11 +469,24 @@ void ModernMUDServer::stop() {
 
     // Flush all logs before shutdown
     Logger::shutdown();
+
+    if (exit_process) {
+        // Use quick_exit to skip static destruction order issues.
+        // This is safe because we've properly cleaned up all resources:
+        // - Players disconnected and saved
+        // - Scripting systems shut down (coroutines, triggers, Lua state)
+        // - Database connections closed
+        // - Logger flushed
+        // Static destructors would only cause problems (e.g., singletons trying
+        // to log after Logger is destroyed).
+        std::quick_exit(0);
+    }
+    // When exit_process=false (restart case), we return normally
 }
 
 void ModernMUDServer::restart() {
     Log::info("Restarting Modern FieryMUD Server...");
-    stop();
+    stop(false);  // Don't exit process, we want to start again
 
     // Small delay for cleanup
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -638,6 +712,42 @@ std::vector<std::shared_ptr<Player>> ModernMUDServer::get_online_players() const
     return world_server_->get_online_players();
 }
 
+std::shared_ptr<Player> ModernMUDServer::find_player(std::string_view name) const {
+    auto players = get_online_players();
+    for (const auto& player : players) {
+        if (player && player->name() == name) {
+            return player;
+        }
+    }
+    return nullptr;
+}
+
+size_t ModernMUDServer::online_player_count() const {
+    return get_online_players().size();
+}
+
+void ModernMUDServer::kick_player(std::string_view player_name, std::string_view reason) {
+    auto player = find_player(player_name);
+    if (!player) {
+        Log::warn("Attempt to kick non-existent player: {}", player_name);
+        return;
+    }
+
+    // Send kick message to player
+    std::string kick_msg = fmt::format("\r\nYou have been disconnected by an administrator.\r\n");
+    if (!reason.empty()) {
+        kick_msg += fmt::format("Reason: {}\r\n", reason);
+    }
+    player->send_message(kick_msg);
+
+    // Disconnect the player's connection
+    if (auto output = player->get_output()) {
+        output->disconnect(std::string(reason));
+    }
+
+    Log::info("Player {} kicked. Reason: {}", player_name, reason.empty() ? "none given" : std::string(reason));
+}
+
 void ModernMUDServer::shutdown_networking() {
     if (network_manager_) {
         network_manager_->stop();
@@ -649,7 +759,9 @@ void ModernMUDServer::shutdown_game_systems() {
 }
 
 void ModernMUDServer::cleanup_resources() {
-    // Resources will be cleaned up automatically by destructors
+    // Explicitly shutdown the database connection pool to avoid
+    // static destruction order issues with logging
+    ConnectionPool::instance().shutdown();
 }
 
 Result<void> ModernMUDServer::reload_config() {

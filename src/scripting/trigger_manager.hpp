@@ -228,6 +228,38 @@ public:
         int hour);
 
     // ========================================================================
+    // OBJECT Trigger Dispatch
+    // ========================================================================
+
+    /// Execute an ATTACK trigger (weapon being used to attack)
+    /// @param weapon The weapon object with the trigger
+    /// @param attacker The actor wielding the weapon
+    /// @param target The target being attacked
+    /// @param damage The amount of damage dealt (0 for miss)
+    /// @param room The room where combat is happening
+    /// @return Continue or Halt
+    TriggerResult dispatch_attack(
+        std::shared_ptr<Object> weapon,
+        std::shared_ptr<Actor> attacker,
+        std::shared_ptr<Actor> target,
+        int damage,
+        std::shared_ptr<Room> room);
+
+    /// Execute a DEFEND trigger (armor/shield being used defensively)
+    /// @param armor The armor/shield object with the trigger
+    /// @param defender The actor wearing the armor
+    /// @param attacker The actor attacking
+    /// @param damage The incoming damage amount
+    /// @param room The room where combat is happening
+    /// @return Continue or Halt (Halt can reduce/negate damage)
+    TriggerResult dispatch_defend(
+        std::shared_ptr<Object> armor,
+        std::shared_ptr<Actor> defender,
+        std::shared_ptr<Actor> attacker,
+        int damage,
+        std::shared_ptr<Room> room);
+
+    // ========================================================================
     // Diagnostics
     // ========================================================================
 

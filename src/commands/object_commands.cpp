@@ -1128,12 +1128,16 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
     // Check if already lit
     const auto &light_info = light_source->light_info();
     if (light_info.lit) {
-        ctx.send_error(fmt::format("The {} is already lit.", ctx.format_object_name(light_source)));
+        if (light_info.permanent) {
+            ctx.send_error(fmt::format("The {} glows with a permanent light.", ctx.format_object_name(light_source)));
+        } else {
+            ctx.send_error(fmt::format("The {} is already lit.", ctx.format_object_name(light_source)));
+        }
         return CommandResult::InvalidState;
     }
 
-    // Check if light source has duration remaining
-    if (light_info.duration <= 0) {
+    // Check if light source has duration remaining (duration -1 = infinite)
+    if (light_info.duration == 0) {
         ctx.send_error(fmt::format("The {} is burnt out and cannot be lit.", ctx.format_object_name(light_source)));
         return CommandResult::InvalidState;
     }
@@ -1145,6 +1149,68 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
 
     ctx.send_success(fmt::format("You light the {}. It glows brightly.", ctx.format_object_name(light_source)));
     ctx.send_to_room(fmt::format("{} lights {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_extinguish(const CommandContext &ctx) {
+    if (ctx.arg_count() < 1) {
+        ctx.send_usage("extinguish <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find light source in equipped or inventory (prefer held items)
+    std::shared_ptr<Object> light_source = nullptr;
+
+    // First check equipped items (prioritize what you're holding)
+    for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
+        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+            light_source = obj;
+            break;
+        }
+    }
+
+    // If not found in equipped, check inventory
+    if (!light_source) {
+        for (const auto &obj : ctx.actor->inventory().get_all_items()) {
+            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+                light_source = obj;
+                break;
+            }
+        }
+    }
+
+    if (!light_source) {
+        ctx.send_error(fmt::format("You don't have a light source called '{}'.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    const auto &light_info = light_source->light_info();
+
+    // Check if it's a permanent light
+    if (light_info.permanent) {
+        ctx.send_error(fmt::format("The {} glows with a permanent light that cannot be extinguished.",
+                                   ctx.format_object_name(light_source)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if already extinguished
+    if (!light_info.lit) {
+        ctx.send_error(fmt::format("The {} is not lit.", ctx.format_object_name(light_source)));
+        return CommandResult::InvalidState;
+    }
+
+    // Extinguish the object
+    auto new_light_info = light_info;
+    new_light_info.lit = false;
+    light_source->set_light_info(new_light_info);
+
+    ctx.send_success(fmt::format("You extinguish the {}.", ctx.format_object_name(light_source)));
+    ctx.send_to_room(fmt::format("{} extinguishes {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)), true);
 
     return CommandResult::Success;
 }
@@ -2258,6 +2324,12 @@ Result<void> register_commands() {
     // Consumable and utility commands
     Commands()
         .command("light", cmd_light)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("extinguish", cmd_extinguish)
         .category("Object")
         .privilege(PrivilegeLevel::Player)
         .build();

@@ -4,6 +4,7 @@
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
+#include "../events/event_publisher.hpp"
 #include "../server/network_manager.hpp"
 #include "../server/world_server.hpp"
 #include "../text/text_format.hpp"
@@ -940,6 +941,19 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     Log::info("Player '{}' logged in from {}", player_->name(), remote_address());
 
+    // Publish login event to Muditor bridge
+    auto login_event = fierymud::events::GameEvent::player_event(
+        fierymud::events::GameEventType::PLAYER_LOGIN,
+        std::string(player_->name()),
+        fmt::format("{} has entered the game", player_->name()));
+    if (auto room = player_->current_room()) {
+        login_event.zone_id = static_cast<int>(room->id().zone_id());
+        login_event.room_vnum = static_cast<int>(room->id().local_id());
+    }
+    login_event.metadata["ip"] = remote_address();
+    login_event.metadata["level"] = player_->level();
+    fierymud::events::EventPublisher::instance().publish(std::move(login_event));
+
     // Send room description after login
     if (auto room = player_->current_room()) {
         send_message(room->get_room_description(player_.get()));
@@ -1184,6 +1198,12 @@ void PlayerConnection::cleanup_connection() {
 
     // Clean up resources
     if (player_) {
+        // Publish logout event to Muditor bridge
+        fierymud::events::EventPublisher::instance().publish_player(
+            fierymud::events::GameEventType::PLAYER_LOGOUT,
+            player_->name(),
+            fmt::format("{} has left the game", player_->name()));
+
         Log::debug("Cleaning up connection for player: {}", player_->name());
 
         // If this connection was replaced by a reconnection, WorldServer was already updated

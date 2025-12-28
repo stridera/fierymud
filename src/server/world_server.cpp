@@ -9,6 +9,8 @@
 #include "../core/logging.hpp"
 #include "../core/result.hpp"
 #include "../net/player_connection.hpp"
+#include "../scripting/coroutine_scheduler.hpp"
+#include "../scripting/script_engine.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
@@ -94,6 +96,22 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         Log::warn("Failed to initialize ability cache: {}", ability_init.error().message);
         // Non-fatal - abilities will be looked up on-demand
     }
+
+    // Initialize Lua scripting engine
+    auto& script_engine = FieryMUD::ScriptEngine::instance();
+    if (!script_engine.initialize()) {
+        Log::error("Failed to initialize ScriptEngine: {}", script_engine.last_error());
+        return std::unexpected(Errors::InternalError("WorldServer::initialize", "ScriptEngine initialization failed"));
+    }
+    Log::info("ScriptEngine initialized successfully");
+
+    // Initialize trigger manager (requires ScriptEngine)
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    if (!trigger_mgr.initialize()) {
+        Log::error("Failed to initialize TriggerManager: {}", trigger_mgr.last_error());
+        return std::unexpected(Errors::InternalError("WorldServer::initialize", "TriggerManager initialization failed"));
+    }
+    Log::info("TriggerManager initialized successfully");
 
     // Initialize time system with default starting time
     GameTime start_time;
@@ -251,15 +269,35 @@ Result<void> WorldServer::start() {
     return Success();
 }
 
-void WorldServer::stop() {
+void WorldServer::begin_shutdown() {
     if (!running_.load()) {
         return;
     }
 
+    Log::info("WorldServer: Beginning shutdown sequence (blocking new strand work)...");
     running_.store(false);
+
+    // Cancel timers early so they don't post more work
+    if (save_timer_)
+        save_timer_->cancel();
+    if (cleanup_timer_)
+        cleanup_timer_->cancel();
+    if (heartbeat_timer_)
+        heartbeat_timer_->cancel();
+    if (combat_timer_)
+        combat_timer_->cancel();
+}
+
+void WorldServer::stop() {
+    // If begin_shutdown() was already called, running_ is false
+    // If not, we set it here (for direct stop() calls)
+    if (running_.load()) {
+        running_.store(false);
+    }
+
     Log::info("Stopping WorldServer...");
 
-    // Cancel all timers
+    // Cancel all timers (may already be cancelled by begin_shutdown)
     if (save_timer_)
         save_timer_->cancel();
     if (cleanup_timer_)
@@ -269,15 +307,26 @@ void WorldServer::stop() {
     if (combat_timer_)
         combat_timer_->cancel();
 
-    // Disconnect all players
-    asio::post(world_strand_, [this]() {
-        for (auto &connection : active_connections_) {
+    // Shutdown scripting systems in proper order:
+    // 1. CoroutineScheduler first (cancels all pending Lua coroutines and timers)
+    // 2. TriggerManager second (clears trigger cache before Lua state is destroyed)
+    // 3. ScriptEngine third (cleans up Lua state after coroutines are gone)
+    Log::info("Shutting down scripting systems...");
+    FieryMUD::get_coroutine_scheduler().shutdown();
+    FieryMUD::TriggerManager::instance().shutdown();
+    FieryMUD::ScriptEngine::instance().shutdown();
+    Log::info("Scripting systems shutdown complete");
+
+    // Disconnect players directly (don't use post during shutdown - io_context may be stopping)
+    Log::info("Disconnecting {} players...", active_connections_.size());
+    for (auto &connection : active_connections_) {
+        if (connection) {
             connection->send_message("Server is shutting down. Goodbye!\r\n");
             connection->disconnect();
         }
-        active_connections_.clear();
-        connection_actors_.clear(); // Clean up actors
-    });
+    }
+    active_connections_.clear();
+    connection_actors_.clear();
 
     Log::info("WorldServer stopped");
 }
@@ -419,14 +468,17 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
 // Player Management
 
 void WorldServer::add_player_connection(std::shared_ptr<PlayerConnection> connection) {
+    if (!running_.load()) return;  // Skip during shutdown
     asio::post(world_strand_, [this, connection]() { handle_player_connection(connection); });
 }
 
 void WorldServer::remove_player_connection(std::shared_ptr<PlayerConnection> connection) {
+    if (!running_.load()) return;  // Skip during shutdown - connections already cleared
     asio::post(world_strand_, [this, connection]() { handle_player_disconnection(connection); });
 }
 
 void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> connection, std::shared_ptr<Actor> actor) {
+    if (!running_.load()) return;  // Skip during shutdown
     asio::post(world_strand_, [this, connection, actor]() { connection_actors_[connection] = actor; });
 }
 
@@ -572,7 +624,7 @@ void WorldServer::schedule_heartbeat() {
 }
 
 void WorldServer::schedule_combat_processing() {
-    Log::info("Scheduling combat processing timer ({}ms interval)", COMBAT_PROCESSING_INTERVAL.count());
+    Log::debug("Scheduling combat processing timer ({}ms interval)", COMBAT_PROCESSING_INTERVAL.count());
     combat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
     schedule_timer(COMBAT_PROCESSING_INTERVAL, [this]() { perform_combat_processing(); }, combat_timer_);
 }
@@ -595,6 +647,8 @@ void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::functi
         if (!ec && running_.load()) {
             // Execute task on world strand
             asio::post(world_strand_, [this, task, interval, timer]() {
+                // Check again before executing - shutdown may have started
+                if (!running_.load()) return;
                 task();
                 // Reschedule
                 schedule_timer(interval, task, timer);
@@ -651,6 +705,9 @@ void WorldServer::perform_heartbeat() {
 
 void WorldServer::perform_combat_processing() {
     // This runs on the world strand - thread safe!
+    // Early exit if shutting down
+    if (!running_.load()) return;
+
     // Process all active combat rounds
     bool rounds_processed = FieryMUD::CombatManager::process_combat_rounds();
 

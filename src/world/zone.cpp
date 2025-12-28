@@ -800,7 +800,8 @@ Result<bool> Zone::execute_load_mobile(const ZoneCommand &cmd) {
         stats_.mobile_count++; // Track spawning stats
         
         // Immediately process equipment and inventory for this specific mobile instance
-        process_mobile_equipment(mobile, mobile_id);
+        // Use reset_group to match only equipment from this specific MobReset
+        process_mobile_equipment(mobile, mobile_id, cmd.reset_group);
     } else {
         logger->warn("Zone {} failed to spawn mobile {} in room {}", name(), mobile_id, room_id);
     }
@@ -808,24 +809,31 @@ Result<bool> Zone::execute_load_mobile(const ZoneCommand &cmd) {
     return true; // Continue processing
 }
 
-void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id) {
+void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id, int reset_group) {
     if (!mobile || !spawn_object_callback_) {
         return;
     }
-    
+
     auto logger = Log::game();
-    
+
     // Process equipment commands for this mobile one-by-one, removing them as we go
-    // This ensures that multiple instances of the same mobile type get different equipment sets
+    // Match by reset_group to ensure equipment goes to the correct mob instance
+    // (Multiple MobResets for the same mob type each have unique reset_group values)
     std::unordered_set<int> processed_slots; // Track which equipment slots we've already filled
     int inventory_items_processed = 0;
     const int MAX_INVENTORY_ITEMS_PER_MOBILE = 10; // Reasonable limit
-    
+
     auto it = commands_.begin();
     while (it != commands_.end()) {
         bool processed = false;
-        
-        if (it->container_id == mobile_id) {
+
+        // Match by reset_group (unique per MobReset) instead of container_id (mob EntityId)
+        // This ensures each spawn instance gets only its own equipment, not equipment from all resets
+        // reset_group is positive for database resets and negative for JSON-based zones
+        // If reset_group is 0 (legacy/unset), fall back to container_id matching
+        bool matches = (reset_group != 0) ? (it->reset_group == reset_group)
+                                          : (it->container_id == mobile_id);
+        if (matches) {
             if (it->command_type == ZoneCommandType::Give_Object &&
                 inventory_items_processed < MAX_INVENTORY_ITEMS_PER_MOBILE) {
                 // Give object to mobile's inventory
@@ -878,10 +886,11 @@ void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mob
 }
 
 // Helper function to recursively parse nested JSON contents into ObjectContent structures
+// Each legacy entry represents ONE item to spawn; "max" is a world-cap, not quantity
 static ObjectContent parse_json_content(const nlohmann::json& json_content) {
     ObjectContent content;
     content.object_id = EntityId{json_content["id"].get<std::uint64_t>()};
-    content.quantity = json_content.contains("max") ? json_content["max"].get<int>() : 1;
+    content.quantity = 1;  // Each entry = 1 item to spawn
 
     // Recursively parse nested contents
     if (json_content.contains("contains") && json_content["contains"].is_array()) {
@@ -899,17 +908,59 @@ static ObjectContent parse_json_content(const nlohmann::json& json_content) {
     return content;
 }
 
+// Consolidate duplicate object entries by summing quantities
+// e.g., 10 entries for "black rose" becomes 1 entry with quantity=10
+static std::vector<ObjectContent> consolidate_contents(const std::vector<ObjectContent>& contents) {
+    std::vector<ObjectContent> result;
+    std::unordered_map<std::uint64_t, size_t> id_to_index;
+
+    for (const auto& content : contents) {
+        auto id_value = content.object_id.value();
+        auto it = id_to_index.find(id_value);
+
+        if (it != id_to_index.end()) {
+            // Already have this object - add to quantity
+            result[it->second].quantity += content.quantity;
+            // Merge nested contents too (recursively consolidate)
+            for (const auto& nested : content.contents) {
+                result[it->second].contents.push_back(nested);
+            }
+        } else {
+            // New object - add to result
+            id_to_index[id_value] = result.size();
+            result.push_back(content);
+        }
+    }
+
+    // Recursively consolidate nested contents
+    for (auto& item : result) {
+        if (!item.contents.empty()) {
+            item.contents = consolidate_contents(item.contents);
+        }
+    }
+
+    return result;
+}
+
 Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_json, Zone *zone) {
     try {
+        // Counter for generating unique reset_group IDs for JSON-based zones
+        // Use negative numbers to avoid collision with database reset IDs (which are positive)
+        int json_reset_group = -1;
+
         // Parse mobile commands
         if (commands_json.contains("mob") && commands_json["mob"].is_array()) {
             for (const auto &mob_cmd : commands_json["mob"]) {
+                // Each mob command gets a unique reset_group
+                int current_reset_group = json_reset_group--;
+
                 // Load mobile command
                 ZoneCommand load_mobile;
                 load_mobile.command_type = ZoneCommandType::Load_Mobile;
                 load_mobile.entity_id = EntityId{mob_cmd["id"].get<std::uint64_t>()};
                 load_mobile.room_id = EntityId{mob_cmd["room"].get<std::uint64_t>()};
                 load_mobile.max_count = mob_cmd.contains("max") ? mob_cmd["max"].get<int>() : 1;
+                load_mobile.reset_group = current_reset_group;
                 zone->add_command(load_mobile);
 
                 // Parse carried objects
@@ -920,12 +971,17 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
                         give_obj.entity_id = EntityId{carry_obj["id"].get<std::uint64_t>()};
                         give_obj.container_id = load_mobile.entity_id; // Mobile ID
                         give_obj.max_count = carry_obj.contains("max") ? carry_obj["max"].get<int>() : 1;
+                        give_obj.reset_group = current_reset_group;
 
                         // Parse hierarchical nested contents
                         if (carry_obj.contains("contains") && carry_obj["contains"].is_array()) {
                             for (const auto& nested : carry_obj["contains"]) {
                                 give_obj.contents.push_back(parse_json_content(nested));
                             }
+                        }
+                        // Consolidate duplicate entries
+                        if (!give_obj.contents.empty()) {
+                            give_obj.contents = consolidate_contents(give_obj.contents);
                         }
                         zone->add_command(give_obj);
                     }
@@ -938,6 +994,7 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
                         equip_cmd.command_type = ZoneCommandType::Equip_Object;
                         equip_cmd.entity_id = EntityId{equip_obj["id"].get<std::uint64_t>()};
                         equip_cmd.container_id = load_mobile.entity_id; // Mobile ID
+                        equip_cmd.reset_group = current_reset_group;
                         
                         // Parse location (string or number) to EquipSlot enum value
                         if (equip_obj.contains("location")) {
@@ -984,6 +1041,10 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
                     for (const auto& nested : obj_cmd["contains"]) {
                         load_object.contents.push_back(parse_json_content(nested));
                     }
+                }
+                // Consolidate duplicate entries (e.g., 10 rose entries -> 1 entry with quantity=10)
+                if (!load_object.contents.empty()) {
+                    load_object.contents = consolidate_contents(load_object.contents);
                 }
                 zone->add_command(load_object);
             }
@@ -1049,12 +1110,10 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
 }
 
 Result<bool> Zone::execute_load_object(const ZoneCommand &cmd) {
-    auto logger = Log::database();  // Temporarily use database logger for visibility
+    auto logger = Log::game();
 
     EntityId object_id = cmd.entity_id;
     EntityId room_id = cmd.room_id;
-
-    logger->info("Zone {} execute_load_object: {} in room {}", name(), object_id, room_id);
 
     if (!spawn_object_callback_) {
         logger->warn("Zone {} has no spawn object callback set", name());
@@ -1077,7 +1136,7 @@ Result<bool> Zone::execute_load_object(const ZoneCommand &cmd) {
         return true; // Continue processing
     }
 
-    logger->info("Zone {} spawned object '{}' ({}) in room {}", name(), object->display_name(), object_id, room_id);
+    logger->trace("Zone {} spawned '{}' ({}) in room {}", name(), object->display_name(), object_id, room_id);
     stats_.object_count++;
 
     // Recursively spawn contents into the container
@@ -1104,19 +1163,17 @@ void Zone::spawn_contents_recursive(Container* container, const std::vector<Obje
             // We create the object with INVALID_ENTITY_ID as room (spawn_object_for_zone handles this)
             auto content_obj = spawn_object_callback_(content.object_id, INVALID_ENTITY_ID);
             if (!content_obj) {
-                logger->warn("Zone {} failed to spawn content object {}", name(), content.object_id);
+                logger->warn("Zone {} failed to spawn content object {} for container '{}'",
+                            name(), content.object_id, container->short_description());
                 continue;
             }
 
-            // Add the object to the container
-            auto add_result = container->add_item(content_obj);
-            if (!add_result) {
-                logger->warn("Zone {} failed to add {} to container: {}",
-                            name(), content.object_id, add_result.error().message);
-                continue;
-            }
+            // Force-add the object to the container, bypassing capacity/weight limits
+            // Zone resets should always succeed - capacity limits are for player interaction
+            container->add_item_force(content_obj);
 
-            logger->debug("Zone {} placed {} in container", name(), content.object_id);
+            logger->trace("Zone {} placed '{}' in '{}'", name(),
+                         content_obj->short_description(), container->short_description());
             stats_.object_count++;
 
             // Recursively spawn nested contents if this is also a container

@@ -96,28 +96,71 @@ struct TriggerData {
     }
 
     /// Get human-readable string of all active flags
+    /// Note: Some flags share bit positions (ATTACK/RESET, DEFEND/PREENTRY, TIMER/POSTENTRY)
+    /// so we filter based on attach_type to show the appropriate flag names
     [[nodiscard]] std::string flags_string() const {
         std::ostringstream oss;
         bool first = true;
 
-        // Check each possible flag
-        constexpr TriggerFlag all_flags[] = {
+        // Common flags (all types)
+        constexpr TriggerFlag common_flags[] = {
             TriggerFlag::GLOBAL, TriggerFlag::RANDOM, TriggerFlag::COMMAND,
+            TriggerFlag::LOAD, TriggerFlag::CAST, TriggerFlag::LEAVE,
+            TriggerFlag::TIME
+        };
+
+        // MOB-specific flags
+        constexpr TriggerFlag mob_flags[] = {
             TriggerFlag::SPEECH, TriggerFlag::ACT, TriggerFlag::DEATH,
             TriggerFlag::GREET, TriggerFlag::GREET_ALL, TriggerFlag::ENTRY,
             TriggerFlag::RECEIVE, TriggerFlag::FIGHT, TriggerFlag::HIT_PERCENT,
-            TriggerFlag::BRIBE, TriggerFlag::LOAD, TriggerFlag::MEMORY,
-            TriggerFlag::CAST, TriggerFlag::LEAVE, TriggerFlag::DOOR,
-            TriggerFlag::TIME, TriggerFlag::AUTO, TriggerFlag::SPEECH_TO,
-            TriggerFlag::LOOK
+            TriggerFlag::BRIBE, TriggerFlag::MEMORY, TriggerFlag::DOOR,
+            TriggerFlag::SPEECH_TO, TriggerFlag::LOOK, TriggerFlag::AUTO
         };
 
-        for (auto flag : all_flags) {
+        // OBJECT-specific flags (some share bits with WORLD flags)
+        constexpr TriggerFlag object_flags[] = {
+            TriggerFlag::ATTACK, TriggerFlag::DEFEND, TriggerFlag::TIMER,
+            TriggerFlag::GET, TriggerFlag::DROP, TriggerFlag::GIVE,
+            TriggerFlag::WEAR, TriggerFlag::REMOVE, TriggerFlag::USE,
+            TriggerFlag::CONSUME
+        };
+
+        // WORLD-specific flags (some share bits with OBJECT flags)
+        constexpr TriggerFlag world_flags[] = {
+            TriggerFlag::RESET, TriggerFlag::PREENTRY, TriggerFlag::POSTENTRY
+        };
+
+        auto append_flag = [&](TriggerFlag flag) {
             if (has_flag(flag)) {
                 if (!first) oss << " ";
                 oss << trigger_flag_to_string(flag);
                 first = false;
             }
+        };
+
+        // Always check common flags
+        for (auto flag : common_flags) {
+            append_flag(flag);
+        }
+
+        // Check type-specific flags based on attach_type
+        switch (attach_type) {
+            case ScriptType::MOB:
+                for (auto flag : mob_flags) {
+                    append_flag(flag);
+                }
+                break;
+            case ScriptType::OBJECT:
+                for (auto flag : object_flags) {
+                    append_flag(flag);
+                }
+                break;
+            case ScriptType::WORLD:
+                for (auto flag : world_flags) {
+                    append_flag(flag);
+                }
+                break;
         }
 
         return oss.str();

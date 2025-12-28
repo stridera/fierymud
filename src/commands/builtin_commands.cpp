@@ -282,12 +282,14 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
         }
     }
 
-    // Show lit status for light sources
+    // Show lit status for light sources (duration -1 = infinite)
     if (obj->is_light_source()) {
         const auto& light = obj->light_info();
-        if (light.lit) {
+        if (light.permanent) {
+            desc << "It glows with a permanent light.\n";
+        } else if (light.lit) {
             desc << "It is lit and providing light.\n";
-        } else if (light.duration > 0) {
+        } else if (light.duration != 0) {
             desc << "It is not lit.\n";
         } else {
             desc << "It has burned out.\n";

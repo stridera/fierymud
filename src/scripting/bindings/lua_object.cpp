@@ -98,6 +98,7 @@ void register_object_bindings(sol::state& lua) {
         "name", sol::property([](const Object& o) { return std::string(o.name()); }),
         "display_name", sol::property([](const Object& o) { return std::string(o.display_name()); }),
         "short_desc", sol::property([](const Object& o) { return std::string(o.short_description()); }),
+        "shortdesc", sol::property([](const Object& o) { return std::string(o.short_description()); }),  // alias for DG script compat
         "id", sol::property([](const Object& o) -> std::string {
             auto id = o.id();
             return fmt::format("{}:{}", id.zone_id(), id.local_id());

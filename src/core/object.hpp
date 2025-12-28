@@ -126,6 +126,7 @@ struct LightInfo {
     int duration = 0;           // Hours of light remaining (-1 = infinite)
     int brightness = 1;         // Light intensity
     bool lit = false;           // Currently providing light
+    bool permanent = false;     // Cannot be extinguished (always lit)
 };
 
 /** Liquid container properties */
@@ -552,6 +553,15 @@ public:
     
     /** Container inventory management */
     Result<void> add_item(std::shared_ptr<Object> item);
+
+    /** Force-add item bypassing capacity/weight checks (for zone resets)
+     * Zone resets need to place items regardless of container limits since
+     * capacity exists to govern player interaction, not world initialization.
+     * Example: A rose bush with capacity 0 (players can't put things in)
+     * should still have roses spawned on it during zone reset.
+     */
+    void add_item_force(std::shared_ptr<Object> item);
+
     std::shared_ptr<Object> remove_item(EntityId item_id);
     bool remove_item(const std::shared_ptr<Object>& item);
     std::shared_ptr<Object> find_item(EntityId item_id) const;

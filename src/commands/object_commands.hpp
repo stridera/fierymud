@@ -24,6 +24,7 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx);
 
 // Consumable and utility commands
 Result<CommandResult> cmd_light(const CommandContext &ctx);
+Result<CommandResult> cmd_extinguish(const CommandContext &ctx);
 Result<CommandResult> cmd_eat(const CommandContext &ctx);
 Result<CommandResult> cmd_drink(const CommandContext &ctx);
 

@@ -69,9 +69,16 @@ std::vector<std::string> parse_pg_array(const std::string& pg_array) {
 // Convert db::TriggerFlag to scripting TriggerFlag
 FieryMUD::TriggerFlag convert_flag(db::TriggerFlag db_flag) {
     switch (db_flag) {
+        // Common flags
         case db::TriggerFlag::Global:    return FieryMUD::TriggerFlag::GLOBAL;
         case db::TriggerFlag::Random:    return FieryMUD::TriggerFlag::RANDOM;
         case db::TriggerFlag::Command:   return FieryMUD::TriggerFlag::COMMAND;
+        case db::TriggerFlag::Load:      return FieryMUD::TriggerFlag::LOAD;
+        case db::TriggerFlag::Cast:      return FieryMUD::TriggerFlag::CAST;
+        case db::TriggerFlag::Leave:     return FieryMUD::TriggerFlag::LEAVE;
+        case db::TriggerFlag::Time:      return FieryMUD::TriggerFlag::TIME;
+
+        // MOB-specific flags
         case db::TriggerFlag::Speech:    return FieryMUD::TriggerFlag::SPEECH;
         case db::TriggerFlag::Act:       return FieryMUD::TriggerFlag::ACT;
         case db::TriggerFlag::Death:     return FieryMUD::TriggerFlag::DEATH;
@@ -82,15 +89,28 @@ FieryMUD::TriggerFlag convert_flag(db::TriggerFlag db_flag) {
         case db::TriggerFlag::Fight:     return FieryMUD::TriggerFlag::FIGHT;
         case db::TriggerFlag::HitPercent:return FieryMUD::TriggerFlag::HIT_PERCENT;
         case db::TriggerFlag::Bribe:     return FieryMUD::TriggerFlag::BRIBE;
-        case db::TriggerFlag::Load:      return FieryMUD::TriggerFlag::LOAD;
         case db::TriggerFlag::Memory:    return FieryMUD::TriggerFlag::MEMORY;
-        case db::TriggerFlag::Cast:      return FieryMUD::TriggerFlag::CAST;
-        case db::TriggerFlag::Leave:     return FieryMUD::TriggerFlag::LEAVE;
         case db::TriggerFlag::Door:      return FieryMUD::TriggerFlag::DOOR;
-        case db::TriggerFlag::Time:      return FieryMUD::TriggerFlag::TIME;
-        case db::TriggerFlag::Auto:      return FieryMUD::TriggerFlag::AUTO;
         case db::TriggerFlag::SpeechTo:  return FieryMUD::TriggerFlag::SPEECH_TO;
         case db::TriggerFlag::Look:      return FieryMUD::TriggerFlag::LOOK;
+        case db::TriggerFlag::Auto:      return FieryMUD::TriggerFlag::AUTO;
+
+        // OBJECT-specific flags
+        case db::TriggerFlag::Attack:    return FieryMUD::TriggerFlag::ATTACK;
+        case db::TriggerFlag::Defend:    return FieryMUD::TriggerFlag::DEFEND;
+        case db::TriggerFlag::Timer:     return FieryMUD::TriggerFlag::TIMER;
+        case db::TriggerFlag::Get:       return FieryMUD::TriggerFlag::GET;
+        case db::TriggerFlag::Drop:      return FieryMUD::TriggerFlag::DROP;
+        case db::TriggerFlag::Give:      return FieryMUD::TriggerFlag::GIVE;
+        case db::TriggerFlag::Wear:      return FieryMUD::TriggerFlag::WEAR;
+        case db::TriggerFlag::Remove:    return FieryMUD::TriggerFlag::REMOVE;
+        case db::TriggerFlag::Use:       return FieryMUD::TriggerFlag::USE;
+        case db::TriggerFlag::Consume:   return FieryMUD::TriggerFlag::CONSUME;
+
+        // WORLD-specific flags
+        case db::TriggerFlag::Reset:     return FieryMUD::TriggerFlag::RESET;
+        case db::TriggerFlag::Preentry:  return FieryMUD::TriggerFlag::PREENTRY;
+        case db::TriggerFlag::Postentry: return FieryMUD::TriggerFlag::POSTENTRY;
     }
     return FieryMUD::TriggerFlag::GLOBAL; // Default fallback
 }
@@ -100,11 +120,15 @@ FieryMUD::TriggerFlag parse_trigger_flags(const std::vector<std::string>& flag_s
     FieryMUD::TriggerFlag result{};
     for (const auto& str : flag_strings) {
         if (auto db_flag = db::trigger_flag_from_db(str)) {
-            result |= convert_flag(*db_flag);
+            auto converted = convert_flag(*db_flag);
+            result |= converted;
+            spdlog::debug("Parsed trigger flag '{}' -> db:{} -> fiery:{:#x}",
+                str, static_cast<int>(*db_flag), static_cast<std::uint32_t>(converted));
         } else {
             spdlog::warn("Unknown trigger flag: {}", str);
         }
     }
+    spdlog::debug("Final trigger flags: {:#x}", static_cast<std::uint32_t>(result));
     return result;
 }
 
@@ -118,29 +142,46 @@ FieryMUD::ScriptType parse_script_type(const std::string& type_str) {
     return FieryMUD::ScriptType::MOB;
 }
 
+// Column indices for trigger SELECT query (must match build_trigger_select order)
+namespace TriggerColumn {
+    constexpr int ID = 0;
+    constexpr int NAME = 1;
+    constexpr int ATTACH_TYPE = 2;
+    constexpr int FLAGS = 3;
+    constexpr int COMMANDS = 4;
+    constexpr int NUM_ARGS = 5;
+    constexpr int ARG_LIST = 6;
+    constexpr int VARIABLES = 7;
+    constexpr int ZONE_ID = 8;
+    constexpr int MOB_ZONE_ID = 9;
+    constexpr int MOB_ID = 10;
+    constexpr int OBJECT_ZONE_ID = 11;
+    constexpr int OBJECT_ID = 12;
+}
+
 // Parse a database row into TriggerData
 FieryMUD::TriggerDataPtr parse_trigger_row(const pqxx::row& row) {
     auto trigger = std::make_shared<FieryMUD::TriggerData>();
 
-    trigger->id = row[db::Triggers::ID.data()].as<int>();
-    trigger->name = row[db::Triggers::NAME.data()].as<std::string>();
-    trigger->attach_type = parse_script_type(row[db::Triggers::ATTACH_TYPE.data()].as<std::string>());
+    trigger->id = row[TriggerColumn::ID].as<int>();
+    trigger->name = row[TriggerColumn::NAME].as<std::string>();
+    trigger->attach_type = parse_script_type(row[TriggerColumn::ATTACH_TYPE].as<std::string>());
 
     // Parse flags array
-    std::string flags_str = row[db::Triggers::FLAGS.data()].as<std::string>("");
+    std::string flags_str = row[TriggerColumn::FLAGS].as<std::string>("");
     auto flag_strings = parse_pg_array(flags_str);
     trigger->flags = parse_trigger_flags(flag_strings);
 
     // Script code
-    trigger->commands = row[db::Triggers::COMMANDS.data()].as<std::string>("");
+    trigger->commands = row[TriggerColumn::COMMANDS].as<std::string>("");
 
     // Arguments
-    trigger->num_args = row[db::Triggers::NUM_ARGS.data()].as<int>(0);
-    std::string arg_list_str = row[db::Triggers::ARG_LIST.data()].as<std::string>("");
+    trigger->num_args = row[TriggerColumn::NUM_ARGS].as<int>(0);
+    std::string arg_list_str = row[TriggerColumn::ARG_LIST].as<std::string>("");
     trigger->arg_list = parse_pg_array(arg_list_str);
 
     // Variables (JSON field)
-    std::string variables_str = row[db::Triggers::VARIABLES.data()].as<std::string>("{}");
+    std::string variables_str = row[TriggerColumn::VARIABLES].as<std::string>("{}");
     try {
         trigger->variables = nlohmann::json::parse(variables_str);
     } catch (const nlohmann::json::exception& e) {
@@ -149,21 +190,21 @@ FieryMUD::TriggerDataPtr parse_trigger_row(const pqxx::row& row) {
     }
 
     // Attachment references
-    if (!row[db::Triggers::ZONE_ID.data()].is_null()) {
-        trigger->zone_id = row[db::Triggers::ZONE_ID.data()].as<int>();
+    if (!row[TriggerColumn::ZONE_ID].is_null()) {
+        trigger->zone_id = row[TriggerColumn::ZONE_ID].as<int>();
     }
 
-    if (!row[db::Triggers::MOB_ZONE_ID.data()].is_null() && !row[db::Triggers::MOB_ID.data()].is_null()) {
+    if (!row[TriggerColumn::MOB_ZONE_ID].is_null() && !row[TriggerColumn::MOB_ID].is_null()) {
         trigger->mob_id = EntityId(
-            static_cast<std::uint32_t>(row[db::Triggers::MOB_ZONE_ID.data()].as<int>()),
-            static_cast<std::uint32_t>(row[db::Triggers::MOB_ID.data()].as<int>())
+            static_cast<std::uint32_t>(row[TriggerColumn::MOB_ZONE_ID].as<int>()),
+            static_cast<std::uint32_t>(row[TriggerColumn::MOB_ID].as<int>())
         );
     }
 
-    if (!row[db::Triggers::OBJECT_ZONE_ID.data()].is_null() && !row[db::Triggers::OBJECT_ID.data()].is_null()) {
+    if (!row[TriggerColumn::OBJECT_ZONE_ID].is_null() && !row[TriggerColumn::OBJECT_ID].is_null()) {
         trigger->object_id = EntityId(
-            static_cast<std::uint32_t>(row[db::Triggers::OBJECT_ZONE_ID.data()].as<int>()),
-            static_cast<std::uint32_t>(row[db::Triggers::OBJECT_ID.data()].as<int>())
+            static_cast<std::uint32_t>(row[TriggerColumn::OBJECT_ZONE_ID].as<int>()),
+            static_cast<std::uint32_t>(row[TriggerColumn::OBJECT_ID].as<int>())
         );
     }
 
@@ -173,7 +214,7 @@ FieryMUD::TriggerDataPtr parse_trigger_row(const pqxx::row& row) {
 // Build the common SELECT query for triggers
 std::string build_trigger_select() {
     return fmt::format(
-        R"(SELECT "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}"
+        R"(SELECT "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}", "{}"
            FROM "{}")",
         db::Triggers::ID,
         db::Triggers::NAME,
@@ -231,12 +272,31 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_mob_triggers(
     pqxx::work& txn, int zone_id, int mob_id)
 {
     try {
+        // Query via MobTriggers junction table (many-to-many relationship)
         std::string query = fmt::format(
-            R"({} WHERE "{}" = 'MOB' AND "{}" = $1 AND "{}" = $2)",
-            build_trigger_select(),
+            R"(SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}"
+               FROM "{}" t
+               INNER JOIN "{}" mt ON t."{}" = mt."{}"
+               WHERE mt."{}" = $1 AND mt."{}" = $2)",
+            db::Triggers::ID,
+            db::Triggers::NAME,
             db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS,
+            db::Triggers::COMMANDS,
+            db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST,
+            db::Triggers::VARIABLES,
+            db::Triggers::ZONE_ID,
             db::Triggers::MOB_ZONE_ID,
-            db::Triggers::MOB_ID
+            db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID,
+            db::Triggers::OBJECT_ID,
+            db::Triggers::TABLE,
+            db::MobTriggers::TABLE,
+            db::Triggers::ID,
+            db::MobTriggers::TRIGGER_ID,
+            db::MobTriggers::MOB_ZONE_ID,
+            db::MobTriggers::MOB_ID
         );
 
         auto result = txn.exec_params(query, zone_id, mob_id);
@@ -245,7 +305,14 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_mob_triggers(
         triggers.reserve(result.size());
 
         for (const auto& row : result) {
-            triggers.push_back(parse_trigger_row(row));
+            auto trigger = parse_trigger_row(row);
+            // Override mob_id from junction table since a shared trigger
+            // might have NULL in the direct FK columns
+            trigger->mob_id = EntityId(
+                static_cast<std::uint32_t>(zone_id),
+                static_cast<std::uint32_t>(mob_id)
+            );
+            triggers.push_back(trigger);
         }
 
         spdlog::debug("Loaded {} triggers for mob {}:{}", triggers.size(), zone_id, mob_id);
@@ -264,12 +331,31 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_object_triggers(
     pqxx::work& txn, int zone_id, int object_id)
 {
     try {
+        // Query via ObjectTriggers junction table (many-to-many relationship)
         std::string query = fmt::format(
-            R"({} WHERE "{}" = 'OBJECT' AND "{}" = $1 AND "{}" = $2)",
-            build_trigger_select(),
+            R"(SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}"
+               FROM "{}" t
+               INNER JOIN "{}" ot ON t."{}" = ot."{}"
+               WHERE ot."{}" = $1 AND ot."{}" = $2)",
+            db::Triggers::ID,
+            db::Triggers::NAME,
             db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS,
+            db::Triggers::COMMANDS,
+            db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST,
+            db::Triggers::VARIABLES,
+            db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID,
+            db::Triggers::MOB_ID,
             db::Triggers::OBJECT_ZONE_ID,
-            db::Triggers::OBJECT_ID
+            db::Triggers::OBJECT_ID,
+            db::Triggers::TABLE,
+            db::ObjectTriggers::TABLE,
+            db::Triggers::ID,
+            db::ObjectTriggers::TRIGGER_ID,
+            db::ObjectTriggers::OBJECT_ZONE_ID,
+            db::ObjectTriggers::OBJECT_ID
         );
 
         auto result = txn.exec_params(query, zone_id, object_id);
@@ -278,7 +364,14 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_object_triggers(
         triggers.reserve(result.size());
 
         for (const auto& row : result) {
-            triggers.push_back(parse_trigger_row(row));
+            auto trigger = parse_trigger_row(row);
+            // Override object_id from junction table since a shared trigger
+            // might have NULL in the direct FK columns
+            trigger->object_id = EntityId(
+                static_cast<std::uint32_t>(zone_id),
+                static_cast<std::uint32_t>(object_id)
+            );
+            triggers.push_back(trigger);
         }
 
         spdlog::debug("Loaded {} triggers for object {}:{}", triggers.size(), zone_id, object_id);

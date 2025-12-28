@@ -133,7 +133,7 @@ class ModernMUDServer {
     // Core lifecycle
     Result<void> initialize();
     Result<void> start();
-    void stop();
+    void stop(bool exit_process = true);  // exit_process=false for restart
     void restart();
 
     // State management

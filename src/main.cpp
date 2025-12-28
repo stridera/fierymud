@@ -1,5 +1,8 @@
 #include "core/logging.hpp"
 #include "server/mud_server.hpp"
+#include "admin/admin_server.hpp"
+#include "admin/zone_reload_handler.hpp"
+#include "admin/player_handler.hpp"
 
 #include <atomic>
 #include <chrono>
@@ -10,14 +13,18 @@
 #include <memory>
 #include <thread>
 
-// Global server instance for signal handling
+// Global server instances for signal handling
 std::unique_ptr<ModernMUDServer> g_server;
+std::unique_ptr<fierymud::AdminServer> g_admin_server;
 
 void signal_handler(int signal) {
     switch (signal) {
     case SIGINT:
     case SIGTERM:
         std::cout << "\nReceived shutdown signal, stopping server...\n";
+        if (g_admin_server) {
+            g_admin_server->stop();
+        }
         if (g_server) {
             g_server->stop();
         }
@@ -146,6 +153,18 @@ int main(int argc, char *argv[]) {
         }
 
         std::cout << "Server running on port " << config.port << ". Press Ctrl+C to stop.\n";
+
+        // Start admin API server on port 8080
+        constexpr uint16_t admin_port = 8080;
+        g_admin_server = std::make_unique<fierymud::AdminServer>(admin_port, "127.0.0.1");
+
+        // Register admin handlers
+        // Note: WorldManager access would require getting it from ModernMUDServer
+        // For now, we register player handlers which use ModernMUDServer directly
+        fierymud::register_player_handlers(*g_admin_server, *g_server);
+
+        g_admin_server->start();
+        std::cout << "Admin API running on port " << admin_port << " (localhost only).\n";
 
         // Main server loop - wait for shutdown
         while (g_server->is_running()) {

@@ -6,6 +6,9 @@
 #include "../world/weather.hpp"
 #include "../world/world_manager.hpp"
 
+#include <algorithm>
+#include <sstream>
+
 namespace AdminCommands {
 
 // =============================================================================
@@ -504,6 +507,10 @@ Result<CommandResult> cmd_tstat(const CommandContext &ctx) {
         auto& engine = FieryMUD::ScriptEngine::instance();
         if (engine.is_initialized()) {
             ctx.send(fmt::format("\nBytecode cache entries: {}", engine.cache_size()));
+            if (engine.failed_cache_size() > 0) {
+                ctx.send(fmt::format("<b:yellow>Failed script cache: {}</> (scripts with compile errors)",
+                                     engine.failed_cache_size()));
+            }
         }
 
         if (!trigger_mgr.last_error().empty()) {
@@ -536,11 +543,35 @@ Result<CommandResult> cmd_tstat(const CommandContext &ctx) {
     // Show triggers for this entity
     ctx.send(fmt::format("<b:cyan>--- Triggers for Entity {}:{} ---</>", zone_id, local_id));
 
+    // Helper to display a trigger with its script
+    auto display_trigger = [&ctx](const FieryMUD::TriggerDataPtr& trigger) {
+        ctx.send(fmt::format("\n<b:green>Trigger:</> {} (ID: {})", trigger->name, trigger->id));
+        ctx.send(fmt::format("  <b:white>Type:</> {}",
+            trigger->attach_type == FieryMUD::ScriptType::MOB ? "MOB" :
+            trigger->attach_type == FieryMUD::ScriptType::OBJECT ? "OBJECT" : "WORLD"));
+        ctx.send(fmt::format("  <b:white>Flags:</> {}", trigger->flags_string()));
+        if (trigger->num_args > 0) {
+            std::string args_str;
+            for (size_t i = 0; i < trigger->arg_list.size(); ++i) {
+                if (i > 0) args_str += ", ";
+                args_str += trigger->arg_list[i];
+            }
+            ctx.send(fmt::format("  <b:white>Args:</> {} - {}", trigger->num_args, args_str));
+        }
+        ctx.send("  <b:white>Script:</>");
+        // Split script by lines and indent each line
+        std::istringstream script_stream(trigger->commands);
+        std::string line;
+        while (std::getline(script_stream, line)) {
+            ctx.send(fmt::format("    {}", line));
+        }
+    };
+
     auto mob_triggers = trigger_mgr.get_mob_triggers(entity_id);
     if (!mob_triggers.empty()) {
         ctx.send("<b:yellow>MOB triggers:</>");
         for (const auto& trigger : mob_triggers) {
-            ctx.send(fmt::format("  {} - flags: {}", trigger->name, trigger->flags_string()));
+            display_trigger(trigger);
         }
     }
 
@@ -548,7 +579,7 @@ Result<CommandResult> cmd_tstat(const CommandContext &ctx) {
     if (!obj_triggers.empty()) {
         ctx.send("<b:yellow>OBJECT triggers:</>");
         for (const auto& trigger : obj_triggers) {
-            ctx.send(fmt::format("  {} - flags: {}", trigger->name, trigger->flags_string()));
+            display_trigger(trigger);
         }
     }
 
@@ -557,7 +588,7 @@ Result<CommandResult> cmd_tstat(const CommandContext &ctx) {
         if (!world_triggers.empty()) {
             ctx.send("<b:yellow>WORLD triggers:</>");
             for (const auto& trigger : world_triggers) {
-                ctx.send(fmt::format("  {} - flags: {}", trigger->name, trigger->flags_string()));
+                display_trigger(trigger);
             }
         }
     }
@@ -666,6 +697,185 @@ Result<CommandResult> cmd_tlist(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Search Commands
+// =============================================================================
+
+Result<CommandResult> cmd_msearch(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("msearch <name>");
+        ctx.send("Search for mobiles by name. Shows name and room location.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string search_term = ctx.command.join_args();
+    // Convert to lowercase for case-insensitive search
+    std::string search_lower = search_term;
+    std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+    ctx.send(fmt::format("<b:cyan>--- Mobiles matching '{}' ---</>", search_term));
+
+    int count = 0;
+    const int MAX_RESULTS = 100;
+
+    WorldManager::instance().for_each_mobile([&](const std::shared_ptr<Mobile>& mobile) {
+        if (count >= MAX_RESULTS) return;
+
+        // Check name match (case-insensitive)
+        std::string mob_name = std::string(mobile->short_description());
+        std::string mob_name_lower = mob_name;
+        std::transform(mob_name_lower.begin(), mob_name_lower.end(), mob_name_lower.begin(), ::tolower);
+
+        // Also check keywords (iterate over the span)
+        bool keyword_match = false;
+        for (const auto& kw : mobile->keywords()) {
+            std::string kw_lower = kw;
+            std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+            if (kw_lower.find(search_lower) != std::string::npos) {
+                keyword_match = true;
+                break;
+            }
+        }
+
+        if (mob_name_lower.find(search_lower) != std::string::npos || keyword_match) {
+
+            auto room = mobile->current_room();
+            std::string room_str = room ?
+                fmt::format("{}:{} ({})", room->id().zone_id(), room->id().local_id(), room->name()) :
+                "nowhere";
+
+            ctx.send(fmt::format("  [{}:{}] {} - {}",
+                mobile->id().zone_id(), mobile->id().local_id(),
+                mob_name, room_str));
+            count++;
+        }
+    });
+
+    if (count == 0) {
+        ctx.send("No mobiles found matching that name.");
+    } else if (count >= MAX_RESULTS) {
+        ctx.send(fmt::format("(Showing first {} results, search may have more)", MAX_RESULTS));
+    } else {
+        ctx.send(fmt::format("Found {} mobile(s).", count));
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_osearch(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("osearch <name>");
+        ctx.send("Search for objects by name. Shows name, holder (if any), and room.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string search_term = ctx.command.join_args();
+    // Convert to lowercase for case-insensitive search
+    std::string search_lower = search_term;
+    std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+    ctx.send(fmt::format("<b:cyan>--- Objects matching '{}' ---</>", search_term));
+
+    int count = 0;
+    const int MAX_RESULTS = 100;
+
+    // Helper to check if object name matches
+    auto matches_search = [&search_lower](const Object& obj) -> bool {
+        std::string obj_name = std::string(obj.short_description());
+        std::string obj_name_lower = obj_name;
+        std::transform(obj_name_lower.begin(), obj_name_lower.end(), obj_name_lower.begin(), ::tolower);
+
+        // Check keywords (iterate over the span)
+        for (const auto& kw : obj.keywords()) {
+            std::string kw_lower = kw;
+            std::transform(kw_lower.begin(), kw_lower.end(), kw_lower.begin(), ::tolower);
+            if (kw_lower.find(search_lower) != std::string::npos) {
+                return true;
+            }
+        }
+
+        return obj_name_lower.find(search_lower) != std::string::npos;
+    };
+
+    // Helper to display an object
+    auto display_object = [&ctx, &count, MAX_RESULTS](
+        const Object& obj, std::string_view holder, std::string_view location) {
+        if (count >= MAX_RESULTS) return;
+
+        std::string holder_str = holder.empty() ? "" : fmt::format(" [held by {}]", holder);
+        ctx.send(fmt::format("  [{}:{}] {}{} - {}",
+            obj.id().zone_id(), obj.id().local_id(),
+            obj.short_description(), holder_str, location));
+        count++;
+    };
+
+    // Search objects in rooms
+    for (const auto& zone : WorldManager::instance().get_all_zones()) {
+        for (const auto& room : WorldManager::instance().get_rooms_in_zone(zone->id())) {
+            if (!room) continue;
+
+            std::string room_str = fmt::format("{}:{} ({})",
+                room->id().zone_id(), room->id().local_id(), room->name());
+
+            // Objects directly in room
+            for (const auto& obj : room->contents().objects) {
+                if (!obj || !matches_search(*obj)) continue;
+                display_object(*obj, "", room_str);
+
+                // Check container contents
+                if (obj->is_container()) {
+                    auto* container = dynamic_cast<Container*>(obj.get());
+                    if (container) {
+                        for (const auto& inner : container->get_contents()) {
+                            if (inner && matches_search(*inner)) {
+                                display_object(*inner, obj->short_description(), room_str);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Objects on actors in room
+            for (const auto& actor : room->contents().actors) {
+                if (!actor) continue;
+
+                std::string actor_name = std::string(actor->short_description());
+
+                for (const auto& obj : actor->inventory().get_all_items()) {
+                    if (!obj || !matches_search(*obj)) continue;
+                    display_object(*obj, actor_name, room_str);
+
+                    // Check container contents in inventory
+                    if (obj->is_container()) {
+                        auto* container = dynamic_cast<Container*>(obj.get());
+                        if (container) {
+                            for (const auto& inner : container->get_contents()) {
+                                if (inner && matches_search(*inner)) {
+                                    std::string holder = fmt::format("{}'s {}", actor_name, obj->short_description());
+                                    display_object(*inner, holder, room_str);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (count >= MAX_RESULTS) break;
+        }
+        if (count >= MAX_RESULTS) break;
+    }
+
+    if (count == 0) {
+        ctx.send("No objects found matching that name.");
+    } else if (count >= MAX_RESULTS) {
+        ctx.send(fmt::format("(Showing first {} results, search may have more)", MAX_RESULTS));
+    } else {
+        ctx.send(fmt::format("Found {} object(s).", count));
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -755,6 +965,19 @@ Result<void> register_commands() {
         .command("tlist", cmd_tlist)
         .category("Development")
         .privilege(PrivilegeLevel::Coder)
+        .build();
+
+    // Search commands for debugging
+    Commands()
+        .command("msearch", cmd_msearch)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
+        .command("osearch", cmd_osearch)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
         .build();
 
     return Success();

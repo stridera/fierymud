@@ -7,8 +7,11 @@
 #include "../core/shopkeeper.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
+#include "../database/trigger_queries.hpp"
 #include "../database/world_queries.hpp"
+#include "../scripting/trigger_manager.hpp"
 
+#include <spdlog/spdlog.h>
 #include <filesystem>
 #include <fstream>
 #include <algorithm>
@@ -159,6 +162,25 @@ Result<void> WorldManager::load_world() {
 
     // Rooms are now loaded from embedded zone data, no separate room directory needed
 
+    // Load triggers from database
+    spdlog::info("Loading triggers from database...");
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    if (trigger_mgr.is_initialized()) {
+        auto triggers_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
+            return TriggerQueries::load_all_triggers(txn);
+        });
+        if (triggers_result) {
+            for (auto& trigger : *triggers_result) {
+                trigger_mgr.register_trigger(std::move(trigger));
+            }
+            spdlog::info("Loaded {} triggers from database", triggers_result->size());
+        } else {
+            spdlog::warn("Failed to load triggers: {}", triggers_result.error().message);
+        }
+    } else {
+        spdlog::warn("TriggerManager not initialized - skipping trigger load");
+    }
+
     // Load board data from database
     board_system().load_boards();
     
@@ -282,7 +304,7 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
                     // Add room ID to zone's room list
                     zone_shared->add_room(room->id());
                     
-                    logger->debug("Loaded room: {} ({}) in zone {}", room->name(), room->id(), zone_name);
+                    logger->trace("Loaded room: {} ({}) in zone {}", room->name(), room->id(), zone_name);
                 } else {
                     logger->error("Failed to parse room in zone {}: {}", zone_name, room_result.error().message);
                 }
@@ -290,7 +312,7 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
                 // Room ID reference - just add to zone's room list
                 EntityId room_id{room_json.get<std::uint64_t>()};
                 zone_shared->add_room(room_id);
-                logger->debug("Referenced room: {} in zone {}", room_id, zone_name);
+                logger->trace("Referenced room: {} in zone {}", room_id, zone_name);
             } else {
                 logger->warn("Invalid room entry in zone {}: expected object or number", zone_name);
             }
@@ -309,7 +331,7 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
                 object_prototypes_.push_back(std::move(object));
                 stats_.objects_loaded++;
                 
-                logger->debug("Loaded object prototype: {} ({}) in zone {}", 
+                logger->trace("Loaded object prototype: {} ({}) in zone {}",
                              object_prototypes_.back()->name(), object_prototypes_.back()->id(), zone_name);
             } else {
                 logger->error("Failed to parse object in zone {}: {}", zone_name, object_result.error().message);
@@ -340,7 +362,7 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
                 mobile_prototypes_.push_back(std::move(mob));
                 stats_.mobiles_loaded++;
                 
-                logger->debug("Loaded mobile prototype: {} ({}) in zone {}", 
+                logger->trace("Loaded mobile prototype: {} ({}) in zone {}",
                              mobile_prototypes_.back()->name(), mob_id, zone_name);
             } else {
                 logger->error("Failed to parse mobile {} in zone {}: {}", 
@@ -1461,6 +1483,7 @@ Result<void> WorldManager::load_zones_from_database() {
                     cmd.max_count = reset.max_instances;
                     cmd.if_flag = 0;  // Always execute
                     cmd.comment = reset.comment;
+                    cmd.reset_group = reset.id;  // Unique ID links this mob to its equipment
 
                     zone->add_command(cmd);
 
@@ -1489,6 +1512,7 @@ Result<void> WorldManager::load_zones_from_database() {
                             equip_cmd.entity_id = equip.object_id;
                             equip_cmd.container_id = reset.mob_id;  // The mobile to equip on
                             equip_cmd.if_flag = 1;  // Only if previous command succeeded
+                            equip_cmd.reset_group = reset.id;  // Same group as its Load_Mobile
 
                             zone->add_command(equip_cmd);
                         }
@@ -1502,7 +1526,7 @@ Result<void> WorldManager::load_zones_from_database() {
                 logger->warn("Failed to load object resets for zone {}: {}",
                             zone_id, obj_resets_result.error().message);
             } else {
-                logger->info("Loaded {} object resets for zone {}", obj_resets_result->size(), zone_id);
+                logger->trace("Loaded {} object resets for zone {}", obj_resets_result->size(), zone_id);
 
                 // Helper lambda to convert ObjectResetContentData to ObjectContent recursively
                 std::function<ObjectContent(const WorldQueries::ObjectResetContentData&)> convert_content;
@@ -1529,12 +1553,6 @@ Result<void> WorldManager::load_zones_from_database() {
                     // Convert hierarchical contents to ObjectContent tree
                     for (const auto& content_data : reset.contents) {
                         cmd.contents.push_back(convert_content(content_data));
-                    }
-
-                    // Debug: Log each object reset being added
-                    if (zone_id == 30) {
-                        logger->info("Zone 30: Adding object reset {} -> room {} (contents={})",
-                                    reset.object_id, reset.room_id, cmd.contents.size());
                     }
 
                     zone->add_command(cmd);
@@ -2320,9 +2338,7 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
 }
 
 std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, EntityId room_id) {
-    auto logger = Log::database();  // Temporarily use database logger for visibility
-
-    logger->info("spawn_object_for_zone called: object {} -> room {}", object_id, room_id);
+    auto logger = Log::game();
 
     // Find object prototype
     auto object_it = objects_.find(object_id);
@@ -2385,7 +2401,7 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     // Used by hierarchical spawning where the caller will place the object in a container
     if (room_id == INVALID_ENTITY_ID) {
         auto shared_object = std::shared_ptr<Object>(new_object.release());
-        logger->debug("Created object {} without placement (for container nesting)", object_id);
+        logger->trace("Created object '{}' ({}) for container nesting", prototype->short_description(), object_id);
         return shared_object;
     }
 
@@ -2415,13 +2431,15 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
 
                 auto give_result = target_mobile->give_item(shared_object);
                 if (!give_result) {
-                    logger->error("Failed to give object {} to mobile {}: {}",
-                                object_id, room_id, give_result.error().message);
+                    logger->warn("Failed to give object '{}' ({}) to mobile '{}' ({}): {}",
+                                prototype->short_description(), object_id,
+                                target_mobile->display_name(), room_id,
+                                give_result.error().message);
                     return nullptr;
                 }
 
-                logger->debug("Successfully gave object {} to mobile {} inventory",
-                             object_id, room_id);
+                logger->trace("Gave '{}' ({}) to mobile '{}' inventory",
+                             prototype->short_description(), object_id, target_mobile->display_name());
                 return shared_object;
             }
         }
@@ -2440,7 +2458,8 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(mobile_id);
         
         if (!target_mobile) {
-            logger->error("Cannot equip object {} - mobile {} not found", object_id, mobile_id);
+            logger->warn("Cannot equip object '{}' ({}) - mobile {} not found",
+                        prototype->short_description(), object_id, mobile_id);
             return nullptr;
         }
         
@@ -2455,19 +2474,23 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         // Try to equip the item on the mobile
         auto equip_result = target_mobile->equipment().equip_item(shared_object);
         if (!equip_result) {
-            logger->warn("Failed to equip object {} on mobile {}: {}", 
-                        object_id, mobile_id, equip_result.error().message);
+            logger->debug("Failed to equip '{}' ({}) on '{}' in slot {}: {} - adding to inventory",
+                        prototype->short_description(), object_id,
+                        target_mobile->display_name(), magic_enum::enum_name(equip_slot),
+                        equip_result.error().message);
             // If equip fails, add to inventory instead
             auto give_result = target_mobile->give_item(shared_object);
             if (!give_result) {
-                logger->error("Failed to give object {} to mobile {}: {}", 
-                            object_id, mobile_id, give_result.error().message);
+                logger->warn("Failed to give object '{}' ({}) to mobile '{}': {}",
+                            prototype->short_description(), object_id,
+                            target_mobile->display_name(), give_result.error().message);
                 return nullptr;
             }
         }
         
-        logger->debug("Successfully equipped object {} on mobile {} in slot {}",
-                     object_id, mobile_id, potential_slot);
+        logger->trace("Equipped '{}' ({}) on mobile '{}' in slot {}",
+                     prototype->short_description(), object_id, target_mobile->display_name(),
+                     magic_enum::enum_name(equip_slot));
         return shared_object;
     }
 
@@ -2476,11 +2499,14 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     if (room) {
         auto shared_object = std::shared_ptr<Object>(new_object.release());
         room->add_object(shared_object);
+        logger->trace("Spawned '{}' ({}) in room '{}' ({})",
+                     prototype->short_description(), object_id, room->name(), room_id);
         return shared_object;
     }
 
-    // Room not found
-    logger->error("Cannot place object {} - room {} not found", object_id, room_id);
+    // Room not found - this is actually an error since we expected a valid room
+    logger->warn("Cannot place object '{}' ({}) - room {} not found",
+                prototype->short_description(), object_id, room_id);
     return nullptr;
 }
 

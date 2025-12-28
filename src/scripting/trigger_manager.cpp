@@ -226,6 +226,7 @@ void TriggerManager::setup_lua_context(sol::state_view lua, const ScriptContext&
 
     if (context.amount()) {
         lua["amount"] = *context.amount();
+        lua["damage"] = *context.amount();  // Alias for ATTACK/DEFEND triggers
     }
 
     // Load trigger-specific variables from JSON
@@ -252,6 +253,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
     }
 
     ++stats_.total_executions;
+    spdlog::debug("Executing trigger '{}' (id:{})", trigger->name, trigger->id);
 
     auto& engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
@@ -280,8 +282,58 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
     // Create coroutine from the loaded function
     sol::coroutine coro(thread.state(), *loaded);
 
-    // Run the coroutine
-    auto result = coro();
+    // Install timeout protection before running the script
+    engine.install_timeout_hook(thread.state());
+
+    // Run the coroutine with exception handling
+    sol::protected_function_result result;
+    try {
+        result = coro();
+    } catch (const sol::error& e) {
+        // Always remove the timeout hook, even on error
+        engine.remove_timeout_hook(thread.state());
+
+        // Check if this was a timeout
+        if (engine.timed_out()) {
+            last_error_ = fmt::format("Trigger '{}' (id:{}) execution timeout: exceeded {} instructions",
+                                       trigger->name, trigger->id, engine.max_instructions());
+            spdlog::error("{}", last_error_);
+            ++stats_.failed_executions;
+            return TriggerResult::Error;
+        }
+
+        last_error_ = fmt::format("Trigger '{}' (id:{}) sol exception: {}",
+                                   trigger->name, trigger->id, e.what());
+        spdlog::error("{}", last_error_);
+        ++stats_.failed_executions;
+        return TriggerResult::Error;
+    } catch (const std::exception& e) {
+        engine.remove_timeout_hook(thread.state());
+        last_error_ = fmt::format("Trigger '{}' (id:{}) C++ exception: {}",
+                                   trigger->name, trigger->id, e.what());
+        spdlog::error("{}", last_error_);
+        ++stats_.failed_executions;
+        return TriggerResult::Error;
+    } catch (...) {
+        engine.remove_timeout_hook(thread.state());
+        last_error_ = fmt::format("Trigger '{}' (id:{}) unknown exception",
+                                   trigger->name, trigger->id);
+        spdlog::error("{}", last_error_);
+        ++stats_.failed_executions;
+        return TriggerResult::Error;
+    }
+
+    // Remove timeout hook after successful execution
+    engine.remove_timeout_hook(thread.state());
+
+    // Check for timeout (luaL_error may result in invalid result rather than exception)
+    if (engine.timed_out()) {
+        last_error_ = fmt::format("Trigger '{}' (id:{}) execution timeout: exceeded {} instructions",
+                                   trigger->name, trigger->id, engine.max_instructions());
+        spdlog::error("{}", last_error_);
+        ++stats_.failed_executions;
+        return TriggerResult::Error;
+    }
 
     if (!result.valid()) {
         sol::error err = result;
@@ -358,9 +410,13 @@ TriggerResult TriggerManager::dispatch_command(
 
     // Get the entity ID for lookup
     auto entity_id = owner->id();
+    spdlog::debug("dispatch_command: looking up triggers for entity {}:{}",
+                  entity_id.zone_id(), entity_id.local_id());
     auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::COMMAND);
+    spdlog::debug("dispatch_command: found {} COMMAND triggers", triggers.size());
 
     for (const auto& trigger : triggers) {
+        spdlog::debug("dispatch_command: executing trigger '{}'", trigger->name);
         auto context = ScriptContext::Builder()
             .set_trigger(trigger)
             .set_owner(owner)
@@ -371,6 +427,8 @@ TriggerResult TriggerManager::dispatch_command(
             .build();
 
         auto result = execute_trigger(trigger, context);
+        spdlog::debug("dispatch_command: trigger '{}' returned {}",
+                      trigger->name, static_cast<int>(result));
         if (result == TriggerResult::Halt) {
             return TriggerResult::Halt;
         }
@@ -380,6 +438,7 @@ TriggerResult TriggerManager::dispatch_command(
         }
     }
 
+    spdlog::debug("dispatch_command: finished, returning Continue");
     return TriggerResult::Continue;
 }
 
@@ -617,9 +676,14 @@ TriggerResult TriggerManager::dispatch_fight(
     }
 
     auto entity_id = owner->id();
+    spdlog::info("dispatch_fight: checking triggers for {} (id:{}:{})",
+                 owner->name(), entity_id.zone_id(), entity_id.local_id());
+
     auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::FIGHT);
+    spdlog::info("dispatch_fight: found {} FIGHT triggers", triggers.size());
 
     for (const auto& trigger : triggers) {
+        spdlog::info("dispatch_fight: executing trigger '{}'", trigger->name);
         auto context = ScriptContext::Builder()
             .set_trigger(trigger)
             .set_owner(owner)
@@ -628,11 +692,13 @@ TriggerResult TriggerManager::dispatch_fight(
             .build();
 
         auto result = execute_trigger(trigger, context);
+        spdlog::info("dispatch_fight: trigger '{}' returned {}", trigger->name, static_cast<int>(result));
         if (result == TriggerResult::Halt) {
             return TriggerResult::Halt;
         }
     }
 
+    spdlog::info("dispatch_fight: done");
     return TriggerResult::Continue;
 }
 
@@ -786,6 +852,79 @@ TriggerResult TriggerManager::dispatch_time(
 
         execute_trigger(trigger, context);
         // Time triggers don't halt
+    }
+
+    return TriggerResult::Continue;
+}
+
+// ============================================================================
+// OBJECT Trigger Dispatch
+// ============================================================================
+
+TriggerResult TriggerManager::dispatch_attack(
+    std::shared_ptr<Object> weapon,
+    std::shared_ptr<Actor> attacker,
+    std::shared_ptr<Actor> target,
+    int damage,
+    std::shared_ptr<Room> room)
+{
+    if (!initialized_ || !weapon) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = weapon->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::ATTACK);
+
+    for (const auto& trigger : triggers) {
+        spdlog::debug("ATTACK trigger '{}' firing for weapon {}:{}",
+                       trigger->name, entity_id.zone_id(), entity_id.local_id());
+
+        auto context = ScriptContext::Builder()
+            .set_trigger(trigger)
+            .set_owner(weapon)        // self = the weapon
+            .set_actor(attacker)      // actor = who's wielding the weapon
+            .set_target(target)       // target = who's being attacked
+            .set_room(room)           // room = where combat is happening
+            .set_amount(damage)       // amount/damage = damage dealt
+            .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_defend(
+    std::shared_ptr<Object> armor,
+    std::shared_ptr<Actor> defender,
+    std::shared_ptr<Actor> attacker,
+    int damage,
+    std::shared_ptr<Room> room)
+{
+    if (!initialized_ || !armor) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = armor->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::DEFEND);
+
+    for (const auto& trigger : triggers) {
+        auto context = ScriptContext::Builder()
+            .set_trigger(trigger)
+            .set_owner(armor)         // self = the armor/shield
+            .set_actor(defender)      // actor = who's wearing the armor
+            .set_target(attacker)     // target = who's attacking
+            .set_room(room)           // room = where combat is happening
+            .set_amount(damage)       // amount/damage = incoming damage
+            .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
     }
 
     return TriggerResult::Continue;

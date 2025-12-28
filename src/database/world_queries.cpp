@@ -1146,17 +1146,23 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                         if (values_json.contains("Brightness")) {
                             light.brightness = values_json["Brightness"].get<int>();
                         }
+                        // Permanent lights cannot be extinguished
+                        if (values_json.contains("Permanent")) {
+                            light.permanent = values_json["Permanent"].get<bool>();
+                            if (light.permanent) {
+                                light.lit = true;  // Permanent lights are always lit
+                            }
+                        }
                         obj->set_light_info(light);
                     }
 
                     // Parse board number for message boards
                     if (obj_type == ObjectType::Board) {
-                        logger->info("Loading board object ({}, {}), values: {}",
-                                    obj_zone_id, obj_id, values_str);
+                        logger->trace("Loading board object ({}, {})", obj_zone_id, obj_id);
                         if (values_json.is_object() && values_json.contains("Pages")) {
                             int board_num = values_json["Pages"].get<int>();
                             obj->set_board_number(board_num);
-                            logger->info("Set board number {} for board ({}, {})",
+                            logger->trace("Set board number {} for board ({}, {})",
                                         board_num, obj_zone_id, obj_id);
                         }
                     }
@@ -1393,6 +1399,13 @@ Result<std::unique_ptr<Object>> load_object(
                         // Brightness defaults to 1 if not specified
                         if (values_json.contains("Brightness")) {
                             light.brightness = values_json["Brightness"].get<int>();
+                        }
+                        // Permanent lights cannot be extinguished
+                        if (values_json.contains("Permanent")) {
+                            light.permanent = values_json["Permanent"].get<bool>();
+                            if (light.permanent) {
+                                light.lit = true;  // Permanent lights are always lit
+                            }
                         }
                         obj->set_light_info(light);
                     }
@@ -3598,7 +3611,7 @@ Result<void> lock_user_account(
             WHERE id = $1
         )", user_id, timestamp);
 
-        logger->info("Locked user account {} until {}", user_id, timestamp);
+        logger->debug("Locked user account {} until {}", user_id, timestamp);
         return {};
 
     } catch (const pqxx::sql_error& e) {
@@ -3622,7 +3635,7 @@ Result<void> link_character_to_user(
             WHERE id = $1
         )", character_id, user_id);
 
-        logger->info("Linked character {} to user {}", character_id, user_id);
+        logger->debug("Linked character {} to user {}", character_id, user_id);
         return {};
 
     } catch (const pqxx::sql_error& e) {
@@ -3646,7 +3659,7 @@ Result<void> save_account_wealth(
             WHERE id = $1
         )", user_id, account_wealth);
 
-        logger->info("Saved account wealth {} for user {}", account_wealth, user_id);
+        logger->debug("Saved account wealth {} for user {}", account_wealth, user_id);
         return {};
 
     } catch (const pqxx::sql_error& e) {
@@ -4185,7 +4198,7 @@ Result<int> store_account_item(
         );
 
         int new_id = result[0]["id"].as<int>();
-        logger->info("Stored account item {} for user {} (object {},{})",
+        logger->debug("Stored account item {} for user {} (object {},{})",
             new_id, user_id, object_id.zone_id(), object_id.local_id());
 
         return new_id;
@@ -4253,7 +4266,7 @@ Result<AccountItemData> remove_account_item(
             DELETE FROM "account_items" WHERE id = $1
         )", item_id);
 
-        logger->info("Removed account item {} from user {}", item_id, item.user_id);
+        logger->debug("Removed account item {} from user {}", item_id, item.user_id);
         return item;
 
     } catch (const pqxx::sql_error& e) {
@@ -4551,7 +4564,7 @@ Result<int> send_player_mail(
     int attached_platinum,
     const std::optional<EntityId>& attached_object_id) {
     auto logger = Log::database();
-    logger->info("Sending mail from {} to {}", sender_character_id, recipient_character_id);
+    logger->debug("Sending mail from {} to {}", sender_character_id, recipient_character_id);
 
     try {
         std::optional<int> obj_zone_id;
@@ -4582,7 +4595,7 @@ Result<int> send_player_mail(
         );
 
         int new_id = result[0]["id"].as<int>();
-        logger->info("Mail sent successfully with ID {}", new_id);
+        logger->debug("Mail sent successfully with ID {}", new_id);
         return new_id;
 
     } catch (const pqxx::sql_error& e) {
@@ -5151,7 +5164,7 @@ Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work& txn) {
             boards.push_back(std::move(board));
         }
 
-        logger->info("Loaded {} boards from database", boards.size());
+        logger->debug("Loaded {} boards from database", boards.size());
         return boards;
 
     } catch (const pqxx::sql_error& e) {
@@ -5283,7 +5296,7 @@ Result<int> post_board_message(
         }
 
         int message_id = result[0]["id"].as<int>();
-        logger->info("Posted message {} to board {} by {}", message_id, board_id, poster);
+        logger->debug("Posted message {} to board {} by {}", message_id, board_id, poster);
         return message_id;
 
     } catch (const pqxx::sql_error& e) {
@@ -5303,7 +5316,7 @@ Result<bool> delete_board_message(pqxx::work& txn, int message_id) {
 
         bool deleted = result.affected_rows() > 0;
         if (deleted) {
-            logger->info("Deleted board message {}", message_id);
+            logger->debug("Deleted board message {}", message_id);
         }
         return deleted;
 

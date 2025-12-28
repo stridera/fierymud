@@ -473,6 +473,16 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
 
     fire_event(CombatEvent(CombatEvent::EventType::DamageDealt, attacker, target));
 
+    // Execute ATTACK trigger for wielded weapon
+    auto& trigger_mgr = TriggerManager::instance();
+    if (trigger_mgr.is_initialized()) {
+        auto weapon = attacker->equipment().get_equipped(EquipSlot::Wield);
+        if (weapon) {
+            auto room = attacker->current_room();
+            trigger_mgr.dispatch_attack(weapon, attacker, target, damage_int, room);
+        }
+    }
+
     // Check HIT_PERCENT triggers for mobs
     if (target_stats.max_hit_points > 0) {
         int hp_percent = (target_stats.hit_points * 100) / target_stats.max_hit_points;
@@ -512,13 +522,9 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     if (target_stats.hit_points <= 0) {
         target_stats.hit_points = 0;
 
-        Log::info("DEATH: {} killed {} - ending combat", attacker->name(), target->name());
-
         CombatManager::end_combat(attacker);
         CombatManager::end_combat(target);
         attacker->set_position(Position::Standing);
-
-        Log::info("DEATH: Combat ended");
 
         long exp_gain = calculate_experience_gain(*attacker, *target);
         result.experience_gained = exp_gain;
@@ -729,9 +735,6 @@ void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<
 
     // Add combat pair
     active_combats_.emplace_back(actor1, actor2);
-
-    Log::info("Combat started between {} and {} - {} active combats",
-               actor1->name(), actor2->name(), active_combats_.size());
 }
 
 void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
@@ -747,7 +750,6 @@ void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
                 if (combat.actor2 && combat.actor2->is_alive()) {
                     combat.actor2->set_position(Position::Standing);
                 }
-                Log::info("Ending combat involving {}", actor->name());
             }
             return involves;
         });
@@ -762,8 +764,6 @@ bool CombatManager::process_combat_rounds() {
 
     for (auto& combat : active_combats_) {
         if (combat.is_ready_for_next_round()) {
-            Log::info("Executing combat round between {} and {}",
-                      combat.actor1->name(), combat.actor2->name());
             execute_round(combat);
             combat.update_last_round();
             rounds_processed = true;
@@ -816,7 +816,6 @@ void CombatManager::cleanup_invalid_combats() {
             }
 
             if (invalid) {
-                Log::info("Cleaning up invalid combat pair");
                 if (combat.actor1 && combat.actor1->is_alive()) {
                     combat.actor1->set_position(Position::Standing);
                 }
@@ -834,11 +833,17 @@ void CombatManager::cleanup_invalid_combats() {
 void CombatManager::execute_round(CombatPair& combat_pair) {
     if (!combat_pair.actor1 || !combat_pair.actor2) return;
 
+    Log::info("execute_round: starting between {} and {}",
+              combat_pair.actor1->name(), combat_pair.actor2->name());
+
     // Execute FIGHT triggers for both combatants (allows scripted combat behavior)
     auto& trigger_mgr = TriggerManager::instance();
     if (trigger_mgr.is_initialized()) {
+        Log::info("execute_round: calling dispatch_fight for actor1");
         trigger_mgr.dispatch_fight(combat_pair.actor1, combat_pair.actor2);
+        Log::info("execute_round: calling dispatch_fight for actor2");
         trigger_mgr.dispatch_fight(combat_pair.actor2, combat_pair.actor1);
+        Log::info("execute_round: FIGHT triggers done");
     }
 
     // Random initiative
@@ -858,11 +863,6 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
         auto result1 = CombatSystem::perform_attack(first_attacker, first_target);
 
         if (auto room = first_attacker->current_room()) {
-            Log::info("Combat round - {}: {} | {}: {} | Room: {}",
-                      first_attacker->name(), result1.attacker_message,
-                      first_target->name(), result1.target_message,
-                      result1.room_message);
-
             first_attacker->send_message(result1.attacker_message + "\r\n");
             first_target->send_message(result1.target_message + "\r\n");
 
@@ -885,11 +885,6 @@ void CombatManager::execute_round(CombatPair& combat_pair) {
         auto result2 = CombatSystem::perform_attack(first_target, first_attacker);
 
         if (auto room = first_target->current_room()) {
-            Log::info("Combat counter - {}: {} | {}: {} | Room: {}",
-                      first_target->name(), result2.attacker_message,
-                      first_attacker->name(), result2.target_message,
-                      result2.room_message);
-
             first_target->send_message(result2.attacker_message + "\r\n");
             first_attacker->send_message(result2.target_message + "\r\n");
 

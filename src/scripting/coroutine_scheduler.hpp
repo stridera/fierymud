@@ -14,6 +14,7 @@
 #include <sol/sol.hpp>
 
 #include <asio.hpp>
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
@@ -135,8 +136,8 @@ private:
      */
     void remove_coroutine(std::uint64_t coroutine_id);
 
-    // State
-    bool initialized_ = false;
+    // State (initialized_ is atomic for thread-safe access from timer callbacks)
+    std::atomic<bool> initialized_{false};
     asio::io_context* io_context_ = nullptr;
     asio::strand<asio::io_context::executor_type>* strand_ = nullptr;
 

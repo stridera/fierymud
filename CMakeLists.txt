@@ -83,6 +83,28 @@ CPMAddPackage(
     GIT_TAG 7.9.2
 )
 
+# Redis C client library for event publishing (Muditor bridge)
+find_package(PkgConfig QUIET)
+if(PkgConfig_FOUND)
+    pkg_check_modules(HIREDIS hiredis)
+endif()
+
+if(NOT HIREDIS_FOUND)
+    # Fall back to CPM if system hiredis not found
+    CPMAddPackage(
+        NAME hiredis
+        GITHUB_REPOSITORY redis/hiredis
+        GIT_TAG v1.2.0
+        OPTIONS
+            "DISABLE_TESTS ON"
+            "ENABLE_SSL OFF"
+    )
+    if(hiredis_ADDED)
+        set(HIREDIS_LIBRARIES hiredis)
+        set(HIREDIS_INCLUDE_DIRS ${hiredis_SOURCE_DIR})
+    endif()
+endif()
+
 # Standalone Asio for networking with SSL support
 find_package(OpenSSL REQUIRED)
 find_package(PostgreSQL REQUIRED)
@@ -199,6 +221,12 @@ set(SOURCES
     src/scripting/bindings/lua_room.cpp
     src/scripting/bindings/lua_object.cpp
     src/database/trigger_queries.cpp
+    # Event publishing for Muditor bridge
+    src/events/event_publisher.cpp
+    # Admin API for Muditor remote management
+    src/admin/admin_server.cpp
+    src/admin/zone_reload_handler.cpp
+    src/admin/player_handler.cpp
 )
 
 # Test sources (without main.cpp and networking)
@@ -246,7 +274,10 @@ set(SIMPLE_TEST_SOURCES
 # Modern FieryMUD Server (fierymud)
 add_executable(fierymud ${SOURCES})
 
-target_include_directories(fierymud PRIVATE src)
+target_include_directories(fierymud PRIVATE
+    src
+    ${HIREDIS_INCLUDE_DIRS}
+)
 
 target_link_libraries(fierymud PRIVATE
     fmt::fmt
@@ -261,6 +292,7 @@ target_link_libraries(fierymud PRIVATE
     crypt
     lua
     sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(fierymud PRIVATE
@@ -308,6 +340,7 @@ set(CORE_TEST_SOURCES
     src/database/social_queries.cpp
     src/database/db_parsing_utils.cpp
     src/database/game_data_cache.cpp
+    src/events/event_publisher.cpp
     src/net/player_connection.cpp
     src/net/tls_context.cpp
     src/net/mssp_handler.cpp
@@ -389,10 +422,10 @@ add_executable(tests
 )
 
 # Configure unit tests executable
-target_include_directories(unit_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
+target_include_directories(unit_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
 
 # Configure stable tests executable
-target_include_directories(stable_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
+target_include_directories(stable_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(unit_tests PRIVATE
     fmt::fmt
@@ -408,6 +441,7 @@ target_link_libraries(unit_tests PRIVATE
     crypt
     lua
     sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(unit_tests PRIVATE
@@ -437,6 +471,7 @@ target_link_libraries(stable_tests PRIVATE
     crypt
     lua
     sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(stable_tests PRIVATE
@@ -453,7 +488,7 @@ target_compile_options(stable_tests PRIVATE
 )
 
 # Configure integration tests executable
-target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
+target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(integration_tests PRIVATE
     fmt::fmt
@@ -469,6 +504,7 @@ target_link_libraries(integration_tests PRIVATE
     crypt
     lua
     sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(integration_tests PRIVATE
@@ -485,7 +521,7 @@ target_compile_options(integration_tests PRIVATE
 )
 
 # Configure combined tests executable (legacy)
-target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text)
+target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(tests PRIVATE
     fmt::fmt
@@ -501,6 +537,7 @@ target_link_libraries(tests PRIVATE
     crypt
     lua
     sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(tests PRIVATE

@@ -105,6 +105,7 @@ public:
     // Lifecycle management
     Result<void> initialize(bool is_test_mode = false);
     Result<void> start();
+    void begin_shutdown();  // Signal shutdown before network cleanup
     void stop();
     bool is_running() const { return running_.load(); }
 

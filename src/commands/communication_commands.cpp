@@ -3,6 +3,7 @@
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../events/event_publisher.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 
@@ -59,6 +60,17 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
 
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Say, "say");
 
+    // Publish to Muditor bridge (local room chat - include room info)
+    auto event = fierymud::events::GameEvent::chat_event(
+        fierymud::events::GameEventType::CHAT_SAY,
+        std::string(ctx.actor->name()),
+        std::string(ctx.args_from(0)));
+    if (auto room = ctx.actor->current_room()) {
+        event.zone_id = static_cast<int>(room->id().zone_id());
+        event.room_vnum = static_cast<int>(room->id().local_id());
+    }
+    fierymud::events::EventPublisher::instance().publish(std::move(event));
+
     return CommandResult::Success;
 }
 
@@ -100,6 +112,13 @@ Result<CommandResult> cmd_tell(const CommandContext &ctx) {
         sender_player->add_tell_to_history(fmt::format("You told {}: {}", target->display_name(), message));
     }
 
+    // Publish to Muditor bridge (private message with target)
+    fierymud::events::EventPublisher::instance().publish_chat(
+        fierymud::events::GameEventType::CHAT_TELL,
+        ctx.actor->name(),
+        ctx.args_from(1),
+        target->name());
+
     return CommandResult::Success;
 }
 
@@ -114,6 +133,17 @@ Result<CommandResult> cmd_emote(const CommandContext &ctx) {
 
     // Send to everyone in the room including self - emotes show the same message to everyone
     ctx.send_to_room(emote_msg, false); // Include self - everyone sees the same thing
+
+    // Publish to Muditor bridge (emote with room info)
+    auto event = fierymud::events::GameEvent::chat_event(
+        fierymud::events::GameEventType::CHAT_EMOTE,
+        std::string(ctx.actor->name()),
+        std::string(ctx.args_from(0)));
+    if (auto room = ctx.actor->current_room()) {
+        event.zone_id = static_cast<int>(room->id().zone_id());
+        event.room_vnum = static_cast<int>(room->id().local_id());
+    }
+    fierymud::events::EventPublisher::instance().publish(std::move(event));
 
     return CommandResult::Success;
 }
@@ -161,6 +191,12 @@ Result<CommandResult> cmd_shout(const CommandContext &ctx) {
     std::string message = sanitize_player_message(ctx.args_from(0));
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Broadcast, "shout");
 
+    // Publish to Muditor bridge
+    fierymud::events::EventPublisher::instance().publish_chat(
+        fierymud::events::GameEventType::CHAT_SHOUT,
+        ctx.actor->name(),
+        ctx.args_from(0));
+
     return CommandResult::Success;
 }
 
@@ -172,6 +208,12 @@ Result<CommandResult> cmd_gossip(const CommandContext &ctx) {
 
     std::string message = sanitize_player_message(ctx.args_from(0));
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Channel, "gossip");
+
+    // Publish to Muditor bridge
+    fierymud::events::EventPublisher::instance().publish_chat(
+        fierymud::events::GameEventType::CHAT_GOSSIP,
+        ctx.actor->name(),
+        ctx.args_from(0));  // Original message without sanitization suffix
 
     return CommandResult::Success;
 }

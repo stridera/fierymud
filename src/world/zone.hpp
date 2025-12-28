@@ -136,6 +136,7 @@ struct ZoneCommand {
     EntityId room_id = INVALID_ENTITY_ID;      // Target room ID
     EntityId container_id = INVALID_ENTITY_ID; // Container/mobile ID for Give/Put commands
     int max_count = 1;                         // Maximum number to spawn
+    int reset_group = 0;                       // Links equipment to its Load_Mobile command
 
     std::string comment;            // Comment for documentation
 
@@ -318,7 +319,7 @@ private:
     Result<bool> execute_door_command(const ZoneCommand& cmd);
 
     /** Process equipment and inventory for a specific mobile instance */
-    void process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id);
+    void process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mobile_id, int reset_group);
 
     /** Recursively spawn nested objects into a container */
     void spawn_contents_recursive(Container* container, const std::vector<ObjectContent>& contents,

@@ -135,13 +135,13 @@ ShopManager& ShopManager::instance() {
 
 void ShopManager::register_shopkeeper(EntityId shopkeeper_id, std::unique_ptr<Shopkeeper> shop) {
     shops_[shopkeeper_id] = std::move(shop);
-    Log::info("Registered shopkeeper {} with shop '{}'",
-              shopkeeper_id, shops_[shopkeeper_id]->get_name());
+    Log::trace("Registered shopkeeper {} with shop '{}'",
+               shopkeeper_id, shops_[shopkeeper_id]->get_name());
 }
 
 void ShopManager::unregister_shopkeeper(EntityId shopkeeper_id) {
     if (shops_.erase(shopkeeper_id)) {
-        Log::info("Unregistered shopkeeper {}", shopkeeper_id);
+        Log::trace("Unregistered shopkeeper {}", shopkeeper_id);
     }
 }
 

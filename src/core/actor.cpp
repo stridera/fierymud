@@ -2169,7 +2169,6 @@ void Player::interrupt_composing(std::string_view reason) {
 std::shared_ptr<Container> Player::die() {
     // Players become ghosts - corpse is created when they use 'release' command
     set_position(Position::Ghost);
-    Log::info("Player {} died and became a ghost", name());
     return nullptr;  // Player corpse is created on release, not death
 }
 

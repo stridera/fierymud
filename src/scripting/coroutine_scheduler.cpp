@@ -29,9 +29,13 @@ void CoroutineScheduler::initialize(asio::io_context& io_context,
 }
 
 void CoroutineScheduler::shutdown() {
-    if (!initialized_) {
+    if (!initialized_.load()) {
         return;
     }
+
+    // Set initialized_ to false FIRST so timer callbacks that are already queued
+    // will bail out before trying to access strand_
+    initialized_.store(false);
 
     // Cancel all pending coroutines
     for (auto& [id, pending] : pending_) {
@@ -42,7 +46,6 @@ void CoroutineScheduler::shutdown() {
     }
     pending_.clear();
 
-    initialized_ = false;
     io_context_ = nullptr;
     strand_ = nullptr;
 
@@ -88,6 +91,11 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
             return;
         }
 
+        // Check if scheduler is still initialized (shutdown may have started)
+        if (!initialized_ || !strand_) {
+            return;
+        }
+
         // Post resume to world strand for thread-safe execution
         asio::post(*strand_, [this, id]() {
             resume_coroutine(id);
@@ -101,6 +109,11 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
 }
 
 void CoroutineScheduler::resume_coroutine(std::uint64_t coroutine_id) {
+    // Early bail-out during shutdown
+    if (!initialized_) {
+        return;
+    }
+
     auto it = pending_.find(coroutine_id);
     if (it == pending_.end()) {
         // Already cancelled or completed

@@ -743,14 +743,14 @@ Result<void> Container::add_item(std::shared_ptr<Object> item) {
     if (!item) {
         return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
     }
-    
+
     if (!can_store_item(*item)) {
         return std::unexpected(Errors::InvalidState("container is full"));
     }
-    
+
     contents_.push_back(item);
     current_items_ = contents_.size();
-    
+
     // Recalculate current weight
     current_weight_ = 0;
     for (const auto& obj : contents_) {
@@ -758,8 +758,19 @@ Result<void> Container::add_item(std::shared_ptr<Object> item) {
             current_weight_ += obj->weight();
         }
     }
-    
+
     return Success();
+}
+
+void Container::add_item_force(std::shared_ptr<Object> item) {
+    if (!item) {
+        return;
+    }
+
+    // Bypass capacity/weight checks - used by zone resets
+    contents_.push_back(item);
+    current_items_ = contents_.size();
+    current_weight_ += item->weight();
 }
 
 std::shared_ptr<Object> Container::remove_item(EntityId item_id) {
