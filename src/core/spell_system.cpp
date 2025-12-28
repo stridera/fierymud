@@ -13,19 +13,29 @@
 // ============================================================================
 
 bool Spell::can_cast(const Actor& caster) const {
-    // Check if caster has required level for this circle
-    if (caster.stats().level < circle) {
-        return false;
-    }
-    
-    // Check class restrictions - for now, only allow casters
+    // Check class and level restrictions - only for players
     if (const auto* player = dynamic_cast<const Player*>(&caster)) {
+        // Gods can cast any spell
+        if (player->is_god()) {
+            return true;
+        }
+
+        // Check if caster has required level for this circle
+        if (caster.stats().level < circle) {
+            return false;
+        }
+
         std::string player_class = to_lowercase(player->player_class());
         if (player_class != "cleric" && player_class != "sorcerer") {
             return false;
         }
+    } else {
+        // Non-player actors (mobs) - just check level
+        if (caster.stats().level < circle) {
+            return false;
+        }
     }
-    
+
     return true;
 }
 

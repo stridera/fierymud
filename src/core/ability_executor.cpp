@@ -803,11 +803,16 @@ Result<CommandResult> execute_skill_command(
     if (ability) {
         auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
         if (player) {
-            skill_level = player->get_proficiency(ability->id);
-            if (skill_level == 0) {
-                // Player doesn't know this ability
-                ctx.send_error(fmt::format("You don't know how to {}.", skill_name));
-                return CommandResult::InvalidState;
+            // Gods can use all abilities at full proficiency
+            if (player->is_god()) {
+                skill_level = 100;
+            } else {
+                skill_level = player->get_proficiency(ability->id);
+                if (skill_level == 0) {
+                    // Player doesn't know this ability
+                    ctx.send_error(fmt::format("You don't know how to {}.", skill_name));
+                    return CommandResult::InvalidState;
+                }
             }
         }
     }

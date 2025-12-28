@@ -1002,7 +1002,7 @@ std::string Room::get_stat_info() const {
 
         std::string to_room = "NONE";
         if (exit.to_room.is_valid()) {
-            to_room = fmt::format("{}", static_cast<uint32_t>(exit.to_room.value()));
+            to_room = fmt::format("{}:{}", exit.to_room.zone_id(), exit.to_room.local_id());
         }
 
         // Exit flags
@@ -1025,9 +1025,13 @@ std::string Room::get_stat_info() const {
             exit_flags = joined_flags;
         }
 
+        std::string key_str = "None";
+        if (exit.key_id.is_valid()) {
+            key_str = fmt::format("{}:{}", exit.key_id.zone_id(), exit.key_id.local_id());
+        }
+
         output << fmt::format("Exit {:>5}:  To: [{}], Key: [{}], Keywrd: {}, Type: {}\n", dir_name, to_room,
-                              exit.key_id.is_valid() ? static_cast<uint32_t>(exit.key_id.value()) : 0,
-                              exit.keyword.empty() ? "None" : exit.keyword, exit_flags);
+                              key_str, exit.keyword.empty() ? "None" : exit.keyword, exit_flags);
 
         if (!exit.description.empty()) {
             output << fmt::format("Extra Desc: {}\n", exit.description);

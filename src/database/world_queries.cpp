@@ -1088,13 +1088,18 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 }
             }
 
-            // Set equip slot from wearFlags (using lowercase alias for pqxx access)
+            // Set equip slot and can_take from wearFlags (using lowercase alias for pqxx access)
+            // Default to not takeable - only objects with TAKE flag can be picked up
+            obj->set_can_take(false);
             if (!row["wear_flags"].is_null()) {
                 std::string wear_flags_str = row["wear_flags"].as<std::string>();
                 auto wear_flags = parse_pg_array(wear_flags_str);
                 for (const auto& flag : wear_flags) {
-                    // Skip TAKE flag - it just means the object can be picked up
-                    if (flag == "TAKE") continue;
+                    // Check for TAKE flag - allows object to be picked up
+                    if (flag == "TAKE") {
+                        obj->set_can_take(true);
+                        continue;
+                    }
 
                     // Try to parse this flag as an equip slot
                     auto slot_opt = ObjectUtils::parse_equip_slot(flag);
@@ -1452,13 +1457,18 @@ Result<std::unique_ptr<Object>> load_object(
             }
         }
 
-        // Set equip slot from wearFlags (using lowercase alias for pqxx access)
+        // Set equip slot and can_take from wearFlags (using lowercase alias for pqxx access)
+        // Default to not takeable - only objects with TAKE flag can be picked up
+        obj->set_can_take(false);
         if (!row["wear_flags"].is_null()) {
             std::string wear_flags_str = row["wear_flags"].as<std::string>();
             auto wear_flags = parse_pg_array(wear_flags_str);
             for (const auto& flag : wear_flags) {
-                // Skip TAKE flag - it just means the object can be picked up
-                if (flag == "TAKE") continue;
+                // Check for TAKE flag - allows object to be picked up
+                if (flag == "TAKE") {
+                    obj->set_can_take(true);
+                    continue;
+                }
 
                 // Try to parse this flag as an equip slot
                 auto slot_opt = ObjectUtils::parse_equip_slot(flag);

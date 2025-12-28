@@ -126,7 +126,13 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     }
 
     // Register callbacks for time events
-    TimeSystem::instance().on_sunlight_changed([this](SunlightState /* old_state */, SunlightState new_state, Hemisphere /* hemisphere */) {
+    TimeSystem::instance().on_sunlight_changed([this](SunlightState /* old_state */, SunlightState new_state, Hemisphere hemisphere) {
+        // Only broadcast for the primary hemisphere (Northeast) to avoid duplicate messages
+        // The 4 hemispheres have offset day/night cycles, so we pick one as canonical
+        if (hemisphere != Hemisphere::Northeast) {
+            return;
+        }
+
         // Broadcast sunlight changes to outdoor players
         std::string message;
 
@@ -145,13 +151,12 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
                 break;
         }
 
-        // Send message to all outdoor players in this hemisphere
+        // Send message to all outdoor players
         // Post to world strand to ensure thread safety
         asio::post(world_strand_, [this, message]() {
             for (auto& conn : active_connections_) {
                 if (auto player = conn->get_player()) {
-                    // TODO: Check if player is outdoor and in correct hemisphere
-                    // For now, send to all connected players
+                    // TODO: Check if player is outdoors
                     conn->send_message(message);
                 }
             }

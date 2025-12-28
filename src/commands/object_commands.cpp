@@ -204,8 +204,17 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             std::vector<std::string> gotten_names;
             auto objects_to_get = room_objects; // Copy to avoid iterator invalidation
 
+            // Check if actor is a god (cached for "get all")
+            auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+            bool is_god = player && player->is_god();
+
             for (const auto &obj : objects_to_get) {
                 if (!obj) continue;
+
+                // Check if object can be picked up (gods can pick up anything)
+                if (!obj->can_take() && !is_god) {
+                    continue; // Skip items without TAKE flag silently for "get all"
+                }
 
                 // Check if actor can carry more weight
                 int object_weight = obj->weight();
@@ -256,6 +265,15 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         if (!target_object) {
             ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
             return CommandResult::InvalidTarget;
+        }
+
+        // Check if object can be picked up (gods can pick up anything)
+        if (!target_object->can_take()) {
+            auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+            if (!player || !player->is_god()) {
+                ctx.send_error(fmt::format("You can't pick up {}.", ctx.format_object_name(target_object)));
+                return CommandResult::InvalidState;
+            }
         }
 
         // Check if actor can carry more weight

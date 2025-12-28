@@ -499,6 +499,9 @@ void LoginSystem::handle_get_account(std::string_view input) {
                             player_->set_account(user_id_);
                         }
 
+                        // Load character abilities from database
+                        load_player_abilities(player_);
+
                         // Check for existing connection and handle reconnection
                         if (auto *network_manager = connection_->get_network_manager()) {
                             std::string player_name = std::string(player_->name());

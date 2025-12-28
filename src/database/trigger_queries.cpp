@@ -239,12 +239,69 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_triggers_for_zone(
     pqxx::work& txn, int zone_id)
 {
     try {
+        // Use UNION to get triggers from three sources:
+        // 1. WORLD triggers via zone_id on Triggers table
+        // 2. MOB triggers via MobTriggers junction table
+        // 3. OBJECT triggers via ObjectTriggers junction table
+        //
+        // The last two columns (jt_zone_id, jt_id) contain the entity IDs
+        // from junction tables, which we use to set mob_id/object_id.
         std::string query = fmt::format(
-            R"({} WHERE "{}" = $1 OR "{}" = $1 OR "{}" = $1)",
-            build_trigger_select(),
-            db::Triggers::ZONE_ID,
-            db::Triggers::MOB_ZONE_ID,
-            db::Triggers::OBJECT_ZONE_ID
+            R"(
+            -- WORLD triggers for this zone
+            SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
+                   t."{}", t."{}", t."{}", t."{}",
+                   $1::int as jt_zone_id, 0::int as jt_id
+            FROM "{}" t
+            WHERE t."{}" = $1 AND t."{}" = 'WORLD'
+
+            UNION ALL
+
+            -- MOB triggers for mobs in this zone (via junction table)
+            SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
+                   t."{}", t."{}", t."{}", t."{}",
+                   mt."{}" as jt_zone_id, mt."{}" as jt_id
+            FROM "{}" t
+            INNER JOIN "{}" mt ON t."{}" = mt."{}"
+            WHERE mt."{}" = $1
+
+            UNION ALL
+
+            -- OBJECT triggers for objects in this zone (via junction table)
+            SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
+                   t."{}", t."{}", t."{}", t."{}",
+                   ot."{}" as jt_zone_id, ot."{}" as jt_id
+            FROM "{}" t
+            INNER JOIN "{}" ot ON t."{}" = ot."{}"
+            WHERE ot."{}" = $1
+            )",
+            // WORLD triggers columns
+            db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS, db::Triggers::COMMANDS, db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST, db::Triggers::VARIABLES, db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID, db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
+            db::Triggers::TABLE, db::Triggers::ZONE_ID, db::Triggers::ATTACH_TYPE,
+            // MOB triggers columns
+            db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS, db::Triggers::COMMANDS, db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST, db::Triggers::VARIABLES, db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID, db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
+            db::MobTriggers::MOB_ZONE_ID, db::MobTriggers::MOB_ID,
+            db::Triggers::TABLE, db::MobTriggers::TABLE,
+            db::Triggers::ID, db::MobTriggers::TRIGGER_ID,
+            db::MobTriggers::MOB_ZONE_ID,
+            // OBJECT triggers columns
+            db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS, db::Triggers::COMMANDS, db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST, db::Triggers::VARIABLES, db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID, db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
+            db::ObjectTriggers::OBJECT_ZONE_ID, db::ObjectTriggers::OBJECT_ID,
+            db::Triggers::TABLE, db::ObjectTriggers::TABLE,
+            db::Triggers::ID, db::ObjectTriggers::TRIGGER_ID,
+            db::ObjectTriggers::OBJECT_ZONE_ID
         );
 
         auto result = txn.exec_params(query, zone_id);
@@ -252,8 +309,32 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_triggers_for_zone(
         std::vector<FieryMUD::TriggerDataPtr> triggers;
         triggers.reserve(result.size());
 
+        // Column indices for junction table entity IDs (at end of row)
+        constexpr int JT_ZONE_ID = 13;
+        constexpr int JT_ID = 14;
+
         for (const auto& row : result) {
-            triggers.push_back(parse_trigger_row(row));
+            auto trigger = parse_trigger_row(row);
+
+            // Override entity ID from junction table columns
+            int jt_zone = row[JT_ZONE_ID].as<int>();
+            int jt_id = row[JT_ID].as<int>();
+
+            if (trigger->attach_type == FieryMUD::ScriptType::MOB) {
+                trigger->mob_id = EntityId(
+                    static_cast<std::uint32_t>(jt_zone),
+                    static_cast<std::uint32_t>(jt_id)
+                );
+            } else if (trigger->attach_type == FieryMUD::ScriptType::OBJECT) {
+                trigger->object_id = EntityId(
+                    static_cast<std::uint32_t>(jt_zone),
+                    static_cast<std::uint32_t>(jt_id)
+                );
+            } else if (trigger->attach_type == FieryMUD::ScriptType::WORLD) {
+                trigger->zone_id = jt_zone;
+            }
+
+            triggers.push_back(trigger);
         }
 
         spdlog::debug("Loaded {} triggers for zone {}", triggers.size(), zone_id);
@@ -448,15 +529,99 @@ Result<FieryMUD::TriggerDataPtr> load_trigger_by_id(pqxx::work& txn, int trigger
 Result<std::vector<FieryMUD::TriggerDataPtr>> load_all_triggers(pqxx::work& txn)
 {
     try {
-        std::string query = build_trigger_select();
+        // Use UNION to get triggers from three sources:
+        // 1. WORLD triggers (attached to zones via zone_id)
+        // 2. MOB triggers (attached via MobTriggers junction table)
+        // 3. OBJECT triggers (attached via ObjectTriggers junction table)
+        //
+        // A trigger attached to multiple mobs will result in multiple rows.
+        // The last two columns (jt_zone_id, jt_id) contain the entity IDs.
+        std::string query = fmt::format(
+            R"(
+            -- WORLD triggers
+            SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
+                   t."{}", t."{}", t."{}", t."{}",
+                   t."{}" as jt_zone_id, 0 as jt_id
+            FROM "{}" t
+            WHERE t."{}" = 'WORLD' AND t."{}" IS NOT NULL
+
+            UNION ALL
+
+            -- MOB triggers via junction table
+            SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
+                   t."{}", t."{}", t."{}", t."{}",
+                   mt."{}" as jt_zone_id, mt."{}" as jt_id
+            FROM "{}" t
+            INNER JOIN "{}" mt ON t."{}" = mt."{}"
+
+            UNION ALL
+
+            -- OBJECT triggers via junction table
+            SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
+                   t."{}", t."{}", t."{}", t."{}",
+                   ot."{}" as jt_zone_id, ot."{}" as jt_id
+            FROM "{}" t
+            INNER JOIN "{}" ot ON t."{}" = ot."{}"
+            )",
+            // WORLD triggers columns
+            db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS, db::Triggers::COMMANDS, db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST, db::Triggers::VARIABLES, db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID, db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
+            db::Triggers::ZONE_ID,
+            db::Triggers::TABLE, db::Triggers::ATTACH_TYPE, db::Triggers::ZONE_ID,
+            // MOB triggers columns
+            db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS, db::Triggers::COMMANDS, db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST, db::Triggers::VARIABLES, db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID, db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
+            db::MobTriggers::MOB_ZONE_ID, db::MobTriggers::MOB_ID,
+            db::Triggers::TABLE, db::MobTriggers::TABLE,
+            db::Triggers::ID, db::MobTriggers::TRIGGER_ID,
+            // OBJECT triggers columns
+            db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
+            db::Triggers::FLAGS, db::Triggers::COMMANDS, db::Triggers::NUM_ARGS,
+            db::Triggers::ARG_LIST, db::Triggers::VARIABLES, db::Triggers::ZONE_ID,
+            db::Triggers::MOB_ZONE_ID, db::Triggers::MOB_ID,
+            db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
+            db::ObjectTriggers::OBJECT_ZONE_ID, db::ObjectTriggers::OBJECT_ID,
+            db::Triggers::TABLE, db::ObjectTriggers::TABLE,
+            db::Triggers::ID, db::ObjectTriggers::TRIGGER_ID
+        );
 
         auto result = txn.exec(query);
 
         std::vector<FieryMUD::TriggerDataPtr> triggers;
         triggers.reserve(result.size());
 
+        // Column indices for junction table entity IDs (at end of row)
+        constexpr int JT_ZONE_ID = 13;
+        constexpr int JT_ID = 14;
+
         for (const auto& row : result) {
-            triggers.push_back(parse_trigger_row(row));
+            auto trigger = parse_trigger_row(row);
+
+            // Override entity ID from junction table columns
+            int jt_zone = row[JT_ZONE_ID].as<int>();
+            int jt_id = row[JT_ID].as<int>();
+
+            if (trigger->attach_type == FieryMUD::ScriptType::MOB) {
+                trigger->mob_id = EntityId(
+                    static_cast<std::uint32_t>(jt_zone),
+                    static_cast<std::uint32_t>(jt_id)
+                );
+            } else if (trigger->attach_type == FieryMUD::ScriptType::OBJECT) {
+                trigger->object_id = EntityId(
+                    static_cast<std::uint32_t>(jt_zone),
+                    static_cast<std::uint32_t>(jt_id)
+                );
+            } else if (trigger->attach_type == FieryMUD::ScriptType::WORLD) {
+                trigger->zone_id = jt_zone;
+            }
+
+            triggers.push_back(trigger);
         }
 
         spdlog::info("Loaded {} triggers from database", triggers.size());

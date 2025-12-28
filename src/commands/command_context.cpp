@@ -3,6 +3,7 @@
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 #include "../text/rich_text.hpp"
@@ -183,26 +184,12 @@ void CommandContext::send_to_actor(std::shared_ptr<Actor> target, std::string_vi
 }
 
 void CommandContext::send_to_all(std::string_view message) const {
-    // For now, implement as a simple broadcast to all actors in the world
-    // In a full MUD, this would be more sophisticated with online player tracking
-    auto &world = WorldManager::instance();
-
-    // Get all rooms and iterate through their actors
-    for (size_t zone_id = 0; zone_id < 1000; ++zone_id) { // Basic range check
-        auto zone = world.get_zone(EntityId{zone_id});
-        if (!zone)
-            continue;
-
-        auto rooms = world.get_rooms_in_zone(EntityId{zone_id});
-        for (const auto &room : rooms) {
-            if (!room)
-                continue;
-
-            const auto &actors = room->contents().actors;
-            for (const auto &room_actor : actors) {
-                if (room_actor) {
-                    room_actor->send_message(message);
-                }
+    // Broadcast to all online players using WorldServer's player tracking
+    if (auto *world_server = WorldServer::instance()) {
+        auto online_actors = world_server->get_online_actors();
+        for (const auto &online_actor : online_actors) {
+            if (online_actor) {
+                online_actor->send_message(message);
             }
         }
     }
@@ -257,30 +244,17 @@ std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) 
     // Count matches and return the Nth one
     int current_match = 0;
 
-    // Search for actor by keyword globally across all rooms
-    auto &world = WorldManager::instance();
+    // Search for online actors using the WorldServer's player tracking
+    if (auto *world_server = WorldServer::instance()) {
+        auto online_actors = world_server->get_online_actors();
+        for (const auto &online_actor : online_actors) {
+            if (!online_actor || online_actor == actor)
+                continue; // Skip self
 
-    // Get all rooms and search through their actors
-    for (size_t zone_id = 0; zone_id < 1000; ++zone_id) { // Basic range check
-        auto zone = world.get_zone(EntityId{zone_id});
-        if (!zone)
-            continue;
-
-        auto rooms = world.get_rooms_in_zone(EntityId{zone_id});
-        for (const auto &room_ptr : rooms) {
-            if (!room_ptr)
-                continue;
-
-            const auto &actors = room_ptr->contents().actors;
-            for (const auto &room_actor : actors) {
-                if (!room_actor || room_actor == actor)
-                    continue; // Skip self
-
-                if (room_actor->matches_keyword(spec.keyword)) {
-                    current_match++;
-                    if (current_match == spec.match_index) {
-                        return room_actor;
-                    }
+            if (online_actor->matches_keyword(spec.keyword)) {
+                current_match++;
+                if (current_match == spec.match_index) {
+                    return online_actor;
                 }
             }
         }
