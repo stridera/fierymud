@@ -667,7 +667,30 @@ Result<CommandResult> cmd_rescue(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Add skill check for rescue success rate
+    // Skill check for rescue success
+    // Base chance: 50% + (rescuer_level - enemy_level) * 2% + dexterity_bonus
+    int rescuer_level = ctx.actor->stats().level;
+    int enemy_level = enemy->stats().level;
+    int dex_bonus = (ctx.actor->stats().dexterity - 10) / 2;  // D&D-style modifier
+
+    int success_chance = 50 + (rescuer_level - enemy_level) * 2 + dex_bonus * 3;
+    success_chance = std::clamp(success_chance, 10, 95);  // Always 10-95% chance
+
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<> roll(1, 100);
+
+    if (roll(gen) > success_chance) {
+        ctx.send(fmt::format("You fail to rescue {} from {}!",
+                            target->display_name(), enemy->display_name()));
+        ctx.send_to_room(fmt::format("{} attempts to rescue {} but fails!",
+                        ctx.actor->display_name(), target->display_name()), true);
+        // Failed rescue still provokes the enemy
+        if (!FieryMUD::CombatManager::is_in_combat(*ctx.actor)) {
+            ctx.actor->set_position(Position::Fighting);
+            FieryMUD::CombatManager::start_combat(ctx.actor, enemy);
+        }
+        return CommandResult::Success;  // Command executed, just failed the attempt
+    }
 
     // End target's combat
     FieryMUD::CombatManager::end_combat(target);

@@ -1185,6 +1185,15 @@ public:
     void set_last_logon(std::time_t time) { last_logon_time_ = time; }
     void add_play_time(std::chrono::seconds time) { total_play_time_ += time; }
 
+    /** PK mode timing */
+    std::time_t pk_enabled_time() const { return pk_enabled_time_; }
+    void set_pk_enabled_time(std::time_t time) { pk_enabled_time_ = time; }
+    bool can_disable_pk() const {
+        if (pk_enabled_time_ == 0) return true;
+        constexpr std::time_t SECONDS_IN_24_HOURS = 24 * 60 * 60;
+        return (std::time(nullptr) - pk_enabled_time_) >= SECONDS_IN_24_HOURS;
+    }
+
     /** Clan/Guild membership */
     bool in_clan() const { return clan_id_ > 0; }
     unsigned int clan_id() const { return clan_id_; }
@@ -1251,6 +1260,7 @@ private:
     std::time_t creation_time_ = std::time(nullptr);  // Time of character creation
     std::time_t last_logon_time_ = 0;                 // Time of last logon
     std::chrono::seconds total_play_time_{0};         // Total accumulated play time
+    std::time_t pk_enabled_time_ = 0;                 // When PK mode was enabled (0 = never)
 
     // Clan/Guild membership
     unsigned int clan_id_ = 0;               // Clan ID (0 = no clan)
@@ -1263,6 +1273,9 @@ private:
     std::string last_tell_sender_;           // Name of last player who sent us a tell
     std::vector<std::string> tell_history_;  // Recent tell history
     static constexpr size_t MAX_TELL_HISTORY = 20;
+
+    // Text composer recovery (for 'redo' command)
+    std::vector<std::string> redo_buffer_;   // Last interrupted text composition
 
     // Ability/Skill system
     std::unordered_map<int, LearnedAbility> abilities_;  // ability_id -> learned ability data
@@ -1285,6 +1298,13 @@ public:
     }
     const std::vector<std::string>& tell_history() const { return tell_history_; }
     void clear_tell_history() { tell_history_.clear(); }
+
+    // Text composer redo buffer methods
+    void set_redo_buffer(const std::vector<std::string>& lines) { redo_buffer_ = lines; }
+    void set_redo_buffer(std::vector<std::string>&& lines) { redo_buffer_ = std::move(lines); }
+    const std::vector<std::string>& redo_buffer() const { return redo_buffer_; }
+    void clear_redo_buffer() { redo_buffer_.clear(); }
+    bool has_redo_buffer() const { return !redo_buffer_.empty(); }
 
     // Group/follow system methods
     bool has_group() const {

@@ -177,8 +177,13 @@ std::string get_actor_name(const Actor* actor) {
 // Gender and Pronouns
 // =============================================================================
 
-Gender get_actor_gender(const Actor& /* actor */) {
-    // TODO: When gender is properly exposed in the Actor class, use it.
+Gender get_actor_gender(const Actor& actor) {
+    std::string_view g = actor.gender();
+    if (g == "Male") {
+        return Gender::Male;
+    } else if (g == "Female") {
+        return Gender::Female;
+    }
     return Gender::Neutral;
 }
 
@@ -502,8 +507,7 @@ std::optional<std::string> Message::resolve_object(std::string_view property) co
 
     std::string prop = to_lower(property);
     if (prop == "name") {
-        // TODO: When Object class is available, use object_->name()
-        return "an object";
+        return std::string{object_->name()};
     }
 
     return std::nullopt;

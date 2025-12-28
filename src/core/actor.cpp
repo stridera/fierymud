@@ -2155,12 +2155,12 @@ void Player::interrupt_composing(std::string_view reason) {
         send_message(fmt::format("\nYour text composition has been interrupted: {}", reason));
     }
 
-    // Get current buffer in case we want to save it later
+    // Get current buffer and save it for 'redo' command recovery
     auto lines = active_composer_->lines();
     if (!lines.empty()) {
-        send_message(fmt::format("({} line{} of text was lost. Use 'redo' to recover.)",
-            lines.size(), lines.size() == 1 ? "" : "s"));
-        // TODO: Store buffer in player for 'redo' command recovery
+        set_redo_buffer(std::move(lines));
+        send_message(fmt::format("({} line{} of text was saved. Use 'redo' to recover.)",
+            redo_buffer().size(), redo_buffer().size() == 1 ? "" : "s"));
     }
 
     active_composer_.reset();

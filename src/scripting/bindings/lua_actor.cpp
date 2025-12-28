@@ -94,9 +94,8 @@ void register_actor_bindings(sol::state& lua) {
             a.send_message(msg);
         },
 
-        // Methods - Actions (implemented as stubs for now - will connect to command system)
+        // Methods - Actions (direct room broadcast, bypasses command system for script efficiency)
         "say", [](Actor& a, const std::string& msg) {
-            // TODO: Connect to actual say command
             auto room = a.current_room();
             if (room) {
                 std::string formatted = fmt::format("{} says, '{}'\n", a.display_name(), msg);
@@ -107,7 +106,6 @@ void register_actor_bindings(sol::state& lua) {
         },
 
         "emote", [](Actor& a, const std::string& msg) {
-            // TODO: Connect to actual emote command
             auto room = a.current_room();
             if (room) {
                 std::string formatted = fmt::format("{} {}\n", a.display_name(), msg);

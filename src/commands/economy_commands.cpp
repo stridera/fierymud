@@ -312,10 +312,39 @@ Result<CommandResult> cmd_transfer(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Find target player and transfer
-    // For now, just show what would happen
-    ctx.send(fmt::format("You would transfer {} to {}'s bank account.", money->to_string(), target_name));
-    ctx.send("Note: Inter-player transfers not yet connected to database.");
+    // Find target player in the room
+    auto target_actor = ctx.find_actor_target(target_name);
+    if (!target_actor) {
+        ctx.send_error(fmt::format("You don't see '{}' here.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    auto target_player = std::dynamic_pointer_cast<Player>(target_actor);
+    if (!target_player) {
+        ctx.send_error("You can only transfer money to other players.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Can't transfer to yourself
+    if (target_player.get() == player.get()) {
+        ctx.send_error("You can't transfer money to yourself.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if sender has enough money
+    if (!player->spend(*money)) {
+        ctx.send_error(fmt::format("You don't have {}.", money->to_string()));
+        return CommandResult::ResourceError;
+    }
+
+    // Transfer to target
+    target_player->receive(*money);
+
+    ctx.send(fmt::format("You transfer {} to {}.",
+                        money->to_string(), target_player->display_name()));
+    ctx.send_to_actor(target_player,
+                     fmt::format("{} transfers {} to you.",
+                                player->display_name(), money->to_string()));
 
     return CommandResult::Success;
 }

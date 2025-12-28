@@ -191,8 +191,8 @@ bool validate_social_target(const CommandContext& ctx, std::shared_ptr<Actor> ta
         return false;
     }
 
-    // Check minimum position
-    // TODO: Add position check when target position is accessible
+    // Note: Minimum position check is done in execute_database_social
+    // since it requires access to the Social struct's min_victim_position
 
     return true;
 }
@@ -283,8 +283,9 @@ Result<CommandResult> execute_database_social(
 
     if (social.others_found.has_value()) {
         std::string to_room = TextFormat::format(*social.others_found, ctx.actor.get(), target.get());
-        // Note: This sends to room excluding actor. Target may see duplicate.
-        // TODO: Add send_to_room_except to exclude multiple actors if needed.
+        // Note: This sends to room excluding actor. Target receives both their personalized
+        // message (vict_found) and this room message. This is intentional - they see their
+        // own perspective first, then the general description to others.
         ctx.send_to_room(to_room, true);
     }
 

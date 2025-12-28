@@ -1401,7 +1401,9 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
         if (liquid.poisoned) {
             ctx.send_error(fmt::format("You drink some {} from the {}... it tastes strange!",
                                      liquid_name, ctx.format_object_name(drink_item)));
-            // TODO: Apply poison effect
+            // Apply poison effect to the drinker
+            ctx.actor->set_flag(ActorFlag::Poison, true);
+            ctx.send_error("You feel very sick!");
         } else {
             ctx.send_success(fmt::format("You drink some {} from the {}. Refreshing!",
                                        liquid_name, ctx.format_object_name(drink_item)));
@@ -1558,7 +1560,11 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
             auto add_result = ctx.actor->inventory().add_item(new_object);
             if (!add_result) {
                 ctx.send_error("You can't carry any more items!");
-                // TODO: Refund the player
+                // Refund the player
+                if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+                    player->receive(price);
+                    ctx.send("The shopkeeper refunds your money.");
+                }
                 return CommandResult::InvalidState;
             }
 
@@ -2186,12 +2192,41 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    // TODO: Find water source (fountain in room) and fill container
-    // For now, just provide feedback
+    // Check if container is already full
+    const auto& liquid = container->liquid_info();
+    if (liquid.remaining >= liquid.capacity) {
+        ctx.send_error(fmt::format("{} is already full.", ctx.format_object_name(container)));
+        return CommandResult::InvalidState;
+    }
 
-    ctx.send_success(fmt::format("You fill {} with water.", ctx.format_object_name(container)));
-    ctx.send_to_room(fmt::format("{} fills {} with water.", ctx.actor->display_name(),
-                                 ctx.format_object_name(container)), true);
+    // Find water source (fountain) in room
+    std::shared_ptr<Object> fountain = nullptr;
+    for (const auto& obj : ctx.room->contents().objects) {
+        if (obj && obj->type() == ObjectType::Fountain) {
+            fountain = obj;
+            break;
+        }
+    }
+
+    if (!fountain) {
+        ctx.send_error("There is no water source here to fill from.");
+        return CommandResult::InvalidState;
+    }
+
+    // Fill the container with water from the fountain
+    LiquidInfo new_liquid = liquid;
+    new_liquid.liquid_type = "WATER";
+    new_liquid.remaining = new_liquid.capacity;
+    new_liquid.poisoned = false;
+    container->set_liquid_info(new_liquid);
+
+    ctx.send_success(fmt::format("You fill {} with water from {}.",
+                                 ctx.format_object_name(container),
+                                 ctx.format_object_name(fountain)));
+    ctx.send_to_room(fmt::format("{} fills {} with water from {}.",
+                                 ctx.actor->display_name(),
+                                 ctx.format_object_name(container),
+                                 ctx.format_object_name(fountain)), true);
 
     return CommandResult::Success;
 }

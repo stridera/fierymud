@@ -5,6 +5,7 @@
 
 #include "lua_room.hpp"
 #include "../../world/room.hpp"
+#include "../../world/world_manager.hpp"
 #include "../../core/actor.hpp"
 #include "../../core/object.hpp"
 
@@ -157,14 +158,11 @@ void register_room_bindings(sol::state& lua) {
         },
 
         "get_exit_room", [](const Room& r, Direction dir) -> std::shared_ptr<Room> {
-            // Note: This returns nullptr - actual room lookup requires WorldManager
-            // Will be connected in Phase 3 when TriggerManager is implemented
             const auto* exit = r.get_exit(dir);
             if (!exit || !exit->to_room.is_valid()) {
                 return nullptr;
             }
-            // TODO: Look up room via WorldManager
-            return nullptr;
+            return WorldManager::instance().get_room(exit->to_room);
         },
 
         "exit_is_open", [](const Room& r, Direction dir) -> bool {

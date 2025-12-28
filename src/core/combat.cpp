@@ -364,7 +364,7 @@ double CombatSystem::apply_mitigation(double raw_damage,
 }
 
 double CombatSystem::calculate_damage(const Actor& attacker, const CombatStats& attacker_stats,
-                                      const Actor& /* defender */, const CombatStats& defender_stats,
+                                      const Actor& defender, const CombatStats& defender_stats,
                                       HitResult hit_result) {
     if (hit_result == HitResult::Miss) {
         return 0.0;
@@ -394,14 +394,10 @@ double CombatSystem::calculate_damage(const Actor& attacker, const CombatStats& 
     }
     base_damage *= multiplier;
 
-    // Apply sneak attack for rogues
-    if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
-        CharacterClass char_class = string_to_class(player->player_class());
-        if (char_class == CharacterClass::Rogue) {
-            // TODO: Check sneak attack conditions
-            double sneak_bonus = ClassAbilities::rogue_sneak_attack_damage(attacker.stats().level);
-            base_damage += sneak_bonus;
-        }
+    // Apply sneak attack for rogues (if conditions are met)
+    if (ClassAbilities::rogue_sneak_attack_available(attacker, defender)) {
+        double sneak_bonus = ClassAbilities::rogue_sneak_attack_damage(attacker.stats().level);
+        base_damage += sneak_bonus;
     }
 
     // Apply mitigation
@@ -665,10 +661,45 @@ bool ClassAbilities::warrior_extra_attack_available(const Actor& actor) {
     return actor.stats().level >= EXTRA_ATTACK_LEVEL;
 }
 
-bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const Actor& /* target */) {
+bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const Actor& target) {
+    // Must be a rogue
     if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
-        return CombatSystem::string_to_class(player->player_class()) == CharacterClass::Rogue;
+        if (CombatSystem::string_to_class(player->player_class()) != CharacterClass::Rogue) {
+            return false;
+        }
+    } else {
+        return false;
     }
+
+    // Sneak attack conditions (any one of these enables sneak attack):
+
+    // 1. Attacker is hidden or sneaking
+    if (attacker.has_flag(ActorFlag::Hide) || attacker.has_flag(ActorFlag::Sneak)) {
+        return true;
+    }
+
+    // 2. Attacker is invisible and target can't see invisible
+    if (attacker.has_flag(ActorFlag::Invisible) && !target.has_flag(ActorFlag::Detect_Invis)) {
+        return true;
+    }
+
+    // 3. Target is incapacitated (sleeping, stunned, paralyzed, etc.)
+    Position target_pos = target.position();
+    if (target_pos == Position::Sleeping ||
+        target_pos == Position::Stunned ||
+        target_pos == Position::Incapacitated) {
+        return true;
+    }
+
+    // 4. Target has Aware flag negated - check if target is fighting someone else (flanking)
+    if (!target.has_flag(ActorFlag::Aware)) {
+        // If target is fighting someone other than attacker, it's a flank
+        auto opponent = CombatManager::get_opponent(target);
+        if (opponent && opponent.get() != &attacker) {
+            return true;
+        }
+    }
+
     return false;
 }
 

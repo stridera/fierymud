@@ -60,7 +60,7 @@ struct Pronouns {
 
 /**
  * Get the gender of an actor.
- * TODO: Update when gender is properly exposed in Actor class.
+ * Maps actor.gender() string ("Male", "Female", "Neuter") to Gender enum.
  */
 Gender get_actor_gender(const Actor& actor);
 

@@ -2,9 +2,53 @@
 #include "builtin_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/object.hpp"
 #include "../world/room.hpp"
 
+#include <algorithm>
+
 namespace MovementCommands {
+
+namespace {
+
+/**
+ * Check if actor's race has natural flying ability.
+ * Races like sprites, pixies, and avians can fly naturally.
+ */
+bool race_can_fly(std::string_view race) {
+    // Convert to lowercase for comparison
+    std::string lower_race{race};
+    std::transform(lower_race.begin(), lower_race.end(), lower_race.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
+
+    // Races with natural flight ability
+    static const std::unordered_set<std::string> flying_races = {
+        "sprite", "pixie", "fairy", "faerie", "fae",
+        "avian", "aarakocra", "kenku", "tengu",
+        "imp", "demon", "devil", "succubus", "incubus",
+        "dragon", "dragonborn",  // Some dragon variants can fly
+        "air elemental", "djinn", "djinni", "genie",
+        "ghost", "specter", "spectre", "wraith", "banshee",
+        "angel", "archon", "deva", "solar",
+        "harpy", "gargoyle", "pteranodon"
+    };
+
+    return flying_races.contains(lower_race);
+}
+
+/**
+ * Check if any equipped item grants the Fly effect.
+ */
+bool equipment_grants_flying(const Actor& actor) {
+    for (const auto& item : actor.equipment().get_all_equipped()) {
+        if (item && item->has_effect(EffectFlag::Fly)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+} // anonymous namespace
 
 // =============================================================================
 // Movement Commands
@@ -67,13 +111,20 @@ Result<CommandResult> cmd_fly(const CommandContext &ctx) {
         }
     }
 
-    // Check for Flying effect (from spell, race ability, or equipment)
+    // Check for Flying effect (from spell or other magical effects)
     if (ctx.actor->has_flag(ActorFlag::Flying)) {
         can_fly = true;
     }
 
-    // TODO: Add race-based flying check when race system is implemented
-    // TODO: Add equipment-based flying check (wings, flying carpet, etc.)
+    // Check if race has natural flying ability
+    if (!can_fly && race_can_fly(ctx.actor->race())) {
+        can_fly = true;
+    }
+
+    // Check if equipment grants flying (wings, flying carpet, etc.)
+    if (!can_fly && equipment_grants_flying(*ctx.actor)) {
+        can_fly = true;
+    }
 
     if (!can_fly) {
         ctx.send_error("You don't have the ability to fly.");

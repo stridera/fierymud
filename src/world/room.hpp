@@ -371,6 +371,9 @@ namespace RoomUtils {
     
     /** Get sector color code for display */
     std::string_view get_sector_color(SectorType sector);
+
+    /** Check if sector is outdoors (affected by weather and sunlight) */
+    bool is_outdoor_sector(SectorType sector);
 }
 
 /** Formatting support for Direction */

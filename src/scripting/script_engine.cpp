@@ -3,6 +3,7 @@
 #include "bindings/lua_actor.hpp"
 #include "bindings/lua_room.hpp"
 #include "bindings/lua_object.hpp"
+#include "../world/time_system.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
@@ -168,14 +169,14 @@ void ScriptEngine::register_utility_functions() {
         spdlog::error("[Lua] {}", message);
     });
 
-    // MUD time function (placeholder - will connect to time_system)
+    // MUD time function - returns current in-game time
     lua_->set_function("mud_time", [this]() -> sol::table {
-        // TODO: Connect to TimeSystem when available
+        const auto& time = TimeSystem::instance().current_time();
         auto result = lua_->create_table();
-        result["hour"] = 12;
-        result["day"] = 1;
-        result["month"] = 1;
-        result["year"] = 650;
+        result["hour"] = time.hour;
+        result["day"] = time.day + 1;  // Convert 0-indexed to 1-indexed for Lua
+        result["month"] = static_cast<int>(time.month) + 1;  // Convert 0-indexed to 1-indexed
+        result["year"] = time.year;
         return result;
     });
 

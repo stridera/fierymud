@@ -928,6 +928,7 @@ Result<CommandResult> cmd_pk(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
         player->set_player_flag(PlayerFlag::PkEnabled, true);
+        player->set_pk_enabled_time(std::time(nullptr));
         ctx.send("PK Mode: ENABLED");
         ctx.send("You may now attack and be attacked by other PK players.");
         ctx.send_to_room(fmt::format("{} has enabled PK mode!", player->display_name()), true);
@@ -936,8 +937,22 @@ Result<CommandResult> cmd_pk(const CommandContext &ctx) {
             ctx.send("PK mode is not enabled.");
             return CommandResult::InvalidState;
         }
-        // TODO: Add 24-hour lockout timer before allowing disable
-        ctx.send("PK mode cannot be disabled yet. (24-hour lockout active)");
+        // Check 24-hour lockout
+        if (!player->can_disable_pk()) {
+            std::time_t enabled = player->pk_enabled_time();
+            std::time_t now = std::time(nullptr);
+            std::time_t elapsed = now - enabled;
+            std::time_t remaining = (24 * 60 * 60) - elapsed;
+            int hours = static_cast<int>(remaining / 3600);
+            int minutes = static_cast<int>((remaining % 3600) / 60);
+            ctx.send(fmt::format("PK mode cannot be disabled yet. {} hours, {} minutes remaining.",
+                                hours, minutes));
+            return CommandResult::InvalidState;
+        }
+        player->set_player_flag(PlayerFlag::PkEnabled, false);
+        player->set_pk_enabled_time(0);
+        ctx.send("PK Mode: DISABLED");
+        ctx.send("You may no longer attack or be attacked by other PK players.");
     } else {
         ctx.send_error("Usage: pk on|off");
         return CommandResult::InvalidSyntax;

@@ -2092,8 +2092,10 @@ int WorldManager::get_movement_cost(std::shared_ptr<Room> /* from_room */, std::
             }
         }
 
-        // TODO: Add Haste flag support when spell system is integrated
-        // Haste would reduce all movement costs by 1
+        // Haste reduces all movement costs by 1
+        if (actor->has_flag(ActorFlag::Haste)) {
+            base_cost = std::max(1, base_cost - 1);
+        }
 
         // Encumbrance increases movement cost
         // Higher weight carried = higher cost modifier

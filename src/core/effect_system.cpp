@@ -3,6 +3,8 @@
 #include "core/actor.hpp"
 #include "core/logging.hpp"
 #include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 #include <algorithm>
 #include <nlohmann/json.hpp>
@@ -757,13 +759,27 @@ std::expected<EffectResult, Error> EffectExecutor::execute_interrupt(
 
     int power = *power_result;
 
-    // TODO: Actually interrupt spellcasting if target is casting
-    // For now, just report the interrupt attempt
+    std::string attacker_msg;
+    std::string target_msg;
+    std::string room_msg;
 
-    std::string attacker_msg = fmt::format("You interrupt {}!", context.target->display_name());
-    std::string target_msg = fmt::format("{} interrupts you!", context.actor->display_name());
-    std::string room_msg = fmt::format("{} interrupts {}!",
-        context.actor->display_name(), context.target->display_name());
+    // Check if target is actually casting (has a casting blackout in effect)
+    if (context.target->is_casting_blocked()) {
+        // Interrupt successful - clear the casting blackout
+        context.target->clear_casting_blackout();
+
+        attacker_msg = fmt::format("You interrupt {}'s spell!", context.target->display_name());
+        target_msg = fmt::format("{} interrupts your spell!", context.actor->display_name());
+        room_msg = fmt::format("{} interrupts {}'s spellcasting!",
+            context.actor->display_name(), context.target->display_name());
+    } else {
+        // Target wasn't casting - interrupt has no effect
+        attacker_msg = fmt::format("You try to interrupt {}, but they aren't casting.",
+                                   context.target->display_name());
+        target_msg = "";  // No message to target
+        room_msg = "";    // No room message
+        power = 0;        // No power for failed interrupt
+    }
 
     return EffectResult::success_result(power, attacker_msg, target_msg, room_msg);
 }
@@ -961,18 +977,100 @@ std::expected<EffectResult, Error> EffectExecutor::execute_move(
         return std::unexpected(Errors::InvalidArgument("target", "is required for move effect"));
     }
 
-    // TODO: Implement knockback/pull movement
     std::string move_type = params.move_type;
     if (move_type.empty()) {
         move_type = "knockback";
     }
 
-    std::string attacker_msg = fmt::format("You {} {}!",
-        move_type, context.target->display_name());
-    std::string target_msg = fmt::format("{} {} you!",
-        context.actor->display_name(), move_type);
-    std::string room_msg = fmt::format("{} {} {}!",
-        context.actor->display_name(), move_type, context.target->display_name());
+    // Get target's current room
+    auto target_room = context.target->current_room();
+    if (!target_room) {
+        return std::unexpected(Errors::InvalidState("Target has no room"));
+    }
+
+    // Cardinal directions to check
+    static const std::array<Direction, 6> cardinal_dirs = {
+        Direction::North, Direction::East, Direction::South,
+        Direction::West, Direction::Up, Direction::Down
+    };
+
+    // Determine direction based on move type
+    Direction move_dir = Direction::None;
+    bool is_pull = (move_type == "pull" || move_type == "drag");
+
+    if (is_pull) {
+        // Pull moves target toward the actor
+        // Find which exit from target's room leads to actor's room
+        if (context.actor && context.actor->current_room()) {
+            auto actor_room = context.actor->current_room();
+            for (Direction d : cardinal_dirs) {
+                auto exit = target_room->get_exit(d);
+                if (exit && exit->to_room == actor_room->id()) {
+                    move_dir = d;
+                    break;
+                }
+            }
+        }
+    } else {
+        // Knockback moves target away from actor - pick a random valid exit
+        static thread_local std::mt19937 gen{std::random_device{}()};
+        std::vector<Direction> valid_exits;
+        for (Direction d : cardinal_dirs) {
+            auto exit = target_room->get_exit(d);
+            if (exit && exit->to_room.is_valid()) {
+                valid_exits.push_back(d);
+            }
+        }
+        if (!valid_exits.empty()) {
+            std::uniform_int_distribution<size_t> dist(0, valid_exits.size() - 1);
+            move_dir = valid_exits[dist(gen)];
+        }
+    }
+
+    std::string attacker_msg;
+    std::string target_msg;
+    std::string room_msg;
+
+    // Execute the movement if we found a valid direction
+    if (move_dir != Direction::None) {
+        auto exit = target_room->get_exit(move_dir);
+        auto dest_room = WorldManager::instance().get_room(exit->to_room);
+        if (dest_room) {
+            // Move the target
+            target_room->remove_actor(context.target->id());
+            dest_room->add_actor(context.target);
+            context.target->set_current_room(dest_room);
+
+            std::string dir_name{RoomUtils::get_direction_name(move_dir)};
+            attacker_msg = fmt::format("You {} {} {}!",
+                move_type, context.target->display_name(), dir_name);
+            target_msg = fmt::format("{} {} you {}!",
+                context.actor->display_name(), is_pull ? "pulls" : "knocks", dir_name);
+            room_msg = fmt::format("{} is {} {} by {}!",
+                context.target->display_name(), is_pull ? "pulled" : "knocked", dir_name,
+                context.actor->display_name());
+
+            // Send arrival message to new room
+            Direction opposite = RoomUtils::get_opposite_direction(move_dir);
+            for (const auto& actor : dest_room->contents().actors) {
+                if (actor && actor.get() != context.target.get()) {
+                    actor->receive_message(fmt::format("{} stumbles in from {}!",
+                        context.target->display_name(),
+                        RoomUtils::get_direction_name(opposite)));
+                }
+            }
+        } else {
+            attacker_msg = fmt::format("You try to {} {}, but they hold their ground.",
+                move_type, context.target->display_name());
+            target_msg = "";
+            room_msg = "";
+        }
+    } else {
+        attacker_msg = fmt::format("You try to {} {}, but there's nowhere for them to go.",
+            move_type, context.target->display_name());
+        target_msg = "";
+        room_msg = "";
+    }
 
     return EffectResult::success_result(params.move_distance, attacker_msg, target_msg, room_msg);
 }

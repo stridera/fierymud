@@ -928,6 +928,18 @@ std::string_view get_sector_color(SectorType sector) {
     auto it = colors.find(sector);
     return it != colors.end() ? it->second : "\033[0;37m";
 }
+
+bool is_outdoor_sector(SectorType sector) {
+    // Indoor sectors that don't see weather or sunlight changes
+    switch (sector) {
+        case SectorType::Inside:
+        case SectorType::Underground:
+        case SectorType::Underwater:
+            return false;
+        default:
+            return true;
+    }
+}
 } // namespace RoomUtils
 
 std::string Room::get_stat_info() const {

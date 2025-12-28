@@ -156,8 +156,11 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         asio::post(world_strand_, [this, message]() {
             for (auto& conn : active_connections_) {
                 if (auto player = conn->get_player()) {
-                    // TODO: Check if player is outdoors
-                    conn->send_message(message);
+                    if (auto room = player->current_room()) {
+                        if (RoomUtils::is_outdoor_sector(room->sector_type())) {
+                            conn->send_message(message);
+                        }
+                    }
                 }
             }
         });
