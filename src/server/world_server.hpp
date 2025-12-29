@@ -141,6 +141,8 @@ public:
     void schedule_heartbeat();
     void schedule_combat_processing();
     void schedule_periodic_save();
+    void schedule_spell_restoration();
+    void schedule_casting_processing();
     
     // Statistics (thread-safe)
     size_t active_player_count() const;
@@ -160,6 +162,8 @@ private:
     void perform_heartbeat();
     void perform_combat_processing();
     void perform_player_save();
+    void perform_spell_restoration();
+    void perform_casting_processing();
     
     // GMCP support
     void send_room_info_to_player(std::shared_ptr<PlayerConnection> connection);
@@ -193,6 +197,8 @@ private:
     std::shared_ptr<asio::steady_timer> cleanup_timer_;
     std::shared_ptr<asio::steady_timer> heartbeat_timer_;
     std::shared_ptr<asio::steady_timer> combat_timer_;
+    std::shared_ptr<asio::steady_timer> spell_restore_timer_;
+    std::shared_ptr<asio::steady_timer> casting_timer_;
     
     // Performance tracking
     mutable std::atomic<size_t> commands_processed_{0};

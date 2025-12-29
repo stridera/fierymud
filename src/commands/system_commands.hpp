@@ -23,4 +23,17 @@ namespace SystemCommands {
     Result<CommandResult> cmd_prompt(const CommandContext& ctx);
     Result<CommandResult> cmd_richtest(const CommandContext& ctx);
     Result<CommandResult> cmd_clientinfo(const CommandContext& ctx);
+
+    // Feedback commands
+    Result<CommandResult> cmd_bug(const CommandContext& ctx);
+    Result<CommandResult> cmd_idea(const CommandContext& ctx);
+    Result<CommandResult> cmd_typo(const CommandContext& ctx);
+
+    // Utility commands
+    Result<CommandResult> cmd_date(const CommandContext& ctx);
+    Result<CommandResult> cmd_clear(const CommandContext& ctx);
+    Result<CommandResult> cmd_color(const CommandContext& ctx);
+    Result<CommandResult> cmd_display(const CommandContext& ctx);
+    Result<CommandResult> cmd_alias(const CommandContext& ctx);
+    Result<CommandResult> cmd_ignore(const CommandContext& ctx);
 }

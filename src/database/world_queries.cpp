@@ -2004,10 +2004,17 @@ Result<std::vector<ClassAbilityData>> load_class_abilities(pqxx::work& txn, int 
     logger->debug("Loading abilities for class {}", class_id);
 
     try {
+        // Load both skills (from ClassSkills) and spells (from ClassAbilities)
+        // Skills have min_level, spells have circle (get min_level from ClassAbilityCircles)
         auto result = txn.exec_params(R"(
-            SELECT ability_id, class_id, min_level
+            SELECT ability_id, class_id, min_level, 0 AS circle
             FROM "ClassSkills"
             WHERE class_id = $1
+            UNION ALL
+            SELECT ca.ability_id, ca.class_id, COALESCE(cac.min_level, 1) AS min_level, ca.circle
+            FROM "ClassAbilities" ca
+            LEFT JOIN "ClassAbilityCircles" cac ON cac.class_id = ca.class_id AND cac.circle = ca.circle
+            WHERE ca.class_id = $1
             ORDER BY min_level, ability_id
         )", class_id);
 
@@ -2019,6 +2026,7 @@ Result<std::vector<ClassAbilityData>> load_class_abilities(pqxx::work& txn, int 
             ability.ability_id = row["ability_id"].as<int>();
             ability.class_id = row["class_id"].as<int>();
             ability.min_level = row["min_level"].as<int>();
+            ability.circle = row["circle"].as<int>(0);
             abilities.push_back(ability);
         }
 
@@ -2108,7 +2116,7 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
     logger->debug("Loading abilities with metadata for character {}", character_id);
 
     try {
-        // Single efficient query joining CharacterAbilities with Ability
+        // Single efficient query joining CharacterAbilities with Ability and ClassAbilities for circle
         auto result = txn.exec_params(R"(
             SELECT
                 ca.ability_id,
@@ -2118,9 +2126,13 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
                 ca.known,
                 ca.proficiency,
                 a."abilityType" AS ability_type,
-                a.violent
+                a.violent,
+                COALESCE(cla.circle, 0) AS circle,
+                a.sphere
             FROM "CharacterAbilities" ca
             JOIN "Ability" a ON a.id = ca.ability_id
+            JOIN "Characters" c ON c.id = ca.character_id
+            LEFT JOIN "ClassAbilities" cla ON cla.class_id = c.class_id AND cla.ability_id = ca.ability_id
             WHERE ca.character_id = $1
             ORDER BY a."abilityType", a.name
         )", character_id);
@@ -2148,6 +2160,14 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
                 ability.type = AbilityType::Song;
             } else {
                 ability.type = AbilityType::Spell;
+            }
+
+            // Get spell circle from ClassAbilities join
+            ability.circle = row["circle"].as<int>(0);
+
+            // Get sphere from Ability table (may be NULL)
+            if (!row["sphere"].is_null()) {
+                ability.sphere = row["sphere"].as<std::string>();
             }
 
             abilities.push_back(ability);
@@ -2572,6 +2592,45 @@ Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
         logger->error("SQL error loading ability damage components for {}: {}", ability_id, e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to load ability damage components: {}", e.what())});
+    }
+}
+
+Result<std::vector<AbilityClassData>> load_all_ability_classes(pqxx::work& txn) {
+    auto logger = Log::database();
+
+    try {
+        // Join ClassAbilities with Class to get class names
+        // Strip color codes from class names for clean display
+        auto result = txn.exec(R"(
+            SELECT
+                ca.ability_id,
+                ca.class_id,
+                regexp_replace(c.name, '<[^>]+>', '', 'g') as class_name,
+                ca.circle
+            FROM "ClassAbilities" ca
+            JOIN "Class" c ON c.id = ca.class_id
+            ORDER BY ca.ability_id, c.name
+        )");
+
+        std::vector<AbilityClassData> classes;
+        classes.reserve(result.size());
+
+        for (const auto& row : result) {
+            AbilityClassData cls;
+            cls.ability_id = row["ability_id"].as<int>();
+            cls.class_id = row["class_id"].as<int>();
+            cls.class_name = row["class_name"].as<std::string>();
+            cls.circle = row["circle"].as<int>();
+            classes.push_back(std::move(cls));
+        }
+
+        logger->debug("Loaded {} ability-class mappings", classes.size());
+        return classes;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading ability classes: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load ability classes: {}", e.what())});
     }
 }
 

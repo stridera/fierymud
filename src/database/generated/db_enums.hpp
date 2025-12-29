@@ -1058,7 +1058,7 @@ inline std::string_view object_type_to_db(ObjectType e) {
 enum class ObjectFlag {
     Glow = 0,
     Hum = 1,
-    NoRent = 2,
+    Temporary = 2,
     AntiBerserker = 3,
     NoInvisible = 4,
     Invisible = 5,
@@ -1116,7 +1116,7 @@ inline std::optional<ObjectFlag> object_flag_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, ObjectFlag> lookup = {
         {"GLOW", ObjectFlag::Glow},
         {"HUM", ObjectFlag::Hum},
-        {"NO_RENT", ObjectFlag::NoRent},
+        {"TEMPORARY", ObjectFlag::Temporary},
         {"ANTI_BERSERKER", ObjectFlag::AntiBerserker},
         {"NO_INVISIBLE", ObjectFlag::NoInvisible},
         {"INVISIBLE", ObjectFlag::Invisible},
@@ -1177,7 +1177,7 @@ inline std::string_view object_flag_to_db(ObjectFlag e) {
     switch (e) {
         case ObjectFlag::Glow: return "GLOW";
         case ObjectFlag::Hum: return "HUM";
-        case ObjectFlag::NoRent: return "NO_RENT";
+        case ObjectFlag::Temporary: return "TEMPORARY";
         case ObjectFlag::AntiBerserker: return "ANTI_BERSERKER";
         case ObjectFlag::NoInvisible: return "NO_INVISIBLE";
         case ObjectFlag::Invisible: return "INVISIBLE";

@@ -282,9 +282,13 @@ Result<CommandResult> cmd_practice(const CommandContext &ctx) {
         ability_map[ability.id] = &ability;
     }
 
-    std::unordered_map<int, int> class_ability_levels;  // ability_id -> min_level
+    struct ClassAbilityInfo {
+        int min_level;
+        int circle;
+    };
+    std::unordered_map<int, ClassAbilityInfo> class_ability_info;  // ability_id -> info
     for (const auto& ca : *class_abilities_result) {
-        class_ability_levels[ca.ability_id] = ca.min_level;
+        class_ability_info[ca.ability_id] = {ca.min_level, ca.circle};
     }
 
     if (ctx.arg_count() == 0) {
@@ -295,14 +299,14 @@ Result<CommandResult> cmd_practice(const CommandContext &ctx) {
         int player_level = player->level();
         std::vector<std::tuple<std::string, int, int, std::string>> learnable;  // name, min_level, proficiency, type
 
-        for (const auto& [ability_id, min_level] : class_ability_levels) {
+        for (const auto& [ability_id, info] : class_ability_info) {
             auto it = ability_map.find(ability_id);
             if (it == ability_map.end()) continue;
 
             const auto* ability = it->second;
 
             // Check if player can learn this ability at their level
-            if (min_level > player_level) continue;
+            if (info.min_level > player_level) continue;
 
             // Get current proficiency
             int proficiency = player->get_proficiency(ability_id);
@@ -316,7 +320,7 @@ Result<CommandResult> cmd_practice(const CommandContext &ctx) {
                 case WorldQueries::AbilityType::Song:  type_str = "song"; break;
             }
 
-            learnable.emplace_back(ability->name, min_level, proficiency, type_str);
+            learnable.emplace_back(ability->name, info.min_level, proficiency, type_str);
         }
 
         // Sort by min level then name
@@ -348,10 +352,11 @@ Result<CommandResult> cmd_practice(const CommandContext &ctx) {
     // Find the ability by name (case-insensitive partial match)
     const WorldQueries::AbilityData* target_ability = nullptr;
     int target_min_level = 0;
+    int target_circle = 0;
 
     std::string lower_search = to_lowercase(ability_name);
 
-    for (const auto& [ability_id, min_level] : class_ability_levels) {
+    for (const auto& [ability_id, info] : class_ability_info) {
         auto it = ability_map.find(ability_id);
         if (it == ability_map.end()) continue;
 
@@ -362,7 +367,8 @@ Result<CommandResult> cmd_practice(const CommandContext &ctx) {
         if (lower_name.starts_with(lower_search) ||
             lower_name.find(lower_search) != std::string::npos) {
             target_ability = ability;
-            target_min_level = min_level;
+            target_min_level = info.min_level;
+            target_circle = info.circle;
             break;
         }
     }
@@ -417,6 +423,7 @@ Result<CommandResult> cmd_practice(const CommandContext &ctx) {
         }
         learned.min_level = target_min_level;
         learned.violent = target_ability->violent;
+        learned.circle = target_circle;
         player->set_ability(learned);
     }
 
@@ -695,6 +702,8 @@ static const std::vector<ToggleDefinition> TOGGLE_DEFINITIONS = {
         [](Player* p) { return p->is_autogold(); }},
     {"autosplit", "Auto Split", "Automatically split gold with group", PlayerFlag::AutoSplit, 0, "COMBAT",
         [](Player* p) { return p->is_autosplit(); }},
+    {"showdice", "Show Dice Rolls", "Display detailed dice rolls and damage calculations in combat", PlayerFlag::ShowDiceRolls, 0, "COMBAT",
+        [](Player* p) { return p->is_show_dice_rolls(); }},
     {"deaf", "Deaf", "Block shouts and gossip", PlayerFlag::Deaf, 0, "SOCIAL",
         [](Player* p) { return p->is_deaf(); }},
     {"notell", "No Tell", "Block tells from non-gods", PlayerFlag::NoTell, 0, "SOCIAL",
@@ -962,6 +971,255 @@ Result<CommandResult> cmd_pk(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Follower Commands
+// =============================================================================
+
+Result<CommandResult> cmd_call(const CommandContext &ctx) {
+    // Call all followers to the actor's location
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can call followers.");
+        return CommandResult::InvalidState;
+    }
+
+    // Check if player has any followers
+    const auto& followers = player->get_followers();
+    if (followers.empty()) {
+        ctx.send("You have no followers to call.");
+        return CommandResult::InvalidState;
+    }
+
+    int called_count = 0;
+    auto player_room = ctx.actor->current_room();
+    for (const auto& follower_weak : followers) {
+        auto follower = follower_weak.lock();
+        if (!follower) continue;
+
+        // Skip if follower is already in the room
+        if (follower->current_room() == player_room) {
+            continue;
+        }
+
+        // TODO: Move follower to player's room
+        // This requires follower movement implementation
+        called_count++;
+    }
+
+    if (called_count == 0) {
+        ctx.send("All your followers are already here.");
+    } else {
+        ctx.send("You call for your followers.");
+        ctx.send_to_room(fmt::format("{} calls for their followers.", ctx.actor->display_name()), true);
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_order(const CommandContext &ctx) {
+    // Order followers or charmies to perform actions
+    if (ctx.arg_count() < 2) {
+        ctx.send("Usage: order <follower|all> <command>");
+        ctx.send("Examples:");
+        ctx.send("  order all follow me");
+        ctx.send("  order guard kill orc");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string target_name{ctx.arg(0)};
+    std::string command_str = ctx.args_from(1);
+
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can order followers.");
+        return CommandResult::InvalidState;
+    }
+
+    bool order_all = (target_name == "all" || target_name == "followers");
+
+    if (order_all) {
+        const auto& followers = player->get_followers();
+        if (followers.empty()) {
+            ctx.send("You have no followers to order.");
+            return CommandResult::InvalidState;
+        }
+
+        ctx.send(fmt::format("You order your followers to '{}'.", command_str));
+        ctx.send_to_room(fmt::format("{} gives orders to their followers.", ctx.actor->display_name()), true);
+
+        // TODO: Execute command for each follower
+        // This requires command execution on behalf of followers
+        for (const auto& follower_weak : followers) {
+            auto follower = follower_weak.lock();
+            if (!follower) continue;
+            // Commands::execute(follower, command_str);
+        }
+    } else {
+        // Find specific follower by name
+        auto target = ctx.find_actor_target(target_name);
+        if (!target) {
+            ctx.send_error(fmt::format("You don't see '{}' here.", target_name));
+            return CommandResult::InvalidTarget;
+        }
+
+        auto mob = std::dynamic_pointer_cast<Mobile>(target);
+        if (!mob) {
+            ctx.send_error("You can only order NPCs.");
+            return CommandResult::InvalidTarget;
+        }
+
+        // Check if the mob is charmed (via ActorFlag)
+        // TODO: Add check for who charmed the mob and follower relationships
+        if (!target->has_flag(ActorFlag::Charm)) {
+            ctx.send_error(fmt::format("{} refuses to follow your orders.", target->display_name()));
+            return CommandResult::InvalidState;
+        }
+
+        ctx.send(fmt::format("You order {} to '{}'.", target->display_name(), command_str));
+        ctx.send_to_room(fmt::format("{} gives an order to {}.", ctx.actor->display_name(), target->display_name()), true);
+
+        // TODO: Execute command for the follower
+        // Commands::execute(mob, command_str);
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Class Ability Commands
+// =============================================================================
+
+Result<CommandResult> cmd_subclass(const CommandContext &ctx) {
+    // Choose or view subclass specialization
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can have subclasses.");
+        return CommandResult::InvalidState;
+    }
+
+    if (ctx.arg_count() == 0) {
+        // Show current subclass status
+        ctx.send("Subclass System:");
+        ctx.send("----------------");
+        // TODO: Show current subclass if any
+        ctx.send("You have not yet chosen a subclass specialization.");
+        ctx.send("");
+        ctx.send("Usage: subclass <specialization>");
+        ctx.send("This choice is permanent and will shape your abilities.");
+        return CommandResult::Success;
+    }
+
+    std::string subclass_name{ctx.arg(0)};
+
+    // Check if player meets requirements (typically level 20+)
+    if (player->stats().level < 20) {
+        ctx.send_error("You must be at least level 20 to choose a subclass.");
+        return CommandResult::InvalidState;
+    }
+
+    // TODO: Validate subclass choice based on player's class
+    // TODO: Check if player already has a subclass
+
+    ctx.send(fmt::format("Subclass selection '{}' is not yet implemented.", subclass_name));
+    ctx.send("Please check back when the subclass system is complete.");
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_shapechange(const CommandContext &ctx) {
+    // Druids can shapechange into various forms
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can shapechange.");
+        return CommandResult::InvalidState;
+    }
+
+    // TODO: Check if player is a druid or has shapechange ability
+    // For now, stub implementation
+
+    if (ctx.arg_count() == 0) {
+        ctx.send("Shapechange Forms:");
+        ctx.send("------------------");
+        ctx.send("  wolf     - Swift predator form");
+        ctx.send("  bear     - Powerful combat form");
+        ctx.send("  eagle    - Flying scout form");
+        ctx.send("  natural  - Return to natural form");
+        ctx.send("");
+        ctx.send("Usage: shapechange <form>");
+        return CommandResult::Success;
+    }
+
+    std::string form_name{ctx.arg(0)};
+
+    if (form_name == "natural" || form_name == "normal" || form_name == "human") {
+        // Return to normal form
+        ctx.send("You shift back into your natural form.");
+        ctx.send_to_room(fmt::format("{}'s body ripples and transforms back to normal.", ctx.actor->display_name()), true);
+        return CommandResult::Success;
+    }
+
+    // TODO: Validate form type
+    // TODO: Apply shapechange effects
+    // TODO: Change actor's display name and stats temporarily
+
+    ctx.send(fmt::format("You focus your will and attempt to become a {}...", form_name));
+    ctx.send("Shapechange is not yet fully implemented.");
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Communication Commands
+// =============================================================================
+
+Result<CommandResult> cmd_write(const CommandContext &ctx) {
+    // Write on objects that can be written on (paper, boards, etc.)
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can write.");
+        return CommandResult::InvalidState;
+    }
+
+    if (ctx.arg_count() == 0) {
+        ctx.send("Usage: write <object> [message]");
+        ctx.send("Examples:");
+        ctx.send("  write note Hello everyone!");
+        ctx.send("  write board Meeting tomorrow at noon.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string target_name{ctx.arg(0)};
+
+    // Check inventory first, then room
+    auto objects = ctx.find_objects_matching(target_name);
+    if (objects.empty()) {
+        ctx.send_error(fmt::format("You don't have '{}' and it's not here.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    auto target = objects.front();
+
+    // Check if object is writable
+    // TODO: Check for ITEM_WRITE flag or similar
+    // For now, check if it's a note or has "paper" in keywords
+
+    if (ctx.arg_count() < 2) {
+        ctx.send(fmt::format("What do you want to write on {}?", target->display_name()));
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string message = ctx.args_from(1);
+
+    // TODO: Actually write the message to the object
+    // This would involve updating the object's extra descriptions
+
+    ctx.send(fmt::format("You write on {}:", target->display_name()));
+    ctx.send(fmt::format("  \"{}\"", message));
+    ctx.send_to_room(fmt::format("{} writes something on {}.", ctx.actor->display_name(), target->display_name()), true);
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -1038,6 +1296,40 @@ Result<void> register_commands() {
 
     Commands()
         .command("pk", cmd_pk)
+        .category("Character")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Follower commands
+    Commands()
+        .command("call", cmd_call)
+        .category("Character")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("order", cmd_order)
+        .category("Character")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Class ability commands
+    Commands()
+        .command("subclass", cmd_subclass)
+        .category("Character")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("shapechange", cmd_shapechange)
+        .alias("shape")
+        .category("Character")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Communication commands
+    Commands()
+        .command("write", cmd_write)
         .category("Character")
         .privilege(PrivilegeLevel::Player)
         .build();

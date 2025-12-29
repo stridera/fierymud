@@ -75,9 +75,10 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             // Build CharacterItemData from inventory and equipment
             std::vector<WorldQueries::CharacterItemData> items_data;
 
-            // Add inventory items
+            // Add inventory items (skip Temporary items - they're dynamic and not saved)
             for (const auto& item : player.inventory().get_all_items()) {
                 if (!item) continue;
+                if (item->has_flag(ObjectFlag::Temporary)) continue;
 
                 WorldQueries::CharacterItemData item_data;
                 item_data.character_id = char_id;
@@ -90,9 +91,10 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                 items_data.push_back(std::move(item_data));
             }
 
-            // Add equipped items
+            // Add equipped items (skip Temporary items - they're dynamic and not saved)
             for (const auto& [slot, item] : player.equipment().get_all_equipped_with_slots()) {
                 if (!item) continue;
+                if (item->has_flag(ObjectFlag::Temporary)) continue;
 
                 WorldQueries::CharacterItemData item_data;
                 item_data.character_id = char_id;

@@ -26,7 +26,11 @@ bool Spell::can_cast(const Actor& caster) const {
         }
 
         std::string player_class = to_lowercase(player->player_class());
-        if (player_class != "cleric" && player_class != "sorcerer") {
+        // Full casters: sorcerer, cleric, druid, necromancer, conjurer, priest, diabolist, shaman
+        if (player_class != "cleric" && player_class != "sorcerer" &&
+            player_class != "druid" && player_class != "necromancer" &&
+            player_class != "conjurer" && player_class != "priest" &&
+            player_class != "diabolist" && player_class != "shaman") {
             return false;
         }
     } else {
@@ -145,34 +149,10 @@ Result<Spell> Spell::from_json(const nlohmann::json& json) {
 // SpellSlotCircle Implementation
 // ============================================================================
 
-bool SpellSlotCircle::use_slot() {
-    if (current_slots <= 0) {
-        return false;
-    }
-    
-    current_slots--;
-    return true;
-}
-
-void SpellSlotCircle::update_refresh() {
-    using namespace std::chrono;
-    
-    auto now = steady_clock::now();
-    auto elapsed = duration_cast<seconds>(now - last_refresh);
-    
-    if (elapsed >= refresh_time && current_slots < max_slots) {
-        current_slots = std::min(max_slots, current_slots + 1);
-        last_refresh = now;
-        Log::debug("Spell slot refreshed: {} / {}", current_slots, max_slots);
-    }
-}
-
 nlohmann::json SpellSlotCircle::to_json() const {
     return {
         {"current_slots", current_slots},
-        {"max_slots", max_slots},
-        {"refresh_time_seconds", static_cast<int>(refresh_time.count())},
-        {"last_refresh_epoch", last_refresh.time_since_epoch().count()}
+        {"max_slots", max_slots}
     };
 }
 
@@ -181,24 +161,31 @@ Result<SpellSlotCircle> SpellSlotCircle::from_json(const nlohmann::json& json) {
         SpellSlotCircle circle;
         circle.current_slots = json.at("current_slots").get<int>();
         circle.max_slots = json.at("max_slots").get<int>();
-        
-        if (json.contains("refresh_time_seconds")) {
-            circle.refresh_time = std::chrono::seconds{json["refresh_time_seconds"].get<int>()};
-        }
-        
-        if (json.contains("last_refresh_epoch")) {
-            auto epoch_count = json["last_refresh_epoch"].get<int64_t>();
-            circle.last_refresh = std::chrono::steady_clock::time_point{
-                std::chrono::steady_clock::duration{epoch_count}
-            };
-        } else {
-            circle.last_refresh = std::chrono::steady_clock::now();
-        }
-        
         return circle;
-        
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("SpellSlotCircle JSON parsing error", e.what()));
+    }
+}
+
+// ============================================================================
+// SpellSlotRestoring Implementation
+// ============================================================================
+
+nlohmann::json SpellSlotRestoring::to_json() const {
+    return {
+        {"circle", circle},
+        {"ticks_remaining", ticks_remaining}
+    };
+}
+
+Result<SpellSlotRestoring> SpellSlotRestoring::from_json(const nlohmann::json& json) {
+    try {
+        SpellSlotRestoring restoring;
+        restoring.circle = json.at("circle").get<int>();
+        restoring.ticks_remaining = json.at("ticks_remaining").get<int>();
+        return restoring;
+    } catch (const nlohmann::json::exception& e) {
+        return std::unexpected(Errors::ParseError("SpellSlotRestoring JSON parsing error", e.what()));
     }
 }
 
@@ -208,13 +195,21 @@ Result<SpellSlotCircle> SpellSlotCircle::from_json(const nlohmann::json& json) {
 
 void SpellSlots::initialize_for_class(std::string_view character_class, int level) {
     slots_.clear();
-    
+    restoration_queue_.clear();
+
+    // Normalize class name to lowercase for comparison
+    std::string class_lower = to_lowercase(character_class);
+
     // Different classes get different spell slot progressions
-    if (character_class == "cleric" || character_class == "sorcerer") {
+    // Full casters: sorcerer, cleric, druid, necromancer, conjurer, priest, diabolist
+    if (class_lower == "cleric" || class_lower == "sorcerer" ||
+        class_lower == "druid" || class_lower == "necromancer" ||
+        class_lower == "conjurer" || class_lower == "priest" ||
+        class_lower == "diabolist" || class_lower == "shaman") {
         // Calculate slots based on level (simplified D&D-style progression)
         for (int circle = 1; circle <= 9; ++circle) {
             int slots_for_circle = 0;
-            
+
             // Circle availability based on level
             int required_level = (circle - 1) * 2 + 1; // Circle 1 at level 1, Circle 2 at level 3, etc.
             if (level >= required_level) {
@@ -222,14 +217,11 @@ void SpellSlots::initialize_for_class(std::string_view character_class, int leve
                 slots_for_circle = 1 + (level - required_level) / 4;
                 slots_for_circle = std::min(slots_for_circle, 4); // Cap at 4 slots per circle
             }
-            
+
             if (slots_for_circle > 0) {
                 SpellSlotCircle slot_circle;
                 slot_circle.max_slots = slots_for_circle;
                 slot_circle.current_slots = slots_for_circle; // Start with full slots
-                slot_circle.refresh_time = std::chrono::seconds{1800 + (circle - 1) * 600}; // Longer refresh for higher circles
-                slot_circle.last_refresh = std::chrono::steady_clock::now();
-                
                 slots_[circle] = slot_circle;
             }
         }
@@ -241,13 +233,50 @@ bool SpellSlots::has_slots(int circle) const {
     return it != slots_.end() && it->second.has_slots();
 }
 
-bool SpellSlots::use_slot(int circle) {
-    auto it = slots_.find(circle);
-    if (it == slots_.end()) {
-        return false;
+bool SpellSlots::consume_slot(int spell_circle) {
+    // Try exact circle first
+    if (has_slots(spell_circle)) {
+        slots_[spell_circle].current_slots--;
+        restoration_queue_.push_back({spell_circle, get_base_ticks(spell_circle)});
+        Log::debug("Consumed circle {} slot, {} remaining, queue size {}",
+                   spell_circle, slots_[spell_circle].current_slots, restoration_queue_.size());
+        return true;
     }
-    
-    return it->second.use_slot();
+
+    // Try higher circles (upcast) - use a higher slot for a lower circle spell
+    for (int c = spell_circle + 1; c <= 9; ++c) {
+        if (has_slots(c)) {
+            slots_[c].current_slots--;
+            restoration_queue_.push_back({c, get_base_ticks(c)});
+            Log::debug("Upcast: consumed circle {} slot for circle {} spell, queue size {}",
+                       c, spell_circle, restoration_queue_.size());
+            return true;
+        }
+    }
+
+    return false; // No slots available
+}
+
+int SpellSlots::restore_tick(int focus_rate) {
+    if (restoration_queue_.empty()) {
+        return 0;
+    }
+
+    // Subtract from front of queue (FIFO)
+    restoration_queue_.front().ticks_remaining -= focus_rate;
+
+    // Restore slot if ready
+    if (restoration_queue_.front().ticks_remaining <= 0) {
+        int circle = restoration_queue_.front().circle;
+        slots_[circle].current_slots++;
+        restoration_queue_.erase(restoration_queue_.begin());
+        Log::debug("Restored circle {} slot, now {}/{}, queue size {}",
+                   circle, slots_[circle].current_slots, slots_[circle].max_slots,
+                   restoration_queue_.size());
+        return circle; // Return the circle that was restored
+    }
+
+    return 0; // Nothing restored yet
 }
 
 std::pair<int, int> SpellSlots::get_slot_info(int circle) const {
@@ -255,14 +284,22 @@ std::pair<int, int> SpellSlots::get_slot_info(int circle) const {
     if (it == slots_.end()) {
         return {0, 0};
     }
-    
+
     return {it->second.current_slots, it->second.max_slots};
 }
 
-void SpellSlots::update_refresh() {
-    for (auto& [circle, slot_circle] : slots_) {
-        slot_circle.update_refresh();
+int SpellSlots::get_restoring_count(int circle) const {
+    int count = 0;
+    for (const auto& entry : restoration_queue_) {
+        if (entry.circle == circle) {
+            count++;
+        }
     }
+    return count;
+}
+
+int SpellSlots::get_total_restoring() const {
+    return static_cast<int>(restoration_queue_.size());
 }
 
 std::vector<int> SpellSlots::get_available_circles() const {
@@ -276,31 +313,72 @@ std::vector<int> SpellSlots::get_available_circles() const {
     return circles;
 }
 
+int SpellSlots::get_base_ticks(int circle) {
+    if (circle < 1 || circle > 9) {
+        return 30; // Default to circle 1 time for invalid circles
+    }
+    return CIRCLE_RECOVERY_TICKS[circle];
+}
+
 nlohmann::json SpellSlots::to_json() const {
     nlohmann::json json = nlohmann::json::object();
-    
+
+    // Serialize slot circles
+    nlohmann::json circles_json = nlohmann::json::object();
     for (const auto& [circle, slot_circle] : slots_) {
-        json[std::to_string(circle)] = slot_circle.to_json();
+        circles_json[std::to_string(circle)] = slot_circle.to_json();
     }
-    
+    json["circles"] = circles_json;
+
+    // Serialize restoration queue
+    nlohmann::json queue_json = nlohmann::json::array();
+    for (const auto& entry : restoration_queue_) {
+        queue_json.push_back(entry.to_json());
+    }
+    json["restoration_queue"] = queue_json;
+
     return json;
 }
 
 Result<SpellSlots> SpellSlots::from_json(const nlohmann::json& json) {
     try {
         SpellSlots spell_slots;
-        
-        for (const auto& [circle_str, circle_json] : json.items()) {
-            int circle = std::stoi(circle_str);
-            auto circle_result = SpellSlotCircle::from_json(circle_json);
-            if (!circle_result) {
-                return std::unexpected(circle_result.error());
+
+        // Check for new format with "circles" key
+        if (json.contains("circles")) {
+            for (const auto& [circle_str, circle_json] : json["circles"].items()) {
+                int circle = std::stoi(circle_str);
+                auto circle_result = SpellSlotCircle::from_json(circle_json);
+                if (!circle_result) {
+                    return std::unexpected(circle_result.error());
+                }
+                spell_slots.slots_[circle] = circle_result.value();
             }
-            spell_slots.slots_[circle] = circle_result.value();
+
+            // Load restoration queue if present
+            if (json.contains("restoration_queue")) {
+                for (const auto& entry_json : json["restoration_queue"]) {
+                    auto entry_result = SpellSlotRestoring::from_json(entry_json);
+                    if (!entry_result) {
+                        return std::unexpected(entry_result.error());
+                    }
+                    spell_slots.restoration_queue_.push_back(entry_result.value());
+                }
+            }
+        } else {
+            // Legacy format: circles are at top level
+            for (const auto& [circle_str, circle_json] : json.items()) {
+                int circle = std::stoi(circle_str);
+                auto circle_result = SpellSlotCircle::from_json(circle_json);
+                if (!circle_result) {
+                    return std::unexpected(circle_result.error());
+                }
+                spell_slots.slots_[circle] = circle_result.value();
+            }
         }
-        
+
         return spell_slots;
-        
+
     } catch (const std::exception& e) {
         return std::unexpected(Errors::ParseError("SpellSlots JSON parsing error", e.what()));
     }

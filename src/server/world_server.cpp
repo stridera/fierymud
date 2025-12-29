@@ -29,6 +29,8 @@ namespace {
     constexpr auto HEARTBEAT_INTERVAL = std::chrono::seconds(30);
     constexpr auto COMBAT_PROCESSING_INTERVAL = std::chrono::milliseconds(100);
     constexpr auto PLAYER_SAVE_INTERVAL = std::chrono::minutes(5);
+    constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
+    constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500);  // 2 ticks per second
 
     // Game time defaults
     constexpr int DEFAULT_LORE_YEAR = 1000;
@@ -272,6 +274,8 @@ Result<void> WorldServer::start() {
     schedule_heartbeat();
     schedule_combat_processing();
     schedule_periodic_save();
+    schedule_spell_restoration();
+    schedule_casting_processing();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -294,6 +298,10 @@ void WorldServer::begin_shutdown() {
         heartbeat_timer_->cancel();
     if (combat_timer_)
         combat_timer_->cancel();
+    if (spell_restore_timer_)
+        spell_restore_timer_->cancel();
+    if (casting_timer_)
+        casting_timer_->cancel();
 }
 
 void WorldServer::stop() {
@@ -314,6 +322,10 @@ void WorldServer::stop() {
         heartbeat_timer_->cancel();
     if (combat_timer_)
         combat_timer_->cancel();
+    if (spell_restore_timer_)
+        spell_restore_timer_->cancel();
+    if (casting_timer_)
+        casting_timer_->cancel();
 
     // Shutdown scripting systems in proper order:
     // 1. CoroutineScheduler first (cancels all pending Lua coroutines and timers)
@@ -487,7 +499,19 @@ void WorldServer::remove_player_connection(std::shared_ptr<PlayerConnection> con
 
 void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> connection, std::shared_ptr<Actor> actor) {
     if (!running_.load()) return;  // Skip during shutdown
-    asio::post(world_strand_, [this, connection, actor]() { connection_actors_[connection] = actor; });
+    asio::post(world_strand_, [this, connection, actor]() {
+        // Remove old actor from its room before replacing (prevents Guest characters from being left behind)
+        auto old_it = connection_actors_.find(connection);
+        if (old_it != connection_actors_.end() && old_it->second) {
+            auto old_actor = old_it->second;
+            if (auto room = old_actor->current_room()) {
+                room->remove_actor(old_actor->id());
+                Log::debug("Removed old actor '{}' from room {} before replacing with '{}'",
+                          old_actor->name(), room->id(), actor ? actor->name() : "null");
+            }
+        }
+        connection_actors_[connection] = actor;
+    });
 }
 
 void WorldServer::handle_player_reconnection(std::shared_ptr<PlayerConnection> old_connection,
@@ -505,6 +529,18 @@ void WorldServer::handle_player_reconnection(std::shared_ptr<PlayerConnection> o
         auto active_it = std::find(active_connections_.begin(), active_connections_.end(), old_connection);
         if (active_it != active_connections_.end()) {
             active_connections_.erase(active_it);
+        }
+
+        // Remove the new connection's Guest from its room before replacing with the real player
+        // (The new connection had a Guest created when it connected, which needs cleanup)
+        auto new_it = connection_actors_.find(new_connection);
+        if (new_it != connection_actors_.end() && new_it->second) {
+            auto guest_actor = new_it->second;
+            if (auto room = guest_actor->current_room()) {
+                room->remove_actor(guest_actor->id());
+                Log::debug("Removed Guest '{}' from room {} during reconnection for '{}'",
+                          guest_actor->name(), room->id(), player->name());
+            }
         }
 
         // Add new connection with the player as its actor
@@ -644,6 +680,176 @@ void WorldServer::schedule_periodic_save() {
     schedule_timer(PLAYER_SAVE_INTERVAL, [this]() { perform_player_save(); }, save_timer_);
 }
 
+void WorldServer::schedule_spell_restoration() {
+    Log::info("Scheduling spell restoration timer (1s interval)");
+    spell_restore_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(SPELL_RESTORE_INTERVAL, [this]() { perform_spell_restoration(); }, spell_restore_timer_);
+}
+
+void WorldServer::schedule_casting_processing() {
+    Log::info("Scheduling casting tick timer (500ms interval)");
+    casting_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(CASTING_TICK_INTERVAL, [this]() { perform_casting_processing(); }, casting_timer_);
+}
+
+void WorldServer::perform_spell_restoration() {
+    // Process spell slot restoration for all connected players
+    for (auto& conn : active_connections_) {
+        if (auto player = conn->get_player()) {
+            // Get player's focus-based restoration rate
+            int rate = player->get_spell_restore_rate();
+
+            // Process restoration tick
+            int restored_circle = player->spell_slots().restore_tick(rate);
+
+            // Notify player if a slot was restored
+            if (restored_circle > 0) {
+                player->send_message(fmt::format(
+                    "You feel your magical energies return. (Circle {} slot restored)",
+                    restored_circle));
+            }
+        }
+    }
+}
+
+void WorldServer::perform_casting_processing() {
+
+    // Process casting ticks for all connected actors
+    for (auto& conn : active_connections_) {
+        auto it = connection_actors_.find(conn);
+        if (it == connection_actors_.end() || !it->second) {
+            continue;
+        }
+
+        auto& actor = it->second;
+
+        // Skip if not casting
+        if (!actor->is_casting()) {
+            continue;
+        }
+
+        // Advance the casting timer
+        if (actor->advance_casting()) {
+            // Casting completed - show completion message
+            actor->send_message("\nYou complete your spell.\n");
+            const auto& state_opt = actor->casting_state();
+            if (state_opt.has_value()) {
+                const auto& state = state_opt.value();
+                Log::debug("Casting complete for {}: {} (target: {})",
+                          actor->name(), state.ability_name, state.target_name);
+
+                // Get the target actor if needed
+                std::shared_ptr<Actor> target_actor = state.target.lock();
+
+                // If weak_ptr expired but we have a target name, try to re-find the target
+                if (!target_actor && !state.target_name.empty()) {
+                    auto room = actor->current_room();
+                    if (room) {
+                        for (const auto& room_actor : room->contents().actors) {
+                            if (room_actor && room_actor != actor) {
+                                // Match by name (case insensitive prefix match)
+                                std::string lower_name{room_actor->name()};
+                                std::string lower_target = state.target_name;
+                                std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(), ::tolower);
+                                std::transform(lower_target.begin(), lower_target.end(), lower_target.begin(), ::tolower);
+                                if (lower_name.starts_with(lower_target) || lower_target.starts_with(lower_name)) {
+                                    target_actor = room_actor;
+                                    Log::debug("Re-targeted {} to {} in room", state.ability_name, room_actor->name());
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Execute the completed spell through ability executor
+                auto exec_result = FieryMUD::AbilityExecutor::execute_completed_cast(
+                    actor, state.ability_id, target_actor);
+
+                if (!exec_result) {
+                    actor->send_message(fmt::format("Your spell fizzles! ({})\n",
+                                                   exec_result.error().message));
+                } else if (exec_result->success) {
+                    // Send the generated messages
+                    if (!exec_result->attacker_message.empty()) {
+                        actor->send_message(exec_result->attacker_message + "\n");
+                    }
+                    if (target_actor && !exec_result->target_message.empty()) {
+                        target_actor->send_message(exec_result->target_message + "\n");
+                    }
+
+                    // Send room message to others
+                    if (!exec_result->room_message.empty()) {
+                        if (auto room = actor->current_room()) {
+                            for (const auto& other : room->contents().actors) {
+                                if (other != actor && other != target_actor) {
+                                    other->send_message(exec_result->room_message + "\n");
+                                }
+                            }
+                        }
+                    }
+
+                    // Handle damage and combat if this was a violent spell
+                    if (target_actor && exec_result->total_damage > 0) {
+                        if (target_actor->stats().hit_points <= 0) {
+                            // Target died
+                            target_actor->stats().hit_points = 0;
+                            FieryMUD::CombatManager::end_combat(target_actor);
+
+                            bool target_is_player = (target_actor->type_name() == "Player");
+                            if (target_is_player) {
+                                target_actor->send_message("You are DEAD! You feel your spirit leave your body...\n");
+                                if (auto room = actor->current_room()) {
+                                    std::string death_msg = fmt::format("{} is DEAD! Their spirit rises from their body.\n",
+                                                                       target_actor->display_name());
+                                    for (const auto& other : room->contents().actors) {
+                                        if (other != target_actor) {
+                                            other->send_message(death_msg);
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (auto room = actor->current_room()) {
+                                    std::string death_msg = fmt::format("{} is DEAD! Their corpse falls to the ground.\n",
+                                                                       target_actor->display_name());
+                                    for (const auto& other : room->contents().actors) {
+                                        other->send_message(death_msg);
+                                    }
+                                }
+                            }
+
+                            // Create corpse and handle death
+                            target_actor->die();
+                        } else {
+                            // Target is still alive - start combat if not already fighting
+                            if (actor->position() != Position::Fighting) {
+                                actor->set_position(Position::Fighting);
+                                target_actor->set_position(Position::Fighting);
+                                FieryMUD::CombatManager::start_combat(actor, target_actor);
+                                Log::debug("Started combat between {} and {} after spell damage",
+                                          actor->name(), target_actor->name());
+                            }
+                        }
+                    }
+                }
+
+                // Clear the casting state
+                actor->stop_casting(false);
+            }
+        } else {
+            // Casting still in progress - show progress indicator
+            const auto& state_opt = actor->casting_state();
+            if (state_opt.has_value()) {
+                const auto& state = state_opt.value();
+                // Build progress indicator with stars
+                std::string stars(state.ticks_remaining, '*');
+                actor->send_message(fmt::format("\nCasting: {} {}\n",
+                                               state.ability_name, stars));
+            }
+        }
+    }
+}
+
 void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::function<void()> task,
                                  const std::shared_ptr<asio::steady_timer> &timer) {
     if (!running_.load()) {
@@ -675,15 +881,6 @@ void WorldServer::perform_cleanup() {
                        [](const std::shared_ptr<PlayerConnection> &conn) { return !conn->is_connected(); }),
         active_connections_.end());
 
-    // Additional cleanup tasks
-    
-    // Refresh spell slots for all connected players
-    for (auto& conn : active_connections_) {
-        if (auto player = conn->get_player()) {
-            player->update_spell_slots();
-        }
-    }
-    
     // Additional world updates can be added here as needed
     Log::trace("Cleanup tasks completed");
 }
@@ -729,7 +926,8 @@ void WorldServer::perform_combat_processing() {
         }
     }
 
-    // Process queued spells for players whose blackout has expired
+    // Process queued spells for players who are ready to cast
+    // (not casting and not in blackout)
     for (auto& conn : active_connections_) {
         auto it = connection_actors_.find(conn);
         if (it == connection_actors_.end() || !it->second) {
@@ -738,8 +936,11 @@ void WorldServer::perform_combat_processing() {
 
         auto& actor = it->second;
 
-        // Check if actor has a queued spell and blackout has expired
-        if (actor->has_queued_spell() && !actor->is_casting_blocked()) {
+        // Only process queued spell if actor is completely ready to cast:
+        // - Has a queued spell
+        // - Not currently casting another spell
+        // - Not in casting blackout
+        if (actor->has_queued_spell() && !actor->is_casting() && !actor->is_casting_blocked()) {
             auto queued = actor->pop_queued_spell();
             if (queued) {
                 // Execute the queued spell command

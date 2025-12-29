@@ -160,7 +160,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         // Room is visible, add room name as header, then description, exits, objects, and actors
         std::ostringstream full_desc;
-        full_desc << current_room->name() << "\n";
+        full_desc << "<green>" << current_room->name() << "</>\n";
         full_desc << description << "\n";
 
         // Add exits (only if player has autoexit enabled)
@@ -188,7 +188,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                     continue;  // Skip objects with no description
                 }
                 if (!found_objects) {
-                    full_desc << "\nYou see:\n";
+                    full_desc << "\n<yellow>You see:</>\n";
                     found_objects = true;
                 }
                 full_desc << fmt::format("  {}\n", ground_desc);
@@ -266,7 +266,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 }
 
                 if (!found_others) {
-                    full_desc << "\nAlso here:\n";
+                    full_desc << "\n<yellow>Also here:</>\n";
                     found_others = true;
                 }
 
@@ -1633,6 +1633,73 @@ Result<CommandResult> cmd_board(const CommandContext& ctx) {
 }
 
 // =============================================================================
+// Search and Discovery
+// =============================================================================
+
+Result<CommandResult> cmd_search(const CommandContext &ctx) {
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't search while fighting
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You're too busy fighting to search!");
+        return CommandResult::InvalidState;
+    }
+
+    ctx.send("You search the area carefully...");
+    ctx.send_to_room(fmt::format("{} searches the area.", ctx.actor->display_name()), true);
+
+    // TODO: Check for hidden exits
+    // TODO: Check for hidden items
+    // TODO: Check for hidden NPCs
+    // TODO: Apply search skill check
+
+    ctx.send("You find nothing hidden.");
+    ctx.send("Note: Full search functionality not yet implemented.");
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_read(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Read what?");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string_view target_name = ctx.arg(0);
+
+    // Check if they're trying to read a board
+    if (target_name == "board") {
+        // Forward to board command
+        return cmd_board(ctx);
+    }
+
+    // Look for an object to read
+    auto objects = ctx.find_objects_matching(target_name, true);
+    if (objects.empty()) {
+        ctx.send_error(fmt::format("You don't see any '{}' to read.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    auto obj = objects.front();
+
+    // TODO: Check if object is readable (has description or notes)
+    ctx.send(fmt::format("You read {}:", obj->short_description()));
+
+    // For now, just show the object's description
+    auto desc = obj->description();
+    if (!desc.empty()) {
+        ctx.send(std::string{desc});
+    } else {
+        ctx.send("There is nothing written on it.");
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -1783,6 +1850,23 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .usable_while_sitting(true)
         .usable_while_sleeping(true)
+        .build();
+
+    // Search and discovery
+    Commands()
+        .command("search", cmd_search)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .description("Search for hidden objects or exits")
+        .usable_in_combat(false)
+        .build();
+
+    Commands()
+        .command("read", cmd_read)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .description("Read something")
+        .usage("read <object>")
         .build();
 
     return Success();

@@ -4,6 +4,7 @@
 #include "../core/spell_system.hpp"
 #include <algorithm>
 #include <fmt/format.h>
+#include <map>
 
 namespace MagicCommands {
 
@@ -29,6 +30,27 @@ static std::string_view proficiency_description(int proficiency) {
 // Spell Management Commands
 // =============================================================================
 
+// Sphere color codes (matching legacy)
+static std::string get_sphere_color(std::string_view sphere) {
+    std::string sphere_lower;
+    sphere_lower.reserve(sphere.size());
+    for (char c : sphere) {
+        sphere_lower += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+
+    if (sphere_lower == "fire") return "\033[31m";         // red
+    if (sphere_lower == "water") return "\033[34m";        // blue
+    if (sphere_lower == "earth") return "\033[33m";        // yellow
+    if (sphere_lower == "air") return "\033[36m";          // cyan
+    if (sphere_lower == "healing") return "\033[32m";      // green
+    if (sphere_lower == "protection") return "\033[34m";   // blue
+    if (sphere_lower == "enchantment") return "\033[35m";  // magenta
+    if (sphere_lower == "summoning") return "\033[35m";    // magenta
+    if (sphere_lower == "divination") return "\033[36m";   // cyan
+    if (sphere_lower == "necromancy") return "\033[35m";   // magenta
+    return "\033[35m";  // default: magenta (generic)
+}
+
 Result<CommandResult> cmd_spells(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
@@ -45,50 +67,61 @@ Result<CommandResult> cmd_spells(const CommandContext &ctx) {
         }
     }
 
-    // Sort spells by name
-    std::sort(spells.begin(), spells.end(),
-        [](const LearnedAbility* a, const LearnedAbility* b) {
-            return a->plain_name < b->plain_name;
-        });
+    if (spells.empty()) {
+        ctx.send("You do not know any spells.");
+        return CommandResult::Success;
+    }
+
+    // Group spells by circle
+    std::map<int, std::vector<const LearnedAbility*>> spells_by_circle;
+    for (const auto* spell : spells) {
+        spells_by_circle[spell->circle].push_back(spell);
+    }
+
+    // Sort spells within each circle by name
+    for (auto& [circle, circle_spells] : spells_by_circle) {
+        std::sort(circle_spells.begin(), circle_spells.end(),
+            [](const LearnedAbility* a, const LearnedAbility* b) {
+                return a->plain_name < b->plain_name;
+            });
+    }
 
     std::string output;
-    output += "--- Known Spells ---\n";
+    output += "You know of the following spells:\n\n";
 
-    // Check if player has any spell slots
-    bool has_slots = false;
-    for (int circle = 1; circle <= 9; circle++) {
-        if (player->has_spell_slots(circle)) {
-            has_slots = true;
-            break;
-        }
-    }
+    // ANSI codes
+    constexpr std::string_view BLUE_BOLD = "\033[1;34m";
+    constexpr std::string_view RESET = "\033[0m";
 
-    if (has_slots) {
-        // Show spell slots
-        output += "\nSpell Slots:\n";
-        for (int circle = 1; circle <= 9; circle++) {
-            if (player->has_spell_slots(circle)) {
-                auto [current, max] = player->get_spell_slot_info(circle);
-                output += fmt::format("  Circle {}: {}/{}\n", circle, current, max);
+    // Display spells grouped by circle (matching legacy format)
+    // Legacy format: "Circle  N: spell_name (padded)    sphere_name (colored)"
+    for (const auto& [circle, circle_spells] : spells_by_circle) {
+        bool first_in_circle = true;
+        for (const auto* spell : circle_spells) {
+            // Circle header on first spell, spaces on subsequent
+            if (first_in_circle) {
+                output += fmt::format("{}Circle {:>2}:{} ", BLUE_BOLD, circle, RESET);
+                first_in_circle = false;
+            } else {
+                output += "           ";  // 11 spaces to align with "Circle XX: "
             }
+
+            // Spell name with color codes (use name, not plain_name)
+            // Since name has ANSI codes, we can't use fmt padding - just output it
+            output += spell->name;
+
+            // Sphere with color
+            if (!spell->sphere.empty()) {
+                std::string sphere_lower = spell->sphere;
+                std::transform(sphere_lower.begin(), sphere_lower.end(),
+                              sphere_lower.begin(), ::tolower);
+                std::string sphere_color = get_sphere_color(spell->sphere);
+                output += fmt::format(" {}{}{}", sphere_color, sphere_lower, RESET);
+            }
+            output += "\n";
         }
     }
 
-    if (spells.empty()) {
-        output += "\nNo spells learned yet.\n";
-        output += "Use 'practice' at a guild to learn new spells.\n";
-    } else {
-        output += fmt::format("\nYou know {} spell{}:\n", spells.size(), spells.size() == 1 ? "" : "s");
-        for (const auto* spell : spells) {
-            // Proficiency stored as 0-1000, display as 0-100
-            int display_prof = spell->proficiency / 10;
-            std::string prof_desc(proficiency_description(display_prof));
-            output += fmt::format("  {:<30} {:12} {:3}%\n",
-                spell->name, prof_desc, display_prof);
-        }
-    }
-
-    output += "--- End of Spells ---";
     ctx.send(output);
 
     return CommandResult::Success;
@@ -97,37 +130,74 @@ Result<CommandResult> cmd_spells(const CommandContext &ctx) {
 Result<CommandResult> cmd_memorize(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
-        ctx.send_error("Only players can memorize spells.");
+        ctx.send_error("Only players can view spell slots.");
         return CommandResult::InvalidState;
     }
 
-    // TODO: Implement spell memorization system
-    // This would involve:
-    // - Checking if player knows the spell
-    // - Adding to memorized spell list
-    // - Time-based memorization process
+    // Get available circles
+    auto circles = player->spell_slots().get_available_circles();
 
-    if (ctx.arg_count() == 0) {
-        ctx.send("Memorize what spell?");
-        ctx.send("Usage: memorize <spell name>");
-        ctx.send("");
-        ctx.send("Note: Spell memorization system not yet implemented.");
+    if (circles.empty()) {
+        ctx.send("You have no spell slots.");
+        ctx.send("Only spellcasters have spell slots.");
         return CommandResult::Success;
     }
 
-    std::string spell_name = std::string(ctx.command.full_argument_string);
+    // Build output
+    std::string output;
+    output += "--- Spell Slots ---\n";
 
-    // Check if spell exists in registry
-    SpellRegistry& registry = SpellRegistry::instance();
-    const Spell* spell = registry.find_spell(spell_name);
+    // Get restoration queue for timing info
+    const auto& queue = player->spell_slots().restoration_queue();
 
-    if (!spell) {
-        ctx.send_error(fmt::format("You don't know any spell called '{}'.", spell_name));
-        return CommandResult::InvalidTarget;
+    // Display each circle
+    for (int circle : circles) {
+        auto [current, max] = player->get_spell_slot_info(circle);
+        int restoring = player->spell_slots().get_restoring_count(circle);
+
+        if (restoring > 0) {
+            // Calculate time remaining for slots of this circle in the queue
+            std::string time_info;
+            int position = 0;
+            int cumulative_ticks = 0;
+            int focus_rate = player->get_spell_restore_rate();
+
+            for (const auto& entry : queue) {
+                if (entry.circle == circle) {
+                    // Time until this slot restores depends on queue position
+                    int ticks_for_this = entry.ticks_remaining;
+                    if (position == 0) {
+                        // Front of queue - just use remaining ticks
+                        int seconds = (ticks_for_this + focus_rate - 1) / focus_rate;
+                        if (!time_info.empty()) time_info += ", ";
+                        time_info += fmt::format("{}s", seconds);
+                    } else {
+                        // Behind other entries - estimate based on position
+                        int seconds = (ticks_for_this + cumulative_ticks + focus_rate - 1) / focus_rate;
+                        if (!time_info.empty()) time_info += ", ";
+                        time_info += fmt::format("~{}s", seconds);
+                    }
+                }
+                cumulative_ticks += entry.ticks_remaining;
+                position++;
+            }
+
+            output += fmt::format("  Circle {}: {}/{} available, {} restoring ({})\n",
+                                  circle, current, max, restoring, time_info);
+        } else {
+            output += fmt::format("  Circle {}: {}/{} available\n", circle, current, max);
+        }
     }
 
-    ctx.send(fmt::format("You begin memorizing '{}'...", spell->name));
-    ctx.send("Note: Memorization system not yet fully implemented.");
+    // Show meditation status
+    if (player->is_meditating()) {
+        output += "\nYou are meditating. (x2 restoration speed)\n";
+    } else if (player->spell_slots().get_total_restoring() > 0) {
+        output += "\nTip: Use 'meditate' to restore slots faster.\n";
+    }
+
+    output += "--- End of Spell Slots ---";
+    ctx.send(output);
 
     return CommandResult::Success;
 }
@@ -253,6 +323,15 @@ Result<CommandResult> cmd_meditate(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    // Check if already meditating - toggle off
+    if (player->is_meditating()) {
+        player->stop_meditation();
+        ctx.send("You stop meditating and open your eyes.");
+        ctx.send_to_room(fmt::format("{} opens their eyes and stops meditating.",
+                         player->display_name()), true);
+        return CommandResult::Success;
+    }
+
     // Check position
     if (ctx.actor->position() == Position::Fighting) {
         ctx.send_error("You can't meditate while fighting!");
@@ -260,21 +339,28 @@ Result<CommandResult> cmd_meditate(const CommandContext &ctx) {
     }
 
     if (ctx.actor->position() == Position::Standing) {
-        ctx.send("You sit down and begin to meditate.");
+        ctx.send("You sit down and close your eyes.");
         ctx.actor->set_position(Position::Sitting);
     } else if (ctx.actor->position() == Position::Sitting ||
                ctx.actor->position() == Position::Resting) {
-        ctx.send("You close your eyes and begin to meditate.");
+        ctx.send("You close your eyes and clear your mind.");
     } else {
         ctx.send_error("You need to be sitting or standing to meditate.");
         return CommandResult::InvalidState;
     }
 
-    // TODO: Set meditation flag for enhanced mana regen
-    // TODO: Implement meditation skill check for effectiveness
+    // Start meditating - doubles spell slot restoration speed
+    player->start_meditation();
 
-    ctx.send("You enter a meditative state, focusing your mind.");
-    ctx.send("Note: Enhanced mana regeneration not yet implemented.");
+    int restoring = player->spell_slots().get_total_restoring();
+    if (restoring > 0) {
+        ctx.send("You enter a meditative state, focusing on restoring your magical energies.");
+        ctx.send(fmt::format("({} spell slot{} restoring at 2x speed)",
+                            restoring, restoring == 1 ? "" : "s"));
+    } else {
+        ctx.send("You enter a meditative state, focusing your mind.");
+    }
+
     ctx.send_to_room(fmt::format("{} closes their eyes and begins to meditate.",
                      player->display_name()), true);
 
@@ -303,6 +389,88 @@ Result<CommandResult> cmd_concentrate(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Learning and Creation Commands
+// =============================================================================
+
+Result<CommandResult> cmd_study(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can study spells.");
+        return CommandResult::InvalidState;
+    }
+
+    // Check if player is a spellcaster
+    // TODO: Implement proper class checking for spellcasting ability
+
+    ctx.send("Available Spell Slots:");
+    ctx.send("Note: Spell slot system display not yet fully implemented.");
+    ctx.send("Use 'memorize' to prepare your spells.");
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_scribe(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can scribe spells.");
+        return CommandResult::InvalidState;
+    }
+
+    // Check fighting
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("If you wanna commit suicide just say so!");
+        return CommandResult::InvalidState;
+    }
+
+    // Check position - must be sitting
+    if (ctx.actor->position() != Position::Sitting) {
+        ctx.send_error("You have to be sitting to scribe.");
+        return CommandResult::InvalidState;
+    }
+
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("What spell do you want to scribe?");
+        ctx.send("Usage: scribe '<spell name>'");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // TODO: Check for spellbook and pen in hands
+    // TODO: Check for source (another spellbook or teacher)
+    // TODO: Actually implement spell scribing
+
+    ctx.send("You begin scribing...");
+    ctx.send("Note: Spell scribing system not yet fully implemented.");
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_create(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can create items.");
+        return CommandResult::InvalidState;
+    }
+
+    // TODO: Check if player is a gnome (gnome racial ability)
+    // TODO: Check for NOMAGIC room flag
+    // TODO: Check cooldown
+
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("What are you trying to create?");
+        ctx.send("Usage: create <item>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string_view item_name = ctx.arg(0);
+
+    ctx.send(fmt::format("You attempt to create {}...", item_name));
+    ctx.send("Note: Minor creation system not yet fully implemented.");
+    ctx.send("This ability is typically available to gnomes as a racial ability.");
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -317,6 +485,20 @@ Result<void> register_commands() {
     Commands()
         .command("memorize", cmd_memorize)
         .alias("mem")
+        .category("Magic")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Priest flavor alias for spell slots
+    Commands()
+        .command("pray", cmd_memorize)
+        .category("Magic")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Generic alias for spell slots
+    Commands()
+        .command("slots", cmd_memorize)
         .category("Magic")
         .privilege(PrivilegeLevel::Player)
         .build();
@@ -354,6 +536,32 @@ Result<void> register_commands() {
         .alias("conc")
         .category("Magic")
         .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Learning and creation commands
+    Commands()
+        .command("study", cmd_study)
+        .category("Magic")
+        .privilege(PrivilegeLevel::Player)
+        .description("View your available spell slots")
+        .build();
+
+    Commands()
+        .command("scribe", cmd_scribe)
+        .category("Magic")
+        .privilege(PrivilegeLevel::Player)
+        .description("Scribe a spell into your spellbook")
+        .usage("scribe '<spell name>'")
+        .usable_while_sitting(true)
+        .usable_in_combat(false)
+        .build();
+
+    Commands()
+        .command("create", cmd_create)
+        .category("Magic")
+        .privilege(PrivilegeLevel::Player)
+        .description("Create an item using magical abilities")
+        .usage("create <item>")
         .build();
 
     return Success();

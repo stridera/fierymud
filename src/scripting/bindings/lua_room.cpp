@@ -226,6 +226,48 @@ void register_room_bindings(sol::state& lua) {
         return std::string(RoomUtils::get_direction_name(dir));
     });
 
+    // Global get_room function for script compatibility
+    // Accepts: number (legacy vnum), string ("zone:id"), or Room object
+    lua.set_function("get_room", [](sol::object arg) -> std::shared_ptr<Room> {
+        if (arg.is<std::shared_ptr<Room>>()) {
+            // If already a Room, just return it
+            return arg.as<std::shared_ptr<Room>>();
+        }
+
+        if (arg.is<int>() || arg.is<double>()) {
+            // Legacy vnum format - convert to EntityId
+            auto vnum = static_cast<std::uint64_t>(arg.as<double>());
+            return WorldManager::instance().get_room(EntityId{vnum});
+        }
+
+        if (arg.is<std::string>()) {
+            // String format "zone:local_id"
+            std::string id_str = arg.as<std::string>();
+            auto colon_pos = id_str.find(':');
+            if (colon_pos != std::string::npos) {
+                try {
+                    int zone_id = std::stoi(id_str.substr(0, colon_pos));
+                    int local_id = std::stoi(id_str.substr(colon_pos + 1));
+                    return WorldManager::instance().get_room(EntityId(zone_id, local_id));
+                } catch (...) {
+                    spdlog::warn("get_room: Invalid room ID format: {}", id_str);
+                    return nullptr;
+                }
+            }
+            // Try parsing as single number
+            try {
+                auto vnum = static_cast<std::uint64_t>(std::stoll(id_str));
+                return WorldManager::instance().get_room(EntityId{vnum});
+            } catch (...) {
+                spdlog::warn("get_room: Cannot parse room ID: {}", id_str);
+                return nullptr;
+            }
+        }
+
+        spdlog::warn("get_room: Invalid argument type");
+        return nullptr;
+    });
+
     spdlog::debug("Lua Room bindings registered");
 }
 

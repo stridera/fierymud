@@ -108,6 +108,38 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    // Check if player is currently casting a spell - queue the next spell
+    if (ctx.actor->is_casting()) {
+        auto state_opt = ctx.actor->casting_state();
+        std::string full_args = ctx.command.full_argument_string;
+
+        // If they don't already have a spell queued, queue this one
+        if (!ctx.actor->has_queued_spell()) {
+            std::string spell_display = std::string(trim(full_args));
+            if (spell_display.length() > 30) {
+                spell_display = spell_display.substr(0, 27) + "...";
+            }
+            ctx.actor->queue_spell(full_args, "");
+
+            if (state_opt.has_value()) {
+                const auto& state = state_opt.value();
+                double remaining_sec = state.ticks_remaining * 0.5;  // 500ms per tick
+                ctx.send(fmt::format("You are still casting {} ({:.1f}s remaining).",
+                                    state.ability_name, remaining_sec));
+            }
+            ctx.send(fmt::format("Your next spell '{}' has been queued.", spell_display));
+        } else {
+            if (state_opt.has_value()) {
+                const auto& state = state_opt.value();
+                double remaining_sec = state.ticks_remaining * 0.5;
+                ctx.send(fmt::format("You are still casting {} ({:.1f}s remaining).",
+                                    state.ability_name, remaining_sec));
+            }
+            ctx.send("You already have a spell queued - use 'abort' to cancel.");
+        }
+        return CommandResult::Cooldown;
+    }
+
     // Check if player is in casting blackout
     if (ctx.actor->is_casting_blocked()) {
         auto remaining = ctx.actor->get_blackout_remaining();
@@ -259,13 +291,49 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
         target = FieryMUD::CombatManager::get_opponent(*ctx.actor);
     }
 
-    // Violent spells (damage spells) require a target
-    if (known_spell->violent && !target) {
+    // Violent single-target spells require a target; AOE spells auto-target enemies
+    auto& ability_cache = FieryMUD::AbilityCache::instance();
+    const auto* ability_data = ability_cache.get_ability(known_spell->ability_id);
+    bool is_area_spell = ability_data && ability_data->is_area;
+
+    if (known_spell->violent && !target && !is_area_spell) {
         ctx.send_error(fmt::format("Cast '{}' on whom?", known_spell->name));
         return CommandResult::InvalidTarget;
     }
 
-    // Try to execute using the AbilityExecutor for data-driven effects
+    // Gods cast instantly, others have casting time
+    bool is_god = player && player->is_god();
+
+    // Non-gods must have spell slots available for this circle (allows upcasting)
+    if (!is_god && known_spell->circle > 0) {
+        // Check if any slot from this circle or higher is available (upcasting)
+        bool has_available_slot = false;
+        for (int c = known_spell->circle; c <= 9; ++c) {
+            if (player->has_spell_slots(c)) {
+                has_available_slot = true;
+                break;
+            }
+        }
+        if (!has_available_slot) {
+            ctx.send_error(fmt::format("You don't have any spell slots available for circle {} spells.",
+                                      known_spell->circle));
+            return CommandResult::InvalidState;
+        }
+
+        // Non-god casting a spell with a circle - use casting time
+        auto cast_result = FieryMUD::AbilityExecutor::begin_casting(
+            ctx.actor, known_spell->ability_id, target, known_spell->circle);
+
+        if (!cast_result) {
+            ctx.send_error(fmt::format("Failed to begin casting: {}", cast_result.error().message));
+            return CommandResult::InvalidState;
+        }
+
+        // Casting started successfully - spell will complete after casting time
+        return CommandResult::Success;
+    }
+
+    // Gods cast instantly, or skill/chant with no circle - execute immediately
     auto exec_result = FieryMUD::AbilityExecutor::execute(ctx, known_spell->plain_name, target,
                                                            known_spell->proficiency / 10);
 
@@ -391,7 +459,47 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_abort(const CommandContext &ctx) {
+    bool aborted_anything = false;
+
+    // Abort current casting
+    if (ctx.actor->is_casting()) {
+        auto state_opt = ctx.actor->casting_state();
+        if (state_opt.has_value()) {
+            ctx.send(fmt::format("You abort your {} spell.", state_opt->ability_name));
+        } else {
+            ctx.send("You abort your spell.");
+        }
+        ctx.actor->stop_casting(true);  // Interrupted = true
+        aborted_anything = true;
+    }
+
+    // Clear queued spell
+    if (ctx.actor->has_queued_spell()) {
+        ctx.actor->clear_queued_spell();
+        ctx.send("Your queued spell has been cancelled.");
+        aborted_anything = true;
+    }
+
+    if (!aborted_anything) {
+        ctx.send("You are not casting or have anything queued.");
+        return CommandResult::InvalidState;
+    }
+
+    return CommandResult::Success;
+}
+
 Result<CommandResult> cmd_flee(const CommandContext &ctx) {
+    // Abort casting if in progress (flee interrupts spellcasting)
+    if (ctx.actor->is_casting()) {
+        auto state_opt = ctx.actor->casting_state();
+        if (state_opt.has_value()) {
+            ctx.send(fmt::format("You abort your {} spell as you panic!", state_opt->ability_name));
+        }
+        ctx.actor->stop_casting(true);  // Interrupted = true
+        ctx.actor->clear_queued_spell();  // Also clear queued spell
+    }
+
     // Check if fighting
     if (ctx.actor->position() != Position::Fighting) {
         ctx.send_error("You are not fighting anyone!");
@@ -555,8 +663,11 @@ void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> roo
     }
 
     // Calculate corpse capacity based on items to transfer
+    // Note: get_all_equipped returns a vector (safe copy), get_all_items returns a span (view)
+    // We need to copy the span to a vector because we'll modify the inventory during iteration
     auto equipped_items = actor->equipment().get_all_equipped();
-    auto inventory_items = actor->inventory().get_all_items();
+    auto inventory_span = actor->inventory().get_all_items();
+    std::vector<std::shared_ptr<Object>> inventory_items(inventory_span.begin(), inventory_span.end());
     int corpse_capacity = static_cast<int>(equipped_items.size() + inventory_items.size() + 5); // +5 buffer
 
     // Create a unique ID for the corpse (using actor ID + offset for corpses)
@@ -828,6 +939,14 @@ Result<void> register_commands() {
     Commands()
         .command("cast", cmd_cast)
         .alias("c")
+        .alias("chant")
+        .alias("perform")
+        .category("Combat")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("abort", cmd_abort)
         .category("Combat")
         .privilege(PrivilegeLevel::Player)
         .build();

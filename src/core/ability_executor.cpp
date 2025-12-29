@@ -10,10 +10,134 @@
 
 #include <algorithm>
 #include <cctype>
+#include <random>
 
 #include <fmt/format.h>
 
 namespace FieryMUD {
+
+// =============================================================================
+// Casting Time Constants
+// =============================================================================
+
+// Combat rounds are 4 seconds (COMBAT_ROUND_MS = 4000 in combat.hpp)
+// CASTING_TICK_INTERVAL = 500ms, so 8 ticks = 1 combat round (4 seconds)
+// Circle 1 spell: (1 + 1) * 8 = 16 ticks = 8 seconds = 2 combat rounds
+constexpr int CAST_SPEED_PER_ROUND = 8;  // Ticks per combat round (500ms each)
+
+// Convert cast_time_rounds (from database) to pulses
+inline int rounds_to_pulses(int rounds) {
+    return rounds * CAST_SPEED_PER_ROUND;
+}
+
+// =============================================================================
+// Dice Roll Display Helpers
+// =============================================================================
+
+/**
+ * Check if an actor wants to see dice roll details.
+ * Only players can have this preference enabled.
+ */
+static bool wants_dice_details(const std::shared_ptr<Actor>& actor) {
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        return player->is_show_dice_rolls();
+    }
+    return false;
+}
+
+
+// =============================================================================
+// Quickcast Skill - Reduces casting time
+// =============================================================================
+
+/**
+ * Calculate reduced casting time based on Quick Chant skill.
+ * Based on legacy SKILL_QUICK_CHANT implementation:
+ * - Skill check: roll d100 < proficiency + INT/WIS bonuses
+ * - On success: halve casting time
+ * - Additional reduction for high-level casters casting low-circle spells
+ * - Never reduces below minimum threshold
+ *
+ * @param base_ticks Original casting time in ticks
+ * @param caster The actor casting the spell
+ * @param spell_circle The circle of the spell being cast
+ * @param violent True if this is a damage/combat spell
+ * @return Reduced casting time in ticks, and whether quickcast was applied
+ */
+std::pair<int, bool> calculate_quickcast_reduction(
+    int base_ticks,
+    const std::shared_ptr<Actor>& caster,
+    int spell_circle,
+    bool violent) {
+
+    auto player = std::dynamic_pointer_cast<Player>(caster);
+    if (!player) {
+        return {base_ticks, false};  // Only players can use quickcast
+    }
+
+    // Look up Quick Chant skill from ability cache
+    auto& cache = AbilityCache::instance();
+    const auto* quick_chant = cache.get_ability_by_name("quick chant");
+    if (!quick_chant) {
+        return {base_ticks, false};  // Skill not in database
+    }
+
+    // Get player's proficiency in Quick Chant (0-100)
+    int quickcast_proficiency = player->get_proficiency(quick_chant->id);
+    if (quickcast_proficiency == 0) {
+        return {base_ticks, false};  // Player doesn't know the skill
+    }
+
+    // Skill check: roll d100 < proficiency + stat bonuses
+    // INT and WIS both help with casting speed
+    const auto& stats = player->stats();
+    int int_bonus = (stats.intelligence - 10) / 2;  // D&D style stat bonus
+    int wis_bonus = (stats.wisdom - 10) / 2;
+    int skill_check_target = quickcast_proficiency + int_bonus + wis_bonus;
+
+    // Roll 1-100
+    static thread_local std::mt19937 rng{std::random_device{}()};
+    std::uniform_int_distribution<int> dist(1, 100);
+    int roll = dist(rng);
+
+    if (roll > skill_check_target) {
+        return {base_ticks, false};  // Skill check failed
+    }
+
+    // Skill check passed - halve casting time
+    int reduced_ticks = base_ticks / 2;
+
+    // Additional reduction for high-level casters casting low-circle spells
+    if (spell_circle > 0) {
+        // Get max circle the caster can access
+        int max_circle = 0;
+        for (int c = 9; c >= 1; --c) {
+            if (player->has_spell_slots(c)) {
+                max_circle = c;
+                break;
+            }
+        }
+
+        // Bonus reduction based on circle difference
+        // Casting circle 1 when you have circle 5 slots = faster
+        if (max_circle > spell_circle) {
+            int circle_diff = max_circle - spell_circle;
+            // Each circle difference reduces by 1 tick (capped at proficiency/25)
+            int max_reduction = quickcast_proficiency / 25;
+            int circle_reduction = std::min(circle_diff, max_reduction);
+            reduced_ticks -= circle_reduction;
+        }
+    }
+
+    // Enforce minimum: at least 25% of base time, minimum 1 tick
+    int min_ticks = std::max(1, base_ticks / 4);
+    reduced_ticks = std::max(reduced_ticks, min_ticks);
+
+    Log::game()->info("Quick Chant: {} proficiency, roll {} vs {}, reduced {} -> {} ticks",
+                      quickcast_proficiency, roll, skill_check_target, base_ticks, reduced_ticks);
+
+    return {reduced_ticks, true};
+}
 
 // =============================================================================
 // Message Template Processing
@@ -221,6 +345,22 @@ Result<void> AbilityCache::reload() {
             }
         }
 
+        // Load class abilities (which classes can learn each ability)
+        auto classes_result = WorldQueries::load_all_ability_classes(txn);
+        if (!classes_result) {
+            Log::warn("Failed to load ability class data: {}", classes_result.error().message);
+            // Non-fatal, continue without class data
+        } else {
+            ability_classes_.clear();
+            for (const auto& class_data : *classes_result) {
+                CachedAbilityClass cls;
+                cls.class_id = class_data.class_id;
+                cls.class_name = class_data.class_name;
+                cls.circle = class_data.circle;
+                ability_classes_[class_data.ability_id].push_back(std::move(cls));
+            }
+        }
+
         return {};
     });
 
@@ -277,6 +417,11 @@ const CachedAbilityRestrictions* AbilityCache::get_ability_restrictions(int abil
 std::vector<CachedDamageComponent> AbilityCache::get_damage_components(int ability_id) const {
     auto it = damage_components_.find(ability_id);
     return it != damage_components_.end() ? it->second : std::vector<CachedDamageComponent>{};
+}
+
+std::vector<CachedAbilityClass> AbilityCache::get_ability_classes(int ability_id) const {
+    auto it = ability_classes_.find(ability_id);
+    return it != ability_classes_.end() ? it->second : std::vector<CachedAbilityClass>{};
 }
 
 // =============================================================================
@@ -360,24 +505,19 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
 
     if (ability->is_area) {
         // AOE ability - target all enemies in the room
+        // AOE spells hit everyone regardless of visibility (casting into darkness still works)
         auto room = ctx.actor->current_room();
         if (room) {
             for (const auto& room_actor : room->contents().actors) {
-                // Skip self, skip non-visible, skip allies (for violent AOE)
-                if (room_actor && room_actor != ctx.actor &&
-                    room_actor->is_visible_to(*ctx.actor)) {
-                    // For violent AOE spells, only target enemies
-                    // For now, we consider all other actors as valid targets
-                    // TODO: Add faction/group checking for proper ally detection
-                    if (ability->violent) {
-                        // Skip players for NPC-cast violent spells, skip NPCs if in same group, etc.
-                        // For simplicity, just target all visible actors that aren't the caster
-                        targets.push_back(room_actor);
-                    } else {
-                        // Non-violent AOE (like mass heal) - target everyone including self
-                        targets.push_back(room_actor);
-                    }
+                // Skip self for violent AOE, include self for beneficial AOE
+                if (!room_actor || room_actor == ctx.actor) {
+                    continue;
                 }
+
+                // For violent AOE spells, target all other actors (enemies)
+                // For non-violent AOE (like mass heal), target everyone
+                // TODO: Add faction/group checking for proper ally detection
+                targets.push_back(room_actor);
             }
             // For non-violent AOE, include self
             if (!ability->violent) {
@@ -397,6 +537,9 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         } else if (!ability->violent) {
             // Self-targeting for non-violent abilities without explicit target
             targets.push_back(ctx.actor);
+        } else {
+            // Violent single-target spell with no target
+            return std::unexpected(Errors::InvalidState("Your target is no longer here."));
         }
     }
 
@@ -404,6 +547,7 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
     AbilityExecutionResult result;
     std::vector<std::string> all_attacker_msgs;
     std::vector<std::string> all_room_msgs;
+    std::vector<std::string> all_dice_details;  // Collect dice details from all effects
     bool any_effect_succeeded = false;
 
     for (const auto& current_target : targets) {
@@ -444,24 +588,34 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
             result.effect_results.push_back(effect_result);
             if (effect_result.success) {
                 any_effect_succeeded = true;
-                target_damage += effect_result.value;
-                result.total_damage += effect_result.value;
-                if (effect_result.value < 0) {
-                    result.total_healing += -effect_result.value;
+                // Only count damage effects for damage totals
+                if (effect_result.type == EffectType::Damage) {
+                    target_damage += effect_result.value;
+                    result.total_damage += effect_result.value;
+                } else if (effect_result.type == EffectType::Heal) {
+                    result.total_healing += effect_result.value;
+                }
+                // Collect dice details from effects (for showdice)
+                if (!effect_result.dice_details.empty()) {
+                    all_dice_details.push_back(effect_result.dice_details);
                 }
             }
         }
 
-        // Build per-target messages
+        // Build per-target damage summary (shown in parentheses)
         if (target_damage > 0) {
-            all_attacker_msgs.push_back(fmt::format("{} takes {} damage!",
-                current_target->display_name(), target_damage));
+            all_attacker_msgs.push_back(fmt::format("({})", target_damage));
         }
 
-        // Send damage message to target
-        if (current_target != ctx.actor && target_damage > 0) {
-            current_target->send_message(fmt::format("{} hits you for {} damage!",
-                ctx.actor->display_name(), target_damage));
+        // Send damage message to target (for AOE - single target uses result.target_message)
+        if (ability->is_area && current_target != ctx.actor && target_damage > 0) {
+            std::string target_dmg_msg = fmt::format("{} hits you for {} damage!",
+                ctx.actor->display_name(), target_damage);
+            // Add dice details if target has ShowDiceRolls enabled
+            if (wants_dice_details(current_target) && !all_dice_details.empty()) {
+                target_dmg_msg += all_dice_details.back();  // Most recent dice details for this target
+            }
+            current_target->send_message(target_dmg_msg);
         }
     }
 
@@ -515,6 +669,11 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
                         custom_msgs->success_to_victim, ctx.actor, msg_target, result.total_damage);
                     result.room_message = process_message_template(
                         custom_msgs->success_to_room, ctx.actor, msg_target, result.total_damage);
+
+                    // Append damage info for single-target spells
+                    for (const auto& msg : all_attacker_msgs) {
+                        result.attacker_message += " " + msg;
+                    }
                 }
             }
         } else {
@@ -555,6 +714,28 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         for (size_t i = 0; i < room_msgs.size(); ++i) {
             if (i > 0) result.room_message += " ";
             result.room_message += room_msgs[i];
+        }
+    }
+
+    // Add dice roll details for players who want them
+    // This applies to both custom database messages and effect-generated messages
+    if (!all_dice_details.empty()) {
+        // Build combined dice details string
+        std::string combined_dice_details;
+        for (const auto& detail : all_dice_details) {
+            combined_dice_details += detail;
+        }
+
+        // For the attacker
+        if (wants_dice_details(ctx.actor)) {
+            result.attacker_message += combined_dice_details;
+        }
+        // For single-target abilities with a target message, add details for the target too
+        // (AOE targets already got their messages sent inline above)
+        if (target && target != ctx.actor && !ability->is_area && !result.target_message.empty()) {
+            if (wants_dice_details(target)) {
+                result.target_message += combined_dice_details;
+            }
         }
     }
 
@@ -612,8 +793,40 @@ std::expected<void, Error> AbilityExecutor::check_prerequisites(
         }
     }
 
-    // Note: FieryMUD uses spell circles (memorization), not mana costs
-    // TODO: Add spell circle validation when spell memorization system is implemented
+    // Spell slot validation (FieryMUD uses spell circles, not mana)
+    if (ability.type == WorldQueries::AbilityType::Spell) {
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (player && !player->is_god()) {
+            // Get spell circle from player's learned ability data
+            const auto* learned = player->get_ability(ability.id);
+            int spell_circle = learned ? learned->circle : 0;
+
+            if (spell_circle > 0) {
+                // Check availability - consume_spell_slot handles upcast automatically
+                bool has_available_slot = false;
+                for (int c = spell_circle; c <= 9; ++c) {
+                    if (player->has_spell_slots(c)) {
+                        has_available_slot = true;
+                        break;
+                    }
+                }
+
+                if (!has_available_slot) {
+                    return std::unexpected(Errors::InvalidState(
+                        fmt::format("You don't have any available spell slots for {} (circle {}).",
+                                   ability.plain_name, spell_circle)));
+                }
+
+                // Consume the slot (will be added to restoration queue)
+                if (!player->consume_spell_slot(spell_circle)) {
+                    return std::unexpected(Errors::InvalidState(
+                        fmt::format("Failed to use spell slot for {} (circle {}).",
+                                   ability.plain_name, spell_circle)));
+                }
+            }
+        }
+        // Gods and non-players can cast spells without consuming slots
+    }
 
     // Check ability restrictions from database
     auto& cache = AbilityCache::instance();
@@ -716,9 +929,13 @@ std::expected<std::vector<EffectResult>, Error> AbilityExecutor::execute_effects
     auto ability_effects = cache.get_ability_effects(ability.id);
     if (ability_effects.empty()) {
         // No effects defined - return empty result
-        Log::game()->debug("Ability {} has no effects defined", ability.plain_name);
+        Log::game()->info("Ability {} (id={}) has no effects defined", ability.plain_name, ability.id);
         return std::vector<EffectResult>{};
     }
+
+    Log::game()->info("Ability {} (id={}) has {} effects, looking for trigger={}",
+                       ability.plain_name, ability.id, ability_effects.size(),
+                       trigger == EffectTrigger::OnCast ? "on_cast" : "on_hit");
 
     // Build effect definitions map
     std::unordered_map<int, EffectDefinition> effect_defs;
@@ -726,12 +943,123 @@ std::expected<std::vector<EffectResult>, Error> AbilityExecutor::execute_effects
         const auto* def = cache.get_effect(ability_effect.effect_id);
         if (def) {
             effect_defs[def->id] = *def;
+            Log::game()->info("  Effect {} (id={}) type={} trigger={} chance={}%",
+                               def->name, def->id,
+                               static_cast<int>(def->type),
+                               static_cast<int>(ability_effect.trigger),
+                               ability_effect.chance_percent);
+        } else {
+            Log::game()->warn("  Effect definition {} not found in cache!", ability_effect.effect_id);
         }
     }
 
     // Execute all effects
     return EffectExecutor::execute_ability_effects(
         ability_effects, effect_defs, context, trigger);
+}
+
+// =============================================================================
+// Casting Time System - Begin and Complete Cast
+// =============================================================================
+
+std::expected<void, Error> AbilityExecutor::begin_casting(
+    std::shared_ptr<Actor> caster,
+    int ability_id,
+    std::shared_ptr<Actor> target,
+    int spell_circle) {
+
+    auto& cache = AbilityCache::instance();
+    const auto* ability = cache.get_ability(ability_id);
+    if (!ability) {
+        return std::unexpected(Errors::NotFound(
+            fmt::format("Ability ID {} not found", ability_id)));
+    }
+
+    // Calculate base casting time in pulses
+    // Use cast_time_rounds from database if set, otherwise use circle-based default
+    int cast_rounds = ability->cast_time_rounds > 0
+        ? ability->cast_time_rounds
+        : (spell_circle + 1);  // Default: circle 1 = 2 rounds, circle 3 = 4 rounds
+    int base_ticks = cast_rounds * CAST_SPEED_PER_ROUND;
+
+    // Apply quickcast reduction
+    auto [reduced_ticks, quickcast_applied] = calculate_quickcast_reduction(
+        base_ticks, caster, spell_circle, ability->violent);
+
+    // Create casting state
+    Actor::CastingState state;
+    state.ability_id = ability_id;
+    state.ability_name = ability->name;  // Use display name with colors
+    state.ticks_remaining = reduced_ticks;
+    state.total_ticks = reduced_ticks;
+    state.target = target;
+    state.target_name = target ? target->name() : "";
+    state.circle = spell_circle;
+    state.quickcast_applied = quickcast_applied;
+
+    // Start the cast
+    caster->start_casting(state);
+
+    // Send start messages (matches legacy format)
+    caster->send_message("You start chanting...\n");
+
+    if (target && target != caster) {
+        target->send_message(fmt::format("{} begins casting a spell on you!\n",
+                                         caster->display_name()));
+    }
+
+    // Send room message
+    if (auto room = caster->current_room()) {
+        std::string room_msg = fmt::format("{} begins casting a spell.\n",
+                                           caster->display_name());
+        for (const auto& other : room->contents().actors) {
+            if (other != caster && other != target) {
+                other->send_message(room_msg);
+            }
+        }
+    }
+
+    return {};
+}
+
+std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_completed_cast(
+    std::shared_ptr<Actor> caster,
+    int ability_id,
+    std::shared_ptr<Actor> target) {
+
+    auto& cache = AbilityCache::instance();
+    const auto* ability = cache.get_ability(ability_id);
+    if (!ability) {
+        return std::unexpected(Errors::NotFound(
+            fmt::format("Ability ID {} not found", ability_id)));
+    }
+
+    // Get skill proficiency
+    int skill_level = 50;  // Default
+    auto player = std::dynamic_pointer_cast<Player>(caster);
+    if (player) {
+        if (player->is_god()) {
+            skill_level = 100;
+        } else {
+            skill_level = player->get_proficiency(ability_id);
+        }
+    }
+
+    // Create a command context for the caster
+    auto room = caster->current_room();
+    if (!room) {
+        return std::unexpected(Errors::InvalidState("Caster is not in a room"));
+    }
+
+    // Build a minimal command context
+    CommandContext ctx;
+    ctx.actor = caster;
+    ctx.room = room;
+    ctx.command.command = "cast";
+    ctx.start_time = std::chrono::steady_clock::now();
+
+    // Execute the ability using existing infrastructure
+    return execute_by_id(ctx, ability_id, target, skill_level);
 }
 
 // =============================================================================
@@ -743,6 +1071,18 @@ Result<CommandResult> execute_skill_command(
     std::string_view skill_name,
     bool requires_target,
     bool can_initiate_combat) {
+
+    // Can't use skills while casting a spell
+    if (ctx.actor->is_casting()) {
+        auto state_opt = ctx.actor->casting_state();
+        if (state_opt.has_value()) {
+            ctx.send_error(fmt::format("You can't {} while casting {}!",
+                                       skill_name, state_opt->ability_name));
+        } else {
+            ctx.send_error(fmt::format("You can't {} while casting a spell!", skill_name));
+        }
+        return CommandResult::Busy;
+    }
 
     // Interrupt concentration-based activities (like meditation) when using abilities
     ctx.actor->interrupt_concentration();

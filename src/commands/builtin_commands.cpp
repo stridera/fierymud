@@ -173,7 +173,7 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
     }
 
     std::ostringstream desc;
-    desc << fmt::format("{}\n", room->name());
+    desc << fmt::format("<green>{}</>\n", room->name());
     desc << fmt::format("{}\n", room->description());
 
     // Add exits
@@ -188,7 +188,7 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
     for (const auto &obj : objects) {
         if (obj) {
             if (!found_objects) {
-                desc << "\nYou see:\n";
+                desc << "\n<yellow>You see:</>\n";
                 found_objects = true;
             }
             desc << fmt::format("  {}\n", obj->short_description());
@@ -201,7 +201,7 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
     for (const auto &actor : actors) {
         if (actor && actor != viewer && actor->is_visible_to(*viewer)) {
             if (!found_others) {
-                desc << "\nAlso here:\n";
+                desc << "\n<yellow>Also here:</>\n";
                 found_others = true;
             }
             // Use display_name_for_observer for detection indicators, fall back to short_description
@@ -623,17 +623,17 @@ std::string format_exits(std::shared_ptr<Room> room) {
 
     auto exits = room->get_visible_exits();
     if (exits.empty()) {
-        return "There are no obvious exits.";
+        return "<dim>There are no obvious exits.</>";
     }
 
     std::ostringstream exit_str;
-    exit_str << "Obvious exits: ";
+    exit_str << "<cyan>Obvious exits:</> ";
 
     bool first = true;
     for (auto dir : exits) {
         if (!first)
             exit_str << ", ";
-        exit_str << RoomUtils::get_direction_name(dir);
+        exit_str << "<b:cyan>" << RoomUtils::get_direction_name(dir) << "</>";
         first = false;
     }
 

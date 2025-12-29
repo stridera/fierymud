@@ -976,6 +976,8 @@ std::string_view result_to_string(CommandResult result) {
         return "NotFound";
     case CommandResult::Cooldown:
         return "Cooldown";
+    case CommandResult::Busy:
+        return "Busy";
     case CommandResult::InvalidTarget:
         return "InvalidTarget";
     case CommandResult::InvalidState:

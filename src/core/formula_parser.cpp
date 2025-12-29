@@ -320,9 +320,9 @@ std::expected<double, Error> FormulaParser::Parser::parse_function(std::string_v
         return std::max(args[0], args[1]);
     }
 
-    if (name == "dice") {
+    if (name == "dice" || name == "roll_dice") {
         if (args.size() != 2) {
-            return std::unexpected(Errors::InvalidArgument("dice", "requires 2 arguments"));
+            return std::unexpected(Errors::InvalidArgument(std::string(name), "requires 2 arguments"));
         }
         return static_cast<double>(roll_dice(static_cast<int>(args[0]), static_cast<int>(args[1])));
     }

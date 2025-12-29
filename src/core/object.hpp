@@ -195,7 +195,7 @@ enum class ObjectFlag {
     // Core flags
     Glow = 0,           // Glows with magical light
     Hum = 1,            // Hums with magical energy
-    NoRent = 2,         // Cannot be rented/saved
+    Temporary = 2,      // Temporary/dynamic object - not saved on rent/camp
     NoDonate = 3,       // Cannot be donated
     NoInvisible = 4,    // Cannot be made invisible
     Invisible = 5,      // Currently invisible

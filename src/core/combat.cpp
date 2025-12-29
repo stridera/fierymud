@@ -6,6 +6,7 @@
 #include "../game/composer_system.hpp"
 #include "../scripting/coroutine_scheduler.hpp"
 #include "../scripting/trigger_manager.hpp"
+#include "../text/text_format.hpp"
 #include "../world/room.hpp"
 #include <random>
 #include <algorithm>
@@ -22,6 +23,104 @@ std::vector<CombatPair> CombatManager::active_combats_;
 // Thread-local random generators
 static thread_local std::random_device rd;
 static thread_local std::mt19937 gen(rd());
+
+// ============================================================================
+// Dice Roll Display Helpers
+// ============================================================================
+
+/** Check if an actor has ShowDiceRolls preference enabled */
+static bool wants_dice_details(const std::shared_ptr<Actor>& actor) {
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        return player->is_show_dice_rolls();
+    }
+    return false;
+}
+
+/** Detailed mitigation breakdown for ShowDiceRolls display */
+struct MitigationDetails {
+    double damage_before_mitigation = 0.0;
+    double damage_after_soak = 0.0;
+    double damage_after_dr = 0.0;
+    double final_damage = 0.0;
+    double effective_soak = 0.0;
+    double effective_dr_percent = 0.0;
+    double glancing_multiplier = 1.0;
+};
+
+/** Get color tag based on hit result */
+static std::string_view get_dice_color(HitResult hit_result) {
+    switch (hit_result) {
+        case HitResult::Critical: return "<b:red>";
+        case HitResult::Hit:      return "<yellow>";
+        case HitResult::Glancing: return "<dim>";
+        case HitResult::Miss:     return "<cyan>";
+        default:                  return "<dim>";
+    }
+}
+
+/** Format attack roll details line */
+static std::string format_roll_details(const HitCalcResult& hit_calc,
+                                       const CombatStats& attacker_stats,
+                                       const CombatStats& defender_stats,
+                                       HitResult result) {
+    auto color = get_dice_color(result);
+    return fmt::format("\r\n  {}[Roll: {}+{:.0f}={:.0f} vs {}+{:.0f}={:.0f}, margin {:+d}]</>",
+        color,
+        hit_calc.attacker_roll, attacker_stats.acc, hit_calc.attacker_total,
+        hit_calc.defender_roll, defender_stats.eva, hit_calc.defender_total,
+        hit_calc.margin);
+}
+
+/** Format damage mitigation breakdown line */
+static std::string format_mitigation_details(const MitigationDetails& mit, HitResult result) {
+    auto color = get_dice_color(result);
+
+    if (result == HitResult::Glancing) {
+        return fmt::format("\r\n  {}[Base: {:.0f} -> Soak: -{:.0f} -> DR: {:.0f}% -> x{:.1f} glance -> Final: {:.0f}]</>",
+            color,
+            mit.damage_before_mitigation,
+            mit.effective_soak,
+            mit.effective_dr_percent * 100,
+            mit.glancing_multiplier,
+            mit.final_damage);
+    }
+
+    return fmt::format("\r\n  {}[Base: {:.0f} -> Soak: -{:.0f} -> DR: {:.0f}% -> Final: {:.0f}]</>",
+        color,
+        mit.damage_before_mitigation,
+        mit.effective_soak,
+        mit.effective_dr_percent * 100,
+        mit.final_damage);
+}
+
+/** Calculate mitigation details for ShowDiceRolls display */
+static MitigationDetails calculate_mitigation_details(double raw_damage,
+                                                       const CombatStats& attacker_stats,
+                                                       const CombatStats& defender_stats,
+                                                       double final_damage,
+                                                       HitResult hit_result) {
+    MitigationDetails mit;
+    mit.damage_before_mitigation = raw_damage;
+    mit.final_damage = final_damage;
+
+    // Calculate effective soak (same logic as apply_mitigation)
+    mit.effective_soak = std::max(0.0, defender_stats.soak - attacker_stats.pen_flat);
+    mit.damage_after_soak = std::max(1.0, raw_damage - mit.effective_soak);
+
+    // Calculate effective DR% (same logic as apply_mitigation)
+    mit.effective_dr_percent = defender_stats.dr_pct * (1.0 - attacker_stats.pen_pct);
+    mit.effective_dr_percent = std::min(mit.effective_dr_percent, CombatConstants::DR_CAP);
+    mit.damage_after_dr = mit.damage_after_soak * (1.0 - mit.effective_dr_percent);
+
+    // Track glancing multiplier
+    if (hit_result == HitResult::Glancing) {
+        mit.glancing_multiplier = CombatConstants::GLANCING_MULTIPLIER;
+    } else if (hit_result == HitResult::Critical) {
+        mit.glancing_multiplier = CombatConstants::CRITICAL_MULTIPLIER;
+    }
+
+    return mit;
+}
 
 // ============================================================================
 // CombatStats Implementation
@@ -432,10 +531,17 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     // Handle miss
     if (result.hit_calc.result == HitResult::Miss) {
         result.type = CombatResult::Type::Miss;
-        result.attacker_message = fmt::format("Your attack misses {} (roll: {} vs {}).",
-            target->display_name(), result.hit_calc.attacker_roll, result.hit_calc.defender_roll);
-        result.target_message = fmt::format("{}'s attack misses you.", attacker->display_name());
-        result.room_message = fmt::format("{}'s attack misses {}.", attacker->display_name(), target->display_name());
+        result.attacker_message = fmt::format("Your attack misses <cyan>{}</>.",
+            target->display_name());
+        result.target_message = TextFormat::capitalize(fmt::format("{}'s attack misses you.",
+            attacker->display_name()));
+        result.room_message = TextFormat::capitalize(fmt::format("{}'s attack misses <cyan>{}</>.",
+            attacker->display_name(), target->display_name()));
+
+        // Add dice roll details if attacker wants to see them
+        if (wants_dice_details(attacker)) {
+            result.attacker_message += format_roll_details(result.hit_calc, attacker_stats, defender_stats, HitResult::Miss);
+        }
 
         fire_event(CombatEvent(CombatEvent::EventType::AttackMiss, attacker, target));
         return result;
@@ -488,26 +594,48 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         }
     }
 
-    // Create combat messages
+    // Create combat messages with color coding
     std::string hit_type_text;
+    std::string damage_color;
     switch (result.hit_calc.result) {
         case HitResult::Critical:
-            hit_type_text = " CRITICALLY";
+            hit_type_text = " <b:red>CRITICALLY</>";
+            damage_color = "b:red";
             break;
         case HitResult::Glancing:
-            hit_type_text = " glancingly";
+            hit_type_text = " <dim>glancingly</>";
+            damage_color = "dim";
             break;
         default:
             hit_type_text = "";
+            damage_color = "yellow";
             break;
     }
 
-    result.attacker_message = fmt::format("You{} hit {} for {:.0f} damage (margin: {:+d}).",
-        hit_type_text, target->name(), damage, result.hit_calc.margin);
-    result.target_message = fmt::format("{}{} hits you for {:.0f} damage.",
-        attacker->name(), hit_type_text, damage);
-    result.room_message = fmt::format("{}{} hits {} for {:.0f} damage.",
-        attacker->name(), hit_type_text, target->name(), damage);
+    result.attacker_message = fmt::format("You{} hit <cyan>{}</> for <{}>{:.0f}</> damage.",
+        hit_type_text, target->display_name(), damage_color, damage);
+    result.target_message = TextFormat::capitalize(fmt::format("{}{} hits you for <{}>{:.0f}</> damage.",
+        attacker->display_name(), hit_type_text, damage_color, damage));
+    result.room_message = TextFormat::capitalize(fmt::format("{}{} hits <cyan>{}</> for <{}>{:.0f}</> damage.",
+        attacker->display_name(), hit_type_text, target->display_name(), damage_color, damage));
+
+    // Add dice roll and mitigation details if attacker wants to see them
+    if (wants_dice_details(attacker)) {
+        result.attacker_message += format_roll_details(result.hit_calc, attacker_stats, defender_stats, result.hit_calc.result);
+
+        // Estimate base damage for mitigation breakdown
+        // Use average weapon damage + AP, then apply multiplier
+        double avg_weapon = attacker_stats.weapon_dice_num *
+                           (attacker_stats.weapon_dice_size / 2.0 + 0.5) +
+                           attacker_stats.weapon_base_damage + attacker_stats.ap;
+        double multiplier = (result.hit_calc.result == HitResult::Critical) ? CombatConstants::CRITICAL_MULTIPLIER :
+                           (result.hit_calc.result == HitResult::Glancing) ? CombatConstants::GLANCING_MULTIPLIER : 1.0;
+        double estimated_base = avg_weapon * multiplier;
+
+        MitigationDetails mit = calculate_mitigation_details(estimated_base, attacker_stats, defender_stats,
+                                                              damage, result.hit_calc.result);
+        result.attacker_message += format_mitigation_details(mit, result.hit_calc.result);
+    }
 
     // Send GMCP vitals update
     if (auto player = std::dynamic_pointer_cast<Player>(target)) {
@@ -527,19 +655,20 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         attacker->gain_experience(exp_gain);
 
         result.type = CombatResult::Type::Death;
-        result.attacker_message += fmt::format(" You have killed {}! You gain {} experience.",
+        result.attacker_message += fmt::format(" You have killed <cyan>{}</>! You gain <experience>{}</> experience.",
                                                target->display_name(), exp_gain);
 
         // Set death messages based on actor type (before die() modifies state)
         bool is_player = (target->type_name() == "Player");
 
         if (is_player) {
-            result.target_message += "\r\nYou are DEAD! You feel your spirit leave your body...";
-            result.room_message += fmt::format(" {} is DEAD! Their spirit rises from their body.", target->display_name());
+            result.target_message += "\r\n<b:red>You are DEAD!</> You feel your spirit leave your body...";
+            result.room_message += " " + TextFormat::capitalize(fmt::format("{} is <b:red>DEAD</>! Their spirit rises from their body.",
+                target->display_name()));
         } else {
-            result.target_message += "\r\nYou are DEAD!";
-            result.room_message += fmt::format(" {} is DEAD! {} corpse falls to the ground.",
-                                               target->display_name(), target->display_name());
+            result.target_message += "\r\n<b:red>You are DEAD!</>";
+            result.room_message += " " + TextFormat::capitalize(fmt::format("{} is <b:red>DEAD</>! Its corpse falls to the ground.",
+                target->display_name()));
         }
 
         // Execute DEATH trigger for mobs before they die
@@ -744,15 +873,23 @@ void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<
         }
     }
 
-    // Interrupt any text composition in progress (combat takes priority)
+    // Interrupt text composition and meditation (combat takes priority)
     if (auto player1 = std::dynamic_pointer_cast<Player>(actor1)) {
         if (player1->is_composing()) {
             player1->interrupt_composing("You are under attack!");
+        }
+        if (player1->is_meditating()) {
+            player1->stop_meditation();
+            player1->send_message("Your meditation is interrupted!");
         }
     }
     if (auto player2 = std::dynamic_pointer_cast<Player>(actor2)) {
         if (player2->is_composing()) {
             player2->interrupt_composing("You are under attack!");
+        }
+        if (player2->is_meditating()) {
+            player2->stop_meditation();
+            player2->send_message("Your meditation is interrupted!");
         }
     }
 

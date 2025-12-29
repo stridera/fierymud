@@ -114,6 +114,35 @@ struct EffectParams {
     bool boosts_regen = false;              // Enhances natural HP regen
     std::string boosts_regen_formula;       // 0-100 percentage boost: "50"
 
+    // Teleport effect params
+    std::string teleport_type = "random";   // "random" (same zone), "recall" (homeroom), "fixed"
+    int teleport_room_id = 0;               // For fixed teleport destination
+    std::string success_formula = "90";     // Base success chance formula
+
+    // Reveal effect params
+    std::string reveal_type = "all";        // "hidden", "invisible", "doors", "all"
+    bool clear_fog = true;                  // Clear room fog effects
+
+    // Cleanse effect params
+    std::string cleanse_category = "all";   // "poison", "disease", "curse", "all"
+    std::string cleanse_power_formula;      // Power vs potency check: "skill + wis_bonus"
+    int max_effects_removed = 0;            // 0 = unlimited
+
+    // Dispel effect params
+    std::string dispel_type = "beneficial"; // "beneficial", "harmful", "all"
+    std::string dispel_power_formula;       // Power for save check: "skill"
+    bool dispel_objects = false;            // Also dispel object enchantments
+
+    // Summon effect params
+    std::string summon_type = "creature";   // "creature", "corpse", "player"
+    std::string max_distance_formula = "10";// Max distance: "skill / 5"
+    std::string max_level_formula;          // Max target level: "skill + 3"
+    bool requires_consent = true;           // Requires target consent for players
+
+    // Resurrect effect params
+    std::string exp_return_formula = "60";  // % of death exp returned: "60"
+    bool requires_corpse = true;            // Must have corpse in room
+
     // Generic
     std::string chance_formula;             // Formula for chance
     int chance_percent = 100;               // Chance to apply (0-100)
@@ -155,12 +184,16 @@ struct AbilityEffect {
 struct EffectResult {
     bool success = false;
     int value = 0;                 // Damage dealt, HP healed, etc.
+    EffectType type = EffectType::Unknown;  // Type of effect that produced this result
     std::string attacker_message;  // Message to the actor using the ability
     std::string target_message;    // Message to the target
     std::string room_message;      // Message to others in the room
+    std::string dice_details;      // Detailed dice roll info (formula, result, type)
 
     static EffectResult success_result(int value, std::string_view attacker_msg,
-                                       std::string_view target_msg, std::string_view room_msg);
+                                       std::string_view target_msg, std::string_view room_msg,
+                                       std::string_view dice_details = "",
+                                       EffectType type = EffectType::Unknown);
     static EffectResult failure_result(std::string_view reason);
 };
 
@@ -225,6 +258,24 @@ private:
         const EffectParams& params, EffectContext& context);
 
     static std::expected<EffectResult, Error> execute_hot(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_teleport(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_reveal(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_cleanse(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_dispel(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_summon(
+        const EffectParams& params, EffectContext& context);
+
+    static std::expected<EffectResult, Error> execute_resurrect(
         const EffectParams& params, EffectContext& context);
 
     // Roll for effect chance

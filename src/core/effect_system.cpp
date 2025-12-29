@@ -20,6 +20,36 @@ namespace {
 
 namespace FieryMUD {
 
+// =============================================================================
+// Dice Roll Display Helpers
+// =============================================================================
+
+/**
+ * Format spell damage formula details for display.
+ * Shows the formula evaluated and the final result.
+ */
+static std::string format_spell_damage_details(
+    std::string_view formula,
+    int final_damage,
+    std::string_view damage_type) {
+
+    // Use red for damage spells
+    return fmt::format("\n  <red>[Spell: {} = {} {}]</>", formula, final_damage, damage_type);
+}
+
+/**
+ * Format heal formula details for display.
+ * Shows the formula evaluated and the final result.
+ */
+static std::string format_heal_details(
+    std::string_view formula,
+    int heal_amount,
+    std::string_view resource) {
+
+    // Use green for heals
+    return fmt::format("\n  <green>[Heal: {} = {} {}]</>", formula, heal_amount, resource);
+}
+
 using json = nlohmann::json;
 
 // =============================================================================
@@ -253,6 +283,77 @@ EffectParams EffectParams::from_json_string(std::string_view json_str) {
         }
         if (j.contains("condition")) params.condition = j["condition"].get<std::string>();
 
+        // Teleport params
+        if (j.contains("teleportType")) params.teleport_type = j["teleportType"].get<std::string>();
+        if (j.contains("teleport_type")) params.teleport_type = j["teleport_type"].get<std::string>();
+        if (j.contains("roomId")) params.teleport_room_id = j["roomId"].get<int>();
+        if (j.contains("room_id")) params.teleport_room_id = j["room_id"].get<int>();
+        if (j.contains("successChance")) {
+            if (j["successChance"].is_string()) {
+                params.success_formula = j["successChance"].get<std::string>();
+            } else if (j["successChance"].is_number()) {
+                params.success_formula = std::to_string(j["successChance"].get<int>());
+            }
+        }
+
+        // Reveal params
+        if (j.contains("revealType")) params.reveal_type = j["revealType"].get<std::string>();
+        if (j.contains("reveal_type")) params.reveal_type = j["reveal_type"].get<std::string>();
+        if (j.contains("clearFog")) params.clear_fog = j["clearFog"].get<bool>();
+
+        // Cleanse params
+        if (j.contains("cleanseCategory")) params.cleanse_category = j["cleanseCategory"].get<std::string>();
+        if (j.contains("cleanse_category")) params.cleanse_category = j["cleanse_category"].get<std::string>();
+        if (j.contains("cleansePower")) {
+            if (j["cleansePower"].is_string()) {
+                params.cleanse_power_formula = j["cleansePower"].get<std::string>();
+            } else if (j["cleansePower"].is_number()) {
+                params.cleanse_power_formula = std::to_string(j["cleansePower"].get<int>());
+            }
+        }
+        if (j.contains("maxEffectsRemoved")) params.max_effects_removed = j["maxEffectsRemoved"].get<int>();
+
+        // Dispel params
+        if (j.contains("dispelType")) params.dispel_type = j["dispelType"].get<std::string>();
+        if (j.contains("dispel_type")) params.dispel_type = j["dispel_type"].get<std::string>();
+        if (j.contains("dispelPower")) {
+            if (j["dispelPower"].is_string()) {
+                params.dispel_power_formula = j["dispelPower"].get<std::string>();
+            } else if (j["dispelPower"].is_number()) {
+                params.dispel_power_formula = std::to_string(j["dispelPower"].get<int>());
+            }
+        }
+        if (j.contains("dispelObjects")) params.dispel_objects = j["dispelObjects"].get<bool>();
+
+        // Summon params
+        if (j.contains("summonType")) params.summon_type = j["summonType"].get<std::string>();
+        if (j.contains("summon_type")) params.summon_type = j["summon_type"].get<std::string>();
+        if (j.contains("maxDistance")) {
+            if (j["maxDistance"].is_string()) {
+                params.max_distance_formula = j["maxDistance"].get<std::string>();
+            } else if (j["maxDistance"].is_number()) {
+                params.max_distance_formula = std::to_string(j["maxDistance"].get<int>());
+            }
+        }
+        if (j.contains("maxLevel")) {
+            if (j["maxLevel"].is_string()) {
+                params.max_level_formula = j["maxLevel"].get<std::string>();
+            } else if (j["maxLevel"].is_number()) {
+                params.max_level_formula = std::to_string(j["maxLevel"].get<int>());
+            }
+        }
+        if (j.contains("requiresConsent")) params.requires_consent = j["requiresConsent"].get<bool>();
+
+        // Resurrect params
+        if (j.contains("expReturn")) {
+            if (j["expReturn"].is_string()) {
+                params.exp_return_formula = j["expReturn"].get<std::string>();
+            } else if (j["expReturn"].is_number()) {
+                params.exp_return_formula = std::to_string(j["expReturn"].get<int>());
+            }
+        }
+        if (j.contains("requiresCorpse")) params.requires_corpse = j["requiresCorpse"].get<bool>();
+
     } catch (const json::exception& e) {
         Log::warn("Failed to parse effect params JSON: {}", e.what());
     }
@@ -401,6 +502,77 @@ void EffectParams::merge_override(std::string_view override_json) {
         }
         if (j.contains("condition")) condition = j["condition"].get<std::string>();
 
+        // Teleport params
+        if (j.contains("teleportType")) teleport_type = j["teleportType"].get<std::string>();
+        if (j.contains("teleport_type")) teleport_type = j["teleport_type"].get<std::string>();
+        if (j.contains("roomId")) teleport_room_id = j["roomId"].get<int>();
+        if (j.contains("room_id")) teleport_room_id = j["room_id"].get<int>();
+        if (j.contains("successChance")) {
+            if (j["successChance"].is_string()) {
+                success_formula = j["successChance"].get<std::string>();
+            } else if (j["successChance"].is_number()) {
+                success_formula = std::to_string(j["successChance"].get<int>());
+            }
+        }
+
+        // Reveal params
+        if (j.contains("revealType")) reveal_type = j["revealType"].get<std::string>();
+        if (j.contains("reveal_type")) reveal_type = j["reveal_type"].get<std::string>();
+        if (j.contains("clearFog")) clear_fog = j["clearFog"].get<bool>();
+
+        // Cleanse params
+        if (j.contains("cleanseCategory")) cleanse_category = j["cleanseCategory"].get<std::string>();
+        if (j.contains("cleanse_category")) cleanse_category = j["cleanse_category"].get<std::string>();
+        if (j.contains("cleansePower")) {
+            if (j["cleansePower"].is_string()) {
+                cleanse_power_formula = j["cleansePower"].get<std::string>();
+            } else if (j["cleansePower"].is_number()) {
+                cleanse_power_formula = std::to_string(j["cleansePower"].get<int>());
+            }
+        }
+        if (j.contains("maxEffectsRemoved")) max_effects_removed = j["maxEffectsRemoved"].get<int>();
+
+        // Dispel params
+        if (j.contains("dispelType")) dispel_type = j["dispelType"].get<std::string>();
+        if (j.contains("dispel_type")) dispel_type = j["dispel_type"].get<std::string>();
+        if (j.contains("dispelPower")) {
+            if (j["dispelPower"].is_string()) {
+                dispel_power_formula = j["dispelPower"].get<std::string>();
+            } else if (j["dispelPower"].is_number()) {
+                dispel_power_formula = std::to_string(j["dispelPower"].get<int>());
+            }
+        }
+        if (j.contains("dispelObjects")) dispel_objects = j["dispelObjects"].get<bool>();
+
+        // Summon params
+        if (j.contains("summonType")) summon_type = j["summonType"].get<std::string>();
+        if (j.contains("summon_type")) summon_type = j["summon_type"].get<std::string>();
+        if (j.contains("maxDistance")) {
+            if (j["maxDistance"].is_string()) {
+                max_distance_formula = j["maxDistance"].get<std::string>();
+            } else if (j["maxDistance"].is_number()) {
+                max_distance_formula = std::to_string(j["maxDistance"].get<int>());
+            }
+        }
+        if (j.contains("maxLevel")) {
+            if (j["maxLevel"].is_string()) {
+                max_level_formula = j["maxLevel"].get<std::string>();
+            } else if (j["maxLevel"].is_number()) {
+                max_level_formula = std::to_string(j["maxLevel"].get<int>());
+            }
+        }
+        if (j.contains("requiresConsent")) requires_consent = j["requiresConsent"].get<bool>();
+
+        // Resurrect params
+        if (j.contains("expReturn")) {
+            if (j["expReturn"].is_string()) {
+                exp_return_formula = j["expReturn"].get<std::string>();
+            } else if (j["expReturn"].is_number()) {
+                exp_return_formula = std::to_string(j["expReturn"].get<int>());
+            }
+        }
+        if (j.contains("requiresCorpse")) requires_corpse = j["requiresCorpse"].get<bool>();
+
     } catch (const json::exception& e) {
         Log::warn("Failed to parse effect override JSON: {}", e.what());
     }
@@ -411,13 +583,17 @@ void EffectParams::merge_override(std::string_view override_json) {
 // =============================================================================
 
 EffectResult EffectResult::success_result(int value, std::string_view attacker_msg,
-                                          std::string_view target_msg, std::string_view room_msg) {
+                                          std::string_view target_msg, std::string_view room_msg,
+                                          std::string_view dice_details,
+                                          EffectType effect_type) {
     EffectResult result;
     result.success = true;
     result.value = value;
+    result.type = effect_type;
     result.attacker_message = attacker_msg;
     result.target_message = target_msg;
     result.room_message = room_msg;
+    result.dice_details = dice_details;
     return result;
 }
 
@@ -519,6 +695,18 @@ std::expected<EffectResult, Error> EffectExecutor::execute(
             return execute_dot(params, context);
         case EffectType::Hot:
             return execute_hot(params, context);
+        case EffectType::Teleport:
+            return execute_teleport(params, context);
+        case EffectType::Reveal:
+            return execute_reveal(params, context);
+        case EffectType::Cleanse:
+            return execute_cleanse(params, context);
+        case EffectType::Dispel:
+            return execute_dispel(params, context);
+        case EffectType::Summon:
+            return execute_summon(params, context);
+        case EffectType::Resurrect:
+            return execute_resurrect(params, context);
         default:
             return std::unexpected(Errors::NotImplemented(
                 fmt::format("Effect type '{}' not yet implemented", effect_def.name)));
@@ -533,9 +721,18 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
 
     std::vector<EffectResult> results;
 
+    Log::game()->info("execute_ability_effects: {} effects, filter={}, target={}",
+                       effects.size(),
+                       static_cast<int>(trigger_filter),
+                       context.target ? context.target->display_name() : "none");
+
     for (const auto& ability_effect : effects) {
         // Filter by trigger
         if (ability_effect.trigger != trigger_filter) {
+            Log::game()->info("  Skipping effect {} (trigger {} != filter {})",
+                               ability_effect.effect_id,
+                               static_cast<int>(ability_effect.trigger),
+                               static_cast<int>(trigger_filter));
             continue;
         }
 
@@ -547,6 +744,11 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
             continue;
         }
 
+        Log::game()->info("  Executing effect {} (type={}, chance={}%)",
+                           def_it->second.name,
+                           static_cast<int>(def_it->second.type),
+                           ability_effect.params.chance_percent);
+
         // Set context IDs for this effect execution
         context.ability_id = ability_effect.ability_id;
         context.effect_id = ability_effect.effect_id;
@@ -554,12 +756,14 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
         // Execute the effect
         auto result = execute(def_it->second, ability_effect.params, context);
         if (result) {
+            Log::game()->info("  Effect {} succeeded: value={}", def_it->second.name, result->value);
             results.push_back(*result);
         } else {
-            Log::debug("Effect {} failed: {}", def_it->second.name, result.error().message);
+            Log::game()->info("Effect {} failed: {}", def_it->second.name, result.error().message);
         }
     }
 
+    Log::game()->info("execute_ability_effects: {} results", results.size());
     return results;
 }
 
@@ -569,6 +773,10 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
 
 std::expected<EffectResult, Error> EffectExecutor::execute_damage(
     const EffectParams& params, EffectContext& context) {
+
+    Log::game()->info("execute_damage: target={}, formula={}",
+                       context.target ? context.target->display_name() : "none",
+                       params.amount_formula);
 
     if (!context.target) {
         return std::unexpected(Errors::InvalidArgument("target", "is required for damage effect"));
@@ -582,10 +790,12 @@ std::expected<EffectResult, Error> EffectExecutor::execute_damage(
 
     auto damage_result = FormulaParser::evaluate(formula, context.formula_ctx);
     if (!damage_result) {
+        Log::game()->info("execute_damage: formula evaluation failed: {}", damage_result.error().message);
         return std::unexpected(damage_result.error());
     }
 
     int damage = *damage_result;
+    Log::game()->info("execute_damage: base damage={}", damage);
 
     // Apply scaling bonus if specified
     if (!params.scaling_stat.empty()) {
@@ -609,7 +819,10 @@ std::expected<EffectResult, Error> EffectExecutor::execute_damage(
     std::string room_msg = fmt::format("{} hits {} with a {} attack!",
         context.actor->display_name(), context.target->display_name(), params.damage_type);
 
-    return EffectResult::success_result(damage, attacker_msg, target_msg, room_msg);
+    // Generate dice details string (stored separately, appended by ability_executor when needed)
+    std::string dice_details = format_spell_damage_details(formula, damage, params.damage_type);
+
+    return EffectResult::success_result(damage, attacker_msg, target_msg, room_msg, dice_details, EffectType::Damage);
 }
 
 std::expected<EffectResult, Error> EffectExecutor::execute_heal(
@@ -653,7 +866,10 @@ std::expected<EffectResult, Error> EffectExecutor::execute_heal(
     std::string room_msg = fmt::format("{} heals {}.",
         context.actor->display_name(), heal_target->display_name());
 
-    return EffectResult::success_result(heal_amount, attacker_msg, target_msg, room_msg);
+    // Generate dice details string (stored separately, appended by ability_executor when needed)
+    std::string dice_details = format_heal_details(formula, heal_amount, resource_name);
+
+    return EffectResult::success_result(heal_amount, attacker_msg, target_msg, room_msg, dice_details, EffectType::Heal);
 }
 
 std::expected<EffectResult, Error> EffectExecutor::execute_modify(
@@ -1284,6 +1500,551 @@ std::expected<EffectResult, Error> EffectExecutor::execute_hot(
     }
 
     return EffectResult::success_result(flat_heal, attacker_msg, target_msg, room_msg);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_teleport(
+    const EffectParams& params, EffectContext& context) {
+
+    // Teleport can target self or others
+    std::shared_ptr<Actor> teleport_target = context.target ? context.target : context.actor;
+    if (!teleport_target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for teleport effect"));
+    }
+
+    // Get current room
+    auto current_room = teleport_target->current_room();
+    if (!current_room) {
+        return std::unexpected(Errors::InvalidState("Target has no room"));
+    }
+
+    // Evaluate success chance
+    int success_chance = 90;  // Default 90%
+    if (!params.success_formula.empty()) {
+        auto result = FormulaParser::evaluate(params.success_formula, context.formula_ctx);
+        if (result) {
+            success_chance = std::clamp(*result, 0, 100);
+        }
+    }
+
+    // Roll for success
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<int> dist(1, 100);
+    if (dist(gen) > success_chance) {
+        return EffectResult::failure_result("The teleportation fizzles and fails!");
+    }
+
+    std::shared_ptr<Room> dest_room;
+    std::string teleport_desc;
+
+    if (params.teleport_type == "recall" || params.teleport_type == "home") {
+        // Teleport to a default recall location (zone 30, room 0 - Midgaard Temple)
+        // In the future, this could be stored per-actor
+        EntityId recall_room_id(30, 0);  // Default recall point
+        dest_room = WorldManager::instance().get_room(recall_room_id);
+        if (!dest_room) {
+            return std::unexpected(Errors::InvalidState("Recall destination does not exist"));
+        }
+        teleport_desc = "recalled home";
+    } else if (params.teleport_type == "fixed" && params.teleport_room_id > 0) {
+        // Teleport to a fixed destination
+        // Parse the room ID - could be a composite (zone_id * 100 + local_id) or just local
+        int zone_id = params.teleport_room_id / 100;
+        int local_id = params.teleport_room_id % 100;
+        EntityId room_id(zone_id, local_id);
+        dest_room = WorldManager::instance().get_room(room_id);
+        teleport_desc = "transported";
+    } else {
+        // Random teleport within the same zone
+        EntityId zone_entity_id(current_room->id().zone_id(), 0);
+        auto zone_rooms = WorldManager::instance().get_rooms_in_zone(zone_entity_id);
+
+        if (zone_rooms.empty()) {
+            return std::unexpected(Errors::InvalidState("No valid rooms in zone"));
+        }
+
+        // Try up to 100 times to find a valid destination
+        constexpr int MAX_ATTEMPTS = 100;
+        for (int attempt = 0; attempt < MAX_ATTEMPTS; ++attempt) {
+            std::uniform_int_distribution<size_t> room_dist(0, zone_rooms.size() - 1);
+            auto candidate = zone_rooms[room_dist(gen)];
+
+            // Skip private or death rooms (check room flags if available)
+            if (candidate && candidate.get() != current_room.get()) {
+                dest_room = candidate;
+                break;
+            }
+        }
+
+        if (!dest_room) {
+            return std::unexpected(Errors::InvalidState("Could not find valid teleport destination"));
+        }
+        teleport_desc = "teleported";
+    }
+
+    if (!dest_room) {
+        return std::unexpected(Errors::InvalidState("Destination room does not exist"));
+    }
+
+    // Perform the teleport
+    current_room->remove_actor(teleport_target->id());
+    dest_room->add_actor(teleport_target);
+    teleport_target->set_current_room(dest_room);
+
+    // Generate messages
+    std::string attacker_msg, target_msg, room_msg;
+    bool self_cast = (teleport_target == context.actor);
+
+    if (self_cast) {
+        attacker_msg = fmt::format("You are {} in a flash of light!", teleport_desc);
+        room_msg = fmt::format("{} disappears in a flash of light!",
+            context.actor->display_name());
+    } else {
+        attacker_msg = fmt::format("You teleport {} away!", teleport_target->display_name());
+        target_msg = fmt::format("{} teleports you away!", context.actor->display_name());
+        room_msg = fmt::format("{} disappears in a flash of light!",
+            teleport_target->display_name());
+    }
+
+    // Send arrival message to new room
+    for (const auto& actor : dest_room->contents().actors) {
+        if (actor && actor.get() != teleport_target.get()) {
+            actor->receive_message(fmt::format("{} appears in a flash of light!",
+                teleport_target->display_name()));
+        }
+    }
+
+    return EffectResult::success_result(1, attacker_msg, target_msg, room_msg, "", EffectType::Teleport);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_reveal(
+    const EffectParams& params, EffectContext& context) {
+
+    if (!context.actor) {
+        return std::unexpected(Errors::InvalidArgument("actor", "is required for reveal effect"));
+    }
+
+    auto room = context.actor->current_room();
+    if (!room) {
+        return std::unexpected(Errors::InvalidState("Actor has no room"));
+    }
+
+    int revealed_count = 0;
+    std::vector<std::string> revealed_names;
+
+    // Reveal hidden/invisible actors in the room
+    bool reveal_hidden = (params.reveal_type == "all" || params.reveal_type == "hidden");
+    bool reveal_invisible = (params.reveal_type == "all" || params.reveal_type == "invisible");
+
+    for (const auto& actor : room->contents().actors) {
+        if (!actor || actor.get() == context.actor.get()) continue;
+
+        bool was_hidden = false;
+
+        // Check for hide flag
+        if (reveal_hidden && actor->has_flag(ActorFlag::Hide)) {
+            actor->set_flag(ActorFlag::Hide, false);
+            was_hidden = true;
+        }
+
+        // Check for invisible flag
+        if (reveal_invisible && actor->has_flag(ActorFlag::Invisible)) {
+            actor->set_flag(ActorFlag::Invisible, false);
+            was_hidden = true;
+        }
+
+        if (was_hidden) {
+            revealed_count++;
+            revealed_names.push_back(actor->display_name());
+
+            // Notify the revealed actor
+            actor->receive_message("You have been revealed!");
+        }
+    }
+
+    // Generate result message
+    std::string attacker_msg;
+    std::string room_msg;
+
+    if (revealed_count > 0) {
+        if (revealed_count == 1) {
+            attacker_msg = fmt::format("You reveal {}!", revealed_names[0]);
+            room_msg = fmt::format("{} magically reveals {}!",
+                context.actor->display_name(), revealed_names[0]);
+        } else {
+            attacker_msg = fmt::format("You reveal {} hidden beings!", revealed_count);
+            room_msg = fmt::format("{} magically reveals {} hidden beings!",
+                context.actor->display_name(), revealed_count);
+        }
+    } else {
+        attacker_msg = "You sense nothing hidden here.";
+    }
+
+    return EffectResult::success_result(revealed_count, attacker_msg, "", room_msg, "", EffectType::Reveal);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_cleanse(
+    const EffectParams& params, EffectContext& context) {
+
+    // Cleanse can target self or others
+    std::shared_ptr<Actor> cleanse_target = context.target ? context.target : context.actor;
+    if (!cleanse_target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for cleanse effect"));
+    }
+
+    // Evaluate cleanse power from formula
+    int cleanse_power = 50;  // Default
+    if (!params.cleanse_power_formula.empty()) {
+        auto result = FormulaParser::evaluate(params.cleanse_power_formula, context.formula_ctx);
+        if (result) {
+            cleanse_power = *result;
+        }
+    }
+
+    // Track what we've cleansed
+    int cleansed_count = 0;
+    int max_to_cleanse = params.max_effects_removed > 0 ? params.max_effects_removed : 999;
+
+    // Get the DoT effects on the target and try to cure them
+    auto& dots = cleanse_target->dot_effects();
+    std::vector<size_t> to_remove;
+
+    // Random generator for cleanse checks
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<int> dist(1, 100);
+
+    for (size_t i = 0; i < dots.size() && cleansed_count < max_to_cleanse; ++i) {
+        const auto& dot = dots[i];
+
+        // Check if this DoT matches our cleanse category
+        bool category_match = (params.cleanse_category == "all" ||
+                              params.cleanse_category == dot.cure_category);
+
+        if (category_match) {
+            // Power check: cleanse_power vs potency
+            // Higher power = more likely to cleanse
+            int roll = dist(gen);
+
+            // Success if roll <= (cleanse_power - potency * 10 + 50)
+            // This gives a 50% base chance, modified by power vs potency
+            int success_threshold = cleanse_power - (dot.potency * 10) + 50;
+            success_threshold = std::clamp(success_threshold, 5, 95);  // Always 5-95% chance
+
+            if (roll <= success_threshold) {
+                to_remove.push_back(i);
+                cleansed_count++;
+            }
+        }
+    }
+
+    // Remove cleansed DoTs (in reverse order to preserve indices)
+    for (auto it = to_remove.rbegin(); it != to_remove.rend(); ++it) {
+        dots.erase(dots.begin() + static_cast<ptrdiff_t>(*it));
+    }
+
+    // Also remove harmful status effects matching the category
+    // Map cleanse categories to ActorFlags
+    std::vector<ActorFlag> flags_to_check;
+    if (params.cleanse_category == "all" || params.cleanse_category == "poison") {
+        flags_to_check.push_back(ActorFlag::Poison);
+    }
+    if (params.cleanse_category == "all" || params.cleanse_category == "curse") {
+        flags_to_check.push_back(ActorFlag::Curse);
+    }
+    if (params.cleanse_category == "all" || params.cleanse_category == "disease") {
+        // Disease could be represented by various flags
+        flags_to_check.push_back(ActorFlag::Slow);
+    }
+    if (params.cleanse_category == "all" || params.cleanse_category == "blind") {
+        flags_to_check.push_back(ActorFlag::Blind);
+    }
+
+    for (auto flag : flags_to_check) {
+        if (cleanse_target->has_flag(flag) && cleansed_count < max_to_cleanse) {
+            cleanse_target->set_flag(flag, false);
+            cleansed_count++;
+        }
+    }
+
+    // Generate messages
+    std::string attacker_msg, target_msg, room_msg;
+    bool self_cast = (cleanse_target == context.actor);
+
+    if (cleansed_count > 0) {
+        if (self_cast) {
+            attacker_msg = fmt::format("You feel purified as {} affliction{} {} removed!",
+                cleansed_count, cleansed_count > 1 ? "s" : "",
+                cleansed_count > 1 ? "are" : "is");
+            room_msg = fmt::format("A wave of purity washes over {}.",
+                context.actor->display_name());
+        } else {
+            attacker_msg = fmt::format("You cleanse {} of {} affliction{}!",
+                cleanse_target->display_name(), cleansed_count,
+                cleansed_count > 1 ? "s" : "");
+            target_msg = fmt::format("{} cleanses you of {} affliction{}!",
+                context.actor->display_name(), cleansed_count,
+                cleansed_count > 1 ? "s" : "");
+            room_msg = fmt::format("{} cleanses {} with purifying magic!",
+                context.actor->display_name(), cleanse_target->display_name());
+        }
+    } else {
+        if (self_cast) {
+            attacker_msg = "You have no afflictions to cleanse.";
+        } else {
+            attacker_msg = fmt::format("{} has no afflictions to cleanse.",
+                cleanse_target->display_name());
+        }
+    }
+
+    return EffectResult::success_result(cleansed_count, attacker_msg, target_msg, room_msg, "", EffectType::Cleanse);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_dispel(
+    const EffectParams& params, EffectContext& context) {
+
+    if (!context.target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for dispel effect"));
+    }
+
+    // Evaluate dispel power from formula
+    int dispel_power = 50;  // Default
+    if (!params.dispel_power_formula.empty()) {
+        auto result = FormulaParser::evaluate(params.dispel_power_formula, context.formula_ctx);
+        if (result) {
+            dispel_power = *result;
+        }
+    }
+
+    // Determine which effects to dispel
+    bool dispel_beneficial = (params.dispel_type == "beneficial" || params.dispel_type == "all");
+    bool dispel_harmful = (params.dispel_type == "harmful" || params.dispel_type == "all");
+
+    int dispelled_count = 0;
+
+    // Get all active effects on the target
+    const auto& effects = context.target->active_effects();
+    std::vector<std::string> effects_to_remove;
+
+    // Define beneficial flags (buffs that enemies would want to dispel)
+    static const std::vector<ActorFlag> beneficial_flags = {
+        ActorFlag::Sanctuary, ActorFlag::Shield, ActorFlag::Armor, ActorFlag::Bless,
+        ActorFlag::Haste, ActorFlag::Blur, ActorFlag::Stoneskin, ActorFlag::Barkskin,
+        ActorFlag::Fireshield, ActorFlag::Coldshield, ActorFlag::Invisible,
+        ActorFlag::Flying, ActorFlag::Waterwalk, ActorFlag::Detect_Invis,
+        ActorFlag::Detect_Magic, ActorFlag::Infravision, ActorFlag::Sense_Life
+    };
+
+    // Define harmful flags (debuffs that allies would want to dispel)
+    static const std::vector<ActorFlag> harmful_flags = {
+        ActorFlag::Curse, ActorFlag::Poison, ActorFlag::Blind, ActorFlag::Slow,
+        ActorFlag::Paralyzed, ActorFlag::Webbed, ActorFlag::Sleep, ActorFlag::Charm
+    };
+
+    // Random generator for save checks
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<int> dist(1, 100);
+
+    for (const auto& effect : effects) {
+        // Determine if this effect is beneficial or harmful
+        bool is_beneficial = false;
+        bool is_harmful = false;
+
+        for (auto bf : beneficial_flags) {
+            if (effect.flag == bf) {
+                is_beneficial = true;
+                break;
+            }
+        }
+        for (auto hf : harmful_flags) {
+            if (effect.flag == hf) {
+                is_harmful = true;
+                break;
+            }
+        }
+
+        // Check if we should try to dispel this effect
+        bool should_dispel = (is_beneficial && dispel_beneficial) ||
+                            (is_harmful && dispel_harmful);
+
+        if (should_dispel) {
+            // Save check: dispel_power vs effect modifier value (as resistance)
+            int resistance = std::abs(effect.modifier_value);
+            int success_threshold = dispel_power - resistance + 50;
+            success_threshold = std::clamp(success_threshold, 5, 95);
+
+            if (dist(gen) <= success_threshold) {
+                effects_to_remove.push_back(effect.name);
+                dispelled_count++;
+            }
+        }
+    }
+
+    // Remove dispelled effects by name
+    for (const auto& name : effects_to_remove) {
+        context.target->remove_effect(name);
+    }
+
+    // Also remove HoT effects if dispelling beneficial
+    if (dispel_beneficial) {
+        auto& hots = context.target->hot_effects();
+        for (size_t i = hots.size(); i > 0; --i) {
+            if (dist(gen) <= dispel_power) {
+                hots.erase(hots.begin() + static_cast<ptrdiff_t>(i - 1));
+                dispelled_count++;
+            }
+        }
+    }
+
+    // Generate messages
+    std::string attacker_msg, target_msg, room_msg;
+
+    if (dispelled_count > 0) {
+        attacker_msg = fmt::format("You dispel {} magical effect{} from {}!",
+            dispelled_count, dispelled_count > 1 ? "s" : "",
+            context.target->display_name());
+        target_msg = fmt::format("{} dispels {} magical effect{} from you!",
+            context.actor->display_name(), dispelled_count,
+            dispelled_count > 1 ? "s" : "");
+        room_msg = fmt::format("{}'s magic flickers and fades as {} dispels it!",
+            context.target->display_name(), context.actor->display_name());
+    } else {
+        attacker_msg = fmt::format("You fail to dispel any magic from {}.",
+            context.target->display_name());
+        target_msg = fmt::format("{} tries to dispel your magic, but fails!",
+            context.actor->display_name());
+    }
+
+    return EffectResult::success_result(dispelled_count, attacker_msg, target_msg, room_msg, "", EffectType::Dispel);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_summon(
+    const EffectParams& params, EffectContext& context) {
+
+    if (!context.actor) {
+        return std::unexpected(Errors::InvalidArgument("actor", "is required for summon effect"));
+    }
+
+    if (!context.target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for summon effect"));
+    }
+
+    auto actor_room = context.actor->current_room();
+    if (!actor_room) {
+        return std::unexpected(Errors::InvalidState("Actor has no room"));
+    }
+
+    auto target_room = context.target->current_room();
+    if (!target_room) {
+        return std::unexpected(Errors::InvalidState("Target has no room"));
+    }
+
+    // Check if target is already in the same room
+    if (target_room.get() == actor_room.get()) {
+        return EffectResult::failure_result("Target is already here!");
+    }
+
+    // Evaluate max level formula
+    int max_level = 100;  // Default: no level limit
+    if (!params.max_level_formula.empty()) {
+        auto result = FormulaParser::evaluate(params.max_level_formula, context.formula_ctx);
+        if (result) {
+            max_level = *result;
+        }
+    }
+
+    // Check level restriction
+    if (context.target->stats().level > max_level) {
+        return EffectResult::failure_result(fmt::format("{} is too powerful to summon!",
+            context.target->display_name()));
+    }
+
+    // Check zone restriction (same zone only for basic summon)
+    if (target_room->id().zone_id() != actor_room->id().zone_id()) {
+        return EffectResult::failure_result("Target is too far away to summon!");
+    }
+
+    // Perform the summon
+    target_room->remove_actor(context.target->id());
+    actor_room->add_actor(context.target);
+    context.target->set_current_room(actor_room);
+
+    // Generate messages
+    std::string attacker_msg = fmt::format("You summon {} to your location!",
+        context.target->display_name());
+    std::string target_msg = fmt::format("{} summons you!",
+        context.actor->display_name());
+    std::string room_msg = fmt::format("{} arrives in a flash of light, summoned by {}!",
+        context.target->display_name(), context.actor->display_name());
+
+    // Notify the room the target left
+    for (const auto& actor : target_room->contents().actors) {
+        if (actor) {
+            actor->receive_message(fmt::format("{} is summoned away!",
+                context.target->display_name()));
+        }
+    }
+
+    return EffectResult::success_result(1, attacker_msg, target_msg, room_msg, "", EffectType::Summon);
+}
+
+std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(
+    const EffectParams& params, EffectContext& context) {
+
+    if (!context.actor) {
+        return std::unexpected(Errors::InvalidArgument("actor", "is required for resurrect effect"));
+    }
+
+    if (!context.target) {
+        return std::unexpected(Errors::InvalidArgument("target", "is required for resurrect effect"));
+    }
+
+    // Check if target is actually dead
+    if (context.target->stats().hit_points > 0) {
+        return EffectResult::failure_result(fmt::format("{} is not dead!",
+            context.target->display_name()));
+    }
+
+    // Evaluate exp return percentage
+    int exp_return_percent = 60;  // Default: 60% of death exp returned
+    if (!params.exp_return_formula.empty()) {
+        auto result = FormulaParser::evaluate(params.exp_return_formula, context.formula_ctx);
+        if (result) {
+            exp_return_percent = std::clamp(*result, 0, 100);
+        }
+    }
+
+    // Resurrect the target
+    auto& stats = context.target->stats();
+
+    // Set HP to 1 (they're alive but weak)
+    stats.hit_points = 1;
+
+    // Clear death-related flags if any
+    context.target->set_flag(ActorFlag::Sleep, false);
+    context.target->set_flag(ActorFlag::Paralyzed, false);
+
+    // Calculate exp to return (would need death exp tracking in a real implementation)
+    // For now, we'll just grant a small amount based on level
+    int exp_gained = stats.level * 100 * exp_return_percent / 100;
+
+    // Move target to actor's room if they're not there
+    auto actor_room = context.actor->current_room();
+    auto target_room = context.target->current_room();
+
+    if (actor_room && target_room && actor_room.get() != target_room.get()) {
+        target_room->remove_actor(context.target->id());
+        actor_room->add_actor(context.target);
+        context.target->set_current_room(actor_room);
+    }
+
+    // Generate messages
+    std::string attacker_msg = fmt::format("You resurrect {}! They return to life with {} experience.",
+        context.target->display_name(), exp_gained);
+    std::string target_msg = fmt::format("{} resurrects you! You return to life with {} experience.",
+        context.actor->display_name(), exp_gained);
+    std::string room_msg = fmt::format("{} calls upon divine power to resurrect {}!",
+        context.actor->display_name(), context.target->display_name());
+
+    return EffectResult::success_result(exp_gained, attacker_msg, target_msg, room_msg, "", EffectType::Resurrect);
 }
 
 } // namespace FieryMUD

@@ -74,7 +74,7 @@ void register_object_bindings(sol::state& lua) {
         {
             {"Glow", ObjectFlag::Glow},
             {"Hum", ObjectFlag::Hum},
-            {"NoRent", ObjectFlag::NoRent},
+            {"Temporary", ObjectFlag::Temporary},
             {"NoDonate", ObjectFlag::NoDonate},
             {"Invisible", ObjectFlag::Invisible},
             {"Magic", ObjectFlag::Magic},

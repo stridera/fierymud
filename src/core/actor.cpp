@@ -858,22 +858,16 @@ bool Actor::has_spell_slots(int circle) const {
     return spell_slots_ && spell_slots_->has_slots(circle);
 }
 
-bool Actor::use_spell_slot(int circle) {
-    return spell_slots_ && spell_slots_->use_slot(circle);
+bool Actor::consume_spell_slot(int circle) {
+    return spell_slots_ && spell_slots_->consume_slot(circle);
 }
 
 std::pair<int, int> Actor::get_spell_slot_info(int circle) const {
     if (!spell_slots_) {
         return {0, 0};
     }
-    
-    return spell_slots_->get_slot_info(circle);
-}
 
-void Actor::update_spell_slots() {
-    if (spell_slots_) {
-        spell_slots_->update_refresh();
-    }
+    return spell_slots_->get_slot_info(circle);
 }
 
 const SpellSlots& Actor::spell_slots() const {
@@ -1164,12 +1158,22 @@ Actor::TickResult Actor::perform_tick() {
 }
 
 bool Actor::interrupt_concentration() {
-    // List of concentration-based effects that can be interrupted
+    bool interrupted = false;
+
+    // Interrupt player meditation (new flag-based system)
+    if (auto* player = dynamic_cast<Player*>(this)) {
+        if (player->is_meditating()) {
+            player->stop_meditation();
+            send_message("Your meditation is broken.\n");
+            interrupted = true;
+        }
+    }
+
+    // Interrupt legacy concentration effects
     static const std::vector<std::string> concentration_effects = {
         "Meditate"
     };
 
-    bool interrupted = false;
     for (const auto& effect_name : concentration_effects) {
         if (has_effect(effect_name)) {
             remove_effect(effect_name);
@@ -1219,6 +1223,56 @@ std::optional<Actor::QueuedSpell> Actor::pop_queued_spell() {
     auto spell = std::move(queued_spell_);
     queued_spell_.reset();
     return spell;
+}
+
+// ============================================================================
+// Casting Time System Implementation
+// ============================================================================
+
+void Actor::start_casting(const CastingState& state) {
+    casting_state_ = state;
+}
+
+void Actor::stop_casting(bool interrupted) {
+    if (!casting_state_.has_value()) {
+        return;
+    }
+
+    if (interrupted) {
+        Log::game()->debug("{}'s casting of {} was interrupted",
+                           name(), casting_state_->ability_name);
+        send_message("Your concentration is broken!\n");
+    }
+
+    casting_state_.reset();
+}
+
+bool Actor::advance_casting() {
+    if (!casting_state_.has_value()) {
+        return false;
+    }
+
+    // Decrement casting time by 1 tick per 500ms interval
+    // With CAST_SPEED_PER_ROUND = 8 representing one 4-second combat round,
+    // this means 8 ticks = 4 seconds = 1 combat round
+    casting_state_->ticks_remaining -= 1;
+
+    if (casting_state_->ticks_remaining <= 0) {
+        // Casting complete
+        Log::game()->debug("{} completes casting {}", name(), casting_state_->ability_name);
+        return true;
+    }
+
+    // Progress message is sent by WorldServer::perform_casting_processing()
+    return false;
+}
+
+int Actor::get_casting_progress_percent() const {
+    if (!casting_state_.has_value() || casting_state_->total_ticks == 0) {
+        return 100;
+    }
+    int elapsed = casting_state_->total_ticks - casting_state_->ticks_remaining;
+    return (elapsed * 100) / casting_state_->total_ticks;
 }
 
 // ============================================================================
@@ -1857,6 +1911,12 @@ std::shared_ptr<Container> Mobile::die() {
         created_corpse = corpse;
         corpse->set_description(fmt::format("The lifeless body of {} lies here, still and cold.", display_name()));
 
+        // Mark corpse as non-persistent (dynamic object with no database entry)
+        corpse->set_flag(ObjectFlag::Temporary);
+
+        // Corpses cannot be picked up and carried
+        corpse->set_can_take(false);
+
         // Add keywords: "corpse" plus all keywords from the dead actor
         corpse->add_keyword("corpse");
         for (const auto& kw : keywords()) {
@@ -1911,6 +1971,10 @@ std::shared_ptr<Container> Mobile::die() {
             if (coins_result) {
                 auto coins = std::shared_ptr<Object>(coins_result.value().release());
                 coins->set_value(static_cast<int>(total_coins));
+
+                // Mark coins as non-persistent (dynamic object with no database entry)
+                coins->set_flag(ObjectFlag::Temporary);
+
                 coins->add_keyword("coins");
                 coins->add_keyword("money");
                 coins->add_keyword("gold"); // Generic keyword for finding
@@ -2242,6 +2306,32 @@ void Player::on_level_up(int /* old_level */, int /* new_level */) {
     send_gmcp_vitals_update();
 }
 
+void Player::start_meditation() {
+    if (!is_meditating_) {
+        is_meditating_ = true;
+        Log::debug("Player '{}' started meditating", name());
+    }
+}
+
+void Player::stop_meditation() {
+    if (is_meditating_) {
+        is_meditating_ = false;
+        Log::debug("Player '{}' stopped meditating", name());
+    }
+}
+
+int Player::get_spell_restore_rate() const {
+    // Base rate: focus / 10 (minimum 1)
+    int rate = std::max(1, stats().focus / 10);
+
+    // Meditation doubles the restoration rate
+    if (is_meditating_) {
+        rate *= 2;
+    }
+
+    return rate;
+}
+
 void Player::send_to_group(std::string_view message) {
     // If we're following someone, get the leader's group
     auto leader = get_leader();
@@ -2285,6 +2375,7 @@ namespace {
         {PlayerFlag::AutoExit, "AUTOEXIT"},
         {PlayerFlag::AutoAssist, "AUTOASSIST"},
         {PlayerFlag::Wimpy, "WIMPY"},
+        {PlayerFlag::ShowDiceRolls, "SHOWDICEROLLS"},
         {PlayerFlag::Afk, "AFK"},
         {PlayerFlag::Deaf, "DEAF"},
         {PlayerFlag::NoTell, "NOTELL"},
@@ -2307,6 +2398,7 @@ namespace {
         {"AUTOEXIT", PlayerFlag::AutoExit},
         {"AUTOASSIST", PlayerFlag::AutoAssist},
         {"WIMPY", PlayerFlag::Wimpy},
+        {"SHOWDICEROLLS", PlayerFlag::ShowDiceRolls},
         {"AFK", PlayerFlag::Afk},
         {"DEAF", PlayerFlag::Deaf},
         {"NOTELL", PlayerFlag::NoTell},

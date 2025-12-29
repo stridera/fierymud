@@ -715,6 +715,12 @@ void PlayerConnection::start() {
 void PlayerConnection::handle_connect() {
     transition_to(ConnectionState::Login);
 
+    // Register this connection with WorldServer for game loop processing
+    // (timers, casting, combat, etc.) - must happen AFTER TLS handshake
+    if (world_server_) {
+        world_server_->add_player_connection(shared_from_this());
+    }
+
     // Begin reading first so we can receive telnet responses
     start_read();
 

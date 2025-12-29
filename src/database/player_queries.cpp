@@ -54,8 +54,18 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         // Set the database ID for persistence operations (mail, saving, etc.)
         player->set_database_id(player_id);
 
+        // Stats - set level FIRST (before set_class, which needs level for spell slots)
+        auto& stats = player->stats();
+        stats.level = level;
+
+        // Set god level for immortals (level 100+)
+        // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
+        if (level >= kImmortalLevel) {
+            player->set_god_level(level - (kImmortalLevel - 1));
+        }
+
         // Set properties from database
-        // Race and class
+        // Race and class (after level is set, since set_class initializes spell slots)
         if (!row["race"].is_null()) {
             player->set_race(row["race"].as<std::string>());
         }
@@ -73,16 +83,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
             player->set_size(row["base_size"].as<std::string>());
         }
 
-        // Stats - modify directly via stats() reference
-        auto& stats = player->stats();
-        stats.level = level;
-
-        // Set god level for immortals (level 100+)
-        // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
-        if (level >= kImmortalLevel) {
-            player->set_god_level(level - (kImmortalLevel - 1));
-        }
-
+        // Remaining stats
         stats.alignment = row["alignment"].as<int>(0);
         stats.strength = row["strength"].as<int>(10);
         stats.intelligence = row["intelligence"].as<int>(10);

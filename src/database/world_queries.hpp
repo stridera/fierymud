@@ -148,6 +148,14 @@ struct ClassAbilityData {
     int ability_id;
     int class_id;
     int min_level;              // Minimum level to learn
+    int circle = 0;             // Spell circle (1-9 for spells, 0 for skills)
+};
+
+/** Class info for an ability (for help display) */
+struct AbilityClassInfo {
+    int class_id;
+    std::string class_name;     // Plain class name (no color codes)
+    int circle;                 // Spell circle (1-9)
 };
 
 /** Character's learned ability */
@@ -166,6 +174,10 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn);
 Result<std::vector<ClassAbilityData>> load_class_abilities(
     pqxx::work& txn, int class_id);
 
+// Load class info for a specific ability (for help display)
+Result<std::vector<AbilityClassInfo>> load_ability_classes(
+    pqxx::work& txn, int ability_id);
+
 // Load abilities a character has learned
 Result<std::vector<CharacterAbilityData>> load_character_abilities(
     pqxx::work& txn, const std::string& character_id);
@@ -180,6 +192,8 @@ struct CharacterAbilityWithMetadata {
     int proficiency;            // 0-1000 proficiency (10x of percentage)
     AbilityType type;           // SKILL, SPELL, etc.
     bool violent;               // Is this a combat ability?
+    int circle = 0;             // Spell circle (1-9) for spells, 0 for skills
+    std::string sphere;         // Spell sphere (fire, water, healing, etc.)
 };
 
 // Load character abilities with full metadata (single efficient query)
@@ -300,6 +314,17 @@ Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_componen
 /** Load damage components for a single ability */
 Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
     pqxx::work& txn, int ability_id);
+
+/** Class info for an ability (includes ability_id for batch loading) */
+struct AbilityClassData {
+    int ability_id;
+    int class_id;
+    std::string class_name;     // Plain class name (color codes stripped)
+    int circle;                 // Spell circle (1-9)
+};
+
+/** Load class availability for all abilities (batch load) */
+Result<std::vector<AbilityClassData>> load_all_ability_classes(pqxx::work& txn);
 
 /** Parse requirements JSON into structured requirements.
  *  @param json_str The JSON string to parse

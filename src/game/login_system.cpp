@@ -136,6 +136,8 @@ void LoginSystem::load_player_abilities(std::shared_ptr<Player> &player) {
         learned.known = ability_data.known;
         learned.proficiency = ability_data.proficiency;
         learned.violent = ability_data.violent;
+        learned.circle = ability_data.circle;
+        learned.sphere = ability_data.sphere;
 
         // Convert enum to string
         switch (ability_data.type) {

@@ -11,6 +11,7 @@ Result<void> register_commands();
 Result<CommandResult> cmd_kill(const CommandContext &ctx);
 Result<CommandResult> cmd_hit(const CommandContext &ctx);
 Result<CommandResult> cmd_cast(const CommandContext &ctx);
+Result<CommandResult> cmd_abort(const CommandContext &ctx);
 Result<CommandResult> cmd_flee(const CommandContext &ctx);
 Result<CommandResult> cmd_release(const CommandContext &ctx);
 

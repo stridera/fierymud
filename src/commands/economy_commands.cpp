@@ -728,6 +728,62 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Currency Exchange
+// =============================================================================
+
+Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
+    // Exchange can only be done at money changers
+    // TODO: Check for money changer NPC in room
+
+    if (ctx.arg_count() < 3) {
+        ctx.send("Usage: exchange <amount> <from-type> <to-type>");
+        ctx.send("Example: exchange 10 copper silver");
+        ctx.send("Available types: copper, silver, gold, platinum");
+        ctx.send("");
+        ctx.send("Note: This command requires you to be at a money changer.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Parse amount
+    std::string amount_str{ctx.arg(0)};
+    int amount = 0;
+    try {
+        amount = std::stoi(amount_str);
+    } catch (...) {
+        ctx.send_error("Invalid amount specified.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (amount <= 0) {
+        ctx.send_error("You must exchange at least 1 coin.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string_view from_type = ctx.arg(1);
+    std::string_view to_type = ctx.arg(2);
+
+    // Validate coin types
+    static const std::vector<std::string> valid_types = {"copper", "silver", "gold", "platinum"};
+    auto is_valid_type = [&](std::string_view type) {
+        for (const auto& t : valid_types) {
+            if (t.starts_with(type)) return true;
+        }
+        return false;
+    };
+
+    if (!is_valid_type(from_type) || !is_valid_type(to_type)) {
+        ctx.send_error("Invalid coin type. Use: copper, silver, gold, or platinum");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // TODO: Check for money changer NPC and perform actual exchange
+    ctx.send("You are not at a money changer.");
+    ctx.send("Note: Money exchange system not yet fully implemented.");
+
+    return CommandResult::InvalidState;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -798,6 +854,15 @@ Result<void> register_commands() {
         .alias("vault")
         .category("Economy")
         .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Currency exchange
+    Commands()
+        .command("exchange", cmd_exchange)
+        .category("Economy")
+        .privilege(PrivilegeLevel::Player)
+        .description("Exchange coins at a money changer")
+        .usage("exchange <amount> <from-type> <to-type>")
         .build();
 
     return Success();

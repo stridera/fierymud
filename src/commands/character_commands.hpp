@@ -28,4 +28,15 @@ Result<CommandResult> cmd_description(const CommandContext &ctx);
 Result<CommandResult> cmd_consent(const CommandContext &ctx);
 Result<CommandResult> cmd_pk(const CommandContext &ctx);
 
+// Follower commands
+Result<CommandResult> cmd_call(const CommandContext &ctx);
+Result<CommandResult> cmd_order(const CommandContext &ctx);
+
+// Class ability commands
+Result<CommandResult> cmd_subclass(const CommandContext &ctx);
+Result<CommandResult> cmd_shapechange(const CommandContext &ctx);
+
+// Communication commands
+Result<CommandResult> cmd_write(const CommandContext &ctx);
+
 } // namespace CharacterCommands

@@ -341,6 +341,22 @@ public:
                position_ != Position::Stunned && position_ != Position::Sleeping;
     }
 
+    /** Mounting state */
+    bool is_mounted() const { return !mounted_on_.expired(); }
+    bool has_rider() const { return !rider_.expired(); }
+    std::shared_ptr<Actor> get_mount() const { return mounted_on_.lock(); }
+    std::shared_ptr<Actor> get_rider() const { return rider_.lock(); }
+
+    void set_rider(std::shared_ptr<Actor> rider) { rider_ = rider; }
+    void set_mounted_on(std::shared_ptr<Actor> mount) { mounted_on_ = mount; }
+
+    void dismount() {
+        if (auto mount = mounted_on_.lock()) {
+            mount->rider_.reset();
+        }
+        mounted_on_.reset();
+    }
+
     /** Handle death - implemented differently by Player (becomes ghost) and Mobile (creates corpse, despawns)
      *  Returns the corpse for Mobile deaths, nullptr for Player deaths */
     virtual std::shared_ptr<Container> die() = 0;
@@ -411,9 +427,8 @@ public:
     /** Spell casting support */
     bool can_cast_spell(std::string_view spell_name) const;
     bool has_spell_slots(int circle) const;
-    bool use_spell_slot(int circle);
+    bool consume_spell_slot(int circle);  // Consumes slot and adds to restoration queue
     std::pair<int, int> get_spell_slot_info(int circle) const;
-    void update_spell_slots();
     const SpellSlots& spell_slots() const;
     SpellSlots& spell_slots();
 
@@ -543,6 +558,24 @@ public:
     void clear_queued_spell() { queued_spell_.reset(); }
     std::optional<QueuedSpell> pop_queued_spell();
 
+    /** Casting state - tracks spell being cast with casting time */
+    struct CastingState {
+        int ability_id = 0;             // Ability being cast
+        std::string ability_name;       // Display name for messages
+        int ticks_remaining = 0;        // Casting time remaining (in pulses, each pulse ~0.5s)
+        int total_ticks = 0;            // Total casting time (for progress display)
+        std::weak_ptr<Actor> target;    // Target actor (if any)
+        std::string target_name;        // Target name for retargeting
+        int circle = 0;                 // Spell circle (for slot consumption)
+        bool quickcast_applied = false; // Whether quickcast reduction was applied
+    };
+    bool is_casting() const { return casting_state_.has_value(); }
+    const std::optional<CastingState>& casting_state() const { return casting_state_; }
+    void start_casting(const CastingState& state);
+    void stop_casting(bool interrupted = false);
+    bool advance_casting();  // Returns true when casting completes
+    int get_casting_progress_percent() const;
+
 protected:
     /** Constructor for derived classes */
     Actor(EntityId id, std::string_view name);
@@ -587,6 +620,13 @@ private:
     // Casting blackout system
     std::chrono::steady_clock::time_point casting_blackout_end_{};
     std::optional<QueuedSpell> queued_spell_{};
+
+    // Casting state - for spells with casting time
+    std::optional<CastingState> casting_state_{};
+
+    // Mounting state
+    std::weak_ptr<Actor> mounted_on_;  // What we are riding
+    std::weak_ptr<Actor> rider_;       // Who is riding us
 };
 
 /** Mobile (NPC) behavior flags - must match Prisma schema MobFlag enum exactly */
@@ -890,6 +930,8 @@ struct LearnedAbility {
     std::string type;               // SPELL, SKILL, CHANT, SONG
     int min_level = 1;              // Minimum level to use
     bool violent = false;           // Is this a combat ability?
+    int circle = 0;                 // Spell circle (1-9) for spells, 0 for skills
+    std::string sphere;             // Spell sphere (fire, water, healing, etc.)
 };
 
 /** Player preference flags */
@@ -908,6 +950,7 @@ enum class PlayerFlag {
 
     // Combat preferences
     Wimpy,              // Flee when HP is low (threshold stored separately)
+    ShowDiceRolls,      // Show detailed dice rolls and damage calculations in combat
 
     // Social/Status
     Afk,                // Away from keyboard
@@ -1053,6 +1096,7 @@ public:
     bool is_pk_enabled() const { return has_player_flag(PlayerFlag::PkEnabled); }
     bool is_holylight() const override { return has_player_flag(PlayerFlag::HolyLight); }
     bool is_show_ids() const override { return has_player_flag(PlayerFlag::ShowIds); }
+    bool is_show_dice_rolls() const { return has_player_flag(PlayerFlag::ShowDiceRolls); }
 
     /** AFK message (displayed to people who try to interact) */
     std::string_view afk_message() const { return afk_message_; }
@@ -1285,7 +1329,21 @@ private:
     std::vector<std::weak_ptr<Actor>> followers_; // Who is following us
     bool group_flag_ = true;                 // Whether we accept group invites
 
+    // Meditation state
+    bool is_meditating_ = false;             // Currently meditating for spell restoration
+
 public:
+    // Meditation methods (increases effective focus for spell slot restoration)
+    bool is_meditating() const { return is_meditating_; }
+    void start_meditation();
+    void stop_meditation();
+
+    /**
+     * Get effective focus for spell slot restoration.
+     * Meditation doubles the focus rate.
+     */
+    int get_spell_restore_rate() const;
+
     // Communication tracking methods
     void set_last_tell_sender(std::string_view sender) { last_tell_sender_ = sender; }
     std::string_view last_tell_sender() const { return last_tell_sender_; }

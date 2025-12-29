@@ -3,6 +3,7 @@
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../core/logging.hpp"
+#include "../core/money.hpp"
 #include "../core/shopkeeper.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
@@ -11,6 +12,57 @@
 #include <algorithm>
 
 namespace ObjectCommands {
+
+namespace {
+
+/**
+ * Handle picking up an object - if it's money (coins), add to player wealth
+ * and destroy the object. Otherwise, add to inventory normally.
+ *
+ * @param ctx Command context
+ * @param obj The object being picked up
+ * @param gotten_names Output vector for item names (for display)
+ * @return true if pickup was successful, false otherwise
+ */
+bool handle_pickup(const CommandContext &ctx, std::shared_ptr<Object> obj,
+                   std::vector<std::string>* gotten_names = nullptr) {
+    if (!obj) return false;
+
+    // Check if this is a money/coins object
+    if (obj->type() == ObjectType::Money) {
+        // Get the coin value
+        long coin_value = obj->value();
+        if (coin_value > 0) {
+            // Add to player's wealth
+            ctx.actor->give_wealth(coin_value);
+
+            // Format coin description
+            auto coins = fiery::Money::from_copper(coin_value);
+            std::string coin_desc = coins.to_string();
+
+            if (gotten_names) {
+                gotten_names->push_back(coin_desc);
+            } else {
+                ctx.send_success(fmt::format("You get {}.", coin_desc));
+                ctx.send_to_room(fmt::format("{} picks up some coins.", ctx.actor->display_name()), true);
+            }
+        }
+        // Object is consumed (not added to inventory)
+        return true;
+    }
+
+    // Normal item - add to inventory
+    auto add_result = ctx.actor->inventory().add_item(obj);
+    if (add_result) {
+        if (gotten_names) {
+            gotten_names->push_back(ctx.format_object_name(obj));
+        }
+        return true;
+    }
+    return false;
+}
+
+} // anonymous namespace
 
 // =============================================================================
 // Object Commands
@@ -34,15 +86,32 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
     std::shared_ptr<Object> source_container = nullptr;
 
-    // Check if this is "get <object> from <container>" syntax
+    // Determine container name - supports both "get X from Y" and "get all Y" syntax
+    // "get all corpse" should get all items FROM the corpse (same as "get all from corpse")
+    // "get all" with no second arg gets from room
+    // "get all.corpse" gets all corpses from room (handled in room section via dot-notation)
+    std::string_view container_name;
+    bool is_container_syntax = false;
+
     if (ctx.arg_count() >= 3 && ctx.arg(1) == "from") {
+        // "get X from container" syntax
+        container_name = ctx.arg(2);
+        is_container_syntax = true;
+    } else if (ctx.arg_count() == 2 && ctx.arg(0) == "all") {
+        // "get all container" syntax - treat as "get all from container"
+        container_name = ctx.arg(1);
+        is_container_syntax = true;
+    }
+
+    // Check if this is "get <object> from <container>" syntax
+    if (is_container_syntax) {
         // Get from container
         auto inventory_items = ctx.actor->inventory().get_all_items();
 
         // First check inventory for the object
         std::shared_ptr<Object> potential_container = nullptr;
         for (const auto &obj : inventory_items) {
-            if (obj && obj->matches_keyword(ctx.arg(2))) {
+            if (obj && obj->matches_keyword(container_name)) {
                 potential_container = obj;
                 if (obj->is_container()) {
                     source_container = obj;
@@ -55,7 +124,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         if (!potential_container) {
             auto &room_objects = ctx.room->contents_mutable().objects;
             for (auto &obj : room_objects) {
-                if (obj && obj->matches_keyword(ctx.arg(2))) {
+                if (obj && obj->matches_keyword(container_name)) {
                     potential_container = obj;
                     if (obj->is_container()) {
                         source_container = obj;
@@ -66,7 +135,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         }
 
         if (!potential_container) {
-            ctx.send_error(fmt::format("You don't see a container called '{}' here.", ctx.arg(2)));
+            ctx.send_error(fmt::format("You don't see a container called '{}' here.", container_name));
             return CommandResult::InvalidTarget;
         }
 
@@ -123,15 +192,20 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
                     break; // Stop getting more items
                 }
 
-                // Remove from container and add to inventory
+                // Remove from container and add to inventory (or wealth if coins)
                 if (container_obj->remove_item(item)) {
-                    auto add_result = ctx.actor->inventory().add_item(item);
-                    if (add_result) {
-                        gotten_count++;
-                        gotten_names.push_back(ctx.format_object_name(item));
+                    // Money objects skip weight check and add directly to wealth
+                    if (item->type() == ObjectType::Money) {
+                        if (handle_pickup(ctx, item, &gotten_names)) {
+                            gotten_count++;
+                        }
                     } else {
-                        // Return item to container if inventory add failed
-                        container_obj->add_item(item);
+                        if (handle_pickup(ctx, item, &gotten_names)) {
+                            gotten_count++;
+                        } else {
+                            // Return item to container if inventory add failed
+                            container_obj->add_item(item);
+                        }
                     }
                 }
             }
@@ -161,17 +235,33 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         // Get the first matching item
         auto item_to_get = items_found[0];
 
-        // Check if actor can carry more weight
-        int object_weight = item_to_get->weight();
-        if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
-            ctx.send_error("You can't carry any more.");
-            return CommandResult::ResourceError;
+        // Check if actor can carry more weight (money skips this check)
+        if (item_to_get->type() != ObjectType::Money) {
+            int object_weight = item_to_get->weight();
+            if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
+                ctx.send_error("You can't carry any more.");
+                return CommandResult::ResourceError;
+            }
         }
 
-        // Remove from container and add to inventory
+        // Remove from container and add to inventory (or wealth if coins)
         if (!container_obj->remove_item(item_to_get)) {
             ctx.send_error("Failed to get item from container.");
             return CommandResult::ResourceError;
+        }
+
+        // Handle money specially - add to wealth, don't add to inventory
+        if (item_to_get->type() == ObjectType::Money) {
+            long coin_value = item_to_get->value();
+            if (coin_value > 0) {
+                ctx.actor->give_wealth(coin_value);
+                auto coins = fiery::Money::from_copper(coin_value);
+                ctx.send_success(fmt::format("You get {} from {}.", coins.to_string(),
+                                             ctx.format_object_name(source_container)));
+                ctx.send_to_room(fmt::format("{} gets some coins from {}.", ctx.actor->display_name(),
+                                             ctx.format_object_name(source_container)), true);
+            }
+            return CommandResult::Success;
         }
 
         auto add_result = ctx.actor->inventory().add_item(item_to_get);
@@ -216,25 +306,32 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
                     continue; // Skip items without TAKE flag silently for "get all"
                 }
 
-                // Check if actor can carry more weight
-                int object_weight = obj->weight();
-                if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
-                    ctx.send_error(fmt::format("The {} is too heavy to pick up.", ctx.format_object_name(obj)));
-                    continue; // Skip this item and try the next one
+                // Check if actor can carry more weight (money skips this check)
+                if (obj->type() != ObjectType::Money) {
+                    int object_weight = obj->weight();
+                    if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
+                        ctx.send_error(fmt::format("The {} is too heavy to pick up.", ctx.format_object_name(obj)));
+                        continue; // Skip this item and try the next one
+                    }
                 }
 
-                // Remove from room and add to inventory
+                // Remove from room and add to inventory (or wealth if coins)
                 auto it = std::find(room_objects.begin(), room_objects.end(), obj);
                 if (it != room_objects.end()) {
                     room_objects.erase(it);
-                    
-                    auto add_result = ctx.actor->inventory().add_item(obj);
-                    if (add_result) {
-                        gotten_count++;
-                        gotten_names.push_back(ctx.format_object_name(obj));
+
+                    // Money objects add to wealth directly instead of inventory
+                    if (obj->type() == ObjectType::Money) {
+                        if (handle_pickup(ctx, obj, &gotten_names)) {
+                            gotten_count++;
+                        }
                     } else {
-                        // Return object to room if inventory add failed
-                        room_objects.push_back(obj);
+                        if (handle_pickup(ctx, obj, &gotten_names)) {
+                            gotten_count++;
+                        } else {
+                            // Return object to room if inventory add failed
+                            room_objects.push_back(obj);
+                        }
                     }
                 }
             }
@@ -276,17 +373,31 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             }
         }
 
-        // Check if actor can carry more weight
-        int object_weight = target_object->weight();
-        if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
-            ctx.send_error("You can't carry any more.");
-            return CommandResult::ResourceError;
+        // Check if actor can carry more weight (money skips this check)
+        if (target_object->type() != ObjectType::Money) {
+            int object_weight = target_object->weight();
+            if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
+                ctx.send_error("You can't carry any more.");
+                return CommandResult::ResourceError;
+            }
         }
 
-        // Remove from room and add to inventory
+        // Remove from room and add to inventory (or wealth if coins)
         auto it = std::find(room_objects.begin(), room_objects.end(), target_object);
         if (it != room_objects.end()) {
             room_objects.erase(it);
+        }
+
+        // Handle money specially - add to wealth, don't add to inventory
+        if (target_object->type() == ObjectType::Money) {
+            long coin_value = target_object->value();
+            if (coin_value > 0) {
+                ctx.actor->give_wealth(coin_value);
+                auto coins = fiery::Money::from_copper(coin_value);
+                ctx.send_success(fmt::format("You get {}.", coins.to_string()));
+                ctx.send_to_room(fmt::format("{} picks up some coins.", ctx.actor->display_name()), true);
+            }
+            return CommandResult::Success;
         }
 
         auto add_result = ctx.actor->inventory().add_item(target_object);
@@ -683,8 +794,8 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_wear(const CommandContext &ctx) {
-    if (auto result = ctx.require_args(1, "<object>"); !result) {
-        ctx.send_usage("wear <object>");
+    if (auto result = ctx.require_args(1, "<object>|all"); !result) {
+        ctx.send_usage("wear <object>|all");
         return CommandResult::InvalidSyntax;
     }
 
@@ -692,8 +803,56 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find object in actor's inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
+
+    // Handle "wear all" - attempt to wear everything in inventory
+    if (ctx.arg(0) == "all") {
+        if (inventory_items.empty()) {
+            ctx.send("You aren't carrying anything.");
+            return CommandResult::Success;
+        }
+
+        int worn_count = 0;
+        std::vector<std::string> worn_names;
+
+        // Create a copy to avoid iterator invalidation
+        std::vector<std::shared_ptr<Object>> items_to_try(inventory_items.begin(), inventory_items.end());
+
+        for (const auto &obj : items_to_try) {
+            if (!obj) continue;
+
+            // Skip non-wearable items silently
+            if (!obj->is_wearable()) continue;
+
+            // Try to equip the item
+            auto equip_result = ctx.actor->equipment().equip_item(obj);
+            if (!equip_result) {
+                // Slot full or can't wear - skip silently for "wear all"
+                continue;
+            }
+
+            // Remove from inventory since it's now equipped
+            ctx.actor->inventory().remove_item(obj);
+            worn_count++;
+            worn_names.push_back(ctx.format_object_name(obj));
+        }
+
+        if (worn_count > 0) {
+            if (worn_count == 1) {
+                ctx.send_success(fmt::format("You wear {}.", worn_names[0]));
+                ctx.send_to_room(fmt::format("{} wears {}.", ctx.actor->display_name(), worn_names[0]), true);
+            } else {
+                ctx.send_success(fmt::format("You wear {} items.", worn_count));
+                ctx.send_to_room(fmt::format("{} puts on several items.", ctx.actor->display_name()), true);
+            }
+            return CommandResult::Success;
+        } else {
+            ctx.send("You couldn't wear anything.");
+            return CommandResult::Success;
+        }
+    }
+
+    // Find object in actor's inventory
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
@@ -2389,6 +2548,7 @@ Result<void> register_commands() {
 
     Commands()
         .command("eat", cmd_eat)
+        .alias("taste")
         .category("Object")
         .privilege(PrivilegeLevel::Player)
         .build();

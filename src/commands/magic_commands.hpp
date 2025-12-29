@@ -20,4 +20,9 @@ Result<CommandResult> cmd_innate(const CommandContext &ctx);
 Result<CommandResult> cmd_meditate(const CommandContext &ctx);
 Result<CommandResult> cmd_concentrate(const CommandContext &ctx);
 
+// Learning and creation commands
+Result<CommandResult> cmd_study(const CommandContext &ctx);
+Result<CommandResult> cmd_scribe(const CommandContext &ctx);
+Result<CommandResult> cmd_create(const CommandContext &ctx);
+
 } // namespace MagicCommands

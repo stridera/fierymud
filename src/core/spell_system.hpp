@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
+#include <array>
 
 // Forward declarations
 class Actor;
@@ -47,52 +48,91 @@ struct Spell {
 struct SpellSlotCircle {
     int current_slots = 0;
     int max_slots = 0;
-    std::chrono::seconds refresh_time{1800}; // 30 minutes default
-    std::chrono::steady_clock::time_point last_refresh;
-    
+
     /** Check if slots are available */
     bool has_slots() const { return current_slots > 0; }
-    
-    /** Use a spell slot */
-    bool use_slot();
-    
-    /** Refresh slots based on time elapsed */
-    void update_refresh();
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<SpellSlotCircle> from_json(const nlohmann::json& json);
+};
+
+/** Entry in the spell slot restoration queue (FIFO) */
+struct SpellSlotRestoring {
+    int circle;           // Circle of the slot being restored
+    int ticks_remaining;  // Countdown to restoration (seconds)
+
+    nlohmann::json to_json() const;
+    static Result<SpellSlotRestoring> from_json(const nlohmann::json& json);
+};
+
+/** Base recovery times per circle (in seconds/ticks) */
+constexpr std::array<int, 10> CIRCLE_RECOVERY_TICKS = {
+    0,    // Circle 0 (unused)
+    30,   // Circle 1
+    35,   // Circle 2
+    50,   // Circle 3
+    65,   // Circle 4
+    80,   // Circle 5
+    95,   // Circle 6
+    130,  // Circle 7
+    145,  // Circle 8
+    165   // Circle 9
 };
 
 /** Complete spell slot system for an actor */
 class SpellSlots {
 public:
     SpellSlots() = default;
-    
+
     /** Initialize spell slots for a character class and level */
     void initialize_for_class(std::string_view character_class, int level);
-    
+
     /** Check if actor has slots for a specific circle */
     bool has_slots(int circle) const;
-    
-    /** Use a spell slot of specific circle */
-    bool use_slot(int circle);
-    
+
+    /**
+     * Consume a spell slot for casting.
+     * Tries exact circle first, then higher circles (upcast).
+     * Adds consumed slot to restoration queue.
+     * @param spell_circle The circle of the spell being cast
+     * @return true if a slot was consumed, false if none available
+     */
+    bool consume_slot(int spell_circle);
+
+    /**
+     * Process restoration tick (called every second).
+     * Subtracts focus_rate from front of queue, restores slots when ready.
+     * @param focus_rate The caster's focus-based restoration rate
+     * @return Circle of restored slot, or 0 if none restored
+     */
+    int restore_tick(int focus_rate);
+
     /** Get current/max slots for a circle */
     std::pair<int, int> get_slot_info(int circle) const;
-    
-    /** Update all slot refreshes */
-    void update_refresh();
-    
+
+    /** Get count of slots currently restoring for a circle */
+    int get_restoring_count(int circle) const;
+
+    /** Get total number of slots in restoration queue */
+    int get_total_restoring() const;
+
+    /** Get the restoration queue (for display purposes) */
+    const std::vector<SpellSlotRestoring>& restoration_queue() const { return restoration_queue_; }
+
     /** Get all available spell circles */
     std::vector<int> get_available_circles() const;
-    
+
+    /** Get base recovery ticks for a circle */
+    static int get_base_ticks(int circle);
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<SpellSlots> from_json(const nlohmann::json& json);
-    
+
 private:
-    std::unordered_map<int, SpellSlotCircle> slots_; // circle -> slot info
+    std::unordered_map<int, SpellSlotCircle> slots_;       // circle -> slot info
+    std::vector<SpellSlotRestoring> restoration_queue_;    // FIFO restoration queue
 };
 
 /** Global spell registry */

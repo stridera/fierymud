@@ -4,6 +4,7 @@
 #include "../core/actor.hpp"
 #include "../core/object.hpp"
 #include "../world/room.hpp"
+#include "../world/world_manager.hpp"
 
 #include <algorithm>
 
@@ -169,6 +170,199 @@ Result<CommandResult> cmd_land(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Enter/Leave Commands
+// =============================================================================
+
+Result<CommandResult> cmd_enter(const CommandContext &ctx) {
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't enter while fighting
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You are too busy fighting to leave right now.");
+        return CommandResult::InvalidState;
+    }
+
+    // If argument provided, try to enter a portal/object
+    if (ctx.arg_count() > 0) {
+        std::string_view target_name = ctx.arg(0);
+
+        // Look for a portal object in the room
+        auto portals = ctx.room->find_objects_by_keyword(target_name);
+        if (portals.empty()) {
+            ctx.send_error(fmt::format("There is no '{}' here.", target_name));
+            return CommandResult::InvalidTarget;
+        }
+
+        auto portal = portals.front();
+
+        // Check if it's a portal
+        if (portal->type() != ObjectType::Portal) {
+            ctx.send_error("You can't enter that!");
+            return CommandResult::InvalidTarget;
+        }
+
+        // Check level requirement
+        if (portal->level() > ctx.actor->stats().level) {
+            ctx.send_error("You are not powerful enough to enter this portal.");
+            return CommandResult::InvalidState;
+        }
+
+        // Move actor through portal
+        ctx.send(fmt::format("You enter {}.", portal->short_description()));
+        ctx.send_to_room(fmt::format("{} enters {}.", ctx.actor->display_name(), portal->short_description()), true);
+
+        // Portal travel requires destination room storage on Object class
+        // When implemented: get destination from portal, use WorldManager to move actor
+        ctx.send("Portal travel not yet fully implemented - portal destination storage needed.");
+        return CommandResult::Success;
+    }
+
+    // No argument - try to enter an adjacent indoor room
+    if (ctx.room->has_flag(RoomFlag::Indoors)) {
+        ctx.send("You are already indoors.");
+        return CommandResult::InvalidState;
+    }
+
+    // Look for an exit that is passable
+    // Note: Without WorldManager access we can't easily check destination room flags
+    // For now, just find first valid exit and try to move there
+    for (int dir = 0; dir < 6; ++dir) {
+        Direction direction = static_cast<Direction>(dir);
+        const auto* exit = ctx.room->get_exit(direction);
+        if (exit && exit->is_passable()) {
+            // Try to move - execute_movement handles validation
+            return BuiltinCommands::Helpers::execute_movement(ctx, direction);
+        }
+    }
+
+    ctx.send("You can't seem to find anything to enter.");
+    return CommandResult::InvalidTarget;
+}
+
+Result<CommandResult> cmd_leave(const CommandContext &ctx) {
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't leave while fighting
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You are too busy fighting to leave!");
+        return CommandResult::InvalidState;
+    }
+
+    // Must be indoors to leave
+    if (!ctx.room->has_flag(RoomFlag::Indoors)) {
+        ctx.send("You are outside... where do you want to go?");
+        return CommandResult::InvalidState;
+    }
+
+    // Look for an exit to an outdoor room
+    for (int dir = 0; dir < 6; ++dir) {
+        Direction direction = static_cast<Direction>(dir);
+        const auto* exit = ctx.room->get_exit(direction);
+        if (exit && !exit->is_closed) {
+            auto dest_room = WorldManager::instance().get_room(exit->to_room);
+            if (dest_room && !dest_room->has_flag(RoomFlag::Indoors)) {
+                // Found an outdoor room - move there
+                return BuiltinCommands::Helpers::execute_movement(ctx, direction);
+            }
+        }
+    }
+
+    ctx.send("I see no obvious exits to the outside.");
+    return CommandResult::InvalidTarget;
+}
+
+// =============================================================================
+// Mount Commands
+// =============================================================================
+
+Result<CommandResult> cmd_mount(const CommandContext &ctx) {
+    // Check if already mounted
+    if (ctx.actor->is_mounted()) {
+        ctx.send_error("You are already mounted.");
+        return CommandResult::InvalidState;
+    }
+
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You are too busy fighting to try that right now.");
+        return CommandResult::InvalidState;
+    }
+
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Mount what?");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string_view target_name = ctx.arg(0);
+
+    // Find the target in the room
+    auto target = ctx.find_actor_target(target_name);
+    if (!target) {
+        ctx.send_error("There is no one by that name here.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Can't mount players
+    if (std::dynamic_pointer_cast<Player>(target)) {
+        ctx.send_error("Ehh... no.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if target is mountable
+    auto mob = std::dynamic_pointer_cast<Mobile>(target);
+    if (!mob || !mob->has_flag(MobFlag::Mountable)) {
+        ctx.send_error("You can't mount that!");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if mount already has a rider
+    if (target->has_rider()) {
+        ctx.send_error(fmt::format("{} already has a rider.", target->display_name()));
+        return CommandResult::InvalidState;
+    }
+
+    // Mount the target - set both sides of the relationship
+    ctx.actor->set_mounted_on(target);
+    target->set_rider(ctx.actor);
+
+    ctx.send(fmt::format("You mount {}.", target->display_name()));
+    ctx.send_to_room(fmt::format("{} mounts {}.", ctx.actor->display_name(), target->display_name()), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_dismount(const CommandContext &ctx) {
+    // Check if actually mounted
+    if (!ctx.actor->is_mounted()) {
+        ctx.send("You aren't riding anything.");
+        return CommandResult::InvalidState;
+    }
+
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You would get hacked to pieces if you dismount now!");
+        return CommandResult::InvalidState;
+    }
+
+    auto mount = ctx.actor->get_mount();
+    ctx.actor->dismount();
+
+    if (mount) {
+        ctx.send(fmt::format("You dismount {}.", mount->display_name()));
+        ctx.send_to_room(fmt::format("{} dismounts {}.", ctx.actor->display_name(), mount->display_name()), true);
+    } else {
+        ctx.send("You dismount.");
+        ctx.send_to_room(fmt::format("{} dismounts.", ctx.actor->display_name()), true);
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -238,6 +432,41 @@ Result<void> register_commands() {
         .command("land", cmd_land)
         .category("Movement")
         .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("enter", cmd_enter)
+        .category("Movement")
+        .privilege(PrivilegeLevel::Player)
+        .description("Enter a portal or indoor area")
+        .usable_while_sitting(false)
+        .usable_in_combat(false)
+        .build();
+
+    Commands()
+        .command("leave", cmd_leave)
+        .category("Movement")
+        .privilege(PrivilegeLevel::Player)
+        .description("Leave an indoor area")
+        .usable_while_sitting(false)
+        .usable_in_combat(false)
+        .build();
+
+    Commands()
+        .command("mount", cmd_mount)
+        .category("Movement")
+        .privilege(PrivilegeLevel::Player)
+        .description("Mount a creature")
+        .usable_while_sitting(false)
+        .usable_in_combat(false)
+        .build();
+
+    Commands()
+        .command("dismount", cmd_dismount)
+        .category("Movement")
+        .privilege(PrivilegeLevel::Player)
+        .description("Dismount from a creature")
+        .usable_in_combat(false)
         .build();
 
     return Success();

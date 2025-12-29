@@ -6,14 +6,55 @@
 #include "lua_actor.hpp"
 #include "../../core/actor.hpp"
 #include "../../world/room.hpp"
+#include "../../database/generated/db_enums.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
 
 #include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
 #include <spdlog/spdlog.h>
 
 namespace FieryMUD {
+
+namespace {
+
+// Helper to convert legacy DG script abbreviated effect flags to EffectFlag enum
+// Supports both legacy abbreviations (INVIS) and full names (INVISIBLE)
+std::optional<db::EffectFlag> effect_flag_from_string(std::string_view s) {
+    // First try the database string converter (handles full names like "INVISIBLE")
+    auto result = db::effect_flag_from_db(s);
+    if (result) {
+        return result;
+    }
+
+    // Legacy DG script abbreviations
+    static const std::unordered_map<std::string_view, db::EffectFlag> legacy_lookup = {
+        {"INVIS", db::EffectFlag::Invisible},
+        {"DETECT_INVIS", db::EffectFlag::DetectInvis},
+        {"DETECT_MAGIC", db::EffectFlag::DetectMagic},
+        {"SENSE_LIFE", db::EffectFlag::SenseLife},
+        {"SANCT", db::EffectFlag::Sanctuary},
+        {"PROT_EVIL", db::EffectFlag::ProtectEvil},
+        {"PROT_GOOD", db::EffectFlag::ProtectGood},
+        {"INFRA", db::EffectFlag::Infravision},
+        {"PARA", db::EffectFlag::MajorParalysis},
+        {"MINOR_PARA", db::EffectFlag::MinorParalysis},
+        {"PROT_FIRE", db::EffectFlag::ProtectFire},
+        {"PROT_COLD", db::EffectFlag::ProtectCold},
+        {"PROT_AIR", db::EffectFlag::ProtectAir},
+        {"PROT_EARTH", db::EffectFlag::ProtectEarth},
+    };
+
+    auto it = legacy_lookup.find(s);
+    if (it != legacy_lookup.end()) {
+        return it->second;
+    }
+
+    return std::nullopt;
+}
+
+} // anonymous namespace
 
 void register_actor_bindings(sol::state& lua) {
     // Position enum as string table
@@ -155,6 +196,19 @@ void register_actor_bindings(sol::state& lua) {
             return a.has_flag(flag);
         },
 
+        // Legacy DG script method for checking effect flags (accepts string like "INVIS")
+        "get_aff_flagged", [](const Actor& a, const std::string& flag_name) -> bool {
+            auto flag = effect_flag_from_string(flag_name);
+            if (!flag) {
+                spdlog::warn("Unknown effect flag: {}", flag_name);
+                return false;
+            }
+            // Convert EffectFlag to string and use the string-based has_effect
+            // (Actor::has_effect(string) checks ActiveEffects by name)
+            auto flag_str = std::string(magic_enum::enum_name(*flag));
+            return a.has_effect(flag_str);
+        },
+
         // Methods - Movement (requires Room binding)
         "teleport", [](Actor& a, std::shared_ptr<Room> room) -> bool {
             if (!room) return false;
@@ -260,6 +314,46 @@ void register_actor_bindings(sol::state& lua) {
             {"Slow", ActorFlag::Slow},
             {"Berserk", ActorFlag::Berserk},
             {"Paralyzed", ActorFlag::Paralyzed}
+        }
+    );
+
+    // EffectFlag enum for script access (commonly used effect flags)
+    lua.new_enum<db::EffectFlag>("EffectFlag",
+        {
+            {"Blind", db::EffectFlag::Blind},
+            {"Invisible", db::EffectFlag::Invisible},
+            {"DetectAlign", db::EffectFlag::DetectAlign},
+            {"DetectInvis", db::EffectFlag::DetectInvis},
+            {"DetectMagic", db::EffectFlag::DetectMagic},
+            {"SenseLife", db::EffectFlag::SenseLife},
+            {"Waterwalk", db::EffectFlag::Waterwalk},
+            {"Sanctuary", db::EffectFlag::Sanctuary},
+            {"Confusion", db::EffectFlag::Confusion},
+            {"Curse", db::EffectFlag::Curse},
+            {"Infravision", db::EffectFlag::Infravision},
+            {"Poison", db::EffectFlag::Poison},
+            {"ProtectEvil", db::EffectFlag::ProtectEvil},
+            {"ProtectGood", db::EffectFlag::ProtectGood},
+            {"Sleep", db::EffectFlag::Sleep},
+            {"Berserk", db::EffectFlag::Berserk},
+            {"Sneak", db::EffectFlag::Sneak},
+            {"Stealth", db::EffectFlag::Stealth},
+            {"Fly", db::EffectFlag::Fly},
+            {"Charm", db::EffectFlag::Charm},
+            {"StoneSkin", db::EffectFlag::StoneSkin},
+            {"Haste", db::EffectFlag::Haste},
+            {"Blur", db::EffectFlag::Blur},
+            {"MajorParalysis", db::EffectFlag::MajorParalysis},
+            {"MinorParalysis", db::EffectFlag::MinorParalysis},
+            {"Silence", db::EffectFlag::Silence},
+            {"ProtectFire", db::EffectFlag::ProtectFire},
+            {"ProtectCold", db::EffectFlag::ProtectCold},
+            {"Fireshield", db::EffectFlag::Fireshield},
+            {"Coldshield", db::EffectFlag::Coldshield},
+            {"Fear", db::EffectFlag::Fear},
+            {"Disease", db::EffectFlag::Disease},
+            {"Bless", db::EffectFlag::Bless},
+            {"Hex", db::EffectFlag::Hex}
         }
     );
 

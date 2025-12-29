@@ -5,6 +5,16 @@ project(FieryMUD VERSION 3.0.0 LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Option to enable sanitizers for debugging memory issues
+# Default ON during development to catch memory bugs early
+option(ENABLE_SANITIZERS "Enable Address and Undefined Behavior sanitizers" ON)
+
+if(ENABLE_SANITIZERS)
+    message(STATUS "Building with sanitizers enabled (ASAN + UBSAN)")
+    add_compile_options(-fsanitize=address,undefined -fno-omit-frame-pointer -g)
+    add_link_options(-fsanitize=address,undefined)
+endif()
+
 # Enable testing support
 enable_testing()
 

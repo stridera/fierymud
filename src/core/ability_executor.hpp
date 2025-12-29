@@ -74,6 +74,13 @@ struct CachedDamageComponent {
     int sequence;
 };
 
+/** Cached class info for an ability (which classes can learn it) */
+struct CachedAbilityClass {
+    int class_id;
+    std::string class_name;     // Plain class name (no color codes)
+    int circle;                 // Spell circle (1-9)
+};
+
 /**
  * AbilityCache stores loaded abilities and effects for fast access.
  * Call initialize() at startup to load all abilities from database.
@@ -109,6 +116,9 @@ public:
     /** Get damage components for an ability (empty if none) */
     std::vector<CachedDamageComponent> get_damage_components(int ability_id) const;
 
+    /** Get classes that can learn an ability (empty if none) */
+    std::vector<CachedAbilityClass> get_ability_classes(int ability_id) const;
+
     /** Reload cache from database */
     Result<void> reload();
 
@@ -123,6 +133,7 @@ private:
     std::unordered_map<int, CachedAbilityMessages> ability_messages_;      // ability_id -> messages
     std::unordered_map<int, CachedAbilityRestrictions> ability_restrictions_; // ability_id -> restrictions
     std::unordered_map<int, std::vector<CachedDamageComponent>> damage_components_; // ability_id -> damage components
+    std::unordered_map<int, std::vector<CachedAbilityClass>> ability_classes_; // ability_id -> classes that can learn it
 };
 
 /**
@@ -166,6 +177,33 @@ public:
         const CommandContext& ctx,
         const WorldQueries::AbilityData& ability,
         std::shared_ptr<Actor> target);
+
+    /**
+     * Execute a spell after casting time completes.
+     * Called by the world server when casting finishes.
+     * @param caster The actor who was casting
+     * @param ability_id ID of the ability being cast
+     * @param target Target of the spell (may be null)
+     * @return Success or error
+     */
+    static std::expected<AbilityExecutionResult, Error> execute_completed_cast(
+        std::shared_ptr<Actor> caster,
+        int ability_id,
+        std::shared_ptr<Actor> target);
+
+    /**
+     * Begin casting a spell (initiate casting time).
+     * @param caster The actor casting
+     * @param ability_id ID of the ability to cast
+     * @param target Target of the spell (may be null)
+     * @param spell_circle Circle of the spell (for casting time calc)
+     * @return Success or error
+     */
+    static std::expected<void, Error> begin_casting(
+        std::shared_ptr<Actor> caster,
+        int ability_id,
+        std::shared_ptr<Actor> target,
+        int spell_circle);
 
 private:
     /**

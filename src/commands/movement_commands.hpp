@@ -20,4 +20,12 @@ Result<CommandResult> cmd_exits(const CommandContext &ctx);
 Result<CommandResult> cmd_fly(const CommandContext &ctx);
 Result<CommandResult> cmd_land(const CommandContext &ctx);
 
+// Enter/Leave commands
+Result<CommandResult> cmd_enter(const CommandContext &ctx);
+Result<CommandResult> cmd_leave(const CommandContext &ctx);
+
+// Mount commands
+Result<CommandResult> cmd_mount(const CommandContext &ctx);
+Result<CommandResult> cmd_dismount(const CommandContext &ctx);
+
 } // namespace MovementCommands

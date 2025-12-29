@@ -229,6 +229,8 @@ void NetworkManager::handle_accept(std::shared_ptr<PlayerConnection> connection,
         }
 
         // Start the connection (which will initialize login system)
+        // Note: add_player_connection is called from PlayerConnection::handle_connect()
+        // after TLS handshake completes (if applicable)
         connection->start();
 
         Log::info("Connection initialized successfully. Total connections: {}", connection_count());
@@ -276,6 +278,9 @@ void NetworkManager::handle_tls_accept(std::shared_ptr<PlayerConnection> connect
             std::lock_guard<std::mutex> lock(connections_mutex_);
             connections_.push_back(connection);
         }
+
+        // Note: add_player_connection is called from PlayerConnection::handle_connect()
+        // after TLS handshake completes (if applicable)
 
         // Start the TLS connection (which will handle TLS handshake)
         connection->start();

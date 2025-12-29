@@ -64,6 +64,7 @@ enum class CommandResult {
     InsufficientPrivs, // Insufficient privileges
     NotFound,          // Command not found
     Cooldown,          // Command on cooldown
+    Busy,              // Actor is busy (e.g., already casting)
     InvalidTarget,     // Invalid target specified
     InvalidState,      // Invalid state for command
     ResourceError,     // Insufficient resources
