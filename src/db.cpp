@@ -195,11 +195,14 @@ long get_set_exp(int level, int race, int class_num, int zone)
     int cfactor = 100;
     int sfactor = 100;
     int zfactor = 100;
+    /* all current zones have a factor of 100, so skip this */
+    /*
     for (zfactor = 0; zfactor <= top_of_zone_table; zfactor++) {
         if (zone == zone_table[zfactor].number)
             break;
     }
     zfactor = zone_table[zfactor].zone_factor;
+    */
     /*zfactor = 100; */
 
     /*The cfactor is the factor of class to adjust exp number is percentage
@@ -557,7 +560,7 @@ void boot_db(void) {
 
     log("   Skills.");
     init_skills();
-	
+
     log("Assigning skills and spells to classes.");
     assign_class_skills();
 
