@@ -170,6 +170,7 @@ set(SOURCES
     src/core/money.cpp
     src/text/text_format.cpp
     src/text/string_utils.cpp
+    src/text/message_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/board.cpp
@@ -178,6 +179,7 @@ set(SOURCES
     src/core/effect_system.cpp
     src/core/ability_executor.cpp
     src/core/spell_system.cpp
+    src/core/class_config.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -215,6 +217,7 @@ set(SOURCES
     src/commands/movement_commands.cpp
     src/commands/position_commands.cpp
     src/commands/object_commands.cpp
+    src/commands/account_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
@@ -254,6 +257,7 @@ set(SIMPLE_TEST_SOURCES
     src/core/effect_system.cpp
     src/core/ability_executor.cpp
     src/core/spell_system.cpp
+    src/core/class_config.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -272,6 +276,7 @@ set(SIMPLE_TEST_SOURCES
     src/commands/movement_commands.cpp
     src/commands/position_commands.cpp
     src/commands/object_commands.cpp
+    src/commands/account_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
@@ -334,6 +339,7 @@ set(CORE_TEST_SOURCES
     src/core/effect_system.cpp
     src/core/ability_executor.cpp
     src/core/spell_system.cpp
+    src/core/class_config.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -370,6 +376,7 @@ set(CORE_TEST_SOURCES
     src/commands/movement_commands.cpp
     src/commands/position_commands.cpp
     src/commands/object_commands.cpp
+    src/commands/account_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
@@ -653,11 +660,13 @@ add_executable(test_database
     src/core/money.cpp
     src/text/text_format.cpp
     src/text/string_utils.cpp
+    src/text/message_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/board.cpp
     src/core/combat.cpp
     src/core/spell_system.cpp
+    src/core/class_config.cpp
     src/core/ability_executor.cpp
     src/core/formula_parser.cpp
     src/core/effect_system.cpp
@@ -698,6 +707,7 @@ add_executable(test_database
     src/commands/movement_commands.cpp
     src/commands/position_commands.cpp
     src/commands/object_commands.cpp
+    src/commands/account_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp
@@ -744,11 +754,13 @@ add_executable(test_database_comprehensive
     src/core/money.cpp
     src/text/text_format.cpp
     src/text/string_utils.cpp
+    src/text/message_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/board.cpp
     src/core/combat.cpp
     src/core/spell_system.cpp
+    src/core/class_config.cpp
     src/core/ability_executor.cpp
     src/core/formula_parser.cpp
     src/core/effect_system.cpp
@@ -789,6 +801,7 @@ add_executable(test_database_comprehensive
     src/commands/movement_commands.cpp
     src/commands/position_commands.cpp
     src/commands/object_commands.cpp
+    src/commands/account_commands.cpp
     src/commands/admin_commands.cpp
     src/commands/combat_commands.cpp
     src/commands/skill_commands.cpp

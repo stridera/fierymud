@@ -406,11 +406,17 @@ std::string format_cooldown_remaining(std::chrono::seconds remaining);
 #define REGISTER_COMMAND_WITH_PRIVILEGE(name, handler, priv)                                                           \
     CommandSystem::instance().command(name, handler).privilege(priv).build()
 
-#define REGISTER_ADMIN_COMMAND(name, handler)                                                                          \
-    CommandSystem::instance().command(name, handler).privilege(PrivilegeLevel::Admin).build()
+#define REGISTER_BUILDER_COMMAND(name, handler)                                                                        \
+    CommandSystem::instance().command(name, handler).privilege(PrivilegeLevel::Builder).build()
+
+#define REGISTER_CODER_COMMAND(name, handler)                                                                          \
+    CommandSystem::instance().command(name, handler).privilege(PrivilegeLevel::Coder).build()
 
 #define REGISTER_GOD_COMMAND(name, handler)                                                                            \
     CommandSystem::instance().command(name, handler).privilege(PrivilegeLevel::God).build()
+
+#define REGISTER_OVERLORD_COMMAND(name, handler)                                                                       \
+    CommandSystem::instance().command(name, handler).privilege(PrivilegeLevel::Overlord).build()
 
 /** Global command system access */
 inline CommandSystem &Commands() { return CommandSystem::instance(); }

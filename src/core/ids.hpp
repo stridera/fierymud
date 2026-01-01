@@ -94,6 +94,34 @@ private:
 /** Invalid entity ID constant */
 constexpr EntityId INVALID_ENTITY_ID{};
 
+/**
+ * Constants for packed EntityId encoding/decoding.
+ * Used for efficiently storing zone_id and local_id in a single uint32_t.
+ * Format: (zone_id << PACKED_ID_ZONE_SHIFT) | (local_id & PACKED_ID_LOCAL_MASK)
+ */
+constexpr int PACKED_ID_ZONE_SHIFT = 16;
+constexpr uint32_t PACKED_ID_LOCAL_MASK = 0xFFFF;
+
+/** Helper to pack zone_id and local_id into a single uint32_t */
+constexpr uint32_t pack_entity_id(uint32_t zone_id, uint32_t local_id) {
+    return (zone_id << PACKED_ID_ZONE_SHIFT) | (local_id & PACKED_ID_LOCAL_MASK);
+}
+
+/** Helper to extract zone_id from a packed uint32_t */
+constexpr uint32_t unpack_zone_id(uint32_t packed) {
+    return packed >> PACKED_ID_ZONE_SHIFT;
+}
+
+/** Helper to extract local_id from a packed uint32_t */
+constexpr uint32_t unpack_local_id(uint32_t packed) {
+    return packed & PACKED_ID_LOCAL_MASK;
+}
+
+/** Create an EntityId from a packed uint32_t */
+inline EntityId unpack_entity_id(uint32_t packed) {
+    return EntityId(unpack_zone_id(packed), unpack_local_id(packed));
+}
+
 /** Type-safe entity registry template for managing entities by ID */
 template<typename T>
 class EntityRegistry {

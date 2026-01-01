@@ -260,10 +260,11 @@ class WorldManager {
     std::unordered_map<EntityId, std::shared_ptr<Zone>> zones_;
 
     // Object and mobile prototypes (for spawning instances)
-    std::unordered_map<EntityId, Object *> objects_;         // Quick lookup by ID
-    std::unordered_map<EntityId, Mobile *> mobiles_;         // Quick lookup by ID
-    std::vector<std::unique_ptr<Object>> object_prototypes_; // Owned prototypes
-    std::vector<std::unique_ptr<Mobile>> mobile_prototypes_; // Owned prototypes
+    // Using shared_ptr for both storage and lookup to prevent dangling pointer issues
+    std::unordered_map<EntityId, std::shared_ptr<Object>> objects_;  // Quick lookup by ID
+    std::unordered_map<EntityId, std::shared_ptr<Mobile>> mobiles_;  // Quick lookup by ID
+    std::vector<std::shared_ptr<Object>> object_prototypes_;         // Owned prototypes
+    std::vector<std::shared_ptr<Mobile>> mobile_prototypes_;         // Owned prototypes
 
     // Spawned instance tracking (for efficient equipment lookups)
     std::unordered_map<EntityId, std::shared_ptr<Mobile>> spawned_mobiles_; // Live mobile instances by ID

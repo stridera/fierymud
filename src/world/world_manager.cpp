@@ -324,15 +324,16 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
         for (const auto& object_json : zone_json["objects"]) {
             auto object_result = Object::from_json(object_json);
             if (object_result) {
-                auto object = std::move(object_result.value());
-                
-                // Add object prototype to registry
-                objects_[object->id()] = object.get();
-                object_prototypes_.push_back(std::move(object));
+                // Convert unique_ptr to shared_ptr for safe storage
+                auto object = std::shared_ptr<Object>(std::move(object_result.value()));
+
+                // Add object prototype to registry (shared_ptr stored in both containers)
+                objects_[object->id()] = object;
+                object_prototypes_.push_back(object);
                 stats_.objects_loaded++;
-                
+
                 logger->trace("Loaded object prototype: {} ({}) in zone {}",
-                             object_prototypes_.back()->name(), object_prototypes_.back()->id(), zone_name);
+                             object->name(), object->id(), zone_name);
             } else {
                 logger->error("Failed to parse object in zone {}: {}", zone_name, object_result.error().message);
             }
@@ -357,13 +358,14 @@ Result<void> WorldManager::load_zone_file(const std::string& filename) {
             // Create mobile prototype from JSON data
             auto mob_result = Mobile::from_json(mob_json);
             if (mob_result) {
-                auto mob = std::move(mob_result.value());
-                mobiles_[mob->id()] = mob.get();
-                mobile_prototypes_.push_back(std::move(mob));
+                // Convert unique_ptr to shared_ptr for safe storage
+                auto mob = std::shared_ptr<Mobile>(std::move(mob_result.value()));
+                mobiles_[mob->id()] = mob;
+                mobile_prototypes_.push_back(mob);
                 stats_.mobiles_loaded++;
-                
+
                 logger->trace("Loaded mobile prototype: {} ({}) in zone {}",
-                             mobile_prototypes_.back()->name(), mob_id, zone_name);
+                             mob->name(), mob_id, zone_name);
             } else {
                 logger->error("Failed to parse mobile {} in zone {}: {}", 
                              mob_id, zone_name, mob_result.error().message);
@@ -607,9 +609,28 @@ MovementResult WorldManager::move_actor(std::shared_ptr<Actor> actor, Direction 
     result.direction = direction;
     
     auto logger = Log::movement();
-    logger->debug("Actor {} moved {} from {} to {}", 
+    logger->debug("Actor {} moved {} from {} to {}",
                  actor->display_name(), direction, current_room->display_name(), destination_room->display_name());
-    
+
+    // Move followers along with the actor
+    for (const auto& follower_weak : actor->get_followers()) {
+        auto follower = follower_weak.lock();
+        if (follower && follower->current_room() == current_room) {
+            // Remove follower from old room and add to new room
+            current_room->remove_actor(follower->id());
+            destination_room->add_actor(follower);
+            follower->set_current_room(destination_room);
+
+            // Notify about follower movement
+            if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+                player->send_message(fmt::format("{} follows you.", follower->display_name()));
+            }
+
+            logger->debug("Follower {} followed {} to {}",
+                         follower->display_name(), actor->display_name(), destination_room->display_name());
+        }
+    }
+
     return result;
 }
 
@@ -1369,11 +1390,12 @@ Result<void> WorldManager::load_zones_from_database() {
 
             // Register mobile prototypes in both global vector AND lookup map
             for (auto& mob_ptr : *mobs_result) {
-                EntityId mob_id = mob_ptr->id();
-                // Store raw pointer in mobiles_ map for lookup during spawning
-                mobiles_[mob_id] = mob_ptr.get();
-                // Store ownership in mobile_prototypes_ vector
-                mobile_prototypes_.push_back(std::move(mob_ptr));
+                // Convert unique_ptr to shared_ptr for safe storage
+                auto mob = std::shared_ptr<Mobile>(std::move(mob_ptr));
+                EntityId mob_id = mob->id();
+                // Store shared_ptr in both map and vector for safe reference
+                mobiles_[mob_id] = mob;
+                mobile_prototypes_.push_back(mob);
                 stats_.mobiles_loaded++;
             }
 
@@ -1388,11 +1410,12 @@ Result<void> WorldManager::load_zones_from_database() {
 
             // Register object prototypes in both global vector AND lookup map
             for (auto& obj_ptr : *objects_result) {
-                EntityId obj_id = obj_ptr->id();
-                // Store raw pointer in objects_ map for lookup during spawning
-                objects_[obj_id] = obj_ptr.get();
-                // Store ownership in object_prototypes_ vector
-                object_prototypes_.push_back(std::move(obj_ptr));
+                // Convert unique_ptr to shared_ptr for safe storage
+                auto obj = std::shared_ptr<Object>(std::move(obj_ptr));
+                EntityId obj_id = obj->id();
+                // Store shared_ptr in both map and vector for safe reference
+                objects_[obj_id] = obj;
+                object_prototypes_.push_back(obj);
                 stats_.objects_loaded++;
             }
 
@@ -1599,7 +1622,7 @@ Result<void> WorldManager::load_zones_from_database() {
 
                 // Load items for this shop
                 auto items_result = WorldQueries::load_shop_items(txn,
-                    shop_data.keeper_id.zone_id(), shop_data.id);
+                    shop_data.zone_id, shop_data.id);
                 if (items_result) {
                     for (const auto& item_data : *items_result) {
                         // Find the object prototype
@@ -1611,16 +1634,54 @@ Result<void> WorldManager::load_zones_from_database() {
                         }
 
                         // Create shop item from prototype
-                        const auto* obj_proto = obj_it->second;
+                        const auto* obj_proto = obj_it->second.get();
                         ShopItem shop_item;
                         shop_item.prototype_id = item_data.object_id;
                         shop_item.name = obj_proto->name();
                         shop_item.description = obj_proto->short_description();
                         shop_item.cost = obj_proto->value();
+                        shop_item.level = obj_proto->level();
                         shop_item.stock = item_data.amount;
                         shop_item.max_stock = item_data.amount;
 
                         shop->add_item(shop_item);
+                    }
+                }
+
+                // Check if this shop sells mobs (pet/mount shop)
+                bool sells_mobs = std::find(shop_data.flags.begin(), shop_data.flags.end(),
+                                           "SELLS_MOBS") != shop_data.flags.end();
+                if (sells_mobs) {
+                    shop->set_sells_mobs(true);
+                    auto mobs_result = WorldQueries::load_shop_mobs(txn,
+                        shop_data.zone_id, shop_data.id);
+                    if (mobs_result) {
+                        for (const auto& mob_data : *mobs_result) {
+                            // Find the mob prototype
+                            auto mob_proto_it = mobiles_.find(mob_data.mob_id);
+                            if (mob_proto_it == mobiles_.end()) {
+                                logger->warn("Shop {} mob references non-existent mob {}",
+                                            shop_data.id, mob_data.mob_id);
+                                continue;
+                            }
+
+                            // Create shop mob from prototype
+                            const auto* mob_proto = mob_proto_it->second.get();
+                            ShopMob shop_mob;
+                            shop_mob.prototype_id = mob_data.mob_id;
+                            shop_mob.name = mob_proto->name();
+                            shop_mob.description = std::string(mob_proto->description());
+                            // Use price from database, or fallback to level * 100
+                            shop_mob.cost = (mob_data.price > 0) ? mob_data.price
+                                          : mob_proto->stats().level * 100;
+                            shop_mob.level = mob_proto->stats().level;
+                            shop_mob.stock = mob_data.amount;
+                            shop_mob.max_stock = mob_data.amount;
+
+                            shop->add_mob(shop_mob);
+                        }
+                        logger->debug("Loaded {} mobs for pet shop {}",
+                                     mobs_result->size(), shop_data.keeper_id);
                     }
                 }
 
@@ -2268,8 +2329,8 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
         return nullptr;
     }
     
-    Mobile* prototype = mobile_it->second;
-    
+    Mobile* prototype = mobile_it->second.get();
+
     // Create new mobile instance from prototype
     auto new_mobile_result = Mobile::create(prototype->id(), prototype->name(), prototype->stats().level);
     if (!new_mobile_result) {
@@ -2349,7 +2410,7 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
         return nullptr;
     }
 
-    Object* prototype = object_it->second;
+    Object* prototype = object_it->second.get();
 
     // Create new object instance from prototype
     auto new_object_result = Object::create(prototype->id(), prototype->name(), prototype->type());
@@ -2450,11 +2511,8 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
 
     // If this is an equipment request (zone_id 0-31 = slot, local_id = packed mobile ID)
     if (is_equipment_request) {
-        // Decode the mobile ID from the packed local_id
-        // local_id = (mobile_zone_id << 16) | mobile_local_id
-        uint32_t mobile_zone = packed_mobile >> 16;
-        uint32_t mobile_local_id = packed_mobile & 0xFFFF;
-        EntityId mobile_id(mobile_zone, mobile_local_id);
+        // Decode the mobile ID from the packed local_id using helper functions
+        EntityId mobile_id = unpack_entity_id(packed_mobile);
         
         // Use efficient O(1) lookup for the mobile
         std::shared_ptr<Mobile> target_mobile = find_spawned_mobile(mobile_id);
@@ -2522,7 +2580,7 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
         return nullptr;
     }
 
-    Object* prototype = object_it->second;
+    Object* prototype = object_it->second.get();
 
     // Create new object instance from prototype
     auto new_object_result = Object::create(prototype->id(), prototype->name(), prototype->type());
@@ -2577,12 +2635,12 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
 
 Mobile* WorldManager::get_mobile_prototype(EntityId prototype_id) const {
     auto it = mobiles_.find(prototype_id);
-    return (it != mobiles_.end()) ? it->second : nullptr;
+    return (it != mobiles_.end()) ? it->second.get() : nullptr;
 }
 
 Object* WorldManager::get_object_prototype(EntityId prototype_id) const {
     auto it = objects_.find(prototype_id);
-    return (it != objects_.end()) ? it->second : nullptr;
+    return (it != objects_.end()) ? it->second.get() : nullptr;
 }
 
 std::shared_ptr<Mobile> WorldManager::spawn_mobile_to_room(EntityId prototype_id, EntityId room_id) {

@@ -298,6 +298,14 @@ public:
      */
     [[nodiscard]] std::string to_brief(int max_width = 0) const;
 
+    /**
+     * Format money for shop listings with comma-separated denominations
+     * Only shows non-zero denominations for cleaner display
+     * Examples: "272p,2g,5s" or "4g,3s,5c" or "5s,4c"
+     * @param include_color If true, include XML-lite color markup for each coin type
+     */
+    [[nodiscard]] std::string to_shop_format(bool include_color = false) const;
+
 private:
     long copper_ = 0;
 };

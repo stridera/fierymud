@@ -1,5 +1,6 @@
 #include "spell_system.hpp"
 #include "actor.hpp"
+#include "class_config.hpp"
 #include "commands/command_system.hpp"
 #include "core/logging.hpp"
 #include "text/string_utils.hpp"
@@ -8,36 +9,32 @@
 #include <sstream>
 #include <magic_enum/magic_enum.hpp>
 
+using fierymud::ClassConfigRegistry;
+using fierymud::ClassSpellConfig;
+using fierymud::SpellProgression;
+
 // ============================================================================
 // Spell Implementation
 // ============================================================================
 
 bool Spell::can_cast(const Actor& caster) const {
-    // Check class and level restrictions - only for players
+    // Gods can cast any spell
     if (const auto* player = dynamic_cast<const Player*>(&caster)) {
-        // Gods can cast any spell
         if (player->is_god()) {
             return true;
         }
+    }
 
-        // Check if caster has required level for this circle
-        if (caster.stats().level < circle) {
-            return false;
-        }
+    // Check if caster has required level for this circle
+    if (caster.stats().level < circle) {
+        return false;
+    }
 
-        std::string player_class = to_lowercase(player->player_class());
-        // Full casters: sorcerer, cleric, druid, necromancer, conjurer, priest, diabolist, shaman
-        if (player_class != "cleric" && player_class != "sorcerer" &&
-            player_class != "druid" && player_class != "necromancer" &&
-            player_class != "conjurer" && player_class != "priest" &&
-            player_class != "diabolist" && player_class != "shaman") {
-            return false;
-        }
-    } else {
-        // Non-player actors (mobs) - just check level
-        if (caster.stats().level < circle) {
-            return false;
-        }
+    // Check if caster has spell slots for this circle
+    // This is data-driven: warriors can cast if they have racial spell slots,
+    // casters can cast their class spells, etc.
+    if (!caster.has_spell_slots(circle)) {
+        return false;
     }
 
     return true;
@@ -197,40 +194,84 @@ void SpellSlots::initialize_for_class(std::string_view character_class, int leve
     slots_.clear();
     restoration_queue_.clear();
 
-    // Normalize class name to lowercase for comparison
-    std::string class_lower = to_lowercase(character_class);
+    // Get class configuration from registry
+    const auto& registry = ClassConfigRegistry::instance();
+    const auto* config = registry.get_config(character_class);
 
-    // Different classes get different spell slot progressions
-    // Full casters: sorcerer, cleric, druid, necromancer, conjurer, priest, diabolist
-    if (class_lower == "cleric" || class_lower == "sorcerer" ||
-        class_lower == "druid" || class_lower == "necromancer" ||
-        class_lower == "conjurer" || class_lower == "priest" ||
-        class_lower == "diabolist" || class_lower == "shaman") {
-        // Calculate slots based on level (simplified D&D-style progression)
-        for (int circle = 1; circle <= 9; ++circle) {
-            int slots_for_circle = 0;
+    if (!config || !config->is_caster()) {
+        // Non-caster class - no spell slots
+        return;
+    }
 
-            // Circle availability based on level
-            int required_level = (circle - 1) * 2 + 1; // Circle 1 at level 1, Circle 2 at level 3, etc.
-            if (level >= required_level) {
-                // Base slots + bonus slots based on level
-                slots_for_circle = 1 + (level - required_level) / 4;
-                slots_for_circle = std::min(slots_for_circle, 4); // Cap at 4 slots per circle
-            }
+    // Initialize slots based on class configuration
+    initialize_slots_from_config(*config, level);
+}
 
-            if (slots_for_circle > 0) {
-                SpellSlotCircle slot_circle;
-                slot_circle.max_slots = slots_for_circle;
-                slot_circle.current_slots = slots_for_circle; // Start with full slots
-                slots_[circle] = slot_circle;
-            }
+void SpellSlots::initialize_slots_from_config(const ClassSpellConfig& config, int level) {
+    for (const auto& circle_access : config.circles) {
+        // Check if character level meets the minimum requirement
+        if (level < circle_access.min_level) {
+            continue;
+        }
+
+        // Calculate slots based on progression type and level
+        int slots_for_circle = calculate_slots(config.progression, level,
+                                                circle_access.min_level,
+                                                circle_access.max_slots);
+
+        if (slots_for_circle > 0) {
+            SpellSlotCircle slot_circle;
+            slot_circle.max_slots = slots_for_circle;
+            slot_circle.current_slots = slots_for_circle; // Start with full slots
+            slots_[circle_access.circle] = slot_circle;
         }
     }
+}
+
+int SpellSlots::calculate_slots(SpellProgression progression, int level,
+                                 int required_level, int max_slots) {
+    if (level < required_level) {
+        return 0;
+    }
+
+    int levels_above_requirement = level - required_level;
+    int slots = 0;
+
+    switch (progression) {
+        case SpellProgression::Full:
+            // Full casters: 1 slot at access, +1 every 4 levels, capped at max_slots
+            slots = 1 + levels_above_requirement / 4;
+            break;
+
+        case SpellProgression::Half:
+            // Half casters: 1 slot at access, +1 every 6 levels, capped at max_slots
+            slots = 1 + levels_above_requirement / 6;
+            break;
+
+        case SpellProgression::Third:
+            // Third casters: 1 slot at access, +1 every 8 levels, capped at max_slots
+            slots = 1 + levels_above_requirement / 8;
+            break;
+
+        case SpellProgression::None:
+            return 0;
+    }
+
+    return std::min(slots, max_slots);
 }
 
 bool SpellSlots::has_slots(int circle) const {
     auto it = slots_.find(circle);
     return it != slots_.end() && it->second.has_slots();
+}
+
+bool SpellSlots::has_any_slots() const {
+    for (const auto& [circle, slot_circle] : slots_) {
+        if (slot_circle.max_slots > 0) {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool SpellSlots::consume_slot(int spell_circle) {

@@ -285,8 +285,18 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     std::string disconnect_reason_;
     std::string original_host_;  // For reconnection validation
 
+    // Connection limits and timeouts (declared first as some are used below)
+    static constexpr std::chrono::seconds LOGIN_TIMEOUT{300}; // 5 minutes
+    static constexpr std::chrono::seconds IDLE_TIMEOUT{1800}; // 30 minutes
+    static constexpr std::chrono::seconds AFK_TIMEOUT{900};   // 15 minutes for AFK detection
+    static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead
+    static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{100};
+    static constexpr size_t MAX_INPUT_LINE_LENGTH{512};
+    static constexpr size_t MAX_TELNET_SUBNEG_LENGTH{8192}; // Max GMCP/subneg message size
+    static constexpr size_t READ_BUFFER_SIZE{4096}; // Socket read buffer size
+
     // I/O buffers and queues
-    std::array<char, 4096> read_buffer_;
+    std::array<char, READ_BUFFER_SIZE> read_buffer_;
     std::string input_buffer_;
     std::deque<std::string> output_queue_;
     bool write_in_progress_{false};
@@ -297,13 +307,4 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
 
     // Callbacks
     DisconnectCallback disconnect_callback_;
-
-    // Connection limits and timeouts
-    static constexpr std::chrono::seconds LOGIN_TIMEOUT{300}; // 5 minutes
-    static constexpr std::chrono::seconds IDLE_TIMEOUT{1800}; // 30 minutes
-    static constexpr std::chrono::seconds AFK_TIMEOUT{900};   // 15 minutes for AFK detection
-    static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead
-    static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{100};
-    static constexpr size_t MAX_INPUT_LINE_LENGTH{512};
-    static constexpr size_t MAX_TELNET_SUBNEG_LENGTH{8192}; // Max GMCP/subneg message size
 };

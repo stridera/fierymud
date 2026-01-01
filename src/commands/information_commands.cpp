@@ -3,6 +3,7 @@
 #include "../core/actor.hpp"
 #include "../core/board.hpp"
 #include "../core/logging.hpp"
+#include "../core/money.hpp"
 #include "../core/object.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
@@ -452,7 +453,8 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
         detailed_desc << fmt::format("Type: {}\n", obj->type_name());
         detailed_desc << fmt::format("Weight: {} pounds\n", obj->weight());
         if (obj->value() > 0) {
-            detailed_desc << fmt::format("Value: {} gold coins\n", obj->value());
+            auto value_money = fiery::Money::from_copper(obj->value());
+            detailed_desc << fmt::format("Value: {}\n", value_money.to_string());
         }
         detailed_desc << fmt::format("Condition: {} ({} - {}%)\n", obj->quality_description(), obj->condition(),
                                      obj->condition());

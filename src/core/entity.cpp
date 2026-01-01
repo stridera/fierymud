@@ -47,6 +47,28 @@ bool Entity::matches_keyword(std::string_view keyword) const {
     return keyword_set_.find(normalized) != keyword_set_.end();
 }
 
+bool Entity::matches_keyword_prefix(std::string_view prefix) const {
+    if (prefix.empty()) {
+        return false;
+    }
+
+    std::string normalized_prefix = EntityUtils::normalize_keyword(prefix);
+
+    // First try exact match (O(1))
+    if (keyword_set_.find(normalized_prefix) != keyword_set_.end()) {
+        return true;
+    }
+
+    // Then try prefix match (O(n) but keywords are usually few)
+    for (const auto& keyword : keywords_) {
+        if (keyword.starts_with(normalized_prefix)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
     return std::any_of(keywords.begin(), keywords.end(),
         [this](const std::string& kw) {

@@ -223,7 +223,7 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
         if (!room_actor->is_visible_to(*actor))
             continue;
 
-        if (room_actor->matches_keyword(spec.keyword)) {
+        if (room_actor->matches_keyword_prefix(spec.keyword)) {
             current_match++;
             if (current_match == spec.match_index) {
                 return room_actor;
@@ -251,7 +251,7 @@ std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) 
             if (!online_actor || online_actor == actor)
                 continue; // Skip self
 
-            if (online_actor->matches_keyword(spec.keyword)) {
+            if (online_actor->matches_keyword_prefix(spec.keyword)) {
                 current_match++;
                 if (current_match == spec.match_index) {
                     return online_actor;
@@ -282,7 +282,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
         if (!obj)
             continue;
 
-        if (obj->matches_keyword(spec.keyword)) {
+        if (obj->matches_keyword_prefix(spec.keyword)) {
             current_match++;
             if (current_match == spec.match_index) {
                 return obj;
@@ -296,7 +296,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
         if (!obj)
             continue;
 
-        if (obj->matches_keyword(spec.keyword)) {
+        if (obj->matches_keyword_prefix(spec.keyword)) {
             current_match++;
             if (current_match == spec.match_index) {
                 return obj;
@@ -311,7 +311,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
             if (!obj)
                 continue;
 
-            if (obj->matches_keyword(spec.keyword)) {
+            if (obj->matches_keyword_prefix(spec.keyword)) {
                 current_match++;
                 if (current_match == spec.match_index) {
                     return obj;
@@ -369,7 +369,7 @@ std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
     for (const auto &obj : actor->equipment().get_all_equipped()) {
         if (!obj)
             continue;
-        if (obj->matches_keyword(keyword)) {
+        if (obj->matches_keyword_prefix(keyword)) {
             all_matches.push_back(obj);
         }
     }
@@ -378,7 +378,7 @@ std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
     for (const auto &obj : actor->inventory().get_all_items()) {
         if (!obj)
             continue;
-        if (obj->matches_keyword(keyword)) {
+        if (obj->matches_keyword_prefix(keyword)) {
             all_matches.push_back(obj);
         }
     }
@@ -388,7 +388,7 @@ std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
         for (const auto &obj : room->contents().objects) {
             if (!obj)
                 continue;
-            if (obj->matches_keyword(keyword)) {
+            if (obj->matches_keyword_prefix(keyword)) {
                 all_matches.push_back(obj);
             }
         }
@@ -443,7 +443,7 @@ TargetInfo CommandContext::resolve_target(std::string_view name) const {
     }
 
     // Check if the name matches the current actor (allows "stat samui" to work on yourself)
-    if (actor && actor->matches_keyword(name)) {
+    if (actor && actor->matches_keyword_prefix(name)) {
         TargetInfo info;
         info.type = TargetType::Self;
         info.actor = actor;

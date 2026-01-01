@@ -3763,6 +3763,7 @@ Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn) {
 
         for (const auto& row : result) {
             ShopData shop;
+            shop.zone_id = row["zone_id"].as<int>();
             shop.id = row["id"].as<int>();
             int keeper_zone = row["keeper_zone_id"].as<int>();
             int keeper_id = row["keeper_id"].as<int>();
@@ -3829,6 +3830,7 @@ Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id) {
 
         for (const auto& row : result) {
             ShopData shop;
+            shop.zone_id = row["zone_id"].as<int>();
             shop.id = row["id"].as<int>();
             int keeper_zone = row["keeper_zone_id"].as<int>();
             int keeper_id = row["keeper_id"].as<int>();
@@ -3909,6 +3911,46 @@ Result<std::vector<ShopItemData>> load_shop_items(
         logger->error("SQL error loading shop items: {}", e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to load shop items: {}", e.what())});
+    }
+}
+
+Result<std::vector<ShopMobData>> load_shop_mobs(
+    pqxx::work& txn, int shop_zone_id, int shop_id) {
+    auto logger = Log::database();
+    logger->debug("Loading mobs for shop ({}, {})", shop_zone_id, shop_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT mob_zone_id, mob_id, amount, price
+            FROM "ShopMobs"
+            WHERE shop_zone_id = $1 AND shop_id = $2
+            ORDER BY id
+        )", shop_zone_id, shop_id);
+
+        std::vector<ShopMobData> mobs;
+        mobs.reserve(result.size());
+
+        for (const auto& row : result) {
+            ShopMobData mob;
+            int mob_zone = row["mob_zone_id"].as<int>();
+            int mob_local = row["mob_id"].as<int>();
+            mob.mob_id = EntityId(mob_zone, mob_local);
+            mob.amount = row["amount"].as<int>();
+            mob.price = row["price"].as<int>();
+            // Convert 0 to -1 for unlimited stock
+            if (mob.amount == 0) {
+                mob.amount = -1;
+            }
+            mobs.push_back(mob);
+        }
+
+        logger->debug("Loaded {} mobs for shop ({}, {})", mobs.size(), shop_zone_id, shop_id);
+        return mobs;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading shop mobs: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load shop mobs: {}", e.what())});
     }
 }
 
@@ -5393,6 +5435,186 @@ Result<bool> delete_board_message(pqxx::work& txn, int message_id) {
         logger->error("SQL error deleting board message: {}", e.what());
         return std::unexpected(Error{ErrorCode::InternalError,
             fmt::format("Failed to delete message: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Report System Queries
+// =============================================================================
+
+Result<int> save_report(
+    pqxx::work& txn,
+    const std::string& report_type,
+    const std::string& reporter_name,
+    const std::optional<std::string>& reporter_id,
+    const std::optional<int>& room_zone_id,
+    const std::optional<int>& room_id,
+    const std::string& message) {
+
+    auto logger = Log::database();
+    logger->debug("Saving {} report from {}", report_type, reporter_name);
+
+    try {
+        // Build the query with optional fields
+        auto result = txn.exec_params(R"(
+            INSERT INTO "reports" (
+                report_type, reporter_name, reporter_id,
+                room_zone_id, room_id, message,
+                status, created_at, updated_at
+            ) VALUES (
+                $1::text::"ReportType", $2, $3, $4, $5, $6,
+                'OPEN'::"ReportStatus", NOW(), NOW()
+            )
+            RETURNING id
+        )",
+            report_type,
+            reporter_name,
+            reporter_id.has_value() ? reporter_id.value() : std::optional<std::string>{},
+            room_zone_id.has_value() ? room_zone_id.value() : std::optional<int>{},
+            room_id.has_value() ? room_id.value() : std::optional<int>{},
+            message);
+
+        if (result.empty()) {
+            return std::unexpected(Error{ErrorCode::InternalError,
+                "Failed to insert report - no ID returned"});
+        }
+
+        int report_id = result[0]["id"].as<int>();
+        logger->info("Saved {} report #{} from {}", report_type, report_id, reporter_name);
+        return report_id;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error saving report: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to save report: {}", e.what())});
+    }
+}
+
+Result<std::vector<ReportData>> load_reports_by_type(
+    pqxx::work& txn, const std::string& report_type) {
+
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, report_type::text, status::text, reporter_name, reporter_id,
+                   room_zone_id, room_id, message, resolved_by, resolved_at,
+                   resolution, created_at, updated_at
+            FROM "reports"
+            WHERE report_type = $1::text::"ReportType"
+            ORDER BY created_at DESC
+        )", report_type);
+
+        std::vector<ReportData> reports;
+        reports.reserve(result.size());
+
+        for (const auto& row : result) {
+            ReportData report;
+            report.id = row["id"].as<int>();
+            report.report_type = row["report_type"].as<std::string>();
+            report.status = row["status"].as<std::string>();
+            report.reporter_name = row["reporter_name"].as<std::string>();
+
+            if (!row["reporter_id"].is_null()) {
+                report.reporter_id = row["reporter_id"].as<std::string>();
+            }
+            if (!row["room_zone_id"].is_null()) {
+                report.room_zone_id = row["room_zone_id"].as<int>();
+            }
+            if (!row["room_id"].is_null()) {
+                report.room_id = row["room_id"].as<int>();
+            }
+
+            report.message = row["message"].as<std::string>();
+
+            if (!row["resolved_by"].is_null()) {
+                report.resolved_by = row["resolved_by"].as<std::string>();
+            }
+            if (!row["resolution"].is_null()) {
+                report.resolution = row["resolution"].as<std::string>();
+            }
+
+            reports.push_back(std::move(report));
+        }
+
+        logger->debug("Loaded {} {} reports", reports.size(), report_type);
+        return reports;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading reports: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load reports: {}", e.what())});
+    }
+}
+
+Result<std::vector<ReportData>> load_open_reports(
+    pqxx::work& txn, const std::string& report_type) {
+
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT id, report_type::text, status::text, reporter_name, reporter_id,
+                   room_zone_id, room_id, message, resolved_by, resolved_at,
+                   resolution, created_at, updated_at
+            FROM "reports"
+            WHERE report_type = $1::text::"ReportType"
+              AND status = 'OPEN'::"ReportStatus"
+            ORDER BY created_at DESC
+        )", report_type);
+
+        std::vector<ReportData> reports;
+        reports.reserve(result.size());
+
+        for (const auto& row : result) {
+            ReportData report;
+            report.id = row["id"].as<int>();
+            report.report_type = row["report_type"].as<std::string>();
+            report.status = row["status"].as<std::string>();
+            report.reporter_name = row["reporter_name"].as<std::string>();
+
+            if (!row["reporter_id"].is_null()) {
+                report.reporter_id = row["reporter_id"].as<std::string>();
+            }
+            if (!row["room_zone_id"].is_null()) {
+                report.room_zone_id = row["room_zone_id"].as<int>();
+            }
+            if (!row["room_id"].is_null()) {
+                report.room_id = row["room_id"].as<int>();
+            }
+
+            report.message = row["message"].as<std::string>();
+
+            reports.push_back(std::move(report));
+        }
+
+        logger->debug("Loaded {} open {} reports", reports.size(), report_type);
+        return reports;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading open reports: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load reports: {}", e.what())});
+    }
+}
+
+Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type) {
+    auto logger = Log::database();
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT COUNT(*) as count
+            FROM "reports"
+            WHERE report_type = $1::text::"ReportType"
+              AND status = 'OPEN'::"ReportStatus"
+        )", report_type);
+
+        return result[0]["count"].as<int>();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error counting reports: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to count reports: {}", e.what())});
     }
 }
 

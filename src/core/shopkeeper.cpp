@@ -1,5 +1,6 @@
 #include "shopkeeper.hpp"
 #include "actor.hpp"
+#include "money.hpp"
 #include "object.hpp"
 #include "logging.hpp"
 #include "../world/world_manager.hpp"
@@ -55,6 +56,11 @@ void Shopkeeper::restock_all() {
             item.stock = item.max_stock;
         }
     }
+    for (auto& [id, mob] : mobs_) {
+        if (mob.max_stock >= 0 && mob.stock < mob.max_stock) {
+            mob.stock = mob.max_stock;
+        }
+    }
     Log::debug("Fully restocked shop {}", shop_id_);
 }
 
@@ -74,6 +80,75 @@ bool Shopkeeper::reduce_stock(EntityId prototype_id, int quantity) {
     return false;
 }
 
+// =============================================================================
+// Mob Management (Pet/Mount Shops)
+// =============================================================================
+
+void Shopkeeper::add_mob(const ShopMob& mob) {
+    mobs_[mob.prototype_id] = mob;
+    sells_mobs_ = true;
+    Log::debug("Added mob '{}' (ID: {}) to shop {} with price {}",
+               mob.name, mob.prototype_id, shop_id_, mob.cost);
+}
+
+void Shopkeeper::remove_mob(EntityId prototype_id) {
+    if (auto it = mobs_.find(prototype_id); it != mobs_.end()) {
+        Log::debug("Removed mob '{}' from shop {}", it->second.name, shop_id_);
+        mobs_.erase(it);
+    }
+    if (mobs_.empty()) {
+        sells_mobs_ = false;
+    }
+}
+
+bool Shopkeeper::has_mob(EntityId prototype_id) const {
+    return mobs_.find(prototype_id) != mobs_.end();
+}
+
+const ShopMob* Shopkeeper::get_mob(EntityId prototype_id) const {
+    if (auto it = mobs_.find(prototype_id); it != mobs_.end()) {
+        return &it->second;
+    }
+    return nullptr;
+}
+
+void Shopkeeper::restock_mob(EntityId prototype_id, int quantity) {
+    if (auto it = mobs_.find(prototype_id); it != mobs_.end()) {
+        auto& mob = it->second;
+        if (mob.max_stock >= 0) {
+            mob.stock = std::min(mob.stock + quantity, mob.max_stock);
+            Log::debug("Restocked mob '{}' in shop {}, now has {} available",
+                      mob.name, shop_id_, mob.stock);
+        }
+    }
+}
+
+bool Shopkeeper::reduce_mob_stock(EntityId prototype_id, int quantity) {
+    if (auto it = mobs_.find(prototype_id); it != mobs_.end()) {
+        auto& mob = it->second;
+        if (mob.stock == -1) {
+            return true; // Unlimited stock
+        }
+        if (mob.stock >= quantity) {
+            mob.stock -= quantity;
+            Log::debug("Reduced stock for mob '{}' in shop {}, {} remaining",
+                      mob.name, shop_id_, mob.stock);
+            return true;
+        }
+    }
+    return false;
+}
+
+std::vector<ShopMob> Shopkeeper::get_available_mobs() const {
+    std::vector<ShopMob> available;
+    for (const auto& [id, mob] : mobs_) {
+        if (mob.stock != 0) {
+            available.push_back(mob);
+        }
+    }
+    return available;
+}
+
 std::vector<ShopItem> Shopkeeper::get_available_items() const {
     std::vector<ShopItem> available;
     for (const auto& [id, item] : items_) {
@@ -86,31 +161,79 @@ std::vector<ShopItem> Shopkeeper::get_available_items() const {
 
 std::vector<std::string> Shopkeeper::get_shop_listing() const {
     std::vector<std::string> listing;
-    listing.push_back(fmt::format("=== {} ===", shop_name_));
-    listing.push_back(fmt::format("Items for sale:"));
-    listing.push_back("");
-    
-    auto available = get_available_items();
-    if (available.empty()) {
-        listing.push_back("  No items currently available.");
-        return listing;
-    }
-    
-    // Sort by price for consistent display
-    std::sort(available.begin(), available.end(), 
-              [](const ShopItem& a, const ShopItem& b) { return a.cost < b.cost; });
-    
-    for (const auto& item : available) {
-        std::string stock_info = (item.stock == -1) ? "unlimited" : std::to_string(item.stock);
-        std::string price_str = fmt::format("{} copper", item.cost);
-        
-        listing.push_back(fmt::format("  {:<30} {:<15} ({})", 
-                                    item.name, price_str, stock_info));
-        if (!item.description.empty()) {
-            listing.push_back(fmt::format("    {}", item.description));
+
+    // Show items if available
+    auto available_items = get_available_items();
+    if (!available_items.empty()) {
+        listing.push_back(fmt::format("=== {} ===", shop_name_));
+        listing.push_back("");
+
+        // Table header
+        listing.push_back(" ##  Lvl  Qty  Item                                          Cost");
+        listing.push_back("---  ---  ---  --------------------------------------------  -------------");
+
+        // Sort by level, then by price for consistent display
+        std::sort(available_items.begin(), available_items.end(),
+                  [](const ShopItem& a, const ShopItem& b) {
+                      if (a.level != b.level) return a.level < b.level;
+                      return a.cost < b.cost;
+                  });
+
+        int row = 1;
+        for (const auto& item : available_items) {
+            int actual_price = calculate_buy_price(item);
+            auto price_money = fiery::Money::from_copper(actual_price);
+            std::string price_str = price_money.to_shop_format(true);
+            std::string qty_str = (item.stock == -1) ? " - " : fmt::format("{:>3}", item.stock);
+
+            listing.push_back(fmt::format("{:>2})  {:>3}  {}  {:<44}  {}",
+                                        row, item.level, qty_str, item.name, price_str));
+            ++row;
         }
     }
-    
+
+    // Show mobs if this is a pet/mount shop
+    if (sells_mobs_) {
+        auto available_mobs = get_available_mobs();
+        if (!available_mobs.empty()) {
+            if (!available_items.empty()) {
+                listing.push_back("");
+            }
+            listing.push_back("Pets/Mounts for sale:");
+            listing.push_back("");
+
+            // Table header
+            listing.push_back(" ##  Lvl  Qty  Pet/Mount                                     Cost");
+            listing.push_back("---  ---  ---  --------------------------------------------  -------------");
+
+            // Sort by level, then by price for consistent display
+            std::sort(available_mobs.begin(), available_mobs.end(),
+                      [](const ShopMob& a, const ShopMob& b) {
+                          if (a.level != b.level) return a.level < b.level;
+                          return a.cost < b.cost;
+                      });
+
+            int row = 1;
+            for (const auto& mob : available_mobs) {
+                int actual_price = calculate_buy_price(mob);
+                auto price_money = fiery::Money::from_copper(actual_price);
+                std::string price_str = price_money.to_shop_format(true);
+                std::string qty_str = (mob.stock == -1) ? " - " : fmt::format("{:>3}", mob.stock);
+
+                listing.push_back(fmt::format("{:>2})  {:>3}  {}  {:<44}  {}",
+                                            row, mob.level, qty_str, mob.name, price_str));
+                ++row;
+            }
+        }
+    }
+
+    // Handle case where nothing is available
+    if (available_items.empty() && (!sells_mobs_ || get_available_mobs().empty())) {
+        listing.push_back(fmt::format("=== {} ===", shop_name_));
+        listing.push_back("");
+        listing.push_back("  Nothing currently available.");
+    }
+
     return listing;
 }
 
@@ -118,9 +241,16 @@ int Shopkeeper::calculate_buy_price(const ShopItem& item) const {
     return static_cast<int>(item.cost * buy_rate_);
 }
 
-int Shopkeeper::calculate_sell_price(const Object& /* obj */) const {
-    // Base sell price on object value or type-specific pricing
-    int base_value = 100; // Default value - could be object property
+int Shopkeeper::calculate_buy_price(const ShopMob& mob) const {
+    return static_cast<int>(mob.cost * buy_rate_);
+}
+
+int Shopkeeper::calculate_sell_price(const Object& obj) const {
+    // Base sell price on object's value (stored in copper)
+    int base_value = obj.value();
+    if (base_value <= 0) {
+        base_value = 1; // Minimum 1 copper for worthless items
+    }
     return static_cast<int>(base_value * sell_rate_);
 }
 
@@ -189,6 +319,9 @@ ShopResult ShopManager::buy_item(std::shared_ptr<Actor> buyer, EntityId shopkeep
     // Gods get items for free
     bool is_god = player->is_god();
 
+    Log::info("buy_item: player={}, price={}, wallet={}, is_god={}, can_afford={}",
+               player->name(), price, player->wealth(), is_god, player->can_afford(price));
+
     // Check if player has enough money (price is in copper) - gods bypass this
     if (!is_god && !player->can_afford(price)) {
         return ShopResult::InsufficientFunds;
@@ -211,6 +344,75 @@ ShopResult ShopManager::buy_item(std::shared_ptr<Actor> buyer, EntityId shopkeep
         Log::info("God {} took item '{}' from shopkeeper {} (free)",
                   player->name(), shop_item->name, shopkeeper_id);
     }
+
+    return ShopResult::Success;
+}
+
+ShopResult ShopManager::buy_mob(std::shared_ptr<Actor> buyer, EntityId shopkeeper_id, EntityId mob_id) {
+    if (!buyer) {
+        return ShopResult::InvalidItem;
+    }
+
+    // Only players can buy mobs
+    auto player = std::dynamic_pointer_cast<Player>(buyer);
+    if (!player) {
+        return ShopResult::InvalidItem;
+    }
+
+    auto* shop = get_shopkeeper(shopkeeper_id);
+    if (!shop) {
+        return ShopResult::NoShopkeeper;
+    }
+
+    if (!shop->sells_mobs()) {
+        return ShopResult::ItemNotFound;
+    }
+
+    const auto* shop_mob = shop->get_mob(mob_id);
+    if (!shop_mob) {
+        return ShopResult::ItemNotFound;
+    }
+
+    if (shop_mob->stock == 0) {
+        return ShopResult::InsufficientStock;
+    }
+
+    int price = shop->calculate_buy_price(*shop_mob);
+
+    // Gods get pets for free
+    bool is_god = player->is_god();
+
+    Log::info("buy_mob: player={}, price={}, wallet={}, is_god={}, can_afford={}",
+               player->name(), price, player->wealth(), is_god, player->can_afford(price));
+
+    // Check if player has enough money (price is in copper) - gods bypass this
+    if (!is_god && !player->can_afford(price)) {
+        return ShopResult::InsufficientFunds;
+    }
+
+    // Reduce stock and deduct payment
+    if (!shop->reduce_mob_stock(mob_id, 1)) {
+        return ShopResult::InsufficientStock;
+    }
+
+    // Deduct money from buyer's wallet (gods don't pay)
+    if (!is_god) {
+        if (!player->spend(price)) {
+            // Shouldn't happen since we already checked can_afford()
+            return ShopResult::InsufficientFunds;
+        }
+        Log::info("Player {} bought pet '{}' from shopkeeper {} for {} copper",
+                  player->name(), shop_mob->name, shopkeeper_id, price);
+    } else {
+        Log::info("God {} took pet '{}' from shopkeeper {} (free)",
+                  player->name(), shop_mob->name, shopkeeper_id);
+    }
+
+    // TODO: Create the actual pet mob instance in the room
+    // The pet naming will be handled by the calling command, which prompts:
+    // "What would you like to name your new pet?"
+    // Then sets pet->set_custom_name(name) which displays as:
+    // "A kitten named 'Meow' is here."
 
     return ShopResult::Success;
 }

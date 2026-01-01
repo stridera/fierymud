@@ -65,6 +65,9 @@ class Logger {
     /** Get logger instance for component */
     static std::shared_ptr<Logger> get(std::string_view component);
 
+    /** Get null logger (safe to use during/after shutdown) */
+    static std::shared_ptr<Logger> null_logger();
+
     /** Log with context */
     template <typename... Args> void trace(const LogContext &ctx, std::string_view format, Args &&...args) {
         log_with_context(LogLevel::Trace, ctx, format, std::forward<Args>(args)...);

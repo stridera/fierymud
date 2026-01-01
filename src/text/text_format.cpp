@@ -471,22 +471,34 @@ std::optional<std::string> Message::resolve(std::string_view var_name) const {
     }
 
     std::string entity_type = to_lower(parts[0]);
-    std::string property = parts.size() > 1 ? to_lower(parts[1]) : "name";
+
+    // Handle {entity.pronoun.type} pattern by extracting the pronoun type
+    // e.g., {target.pronoun.objective} -> resolve with "objective"
+    std::string property = "name";
+    if (parts.size() > 1) {
+        std::string second_part = to_lower(parts[1]);
+        if (second_part == "pronoun" && parts.size() > 2) {
+            // {entity.pronoun.type} -> use the pronoun type (parts[2])
+            property = to_lower(parts[2]);
+        } else {
+            property = second_part;
+        }
+    }
 
     // Route to appropriate entity resolver
     if (entity_type == "actor" || entity_type == "char" || entity_type == "self" ||
         entity_type == "attacker" || entity_type == "caster") {
-        return resolve_actor(parts.size() > 1 ? std::string_view{parts[1]} : "name");
+        return resolve_actor(property);
     }
 
     if (entity_type == "target" || entity_type == "vict" || entity_type == "victim" ||
         entity_type == "defender") {
-        return resolve_target(parts.size() > 1 ? std::string_view{parts[1]} : "name");
+        return resolve_target(property);
     }
 
     if (entity_type == "object" || entity_type == "obj" || entity_type == "item" ||
         entity_type == "weapon") {
-        return resolve_object(parts.size() > 1 ? std::string_view{parts[1]} : "name");
+        return resolve_object(property);
     }
 
     return std::nullopt;
@@ -556,9 +568,6 @@ std::optional<std::string> Message::resolve_entity(const Actor* entity, std::str
     if (prop == "himself" || prop == "herself" || prop == "themselves" || prop == "reflexive" || prop == "ref") {
         return std::string{pronouns.reflexive};
     }
-
-    // Handle {actor.pronoun.type} pattern - property is "pronoun", need third part
-    // This is handled at the resolve() level by passing the full property chain
 
     return std::nullopt;
 }

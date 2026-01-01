@@ -404,6 +404,7 @@ enum class MobFlag {
     Banker = 57,
     Receptionist = 58,
     Postmaster = 59,
+    Shopkeeper = 60,
 };
 
 /** Convert database string to MobFlag enum */
@@ -469,6 +470,7 @@ inline std::optional<MobFlag> mob_flag_from_db(std::string_view s) {
         {"BANKER", MobFlag::Banker},
         {"RECEPTIONIST", MobFlag::Receptionist},
         {"POSTMASTER", MobFlag::Postmaster},
+        {"SHOPKEEPER", MobFlag::Shopkeeper},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -537,6 +539,7 @@ inline std::string_view mob_flag_to_db(MobFlag e) {
         case MobFlag::Banker: return "BANKER";
         case MobFlag::Receptionist: return "RECEPTIONIST";
         case MobFlag::Postmaster: return "POSTMASTER";
+        case MobFlag::Shopkeeper: return "SHOPKEEPER";
     }
     return "";
 }
@@ -2911,6 +2914,70 @@ inline std::string_view toggle_category_to_db(ToggleCategory e) {
         case ToggleCategory::Combat: return "COMBAT";
         case ToggleCategory::Social: return "SOCIAL";
         case ToggleCategory::Immortal: return "IMMORTAL";
+    }
+    return "";
+}
+
+// ============================================================================
+// Report System
+// ============================================================================
+
+enum class ReportType {
+    Bug = 0,
+    Idea = 1,
+    Typo = 2,
+};
+
+/** Convert database string to ReportType enum */
+inline std::optional<ReportType> report_type_from_db(std::string_view s) {
+    static const std::unordered_map<std::string_view, ReportType> lookup = {
+        {"BUG", ReportType::Bug},
+        {"IDEA", ReportType::Idea},
+        {"TYPO", ReportType::Typo},
+    };
+    auto it = lookup.find(s);
+    return it != lookup.end() ? std::optional{it->second} : std::nullopt;
+}
+
+/** Convert ReportType enum to database string */
+inline std::string_view report_type_to_db(ReportType e) {
+    switch (e) {
+        case ReportType::Bug: return "BUG";
+        case ReportType::Idea: return "IDEA";
+        case ReportType::Typo: return "TYPO";
+    }
+    return "";
+}
+
+enum class ReportStatus {
+    Open = 0,
+    InProgress = 1,
+    Resolved = 2,
+    WontFix = 3,
+    Duplicate = 4,
+};
+
+/** Convert database string to ReportStatus enum */
+inline std::optional<ReportStatus> report_status_from_db(std::string_view s) {
+    static const std::unordered_map<std::string_view, ReportStatus> lookup = {
+        {"OPEN", ReportStatus::Open},
+        {"IN_PROGRESS", ReportStatus::InProgress},
+        {"RESOLVED", ReportStatus::Resolved},
+        {"WONT_FIX", ReportStatus::WontFix},
+        {"DUPLICATE", ReportStatus::Duplicate},
+    };
+    auto it = lookup.find(s);
+    return it != lookup.end() ? std::optional{it->second} : std::nullopt;
+}
+
+/** Convert ReportStatus enum to database string */
+inline std::string_view report_status_to_db(ReportStatus e) {
+    switch (e) {
+        case ReportStatus::Open: return "OPEN";
+        case ReportStatus::InProgress: return "IN_PROGRESS";
+        case ReportStatus::Resolved: return "RESOLVED";
+        case ReportStatus::WontFix: return "WONT_FIX";
+        case ReportStatus::Duplicate: return "DUPLICATE";
     }
     return "";
 }

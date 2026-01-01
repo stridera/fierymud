@@ -10,12 +10,17 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Limit parallel jobs to be nice to WSL/system (default: half of available cores, minimum 2)
+TOTAL_CORES=$(nproc 2>/dev/null || echo 4)
+MAX_JOBS=$(( (TOTAL_CORES + 1) / 2 ))
+MAX_JOBS=$(( MAX_JOBS < 2 ? 2 : MAX_JOBS ))
+
 echo -e "${YELLOW}FieryMUD Test Suite${NC}"
 echo "================="
 
 # Build tests
-echo -e "${YELLOW}Building tests...${NC}"
-cmake --build build --target stable_tests unit_tests
+echo -e "${YELLOW}Building tests (using $MAX_JOBS parallel jobs)...${NC}"
+cmake --build build --target stable_tests unit_tests -j "$MAX_JOBS"
 
 # Run tests based on argument  
 case "${1:-recommended}" in

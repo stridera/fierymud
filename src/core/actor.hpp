@@ -627,6 +627,39 @@ private:
     // Mounting state
     std::weak_ptr<Actor> mounted_on_;  // What we are riding
     std::weak_ptr<Actor> rider_;       // Who is riding us
+
+    // Pet/follower state (for charmed mobs, pets, mounts)
+    std::weak_ptr<Actor> master_;                    // Who we are following/serving
+    std::vector<std::weak_ptr<Actor>> followers_;    // Who is following us
+
+public:
+    // Master/follower system (for pets, charmed mobs, etc.)
+    std::shared_ptr<Actor> get_master() const { return master_.lock(); }
+    bool has_master() const { return !master_.expired(); }
+    void set_master(std::shared_ptr<Actor> master) { master_ = master; }
+    void clear_master() { master_.reset(); }
+
+    const std::vector<std::weak_ptr<Actor>>& get_followers() const { return followers_; }
+    bool has_followers() const { return !followers_.empty(); }
+
+    void add_follower(std::shared_ptr<Actor> follower) {
+        // Clean up expired weak pointers first
+        followers_.erase(
+            std::remove_if(followers_.begin(), followers_.end(),
+                [](const std::weak_ptr<Actor>& wp) { return wp.expired(); }),
+            followers_.end());
+        followers_.push_back(follower);
+    }
+
+    void remove_follower(std::shared_ptr<Actor> follower) {
+        followers_.erase(
+            std::remove_if(followers_.begin(), followers_.end(),
+                [&follower](const std::weak_ptr<Actor>& wp) {
+                    auto sp = wp.lock();
+                    return !sp || sp == follower;
+                }),
+            followers_.end());
+    }
 };
 
 /** Mobile (NPC) behavior flags - must match Prisma schema MobFlag enum exactly */
@@ -709,7 +742,8 @@ enum class MobFlag {
     // Special NPC roles (57+)
     Banker = 57,        // Can manage bank/vault access
     Receptionist = 58,  // Can manage inn/lodging check-in
-    Postmaster = 59     // Can send/receive mail
+    Postmaster = 59,    // Can send/receive mail
+    Shopkeeper = 60     // Is a shopkeeper NPC
 };
 
 /** Mobile (NPC) class */

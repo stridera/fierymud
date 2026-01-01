@@ -1,6 +1,7 @@
 #include "logging.hpp"
 
 #include <spdlog/pattern_formatter.h>
+#include <atomic>
 #include <filesystem>
 
 // Static member definition
@@ -8,6 +9,9 @@ std::unordered_map<std::string, std::shared_ptr<Logger>> Logger::loggers_;
 
 // Static member for shared sinks
 std::vector<spdlog::sink_ptr> Logger::sinks_;
+
+// Shutdown flag to prevent use-after-free during static destruction
+static std::atomic<bool> logging_shutdown{false};
 
 void Logger::initialize(const std::string& log_file, LogLevel level, bool console_output) {
     try {
@@ -66,6 +70,9 @@ void Logger::initialize(const std::string& log_file, LogLevel level, bool consol
 }
 
 void Logger::shutdown() {
+    // Set shutdown flag first to prevent new logger access
+    logging_shutdown.store(true, std::memory_order_release);
+
     // Flush all loggers before shutdown
     spdlog::apply_all([](std::shared_ptr<spdlog::logger> logger) {
         logger->flush();
@@ -79,14 +86,31 @@ void Logger::shutdown() {
     spdlog::shutdown();
 }
 
+// Null logger singleton - heap-allocated to survive static destruction
+// Uses leaky singleton pattern: intentionally never destroyed to avoid use-after-free
+std::shared_ptr<Logger> Logger::null_logger() {
+    static auto* logger = new std::shared_ptr<Logger>([]{
+        std::vector<spdlog::sink_ptr> empty_sinks;
+        auto null_spdlog = std::make_shared<spdlog::logger>("null", empty_sinks.begin(), empty_sinks.end());
+        null_spdlog->set_level(spdlog::level::off);
+        return std::shared_ptr<Logger>(new Logger(null_spdlog));
+    }());
+    return *logger;
+}
+
 std::shared_ptr<Logger> Logger::get(std::string_view component) {
+    // If logging has been shut down, return null logger to avoid use-after-free
+    if (logging_shutdown.load(std::memory_order_acquire)) {
+        return Logger::null_logger();
+    }
+
     std::string comp_str(component);
-    
+
     auto it = loggers_.find(comp_str);
     if (it != loggers_.end()) {
         return it->second;
     }
-    
+
     // Create new logger for this component
     try {
         auto spdlog_logger = spdlog::get(comp_str);
@@ -94,7 +118,7 @@ std::shared_ptr<Logger> Logger::get(std::string_view component) {
             // Create new spdlog logger with same sinks as default
             auto default_logger = spdlog::default_logger();
             if (default_logger) {
-                spdlog_logger = std::make_shared<spdlog::logger>(comp_str, 
+                spdlog_logger = std::make_shared<spdlog::logger>(comp_str,
                     default_logger->sinks().begin(), default_logger->sinks().end());
                 spdlog_logger->set_level(default_logger->level());
                 spdlog::register_logger(spdlog_logger);
@@ -105,19 +129,14 @@ std::shared_ptr<Logger> Logger::get(std::string_view component) {
                 spdlog::register_logger(spdlog_logger);
             }
         }
-        
+
         auto logger = std::shared_ptr<Logger>(new Logger(spdlog_logger));
         loggers_[comp_str] = logger;
         return logger;
-        
+
     } catch (const std::exception& ex) {
         // Return a null logger wrapper that safely ignores all calls
-        std::vector<spdlog::sink_ptr> empty_sinks;
-        auto null_spdlog = std::make_shared<spdlog::logger>("null", empty_sinks.begin(), empty_sinks.end());
-        null_spdlog->set_level(spdlog::level::off);
-        auto logger = std::shared_ptr<Logger>(new Logger(null_spdlog));
-        loggers_[comp_str] = logger;
-        return logger;
+        return Logger::null_logger();
     }
 }
 
@@ -133,43 +152,39 @@ void Logger::log_error(const Error& error, const LogContext& ctx) {
 }
 
 namespace Log {
+    // Use Logger::get() directly instead of caching in static locals.
+    // This ensures proper shutdown handling (Logger::get returns null_logger after shutdown).
+    // The Logger::get() function itself caches loggers in Logger::loggers_.
+
     std::shared_ptr<Logger> game() {
-        static auto logger = Logger::get("game");
-        return logger;
+        return Logger::get("game");
     }
-    
+
     std::shared_ptr<Logger> combat() {
-        static auto logger = Logger::get("combat");
-        return logger;
+        return Logger::get("combat");
     }
-    
+
     std::shared_ptr<Logger> movement() {
-        static auto logger = Logger::get("movement");
-        return logger;
+        return Logger::get("movement");
     }
-    
+
     std::shared_ptr<Logger> commands() {
-        static auto logger = Logger::get("commands");
-        return logger;
+        return Logger::get("commands");
     }
-    
+
     std::shared_ptr<Logger> network() {
-        static auto logger = Logger::get("network");
-        return logger;
+        return Logger::get("network");
     }
-    
+
     std::shared_ptr<Logger> persistence() {
-        static auto logger = Logger::get("persistence");
-        return logger;
+        return Logger::get("persistence");
     }
-    
+
     std::shared_ptr<Logger> scripting() {
-        static auto logger = Logger::get("scripting");
-        return logger;
+        return Logger::get("scripting");
     }
 
     std::shared_ptr<Logger> database() {
-        static auto logger = Logger::get("database");
-        return logger;
+        return Logger::get("database");
     }
 }

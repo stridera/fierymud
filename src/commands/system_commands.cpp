@@ -27,21 +27,35 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    ctx.send("Goodbye! Thanks for playing FieryMUD.");
-    ctx.actor->set_position(Position::Standing);  // Player remains standing until logout
-
-    // Save player data before logout
-    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
-        auto save_result = PersistenceManager::instance().save_player(*player);
-        if (!save_result) {
-            Log::error("Failed to save player {}: {}", player->name(), save_result.error().message);
-            ctx.send("Warning: Character save failed!");
-        } else {
-            Log::info("Player {} saved successfully on quit", player->name());
-        }
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send("Only players can quit.");
+        return CommandResult::InvalidTarget;
     }
 
-    Log::info("Player {} quit the game", ctx.actor->name());
+    ctx.send("Goodbye! Thanks for playing FieryMUD.");
+    player->set_position(Position::Standing);  // Player remains standing until logout
+
+    // Save player data before logout
+    auto save_result = PersistenceManager::instance().save_player(*player);
+    if (!save_result) {
+        Log::error("Failed to save player {}: {}", player->name(), save_result.error().message);
+        ctx.send("Warning: Character save failed!");
+    } else {
+        Log::info("Player {} saved successfully on quit", player->name());
+    }
+
+    Log::info("Player {} quit the game", player->name());
+
+    // Remove player from room
+    if (ctx.room) {
+        ctx.room->remove_actor(player->id());
+    }
+
+    // Disconnect the player connection
+    if (auto output = player->get_output()) {
+        output->disconnect("Quit");
+    }
 
     return CommandResult::Success;
 }
@@ -165,6 +179,16 @@ Result<CommandResult> cmd_rent(const CommandContext &ctx) {
     ctx.send("The receptionist shows you to your room. Sweet dreams!");
     ctx.send("Goodbye! Come back soon to continue your adventures.");
     Log::info("Player {} rented at inn for {}", player->name(), cost_money.to_string());
+
+    // Remove player from room
+    if (ctx.room) {
+        ctx.room->remove_actor(player->id());
+    }
+
+    // Disconnect the player connection
+    if (auto output = player->get_output()) {
+        output->disconnect("Renting a room");
+    }
 
     return CommandResult::Success;
 }
@@ -985,6 +1009,28 @@ Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
 // Feedback Commands
 // =============================================================================
 
+namespace {
+/**
+ * Helper function to save a report to the database.
+ * Returns the report ID on success, or an error message on failure.
+ */
+Result<int> save_report_to_db(
+    const std::string& report_type,
+    const std::string& reporter_name,
+    const std::optional<std::string>& reporter_id,
+    const std::optional<int>& room_zone_id,
+    const std::optional<int>& room_id,
+    const std::string& message) {
+
+    return ConnectionPool::instance().execute(
+        [&](pqxx::work& txn) -> Result<int> {
+            return WorldQueries::save_report(
+                txn, report_type, reporter_name, reporter_id,
+                room_zone_id, room_id, message);
+        });
+}
+} // anonymous namespace
+
 Result<CommandResult> cmd_bug(const CommandContext &ctx) {
     if (ctx.arg_count() == 0) {
         ctx.send_error("Please enter a message describing the bug.");
@@ -994,10 +1040,39 @@ Result<CommandResult> cmd_bug(const CommandContext &ctx) {
 
     std::string message = ctx.args_from(0);
     std::string player_name = ctx.actor ? std::string{ctx.actor->name()} : "Unknown";
-    EntityId room_id = ctx.room ? ctx.room->id() : INVALID_ENTITY_ID;
 
-    Log::info("[BUG] {} [Room {}]: {}", player_name, room_id, message);
-    ctx.send("Thank you for reporting this bug! The immortals have been notified.");
+    // Get reporter ID if they're a player
+    std::optional<std::string> reporter_id;
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        auto db_id = player->database_id();
+        if (!db_id.empty()) {
+            reporter_id = std::string{db_id};
+        }
+    }
+
+    // Get room location
+    std::optional<int> room_zone_id;
+    std::optional<int> room_id;
+    if (ctx.room) {
+        room_zone_id = ctx.room->id().zone_id();
+        room_id = ctx.room->id().local_id();
+    }
+
+    // Save to database
+    auto result = save_report_to_db("BUG", player_name, reporter_id, room_zone_id, room_id, message);
+    if (result) {
+        Log::info("[BUG] Report #{} from {} [Room {}:{}]: {}",
+            *result, player_name,
+            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        ctx.send("Thank you for reporting this bug! Your report has been saved.");
+    } else {
+        // Fall back to logging if database save fails
+        Log::warn("[BUG] Database save failed for {}: {} (logging to file instead)",
+            player_name, result.error().message);
+        Log::info("[BUG] {} [Room {}:{}]: {}", player_name,
+            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        ctx.send("Thank you for reporting this bug! The immortals have been notified.");
+    }
 
     return CommandResult::Success;
 }
@@ -1011,10 +1086,39 @@ Result<CommandResult> cmd_idea(const CommandContext &ctx) {
 
     std::string message = ctx.args_from(0);
     std::string player_name = ctx.actor ? std::string{ctx.actor->name()} : "Unknown";
-    EntityId room_id = ctx.room ? ctx.room->id() : INVALID_ENTITY_ID;
 
-    Log::info("[IDEA] {} [Room {}]: {}", player_name, room_id, message);
-    ctx.send("Thank you for sharing your idea! The immortals have been notified.");
+    // Get reporter ID if they're a player
+    std::optional<std::string> reporter_id;
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        auto db_id = player->database_id();
+        if (!db_id.empty()) {
+            reporter_id = std::string{db_id};
+        }
+    }
+
+    // Get room location
+    std::optional<int> room_zone_id;
+    std::optional<int> room_id;
+    if (ctx.room) {
+        room_zone_id = ctx.room->id().zone_id();
+        room_id = ctx.room->id().local_id();
+    }
+
+    // Save to database
+    auto result = save_report_to_db("IDEA", player_name, reporter_id, room_zone_id, room_id, message);
+    if (result) {
+        Log::info("[IDEA] Report #{} from {} [Room {}:{}]: {}",
+            *result, player_name,
+            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        ctx.send("Thank you for sharing your idea! Your suggestion has been saved.");
+    } else {
+        // Fall back to logging if database save fails
+        Log::warn("[IDEA] Database save failed for {}: {} (logging to file instead)",
+            player_name, result.error().message);
+        Log::info("[IDEA] {} [Room {}:{}]: {}", player_name,
+            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        ctx.send("Thank you for sharing your idea! The immortals have been notified.");
+    }
 
     return CommandResult::Success;
 }
@@ -1028,10 +1132,39 @@ Result<CommandResult> cmd_typo(const CommandContext &ctx) {
 
     std::string message = ctx.args_from(0);
     std::string player_name = ctx.actor ? std::string{ctx.actor->name()} : "Unknown";
-    EntityId room_id = ctx.room ? ctx.room->id() : INVALID_ENTITY_ID;
 
-    Log::info("[TYPO] {} [Room {}]: {}", player_name, room_id, message);
-    ctx.send("Thank you for reporting this typo! The immortals have been notified.");
+    // Get reporter ID if they're a player
+    std::optional<std::string> reporter_id;
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        auto db_id = player->database_id();
+        if (!db_id.empty()) {
+            reporter_id = std::string{db_id};
+        }
+    }
+
+    // Get room location
+    std::optional<int> room_zone_id;
+    std::optional<int> room_id;
+    if (ctx.room) {
+        room_zone_id = ctx.room->id().zone_id();
+        room_id = ctx.room->id().local_id();
+    }
+
+    // Save to database
+    auto result = save_report_to_db("TYPO", player_name, reporter_id, room_zone_id, room_id, message);
+    if (result) {
+        Log::info("[TYPO] Report #{} from {} [Room {}:{}]: {}",
+            *result, player_name,
+            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        ctx.send("Thank you for reporting this typo! Your report has been saved.");
+    } else {
+        // Fall back to logging if database save fails
+        Log::warn("[TYPO] Database save failed for {}: {} (logging to file instead)",
+            player_name, result.error().message);
+        Log::info("[TYPO] {} [Room {}:{}]: {}", player_name,
+            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        ctx.send("Thank you for reporting this typo! The immortals have been notified.");
+    }
 
     return CommandResult::Success;
 }

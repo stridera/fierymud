@@ -1681,24 +1681,78 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
         return CommandResult::ResourceError;
     }
 
-    // Find item by name in shop inventory
+    // Find item by keyword prefix matching (case-insensitive)
     auto available_items = shop->get_available_items();
     const ShopItem* target_item = nullptr;
+    auto& world = WorldManager::instance();
 
     for (const auto& item : available_items) {
-        if (item.name.find(item_name) != std::string::npos ||
-            item.name == item_name) {
+        // Look up the object prototype to check keywords
+        const auto* obj_proto = world.get_object_prototype(item.prototype_id);
+        if (obj_proto && obj_proto->matches_keyword_prefix(item_name)) {
             target_item = &item;
             break;
         }
     }
 
-    if (!target_item) {
+    // If not found as an item, check if this shop sells mobs (pets/mounts)
+    std::optional<ShopMob> target_mob;
+    if (!target_item && shop->sells_mobs()) {
+        auto available_mobs = shop->get_available_mobs();
+        for (const auto& mob : available_mobs) {
+            // Look up the mob prototype to check keywords
+            const auto* mob_proto = world.get_mobile_prototype(mob.prototype_id);
+            if (mob_proto && mob_proto->matches_keyword_prefix(item_name)) {
+                target_mob = mob;  // Copy the mob data
+                break;
+            }
+        }
+    }
+
+    if (!target_item && !target_mob) {
         ctx.send_error(fmt::format("The shopkeeper doesn't have '{}' for sale.", item_name));
         return CommandResult::InvalidTarget;
     }
 
-    // Calculate price and attempt purchase
+    // Handle mob (pet/mount) purchase
+    if (target_mob) {
+        int price = shop->calculate_buy_price(*target_mob);
+        auto result = ShopManager::instance().buy_mob(ctx.actor, lookup_id, target_mob->prototype_id);
+
+        switch (result) {
+            case ShopResult::Success: {
+                // Spawn the pet in the current room
+                auto new_mob = WorldManager::instance().spawn_mobile_to_room(
+                    target_mob->prototype_id, ctx.room->id());
+                if (!new_mob) {
+                    ctx.send_error("The shopkeeper tries to hand you something, but it runs away!");
+                    Log::error("Failed to spawn mobile instance for prototype {} after successful purchase",
+                              target_mob->prototype_id);
+                    return CommandResult::InvalidState;
+                }
+
+                // Set the pet to follow the buyer
+                new_mob->set_master(ctx.actor);
+                ctx.actor->add_follower(new_mob);
+
+                ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_mob->name, price));
+                ctx.send(fmt::format("{} starts following you.", new_mob->short_desc()));
+                break;
+            }
+            case ShopResult::InsufficientFunds:
+                ctx.send_error("You don't have enough money to buy that.");
+                return CommandResult::InvalidSyntax;
+            case ShopResult::InsufficientStock:
+                ctx.send_error("That pet is not available right now.");
+                return CommandResult::InvalidTarget;
+            default:
+                ctx.send_error("You cannot buy that pet.");
+                return CommandResult::InvalidTarget;
+        }
+        return CommandResult::Success;
+    }
+
+    // Handle regular item purchase
     int price = shop->calculate_buy_price(*target_item);
 
     // Attempt to purchase the item
@@ -1810,13 +1864,40 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
     
-    // Calculate sell price and simulate sale
+    // Calculate sell price
     int price = shop->calculate_sell_price(*target_object);
-    
-    ctx.send_success(fmt::format("You would sell {} for {} copper coins.", 
-                                 target_object->display_name(), price));
-    ctx.send(fmt::format("(Note: Actual sale mechanics with currency integration pending)"));
-    
+
+    // Get player pointer for money operations
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can sell items.");
+        return CommandResult::InvalidState;
+    }
+
+    // Remove item from inventory
+    if (!ctx.actor->inventory().remove_item(target_object->id())) {
+        ctx.send_error("Failed to remove item from your inventory.");
+        return CommandResult::InvalidState;
+    }
+
+    // Give player the money
+    player->receive(price);
+
+    // Format price nicely
+    auto price_money = fiery::Money::from_copper(price);
+
+    ctx.send_success(fmt::format("You sell {} to {} for {}.",
+                                 target_object->display_name(),
+                                 shopkeeper_actor->display_name(),
+                                 price_money.to_string()));
+    ctx.send_to_room(fmt::format("{} sells {} to {}.",
+                                 ctx.actor->display_name(),
+                                 target_object->display_name(),
+                                 shopkeeper_actor->display_name()), true);
+
+    Log::info("Player {} sold '{}' to shopkeeper {} for {} copper",
+              player->name(), target_object->name(), shopkeeper_actor->display_name(), price);
+
     return CommandResult::Success;
 }
 

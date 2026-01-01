@@ -12,6 +12,13 @@
 class Actor;
 class CommandContext;
 
+namespace fierymud {
+    struct ClassSpellConfig;
+    enum class SpellProgression;
+}
+using fierymud::ClassSpellConfig;
+using fierymud::SpellProgression;
+
 /** Spell types available in the game */
 enum class SpellType {
     Offensive,    // Damage-dealing spells
@@ -91,6 +98,9 @@ public:
     /** Check if actor has slots for a specific circle */
     bool has_slots(int circle) const;
 
+    /** Check if actor has any spell slots at all (any circle) */
+    bool has_any_slots() const;
+
     /**
      * Consume a spell slot for casting.
      * Tries exact circle first, then higher circles (upcast).
@@ -131,6 +141,13 @@ public:
     static Result<SpellSlots> from_json(const nlohmann::json& json);
 
 private:
+    /** Initialize slots from class configuration */
+    void initialize_slots_from_config(const ClassSpellConfig& config, int level);
+
+    /** Calculate slot count based on progression type and level */
+    static int calculate_slots(SpellProgression progression, int level,
+                               int required_level, int max_slots);
+
     std::unordered_map<int, SpellSlotCircle> slots_;       // circle -> slot info
     std::vector<SpellSlotRestoring> restoration_queue_;    // FIFO restoration queue
 };

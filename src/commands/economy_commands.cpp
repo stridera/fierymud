@@ -111,7 +111,8 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
     ctx.send(fmt::format("--- {} ---", obj->display_name()));
     ctx.send(fmt::format("Type: {}", magic_enum::enum_name(obj->type())));
     ctx.send(fmt::format("Weight: {} lbs", obj->weight()));
-    ctx.send(fmt::format("Value: {} gold", obj->value()));
+    auto value_money = fiery::Money::from_copper(obj->value());
+    ctx.send(fmt::format("Value: {}", value_money.to_string()));
 
     // TODO: Show magical properties, stats, etc.
     ctx.send("Magical Properties: None detected");

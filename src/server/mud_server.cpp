@@ -1,6 +1,7 @@
 #include "mud_server.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/class_config.hpp"
 #include "../game/player_output.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
@@ -596,6 +597,9 @@ Result<void> ModernMUDServer::initialize_database() {
 }
 
 Result<void> ModernMUDServer::initialize_game_systems() {
+    // Initialize class configuration registry (for spell slots, abilities, etc.)
+    fierymud::ClassConfigRegistry::instance().initialize_defaults();
+
     // Initialize world server (which handles game systems internally)
     auto world_result = world_server_->initialize();
     if (!world_result) {

@@ -553,7 +553,8 @@ Result<void> save_account_wealth(
 
 /** Shop data from the Shops table */
 struct ShopData {
-    int id;
+    int zone_id;                    // Shop's zone ID
+    int id;                         // Shop's local ID within zone
     EntityId keeper_id;             // Mob that runs this shop (zone_id, local_id)
     float buy_profit = 1.0f;        // Rate shopkeeper charges (1.0 = no markup)
     float sell_profit = 1.0f;       // Rate shopkeeper pays for items (1.0 = full price)
@@ -573,6 +574,13 @@ struct ShopItemData {
     int amount = -1;                // Stock quantity (-1 = unlimited)
 };
 
+/** Shop mob data from the ShopMobs table (for pet/mount shops) */
+struct ShopMobData {
+    EntityId mob_id;                // Mob prototype (zone_id, local_id)
+    int amount = -1;                // Stock quantity (-1 = unlimited)
+    int price = 0;                  // Price in copper (0 = use mob level * 100)
+};
+
 /** Load all shops from the database */
 Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn);
 
@@ -581,6 +589,10 @@ Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id);
 
 /** Load items sold by a specific shop */
 Result<std::vector<ShopItemData>> load_shop_items(
+    pqxx::work& txn, int shop_zone_id, int shop_id);
+
+/** Load mobs sold by a specific shop (pet/mount shop) */
+Result<std::vector<ShopMobData>> load_shop_mobs(
     pqxx::work& txn, int shop_zone_id, int shop_id);
 
 // =============================================================================
@@ -947,5 +959,52 @@ Result<int> post_board_message(
 
 /** Delete a board message */
 Result<bool> delete_board_message(pqxx::work& txn, int message_id);
+
+// =============================================================================
+// Report System Queries (Bug/Idea/Typo Reports)
+// =============================================================================
+
+/**
+ * Report data matching the reports table in the database.
+ * Used for bug reports, ideas, and typo reports.
+ */
+struct ReportData {
+    int id = 0;                     // Auto-increment primary key (0 for new reports)
+    std::string report_type;        // "BUG", "IDEA", "TYPO"
+    std::string status = "OPEN";    // "OPEN", "IN_PROGRESS", "RESOLVED", "WONT_FIX", "DUPLICATE"
+    std::string reporter_name;      // Character name who submitted
+    std::optional<std::string> reporter_id;  // Character UUID (if available)
+    std::optional<int> room_zone_id;         // Room location zone
+    std::optional<int> room_id;              // Room location id
+    std::string message;            // The report content
+    std::optional<std::string> resolved_by;  // Admin who resolved
+    std::optional<std::chrono::system_clock::time_point> resolved_at;
+    std::optional<std::string> resolution;   // Resolution notes
+    std::chrono::system_clock::time_point created_at;
+    std::chrono::system_clock::time_point updated_at;
+};
+
+/** Save a new report to the database.
+ *  Returns the new report's ID on success.
+ */
+Result<int> save_report(
+    pqxx::work& txn,
+    const std::string& report_type,
+    const std::string& reporter_name,
+    const std::optional<std::string>& reporter_id,
+    const std::optional<int>& room_zone_id,
+    const std::optional<int>& room_id,
+    const std::string& message);
+
+/** Load all reports of a specific type */
+Result<std::vector<ReportData>> load_reports_by_type(
+    pqxx::work& txn, const std::string& report_type);
+
+/** Load open reports of a specific type */
+Result<std::vector<ReportData>> load_open_reports(
+    pqxx::work& txn, const std::string& report_type);
+
+/** Count open reports by type */
+Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type);
 
 } // namespace WorldQueries

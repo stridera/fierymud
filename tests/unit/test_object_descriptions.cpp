@@ -136,19 +136,19 @@ TEST_CASE("Object Description System", "[unit][descriptions]") {
         auto obj_result = Object::create(EntityId{1006}, "gem", ObjectType::Treasure);
         REQUIRE(obj_result.has_value());
         auto gem = std::shared_ptr<Object>(obj_result.value().release());
-        
+
         gem->set_short_description("a precious gem");
         gem->set_description("A sparkling gemstone catches the light.");
         gem->set_weight(1);
-        gem->set_value(500);
-        
+        gem->set_value(500);  // 500 copper = 5 gold
+
         auto actor_result = Mobile::create(EntityId{2006}, "TestActor");
         REQUIRE(actor_result.has_value());
         auto actor = std::shared_ptr<Actor>(actor_result.value().release());
         std::string description = BuiltinCommands::Helpers::format_object_description(gem, actor);
-        
+
         REQUIRE(description.find("It weighs 1 pounds") != std::string::npos);
-        REQUIRE(description.find("worth 500 gold coins") != std::string::npos);
+        REQUIRE(description.find("worth 5 gold coins") != std::string::npos);  // 500 copper = 5 gold
     }
 
     SECTION("Extra descriptions loaded from JSON") {

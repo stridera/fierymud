@@ -1,8 +1,10 @@
 #include "builtin_commands.hpp"
 
+#include "../core/money.hpp"
 #include "../scripting/trigger_manager.hpp"
 
 // Command module headers for registration
+#include "account_commands.hpp"
 #include "admin_commands.hpp"
 #include "character_commands.hpp"
 #include "combat_commands.hpp"
@@ -111,6 +113,11 @@ Result<void> register_all_commands() {
 
     if (auto result = AdminCommands::register_commands(); !result) {
         Log::error("Failed to register admin commands: {}", result.error().message);
+        return result;
+    }
+
+    if (auto result = AccountCommands::register_commands(); !result) {
+        Log::error("Failed to register account commands: {}", result.error().message);
         return result;
     }
 
@@ -314,7 +321,9 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
     // weight() is polymorphic - containers include contents automatically
     desc << fmt::format("It weighs {} pounds", obj->weight());
     if (obj->value() > 0) {
-        desc << fmt::format(" and is worth {} gold coins", obj->value());
+        // Object values are stored in copper
+        auto value_money = fiery::Money::from_copper(obj->value());
+        desc << fmt::format(" and is worth {}", value_money.to_string());
     }
     desc << ".\n";
 

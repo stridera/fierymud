@@ -436,7 +436,7 @@ std::unordered_map<std::string, std::string> GMCPHandler::parse_new_environ_data
         if (read_var) {
             var.push_back(c);
         } else if (read_value) {
-            var.push_back(c);
+            value.push_back(c);
         } else {
             Log::debug("Invalid NEW_ENVIRON subnegotiation data from {}", connection_.remote_address());
         }

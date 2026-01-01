@@ -313,4 +313,55 @@ std::string Money::to_brief(int max_width) const {
     return result;
 }
 
+std::string Money::to_shop_format(bool include_color) const {
+    if (is_zero()) {
+        if (include_color) {
+            return fmt::format("{}0{}c", COIN_DEFS[3].open_tag, COIN_DEFS[3].close_tag);
+        }
+        return "0c";
+    }
+
+    int plat = platinum();
+    int gol = gold();
+    int sil = silver();
+    int cop = copper();
+
+    std::string result;
+
+    // Only show non-zero denominations
+    if (plat > 0) {
+        if (include_color) {
+            result += fmt::format("{}{}{}p", COIN_DEFS[0].open_tag, plat, COIN_DEFS[0].close_tag);
+        } else {
+            result += fmt::format("{}p", plat);
+        }
+    }
+    if (gol > 0) {
+        if (!result.empty()) result += ",";
+        if (include_color) {
+            result += fmt::format("{}{}{}g", COIN_DEFS[1].open_tag, gol, COIN_DEFS[1].close_tag);
+        } else {
+            result += fmt::format("{}g", gol);
+        }
+    }
+    if (sil > 0) {
+        if (!result.empty()) result += ",";
+        if (include_color) {
+            result += fmt::format("{}{}{}s", COIN_DEFS[2].open_tag, sil, COIN_DEFS[2].close_tag);
+        } else {
+            result += fmt::format("{}s", sil);
+        }
+    }
+    if (cop > 0) {
+        if (!result.empty()) result += ",";
+        if (include_color) {
+            result += fmt::format("{}{}{}c", COIN_DEFS[3].open_tag, cop, COIN_DEFS[3].close_tag);
+        } else {
+            result += fmt::format("{}c", cop);
+        }
+    }
+
+    return result;
+}
+
 } // namespace fiery

@@ -54,24 +54,32 @@ namespace {
     constexpr int PERCENT_MULTIPLIER = 100;
 }
 
-// Static instance pointer for singleton access
-static WorldServer* g_world_server_instance = nullptr;
+// Thread-safe static instance pointer for singleton-like access
+// Note: WorldServer requires constructor parameters, so this is a "single instance with static accessor"
+// pattern rather than a true singleton. Only one WorldServer should exist at a time.
+static std::atomic<WorldServer*> g_world_server_instance{nullptr};
 
 WorldServer::WorldServer(asio::io_context &io_context, const ServerConfig &config)
     : io_context_(io_context), world_strand_(asio::make_strand(io_context)), config_(config),
       start_time_(std::chrono::steady_clock::now()) {
 
+    // Ensure only one WorldServer instance exists at a time
+    WorldServer* expected = nullptr;
+    if (!g_world_server_instance.compare_exchange_strong(expected, this)) {
+        Log::error("Attempted to create multiple WorldServer instances - this is not allowed");
+        throw std::runtime_error("Multiple WorldServer instances not allowed");
+    }
+
     Log::info("WorldServer created with strand-based architecture");
-    g_world_server_instance = this;
 }
 
-WorldServer::~WorldServer() { 
-    g_world_server_instance = nullptr;
-    stop(); 
+WorldServer::~WorldServer() {
+    stop();
+    g_world_server_instance.store(nullptr, std::memory_order_release);
 }
 
 WorldServer* WorldServer::instance() {
-    return g_world_server_instance;
+    return g_world_server_instance.load(std::memory_order_acquire);
 }
 
 Result<void> WorldServer::initialize(bool /* is_test_mode */) {
