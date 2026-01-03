@@ -1192,7 +1192,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     case MEDIT_HITROLL:
         OLC_MOB(d)->mob_specials.ex_hitroll = std::clamp(atoi(arg), -50, 50);
         OLC_MOB(d)->points.hitroll =
-            get_set_hd(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1);
+            get_set_hd(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 1);
         OLC_MOB(d)->points.hitroll += OLC_MOB(d)->mob_specials.ex_hitroll;
 
         break;
@@ -1200,7 +1200,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     case MEDIT_DAMROLL:
         OLC_MOB(d)->mob_specials.ex_damroll = std::clamp(atoi(arg), -50, 50);
         OLC_MOB(d)->points.damroll =
-            get_set_hd(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 0);
+            get_set_hd(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 0);
         OLC_MOB(d)->points.damroll += OLC_MOB(d)->mob_specials.ex_damroll;
 
         break;
@@ -1208,14 +1208,14 @@ void medit_parse(DescriptorData *d, char *arg) {
     case MEDIT_NDD:
         OLC_MOB(d)->mob_specials.ex_damnodice = std::clamp(atoi(arg), -30, 30);
         OLC_MOB(d)->mob_specials.damnodice =
-            get_set_dice(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 0);
+            get_set_dice(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 0);
         OLC_MOB(d)->mob_specials.damnodice += OLC_MOB(d)->mob_specials.ex_damnodice;
         break;
 
     case MEDIT_SDD:
         OLC_MOB(d)->mob_specials.ex_damsizedice = std::clamp(atoi(arg), -125, 125);
         OLC_MOB(d)->mob_specials.damsizedice =
-            get_set_dice(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1);
+            get_set_dice(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 1);
         OLC_MOB(d)->mob_specials.damsizedice += OLC_MOB(d)->mob_specials.ex_damsizedice;
 
         break;
@@ -1229,7 +1229,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     case MEDIT_SIZE_HP_DICE:
         OLC_MOB(d)->mob_specials.ex_hpsizedice = std::clamp(atoi(arg), MIN_ALIGNMENT, MAX_ALIGNMENT);
         OLC_MOB(d)->points.mana =
-            get_set_hit(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 2);
+            get_set_hit(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 2);
         OLC_MOB(d)->points.mana += OLC_MOB(d)->mob_specials.ex_hpsizedice;
 
         break;
@@ -1237,7 +1237,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     case MEDIT_ADD_HP:
         GET_MOVE(OLC_MOB(d)) = std::clamp(atoi(arg), -30000, 30000);
         GET_EX_MAIN_HP(OLC_MOB(d)) =
-            (get_set_hit(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1));
+            (get_set_hit(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 1));
         break;
 
     case MEDIT_AC:
@@ -1250,8 +1250,8 @@ void medit_parse(DescriptorData *d, char *arg) {
 
     case MEDIT_EXP:
         GET_EX_EXP(OLC_MOB(d)) = atol(arg);
-        GET_EXP(OLC_MOB(d)) = get_set_exp(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race,
-                                          OLC_MOB(d)->player.level, GET_ZONE(OLC_MOB(d)));
+        GET_EXP(OLC_MOB(d)) = get_set_exp(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race,
+                                          OLC_MOB(d)->player.class_num, GET_ZONE(OLC_MOB(d)));
         GET_EXP(OLC_MOB(d)) += GET_EX_EXP(OLC_MOB(d));
         break;
 
@@ -1388,27 +1388,31 @@ void medit_parse(DescriptorData *d, char *arg) {
 
     /* update species effected stuff */
     GET_EX_MAIN_HP(OLC_MOB(d)) =
-        (get_set_hit(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1));
-    GET_EXP(OLC_MOB(d)) = get_set_exp(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level,
+        (get_set_hit(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 1));
+    GET_EXP(OLC_MOB(d)) = get_set_exp(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num,
                                       GET_ZONE(OLC_MOB(d)));
     GET_EXP(OLC_MOB(d)) += GET_EX_EXP(OLC_MOB(d));
     OLC_MOB(d)->points.mana =
-        get_set_hit(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 2);
+        get_set_hit(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 2);
     OLC_MOB(d)->points.mana += OLC_MOB(d)->mob_specials.ex_hpsizedice;
     OLC_MOB(d)->points.hit = 20;
     OLC_MOB(d)->points.hit += OLC_MOB(d)->mob_specials.ex_hpnumdice;
     OLC_MOB(d)->points.damroll =
-        get_set_hd(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 0);
+        get_set_hd(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 0);
     OLC_MOB(d)->points.damroll += OLC_MOB(d)->mob_specials.ex_damroll;
     OLC_MOB(d)->points.hitroll =
-        get_set_hd(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1);
+        get_set_hd(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 1);
     OLC_MOB(d)->points.hitroll += OLC_MOB(d)->mob_specials.ex_hitroll;
     OLC_MOB(d)->mob_specials.damnodice =
-        get_set_dice(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 0);
+        get_set_dice(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 0);
     OLC_MOB(d)->mob_specials.damnodice += OLC_MOB(d)->mob_specials.ex_damnodice;
     OLC_MOB(d)->mob_specials.damsizedice =
-        get_set_dice(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1);
+        get_set_dice(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num, 1);
     OLC_MOB(d)->mob_specials.damsizedice += OLC_MOB(d)->mob_specials.ex_damsizedice;
+    GET_AC(OLC_MOB(d)) =
+        std::clamp((get_ac(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num) +
+                    GET_EX_AC(OLC_MOB(d))),
+                   -100, 100);
 
     OLC_VAL(d) = 1;
     medit_disp_menu(d);
