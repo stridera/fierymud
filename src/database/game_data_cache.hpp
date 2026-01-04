@@ -82,9 +82,33 @@ struct RaceData {
 };
 
 /**
+ * @brief Liquid type data loaded from database
+ *
+ * Defines properties for drink containers - appearance, effects when consumed
+ */
+struct LiquidData {
+    int id{0};
+    std::string name;        // Display name: "dark ale"
+    std::string alias;       // Command keyword: "dark-ale"
+    std::string color_desc;  // Appearance when unidentified: "dark"
+
+    // Effects when consumed (per sip)
+    int drunk_effect{0};     // Intoxication increase
+    int hunger_effect{0};    // Hunger satisfaction
+    int thirst_effect{0};    // Thirst quenching
+    // Note: is_alcoholic derived from drunk_effect > 0
+    // Note: Poison and other effects are in ConsumableEffects table
+
+    bool is_alcoholic() const { return drunk_effect > 0; }
+
+    // Normalized alias for case-insensitive lookups
+    std::string lookup_key() const;
+};
+
+/**
  * @brief Singleton cache for game data loaded from database
  *
- * Loads class and race data at startup and provides fast lookups.
+ * Loads class, race, and liquid data at startup and provides fast lookups.
  * Thread-safe for reads after initialization.
  */
 class GameDataCache {
@@ -95,6 +119,7 @@ class GameDataCache {
     Result<void> load_all();
     Result<void> load_classes();
     Result<void> load_races();
+    Result<void> load_liquids();
 
     // Reload data (for hot-reloading after database changes)
     Result<void> reload();
@@ -109,6 +134,11 @@ class GameDataCache {
     const RaceData* find_race_by_name(std::string_view name) const;
     const std::vector<RaceData>& all_races() const { return races_; }
     std::vector<const RaceData*> playable_races() const;
+
+    // Liquid lookups
+    const LiquidData* find_liquid_by_name(std::string_view name) const;
+    const LiquidData* find_liquid_by_alias(std::string_view alias) const;
+    const std::vector<LiquidData>& all_liquids() const { return liquids_; }
 
     // Status
     bool is_loaded() const { return loaded_; }
@@ -126,12 +156,15 @@ class GameDataCache {
     // Data storage
     std::vector<ClassData> classes_;
     std::vector<RaceData> races_;
+    std::vector<LiquidData> liquids_;
 
     // Lookup maps (key -> index in vector)
     std::unordered_map<int, size_t> class_by_id_;
     std::unordered_map<std::string, size_t> class_by_name_;
     std::unordered_map<std::string, size_t> race_by_key_;
     std::unordered_map<std::string, size_t> race_by_name_;
+    std::unordered_map<std::string, size_t> liquid_by_name_;
+    std::unordered_map<std::string, size_t> liquid_by_alias_;
 
     // State
     bool loaded_{false};

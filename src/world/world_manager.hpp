@@ -246,8 +246,10 @@ class WorldManager {
     void update_weather_system(std::chrono::minutes elapsed);
     void initialize_weather_callbacks();
 
-    // Effect System - called each game round to tick down effect durations
-    void tick_all_effects();
+    // Tick Systems
+    void tick_regen_all();      // Fast tick (every 4s) - HP/move regen, DoT/HoT
+    void tick_hour_all();       // Hour tick (every 75s) - effect durations, conditions
+    void tick_all_effects();    // Legacy compatibility - calls tick_regen_all()
 
   private:
     WorldManager() = default;

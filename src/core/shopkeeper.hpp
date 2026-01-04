@@ -144,6 +144,19 @@ public:
     // Shop discovery
     std::vector<EntityId> find_shops_in_room(EntityId room_id) const;
 
+    // Iterate all registered shops
+    template<typename Func>
+    void for_each_shop(Func&& func) const {
+        for (const auto& [keeper_id, shop] : shops_) {
+            if (shop) {
+                func(keeper_id, *shop);
+            }
+        }
+    }
+
+    // Get count of registered shops
+    size_t shop_count() const { return shops_.size(); }
+
 private:
     ShopManager() = default;
     std::unordered_map<EntityId, std::unique_ptr<Shopkeeper>> shops_;

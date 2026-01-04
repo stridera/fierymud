@@ -39,8 +39,8 @@ struct Stats {
     int max_hit_points = 20; // Maximum health
     int mana = 100;         // Current magical energy
     int max_mana = 100;     // Maximum magical energy
-    int movement = 100;     // Current movement points
-    int max_movement = 100; // Maximum movement points
+    int stamina = 100;      // Current stamina
+    int max_stamina = 100;  // Maximum stamina
     
     // Offensive Stats (ACC/EVA combat system)
     int accuracy = 0;           // Attack accuracy (replaces THAC0/hitroll)
@@ -78,7 +78,44 @@ struct Stats {
     
     // Alignment and morality
     int alignment = 0;      // Good/Evil alignment (-1000 to 1000)
-    
+
+    // Condition system (hunger/thirst/drunkenness) - range 0-24
+    // Note: 24 = satiated/drunk, 0 = starving/parched/sober
+    int drunk = 0;          // Intoxication level (0=sober, >6=slurred, >10=too drunk)
+    int hunger = 24;        // Hunger level (24=full, 0=starving)
+    int thirst = 24;        // Thirst level (24=quenched, 0=parched)
+
+    // Condition constants
+    static constexpr int CONDITION_MIN = 0;
+    static constexpr int CONDITION_MAX = 24;
+    static constexpr int DRUNK_SLURRED_THRESHOLD = 6;   // Speech becomes slurred
+    static constexpr int DRUNK_TOO_DRUNK_THRESHOLD = 10; // Can't drink more
+    static constexpr int CONDITION_HUNGRY_THRESHOLD = 4; // Starting to feel hungry
+    static constexpr int CONDITION_THIRSTY_THRESHOLD = 4; // Starting to feel thirsty
+
+    /** Gain condition (drunk/hunger/thirst) - clamps to valid range */
+    void gain_condition(int& condition, int amount) {
+        condition = std::clamp(condition + amount, CONDITION_MIN, CONDITION_MAX);
+    }
+
+    /** Check if too drunk to drink more */
+    bool is_too_drunk() const { return drunk > DRUNK_TOO_DRUNK_THRESHOLD; }
+
+    /** Check if speech is slurred */
+    bool is_slurring() const { return drunk > DRUNK_SLURRED_THRESHOLD; }
+
+    /** Check if hungry (hunger below threshold) */
+    bool is_hungry() const { return hunger < CONDITION_HUNGRY_THRESHOLD; }
+
+    /** Check if thirsty (thirst below threshold) */
+    bool is_thirsty() const { return thirst < CONDITION_THIRSTY_THRESHOLD; }
+
+    /** Check if starving (hunger at 0) */
+    bool is_starving() const { return hunger == CONDITION_MIN; }
+
+    /** Check if parched (thirst at 0) */
+    bool is_parched() const { return thirst == CONDITION_MIN; }
+
     /** Validate stats are within reasonable ranges */
     Result<void> validate() const;
     
@@ -271,7 +308,10 @@ enum class ActorFlag {
     // Additional detection and status flags
     Detect_Poison,      // Can see poisoned creatures
     On_Fire,            // Currently burning
-    Immobilized         // Cannot move (roots, webs, etc.)
+    Immobilized,        // Cannot move (roots, webs, etc.)
+    // Food/drink buffs
+    Refreshed,          // Well-hydrated from drinking (+50% stamina regen)
+    Nourished           // Well-fed from eating (+50% HP regen)
 };
 
 /** Active effect on an actor (spell effect, buff, debuff) */
@@ -279,7 +319,7 @@ struct ActiveEffect {
     std::string name;           // Effect name (e.g., "Armor", "Bless")
     std::string source;         // What applied this (spell name, item, etc.)
     ActorFlag flag;             // Associated flag (if any)
-    int duration_hours;         // Remaining duration in MUD hours (-1 = permanent)
+    double duration_hours;      // Remaining duration in MUD hours (-1 = permanent, supports fractional hours)
     int modifier_value;         // Stat modifier value (e.g., +10 AC)
     std::string modifier_stat;  // What stat is modified (e.g., "armor_class")
     std::chrono::steady_clock::time_point applied_at;  // When effect was applied
@@ -514,25 +554,35 @@ public:
     /** Process all HoT effects for one tick - returns healing done */
     fiery::HotTickResult process_hot_effects();
 
-    /** Periodic character tick - called each MUD hour
-     * Handles: HP/move regeneration, effect durations, poison damage, dying damage
-     * Returns info about what happened for messaging */
+    /** Result of tick processing - contains changes and events that occurred */
     struct TickResult {
         int hp_gained = 0;
-        int move_gained = 0;
+        int stamina_gained = 0;
         int hot_healing = 0;          // Healing from HoT effects
         int poison_damage = 0;
         int dying_damage = 0;
         std::vector<std::string> expired_effects;
         bool died = false;
     };
-    virtual TickResult perform_tick();
 
-    /** Calculate HP regeneration per MUD hour (before applying) */
+    /** Fast regeneration tick (called every 4 real seconds like legacy)
+     * Handles: HP/stamina regeneration, DoT/HoT effects, dying damage
+     * Returns info about what happened for messaging */
+    virtual TickResult perform_regen_tick();
+
+    /** Hourly tick processing (called each MUD hour = 75 real seconds)
+     * Handles: Spell effect duration decrements, condition depletion (drunk)
+     * Returns info about what happened for messaging */
+    virtual TickResult perform_hour_tick();
+
+    /** Legacy compatibility - calls perform_regen_tick() */
+    virtual TickResult perform_tick() { return perform_regen_tick(); }
+
+    /** Calculate HP regeneration per tick (adjusted for 4-second ticks) */
     virtual int calculate_hit_gain() const;
 
-    /** Calculate movement regeneration per MUD hour (before applying) */
-    virtual int calculate_move_gain() const;
+    /** Calculate stamina regeneration per tick (adjusted for 4-second ticks) */
+    virtual int calculate_stamina_gain() const;
 
     /** Get position-based regeneration multiplier (1.0 = normal) */
     double get_regen_multiplier() const;
@@ -804,6 +854,20 @@ public:
     std::string_view description() const override { return description_; }
     void set_description(std::string_view desc) override { description_ = desc; }
 
+    /** Article for dynamic name building (nullopt=a/an, ""=none, "the"/"some"=explicit) */
+    const std::optional<std::string>& article() const { return article_; }
+    void set_article(std::optional<std::string> art) { article_ = std::move(art); }
+
+    /** Base name without article for dynamic name building */
+    std::string_view base_name() const { return base_name_; }
+    void set_base_name(std::string_view name) { base_name_ = name; }
+
+    /** Override display_name to add effect descriptors (glowing, invisible, etc) */
+    std::string display_name(bool with_article = false) const override;
+
+    /** Get effect descriptor for visible effects (sanctuary=glowing, etc) */
+    std::string_view effect_descriptor() const;
+
     /** Memory for received messages (for AI) */
     const std::vector<std::string>& get_received_messages() const { return received_messages_; }
     void clear_received_messages() { received_messages_.clear(); }
@@ -858,6 +922,7 @@ public:
         if (flag == MobFlag::Banker) is_banker_ = value;
         if (flag == MobFlag::Receptionist) is_receptionist_ = value;
         if (flag == MobFlag::Postmaster) is_postmaster_ = value;
+        if (flag == MobFlag::Shopkeeper) is_shopkeeper_ = value;
     }
     void clear_flag(MobFlag flag) { set_flag(flag, false); }
 
@@ -921,6 +986,10 @@ private:
     EntityId prototype_id_;         // For spawned mobs, the prototype they came from
     std::vector<std::string> received_messages_;
     std::string description_ = "";  // Detailed description for NPCs
+
+    // Article and base name for dynamic display
+    std::optional<std::string> article_;  // nullopt=a/an, ""=none, "the"/"some"=explicit
+    std::string base_name_;               // Name without article for dynamic display
 
     // Mobile-specific properties from database
     std::string life_force_ = "Life";
@@ -1136,6 +1205,10 @@ public:
     std::string_view afk_message() const { return afk_message_; }
     void set_afk_message(std::string_view msg) { afk_message_ = msg; }
 
+    /** Prompt format string - used for command prompt display */
+    std::string_view prompt() const { return prompt_; }
+    void set_prompt(std::string_view prompt_format) { prompt_ = prompt_format; }
+
     /** Wimpy threshold - flee when HP falls below this value */
     int wimpy_threshold() const { return wimpy_threshold_; }
     void set_wimpy_threshold(int threshold) {
@@ -1327,6 +1400,7 @@ private:
     std::bitset<static_cast<size_t>(PlayerFlag::MAX_PLAYER_FLAGS)> player_flags_;
     int wimpy_threshold_ = 0;               // Flee when HP falls below this
     std::string afk_message_ = "";          // AFK message to display
+    std::string prompt_ = "<%h/%Hhp %v/%Vs>";  // Prompt format string
 
     // Currency
     fiery::Money wallet_;        // Money on person
@@ -1575,8 +1649,8 @@ namespace ActorUtils {
     /** Calculate mana for level and intelligence */
     int calculate_mana(int level, int intelligence);
     
-    /** Calculate movement for level and constitution */
-    int calculate_movement(int level, int constitution);
+    /** Calculate stamina for level and constitution */
+    int calculate_stamina(int level, int constitution);
     
     /** Format actor stats for display */
     std::string format_stats(const Stats& stats);

@@ -18,6 +18,7 @@
 #include "movement_commands.hpp"
 #include "object_commands.hpp"
 #include "position_commands.hpp"
+#include "quest_commands.hpp"
 #include "social_commands.hpp"
 #include "system_commands.hpp"
 
@@ -118,6 +119,11 @@ Result<void> register_all_commands() {
 
     if (auto result = AccountCommands::register_commands(); !result) {
         Log::error("Failed to register account commands: {}", result.error().message);
+        return result;
+    }
+
+    if (auto result = QuestCommands::register_commands(); !result) {
+        Log::error("Failed to register quest commands: {}", result.error().message);
         return result;
     }
 
@@ -506,7 +512,7 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
     }
 
     // Stack items by prototype ID for display
-    // Use a vector of pairs to preserve insertion order
+    // Different liquid types have different prototype IDs, so they'll stack separately
     std::vector<std::pair<EntityId, int>> item_counts;
     std::unordered_map<EntityId, size_t> id_to_index;
     std::unordered_map<EntityId, std::string> id_to_description;
@@ -514,14 +520,15 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
     for (const auto &item : inventory) {
         if (!item) continue;
 
-        EntityId proto_id = item->id();  // Items share prototype ID
+        EntityId proto_id = item->id();
         auto it = id_to_index.find(proto_id);
         if (it != id_to_index.end()) {
             item_counts[it->second].second++;
         } else {
             id_to_index[proto_id] = item_counts.size();
             item_counts.emplace_back(proto_id, 1);
-            id_to_description[proto_id] = std::string(item->short_description());
+            // Use display_name for drinks to show liquid contents
+            id_to_description[proto_id] = item->display_name(true);
         }
     }
 
@@ -743,6 +750,52 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     if (!can_move_direction(ctx.actor, dir, failure_reason)) {
         ctx.send_error(fmt::format("Cannot move {}: {}", magic_enum::enum_name(dir), failure_reason));
         return CommandResult::InvalidState;
+    }
+
+    // Calculate movement cost based on destination room sector
+    int move_cost = 1;  // Default cost
+    auto room = ctx.actor->current_room();
+    if (room) {
+        auto exit = room->get_exit(dir);
+        if (exit) {
+            auto dest_room = World().get_room(exit->to_room);
+            if (dest_room) {
+                move_cost = RoomUtils::get_movement_cost(dest_room->sector_type());
+
+                // Flying reduces movement cost to 1 for most terrain
+                if (ctx.actor->position() == Position::Flying ||
+                    ctx.actor->has_flag(ActorFlag::Flying)) {
+                    move_cost = 1;
+                }
+
+                // Mounted actors use mount's movement (reduced cost)
+                if (ctx.actor->is_mounted()) {
+                    move_cost = std::max(1, move_cost / 2);
+                }
+
+                // Waterwalk reduces water sector cost
+                if (ctx.actor->has_flag(ActorFlag::Waterwalk) &&
+                    RoomUtils::is_water_sector(dest_room->sector_type())) {
+                    move_cost = 1;
+                }
+            }
+        }
+    }
+
+    // Check if actor has enough movement points (skip for gods)
+    bool is_god = false;
+    if (auto* player = dynamic_cast<const Player*>(ctx.actor.get())) {
+        is_god = player->is_god();
+    }
+
+    if (!is_god && ctx.actor->stats().stamina < move_cost) {
+        ctx.send_error("You are too exhausted to move!");
+        return CommandResult::ResourceError;
+    }
+
+    // Deduct stamina (unless god)
+    if (!is_god) {
+        ctx.actor->stats().stamina -= move_cost;
     }
 
     // Interrupt concentration-based activities (like meditation)

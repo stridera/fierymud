@@ -87,8 +87,10 @@ void register_actor_bindings(sol::state& lua) {
         "max_hp", sol::property([](const Actor& a) { return a.stats().max_hit_points; }),
         "mana", sol::property([](const Actor& a) { return a.stats().mana; }),
         "max_mana", sol::property([](const Actor& a) { return a.stats().max_mana; }),
-        "move", sol::property([](const Actor& a) { return a.stats().movement; }),
-        "max_move", sol::property([](const Actor& a) { return a.stats().max_movement; }),
+        "stamina", sol::property([](const Actor& a) { return a.stats().stamina; }),
+        "max_stamina", sol::property([](const Actor& a) { return a.stats().max_stamina; }),
+        "move", sol::property([](const Actor& a) { return a.stats().stamina; }),  // Alias for backwards compat
+        "max_move", sol::property([](const Actor& a) { return a.stats().max_stamina; }),  // Alias for backwards compat
         "alignment", sol::property([](const Actor& a) { return a.stats().alignment; }),
         "wealth", sol::property(&Actor::wealth),
 

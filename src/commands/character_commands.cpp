@@ -1,12 +1,16 @@
 #include "character_commands.hpp"
+#include "command_parser.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
+#include "../core/money.hpp"
+#include "../core/object.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/world_queries.hpp"
 #include "../game/composer_system.hpp"
 #include "../server/persistence_manager.hpp"
 #include "../text/string_utils.hpp"
+#include "../world/world_manager.hpp"
 #include <fmt/format.h>
 #include <algorithm>
 
@@ -1220,6 +1224,790 @@ Result<CommandResult> cmd_write(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Set Command (god-level configuration)
+// =============================================================================
+
+// Helper to parse a number from string, returns nullopt if invalid
+std::optional<int> parse_number(std::string_view str) {
+    if (str.empty()) return std::nullopt;
+    try {
+        size_t pos = 0;
+        int value = std::stoi(std::string(str), &pos);
+        if (pos == str.size()) return value;
+    } catch (...) {}
+    return std::nullopt;
+}
+
+// Helper to parse a long from string, returns nullopt if invalid
+std::optional<long> parse_long(std::string_view str) {
+    if (str.empty()) return std::nullopt;
+    try {
+        size_t pos = 0;
+        long value = std::stol(std::string(str), &pos);
+        if (pos == str.size()) return value;
+    } catch (...) {}
+    return std::nullopt;
+}
+
+Result<CommandResult> cmd_set(const CommandContext &ctx) {
+    // Usage: set <player> <field> <value>
+    // Or: set <field> <value> (applies to self)
+
+    if (ctx.arg_count() == 0) {
+        ctx.send("<b:yellow>Set command - modify player/character properties</>");
+        ctx.send("");
+        ctx.send("<b:white>Usage:</> set <target> <field> <value>");
+        ctx.send("        Use 'self' or 'me' to target yourself");
+        ctx.send("");
+        ctx.send("<b:cyan>Stats:</> str, int, wis, dex, con, cha");
+        ctx.send("<b:cyan>Points:</> hp, maxhp, move, maxmove");
+        ctx.send("<b:cyan>Offensive:</> accuracy, attackpower, spellpower, penetration");
+        ctx.send("<b:cyan>Defensive:</> evasion, armor, soak, hardness, ward");
+        ctx.send("<b:cyan>Resist:</> fire, cold, lightning, acid, poison");
+        ctx.send("<b:cyan>Other:</> perception, concealment, focus");
+        ctx.send("<b:cyan>Progress:</> level, exp, align");
+        ctx.send("<b:cyan>Character:</> class, race, gender, size, title");
+        ctx.send("<b:cyan>Player:</> home, godlevel");
+        ctx.send("<b:cyan>Flags:</> brief, compact, autoloot, autogold, autosplit,");
+        ctx.send("        autoexit, wimpy, afk, deaf, notell, pk, holylight, showids");
+        ctx.send("<b:cyan>Skills:</> skill <skill_name> <value>");
+        ctx.send("<b:cyan>Currency:</> wallet, bank (use money format: 3p 2g 5s 10c)");
+        ctx.send("");
+        ctx.send("<b:white>Example:</> set Lokari str 18");
+        ctx.send("         set self level 50");
+        ctx.send("         set me wallet 3p 2g");
+        ctx.send("         set self skill fireball 95");
+        return CommandResult::Success;
+    }
+
+    // Require at least 3 args: target field value
+    if (ctx.arg_count() < 3) {
+        ctx.send_error("Usage: set <target> <field> <value>");
+        ctx.send_info("Use 'self' or 'me' to target yourself.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Parse target - "self" or "me" means the actor
+    std::shared_ptr<Actor> target;
+    std::string target_arg = std::string{ctx.arg(0)};
+    std::transform(target_arg.begin(), target_arg.end(), target_arg.begin(), ::tolower);
+
+    if (target_arg == "self" || target_arg == "me") {
+        target = ctx.actor;
+    } else {
+        target = ctx.find_actor_global(ctx.arg(0));
+        if (!target) {
+            ctx.send_error(fmt::format("Player '{}' not found.", ctx.arg(0)));
+            return CommandResult::InvalidTarget;
+        }
+    }
+
+    std::string field = std::string{ctx.arg(1)};
+    std::string value_str = std::string{ctx.arg(2)};
+    size_t value_arg_index = 2;
+
+    // Lowercase the field for matching
+    std::transform(field.begin(), field.end(), field.begin(), ::tolower);
+
+    auto target_player = std::dynamic_pointer_cast<Player>(target);
+    Stats& stats = target->stats();
+
+    // =========================================================================
+    // PRIMARY STATS
+    // =========================================================================
+    if (field == "str" || field == "strength") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Strength must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.strength = clamped;
+        ctx.send_success(fmt::format("{}'s strength set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "int" || field == "intelligence") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Intelligence must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.intelligence = clamped;
+        ctx.send_success(fmt::format("{}'s intelligence set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "wis" || field == "wisdom") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Wisdom must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.wisdom = clamped;
+        ctx.send_success(fmt::format("{}'s wisdom set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "dex" || field == "dexterity") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Dexterity must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.dexterity = clamped;
+        ctx.send_success(fmt::format("{}'s dexterity set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "con" || field == "constitution") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Constitution must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.constitution = clamped;
+        ctx.send_success(fmt::format("{}'s constitution set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "cha" || field == "charisma") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Charisma must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.charisma = clamped;
+        ctx.send_success(fmt::format("{}'s charisma set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // HIT POINTS / MANA / MOVEMENT
+    // =========================================================================
+    if (field == "hp" || field == "hitpoints") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Hit points must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, -9, stats.max_hit_points);
+        stats.hit_points = clamped;
+        ctx.send_success(fmt::format("{}'s hit points set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "maxhp" || field == "maxhitpoints") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Max hit points must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 500000);
+        stats.max_hit_points = clamped;
+        if (stats.hit_points > clamped) stats.hit_points = clamped;
+        ctx.send_success(fmt::format("{}'s max hit points set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "stamina" || field == "st" || field == "move" || field == "movement") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Stamina must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 0, stats.max_stamina);
+        stats.stamina = clamped;
+        ctx.send_success(fmt::format("{}'s stamina set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "maxstamina" || field == "maxst" || field == "maxmove" || field == "maxmovement") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Max stamina must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 500000);
+        stats.max_stamina = clamped;
+        if (stats.stamina > clamped) stats.stamina = clamped;
+        ctx.send_success(fmt::format("{}'s max stamina set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // COMBAT STATS
+    // =========================================================================
+    if (field == "accuracy" || field == "hitroll") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Accuracy must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.accuracy = *val;
+        ctx.send_success(fmt::format("{}'s accuracy set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "attackpower" || field == "damroll") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Attack power must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.attack_power = *val;
+        ctx.send_success(fmt::format("{}'s attack power set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "evasion") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Evasion must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.evasion = *val;
+        ctx.send_success(fmt::format("{}'s evasion set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "armor" || field == "ac" || field == "armorrating") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Armor rating must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.armor_rating = *val;
+        ctx.send_success(fmt::format("{}'s armor rating set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "perception") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Perception must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.perception = *val;
+        ctx.send_success(fmt::format("{}'s perception set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "concealment" || field == "hiddenness") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Concealment must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.concealment = *val;
+        ctx.send_success(fmt::format("{}'s concealment set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "focus") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Focus must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.focus = *val;
+        ctx.send_success(fmt::format("{}'s focus set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // ADDITIONAL OFFENSIVE STATS
+    // =========================================================================
+    if (field == "spellpower" || field == "spell_power") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Spell power must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.spell_power = *val;
+        ctx.send_success(fmt::format("{}'s spell power set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "penetration" || field == "armorpen") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Penetration must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.penetration_flat = *val;
+        ctx.send_success(fmt::format("{}'s armor penetration set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // ADDITIONAL DEFENSIVE STATS
+    // =========================================================================
+    if (field == "soak") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Soak must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.soak = *val;
+        ctx.send_success(fmt::format("{}'s soak set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "hardness") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Hardness must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.hardness = *val;
+        ctx.send_success(fmt::format("{}'s hardness set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "ward") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Ward must be a number (0-100).");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 0, 100);
+        stats.ward_percent = clamped;
+        ctx.send_success(fmt::format("{}'s ward set to {}%.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // ELEMENTAL RESISTANCES
+    // =========================================================================
+    if (field == "fire" || field == "fire_resist") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Fire resistance must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.resistance_fire = *val;
+        ctx.send_success(fmt::format("{}'s fire resistance set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "cold" || field == "cold_resist") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Cold resistance must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.resistance_cold = *val;
+        ctx.send_success(fmt::format("{}'s cold resistance set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "lightning" || field == "lightning_resist" || field == "electric") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Lightning resistance must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.resistance_lightning = *val;
+        ctx.send_success(fmt::format("{}'s lightning resistance set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "acid" || field == "acid_resist") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Acid resistance must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.resistance_acid = *val;
+        ctx.send_success(fmt::format("{}'s acid resistance set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    if (field == "poison" || field == "poison_resist") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Poison resistance must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.resistance_poison = *val;
+        ctx.send_success(fmt::format("{}'s poison resistance set to {}.", target->name(), *val));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // LEVEL / EXPERIENCE / ALIGNMENT
+    // =========================================================================
+    if (field == "level" || field == "lvl") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Level must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.level = clamped;
+        if (target_player) {
+            target_player->set_level(clamped);
+        }
+        ctx.send_success(fmt::format("{}'s level set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "exp" || field == "experience") {
+        auto val = parse_long(value_str);
+        if (!val) {
+            ctx.send_error("Experience must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        stats.experience = std::max(0L, *val);
+        ctx.send_success(fmt::format("{}'s experience set to {}.", target->name(), stats.experience));
+        return CommandResult::Success;
+    }
+
+    if (field == "align" || field == "alignment") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Alignment must be a number (-1000 to 1000).");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, -1000, 1000);
+        stats.alignment = clamped;
+        ctx.send_success(fmt::format("{}'s alignment set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // CHARACTER PROPERTIES (CLASS, RACE, GENDER, SIZE, TITLE)
+    // =========================================================================
+    if (field == "class") {
+        if (target_player) {
+            target_player->set_class(value_str);
+            ctx.send_success(fmt::format("{}'s class set to {}.", target->name(), value_str));
+        } else {
+            ctx.send_error("Only players have a class.");
+        }
+        return CommandResult::Success;
+    }
+
+    if (field == "race") {
+        target->set_race(value_str);
+        ctx.send_success(fmt::format("{}'s race set to {}.", target->name(), value_str));
+        return CommandResult::Success;
+    }
+
+    if (field == "gender" || field == "sex") {
+        std::string gender_lower = value_str;
+        std::transform(gender_lower.begin(), gender_lower.end(), gender_lower.begin(), ::tolower);
+
+        std::string gender_proper;
+        if (gender_lower == "male" || gender_lower == "m") {
+            gender_proper = "Male";
+        } else if (gender_lower == "female" || gender_lower == "f") {
+            gender_proper = "Female";
+        } else if (gender_lower == "neutral" || gender_lower == "n" || gender_lower == "neuter") {
+            gender_proper = "Neuter";
+        } else if (gender_lower == "nonbinary" || gender_lower == "nb") {
+            gender_proper = "Nonbinary";
+        } else {
+            ctx.send_error("Gender must be: male, female, neutral, or nonbinary.");
+            return CommandResult::InvalidSyntax;
+        }
+
+        target->set_gender(gender_proper);
+        ctx.send_success(fmt::format("{}'s gender set to {}.", target->name(), gender_proper));
+        return CommandResult::Success;
+    }
+
+    if (field == "size") {
+        std::string size_lower = value_str;
+        std::transform(size_lower.begin(), size_lower.end(), size_lower.begin(), ::tolower);
+
+        std::string size_proper;
+        if (size_lower == "tiny" || size_lower == "t") {
+            size_proper = "Tiny";
+        } else if (size_lower == "small" || size_lower == "s") {
+            size_proper = "Small";
+        } else if (size_lower == "medium" || size_lower == "m") {
+            size_proper = "Medium";
+        } else if (size_lower == "large" || size_lower == "l") {
+            size_proper = "Large";
+        } else if (size_lower == "huge" || size_lower == "h") {
+            size_proper = "Huge";
+        } else if (size_lower == "giant" || size_lower == "gargantuan" || size_lower == "g") {
+            size_proper = "Giant";
+        } else {
+            ctx.send_error("Size must be: tiny, small, medium, large, huge, or giant.");
+            return CommandResult::InvalidSyntax;
+        }
+
+        target->set_size(size_proper);
+        ctx.send_success(fmt::format("{}'s size set to {}.", target->name(), size_proper));
+        return CommandResult::Success;
+    }
+
+    if (field == "title") {
+        if (!target_player) {
+            ctx.send_error("Only players have titles.");
+            return CommandResult::InvalidTarget;
+        }
+        // Collect all remaining args as title
+        std::string title;
+        for (size_t i = value_arg_index; i < ctx.arg_count(); ++i) {
+            if (!title.empty()) title += " ";
+            title += std::string{ctx.arg(i)};
+        }
+        target_player->set_title(title);
+        ctx.send_success(fmt::format("{}'s title set to: {}", target->name(), title));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // PLAYER SPECIFIC PROPERTIES
+    // =========================================================================
+    if (field == "godlevel" || field == "god") {
+        if (!target_player) {
+            ctx.send_error("Only players have god level.");
+            return CommandResult::InvalidTarget;
+        }
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("God level must be a number (0=mortal, 1-5=immortal).");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 0, 5);
+        target_player->set_god_level(clamped);
+        ctx.send_success(fmt::format("{}'s god level set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    if (field == "home" || field == "homeroom") {
+        if (!target_player) {
+            ctx.send_error("Only players have home rooms.");
+            return CommandResult::InvalidTarget;
+        }
+
+        EntityId room_id;
+        if (value_str.empty() || value_str == "here") {
+            if (!ctx.room) {
+                ctx.send_error("You're not in a valid room.");
+                return CommandResult::InvalidState;
+            }
+            room_id = ctx.room->id();
+        } else {
+            auto room_id_opt = CommandParserUtils::parse_entity_id(value_str);
+            if (!room_id_opt || !room_id_opt->is_valid()) {
+                ctx.send_error("Invalid room ID.");
+                return CommandResult::InvalidSyntax;
+            }
+            room_id = *room_id_opt;
+        }
+
+        auto room = WorldManager::instance().get_room(room_id);
+        if (!room) {
+            ctx.send_error(fmt::format("Room {}:{} does not exist.", room_id.zone_id(), room_id.local_id()));
+            return CommandResult::InvalidTarget;
+        }
+
+        target_player->set_start_room(room_id);
+        ctx.send_success(fmt::format("{}'s home room set to {}:{} ({}).",
+            target->name(), room_id.zone_id(), room_id.local_id(), room->name()));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // PLAYER FLAGS (BOOLEAN PREFERENCES)
+    // =========================================================================
+    auto set_player_flag = [&](PlayerFlag flag, std::string_view flag_name) -> Result<CommandResult> {
+        if (!target_player) {
+            ctx.send_error("Only players have preference flags.");
+            return CommandResult::InvalidTarget;
+        }
+
+        std::string val_lower = value_str;
+        std::transform(val_lower.begin(), val_lower.end(), val_lower.begin(), ::tolower);
+
+        bool on = (val_lower == "on" || val_lower == "yes" || val_lower == "true" || val_lower == "1");
+        bool off = (val_lower == "off" || val_lower == "no" || val_lower == "false" || val_lower == "0");
+
+        if (!on && !off) {
+            ctx.send_error(fmt::format("{} must be on/off, yes/no, or true/false.", flag_name));
+            return CommandResult::InvalidSyntax;
+        }
+
+        target_player->set_player_flag(flag, on);
+        ctx.send_success(fmt::format("{}'s {} flag set to {}.", target->name(), flag_name, on ? "ON" : "OFF"));
+        return CommandResult::Success;
+    };
+
+    if (field == "brief") return set_player_flag(PlayerFlag::Brief, "brief");
+    if (field == "compact") return set_player_flag(PlayerFlag::Compact, "compact");
+    if (field == "autoloot") return set_player_flag(PlayerFlag::AutoLoot, "autoloot");
+    if (field == "autogold") return set_player_flag(PlayerFlag::AutoGold, "autogold");
+    if (field == "autosplit") return set_player_flag(PlayerFlag::AutoSplit, "autosplit");
+    if (field == "autoexit") return set_player_flag(PlayerFlag::AutoExit, "autoexits");
+    if (field == "autoassist") return set_player_flag(PlayerFlag::AutoAssist, "autoassist");
+    if (field == "wimpy") return set_player_flag(PlayerFlag::Wimpy, "wimpy");
+    if (field == "afk") return set_player_flag(PlayerFlag::Afk, "afk");
+    if (field == "deaf") return set_player_flag(PlayerFlag::Deaf, "deaf");
+    if (field == "notell" || field == "no_tell") return set_player_flag(PlayerFlag::NoTell, "no-tell");
+    if (field == "nosummon" || field == "no_summon") return set_player_flag(PlayerFlag::NoSummon, "no-summon");
+    if (field == "pk" || field == "pkenabled") return set_player_flag(PlayerFlag::PkEnabled, "pk");
+    if (field == "holylight") return set_player_flag(PlayerFlag::HolyLight, "holylight");
+    if (field == "showids") return set_player_flag(PlayerFlag::ShowIds, "show-ids");
+    if (field == "showdice" || field == "dicerolls") return set_player_flag(PlayerFlag::ShowDiceRolls, "show-dice");
+    if (field == "colorblind") return set_player_flag(PlayerFlag::ColorBlind, "colorblind");
+
+    // =========================================================================
+    // SKILL / ABILITY SETTING
+    // =========================================================================
+    if (field == "skill" || field == "spell" || field == "ability") {
+        if (!target_player) {
+            ctx.send_error("Only players have skills.");
+            return CommandResult::InvalidTarget;
+        }
+
+        // Need: set skill <player> <skill_name> <value>
+        // or: set <player> skill <skill_name> <value>
+        // We already consumed field as "skill", so next args are skill name and value
+        if (ctx.arg_count() < value_arg_index + 2) {
+            ctx.send_error("Usage: set <player> skill <skill_name> <proficiency>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        std::string skill_name = std::string{ctx.arg(value_arg_index)};
+        auto prof_val = parse_number(ctx.arg(value_arg_index + 1));
+        if (!prof_val) {
+            ctx.send_error("Proficiency must be a number (0-100).");
+            return CommandResult::InvalidSyntax;
+        }
+        int proficiency = std::clamp(*prof_val, 0, 100);
+
+        // Find the ability by name
+        auto ability = target_player->find_ability_by_name(skill_name);
+        if (!ability) {
+            ctx.send_error(fmt::format("Ability '{}' not found.", skill_name));
+            return CommandResult::InvalidTarget;
+        }
+
+        if (target_player->set_proficiency(ability->ability_id, proficiency)) {
+            if (proficiency > 0 && !ability->known) {
+                target_player->learn_ability(ability->ability_id);
+            }
+            ctx.send_success(fmt::format("{}'s {} proficiency set to {}%.",
+                target->name(), ability->name, proficiency));
+        } else {
+            ctx.send_error(fmt::format("Failed to set proficiency for {}.", skill_name));
+        }
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // CURRENCY (supports money strings like "3p 2g 5s 10c" or plain copper)
+    // =========================================================================
+    if (field == "wallet" || field == "wealth" || field == "money") {
+        if (!target_player) {
+            ctx.send_error("Only players have currency.");
+            return CommandResult::InvalidTarget;
+        }
+        // Collect all remaining args as money string (e.g., "3p 2g 5s")
+        std::string money_str;
+        for (size_t i = value_arg_index; i < ctx.arg_count(); ++i) {
+            if (!money_str.empty()) money_str += " ";
+            money_str += std::string{ctx.arg(i)};
+        }
+        auto money = fiery::parse_money(money_str);
+        if (!money) {
+            ctx.send_error("Invalid money format. Use: 3p 2g 5s 10c (or plain copper amount)");
+            return CommandResult::InvalidSyntax;
+        }
+        target_player->wallet() = *money;
+        ctx.send_success(fmt::format("{}'s wallet set to {}.", target->name(),
+            target_player->wallet().to_brief()));
+        return CommandResult::Success;
+    }
+
+    if (field == "bank") {
+        if (!target_player) {
+            ctx.send_error("Only players have bank accounts.");
+            return CommandResult::InvalidTarget;
+        }
+        // Collect all remaining args as money string
+        std::string money_str;
+        for (size_t i = value_arg_index; i < ctx.arg_count(); ++i) {
+            if (!money_str.empty()) money_str += " ";
+            money_str += std::string{ctx.arg(i)};
+        }
+        auto money = fiery::parse_money(money_str);
+        if (!money) {
+            ctx.send_error("Invalid money format. Use: 3p 2g 5s 10c (or plain copper amount)");
+            return CommandResult::InvalidSyntax;
+        }
+        target_player->bank() = *money;
+        ctx.send_success(fmt::format("{}'s bank set to {}.", target->name(),
+            target_player->bank().to_brief()));
+        return CommandResult::Success;
+    }
+
+    // Unknown field
+    ctx.send_error(fmt::format("Unknown set field: '{}'. Type 'set' for help.", field));
+    return CommandResult::InvalidSyntax;
+}
+
+// =============================================================================
+// Touch Command (for touchstones and interactive objects)
+// =============================================================================
+
+Result<CommandResult> cmd_touch(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_usage("touch <object>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Find the object in the room
+    auto target = ctx.find_object_target(ctx.arg(0));
+    if (!target) {
+        ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if it's a touchstone
+    if (target->is_touchstone()) {
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (!player) {
+            ctx.send_error("Only players can use touchstones.");
+            return CommandResult::InvalidTarget;
+        }
+
+        if (!ctx.room) {
+            ctx.send_error("You're not in a valid room.");
+            return CommandResult::InvalidState;
+        }
+
+        player->set_start_room(ctx.room->id());
+        ctx.send_success(fmt::format("You touch {} and feel a warm connection to this place.",
+            target->display_name()));
+        ctx.send_info(fmt::format("Your home is now set to {}:{} ({}).",
+            ctx.room->id().zone_id(), ctx.room->id().local_id(), ctx.room->name()));
+        ctx.send_to_room(fmt::format("{} touches {} reverently.",
+            ctx.actor->display_name(), target->display_name()), true);
+
+        return CommandResult::Success;
+    }
+
+    // Not a touchstone - just a regular touch
+    ctx.send(fmt::format("You touch {}.", target->display_name()));
+    ctx.send_to_room(fmt::format("{} touches {}.",
+        ctx.actor->display_name(), target->display_name()), true);
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -1332,6 +2120,29 @@ Result<void> register_commands() {
         .command("write", cmd_write)
         .category("Character")
         .privilege(PrivilegeLevel::Player)
+        .build();
+
+    // Configuration commands
+    Commands()
+        .command("set", cmd_set)
+        .category("Admin")
+        .privilege(PrivilegeLevel::God)
+        .description("Set various character and game properties")
+        .usage("set <subcommand> [args...]")
+        .help(
+            "<b:yellow>Subcommands:</>\n"
+            "  set home           - Set current room as your home\n"
+            "  set home <player>  - Set current room as player's home\n"
+            "  set home <player> <room_id> - Set specific room as player's home")
+        .build();
+
+    // Interactive object commands
+    Commands()
+        .command("touch", cmd_touch)
+        .category("Character")
+        .privilege(PrivilegeLevel::Player)
+        .description("Touch an object (use touchstones to set home)")
+        .usage("touch <object>")
         .build();
 
     return Success();

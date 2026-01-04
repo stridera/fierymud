@@ -356,8 +356,8 @@ struct CharacterData {
     // Vitals
     int hit_points = 100;
     int hit_points_max = 100;
-    int movement = 100;
-    int movement_max = 100;
+    int stamina = 100;
+    int stamina_max = 100;
 
     // Currency (stored as copper)
     long wealth = 0;
@@ -572,6 +572,7 @@ struct ShopData {
 struct ShopItemData {
     EntityId object_id;             // Object prototype (zone_id, local_id)
     int amount = -1;                // Stock quantity (-1 = unlimited)
+    int price = 0;                  // Price in copper (0 = use object's base cost)
 };
 
 /** Shop mob data from the ShopMobs table (for pet/mount shops) */
@@ -579,6 +580,15 @@ struct ShopMobData {
     EntityId mob_id;                // Mob prototype (zone_id, local_id)
     int amount = -1;                // Stock quantity (-1 = unlimited)
     int price = 0;                  // Price in copper (0 = use mob level * 100)
+};
+
+/** Shop ability data from the ShopAbilities table (for healer/trainer shops) */
+struct ShopAbilityData {
+    int ability_id;                 // Ability/spell ID from Abilities table
+    int price = 0;                  // Price in copper (0 = use ability circle * 1000)
+    float spawn_chance = 1.0f;      // Probability this ability is available
+    std::string visibility_requirement;  // Lua expression for visibility
+    std::string purchase_requirement;    // Lua expression for purchase eligibility
 };
 
 /** Load all shops from the database */
@@ -593,6 +603,10 @@ Result<std::vector<ShopItemData>> load_shop_items(
 
 /** Load mobs sold by a specific shop (pet/mount shop) */
 Result<std::vector<ShopMobData>> load_shop_mobs(
+    pqxx::work& txn, int shop_zone_id, int shop_id);
+
+/** Load abilities sold by a specific shop (healer/trainer shop) */
+Result<std::vector<ShopAbilityData>> load_shop_abilities(
     pqxx::work& txn, int shop_zone_id, int shop_id);
 
 // =============================================================================
@@ -611,6 +625,12 @@ struct CharacterItemData {
     std::vector<std::string> instance_flags;  // Per-instance flags
     std::string custom_name;        // Custom name override
     std::string custom_description; // Custom description override
+
+    // Liquid container state (for drinks)
+    std::string liquid_type;        // Type of liquid (WATER, ALE, etc.)
+    int liquid_remaining = 0;       // Current amount of liquid
+    std::vector<int> liquid_effects; // Effect IDs applied to this liquid instance
+    bool liquid_identified = false; // Is the liquid type known?
 };
 
 /** Load all items for a character */

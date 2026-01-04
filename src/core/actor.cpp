@@ -86,8 +86,8 @@ Result<void> Stats::validate() const {
     if (mana < 0 || mana > max_mana) {
         return std::unexpected(Errors::InvalidState("Mana invalid"));
     }
-    if (movement < 0 || movement > max_movement) {
-        return std::unexpected(Errors::InvalidState("Movement invalid"));
+    if (stamina < 0 || stamina > max_stamina) {
+        return std::unexpected(Errors::InvalidState("Stamina invalid"));
     }
     
     if (level < MIN_LEVEL || level > MAX_LEVEL) {
@@ -137,8 +137,8 @@ nlohmann::json Stats::to_json() const {
         {"max_hit_points", max_hit_points},
         {"mana", mana},
         {"max_mana", max_mana},
-        {"movement", movement},
-        {"max_movement", max_movement},
+        {"stamina", stamina},
+        {"max_stamina", max_stamina},
         // New combat stats
         {"accuracy", accuracy},
         {"attack_power", attack_power},
@@ -179,8 +179,8 @@ Result<Stats> Stats::from_json(const nlohmann::json& json) {
         if (json.contains("max_hit_points")) stats.max_hit_points = json["max_hit_points"].get<int>();
         if (json.contains("mana")) stats.mana = json["mana"].get<int>();
         if (json.contains("max_mana")) stats.max_mana = json["max_mana"].get<int>();
-        if (json.contains("movement")) stats.movement = json["movement"].get<int>();
-        if (json.contains("max_movement")) stats.max_movement = json["max_movement"].get<int>();
+        if (json.contains("stamina")) stats.stamina = json["stamina"].get<int>();
+        if (json.contains("max_stamina")) stats.max_stamina = json["max_stamina"].get<int>();
         
         // New combat stats
         if (json.contains("accuracy")) stats.accuracy = json["accuracy"].get<int>();
@@ -807,10 +807,10 @@ Result<void> Actor::level_up() {
     stats_.max_mana += std::max(1, mana_gain);
     stats_.mana = stats_.max_mana;
     
-    // Increase movement
-    int move_gain = 2 + Stats::attribute_modifier(stats_.constitution) / 2;
-    stats_.max_movement += std::max(1, move_gain);
-    stats_.movement = stats_.max_movement;
+    // Increase stamina
+    int stamina_gain = 2 + Stats::attribute_modifier(stats_.constitution) / 2;
+    stats_.max_stamina += std::max(1, stamina_gain);
+    stats_.stamina = stats_.max_stamina;
     
     return Success();
 }
@@ -993,14 +993,20 @@ int Actor::calculate_hit_gain() const {
         return 0;
     }
 
-    // Base regeneration: 5% of max HP per MUD hour
+    // Base regeneration per 4-second tick (legacy-style fast ticks)
+    // With ~19 ticks per MUD hour, we scale appropriately
+    // Standing: slow regen, Resting: moderate, Sleeping: fast
     int max_hp = stats_.max_hit_points;
-    int gain = std::max(1, max_hp / 20);  // At least 1 HP
 
-    // Add hitgain stat bonus (if any) + 2
-    // In legacy this was "char_hitgain" stat, we'll use constitution modifier
+    // Base is 1 HP per 2 ticks while standing for typical character
+    // This gives ~30 HP/minute standing, ~90 HP/minute sleeping
+    int gain = std::max(1, max_hp / 100);  // Base: 1% per tick
+
+    // Add constitution modifier bonus
     int con_mod = Stats::attribute_modifier(stats_.constitution);
-    gain += std::max(0, con_mod + 2);
+    if (con_mod > 0) {
+        gain += con_mod;
+    }
 
     // Apply position multiplier
     double multiplier = get_regen_multiplier();
@@ -1029,18 +1035,24 @@ int Actor::calculate_hit_gain() const {
         gain = gain * (100 + regen_boost) / 100;
     }
 
+    // Nourished effect bonus (from eating food)
+    if (has_effect("Nourished")) {
+        gain = gain * 3 / 2;  // 50% bonus HP regen when well-fed
+    }
+
     return std::max(0, gain);
 }
 
-int Actor::calculate_move_gain() const {
+int Actor::calculate_stamina_gain() const {
     // Check if any DoT effect blocks regeneration completely
     if (is_regen_blocked_by_dot()) {
         return 0;
     }
 
-    // Base regeneration: 10% of max move per MUD hour
-    int max_move = stats_.max_movement;
-    int gain = std::max(1, max_move / 10);  // At least 1 move
+    // Base regeneration per 4-second tick (legacy-style fast ticks)
+    // Stamina recovers faster than HP - about 2% per tick base
+    int max_stamina = stats_.max_stamina;
+    int gain = std::max(1, max_stamina / 50);  // Base: 2% per tick
 
     // Apply position multiplier
     double multiplier = get_regen_multiplier();
@@ -1058,10 +1070,15 @@ int Actor::calculate_move_gain() const {
         gain = gain * (100 - regen_reduction) / 100;
     }
 
+    // Refreshed effect bonus (from drinking)
+    if (has_effect("Refreshed")) {
+        gain = gain * 3 / 2;  // 50% bonus stamina regen when refreshed
+    }
+
     return std::max(0, gain);
 }
 
-Actor::TickResult Actor::perform_tick() {
+Actor::TickResult Actor::perform_regen_tick() {
     TickResult result;
 
     // Handle dying characters (stunned/incapacitated/mortally wounded)
@@ -1124,17 +1141,37 @@ Actor::TickResult Actor::perform_tick() {
         }
     }
 
-    // Movement Regeneration
-    if (stats_.movement < stats_.max_movement) {
-        int move_gain = calculate_move_gain();
-        if (move_gain > 0) {
-            int old_move = stats_.movement;
-            stats_.movement = std::min(stats_.movement + move_gain, stats_.max_movement);
-            result.move_gained = stats_.movement - old_move;
+    // Stamina Regeneration
+    if (stats_.stamina < stats_.max_stamina) {
+        int stamina_gain = calculate_stamina_gain();
+        if (stamina_gain > 0) {
+            int old_stamina = stats_.stamina;
+            stats_.stamina = std::min(stats_.stamina + stamina_gain, stats_.max_stamina);
+            result.stamina_gained = stats_.stamina - old_stamina;
+
+            // Notify player of significant stamina recovery (only for players)
+            if (result.stamina_gained > 0 && dynamic_cast<Player*>(this) != nullptr) {
+                if (stats_.stamina == stats_.max_stamina) {
+                    send_message("You feel fully rested.\r\n");
+                }
+            }
         }
     }
 
-    // Tick effect durations (existing functionality, but collect expired names)
+    return result;
+}
+
+Actor::TickResult Actor::perform_hour_tick() {
+    TickResult result;
+
+    // Skip processing for dead/ghost/dying
+    if (position_ == Position::Dead || position_ == Position::Ghost ||
+        position_ == Position::Stunned || position_ == Position::Incapacitated ||
+        position_ == Position::Mortally_Wounded) {
+        return result;
+    }
+
+    // Tick effect durations (decrements by 1 hour)
     for (auto it = active_effects_.begin(); it != active_effects_.end(); ) {
         if (!it->is_permanent()) {
             it->duration_hours--;
@@ -1152,6 +1189,28 @@ Actor::TickResult Actor::perform_tick() {
             }
         }
         ++it;
+    }
+
+    // Process drunk depletion (sobering up) - only for players
+    // Note: Hunger/thirst removed - eating/drinking now provides buffs instead
+    if (dynamic_cast<Player*>(this) != nullptr) {
+        int old_drunk = stats_.drunk;
+        if (stats_.drunk > Stats::CONDITION_MIN) {
+            stats_.drunk = std::max(Stats::CONDITION_MIN, stats_.drunk - 1);
+
+            // Send messages when sobering up
+            if (old_drunk > Stats::DRUNK_TOO_DRUNK_THRESHOLD &&
+                stats_.drunk <= Stats::DRUNK_TOO_DRUNK_THRESHOLD) {
+                send_message("You feel less intoxicated.\r\n");
+            }
+            if (old_drunk > Stats::DRUNK_SLURRED_THRESHOLD &&
+                stats_.drunk <= Stats::DRUNK_SLURRED_THRESHOLD) {
+                send_message("Your head starts to clear.\r\n");
+            }
+            if (old_drunk > Stats::CONDITION_MIN && stats_.drunk == Stats::CONDITION_MIN) {
+                send_message("You are now sober.\r\n");
+            }
+        }
     }
 
     return result;
@@ -2079,14 +2138,111 @@ void Mobile::initialize_for_level(int level) {
     Stats& s = stats();
     s.level = level;
     s.experience = ActorUtils::experience_for_level(level);
-    
+
     // Set reasonable stats for NPCs
     s.max_hit_points = ActorUtils::calculate_hit_points(level, s.constitution);
     s.hit_points = s.max_hit_points;
     s.max_mana = ActorUtils::calculate_mana(level, s.intelligence);
     s.mana = s.max_mana;
-    s.max_movement = ActorUtils::calculate_movement(level, s.constitution);
-    s.movement = s.max_movement;
+    s.max_stamina = ActorUtils::calculate_stamina(level, s.constitution);
+    s.stamina = s.max_stamina;
+}
+
+std::string_view Mobile::effect_descriptor() const {
+    // Return a visible effect descriptor based on active effects
+    // Priority order: most visually striking first
+    if (has_effect(EffectFlag::Sanctuary)) {
+        return "glowing";
+    }
+    if (has_effect(EffectFlag::Fly)) {
+        return "flying";
+    }
+    if (has_effect(EffectFlag::Berserk)) {
+        return "raging";
+    }
+    if (has_effect(EffectFlag::StoneSkin)) {
+        return "stone-skinned";
+    }
+    if (has_effect(EffectFlag::Poison)) {
+        return "sickly";
+    }
+    if (has_effect(EffectFlag::Blur)) {
+        return "blurred";
+    }
+    if (has_effect(EffectFlag::Haste)) {
+        return "swift";
+    }
+    if (has_effect(EffectFlag::Glory)) {
+        return "glorious";
+    }
+    // Invisible is handled separately in display_name_for_observer
+    return "";
+}
+
+std::string Mobile::display_name(bool with_article) const {
+    // If we don't have base_name set, fall back to Entity behavior
+    if (base_name_.empty()) {
+        return Entity::display_name(with_article);
+    }
+
+    // Get effect descriptor (glowing, flying, etc)
+    std::string_view effect = effect_descriptor();
+
+    std::string result;
+
+    if (with_article) {
+        // Determine the article to use
+        // article_ semantics:
+        //   - nullopt: calculate a/an based on first letter of next word
+        //   - "": no article
+        //   - "the", "some": specific article
+        if (article_.has_value()) {
+            if (!article_->empty()) {
+                // Explicit article like "the" or "some"
+                result = *article_;
+                result += ' ';
+            }
+            // If article is empty string, no article is added
+        } else {
+            // Calculate a/an based on first letter of next word
+            // The next word is either the effect descriptor or the base_name
+            std::string_view first_word = effect.empty() ? base_name_ : effect;
+
+            // Find first letter (skip any color markup tags like <red>)
+            char first_letter = '\0';
+            size_t i = 0;
+            while (i < first_word.size()) {
+                if (first_word[i] == '<') {
+                    // Skip the tag
+                    while (i < first_word.size() && first_word[i] != '>') {
+                        ++i;
+                    }
+                    ++i;  // Skip the '>'
+                } else if (std::isalpha(static_cast<unsigned char>(first_word[i]))) {
+                    first_letter = static_cast<char>(std::tolower(static_cast<unsigned char>(first_word[i])));
+                    break;
+                } else {
+                    ++i;
+                }
+            }
+
+            // Use 'an' before vowels, 'a' otherwise
+            bool use_an = (first_letter == 'a' || first_letter == 'e' ||
+                           first_letter == 'i' || first_letter == 'o' || first_letter == 'u');
+            result = use_an ? "an " : "a ";
+        }
+    }
+
+    // Add effect descriptor if present
+    if (!effect.empty()) {
+        result += effect;
+        result += ' ';
+    }
+
+    // Add the base name
+    result += base_name_;
+
+    return result;
 }
 
 // Player Implementation
@@ -2241,15 +2397,15 @@ nlohmann::json Player::get_vitals_gmcp() const {
 
     // Calculate percentages for UI display
     int hp_percent = (stats.max_hit_points > 0) ? (stats.hit_points * 100) / stats.max_hit_points : 0;
-    int move_percent = (stats.max_movement > 0) ? (stats.movement * 100) / stats.max_movement : 0;
+    int stamina_percent = (stats.max_stamina > 0) ? (stats.stamina * 100) / stats.max_stamina : 0;
 
     return {
         {"hp", stats.hit_points},
         {"maxhp", stats.max_hit_points},
         {"hp_percent", hp_percent},
-        {"stamina", stats.movement},
-        {"maxstamina", stats.max_movement},
-        {"stamina_percent", move_percent},
+        {"stamina", stats.stamina},
+        {"maxstamina", stats.max_stamina},
+        {"stamina_percent", stamina_percent},
         {"level", stats.level},
         {"experience", stats.experience},
         {"tnl", stats.experience_to_next_level()},  // "tnl" = to next level
@@ -2489,17 +2645,17 @@ namespace ActorUtils {
         return std::max(0, base + int_bonus);
     }
     
-    int calculate_movement(int level, int constitution) {
+    int calculate_stamina(int level, int constitution) {
         int base = 100 + (level * 2);
         int con_bonus = Stats::attribute_modifier(constitution) * 5;
         return std::max(50, base + con_bonus);
     }
-    
+
     std::string format_stats(const Stats& stats) {
-        return fmt::format("HP: {}/{}, Mana: {}/{}, Move: {}/{}, ACC: {}, EVA: {}, AR: {}, Level: {}",
+        return fmt::format("HP: {}/{}, Mana: {}/{}, Stamina: {}/{}, ACC: {}, EVA: {}, AR: {}, Level: {}",
                           stats.hit_points, stats.max_hit_points,
                           stats.mana, stats.max_mana,
-                          stats.movement, stats.max_movement,
+                          stats.stamina, stats.max_stamina,
                           stats.accuracy, stats.evasion, stats.armor_rating, stats.level);
     }
     
@@ -2665,11 +2821,11 @@ std::string Actor::get_stat_info() const {
         stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma,
         stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma);
     
-    // Health, mana, and movement
-    output << fmt::format("HP: [{}/{}]  HP Gain: [{}] HP Regen Bonus: [{}]\n", 
+    // Health, mana, and stamina
+    output << fmt::format("HP: [{}/{}]  HP Gain: [{}] HP Regen Bonus: [{}]\n",
         stats_.hit_points, stats_.max_hit_points, 1, 0);
-    output << fmt::format("MV: [{}/{}]  MV Gain: [{}]\n", 
-        stats_.movement, stats_.max_movement, 1);
+    output << fmt::format("Stamina: [{}/{}]  Stamina Gain: [{}]\n",
+        stats_.stamina, stats_.max_stamina, 1);
     output << fmt::format("Focus: [{}]\n", stats_.mana);
     
     // Money (convert from copper base to coins)
@@ -2799,8 +2955,14 @@ std::string Actor::get_stat_info() const {
         output << "Carrying: Nothing\n";
     }
     
-    // Conditions (hunger, thirst, drunk)
-    output << "Hunger: Off, Thirst: Off, Drunk: Off\n";
+    // Drunk condition (0=sober, higher=more drunk)
+    if (stats_.drunk > 0) {
+        std::string drunk_str;
+        if (stats_.is_too_drunk()) drunk_str = "Very Drunk";
+        else if (stats_.is_slurring()) drunk_str = "Tipsy";
+        else drunk_str = "Slightly Buzzed";
+        output << fmt::format("Intoxication: {} ({})\n", stats_.drunk, drunk_str);
+    }
     
     // Followers and groups
     output << fmt::format("Consented: <none>, Master is: <none>, Followers are:\n");

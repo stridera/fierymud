@@ -1,4 +1,4 @@
-# FieryMUD Server Build System - Modern and Legacy
+# FieryMUD Server Build System
 cmake_minimum_required(VERSION 3.20)
 project(FieryMUD VERSION 3.0.0 LANGUAGES CXX C)
 
@@ -137,7 +137,7 @@ if(asio_ADDED)
     target_link_libraries(asio INTERFACE OpenSSL::SSL OpenSSL::Crypto)
 endif()
 
-# Version generation for legacy build
+# Version generation
 find_package(Git QUIET)
 if(GIT_FOUND)
     execute_process(
@@ -203,6 +203,7 @@ set(SOURCES
     src/database/social_queries.cpp
     src/database/db_parsing_utils.cpp
     src/database/game_data_cache.cpp
+    src/database/quest_queries.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
     src/text/rich_text.cpp
@@ -233,7 +234,11 @@ set(SOURCES
     src/scripting/bindings/lua_actor.cpp
     src/scripting/bindings/lua_room.cpp
     src/scripting/bindings/lua_object.cpp
+    src/scripting/bindings/lua_quest.cpp
     src/database/trigger_queries.cpp
+    # Quest system
+    src/quests/quest_manager.cpp
+    src/commands/quest_commands.cpp
     # Event publishing for Muditor bridge
     src/events/event_publisher.cpp
     # Admin API for Muditor remote management
@@ -394,7 +399,12 @@ set(CORE_TEST_SOURCES
     src/scripting/bindings/lua_actor.cpp
     src/scripting/bindings/lua_room.cpp
     src/scripting/bindings/lua_object.cpp
+    src/scripting/bindings/lua_quest.cpp
     src/database/trigger_queries.cpp
+    # Quest system
+    src/database/quest_queries.cpp
+    src/quests/quest_manager.cpp
+    src/commands/quest_commands.cpp
 )
 
 # Unit test sources
@@ -423,14 +433,14 @@ add_executable(stable_tests
     ${COMMON_TEST_FILES}
 )
 
-# Legacy integration test executable (may segfault)
+# integration test executable (may segfault)
 add_executable(integration_tests 
     ${CORE_TEST_SOURCES}
     ${INTEGRATION_TEST_FILES}
     ${COMMON_TEST_FILES}
 )
 
-# Legacy combined test executable (for backward compatibility)
+# combined test executable (for backward compatibility)
 add_executable(tests 
     ${CORE_TEST_SOURCES}
     ${UNIT_TEST_FILES}
@@ -537,7 +547,7 @@ target_compile_options(integration_tests PRIVATE
     -g
 )
 
-# Configure combined tests executable (legacy)
+# Configure combined tests executable
 target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(tests PRIVATE
@@ -608,7 +618,7 @@ set_tests_properties(Stable_Tests PROPERTIES
 
 set_tests_properties(Integration_Tests PROPERTIES
     TIMEOUT 120
-    LABELS "integration;legacy"
+    LABELS "integration;unstable"
 )
 
 set_tests_properties(Combined_Tests PROPERTIES
@@ -717,7 +727,7 @@ add_executable(test_database
     src/commands/system_commands.cpp
 )
 
-target_include_directories(test_database PRIVATE src)
+target_include_directories(test_database PRIVATE src ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(test_database PRIVATE
     fmt::fmt
@@ -729,6 +739,9 @@ target_link_libraries(test_database PRIVATE
     PostgreSQL::PostgreSQL
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(test_database PRIVATE
@@ -811,7 +824,7 @@ add_executable(test_database_comprehensive
     src/commands/system_commands.cpp
 )
 
-target_include_directories(test_database_comprehensive PRIVATE src)
+target_include_directories(test_database_comprehensive PRIVATE src ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(test_database_comprehensive PRIVATE
     fmt::fmt
@@ -823,6 +836,9 @@ target_link_libraries(test_database_comprehensive PRIVATE
     PostgreSQL::PostgreSQL
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(test_database_comprehensive PRIVATE
@@ -837,34 +853,3 @@ target_compile_options(test_database_comprehensive PRIVATE
     -O3
     -g
 )
-
-# Legacy FieryMUD Server (fierymud_legacy) - Currently disabled
-# file(GLOB_RECURSE LEGACY_SOURCES "src/legacy/*.cpp")
-# add_executable(fierymud_legacy ${LEGACY_SOURCES})
-
-# target_include_directories(fierymud_legacy PRIVATE src/legacy ${CMAKE_BINARY_DIR})
-
-# target_link_libraries(fierymud_legacy PRIVATE 
-#     fmt::fmt 
-#     spdlog::spdlog
-#     nlohmann_json::nlohmann_json
-#     magic_enum::magic_enum
-#     cxxopts::cxxopts
-#     crypt
-# )
-
-# target_compile_definitions(fierymud_legacy PRIVATE
-#     SPDLOG_COMPILED_LIB
-#     SPDLOG_FMT_EXTERNAL
-#     LEGACY_BUILD
-# )
-
-# target_compile_options(fierymud_legacy PRIVATE
-#     -std=gnu++23
-#     -Wall
-#     -Wextra
-#     -O3
-#     -g
-# )
-
-# set_target_properties(fierymud_legacy PROPERTIES EXCLUDE_FROM_ALL TRUE)

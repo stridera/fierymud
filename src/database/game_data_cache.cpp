@@ -36,6 +36,22 @@ std::string RaceData::lookup_key() const {
 }
 
 // =============================================================================
+// LiquidData Implementation
+// =============================================================================
+
+std::string LiquidData::lookup_key() const {
+    std::string key;
+    key.reserve(alias.size());
+    for (char c : alias) {
+        if (c == '-' || c == '_' || c == ' ') {
+            continue;  // Skip separators for flexible matching
+        }
+        key += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+    return key;
+}
+
+// =============================================================================
 // GameDataCache Implementation
 // =============================================================================
 
@@ -67,11 +83,16 @@ Result<void> GameDataCache::load_all() {
         return race_result;
     }
 
+    auto liquid_result = load_liquids();
+    if (!liquid_result) {
+        return liquid_result;
+    }
+
     loaded_ = true;
     last_load_time_ = std::chrono::system_clock::now();
 
-    Log::info("GameDataCache loaded: {} classes, {} races",
-              classes_.size(), races_.size());
+    Log::info("GameDataCache loaded: {} classes, {} races, {} liquids",
+              classes_.size(), races_.size(), liquids_.size());
 
     return Success();
 }
@@ -241,6 +262,56 @@ Result<void> GameDataCache::load_races() {
     return Success();
 }
 
+Result<void> GameDataCache::load_liquids() {
+    auto result = ConnectionPool::instance().execute([this](pqxx::work& txn) -> Result<void> {
+        try {
+            auto query_result = txn.exec(R"(
+                SELECT id, name, alias, color_desc,
+                       drunk_effect, hunger_effect, thirst_effect
+                FROM "Liquids"
+                ORDER BY id
+            )");
+
+            std::lock_guard<std::mutex> lock(mutex_);
+
+            liquids_.clear();
+            liquid_by_name_.clear();
+            liquid_by_alias_.clear();
+
+            for (const auto& row : query_result) {
+                LiquidData data;
+                data.id = row["id"].as<int>();
+                data.name = row["name"].as<std::string>();
+                data.alias = row["alias"].as<std::string>();
+                data.color_desc = row["color_desc"].as<std::string>();
+                data.drunk_effect = row["drunk_effect"].as<int>();
+                data.hunger_effect = row["hunger_effect"].as<int>();
+                data.thirst_effect = row["thirst_effect"].as<int>();
+
+                size_t index = liquids_.size();
+                liquids_.push_back(std::move(data));
+
+                // Build lookup maps (case-insensitive)
+                liquid_by_name_[normalize_key(liquids_[index].name)] = index;
+                liquid_by_alias_[normalize_key(liquids_[index].alias)] = index;
+            }
+
+            return Success();
+
+        } catch (const std::exception& e) {
+            return std::unexpected(Errors::DatabaseError(
+                fmt::format("Failed to load liquids: {}", e.what())));
+        }
+    });
+
+    if (!result) {
+        Log::error("Failed to load liquid data: {}", result.error().message);
+        return std::unexpected(result.error());
+    }
+
+    return Success();
+}
+
 Result<void> GameDataCache::reload() {
     loaded_ = false;
     return load_all();
@@ -289,4 +360,22 @@ std::vector<const RaceData*> GameDataCache::playable_races() const {
         }
     }
     return result;
+}
+
+const LiquidData* GameDataCache::find_liquid_by_name(std::string_view name) const {
+    std::string key = normalize_key(name);
+    auto it = liquid_by_name_.find(key);
+    if (it != liquid_by_name_.end() && it->second < liquids_.size()) {
+        return &liquids_[it->second];
+    }
+    return nullptr;
+}
+
+const LiquidData* GameDataCache::find_liquid_by_alias(std::string_view alias) const {
+    std::string key = normalize_key(alias);
+    auto it = liquid_by_alias_.find(key);
+    if (it != liquid_by_alias_.end() && it->second < liquids_.size()) {
+        return &liquids_[it->second];
+    }
+    return nullptr;
 }

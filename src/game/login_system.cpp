@@ -715,8 +715,8 @@ void LoginSystem::handle_select_character(std::string_view input) {
             // Set vitals
             stats.hit_points = char_data.hit_points;
             stats.max_hit_points = char_data.hit_points_max;
-            stats.movement = char_data.movement;
-            stats.max_movement = char_data.movement_max;
+            stats.stamina = char_data.stamina;
+            stats.max_stamina = char_data.stamina_max;
 
             // Convert legacy DB combat stats to new system
             stats.accuracy = char_data.hit_roll;
@@ -725,6 +725,9 @@ void LoginSystem::handle_select_character(std::string_view input) {
 
             // Set experience
             stats.experience = char_data.experience;
+
+            // Set player preferences
+            player->set_prompt(char_data.prompt);
 
             // Store the database character ID
             player->set_database_id(char_data.id);
@@ -1512,8 +1515,8 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             // Set vitals
             stats.hit_points = char_data.hit_points;
             stats.max_hit_points = char_data.hit_points_max;
-            stats.movement = char_data.movement;
-            stats.max_movement = char_data.movement_max;
+            stats.stamina = char_data.stamina;
+            stats.max_stamina = char_data.stamina_max;
 
             // Convert legacy DB combat stats to new system
             stats.accuracy = char_data.hit_roll;
@@ -1529,6 +1532,7 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             // Load player preferences
             player->set_title(char_data.title);
             player->set_description(char_data.description);
+            player->set_prompt(char_data.prompt);
             player->set_wimpy_threshold(char_data.wimpy_threshold);
             player->set_player_flags_from_strings(char_data.player_flags);
 
@@ -1679,8 +1683,8 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
         // Set vitals
         stats.hit_points = char_data.hit_points;
         stats.max_hit_points = char_data.hit_points_max;
-        stats.movement = char_data.movement;
-        stats.max_movement = char_data.movement_max;
+        stats.stamina = char_data.stamina;
+        stats.max_stamina = char_data.stamina_max;
 
         // Mark as online
         WorldQueries::set_character_online(txn, char_data.id, true);
@@ -1758,8 +1762,8 @@ Result<void> LoginSystem::save_character(std::shared_ptr<Player> player) {
     // Vitals
     char_data.hit_points = stats.hit_points;
     char_data.hit_points_max = stats.max_hit_points;
-    char_data.movement = stats.movement;
-    char_data.movement_max = stats.max_movement;
+    char_data.stamina = stats.stamina;
+    char_data.stamina_max = stats.max_stamina;
 
     // Convert new combat stats back to legacy DB format for saving
     char_data.armor_class = std::max(0, 100 - stats.armor_rating);

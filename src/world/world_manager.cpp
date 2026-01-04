@@ -1637,7 +1637,8 @@ Result<void> WorldManager::load_zones_from_database() {
                         const auto* obj_proto = obj_it->second.get();
                         ShopItem shop_item;
                         shop_item.prototype_id = item_data.object_id;
-                        shop_item.name = obj_proto->name();
+                        // Use display name with condition for drink containers (force identified for shops)
+                        shop_item.name = obj_proto->display_name_with_condition(false, true);
                         shop_item.description = obj_proto->short_description();
                         shop_item.cost = obj_proto->value();
                         shop_item.level = obj_proto->level();
@@ -1648,41 +1649,37 @@ Result<void> WorldManager::load_zones_from_database() {
                     }
                 }
 
-                // Check if this shop sells mobs (pet/mount shop)
-                bool sells_mobs = std::find(shop_data.flags.begin(), shop_data.flags.end(),
-                                           "SELLS_MOBS") != shop_data.flags.end();
-                if (sells_mobs) {
+                // Load shop mobs (pet/mount shop) - check for mobs regardless of flag
+                auto mobs_result = WorldQueries::load_shop_mobs(txn,
+                    shop_data.zone_id, shop_data.id);
+                if (mobs_result && !mobs_result->empty()) {
                     shop->set_sells_mobs(true);
-                    auto mobs_result = WorldQueries::load_shop_mobs(txn,
-                        shop_data.zone_id, shop_data.id);
-                    if (mobs_result) {
-                        for (const auto& mob_data : *mobs_result) {
-                            // Find the mob prototype
-                            auto mob_proto_it = mobiles_.find(mob_data.mob_id);
-                            if (mob_proto_it == mobiles_.end()) {
-                                logger->warn("Shop {} mob references non-existent mob {}",
-                                            shop_data.id, mob_data.mob_id);
-                                continue;
-                            }
-
-                            // Create shop mob from prototype
-                            const auto* mob_proto = mob_proto_it->second.get();
-                            ShopMob shop_mob;
-                            shop_mob.prototype_id = mob_data.mob_id;
-                            shop_mob.name = mob_proto->name();
-                            shop_mob.description = std::string(mob_proto->description());
-                            // Use price from database, or fallback to level * 100
-                            shop_mob.cost = (mob_data.price > 0) ? mob_data.price
-                                          : mob_proto->stats().level * 100;
-                            shop_mob.level = mob_proto->stats().level;
-                            shop_mob.stock = mob_data.amount;
-                            shop_mob.max_stock = mob_data.amount;
-
-                            shop->add_mob(shop_mob);
+                    for (const auto& mob_data : *mobs_result) {
+                        // Find the mob prototype
+                        auto mob_proto_it = mobiles_.find(mob_data.mob_id);
+                        if (mob_proto_it == mobiles_.end()) {
+                            logger->warn("Shop {} mob references non-existent mob {}",
+                                        shop_data.id, mob_data.mob_id);
+                            continue;
                         }
-                        logger->debug("Loaded {} mobs for pet shop {}",
-                                     mobs_result->size(), shop_data.keeper_id);
+
+                        // Create shop mob from prototype
+                        const auto* mob_proto = mob_proto_it->second.get();
+                        ShopMob shop_mob;
+                        shop_mob.prototype_id = mob_data.mob_id;
+                        shop_mob.name = mob_proto->name();
+                        shop_mob.description = std::string(mob_proto->description());
+                        // Use price from database, or fallback to level * 100
+                        shop_mob.cost = (mob_data.price > 0) ? mob_data.price
+                                      : mob_proto->stats().level * 100;
+                        shop_mob.level = mob_proto->stats().level;
+                        shop_mob.stock = mob_data.amount;
+                        shop_mob.max_stock = mob_data.amount;
+
+                        shop->add_mob(shop_mob);
                     }
+                    logger->debug("Loaded {} mobs for pet shop {}",
+                                 mobs_result->size(), shop_data.keeper_id);
                 }
 
                 // Register the shop with ShopManager
@@ -2436,6 +2433,10 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     new_object->set_light_info(prototype->light_info());
     new_object->set_liquid_info(prototype->liquid_info());
 
+    // Copy dynamic display name components for drinks/containers
+    new_object->set_base_name(prototype->base_name());
+    new_object->set_article(prototype->article());
+
     // Copy board number for bulletin boards
     new_object->set_board_number(prototype->board_number());
 
@@ -2605,6 +2606,10 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
     new_object->set_liquid_info(prototype->liquid_info());
+
+    // Copy dynamic display name components for drinks/containers
+    new_object->set_base_name(prototype->base_name());
+    new_object->set_article(prototype->article());
 
     // Copy board number for bulletin boards
     new_object->set_board_number(prototype->board_number());
@@ -2897,9 +2902,8 @@ void WorldManager::initialize_weather_callbacks() {
     logger->info("Weather system integration initialized");
 }
 
-void WorldManager::tick_all_effects() {
-    // Iterate through all rooms and perform periodic ticks on all actors
-    // This handles: HP/move regeneration, effect durations, poison damage, dying damage
+void WorldManager::tick_regen_all() {
+    // Fast tick (every 4 seconds like legacy) for HP/move regeneration, DoT/HoT, dying damage
 
     // Collect actors that died during the tick (can't modify room contents while iterating)
     std::vector<std::shared_ptr<Actor>> died_actors;
@@ -2907,18 +2911,16 @@ void WorldManager::tick_all_effects() {
     for (const auto& [room_id, room] : rooms_) {
         if (!room) continue;
 
-        // Get all actors in this room and perform their periodic tick
         for (auto& actor : room->contents().actors) {
             if (actor && actor->is_alive()) {
-                auto tick_result = actor->perform_tick();
+                auto tick_result = actor->perform_regen_tick();
 
                 // Log significant regen for debugging
-                if (tick_result.hp_gained > 0 || tick_result.move_gained > 0) {
-                    Log::game()->trace("Tick: {} regenerated {} HP, {} move",
-                                      actor->name(), tick_result.hp_gained, tick_result.move_gained);
+                if (tick_result.hp_gained > 0 || tick_result.stamina_gained > 0) {
+                    Log::game()->trace("Regen tick: {} +{} HP, +{} stamina",
+                                      actor->name(), tick_result.hp_gained, tick_result.stamina_gained);
                 }
 
-                // Track if actor died during the tick
                 if (tick_result.died) {
                     died_actors.push_back(actor);
                 }
@@ -2926,18 +2928,53 @@ void WorldManager::tick_all_effects() {
         }
     }
 
-    // Handle deaths that occurred during tick processing
+    // Handle deaths
     for (auto& actor : died_actors) {
-        // Polymorphic death handling - Player becomes ghost, Mobile creates corpse
         auto corpse = actor->die();
-
-        // Log the death
         if (actor->type_name() == "Player") {
-            Log::game()->info("Player {} died during tick (poison/dying damage)", actor->name());
-        } else {
-            Log::game()->debug("Mobile {} died during tick", actor->name());
+            Log::game()->info("Player {} died during regen tick", actor->name());
         }
     }
+}
+
+void WorldManager::tick_hour_all() {
+    // Hourly tick (every 75 seconds) for spell durations and condition depletion
+
+    Log::game()->debug("Hour tick: Processing spell durations and conditions");
+
+    std::vector<std::shared_ptr<Actor>> died_actors;
+
+    for (const auto& [room_id, room] : rooms_) {
+        if (!room) continue;
+
+        for (auto& actor : room->contents().actors) {
+            if (actor && actor->is_alive()) {
+                auto tick_result = actor->perform_hour_tick();
+
+                // Log expired effects
+                for (const auto& effect : tick_result.expired_effects) {
+                    Log::game()->debug("Effect '{}' expired on {}", effect, actor->name());
+                }
+
+                if (tick_result.died) {
+                    died_actors.push_back(actor);
+                }
+            }
+        }
+    }
+
+    // Handle deaths (shouldn't happen in hour tick, but be safe)
+    for (auto& actor : died_actors) {
+        auto corpse = actor->die();
+        if (actor->type_name() == "Player") {
+            Log::game()->info("Player {} died during hour tick", actor->name());
+        }
+    }
+}
+
+void WorldManager::tick_all_effects() {
+    // Legacy compatibility - calls regen tick
+    tick_regen_all();
 }
 
 // WorldUtils Implementation

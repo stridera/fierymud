@@ -108,7 +108,10 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
 
     auto obj = target.object;
 
-    ctx.send(fmt::format("--- {} ---", obj->display_name()));
+    // Mark the item as identified
+    obj->set_flag(ObjectFlag::Identified);
+
+    ctx.send(fmt::format("--- {} ---", obj->display_name_with_condition()));
     ctx.send(fmt::format("Type: {}", magic_enum::enum_name(obj->type())));
     ctx.send(fmt::format("Weight: {} lbs", obj->weight()));
     auto value_money = fiery::Money::from_copper(obj->value());
@@ -117,7 +120,6 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
     // TODO: Show magical properties, stats, etc.
     ctx.send("Magical Properties: None detected");
     ctx.send("--- End of Identification ---");
-    ctx.send("Note: Full identification not yet implemented.");
 
     return CommandResult::Success;
 }

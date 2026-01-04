@@ -157,23 +157,28 @@ auto online_players = all_players
 
 ## Project Build System
 
-This project uses CMake with Ninja generator for faster builds. Key commands:
+This project uses CMake with Ninja generator for faster builds.
+
+**IMPORTANT: Use the `./build.sh` script instead of calling cmake directly.** Direct cmake invocations can cause WSL to crash due to excessive parallelization.
 
 ### Building the MUD
 
-**Build both servers**:
+**Build both servers (recommended)**:
 ```bash
-cmake -B build -G Ninja .
-cmake --build build
+./build.sh              # Build all targets (uses safe parallel job limit)
 ```
 
 **Build specific server**:
 ```bash
-# Modern server only
-cmake --build build --target fierymud
+./build.sh fierymud      # Modern server only
+./build.sh fierymud_legacy  # Legacy server only
+```
 
-# Legacy server only  
-cmake --build build --target fierymud_legacy
+**Other build options**:
+```bash
+./build.sh -j4          # Override job limit
+./build.sh clean        # Clean build directory
+./build.sh reconfigure  # Reconfigure CMake
 ```
 
 ### Running Tests

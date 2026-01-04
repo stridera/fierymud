@@ -681,8 +681,103 @@ Result<CommandResult> cmd_socials(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+/**
+ * Prompt command - manage the player's command line prompt
+ *
+ * Usage:
+ *   prompt           - Show current prompt format
+ *   prompt ?         - Show preset prompts (same as 'help prompt')
+ *   prompt <#>       - Select a preset prompt by number
+ *   prompt <format>  - Set a custom prompt format
+ *
+ * Prompt format codes:
+ *   %h - current hit points    %H - max hit points
+ *   %v - current stamina       %V - max stamina
+ *   %l - level                 %g - gold
+ *   %x - experience            %X - exp to next level
+ *   %t - tank condition        %T - target condition
+ *   %n - newline               %% - literal %
+ *
+ * Color markup (XML-lite format):
+ *   <red>text</red>     - Named colors (red, green, blue, yellow, etc.)
+ *   <bred>bold red</bred> - Bright/bold variants
+ *   <#FF0000>rgb</...>  - RGB hex colors (24-bit)
+ *   <c196>indexed</c196> - 256-color palette
+ *   </> - Reset to normal
+ */
 Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
-    ctx.send("Prompt command executed successfully.");
+    // Preset prompts
+    static const std::vector<std::pair<std::string, std::string>> preset_prompts = {
+        {"minimal",     "<%h/%Hhp %v/%Vs>"},
+        {"standard",    "<%h/%Hhp %v/%Vs %x/exp>"},
+        {"combat",      "<%h/%Hhp %v/%Vs %T>"},
+        {"full",        "<%h/%Hhp %v/%Vs %x/exp %g/gold %T>"},
+        {"colored",     "<<red>%h</>/%Hhp <yellow>%v</>/%Vs>"},
+        {"classic",     "<%h/%Hhp %v/%Vs>"},
+    };
+
+    // Get the player
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can use the prompt command.");
+        return CommandResult::InvalidState;
+    }
+
+    // No arguments - show current prompt
+    if (ctx.arg_count() == 0) {
+        ctx.send(fmt::format("Your current prompt is: {}", player->prompt()));
+        return CommandResult::Success;
+    }
+
+    std::string_view arg = ctx.arg(0);
+
+    // Help/list presets
+    if (arg == "?" || arg == "help" || arg == "list") {
+        ctx.send("Available preset prompts:");
+        ctx.send("");
+        int i = 0;
+        for (const auto& [name, format] : preset_prompts) {
+            ctx.send(fmt::format("  {:2d}. {:<12} {}", i++, name, format));
+        }
+        ctx.send("");
+        ctx.send("Usage: prompt <#> to select a preset, or prompt <format> for custom.");
+        ctx.send("");
+        ctx.send("Prompt format codes:");
+        ctx.send("  %h/%H - current/max hit points    %v/%V - current/max stamina");
+        ctx.send("  %l - level                        %g - gold");
+        ctx.send("  %x/%X - exp/exp to next level     %t/%T - tank/target condition");
+        ctx.send("  %n - newline                      %% - literal %");
+        ctx.send("");
+        ctx.send("Color markup: <red>text</red>, <bred>bold</bred>, <#FF0000>rgb</...>");
+        return CommandResult::Success;
+    }
+
+    // Check if it's a number (preset selection)
+    if (arg.length() <= 2 && std::all_of(arg.begin(), arg.end(), ::isdigit)) {
+        int index = std::stoi(std::string{arg});
+        if (index < 0 || index >= static_cast<int>(preset_prompts.size())) {
+            ctx.send_error(fmt::format("Invalid preset number. Use 0-{}.", preset_prompts.size() - 1));
+            return CommandResult::InvalidSyntax;
+        }
+
+        const auto& [name, format] = preset_prompts[index];
+        player->set_prompt(format);
+        ctx.send(fmt::format("Your prompt is now set to the '{}' preset.", name));
+        ctx.send(fmt::format("Format: {}", format));
+        return CommandResult::Success;
+    }
+
+    // Custom prompt - get entire argument string
+    std::string custom_prompt = ctx.args_from(0);
+
+    // Basic validation - limit length
+    if (custom_prompt.length() > 200) {
+        ctx.send_error("Prompt too long. Maximum 200 characters.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    player->set_prompt(custom_prompt);
+    ctx.send(fmt::format("Your prompt is now: {}", custom_prompt));
     return CommandResult::Success;
 }
 

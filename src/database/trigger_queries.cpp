@@ -262,7 +262,7 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_triggers_for_zone(
                    t."{}", t."{}", t."{}", t."{}",
                    mt."{}" as jt_zone_id, mt."{}" as jt_id
             FROM "{}" t
-            INNER JOIN "{}" mt ON t."{}" = mt."{}"
+            INNER JOIN "{}" mt ON t."{}" = mt."{}" AND t."{}" = mt."{}"
             WHERE mt."{}" = $1
 
             UNION ALL
@@ -272,7 +272,7 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_triggers_for_zone(
                    t."{}", t."{}", t."{}", t."{}",
                    ot."{}" as jt_zone_id, ot."{}" as jt_id
             FROM "{}" t
-            INNER JOIN "{}" ot ON t."{}" = ot."{}"
+            INNER JOIN "{}" ot ON t."{}" = ot."{}" AND t."{}" = ot."{}"
             WHERE ot."{}" = $1
             )",
             // WORLD triggers columns
@@ -290,6 +290,7 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_triggers_for_zone(
             db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
             db::MobTriggers::MOB_ZONE_ID, db::MobTriggers::MOB_ID,
             db::Triggers::TABLE, db::MobTriggers::TABLE,
+            db::Triggers::ZONE_ID, db::MobTriggers::TRIGGER_ZONE_ID,
             db::Triggers::ID, db::MobTriggers::TRIGGER_ID,
             db::MobTriggers::MOB_ZONE_ID,
             // OBJECT triggers columns
@@ -300,6 +301,7 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_triggers_for_zone(
             db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
             db::ObjectTriggers::OBJECT_ZONE_ID, db::ObjectTriggers::OBJECT_ID,
             db::Triggers::TABLE, db::ObjectTriggers::TABLE,
+            db::Triggers::ZONE_ID, db::ObjectTriggers::TRIGGER_ZONE_ID,
             db::Triggers::ID, db::ObjectTriggers::TRIGGER_ID,
             db::ObjectTriggers::OBJECT_ZONE_ID
         );
@@ -354,10 +356,11 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_mob_triggers(
 {
     try {
         // Query via MobTriggers junction table (many-to-many relationship)
+        // Join on composite key: (zone_id, id) = (trigger_zone_id, trigger_id)
         std::string query = fmt::format(
             R"(SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}"
                FROM "{}" t
-               INNER JOIN "{}" mt ON t."{}" = mt."{}"
+               INNER JOIN "{}" mt ON t."{}" = mt."{}" AND t."{}" = mt."{}"
                WHERE mt."{}" = $1 AND mt."{}" = $2)",
             db::Triggers::ID,
             db::Triggers::NAME,
@@ -374,8 +377,8 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_mob_triggers(
             db::Triggers::OBJECT_ID,
             db::Triggers::TABLE,
             db::MobTriggers::TABLE,
-            db::Triggers::ID,
-            db::MobTriggers::TRIGGER_ID,
+            db::Triggers::ZONE_ID, db::MobTriggers::TRIGGER_ZONE_ID,
+            db::Triggers::ID, db::MobTriggers::TRIGGER_ID,
             db::MobTriggers::MOB_ZONE_ID,
             db::MobTriggers::MOB_ID
         );
@@ -413,10 +416,11 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_object_triggers(
 {
     try {
         // Query via ObjectTriggers junction table (many-to-many relationship)
+        // Join on composite key: (zone_id, id) = (trigger_zone_id, trigger_id)
         std::string query = fmt::format(
             R"(SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}"
                FROM "{}" t
-               INNER JOIN "{}" ot ON t."{}" = ot."{}"
+               INNER JOIN "{}" ot ON t."{}" = ot."{}" AND t."{}" = ot."{}"
                WHERE ot."{}" = $1 AND ot."{}" = $2)",
             db::Triggers::ID,
             db::Triggers::NAME,
@@ -433,8 +437,8 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_object_triggers(
             db::Triggers::OBJECT_ID,
             db::Triggers::TABLE,
             db::ObjectTriggers::TABLE,
-            db::Triggers::ID,
-            db::ObjectTriggers::TRIGGER_ID,
+            db::Triggers::ZONE_ID, db::ObjectTriggers::TRIGGER_ZONE_ID,
+            db::Triggers::ID, db::ObjectTriggers::TRIGGER_ID,
             db::ObjectTriggers::OBJECT_ZONE_ID,
             db::ObjectTriggers::OBJECT_ID
         );
@@ -547,21 +551,21 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_all_triggers(pqxx::work& txn)
 
             UNION ALL
 
-            -- MOB triggers via junction table
+            -- MOB triggers via junction table (composite key join)
             SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
                    t."{}", t."{}", t."{}", t."{}",
                    mt."{}" as jt_zone_id, mt."{}" as jt_id
             FROM "{}" t
-            INNER JOIN "{}" mt ON t."{}" = mt."{}"
+            INNER JOIN "{}" mt ON t."{}" = mt."{}" AND t."{}" = mt."{}"
 
             UNION ALL
 
-            -- OBJECT triggers via junction table
+            -- OBJECT triggers via junction table (composite key join)
             SELECT t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}", t."{}",
                    t."{}", t."{}", t."{}", t."{}",
                    ot."{}" as jt_zone_id, ot."{}" as jt_id
             FROM "{}" t
-            INNER JOIN "{}" ot ON t."{}" = ot."{}"
+            INNER JOIN "{}" ot ON t."{}" = ot."{}" AND t."{}" = ot."{}"
             )",
             // WORLD triggers columns
             db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
@@ -579,6 +583,7 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_all_triggers(pqxx::work& txn)
             db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
             db::MobTriggers::MOB_ZONE_ID, db::MobTriggers::MOB_ID,
             db::Triggers::TABLE, db::MobTriggers::TABLE,
+            db::Triggers::ZONE_ID, db::MobTriggers::TRIGGER_ZONE_ID,
             db::Triggers::ID, db::MobTriggers::TRIGGER_ID,
             // OBJECT triggers columns
             db::Triggers::ID, db::Triggers::NAME, db::Triggers::ATTACH_TYPE,
@@ -588,6 +593,7 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_all_triggers(pqxx::work& txn)
             db::Triggers::OBJECT_ZONE_ID, db::Triggers::OBJECT_ID,
             db::ObjectTriggers::OBJECT_ZONE_ID, db::ObjectTriggers::OBJECT_ID,
             db::Triggers::TABLE, db::ObjectTriggers::TABLE,
+            db::Triggers::ZONE_ID, db::ObjectTriggers::TRIGGER_ZONE_ID,
             db::Triggers::ID, db::ObjectTriggers::TRIGGER_ID
         );
 

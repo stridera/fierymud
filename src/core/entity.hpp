@@ -54,8 +54,10 @@ public:
     /** Legacy compatibility - get short description */
     std::string_view short_description() const { return short_desc(); }
     
-    /** Check if entity matches a given keyword (exact match, case-insensitive) */
-    bool matches_keyword(std::string_view keyword) const;
+    /** Check if entity matches a given keyword (exact match, case-insensitive)
+     * Virtual to allow subclasses to add dynamic keyword matching (e.g., liquid types)
+     */
+    virtual bool matches_keyword(std::string_view keyword) const;
 
     /** Check if any entity keyword starts with the given prefix (case-insensitive) */
     bool matches_keyword_prefix(std::string_view prefix) const;

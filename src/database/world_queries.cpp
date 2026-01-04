@@ -89,6 +89,21 @@ static std::vector<std::string> parse_pg_array(const std::string& pg_array) {
     return result;
 }
 
+// Helper function to parse PostgreSQL integer array format: {1,2,3}
+static std::vector<int> parse_pg_int_array(const std::string& pg_array) {
+    std::vector<int> result;
+    auto str_values = parse_pg_array(pg_array);
+    result.reserve(str_values.size());
+    for (const auto& str : str_values) {
+        try {
+            result.push_back(std::stoi(str));
+        } catch (const std::exception&) {
+            // Skip invalid integers
+        }
+    }
+    return result;
+}
+
 // Helper function to map database Sector enum to C++ SectorType
 static SectorType sector_from_db_string(const std::string& sector_str) {
     static const std::unordered_map<std::string, SectorType> sector_map = {
@@ -525,7 +540,8 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                        "{}" AS effect_flags, {},
                        {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       {}, {}, {}
+                       {}, {}, {},
+                       {}, {}
                 FROM "{}"
                 WHERE {} = $1
                 ORDER BY {}
@@ -557,6 +573,8 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
             // Row 9: Other
             db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
+            // Row 10: Display name components
+            db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
             // Table and WHERE
             db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
         ), zone_id);
@@ -726,6 +744,17 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                 mob->set_class_id(row[db::Mobs::CLASS_ID.data()].as<int>());
             }
 
+            // Set base_name and article for dynamic display names
+            // NULL article = calculate a/an dynamically, empty string = no article, value = explicit article
+            if (!row[db::Mobs::BASE_NAME.data()].is_null()) {
+                mob->set_base_name(row[db::Mobs::BASE_NAME.data()].as<std::string>());
+            }
+            if (!row[db::Mobs::ARTICLE.data()].is_null()) {
+                mob->set_article(row[db::Mobs::ARTICLE.data()].as<std::string>());
+            } else {
+                mob->set_article(std::nullopt);  // Calculate a/an dynamically
+            }
+
             mobs.push_back(std::move(mob));
         }
 
@@ -760,7 +789,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
                        "{}" AS effect_flags, {},
                        {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       {}, {}, {}
+                       {}, {}, {},
+                       {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
@@ -791,6 +821,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
             db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
             // Row 9: Other
             db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
+            // Row 10: Display name components
+            db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
             // Table and WHERE
             db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
         ), zone_id, mob_local_id);
@@ -955,6 +987,17 @@ Result<std::unique_ptr<Mobile>> load_mob(
             mob->set_class_id(row[db::Mobs::CLASS_ID.data()].as<int>());
         }
 
+        // Set base_name and article for dynamic display names
+        // NULL article = calculate a/an dynamically, empty string = no article, value = explicit article
+        if (!row[db::Mobs::BASE_NAME.data()].is_null()) {
+            mob->set_base_name(row[db::Mobs::BASE_NAME.data()].as<std::string>());
+        }
+        if (!row[db::Mobs::ARTICLE.data()].is_null()) {
+            mob->set_article(row[db::Mobs::ARTICLE.data()].as<std::string>());
+        } else {
+            mob->set_article(std::nullopt);  // Calculate a/an dynamically
+        }
+
         logger->debug("Loaded mob '{}' ({}, {})", mob_name, zone_id, mob_local_id);
         return mob;
 
@@ -978,7 +1021,8 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       "{}" AS effect_flags, "{}" AS wear_flags
+                       "{}" AS effect_flags, "{}" AS wear_flags,
+                       {}, {}
                 FROM "{}"
                 WHERE {} = $1
                 ORDER BY {}
@@ -988,6 +1032,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
             db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
             db::Objects::FLAGS, db::Objects::EFFECT_FLAGS, db::Objects::WEAR_FLAGS,
+            db::Objects::BASE_NAME, db::Objects::ARTICLE,
             db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
         ), zone_id);
 
@@ -1036,7 +1081,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             // Map database-only types to closest C++ equivalent
             else if (type_str == "ROPE") obj_type = ObjectType::Other;
             else if (type_str == "WALL") obj_type = ObjectType::Other;
-            else if (type_str == "TOUCHSTONE") obj_type = ObjectType::Other;
+            else if (type_str == "TOUCHSTONE") obj_type = ObjectType::Touchstone;
             else if (type_str == "INSTRUMENT") obj_type = ObjectType::Other;
 
             // Create the object
@@ -1088,6 +1133,18 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 }
             }
 
+            // Set base_name for dynamic article handling
+            if (!row[db::Objects::BASE_NAME.data()].is_null()) {
+                obj->set_base_name(row[db::Objects::BASE_NAME.data()].as<std::string>());
+            }
+
+            // Set article for dynamic name building
+            // NULL = use a/an based on first letter, "" = no article, "the"/"some" = specific article
+            if (!row[db::Objects::ARTICLE.data()].is_null()) {
+                obj->set_article(row[db::Objects::ARTICLE.data()].as<std::string>());
+            }
+            // If article column is NULL, leave article_ as nullopt (means calculate a/an at runtime)
+
             // Set equip slot and can_take from wearFlags (using lowercase alias for pqxx access)
             // Default to not takeable - only objects with TAKE flag can be picked up
             obj->set_can_take(false);
@@ -1128,8 +1185,13 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                         if (values_json.contains("Remaining")) {
                             liquid.remaining = values_json["Remaining"].get<int>();
                         }
-                        if (values_json.contains("Poisoned")) {
-                            liquid.poisoned = values_json["Poisoned"].get<bool>();
+                        // Load effects array if present
+                        if (values_json.contains("Effects") && values_json["Effects"].is_array()) {
+                            for (const auto& effect_id : values_json["Effects"]) {
+                                if (effect_id.is_number_integer()) {
+                                    liquid.effects.push_back(effect_id.get<int>());
+                                }
+                            }
                         }
                         obj->set_liquid_info(liquid);
                     }
@@ -1259,7 +1321,8 @@ Result<std::unique_ptr<Object>> load_object(
             fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       "{}" AS effect_flags, "{}" AS wear_flags
+                       "{}" AS effect_flags, "{}" AS wear_flags,
+                       {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
@@ -1268,6 +1331,7 @@ Result<std::unique_ptr<Object>> load_object(
             db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
             db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
             db::Objects::FLAGS, db::Objects::EFFECT_FLAGS, db::Objects::WEAR_FLAGS,
+            db::Objects::BASE_NAME, db::Objects::ARTICLE,
             db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
         ), zone_id, object_local_id);
 
@@ -1314,7 +1378,7 @@ Result<std::unique_ptr<Object>> load_object(
             else if (type_str == "BOARD") obj_type = ObjectType::Board;
             else if (type_str == "ROPE") obj_type = ObjectType::Other;
             else if (type_str == "WALL") obj_type = ObjectType::Other;
-            else if (type_str == "TOUCHSTONE") obj_type = ObjectType::Other;
+            else if (type_str == "TOUCHSTONE") obj_type = ObjectType::Touchstone;
             else if (type_str == "INSTRUMENT") obj_type = ObjectType::Other;
         }
 
@@ -1357,6 +1421,18 @@ Result<std::unique_ptr<Object>> load_object(
             }
         }
 
+        // Set base_name for dynamic article handling
+        if (!row[db::Objects::BASE_NAME.data()].is_null()) {
+            obj->set_base_name(row[db::Objects::BASE_NAME.data()].as<std::string>());
+        }
+
+        // Set article for dynamic name building
+        // NULL = use a/an based on first letter, "" = no article, "the"/"some" = specific article
+        if (!row[db::Objects::ARTICLE.data()].is_null()) {
+            obj->set_article(row[db::Objects::ARTICLE.data()].as<std::string>());
+        }
+        // If article column is NULL, leave article_ as nullopt (means calculate a/an at runtime)
+
         // Parse object values JSON - can be JSON object or array
         // Note: Modern Object class uses a single value, not legacy values[0-3]
         if (!row[db::Objects::VALUES.data()].is_null()) {
@@ -1382,8 +1458,13 @@ Result<std::unique_ptr<Object>> load_object(
                         if (values_json.contains("Remaining")) {
                             liquid.remaining = values_json["Remaining"].get<int>();
                         }
-                        if (values_json.contains("Poisoned")) {
-                            liquid.poisoned = values_json["Poisoned"].get<bool>();
+                        // Load effects array if present
+                        if (values_json.contains("Effects") && values_json["Effects"].is_array()) {
+                            for (const auto& effect_id : values_json["Effects"]) {
+                                if (effect_id.is_number_integer()) {
+                                    liquid.effects.push_back(effect_id.get<int>());
+                                }
+                            }
                         }
                         obj->set_liquid_info(liquid);
                     }
@@ -2898,7 +2979,7 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
             SELECT
                 c.id, c.name, c.level, c.alignment,
                 c.strength, c.intelligence, c.wisdom, c.dexterity, c.constitution, c.charisma, c.luck,
-                c.hit_points, c.hit_points_max, c.movement, c.movement_max,
+                c.hit_points, c.hit_points_max, c.stamina, c.stamina_max,
                 c.wealth, c.bank_wealth,
                 c.password_hash, c.race_type, c.gender, c.player_class, c.class_id,
                 c.current_room_zone_id, c.current_room_id,
@@ -2944,8 +3025,8 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         // Vitals
         character.hit_points = row["hit_points"].as<int>(100);
         character.hit_points_max = row["hit_points_max"].as<int>(100);
-        character.movement = row["movement"].as<int>(100);
-        character.movement_max = row["movement_max"].as<int>(100);
+        character.stamina = row["stamina"].as<int>(100);
+        character.stamina_max = row["stamina_max"].as<int>(100);
 
         // Currency (stored as copper)
         character.wealth = row["wealth"].as<long>(0);
@@ -3048,7 +3129,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
             SELECT
                 c.id, c.name, c.level, c.alignment,
                 c.strength, c.intelligence, c.wisdom, c.dexterity, c.constitution, c.charisma, c.luck,
-                c.hit_points, c.hit_points_max, c.movement, c.movement_max,
+                c.hit_points, c.hit_points_max, c.stamina, c.stamina_max,
                 c.wealth, c.bank_wealth,
                 c.password_hash, c.race_type, c.gender, c.player_class, c.class_id,
                 c.current_room_zone_id, c.current_room_id,
@@ -3091,8 +3172,8 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         character.luck = row["luck"].as<int>(13);
         character.hit_points = row["hit_points"].as<int>(100);
         character.hit_points_max = row["hit_points_max"].as<int>(100);
-        character.movement = row["movement"].as<int>(100);
-        character.movement_max = row["movement_max"].as<int>(100);
+        character.stamina = row["stamina"].as<int>(100);
+        character.stamina_max = row["stamina_max"].as<int>(100);
         character.wealth = row["wealth"].as<long>(0);
         character.bank_wealth = row["bank_wealth"].as<long>(0);
         character.account_wealth = row["account_wealth"].as<long>(0);
@@ -3226,7 +3307,7 @@ Result<CharacterData> create_character(
             INSERT INTO "Characters" (
                 id, name, password_hash, player_class, race_type, race, level,
                 strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
-                hit_points, hit_points_max, movement, movement_max,
+                hit_points, hit_points_max, stamina, stamina_max,
                 created_at, updated_at
             ) VALUES (
                 $1, $2, $3, $4, $5, $6, 1,
@@ -3254,8 +3335,8 @@ Result<CharacterData> create_character(
         character.luck = 13;
         character.hit_points = 100;
         character.hit_points_max = 100;
-        character.movement = 100;
-        character.movement_max = 100;
+        character.stamina = 100;
+        character.stamina_max = 100;
 
         logger->info("Created character '{}' with ID {}", name, character_id);
         return character;
@@ -3280,7 +3361,7 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 level = $2, alignment = $3,
                 strength = $4, intelligence = $5, wisdom = $6, dexterity = $7,
                 constitution = $8, charisma = $9, luck = $10,
-                hit_points = $11, hit_points_max = $12, movement = $13, movement_max = $14,
+                hit_points = $11, hit_points_max = $12, stamina = $13, stamina_max = $14,
                 wealth = $15, bank_wealth = $16,
                 current_room_zone_id = $17, current_room_id = $18,
                 save_room_zone_id = $19, save_room_id = $20,
@@ -3297,7 +3378,7 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
             character.level, character.alignment,
             character.strength, character.intelligence, character.wisdom, character.dexterity,
             character.constitution, character.charisma, character.luck,
-            character.hit_points, character.hit_points_max, character.movement, character.movement_max,
+            character.hit_points, character.hit_points_max, character.stamina, character.stamina_max,
             character.wealth, character.bank_wealth,
             character.current_room_zone_id.value_or(0), character.current_room_id.value_or(0),
             character.save_room_zone_id.value_or(0), character.save_room_id.value_or(0),
@@ -3882,7 +3963,7 @@ Result<std::vector<ShopItemData>> load_shop_items(
 
     try {
         auto result = txn.exec_params(R"(
-            SELECT object_zone_id, object_id, amount
+            SELECT object_zone_id, object_id, amount, price
             FROM "ShopItems"
             WHERE shop_zone_id = $1 AND shop_id = $2
             ORDER BY id
@@ -3897,6 +3978,7 @@ Result<std::vector<ShopItemData>> load_shop_items(
             int obj_id = row["object_id"].as<int>();
             item.object_id = EntityId(obj_zone, obj_id);
             item.amount = row["amount"].as<int>();
+            item.price = row["price"].is_null() ? 0 : row["price"].as<int>();
             // Convert 0 to -1 for unlimited stock
             if (item.amount == 0) {
                 item.amount = -1;
@@ -3936,7 +4018,7 @@ Result<std::vector<ShopMobData>> load_shop_mobs(
             int mob_local = row["mob_id"].as<int>();
             mob.mob_id = EntityId(mob_zone, mob_local);
             mob.amount = row["amount"].as<int>();
-            mob.price = row["price"].as<int>();
+            mob.price = row["price"].is_null() ? 0 : row["price"].as<int>();
             // Convert 0 to -1 for unlimited stock
             if (mob.amount == 0) {
                 mob.amount = -1;
@@ -3954,6 +4036,47 @@ Result<std::vector<ShopMobData>> load_shop_mobs(
     }
 }
 
+Result<std::vector<ShopAbilityData>> load_shop_abilities(
+    pqxx::work& txn, int shop_zone_id, int shop_id) {
+    auto logger = Log::database();
+    logger->debug("Loading abilities for shop ({}, {})", shop_zone_id, shop_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT ability_id, price, spawn_chance,
+                   visibility_requirement, purchase_requirement
+            FROM "ShopAbilities"
+            WHERE shop_zone_id = $1 AND shop_id = $2
+            ORDER BY id
+        )", shop_zone_id, shop_id);
+
+        std::vector<ShopAbilityData> abilities;
+        abilities.reserve(result.size());
+
+        for (const auto& row : result) {
+            ShopAbilityData ability;
+            ability.ability_id = row["ability_id"].as<int>();
+            ability.price = row["price"].is_null() ? 0 : row["price"].as<int>();
+            ability.spawn_chance = row["spawn_chance"].is_null() ? 1.0f
+                : row["spawn_chance"].as<float>();
+            ability.visibility_requirement = row["visibility_requirement"].is_null() ? ""
+                : row["visibility_requirement"].as<std::string>();
+            ability.purchase_requirement = row["purchase_requirement"].is_null() ? ""
+                : row["purchase_requirement"].as<std::string>();
+            abilities.push_back(ability);
+        }
+
+        logger->debug("Loaded {} abilities for shop ({}, {})",
+            abilities.size(), shop_zone_id, shop_id);
+        return abilities;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading shop abilities: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load shop abilities: {}", e.what())});
+    }
+}
+
 // =============================================================================
 // Character Item Queries
 // =============================================================================
@@ -3967,7 +4090,8 @@ Result<std::vector<CharacterItemData>> load_character_items(
         auto result = txn.exec_params(R"(
             SELECT id, character_id, object_zone_id, object_id,
                    container_id, equipped_location, condition, charges,
-                   instance_flags::text[], custom_name, custom_examine_description
+                   instance_flags::text[], custom_name, custom_examine_description,
+                   liquid_type, liquid_remaining, liquid_effects, liquid_identified
             FROM "CharacterItems"
             WHERE character_id = $1
             ORDER BY id
@@ -4006,6 +4130,16 @@ Result<std::vector<CharacterItemData>> load_character_items(
             if (!row["custom_examine_description"].is_null()) {
                 item.custom_description = row["custom_examine_description"].as<std::string>();
             }
+
+            // Load liquid container state
+            if (!row["liquid_type"].is_null()) {
+                item.liquid_type = row["liquid_type"].as<std::string>();
+            }
+            item.liquid_remaining = row["liquid_remaining"].as<int>();
+            if (!row["liquid_effects"].is_null()) {
+                item.liquid_effects = parse_pg_int_array(row["liquid_effects"].as<std::string>());
+            }
+            item.liquid_identified = row["liquid_identified"].as<bool>();
 
             items.push_back(std::move(item));
         }
@@ -4054,13 +4188,25 @@ Result<void> save_character_items(
                 flags_array += "}";
             }
 
+            // Build liquid effects as PostgreSQL integer array literal
+            std::string effects_array = "{}";
+            if (!item.liquid_effects.empty()) {
+                effects_array = "{";
+                for (size_t i = 0; i < item.liquid_effects.size(); ++i) {
+                    if (i > 0) effects_array += ",";
+                    effects_array += std::to_string(item.liquid_effects[i]);
+                }
+                effects_array += "}";
+            }
+
             txn.exec_params(R"(
                 INSERT INTO "CharacterItems" (
                     character_id, object_zone_id, object_id,
                     container_id, equipped_location, condition, charges,
                     instance_flags, custom_name, custom_examine_description,
+                    liquid_type, liquid_remaining, liquid_effects, liquid_identified,
                     updated_at
-                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::text[], $9, $10, NOW())
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::text[], $9, $10, $11, $12, $13::int[], $14, NOW())
             )",
                 character_id,
                 item.object_id.zone_id(),
@@ -4071,7 +4217,11 @@ Result<void> save_character_items(
                 item.charges,
                 flags_array,
                 item.custom_name.empty() ? std::optional<std::string>{} : item.custom_name,
-                item.custom_description.empty() ? std::optional<std::string>{} : item.custom_description
+                item.custom_description.empty() ? std::optional<std::string>{} : item.custom_description,
+                item.liquid_type.empty() ? std::optional<std::string>{} : item.liquid_type,
+                item.liquid_remaining,
+                effects_array,
+                item.liquid_identified
             );
         }
 

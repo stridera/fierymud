@@ -36,4 +36,4 @@ if (flag) {
 }
 ```
 
-Last generated: 2025-12-27T02:46:16.216471
+Last generated: 2026-01-03T13:48:27.369130

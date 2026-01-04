@@ -27,6 +27,7 @@ Result<CommandResult> cmd_light(const CommandContext &ctx);
 Result<CommandResult> cmd_extinguish(const CommandContext &ctx);
 Result<CommandResult> cmd_eat(const CommandContext &ctx);
 Result<CommandResult> cmd_drink(const CommandContext &ctx);
+Result<CommandResult> cmd_sip(const CommandContext &ctx);
 
 // Shop commands
 Result<CommandResult> cmd_list(const CommandContext &ctx);

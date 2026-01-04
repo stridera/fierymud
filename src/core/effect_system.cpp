@@ -847,10 +847,10 @@ std::expected<EffectResult, Error> EffectExecutor::execute_heal(
     int heal_amount = std::max(1, *heal_result);
     auto& stats = heal_target->stats();
 
-    if (params.heal_resource == "move" || params.heal_resource == "movement") {
-        int old_move = stats.movement;
-        stats.movement = std::min(stats.movement + heal_amount, stats.max_movement);
-        heal_amount = stats.movement - old_move;
+    if (params.heal_resource == "stamina" || params.heal_resource == "move" || params.heal_resource == "movement") {
+        int old_stamina = stats.stamina;
+        stats.stamina = std::min(stats.stamina + heal_amount, stats.max_stamina);
+        heal_amount = stats.stamina - old_stamina;
     } else {
         // Default to HP
         int old_hp = stats.hit_points;
@@ -858,7 +858,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_heal(
         heal_amount = stats.hit_points - old_hp;
     }
 
-    std::string resource_name = (params.heal_resource == "move") ? "movement" : "health";
+    std::string resource_name = (params.heal_resource == "stamina" || params.heal_resource == "move") ? "stamina" : "health";
     std::string attacker_msg = fmt::format("You restore {} {} to {}.",
         heal_amount, resource_name, heal_target->display_name());
     std::string target_msg = fmt::format("{} restores {} {} to you.",

@@ -12,6 +12,7 @@
 #include "../scripting/coroutine_scheduler.hpp"
 #include "../scripting/script_engine.hpp"
 #include "../scripting/trigger_manager.hpp"
+#include "../text/text_format.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 #include "mud_server.hpp"
@@ -31,6 +32,7 @@ namespace {
     constexpr auto PLAYER_SAVE_INTERVAL = std::chrono::minutes(5);
     constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
     constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500);  // 2 ticks per second
+    constexpr auto REGEN_TICK_INTERVAL = std::chrono::seconds(4);  // HP/move regen like legacy
 
     // Game time defaults
     constexpr int DEFAULT_LORE_YEAR = 1000;
@@ -207,11 +209,11 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         });
     });
 
-    // Register callback for hour changes to tick spell effects
+    // Register callback for hour changes to tick spell durations and conditions
     TimeSystem::instance().on_hour_changed([this](const GameTime& /* old_time */, const GameTime& /* new_time */) {
-        // Tick down spell effect durations for all actors in the world
+        // Tick down spell effect durations, process drunk sobering, etc.
         asio::post(world_strand_, [this]() {
-            world_manager_->tick_all_effects();
+            world_manager_->tick_hour_all();
         });
     });
 
@@ -284,6 +286,7 @@ Result<void> WorldServer::start() {
     schedule_periodic_save();
     schedule_spell_restoration();
     schedule_casting_processing();
+    schedule_regen_tick();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -432,6 +435,12 @@ void WorldServer::process_command(std::shared_ptr<PlayerConnection> connection, 
                 // Response will be sent via the CommandContext/connection mechanism
                 // No need to send additional response here
             }
+        } else {
+            // Empty input - just refresh the prompt (useful for watching regen)
+            auto actor_it = connection_actors_.find(connection);
+            if (actor_it != connection_actors_.end()) {
+                send_prompt_to_actor(actor_it->second);
+            }
         }
     });
 }
@@ -488,6 +497,9 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
                     return;  // Don't send game prompt while composing
                 }
             }
+            send_prompt_to_actor(actor);
+        } else {
+            // Empty input - just refresh the prompt (useful for watching regen)
             send_prompt_to_actor(actor);
         }
     });
@@ -698,6 +710,17 @@ void WorldServer::schedule_casting_processing() {
     Log::info("Scheduling casting tick timer (500ms interval)");
     casting_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
     schedule_timer(CASTING_TICK_INTERVAL, [this]() { perform_casting_processing(); }, casting_timer_);
+}
+
+void WorldServer::schedule_regen_tick() {
+    Log::info("Scheduling regeneration tick timer (4s interval like legacy)");
+    regen_tick_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(REGEN_TICK_INTERVAL, [this]() { perform_regen_tick(); }, regen_tick_timer_);
+}
+
+void WorldServer::perform_regen_tick() {
+    // Fast tick for HP/move regeneration - runs every 4 seconds like legacy MUD
+    world_manager_->tick_regen_all();
 }
 
 void WorldServer::perform_spell_restoration() {
@@ -1076,6 +1099,91 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
     }
 }
 
+/**
+ * Get condition string based on HP percentage
+ */
+static std::string get_condition_string(int hp_percent) {
+    if (hp_percent >= CONDITION_PERFECT)
+        return "perfect";
+    else if (hp_percent >= CONDITION_SCRATCHED)
+        return "scratched";
+    else if (hp_percent >= CONDITION_HURT)
+        return "hurt";
+    else if (hp_percent >= CONDITION_WOUNDED)
+        return "wounded";
+    else if (hp_percent >= CONDITION_BLEEDING)
+        return "bleeding";
+    else if (hp_percent >= CONDITION_CRITICAL)
+        return "critical";
+    else
+        return "dying";
+}
+
+/**
+ * Expand prompt format codes into actual values.
+ *
+ * Format codes:
+ *   %h - current hit points    %H - max hit points
+ *   %v - current stamina       %V - max stamina
+ *   %l - level                 %g - gold
+ *   %x - experience            %X - exp to next level
+ *   %t - tank condition        %T - target condition
+ *   %n - newline               %% - literal %
+ *
+ * Color markup is preserved in output and processed by terminal rendering.
+ */
+static std::string expand_prompt_format(
+    std::string_view format,
+    const Stats& stats,
+    std::shared_ptr<Actor> fighting = nullptr
+) {
+    std::string result;
+    result.reserve(format.size() * 2);  // Pre-allocate for efficiency
+
+    for (size_t i = 0; i < format.size(); ++i) {
+        if (format[i] == '%' && i + 1 < format.size()) {
+            char code = format[++i];
+            switch (code) {
+                case 'h': result += std::to_string(stats.hit_points); break;
+                case 'H': result += std::to_string(stats.max_hit_points); break;
+                case 'v': result += std::to_string(stats.stamina); break;
+                case 'V': result += std::to_string(stats.max_stamina); break;
+                case 'l': result += std::to_string(stats.level); break;
+                case 'g': result += std::to_string(stats.gold); break;
+                case 'x': result += std::to_string(stats.experience); break;
+                case 'X': {
+                    // Experience to next level (simplified - could be more complex)
+                    long next_level_exp = static_cast<long>(stats.level) * 1000;
+                    result += std::to_string(std::max(0L, next_level_exp - stats.experience));
+                    break;
+                }
+                case 't':
+                case 'T': {
+                    // Target/tank condition - show fighting opponent's condition
+                    if (fighting) {
+                        const auto& opp_stats = fighting->stats();
+                        int hp_percent = (opp_stats.hit_points * PERCENT_MULTIPLIER) /
+                                        std::max(1, opp_stats.max_hit_points);
+                        result += get_condition_string(hp_percent);
+                    }
+                    break;
+                }
+                case 'n': result += "\n"; break;
+                case '%': result += "%"; break;
+                default:
+                    // Unknown code - keep original
+                    result += '%';
+                    result += code;
+                    break;
+            }
+        } else {
+            result += format[i];
+        }
+    }
+
+    return result;
+}
+
 void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     if (!actor) {
         return;
@@ -1084,43 +1192,33 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     // Get actor's current stats
     const auto &stats = actor->stats();
 
-    // Basic prompt format: <HP>H <Move>M>
-    std::string prompt = fmt::format("{}H {}M", stats.hit_points, stats.movement);
+    // Get the player's custom prompt format, or use default
+    std::string_view format = "<%h/%Hhp %v/%Vs>";  // Default format
 
-    // If fighting, show opponent's condition
-    if (actor->is_fighting()) {
-        auto opponent = FieryMUD::CombatManager::get_opponent(*actor);
-        if (opponent) {
-            // Calculate condition based on HP percentage
-            const auto &opp_stats = opponent->stats();
-            int hp_percent = (opp_stats.hit_points * PERCENT_MULTIPLIER) / std::max(1, opp_stats.max_hit_points);
-
-            std::string condition;
-            if (hp_percent >= CONDITION_PERFECT)
-                condition = "perfect";
-            else if (hp_percent >= CONDITION_SCRATCHED)
-                condition = "scratched";
-            else if (hp_percent >= CONDITION_HURT)
-                condition = "hurt";
-            else if (hp_percent >= CONDITION_WOUNDED)
-                condition = "wounded";
-            else if (hp_percent >= CONDITION_BLEEDING)
-                condition = "bleeding";
-            else if (hp_percent >= CONDITION_CRITICAL)
-                condition = "critical";
-            else
-                condition = "dying";
-
-            prompt += fmt::format(" (Fighting: {} is {})", opponent->display_name(), condition);
-        } else {
-            prompt += " (Fighting)";
-        }
+    auto player = std::dynamic_pointer_cast<Player>(actor);
+    if (player && !player->prompt().empty()) {
+        format = player->prompt();
     }
 
-    prompt += "> ";
+    // Get fighting opponent (if any) for condition codes
+    std::shared_ptr<Actor> opponent = nullptr;
+    if (actor->is_fighting()) {
+        opponent = FieryMUD::CombatManager::get_opponent(*actor);
+    }
+
+    // Expand the prompt format (substitutes %h, %H, etc.)
+    std::string prompt = expand_prompt_format(format, stats, opponent);
+
+    // Process color markup (renders <red>, <yellow>, etc. to ANSI)
+    prompt = TextFormat::apply_colors(prompt);
+
+    // Add space and trailing prompt character if not present
+    if (!prompt.empty() && prompt.back() != '>' && prompt.back() != ':' && prompt.back() != ' ') {
+        prompt += ' ';
+    }
 
     // Send the prompt - we need to handle different actor types
-    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+    if (player) {
         // For players, try to get their output interface
         if (auto output = player->get_output()) {
             output->send_prompt(prompt);
