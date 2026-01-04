@@ -2771,7 +2771,13 @@ void nanny(DescriptorData *d, char *arg) {
             for (;;) {
                 mid = (bot + top) / 2;
 
-                if (!(chk = strncasecmp(race, help_table[mid].keyword, minlen))) {
+                if (bot > top) {
+                  string_to_output(d, "The help file for ");
+                  string_to_output(d, race);
+                  string_to_output(d, " is missing. Please inform an immortal!");
+                  string_to_output(d, "\n\nPress ENTER to return to the race help menu or [X] to select a race.");
+                  return;
+                } else if (!(chk = strncasecmp(race, help_table[mid].keyword, minlen))) {
                     /* trace backwards to find first matching entry. Thanks Jeff Fink! */
                     while ((mid > 0) && (!(chk = strncasecmp(race, help_table[mid - 1].keyword, minlen))))
                         mid--;
@@ -2928,7 +2934,13 @@ void nanny(DescriptorData *d, char *arg) {
             for (;;) {
                 mid = (bot + top) / 2;
 
-                if (!(chk = strncasecmp(charclass, help_table[mid].keyword, minlen))) {
+                if (bot > top) {
+                  string_to_output(d, "The help file for ");
+                  string_to_output(d, charclass);
+                  string_to_output(d, " is missing. Please inform an immortal!");
+                  string_to_output(d, "\n\nPress ENTER to go back to class selection.");
+                  return;
+                } else if (!(chk = strncasecmp(charclass, help_table[mid].keyword, minlen))) {
                     /* trace backwards to find first matching entry. Thanks Jeff Fink! */
                     while ((mid > 0) && (!(chk = strncasecmp(charclass, help_table[mid - 1].keyword, minlen))))
                         mid--;
