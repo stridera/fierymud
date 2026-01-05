@@ -24,7 +24,7 @@
 
 #define DG_NO_TRIG (1u << 6u) /* don't check act trigger   */
 
-#define NUM_TRIG_TYPE_FLAGS 20
+#define NUM_TRIG_TYPE_FLAGS 21
 
 /* mob trigger types */
 #define MTRIG_GLOBAL (1u << 0u)    /* check even if zone empty   */
@@ -47,6 +47,7 @@
 #define MTRIG_DOOR (1u << 17u)     /* door manipulated in room   */
 #define MTRIG_LOOK (1u << 18u)     /* the mob is looked at       */
 #define MTRIG_TIME (1u << 19u)     /* trigger based on game hour */
+#define MTRIG_ASLEEP (1u << 20u)   /* allow trigger while asleep */
 
 /* obj trigger types */
 #define OTRIG_GLOBAL (1u << 0u)   /* unused                     */
@@ -210,6 +211,8 @@ void reset_wtrigger(RoomData *room);
 void random_mtrigger(CharData *ch);
 void random_otrigger(ObjData *obj);
 void random_wtrigger(RoomData *ch);
+
+bool check_awake(const TrigData* trig, const CharData* ch);
 
 /* function prototypes from scripts.c */
 void script_trigger_check(void);
