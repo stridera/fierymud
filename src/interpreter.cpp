@@ -2559,11 +2559,11 @@ void nanny(DescriptorData *d, char *arg) {
                 desc_printf(d, "\n{}{} news:\n{}", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
 
             // Convert timestamp to string
-            auto time = std::chrono::system_clock::from_time_t(d->character->player.time.logon);
+            auto time = timestamp_from_time_t(d->character->player.time.logon);
             log(LogSeverity::Warn,
                 std::min<int>(GET_LEVEL(d->character),
                               std::max<int>(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character))),
-                "{} [{}] has connected.  Last login: {:%c}.", GET_NAME(d->character), d->host, time);
+                "{} [{}] has connected.  Last login: {:" TIMEFMT_LOG "}.", GET_NAME(d->character), d->host, time);
             if (load_result) {
                 string_to_output(d, "\n\n\007\007\007 {}{:d} LOGIN FAILURE{} SINCE LAST SUCCESSFUL LOGIN.{}\n",
                                  CLRLV(d->character, FRED, C_SPR), load_result, (load_result > 1) ? "S" : "",

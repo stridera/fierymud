@@ -666,8 +666,8 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
                 board->message_count == 1 ? "" : "s", face ? face->short_description : "the board");
 
     for (i = board->message_count - 1; i >= 0; --i) {
-        auto time = std::chrono::system_clock::from_time_t(board->messages[i]->time);
-        paging_printf(ch, "{}{:-2d}" ANRM " : {:%c} : {:<12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
+        auto time = timestamp_from_time_t(board->messages[i]->time);
+        paging_printf(ch, "{}{:-2d}" ANRM " : {:" TIMEFMT_LOG "} : {:<12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
                       i + 1, time, board->messages[i]->poster,
                       board->messages[i]->subject ? board->messages[i]->subject : "<no title>");
     }
@@ -928,14 +928,12 @@ void read_message(CharData *ch, BoardData *board, int msgnum) {
         return;
     }
 
-    auto time = std::chrono::system_clock::from_time_t(msg->time);
     paging_printf(ch, FCYN "Message {:d} {}: " ANRM "{}" AFCYN "\n", msgnum, msg->sticky ? HCYN "(sticky) " AFCYN : "",
                   msg->subject);
-    paging_printf(ch, "{}  posted by {}, {:%c}" ANRM "\n", msg->edits ? "" : AUND, msg->poster, time);
+    paging_printf(ch, "{}  posted by {}, {:" TIMEFMT_LOG "}" ANRM "\n", msg->edits ? "" : AUND, msg->poster, timestamp_from_time_t(msg->time));
 
     for (edit = msg->edits; edit; edit = edit->next) {
-        time = std::chrono::system_clock::from_time_t(edit->time);
-        paging_printf(ch, FCYN "{}  edited by {}, {:%c}" ANRM "\n", edit->next ? "" : AUND, edit->editor, time);
+        paging_printf(ch, FCYN "{}  edited by {}, {:" TIMEFMT_LOG "}" ANRM "\n", edit->next ? "" : AUND, edit->editor, timestamp_from_time_t(edit->time));
     }
     paging_printf(ch, msg->message);
 
