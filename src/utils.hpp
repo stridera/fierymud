@@ -19,6 +19,7 @@
 #include "text.hpp"
 
 #include <math.h>
+#include <chrono>
 
 /* external declarations and prototypes **********************************/
 
@@ -574,3 +575,8 @@ extern flagvector *ALL_FLAGS;
 /* Format strings for strftime */
 #define TIMEFMT_LOG "%a %d %b %Y %H:%M:%S" /* 24 characters */
 #define TIMEFMT_DATE "%b %d %Y"            /* 11 characters */
+
+using Timestamp = decltype(std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::from_time_t(0)));
+inline Timestamp timestamp_from_time_t(std::uint64_t t) {
+    return std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::from_time_t(t));
+}

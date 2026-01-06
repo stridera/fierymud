@@ -150,8 +150,7 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
             char_printf(ch, "{}{}'s recent {} list is:{}\n\n", CLR(ch, FGRN), GET_NAME(vict), comm_name, CLR(ch, ANRM));
         }
         for (; node; node = node->next) {
-            auto time = std::chrono::system_clock::from_time_t(node->time);
-            char_printf(ch, "{:%c}: {}\n", time, node->msg);
+            char_printf(ch, "{:" TIMEFMT_LOG "}: {}\n", timestamp_from_time_t(node->time), node->msg);
         }
     }
 }
