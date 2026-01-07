@@ -25,6 +25,7 @@ struct FormulaContext {
     int wis_bonus = 0;        // Wisdom modifier
     int cha_bonus = 0;        // Charisma modifier
     int weapon_damage = 0;    // Base weapon damage
+    int base_damage = 0;      // Base spell/ability damage (level + circle * 2)
 
     // Actor's detection stats
     int perception = 0;       // Actor's perception stat

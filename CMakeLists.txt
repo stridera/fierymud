@@ -725,6 +725,21 @@ add_executable(test_database
     src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
+    # Scripting system (required by admin_commands)
+    src/scripting/script_engine.cpp
+    src/scripting/trigger_manager.cpp
+    src/scripting/coroutine_scheduler.cpp
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
+    src/scripting/bindings/lua_quest.cpp
+    src/database/trigger_queries.cpp
+    # Quest system (required by lua_quest bindings)
+    src/quests/quest_manager.cpp
+    src/database/quest_queries.cpp
+    src/commands/quest_commands.cpp
+    # Event publishing (required by communication_commands)
+    src/events/event_publisher.cpp
 )
 
 target_include_directories(test_database PRIVATE src ${HIREDIS_INCLUDE_DIRS})
@@ -822,6 +837,21 @@ add_executable(test_database_comprehensive
     src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
+    # Scripting system (required by admin_commands)
+    src/scripting/script_engine.cpp
+    src/scripting/trigger_manager.cpp
+    src/scripting/coroutine_scheduler.cpp
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
+    src/scripting/bindings/lua_quest.cpp
+    src/database/trigger_queries.cpp
+    # Quest system (required by lua_quest bindings)
+    src/quests/quest_manager.cpp
+    src/database/quest_queries.cpp
+    src/commands/quest_commands.cpp
+    # Event publishing (required by communication_commands)
+    src/events/event_publisher.cpp
 )
 
 target_include_directories(test_database_comprehensive PRIVATE src ${HIREDIS_INCLUDE_DIRS})

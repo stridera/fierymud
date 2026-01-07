@@ -245,10 +245,12 @@ class CppGenerator:
 
     # Enum groupings for organization
     ENUM_GROUPS = {
-        'Room System': ['RoomFlag', 'Sector', 'Direction', 'ExitFlag'],
-        'Mob System': ['MobFlag', 'MobRole', 'Position', 'Stance', 'Gender', 'Size',
-                       'LifeForce', 'Composition', 'DamageType'],
-        'Object System': ['ObjectType', 'ObjectFlag', 'WearFlag'],
+        'Room System': ['RoomFlag', 'Sector', 'Direction', 'ExitFlag', 'ExitState',
+                       'MagicAffinity'],
+        'Mob System': ['MobFlag', 'MobRole', 'MobTrait', 'MobBehavior',
+                       'Position', 'Stance', 'Gender', 'Size', 'LifeForce',
+                       'Composition', 'DamageType'],
+        'Object System': ['ObjectType', 'ObjectFlag', 'WearFlag', 'Alignment'],
         'Effect System': ['EffectFlag', 'ElementType', 'ApplyType'],
         'Character System': ['Race', 'RaceAlign', 'SkillCategory', 'SkillType'],
         'Ability System': ['SpellSphere', 'TargetType', 'TargetScope', 'SaveType',

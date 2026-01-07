@@ -159,7 +159,21 @@ auto online_players = all_players
 
 This project uses CMake with Ninja generator for faster builds.
 
-**IMPORTANT: Use the `./build.sh` script instead of calling cmake directly.** Direct cmake invocations can cause WSL to crash due to excessive parallelization.
+### ⚠️ CRITICAL: Always Use the Build Script ⚠️
+
+**NEVER use `cmake --build` directly.** Always use `./build.sh` for all builds.
+
+Direct cmake/ninja invocations with default parallelization **WILL crash WSL** due to memory exhaustion. The build script limits parallel jobs to a safe level.
+
+```bash
+# ✅ CORRECT - Always use this:
+./build.sh
+./build.sh fierymud
+
+# ❌ WRONG - Never do this:
+cmake --build build
+ninja -C build
+```
 
 ### Building the MUD
 

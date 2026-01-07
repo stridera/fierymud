@@ -15,6 +15,7 @@ Result<CommandResult> cmd_give(const CommandContext &ctx);
 Result<CommandResult> cmd_wear(const CommandContext &ctx);
 Result<CommandResult> cmd_wield(const CommandContext &ctx);
 Result<CommandResult> cmd_remove(const CommandContext &ctx);
+Result<CommandResult> cmd_grip(const CommandContext &ctx);
 
 // Container and object interaction commands
 Result<CommandResult> cmd_open(const CommandContext &ctx);

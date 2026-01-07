@@ -9,6 +9,13 @@
 #include <unordered_map>
 #include <unordered_set>
 
+namespace FieryMUD {
+// Forward declaration for weapon speed (defined in combat.hpp)
+enum class WeaponSpeed;
+} // namespace FieryMUD
+
+using FieryMUD::WeaponSpeed;
+
 /** Object types for type-safe object handling */
 enum class ObjectType {
     Undefined = 0,
@@ -254,7 +261,10 @@ enum class ObjectFlag {
     Enhanced = 39,      // Magically enhanced
 
     // Liquid source flags
-    TrustedSource = 40  // Fountain/keg in safe area - filling gives identified liquid
+    TrustedSource = 40, // Fountain/keg in safe area - filling gives identified liquid
+
+    // Weapon grip flags
+    Versatile = 41      // Can be wielded one-handed or two-handed (use 'grip' command to toggle)
 };
 
 /** Modern Object class inheriting from Entity */
@@ -380,9 +390,24 @@ public:
     
     /** Get damage profile (for weapons) */
     const DamageProfile& damage_profile() const { return damage_profile_; }
-    
+
     /** Set damage profile */
     void set_damage_profile(const DamageProfile& profile) { damage_profile_ = profile; }
+
+    /** Get damage dice count (for weapons) */
+    int damage_dice_num() const { return damage_profile_.dice_count; }
+
+    /** Get damage dice size (for weapons) */
+    int damage_dice_size() const { return damage_profile_.dice_sides; }
+
+    /** Get damage bonus (for weapons) */
+    int damage_bonus() const { return damage_profile_.damage_bonus; }
+
+    /** Get weapon speed category
+     * Converts the Weapon's numeric speed (1-10) to WeaponSpeed enum
+     * Non-weapon objects return Medium as default
+     */
+    WeaponSpeed weapon_speed() const;
     
     /** Get container info (for containers) */
     const ContainerInfo& container_info() const { return container_info_; }

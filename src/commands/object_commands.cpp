@@ -1198,6 +1198,47 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_grip(const CommandContext &ctx) {
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Get the wielded weapon
+    auto weapon = ctx.actor->equipment().get_main_weapon();
+    if (!weapon) {
+        ctx.send_error("You aren't wielding anything.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if weapon is versatile
+    if (!weapon->has_flag(ObjectFlag::Versatile)) {
+        ctx.send_error("Your weapon cannot be wielded with a different grip.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Attempt to toggle grip
+    auto error = ctx.actor->equipment().toggle_grip();
+    if (!error.empty()) {
+        ctx.send_error(error);
+        return CommandResult::ResourceError;
+    }
+
+    // Success - determine new grip state
+    if (ctx.actor->equipment().is_using_two_handed_grip()) {
+        ctx.send_success(fmt::format("You adjust your grip on {}, now wielding it with both hands.",
+                                     ctx.format_object_name(weapon)));
+        ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it with both hands.",
+                                     ctx.actor->display_name(), ctx.format_object_name(weapon)), true);
+    } else {
+        ctx.send_success(fmt::format("You adjust your grip on {}, now wielding it in one hand.",
+                                     ctx.format_object_name(weapon)));
+        ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it in one hand.",
+                                     ctx.actor->display_name(), ctx.format_object_name(weapon)), true);
+    }
+
+    return CommandResult::Success;
+}
+
 // =============================================================================
 // Container and Object Interaction Commands
 // =============================================================================
@@ -2849,6 +2890,13 @@ Result<void> register_commands() {
     Commands()
         .command("remove", cmd_remove)
         .alias("rem")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("grip", cmd_grip)
+        .alias("changegrip")
         .category("Object")
         .privilege(PrivilegeLevel::Player)
         .build();

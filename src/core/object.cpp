@@ -1,4 +1,5 @@
 #include "object.hpp"
+#include "combat.hpp"  // For WeaponSpeed enum
 #include "../core/logging.hpp"
 #include "../database/game_data_cache.hpp"
 
@@ -387,39 +388,76 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         else if (type == ObjectType::Container && json.contains("values")) {
             const auto& values_json = json["values"];
             ContainerInfo container;
-            
+
             // Parse legacy container values with error handling
-            // Python importer stores: Capacity (int), Flags (list), Key (int), IsCorpse (bool), Weight Reduction (float)
+            // Handles both string format (legacy JSON) and int format (Python importer)
             try {
                 if (values_json.contains("Capacity")) {
-                    // Python stores as int
-                    container.capacity = values_json["Capacity"].get<int>();
+                    // Handle both string and int formats
+                    const auto& cap_val = values_json["Capacity"];
+                    if (cap_val.is_string()) {
+                        std::string cap_str = cap_val.get<std::string>();
+                        if (!cap_str.empty() && cap_str != "0") {
+                            container.capacity = std::stoi(cap_str);
+                        }
+                    } else if (cap_val.is_number()) {
+                        container.capacity = cap_val.get<int>();
+                    }
                     container.weight_capacity = container.capacity * 10;  // Default weight capacity
                 }
                 if (values_json.contains("Key")) {
-                    // Python stores as int: 0 = no key, other values = key id
-                    int key_val = values_json["Key"].get<int>();
-                    if (key_val > 0) {
-                        container.key_id = EntityId{static_cast<std::uint64_t>(key_val)};
+                    // Handle both string and int formats: 0 = no key, other values = key id
+                    const auto& key_val = values_json["Key"];
+                    int key_id = 0;
+                    if (key_val.is_string()) {
+                        std::string key_str = key_val.get<std::string>();
+                        if (!key_str.empty()) {
+                            key_id = std::stoi(key_str);
+                        }
+                    } else if (key_val.is_number()) {
+                        key_id = key_val.get<int>();
+                    }
+                    if (key_id > 0) {
+                        container.key_id = EntityId{static_cast<std::uint64_t>(key_id)};
                         container.lockable = true;
                     }
                 }
-                if (values_json.contains("Flags") && values_json["Flags"].is_array()) {
-                    // Python stores as list of flag strings: ["Closeable", "PickProof", "Closed", "Locked"]
-                    for (const auto& flag : values_json["Flags"]) {
-                        std::string flag_str = flag.get<std::string>();
-                        if (flag_str == "Closeable") container.closeable = true;
-                        if (flag_str == "Closed") container.closed = true;
-                        if (flag_str == "Locked") {
+                if (values_json.contains("Flags")) {
+                    const auto& flags_val = values_json["Flags"];
+                    if (flags_val.is_array()) {
+                        // Python format: list of flag strings: ["Closeable", "PickProof", "Closed", "Locked"]
+                        for (const auto& flag : flags_val) {
+                            std::string flag_str = flag.get<std::string>();
+                            if (flag_str == "Closeable") container.closeable = true;
+                            if (flag_str == "Closed") container.closed = true;
+                            if (flag_str == "Locked") {
+                                container.lockable = true;
+                                container.locked = true;
+                            }
+                            // PickProof affects lock difficulty, not stored in ContainerInfo
+                        }
+                    } else if (flags_val.is_string()) {
+                        // Legacy format: comma-separated or empty string
+                        std::string flags_str = flags_val.get<std::string>();
+                        if (flags_str.find("CLOSEABLE") != std::string::npos) container.closeable = true;
+                        if (flags_str.find("CLOSED") != std::string::npos) container.closed = true;
+                        if (flags_str.find("LOCKED") != std::string::npos) {
                             container.lockable = true;
                             container.locked = true;
                         }
-                        // PickProof affects lock difficulty, not stored in ContainerInfo
                     }
                 }
                 if (values_json.contains("Weight Reduction")) {
-                    // Python stores as float: percentage (0-100) weight reduction (bag of holding style)
-                    container.weight_reduction = static_cast<int>(values_json["Weight Reduction"].get<double>());
+                    // Handle both string and numeric formats
+                    const auto& wr_val = values_json["Weight Reduction"];
+                    if (wr_val.is_string()) {
+                        std::string wr_str = wr_val.get<std::string>();
+                        if (!wr_str.empty() && wr_str != "0") {
+                            container.weight_reduction = static_cast<int>(std::stod(wr_str));
+                        }
+                    } else if (wr_val.is_number()) {
+                        container.weight_reduction = static_cast<int>(wr_val.get<double>());
+                    }
                 }
 
                 object->set_container_info(container);
@@ -576,6 +614,27 @@ void Object::set_effect(EffectFlag effect, bool value) {
     } else {
         effect_flags_.erase(effect);
     }
+}
+
+WeaponSpeed Object::weapon_speed() const {
+    // Non-weapons return medium speed as default
+    if (!is_weapon()) {
+        return WeaponSpeed::Medium;
+    }
+
+    // For Weapon objects, convert numeric speed (1-10) to enum
+    // Weapon::speed() returns 1-10 where lower is faster
+    if (const auto* weapon = dynamic_cast<const Weapon*>(this)) {
+        int speed = weapon->speed();
+        if (speed <= 2) return WeaponSpeed::VeryFast;      // 1-2: daggers, claws
+        if (speed <= 4) return WeaponSpeed::Fast;          // 3-4: short swords
+        if (speed <= 6) return WeaponSpeed::Medium;        // 5-6: long swords
+        if (speed <= 8) return WeaponSpeed::Slow;          // 7-8: two-handed
+        return WeaponSpeed::VerySlow;                       // 9-10: massive weapons
+    }
+
+    // Default for base Object weapons (unlikely but safe)
+    return WeaponSpeed::Medium;
 }
 
 nlohmann::json Object::to_json() const {

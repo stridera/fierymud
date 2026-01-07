@@ -131,6 +131,31 @@ void WorldManager::clear_state() {
     Log::game()->debug("WorldManager state cleared");
 }
 
+void WorldManager::request_shutdown(int seconds_from_now, std::string_view reason) {
+    shutdown_requested_.store(true);
+    shutdown_time_ = std::chrono::steady_clock::now() +
+                     std::chrono::seconds(seconds_from_now);
+    shutdown_reason_ = std::string(reason);
+
+    Log::warn("Shutdown requested: {} (in {} seconds)",
+              reason.empty() ? "No reason given" : reason, seconds_from_now);
+}
+
+void WorldManager::cancel_shutdown() {
+    if (shutdown_requested_.load()) {
+        shutdown_requested_.store(false);
+        shutdown_time_ = {};
+        Log::info("Shutdown cancelled");
+    }
+}
+
+bool WorldManager::should_shutdown_now() const {
+    if (!shutdown_requested_.load()) {
+        return false;
+    }
+    return std::chrono::steady_clock::now() >= shutdown_time_;
+}
+
 Result<void> WorldManager::load_world() {
     // Note: This method is called from the world strand - no mutex needed!
     // The strand provides single-threaded access by design.
@@ -1389,14 +1414,37 @@ Result<void> WorldManager::load_zones_from_database() {
             logger->debug("Loaded {} mobs for zone {}", mobs_result->size(), zone_id);
 
             // Register mobile prototypes in both global vector AND lookup map
+            int aggressive_count = 0;
             for (auto& mob_ptr : *mobs_result) {
                 // Convert unique_ptr to shared_ptr for safe storage
                 auto mob = std::shared_ptr<Mobile>(std::move(mob_ptr));
                 EntityId mob_id = mob->id();
+
+                // Debug: Check if any aggression flag is set on prototype
+                bool has_aggro = mob->is_aggressive();
+                bool has_aggro_good = mob->has_flag(MobFlag::AggroGood);
+                bool has_aggro_evil = mob->has_flag(MobFlag::AggroEvil);
+                bool has_aggro_neutral = mob->has_flag(MobFlag::AggroNeutral);
+
+                if (has_aggro || has_aggro_good || has_aggro_evil || has_aggro_neutral) {
+                    aggressive_count++;
+                    std::string aggro_types;
+                    if (has_aggro) aggro_types += "AGGRESSIVE ";
+                    if (has_aggro_good) aggro_types += "AGGRO_GOOD ";
+                    if (has_aggro_evil) aggro_types += "AGGRO_EVIL ";
+                    if (has_aggro_neutral) aggro_types += "AGGRO_NEUTRAL ";
+
+                    logger->info("Loaded aggro mob: {} ({}) - flags: [{}] aggro_level: {}",
+                                mob->name(), mob_id, aggro_types, mob->aggression_level());
+                }
+
                 // Store shared_ptr in both map and vector for safe reference
                 mobiles_[mob_id] = mob;
                 mobile_prototypes_.push_back(mob);
                 stats_.mobiles_loaded++;
+            }
+            if (aggressive_count > 0) {
+                logger->info("Zone {} has {} aggressive mob prototype(s)", zone_id, aggressive_count);
             }
 
             // Load objects for this zone
@@ -2390,6 +2438,15 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
     }
 
     auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
+
+    // Debug: Verify aggressive flag was copied from prototype
+    if (prototype->is_aggressive() || mobile_ptr->is_aggressive()) {
+        logger->info("Spawned mob '{}': prototype_aggressive={}, spawned_aggressive={}, aggro_level={}",
+                    mobile_ptr->name(),
+                    prototype->is_aggressive() ? "YES" : "no",
+                    mobile_ptr->is_aggressive() ? "YES" : "no",
+                    mobile_ptr->aggression_level());
+    }
 
     // Register the spawned mobile for efficient lookups
     register_spawned_mobile(mobile_ptr);

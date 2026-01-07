@@ -117,6 +117,25 @@ class WorldManager {
     void shutdown();
     void clear_state();
 
+    // Shutdown Request System
+    /** Request a graceful shutdown after specified seconds (0 = immediate) */
+    void request_shutdown(int seconds_from_now = 0, std::string_view reason = "");
+
+    /** Cancel a pending shutdown */
+    void cancel_shutdown();
+
+    /** Check if shutdown has been requested */
+    bool is_shutdown_requested() const { return shutdown_requested_.load(); }
+
+    /** Get the time at which shutdown was requested to occur */
+    std::chrono::steady_clock::time_point get_shutdown_time() const { return shutdown_time_; }
+
+    /** Get the reason for shutdown */
+    std::string get_shutdown_reason() const { return shutdown_reason_; }
+
+    /** Check if shutdown time has passed (ready to shutdown now) */
+    bool should_shutdown_now() const;
+
     // World Loading
     Result<void> load_world();
     Result<void> load_zone_file(const std::string &filename);
@@ -238,6 +257,11 @@ class WorldManager {
         }
     }
 
+    // Get all spawned mobiles (for mob activity/AI processing)
+    const std::unordered_map<EntityId, std::shared_ptr<Mobile>>& spawned_mobiles() const {
+        return spawned_mobiles_;
+    }
+
     // Prototype Access (for load command and similar admin features)
     Mobile* get_mobile_prototype(EntityId prototype_id) const;
     Object* get_object_prototype(EntityId prototype_id) const;
@@ -278,6 +302,11 @@ class WorldManager {
     std::atomic<bool> initialized_{false};
     std::atomic<bool> has_unsaved_changes_{false};
     mutable std::shared_mutex world_mutex_;
+
+    // Shutdown request tracking
+    std::atomic<bool> shutdown_requested_{false};
+    std::chrono::steady_clock::time_point shutdown_time_{};
+    std::string shutdown_reason_;
 
     // Statistics
     WorldStats stats_;

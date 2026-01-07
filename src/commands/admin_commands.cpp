@@ -1,5 +1,6 @@
 #include "admin_commands.hpp"
 #include "information_commands.hpp"
+#include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
@@ -10,6 +11,7 @@
 #include "../world/world_manager.hpp"
 
 #include <algorithm>
+#include <set>
 #include <sstream>
 
 namespace AdminCommands {
@@ -30,20 +32,81 @@ Result<CommandResult> cmd_shutdown(const CommandContext &ctx) {
         return CommandResult::InsufficientPrivs;
     }
 
-    ctx.send_to_all("SYSTEM: MUD is shutting down in 30 seconds!");
-    Log::warn("Shutdown initiated by {}", ctx.actor->name());
+    // Parse the argument: "now", "cancel", or a number of seconds
+    auto& world_manager = WorldManager::instance();
 
-    // Trigger graceful server shutdown
-    // Note: In a real implementation, this should send a shutdown signal to the main server
-    // For now, we'll use a simple approach through the command system
-    Log::error("Shutdown command executed - server should begin graceful shutdown");
-    
-    // In the future, this could:
-    // 1. Save all player data
-    // 2. Notify connected players
-    // 3. Close network connections gracefully
-    // 4. Stop game loops and cleanup resources
-    // 5. Signal main thread to exit
+    if (ctx.arg_count() == 0) {
+        // Show usage and current shutdown status
+        if (world_manager.is_shutdown_requested()) {
+            auto time_left = std::chrono::duration_cast<std::chrono::seconds>(
+                world_manager.get_shutdown_time() - std::chrono::steady_clock::now()
+            ).count();
+            if (time_left > 0) {
+                ctx.send(fmt::format("Shutdown scheduled in {} seconds. Reason: {}",
+                         time_left, world_manager.get_shutdown_reason()));
+            } else {
+                ctx.send("Shutdown in progress...");
+            }
+        } else {
+            ctx.send("Usage: shutdown <now|cancel|seconds>");
+            ctx.send("  shutdown now     - Immediate shutdown");
+            ctx.send("  shutdown cancel  - Cancel pending shutdown");
+            ctx.send("  shutdown 60      - Shutdown in 60 seconds");
+        }
+        return CommandResult::Success;
+    }
+
+    auto arg = std::string{ctx.arg(0)};
+
+    // Handle "cancel"
+    if (arg == "cancel") {
+        if (!world_manager.is_shutdown_requested()) {
+            ctx.send("No shutdown is currently scheduled.");
+            return CommandResult::Success;
+        }
+        world_manager.cancel_shutdown();
+        ctx.send_to_all("SYSTEM: Shutdown has been cancelled.");
+        Log::info("Shutdown cancelled by {}", ctx.actor->name());
+        return CommandResult::Success;
+    }
+
+    // Handle "now" or a number of seconds
+    int seconds = 0;
+    if (arg == "now") {
+        seconds = 0;
+    } else {
+        try {
+            seconds = std::stoi(arg);
+            if (seconds < 0) {
+                ctx.send_error("Seconds must be a positive number.");
+                return CommandResult::InvalidTarget;
+            }
+        } catch (const std::exception&) {
+            ctx.send_error(fmt::format("Invalid argument: '{}'. Use 'now', 'cancel', or a number of seconds.", arg));
+            return CommandResult::InvalidTarget;
+        }
+    }
+
+    // Get optional reason from remaining arguments
+    std::string reason;
+    if (ctx.arg_count() > 1) {
+        reason = ctx.args_from(1);
+    } else {
+        reason = fmt::format("Initiated by {}", ctx.actor->name());
+    }
+
+    // Request the shutdown
+    world_manager.request_shutdown(seconds, reason);
+
+    // Notify all players
+    if (seconds == 0) {
+        ctx.send_to_all("SYSTEM: MUD is shutting down NOW!");
+    } else {
+        ctx.send_to_all(fmt::format("SYSTEM: MUD is shutting down in {} seconds. Reason: {}",
+                       seconds, reason));
+    }
+
+    Log::warn("Shutdown initiated by {} (in {} seconds): {}", ctx.actor->name(), seconds, reason);
 
     return CommandResult::Success;
 }
@@ -1234,6 +1297,17 @@ Result<CommandResult> cmd_mstat(const CommandContext &ctx) {
         ctx.send(fmt::format("  Money: {}", money.to_string(false)));
     }
 
+    // Aggression info - important for debugging mob AI
+    ctx.send(fmt::format("\n<b:white>Aggression:</>"));
+    ctx.send(fmt::format("  aggression_level: {} | is_aggressive(): {}",
+        target->aggression_level(),
+        target->is_aggressive() ? "<b:red>YES</>" : "no"));
+    ctx.send(fmt::format("  Aggressive: {} | AggroGood: {} | AggroEvil: {} | AggroNeutral: {}",
+        target->has_flag(MobFlag::Aggressive) ? "<b:red>YES</>" : "no",
+        target->has_flag(MobFlag::AggroGood) ? "<b:red>YES</>" : "no",
+        target->has_flag(MobFlag::AggroEvil) ? "<b:red>YES</>" : "no",
+        target->has_flag(MobFlag::AggroNeutral) ? "<b:red>YES</>" : "no"));
+
     // Flags - iterate through all set flags using magic_enum
     ctx.send(fmt::format("\n<b:white>Behavior Flags:</>"));
     std::string behavior_flags;
@@ -2166,6 +2240,154 @@ Result<CommandResult> cmd_msearch(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+// Debug command to diagnose mob aggression system
+Result<CommandResult> cmd_aggrodebug(const CommandContext &ctx) {
+    // Alignment thresholds
+    constexpr int ALIGN_GOOD = 350;
+    constexpr int ALIGN_EVIL = -350;
+
+    auto& spawned_mobiles = WorldManager::instance().spawned_mobiles();
+    ctx.send(fmt::format("<b:cyan>--- Aggression Debug ---</>"));
+    ctx.send(fmt::format("Total spawned mobiles: {}", spawned_mobiles.size()));
+
+    // Count aggressive mobs globally
+    int total_aggro = 0;
+    for (const auto& [id, mob] : spawned_mobiles) {
+        if (mob->is_aggressive() ||
+            mob->has_flag(MobFlag::AggroGood) ||
+            mob->has_flag(MobFlag::AggroEvil) ||
+            mob->has_flag(MobFlag::AggroNeutral)) {
+            total_aggro++;
+        }
+    }
+    ctx.send(fmt::format("Total aggressive mobs (spawned): {}", total_aggro));
+
+    // Show current room info
+    if (!ctx.room) {
+        ctx.send_error("You are not in a room.");
+        return CommandResult::InvalidTarget;
+    }
+
+    ctx.send(fmt::format("\n<b:white>Current Room: {} ({})</>", ctx.room->name(), ctx.room->id()));
+
+    // List all actors in room
+    ctx.send(fmt::format("<b:white>Actors in room ({}):</>", ctx.room->contents().actors.size()));
+    for (const auto& actor : ctx.room->contents().actors) {
+        if (!actor) continue;
+
+        std::string type_str = std::string(actor->type_name());
+        int level = actor->stats().level;
+        int align = actor->stats().alignment;
+
+        std::string align_str;
+        if (align >= ALIGN_GOOD) align_str = "good";
+        else if (align <= ALIGN_EVIL) align_str = "evil";
+        else align_str = "neutral";
+
+        if (auto mob = std::dynamic_pointer_cast<Mobile>(actor)) {
+            // It's a mob
+            std::string aggro_flags;
+            if (mob->is_aggressive()) aggro_flags += "AGGRESSIVE ";
+            if (mob->has_flag(MobFlag::AggroGood)) aggro_flags += "AGGRO_GOOD ";
+            if (mob->has_flag(MobFlag::AggroEvil)) aggro_flags += "AGGRO_EVIL ";
+            if (mob->has_flag(MobFlag::AggroNeutral)) aggro_flags += "AGGRO_NEUTRAL ";
+
+            bool is_in_spawned = spawned_mobiles.contains(mob->id());
+
+            ctx.send(fmt::format("  [MOB] {} (L{}) - aggro_level:{} flags:[{}] in_spawned:{}",
+                mob->display_name(), level, mob->aggression_level(),
+                aggro_flags.empty() ? "none" : aggro_flags,
+                is_in_spawned ? "<b:green>YES</>" : "<b:red>NO</>"));
+        } else {
+            // It's a player
+            ctx.send(fmt::format("  [{}] {} (L{}, align:{} {}) {}",
+                type_str, actor->display_name(), level, align, align_str,
+                level >= 100 ? "<b:yellow>(IMMORTAL - won't be attacked)</>" : ""));
+        }
+    }
+
+    // Check if any aggressive mob in this room would attack any player
+    ctx.send(fmt::format("\n<b:white>Attack Analysis:</>"));
+    bool any_attacks_possible = false;
+
+    for (const auto& actor : ctx.room->contents().actors) {
+        auto mob = std::dynamic_pointer_cast<Mobile>(actor);
+        if (!mob) continue;
+
+        bool is_aggro = mob->is_aggressive() ||
+                        mob->has_flag(MobFlag::AggroGood) ||
+                        mob->has_flag(MobFlag::AggroEvil) ||
+                        mob->has_flag(MobFlag::AggroNeutral);
+        if (!is_aggro) continue;
+
+        // Check if mob is in spawned_mobiles
+        if (!spawned_mobiles.contains(mob->id())) {
+            ctx.send(fmt::format("  <b:red>WARNING:</> {} is aggressive but NOT in spawned_mobiles!",
+                mob->display_name()));
+            continue;
+        }
+
+        // Check mob's room
+        auto mob_room = mob->current_room();
+        if (!mob_room) {
+            ctx.send(fmt::format("  <b:red>WARNING:</> {} has no current_room set!", mob->display_name()));
+            continue;
+        }
+        if (mob_room.get() != ctx.room.get()) {
+            ctx.send(fmt::format("  <b:red>WARNING:</> {} current_room ({}) != actual room ({})!",
+                mob->display_name(), mob_room->id(), ctx.room->id()));
+            continue;
+        }
+
+        // Check against each player in room
+        for (const auto& target : ctx.room->contents().actors) {
+            if (!target || target->type_name() != "Player") continue;
+
+            int target_level = target->stats().level;
+            int target_align = target->stats().alignment;
+
+            if (target_level >= 100) {
+                ctx.send(fmt::format("  {} vs {} - <b:yellow>SKIP (immortal)</>",
+                    mob->display_name(), target->display_name()));
+                continue;
+            }
+
+            bool would_attack = false;
+            std::string reason;
+
+            if (mob->is_aggressive()) {
+                would_attack = true;
+                reason = "AGGRESSIVE";
+            } else if (mob->has_flag(MobFlag::AggroGood) && target_align >= ALIGN_GOOD) {
+                would_attack = true;
+                reason = fmt::format("AGGRO_GOOD (player align {})", target_align);
+            } else if (mob->has_flag(MobFlag::AggroEvil) && target_align <= ALIGN_EVIL) {
+                would_attack = true;
+                reason = fmt::format("AGGRO_EVIL (player align {})", target_align);
+            } else if (mob->has_flag(MobFlag::AggroNeutral) &&
+                       target_align > ALIGN_EVIL && target_align < ALIGN_GOOD) {
+                would_attack = true;
+                reason = fmt::format("AGGRO_NEUTRAL (player align {})", target_align);
+            }
+
+            if (would_attack) {
+                any_attacks_possible = true;
+                ctx.send(fmt::format("  {} vs {} - <b:green>WOULD ATTACK</> ({}), aggro_level:{}",
+                    mob->display_name(), target->display_name(), reason, mob->aggression_level()));
+            } else {
+                ctx.send(fmt::format("  {} vs {} - <dim>no matching aggro flag (player align {})</>",
+                    mob->display_name(), target->display_name(), target_align));
+            }
+        }
+    }
+
+    if (!any_attacks_possible) {
+        ctx.send("\n<b:yellow>No attacks possible in this room - check flags, levels, and alignment.</>");
+    }
+
+    return CommandResult::Success;
+}
+
 Result<CommandResult> cmd_osearch(const CommandContext &ctx) {
     if (ctx.arg_count() == 0) {
         ctx.show_help();
@@ -2367,6 +2589,643 @@ Result<CommandResult> cmd_osearch(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Ability Debug Commands
+// =============================================================================
+
+/**
+ * Convert EffectType enum to string for display.
+ */
+static std::string_view effect_type_to_string(FieryMUD::EffectType type) {
+    using FieryMUD::EffectType;
+    switch (type) {
+        case EffectType::Damage: return "Damage";
+        case EffectType::Heal: return "Heal";
+        case EffectType::Modify: return "Modify";
+        case EffectType::Status: return "Status";
+        case EffectType::Cleanse: return "Cleanse";
+        case EffectType::Dispel: return "Dispel";
+        case EffectType::Reveal: return "Reveal";
+        case EffectType::Teleport: return "Teleport";
+        case EffectType::Extract: return "Extract";
+        case EffectType::Move: return "Move";
+        case EffectType::Interrupt: return "Interrupt";
+        case EffectType::Transform: return "Transform";
+        case EffectType::Resurrect: return "Resurrect";
+        case EffectType::Create: return "Create";
+        case EffectType::Summon: return "Summon";
+        case EffectType::Enchant: return "Enchant";
+        case EffectType::Globe: return "Globe";
+        case EffectType::Room: return "Room";
+        case EffectType::Inspect: return "Inspect";
+        case EffectType::Dot: return "DoT";
+        case EffectType::Hot: return "HoT";
+        default: return "Unknown";
+    }
+}
+
+/**
+ * Convert EffectTrigger enum to string for display.
+ */
+static std::string_view effect_trigger_to_string(FieryMUD::EffectTrigger trigger) {
+    using FieryMUD::EffectTrigger;
+    switch (trigger) {
+        case EffectTrigger::OnHit: return "on_hit";
+        case EffectTrigger::OnCast: return "on_cast";
+        case EffectTrigger::OnMiss: return "on_miss";
+        case EffectTrigger::Periodic: return "periodic";
+        case EffectTrigger::OnEnd: return "on_end";
+        case EffectTrigger::OnTrigger: return "on_trigger";
+        default: return "unknown";
+    }
+}
+
+/**
+ * Convert AbilityType enum to string for display.
+ */
+static std::string_view ability_type_to_string(WorldQueries::AbilityType type) {
+    using WorldQueries::AbilityType;
+    switch (type) {
+        case AbilityType::Spell: return "SPELL";
+        case AbilityType::Skill: return "SKILL";
+        case AbilityType::Chant: return "CHANT";
+        case AbilityType::Song: return "SONG";
+    }
+    return "UNKNOWN";
+}
+
+/**
+ * alist - List abilities from the AbilityCache.
+ * Usage: alist [--type spell|skill|chant|song] [--circle N] [--effect <type>] [--limit N]
+ */
+Result<CommandResult> cmd_alist(const CommandContext &ctx) {
+    auto& cache = FieryMUD::AbilityCache::instance();
+    if (!cache.is_initialized()) {
+        auto init_result = cache.initialize();
+        if (!init_result) {
+            ctx.send_error(fmt::format("Failed to initialize ability cache: {}", init_result.error().message));
+            return CommandResult::SystemError;
+        }
+    }
+
+    // Parse options
+    std::string filter_type;
+    int filter_circle = -1;
+    std::string filter_effect;
+    int limit = 50;
+
+    for (size_t i = 0; i < ctx.arg_count(); ++i) {
+        auto arg = std::string{ctx.arg(i)};
+        if (arg == "--type" && i + 1 < ctx.arg_count()) {
+            filter_type = std::string{ctx.arg(++i)};
+            std::transform(filter_type.begin(), filter_type.end(), filter_type.begin(), ::toupper);
+        } else if (arg == "--circle" && i + 1 < ctx.arg_count()) {
+            try {
+                filter_circle = std::stoi(std::string{ctx.arg(++i)});
+            } catch (...) {
+                ctx.send_error("Invalid circle number.");
+                return CommandResult::InvalidSyntax;
+            }
+        } else if (arg == "--effect" && i + 1 < ctx.arg_count()) {
+            filter_effect = std::string{ctx.arg(++i)};
+            std::transform(filter_effect.begin(), filter_effect.end(), filter_effect.begin(), ::tolower);
+        } else if (arg == "--limit" && i + 1 < ctx.arg_count()) {
+            try {
+                limit = std::stoi(std::string{ctx.arg(++i)});
+            } catch (...) {
+                ctx.send_error("Invalid limit number.");
+                return CommandResult::InvalidSyntax;
+            }
+        } else if (arg == "--help" || arg == "-h") {
+            ctx.send("<b:cyan>alist - List abilities from cache</>");
+            ctx.send("Usage: alist [options]");
+            ctx.send("Options:");
+            ctx.send("  --type <spell|skill|chant|song>  Filter by ability type");
+            ctx.send("  --circle <N>                     Filter by spell circle (1-9)");
+            ctx.send("  --effect <type>                  Filter by effect type (damage, heal, status, etc.)");
+            ctx.send("  --limit <N>                      Maximum results (default 50)");
+            return CommandResult::Success;
+        }
+    }
+
+    // Build filter description
+    std::string filter_desc;
+    if (!filter_type.empty()) filter_desc += fmt::format("type={}", filter_type);
+    if (filter_circle > 0) {
+        if (!filter_desc.empty()) filter_desc += ", ";
+        filter_desc += fmt::format("circle={}", filter_circle);
+    }
+    if (!filter_effect.empty()) {
+        if (!filter_desc.empty()) filter_desc += ", ";
+        filter_desc += fmt::format("effect={}", filter_effect);
+    }
+    if (filter_desc.empty()) filter_desc = "all";
+
+    ctx.send(fmt::format("<b:cyan>--- Abilities ({}) ---</>", filter_desc));
+
+    // Collect and display abilities
+    // Note: We iterate through abilities via the name index which is available
+    // We'll need to iterate abilities - for now we'll use a different approach
+    int count = 0;
+    int total_in_cache = 0;
+
+    // Access abilities through the cache - we need to iterate all
+    // Since AbilityCache doesn't expose an iterator, we'll search by ID range
+    for (int id = 1; id <= 1000; ++id) {  // Reasonable upper bound
+        const auto* ability = cache.get_ability(id);
+        if (!ability) continue;
+
+        total_in_cache++;
+
+        // Apply filters
+        if (!filter_type.empty()) {
+            std::string type_str{ability_type_to_string(ability->type)};
+            if (type_str != filter_type) continue;
+        }
+
+        if (filter_circle > 0) {
+            // Check if any class has this ability at the specified circle
+            auto classes = cache.get_ability_classes(id);
+            bool found_circle = false;
+            for (const auto& cls : classes) {
+                if (cls.circle == filter_circle) {
+                    found_circle = true;
+                    break;
+                }
+            }
+            if (!found_circle) continue;
+        }
+
+        if (!filter_effect.empty()) {
+            auto effects = cache.get_ability_effects(id);
+            bool found_effect = false;
+            for (const auto& eff : effects) {
+                const auto* effect_def = cache.get_effect(eff.effect_id);
+                if (effect_def) {
+                    std::string eff_type_str{effect_type_to_string(effect_def->type)};
+                    std::transform(eff_type_str.begin(), eff_type_str.end(), eff_type_str.begin(), ::tolower);
+                    if (eff_type_str.find(filter_effect) != std::string::npos) {
+                        found_effect = true;
+                        break;
+                    }
+                }
+            }
+            if (!found_effect) continue;
+        }
+
+        if (count >= limit) {
+            ctx.send(fmt::format("... (limited to {} results, use --limit to show more)", limit));
+            break;
+        }
+
+        // Display ability
+        auto effects = cache.get_ability_effects(id);
+        auto classes = cache.get_ability_classes(id);
+
+        std::string circle_str;
+        if (!classes.empty()) {
+            std::set<int> circles;
+            for (const auto& cls : classes) {
+                if (cls.circle > 0) circles.insert(cls.circle);
+            }
+            if (!circles.empty()) {
+                circle_str = " C";
+                for (int c : circles) {
+                    circle_str += std::to_string(c);
+                }
+            }
+        }
+
+        std::string effect_summary;
+        if (effects.empty()) {
+            effect_summary = "<r:yellow>(NO EFFECTS)</>";
+        } else {
+            for (size_t i = 0; i < effects.size() && i < 3; ++i) {
+                const auto* effect_def = cache.get_effect(effects[i].effect_id);
+                if (effect_def) {
+                    if (!effect_summary.empty()) effect_summary += ",";
+                    effect_summary += effect_type_to_string(effect_def->type);
+                }
+            }
+            if (effects.size() > 3) {
+                effect_summary += fmt::format("+{}", effects.size() - 3);
+            }
+        }
+
+        ctx.send(fmt::format("  [{:4}] {:<25} {:6}{:4} [{}]",
+            id, ability->plain_name, ability_type_to_string(ability->type),
+            circle_str, effect_summary));
+
+        count++;
+    }
+
+    if (count == 0) {
+        ctx.send("No abilities found matching criteria.");
+    } else {
+        ctx.send(fmt::format("Found {} abilities (cache has {} total).", count, total_in_cache));
+    }
+
+    return CommandResult::Success;
+}
+
+/**
+ * astat - Show detailed ability information.
+ * Usage: astat <ability name or ID>
+ */
+Result<CommandResult> cmd_astat(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send("Usage: astat <ability name or ID>");
+        ctx.send("Example: astat magic missile");
+        ctx.send("Example: astat 42");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto& cache = FieryMUD::AbilityCache::instance();
+    if (!cache.is_initialized()) {
+        auto init_result = cache.initialize();
+        if (!init_result) {
+            ctx.send_error(fmt::format("Failed to initialize ability cache: {}", init_result.error().message));
+            return CommandResult::SystemError;
+        }
+    }
+
+    // Collect all arguments as ability name
+    std::string ability_name = std::string{ctx.command.full_argument_string};
+
+    // Try to find ability by ID first
+    const WorldQueries::AbilityData* ability = nullptr;
+    try {
+        int id = std::stoi(ability_name);
+        ability = cache.get_ability(id);
+    } catch (...) {
+        // Not a number, search by name
+        ability = cache.get_ability_by_name(ability_name);
+    }
+
+    if (!ability) {
+        ctx.send_error(fmt::format("Ability '{}' not found in cache.", ability_name));
+        ctx.send("Use 'alist' to see available abilities.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Display detailed ability information
+    ctx.send(fmt::format("<b:cyan>--- Ability: {} (ID: {}) ---</>", ability->name, ability->id));
+    ctx.send(fmt::format("  Plain Name: {}", ability->plain_name));
+    ctx.send(fmt::format("  Type: {}", ability_type_to_string(ability->type)));
+
+    if (!ability->description.empty()) {
+        ctx.send(fmt::format("  Description: {}", ability->description));
+    }
+
+    // Flags and properties
+    std::vector<std::string> flags;
+    if (ability->violent) flags.push_back("VIOLENT");
+    if (ability->is_area) flags.push_back("AREA");
+    if (ability->is_toggle) flags.push_back("TOGGLE");
+    if (ability->combat_ok) flags.push_back("COMBAT_OK");
+    if (ability->in_combat_only) flags.push_back("COMBAT_ONLY");
+    if (ability->quest_only) flags.push_back("QUEST_ONLY");
+    if (ability->humanoid_only) flags.push_back("HUMANOID_ONLY");
+
+    if (!flags.empty()) {
+        std::string flag_str;
+        for (size_t i = 0; i < flags.size(); ++i) {
+            if (i > 0) flag_str += ", ";
+            flag_str += flags[i];
+        }
+        ctx.send(fmt::format("  Flags: {}", flag_str));
+    }
+
+    if (ability->min_position > 0) {
+        ctx.send(fmt::format("  Min Position: {} ({})", ability->min_position,
+            ActorUtils::get_position_name(static_cast<Position>(ability->min_position))));
+    }
+
+    if (ability->cast_time_rounds > 0) {
+        ctx.send(fmt::format("  Cast Time: {} rounds", ability->cast_time_rounds));
+    }
+
+    if (ability->cooldown_ms > 0) {
+        ctx.send(fmt::format("  Cooldown: {}ms ({:.1f}s)", ability->cooldown_ms, ability->cooldown_ms / 1000.0));
+    }
+
+    if (!ability->sphere.empty()) {
+        ctx.send(fmt::format("  Sphere: {}", ability->sphere));
+    }
+
+    if (!ability->damage_type.empty()) {
+        ctx.send(fmt::format("  Damage Type: {}", ability->damage_type));
+    }
+
+    // Classes that can learn this ability
+    auto classes = cache.get_ability_classes(ability->id);
+    if (!classes.empty()) {
+        ctx.send("");
+        ctx.send("<b:yellow>  Classes:</>");
+        for (const auto& cls : classes) {
+            if (cls.circle > 0) {
+                ctx.send(fmt::format("    {} - Circle {}", cls.class_name, cls.circle));
+            } else {
+                ctx.send(fmt::format("    {}", cls.class_name));
+            }
+        }
+    }
+
+    // Effects (the critical debugging info!)
+    auto effects = cache.get_ability_effects(ability->id);
+    ctx.send("");
+    if (effects.empty()) {
+        ctx.send("<r:red>  Effects: NONE DEFINED!</>");
+        ctx.send("<r:yellow>  WARNING: This ability has no effects linked in the database.</>");
+        ctx.send("<r:yellow>  The ability will cast but do nothing.</>");
+    } else {
+        ctx.send(fmt::format("<b:green>  Effects: {} defined</>", effects.size()));
+        for (size_t i = 0; i < effects.size(); ++i) {
+            const auto& eff = effects[i];
+            const auto* effect_def = cache.get_effect(eff.effect_id);
+
+            ctx.send(fmt::format("    [{}] Effect ID: {}", i + 1, eff.effect_id));
+            if (effect_def) {
+                ctx.send(fmt::format("        Name: {}", effect_def->name));
+                ctx.send(fmt::format("        Type: {}", effect_type_to_string(effect_def->type)));
+                if (!effect_def->description.empty()) {
+                    ctx.send(fmt::format("        Desc: {}", effect_def->description));
+                }
+            } else {
+                ctx.send("        <r:red>ERROR: Effect definition not found in cache!</>");
+            }
+
+            ctx.send(fmt::format("        Trigger: {}", effect_trigger_to_string(eff.trigger)));
+            ctx.send(fmt::format("        Chance: {}%", eff.chance_percent));
+            ctx.send(fmt::format("        Order: {}", eff.order));
+
+            if (!eff.condition.empty()) {
+                ctx.send(fmt::format("        Condition: {}", eff.condition));
+            }
+
+            // Display relevant params based on effect type
+            if (effect_def) {
+                const auto& p = eff.params;
+                switch (effect_def->type) {
+                    case FieryMUD::EffectType::Damage:
+                        ctx.send(fmt::format("        Damage Type: {}", p.damage_type));
+                        if (!p.amount_formula.empty())
+                            ctx.send(fmt::format("        Amount Formula: {}", p.amount_formula));
+                        break;
+
+                    case FieryMUD::EffectType::Heal:
+                        ctx.send(fmt::format("        Heal Resource: {}", p.heal_resource));
+                        if (!p.heal_formula.empty())
+                            ctx.send(fmt::format("        Heal Formula: {}", p.heal_formula));
+                        break;
+
+                    case FieryMUD::EffectType::Status:
+                        ctx.send(fmt::format("        Status: {}", p.status_name));
+                        if (!p.status_duration_formula.empty())
+                            ctx.send(fmt::format("        Duration Formula: {}", p.status_duration_formula));
+                        else if (p.status_duration > 0)
+                            ctx.send(fmt::format("        Duration: {} ticks", p.status_duration));
+                        if (p.is_toggle_duration)
+                            ctx.send("        Mode: TOGGLE (permanent until removed)");
+                        break;
+
+                    case FieryMUD::EffectType::Dot:
+                        ctx.send(fmt::format("        Cure Category: {}", p.cure_category));
+                        if (!p.flat_damage_formula.empty())
+                            ctx.send(fmt::format("        Flat Damage: {}", p.flat_damage_formula));
+                        if (!p.percent_damage_formula.empty())
+                            ctx.send(fmt::format("        %HP Damage: {}%", p.percent_damage_formula));
+                        if (!p.dot_duration_formula.empty())
+                            ctx.send(fmt::format("        Duration: {}", p.dot_duration_formula));
+                        ctx.send(fmt::format("        Tick Interval: {}", p.tick_interval));
+                        if (p.blocks_regen)
+                            ctx.send("        Blocks Regen: YES");
+                        break;
+
+                    case FieryMUD::EffectType::Hot:
+                        ctx.send(fmt::format("        Category: {}", p.hot_category));
+                        if (!p.flat_heal_formula.empty())
+                            ctx.send(fmt::format("        Flat Heal: {}", p.flat_heal_formula));
+                        if (!p.percent_heal_formula.empty())
+                            ctx.send(fmt::format("        %HP Heal: {}%", p.percent_heal_formula));
+                        if (!p.hot_duration_formula.empty())
+                            ctx.send(fmt::format("        Duration: {}", p.hot_duration_formula));
+                        break;
+
+                    case FieryMUD::EffectType::Teleport:
+                        ctx.send(fmt::format("        Teleport Type: {}", p.teleport_type));
+                        if (p.teleport_room_id > 0)
+                            ctx.send(fmt::format("        Fixed Room: {}", p.teleport_room_id));
+                        break;
+
+                    case FieryMUD::EffectType::Cleanse:
+                        ctx.send(fmt::format("        Cleanse Category: {}", p.cleanse_category));
+                        if (!p.cleanse_power_formula.empty())
+                            ctx.send(fmt::format("        Power: {}", p.cleanse_power_formula));
+                        break;
+
+                    case FieryMUD::EffectType::Move:
+                        ctx.send(fmt::format("        Move Type: {}", p.move_type));
+                        if (!p.move_distance_formula.empty())
+                            ctx.send(fmt::format("        Distance: {}", p.move_distance_formula));
+                        break;
+
+                    default:
+                        // For other types, just show they exist
+                        break;
+                }
+            }
+        }
+    }
+
+    // Damage components
+    auto damage_components = cache.get_damage_components(ability->id);
+    if (!damage_components.empty()) {
+        ctx.send("");
+        ctx.send("<b:yellow>  Damage Components:</>");
+        for (const auto& comp : damage_components) {
+            ctx.send(fmt::format("    {} ({}%): {}", comp.element, comp.percentage, comp.damage_formula));
+        }
+    }
+
+    // Custom messages
+    const auto* messages = cache.get_ability_messages(ability->id);
+    if (messages) {
+        ctx.send("");
+        ctx.send("<b:yellow>  Messages:</>");
+        if (!messages->success_to_caster.empty())
+            ctx.send(fmt::format("    Success (to caster): {}", messages->success_to_caster));
+        if (!messages->success_to_victim.empty())
+            ctx.send(fmt::format("    Success (to victim): {}", messages->success_to_victim));
+        if (!messages->success_to_room.empty())
+            ctx.send(fmt::format("    Success (to room): {}", messages->success_to_room));
+        if (!messages->success_to_self.empty())
+            ctx.send(fmt::format("    Success (self-cast): {}", messages->success_to_self));
+        if (!messages->fail_to_caster.empty())
+            ctx.send(fmt::format("    Fail (to caster): {}", messages->fail_to_caster));
+        if (!messages->wearoff_to_target.empty())
+            ctx.send(fmt::format("    Wear-off: {}", messages->wearoff_to_target));
+        if (!messages->look_message.empty())
+            ctx.send(fmt::format("    Look message: {}", messages->look_message));
+    }
+
+    // Restrictions
+    const auto* restrictions = cache.get_ability_restrictions(ability->id);
+    if (restrictions && (!restrictions->requirements.empty() || !restrictions->custom_lua.empty())) {
+        ctx.send("");
+        ctx.send("<b:yellow>  Restrictions:</>");
+        for (const auto& req : restrictions->requirements) {
+            ctx.send(fmt::format("    {}{}: {}", req.negated ? "NOT " : "", req.type, req.value));
+        }
+        if (!restrictions->custom_lua.empty()) {
+            ctx.send(fmt::format("    Custom Lua: {}", restrictions->custom_lua));
+        }
+    }
+
+    ctx.send(fmt::format("<b:cyan>--- End of Ability {} ---</>", ability->id));
+    return CommandResult::Success;
+}
+
+/**
+ * asearch - Search abilities by name or effect.
+ * Usage: asearch <name> or asearch --effect <type>
+ */
+Result<CommandResult> cmd_asearch(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send("Usage: asearch <partial name>");
+        ctx.send("       asearch --effect <type>");
+        ctx.send("       asearch --no-effects");
+        ctx.send("Example: asearch nova");
+        ctx.send("Example: asearch --effect damage");
+        ctx.send("Example: asearch --no-effects");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto& cache = FieryMUD::AbilityCache::instance();
+    if (!cache.is_initialized()) {
+        auto init_result = cache.initialize();
+        if (!init_result) {
+            ctx.send_error(fmt::format("Failed to initialize ability cache: {}", init_result.error().message));
+            return CommandResult::SystemError;
+        }
+    }
+
+    std::string search_name;
+    std::string search_effect;
+    bool search_no_effects = false;
+
+    for (size_t i = 0; i < ctx.arg_count(); ++i) {
+        auto arg = std::string{ctx.arg(i)};
+        if (arg == "--effect" && i + 1 < ctx.arg_count()) {
+            search_effect = std::string{ctx.arg(++i)};
+            std::transform(search_effect.begin(), search_effect.end(), search_effect.begin(), ::tolower);
+        } else if (arg == "--no-effects") {
+            search_no_effects = true;
+        } else if (!arg.starts_with("--")) {
+            if (!search_name.empty()) search_name += " ";
+            search_name += arg;
+        }
+    }
+
+    std::string search_lower = search_name;
+    std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+    ctx.send(fmt::format("<b:cyan>--- Searching abilities ---</>"));
+
+    int count = 0;
+    const int MAX_RESULTS = 50;
+
+    for (int id = 1; id <= 1000; ++id) {
+        const auto* ability = cache.get_ability(id);
+        if (!ability) continue;
+
+        // Name filter
+        if (!search_lower.empty()) {
+            std::string plain_lower = ability->plain_name;
+            std::transform(plain_lower.begin(), plain_lower.end(), plain_lower.begin(), ::tolower);
+            if (plain_lower.find(search_lower) == std::string::npos) continue;
+        }
+
+        auto effects = cache.get_ability_effects(id);
+
+        // Effect type filter
+        if (!search_effect.empty()) {
+            bool found = false;
+            for (const auto& eff : effects) {
+                const auto* effect_def = cache.get_effect(eff.effect_id);
+                if (effect_def) {
+                    std::string eff_type{effect_type_to_string(effect_def->type)};
+                    std::transform(eff_type.begin(), eff_type.end(), eff_type.begin(), ::tolower);
+                    if (eff_type.find(search_effect) != std::string::npos) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (!found) continue;
+        }
+
+        // No effects filter (find broken abilities)
+        if (search_no_effects && !effects.empty()) continue;
+
+        if (count >= MAX_RESULTS) {
+            ctx.send(fmt::format("... (limited to {} results)", MAX_RESULTS));
+            break;
+        }
+
+        // Display
+        std::string effect_summary;
+        if (effects.empty()) {
+            effect_summary = "<r:red>NO EFFECTS</>";
+        } else {
+            for (size_t i = 0; i < effects.size() && i < 3; ++i) {
+                const auto* effect_def = cache.get_effect(effects[i].effect_id);
+                if (effect_def) {
+                    if (!effect_summary.empty()) effect_summary += ", ";
+                    effect_summary += effect_type_to_string(effect_def->type);
+                }
+            }
+            if (effects.size() > 3) {
+                effect_summary += fmt::format(" +{}", effects.size() - 3);
+            }
+        }
+
+        ctx.send(fmt::format("  [{:4}] {:<25} {:6} [{}]",
+            id, ability->plain_name, ability_type_to_string(ability->type), effect_summary));
+        count++;
+    }
+
+    if (count == 0) {
+        if (search_no_effects) {
+            ctx.send("No abilities without effects found (that's good!).");
+        } else {
+            ctx.send("No abilities found matching search criteria.");
+        }
+    } else {
+        ctx.send(fmt::format("Found {} matching abilities.", count));
+    }
+
+    return CommandResult::Success;
+}
+
+/**
+ * areload - Reload the ability cache from database.
+ */
+Result<CommandResult> cmd_areload(const CommandContext &ctx) {
+    ctx.send("Reloading ability cache from database...");
+
+    auto& cache = FieryMUD::AbilityCache::instance();
+    auto result = cache.reload();
+
+    if (!result) {
+        ctx.send_error(fmt::format("Failed to reload ability cache: {}", result.error().message));
+        return CommandResult::SystemError;
+    }
+
+    ctx.send("<b:green>Ability cache reloaded successfully.</>");
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -2494,6 +3353,13 @@ Result<void> register_commands() {
         .build();
 
     Commands()
+        .command("aggrodebug", cmd_aggrodebug)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .description("Debug mob aggression system in current room")
+        .build();
+
+    Commands()
         .command("ostat", cmd_ostat)
         .category("Development")
         .privilege(PrivilegeLevel::God)
@@ -2568,6 +3434,70 @@ Result<void> register_commands() {
         .command("list", cmd_list)
         .category("Development")
         .privilege(PrivilegeLevel::God)
+        .build();
+
+    // Ability debug commands
+    Commands()
+        .command("alist", cmd_alist)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .description("List abilities from cache with optional filters")
+        .usage("alist [--type spell|skill] [--circle N] [--effect type] [--limit N]")
+        .help(
+            "List abilities loaded in the AbilityCache.\n"
+            "<b:yellow>Options:</>\n"
+            "  --type <type>    Filter by ability type (spell, skill, chant, song)\n"
+            "  --circle <N>     Filter by spell circle (1-9)\n"
+            "  --effect <type>  Filter by effect type (damage, heal, status, etc.)\n"
+            "  --limit <N>      Maximum results (default 50)\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  alist                   - List all abilities\n"
+            "  alist --type spell      - List only spells\n"
+            "  alist --effect damage   - List abilities with damage effects")
+        .build();
+
+    Commands()
+        .command("astat", cmd_astat)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .description("Show detailed ability information including effects")
+        .usage("astat <ability name or ID>")
+        .help(
+            "Display detailed information about an ability.\n"
+            "Shows: type, flags, effects, damage components, messages, restrictions.\n"
+            "<b:yellow>WARNING indicators:</>\n"
+            "  - NO EFFECTS: Ability will cast but do nothing\n"
+            "  - Effect not found: Database inconsistency\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  astat magic missile  - Look up by name\n"
+            "  astat 42             - Look up by ID\n"
+            "  astat supernova      - Debug a broken spell")
+        .build();
+
+    Commands()
+        .command("asearch", cmd_asearch)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .description("Search abilities by name or find broken ones")
+        .usage("asearch <name> | --effect <type> | --no-effects")
+        .help(
+            "Search abilities in the cache.\n"
+            "<b:yellow>Options:</>\n"
+            "  <name>         Partial name match\n"
+            "  --effect <t>   Find abilities with specific effect type\n"
+            "  --no-effects   Find abilities with NO effects (broken!)\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  asearch fire         - Find 'fire' in ability names\n"
+            "  asearch --effect heal - Find healing abilities\n"
+            "  asearch --no-effects  - Find broken abilities")
+        .build();
+
+    Commands()
+        .command("areload", cmd_areload)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .description("Reload ability cache from database")
+        .help("Reloads all abilities, effects, and related data from the database.")
         .build();
 
     return Success();

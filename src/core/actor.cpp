@@ -429,6 +429,10 @@ std::shared_ptr<Object> Equipment::unequip_item(EquipSlot slot) {
     if (it != equipped_.end()) {
         auto item = it->second;
         equipped_.erase(it);
+        // Reset two-handed grip when unequipping main weapon
+        if (slot == EquipSlot::Wield) {
+            reset_grip();
+        }
         return item;
     }
     return nullptr;
@@ -438,7 +442,12 @@ std::shared_ptr<Object> Equipment::unequip_item(EntityId item_id) {
     for (auto it = equipped_.begin(); it != equipped_.end(); ++it) {
         if (it->second && it->second->id() == item_id) {
             auto item = it->second;
+            auto slot = it->first;
             equipped_.erase(it);
+            // Reset two-handed grip when unequipping main weapon
+            if (slot == EquipSlot::Wield) {
+                reset_grip();
+            }
             return item;
         }
     }
@@ -514,7 +523,43 @@ std::shared_ptr<Object> Equipment::get_off_weapon() const {
 
 bool Equipment::is_wielding_two_handed() const {
     auto weapon = get_main_weapon();
-    return weapon && weapon->has_flag(ObjectFlag::TwoHanded);
+    if (!weapon) return false;
+
+    // True two-handed weapon
+    if (weapon->has_flag(ObjectFlag::TwoHanded)) return true;
+
+    // Versatile weapon being used with two-handed grip
+    if (weapon->has_flag(ObjectFlag::Versatile) && using_two_handed_grip_) return true;
+
+    return false;
+}
+
+std::string Equipment::toggle_grip() {
+    auto weapon = get_main_weapon();
+    if (!weapon) {
+        return "You aren't wielding anything.";
+    }
+
+    if (!weapon->has_flag(ObjectFlag::Versatile)) {
+        return "Your weapon cannot be wielded with a different grip.";
+    }
+
+    if (using_two_handed_grip_) {
+        // Switching from 2H to 1H
+        using_two_handed_grip_ = false;
+        return "";  // Success
+    } else {
+        // Switching from 1H to 2H - check if offhand is occupied
+        auto offhand = get_equipped(EquipSlot::Hold);
+        auto shield = get_equipped(EquipSlot::Shield);
+
+        if (offhand || shield) {
+            return "You need both hands free to use a two-handed grip.";
+        }
+
+        using_two_handed_grip_ = true;
+        return "";  // Success
+    }
 }
 
 std::vector<std::shared_ptr<Object>> Equipment::clear_all() {
@@ -1332,6 +1377,96 @@ int Actor::get_casting_progress_percent() const {
     }
     int elapsed = casting_state_->total_ticks - casting_state_->ticks_remaining;
     return (elapsed * 100) / casting_state_->total_ticks;
+}
+
+// ============================================================================
+// Fighting List Management
+// ============================================================================
+
+void Actor::add_enemy(std::shared_ptr<Actor> enemy) {
+    if (!enemy || enemy.get() == this) return;
+
+    // Clean up expired weak pointers
+    fighting_list_.erase(
+        std::remove_if(fighting_list_.begin(), fighting_list_.end(),
+            [](const std::weak_ptr<Actor>& wp) { return wp.expired(); }),
+        fighting_list_.end());
+
+    // Check if already in list
+    for (const auto& wp : fighting_list_) {
+        if (auto existing = wp.lock()) {
+            if (existing == enemy) return;  // Already fighting this enemy
+        }
+    }
+
+    fighting_list_.push_back(enemy);
+    Log::game()->debug("{} added {} to fighting list", name(), enemy->name());
+}
+
+void Actor::remove_enemy(std::shared_ptr<Actor> enemy) {
+    if (!enemy) return;
+
+    fighting_list_.erase(
+        std::remove_if(fighting_list_.begin(), fighting_list_.end(),
+            [&enemy](const std::weak_ptr<Actor>& wp) {
+                auto locked = wp.lock();
+                return !locked || locked == enemy;
+            }),
+        fighting_list_.end());
+}
+
+void Actor::clear_enemies() {
+    fighting_list_.clear();
+}
+
+bool Actor::has_enemies() const {
+    for (const auto& wp : fighting_list_) {
+        if (auto enemy = wp.lock()) {
+            if (enemy->is_alive()) return true;
+        }
+    }
+    return false;
+}
+
+std::shared_ptr<Actor> Actor::get_fighting_target() const {
+    // Return first valid, alive enemy in the same room
+    auto my_room = current_room();
+    for (const auto& wp : fighting_list_) {
+        if (auto enemy = wp.lock()) {
+            if (enemy->is_alive() && enemy->current_room() == my_room) {
+                return enemy;
+            }
+        }
+    }
+    return nullptr;
+}
+
+std::vector<std::shared_ptr<Actor>> Actor::get_all_enemies() const {
+    std::vector<std::shared_ptr<Actor>> enemies;
+    for (const auto& wp : fighting_list_) {
+        if (auto enemy = wp.lock()) {
+            if (enemy->is_alive()) {
+                enemies.push_back(enemy);
+            }
+        }
+    }
+    return enemies;
+}
+
+void Actor::set_primary_target(std::shared_ptr<Actor> enemy) {
+    if (!enemy) return;
+
+    // Remove from current position
+    fighting_list_.erase(
+        std::remove_if(fighting_list_.begin(), fighting_list_.end(),
+            [&enemy](const std::weak_ptr<Actor>& wp) {
+                auto locked = wp.lock();
+                return !locked || locked == enemy;
+            }),
+        fighting_list_.end());
+
+    // Insert at front
+    fighting_list_.insert(fighting_list_.begin(), enemy);
 }
 
 // ============================================================================

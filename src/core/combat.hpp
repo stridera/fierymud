@@ -2,11 +2,14 @@
 
 #include "actor.hpp"
 #include "../game/login_system.hpp"  // For CharacterClass and CharacterRace enums
-#include <memory>
-#include <functional>
-#include <vector>
+#include <algorithm>
 #include <chrono>
 #include <cstdint>
+#include <functional>
+#include <memory>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 namespace FieryMUD {
 
@@ -15,10 +18,50 @@ namespace FieryMUD {
 // ============================================================================
 
 namespace CombatConstants {
-    // Timing
+    // Timing - Base attack speed (medium weapons)
     constexpr int COMBAT_ROUND_SECONDS = 4;
     constexpr int COMBAT_ROUND_MS = 4000;
+    constexpr int BASE_ATTACK_SPEED_MS = 4000;
 
+    // Attack speed by weapon category (milliseconds)
+    constexpr int ATTACK_SPEED_VERY_FAST = 2500;  // Daggers, punches
+    constexpr int ATTACK_SPEED_FAST = 3000;       // Short swords, clubs
+    constexpr int ATTACK_SPEED_MEDIUM = 4000;     // Long swords, maces
+    constexpr int ATTACK_SPEED_SLOW = 5000;       // Two-handed swords, axes
+    constexpr int ATTACK_SPEED_VERY_SLOW = 6000;  // Massive weapons, polearms
+
+    // Haste/Slow effect multipliers (percentage of base speed)
+    constexpr double HASTE_MULTIPLIER = 0.65;     // 35% faster attacks
+    constexpr double SLOW_MULTIPLIER = 1.50;      // 50% slower attacks
+    constexpr double DOUBLE_HASTE_MULTIPLIER = 0.50;  // 50% faster (stacked haste)
+    constexpr int MIN_ATTACK_SPEED_MS = 1500;     // Minimum attack interval (caps haste)
+}
+
+// ============================================================================
+// Weapon Speed Categories
+// ============================================================================
+
+enum class WeaponSpeed {
+    VeryFast,   // Daggers, punches, claws
+    Fast,       // Short swords, clubs, whips
+    Medium,     // Long swords, maces, spears (default)
+    Slow,       // Two-handed swords, battleaxes
+    VerySlow    // Massive weapons, polearms, mauls
+};
+
+/** Get attack speed in milliseconds for weapon speed category */
+constexpr int get_attack_speed_ms(WeaponSpeed speed) {
+    switch (speed) {
+        case WeaponSpeed::VeryFast: return CombatConstants::ATTACK_SPEED_VERY_FAST;
+        case WeaponSpeed::Fast:     return CombatConstants::ATTACK_SPEED_FAST;
+        case WeaponSpeed::Medium:   return CombatConstants::ATTACK_SPEED_MEDIUM;
+        case WeaponSpeed::Slow:     return CombatConstants::ATTACK_SPEED_SLOW;
+        case WeaponSpeed::VerySlow: return CombatConstants::ATTACK_SPEED_VERY_SLOW;
+        default:                    return CombatConstants::ATTACK_SPEED_MEDIUM;
+    }
+}
+
+namespace CombatConstants {
     // Hit calculation bounds
     constexpr int D100_MIN = 1;
     constexpr int D100_MAX = 100;
@@ -136,6 +179,19 @@ struct CombatStats {
     int weapon_dice_num = 1;
     int weapon_dice_size = 6;
     int weapon_base_damage = 0;
+    WeaponSpeed weapon_speed = WeaponSpeed::Medium;
+
+    // Attack speed modifiers (from effects like haste/slow)
+    double attack_speed_multiplier = 1.0;  // <1.0 = faster, >1.0 = slower
+    bool has_haste = false;
+    bool has_slow = false;
+
+    /** Get effective attack speed in milliseconds */
+    int effective_attack_speed_ms() const {
+        int base_speed = FieryMUD::get_attack_speed_ms(weapon_speed);
+        double modified = base_speed * attack_speed_multiplier;
+        return std::max(CombatConstants::MIN_ATTACK_SPEED_MS, static_cast<int>(modified));
+    }
 
     /** Calculate DR% from AR using diminishing returns formula */
     static double calculate_dr_percent(double ar, int level);
@@ -346,41 +402,6 @@ private:
     static double roll_damage(int num_dice, int dice_size, int bonus);
 };
 
-// ============================================================================
-// Combat Pair (for combat manager)
-// ============================================================================
-
-/**
- * @brief Combat pairing structure to track opponents and timing
- */
-struct CombatPair {
-    std::shared_ptr<Actor> actor1;
-    std::shared_ptr<Actor> actor2;
-    std::chrono::steady_clock::time_point last_round;
-    std::chrono::seconds round_interval{4}; // 4 seconds between rounds (PULSE_VIOLENCE)
-
-    CombatPair(std::shared_ptr<Actor> a1, std::shared_ptr<Actor> a2)
-        : actor1(std::move(a1)), actor2(std::move(a2)), last_round(std::chrono::steady_clock::now()) {}
-
-    bool involves_actor(const Actor& actor) const {
-        return (actor1.get() == &actor) || (actor2.get() == &actor);
-    }
-
-    std::shared_ptr<Actor> get_opponent(const Actor& actor) const {
-        if (actor1.get() == &actor) return actor2;
-        if (actor2.get() == &actor) return actor1;
-        return nullptr;
-    }
-
-    bool is_ready_for_next_round() const {
-        auto now = std::chrono::steady_clock::now();
-        return (now - last_round) >= round_interval;
-    }
-
-    void update_last_round() {
-        last_round = std::chrono::steady_clock::now();
-    }
-};
 
 // ============================================================================
 // Combat Manager
@@ -388,21 +409,66 @@ struct CombatPair {
 
 /**
  * @brief Manages ongoing combat encounters with time-based rounds
+ *
+ * Simplified architecture:
+ * - Tracks fighting actors in a set (no duplicate tracking)
+ * - Each actor maintains their own fighting_list_ of enemies
+ * - Global round timer instead of per-pair timing
+ * - Position::Fighting indicates combat state
  */
 class CombatManager {
 public:
+    /** Start combat between two actors (clears existing enemies for fresh 1v1) */
     static void start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<Actor> actor2);
+
+    /** Add combat relationship without clearing existing enemies (for AOE, etc.) */
+    static void add_combat_pair(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> defender);
+
+    /** End combat for an actor (removes from all enemy lists) */
     static void end_combat(std::shared_ptr<Actor> actor);
+
+    /** Process combat rounds for all fighting actors (returns true if any processed) */
     static bool process_combat_rounds();
+
+    /** Check if actor is in combat */
     static bool is_in_combat(const Actor& actor);
+
+    /** Get actor's primary opponent */
     static std::shared_ptr<Actor> get_opponent(const Actor& actor);
+
+    /** Clear all combat state */
     static void clear_all_combat();
+
+    /** Get all actors currently fighting */
     static std::vector<std::shared_ptr<Actor>> get_all_fighting_actors();
 
+    /** Check if combat round is ready to process */
+    static bool is_round_ready();
+
+    /** Check if specific actor is ready to attack based on their attack speed */
+    static bool is_actor_attack_ready(const std::shared_ptr<Actor>& actor);
+
+    /** Get calculated attack speed for an actor (considering weapon + effects) */
+    static int get_actor_attack_speed(const std::shared_ptr<Actor>& actor);
+
 private:
-    static std::vector<CombatPair> active_combats_;
-    static void cleanup_invalid_combats();
-    static void execute_round(CombatPair& combat_pair);
+    /** Set of all actors currently in combat */
+    static std::unordered_set<std::shared_ptr<Actor>> fighting_actors_;
+
+    /** Per-actor last attack timestamps for variable attack speeds */
+    static std::unordered_map<std::shared_ptr<Actor>, std::chrono::steady_clock::time_point> last_attack_times_;
+
+    /** Global combat round timer (kept for backwards compatibility / effect timing) */
+    static std::chrono::steady_clock::time_point last_round_time_;
+
+    /** Remove dead/invalid actors from tracking */
+    static void cleanup_invalid_actors();
+
+    /** Execute a single actor's attack against their target */
+    static void execute_actor_attack(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target);
+
+    /** Record that an actor just attacked */
+    static void record_attack_time(const std::shared_ptr<Actor>& actor);
 };
 
 // ============================================================================

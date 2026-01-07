@@ -205,6 +205,7 @@ struct EffectContext {
     std::shared_ptr<Actor> target;     // The target of the ability
     FormulaContext formula_ctx;        // Variables for formula evaluation
     int skill_level = 0;               // Proficiency in this ability (0-100)
+    int spell_circle = 1;              // Spell circle (1-9), used for base_damage calculation
     std::string ability_name;          // Display name of the ability (for effect names)
     int ability_id = 0;                // Database ID of the ability
     int effect_id = 0;                 // Database ID of the effect being executed

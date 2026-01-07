@@ -21,6 +21,7 @@
 
 #include <algorithm>
 #include <memory>
+#include <random>
 #include <nlohmann/json.hpp>
 
 // World server constants
@@ -33,6 +34,7 @@ namespace {
     constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
     constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500);  // 2 ticks per second
     constexpr auto REGEN_TICK_INTERVAL = std::chrono::seconds(4);  // HP/move regen like legacy
+    constexpr auto MOB_ACTIVITY_INTERVAL = std::chrono::seconds(2);  // Mob AI tick (aggression, etc.)
 
     // Game time defaults
     constexpr int DEFAULT_LORE_YEAR = 1000;
@@ -287,6 +289,7 @@ Result<void> WorldServer::start() {
     schedule_spell_restoration();
     schedule_casting_processing();
     schedule_regen_tick();
+    schedule_mob_activity();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -723,6 +726,144 @@ void WorldServer::perform_regen_tick() {
     world_manager_->tick_regen_all();
 }
 
+void WorldServer::schedule_mob_activity() {
+    Log::info("Scheduling mob activity timer (2s interval for AI/aggression)");
+    mob_activity_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(MOB_ACTIVITY_INTERVAL, [this]() { perform_mob_activity(); }, mob_activity_timer_);
+}
+
+// Alignment thresholds for aggression checks
+namespace {
+    constexpr int ALIGN_GOOD_THRESHOLD = 350;
+    constexpr int ALIGN_EVIL_THRESHOLD = -350;
+
+    bool is_good_alignment(int alignment) { return alignment >= ALIGN_GOOD_THRESHOLD; }
+    bool is_evil_alignment(int alignment) { return alignment <= ALIGN_EVIL_THRESHOLD; }
+    bool is_neutral_alignment(int alignment) {
+        return alignment > ALIGN_EVIL_THRESHOLD && alignment < ALIGN_GOOD_THRESHOLD;
+    }
+
+    std::string_view alignment_name(int alignment) {
+        if (is_good_alignment(alignment)) return "good";
+        if (is_evil_alignment(alignment)) return "evil";
+        return "neutral";
+    }
+}
+
+void WorldServer::perform_mob_activity() {
+    // Process mob AI for all spawned mobiles
+    // This handles aggression, following, special behaviors, etc.
+
+    if (!world_manager_) return;
+
+    // Get all spawned mobiles
+    auto& mobiles = world_manager_->spawned_mobiles();
+
+    for (auto& [id, mobile] : mobiles) {
+        if (!mobile || !mobile->is_alive()) continue;
+
+        // Skip mobs already in combat
+        if (mobile->is_fighting()) continue;
+
+        // Check for any type of aggression flag
+        bool is_basic_aggro = mobile->is_aggressive();
+        bool is_aggro_good = mobile->has_flag(MobFlag::AggroGood);
+        bool is_aggro_evil = mobile->has_flag(MobFlag::AggroEvil);
+        bool is_aggro_neutral = mobile->has_flag(MobFlag::AggroNeutral);
+        bool has_any_aggro = is_basic_aggro || is_aggro_good || is_aggro_evil || is_aggro_neutral;
+
+        if (!has_any_aggro) continue;
+
+        auto room = mobile->current_room();
+        if (!room) {
+            Log::debug("Aggressive mob '{}' has no current room!", mobile->name());
+            continue;
+        }
+
+        // Look for players in the room to attack
+        for (const auto& actor : room->contents().actors) {
+            if (!actor || actor.get() == mobile.get()) continue;
+
+            // Only attack players (not other mobs)
+            if (actor->type_name() != "Player") continue;
+
+            // Check if player is alive
+            if (!actor->is_alive()) {
+                Log::debug("Player '{}' is not alive, skipping", actor->name());
+                continue;
+            }
+
+            // Don't attack immortals (level 100+)
+            if (actor->stats().level >= 100) {
+                Log::debug("Player '{}' is immortal (level {}), skipping",
+                          actor->name(), actor->stats().level);
+                continue;
+            }
+
+            // Check if this mob should attack this player based on aggression type
+            int player_align = actor->stats().alignment;
+            bool should_attack = false;
+            std::string attack_reason;
+
+            if (is_basic_aggro) {
+                // Basic aggressive - attacks everyone
+                should_attack = true;
+                attack_reason = "aggressive";
+            } else if (is_aggro_good && is_good_alignment(player_align)) {
+                should_attack = true;
+                attack_reason = fmt::format("aggro-good (player align: {})", player_align);
+            } else if (is_aggro_evil && is_evil_alignment(player_align)) {
+                should_attack = true;
+                attack_reason = fmt::format("aggro-evil (player align: {})", player_align);
+            } else if (is_aggro_neutral && is_neutral_alignment(player_align)) {
+                should_attack = true;
+                attack_reason = fmt::format("aggro-neutral (player align: {})", player_align);
+            }
+
+            if (!should_attack) {
+                Log::debug("Mob '{}' won't attack '{}' ({} alignment: {}) - no matching aggro flag",
+                          mobile->name(), actor->name(), alignment_name(player_align), player_align);
+                continue;
+            }
+
+            // Aggression level check (0-10 scale, higher = more aggressive)
+            // Roll 1-10, if roll <= aggression_level, attack
+            static thread_local std::mt19937 rng(std::random_device{}());
+            std::uniform_int_distribution<int> dist(1, 10);
+            int roll = dist(rng);
+            int aggro_level = mobile->aggression_level();
+
+            Log::debug("Aggro check: {} ({}) vs {} - roll {} <= {}?",
+                      mobile->name(), attack_reason, actor->name(), roll, aggro_level);
+
+            if (roll <= aggro_level) {
+                // Start combat!
+                Log::info("{} ({}, level {}) attacks {}!",
+                         mobile->name(), attack_reason, aggro_level, actor->name());
+
+                // Use add_combat_pair so multiple mobs can attack same player
+                FieryMUD::CombatManager::add_combat_pair(mobile, actor);
+
+                // Send attack message
+                mobile->send_message(fmt::format("You attack {}!", actor->display_name()));
+                actor->send_message(fmt::format("{} attacks you!", mobile->display_name()));
+
+                // Notify room
+                for (const auto& witness : room->contents().actors) {
+                    if (witness && witness != mobile && witness != actor) {
+                        witness->send_message(fmt::format("{} attacks {}!",
+                            mobile->display_name(), actor->display_name()));
+                    }
+                }
+
+                // Only attack one player per tick
+                break;
+            }
+        }
+    }
+
+}
+
 void WorldServer::perform_spell_restoration() {
     // Process spell slot restoration for all connected players
     for (auto& conn : active_connections_) {
@@ -918,6 +1059,18 @@ void WorldServer::perform_cleanup() {
 
 void WorldServer::perform_heartbeat() {
     // This runs on the world strand - thread safe!
+
+    // Check for shutdown request
+    if (world_manager_ && world_manager_->should_shutdown_now()) {
+        Log::info("Shutdown time reached, initiating graceful shutdown...");
+        if (shutdown_callback_) {
+            shutdown_callback_();
+        } else {
+            Log::warn("Shutdown requested but no callback set - triggering stop() directly");
+            running_.store(false);
+        }
+        return;  // Don't continue with heartbeat if shutting down
+    }
 
     auto now = std::chrono::steady_clock::now();
     auto uptime = std::chrono::duration_cast<std::chrono::seconds>(now - start_time_).count();

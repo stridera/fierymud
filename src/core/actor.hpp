@@ -219,9 +219,19 @@ public:
     /** Get weapon in off hand */
     std::shared_ptr<Object> get_off_weapon() const;
     
-    /** Check if wielding two-handed weapon */
+    /** Check if wielding two-handed weapon (or versatile weapon with 2H grip) */
     bool is_wielding_two_handed() const;
-    
+
+    /** Check if currently using two-handed grip on a versatile weapon */
+    bool is_using_two_handed_grip() const { return using_two_handed_grip_; }
+
+    /** Toggle grip on a versatile weapon (1H <-> 2H)
+     * @return Error message if failed, empty string on success */
+    std::string toggle_grip();
+
+    /** Reset grip to one-handed (called when weapon is unequipped) */
+    void reset_grip() { using_two_handed_grip_ = false; }
+
     /** Clear all equipment (returns removed items) */
     std::vector<std::shared_ptr<Object>> clear_all();
     
@@ -231,10 +241,11 @@ public:
     
 private:
     std::unordered_map<EquipSlot, std::shared_ptr<Object>> equipped_;
-    
+    bool using_two_handed_grip_ = false;  // True if using 2H grip on versatile weapon
+
     /** Check if slot conflicts with currently equipped items */
     bool has_slot_conflict(EquipSlot slot, const Object& item) const;
-    
+
     /** Get descriptive error message for slot conflicts */
     std::string get_slot_conflict_message(EquipSlot slot, const Object& item) const;
 };
@@ -380,6 +391,15 @@ public:
         return is_alive() && position_ != Position::Incapacitated &&
                position_ != Position::Stunned && position_ != Position::Sleeping;
     }
+
+    /** Fighting list management - tracks who this actor is fighting */
+    void add_enemy(std::shared_ptr<Actor> enemy);
+    void remove_enemy(std::shared_ptr<Actor> enemy);
+    void clear_enemies();
+    bool has_enemies() const;
+    std::shared_ptr<Actor> get_fighting_target() const;  // First valid enemy
+    std::vector<std::shared_ptr<Actor>> get_all_enemies() const;  // For warriors/debugging
+    void set_primary_target(std::shared_ptr<Actor> enemy);  // Move to front of list
 
     /** Mounting state */
     bool is_mounted() const { return !mounted_on_.expired(); }
@@ -681,6 +701,9 @@ private:
     // Pet/follower state (for charmed mobs, pets, mounts)
     std::weak_ptr<Actor> master_;                    // Who we are following/serving
     std::vector<std::weak_ptr<Actor>> followers_;    // Who is following us
+
+    // Combat state - list of actors we are fighting
+    std::vector<std::weak_ptr<Actor>> fighting_list_;  // Enemies we are engaged with
 
 public:
     // Master/follower system (for pets, charmed mobs, etc.)
