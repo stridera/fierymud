@@ -431,6 +431,22 @@ wearSlots: [FINGER]
 
 - **BELT requires WAIST**: You must have something worn on WAIST to use BELT slot. If WAIST item is removed, BELT items fall to ground/inventory.
 
+**Disguise Slot**: The DISGUISE slot is for items that alter how other players/NPCs perceive the wearer:
+
+Common Mechanics:
+
+- Wearing a disguise changes your visible name/description to others
+- look <player> shows the disguise description instead of the real one
+- NPCs might treat you differently based on the disguise (enemy faction uniform, guard disguise, etc.)
+- Usually revealed by certain skills (true sight, perception checks) or actions (combat, speaking)
+
+Example Items:
+
+- Cultist robes (appear as a cultist to faction NPCs)
+- Guard uniform (access restricted areas)
+- Glamour mask (appear as a different race)
+- Cloak of shadows (appear as "a shadowy figure")
+
 ---
 
 ### Vehicle Objects
