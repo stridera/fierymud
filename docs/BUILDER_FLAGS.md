@@ -338,13 +338,13 @@ allowedRaces: [ELF, HALF_ELF]
 
 ### Weapon Grip System
 
-Controls how weapons are held and wielded.
+Controls how weapons are held and wielded via WearSlot flags.
 
-| Grip       | Description             | Damage           | Offhand Available |
-| ---------- | ----------------------- | ---------------- | ----------------- |
-| ONE_HANDED | Single hand only        | Normal           | Yes               |
-| TWO_HANDED | Requires both hands     | Higher           | No                |
-| VERSATILE  | Player chooses 1H or 2H | Normal or +bonus | Depends on choice |
+| Configuration           | Description             | Damage           | Offhand Available |
+| ----------------------- | ----------------------- | ---------------- | ----------------- |
+| MAINHAND only           | One-handed weapon       | Normal           | Yes               |
+| MAINHAND + TWOHAND      | Versatile weapon        | Normal or +bonus | Depends on choice |
+| MAINHAND + OFFHAND      | Can be used either hand | Normal           | N/A (is offhand)  |
 
 **Player Commands**:
 
@@ -356,19 +356,18 @@ Controls how weapons are held and wielded.
 ```yaml
 # Dagger - can be mainhand or offhand
 wearSlots: [MAINHAND, OFFHAND]
-weaponGrip: ONE_HANDED
 
-# Longsword - versatile, player chooses
-wearSlots: [MAINHAND]
-weaponGrip: VERSATILE
+# Longsword - versatile, player chooses 1H or 2H
+wearSlots: [MAINHAND, TWOHAND]
 
-# Greatsword - two-handed only
-wearSlots: [MAINHAND]
-weaponGrip: TWO_HANDED
+# Greatsword - two-handed only (no MAINHAND-only option)
+wearSlots: [TWOHAND]
 
-# Staff - two-handed
-wearSlots: [MAINHAND]
-weaponGrip: TWO_HANDED
+# Shield - offhand only
+wearSlots: [OFFHAND]
+
+# Torch - can hold in either hand
+wearSlots: [MAINHAND, OFFHAND]
 ```
 
 ---
@@ -431,7 +430,9 @@ wearSlots: [FINGER]
 
 - **BELT requires WAIST**: You must have something worn on WAIST to use BELT slot. If WAIST item is removed, BELT items fall to ground/inventory.
 
-**Disguise Slot**: The DISGUISE slot is for items that alter how other players/NPCs perceive the wearer:
+**Disguise Slot**:
+
+The DISGUISE slot is for items that alter how other players/NPCs perceive the wearer:
 
 Common Mechanics:
 
@@ -789,14 +790,16 @@ activeEffects: [{type: "sharpness", duration: 3600, params: {bonusDamage: "1d4"}
 6. **Restrictions**: Add `activityRestrictions` if needed (vampires, nocturnal)
 7. **Effects**: Configure `spawnEffects` for buffs (haste, blur, fly)
 8. **Equipment**: Define equipment loadout via resets
+   - Use `decorative: true` for equipment that's purely visual (not lootable or stealable)
+   - Different from TEMPORARY flag on objects (which ARE lootable but don't save on logout)
 
 ---
 
 ### Object Creation Checklist
 
 1. **Basic Properties**: Set type, weight, value, material
-2. **Wear Slots**: Set `wearSlots` for equipment (HEAD, BODY, MAINHAND, etc.)
-3. **Weapon Grip**: Set `weaponGrip` for weapons (ONE_HANDED, TWO_HANDED, VERSATILE)
+2. **Wear Slots**: Set `wearSlots` for equipment (HEAD, BODY, MAINHAND, OFFHAND, TWOHAND, etc.)
+3. **Weapon Grip**: For weapons, use MAINHAND for 1H, add TWOHAND for versatile, use TWOHAND alone for 2H-only
 4. **Restrictions**: Add class/alignment/size/race restrictions
 5. **Flags**: Choose object flags (GLOW, SOULBOUND, NO_DROP, etc.)
 6. **Enchantments**: Add `activeEffects` for magical properties
