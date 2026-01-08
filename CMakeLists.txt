@@ -838,21 +838,13 @@ add_executable(test_database_comprehensive
     src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
-<<<<<<< HEAD
-    # Scripting system
-=======
     # Scripting system (required by admin_commands)
->>>>>>> 6827fe66398fcaaf57743cd15f202ee42b01b0f8
     src/scripting/script_engine.cpp
     src/scripting/trigger_manager.cpp
     src/scripting/coroutine_scheduler.cpp
     src/scripting/bindings/lua_actor.cpp
     src/scripting/bindings/lua_room.cpp
     src/scripting/bindings/lua_object.cpp
-<<<<<<< HEAD
-    src/database/trigger_queries.cpp
-    # Event publishing
-=======
     src/scripting/bindings/lua_quest.cpp
     src/database/trigger_queries.cpp
     # Quest system (required by lua_quest bindings)
@@ -860,7 +852,6 @@ add_executable(test_database_comprehensive
     src/database/quest_queries.cpp
     src/commands/quest_commands.cpp
     # Event publishing (required by communication_commands)
->>>>>>> 6827fe66398fcaaf57743cd15f202ee42b01b0f8
     src/events/event_publisher.cpp
 )
 
