@@ -230,12 +230,16 @@ void CommandContext::send_to_actor(std::shared_ptr<Actor> target, std::string_vi
     }
 }
 
-void CommandContext::send_to_all(std::string_view message) const {
+void CommandContext::send_to_all(std::string_view message, bool exclude_self) const {
     // Broadcast to all online players using WorldServer's player tracking
     if (auto *world_server = WorldServer::instance()) {
         auto online_actors = world_server->get_online_actors();
         for (const auto &online_actor : online_actors) {
             if (online_actor) {
+                // Skip self if exclude_self is true
+                if (exclude_self && actor && online_actor == actor) {
+                    continue;
+                }
                 online_actor->send_message(message);
             }
         }

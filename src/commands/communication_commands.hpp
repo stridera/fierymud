@@ -21,6 +21,10 @@ Result<CommandResult> cmd_ask(const CommandContext &ctx);
 Result<CommandResult> cmd_petition(const CommandContext &ctx);
 Result<CommandResult> cmd_lasttells(const CommandContext &ctx);
 
+// Immortal communication
+Result<CommandResult> cmd_wiznet(const CommandContext &ctx);
+Result<CommandResult> cmd_gecho(const CommandContext &ctx);
+
 // Group communication (requires group system)
 Result<CommandResult> cmd_gtell(const CommandContext &ctx);
 

@@ -864,7 +864,10 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     World().check_and_handle_falling(ctx.actor);
 
     // Automatically show the new room after movement (or after falling)
-    auto look_result = InformationCommands::cmd_look(ctx);
+    // Create a context copy with cleared arguments so look shows the room, not a target
+    auto look_ctx = ctx;
+    look_ctx.command.arguments.clear();
+    auto look_result = InformationCommands::cmd_look(look_ctx);
     if (!look_result) {
         ctx.send_error("Movement succeeded but could not display new room");
     }
@@ -883,11 +886,11 @@ void send_communication(const CommandContext &ctx, std::string_view message, Mes
         break;
     case MessageType::Broadcast:
         ctx.send(fmt::format("You {}, '{}'", channel_name, message));
-        ctx.send_to_all(formatted_message);
+        ctx.send_to_all(formatted_message, true);  // exclude self
         break;
     case MessageType::Channel:
         ctx.send(fmt::format("You {}, '{}'", channel_name, message));
-        ctx.send_to_all(formatted_message);
+        ctx.send_to_all(formatted_message, true);  // exclude self
         break;
     default:
         ctx.send_to_room(formatted_message, false);

@@ -102,6 +102,7 @@ class GMCPHandler {
     void handle_mtts_capability(uint32_t bitvector);
     void handle_new_environ_data(const std::unordered_map<std::string, std::string>& env_vars);
     const TerminalCapabilities::Capabilities& get_terminal_capabilities() const;
+    void set_tls_status(bool using_tls) { terminal_capabilities_.supports_tls = using_tls; }
     
     // Request client capabilities
     void request_terminal_type();
@@ -196,6 +197,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void send_room_info();
     void send_vitals();
     void send_status();
+    void send_discord_status();
     
     // Terminal capability detection
     const TerminalCapabilities::Capabilities& get_terminal_capabilities() const { 
@@ -286,7 +288,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     std::string original_host_;  // For reconnection validation
 
     // Connection limits and timeouts (declared first as some are used below)
-    static constexpr std::chrono::seconds LOGIN_TIMEOUT{300}; // 5 minutes
+    static constexpr std::chrono::seconds LOGIN_TIMEOUT{180}; // 3 minutes
     static constexpr std::chrono::seconds IDLE_TIMEOUT{1800}; // 30 minutes
     static constexpr std::chrono::seconds AFK_TIMEOUT{900};   // 15 minutes for AFK detection
     static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead

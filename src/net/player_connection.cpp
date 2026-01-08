@@ -159,9 +159,13 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
             
             Log::debug("Processing Core.Hello - step 2: calling detect_capabilities_from_gmcp");
             try {
+                // Preserve TLS status (based on actual connection, not client-reported)
+                bool was_tls = terminal_capabilities_.supports_tls;
+
                 // Update capabilities based on known clients
                 terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_gmcp(json_data);
                 terminal_capabilities_.supports_gmcp = true;  // Obviously true if we're getting GMCP
+                terminal_capabilities_.supports_tls = was_tls;  // Restore actual TLS status
                 Log::debug("Processing Core.Hello - step 3: capabilities updated successfully");
             } catch (const std::exception& e) {
                 Log::error("Exception in detect_capabilities_from_gmcp: {}", e.what());
@@ -181,6 +185,15 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
                 add_client_support(support_module.get<std::string>());
             }
             Log::debug("GMCP client supports {} modules", client_supports_.size());
+        }
+        // Handle External.Discord.Hello - client requests Discord integration info
+        else if (module == "External.Discord.Hello") {
+            Log::info("Client requested Discord integration");
+            // Send Discord info in response
+            send_gmcp("External.Discord.Info", {
+                {"inviteurl", "https://discord.gg/aqhapUCgFz"},
+                {"applicationid", ""}
+            });
         }
 
         return Result<void>{};
@@ -224,13 +237,29 @@ void GMCPHandler::send_server_services() {
     // Send server-side services to the client (like legacy offer_gmcp_services)
     nlohmann::json client_gui = {{"version", "3.0.0-modern"}, {"url", "https://fierymud.org"}};
     send_gmcp("Client.GUI", client_gui);
-    
+
     nlohmann::json client_map = {{"url", "https://fierymud.org/map"}};
     send_gmcp("Client.Map", client_map);
+
+    // Send Discord integration info
+    send_gmcp("External.Discord.Info", {
+        {"inviteurl", "https://discord.gg/aqhapUCgFz"},
+        {"applicationid", "998826809686765569"}
+    });
 }
 
 void GMCPHandler::send_supports_set() {
-    nlohmann::json supports = nlohmann::json::array({"Core 1", "Room 1", "Char 1", "Char.Vitals 1", "Char.Status 1"});
+    // Advertise all supported GMCP modules
+    nlohmann::json supports = nlohmann::json::array({
+        "Core 1",
+        "Room 1",
+        "Char 1",
+        "Char.Vitals 1",
+        "Char.Status 1",
+        "Char.Skills 1",
+        "Char.Items 1",
+        "External.Discord 1"
+    });
 
     send_gmcp("Core.Supports.Set", supports);
 }
@@ -268,26 +297,47 @@ void GMCPHandler::send_room_info(const Room &room) {
         }
     }
 
-    // Build exits information
+    // Build exits information with door details (matches legacy format)
     nlohmann::json exits = nlohmann::json::object();
     for (Direction dir : room.get_visible_exits()) {
         const auto* exit_info = room.get_exit(dir);
         if (exit_info && exit_info->to_room.is_valid()) {
-            exits[direction_to_string(dir)] = exit_info->to_room.value();
+            nlohmann::json exit_json = {{"to_room", exit_info->to_room.value()}};
+
+            // Add door information if this exit has a door
+            if (exit_info->has_door) {
+                exit_json["is_door"] = true;
+                exit_json["door_name"] = exit_info->keyword.empty() ? "door" : exit_info->keyword;
+                if (exit_info->is_locked) {
+                    exit_json["door"] = "locked";
+                } else if (exit_info->is_closed) {
+                    exit_json["door"] = "closed";
+                } else {
+                    exit_json["door"] = "open";
+                }
+            } else {
+                exit_json["is_door"] = false;
+            }
+
+            exits[direction_to_string(dir)] = exit_json;
         }
     }
 
-    nlohmann::json room_data = {{"num", room.id().value()},
-                                {"name", room.name()},
-                                {"zone", zone_name},
-                                {"environment", static_cast<int>(room.sector_type())},
-                                {"coord",
-                                 {{"x", static_cast<int>(room.id().value() % 1000)}, // Derive X from room ID
-                                  {"y", static_cast<int>(room.id().value() / 1000 % 1000)}, // Derive Y from room ID  
-                                  {"z", static_cast<int>(room.id().value() / 1000000)}}}, // Derive Z from room ID
-                                {"exits", exits}};
+    // Get sector type name for human-readable display
+    std::string sector_name = std::string(RoomUtils::get_sector_name(room.sector_type()));
 
-    send_gmcp("Room.Info", room_data);
+    // Build Room GMCP data (matches legacy format + enhancements)
+    nlohmann::json room_data = {
+        {"zone", zone_name},
+        {"id", room.id().value()},
+        {"name", room.name()},
+        {"type", sector_name},
+        {"environment", static_cast<int>(room.sector_type())},
+        {"Exits", exits}
+    };
+
+    // Send as "Room" to match legacy format (clients may expect this)
+    send_gmcp("Room", room_data);
 }
 
 void GMCPHandler::add_client_support(std::string_view module) { client_supports_.emplace(module); }
@@ -691,6 +741,9 @@ void PlayerConnection::start() {
 
     Log::info("New {} connection from {}", (is_tls_connection() ? "TLS" : "TCP"), remote_address());
 
+    // Set TLS capability based on actual connection type (not just client-reported MTTS)
+    gmcp_handler_.set_tls_status(is_tls_connection());
+
     // Initialize login system
     login_system_ = std::make_unique<LoginSystem>(shared_from_this());
     login_system_->set_player_loaded_callback([this](std::shared_ptr<Player> player) { on_login_completed(player); });
@@ -742,12 +795,16 @@ void PlayerConnection::handle_connect() {
 }
 
 void PlayerConnection::send_telnet_negotiation() {
-    // Only offer GMCP support initially to avoid potential loops
-    // IAC WILL GMCP_OPTION
+    // Offer GMCP support: IAC WILL GMCP
     std::vector<uint8_t> gmcp_offer = {GMCPHandler::TELNET_IAC, GMCPHandler::TELNET_WILL, GMCPHandler::GMCP_OPTION};
     Log::info("Sending GMCP offer to {}: IAC WILL GMCP (255 251 201)", remote_address());
     send_raw_data(gmcp_offer);
-    
+
+    // Offer MSSP support: IAC WILL MSSP
+    std::vector<uint8_t> mssp_offer = {GMCPHandler::TELNET_IAC, GMCPHandler::TELNET_WILL, GMCPHandler::MSSP_OPTION};
+    Log::info("Sending MSSP offer to {}: IAC WILL MSSP (255 251 70)", remote_address());
+    send_raw_data(mssp_offer);
+
     // Don't immediately request capabilities - wait for client response first
     // This prevents potential infinite loops with aggressive clients
     // Capabilities are requested in handle_telnet_option() when client responds with DO
@@ -1145,8 +1202,9 @@ void PlayerConnection::send_vitals() {
     if (!player_ || !supports_gmcp())
         return;
 
-    auto vitals_data = player_->get_vitals_gmcp();
-    send_gmcp("Char.Vitals", vitals_data);
+    // Send comprehensive Char data (matches legacy format)
+    auto char_data = player_->get_vitals_gmcp();
+    send_gmcp("Char", char_data);
 }
 
 void PlayerConnection::send_status() {
@@ -1159,6 +1217,29 @@ void PlayerConnection::send_status() {
                              {"race", player_->race()}};
 
     send_gmcp("Char.Status", status);
+}
+
+void PlayerConnection::send_discord_status() {
+    if (!player_ || !supports_gmcp())
+        return;
+
+    // Send Discord rich presence status
+    std::string details = fmt::format("Character: {}  Class: {}  Level: {}",
+        player_->name(),
+        player_->player_class(),
+        player_->level());
+
+    auto login_time = std::chrono::system_clock::now();  // TODO: Track actual login time
+
+    send_gmcp("External.Discord.Status", {
+        {"state", "Playing FieryMUD (fierymud.org:4000)"},
+        {"details", details},
+        {"game", "FieryMUD"},
+        {"smallimage", nlohmann::json::array({"servericon"})},
+        {"smallimagetext", "FieryMUD"},
+        {"starttime", std::chrono::duration_cast<std::chrono::seconds>(
+            login_time.time_since_epoch()).count()}
+    });
 }
 
 void PlayerConnection::disconnect(std::string_view reason) {
@@ -1351,11 +1432,24 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
         return;
     }
     
-    // Only check idle timeout for playing connections
+    // Check idle timeout for playing connections
     if (state_ == ConnectionState::Playing || state_ == ConnectionState::AFK) {
         check_idle_timeout();
     }
-    
+
+    // Check login timeout for connections that haven't completed login
+    // This prevents connections from sitting at the login screen forever
+    if (state_ == ConnectionState::Connected || state_ == ConnectionState::Login) {
+        auto connected_duration = std::chrono::steady_clock::now() - connect_time_;
+        if (connected_duration >= LOGIN_TIMEOUT) {
+            Log::info("Disconnecting {} - login timeout after {} seconds",
+                      remote_address(),
+                      std::chrono::duration_cast<std::chrono::seconds>(connected_duration).count());
+            disconnect("Login timeout - please reconnect to try again");
+            return;
+        }
+    }
+
     // Continue the timer if connection is still active
     if (is_connected()) {
         start_idle_timer();

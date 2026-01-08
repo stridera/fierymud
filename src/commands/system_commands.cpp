@@ -1058,7 +1058,6 @@ Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
     add_capability("Mouse Support", caps.supports_mouse);
     add_capability("Hyperlinks", caps.supports_hyperlinks);
     add_capability("Screen Reader", caps.supports_screen_reader);
-    add_capability("TLS Encryption", caps.supports_tls);
     
     ctx.send_table(headers, rows);
     

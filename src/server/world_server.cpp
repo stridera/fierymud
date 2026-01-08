@@ -646,6 +646,13 @@ void WorldServer::handle_command(CommandRequest command) {
 void WorldServer::handle_player_connection(std::shared_ptr<PlayerConnection> connection) {
     // This runs on the world strand - thread safe!
 
+    // Check for duplicates before adding
+    auto it = std::find(active_connections_.begin(), active_connections_.end(), connection);
+    if (it != active_connections_.end()) {
+        Log::warn("Duplicate connection detected, skipping add");
+        return;
+    }
+
     active_connections_.push_back(connection);
     total_connections_.fetch_add(1);
 
@@ -1059,15 +1066,50 @@ void WorldServer::perform_heartbeat() {
     // This runs on the world strand - thread safe!
 
     // Check for shutdown request
-    if (world_manager_ && world_manager_->should_shutdown_now()) {
-        Log::info("Shutdown time reached, initiating graceful shutdown...");
-        if (shutdown_callback_) {
-            shutdown_callback_();
-        } else {
-            Log::warn("Shutdown requested but no callback set - triggering stop() directly");
-            running_.store(false);
+    if (world_manager_ && world_manager_->is_shutdown_requested()) {
+        if (world_manager_->should_shutdown_now()) {
+            Log::info("Shutdown time reached, initiating graceful shutdown...");
+            if (shutdown_callback_) {
+                shutdown_callback_();
+            } else {
+                Log::warn("Shutdown requested but no callback set - triggering stop() directly");
+                running_.store(false);
+            }
+            return;  // Don't continue with heartbeat if shutting down
         }
-        return;  // Don't continue with heartbeat if shutting down
+
+        // Send periodic shutdown warnings
+        auto time_left = std::chrono::duration_cast<std::chrono::seconds>(
+            world_manager_->get_shutdown_time() - std::chrono::steady_clock::now()
+        ).count();
+
+        // Warn at specific intervals: 5min, 2min, 1min, 30sec, 10sec, 5sec
+        static int64_t last_warning_time = -1;
+        bool should_warn = false;
+        if (time_left <= 5 && last_warning_time != 5) { should_warn = true; last_warning_time = 5; }
+        else if (time_left <= 10 && time_left > 5 && last_warning_time != 10) { should_warn = true; last_warning_time = 10; }
+        else if (time_left <= 30 && time_left > 10 && last_warning_time != 30) { should_warn = true; last_warning_time = 30; }
+        else if (time_left <= 60 && time_left > 30 && last_warning_time != 60) { should_warn = true; last_warning_time = 60; }
+        else if (time_left <= 120 && time_left > 60 && last_warning_time != 120) { should_warn = true; last_warning_time = 120; }
+        else if (time_left <= 300 && time_left > 120 && last_warning_time != 300) { should_warn = true; last_warning_time = 300; }
+
+        if (should_warn) {
+            std::string time_str;
+            if (time_left >= 60) {
+                time_str = fmt::format("{} minute{}", time_left / 60, time_left >= 120 ? "s" : "");
+            } else {
+                time_str = fmt::format("{} second{}", time_left, time_left != 1 ? "s" : "");
+            }
+            std::string msg = fmt::format("\r\n*** SYSTEM: MUD shutting down in {}. {} ***\r\n",
+                                          time_str, world_manager_->get_shutdown_reason());
+            for (auto& conn : active_connections_) {
+                if (conn) conn->send_line(msg);
+            }
+        }
+    } else {
+        // Reset warning tracker when shutdown is cancelled
+        static int64_t last_warning_time = -1;
+        last_warning_time = -1;
     }
 
     auto now = std::chrono::steady_clock::now();

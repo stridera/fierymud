@@ -427,8 +427,10 @@ public:
     /** Set liquid properties */
     void set_liquid_info(const LiquidInfo& info) { liquid_info_ = info; }
 
-    /** Check if container has liquid */
-    bool has_liquid() const { return liquid_info_.remaining > 0; }
+    /** Check if container has liquid (fountains always have liquid - infinite supply) */
+    bool has_liquid() const {
+        return type_ == ObjectType::Fountain || liquid_info_.remaining > 0;
+    }
 
     /** Get food info (for consumable food) */
     const FoodInfo& food_info() const { return food_info_; }

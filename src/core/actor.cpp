@@ -2452,11 +2452,28 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
             }
         }
         
+        // Load player preferences and flags
+        if (json.contains("prompt")) {
+            player->set_prompt(json["prompt"].get<std::string>());
+        }
+
+        if (json.contains("title")) {
+            player->set_title(json["title"].get<std::string>());
+        }
+
+        if (json.contains("wimpy_threshold")) {
+            player->set_wimpy_threshold(json["wimpy_threshold"].get<int>());
+        }
+
+        if (json.contains("player_flags")) {
+            player->set_player_flags_from_strings(json["player_flags"].get<std::vector<std::string>>());
+        }
+
         // Initialize spell slots based on class and level
         player->initialize_spell_slots();
-        
+
         TRY(player->validate());
-        
+
         return player;
         
     } catch (const nlohmann::json::exception& e) {
@@ -2527,23 +2544,99 @@ std::shared_ptr<Container> Player::die() {
 nlohmann::json Player::get_vitals_gmcp() const {
     const auto& stats = this->stats();
 
-    // Calculate percentages for UI display
-    int hp_percent = (stats.max_hit_points > 0) ? (stats.hit_points * 100) / stats.max_hit_points : 0;
-    int stamina_percent = (stats.max_stamina > 0) ? (stats.stamina * 100) / stats.max_stamina : 0;
+    // Calculate experience percentage to next level
+    long exp_for_current = ActorUtils::experience_for_level(stats.level);
+    long exp_for_next = ActorUtils::experience_for_level(stats.level + 1);
+    int exp_percent = (exp_for_next > exp_for_current)
+        ? static_cast<int>(100 * (stats.experience - exp_for_current) / (exp_for_next - exp_for_current))
+        : 0;
 
+    // Get position name
+    std::string position_name = std::string(ActorUtils::get_position_name(position()));
+
+    // Build effects array
+    nlohmann::json effects = nlohmann::json::array();
+    for (const auto& effect : active_effects()) {
+        if (effect.duration_hours >= 0) {
+            nlohmann::json effect_obj;
+            effect_obj["name"] = effect.name;
+            effect_obj["duration"] = static_cast<int>(effect.duration_hours + 1);
+            effects.push_back(effect_obj);
+        }
+    }
+
+    // Build combat info
+    nlohmann::json combat = nlohmann::json::object();
+    if (is_fighting()) {
+        auto target = get_fighting_target();
+        if (target) {
+            int target_hp_percent = (target->stats().max_hit_points > 0)
+                ? (100 * target->stats().hit_points / target->stats().max_hit_points)
+                : 0;
+            nlohmann::json opponent_obj;
+            opponent_obj["name"] = target->display_name();
+            opponent_obj["hp_percent"] = target_hp_percent;
+            combat["opponent"] = opponent_obj;
+
+            // Check if opponent is fighting someone else (tank)
+            if (target->is_fighting()) {
+                auto tank = target->get_fighting_target();
+                if (tank && tank.get() != this) {
+                    nlohmann::json tank_obj;
+                    tank_obj["name"] = tank->display_name();
+                    tank_obj["hp"] = tank->stats().hit_points;
+                    tank_obj["max_hp"] = tank->stats().max_hit_points;
+                    combat["tank"] = tank_obj;
+                }
+            }
+        }
+    }
+
+    // Build spell slots (available per circle)
+    nlohmann::json spell_slots_json = nlohmann::json::object();
+    for (int circle = 1; circle <= 9; ++circle) {
+        auto [current, max_slots] = spell_slots().get_slot_info(circle);
+        if (max_slots > 0) {
+            spell_slots_json[std::to_string(circle)] = nlohmann::json{
+                {"available", current},
+                {"max", max_slots}
+            };
+        }
+    }
+
+    // Build the comprehensive Char GMCP data (matches legacy format)
     return {
-        {"hp", stats.hit_points},
-        {"maxhp", stats.max_hit_points},
-        {"hp_percent", hp_percent},
-        {"stamina", stats.stamina},
-        {"maxstamina", stats.max_stamina},
-        {"stamina_percent", stamina_percent},
+        {"name", std::string(name())},
+        {"class", player_class_},
+        {"race", std::string(race())},
+        {"exp_percent", exp_percent},
+        {"alignment", stats.alignment},
+        {"position", position_name},
+        {"hiddenness", 0},  // TODO: Add hiddenness tracking when stealth system is implemented
         {"level", stats.level},
-        {"experience", stats.experience},
-        {"tnl", stats.experience_to_next_level()},  // "tnl" = to next level
-        {"gold", stats.gold},
-        {"alignment", stats.alignment}
-        // Note: FieryMUD uses spell circles, not mana - no sp/maxsp fields
+        {"Vitals", {
+            {"hp", stats.hit_points},
+            {"max_hp", stats.max_hit_points},
+            {"mv", stats.stamina},
+            {"max_mv", stats.max_stamina}
+        }},
+        {"Worth", {
+            {"Carried", {
+                {"platinum", wallet_.platinum()},
+                {"gold", wallet_.gold()},
+                {"silver", wallet_.silver()},
+                {"copper", wallet_.copper()}
+            }},
+            {"Bank", {
+                {"platinum", bank_.platinum()},
+                {"gold", bank_.gold()},
+                {"silver", bank_.silver()},
+                {"copper", bank_.copper()}
+            }}
+        }},
+        {"Effects", effects},
+        {"Combat", combat},
+        {"SpellSlots", spell_slots_json}
     };
 }
 
@@ -2751,6 +2844,7 @@ nlohmann::json Player::to_json() const {
     json["wimpy_threshold"] = wimpy_threshold_;
     json["title"] = title_;
     json["description"] = description_;
+    json["prompt"] = prompt_;
 
     return json;
 }

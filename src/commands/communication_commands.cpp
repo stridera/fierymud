@@ -5,6 +5,7 @@
 #include "../core/logging.hpp"
 #include "../events/event_publisher.hpp"
 #include "../scripting/trigger_manager.hpp"
+#include "../server/world_server.hpp"
 #include "../world/room.hpp"
 
 namespace CommunicationCommands {
@@ -322,6 +323,39 @@ Result<CommandResult> cmd_petition(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_wiznet(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<message>"); !result) {
+        ctx.send_usage("wiznet <message>");
+        ctx.send("Broadcast a message to all online immortals.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string message = sanitize_player_message(ctx.args_from(0));
+
+    // Send to actor first
+    ctx.send(fmt::format("You wiznet, '{}'", message));
+
+    // Format the wiznet message for other immortals
+    std::string wiz_msg = fmt::format("{} wiznet, '{}'", ctx.actor->display_name(), message);
+
+    // Send to all immortals except self
+    if (auto *world_server = WorldServer::instance()) {
+        auto online_actors = world_server->get_online_actors();
+        for (const auto &online_actor : online_actors) {
+            if (online_actor && online_actor != ctx.actor) {
+                // Check if they have wiznet permission (God level or higher)
+                if (auto player = std::dynamic_pointer_cast<Player>(online_actor)) {
+                    if (player->is_god() && player->level() >= static_cast<int>(PrivilegeLevel::God)) {
+                        online_actor->send_message(wiz_msg);
+                    }
+                }
+            }
+        }
+    }
+
+    return CommandResult::Success;
+}
+
 Result<CommandResult> cmd_lasttells(const CommandContext &ctx) {
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
@@ -373,6 +407,21 @@ Result<CommandResult> cmd_gtell(const CommandContext &ctx) {
     return CommandResult::Success;
 }
 
+Result<CommandResult> cmd_gecho(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<message>"); !result) {
+        ctx.send_usage("gecho <message>");
+        ctx.send("Send a message to all players without showing sender.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string message = sanitize_player_message(ctx.args_from(0));
+
+    // Send to all online actors
+    ctx.send_to_all(message, false);  // Don't exclude self
+
+    return CommandResult::Success;
+}
+
 // =============================================================================
 // Command Registration
 // =============================================================================
@@ -415,7 +464,7 @@ Result<void> register_commands() {
 
     Commands()
         .command("gossip", cmd_gossip)
-        .alias(";")
+        .alias(".")
         .category("Communication")
         .privilege(PrivilegeLevel::Player)
         .build();
@@ -446,9 +495,23 @@ Result<void> register_commands() {
         .build();
 
     Commands()
+        .command("wiznet", cmd_wiznet)
+        .alias(";")
+        .category("Communication")
+        .privilege(PrivilegeLevel::God)
+        .build();
+
+    Commands()
         .command("gtell", cmd_gtell)
         .category("Communication")
         .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("gecho", cmd_gecho)
+        .category("Communication")
+        .privilege(PrivilegeLevel::God)
+        .description("Send a global message without showing sender")
         .build();
 
     return Success();

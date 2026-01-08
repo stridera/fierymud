@@ -78,7 +78,10 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
                                       int amount,
                                       std::string_view action_verb) {
     const auto& liquid = drink_item->liquid_info();
-    if (liquid.remaining <= 0) {
+
+    // Check if empty (fountains are always full - infinite supply)
+    bool is_fountain = (drink_item->type() == ObjectType::Fountain);
+    if (!is_fountain && liquid.remaining <= 0) {
         ctx.send_error(fmt::format("The {} is empty.", ctx.format_object_name(drink_item)));
         return CommandResult::InvalidState;
     }
@@ -93,14 +96,23 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
         return CommandResult::InvalidState;
     }
 
-    // Consume liquid
+    // Consume liquid (fountains have infinite supply)
     LiquidInfo updated_liquid = liquid;
-    int consumed = std::min(liquid.remaining, amount);
-    updated_liquid.remaining -= consumed;
-    drink_item->set_liquid_info(updated_liquid);
+    int consumed = amount;  // Assume full drink amount
 
-    // Format the liquid type nicely (lowercase)
+    // Only deduct from non-fountain containers
+    if (drink_item->type() != ObjectType::Fountain) {
+        consumed = std::min(liquid.remaining, amount);
+        updated_liquid.remaining -= consumed;
+        drink_item->set_liquid_info(updated_liquid);
+    }
+    // Fountains don't deplete - they have infinite supply
+
+    // Format the liquid type nicely (lowercase, default to "water" for fountains)
     std::string liquid_name = liquid.liquid_type;
+    if (liquid_name.empty() && is_fountain) {
+        liquid_name = "water";
+    }
     std::transform(liquid_name.begin(), liquid_name.end(), liquid_name.begin(),
                   [](unsigned char c) { return std::tolower(c); });
 
@@ -152,19 +164,19 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
     // Show consumption message with condition feedback
     bool is_sip = (action_verb == "sip");
     if (has_harmful_effects) {
-        ctx.send_error(fmt::format("You {} some {} from the {}... it tastes strange!",
+        ctx.send_error(fmt::format("You {} some {} from {}... it tastes strange!",
                                  action_verb, liquid_name, ctx.format_object_name(drink_item)));
     } else if (ctx.actor->stats().is_too_drunk()) {
-        ctx.send_success(fmt::format("You {} some {} from the {}. You feel very drunk!",
+        ctx.send_success(fmt::format("You {} some {} from {}. You feel very drunk!",
                                    action_verb, liquid_name, ctx.format_object_name(drink_item)));
     } else if (ctx.actor->stats().is_slurring()) {
-        ctx.send_success(fmt::format("You {} some {} from the {}. *hic*",
+        ctx.send_success(fmt::format("You {} some {} from {}. *hic*",
                                    action_verb, liquid_name, ctx.format_object_name(drink_item)));
     } else if (is_sip) {
-        ctx.send_success(fmt::format("You sip a little {} from the {}.",
+        ctx.send_success(fmt::format("You sip a little {} from {}.",
                                    liquid_name, ctx.format_object_name(drink_item)));
     } else {
-        ctx.send_success(fmt::format("You drink some {} from the {}. Refreshing!",
+        ctx.send_success(fmt::format("You drink some {} from {}. Refreshing!",
                                    liquid_name, ctx.format_object_name(drink_item)));
     }
 
@@ -191,9 +203,11 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
 
         // Check type constraints
         if (liquid_only) {
-            if (obj->type() != ObjectType::Liquid_Container) return false;
+            if (obj->type() != ObjectType::Liquid_Container &&
+                obj->type() != ObjectType::Fountain) return false;
         } else {
             if (obj->type() != ObjectType::Liquid_Container &&
+                obj->type() != ObjectType::Fountain &&
                 obj->type() != ObjectType::Potion &&
                 obj->type() != ObjectType::Food) {
                 return false;
@@ -205,10 +219,12 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
             return true;
         }
 
-        // For liquid containers, also check if target matches the liquid type
-        if (obj->type() == ObjectType::Liquid_Container) {
+        // For liquid containers and fountains, also check if target matches the liquid type
+        if (obj->type() == ObjectType::Liquid_Container || obj->type() == ObjectType::Fountain) {
             const auto& liquid = obj->liquid_info();
-            if (!liquid.liquid_type.empty() && liquid.remaining > 0) {
+            // Fountains are always drinkable (infinite), containers need remaining > 0
+            bool has_liquid = (obj->type() == ObjectType::Fountain) || (liquid.remaining > 0);
+            if (!liquid.liquid_type.empty() && has_liquid) {
                 std::string lower_target;
                 lower_target.reserve(target_name.size());
                 for (char c : target_name) {
@@ -239,6 +255,15 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
     for (const auto &obj : ctx.actor->inventory().get_all_items()) {
         if (matches_drink_target(obj)) {
             return obj;
+        }
+    }
+
+    // Finally check room for fountains and other drinkables
+    if (ctx.room) {
+        for (const auto &obj : ctx.room->contents().objects) {
+            if (matches_drink_target(obj)) {
+                return obj;
+            }
         }
     }
 
@@ -1740,10 +1765,10 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find drinkable item using helper
+    // Find drinkable item using helper (searches inventory, equipment, and room)
     auto drink_item = find_drinkable(ctx, target_name, false);
     if (!drink_item) {
-        ctx.send_error(fmt::format("You don't have anything to drink called '{}'.", target_name));
+        ctx.send_error(fmt::format("You can't find anything to drink called '{}'.", target_name));
         return CommandResult::InvalidTarget;
     }
 
@@ -1759,7 +1784,8 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
                                    ctx.format_object_name(drink_item)));
         ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
         return CommandResult::Success;
-    } else if (drink_item->type() == ObjectType::Liquid_Container) {
+    } else if (drink_item->type() == ObjectType::Liquid_Container ||
+               drink_item->type() == ObjectType::Fountain) {
         // Use helper for liquid consumption - drink = 4 units
         constexpr int DRINK_AMOUNT = 4;
         return consume_liquid(ctx, drink_item, DRINK_AMOUNT, "drink");
@@ -1788,10 +1814,10 @@ Result<CommandResult> cmd_sip(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find liquid container using helper (sip only works on liquid containers)
+    // Find liquid container using helper (sip only works on liquid containers and fountains)
     auto drink_item = find_drinkable(ctx, target_name, true);
     if (!drink_item) {
-        ctx.send_error(fmt::format("You don't have anything to sip called '{}'.", target_name));
+        ctx.send_error(fmt::format("You can't find anything to sip called '{}'.", target_name));
         return CommandResult::InvalidTarget;
     }
 

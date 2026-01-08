@@ -169,7 +169,7 @@ struct CommandContext {
     // Extended messaging
     void send_to_room(std::string_view message, bool exclude_self = true) const;
     void send_to_actor(std::shared_ptr<Actor> target, std::string_view message) const;
-    void send_to_all(std::string_view message) const;
+    void send_to_all(std::string_view message, bool exclude_self = false) const;
 
     // Target finding helpers
     std::shared_ptr<Actor> find_actor_target(std::string_view name) const;

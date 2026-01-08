@@ -68,6 +68,18 @@ ParseResult CommandParser::parse(std::string_view input) const {
         return ParseResult("Comment line");
     }
 
+    // Preprocess: split leading punctuation aliases from text
+    // This allows ".hi" to work as ". hi" (gossip hi)
+    // Known punctuation aliases: . ; ' :
+    std::string preprocessed_input;
+    if (!input.empty() && (input[0] == '.' || input[0] == ';' || input[0] == '\'' || input[0] == ':')) {
+        // Check if there's text immediately after the punctuation (no space)
+        if (input.size() > 1 && !std::isspace(input[1])) {
+            preprocessed_input = std::string(1, input[0]) + " " + std::string(input.substr(1));
+            input = preprocessed_input;
+        }
+    }
+
     auto tokens = tokenize(input);
     if (!tokens) {
         return ParseResult(tokens.error_message);
