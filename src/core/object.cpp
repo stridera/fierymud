@@ -1,5 +1,7 @@
 #include "object.hpp"
+#include "combat.hpp"  // For WeaponSpeed enum
 #include "../core/logging.hpp"
+#include "../database/game_data_cache.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -68,10 +70,9 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
     // Create appropriate subclass based on object type (same logic as from_json)
     std::unique_ptr<Object> object;
     switch (type) {
-        case ObjectType::Container:
-        case ObjectType::Liquid_Container: {
-            // Default capacity for containers created via Object::create
-            // Pass the actual type to preserve Liquid_Container vs Container distinction
+        case ObjectType::Container: {
+            // Only actual item containers use Container class
+            // Note: Liquid_Container does NOT use Container - it's a base Object that holds liquids
             auto container_result = Container::create(id, name, DEFAULT_CONTAINER_CAPACITY, type);
             if (!container_result.has_value()) {
                 return std::unexpected(container_result.error());
@@ -192,7 +193,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             } else if (type_str == "WALL") {
                 type = ObjectType::Other;  // Map to Other as no specific Wall type in modern enum
             } else if (type_str == "TOUCHSTONE") {
-                type = ObjectType::Other;  // Map to Other as no specific Touchstone type in modern enum
+                type = ObjectType::Touchstone;
             } else if (type_str == "BOARD") {
                 type = ObjectType::Board;
             } else if (type_str == "INSTRUMENT") {
@@ -228,9 +229,9 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         // Create appropriate subclass based on object type
         std::unique_ptr<Object> object;
         switch (type) {
-            case ObjectType::Container:
-            case ObjectType::Liquid_Container: {
-                // Pass the actual type to preserve Liquid_Container vs Container distinction
+            case ObjectType::Container: {
+                // Only actual item containers use Container class
+                // Note: Liquid_Container does NOT use Container - it's a base Object that holds liquids
                 auto container_result = Container::create(base_entity->id(), base_entity->name(), container_capacity, type);
                 if (!container_result.has_value()) {
                     return std::unexpected(container_result.error());
@@ -362,6 +363,9 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             if (cont_json.contains("weight_capacity")) {
                 container.weight_capacity = cont_json["weight_capacity"].get<int>();
             }
+            if (cont_json.contains("weight_reduction")) {
+                container.weight_reduction = cont_json["weight_reduction"].get<int>();
+            }
             if (cont_json.contains("closeable")) {
                 container.closeable = cont_json["closeable"].get<bool>();
             }
@@ -384,33 +388,78 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         else if (type == ObjectType::Container && json.contains("values")) {
             const auto& values_json = json["values"];
             ContainerInfo container;
-            
+
             // Parse legacy container values with error handling
+            // Handles both string format (legacy JSON) and int format (Python importer)
             try {
                 if (values_json.contains("Capacity")) {
-                    // Legacy format stores capacity as string
-                    std::string capacity_str = values_json["Capacity"].get<std::string>();
-                    if (!capacity_str.empty()) {
-                        container.capacity = std::stoi(capacity_str);
-                        container.weight_capacity = container.capacity * 10;  // Default weight capacity
+                    // Handle both string and int formats
+                    const auto& cap_val = values_json["Capacity"];
+                    if (cap_val.is_string()) {
+                        std::string cap_str = cap_val.get<std::string>();
+                        if (!cap_str.empty() && cap_str != "0") {
+                            container.capacity = std::stoi(cap_str);
+                        }
+                    } else if (cap_val.is_number()) {
+                        container.capacity = cap_val.get<int>();
                     }
+                    container.weight_capacity = container.capacity * 10;  // Default weight capacity
                 }
                 if (values_json.contains("Key")) {
-                    // Legacy format: "0" = no key, other values = key id
-                    std::string key_str = values_json["Key"].get<std::string>();
-                    if (!key_str.empty() && key_str != "0") {
-                        container.key_id = EntityId{static_cast<std::uint64_t>(std::stoi(key_str))};
+                    // Handle both string and int formats: 0 = no key, other values = key id
+                    const auto& key_val = values_json["Key"];
+                    int key_id = 0;
+                    if (key_val.is_string()) {
+                        std::string key_str = key_val.get<std::string>();
+                        if (!key_str.empty()) {
+                            key_id = std::stoi(key_str);
+                        }
+                    } else if (key_val.is_number()) {
+                        key_id = key_val.get<int>();
+                    }
+                    if (key_id > 0) {
+                        container.key_id = EntityId{static_cast<std::uint64_t>(key_id)};
                         container.lockable = true;
                     }
                 }
                 if (values_json.contains("Flags")) {
-                    // Legacy container flags could include closeable/lockable info
-                    std::string flags_str = values_json["Flags"].get<std::string>();
-                    // For now, assume basic container functionality
-                    container.closeable = true;  // Most containers can be closed
-                    container.closed = false;    // Start open
+                    const auto& flags_val = values_json["Flags"];
+                    if (flags_val.is_array()) {
+                        // Python format: list of flag strings: ["Closeable", "PickProof", "Closed", "Locked"]
+                        for (const auto& flag : flags_val) {
+                            std::string flag_str = flag.get<std::string>();
+                            if (flag_str == "Closeable") container.closeable = true;
+                            if (flag_str == "Closed") container.closed = true;
+                            if (flag_str == "Locked") {
+                                container.lockable = true;
+                                container.locked = true;
+                            }
+                            // PickProof affects lock difficulty, not stored in ContainerInfo
+                        }
+                    } else if (flags_val.is_string()) {
+                        // Legacy format: comma-separated or empty string
+                        std::string flags_str = flags_val.get<std::string>();
+                        if (flags_str.find("CLOSEABLE") != std::string::npos) container.closeable = true;
+                        if (flags_str.find("CLOSED") != std::string::npos) container.closed = true;
+                        if (flags_str.find("LOCKED") != std::string::npos) {
+                            container.lockable = true;
+                            container.locked = true;
+                        }
+                    }
                 }
-                
+                if (values_json.contains("Weight Reduction")) {
+                    // Handle both string and numeric formats
+                    const auto& wr_val = values_json["Weight Reduction"];
+                    if (wr_val.is_string()) {
+                        std::string wr_str = wr_val.get<std::string>();
+                        if (!wr_str.empty() && wr_str != "0") {
+                            container.weight_reduction = static_cast<int>(std::stod(wr_str));
+                        }
+                    } else if (wr_val.is_number()) {
+                        container.weight_reduction = static_cast<int>(wr_val.get<double>());
+                    }
+                }
+
                 object->set_container_info(container);
             } catch (const std::exception& e) {
                 // If parsing legacy values fails, use defaults but continue loading
@@ -479,7 +528,32 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 object->set_light_info(default_light);
             }
         }
-        
+
+        // Parse food info from "values" section for FOOD type objects
+        if (type == ObjectType::Food && json.contains("values")) {
+            const auto& values_json = json["values"];
+            FoodInfo food;
+
+            try {
+                if (values_json.contains("Fillingness")) {
+                    food.fillingness = values_json["Fillingness"].get<int>();
+                }
+                if (values_json.contains("Effects") && values_json["Effects"].is_array()) {
+                    for (const auto& effect : values_json["Effects"]) {
+                        if (effect.is_number_integer()) {
+                            food.effects.push_back(effect.get<int>());
+                        }
+                    }
+                }
+                object->set_food_info(food);
+            } catch (const std::exception& e) {
+                // Use defaults if parsing fails
+                FoodInfo default_food;
+                default_food.fillingness = 10;
+                object->set_food_info(default_food);
+            }
+        }
+
         // Parse extra descriptions
         if (json.contains("extra_descriptions") && json["extra_descriptions"].is_array()) {
             for (const auto& extra_json : json["extra_descriptions"]) {
@@ -542,6 +616,27 @@ void Object::set_effect(EffectFlag effect, bool value) {
     }
 }
 
+WeaponSpeed Object::weapon_speed() const {
+    // Non-weapons return medium speed as default
+    if (!is_weapon()) {
+        return WeaponSpeed::Medium;
+    }
+
+    // For Weapon objects, convert numeric speed (1-10) to enum
+    // Weapon::speed() returns 1-10 where lower is faster
+    if (const auto* weapon = dynamic_cast<const Weapon*>(this)) {
+        int speed = weapon->speed();
+        if (speed <= 2) return WeaponSpeed::VeryFast;      // 1-2: daggers, claws
+        if (speed <= 4) return WeaponSpeed::Fast;          // 3-4: short swords
+        if (speed <= 6) return WeaponSpeed::Medium;        // 5-6: long swords
+        if (speed <= 8) return WeaponSpeed::Slow;          // 7-8: two-handed
+        return WeaponSpeed::VerySlow;                       // 9-10: massive weapons
+    }
+
+    // Default for base Object weapons (unlikely but safe)
+    return WeaponSpeed::Medium;
+}
+
 nlohmann::json Object::to_json() const {
     nlohmann::json json = Entity::to_json();
     
@@ -580,6 +675,7 @@ nlohmann::json Object::to_json() const {
         json["container_info"] = {
             {"capacity", container_info_.capacity},
             {"weight_capacity", container_info_.weight_capacity},
+            {"weight_reduction", container_info_.weight_reduction},
             {"closeable", container_info_.closeable},
             {"closed", container_info_.closed},
             {"lockable", container_info_.lockable},
@@ -642,8 +738,199 @@ Result<void> Object::validate() const {
     return Success();
 }
 
-std::string Object::display_name_with_condition(bool with_article) const {
-    std::string base_name = display_name(with_article);
+std::string_view Object::fullness_descriptor() const {
+    // For drink containers, calculate fullness based on liquid remaining vs capacity
+    if (type_ == ObjectType::Liquid_Container) {
+        if (liquid_info_.capacity <= 0) {
+            return "";  // No capacity info
+        }
+
+        // Calculate fullness percentage
+        int percent = (liquid_info_.remaining * 100) / liquid_info_.capacity;
+
+        if (liquid_info_.remaining <= 0) {
+            return "empty";
+        } else if (percent >= 90) {
+            return "full";
+        } else if (percent >= 60) {
+            return "";  // No descriptor for moderately full
+        } else if (percent >= 30) {
+            return "half-full";
+        } else {
+            return "nearly empty";
+        }
+    }
+
+    // For item containers, check if they have contents
+    if (type_ == ObjectType::Container) {
+        // Cast to Container if possible to check contents
+        if (auto* container = dynamic_cast<const Container*>(this)) {
+            if (container->is_empty()) {
+                return "empty";
+            }
+            if (container->is_full()) {
+                return "full";
+            }
+        }
+    }
+
+    return "";  // No fullness descriptor for other types
+}
+
+bool Object::matches_keyword(std::string_view keyword) const {
+    // First try base Entity keyword matching
+    if (Entity::matches_keyword(keyword)) {
+        return true;
+    }
+
+    // For identified liquid containers with liquid, also match by liquid type
+    // This allows "drink water" or "fill water-cup" to work
+    if (type_ == ObjectType::Liquid_Container &&
+        liquid_info_.remaining > 0 &&
+        !liquid_info_.liquid_type.empty() &&
+        has_flag(ObjectFlag::Identified)) {
+
+        // Normalize both to lowercase for comparison
+        std::string lower_keyword;
+        lower_keyword.reserve(keyword.size());
+        for (char c : keyword) {
+            lower_keyword.push_back(std::tolower(static_cast<unsigned char>(c)));
+        }
+
+        std::string lower_liquid;
+        lower_liquid.reserve(liquid_info_.liquid_type.size());
+        for (char c : liquid_info_.liquid_type) {
+            lower_liquid.push_back(std::tolower(static_cast<unsigned char>(c)));
+        }
+
+        // Check if keyword matches liquid type exactly
+        if (lower_keyword == lower_liquid) {
+            return true;
+        }
+
+        // Check if keyword contains liquid type (e.g., "water-cup" contains "water")
+        if (lower_keyword.find(lower_liquid) != std::string::npos) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+std::string Object::display_name(bool with_article) const {
+    return display_name_full(with_article, false);
+}
+
+std::string Object::display_name_full(bool with_article, bool force_identified) const {
+    // If we don't have base_name set, fall back to Entity behavior
+    if (base_name_.empty()) {
+        return Entity::display_name(with_article);
+    }
+
+    // Build dynamic name from article + fullness + base_name
+    std::string_view fullness = fullness_descriptor();
+
+    std::string result;
+
+    if (with_article) {
+        // Determine the article to use
+        // article_ semantics:
+        //   - nullopt: calculate a/an based on first letter of next word
+        //   - "": no article
+        //   - "the", "some": specific article
+        if (article_.has_value()) {
+            if (!article_->empty()) {
+                // Explicit article like "the" or "some"
+                result = *article_;
+                result += ' ';
+            }
+            // If article is empty string, no article is added
+        } else {
+            // Calculate a/an based on first letter of next word
+            // The next word is either the fullness descriptor or the base_name
+            std::string_view first_word = fullness.empty() ? base_name_ : fullness;
+
+            // Find first letter (skip any color markup tags like <red>)
+            char first_letter = '\0';
+            size_t i = 0;
+            while (i < first_word.size()) {
+                if (first_word[i] == '<') {
+                    // Skip tag
+                    while (i < first_word.size() && first_word[i] != '>') {
+                        ++i;
+                    }
+                    if (i < first_word.size()) ++i;  // Skip '>'
+                } else if (std::isalpha(static_cast<unsigned char>(first_word[i]))) {
+                    first_letter = std::tolower(static_cast<unsigned char>(first_word[i]));
+                    break;
+                } else {
+                    ++i;
+                }
+            }
+
+            // Determine a vs an based on vowels
+            bool use_an = (first_letter == 'a' || first_letter == 'e' || first_letter == 'i' ||
+                           first_letter == 'o' || first_letter == 'u');
+
+            result = use_an ? "an " : "a ";
+        }
+    }
+
+    // Add fullness descriptor if present
+    if (!fullness.empty()) {
+        result += fullness;
+        result += ' ';
+    }
+
+    // Add the base name
+    result += base_name_;
+
+    // For drink containers with liquid, append liquid description
+    if (type_ == ObjectType::Liquid_Container && liquid_info_.remaining > 0 &&
+        !liquid_info_.liquid_type.empty()) {
+
+        // Look up liquid data from database cache
+        const auto& cache = GameDataCache::instance();
+        const LiquidData* liquid = cache.find_liquid_by_name(liquid_info_.liquid_type);
+
+        // Check if liquid is identified (or forced for shop display)
+        // Note: This uses the liquid's identified flag, not the container's Identified flag
+        bool is_identified = force_identified || liquid_info_.identified;
+
+        std::string liquid_desc;
+        if (liquid) {
+            if (is_identified) {
+                liquid_desc = liquid->name;  // "water", "dark ale"
+                // Add proof for alcoholic drinks (drunk_effect * 10 = proof)
+                if (liquid->is_alcoholic()) {
+                    int proof = liquid->drunk_effect * 10;
+                    liquid_desc = fmt::format("{} ({} proof)", liquid_desc, proof);
+                }
+            } else {
+                // Not identified - show appearance-based description
+                liquid_desc = fmt::format("{} liquid", liquid->color_desc);  // "clear liquid", "brown liquid"
+            }
+        } else {
+            // Unknown liquid type - fallback
+            std::string unknown_name;
+            unknown_name.reserve(liquid_info_.liquid_type.size());
+            for (char c : liquid_info_.liquid_type) {
+                unknown_name.push_back(std::tolower(static_cast<unsigned char>(c)));
+            }
+            liquid_desc = is_identified ? unknown_name : "strange liquid";
+        }
+
+        result = fmt::format("{} of {}", result, liquid_desc);
+    }
+
+    return result;
+}
+
+std::string Object::display_name_with_condition(bool with_article, bool force_identified) const {
+    // Use display_name_full with force_identified for shop displays
+    std::string base_name = display_name_full(with_article, force_identified);
+
+    // Add quality/condition prefix if damaged
     std::string_view quality = quality_description();
 
     if (!quality.empty() && condition_ < MAX_CONDITION) {
@@ -1113,9 +1400,10 @@ std::string Object::get_stat_info() const {
             output << fmt::format("Liquid: {} ({}/{})\n",
                 liq.liquid_type.empty() ? "water" : liq.liquid_type,
                 liq.remaining, liq.capacity);
-            if (liq.poisoned) {
-                output << "*** POISONED ***\n";
+            if (!liq.effects.empty()) {
+                output << fmt::format("Effects: {} effect(s) applied\n", liq.effects.size());
             }
+            output << fmt::format("Identified: {}\n", liq.identified ? "Yes" : "No");
             break;
         }
         case ObjectType::Food:
@@ -1198,7 +1486,10 @@ std::string Container::get_stat_info() const {
     output << "\n=== Container Details ===\n";
     output << fmt::format("Current contents: {}/{} items\n", contents_count(), container_info().capacity);
     output << fmt::format("Contents weight: {}/{} lbs\n", contents_weight(), container_info().weight_capacity);
-    
+    if (container_info().weight_reduction > 0) {
+        output << fmt::format("Weight reduction: {}% (bag of holding)\n", container_info().weight_reduction);
+    }
+
     if (!is_empty()) {
         output << "Contains:\n";
         const auto contents = get_contents();

@@ -293,7 +293,82 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         auto container = target_info.object;
 
-        // Check if it's a container
+        // Check if it's a drink container first
+        if (container->type() == ObjectType::Liquid_Container) {
+            const auto& liquid = container->liquid_info();
+            // Get the object name and replace article with "The" for definite reference
+            std::string obj_name = ctx.format_object_name(container);
+            // Strip leading "a " or "an " and replace with "The "
+            if (obj_name.starts_with("a ")) {
+                obj_name = "The " + obj_name.substr(2);
+            } else if (obj_name.starts_with("an ")) {
+                obj_name = "The " + obj_name.substr(3);
+            } else if (!obj_name.empty()) {
+                // Capitalize first letter if no article to replace
+                obj_name[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(obj_name[0])));
+            }
+
+            if (liquid.remaining <= 0) {
+                ctx.send(fmt::format("{} is empty.", obj_name));
+            } else {
+                // Calculate fullness description
+                double fullness_ratio = static_cast<double>(liquid.remaining) / liquid.capacity;
+                std::string fullness_desc;
+                if (fullness_ratio >= 0.95) {
+                    fullness_desc = "full of";
+                } else if (fullness_ratio >= 0.75) {
+                    fullness_desc = "three-quarters full of";
+                } else if (fullness_ratio >= 0.50) {
+                    fullness_desc = "half full of";
+                } else if (fullness_ratio >= 0.25) {
+                    fullness_desc = "a quarter full of";
+                } else {
+                    fullness_desc = "nearly empty, with just a bit of";
+                }
+
+                // Get liquid description - use color description if not identified
+                // Note: This uses the liquid's identified flag, not the container's Identified flag
+                std::string liquid_desc;
+                bool is_identified = liquid.identified;
+
+                // Look up liquid data from cache
+                auto& cache = GameDataCache::instance();
+                const LiquidData* liquid_data = cache.find_liquid_by_name(liquid.liquid_type);
+
+                if (liquid_data) {
+                    if (is_identified) {
+                        liquid_desc = liquid_data->name;  // "water", "dark ale"
+                    } else {
+                        // Not identified - show appearance-based description
+                        liquid_desc = fmt::format("a {} liquid", liquid_data->color_desc);  // "a clear liquid", "a brown liquid"
+                    }
+                } else if (!liquid.liquid_type.empty()) {
+                    // Unknown liquid type - fallback
+                    if (is_identified) {
+                        liquid_desc = liquid.liquid_type;
+                        std::transform(liquid_desc.begin(), liquid_desc.end(), liquid_desc.begin(), ::tolower);
+                    } else {
+                        liquid_desc = "some strange liquid";
+                    }
+                } else {
+                    liquid_desc = "some strange liquid";
+                }
+
+                // Only show effect hint if liquid is identified and has effects
+                std::string effect_hint = "";
+                if (liquid.identified && !liquid.effects.empty()) {
+                    effect_hint = " (tainted!)";
+                }
+                ctx.send(fmt::format("{} is {} {}{}.",
+                                     obj_name,
+                                     fullness_desc,
+                                     liquid_desc,
+                                     effect_hint));
+            }
+            return CommandResult::Success;
+        }
+
+        // Check if it's a regular container
         if (!container->is_container()) {
             ctx.send_error(fmt::format("The {} is not a container.", ctx.format_object_name(container)));
             return CommandResult::InvalidTarget;
@@ -487,6 +562,9 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
             detailed_desc << "\n--- Container Properties ---\n";
             detailed_desc << fmt::format("Capacity: {} items\n", container_info.capacity);
             detailed_desc << fmt::format("Weight limit: {} pounds\n", container_info.weight_capacity);
+            if (container_info.weight_reduction > 0) {
+                detailed_desc << fmt::format("Weight reduction: {}% (bag of holding)\n", container_info.weight_reduction);
+            }
             detailed_desc << fmt::format("State: {}\n", container_info.closed ? "closed" : "open");
 
             if (container_info.lockable) {
@@ -703,7 +781,43 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
 
     // Hit points and stamina
     score << fmt::format("Hit points: {}/{}   Stamina: {}/{}\n", stats.hit_points, stats.max_hit_points,
-                         stats.movement, stats.max_movement);
+                         stats.stamina, stats.max_stamina);
+
+    // Condition status (buffs and drunk)
+    std::string condition_line;
+    bool has_condition = false;
+
+    // Nourished buff (from eating - +50% HP regen)
+    if (ctx.actor->has_effect("Nourished")) {
+        condition_line += "<green>Nourished</>";
+        has_condition = true;
+    }
+
+    // Refreshed buff (from drinking - +50% stamina regen)
+    if (ctx.actor->has_effect("Refreshed")) {
+        if (has_condition) condition_line += "   ";
+        condition_line += "<cyan>Refreshed</>";
+        has_condition = true;
+    }
+
+    // Drunk status
+    if (stats.is_too_drunk()) {
+        if (has_condition) condition_line += "   ";
+        condition_line += "<magenta>Very Drunk!</>";
+        has_condition = true;
+    } else if (stats.is_slurring()) {
+        if (has_condition) condition_line += "   ";
+        condition_line += "<magenta>Tipsy</>";
+        has_condition = true;
+    } else if (stats.drunk > 0) {
+        if (has_condition) condition_line += "   ";
+        condition_line += "<magenta>Buzzed</>";
+        has_condition = true;
+    }
+
+    if (has_condition) {
+        score << fmt::format("Condition: {}\n", condition_line);
+    }
 
     // Combat stats (new ACC/EVA system)
     score << fmt::format("Accuracy: {}   Evasion: {}   Attack Power: {}\n", stats.accuracy, stats.evasion,
@@ -1047,7 +1161,7 @@ Result<CommandResult> cmd_diagnose(const CommandContext &ctx) {
         diagnosis << fmt::format("  You are {}.\n", health_status);
         diagnosis << fmt::format("  HP: {}/{}, Stamina: {}/{}\n",
             stats.hit_points, stats.max_hit_points,
-            stats.movement, stats.max_movement);
+            stats.stamina, stats.max_stamina);
     } else {
         diagnosis << fmt::format("  {} is {}.\n", target->display_name(), health_status);
     }

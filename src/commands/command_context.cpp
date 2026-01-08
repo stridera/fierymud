@@ -158,6 +158,53 @@ void CommandContext::send_usage(std::string_view usage) const {
     }
 }
 
+void CommandContext::show_help() const {
+    if (!actor) return;
+
+    // Look up the command in the system
+    auto& cmd_system = CommandSystem::instance();
+    const CommandInfo* cmd_info = cmd_system.find_command(command.command);
+
+    if (!cmd_info) {
+        send_error("No help available for this command.");
+        return;
+    }
+
+    // Display command name as header
+    send(fmt::format("<b:cyan>Help: {}</>", cmd_info->name));
+    send(std::string(6 + cmd_info->name.length(), '='));
+
+    // Show description if available
+    if (!cmd_info->description.empty()) {
+        send(fmt::format("\n{}", cmd_info->description));
+    }
+
+    // Show usage if available
+    if (!cmd_info->usage.empty()) {
+        send(fmt::format("\n<b:yellow>Usage:</> {}", cmd_info->usage));
+    }
+
+    // Show extended help if available
+    if (!cmd_info->help_text.empty()) {
+        send(fmt::format("\n{}", cmd_info->help_text));
+    }
+
+    // Show aliases if any
+    if (!cmd_info->aliases.empty()) {
+        std::string alias_str;
+        for (size_t i = 0; i < cmd_info->aliases.size(); ++i) {
+            if (i > 0) alias_str += ", ";
+            alias_str += cmd_info->aliases[i];
+        }
+        send(fmt::format("\n<dim>Aliases: {}</>", alias_str));
+    }
+
+    // If no help content at all, indicate that
+    if (cmd_info->description.empty() && cmd_info->usage.empty() && cmd_info->help_text.empty()) {
+        send("\nNo detailed help available for this command yet.");
+    }
+}
+
 void CommandContext::send_to_room(std::string_view message, bool exclude_self) const {
     if (!room)
         return;

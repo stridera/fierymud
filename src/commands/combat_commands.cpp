@@ -438,17 +438,13 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                  ctx.actor->name(), known_spell->plain_name,
                  target ? target->name() : "no target", exec_result->total_damage);
     } else {
-        // AbilityExecutor doesn't have effects for this spell - use generic casting
-        if (target) {
-            ctx.send(fmt::format("You cast '{}' at {}!", known_spell->name, target->display_name()));
-            ctx.send_to_actor(target, fmt::format("{} casts '{}' at you!", player->display_name(), known_spell->name));
-            ctx.send_to_room(fmt::format("{} casts '{}' at {}!", player->display_name(),
-                            known_spell->name, target->display_name()), true);
-        } else {
-            ctx.send(fmt::format("You cast '{}'!", known_spell->name));
-            ctx.send_to_room(fmt::format("{} casts '{}'!", player->display_name(), known_spell->name), true);
-        }
-        Log::info("SPELL_CAST: {} cast '{}' (generic - no effects defined)", ctx.actor->name(), known_spell->name);
+        // AbilityExecutor failed or has no effects - this is a configuration error
+        Log::warn("SPELL_ERROR: {} tried to cast '{}' but spell has no effects defined in database!",
+                 ctx.actor->name(), known_spell->plain_name);
+        ctx.send(fmt::format("<red>Error:</> The spell '{}' is not configured correctly. Please report this to an immortal.",
+                            known_spell->name));
+        // Don't show fake cast messages - the spell didn't actually work
+        return CommandResult::SystemError;
     }
 
     // Apply casting blackout to prevent spam-casting

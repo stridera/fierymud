@@ -15,7 +15,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         auto result = txn.exec_params(R"(
             SELECT id, name, level, alignment,
                    strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
-                   hit_points, hit_points_max, movement, movement_max,
+                   hit_points, hit_points_max, stamina, stamina_max,
                    wealth, bank_wealth,
                    password_hash, race, gender, player_class,
                    height, weight, base_height, base_weight, base_size, current_size,
@@ -94,8 +94,8 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         // Note: luck is in database but not in Stats struct - skipped
         stats.hit_points = row["hit_points"].as<int>(100);
         stats.max_hit_points = row["hit_points_max"].as<int>(100);
-        stats.movement = row["movement"].as<int>(100);
-        stats.max_movement = row["movement_max"].as<int>(100);
+        stats.stamina = row["stamina"].as<int>(100);
+        stats.max_stamina = row["stamina_max"].as<int>(100);
         // Convert legacy DB stats to new combat system
         stats.accuracy = row["hit_roll"].as<int>(0);
         stats.attack_power = row["damage_roll"].as<int>(0);
@@ -134,7 +134,7 @@ Result<std::unique_ptr<Player>> load_player_by_id(pqxx::work& txn, std::string_v
         auto result = txn.exec_params(R"(
             SELECT id, name, level, alignment,
                    strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
-                   hit_points, hit_points_max, movement, movement_max,
+                   hit_points, hit_points_max, stamina, stamina_max,
                    wealth, bank_wealth,
                    password_hash, race, gender, player_class
             FROM "Characters"

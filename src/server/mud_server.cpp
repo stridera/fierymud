@@ -606,6 +606,12 @@ Result<void> ModernMUDServer::initialize_game_systems() {
         return world_result;
     }
 
+    // Set shutdown callback so WorldServer can trigger graceful shutdown
+    world_server_->set_shutdown_callback([this]() {
+        Log::info("Shutdown callback triggered from WorldServer");
+        stop();
+    });
+
     return Success();
 }
 

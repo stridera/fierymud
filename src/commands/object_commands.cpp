@@ -5,6 +5,7 @@
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
 #include "../core/shopkeeper.hpp"
+#include "../database/game_data_cache.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
@@ -60,6 +61,188 @@ bool handle_pickup(const CommandContext &ctx, std::shared_ptr<Object> obj,
         return true;
     }
     return false;
+}
+
+/**
+ * Helper function for consuming liquid from a container.
+ * Used by both cmd_drink and cmd_sip with different amounts.
+ *
+ * @param ctx Command context
+ * @param drink_item The liquid container to consume from
+ * @param amount Units to consume (drink=4, sip=1)
+ * @param action_verb "drink" or "sip" for message formatting
+ * @return CommandResult indicating success or failure
+ */
+Result<CommandResult> consume_liquid(const CommandContext &ctx,
+                                      std::shared_ptr<Object> drink_item,
+                                      int amount,
+                                      std::string_view action_verb) {
+    const auto& liquid = drink_item->liquid_info();
+    if (liquid.remaining <= 0) {
+        ctx.send_error(fmt::format("The {} is empty.", ctx.format_object_name(drink_item)));
+        return CommandResult::InvalidState;
+    }
+
+    // Look up liquid data for condition effects
+    const auto& game_cache = GameDataCache::instance();
+    const LiquidData* liquid_data = game_cache.find_liquid_by_name(liquid.liquid_type);
+
+    // Check if too drunk to drink (alcoholic drinks only)
+    if (liquid_data && liquid_data->is_alcoholic() && ctx.actor->stats().is_too_drunk()) {
+        ctx.send_error("You're too drunk to drink any more!");
+        return CommandResult::InvalidState;
+    }
+
+    // Consume liquid
+    LiquidInfo updated_liquid = liquid;
+    int consumed = std::min(liquid.remaining, amount);
+    updated_liquid.remaining -= consumed;
+    drink_item->set_liquid_info(updated_liquid);
+
+    // Format the liquid type nicely (lowercase)
+    std::string liquid_name = liquid.liquid_type;
+    std::transform(liquid_name.begin(), liquid_name.end(), liquid_name.begin(),
+                  [](unsigned char c) { return std::tolower(c); });
+
+    // Apply drunk effect from alcoholic beverages
+    if (liquid_data && liquid_data->drunk_effect > 0) {
+        auto& stats = ctx.actor->stats();
+        int drunk_gain = (liquid_data->drunk_effect * consumed) / 4;
+        stats.gain_condition(stats.drunk, drunk_gain);
+    }
+
+    // Apply Refreshed buff (provides +50% stamina regen) - refreshes duration each drink
+    // Duration: 2 hours base, more for larger drinks
+    int refreshed_hours = 2 + (consumed / 2);  // 2-4 hours depending on amount
+    ActiveEffect refreshed_effect{
+        .name = "Refreshed",
+        .source = "drink",
+        .flag = ActorFlag::Refreshed,
+        .duration_hours = refreshed_hours,
+        .modifier_value = 0,
+        .modifier_stat = "",
+        .applied_at = std::chrono::steady_clock::now()
+    };
+    ctx.actor->add_effect(refreshed_effect);
+
+    // Check if the liquid has any effects (poison, buffs, etc.)
+    bool has_harmful_effects = false;
+    if (!liquid.effects.empty()) {
+        auto& ability_cache = FieryMUD::AbilityCache::instance();
+        for (int effect_id : liquid.effects) {
+            const auto* effect_def = ability_cache.get_effect(effect_id);
+            if (effect_def) {
+                FieryMUD::EffectContext effect_ctx;
+                effect_ctx.actor = ctx.actor;
+                effect_ctx.target = ctx.actor;
+                effect_ctx.effect_id = effect_id;
+                effect_ctx.build_formula_context();
+
+                auto result = FieryMUD::EffectExecutor::execute(*effect_def, effect_def->default_params, effect_ctx);
+                if (result && result->success) {
+                    has_harmful_effects = true;
+                    if (!result->target_message.empty()) {
+                        ctx.send(result->target_message);
+                    }
+                }
+            }
+        }
+    }
+
+    // Show consumption message with condition feedback
+    bool is_sip = (action_verb == "sip");
+    if (has_harmful_effects) {
+        ctx.send_error(fmt::format("You {} some {} from the {}... it tastes strange!",
+                                 action_verb, liquid_name, ctx.format_object_name(drink_item)));
+    } else if (ctx.actor->stats().is_too_drunk()) {
+        ctx.send_success(fmt::format("You {} some {} from the {}. You feel very drunk!",
+                                   action_verb, liquid_name, ctx.format_object_name(drink_item)));
+    } else if (ctx.actor->stats().is_slurring()) {
+        ctx.send_success(fmt::format("You {} some {} from the {}. *hic*",
+                                   action_verb, liquid_name, ctx.format_object_name(drink_item)));
+    } else if (is_sip) {
+        ctx.send_success(fmt::format("You sip a little {} from the {}.",
+                                   liquid_name, ctx.format_object_name(drink_item)));
+    } else {
+        ctx.send_success(fmt::format("You drink some {} from the {}. Refreshing!",
+                                   liquid_name, ctx.format_object_name(drink_item)));
+    }
+
+    std::string room_verb = is_sip ? "sips from" : "drinks from";
+    ctx.send_to_room(fmt::format("{} {} {}.", ctx.actor->display_name(), room_verb, ctx.format_object_name(drink_item)), true);
+
+    return CommandResult::Success;
+}
+
+/**
+ * Find a drinkable item matching the target name.
+ * Checks equipped items first, then inventory.
+ *
+ * @param ctx Command context
+ * @param target_name Name/keyword to search for
+ * @param liquid_only If true, only match Liquid_Container (for sip)
+ * @return Matching drinkable object or nullptr
+ */
+std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
+                                        std::string_view target_name,
+                                        bool liquid_only = false) {
+    auto matches_drink_target = [&target_name, liquid_only](const std::shared_ptr<Object>& obj) -> bool {
+        if (!obj) return false;
+
+        // Check type constraints
+        if (liquid_only) {
+            if (obj->type() != ObjectType::Liquid_Container) return false;
+        } else {
+            if (obj->type() != ObjectType::Liquid_Container &&
+                obj->type() != ObjectType::Potion &&
+                obj->type() != ObjectType::Food) {
+                return false;
+            }
+        }
+
+        // Check if it matches by object keyword
+        if (obj->matches_keyword(target_name)) {
+            return true;
+        }
+
+        // For liquid containers, also check if target matches the liquid type
+        if (obj->type() == ObjectType::Liquid_Container) {
+            const auto& liquid = obj->liquid_info();
+            if (!liquid.liquid_type.empty() && liquid.remaining > 0) {
+                std::string lower_target;
+                lower_target.reserve(target_name.size());
+                for (char c : target_name) {
+                    lower_target.push_back(std::tolower(static_cast<unsigned char>(c)));
+                }
+                std::string lower_liquid;
+                lower_liquid.reserve(liquid.liquid_type.size());
+                for (char c : liquid.liquid_type) {
+                    lower_liquid.push_back(std::tolower(static_cast<unsigned char>(c)));
+                }
+                if (lower_liquid == lower_target) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    };
+
+    // First check equipped items (prioritize what you're holding)
+    for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
+        if (matches_drink_target(obj)) {
+            return obj;
+        }
+    }
+
+    // Then check inventory
+    for (const auto &obj : ctx.actor->inventory().get_all_items()) {
+        if (matches_drink_target(obj)) {
+            return obj;
+        }
+    }
+
+    return nullptr;
 }
 
 } // anonymous namespace
@@ -449,6 +632,12 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
             if (obj) {
                 // Remove from inventory
                 if (ctx.actor->inventory().remove_item(obj)) {
+                    // Clear liquid identification when dropping
+                    if (obj->type() == ObjectType::Liquid_Container) {
+                        LiquidInfo liquid = obj->liquid_info();
+                        liquid.identified = false;
+                        obj->set_liquid_info(liquid);
+                    }
                     // Add to room
                     ctx.room->contents_mutable().objects.push_back(obj);
                     dropped_count++;
@@ -494,6 +683,13 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     if (!ctx.actor->inventory().remove_item(target_object)) {
         ctx.send_error("You can't drop that.");
         return CommandResult::ResourceError;
+    }
+
+    // Clear liquid identification when dropping
+    if (target_object->type() == ObjectType::Liquid_Container) {
+        LiquidInfo liquid = target_object->liquid_info();
+        liquid.identified = false;
+        target_object->set_liquid_info(liquid);
     }
 
     // Add to room
@@ -658,6 +854,13 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
+    // Liquid containers are for liquids, not objects
+    if (container->type() == ObjectType::Liquid_Container) {
+        ctx.send_error(fmt::format("{} is for holding liquids, not objects.",
+                                   ctx.format_object_name(container)));
+        return CommandResult::InvalidTarget;
+    }
+
     // Check container properties
     const auto &container_info = container->container_info();
 
@@ -702,6 +905,13 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
             container_obj->remove_item(item_to_put);
             fail_count++;
             continue;
+        }
+
+        // Clear liquid identification when putting in a container
+        if (item_to_put->type() == ObjectType::Liquid_Container) {
+            LiquidInfo liquid = item_to_put->liquid_info();
+            liquid.identified = false;
+            item_to_put->set_liquid_info(liquid);
         }
 
         success_count++;
@@ -761,7 +971,15 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
         ctx.send_error("You no longer have that item.");
         return CommandResult::ResourceError;
     }
-    
+
+    // Clear liquid identification when giving to another player
+    // (You know what you have, but the recipient doesn't know what you gave them)
+    if (removed_obj->type() == ObjectType::Liquid_Container) {
+        LiquidInfo liquid = removed_obj->liquid_info();
+        liquid.identified = false;
+        removed_obj->set_liquid_info(liquid);
+    }
+
     // Add to target's inventory
     if (auto add_result = target->inventory().add_item(removed_obj); !add_result) {
         // Failed to add to target - return to giver
@@ -976,6 +1194,47 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
 
     ctx.send_success(fmt::format("You remove {}.", ctx.format_object_name(target_object)));
     ctx.send_to_room(fmt::format("{} removes {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_grip(const CommandContext &ctx) {
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Get the wielded weapon
+    auto weapon = ctx.actor->equipment().get_main_weapon();
+    if (!weapon) {
+        ctx.send_error("You aren't wielding anything.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check if weapon is versatile
+    if (!weapon->has_flag(ObjectFlag::Versatile)) {
+        ctx.send_error("Your weapon cannot be wielded with a different grip.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Attempt to toggle grip
+    auto error = ctx.actor->equipment().toggle_grip();
+    if (!error.empty()) {
+        ctx.send_error(error);
+        return CommandResult::ResourceError;
+    }
+
+    // Success - determine new grip state
+    if (ctx.actor->equipment().is_using_two_handed_grip()) {
+        ctx.send_success(fmt::format("You adjust your grip on {}, now wielding it with both hands.",
+                                     ctx.format_object_name(weapon)));
+        ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it with both hands.",
+                                     ctx.actor->display_name(), ctx.format_object_name(weapon)), true);
+    } else {
+        ctx.send_success(fmt::format("You adjust your grip on {}, now wielding it in one hand.",
+                                     ctx.format_object_name(weapon)));
+        ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it in one hand.",
+                                     ctx.actor->display_name(), ctx.format_object_name(weapon)), true);
+    }
 
     return CommandResult::Success;
 }
@@ -1435,7 +1694,29 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
     if (food_item->type() == ObjectType::Food) {
         ctx.send_success(fmt::format("You eat the {}. It's delicious!", ctx.format_object_name(food_item)));
         ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)), true);
+
+        // Calculate nourished duration based on fillingness
+        // 10 fillingness = 4 hours, 60 fillingness = 24 hours (capped)
+        // Formula: duration = min(24, max(0.25, fillingness * 0.4))
+        const auto& food_info = food_item->food_info();
+        double duration_hours = std::min(24.0, std::max(0.25, food_info.fillingness * 0.4));
+
+        // Apply Nourished buff (provides +50% HP regen)
+        ActiveEffect nourished_effect{
+            .name = "Nourished",
+            .source = "food",
+            .flag = ActorFlag::Nourished,
+            .duration_hours = duration_hours,
+            .modifier_value = 0,
+            .modifier_stat = "",
+            .applied_at = std::chrono::steady_clock::now()
+        };
+        ctx.actor->add_effect(nourished_effect);
+
+        // TODO: Apply food effects from food_info.effects vector
+        // This would apply any buffs/debuffs associated with the food
     } else {
+        // Potions consumed via eat command
         ctx.send_success(fmt::format("You drink the {}. You feel refreshed.", ctx.format_object_name(food_item)));
         ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)), true);
     }
@@ -1445,12 +1726,10 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
 
 Result<CommandResult> cmd_drink(const CommandContext &ctx) {
     std::string target_name;
-    
+
     if (ctx.arg_count() >= 2 && ctx.arg(0) == "from") {
-        // "drink from <container>" syntax
         target_name = ctx.arg(1);
     } else if (ctx.arg_count() >= 1) {
-        // "drink <item>" syntax
         target_name = ctx.arg(0);
     } else {
         ctx.send_usage("drink <item> | drink from <container>");
@@ -1461,67 +1740,8 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Helper to check if object matches by keyword OR liquid type
-    auto matches_drink_target = [&target_name](const std::shared_ptr<Object>& obj) -> bool {
-        if (!obj) return false;
-
-        // Must be a drinkable type
-        if (obj->type() != ObjectType::Liquid_Container &&
-            obj->type() != ObjectType::Potion &&
-            obj->type() != ObjectType::Food) {
-            return false;
-        }
-
-        // Check if it matches by object keyword
-        if (obj->matches_keyword(target_name)) {
-            return true;
-        }
-
-        // For liquid containers, also check if target matches the liquid type
-        if (obj->type() == ObjectType::Liquid_Container) {
-            const auto& liquid = obj->liquid_info();
-            if (!liquid.liquid_type.empty() && liquid.remaining > 0) {
-                // Case-insensitive comparison of liquid type
-                std::string lower_target;
-                lower_target.reserve(target_name.size());
-                for (char c : target_name) {
-                    lower_target.push_back(std::tolower(static_cast<unsigned char>(c)));
-                }
-                std::string lower_liquid;
-                lower_liquid.reserve(liquid.liquid_type.size());
-                for (char c : liquid.liquid_type) {
-                    lower_liquid.push_back(std::tolower(static_cast<unsigned char>(c)));
-                }
-                if (lower_liquid == lower_target) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    };
-
-    // Find drinkable item - check equipped first, then inventory
-    std::shared_ptr<Object> drink_item = nullptr;
-
-    // First check equipped items (prioritize what you're holding)
-    for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
-        if (matches_drink_target(obj)) {
-            drink_item = obj;
-            break;
-        }
-    }
-
-    // Then check inventory
-    if (!drink_item) {
-        for (const auto &obj : ctx.actor->inventory().get_all_items()) {
-            if (matches_drink_target(obj)) {
-                drink_item = obj;
-                break;
-            }
-        }
-    }
-
+    // Find drinkable item using helper
+    auto drink_item = find_drinkable(ctx, target_name, false);
     if (!drink_item) {
         ctx.send_error(fmt::format("You don't have anything to drink called '{}'.", target_name));
         return CommandResult::InvalidTarget;
@@ -1534,48 +1754,50 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
             ctx.send_error("Failed to drink the potion.");
             return CommandResult::ResourceError;
         }
-        
-        ctx.send_success(fmt::format("You drink the {}. You feel its effects course through your body.", 
+
+        ctx.send_success(fmt::format("You drink the {}. You feel its effects course through your body.",
                                    ctx.format_object_name(drink_item)));
         ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
+        return CommandResult::Success;
     } else if (drink_item->type() == ObjectType::Liquid_Container) {
-        // Check if container has liquid
-        const auto& liquid = drink_item->liquid_info();
-        if (liquid.remaining <= 0) {
-            ctx.send_error(fmt::format("The {} is empty.", ctx.format_object_name(drink_item)));
-            return CommandResult::InvalidState;
-        }
-
-        // Consume some liquid (one drink = about 1 unit)
-        LiquidInfo updated_liquid = liquid;
-        int drink_amount = std::min(liquid.remaining, 1);
-        updated_liquid.remaining -= drink_amount;
-        drink_item->set_liquid_info(updated_liquid);
-
-        // Format the liquid type nicely (lowercase)
-        std::string liquid_name = liquid.liquid_type;
-        std::transform(liquid_name.begin(), liquid_name.end(), liquid_name.begin(),
-                      [](unsigned char c) { return std::tolower(c); });
-
-        if (liquid.poisoned) {
-            ctx.send_error(fmt::format("You drink some {} from the {}... it tastes strange!",
-                                     liquid_name, ctx.format_object_name(drink_item)));
-            // Apply poison effect to the drinker
-            ctx.actor->set_flag(ActorFlag::Poison, true);
-            ctx.send_error("You feel very sick!");
-        } else {
-            ctx.send_success(fmt::format("You drink some {} from the {}. Refreshing!",
-                                       liquid_name, ctx.format_object_name(drink_item)));
-        }
-        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
+        // Use helper for liquid consumption - drink = 4 units
+        constexpr int DRINK_AMOUNT = 4;
+        return consume_liquid(ctx, drink_item, DRINK_AMOUNT, "drink");
     } else {
         // Food items (like fruits with juice)
-        ctx.send_success(fmt::format("You drink from the {}. It quenches your thirst.", 
+        ctx.send_success(fmt::format("You drink from the {}. It quenches your thirst.",
                                    ctx.format_object_name(drink_item)));
         ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
+        return CommandResult::Success;
+    }
+}
+
+Result<CommandResult> cmd_sip(const CommandContext &ctx) {
+    std::string target_name;
+
+    if (ctx.arg_count() >= 2 && ctx.arg(0) == "from") {
+        target_name = ctx.arg(1);
+    } else if (ctx.arg_count() >= 1) {
+        target_name = ctx.arg(0);
+    } else {
+        ctx.send_usage("sip <item> | sip from <container>");
+        return CommandResult::InvalidSyntax;
     }
 
-    return CommandResult::Success;
+    if (!ctx.actor) {
+        return std::unexpected(Errors::InvalidState("No actor context"));
+    }
+
+    // Find liquid container using helper (sip only works on liquid containers)
+    auto drink_item = find_drinkable(ctx, target_name, true);
+    if (!drink_item) {
+        ctx.send_error(fmt::format("You don't have anything to sip called '{}'.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Use helper for liquid consumption - sip = 1 unit
+    constexpr int SIP_AMOUNT = 1;
+    return consume_liquid(ctx, drink_item, SIP_AMOUNT, "sip");
 }
 
 // =============================================================================
@@ -1767,6 +1989,16 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
                 Log::error("Failed to create object instance for prototype {} after successful purchase",
                           target_item->prototype_id);
                 return CommandResult::InvalidState;
+            }
+
+            // Mark shop items as identified (the shopkeeper knows what they're selling)
+            new_object->set_flag(ObjectFlag::Identified);
+
+            // For drink containers, also mark the liquid as identified
+            if (new_object->type() == ObjectType::Liquid_Container) {
+                LiquidInfo liquid = new_object->liquid_info();
+                liquid.identified = true;
+                new_object->set_liquid_info(liquid);
             }
 
             // Add the object to the player's inventory
@@ -2453,19 +2685,42 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Fill the container with water from the fountain
+    // Get the fountain's liquid type (default to water)
+    const auto& fountain_liquid = fountain->liquid_info();
+    std::string source_liquid_type = fountain_liquid.liquid_type.empty() ? "water" : fountain_liquid.liquid_type;
+
+    // Check liquid compatibility - can only fill if container is empty or has same liquid
+    if (liquid.remaining > 0 && !liquid.liquid_type.empty()) {
+        // Case-insensitive comparison
+        std::string container_type = liquid.liquid_type;
+        std::string fountain_type = source_liquid_type;
+        std::transform(container_type.begin(), container_type.end(), container_type.begin(), ::tolower);
+        std::transform(fountain_type.begin(), fountain_type.end(), fountain_type.begin(), ::tolower);
+
+        if (container_type != fountain_type) {
+            ctx.send_error(fmt::format("You can't mix {} with {}.",
+                                       liquid.liquid_type, source_liquid_type));
+            return CommandResult::InvalidState;
+        }
+    }
+
+    // Fill the container with liquid from the fountain
     LiquidInfo new_liquid = liquid;
-    new_liquid.liquid_type = "WATER";
+    new_liquid.liquid_type = source_liquid_type;
     new_liquid.remaining = new_liquid.capacity;
-    new_liquid.poisoned = false;
+    new_liquid.effects = fountain_liquid.effects;  // Inherit effects from source
+    // Only identify liquid if fountain is a trusted source (town fountain, etc.)
+    new_liquid.identified = fountain->has_flag(ObjectFlag::TrustedSource);
     container->set_liquid_info(new_liquid);
 
-    ctx.send_success(fmt::format("You fill {} with water from {}.",
+    ctx.send_success(fmt::format("You fill {} with {} from {}.",
                                  ctx.format_object_name(container),
+                                 source_liquid_type,
                                  ctx.format_object_name(fountain)));
-    ctx.send_to_room(fmt::format("{} fills {} with water from {}.",
+    ctx.send_to_room(fmt::format("{} fills {} with {} from {}.",
                                  ctx.actor->display_name(),
                                  ctx.format_object_name(container),
+                                 source_liquid_type,
                                  ctx.format_object_name(fountain)), true);
 
     return CommandResult::Success;
@@ -2501,6 +2756,17 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
 
     // Check if pouring out
     if (ctx.arg(1) == "out") {
+        const auto& source_liquid = source->liquid_info();
+        if (source_liquid.remaining <= 0) {
+            ctx.send_error(fmt::format("The {} is already empty.", ctx.format_object_name(source)));
+            return CommandResult::InvalidState;
+        }
+
+        // Empty the container
+        LiquidInfo emptied = source_liquid;
+        emptied.remaining = 0;
+        source->set_liquid_info(emptied);
+
         ctx.send_success(fmt::format("You pour the contents of {} out onto the ground.",
                                      ctx.format_object_name(source)));
         ctx.send_to_room(fmt::format("{} pours the contents of {} onto the ground.",
@@ -2523,6 +2789,45 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
         ctx.send_error(fmt::format("You don't have a container called '{}'.", ctx.arg(1)));
         return CommandResult::InvalidTarget;
     }
+
+    const auto& source_liquid = source->liquid_info();
+    const auto& target_liquid = target->liquid_info();
+
+    // Check if source has liquid
+    if (source_liquid.remaining <= 0) {
+        ctx.send_error(fmt::format("The {} is empty.", ctx.format_object_name(source)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check if target has room
+    if (target_liquid.remaining >= target_liquid.capacity) {
+        ctx.send_error(fmt::format("The {} is already full.", ctx.format_object_name(target)));
+        return CommandResult::InvalidState;
+    }
+
+    // Check liquid compatibility - can only pour if target is empty or has same liquid
+    if (target_liquid.remaining > 0 && target_liquid.liquid_type != source_liquid.liquid_type) {
+        ctx.send_error(fmt::format("You can't mix {} with {}.",
+                                   source_liquid.liquid_type, target_liquid.liquid_type));
+        return CommandResult::InvalidState;
+    }
+
+    // Calculate how much to transfer
+    int available_space = target_liquid.capacity - target_liquid.remaining;
+    int amount_to_transfer = std::min(source_liquid.remaining, available_space);
+
+    // Update source
+    LiquidInfo new_source = source_liquid;
+    new_source.remaining -= amount_to_transfer;
+    source->set_liquid_info(new_source);
+
+    // Update target
+    LiquidInfo new_target = target_liquid;
+    new_target.remaining += amount_to_transfer;
+    new_target.liquid_type = source_liquid.liquid_type;  // Set liquid type
+    new_target.effects = source_liquid.effects;          // Transfer effects
+    new_target.identified = source_liquid.identified;    // Inherit identification from source
+    target->set_liquid_info(new_target);
 
     ctx.send_success(fmt::format("You pour the contents of {} into {}.",
                                  ctx.format_object_name(source), ctx.format_object_name(target)));
@@ -2589,6 +2894,13 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
+    Commands()
+        .command("grip", cmd_grip)
+        .alias("changegrip")
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
     // Container and object interaction commands
     Commands()
         .command("open", cmd_open)
@@ -2636,6 +2948,12 @@ Result<void> register_commands() {
 
     Commands()
         .command("drink", cmd_drink)
+        .category("Object")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("sip", cmd_sip)
         .category("Object")
         .privilege(PrivilegeLevel::Player)
         .build();

@@ -159,6 +159,13 @@ struct CommandContext {
     void send_info(std::string_view message) const;
     void send_usage(std::string_view usage) const;
 
+    /**
+     * Display the registered help for the current command.
+     * Looks up the command in the CommandSystem and shows description, usage, help_text.
+     * Use this instead of manually writing help text in command functions.
+     */
+    void show_help() const;
+
     // Extended messaging
     void send_to_room(std::string_view message, bool exclude_self = true) const;
     void send_to_actor(std::shared_ptr<Actor> target, std::string_view message) const;

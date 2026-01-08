@@ -854,11 +854,13 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
             }
         } else {
             // Regular text data
-            if (byte == '\n' || byte == '\r') {
-                if (!input_buffer_.empty()) {
-                    process_input(input_buffer_);
-                    input_buffer_.clear();
-                }
+            if (byte == '\n') {
+                // Process input on newline (even if empty - allows prompt refresh)
+                // We only trigger on \n to avoid double-processing \r\n (CRLF)
+                process_input(input_buffer_);
+                input_buffer_.clear();
+            } else if (byte == '\r') {
+                // Ignore carriage return - we process on \n only
             } else if (byte >= 32 && byte <= 126) { // Printable ASCII
                 if (input_buffer_.size() < MAX_INPUT_LINE_LENGTH) {
                     input_buffer_.push_back(static_cast<char>(byte));

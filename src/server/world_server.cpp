@@ -12,6 +12,7 @@
 #include "../scripting/coroutine_scheduler.hpp"
 #include "../scripting/script_engine.hpp"
 #include "../scripting/trigger_manager.hpp"
+#include "../text/text_format.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 #include "mud_server.hpp"
@@ -20,6 +21,7 @@
 
 #include <algorithm>
 #include <memory>
+#include <random>
 #include <nlohmann/json.hpp>
 
 // World server constants
@@ -31,6 +33,8 @@ namespace {
     constexpr auto PLAYER_SAVE_INTERVAL = std::chrono::minutes(5);
     constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
     constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500);  // 2 ticks per second
+    constexpr auto REGEN_TICK_INTERVAL = std::chrono::seconds(4);  // HP/move regen like legacy
+    constexpr auto MOB_ACTIVITY_INTERVAL = std::chrono::seconds(2);  // Mob AI tick (aggression, etc.)
 
     // Game time defaults
     constexpr int DEFAULT_LORE_YEAR = 1000;
@@ -207,11 +211,11 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
         });
     });
 
-    // Register callback for hour changes to tick spell effects
+    // Register callback for hour changes to tick spell durations and conditions
     TimeSystem::instance().on_hour_changed([this](const GameTime& /* old_time */, const GameTime& /* new_time */) {
-        // Tick down spell effect durations for all actors in the world
+        // Tick down spell effect durations, process drunk sobering, etc.
         asio::post(world_strand_, [this]() {
-            world_manager_->tick_all_effects();
+            world_manager_->tick_hour_all();
         });
     });
 
@@ -284,6 +288,8 @@ Result<void> WorldServer::start() {
     schedule_periodic_save();
     schedule_spell_restoration();
     schedule_casting_processing();
+    schedule_regen_tick();
+    schedule_mob_activity();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -432,6 +438,12 @@ void WorldServer::process_command(std::shared_ptr<PlayerConnection> connection, 
                 // Response will be sent via the CommandContext/connection mechanism
                 // No need to send additional response here
             }
+        } else {
+            // Empty input - just refresh the prompt (useful for watching regen)
+            auto actor_it = connection_actors_.find(connection);
+            if (actor_it != connection_actors_.end()) {
+                send_prompt_to_actor(actor_it->second);
+            }
         }
     });
 }
@@ -488,6 +500,9 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
                     return;  // Don't send game prompt while composing
                 }
             }
+            send_prompt_to_actor(actor);
+        } else {
+            // Empty input - just refresh the prompt (useful for watching regen)
             send_prompt_to_actor(actor);
         }
     });
@@ -700,6 +715,155 @@ void WorldServer::schedule_casting_processing() {
     schedule_timer(CASTING_TICK_INTERVAL, [this]() { perform_casting_processing(); }, casting_timer_);
 }
 
+void WorldServer::schedule_regen_tick() {
+    Log::info("Scheduling regeneration tick timer (4s interval like legacy)");
+    regen_tick_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(REGEN_TICK_INTERVAL, [this]() { perform_regen_tick(); }, regen_tick_timer_);
+}
+
+void WorldServer::perform_regen_tick() {
+    // Fast tick for HP/move regeneration - runs every 4 seconds like legacy MUD
+    world_manager_->tick_regen_all();
+}
+
+void WorldServer::schedule_mob_activity() {
+    Log::info("Scheduling mob activity timer (2s interval for AI/aggression)");
+    mob_activity_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    schedule_timer(MOB_ACTIVITY_INTERVAL, [this]() { perform_mob_activity(); }, mob_activity_timer_);
+}
+
+// Alignment thresholds for aggression checks
+namespace {
+    constexpr int ALIGN_GOOD_THRESHOLD = 350;
+    constexpr int ALIGN_EVIL_THRESHOLD = -350;
+
+    bool is_good_alignment(int alignment) { return alignment >= ALIGN_GOOD_THRESHOLD; }
+    bool is_evil_alignment(int alignment) { return alignment <= ALIGN_EVIL_THRESHOLD; }
+    bool is_neutral_alignment(int alignment) {
+        return alignment > ALIGN_EVIL_THRESHOLD && alignment < ALIGN_GOOD_THRESHOLD;
+    }
+
+    std::string_view alignment_name(int alignment) {
+        if (is_good_alignment(alignment)) return "good";
+        if (is_evil_alignment(alignment)) return "evil";
+        return "neutral";
+    }
+}
+
+void WorldServer::perform_mob_activity() {
+    // Process mob AI for all spawned mobiles
+    // This handles aggression, following, special behaviors, etc.
+
+    if (!world_manager_) return;
+
+    // Get all spawned mobiles
+    auto& mobiles = world_manager_->spawned_mobiles();
+
+    for (auto& [id, mobile] : mobiles) {
+        if (!mobile || !mobile->is_alive()) continue;
+
+        // Skip mobs already in combat
+        if (mobile->is_fighting()) continue;
+
+        // Check for any type of aggression flag
+        bool is_basic_aggro = mobile->is_aggressive();
+        bool is_aggro_good = mobile->has_flag(MobFlag::AggroGood);
+        bool is_aggro_evil = mobile->has_flag(MobFlag::AggroEvil);
+        bool is_aggro_neutral = mobile->has_flag(MobFlag::AggroNeutral);
+        bool has_any_aggro = is_basic_aggro || is_aggro_good || is_aggro_evil || is_aggro_neutral;
+
+        if (!has_any_aggro) continue;
+
+        auto room = mobile->current_room();
+        if (!room) {
+            Log::debug("Aggressive mob '{}' has no current room!", mobile->name());
+            continue;
+        }
+
+        // Look for players in the room to attack
+        for (const auto& actor : room->contents().actors) {
+            if (!actor || actor.get() == mobile.get()) continue;
+
+            // Only attack players (not other mobs)
+            if (actor->type_name() != "Player") continue;
+
+            // Check if player is alive
+            if (!actor->is_alive()) {
+                Log::debug("Player '{}' is not alive, skipping", actor->name());
+                continue;
+            }
+
+            // Don't attack immortals (level 100+)
+            if (actor->stats().level >= 100) {
+                Log::debug("Player '{}' is immortal (level {}), skipping",
+                          actor->name(), actor->stats().level);
+                continue;
+            }
+
+            // Check if this mob should attack this player based on aggression type
+            int player_align = actor->stats().alignment;
+            bool should_attack = false;
+            std::string attack_reason;
+
+            if (is_basic_aggro) {
+                // Basic aggressive - attacks everyone
+                should_attack = true;
+                attack_reason = "aggressive";
+            } else if (is_aggro_good && is_good_alignment(player_align)) {
+                should_attack = true;
+                attack_reason = fmt::format("aggro-good (player align: {})", player_align);
+            } else if (is_aggro_evil && is_evil_alignment(player_align)) {
+                should_attack = true;
+                attack_reason = fmt::format("aggro-evil (player align: {})", player_align);
+            } else if (is_aggro_neutral && is_neutral_alignment(player_align)) {
+                should_attack = true;
+                attack_reason = fmt::format("aggro-neutral (player align: {})", player_align);
+            }
+
+            if (!should_attack) {
+                Log::debug("Mob '{}' won't attack '{}' ({} alignment: {}) - no matching aggro flag",
+                          mobile->name(), actor->name(), alignment_name(player_align), player_align);
+                continue;
+            }
+
+            // Aggression level check (0-10 scale, higher = more aggressive)
+            // Roll 1-10, if roll <= aggression_level, attack
+            static thread_local std::mt19937 rng(std::random_device{}());
+            std::uniform_int_distribution<int> dist(1, 10);
+            int roll = dist(rng);
+            int aggro_level = mobile->aggression_level();
+
+            Log::debug("Aggro check: {} ({}) vs {} - roll {} <= {}?",
+                      mobile->name(), attack_reason, actor->name(), roll, aggro_level);
+
+            if (roll <= aggro_level) {
+                // Start combat!
+                Log::info("{} ({}, level {}) attacks {}!",
+                         mobile->name(), attack_reason, aggro_level, actor->name());
+
+                // Use add_combat_pair so multiple mobs can attack same player
+                FieryMUD::CombatManager::add_combat_pair(mobile, actor);
+
+                // Send attack message
+                mobile->send_message(fmt::format("You attack {}!", actor->display_name()));
+                actor->send_message(fmt::format("{} attacks you!", mobile->display_name()));
+
+                // Notify room
+                for (const auto& witness : room->contents().actors) {
+                    if (witness && witness != mobile && witness != actor) {
+                        witness->send_message(fmt::format("{} attacks {}!",
+                            mobile->display_name(), actor->display_name()));
+                    }
+                }
+
+                // Only attack one player per tick
+                break;
+            }
+        }
+    }
+
+}
+
 void WorldServer::perform_spell_restoration() {
     // Process spell slot restoration for all connected players
     for (auto& conn : active_connections_) {
@@ -896,6 +1060,18 @@ void WorldServer::perform_cleanup() {
 void WorldServer::perform_heartbeat() {
     // This runs on the world strand - thread safe!
 
+    // Check for shutdown request
+    if (world_manager_ && world_manager_->should_shutdown_now()) {
+        Log::info("Shutdown time reached, initiating graceful shutdown...");
+        if (shutdown_callback_) {
+            shutdown_callback_();
+        } else {
+            Log::warn("Shutdown requested but no callback set - triggering stop() directly");
+            running_.store(false);
+        }
+        return;  // Don't continue with heartbeat if shutting down
+    }
+
     auto now = std::chrono::steady_clock::now();
     auto uptime = std::chrono::duration_cast<std::chrono::seconds>(now - start_time_).count();
 
@@ -1076,6 +1252,91 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
     }
 }
 
+/**
+ * Get condition string based on HP percentage
+ */
+static std::string get_condition_string(int hp_percent) {
+    if (hp_percent >= CONDITION_PERFECT)
+        return "perfect";
+    else if (hp_percent >= CONDITION_SCRATCHED)
+        return "scratched";
+    else if (hp_percent >= CONDITION_HURT)
+        return "hurt";
+    else if (hp_percent >= CONDITION_WOUNDED)
+        return "wounded";
+    else if (hp_percent >= CONDITION_BLEEDING)
+        return "bleeding";
+    else if (hp_percent >= CONDITION_CRITICAL)
+        return "critical";
+    else
+        return "dying";
+}
+
+/**
+ * Expand prompt format codes into actual values.
+ *
+ * Format codes:
+ *   %h - current hit points    %H - max hit points
+ *   %v - current stamina       %V - max stamina
+ *   %l - level                 %g - gold
+ *   %x - experience            %X - exp to next level
+ *   %t - tank condition        %T - target condition
+ *   %n - newline               %% - literal %
+ *
+ * Color markup is preserved in output and processed by terminal rendering.
+ */
+static std::string expand_prompt_format(
+    std::string_view format,
+    const Stats& stats,
+    std::shared_ptr<Actor> fighting = nullptr
+) {
+    std::string result;
+    result.reserve(format.size() * 2);  // Pre-allocate for efficiency
+
+    for (size_t i = 0; i < format.size(); ++i) {
+        if (format[i] == '%' && i + 1 < format.size()) {
+            char code = format[++i];
+            switch (code) {
+                case 'h': result += std::to_string(stats.hit_points); break;
+                case 'H': result += std::to_string(stats.max_hit_points); break;
+                case 'v': result += std::to_string(stats.stamina); break;
+                case 'V': result += std::to_string(stats.max_stamina); break;
+                case 'l': result += std::to_string(stats.level); break;
+                case 'g': result += std::to_string(stats.gold); break;
+                case 'x': result += std::to_string(stats.experience); break;
+                case 'X': {
+                    // Experience to next level (simplified - could be more complex)
+                    long next_level_exp = static_cast<long>(stats.level) * 1000;
+                    result += std::to_string(std::max(0L, next_level_exp - stats.experience));
+                    break;
+                }
+                case 't':
+                case 'T': {
+                    // Target/tank condition - show fighting opponent's condition
+                    if (fighting) {
+                        const auto& opp_stats = fighting->stats();
+                        int hp_percent = (opp_stats.hit_points * PERCENT_MULTIPLIER) /
+                                        std::max(1, opp_stats.max_hit_points);
+                        result += get_condition_string(hp_percent);
+                    }
+                    break;
+                }
+                case 'n': result += "\n"; break;
+                case '%': result += "%"; break;
+                default:
+                    // Unknown code - keep original
+                    result += '%';
+                    result += code;
+                    break;
+            }
+        } else {
+            result += format[i];
+        }
+    }
+
+    return result;
+}
+
 void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     if (!actor) {
         return;
@@ -1084,43 +1345,33 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     // Get actor's current stats
     const auto &stats = actor->stats();
 
-    // Basic prompt format: <HP>H <Move>M>
-    std::string prompt = fmt::format("{}H {}M", stats.hit_points, stats.movement);
+    // Get the player's custom prompt format, or use default
+    std::string_view format = "<%h/%Hhp %v/%Vs>";  // Default format
 
-    // If fighting, show opponent's condition
-    if (actor->is_fighting()) {
-        auto opponent = FieryMUD::CombatManager::get_opponent(*actor);
-        if (opponent) {
-            // Calculate condition based on HP percentage
-            const auto &opp_stats = opponent->stats();
-            int hp_percent = (opp_stats.hit_points * PERCENT_MULTIPLIER) / std::max(1, opp_stats.max_hit_points);
-
-            std::string condition;
-            if (hp_percent >= CONDITION_PERFECT)
-                condition = "perfect";
-            else if (hp_percent >= CONDITION_SCRATCHED)
-                condition = "scratched";
-            else if (hp_percent >= CONDITION_HURT)
-                condition = "hurt";
-            else if (hp_percent >= CONDITION_WOUNDED)
-                condition = "wounded";
-            else if (hp_percent >= CONDITION_BLEEDING)
-                condition = "bleeding";
-            else if (hp_percent >= CONDITION_CRITICAL)
-                condition = "critical";
-            else
-                condition = "dying";
-
-            prompt += fmt::format(" (Fighting: {} is {})", opponent->display_name(), condition);
-        } else {
-            prompt += " (Fighting)";
-        }
+    auto player = std::dynamic_pointer_cast<Player>(actor);
+    if (player && !player->prompt().empty()) {
+        format = player->prompt();
     }
 
-    prompt += "> ";
+    // Get fighting opponent (if any) for condition codes
+    std::shared_ptr<Actor> opponent = nullptr;
+    if (actor->is_fighting()) {
+        opponent = FieryMUD::CombatManager::get_opponent(*actor);
+    }
+
+    // Expand the prompt format (substitutes %h, %H, etc.)
+    std::string prompt = expand_prompt_format(format, stats, opponent);
+
+    // Process color markup (renders <red>, <yellow>, etc. to ANSI)
+    prompt = TextFormat::apply_colors(prompt);
+
+    // Add space and trailing prompt character if not present
+    if (!prompt.empty() && prompt.back() != '>' && prompt.back() != ':' && prompt.back() != ' ') {
+        prompt += ' ';
+    }
 
     // Send the prompt - we need to handle different actor types
-    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+    if (player) {
         // For players, try to get their output interface
         if (auto output = player->get_output()) {
             output->send_prompt(prompt);

@@ -32,35 +32,35 @@ Result<CommandResult> cmd_group(const CommandContext &ctx) {
             // We're following someone
             auto leader_player = std::dynamic_pointer_cast<Player>(leader);
             if (leader_player) {
-                ctx.send(fmt::format("  {} (Leader) - HP: {}/{}, MV: {}/{}",
+                ctx.send(fmt::format("  {} (Leader) - HP: {}/{}, ST: {}/{}",
                     leader_player->display_name(),
                     leader_player->stats().hit_points, leader_player->stats().max_hit_points,
-                    leader_player->stats().movement, leader_player->stats().max_movement));
+                    leader_player->stats().stamina, leader_player->stats().max_stamina));
 
                 // Show all followers of the leader
                 for (const auto& weak_follower : leader_player->get_followers()) {
                     if (auto follower = weak_follower.lock()) {
                         std::string marker = (follower == ctx.actor) ? " (You)" : "";
-                        ctx.send(fmt::format("  {}{} - HP: {}/{}, MV: {}/{}",
+                        ctx.send(fmt::format("  {}{} - HP: {}/{}, ST: {}/{}",
                             follower->display_name(), marker,
                             follower->stats().hit_points, follower->stats().max_hit_points,
-                            follower->stats().movement, follower->stats().max_movement));
+                            follower->stats().stamina, follower->stats().max_stamina));
                     }
                 }
             }
         } else {
             // We're the leader
-            ctx.send(fmt::format("  {} (Leader - You) - HP: {}/{}, MV: {}/{}",
+            ctx.send(fmt::format("  {} (Leader - You) - HP: {}/{}, ST: {}/{}",
                 player->display_name(),
                 player->stats().hit_points, player->stats().max_hit_points,
-                player->stats().movement, player->stats().max_movement));
+                player->stats().stamina, player->stats().max_stamina));
 
             for (const auto& weak_follower : player->get_followers()) {
                 if (auto follower = weak_follower.lock()) {
-                    ctx.send(fmt::format("  {} - HP: {}/{}, MV: {}/{}",
+                    ctx.send(fmt::format("  {} - HP: {}/{}, ST: {}/{}",
                         follower->display_name(),
                         follower->stats().hit_points, follower->stats().max_hit_points,
-                        follower->stats().movement, follower->stats().max_movement));
+                        follower->stats().stamina, follower->stats().max_stamina));
                 }
             }
         }
@@ -252,10 +252,10 @@ Result<CommandResult> cmd_report(const CommandContext &ctx) {
     }
 
     const auto& stats = player->stats();
-    std::string report = fmt::format("{} reports: HP: {}/{}, MV: {}/{}, XP: {}",
+    std::string report = fmt::format("{} reports: HP: {}/{}, ST: {}/{}, XP: {}",
         player->display_name(),
         stats.hit_points, stats.max_hit_points,
-        stats.movement, stats.max_movement,
+        stats.stamina, stats.max_stamina,
         stats.experience);
 
     player->send_to_group(report);

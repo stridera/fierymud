@@ -1,4 +1,5 @@
 #include "core/logging.hpp"
+#include "core/result.hpp"
 #include "server/mud_server.hpp"
 #include "admin/admin_server.hpp"
 #include "admin/zone_reload_handler.hpp"
@@ -16,6 +17,44 @@
 // Global server instances for signal handling
 std::unique_ptr<ModernMUDServer> g_server;
 std::unique_ptr<fierymud::AdminServer> g_admin_server;
+
+/**
+ * Print user-friendly suggestions based on error type.
+ * Helps users diagnose and fix common startup issues.
+ */
+void print_error_suggestions(const Error& error) {
+    std::cerr << "\n";
+
+    switch (error.code) {
+    case ErrorCode::NetworkError:
+        // Database connection failure - most common issue
+        std::cerr << "Suggestions:\n";
+        std::cerr << "  1. Ensure PostgreSQL is running:\n";
+        std::cerr << "     cd /home/strider/Code/mud && docker compose up -d\n";
+        std::cerr << "  2. Check database configuration in .env file\n";
+        std::cerr << "  3. Verify the database has been seeded:\n";
+        std::cerr << "     cd /home/strider/Code/mud/fierylib && poetry run fierylib import-legacy\n";
+        std::cerr << "  4. Check container status:\n";
+        std::cerr << "     docker compose ps\n";
+        break;
+
+    case ErrorCode::ParseError:
+        std::cerr << "Suggestions:\n";
+        std::cerr << "  1. Check .env file for valid DATABASE_URL\n";
+        break;
+
+    case ErrorCode::PermissionDenied:
+    case ErrorCode::AccessDenied:
+        std::cerr << "Suggestions:\n";
+        std::cerr << "  1. Verify database user has correct privileges\n";
+        std::cerr << "  2. Check PostgreSQL connection settings\n";
+        break;
+
+    default:
+        // No specific suggestions for other error types
+        break;
+    }
+}
 
 void signal_handler(int signal) {
     switch (signal) {
@@ -142,6 +181,10 @@ int main(int argc, char *argv[]) {
         auto init_result = g_server->initialize();
         if (!init_result) {
             std::cerr << "Server initialization failed: " << init_result.error().message << "\n";
+            print_error_suggestions(init_result.error());
+            // Clean up the server before exiting to avoid use-after-free during static destruction
+            g_server.reset();
+            Logger::shutdown();
             return 1;
         }
 
@@ -149,6 +192,10 @@ int main(int argc, char *argv[]) {
         auto start_result = g_server->start();
         if (!start_result) {
             std::cerr << "Server start failed: " << start_result.error().message << "\n";
+            print_error_suggestions(start_result.error());
+            // Clean up the server before exiting to avoid use-after-free during static destruction
+            g_server.reset();
+            Logger::shutdown();
             return 1;
         }
 
@@ -176,12 +223,21 @@ int main(int argc, char *argv[]) {
 
     } catch (const cxxopts::exceptions::exception &e) {
         std::cerr << "Command line error: " << e.what() << std::endl;
+        g_server.reset();
+        g_admin_server.reset();
+        Logger::shutdown();
         return 1;
     } catch (const std::exception &e) {
         std::cerr << "Fatal error: " << e.what() << "\n";
+        g_server.reset();
+        g_admin_server.reset();
+        Logger::shutdown();
         return 1;
     } catch (...) {
         std::cerr << "Unknown fatal error occurred\n";
+        g_server.reset();
+        g_admin_server.reset();
+        Logger::shutdown();
         return 1;
     }
 }

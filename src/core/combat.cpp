@@ -11,6 +11,7 @@
 #include <random>
 #include <algorithm>
 #include <unordered_map>
+#include <unordered_set>
 #include <fmt/format.h>
 #include <magic_enum/magic_enum.hpp>
 
@@ -18,7 +19,9 @@ namespace FieryMUD {
 
 // Static member definitions
 std::vector<std::pair<CombatEvent::EventType, CombatEventHandler>> CombatSystem::event_handlers_;
-std::vector<CombatPair> CombatManager::active_combats_;
+std::unordered_set<std::shared_ptr<Actor>> CombatManager::fighting_actors_;
+std::unordered_map<std::shared_ptr<Actor>, std::chrono::steady_clock::time_point> CombatManager::last_attack_times_;
+std::chrono::steady_clock::time_point CombatManager::last_round_time_ = std::chrono::steady_clock::now();
 
 // Thread-local random generators
 static thread_local std::random_device rd;
@@ -292,11 +295,42 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
         stats.weapon_dice_num = mobile->bare_hand_damage_dice_num();
         stats.weapon_dice_size = mobile->bare_hand_damage_dice_size();
         stats.weapon_base_damage = mobile->bare_hand_damage_dice_bonus();
+        // Mobs use VeryFast for natural attacks (claws, bites, etc.)
+        stats.weapon_speed = WeaponSpeed::VeryFast;
     } else {
         // Default player unarmed
         stats.weapon_dice_num = 1;
         stats.weapon_dice_size = 4;
         stats.weapon_base_damage = 0;
+        // Unarmed attacks are fast
+        stats.weapon_speed = WeaponSpeed::Fast;
+    }
+
+    // Check for equipped weapon and get its speed
+    if (const auto* player = dynamic_cast<const Player*>(&actor)) {
+        auto weapon = player->equipment().get_equipped(EquipSlot::Wield);
+        if (weapon) {
+            // Get weapon damage dice from the weapon
+            stats.weapon_dice_num = weapon->damage_dice_num();
+            stats.weapon_dice_size = weapon->damage_dice_size();
+            stats.weapon_base_damage = weapon->damage_bonus();
+            // Use weapon's speed if it has one, otherwise infer from weight
+            stats.weapon_speed = weapon->weapon_speed();
+        }
+    }
+
+    // Check for haste/slow effects
+    stats.has_haste = actor.has_flag(ActorFlag::Haste);
+    stats.has_slow = actor.has_flag(ActorFlag::Slow);
+
+    // Calculate attack speed multiplier
+    if (stats.has_haste && stats.has_slow) {
+        // Cancel each other out
+        stats.attack_speed_multiplier = 1.0;
+    } else if (stats.has_haste) {
+        stats.attack_speed_multiplier = CombatConstants::HASTE_MULTIPLIER;
+    } else if (stats.has_slow) {
+        stats.attack_speed_multiplier = CombatConstants::SLOW_MULTIPLIER;
     }
 
     return stats;
@@ -863,219 +897,269 @@ double ClassAbilities::sorcerer_spell_damage_bonus(int level, int intelligence) 
 // CombatManager Implementation
 // ============================================================================
 
+// Helper to interrupt player activities when entering combat
+static void interrupt_for_combat(std::shared_ptr<Actor> actor) {
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        if (player->is_composing()) {
+            player->interrupt_composing("You are under attack!");
+        }
+        if (player->is_meditating()) {
+            player->stop_meditation();
+            player->send_message("Your meditation is interrupted!");
+        }
+    }
+}
+
 void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<Actor> actor2) {
-    if (!actor1 || !actor2) return;
+    if (!actor1 || !actor2 || actor1 == actor2) return;
 
-    // Check if already in combat with each other
-    for (const auto& combat : active_combats_) {
-        if (combat.involves_actor(*actor1) && combat.involves_actor(*actor2)) {
-            return;
-        }
-    }
+    // Clear existing enemies for a fresh 1v1 combat start
+    actor1->clear_enemies();
+    actor2->clear_enemies();
 
-    // Interrupt text composition and meditation (combat takes priority)
-    if (auto player1 = std::dynamic_pointer_cast<Player>(actor1)) {
-        if (player1->is_composing()) {
-            player1->interrupt_composing("You are under attack!");
-        }
-        if (player1->is_meditating()) {
-            player1->stop_meditation();
-            player1->send_message("Your meditation is interrupted!");
-        }
-    }
-    if (auto player2 = std::dynamic_pointer_cast<Player>(actor2)) {
-        if (player2->is_composing()) {
-            player2->interrupt_composing("You are under attack!");
-        }
-        if (player2->is_meditating()) {
-            player2->stop_meditation();
-            player2->send_message("Your meditation is interrupted!");
-        }
-    }
+    // Add each other as enemies
+    actor1->add_enemy(actor2);
+    actor2->add_enemy(actor1);
 
-    // End existing combat for both actors
-    end_combat(actor1);
-    end_combat(actor2);
+    // Interrupt activities
+    interrupt_for_combat(actor1);
+    interrupt_for_combat(actor2);
 
     // Set fighting position
     actor1->set_position(Position::Fighting);
     actor2->set_position(Position::Fighting);
 
-    // Add combat pair
-    active_combats_.emplace_back(actor1, actor2);
+    // Track them as active combatants
+    fighting_actors_.insert(actor1);
+    fighting_actors_.insert(actor2);
+
+    Log::game()->debug("Combat started: {} vs {}", actor1->name(), actor2->name());
+}
+
+void CombatManager::add_combat_pair(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> defender) {
+    if (!attacker || !defender || attacker == defender) return;
+
+    // Add each other to fighting lists (doesn't clear existing enemies)
+    attacker->add_enemy(defender);
+    defender->add_enemy(attacker);
+
+    // Interrupt defender's activities
+    interrupt_for_combat(defender);
+
+    // Set fighting position
+    attacker->set_position(Position::Fighting);
+    defender->set_position(Position::Fighting);
+
+    // Track as active combatants (set handles deduplication automatically)
+    fighting_actors_.insert(attacker);
+    fighting_actors_.insert(defender);
+
+    Log::game()->debug("Combat pair added: {} attacking {}", attacker->name(), defender->name());
 }
 
 void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
     if (!actor) return;
 
-    auto it = std::remove_if(active_combats_.begin(), active_combats_.end(),
-        [&actor](const CombatPair& combat) {
-            bool involves = combat.involves_actor(*actor);
-            if (involves) {
-                if (combat.actor1 && combat.actor1->is_alive()) {
-                    combat.actor1->set_position(Position::Standing);
-                }
-                if (combat.actor2 && combat.actor2->is_alive()) {
-                    combat.actor2->set_position(Position::Standing);
-                }
-            }
-            return involves;
-        });
+    // Get all enemies before clearing
+    auto enemies = actor->get_all_enemies();
 
-    active_combats_.erase(it, active_combats_.end());
+    // Clear this actor's enemy list
+    actor->clear_enemies();
+
+    // Remove this actor from all enemy lists
+    for (auto& enemy : enemies) {
+        if (enemy) {
+            enemy->remove_enemy(actor);
+            // If enemy has no more enemies, they stop fighting
+            if (!enemy->has_enemies() && enemy->is_alive()) {
+                enemy->set_position(Position::Standing);
+                fighting_actors_.erase(enemy);
+                last_attack_times_.erase(enemy);  // Clean up attack timing
+            }
+        }
+    }
+
+    // Set actor to standing if alive
+    if (actor->is_alive()) {
+        actor->set_position(Position::Standing);
+    }
+
+    // Remove from fighting actors tracking and attack timing
+    fighting_actors_.erase(actor);
+    last_attack_times_.erase(actor);
+
+    Log::game()->debug("{} combat ended", actor->name());
+}
+
+bool CombatManager::is_round_ready() {
+    auto now = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_round_time_);
+    return elapsed.count() >= CombatConstants::COMBAT_ROUND_MS;
 }
 
 bool CombatManager::process_combat_rounds() {
-    cleanup_invalid_combats();
+    // Clean up dead/invalid actors first
+    cleanup_invalid_actors();
 
-    bool rounds_processed = false;
+    if (fighting_actors_.empty()) {
+        return false;
+    }
 
-    for (auto& combat : active_combats_) {
-        if (combat.is_ready_for_next_round()) {
-            execute_round(combat);
-            combat.update_last_round();
-            rounds_processed = true;
+    bool any_attacks = false;
+
+    // Process each fighting actor based on their individual attack speed
+    // Make a copy since fighting_actors_ may be modified during iteration (deaths)
+    std::vector<std::shared_ptr<Actor>> actors_to_process(fighting_actors_.begin(), fighting_actors_.end());
+
+    for (const auto& actor : actors_to_process) {
+        // Skip if actor died during this round
+        if (!actor || !actor->is_alive()) continue;
+
+        // Check if this actor is ready to attack (based on their weapon speed + effects)
+        if (!is_actor_attack_ready(actor)) continue;
+
+        // Get valid target in same room
+        auto target = actor->get_fighting_target();
+        if (target && target->is_alive()) {
+            execute_actor_attack(actor, target);
+            record_attack_time(actor);
+            any_attacks = true;
         }
     }
 
-    return rounds_processed;
+    // Update global round timer for effect timing purposes
+    if (any_attacks) {
+        last_round_time_ = std::chrono::steady_clock::now();
+    }
+
+    return any_attacks;
 }
 
 bool CombatManager::is_in_combat(const Actor& actor) {
-    return std::any_of(active_combats_.begin(), active_combats_.end(),
-        [&actor](const CombatPair& combat) {
-            return combat.involves_actor(actor);
-        });
+    return actor.is_fighting() && actor.has_enemies();
 }
 
 std::shared_ptr<Actor> CombatManager::get_opponent(const Actor& actor) {
-    for (const auto& combat : active_combats_) {
-        if (combat.involves_actor(actor)) {
-            return combat.get_opponent(actor);
-        }
-    }
-    return nullptr;
+    return actor.get_fighting_target();
 }
 
 void CombatManager::clear_all_combat() {
-    for (const auto& combat : active_combats_) {
-        if (combat.actor1 && combat.actor1->position() == Position::Fighting) {
-            combat.actor1->set_position(Position::Standing);
-        }
-        if (combat.actor2 && combat.actor2->position() == Position::Fighting) {
-            combat.actor2->set_position(Position::Standing);
+    for (const auto& actor : fighting_actors_) {
+        if (actor) {
+            actor->clear_enemies();
+            if (actor->position() == Position::Fighting) {
+                actor->set_position(Position::Standing);
+            }
         }
     }
 
-    active_combats_.clear();
+    fighting_actors_.clear();
+    last_attack_times_.clear();  // Clear all attack timing data
     Log::debug("All combat cleared");
 }
 
-void CombatManager::cleanup_invalid_combats() {
-    auto it = std::remove_if(active_combats_.begin(), active_combats_.end(),
-        [](const CombatPair& combat) {
-            bool invalid = !combat.actor1 || !combat.actor2 ||
-                          (!combat.actor1->is_alive()) ||
-                          (!combat.actor2->is_alive());
+void CombatManager::cleanup_invalid_actors() {
+    // Remove dead or actors with no enemies from the fighting set
+    std::vector<std::shared_ptr<Actor>> to_remove;
 
-            if (!invalid && combat.actor1->current_room() != combat.actor2->current_room()) {
-                invalid = true;
-                Log::debug("Combat ended: actors in different rooms");
-            }
+    for (const auto& actor : fighting_actors_) {
+        if (!actor || !actor->is_alive()) {
+            to_remove.push_back(actor);
+            continue;
+        }
 
-            if (invalid) {
-                if (combat.actor1 && combat.actor1->is_alive()) {
-                    combat.actor1->set_position(Position::Standing);
-                }
-                if (combat.actor2 && combat.actor2->is_alive()) {
-                    combat.actor2->set_position(Position::Standing);
-                }
-            }
+        // Check if actor still has valid enemies (get_fighting_target handles room check)
+        auto target = actor->get_fighting_target();
+        if (!target) {
+            // No valid target - stop fighting
+            actor->clear_enemies();
+            actor->set_position(Position::Standing);
+            to_remove.push_back(actor);
+            Log::debug("{} stopped fighting - no valid targets", actor->name());
+        }
+    }
 
-            return invalid;
-        });
-
-    active_combats_.erase(it, active_combats_.end());
+    for (const auto& actor : to_remove) {
+        fighting_actors_.erase(actor);
+        last_attack_times_.erase(actor);  // Clean up attack timing data
+    }
 }
 
-void CombatManager::execute_round(CombatPair& combat_pair) {
-    if (!combat_pair.actor1 || !combat_pair.actor2) return;
+void CombatManager::execute_actor_attack(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target) {
+    if (!attacker || !target) return;
+    if (!attacker->is_alive() || !target->is_alive()) return;
 
-    Log::info("execute_round: starting between {} and {}",
-              combat_pair.actor1->name(), combat_pair.actor2->name());
-
-    // Execute FIGHT triggers for both combatants (allows scripted combat behavior)
+    // Execute FIGHT trigger for attacker (allows scripted combat behavior)
     auto& trigger_mgr = TriggerManager::instance();
     if (trigger_mgr.is_initialized()) {
-        Log::info("execute_round: calling dispatch_fight for actor1");
-        trigger_mgr.dispatch_fight(combat_pair.actor1, combat_pair.actor2);
-        Log::info("execute_round: calling dispatch_fight for actor2");
-        trigger_mgr.dispatch_fight(combat_pair.actor2, combat_pair.actor1);
-        Log::info("execute_round: FIGHT triggers done");
+        trigger_mgr.dispatch_fight(attacker, target);
     }
 
-    // Random initiative
-    std::uniform_int_distribution<int> coinflip(0, 1);
+    // Check if still valid after trigger (trigger might have ended combat)
+    if (!attacker->is_alive() || !target->is_alive()) return;
 
-    std::shared_ptr<Actor> first_attacker, first_target;
-    if (coinflip(gen) == 0) {
-        first_attacker = combat_pair.actor1;
-        first_target = combat_pair.actor2;
-    } else {
-        first_attacker = combat_pair.actor2;
-        first_target = combat_pair.actor1;
-    }
+    // Perform the attack
+    auto result = CombatSystem::perform_attack(attacker, target);
 
-    // First attack
-    if (first_attacker->is_alive() && first_target->is_alive()) {
-        auto result1 = CombatSystem::perform_attack(first_attacker, first_target);
+    // Send messages (PlayerConnection::send_message adds \r\n automatically)
+    if (auto room = attacker->current_room()) {
+        attacker->send_message(result.attacker_message);
+        target->send_message(result.target_message);
 
-        if (auto room = first_attacker->current_room()) {
-            first_attacker->send_message(result1.attacker_message + "\r\n");
-            first_target->send_message(result1.target_message + "\r\n");
-
-            if (!result1.room_message.empty()) {
-                for (const auto& actor : room->contents().actors) {
-                    if (actor && actor != first_attacker && actor != first_target) {
-                        actor->send_message(result1.room_message + "\r\n");
-                    }
+        if (!result.room_message.empty()) {
+            for (const auto& actor : room->contents().actors) {
+                if (actor && actor != attacker && actor != target) {
+                    actor->send_message(result.room_message);
                 }
             }
         }
-
-        if (result1.type == CombatResult::Type::Death) {
-            return;
-        }
     }
 
-    // Counter-attack
-    if (first_target->is_alive() && first_attacker->is_alive()) {
-        auto result2 = CombatSystem::perform_attack(first_target, first_attacker);
+    // Handle death
+    if (result.type == CombatResult::Type::Death) {
+        // Target died - remove from attacker's enemy list
+        attacker->remove_enemy(target);
 
-        if (auto room = first_target->current_room()) {
-            first_target->send_message(result2.attacker_message + "\r\n");
-            first_attacker->send_message(result2.target_message + "\r\n");
-
-            if (!result2.room_message.empty()) {
-                for (const auto& actor : room->contents().actors) {
-                    if (actor && actor != first_target && actor != first_attacker) {
-                        actor->send_message(result2.room_message + "\r\n");
-                    }
-                }
-            }
+        // If attacker has no more enemies, stop fighting
+        if (!attacker->has_enemies()) {
+            attacker->set_position(Position::Standing);
         }
     }
 }
 
 std::vector<std::shared_ptr<Actor>> CombatManager::get_all_fighting_actors() {
-    std::vector<std::shared_ptr<Actor>> fighting_actors;
+    // Simply return copy of the fighting actors set
+    return std::vector<std::shared_ptr<Actor>>(fighting_actors_.begin(), fighting_actors_.end());
+}
 
-    for (const auto& combat : active_combats_) {
-        fighting_actors.push_back(combat.actor1);
-        fighting_actors.push_back(combat.actor2);
+bool CombatManager::is_actor_attack_ready(const std::shared_ptr<Actor>& actor) {
+    if (!actor) return false;
+
+    auto it = last_attack_times_.find(actor);
+    if (it == last_attack_times_.end()) {
+        // Never attacked before - ready to attack
+        return true;
     }
 
-    return fighting_actors;
+    auto now = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - it->second);
+    int attack_speed_ms = get_actor_attack_speed(actor);
+
+    return elapsed.count() >= attack_speed_ms;
+}
+
+int CombatManager::get_actor_attack_speed(const std::shared_ptr<Actor>& actor) {
+    if (!actor) return CombatConstants::BASE_ATTACK_SPEED_MS;
+
+    // Calculate combat stats which includes weapon speed and haste/slow
+    CombatStats stats = CombatSystem::calculate_combat_stats(*actor);
+
+    return stats.effective_attack_speed_ms();
+}
+
+void CombatManager::record_attack_time(const std::shared_ptr<Actor>& actor) {
+    if (!actor) return;
+    last_attack_times_[actor] = std::chrono::steady_clock::now();
 }
 
 } // namespace FieryMUD

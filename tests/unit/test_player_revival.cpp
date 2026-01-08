@@ -216,57 +216,57 @@ TEST_CASE("Player Stats and HP System", "[unit][player][stats][hp]") {
         const auto& stats = player->stats();
         REQUIRE(stats.max_hit_points > 0);
         REQUIRE(stats.hit_points <= stats.max_hit_points);
-        REQUIRE(stats.movement >= 0);
+        REQUIRE(stats.stamina >= 0);
         REQUIRE(stats.level >= 1);
     }
-    
+
     SECTION("Player stats support prompt format") {
         // Test that stats are accessible for prompt system
         // The prompt system in WorldServer::send_prompt_to_actor uses these values
         const auto& stats = player->stats();
-        
+
         // Verify prompt-relevant values are present
         REQUIRE(stats.hit_points >= 0);
-        REQUIRE(stats.movement >= 0);
-        
+        REQUIRE(stats.stamina >= 0);
+
         // Test fighting status (used for combat prompts)
         REQUIRE_FALSE(player->is_fighting()); // Initially not fighting
-        
+
         // Verify position is accessible (used for state checking)
         REQUIRE(player->position() != Position::Dead);
         REQUIRE(player->position() != Position::Ghost);
     }
-    
+
     SECTION("Stats can be modified") {
         auto& stats = player->stats();
         int original_max_hp = stats.max_hit_points;
-        
+
         // Test HP modification
         stats.hit_points = original_max_hp / 2;
         REQUIRE(stats.hit_points == original_max_hp / 2);
-        
+
         // Test HP restoration (like what release command does)
         stats.hit_points = stats.max_hit_points;
         REQUIRE(stats.hit_points == stats.max_hit_points);
     }
-    
-    SECTION("Movement points work") {
+
+    SECTION("Stamina points work") {
         auto& stats = player->stats();
-        
-        stats.movement = 50;
-        REQUIRE(stats.movement == 50);
+
+        stats.stamina = 50;
+        REQUIRE(stats.stamina == 50);
     }
-    
+
     SECTION("Stats validation and ranges") {
         const auto& stats = player->stats();
-        
+
         // Basic stat ranges
         REQUIRE(stats.level >= 1);
         REQUIRE(stats.level <= 100); // Reasonable upper bound
         REQUIRE(stats.hit_points >= 0);
         REQUIRE(stats.max_hit_points > 0);
-        REQUIRE(stats.movement >= 0);
-        REQUIRE(stats.max_movement >= 0);
+        REQUIRE(stats.stamina >= 0);
+        REQUIRE(stats.max_stamina >= 0);
         
         // Combat stats (new system uses armor_rating 0-100+)
         REQUIRE(stats.armor_rating >= 0);

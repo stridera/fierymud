@@ -290,7 +290,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     static constexpr std::chrono::seconds IDLE_TIMEOUT{1800}; // 30 minutes
     static constexpr std::chrono::seconds AFK_TIMEOUT{900};   // 15 minutes for AFK detection
     static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead
-    static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{100};
+    static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{500};
     static constexpr size_t MAX_INPUT_LINE_LENGTH{512};
     static constexpr size_t MAX_TELNET_SUBNEG_LENGTH{8192}; // Max GMCP/subneg message size
     static constexpr size_t READ_BUFFER_SIZE{4096}; // Socket read buffer size

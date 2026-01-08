@@ -143,7 +143,13 @@ public:
     void schedule_periodic_save();
     void schedule_spell_restoration();
     void schedule_casting_processing();
-    
+    void schedule_regen_tick();
+    void schedule_mob_activity();
+
+    // Shutdown callback - called when WorldManager requests shutdown
+    using ShutdownCallback = std::function<void()>;
+    void set_shutdown_callback(ShutdownCallback callback) { shutdown_callback_ = std::move(callback); }
+
     // Statistics (thread-safe)
     size_t active_player_count() const;
     GameLoopStats get_performance_stats() const;
@@ -164,6 +170,8 @@ private:
     void perform_player_save();
     void perform_spell_restoration();
     void perform_casting_processing();
+    void perform_regen_tick();
+    void perform_mob_activity();
     
     // GMCP support
     void send_room_info_to_player(std::shared_ptr<PlayerConnection> connection);
@@ -199,10 +207,15 @@ private:
     std::shared_ptr<asio::steady_timer> combat_timer_;
     std::shared_ptr<asio::steady_timer> spell_restore_timer_;
     std::shared_ptr<asio::steady_timer> casting_timer_;
+    std::shared_ptr<asio::steady_timer> regen_tick_timer_;
+    std::shared_ptr<asio::steady_timer> mob_activity_timer_;
     
     // Performance tracking
     mutable std::atomic<size_t> commands_processed_{0};
     mutable std::atomic<size_t> total_connections_{0};
     std::chrono::steady_clock::time_point start_time_;
     std::promise<void> world_loaded_promise_;
+
+    // Shutdown callback
+    ShutdownCallback shutdown_callback_;
 };

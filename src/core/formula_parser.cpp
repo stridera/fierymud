@@ -22,6 +22,7 @@ std::expected<int, Error> FormulaContext::get_variable(std::string_view name) co
     if (name == "wis_bonus" || name == "wis") return wis_bonus;
     if (name == "cha_bonus" || name == "cha") return cha_bonus;
     if (name == "weapon_damage" || name == "weapon") return weapon_damage;
+    if (name == "base_damage" || name == "base") return base_damage;
 
     // Actor's detection stats
     if (name == "perception") return perception;

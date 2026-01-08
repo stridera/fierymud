@@ -648,6 +648,12 @@ void EffectContext::build_formula_context() {
         formula_ctx.target_perception = target_stats.perception;
         formula_ctx.target_concealment = target_stats.concealment;
     }
+
+    // Calculate base_damage for spell/ability formulas
+    // Formula: level + (circle * 2) + relevant stat bonus
+    // For spells, use the higher of INT or WIS bonus
+    int spell_stat_bonus = std::max(formula_ctx.int_bonus, formula_ctx.wis_bonus);
+    formula_ctx.base_damage = stats.level + (spell_circle * 2) + spell_stat_bonus;
 }
 
 // =============================================================================
@@ -721,7 +727,7 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
 
     std::vector<EffectResult> results;
 
-    Log::game()->info("execute_ability_effects: {} effects, filter={}, target={}",
+    Log::game()->debug("execute_ability_effects: {} effects, filter={}, target={}",
                        effects.size(),
                        static_cast<int>(trigger_filter),
                        context.target ? context.target->display_name() : "none");
@@ -763,7 +769,7 @@ std::expected<std::vector<EffectResult>, Error> EffectExecutor::execute_ability_
         }
     }
 
-    Log::game()->info("execute_ability_effects: {} results", results.size());
+    Log::game()->debug("execute_ability_effects: {} results", results.size());
     return results;
 }
 
@@ -790,7 +796,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_damage(
 
     auto damage_result = FormulaParser::evaluate(formula, context.formula_ctx);
     if (!damage_result) {
-        Log::game()->info("execute_damage: formula evaluation failed: {}", damage_result.error().message);
+        Log::game()->warn("execute_damage: formula '{}' evaluation failed: {}", formula, damage_result.error().message);
         return std::unexpected(damage_result.error());
     }
 
@@ -847,10 +853,10 @@ std::expected<EffectResult, Error> EffectExecutor::execute_heal(
     int heal_amount = std::max(1, *heal_result);
     auto& stats = heal_target->stats();
 
-    if (params.heal_resource == "move" || params.heal_resource == "movement") {
-        int old_move = stats.movement;
-        stats.movement = std::min(stats.movement + heal_amount, stats.max_movement);
-        heal_amount = stats.movement - old_move;
+    if (params.heal_resource == "stamina" || params.heal_resource == "move" || params.heal_resource == "movement") {
+        int old_stamina = stats.stamina;
+        stats.stamina = std::min(stats.stamina + heal_amount, stats.max_stamina);
+        heal_amount = stats.stamina - old_stamina;
     } else {
         // Default to HP
         int old_hp = stats.hit_points;
@@ -858,7 +864,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_heal(
         heal_amount = stats.hit_points - old_hp;
     }
 
-    std::string resource_name = (params.heal_resource == "move") ? "movement" : "health";
+    std::string resource_name = (params.heal_resource == "stamina" || params.heal_resource == "move") ? "stamina" : "health";
     std::string attacker_msg = fmt::format("You restore {} {} to {}.",
         heal_amount, resource_name, heal_target->display_name());
     std::string target_msg = fmt::format("{} restores {} {} to you.",

@@ -3,6 +3,7 @@
 #include "bindings/lua_actor.hpp"
 #include "bindings/lua_room.hpp"
 #include "bindings/lua_object.hpp"
+#include "bindings/lua_quest.hpp"
 #include "../world/time_system.hpp"
 
 #include <fmt/format.h>
@@ -204,6 +205,7 @@ void ScriptEngine::register_bindings() {
     register_actor_bindings(*lua_);
     register_room_bindings(*lua_);
     register_object_bindings(*lua_);
+    register_quest_bindings(*lua_);
 
     spdlog::debug("Lua game bindings registered");
 }

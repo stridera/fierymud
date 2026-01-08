@@ -9,6 +9,13 @@
 #include <unordered_map>
 #include <unordered_set>
 
+namespace FieryMUD {
+// Forward declaration for weapon speed (defined in combat.hpp)
+enum class WeaponSpeed;
+} // namespace FieryMUD
+
+using FieryMUD::WeaponSpeed;
+
 /** Object types for type-safe object handling */
 enum class ObjectType {
     Undefined = 0,
@@ -44,7 +51,8 @@ enum class ObjectType {
     Wings = 30,         // Flight items
     Perfume = 31,       // Scent items
     Disguise = 32,      // Appearance modifiers
-    Poison = 33         // Poison items
+    Poison = 33,        // Poison items
+    Touchstone = 34     // Home point setters
 };
 
 /** Equipment slots where objects can be worn/wielded */
@@ -114,6 +122,7 @@ struct ExtraDescription {
 struct ContainerInfo {
     int capacity = 0;           // Maximum items that can be stored
     int weight_capacity = 0;    // Maximum weight that can be stored
+    int weight_reduction = 0;   // Percentage weight reduction (0-100, bag of holding style)
     bool closeable = false;     // Can be opened/closed
     bool closed = false;        // Current closed state
     bool lockable = false;      // Can be locked
@@ -134,7 +143,14 @@ struct LiquidInfo {
     std::string liquid_type;    // Type of liquid (WATER, ALE, WINE, etc.)
     int capacity = 0;           // Maximum liquid capacity
     int remaining = 0;          // Current amount of liquid
-    bool poisoned = false;      // Whether the liquid is poisoned
+    std::vector<int> effects;   // Effect IDs applied to this liquid instance (poison, buffs, etc.)
+    bool identified = false;    // Whether the liquid type is known (lost on transfer to others)
+};
+
+/** Food properties */
+struct FoodInfo {
+    int fillingness = 10;       // How filling the food is (affects nourished buff duration)
+    std::vector<int> effects;   // Effect IDs applied when consumed (poison, buffs, etc.)
 };
 
 /** Effect flags - magical effects granted by objects when equipped */
@@ -242,7 +258,13 @@ enum class ObjectFlag {
     TwoHanded = 36,     // Requires both hands to wield
     Thrown = 37,        // Can be thrown as weapon
     Poison = 38,        // Coated with poison
-    Enhanced = 39       // Magically enhanced
+    Enhanced = 39,      // Magically enhanced
+
+    // Liquid source flags
+    TrustedSource = 40, // Fountain/keg in safe area - filling gives identified liquid
+
+    // Weapon grip flags
+    Versatile = 41      // Can be wielded one-handed or two-handed (use 'grip' command to toggle)
 };
 
 /** Modern Object class inheriting from Entity */
@@ -300,6 +322,9 @@ public:
 
     /** Check if object is a message board */
     bool is_board() const { return type_ == ObjectType::Board; }
+
+    /** Check if object is a touchstone (home point setter) */
+    bool is_touchstone() const { return type_ == ObjectType::Touchstone; }
 
     /** Get board number for board objects (maps to Board.id in database) */
     int board_number() const { return board_number_; }
@@ -365,9 +390,24 @@ public:
     
     /** Get damage profile (for weapons) */
     const DamageProfile& damage_profile() const { return damage_profile_; }
-    
+
     /** Set damage profile */
     void set_damage_profile(const DamageProfile& profile) { damage_profile_ = profile; }
+
+    /** Get damage dice count (for weapons) */
+    int damage_dice_num() const { return damage_profile_.dice_count; }
+
+    /** Get damage dice size (for weapons) */
+    int damage_dice_size() const { return damage_profile_.dice_sides; }
+
+    /** Get damage bonus (for weapons) */
+    int damage_bonus() const { return damage_profile_.damage_bonus; }
+
+    /** Get weapon speed category
+     * Converts the Weapon's numeric speed (1-10) to WeaponSpeed enum
+     * Non-weapon objects return Medium as default
+     */
+    WeaponSpeed weapon_speed() const;
     
     /** Get container info (for containers) */
     const ContainerInfo& container_info() const { return container_info_; }
@@ -389,6 +429,12 @@ public:
 
     /** Check if container has liquid */
     bool has_liquid() const { return liquid_info_.remaining > 0; }
+
+    /** Get food info (for consumable food) */
+    const FoodInfo& food_info() const { return food_info_; }
+
+    /** Set food properties */
+    void set_food_info(const FoodInfo& info) { food_info_ = info; }
 
     /** Get armor class bonus (for armor) */
     int armor_class() const { return armor_class_; }
@@ -428,12 +474,30 @@ public:
     
     /** Get entity type name */
     std::string_view type_name() const override { return "Object"; }
-    
+
     /** Validation */
     Result<void> validate() const override;
-    
-    /** Get formatted object name with condition */
-    std::string display_name_with_condition(bool with_article = false) const;
+
+    /** Override matches_keyword to also match liquid type for identified drink containers */
+    bool matches_keyword(std::string_view keyword) const override;
+
+    /** Override display_name to use dynamic article and base_name for drink/container state */
+    std::string display_name(bool with_article = false) const override;
+
+    /** Get display name with optional forced identification (for shop displays)
+     * @param with_article Include article (a/an/the)
+     * @param force_identified Treat as identified even if flag not set
+     */
+    std::string display_name_full(bool with_article, bool force_identified) const;
+
+    /** Get fullness descriptor for drink containers and containers (e.g., "full", "half-full", "empty") */
+    std::string_view fullness_descriptor() const;
+
+    /** Get formatted object name with condition
+     * @param with_article Include article (a/an/the)
+     * @param force_identified Treat as identified even if flag not set (for shop displays)
+     */
+    std::string display_name_with_condition(bool with_article = false, bool force_identified = false) const;
     
     /** Get quality description based on condition */
     std::string_view quality_description() const;
@@ -441,6 +505,14 @@ public:
     /** Examine description - detailed text shown when looking at the object */
     std::string_view examine_description() const { return examine_description_; }
     void set_examine_description(std::string_view desc) { examine_description_ = desc; }
+
+    /** Article for dynamic name building (empty=a/an, "the", "some", null=none) */
+    const std::optional<std::string>& article() const { return article_; }
+    void set_article(std::optional<std::string> art) { article_ = std::move(art); }
+
+    /** Base name without article for dynamic name building */
+    std::string_view base_name() const { return base_name_; }
+    void set_base_name(std::string_view name) { base_name_ = name; }
 
     /** Extra description management */
     void add_extra_description(const ExtraDescription& extra_desc);
@@ -481,8 +553,11 @@ private:
     ContainerInfo container_info_;
     LightInfo light_info_;
     LiquidInfo liquid_info_;
+    FoodInfo food_info_;
     std::string examine_description_;  // Detailed description when examined
     std::vector<ExtraDescription> extra_descriptions_;
+    std::optional<std::string> article_;  // Article for dynamic display (nullopt=a/an, ""=none, "the", "some")
+    std::string base_name_;               // Name without article for dynamic display
 };
 
 /** Specialized object types */
@@ -574,6 +649,7 @@ public:
     std::span<const std::shared_ptr<Object>> get_contents() const;
     size_t contents_count() const { return contents_.size(); }
     bool is_empty() const { return contents_.empty(); }
+    bool is_full() const { return current_items_ >= container_info().capacity; }
     
     /** Update capacity tracking - deprecated, use add_item/remove_item */
     void add_item_tracking(int weight = 1) { 

@@ -472,6 +472,19 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         return std::unexpected(prereq_check.error());
     }
 
+    // Determine spell circle for damage calculation
+    // This is used by the formula context for base_damage
+    int spell_circle = 1; // Default for non-spell abilities
+    if (ability->type == WorldQueries::AbilityType::Spell) {
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (player) {
+            const auto* learned = player->get_ability(ability->id);
+            if (learned && learned->circle > 0) {
+                spell_circle = learned->circle;
+            }
+        }
+    }
+
     // Handle toggle abilities
     if (ability->is_toggle) {
         // Check if this toggle is already active
@@ -545,9 +558,19 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
 
     // Execute effects against all targets
     AbilityExecutionResult result;
-    std::vector<std::string> all_attacker_msgs;
+    std::vector<std::string> all_attacker_msgs;  // Per-target damage messages
     std::vector<std::string> all_room_msgs;
-    std::vector<std::string> all_dice_details;  // Collect dice details from all effects
+    std::vector<std::string> all_dice_details;  // Collect dice details from all effects (for single target)
+    std::vector<std::shared_ptr<Actor>> damaged_targets;  // Track who was damaged for combat
+
+    // Per-target tracking: (target, damage, dice_details)
+    struct TargetResult {
+        std::shared_ptr<Actor> target;
+        int damage;
+        std::string dice_details;
+    };
+    std::vector<TargetResult> target_results;
+
     bool any_effect_succeeded = false;
 
     for (const auto& current_target : targets) {
@@ -570,6 +593,7 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         effect_ctx.actor = ctx.actor;
         effect_ctx.target = current_target;
         effect_ctx.skill_level = skill_level;
+        effect_ctx.spell_circle = spell_circle;
         effect_ctx.ability_name = ability->name;
         effect_ctx.build_formula_context();
 
@@ -582,8 +606,9 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
             continue;
         }
 
-        // Aggregate results
+        // Aggregate results for this target
         int target_damage = 0;
+        std::string target_dice_details;
         for (const auto& effect_result : *effects_result) {
             result.effect_results.push_back(effect_result);
             if (effect_result.success) {
@@ -595,27 +620,44 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
                 } else if (effect_result.type == EffectType::Heal) {
                     result.total_healing += effect_result.value;
                 }
-                // Collect dice details from effects (for showdice)
+                // Collect dice details from effects (for showdice) - per target
                 if (!effect_result.dice_details.empty()) {
                     all_dice_details.push_back(effect_result.dice_details);
+                    // Accumulate this target's dice details
+                    if (!target_dice_details.empty()) {
+                        target_dice_details += " ";
+                    }
+                    target_dice_details += effect_result.dice_details;
                 }
             }
         }
 
-        // Build per-target damage summary (shown in parentheses)
+        // Track per-target damage for message generation and combat
         if (target_damage > 0) {
-            all_attacker_msgs.push_back(fmt::format("({})", target_damage));
+            damaged_targets.push_back(current_target);
+            target_results.push_back({current_target, target_damage, target_dice_details});
         }
 
         // Send damage message to target (for AOE - single target uses result.target_message)
         if (ability->is_area && current_target != ctx.actor && target_damage > 0) {
-            std::string target_dmg_msg = fmt::format("{} hits you for {} damage!",
-                ctx.actor->display_name(), target_damage);
-            // Add dice details if target has ShowDiceRolls enabled
-            if (wants_dice_details(current_target) && !all_dice_details.empty()) {
-                target_dmg_msg += all_dice_details.back();  // Most recent dice details for this target
+            std::string target_dmg_msg = fmt::format("{}'s {} hits you for {} damage!",
+                ctx.actor->display_name(), ability->name, target_damage);
+            // Add this target's specific dice details if they have ShowDiceRolls enabled
+            if (wants_dice_details(current_target) && !target_dice_details.empty()) {
+                target_dmg_msg += " " + target_dice_details;
             }
             current_target->send_message(target_dmg_msg);
+        }
+    }
+
+    // Initiate combat with all damaged targets for violent abilities
+    if (ability->violent && !damaged_targets.empty()) {
+        for (const auto& damaged_target : damaged_targets) {
+            if (damaged_target != ctx.actor) {
+                // Add combat pair for each damaged target
+                // Uses add_combat_pair to allow multiple opponents (for AOE)
+                CombatManager::add_combat_pair(ctx.actor, damaged_target);
+            }
         }
     }
 
@@ -634,14 +676,39 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
         // Use custom database messages (processed with template variables)
         if (result.success) {
             if (ability->is_area) {
-                // For AOE, use a generic message about the area effect
-                result.attacker_message = process_message_template(
-                    custom_msgs->success_to_caster, ctx.actor, nullptr, result.total_damage);
-                result.room_message = process_message_template(
-                    custom_msgs->success_to_room, ctx.actor, nullptr, result.total_damage);
-                // Append individual damage if any
-                for (const auto& msg : all_attacker_msgs) {
-                    result.attacker_message += " " + msg;
+                // For AOE: First show cast message, then per-target hit messages
+                // Generate a "You cast X!" style message first (using success_to_self if available)
+                if (!custom_msgs->success_to_self.empty()) {
+                    result.attacker_message = process_message_template(
+                        custom_msgs->success_to_self, ctx.actor, ctx.actor, result.total_damage);
+                } else {
+                    result.attacker_message = fmt::format("You unleash {}!", ability->name);
+                }
+
+                // Generate per-target hit messages using the template
+                // Each target gets their own dice roll based on their stats
+                for (const auto& tr : target_results) {
+                    std::string target_hit_msg = process_message_template(
+                        custom_msgs->success_to_caster, ctx.actor, tr.target, tr.damage);
+                    target_hit_msg += fmt::format(" ({})", tr.damage);
+
+                    // Add this target's specific dice details if caster wants them
+                    if (wants_dice_details(ctx.actor) && !tr.dice_details.empty()) {
+                        target_hit_msg += " " + tr.dice_details;
+                    }
+
+                    result.attacker_message += "\n" + target_hit_msg;
+                }
+
+                // Room message: announce the spell, mention all affected targets
+                if (!custom_msgs->success_to_room.empty() && !damaged_targets.empty()) {
+                    result.room_message = process_message_template(
+                        custom_msgs->success_to_room, ctx.actor, damaged_targets[0], result.total_damage);
+                    if (damaged_targets.size() > 1) {
+                        result.room_message += fmt::format(" and {} other{}!",
+                            damaged_targets.size() - 1,
+                            damaged_targets.size() > 2 ? "s" : "");
+                    }
                 }
             } else {
                 // Check if this is a self-cast (target is the caster, or null for non-violent self-target)
@@ -756,8 +823,8 @@ std::expected<void, Error> AbilityExecutor::check_prerequisites(
                        ability.plain_name)));
     }
 
-    // Check if violent ability requires target
-    if (ability.violent && !target) {
+    // Check if violent ability requires target (AOE spells don't need explicit targets)
+    if (ability.violent && !target && !ability.is_area) {
         return std::unexpected(Errors::InvalidArgument("target",
             fmt::format("{} requires a target", ability.plain_name)));
     }
