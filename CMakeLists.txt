@@ -715,9 +715,19 @@ add_executable(test_database
     src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
+    # Scripting system
+    src/scripting/script_engine.cpp
+    src/scripting/trigger_manager.cpp
+    src/scripting/coroutine_scheduler.cpp
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
+    src/database/trigger_queries.cpp
+    # Event publishing
+    src/events/event_publisher.cpp
 )
 
-target_include_directories(test_database PRIVATE src)
+target_include_directories(test_database PRIVATE src ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(test_database PRIVATE
     fmt::fmt
@@ -729,6 +739,9 @@ target_link_libraries(test_database PRIVATE
     PostgreSQL::PostgreSQL
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(test_database PRIVATE
@@ -809,9 +822,19 @@ add_executable(test_database_comprehensive
     src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
+    # Scripting system
+    src/scripting/script_engine.cpp
+    src/scripting/trigger_manager.cpp
+    src/scripting/coroutine_scheduler.cpp
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
+    src/database/trigger_queries.cpp
+    # Event publishing
+    src/events/event_publisher.cpp
 )
 
-target_include_directories(test_database_comprehensive PRIVATE src)
+target_include_directories(test_database_comprehensive PRIVATE src ${HIREDIS_INCLUDE_DIRS})
 
 target_link_libraries(test_database_comprehensive PRIVATE
     fmt::fmt
@@ -823,6 +846,9 @@ target_link_libraries(test_database_comprehensive PRIVATE
     PostgreSQL::PostgreSQL
     OpenSSL::Crypto
     crypt
+    lua
+    sol2::sol2
+    ${HIREDIS_LIBRARIES}
 )
 
 target_compile_definitions(test_database_comprehensive PRIVATE
