@@ -8,11 +8,69 @@
 #include <atomic>
 #include <chrono>
 #include <csignal>
+#include <cstdlib>
 #include <cxxopts.hpp>
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <thread>
+
+/**
+ * Load environment variables from a .env file.
+ * This allows TLS certificates, logging, and other settings to be configured
+ * in .env without needing to export them in the shell.
+ *
+ * @param env_path Path to the .env file
+ * @return Number of variables loaded, or -1 on error
+ */
+int load_dotenv(const std::string& env_path) {
+    if (!std::filesystem::exists(env_path)) {
+        return 0; // Not an error, just no file
+    }
+
+    std::ifstream file(env_path);
+    if (!file.is_open()) {
+        return -1;
+    }
+
+    int count = 0;
+    std::string line;
+    while (std::getline(file, line)) {
+        // Skip empty lines and comments
+        if (line.empty() || line[0] == '#') {
+            continue;
+        }
+
+        // Find KEY=VALUE
+        auto equals_pos = line.find('=');
+        if (equals_pos == std::string::npos) {
+            continue;
+        }
+
+        std::string key = line.substr(0, equals_pos);
+        std::string value = line.substr(equals_pos + 1);
+
+        // Trim whitespace from key
+        while (!key.empty() && std::isspace(key.front())) key.erase(0, 1);
+        while (!key.empty() && std::isspace(key.back())) key.pop_back();
+
+        // Trim whitespace and quotes from value
+        while (!value.empty() && std::isspace(value.front())) value.erase(0, 1);
+        while (!value.empty() && std::isspace(value.back())) value.pop_back();
+        if (value.size() >= 2 && value.front() == '"' && value.back() == '"') {
+            value = value.substr(1, value.size() - 2);
+        }
+
+        // Only set if not already in environment (don't override shell exports)
+        if (std::getenv(key.c_str()) == nullptr) {
+            setenv(key.c_str(), value.c_str(), 0);
+            ++count;
+        }
+    }
+
+    return count;
+}
 
 // Global server instances for signal handling
 std::unique_ptr<ModernMUDServer> g_server;
@@ -81,13 +139,13 @@ int main(int argc, char *argv[]) {
         // Parse command line options
         cxxopts::Options options("fierymud", "Modern FieryMUD Server v3.0");
 
-        options.add_options()("h,help", "Show help message")(
-            "c,config", "Configuration file path", cxxopts::value<std::string>()->default_value("config/prod.json"))(
-            "p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4003"))(
-            "l,log-level", "Log level (debug, info, warn, error)", cxxopts::value<std::string>()->default_value("info"))(
-            "s,tls", "Enable TLS/SSL support")(
-            "d,daemon", "Run as daemon")("t,test", "Test configuration and exit")("v,version",
-                                                                                  "Show version information");
+        options.add_options()
+            ("h,help", "Show help message")
+            ("e,env", "Path to .env file", cxxopts::value<std::string>()->default_value(".env"))
+            ("p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4003"))
+            ("d,database", "Database name override", cxxopts::value<std::string>())
+            ("l,log-level", "Log level (trace, debug, info, warn, error)", cxxopts::value<std::string>()->default_value("info"))
+            ("v,version", "Show version information");
 
         auto result = options.parse(argc, argv);
 
@@ -95,10 +153,11 @@ int main(int argc, char *argv[]) {
         if (result.count("help")) {
             std::cout << options.help() << std::endl;
             std::cout << "\nExamples:\n";
-            std::cout << "  fierymud                         # Run with default config\n";
-            std::cout << "  fierymud -c my_config.json       # Use custom config\n";
-            std::cout << "  fierymud -p 4003                 # Default port (v3), legacy uses 4000\n";
-            std::cout << "  fierymud -l debug                # Enable debug logging\n";
+            std::cout << "  fierymud                    # Run with defaults (.env in cwd)\n";
+            std::cout << "  fierymud -e /path/to/.env   # Use specific .env file\n";
+            std::cout << "  fierymud -p 4000            # Override port\n";
+            std::cout << "  fierymud -d fieryprod       # Use production database\n";
+            std::cout << "  fierymud -l debug           # Enable debug logging\n";
             return 0;
         }
 
@@ -110,55 +169,41 @@ int main(int argc, char *argv[]) {
             return 0;
         }
 
-        // Extract configuration
-        ServerConfig config;
-        config.port = std::stoi(result["port"].as<std::string>());
-        config.log_level = result["log-level"].as<std::string>();
-
-        std::string config_file = result["config"].as<std::string>();
-
-        // Load configuration file if it exists
-        if (std::filesystem::exists(config_file)) {
-            auto load_result = ServerConfig::load_from_file(config_file);
-            if (!load_result) {
-                std::cerr << "Failed to load configuration: " << load_result.error().message << "\n";
-                return 1;
-            }
-            config = load_result.value();
-
-            // Override port if specified on command line
-            if (result.count("port")) {
-                config.port = std::stoi(result["port"].as<std::string>());
-            }
-            // Override log level if specified on command line
-            if (result.count("log-level")) {
-                config.log_level = result["log-level"].as<std::string>();
-            }
-            
-            // Override TLS setting if specified on command line
-            if (result.count("tls")) {
-                config.enable_tls = true;
-            }
-        } else {
-            std::cout << "Configuration file not found: " << config_file << "\n";
-            std::cout << "Using default configuration with port " << config.port << "\n";
-            
-            // Apply TLS setting even without config file
-            if (result.count("tls")) {
-                config.enable_tls = true;
-            }
+        // Load .env file (command line override or default)
+        std::string env_file = result["env"].as<std::string>();
+        int env_loaded = load_dotenv(env_file);
+        if (env_loaded > 0) {
+            std::cout << "Loaded " << env_loaded << " settings from " << env_file << "\n";
+        } else if (env_loaded < 0) {
+            std::cerr << "Warning: Could not read .env file: " << env_file << "\n";
         }
 
-        // Test mode
-        if (result.count("test")) {
-            std::cout << "Testing configuration...\n";
-            auto validate_result = config.validate();
-            if (!validate_result) {
-                std::cerr << "Configuration validation failed: " << validate_result.error().message << "\n";
-                return 1;
-            }
-            std::cout << "Configuration is valid.\n";
-            return 0;
+        // Database override: command line takes precedence over .env
+        if (result.count("database")) {
+            std::string db_name = result["database"].as<std::string>();
+            setenv("POSTGRES_DB", db_name.c_str(), 1); // 1 = overwrite existing
+            std::cout << "Using database: " << db_name << "\n";
+        }
+
+        // Build configuration from environment (set by .env or shell)
+        ServerConfig config;
+
+        // Port: command line > environment > default
+        if (result.count("port")) {
+            config.port = std::stoi(result["port"].as<std::string>());
+        } else if (const char* port_env = std::getenv("PORT")) {
+            config.port = std::stoi(port_env);
+        } else {
+            config.port = 4003;
+        }
+
+        // Log level: command line > environment > default
+        if (result.count("log-level")) {
+            config.log_level = result["log-level"].as<std::string>();
+        } else if (const char* log_env = std::getenv("LOG_LEVEL")) {
+            config.log_level = log_env;
+        } else {
+            config.log_level = "info";
         }
 
         // Setup signal handlers

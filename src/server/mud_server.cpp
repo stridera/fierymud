@@ -573,7 +573,7 @@ Result<void> ModernMUDServer::initialize_database() {
     logger->info("Initializing database connection pool");
 
     // Load database configuration from .env file
-    auto db_config_result = DatabaseConfig::from_env("../.env");
+    auto db_config_result = DatabaseConfig::from_env(".env");
     if (!db_config_result) {
         logger->error("Failed to load database configuration: {}", db_config_result.error().message);
         return std::unexpected(db_config_result.error());
