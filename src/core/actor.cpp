@@ -1890,14 +1890,13 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
         mobile->set_short_description(base_entity->short_description());
         
         // Parse mobile-specific properties
-        if (json.contains("aggressive")) {
-            mobile->set_aggressive(json["aggressive"].get<bool>());
+        if (json.contains("aggro_condition")) {
+            auto cond_val = json["aggro_condition"];
+            if (!cond_val.is_null() && cond_val.is_string()) {
+                mobile->set_aggro_condition(cond_val.get<std::string>());
+            }
         }
-        
-        if (json.contains("aggression_level")) {
-            mobile->set_aggression_level(json["aggression_level"].get<int>());
-        }
-        
+
         // Parse alignment
         if (json.contains("alignment")) {
             int alignment = json["alignment"].get<int>();
@@ -1912,8 +1911,6 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                     // Handle MobFlags that don't map to ActorFlags
                     if (flag_name == "TEACHER") {
                         mobile->set_teacher(true);
-                    } else if (flag_name == "AGGRESSIVE") {
-                        mobile->set_aggressive(true);
                     } else if (auto flag = ActorUtils::parse_flag(flag_name)) {
                         // Standard ActorFlag
                         mobile->set_flag(flag.value(), true);

@@ -311,6 +311,7 @@ target_link_libraries(fierymud PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )
@@ -467,6 +468,7 @@ target_link_libraries(unit_tests PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )
@@ -497,6 +499,7 @@ target_link_libraries(stable_tests PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )
@@ -530,6 +533,7 @@ target_link_libraries(integration_tests PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )
@@ -563,6 +567,7 @@ target_link_libraries(tests PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )
@@ -756,6 +761,7 @@ target_link_libraries(test_database PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )
@@ -868,6 +874,7 @@ target_link_libraries(test_database_comprehensive PRIVATE
     OpenSSL::Crypto
     crypt
     lua
+    ${CMAKE_DL_LIBS}
     sol2::sol2
     ${HIREDIS_LIBRARIES}
 )

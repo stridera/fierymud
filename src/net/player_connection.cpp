@@ -936,7 +936,7 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     // Add player to the world server's online players list
     world_server_->add_player(player_);
 
-    // Update the connection->actor mapping (replaces the initial Guest NetworkedPlayer)
+    // Set the connection->actor mapping now that login is complete
     world_server_->set_actor_for_connection(shared_from_this(), player_);
 
     transition_to(ConnectionState::Playing);

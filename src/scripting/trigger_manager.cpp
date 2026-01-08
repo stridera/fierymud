@@ -676,14 +676,14 @@ TriggerResult TriggerManager::dispatch_fight(
     }
 
     auto entity_id = owner->id();
-    spdlog::info("dispatch_fight: checking triggers for {} (id:{}:{})",
+    spdlog::trace("dispatch_fight: checking triggers for {} (id:{}:{})",
                  owner->name(), entity_id.zone_id(), entity_id.local_id());
 
     auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::FIGHT);
-    spdlog::info("dispatch_fight: found {} FIGHT triggers", triggers.size());
+    spdlog::trace("dispatch_fight: found {} FIGHT triggers", triggers.size());
 
     for (const auto& trigger : triggers) {
-        spdlog::info("dispatch_fight: executing trigger '{}'", trigger->name);
+        spdlog::trace("dispatch_fight: executing trigger '{}'", trigger->name);
         auto context = ScriptContext::Builder()
             .set_trigger(trigger)
             .set_owner(owner)
@@ -692,13 +692,13 @@ TriggerResult TriggerManager::dispatch_fight(
             .build();
 
         auto result = execute_trigger(trigger, context);
-        spdlog::info("dispatch_fight: trigger '{}' returned {}", trigger->name, static_cast<int>(result));
+        spdlog::trace("dispatch_fight: trigger '{}' returned {}", trigger->name, static_cast<int>(result));
         if (result == TriggerResult::Halt) {
             return TriggerResult::Halt;
         }
     }
 
-    spdlog::info("dispatch_fight: done");
+    spdlog::trace("dispatch_fight: done");
     return TriggerResult::Continue;
 }
 

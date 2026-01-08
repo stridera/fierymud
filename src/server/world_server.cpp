@@ -523,7 +523,7 @@ void WorldServer::remove_player_connection(std::shared_ptr<PlayerConnection> con
 void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> connection, std::shared_ptr<Actor> actor) {
     if (!running_.load()) return;  // Skip during shutdown
     asio::post(world_strand_, [this, connection, actor]() {
-        // Remove old actor from its room before replacing (prevents Guest characters from being left behind)
+        // Remove old actor from its room if replacing an existing actor
         auto old_it = connection_actors_.find(connection);
         if (old_it != connection_actors_.end() && old_it->second) {
             auto old_actor = old_it->second;
@@ -534,6 +534,9 @@ void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> con
             }
         }
         connection_actors_[connection] = actor;
+        if (actor) {
+            Log::info("Player '{}' logged in. Online players: {}", actor->name(), connection_actors_.size());
+        }
     });
 }
 
@@ -554,24 +557,11 @@ void WorldServer::handle_player_reconnection(std::shared_ptr<PlayerConnection> o
             active_connections_.erase(active_it);
         }
 
-        // Remove the new connection's Guest from its room before replacing with the real player
-        // (The new connection had a Guest created when it connected, which needs cleanup)
-        auto new_it = connection_actors_.find(new_connection);
-        if (new_it != connection_actors_.end() && new_it->second) {
-            auto guest_actor = new_it->second;
-            if (auto room = guest_actor->current_room()) {
-                room->remove_actor(guest_actor->id());
-                Log::debug("Removed Guest '{}' from room {} during reconnection for '{}'",
-                          guest_actor->name(), room->id(), player->name());
-            }
-        }
-
         // Add new connection with the player as its actor
         connection_actors_[new_connection] = player;
         active_connections_.push_back(new_connection);
 
-        Log::info("Player '{}' reconnection: transferred from old to new connection in WorldServer",
-                  player->name());
+        Log::info("Player '{}' reconnected. Online players: {}", player->name(), connection_actors_.size());
     });
 }
 
@@ -607,7 +597,7 @@ std::vector<std::shared_ptr<Player>> WorldServer::get_online_players() const {
 std::vector<std::shared_ptr<Actor>> WorldServer::get_online_actors() const {
     // Extract all Actor objects from active connections
     std::vector<std::shared_ptr<Actor>> actors;
-    
+
     // Note: This accesses connection_actors_ which should be thread-safe for const access
     // since we're only reading the map, not modifying it
     for (const auto& [connection, actor] : connection_actors_) {
@@ -615,8 +605,20 @@ std::vector<std::shared_ptr<Actor>> WorldServer::get_online_actors() const {
             actors.push_back(actor);
         }
     }
-    
+
     return actors;
+}
+
+std::vector<std::shared_ptr<PlayerConnection>> WorldServer::get_active_connections() const {
+    return active_connections_;
+}
+
+std::shared_ptr<Actor> WorldServer::get_actor_for_connection(std::shared_ptr<PlayerConnection> connection) const {
+    auto it = connection_actors_.find(connection);
+    if (it != connection_actors_.end()) {
+        return it->second;
+    }
+    return nullptr;
 }
 
 // Private strand-based operations
@@ -647,18 +649,10 @@ void WorldServer::handle_player_connection(std::shared_ptr<PlayerConnection> con
     active_connections_.push_back(connection);
     total_connections_.fetch_add(1);
 
-    // Create a persistent player for this connection
-    auto player = std::make_shared<NetworkedPlayer>(connection, "Guest");
-    player->initialize(); // Place in starting room
-    connection_actors_[connection] = player;
+    // Don't create a player yet - wait until login completes
+    // The real player will be set via set_actor_for_connection() after login
 
-    Log::info("Player connected. Active connections: {}", active_connections_.size());
-
-    // Send additional welcome information
-    connection->send_message("Type 'help' for available commands.\r\n");
-
-    // Send initial room info via GMCP (if client supports it)
-    send_room_info_to_player(connection);
+    Log::info("Connection established. Active connections: {}", active_connections_.size());
 }
 
 void WorldServer::handle_player_disconnection(std::shared_ptr<PlayerConnection> connection) {
@@ -667,14 +661,17 @@ void WorldServer::handle_player_disconnection(std::shared_ptr<PlayerConnection> 
     auto it = std::find(active_connections_.begin(), active_connections_.end(), connection);
     if (it != active_connections_.end()) {
         active_connections_.erase(it);
-        Log::info("Player disconnected. Active connections: {}", active_connections_.size());
     }
 
-    // Clean up the associated actor
+    // Clean up the associated actor (if they logged in)
     auto actor_it = connection_actors_.find(connection);
     if (actor_it != connection_actors_.end()) {
+        auto player_name = actor_it->second ? actor_it->second->name() : "unknown";
+        Log::info("Player '{}' disconnected. Active connections: {}", player_name, active_connections_.size());
         // Actor destructor will handle room cleanup
         connection_actors_.erase(actor_it);
+    } else {
+        Log::info("Connection closed (not logged in). Active connections: {}", active_connections_.size());
     }
 }
 
@@ -765,20 +762,16 @@ void WorldServer::perform_mob_activity() {
         // Skip mobs already in combat
         if (mobile->is_fighting()) continue;
 
-        // Check for any type of aggression flag
-        bool is_basic_aggro = mobile->is_aggressive();
-        bool is_aggro_good = mobile->has_flag(MobFlag::AggroGood);
-        bool is_aggro_evil = mobile->has_flag(MobFlag::AggroEvil);
-        bool is_aggro_neutral = mobile->has_flag(MobFlag::AggroNeutral);
-        bool has_any_aggro = is_basic_aggro || is_aggro_good || is_aggro_evil || is_aggro_neutral;
-
-        if (!has_any_aggro) continue;
+        // Check if mob has aggro_condition set (Lua expression from database)
+        if (!mobile->is_aggressive()) continue;
 
         auto room = mobile->current_room();
         if (!room) {
             Log::debug("Aggressive mob '{}' has no current room!", mobile->name());
             continue;
         }
+
+        const auto& aggro_condition = mobile->aggro_condition();
 
         // Look for players in the room to attack
         for (const auto& actor : room->contents().actors) {
@@ -800,65 +793,70 @@ void WorldServer::perform_mob_activity() {
                 continue;
             }
 
-            // Check if this mob should attack this player based on aggression type
+            // Evaluate aggro_condition - simple pattern matching for now
+            // TODO: Implement proper Lua evaluation for complex conditions
             int player_align = actor->stats().alignment;
             bool should_attack = false;
             std::string attack_reason;
 
-            if (is_basic_aggro) {
-                // Basic aggressive - attacks everyone
+            if (!aggro_condition || aggro_condition->empty()) {
+                continue;  // No condition set, skip
+            } else if (*aggro_condition == "true") {
+                // Attacks everyone
                 should_attack = true;
-                attack_reason = "aggressive";
-            } else if (is_aggro_good && is_good_alignment(player_align)) {
+                attack_reason = "aggressive (all)";
+            } else if (aggro_condition->find("ALIGN.EVIL") != std::string::npos ||
+                       aggro_condition->find("<= -350") != std::string::npos) {
+                // Attacks evil-aligned players
+                if (is_evil_alignment(player_align)) {
+                    should_attack = true;
+                    attack_reason = fmt::format("aggro-evil (player align: {})", player_align);
+                }
+            } else if (aggro_condition->find("ALIGN.GOOD") != std::string::npos ||
+                       aggro_condition->find(">= 350") != std::string::npos) {
+                // Attacks good-aligned players
+                if (is_good_alignment(player_align)) {
+                    should_attack = true;
+                    attack_reason = fmt::format("aggro-good (player align: {})", player_align);
+                }
+            } else {
+                // Unknown condition format - treat as aggressive to all for safety
                 should_attack = true;
-                attack_reason = fmt::format("aggro-good (player align: {})", player_align);
-            } else if (is_aggro_evil && is_evil_alignment(player_align)) {
-                should_attack = true;
-                attack_reason = fmt::format("aggro-evil (player align: {})", player_align);
-            } else if (is_aggro_neutral && is_neutral_alignment(player_align)) {
-                should_attack = true;
-                attack_reason = fmt::format("aggro-neutral (player align: {})", player_align);
+                attack_reason = fmt::format("condition: {}", *aggro_condition);
             }
 
             if (!should_attack) {
-                Log::debug("Mob '{}' won't attack '{}' ({} alignment: {}) - no matching aggro flag",
-                          mobile->name(), actor->name(), alignment_name(player_align), player_align);
+                Log::debug("Mob '{}' won't attack '{}' (align: {}) - condition '{}' not met",
+                          mobile->name(), actor->name(), player_align,
+                          aggro_condition ? *aggro_condition : "none");
                 continue;
             }
 
-            // Aggression level check (0-10 scale, higher = more aggressive)
-            // Roll 1-10, if roll <= aggression_level, attack
-            static thread_local std::mt19937 rng(std::random_device{}());
-            std::uniform_int_distribution<int> dist(1, 10);
-            int roll = dist(rng);
-            int aggro_level = mobile->aggression_level();
+            // Always attack when condition matches (no random roll)
+            Log::debug("Aggro check: {} ({}) vs {} - attacking",
+                      mobile->name(), attack_reason, actor->name());
 
-            Log::debug("Aggro check: {} ({}) vs {} - roll {} <= {}?",
-                      mobile->name(), attack_reason, actor->name(), roll, aggro_level);
+            // Start combat!
+            Log::info("{} ({}) attacks {}!",
+                     mobile->name(), attack_reason, actor->name());
 
-            if (roll <= aggro_level) {
-                // Start combat!
-                Log::info("{} ({}, level {}) attacks {}!",
-                         mobile->name(), attack_reason, aggro_level, actor->name());
+            // Use add_combat_pair so multiple mobs can attack same player
+            FieryMUD::CombatManager::add_combat_pair(mobile, actor);
 
-                // Use add_combat_pair so multiple mobs can attack same player
-                FieryMUD::CombatManager::add_combat_pair(mobile, actor);
+            // Send attack message
+            mobile->send_message(fmt::format("You attack {}!", actor->display_name()));
+            actor->send_message(fmt::format("{} attacks you!", mobile->display_name()));
 
-                // Send attack message
-                mobile->send_message(fmt::format("You attack {}!", actor->display_name()));
-                actor->send_message(fmt::format("{} attacks you!", mobile->display_name()));
-
-                // Notify room
-                for (const auto& witness : room->contents().actors) {
-                    if (witness && witness != mobile && witness != actor) {
-                        witness->send_message(fmt::format("{} attacks {}!",
-                            mobile->display_name(), actor->display_name()));
-                    }
+            // Notify room
+            for (const auto& witness : room->contents().actors) {
+                if (witness && witness != mobile && witness != actor) {
+                    witness->send_message(fmt::format("{} attacks {}!",
+                        mobile->display_name(), actor->display_name()));
                 }
-
-                // Only attack one player per tick
-                break;
             }
+
+            // Only attack one player per tick
+            break;
         }
     }
 

@@ -9,6 +9,7 @@
 #include "../database/game_data_cache.hpp"
 #include "../database/world_queries.hpp"
 #include "../game/composer_system.hpp"
+#include "../net/player_connection.hpp"
 #include "../server/world_server.hpp"
 #include "../world/room.hpp"
 #include "../world/time_system.hpp"
@@ -681,6 +682,136 @@ Result<CommandResult> cmd_who(const CommandContext &ctx) {
     std::string who_list = BuiltinCommands::Helpers::format_who_list(online_actors);
     ctx.send(who_list);
 
+    return CommandResult::Success;
+}
+
+// Helper to convert ConnectionState to string
+static std::string connection_state_string(ConnectionState state) {
+    switch (state) {
+        case ConnectionState::Connected: return "Connecting";
+        case ConnectionState::Login: return "Login";
+        case ConnectionState::Playing: return "Playing";
+        case ConnectionState::AFK: return "AFK";
+        case ConnectionState::Linkdead: return "Linkdead";
+        case ConnectionState::Reconnecting: return "Reconnect";
+        case ConnectionState::Disconnecting: return "Closing";
+        case ConnectionState::Disconnected: return "Closed";
+        default: return "Unknown";
+    }
+}
+
+// Helper to format idle time
+static std::string format_idle_time(std::chrono::seconds idle) {
+    auto seconds = idle.count();
+    if (seconds < 60) {
+        return fmt::format("{}s", seconds);
+    } else if (seconds < 3600) {
+        return fmt::format("{}m", seconds / 60);
+    } else {
+        return fmt::format("{}h", seconds / 3600);
+    }
+}
+
+// Helper to format connect time
+static std::string format_connect_time(std::chrono::steady_clock::time_point connect_time) {
+    auto now = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - connect_time);
+    auto seconds = duration.count();
+
+    if (seconds < 60) {
+        return fmt::format("{}s", seconds);
+    } else if (seconds < 3600) {
+        return fmt::format("{}m", seconds / 60);
+    } else if (seconds < 86400) {
+        return fmt::format("{}h{}m", seconds / 3600, (seconds % 3600) / 60);
+    } else {
+        return fmt::format("{}d{}h", seconds / 86400, (seconds % 86400) / 3600);
+    }
+}
+
+Result<CommandResult> cmd_users(const CommandContext &ctx) {
+    // This is an immortal command - show all connections with details
+    auto *world_server = WorldServer::instance();
+    if (!world_server) {
+        ctx.send_error("Server not available.");
+        return CommandResult::InvalidState;
+    }
+
+    auto connections = world_server->get_active_connections();
+
+    if (connections.empty()) {
+        ctx.send_line("No connections.");
+        return CommandResult::Success;
+    }
+
+    std::ostringstream output;
+
+    // Header
+    output << fmt::format("{:<12} {:<10} {:<20} {:>5} {:>8} {:<20} {}\n",
+                          "Name", "State", "Host", "Idle", "Online", "Room", "Client");
+    output << std::string(95, '-') << "\n";
+
+    int playing_count = 0;
+    int total_count = 0;
+
+    for (const auto& conn : connections) {
+        if (!conn) continue;
+
+        total_count++;
+
+        // Get connection info
+        auto state = conn->state();
+        std::string state_str = connection_state_string(state);
+        std::string host = conn->remote_address();
+        std::string idle_str = format_idle_time(conn->idle_time());
+        std::string online_str = format_connect_time(conn->connect_time());
+
+        // Truncate host if too long
+        if (host.length() > 20) {
+            host = host.substr(0, 17) + "...";
+        }
+
+        // Get player name and room if logged in
+        std::string name = "---";
+        std::string room_str = "---";
+        auto actor = world_server->get_actor_for_connection(conn);
+        if (actor) {
+            name = actor->name();
+            if (name.length() > 12) {
+                name = name.substr(0, 9) + "...";
+            }
+            if (auto room = actor->current_room()) {
+                room_str = fmt::format("{} {}", room->id(), room->name());
+                if (room_str.length() > 20) {
+                    room_str = room_str.substr(0, 17) + "...";
+                }
+            }
+            if (state == ConnectionState::Playing) {
+                playing_count++;
+            }
+        }
+
+        // Get client info from GMCP
+        std::string client_str = "---";
+        auto& caps = conn->get_terminal_capabilities();
+        if (!caps.client_name.empty() && caps.client_name != "Unknown") {
+            if (!caps.client_version.empty()) {
+                client_str = fmt::format("{} {}", caps.client_name, caps.client_version);
+            } else {
+                client_str = caps.client_name;
+            }
+        } else if (!caps.terminal_name.empty()) {
+            client_str = caps.terminal_name;
+        }
+
+        output << fmt::format("{:<12} {:<10} {:<20} {:>5} {:>8} {:<20} {}\n",
+                              name, state_str, host, idle_str, online_str, room_str, client_str);
+    }
+
+    output << std::string(95, '-') << "\n";
+    output << fmt::format("{} connections total, {} playing.\n", total_count, playing_count);
+
+    ctx.send(output.str());
     return CommandResult::Success;
 }
 
@@ -1838,6 +1969,13 @@ Result<void> register_commands() {
         .command("who", cmd_who)
         .category("Information")
         .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("users", cmd_users)
+        .category("Information")
+        .privilege(PrivilegeLevel::Helper)
+        .help("Show all connections with details (immortal only)")
         .build();
 
     Commands()

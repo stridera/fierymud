@@ -4,6 +4,7 @@
 #include <spdlog/spdlog.h>
 #include <algorithm>
 #include <cstdlib>
+#include <iostream>
 
 using json = nlohmann::json;
 using namespace asio;
@@ -53,28 +54,46 @@ void AdminServer::start() {
     running_.store(true);
     io_context_ = std::make_unique<io_context>();
 
+    // Create acceptor
+    acceptor_ = std::make_unique<tcp::acceptor>(*io_context_,
+        tcp::endpoint(asio::ip::make_address(bind_address_), port_));
+    acceptor_->set_option(socket_base::reuse_address(true));
+
     spdlog::info("Starting admin server on {}:{}", bind_address_, port_);
 
+    // Start accepting connections
+    start_accept();
+
+    // Run io_context in background thread
     server_thread_ = std::make_unique<std::thread>([this]() {
-        this->run_server();
+        spdlog::info("Admin server listening on {}:{}", bind_address_, port_);
+        io_context_->run();
+        spdlog::debug("Admin server io_context exited");
     });
 }
 
 void AdminServer::stop() {
-    // Always try to join the thread, even if running_ is false
-    // (it could have failed to start but still have a thread to join)
-    running_.store(false);
+    if (!running_.exchange(false)) {
+        return;  // Already stopped
+    }
 
+    spdlog::info("Stopping admin server...");
+
+    // Stop io_context - this cancels all pending async operations
     if (io_context_) {
         io_context_->stop();
     }
 
-    // Must join thread before destruction to avoid std::terminate
+    // Join the thread - should exit quickly now that io_context is stopped
     if (server_thread_ && server_thread_->joinable()) {
-        spdlog::info("Stopping admin server, joining thread...");
         server_thread_->join();
-        spdlog::info("Admin server stopped");
     }
+
+    // Clean up
+    acceptor_.reset();
+    io_context_.reset();
+
+    spdlog::info("Admin server stopped");
 }
 
 void AdminServer::register_handler(const std::string& path, CommandHandler handler) {
@@ -82,35 +101,27 @@ void AdminServer::register_handler(const std::string& path, CommandHandler handl
     spdlog::debug("Registered admin handler for path: {}", path);
 }
 
-void AdminServer::run_server() {
-    try {
-        tcp::acceptor acceptor(*io_context_, tcp::endpoint(asio::ip::make_address(bind_address_), port_));
-        acceptor.set_option(socket_base::reuse_address(true));
-
-        spdlog::info("Admin server listening on {}:{}", bind_address_, port_);
-
-        while (running_.load()) {
-            auto socket = std::make_shared<tcp::socket>(*io_context_);
-
-            std::error_code ec;
-            acceptor.accept(*socket, ec);
-
-            if (ec) {
-                if (running_.load()) {
-                    spdlog::error("Admin server accept error: {}", ec.message());
-                }
-                continue;
-            }
-
-            // Handle connection in a new thread (simple approach for now)
-            std::thread([this, socket]() {
-                this->handle_connection(socket);
-            }).detach();
-        }
-    } catch (const std::exception& e) {
-        spdlog::error("Admin server error: {}", e.what());
-        running_.store(false);
+void AdminServer::start_accept() {
+    if (!running_.load() || !acceptor_) {
+        return;
     }
+
+    auto socket = std::make_shared<tcp::socket>(*io_context_);
+
+    acceptor_->async_accept(*socket, [this, socket](const std::error_code& ec) {
+        if (ec) {
+            if (ec != asio::error::operation_aborted && running_.load()) {
+                spdlog::error("Admin server accept error: {}", ec.message());
+            }
+            return;  // Don't continue accepting on error
+        }
+
+        // Handle connection in the io_context thread (no need for separate thread)
+        handle_connection(socket);
+
+        // Accept next connection
+        start_accept();
+    });
 }
 
 void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {

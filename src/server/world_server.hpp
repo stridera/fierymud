@@ -135,6 +135,8 @@ public:
     // Player access
     std::vector<std::shared_ptr<Player>> get_online_players() const;
     std::vector<std::shared_ptr<Actor>> get_online_actors() const;
+    std::vector<std::shared_ptr<PlayerConnection>> get_active_connections() const;
+    std::shared_ptr<Actor> get_actor_for_connection(std::shared_ptr<PlayerConnection> connection) const;
     
     // Periodic operations (thread-safe - runs on strand)
     void schedule_periodic_cleanup();

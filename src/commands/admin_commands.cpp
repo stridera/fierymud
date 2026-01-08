@@ -1228,156 +1228,201 @@ Result<CommandResult> cmd_mstat(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    // Display mobile statistics
-    ctx.send(fmt::format("<b:cyan>--- Mobile Statistics: {} ---</>", target->short_description()));
-    ctx.send(fmt::format("ID: <b:yellow>{}:{}</>", target->id().zone_id(), target->id().local_id()));
-    if (target->prototype_id().is_valid()) {
-        ctx.send(fmt::format("Prototype: {}:{}",
-            target->prototype_id().zone_id(), target->prototype_id().local_id()));
-    }
-    // Format keywords as comma-separated string
+    // Display mobile statistics - comprehensive output matching legacy stat
+    const auto& stats = target->stats();
+
+    // Header with ID and location
+    ctx.send(fmt::format("MOB '<b:yellow>{}</>' ID: [<b:cyan>{}:{}</>], In room [{}:{}]",
+        target->short_description(),
+        target->id().zone_id(), target->id().local_id(),
+        target->current_room() ? target->current_room()->id().zone_id() : 0,
+        target->current_room() ? target->current_room()->id().local_id() : 0));
+
+    // Keywords
     std::string mob_keywords_str;
     for (const auto& kw : target->keywords()) {
-        if (!mob_keywords_str.empty()) mob_keywords_str += ", ";
+        if (!mob_keywords_str.empty()) mob_keywords_str += "', '";
         mob_keywords_str += kw;
     }
-    ctx.send(fmt::format("Keywords: <b:white>{}</>", mob_keywords_str));
+    ctx.send(fmt::format("Keywords: '{}'", mob_keywords_str));
 
-    // Location
-    auto room = target->current_room();
-    if (room) {
-        ctx.send(fmt::format("Location: {}:{} ({})",
-            room->id().zone_id(), room->id().local_id(), room->name()));
-    } else {
-        ctx.send("Location: <dim>nowhere</>");
+    // Descriptions
+    ctx.send(fmt::format("Short Desc: {}", target->short_description()));
+    ctx.send(fmt::format("Room Desc: {}", target->ground().empty() ? "(none)" : std::string(target->ground())));
+    ctx.send(fmt::format("Look Desc: {}", target->description().empty() ? "(none)" : std::string(target->description())));
+
+    // Basic info line
+    ctx.send(fmt::format("Race: <b:white>{}</>, Size: <b:white>{}</>, Gender: <b:white>{}</>",
+        target->race(), target->size(), target->gender()));
+    ctx.send(fmt::format("Life force: <b:white>{}</>, Composition: <b:white>{}</>",
+        target->life_force(), target->composition()));
+    ctx.send(fmt::format("Class: <b:white>NPC</>, Lev: [<b:yellow>{}</>], XP: [{}], Align: [{:>4}]",
+        stats.level, stats.experience, stats.alignment));
+
+    // Prototype ID if different from instance ID
+    if (target->prototype_id().is_valid() && target->prototype_id() != target->id()) {
+        ctx.send(fmt::format("Prototype: [{}:{}]",
+            target->prototype_id().zone_id(), target->prototype_id().local_id()));
     }
 
-    // Stats
-    const auto& stats = target->stats();
-    ctx.send(fmt::format("\n<b:white>Combat Stats:</>"));
-    ctx.send(fmt::format("  Level: {} | HP: {}/{} | Stamina: {}/{}",
-        stats.level, stats.hit_points, stats.max_hit_points,
+    // Stats table
+    ctx.send("         STR   INT   WIS   DEX   CON   CHA");
+    ctx.send(fmt::format("STATS   {:>4}  {:>4}  {:>4}  {:>4}  {:>4}  {:>4}",
+        stats.strength, stats.intelligence, stats.wisdom,
+        stats.dexterity, stats.constitution, stats.charisma));
+
+    // HP and Stamina
+    ctx.send(fmt::format("HP: [<b:green>{}/{}</>]  Focus: [{}]",
+        stats.hit_points, stats.max_hit_points, stats.focus));
+    ctx.send(fmt::format("Stamina: [<b:cyan>{}/{}</>]",
         stats.stamina, stats.max_stamina));
-    ctx.send(fmt::format("  Accuracy: {} | Attack Power: {} | Evasion: {} | Armor: {}",
-        stats.accuracy, stats.attack_power, stats.evasion, stats.armor_rating));
-
-    ctx.send(fmt::format("\n<b:white>Attributes:</>"));
-    ctx.send(fmt::format("  STR: {} | DEX: {} | CON: {} | INT: {} | WIS: {} | CHA: {}",
-        stats.strength, stats.dexterity, stats.constitution,
-        stats.intelligence, stats.wisdom, stats.charisma));
-
-    // Properties
-    ctx.send(fmt::format("\n<b:white>Properties:</>"));
-    ctx.send(fmt::format("  Race: {} | Gender: {} | Size: {}",
-        target->race(), target->gender(), target->size()));
-    ctx.send(fmt::format("  Life Force: {} | Composition: {} | Damage Type: {}",
-        target->life_force(), target->composition(), target->damage_type()));
-    // Display bare hand damage - handle special cases where dice are invalid
-    const int dam_num = target->bare_hand_damage_dice_num();
-    const int dam_size = target->bare_hand_damage_dice_size();
-    const int dam_bonus = target->bare_hand_damage_dice_bonus();
-    if (dam_num <= 0 || dam_size <= 0) {
-        // Invalid dice values - mob likely uses special attacks/spells
-        if (dam_bonus > 0) {
-            ctx.send(fmt::format("  Bare Hand Damage: +{} (special attack)",
-                dam_bonus));
-        } else {
-            ctx.send("  Bare Hand Damage: None (uses abilities/spells)");
-        }
-    } else {
-        ctx.send(fmt::format("  Bare Hand Damage: {}d{}+{}",
-            dam_num, dam_size, dam_bonus));
-    }
-    ctx.send(fmt::format("  Position: {} | Stance: {}",
-        target->position(), magic_enum::enum_name(target->stance())));
 
     // Money
     const auto& money = target->money();
-    if (money.value() > 0) {
-        ctx.send(fmt::format("  Money: {}", money.to_string(false)));
-    }
+    ctx.send(fmt::format("Coins: [{}]", money.to_string(false)));
 
-    // Aggression info - important for debugging mob AI
-    ctx.send(fmt::format("\n<b:white>Aggression:</>"));
-    ctx.send(fmt::format("  aggression_level: {} | is_aggressive(): {}",
-        target->aggression_level(),
-        target->is_aggressive() ? "<b:red>YES</>" : "no"));
-    ctx.send(fmt::format("  Aggressive: {} | AggroGood: {} | AggroEvil: {} | AggroNeutral: {}",
-        target->has_flag(MobFlag::Aggressive) ? "<b:red>YES</>" : "no",
-        target->has_flag(MobFlag::AggroGood) ? "<b:red>YES</>" : "no",
-        target->has_flag(MobFlag::AggroEvil) ? "<b:red>YES</>" : "no",
-        target->has_flag(MobFlag::AggroNeutral) ? "<b:red>YES</>" : "no"));
+    // Combat stats
+    ctx.send(fmt::format("Accuracy: [{:>3}], Evasion: [{:>3}], Attack Power: [{:>3}]",
+        stats.accuracy, stats.evasion, stats.attack_power));
+    ctx.send(fmt::format("Armor Rating: [{:>3}], DR%%: [{:>3}], Spell Power: [{:>3}]",
+        stats.armor_rating, stats.damage_reduction_percent, stats.spell_power));
+    ctx.send(fmt::format("Perception: [{:>4}], Concealment: [{:>4}]",
+        stats.perception, stats.concealment));
 
-    // Flags - iterate through all set flags using magic_enum
-    ctx.send(fmt::format("\n<b:white>Behavior Flags:</>"));
+    // Resistances
+    ctx.send(fmt::format("Resistances: Fire[{}] Cold[{}] Lightning[{}] Acid[{}] Poison[{}]",
+        stats.resistance_fire, stats.resistance_cold, stats.resistance_lightning,
+        stats.resistance_acid, stats.resistance_poison));
+
+    // Position and combat state
+    auto fighting = target->get_fighting_target();
+    ctx.send(fmt::format("Pos: {}, Fighting: {}",
+        target->position(),
+        fighting ? fmt::format("{}", fighting->short_description()) : "<none>"));
+
+    // Dice
+    const int dam_num = target->bare_hand_damage_dice_num();
+    const int dam_size = target->bare_hand_damage_dice_size();
+    const int dam_bonus = target->bare_hand_damage_dice_bonus();
+    ctx.send(fmt::format("HP Dice: {}d{}+{}, Damage Dice: {}d{}+{}, Attack type: {}",
+        target->hp_dice_num(), target->hp_dice_size(), target->hp_dice_bonus(),
+        dam_num, dam_size, dam_bonus, target->damage_type()));
+
+    // Flags
     std::string behavior_flags;
     for (auto flag : magic_enum::enum_values<MobFlag>()) {
-        if (flag == MobFlag::IsNpc) continue; // Skip the always-set IsNpc flag
         if (target->has_flag(flag)) {
             if (!behavior_flags.empty()) behavior_flags += " ";
             behavior_flags += std::string(magic_enum::enum_name(flag));
         }
     }
-    // Note: Shopkeeper flag is already included in the loop above via MobFlag::Shopkeeper
-    ctx.send(fmt::format("  {}", behavior_flags.empty() ? "none" : behavior_flags));
+    ctx.send(fmt::format("NPC flags: {}", behavior_flags.empty() ? "<None>" : behavior_flags));
+
+    // Aggression condition (Lua expression from database)
+    const auto& aggro = target->aggro_condition();
+    if (aggro.has_value() && !aggro->empty()) {
+        ctx.send(fmt::format("Aggro Condition: <b:red>{}</>", *aggro));
+    }
+
+    // Carrying capacity and inventory
+    auto equipped = target->equipment().get_all_equipped();
+    int total_items = static_cast<int>(target->inventory().item_count());
+    int equipped_count = static_cast<int>(equipped.size());
+    ctx.send(fmt::format("Carrying: {} items, Equipped: {} items", total_items, equipped_count));
+
+    // List inventory if any
+    if (total_items > 0) {
+        ctx.send("Inventory:");
+        int count = 0;
+        for (const auto& item : target->inventory().get_all_items()) {
+            if (!item) continue;
+            ctx.send(fmt::format("  [{}:{}] {}", item->id().zone_id(), item->id().local_id(),
+                item->short_description()));
+            if (++count >= 10) {
+                ctx.send(fmt::format("  ... and {} more", total_items - count));
+                break;
+            }
+        }
+    }
+
+    // List equipment if any
+    if (equipped_count > 0) {
+        ctx.send("Equipment:");
+        for (const auto& item : equipped) {
+            if (!item) continue;
+            ctx.send(fmt::format("  [{}:{}] {}", item->id().zone_id(), item->id().local_id(),
+                item->short_description()));
+        }
+    }
+
+    // Master and followers
+    auto master = target->get_master();
+    if (master) {
+        ctx.send(fmt::format("Master is: {}", master->short_description()));
+    }
+    auto& followers = target->get_followers();
+    if (!followers.empty()) {
+        std::string follower_str;
+        for (const auto& f : followers) {
+            auto follower = f.lock();
+            if (follower) {
+                if (!follower_str.empty()) follower_str += ", ";
+                follower_str += std::string(follower->short_description());
+            }
+        }
+        if (!follower_str.empty()) {
+            ctx.send(fmt::format("Followers are: {}", follower_str));
+        }
+    }
 
     // Effect flags
     const auto& effects = target->effect_flags();
     if (!effects.empty()) {
         std::string effect_str;
         for (const auto& effect : effects) {
-            if (!effect_str.empty()) effect_str += ", ";
+            if (!effect_str.empty()) effect_str += " ";
             effect_str += std::string(magic_enum::enum_name(effect));
         }
-        ctx.send(fmt::format("  Effects: <b:green>{}</>", effect_str));
+        ctx.send(fmt::format("EFF: <b:green>{}</>", effect_str));
+    } else {
+        ctx.send("EFF: <None>");
     }
 
-    // Equipment summary
-    auto equipped = target->equipment().get_all_equipped();
-    if (!equipped.empty()) {
-        ctx.send(fmt::format("\n<b:white>Equipment ({} items):</>", equipped.size()));
-        for (const auto& item : equipped) {
-            if (!item) continue;
-            ctx.send(fmt::format("  [{}:{}] {}",
-                item->id().zone_id(), item->id().local_id(), item->short_description()));
-        }
-    }
-
-    // Inventory summary
-    if (target->inventory().item_count() > 0) {
-        ctx.send(fmt::format("\n<b:white>Inventory ({} items):</>", target->inventory().item_count()));
-        int count = 0;
-        for (const auto& item : target->inventory().get_all_items()) {
-            if (!item) continue;
-            ctx.send(fmt::format("  [{}:{}] {}",
-                item->id().zone_id(), item->id().local_id(), item->short_description()));
-            if (++count >= 10) {
-                ctx.send(fmt::format("  ... and {} more", target->inventory().item_count() - count));
-                break;
+    // Active effects (DoTs, HoTs, etc.)
+    const auto& active = target->active_effects();
+    const auto& dots = target->dot_effects();
+    const auto& hots = target->hot_effects();
+    if (!active.empty() || !dots.empty() || !hots.empty()) {
+        ctx.send("<b:white>Active Effects:</>");
+        for (const auto& eff : active) {
+            if (eff.is_permanent()) {
+                ctx.send(fmt::format("  {} (permanent)", eff.name));
+            } else {
+                ctx.send(fmt::format("  {} ({:.1f} hours remaining)", eff.name, eff.duration_hours));
             }
+        }
+        for (const auto& dot : dots) {
+            ctx.send(fmt::format("  DoT: {} {} dmg ({} ticks left)",
+                dot.flat_damage, dot.damage_type, dot.remaining_ticks));
+        }
+        for (const auto& hot : hots) {
+            ctx.send(fmt::format("  HoT: {} {} heal ({} ticks left)",
+                hot.flat_heal, hot.heal_type, hot.remaining_ticks));
         }
     }
 
     // Trigger/Script information
     auto& trigger_mgr = FieryMUD::TriggerManager::instance();
     if (trigger_mgr.is_initialized()) {
-        // Get triggers by prototype ID (all instances of this mob type share triggers)
         auto trigger_set = trigger_mgr.get_mob_triggers(target->prototype_id());
         if (!trigger_set.empty()) {
-            ctx.send(fmt::format("\n<b:white>Script Information ({} triggers):</>", trigger_set.size()));
-            int index = 1;
+            ctx.send(fmt::format("<b:white>Scripts ({} triggers):</>", trigger_set.size()));
             for (const auto& trigger : trigger_set) {
                 if (!trigger) continue;
-                // Format: index) [zone:id] name - flags (for use with tstat zone:id)
-                ctx.send(fmt::format("  {}) <b:yellow>[{}:{}]</> {} - <b:green>{}</>",
-                    index++,
-                    trigger->zone_id.value_or(0),
-                    trigger->id,
-                    trigger->name,
-                    trigger->flags_string()));
+                ctx.send(fmt::format("  [{}:{}] {} - {}",
+                    trigger->zone_id.value_or(0), trigger->id,
+                    trigger->name, trigger->flags_string()));
             }
-        } else {
-            ctx.send("\n<b:white>Script Information:</> None.");
         }
     }
 
@@ -2286,18 +2331,18 @@ Result<CommandResult> cmd_aggrodebug(const CommandContext &ctx) {
 
         if (auto mob = std::dynamic_pointer_cast<Mobile>(actor)) {
             // It's a mob
-            std::string aggro_flags;
-            if (mob->is_aggressive()) aggro_flags += "AGGRESSIVE ";
-            if (mob->has_flag(MobFlag::AggroGood)) aggro_flags += "AGGRO_GOOD ";
-            if (mob->has_flag(MobFlag::AggroEvil)) aggro_flags += "AGGRO_EVIL ";
-            if (mob->has_flag(MobFlag::AggroNeutral)) aggro_flags += "AGGRO_NEUTRAL ";
-
+            const auto& aggro = mob->aggro_condition();
             bool is_in_spawned = spawned_mobiles.contains(mob->id());
 
-            ctx.send(fmt::format("  [MOB] {} (L{}) - aggro_level:{} flags:[{}] in_spawned:{}",
-                mob->display_name(), level, mob->aggression_level(),
-                aggro_flags.empty() ? "none" : aggro_flags,
-                is_in_spawned ? "<b:green>YES</>" : "<b:red>NO</>"));
+            if (aggro.has_value() && !aggro->empty()) {
+                ctx.send(fmt::format("  [MOB] {} (L{}) - <b:red>aggro: {}</> in_spawned:{}",
+                    mob->display_name(), level, *aggro,
+                    is_in_spawned ? "<b:green>YES</>" : "<b:red>NO</>"));
+            } else {
+                ctx.send(fmt::format("  [MOB] {} (L{}) - <b:green>passive</> in_spawned:{}",
+                    mob->display_name(), level,
+                    is_in_spawned ? "<b:green>YES</>" : "<b:red>NO</>"));
+            }
         } else {
             // It's a player
             ctx.send(fmt::format("  [{}] {} (L{}, align:{} {}) {}",
@@ -2352,32 +2397,14 @@ Result<CommandResult> cmd_aggrodebug(const CommandContext &ctx) {
                 continue;
             }
 
-            bool would_attack = false;
-            std::string reason;
-
-            if (mob->is_aggressive()) {
-                would_attack = true;
-                reason = "AGGRESSIVE";
-            } else if (mob->has_flag(MobFlag::AggroGood) && target_align >= ALIGN_GOOD) {
-                would_attack = true;
-                reason = fmt::format("AGGRO_GOOD (player align {})", target_align);
-            } else if (mob->has_flag(MobFlag::AggroEvil) && target_align <= ALIGN_EVIL) {
-                would_attack = true;
-                reason = fmt::format("AGGRO_EVIL (player align {})", target_align);
-            } else if (mob->has_flag(MobFlag::AggroNeutral) &&
-                       target_align > ALIGN_EVIL && target_align < ALIGN_GOOD) {
-                would_attack = true;
-                reason = fmt::format("AGGRO_NEUTRAL (player align {})", target_align);
-            }
-
-            if (would_attack) {
-                any_attacks_possible = true;
-                ctx.send(fmt::format("  {} vs {} - <b:green>WOULD ATTACK</> ({}), aggro_level:{}",
-                    mob->display_name(), target->display_name(), reason, mob->aggression_level()));
-            } else {
-                ctx.send(fmt::format("  {} vs {} - <dim>no matching aggro flag (player align {})</>",
-                    mob->display_name(), target->display_name(), target_align));
-            }
+            // With Lua-based aggro_condition, we show the condition and relevant target info
+            // Actual evaluation happens in the game AI loop
+            const auto& aggro = mob->aggro_condition();
+            any_attacks_possible = true;
+            ctx.send(fmt::format("  {} vs {} - condition: <b:cyan>{}</> (target align: {})",
+                mob->display_name(), target->display_name(),
+                aggro ? *aggro : "none",
+                target_align));
         }
     }
 

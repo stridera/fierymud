@@ -11,6 +11,7 @@ Result<void> register_commands();
 Result<CommandResult> cmd_look(const CommandContext &ctx);
 Result<CommandResult> cmd_examine(const CommandContext &ctx);
 Result<CommandResult> cmd_who(const CommandContext &ctx);
+Result<CommandResult> cmd_users(const CommandContext &ctx);
 Result<CommandResult> cmd_where(const CommandContext &ctx);
 Result<CommandResult> cmd_inventory(const CommandContext &ctx);
 Result<CommandResult> cmd_equipment(const CommandContext &ctx);

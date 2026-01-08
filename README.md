@@ -3,7 +3,7 @@
 The original vision of FieryMUD was to create a challenging MUD for advanced players. This Fiery is reborn in the hope of bringing back the goals of the past by inflicting certain death on unsuspecting players...
 FieryMUD will continue to grow and change through the coming years and those players who seek challenge and possess imagination will come in search of what the 3D world fails to offer them.
 
-**Play now:** telnet://fierymud.org:4000
+**Play now:** telnet://fierymud.org:4003 | **Secure:** telnets://fierymud.org:4443
 
 ## Prerequisites
 
@@ -96,6 +96,68 @@ The compiled binary will be at `./build/fierymud`.
 
 ## Configuration
 
+### Environment Variables
+
+Copy the example environment file and adjust for your setup:
+
+```bash
+cp .env.example .env
+```
+
+Key environment variables:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `POSTGRES_HOST` | PostgreSQL server host | `localhost` |
+| `POSTGRES_PORT` | PostgreSQL server port | `5432` |
+| `POSTGRES_DB` | Database name | `fierydev` |
+| `POSTGRES_USER` | Database username | `muditor` |
+| `POSTGRES_PASSWORD` | Database password | `password` |
+| `TLS_CERTIFICATE_FILE` | Path to TLS certificate | `certs/server.crt` |
+| `TLS_PRIVATE_KEY_FILE` | Path to TLS private key | `certs/server.key` |
+| `TLS_DH_PARAMS_FILE` | Path to DH parameters | `certs/dhparams.pem` |
+| `LOG_LEVEL` | Logging verbosity | `info` |
+| `LOG_DIRECTORY` | Directory for log files | `logs` |
+
+### TLS/SSL Configuration
+
+The server supports TLS connections on port 4443 (configurable via database). TLS is enabled by default but requires valid certificates.
+
+**Generate self-signed certificates for development:**
+
+```bash
+# Create certs directory
+mkdir -p certs
+
+# Generate certificate and private key
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout certs/server.key -out certs/server.crt \
+  -subj "/CN=localhost/O=FieryMUD/C=US"
+
+# Generate Diffie-Hellman parameters (takes a minute)
+openssl dhparam -out certs/dhparams.pem 2048
+```
+
+**Use Let's Encrypt for production:**
+
+```bash
+# Install certbot and obtain certificate
+sudo certbot certonly --standalone -d fierymud.org
+
+# Set environment variables to point to Let's Encrypt certs
+export TLS_CERTIFICATE_FILE="/etc/letsencrypt/live/fierymud.org/fullchain.pem"
+export TLS_PRIVATE_KEY_FILE="/etc/letsencrypt/live/fierymud.org/privkey.pem"
+export TLS_DH_PARAMS_FILE="/path/to/certs/dhparams.pem"
+```
+
+**Test TLS connection:**
+
+```bash
+openssl s_client -connect localhost:4443
+```
+
+### Library Files
+
 Copy the default library files before running for the first time:
 
 ```bash
@@ -114,7 +176,9 @@ The `lib/` directory structure:
 ./build/fierymud
 ```
 
-Connect via telnet to `localhost:4000` (default port).
+Connect to the server:
+- **Plain text:** `telnet localhost:4003` (default port)
+- **TLS/SSL:** `openssl s_client -connect localhost:4443` or use a TLS-capable MUD client
 
 ## Testing
 

@@ -409,18 +409,15 @@ void ModernMUDServer::stop(bool exit_process) {
     }
 
     // Release work guard so io_context can stop naturally when work is done
-    Log::info("Releasing work guard...");
     if (work_guard_) {
         work_guard_.reset();
     }
 
-    // Stop the io_context first - this causes io_context_.run() to return
-    Log::info("Stopping io_context...");
+    // Stop the io_context - this causes io_context_.run() to return
     io_context_.stop();
 
     // Now join the io_thread - it should complete quickly since io_context is stopped
     if (io_thread_.joinable()) {
-        Log::info("Waiting for io_thread to finish...");
 
         // Use a shared_ptr for the flag so it stays valid even if we detach the watcher
         auto join_completed = std::make_shared<std::atomic<bool>>(false);

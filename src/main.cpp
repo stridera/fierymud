@@ -17,6 +17,8 @@
 // Global server instances for signal handling
 std::unique_ptr<ModernMUDServer> g_server;
 std::unique_ptr<fierymud::AdminServer> g_admin_server;
+std::atomic<bool> g_shutdown_requested{false};
+std::atomic<bool> g_reload_requested{false};
 
 /**
  * Print user-friendly suggestions based on error type.
@@ -57,25 +59,15 @@ void print_error_suggestions(const Error& error) {
 }
 
 void signal_handler(int signal) {
+    // Signal handlers must only set atomic flags - no complex operations!
+    // The main loop will handle the actual shutdown/reload.
     switch (signal) {
     case SIGINT:
     case SIGTERM:
-        std::cout << "\nReceived shutdown signal, stopping server...\n";
-        if (g_admin_server) {
-            g_admin_server->stop();
-        }
-        if (g_server) {
-            g_server->stop();
-        }
+        g_shutdown_requested.store(true);
         break;
     case SIGHUP:
-        std::cout << "Received SIGHUP, reloading configuration...\n";
-        if (g_server) {
-            auto result = g_server->reload_config();
-            if (!result) {
-                std::cerr << "Failed to reload config: " << result.error().message << "\n";
-            }
-        }
+        g_reload_requested.store(true);
         break;
     default:
         break;
@@ -213,9 +205,29 @@ int main(int argc, char *argv[]) {
         g_admin_server->start();
         std::cout << "Admin API running on port " << admin_port << " (localhost only).\n";
 
-        // Main server loop - wait for shutdown
-        while (g_server->is_running()) {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+        // Main server loop - check for shutdown/reload signals
+        while (g_server->is_running() && !g_shutdown_requested.load()) {
+            // Check for reload request
+            if (g_reload_requested.exchange(false)) {
+                std::cout << "Reloading configuration...\n";
+                auto result = g_server->reload_config();
+                if (!result) {
+                    std::cerr << "Failed to reload config: " << result.error().message << "\n";
+                }
+            }
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+
+        // Handle shutdown outside of signal context
+        if (g_shutdown_requested.load()) {
+            std::cout << "\nShutting down...\n";
+            if (g_admin_server) {
+                g_admin_server->stop();
+            }
+            if (g_server) {
+                g_server->stop();
+            }
         }
 
         std::cout << "Server shutdown completed.\n";

@@ -541,7 +541,8 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                        {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
                        {}, {}, {},
-                       {}, {}
+                       {}, {},
+                       {}
                 FROM "{}"
                 WHERE {} = $1
                 ORDER BY {}
@@ -575,6 +576,8 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
             // Row 10: Display name components
             db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
+            // Row 11: Aggression condition (Lua expression)
+            db::Mobs::AGGRO_CONDITION,
             // Table and WHERE
             db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
         ), zone_id);
@@ -755,6 +758,12 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                 mob->set_article(std::nullopt);  // Calculate a/an dynamically
             }
 
+            // Set aggro_condition (Lua expression for aggression behavior)
+            // Examples: "true" (attacks all), "target.alignment <= -350" (attacks evil)
+            if (!row[db::Mobs::AGGRO_CONDITION.data()].is_null()) {
+                mob->set_aggro_condition(row[db::Mobs::AGGRO_CONDITION.data()].as<std::string>());
+            }
+
             mobs.push_back(std::move(mob));
         }
 
@@ -790,7 +799,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
                        {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
                        {}, {}, {},
-                       {}, {}
+                       {}, {},
+                       {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
@@ -823,6 +833,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
             db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
             // Row 10: Display name components
             db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
+            // Row 11: Aggression condition (Lua expression)
+            db::Mobs::AGGRO_CONDITION,
             // Table and WHERE
             db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
         ), zone_id, mob_local_id);
@@ -996,6 +1008,11 @@ Result<std::unique_ptr<Mobile>> load_mob(
             mob->set_article(row[db::Mobs::ARTICLE.data()].as<std::string>());
         } else {
             mob->set_article(std::nullopt);  // Calculate a/an dynamically
+        }
+
+        // Set aggro_condition (Lua expression for aggression behavior)
+        if (!row[db::Mobs::AGGRO_CONDITION.data()].is_null()) {
+            mob->set_aggro_condition(row[db::Mobs::AGGRO_CONDITION.data()].as<std::string>());
         }
 
         logger->debug("Loaded mob '{}' ({}, {})", mob_name, zone_id, mob_local_id);

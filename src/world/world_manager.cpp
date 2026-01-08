@@ -1420,22 +1420,12 @@ Result<void> WorldManager::load_zones_from_database() {
                 auto mob = std::shared_ptr<Mobile>(std::move(mob_ptr));
                 EntityId mob_id = mob->id();
 
-                // Debug: Check if any aggression flag is set on prototype
-                bool has_aggro = mob->is_aggressive();
-                bool has_aggro_good = mob->has_flag(MobFlag::AggroGood);
-                bool has_aggro_evil = mob->has_flag(MobFlag::AggroEvil);
-                bool has_aggro_neutral = mob->has_flag(MobFlag::AggroNeutral);
-
-                if (has_aggro || has_aggro_good || has_aggro_evil || has_aggro_neutral) {
+                // Debug: Check if aggro_condition is set on prototype
+                if (mob->is_aggressive()) {
                     aggressive_count++;
-                    std::string aggro_types;
-                    if (has_aggro) aggro_types += "AGGRESSIVE ";
-                    if (has_aggro_good) aggro_types += "AGGRO_GOOD ";
-                    if (has_aggro_evil) aggro_types += "AGGRO_EVIL ";
-                    if (has_aggro_neutral) aggro_types += "AGGRO_NEUTRAL ";
-
-                    logger->info("Loaded aggro mob: {} ({}) - flags: [{}] aggro_level: {}",
-                                mob->name(), mob_id, aggro_types, mob->aggression_level());
+                    const auto& cond = mob->aggro_condition();
+                    logger->trace("Loaded aggro mob: {} ({}) - condition: {}",
+                                mob->name(), mob_id, cond ? *cond : "none");
                 }
 
                 // Store shared_ptr in both map and vector for safe reference
@@ -2256,8 +2246,7 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
     new_mobile->set_description(prototype->description());
     new_mobile->set_ground(prototype->ground());  // Room description (shown when mob is in room)
     new_mobile->stats() = prototype->stats();
-    new_mobile->set_aggressive(prototype->is_aggressive());
-    new_mobile->set_aggression_level(prototype->aggression_level());
+    new_mobile->set_aggro_condition(prototype->aggro_condition());
 
     // Copy mobile-specific properties
     new_mobile->set_race(prototype->race());
@@ -2391,8 +2380,7 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
     new_mobile->set_description(prototype->description());
     new_mobile->set_ground(prototype->ground());  // Room description (shown when mob is in room)
     new_mobile->stats() = prototype->stats();
-    new_mobile->set_aggressive(prototype->is_aggressive());
-    new_mobile->set_aggression_level(prototype->aggression_level());
+    new_mobile->set_aggro_condition(prototype->aggro_condition());
 
     // Copy mobile-specific properties
     new_mobile->set_race(prototype->race());
@@ -2439,13 +2427,12 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
 
     auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
 
-    // Debug: Verify aggressive flag was copied from prototype
+    // Debug: Verify aggro_condition was copied from prototype
     if (prototype->is_aggressive() || mobile_ptr->is_aggressive()) {
-        logger->info("Spawned mob '{}': prototype_aggressive={}, spawned_aggressive={}, aggro_level={}",
+        const auto& cond = mobile_ptr->aggro_condition();
+        logger->trace("Spawned aggro mob '{}': condition={}",
                     mobile_ptr->name(),
-                    prototype->is_aggressive() ? "YES" : "no",
-                    mobile_ptr->is_aggressive() ? "YES" : "no",
-                    mobile_ptr->aggression_level());
+                    cond ? *cond : "none");
     }
 
     // Register the spawned mobile for efficient lookups
@@ -2753,8 +2740,7 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
     new_mobile->set_description(prototype->description());
     new_mobile->set_ground(prototype->ground());  // Room description (shown when mob is in room)
     new_mobile->stats() = prototype->stats();
-    new_mobile->set_aggressive(prototype->is_aggressive());
-    new_mobile->set_aggression_level(prototype->aggression_level());
+    new_mobile->set_aggro_condition(prototype->aggro_condition());
 
     // Copy mobile-specific properties
     new_mobile->set_race(prototype->race());

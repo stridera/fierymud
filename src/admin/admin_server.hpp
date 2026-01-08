@@ -52,7 +52,7 @@ public:
     bool is_running() const { return running_.load(); }
 
 private:
-    void run_server();
+    void start_accept();
     void handle_connection(std::shared_ptr<asio::ip::tcp::socket> socket);
     std::string parse_request(const std::string& request, std::string& path, std::string& body);
     std::string build_response(int status_code, const std::string& content_type, const std::string& body);
@@ -62,6 +62,7 @@ private:
     std::atomic<bool> running_;
     std::unique_ptr<std::thread> server_thread_;
     std::unique_ptr<asio::io_context> io_context_;
+    std::unique_ptr<asio::ip::tcp::acceptor> acceptor_;
     std::unordered_map<std::string, CommandHandler> handlers_;
 
     // Authentication token (should be configured from environment)

@@ -581,7 +581,7 @@ namespace Mobs {
     constexpr std::string_view DAMAGE_TYPE = "damageType";
     constexpr std::string_view TRAITS = "traits";
     constexpr std::string_view BEHAVIORS = "behaviors";
-    constexpr std::string_view AGGRESSION_FORMULA = "aggression_formula";
+    constexpr std::string_view AGGRO_CONDITION = "aggro_condition";
     constexpr std::string_view ACTIVITY_RESTRICTIONS = "activity_restrictions";
 }
 
@@ -920,10 +920,6 @@ namespace Triggers {
     constexpr std::string_view NUM_ARGS = "num_args";
     constexpr std::string_view ARG_LIST = "arg_list";
     constexpr std::string_view COMMANDS = "commands";
-    constexpr std::string_view MOB_ZONE_ID = "mob_zone_id";
-    constexpr std::string_view MOB_ID = "mob_id";
-    constexpr std::string_view OBJECT_ZONE_ID = "object_zone_id";
-    constexpr std::string_view OBJECT_ID = "object_id";
     constexpr std::string_view VARIABLES = "variables";
     constexpr std::string_view CREATED_AT = "created_at";
     constexpr std::string_view UPDATED_AT = "updated_at";
@@ -932,6 +928,7 @@ namespace Triggers {
     constexpr std::string_view FLAGS = "flags";
     constexpr std::string_view NEEDS_REVIEW = "needs_review";
     constexpr std::string_view SYNTAX_ERROR = "syntax_error";
+    // NOTE: mob/object associations are via junction tables (MobTriggers, ObjectTriggers)
 }
 
 namespace MobTriggers {

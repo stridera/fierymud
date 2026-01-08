@@ -842,12 +842,13 @@ public:
      *  Returns the created corpse */
     std::shared_ptr<Container> die() override;
     
-    /** AI behavior properties */
-    bool is_aggressive() const { return aggressive_; }
-    void set_aggressive(bool value) { aggressive_ = value; }
-    
-    int aggression_level() const { return aggression_level_; }
-    void set_aggression_level(int level) { aggression_level_ = std::max(0, std::min(10, level)); }
+    /** AI behavior properties - aggro_condition is a Lua expression from database
+     *  Examples: "true" (attacks all), "target.alignment <= -350" (attacks evil) */
+    const std::optional<std::string>& aggro_condition() const { return aggro_condition_; }
+    void set_aggro_condition(std::optional<std::string> cond) { aggro_condition_ = std::move(cond); }
+
+    /** Check if this mob has any aggression condition set */
+    bool is_aggressive() const { return aggro_condition_.has_value() && !aggro_condition_->empty(); }
     
     /** Shopkeeper properties */
     bool is_shopkeeper() const { return is_shopkeeper_; }
@@ -939,8 +940,7 @@ public:
     }
     void set_flag(MobFlag flag, bool value = true) {
         mob_flags_.set(static_cast<size_t>(flag), value);
-        // Sync legacy booleans for commonly-used flags
-        if (flag == MobFlag::Aggressive) aggressive_ = value;
+        // Sync special role booleans for commonly-used flags
         if (flag == MobFlag::Teacher) is_teacher_ = value;
         if (flag == MobFlag::Banker) is_banker_ = value;
         if (flag == MobFlag::Receptionist) is_receptionist_ = value;
@@ -999,8 +999,7 @@ protected:
 
 private:
     std::bitset<MOB_FLAG_CAPACITY> mob_flags_;     // MobFlag bitset
-    bool aggressive_ = false;       // Legacy: synced with MobFlag::Aggressive
-    int aggression_level_ = 5;      // 0-10 scale
+    std::optional<std::string> aggro_condition_;  // Lua expression from database for aggression
     bool is_shopkeeper_ = false;
     bool is_banker_ = false;
     bool is_receptionist_ = false;
