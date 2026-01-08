@@ -1073,7 +1073,7 @@ std::unordered_set<std::string> get_default_permissions(PrivilegeLevel level) {
         permissions.insert(std::string{Permissions::WIZNET});
     }
 
-    if (level >= PrivilegeLevel::Overlord) {
+    if (level >= PrivilegeLevel::Coder) {
         permissions.insert(std::string{Permissions::SHUTDOWN});
     }
 
