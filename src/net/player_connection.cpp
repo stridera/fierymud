@@ -336,11 +336,33 @@ void GMCPHandler::send_room_info(const Room &room) {
         {"Exits", exits}
     };
 
+    // Add layout coordinates for mapping if available
+    if (room.layout_x().has_value()) {
+        room_data["x"] = room.layout_x().value();
+    }
+    if (room.layout_y().has_value()) {
+        room_data["y"] = room.layout_y().value();
+    }
+    if (room.layout_z().has_value()) {
+        room_data["z"] = room.layout_z().value();
+    }
+
     // Send as "Room" to match legacy format (clients may expect this)
     send_gmcp("Room", room_data);
 }
 
-void GMCPHandler::add_client_support(std::string_view module) { client_supports_.emplace(module); }
+void GMCPHandler::add_client_support(std::string_view module) {
+    // Store the full module string (e.g., "Room 1")
+    client_supports_.emplace(module);
+
+    // Also store just the module name without version for easier lookups
+    // GMCP modules are sent as "ModuleName Version" (e.g., "Room 1", "Char.Vitals 1")
+    std::string module_str{module};
+    size_t space_pos = module_str.find(' ');
+    if (space_pos != std::string::npos) {
+        client_supports_.emplace(module_str.substr(0, space_pos));
+    }
+}
 
 bool GMCPHandler::client_supports(std::string_view module) const {
     return client_supports_.find(std::string(module)) != client_supports_.end();

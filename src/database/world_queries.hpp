@@ -141,6 +141,7 @@ struct AbilityData {
     int memorization_time;      // Additional memorization rounds
     bool quest_only;            // Quest-restricted ability
     bool humanoid_only;         // Only available to humanoids
+    bool targets_corpse;        // Can target dead/ghost characters (from AbilityTargeting)
 };
 
 /** Class-specific ability availability */

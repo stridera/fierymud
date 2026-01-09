@@ -281,11 +281,6 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             ctx.send_error(fmt::format("You don't see '{}' here.", target_name));
             return CommandResult::InvalidTarget;
         }
-        // Check if target is dead/ghost
-        if (!target->is_alive()) {
-            ctx.send_error(fmt::format("{} is already dead!", target->display_name()));
-            return CommandResult::InvalidState;
-        }
     } else if (ctx.actor->position() == Position::Fighting) {
         // If no target specified but we're fighting, use our opponent
         target = FieryMUD::CombatManager::get_opponent(*ctx.actor);
@@ -295,6 +290,13 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     auto& ability_cache = FieryMUD::AbilityCache::instance();
     const auto* ability_data = ability_cache.get_ability(known_spell->ability_id);
     bool is_area_spell = ability_data && ability_data->is_area;
+    bool targets_corpse = ability_data && ability_data->targets_corpse;
+
+    // Check if target is dead/ghost (unless spell specifically targets corpses)
+    if (target && !target->is_alive() && !targets_corpse) {
+        ctx.send_error(fmt::format("{} is already dead!", target->display_name()));
+        return CommandResult::InvalidState;
+    }
 
     if (known_spell->violent && !target && !is_area_spell) {
         ctx.send_error(fmt::format("Cast '{}' on whom?", known_spell->name));

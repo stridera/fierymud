@@ -245,13 +245,21 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
     return desc.str();
 }
 
-std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unused]] std::shared_ptr<Actor> viewer) {
+std::string format_object_description(std::shared_ptr<Object> obj, std::shared_ptr<Actor> viewer) {
     if (!obj) {
         return "You see nothing special.";
     }
 
     std::ostringstream desc;
     desc << fmt::format("{}\n", obj->short_description());
+
+    // Show magical aura if viewer has Detect_Magic and object is magical
+    if (viewer && viewer->has_flag(ActorFlag::Detect_Magic)) {
+        if (obj->has_flag(ObjectFlag::Magic) || obj->has_flag(ObjectFlag::Glow) ||
+            obj->has_flag(ObjectFlag::Hum) || obj->has_flag(ObjectFlag::Bless)) {
+            desc << "<magenta>It glows with a magical aura.</>\n";
+        }
+    }
 
     // Show examine description if available, otherwise show ground description
     if (!obj->examine_description().empty()) {
@@ -360,7 +368,7 @@ std::string format_object_description(std::shared_ptr<Object> obj, [[maybe_unuse
     return desc.str();
 }
 
-std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unused]] std::shared_ptr<Actor> viewer) {
+std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_ptr<Actor> viewer) {
     if (!target) {
         return "You see nothing special.";
     }
@@ -406,6 +414,29 @@ std::string format_actor_description(std::shared_ptr<Actor> target, [[maybe_unus
             desc << fmt::format("{} looks slightly hurt.\n", target->display_name());
         } else {
             desc << fmt::format("{} is in excellent condition.\n", target->display_name());
+        }
+    }
+
+    // Viewer-based detection information
+    if (viewer) {
+        // Show alignment if viewer has Detect_Align
+        if (viewer->has_flag(ActorFlag::Detect_Align)) {
+            int alignment = target->stats().alignment;
+            if (alignment <= -350) {
+                desc << fmt::format("{} radiates an evil aura.\n", cap_subjective());
+            } else if (alignment >= 350) {
+                desc << fmt::format("{} radiates a holy aura.\n", cap_subjective());
+            }
+        }
+
+        // Show magical aura if viewer has Detect_Magic and target has active effects
+        if (viewer->has_flag(ActorFlag::Detect_Magic) && !target->active_effects().empty()) {
+            desc << fmt::format("{} {} surrounded by a magical aura.\n", cap_subjective(), pronouns.verb_be);
+        }
+
+        // Show poison if viewer has Detect_Poison
+        if (viewer->has_flag(ActorFlag::Detect_Poison) && target->has_flag(ActorFlag::Poison)) {
+            desc << fmt::format("{} {} poisoned.\n", cap_subjective(), pronouns.verb_be);
         }
     }
 

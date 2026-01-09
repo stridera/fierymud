@@ -314,13 +314,14 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
         // Query rooms using generated column constants
         auto result = txn.exec_params(
             fmt::format(R"(
-                SELECT {}, {}, {}, {}, {}, {}
+                SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} IS NULL
                 ORDER BY {}
             )",
             db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
             db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::FLAGS,
+            db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
             db::Room::TABLE,
             db::Room::ZONE_ID, db::Room::DELETED_AT, db::Room::ID
         ), zone_id);
@@ -370,6 +371,19 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
                     }
                 }
 
+                // Set layout coordinates (for mapping)
+                std::optional<int> layout_x, layout_y, layout_z;
+                if (!row[db::Room::LAYOUT_X.data()].is_null()) {
+                    layout_x = row[db::Room::LAYOUT_X.data()].as<int>();
+                }
+                if (!row[db::Room::LAYOUT_Y.data()].is_null()) {
+                    layout_y = row[db::Room::LAYOUT_Y.data()].as<int>();
+                }
+                if (!row[db::Room::LAYOUT_Z.data()].is_null()) {
+                    layout_z = row[db::Room::LAYOUT_Z.data()].as<int>();
+                }
+                room->set_layout_coords(layout_x, layout_y, layout_z);
+
                 rooms.push_back(std::move(room));
             }
         }
@@ -392,12 +406,13 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
         // Query room using generated column constants
         auto result = txn.exec_params(
             fmt::format(R"(
-                SELECT {}, {}, {}, {}, {}, {}
+                SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
             db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
             db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::FLAGS,
+            db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
             db::Room::TABLE,
             db::Room::ZONE_ID, db::Room::ID
         ), zone_id, room_local_id);
@@ -446,6 +461,19 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
                     }
                 }
             }
+
+            // Set layout coordinates (for mapping)
+            std::optional<int> layout_x, layout_y, layout_z;
+            if (!row[db::Room::LAYOUT_X.data()].is_null()) {
+                layout_x = row[db::Room::LAYOUT_X.data()].as<int>();
+            }
+            if (!row[db::Room::LAYOUT_Y.data()].is_null()) {
+                layout_y = row[db::Room::LAYOUT_Y.data()].as<int>();
+            }
+            if (!row[db::Room::LAYOUT_Z.data()].is_null()) {
+                layout_z = row[db::Room::LAYOUT_Z.data()].as<int>();
+            }
+            room->set_layout_coords(layout_x, layout_y, layout_z);
 
             return std::move(room);
         }
@@ -1947,14 +1975,16 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
     try {
         auto result = txn.exec(R"(
             SELECT
-                id, name, plain_name, description,
-                "abilityType" AS ability_type, "minPosition" AS min_position, violent,
-                cast_time_rounds, cooldown_ms,
-                is_area, is_toggle, combat_ok, in_combat_only,
-                sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only
-            FROM "Ability"
-            ORDER BY id
+                a.id, a.name, a.plain_name, a.description,
+                a."abilityType" AS ability_type, a."minPosition" AS min_position, a.violent,
+                a.cast_time_rounds, a.cooldown_ms,
+                a.is_area, a.is_toggle, a.combat_ok, a.in_combat_only,
+                a.sphere, a.damage_type,
+                a.pages, a.memorization_time, a.quest_only, a.humanoid_only,
+                COALESCE('CORPSE' = ANY(t.valid_targets), false) AS targets_corpse
+            FROM "Ability" a
+            LEFT JOIN "AbilityTargeting" t ON t.ability_id = a.id
+            ORDER BY a.id
         )");
 
         std::vector<AbilityData> abilities;
@@ -1981,6 +2011,7 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
             ability.memorization_time = row["memorization_time"].as<int>(0);
             ability.quest_only = row["quest_only"].as<bool>(false);
             ability.humanoid_only = row["humanoid_only"].as<bool>(false);
+            ability.targets_corpse = row["targets_corpse"].as<bool>(false);
             abilities.push_back(std::move(ability));
         }
 
@@ -2005,13 +2036,16 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
     try {
         auto result = txn.exec_params(R"(
             SELECT
-                id, name, plain_name, description,
-                "abilityType" AS ability_type, "minPosition" AS min_position, violent,
-                cast_time_rounds, cooldown_ms,
-                is_area, sphere, damage_type,
-                pages, memorization_time, quest_only, humanoid_only
-            FROM "Ability"
-            WHERE id = $1
+                a.id, a.name, a.plain_name, a.description,
+                a."abilityType" AS ability_type, a."minPosition" AS min_position, a.violent,
+                a.cast_time_rounds, a.cooldown_ms,
+                a.is_area, a.is_toggle, a.combat_ok, a.in_combat_only,
+                a.sphere, a.damage_type,
+                a.pages, a.memorization_time, a.quest_only, a.humanoid_only,
+                COALESCE('CORPSE' = ANY(t.valid_targets), false) AS targets_corpse
+            FROM "Ability" a
+            LEFT JOIN "AbilityTargeting" t ON t.ability_id = a.id
+            WHERE a.id = $1
         )", ability_id);
 
         if (result.empty()) {
@@ -2031,12 +2065,16 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
         ability.cast_time_rounds = row["cast_time_rounds"].as<int>(1);
         ability.cooldown_ms = row["cooldown_ms"].as<int>(0);
         ability.is_area = row["is_area"].as<bool>(false);
+        ability.is_toggle = row["is_toggle"].as<bool>(false);
+        ability.combat_ok = row["combat_ok"].as<bool>(true);
+        ability.in_combat_only = row["in_combat_only"].as<bool>(false);
         ability.sphere = row["sphere"].is_null() ? "" : row["sphere"].as<std::string>();
         ability.damage_type = row["damage_type"].is_null() ? "" : row["damage_type"].as<std::string>();
         ability.pages = row["pages"].is_null() ? 0 : row["pages"].as<int>();
         ability.memorization_time = row["memorization_time"].as<int>(0);
         ability.quest_only = row["quest_only"].as<bool>(false);
         ability.humanoid_only = row["humanoid_only"].as<bool>(false);
+        ability.targets_corpse = row["targets_corpse"].as<bool>(false);
 
         return ability;
 

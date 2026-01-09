@@ -305,11 +305,22 @@ public:
     
     /** Get comprehensive stat information for debugging/admin commands */
     std::string get_stat_info() const;
-    
+
+    // Layout coordinates for mapping (from database)
+    std::optional<int> layout_x() const { return layout_x_; }
+    std::optional<int> layout_y() const { return layout_y_; }
+    std::optional<int> layout_z() const { return layout_z_; }
+
+    void set_layout_coords(std::optional<int> x, std::optional<int> y, std::optional<int> z) {
+        layout_x_ = x;
+        layout_y_ = y;
+        layout_z_ = z;
+    }
+
 protected:
     /** Protected constructor for factory pattern */
     Room(EntityId id, std::string_view name, SectorType sector);
-    
+
 private:
     SectorType sector_type_;
     int light_level_;
@@ -317,6 +328,11 @@ private:
     std::unordered_set<RoomFlag> flags_;
     std::unordered_map<Direction, ExitInfo> exits_;
     RoomContents contents_;
+
+    // Layout coordinates for visual mapping
+    std::optional<int> layout_x_;
+    std::optional<int> layout_y_;
+    std::optional<int> layout_z_;
     
     /** Update cached lighting calculations */
     void update_lighting_cache();

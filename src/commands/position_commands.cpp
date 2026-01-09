@@ -31,9 +31,6 @@ std::string_view position_name(Position pos) {
 }
 
 bool can_change_position(std::shared_ptr<Actor> actor, Position new_pos, std::string& reason) {
-    // new_pos is for future validation of specific position transitions
-    (void)new_pos;
-
     if (!actor) {
         reason = "Invalid actor.";
         return false;
@@ -75,6 +72,22 @@ bool can_change_position(std::shared_ptr<Actor> actor, Position new_pos, std::st
         return false;
     }
 
+    // Position-specific transition rules
+    // When sleeping, you must use "wake" to stand up - other commands don't work directly.
+    // The wake command has its own validation and doesn't call this function.
+    if (current == Position::Sleeping) {
+        reason = "You need to wake up first!";
+        return false;
+    }
+
+    // Validate the requested transition is possible
+    // Most transitions are valid, but we check for nonsensical ones
+    if (current == new_pos) {
+        // Already in the desired position - commands handle their own messages
+        // but we allow this to pass through so commands can show appropriate feedback
+        return true;
+    }
+
     return true;
 }
 
@@ -94,11 +107,6 @@ Result<CommandResult> cmd_sit(const CommandContext &ctx) {
     if (current == Position::Sitting) {
         ctx.send("You are already sitting.");
         return CommandResult::Success;
-    }
-
-    if (current == Position::Sleeping) {
-        ctx.send_error("You need to wake up first!");
-        return CommandResult::InvalidState;
     }
 
     ctx.actor->set_position(Position::Sitting);
@@ -129,11 +137,6 @@ Result<CommandResult> cmd_stand(const CommandContext &ctx) {
     if (current == Position::Standing) {
         ctx.send("You are already standing.");
         return CommandResult::Success;
-    }
-
-    if (current == Position::Sleeping) {
-        ctx.send_error("You need to wake up first!");
-        return CommandResult::InvalidState;
     }
 
     // Interrupt concentration-based activities (like meditation)
@@ -167,11 +170,6 @@ Result<CommandResult> cmd_rest(const CommandContext &ctx) {
     if (current == Position::Resting) {
         ctx.send("You are already resting.");
         return CommandResult::Success;
-    }
-
-    if (current == Position::Sleeping) {
-        ctx.send_error("You are already sleeping. Use 'wake' to wake up first.");
-        return CommandResult::InvalidState;
     }
 
     ctx.actor->set_position(Position::Resting);

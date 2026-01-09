@@ -1261,7 +1261,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_move(
             // Move the target
             target_room->remove_actor(context.target->id());
             dest_room->add_actor(context.target);
-            context.target->set_current_room(dest_room);
+            context.target->move_to(dest_room);
 
             std::string dir_name{RoomUtils::get_direction_name(move_dir)};
             attacker_msg = fmt::format("You {} {} {}!",
@@ -1594,7 +1594,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_teleport(
     // Perform the teleport
     current_room->remove_actor(teleport_target->id());
     dest_room->add_actor(teleport_target);
-    teleport_target->set_current_room(dest_room);
+    teleport_target->move_to(dest_room);
 
     // Generate messages
     std::string attacker_msg, target_msg, room_msg;
@@ -1971,7 +1971,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_summon(
     // Perform the summon
     target_room->remove_actor(context.target->id());
     actor_room->add_actor(context.target);
-    context.target->set_current_room(actor_room);
+    context.target->move_to(actor_room);
 
     // Generate messages
     std::string attacker_msg = fmt::format("You summon {} to your location!",
@@ -2039,7 +2039,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(
     if (actor_room && target_room && actor_room.get() != target_room.get()) {
         target_room->remove_actor(context.target->id());
         actor_room->add_actor(context.target);
-        context.target->set_current_room(actor_room);
+        context.target->move_to(actor_room);
     }
 
     // Generate messages

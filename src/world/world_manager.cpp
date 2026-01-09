@@ -620,10 +620,10 @@ MovementResult WorldManager::move_actor(std::shared_ptr<Actor> actor, Direction 
     // Execute the movement
     current_room->remove_actor(actor->id());
     destination_room->add_actor(actor);
-    
-    // Update actor's room
-    actor->set_current_room(destination_room);
-    
+
+    // Update actor's room (triggers on_room_change for GMCP updates, etc.)
+    actor->move_to(destination_room);
+
     // Notify callbacks
     notify_room_exit(actor, current_room);
     notify_room_enter(actor, destination_room);
@@ -644,7 +644,9 @@ MovementResult WorldManager::move_actor(std::shared_ptr<Actor> actor, Direction 
             // Remove follower from old room and add to new room
             current_room->remove_actor(follower->id());
             destination_room->add_actor(follower);
-            follower->set_current_room(destination_room);
+
+            // Update follower's room (triggers on_room_change for GMCP updates, etc.)
+            follower->move_to(destination_room);
 
             // Notify about follower movement
             if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
@@ -682,10 +684,12 @@ MovementResult WorldManager::move_actor_to_room(std::shared_ptr<Actor> actor, En
         current_room->remove_actor(actor->id());
         notify_room_exit(actor, current_room);
     }
-    
+
     destination_room->add_actor(actor);
-    actor->set_current_room(destination_room);
-    
+
+    // Update actor's room (triggers on_room_change for GMCP updates, etc.)
+    actor->move_to(destination_room);
+
     notify_room_enter(actor, destination_room);
     
     MovementResult result(true);
@@ -1942,7 +1946,9 @@ bool WorldManager::check_and_handle_falling(std::shared_ptr<Actor> actor) {
     // Execute the fall movement
     current_room->remove_actor(actor->id());
     destination_room->add_actor(actor);
-    actor->set_current_room(destination_room);
+
+    // Update actor's room (triggers on_room_change for GMCP updates, etc.)
+    actor->move_to(destination_room);
 
     // Notify callbacks
     notify_room_exit(actor, current_room);
@@ -2884,22 +2890,15 @@ void WorldManager::cleanup_zone_mobiles(EntityId zone_id) {
 // Weather Integration Implementation
 
 void WorldManager::update_weather_system(std::chrono::minutes elapsed) {
-    // Update global weather system
+    // Update global weather system - this advances weather state based on time
     Weather().update_weather(elapsed);
+
+    // Process any weather-related effects (e.g., lightning damage)
     Weather().process_weather_effects();
-    
-    // Apply weather effects to zones
-    for (const auto& [zone_id, zone] : zones_) {
-        if (!zone || zone->has_weather_override()) {
-            continue; // Skip zones that override weather
-        }
-        
-        [[maybe_unused]] auto weather_effects = Weather().get_weather_effects(zone_id);
-        
-        // Apply weather effects to zone statistics and properties
-        // This could include adjusting spawn rates, visibility, etc.
-        // For now, we just ensure weather state is tracked
-    }
+
+    // Weather effects (visibility, movement modifiers, etc.) are queried on-demand
+    // by the systems that need them (combat, movement, look commands) rather than
+    // being pre-applied to zones here
 }
 
 void WorldManager::initialize_weather_callbacks() {
