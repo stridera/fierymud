@@ -2360,10 +2360,8 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
 
         if (type == MOB_TRIGGER && !(trig->trigger_type & MTRIG_DEATH)) { /* only death trigs are immune to all tests */
             if (!AWAKE((CharData *)go)) {
-                depth--;
-                if (mode == TRIG_NEW)
-                    GET_TRIG_DEPTH(trig) = 0; /* reset trigger totally if instant bail */
-                return 0;
+                /* abort execution and clean up */
+                break;
             }
 
             if (CASTING((CharData *)go)) {
