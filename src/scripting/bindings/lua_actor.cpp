@@ -82,12 +82,13 @@ void register_actor_bindings(sol::state& lua) {
             return a.type_name() == "Player";
         }),
         // God/immortal check - works on any Actor, returns false for non-players
-        "is_god", sol::property([](const Actor& a) {
+        // Defined as method (not property) so scripts can call actor:is_god()
+        "is_god", [](const Actor& a) {
             if (auto* player = dynamic_cast<const Player*>(&a)) {
                 return player->is_god();
             }
             return false;
-        }),
+        },
 
         // State checks
         "is_fighting", sol::property(&Actor::is_fighting),
