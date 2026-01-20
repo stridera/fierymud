@@ -287,6 +287,48 @@ Result<std::vector<EffectData>> load_all_effects(pqxx::work& txn);
 /** Load a single effect by ID */
 Result<EffectData> load_effect(pqxx::work& txn, int effect_id);
 
+/** Load a single effect by name */
+Result<EffectData> load_effect_by_name(pqxx::work& txn, const std::string& name);
+
+// =============================================================================
+// Character Active Effects (buffs, debuffs, DoTs, HoTs applied to players)
+// =============================================================================
+
+/**
+ * Character effect data from CharacterEffects table.
+ * Stores active effects (buffs, debuffs, DoTs, HoTs) on a player.
+ */
+struct CharacterEffectData {
+    int id = 0;                      // Auto-increment PK (0 for new effects)
+    std::string character_id;        // Character UUID
+    int effect_id = 0;               // FK to Effect table
+    std::optional<int> duration_seconds; // Remaining duration (null = permanent)
+    int strength = 1;                // Effect strength/stacks
+    std::string modifier_data;       // JSON with additional params
+    std::string source_type;         // "ability", "item", "room", "consumable"
+    std::optional<int> source_id;    // ID of source ability/item
+    std::chrono::system_clock::time_point applied_at;
+    std::optional<std::chrono::system_clock::time_point> expires_at;
+
+    // Cached effect name (loaded from Effect table join)
+    std::string effect_name;
+    std::string effect_type;         // "dot", "hot", "buff", "debuff", etc.
+};
+
+/** Load all active effects for a character */
+Result<std::vector<CharacterEffectData>> load_character_effects(
+    pqxx::work& txn, const std::string& character_id);
+
+/** Save all active effects for a character (replaces existing) */
+Result<void> save_character_effects(
+    pqxx::work& txn,
+    const std::string& character_id,
+    const std::vector<CharacterEffectData>& effects);
+
+/** Delete all active effects for a character */
+Result<void> delete_character_effects(
+    pqxx::work& txn, const std::string& character_id);
+
 /** Load all effects for a specific ability */
 Result<std::vector<AbilityEffectData>> load_ability_effects(
     pqxx::work& txn, int ability_id);

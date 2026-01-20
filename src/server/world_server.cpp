@@ -1058,13 +1058,51 @@ void WorldServer::perform_cleanup() {
     // This runs on the world strand - safe to modify world state!
     Log::debug("Performing periodic cleanup...");
 
-    // Remove disconnected connections
-    active_connections_.erase(
-        std::remove_if(active_connections_.begin(), active_connections_.end(),
-                       [](const std::shared_ptr<PlayerConnection> &conn) { return !conn->is_connected(); }),
-        active_connections_.end());
+    // First, collect disconnected connections so we can clean them from both structures
+    std::vector<std::shared_ptr<PlayerConnection>> disconnected;
+    for (const auto& conn : active_connections_) {
+        if (!conn->is_connected()) {
+            disconnected.push_back(conn);
+        }
+    }
 
-    // Additional world updates can be added here as needed
+    // Remove disconnected connections from active_connections_
+    if (!disconnected.empty()) {
+        active_connections_.erase(
+            std::remove_if(active_connections_.begin(), active_connections_.end(),
+                           [](const std::shared_ptr<PlayerConnection> &conn) { return !conn->is_connected(); }),
+            active_connections_.end());
+
+        // Also remove from connection_actors_
+        for (const auto& conn : disconnected) {
+            auto it = connection_actors_.find(conn);
+            if (it != connection_actors_.end()) {
+                auto player_name = it->second ? it->second->name() : "unknown";
+                Log::debug("Cleanup: removing stale connection for '{}'", player_name);
+                connection_actors_.erase(it);
+            }
+        }
+
+        Log::info("Cleaned up {} stale connections. Active: {}, Playing: {}",
+                  disconnected.size(), active_connections_.size(), connection_actors_.size());
+    }
+
+    // Also clean up orphaned connection_actors_ entries (connections not in active_connections_)
+    std::vector<std::shared_ptr<PlayerConnection>> orphaned_actors;
+    for (const auto& [conn, actor] : connection_actors_) {
+        if (std::find(active_connections_.begin(), active_connections_.end(), conn) == active_connections_.end()) {
+            orphaned_actors.push_back(conn);
+        }
+    }
+    for (const auto& conn : orphaned_actors) {
+        auto it = connection_actors_.find(conn);
+        if (it != connection_actors_.end()) {
+            auto player_name = it->second ? it->second->name() : "unknown";
+            Log::warn("Cleanup: removing orphaned actor entry for '{}'", player_name);
+            connection_actors_.erase(it);
+        }
+    }
+
     Log::trace("Cleanup tasks completed");
 }
 

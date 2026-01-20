@@ -1000,15 +1000,28 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     // Ensure player is placed in a room
     if (!player_->current_room()) {
-        // Try to place in the configured starting room using proper world manager
-        auto starting_room_id = Config::instance().default_starting_room();
-        auto move_result = WorldManager::instance().move_actor_to_room(player_, starting_room_id);
-        
+        // Use player's saved start_room if valid, otherwise fall back to default
+        auto target_room_id = player_->start_room();
+        if (!target_room_id.is_valid()) {
+            target_room_id = Config::instance().default_starting_room();
+        }
+
+        auto move_result = WorldManager::instance().move_actor_to_room(player_, target_room_id);
+
         if (!move_result.success) {
-            Log::warn("Failed to place player '{}' in starting room {}: {}",
-                     player_->name(), starting_room_id, move_result.failure_reason);
+            Log::warn("Failed to place player '{}' in room {}: {}",
+                     player_->name(), target_room_id, move_result.failure_reason);
+            // Try default as fallback if saved room failed
+            if (target_room_id != Config::instance().default_starting_room()) {
+                auto default_room = Config::instance().default_starting_room();
+                move_result = WorldManager::instance().move_actor_to_room(player_, default_room);
+                if (move_result.success) {
+                    Log::info("Placed player '{}' in default room {} (saved room failed)",
+                             player_->name(), default_room);
+                }
+            }
         } else {
-            Log::info("Placed player '{}' in starting room {}", player_->name(), starting_room_id);
+            Log::info("Placed player '{}' in room {}", player_->name(), target_room_id);
         }
     }
 

@@ -2,6 +2,7 @@
 #include "builtin_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../database/config_loader.hpp"
 #include "../text/text_format.hpp"
 #include "../core/object.hpp"
 #include "../world/room.hpp"
@@ -368,10 +369,31 @@ Result<CommandResult> cmd_dismount(const CommandContext &ctx) {
 // Recall Command
 // =============================================================================
 
-// Recall cooldown effect name and duration
-// 1 MUD hour = 75 real seconds, so 12 MUD hours = 900 seconds = 15 real minutes
+// Recall cooldown effect name
 constexpr std::string_view RECALL_COOLDOWN_EFFECT = "Recall Cooldown";
-constexpr double RECALL_COOLDOWN_HOURS = 12.0;  // 15 real minutes
+
+// Default values (used if not configured in database)
+// 1 MUD hour = 75 real seconds, so 12 MUD hours = 900 seconds = 15 real minutes
+constexpr double DEFAULT_RECALL_COOLDOWN_HOURS = 12.0;
+constexpr int DEFAULT_RECALL_CAST_TICKS = 6;  // 3 seconds at 0.5s per tick
+
+/**
+ * Get the recall cooldown duration in MUD hours from database config.
+ * Falls back to default if not configured.
+ */
+double get_recall_cooldown_hours() {
+    using namespace fierymud::config;
+    return ConfigLoader::instance().get_float_or("timing", "recall_cooldown_hours", DEFAULT_RECALL_COOLDOWN_HOURS);
+}
+
+/**
+ * Get the recall casting time in ticks from database config.
+ * 1 tick = 0.5 seconds, so 6 ticks = 3 seconds.
+ */
+int get_recall_cast_ticks() {
+    using namespace fierymud::config;
+    return ConfigLoader::instance().get_int_or("timing", "recall_cast_ticks", DEFAULT_RECALL_CAST_TICKS);
+}
 
 Result<CommandResult> cmd_recall(const CommandContext &ctx) {
     if (!ctx.actor) {
@@ -428,14 +450,14 @@ Result<CommandResult> cmd_recall(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Start the recall concentration (3 second delay = 6 ticks at 0.5s per tick)
-    constexpr int RECALL_TICKS = 6;  // 3 seconds
+    // Start the recall concentration (configurable casting time)
+    int recall_ticks = get_recall_cast_ticks();
 
     Actor::CastingState state{
         .ability_id = RECALL_ABILITY_ID,  // From header
         .ability_name = "recall",
-        .ticks_remaining = RECALL_TICKS,
-        .total_ticks = RECALL_TICKS,
+        .ticks_remaining = recall_ticks,
+        .total_ticks = recall_ticks,
         .target = {},
         .target_name = "",
         .circle = 0,
@@ -512,12 +534,12 @@ void complete_recall(std::shared_ptr<Actor> actor) {
     // Show the new room
     actor->send_message(dest_room->get_room_description(actor.get()));
 
-    // Apply recall cooldown effect
+    // Apply recall cooldown effect (configurable duration)
     ActiveEffect cooldown{
         .name = std::string{RECALL_COOLDOWN_EFFECT},
         .source = "recall",
         .flag = ActorFlag::None,  // No flag needed for cooldown effects
-        .duration_hours = RECALL_COOLDOWN_HOURS,
+        .duration_hours = get_recall_cooldown_hours(),
         .modifier_value = 0,
         .modifier_stat = "",
         .applied_at = std::chrono::steady_clock::now()

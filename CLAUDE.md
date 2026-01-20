@@ -319,12 +319,7 @@ In-game content editing system (legacy):
 
 ### File Organization
 - `src/` - Modern source code
-- `legacy/src/` - Legacy source code (archived)
-- `data/` or `data_test/` - Runtime data (player files, world data, configuration)
-- `data/world/` or `data_test/world/` - Zone files in JSON format
-- `data/players/` or `data_test/players/` - Player save files
 - `scripts/` - Python utilities for data conversion
-- `docs/WORLD_JSON_FORMAT.md` - JSON world format documentation
 
 ## Development Guidelines
 
@@ -333,6 +328,7 @@ In-game content editing system (legacy):
 - Uses STL containers (`std::string`, `std::vector`, etc.)
 - Extensive use of `fmt` library for string formatting
 - JSON for data serialization with `nlohmann/json`
+- Don't use legacy C-style patterns, including the /*****/ style comments for headers
 
 ### Testing
 - Uses Catch2 testing framework
@@ -349,8 +345,8 @@ In-game content editing system (legacy):
 
 ### Important Constants
 - Modern constants in `src/core/` files
-- Legacy constants in `legacy/src/constants.cpp`
-- Legacy flags in `legacy/src/structs.hpp`
+- Legacy constants in `../fierymud_legacy/src/constants.cpp`
+- Legacy flags in `../fierymud_legacy/src/structs.hpp`
 - Skill/spell definitions in respective legacy system files
 
 ## Configuration

@@ -329,6 +329,7 @@ enum class ActorFlag {
 
 /** Active effect on an actor (spell effect, buff, debuff) */
 struct ActiveEffect {
+    int effect_id = 0;          // Database Effect ID (for persistence)
     std::string name;           // Effect name (e.g., "Armor", "Bless")
     std::string source;         // What applied this (spell name, item, etc.)
     ActorFlag flag;             // Associated flag (if any)

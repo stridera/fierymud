@@ -745,6 +745,9 @@ Result<CommandResult> cmd_users(const CommandContext &ctx) {
     for (const auto& conn : connections) {
         if (!conn) continue;
 
+        // Skip disconnected connections - they're stale and will be cleaned up soon
+        if (!conn->is_connected()) continue;
+
         total_count++;
 
         // Get connection info

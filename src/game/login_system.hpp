@@ -136,6 +136,7 @@ class LoginSystem {
     Result<void> save_character(std::shared_ptr<Player> player);
     void load_player_abilities(std::shared_ptr<Player>& player);
     void load_player_items(std::shared_ptr<Player>& player);
+    void load_player_effects(std::shared_ptr<Player>& player);
 
     // Validation
     bool is_valid_name(std::string_view name) const;

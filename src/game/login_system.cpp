@@ -276,6 +276,139 @@ void LoginSystem::load_player_items(std::shared_ptr<Player> &player) {
               player->name(), equipped_count, inventory_count, container_count);
 }
 
+void LoginSystem::load_player_effects(std::shared_ptr<Player> &player) {
+    if (player->database_id().empty()) {
+        Log::warn("Cannot load effects: player {} has no database_id", player->name());
+        return;
+    }
+
+    std::string char_id{player->database_id()};
+    auto effects_result = ConnectionPool::instance().execute(
+        [&char_id](pqxx::work& txn) {
+            return WorldQueries::load_character_effects(txn, char_id);
+        });
+
+    if (!effects_result) {
+        Log::debug("No effects to load for player '{}': {}", player->name(), effects_result.error().message);
+        return;
+    }
+
+    auto now = std::chrono::system_clock::now();
+    int loaded_count = 0;
+
+    for (const auto& effect_data : effects_result.value()) {
+        try {
+            nlohmann::json modifier_json = nlohmann::json::parse(effect_data.modifier_data);
+            std::string effect_type = modifier_json.value("effect_type", "active");
+
+            // Check if effect has expired
+            if (effect_data.expires_at.has_value() && *effect_data.expires_at <= now) {
+                Log::debug("Skipping expired effect '{}' for player {}", effect_data.effect_name, player->name());
+                continue;
+            }
+
+            if (effect_type == "dot") {
+                // Restore DoT effect
+                fiery::DotEffect dot;
+                dot.ability_id = effect_data.source_id.value_or(0);
+                dot.effect_id = effect_data.effect_id;
+                dot.effect_type = "dot";
+                dot.damage_type = modifier_json.value("damage_type", "");
+                dot.cure_category = modifier_json.value("cure_category", "");
+                dot.potency = modifier_json.value("potency", 5);
+                dot.flat_damage = modifier_json.value("flat_damage", 0);
+                dot.percent_damage = modifier_json.value("percent_damage", 0);
+                dot.blocks_regen = modifier_json.value("blocks_regen", false);
+                dot.reduces_regen = modifier_json.value("reduces_regen", 0);
+                dot.tick_interval = modifier_json.value("tick_interval", 1);
+                dot.ticks_since_last = modifier_json.value("ticks_since_last", 0);
+                dot.remaining_ticks = modifier_json.value("remaining_ticks", -1);
+                dot.source_actor_id = modifier_json.value("source_actor_id", "");
+                dot.source_level = modifier_json.value("source_level", 1);
+                dot.stack_count = effect_data.strength;
+                dot.max_stacks = modifier_json.value("max_stacks", 1);
+                dot.stackable = modifier_json.value("stackable", false);
+
+                player->add_dot_effect(dot);
+                loaded_count++;
+                Log::debug("Restored DoT effect for player {}", player->name());
+
+            } else if (effect_type == "hot") {
+                // Restore HoT effect
+                fiery::HotEffect hot;
+                hot.ability_id = effect_data.source_id.value_or(0);
+                hot.effect_id = effect_data.effect_id;
+                hot.effect_type = "hot";
+                hot.heal_type = modifier_json.value("heal_type", "");
+                hot.hot_category = modifier_json.value("hot_category", "");
+                hot.flat_heal = modifier_json.value("flat_heal", 0);
+                hot.percent_heal = modifier_json.value("percent_heal", 0);
+                hot.boosts_regen = modifier_json.value("boosts_regen", false);
+                hot.regen_boost = modifier_json.value("regen_boost", 0);
+                hot.tick_interval = modifier_json.value("tick_interval", 1);
+                hot.ticks_since_last = modifier_json.value("ticks_since_last", 0);
+                hot.remaining_ticks = modifier_json.value("remaining_ticks", -1);
+                hot.source_actor_id = modifier_json.value("source_actor_id", "");
+                hot.source_level = modifier_json.value("source_level", 1);
+                hot.stack_count = effect_data.strength;
+                hot.max_stacks = modifier_json.value("max_stacks", 1);
+                hot.stackable = modifier_json.value("stackable", false);
+
+                player->add_hot_effect(hot);
+                loaded_count++;
+                Log::debug("Restored HoT effect for player {}", player->name());
+
+            } else {
+                // Restore regular ActiveEffect
+                ActiveEffect effect;
+                effect.effect_id = effect_data.effect_id;
+                // Use saved effect name from modifier_data if available, otherwise fall back to effect type name
+                effect.name = modifier_json.value("effect_name", effect_data.effect_name);
+                effect.source = effect_data.source_type;
+
+                // Parse flag from modifier data
+                std::string flag_str = modifier_json.value("flag", "None");
+                auto flag_opt = magic_enum::enum_cast<ActorFlag>(flag_str);
+                effect.flag = flag_opt.value_or(ActorFlag::None);
+
+                effect.modifier_value = modifier_json.value("modifier_value", 0);
+                effect.modifier_stat = modifier_json.value("modifier_stat", "");
+                effect.applied_at = std::chrono::steady_clock::now();
+
+                // Calculate remaining duration
+                if (effect_data.duration_seconds.has_value()) {
+                    // Convert seconds back to hours
+                    effect.duration_hours = static_cast<double>(*effect_data.duration_seconds) / 3600.0;
+
+                    // Adjust for time that has passed since saving
+                    if (effect_data.expires_at.has_value()) {
+                        auto time_left = std::chrono::duration_cast<std::chrono::seconds>(
+                            *effect_data.expires_at - now);
+                        if (time_left.count() > 0) {
+                            effect.duration_hours = static_cast<double>(time_left.count()) / 3600.0;
+                        } else {
+                            // Effect has expired, skip it
+                            continue;
+                        }
+                    }
+                } else {
+                    effect.duration_hours = -1;  // Permanent
+                }
+
+                player->add_effect(effect);
+                loaded_count++;
+                Log::debug("Restored active effect '{}' for player {}", effect.name, player->name());
+            }
+        } catch (const nlohmann::json::exception& e) {
+            Log::warn("Failed to parse effect data for player {}: {}", player->name(), e.what());
+        }
+    }
+
+    if (loaded_count > 0) {
+        Log::info("Loaded {} effects for player '{}'", loaded_count, player->name());
+    }
+}
+
 void LoginSystem::start_login() {
     Log::debug("Starting login process for new connection");
     transition_to(LoginState::GetAccount);
@@ -504,6 +637,9 @@ void LoginSystem::handle_get_account(std::string_view input) {
 
                         // Load character abilities from database
                         load_player_abilities(player_);
+
+                        // Load saved effects from database
+                        load_player_effects(player_);
 
                         // Check for existing connection and handle reconnection
                         if (auto *network_manager = connection_->get_network_manager()) {
@@ -760,6 +896,9 @@ void LoginSystem::handle_select_character(std::string_view input) {
 
     // Load character abilities from database
     load_player_abilities(player_);
+
+    // Load saved effects from database
+    load_player_effects(player_);
 
     // Check for existing connection and handle reconnection
     if (auto *network_manager = connection_->get_network_manager()) {
@@ -1587,6 +1726,9 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     // Load character abilities from database
     load_player_abilities(player);
 
+    // Load saved effects from database
+    load_player_effects(player);
+
     // Load character items (equipment and inventory) from database
     load_player_items(player);
 
@@ -1607,7 +1749,16 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     }
 
     if (!saved_room.is_valid()) {
-        // No valid saved room - try race-specific start room from cache
+        // No valid saved room - try recall room (home/touchstone)
+        auto recall_room = player->recall_room();
+        if (recall_room.is_valid() && world_manager.get_room(recall_room)) {
+            player->set_start_room(recall_room);
+            Log::debug("Player {} using recall room (home): {}", player->name(), recall_room);
+        }
+    }
+
+    if (!player->start_room().is_valid()) {
+        // No valid recall room - try race-specific start room from cache
         std::string race_key(player->race());
         if (auto race_data = game_data.find_race_by_key(race_key)) {
             if (race_data->has_start_room()) {

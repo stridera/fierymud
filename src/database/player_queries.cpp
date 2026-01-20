@@ -20,7 +20,10 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
                    password_hash, race, gender, player_class,
                    height, weight, base_height, base_weight, base_size, current_size,
                    hit_roll, damage_roll, armor_class,
-                   description, title
+                   description, title,
+                   current_room_zone_id, current_room_id,
+                   recall_room_zone_id, recall_room_id,
+                   prompt
             FROM "Characters"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
@@ -101,8 +104,10 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         stats.attack_power = row["damage_roll"].as<int>(0);
         stats.armor_rating = std::max(0, 100 - row["armor_class"].as<int>(100));
 
-        // Currency - wealth is already stored in copper
-        stats.gold = row["wealth"].as<long>(0);
+        // Currency - wealth is stored in copper, set the player's wallet (not stats.gold)
+        long wealth_copper = row["wealth"].as<long>(0);
+        player->give_wealth(wealth_copper);
+        logger->info("Loaded player '{}' with {} copper in wallet", player_name, wealth_copper);
 
         // Description and title
         if (!row["description"].is_null()) {
@@ -110,6 +115,29 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         }
         if (!row["title"].is_null()) {
             player->set_title(row["title"].as<std::string>());
+        }
+
+        // Saved room location (where player logged out)
+        if (!row["current_room_zone_id"].is_null() && !row["current_room_id"].is_null()) {
+            int zone_id = row["current_room_zone_id"].as<int>();
+            int room_id = row["current_room_id"].as<int>();
+            EntityId saved_room(static_cast<uint32_t>(zone_id), static_cast<uint32_t>(room_id));
+            player->set_start_room(saved_room);
+            logger->debug("Player '{}' has saved room: {}:{}", player_name, zone_id, room_id);
+        }
+
+        // Recall room (touchstone location)
+        if (!row["recall_room_zone_id"].is_null() && !row["recall_room_id"].is_null()) {
+            int zone_id = row["recall_room_zone_id"].as<int>();
+            int room_id = row["recall_room_id"].as<int>();
+            EntityId recall_room(static_cast<uint32_t>(zone_id), static_cast<uint32_t>(room_id));
+            player->set_recall_room(recall_room);
+            logger->debug("Player '{}' has recall room: {}:{}", player_name, zone_id, room_id);
+        }
+
+        // Prompt format string
+        if (!row["prompt"].is_null()) {
+            player->set_prompt(row["prompt"].as<std::string>());
         }
 
         logger->debug("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database",

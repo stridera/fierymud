@@ -2372,6 +2372,264 @@ Result<EffectData> load_effect(pqxx::work& txn, int effect_id) {
     }
 }
 
+Result<EffectData> load_effect_by_name(pqxx::work& txn, const std::string& name) {
+    auto logger = Log::database();
+    logger->debug("Loading effect by name: {}", name);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT
+                id, name, description,
+                "effectType" AS effect_type,
+                default_params::text AS default_params
+            FROM "Effect"
+            WHERE LOWER(name) = LOWER($1)
+        )", name);
+
+        if (result.empty()) {
+            return std::unexpected(Error{ErrorCode::NotFound,
+                fmt::format("Effect '{}' not found", name)});
+        }
+
+        const auto& row = result[0];
+        EffectData effect;
+        effect.id = row["id"].as<int>();
+        effect.name = row["name"].as<std::string>("");
+        effect.description = row["description"].as<std::string>("");
+        effect.effect_type = row["effect_type"].as<std::string>("");
+        effect.default_params = row["default_params"].is_null() ? "{}" : row["default_params"].as<std::string>();
+
+        return effect;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading effect '{}': {}", name, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load effect: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Character Active Effects Persistence
+// =============================================================================
+
+Result<std::vector<CharacterEffectData>> load_character_effects(
+    pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+    logger->debug("Loading character effects for: {}", character_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT
+                ce.id,
+                ce.character_id,
+                ce.effect_id,
+                ce.duration,
+                ce.strength,
+                ce.modifier_data::text AS modifier_data,
+                ce.source_type,
+                ce.source_id,
+                ce.applied_at,
+                ce.expires_at,
+                e.name AS effect_name,
+                e."effectType" AS effect_type
+            FROM "CharacterEffects" ce
+            JOIN "Effect" e ON ce.effect_id = e.id
+            WHERE ce.character_id = $1
+            ORDER BY ce.applied_at
+        )", character_id);
+
+        std::vector<CharacterEffectData> effects;
+        effects.reserve(result.size());
+
+        for (const auto& row : result) {
+            CharacterEffectData effect;
+            effect.id = row["id"].as<int>();
+            effect.character_id = row["character_id"].as<std::string>();
+            effect.effect_id = row["effect_id"].as<int>();
+
+            if (!row["duration"].is_null()) {
+                effect.duration_seconds = row["duration"].as<int>();
+            }
+
+            effect.strength = row["strength"].as<int>(1);
+            effect.modifier_data = row["modifier_data"].is_null() ? "{}" : row["modifier_data"].as<std::string>();
+            effect.source_type = row["source_type"].is_null() ? "" : row["source_type"].as<std::string>();
+
+            if (!row["source_id"].is_null()) {
+                effect.source_id = row["source_id"].as<int>();
+            }
+
+            // Parse timestamps
+            auto applied_str = row["applied_at"].as<std::string>();
+            // PostgreSQL timestamp format: "2024-01-15 10:30:00"
+            std::tm tm = {};
+            std::istringstream ss(applied_str);
+            ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+            effect.applied_at = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+
+            if (!row["expires_at"].is_null()) {
+                auto expires_str = row["expires_at"].as<std::string>();
+                std::tm tm_exp = {};
+                std::istringstream ss_exp(expires_str);
+                ss_exp >> std::get_time(&tm_exp, "%Y-%m-%d %H:%M:%S");
+                effect.expires_at = std::chrono::system_clock::from_time_t(std::mktime(&tm_exp));
+            }
+
+            effect.effect_name = row["effect_name"].as<std::string>("");
+            effect.effect_type = row["effect_type"].as<std::string>("");
+
+            effects.push_back(std::move(effect));
+        }
+
+        logger->debug("Loaded {} effects for character {}", effects.size(), character_id);
+        return effects;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading character effects: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load character effects: {}", e.what())});
+    }
+}
+
+Result<void> save_character_effects(
+    pqxx::work& txn,
+    const std::string& character_id,
+    const std::vector<CharacterEffectData>& effects) {
+    auto logger = Log::database();
+    logger->debug("Saving {} effects for character {}", effects.size(), character_id);
+
+    try {
+        // First delete all existing effects for this character
+        txn.exec_params(R"(
+            DELETE FROM "CharacterEffects"
+            WHERE character_id = $1
+        )", character_id);
+
+        // Insert new effects
+        for (const auto& effect : effects) {
+            // Format timestamps for PostgreSQL
+            auto format_time = [](const std::chrono::system_clock::time_point& tp) -> std::string {
+                auto time_t_val = std::chrono::system_clock::to_time_t(tp);
+                std::tm tm = *std::gmtime(&time_t_val);
+                std::ostringstream ss;
+                ss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+                return ss.str();
+            };
+
+            std::string applied_at_str = format_time(effect.applied_at);
+
+            if (effect.expires_at.has_value()) {
+                std::string expires_at_str = format_time(*effect.expires_at);
+
+                if (effect.duration_seconds.has_value() && effect.source_id.has_value()) {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, duration, strength, modifier_data,
+                         source_type, source_id, applied_at, expires_at)
+                        VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7, $8::timestamp, $9::timestamp)
+                    )", character_id, effect.effect_id, *effect.duration_seconds,
+                        effect.strength, effect.modifier_data, effect.source_type,
+                        *effect.source_id, applied_at_str, expires_at_str);
+                } else if (effect.duration_seconds.has_value()) {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, duration, strength, modifier_data,
+                         source_type, applied_at, expires_at)
+                        VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7::timestamp, $8::timestamp)
+                    )", character_id, effect.effect_id, *effect.duration_seconds,
+                        effect.strength, effect.modifier_data, effect.source_type,
+                        applied_at_str, expires_at_str);
+                } else if (effect.source_id.has_value()) {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, strength, modifier_data,
+                         source_type, source_id, applied_at, expires_at)
+                        VALUES ($1, $2, $3, $4::jsonb, $5, $6, $7::timestamp, $8::timestamp)
+                    )", character_id, effect.effect_id, effect.strength,
+                        effect.modifier_data, effect.source_type,
+                        *effect.source_id, applied_at_str, expires_at_str);
+                } else {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, strength, modifier_data,
+                         source_type, applied_at, expires_at)
+                        VALUES ($1, $2, $3, $4::jsonb, $5, $6::timestamp, $7::timestamp)
+                    )", character_id, effect.effect_id, effect.strength,
+                        effect.modifier_data, effect.source_type,
+                        applied_at_str, expires_at_str);
+                }
+            } else {
+                // No expires_at
+                if (effect.duration_seconds.has_value() && effect.source_id.has_value()) {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, duration, strength, modifier_data,
+                         source_type, source_id, applied_at)
+                        VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7, $8::timestamp)
+                    )", character_id, effect.effect_id, *effect.duration_seconds,
+                        effect.strength, effect.modifier_data, effect.source_type,
+                        *effect.source_id, applied_at_str);
+                } else if (effect.duration_seconds.has_value()) {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, duration, strength, modifier_data,
+                         source_type, applied_at)
+                        VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7::timestamp)
+                    )", character_id, effect.effect_id, *effect.duration_seconds,
+                        effect.strength, effect.modifier_data, effect.source_type,
+                        applied_at_str);
+                } else if (effect.source_id.has_value()) {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, strength, modifier_data,
+                         source_type, source_id, applied_at)
+                        VALUES ($1, $2, $3, $4::jsonb, $5, $6, $7::timestamp)
+                    )", character_id, effect.effect_id, effect.strength,
+                        effect.modifier_data, effect.source_type,
+                        *effect.source_id, applied_at_str);
+                } else {
+                    txn.exec_params(R"(
+                        INSERT INTO "CharacterEffects"
+                        (character_id, effect_id, strength, modifier_data,
+                         source_type, applied_at)
+                        VALUES ($1, $2, $3, $4::jsonb, $5, $6::timestamp)
+                    )", character_id, effect.effect_id, effect.strength,
+                        effect.modifier_data, effect.source_type, applied_at_str);
+                }
+            }
+        }
+
+        logger->info("Saved {} effects to database for character {}",
+                    effects.size(), character_id);
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error saving character effects: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to save character effects: {}", e.what())});
+    }
+}
+
+Result<void> delete_character_effects(pqxx::work& txn, const std::string& character_id) {
+    auto logger = Log::database();
+    logger->debug("Deleting all effects for character {}", character_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            DELETE FROM "CharacterEffects"
+            WHERE character_id = $1
+        )", character_id);
+
+        logger->debug("Deleted effects for character {}", character_id);
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error deleting character effects: {}", e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to delete character effects: {}", e.what())});
+    }
+}
+
 Result<std::vector<AbilityEffectData>> load_ability_effects(pqxx::work& txn, int ability_id) {
     auto logger = Log::database();
     logger->debug("Loading effects for ability {}", ability_id);

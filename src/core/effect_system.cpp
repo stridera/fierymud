@@ -1193,6 +1193,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_status(
 
     // Create the active effect - use ability display name if available
     ActiveEffect effect;
+    effect.effect_id = context.effect_id;  // Store database Effect ID for persistence
     effect.name = context.ability_name.empty() ? format_effect_name(status) : context.ability_name;
     effect.source = context.ability_name.empty() ? "spell" : context.ability_name;  // Could be spell name, item, etc.
     effect.flag = parsed_flag.value_or(ActorFlag::None);  // Use None if no matching flag

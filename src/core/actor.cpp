@@ -20,9 +20,9 @@ namespace {
     constexpr int MIN_ATTRIBUTE = 1;
     constexpr int MAX_ATTRIBUTE = 25;
 
-    // Level bounds
+    // Level bounds (MAX_LEVEL supports immortal levels above 100)
     constexpr int MIN_LEVEL = 1;
-    constexpr int MAX_LEVEL = 100;
+    constexpr int MAX_LEVEL = 200;  // Immortals can be level 101-200
 
     // Carry capacity calculation
     constexpr int BASE_CARRY_CAPACITY = 50;
@@ -941,23 +941,89 @@ Result<void> Actor::level_up() {
 
 nlohmann::json Actor::to_json() const {
     nlohmann::json json = Entity::to_json();
-    
+
     json["stats"] = stats_.to_json();
     json["inventory"] = inventory_.to_json();
     json["equipment"] = equipment_.to_json();
     json["position"] = std::string(magic_enum::enum_name(position_));
-    
+
     std::vector<std::string> flag_names;
     for (ActorFlag flag : flags_) {
         flag_names.emplace_back(magic_enum::enum_name(flag));
     }
     json["flags"] = flag_names;
-    
+
     // Add spell slots if they exist
     if (spell_slots_) {
         json["spell_slots"] = spell_slots_->to_json();
     }
-    
+
+    // Serialize active effects
+    nlohmann::json effects_json = nlohmann::json::array();
+    for (const auto& effect : active_effects_) {
+        nlohmann::json eff_json;
+        eff_json["effect_id"] = effect.effect_id;
+        eff_json["name"] = effect.name;
+        eff_json["source"] = effect.source;
+        eff_json["flag"] = std::string(magic_enum::enum_name(effect.flag));
+        eff_json["duration_hours"] = effect.duration_hours;
+        eff_json["modifier_value"] = effect.modifier_value;
+        eff_json["modifier_stat"] = effect.modifier_stat;
+        effects_json.push_back(eff_json);
+    }
+    json["active_effects"] = effects_json;
+
+    // Serialize DoT effects
+    nlohmann::json dots_json = nlohmann::json::array();
+    for (const auto& dot : dot_effects_) {
+        nlohmann::json dot_json;
+        dot_json["ability_id"] = dot.ability_id;
+        dot_json["effect_id"] = dot.effect_id;
+        dot_json["effect_type"] = dot.effect_type;
+        dot_json["damage_type"] = dot.damage_type;
+        dot_json["cure_category"] = dot.cure_category;
+        dot_json["potency"] = dot.potency;
+        dot_json["flat_damage"] = dot.flat_damage;
+        dot_json["percent_damage"] = dot.percent_damage;
+        dot_json["blocks_regen"] = dot.blocks_regen;
+        dot_json["reduces_regen"] = dot.reduces_regen;
+        dot_json["remaining_ticks"] = dot.remaining_ticks;
+        dot_json["tick_interval"] = dot.tick_interval;
+        dot_json["ticks_since_last"] = dot.ticks_since_last;
+        dot_json["source_actor_id"] = dot.source_actor_id;
+        dot_json["source_level"] = dot.source_level;
+        dot_json["stack_count"] = dot.stack_count;
+        dot_json["max_stacks"] = dot.max_stacks;
+        dot_json["stackable"] = dot.stackable;
+        dots_json.push_back(dot_json);
+    }
+    json["dot_effects"] = dots_json;
+
+    // Serialize HoT effects
+    nlohmann::json hots_json = nlohmann::json::array();
+    for (const auto& hot : hot_effects_) {
+        nlohmann::json hot_json;
+        hot_json["ability_id"] = hot.ability_id;
+        hot_json["effect_id"] = hot.effect_id;
+        hot_json["effect_type"] = hot.effect_type;
+        hot_json["heal_type"] = hot.heal_type;
+        hot_json["hot_category"] = hot.hot_category;
+        hot_json["flat_heal"] = hot.flat_heal;
+        hot_json["percent_heal"] = hot.percent_heal;
+        hot_json["boosts_regen"] = hot.boosts_regen;
+        hot_json["regen_boost"] = hot.regen_boost;
+        hot_json["remaining_ticks"] = hot.remaining_ticks;
+        hot_json["tick_interval"] = hot.tick_interval;
+        hot_json["ticks_since_last"] = hot.ticks_since_last;
+        hot_json["source_actor_id"] = hot.source_actor_id;
+        hot_json["source_level"] = hot.source_level;
+        hot_json["stack_count"] = hot.stack_count;
+        hot_json["max_stacks"] = hot.max_stacks;
+        hot_json["stackable"] = hot.stackable;
+        hots_json.push_back(hot_json);
+    }
+    json["hot_effects"] = hots_json;
+
     return json;
 }
 
@@ -2489,48 +2555,86 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
         if (!base_result) {
             return std::unexpected(base_result.error());
         }
-        
+
         auto base_entity = std::move(base_result.value());
         auto player = std::unique_ptr<Player>(new Player(base_entity->id(), base_entity->name()));
-        
+
         // Copy base properties
         player->set_keywords(base_entity->keywords());
-        player->set_description(base_entity->description());
         player->set_short_description(base_entity->short_description());
-        
+
+        // Load Stats from Actor::to_json
+        if (json.contains("stats")) {
+            auto stats_result = Stats::from_json(json["stats"]);
+            if (stats_result) {
+                player->stats() = stats_result.value();
+            } else {
+                Log::warn("Failed to load stats for player '{}': {}",
+                         player->name(), stats_result.error().message);
+            }
+        }
+
+        // Load position from Actor::to_json
+        if (json.contains("position")) {
+            auto pos_str = json["position"].get<std::string>();
+            auto pos = magic_enum::enum_cast<Position>(pos_str);
+            if (pos.has_value()) {
+                player->set_position(pos.value());
+            }
+        }
+
+        // Load actor flags from Actor::to_json (different from player_flags)
+        if (json.contains("flags")) {
+            for (const auto& flag_name : json["flags"]) {
+                auto flag = magic_enum::enum_cast<ActorFlag>(flag_name.get<std::string>());
+                if (flag.has_value()) {
+                    player->set_flag(flag.value(), true);
+                }
+            }
+        }
+
         // Parse player-specific properties
         if (json.contains("account")) {
             player->set_account(json["account"].get<std::string>());
         }
-        
+
         if (json.contains("god_level")) {
             player->set_god_level(json["god_level"].get<int>());
         }
-        
+
         if (json.contains("player_class")) {
             player->set_class(json["player_class"].get<std::string>());
         }
-        
+
         if (json.contains("race")) {
             player->set_race(json["race"].get<std::string>());
         }
-        
+
+        if (json.contains("gender")) {
+            player->set_gender(json["gender"].get<std::string>());
+        }
+
         if (json.contains("start_room")) {
             auto start_room_id = json["start_room"].get<uint64_t>();
             player->set_start_room(EntityId{start_room_id});
         }
-        
+
+        if (json.contains("recall_room")) {
+            auto recall_room_id = json["recall_room"].get<uint64_t>();
+            player->set_recall_room(EntityId{recall_room_id});
+        }
+
         // Load spell slots if present
         if (json.contains("spell_slots")) {
             auto spell_slots_result = SpellSlots::from_json(json["spell_slots"]);
             if (spell_slots_result) {
                 player->spell_slots() = spell_slots_result.value();
             } else {
-                Log::warn("Failed to load spell slots for player '{}': {}", 
+                Log::warn("Failed to load spell slots for player '{}': {}",
                          player->name(), spell_slots_result.error().message);
             }
         }
-        
+
         // Load player preferences and flags
         if (json.contains("prompt")) {
             player->set_prompt(json["prompt"].get<std::string>());
@@ -2538,6 +2642,10 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
 
         if (json.contains("title")) {
             player->set_title(json["title"].get<std::string>());
+        }
+
+        if (json.contains("description")) {
+            player->set_description(json["description"].get<std::string>());
         }
 
         if (json.contains("wimpy_threshold")) {
@@ -2548,13 +2656,90 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json& json) {
             player->set_player_flags_from_strings(json["player_flags"].get<std::vector<std::string>>());
         }
 
+        // Load wallet and bank
+        if (json.contains("wallet")) {
+            player->wallet() = fiery::Money::from_json(json["wallet"]);
+        }
+
+        if (json.contains("bank")) {
+            player->bank() = fiery::Money::from_json(json["bank"]);
+        }
+
+        // Load active effects
+        if (json.contains("active_effects")) {
+            for (const auto& eff_json : json["active_effects"]) {
+                ActiveEffect effect;
+                effect.effect_id = eff_json.value("effect_id", 0);
+                effect.name = eff_json.value("name", "");
+                effect.source = eff_json.value("source", "");
+                auto flag = magic_enum::enum_cast<ActorFlag>(eff_json.value("flag", "None"));
+                effect.flag = flag.value_or(ActorFlag::None);
+                effect.duration_hours = eff_json.value("duration_hours", 0.0);
+                effect.modifier_value = eff_json.value("modifier_value", 0);
+                effect.modifier_stat = eff_json.value("modifier_stat", "");
+                effect.applied_at = std::chrono::steady_clock::now();
+                player->add_effect(effect);
+            }
+        }
+
+        // Load DoT effects
+        if (json.contains("dot_effects")) {
+            for (const auto& dot_json : json["dot_effects"]) {
+                fiery::DotEffect dot;
+                dot.ability_id = dot_json.value("ability_id", 0);
+                dot.effect_id = dot_json.value("effect_id", 0);
+                dot.effect_type = dot_json.value("effect_type", "");
+                dot.damage_type = dot_json.value("damage_type", "");
+                dot.cure_category = dot_json.value("cure_category", "");
+                dot.potency = dot_json.value("potency", 5);
+                dot.flat_damage = dot_json.value("flat_damage", 0);
+                dot.percent_damage = dot_json.value("percent_damage", 0);
+                dot.blocks_regen = dot_json.value("blocks_regen", false);
+                dot.reduces_regen = dot_json.value("reduces_regen", 0);
+                dot.remaining_ticks = dot_json.value("remaining_ticks", -1);
+                dot.tick_interval = dot_json.value("tick_interval", 1);
+                dot.ticks_since_last = dot_json.value("ticks_since_last", 0);
+                dot.source_actor_id = dot_json.value("source_actor_id", "");
+                dot.source_level = dot_json.value("source_level", 1);
+                dot.stack_count = dot_json.value("stack_count", 1);
+                dot.max_stacks = dot_json.value("max_stacks", 1);
+                dot.stackable = dot_json.value("stackable", false);
+                player->add_dot_effect(dot);
+            }
+        }
+
+        // Load HoT effects
+        if (json.contains("hot_effects")) {
+            for (const auto& hot_json : json["hot_effects"]) {
+                fiery::HotEffect hot;
+                hot.ability_id = hot_json.value("ability_id", 0);
+                hot.effect_id = hot_json.value("effect_id", 0);
+                hot.effect_type = hot_json.value("effect_type", "");
+                hot.heal_type = hot_json.value("heal_type", "");
+                hot.hot_category = hot_json.value("hot_category", "");
+                hot.flat_heal = hot_json.value("flat_heal", 0);
+                hot.percent_heal = hot_json.value("percent_heal", 0);
+                hot.boosts_regen = hot_json.value("boosts_regen", false);
+                hot.regen_boost = hot_json.value("regen_boost", 0);
+                hot.remaining_ticks = hot_json.value("remaining_ticks", -1);
+                hot.tick_interval = hot_json.value("tick_interval", 1);
+                hot.ticks_since_last = hot_json.value("ticks_since_last", 0);
+                hot.source_actor_id = hot_json.value("source_actor_id", "");
+                hot.source_level = hot_json.value("source_level", 1);
+                hot.stack_count = hot_json.value("stack_count", 1);
+                hot.max_stacks = hot_json.value("max_stacks", 1);
+                hot.stackable = hot_json.value("stackable", false);
+                player->add_hot_effect(hot);
+            }
+        }
+
         // Initialize spell slots based on class and level
         player->initialize_spell_slots();
 
         TRY(player->validate());
 
         return player;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Player JSON parsing error", e.what()));
     }
@@ -2923,12 +3108,16 @@ nlohmann::json Player::to_json() const {
     json["god_level"] = god_level_;
     json["player_class"] = player_class_;
     json["race"] = std::string(race());
+    json["gender"] = std::string(gender());
     json["start_room"] = start_room_.value();
+    json["recall_room"] = recall_room_.value();
     json["player_flags"] = get_player_flags_as_strings();
     json["wimpy_threshold"] = wimpy_threshold_;
     json["title"] = title_;
     json["description"] = description_;
     json["prompt"] = prompt_;
+    json["wallet"] = wallet_.to_json();
+    json["bank"] = bank_.to_json();
 
     return json;
 }

@@ -160,17 +160,18 @@ configure_file(
     @ONLY
 )
 
-# Get source files
-set(SOURCES
-    src/main.cpp
+# =============================================================================
+# Core Library (shared by fierymud and all test executables)
+# =============================================================================
+# This eliminates duplicate compilation - sources are compiled once into a
+# static library that all targets link against.
+
+set(CORE_SOURCES
     src/core/logging.cpp
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
     src/core/money.cpp
-    src/text/text_format.cpp
-    src/text/string_utils.cpp
-    src/text/message_utils.cpp
     src/core/object.cpp
     src/core/shopkeeper.cpp
     src/core/board.cpp
@@ -180,6 +181,12 @@ set(SOURCES
     src/core/ability_executor.cpp
     src/core/spell_system.cpp
     src/core/class_config.cpp
+    src/core/arguments.cpp
+    src/text/text_format.cpp
+    src/text/string_utils.cpp
+    src/text/message_utils.cpp
+    src/text/rich_text.cpp
+    src/text/terminal_capabilities.cpp
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
@@ -188,26 +195,26 @@ set(SOURCES
     src/server/world_server.cpp
     src/server/mud_server.cpp
     src/server/network_manager.cpp
+    src/server/persistence_manager.cpp
+    src/server/configuration_manager.cpp
     src/net/player_connection.cpp
     src/net/mssp_handler.cpp
     src/net/tls_context.cpp
     src/game/login_system.cpp
     src/game/composer_system.cpp
-    src/server/persistence_manager.cpp
-    src/server/configuration_manager.cpp
     src/database/database_config.cpp
     src/database/connection_pool.cpp
     src/database/config_loader.cpp
     src/database/world_queries.cpp
     src/database/player_queries.cpp
+    src/database/player_repository.cpp
     src/database/social_queries.cpp
     src/database/db_parsing_utils.cpp
     src/database/game_data_cache.cpp
     src/database/quest_queries.cpp
+    src/database/trigger_queries.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
-    src/text/rich_text.cpp
-    src/text/terminal_capabilities.cpp
     src/commands/command_parser.cpp
     src/commands/builtin_commands.cpp
     src/commands/information_commands.cpp
@@ -226,7 +233,7 @@ set(SOURCES
     src/commands/postmaster_commands.cpp
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
-    # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
+    src/commands/quest_commands.cpp
     # Scripting system
     src/scripting/script_engine.cpp
     src/scripting/trigger_manager.cpp
@@ -235,71 +242,21 @@ set(SOURCES
     src/scripting/bindings/lua_room.cpp
     src/scripting/bindings/lua_object.cpp
     src/scripting/bindings/lua_quest.cpp
-    src/database/trigger_queries.cpp
     # Quest system
     src/quests/quest_manager.cpp
-    src/commands/quest_commands.cpp
     # Event publishing for Muditor bridge
     src/events/event_publisher.cpp
-    # Admin API for Muditor remote management
-    src/admin/admin_server.cpp
-    src/admin/zone_reload_handler.cpp
-    src/admin/player_handler.cpp
 )
 
-# Test sources (without main.cpp and networking)
-set(SIMPLE_TEST_SOURCES
-    src/core/logging.cpp
-    src/core/config.cpp
-    src/core/entity.cpp
-    src/core/actor.cpp
-    src/core/money.cpp
-    src/text/text_format.cpp
-    src/core/object.cpp
-    src/core/board.cpp
-    src/core/combat.cpp
-    src/core/formula_parser.cpp
-    src/core/effect_system.cpp
-    src/core/ability_executor.cpp
-    src/core/spell_system.cpp
-    src/core/class_config.cpp
-    src/world/room.cpp
-    src/world/zone.cpp
-    src/world/world_manager.cpp
-    src/world/weather.cpp
-    src/world/world_server.cpp
-    src/commands/command_system.cpp
-    src/commands/weather_commands.cpp
-    src/commands/command_context.cpp
-    src/commands/command_parser.cpp
-    src/commands/builtin_commands.cpp
-    src/commands/information_commands.cpp
-    src/commands/magic_commands.cpp
-    src/commands/character_commands.cpp
-    src/commands/communication_commands.cpp
-    src/commands/group_commands.cpp
-    src/commands/movement_commands.cpp
-    src/commands/position_commands.cpp
-    src/commands/object_commands.cpp
-    src/commands/account_commands.cpp
-    src/commands/admin_commands.cpp
-    src/commands/combat_commands.cpp
-    src/commands/skill_commands.cpp
-    src/commands/economy_commands.cpp
-    src/commands/postmaster_commands.cpp
-    src/commands/social_commands.cpp
-    src/commands/system_commands.cpp
-)
+# Create the core static library
+add_library(fierymud_core STATIC ${CORE_SOURCES})
 
-# Modern FieryMUD Server (fierymud)
-add_executable(fierymud ${SOURCES})
-
-target_include_directories(fierymud PRIVATE
+target_include_directories(fierymud_core PUBLIC
     src
     ${HIREDIS_INCLUDE_DIRS}
 )
 
-target_link_libraries(fierymud PRIVATE
+target_link_libraries(fierymud_core PUBLIC
     fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
@@ -316,10 +273,32 @@ target_link_libraries(fierymud PRIVATE
     ${HIREDIS_LIBRARIES}
 )
 
-target_compile_definitions(fierymud PRIVATE
+target_compile_definitions(fierymud_core PUBLIC
     SPDLOG_COMPILED_LIB
     SPDLOG_FMT_EXTERNAL
 )
+
+target_compile_options(fierymud_core PRIVATE
+    -std=gnu++23
+    -Wall
+    -Wextra
+    -O3
+    -g
+)
+
+# =============================================================================
+# Modern FieryMUD Server (fierymud)
+# =============================================================================
+# Only compiles main.cpp and admin server - links to fierymud_core for everything else
+
+add_executable(fierymud
+    src/main.cpp
+    src/admin/admin_server.cpp
+    src/admin/zone_reload_handler.cpp
+    src/admin/player_handler.cpp
+)
+
+target_link_libraries(fierymud PRIVATE fierymud_core)
 
 target_compile_options(fierymud PRIVATE
     -std=gnu++23
@@ -329,84 +308,9 @@ target_compile_options(fierymud PRIVATE
     -g
 )
 
-# Core system sources (needed for all tests)
-set(CORE_TEST_SOURCES
-    src/core/logging.cpp
-    src/core/config.cpp
-    src/core/entity.cpp
-    src/core/actor.cpp
-    src/core/money.cpp
-    src/text/text_format.cpp
-    src/core/object.cpp
-    src/core/shopkeeper.cpp
-    src/core/board.cpp
-    src/core/combat.cpp
-    src/core/formula_parser.cpp
-    src/core/effect_system.cpp
-    src/core/ability_executor.cpp
-    src/core/spell_system.cpp
-    src/core/class_config.cpp
-    src/world/room.cpp
-    src/world/zone.cpp
-    src/world/world_manager.cpp
-    src/world/weather.cpp
-    src/world/time_system.cpp
-    src/server/world_server.cpp
-    src/server/network_manager.cpp
-    src/server/persistence_manager.cpp
-    src/database/database_config.cpp
-    src/database/connection_pool.cpp
-    src/database/config_loader.cpp
-    src/database/world_queries.cpp
-    src/database/player_queries.cpp
-    src/database/social_queries.cpp
-    src/database/db_parsing_utils.cpp
-    src/database/game_data_cache.cpp
-    src/events/event_publisher.cpp
-    src/net/player_connection.cpp
-    src/net/tls_context.cpp
-    src/net/mssp_handler.cpp
-    src/game/login_system.cpp
-    src/game/composer_system.cpp
-    src/commands/command_system.cpp
-    src/commands/command_context.cpp
-    src/text/rich_text.cpp
-    src/text/terminal_capabilities.cpp
-    src/commands/command_parser.cpp
-    src/commands/builtin_commands.cpp
-    src/commands/information_commands.cpp
-    src/commands/magic_commands.cpp
-    src/commands/character_commands.cpp
-    src/commands/communication_commands.cpp
-    src/commands/group_commands.cpp
-    src/commands/movement_commands.cpp
-    src/commands/position_commands.cpp
-    src/commands/object_commands.cpp
-    src/commands/account_commands.cpp
-    src/commands/admin_commands.cpp
-    src/commands/combat_commands.cpp
-    src/commands/skill_commands.cpp
-    src/commands/economy_commands.cpp
-    src/commands/postmaster_commands.cpp
-    src/commands/social_commands.cpp
-    src/commands/system_commands.cpp
-    # src/commands/clan_commands.cpp  # Temporarily disabled due to conflicts
-    src/core/arguments.cpp
-    src/text/string_utils.cpp
-    # Scripting system
-    src/scripting/script_engine.cpp
-    src/scripting/trigger_manager.cpp
-    src/scripting/coroutine_scheduler.cpp
-    src/scripting/bindings/lua_actor.cpp
-    src/scripting/bindings/lua_room.cpp
-    src/scripting/bindings/lua_object.cpp
-    src/scripting/bindings/lua_quest.cpp
-    src/database/trigger_queries.cpp
-    # Quest system
-    src/database/quest_queries.cpp
-    src/quests/quest_manager.cpp
-    src/commands/quest_commands.cpp
-)
+# =============================================================================
+# Test Executables (link to fierymud_core - no duplicate compilation)
+# =============================================================================
 
 # Unit test sources
 file(GLOB_RECURSE UNIT_TEST_FILES "tests/unit/*.cpp")
@@ -417,128 +321,20 @@ file(GLOB STABLE_INTEGRATION_TEST_FILES "tests/integration/*_stable.cpp")
 # Common test infrastructure
 file(GLOB_RECURSE COMMON_TEST_FILES "tests/common/*.cpp")
 
-# Unit test executable (no TestHarness dependencies)
-add_executable(unit_tests 
-    ${CORE_TEST_SOURCES}
-    ${UNIT_TEST_FILES}
-)
+# Unit test executable
+add_executable(unit_tests ${UNIT_TEST_FILES})
+target_link_libraries(unit_tests PRIVATE fierymud_core Catch2::Catch2WithMain)
+target_compile_options(unit_tests PRIVATE -std=gnu++23 -Wall -Wextra -O3 -g)
 
 # Stable integration test executable (recommended)
-add_executable(stable_tests 
-    ${CORE_TEST_SOURCES}
-    ${STABLE_INTEGRATION_TEST_FILES}
-    ${COMMON_TEST_FILES}
-)
+add_executable(stable_tests ${STABLE_INTEGRATION_TEST_FILES} ${COMMON_TEST_FILES})
+target_link_libraries(stable_tests PRIVATE fierymud_core Catch2::Catch2WithMain)
+target_compile_options(stable_tests PRIVATE -std=gnu++23 -Wall -Wextra -O3 -g)
 
-# combined test executable
-add_executable(tests 
-    ${CORE_TEST_SOURCES}
-    ${UNIT_TEST_FILES}
-    ${STABLE_INTEGRATION_TEST_FILES}
-    ${COMMON_TEST_FILES}
-)
-
-# Configure unit tests executable
-target_include_directories(unit_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
-
-# Configure stable tests executable
-target_include_directories(stable_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
-
-target_link_libraries(unit_tests PRIVATE
-    fmt::fmt
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    cxxopts::cxxopts
-    asio
-    pqxx
-    PostgreSQL::PostgreSQL
-    Catch2::Catch2WithMain
-    OpenSSL::Crypto
-    crypt
-    lua
-    ${CMAKE_DL_LIBS}
-    sol2::sol2
-    ${HIREDIS_LIBRARIES}
-)
-
-target_compile_definitions(unit_tests PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-)
-
-target_compile_options(unit_tests PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
-
-target_link_libraries(stable_tests PRIVATE
-    fmt::fmt
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    cxxopts::cxxopts
-    asio
-    pqxx
-    PostgreSQL::PostgreSQL
-    Catch2::Catch2WithMain
-    OpenSSL::Crypto
-    crypt
-    lua
-    ${CMAKE_DL_LIBS}
-    sol2::sol2
-    ${HIREDIS_LIBRARIES}
-)
-
-target_compile_definitions(stable_tests PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-)
-
-target_compile_options(stable_tests PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
-
-# Configure combined tests executable
-target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
-
-target_link_libraries(tests PRIVATE
-    fmt::fmt
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    cxxopts::cxxopts
-    asio
-    pqxx
-    PostgreSQL::PostgreSQL
-    Catch2::Catch2WithMain
-    OpenSSL::Crypto
-    crypt
-    lua
-    ${CMAKE_DL_LIBS}
-    sol2::sol2
-    ${HIREDIS_LIBRARIES}
-)
-
-target_compile_definitions(tests PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-)
-
-target_compile_options(tests PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
+# Combined test executable
+add_executable(tests ${UNIT_TEST_FILES} ${STABLE_INTEGRATION_TEST_FILES} ${COMMON_TEST_FILES})
+target_link_libraries(tests PRIVATE fierymud_core Catch2::Catch2WithMain)
+target_compile_options(tests PRIVATE -std=gnu++23 -Wall -Wextra -O3 -g)
 
 # CTest integration - Register separate test executables
 add_test(
@@ -609,229 +405,16 @@ set_tests_properties(Session_Tests_Filter PROPERTIES
     LABELS "session"
 )
 
-# Database integration test executable (uses same sources as fierymud except main.cpp)
-add_executable(test_database
-    src/database/test_database.cpp
-    src/core/logging.cpp
-    src/core/config.cpp
-    src/core/entity.cpp
-    src/core/actor.cpp
-    src/core/money.cpp
-    src/text/text_format.cpp
-    src/text/string_utils.cpp
-    src/text/message_utils.cpp
-    src/core/object.cpp
-    src/core/shopkeeper.cpp
-    src/core/board.cpp
-    src/core/combat.cpp
-    src/core/spell_system.cpp
-    src/core/class_config.cpp
-    src/core/ability_executor.cpp
-    src/core/formula_parser.cpp
-    src/core/effect_system.cpp
-    src/world/room.cpp
-    src/world/zone.cpp
-    src/world/world_manager.cpp
-    src/world/weather.cpp
-    src/world/time_system.cpp
-    src/server/world_server.cpp
-    src/server/mud_server.cpp
-    src/server/network_manager.cpp
-    src/net/player_connection.cpp
-    src/net/mssp_handler.cpp
-    src/net/tls_context.cpp
-    src/game/login_system.cpp
-    src/game/composer_system.cpp
-    src/server/persistence_manager.cpp
-    src/server/configuration_manager.cpp
-    src/database/database_config.cpp
-    src/database/connection_pool.cpp
-    src/database/config_loader.cpp
-    src/database/world_queries.cpp
-    src/database/player_queries.cpp
-    src/database/social_queries.cpp
-    src/database/db_parsing_utils.cpp
-    src/database/game_data_cache.cpp
-    src/commands/command_system.cpp
-    src/commands/command_context.cpp
-    src/text/rich_text.cpp
-    src/text/terminal_capabilities.cpp
-    src/commands/command_parser.cpp
-    src/commands/builtin_commands.cpp
-    src/commands/information_commands.cpp
-    src/commands/magic_commands.cpp
-    src/commands/character_commands.cpp
-    src/commands/communication_commands.cpp
-    src/commands/group_commands.cpp
-    src/commands/movement_commands.cpp
-    src/commands/position_commands.cpp
-    src/commands/object_commands.cpp
-    src/commands/account_commands.cpp
-    src/commands/admin_commands.cpp
-    src/commands/combat_commands.cpp
-    src/commands/skill_commands.cpp
-    src/commands/economy_commands.cpp
-    src/commands/postmaster_commands.cpp
-    src/commands/social_commands.cpp
-    src/commands/system_commands.cpp
-    # Scripting system
-    src/scripting/script_engine.cpp
-    src/scripting/trigger_manager.cpp
-    src/scripting/coroutine_scheduler.cpp
-    src/scripting/bindings/lua_actor.cpp
-    src/scripting/bindings/lua_room.cpp
-    src/scripting/bindings/lua_object.cpp
-    src/database/trigger_queries.cpp
-    # Event publishing
-    src/scripting/bindings/lua_quest.cpp
-    src/database/trigger_queries.cpp
-    src/events/event_publisher.cpp
-    # Quest system (required by lua_quest bindings)
-    src/quests/quest_manager.cpp
-    src/database/quest_queries.cpp
-    src/commands/quest_commands.cpp
-)
+# =============================================================================
+# Database Test Executables (link to fierymud_core)
+# =============================================================================
 
-target_include_directories(test_database PRIVATE src ${HIREDIS_INCLUDE_DIRS})
+# Database integration test executable
+add_executable(test_database src/database/test_database.cpp)
+target_link_libraries(test_database PRIVATE fierymud_core)
+target_compile_options(test_database PRIVATE -std=gnu++23 -Wall -Wextra -O3 -g)
 
-target_link_libraries(test_database PRIVATE
-    fmt::fmt
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    asio
-    pqxx
-    PostgreSQL::PostgreSQL
-    OpenSSL::Crypto
-    crypt
-    lua
-    ${CMAKE_DL_LIBS}
-    sol2::sol2
-    ${HIREDIS_LIBRARIES}
-)
-
-target_compile_definitions(test_database PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-)
-
-target_compile_options(test_database PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
-
-# Comprehensive database test executable (same sources as test_database for consistency)
-add_executable(test_database_comprehensive
-    src/database/test_database_comprehensive.cpp
-    src/core/logging.cpp
-    src/core/config.cpp
-    src/core/entity.cpp
-    src/core/actor.cpp
-    src/core/money.cpp
-    src/text/text_format.cpp
-    src/text/string_utils.cpp
-    src/text/message_utils.cpp
-    src/core/object.cpp
-    src/core/shopkeeper.cpp
-    src/core/board.cpp
-    src/core/combat.cpp
-    src/core/spell_system.cpp
-    src/core/class_config.cpp
-    src/core/ability_executor.cpp
-    src/core/formula_parser.cpp
-    src/core/effect_system.cpp
-    src/world/room.cpp
-    src/world/zone.cpp
-    src/world/world_manager.cpp
-    src/world/weather.cpp
-    src/world/time_system.cpp
-    src/server/world_server.cpp
-    src/server/mud_server.cpp
-    src/server/network_manager.cpp
-    src/net/player_connection.cpp
-    src/net/mssp_handler.cpp
-    src/net/tls_context.cpp
-    src/game/login_system.cpp
-    src/game/composer_system.cpp
-    src/server/persistence_manager.cpp
-    src/server/configuration_manager.cpp
-    src/database/database_config.cpp
-    src/database/connection_pool.cpp
-    src/database/config_loader.cpp
-    src/database/world_queries.cpp
-    src/database/player_queries.cpp
-    src/database/social_queries.cpp
-    src/database/db_parsing_utils.cpp
-    src/database/game_data_cache.cpp
-    src/commands/command_system.cpp
-    src/commands/command_context.cpp
-    src/text/rich_text.cpp
-    src/text/terminal_capabilities.cpp
-    src/commands/command_parser.cpp
-    src/commands/builtin_commands.cpp
-    src/commands/information_commands.cpp
-    src/commands/magic_commands.cpp
-    src/commands/character_commands.cpp
-    src/commands/communication_commands.cpp
-    src/commands/group_commands.cpp
-    src/commands/movement_commands.cpp
-    src/commands/position_commands.cpp
-    src/commands/object_commands.cpp
-    src/commands/account_commands.cpp
-    src/commands/admin_commands.cpp
-    src/commands/combat_commands.cpp
-    src/commands/skill_commands.cpp
-    src/commands/economy_commands.cpp
-    src/commands/postmaster_commands.cpp
-    src/commands/social_commands.cpp
-    src/commands/system_commands.cpp
-    # Scripting system (required by admin_commands)
-    src/scripting/script_engine.cpp
-    src/scripting/trigger_manager.cpp
-    src/scripting/coroutine_scheduler.cpp
-    src/scripting/bindings/lua_actor.cpp
-    src/scripting/bindings/lua_room.cpp
-    src/scripting/bindings/lua_object.cpp
-    src/scripting/bindings/lua_quest.cpp
-    src/database/trigger_queries.cpp
-    # Quest system (required by lua_quest bindings)
-    src/quests/quest_manager.cpp
-    src/database/quest_queries.cpp
-    src/commands/quest_commands.cpp
-    # Event publishing (required by communication_commands)
-    src/events/event_publisher.cpp
-)
-
-target_include_directories(test_database_comprehensive PRIVATE src ${HIREDIS_INCLUDE_DIRS})
-
-target_link_libraries(test_database_comprehensive PRIVATE
-    fmt::fmt
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    asio
-    pqxx
-    PostgreSQL::PostgreSQL
-    OpenSSL::Crypto
-    crypt
-    lua
-    ${CMAKE_DL_LIBS}
-    sol2::sol2
-    ${HIREDIS_LIBRARIES}
-)
-
-target_compile_definitions(test_database_comprehensive PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-)
-
-target_compile_options(test_database_comprehensive PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
+# Comprehensive database test executable
+add_executable(test_database_comprehensive src/database/test_database_comprehensive.cpp)
+target_link_libraries(test_database_comprehensive PRIVATE fierymud_core)
+target_compile_options(test_database_comprehensive PRIVATE -std=gnu++23 -Wall -Wextra -O3 -g)

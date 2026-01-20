@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "arguments.hpp"
+#include <core/arguments.hpp>
 
 TEST_CASE("Arguments basic functionality", "[arguments]") {
     SECTION("Construction and get()") {
