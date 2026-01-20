@@ -12,6 +12,27 @@
 namespace FieryMUD {
 
 /**
+ * DiceMode controls how dice rolls are evaluated in formulas.
+ */
+enum class DiceMode {
+    Random,  // Roll dice randomly (normal behavior)
+    Min,     // All dice roll minimum (1)
+    Max,     // All dice roll maximum (sides)
+    Avg      // Use average dice value ((1 + sides) / 2.0)
+};
+
+/**
+ * DamageEstimate holds min/max/avg damage values for a formula.
+ */
+struct DamageEstimate {
+    int min = 0;
+    int max = 0;
+    int avg = 0;
+
+    std::string to_string() const;
+};
+
+/**
  * FormulaContext provides variable values for formula evaluation.
  * Variables like "skill", "level", "str_bonus" are resolved from this context.
  */
@@ -67,26 +88,43 @@ public:
      * Evaluate a formula string with the given context.
      * @param formula The formula expression to evaluate
      * @param context Variable values for the formula
+     * @param dice_mode How to handle dice rolls (default: Random)
      * @return The calculated integer result, or an error
      */
-    static std::expected<int, Error> evaluate(std::string_view formula, const FormulaContext& context);
+    static std::expected<int, Error> evaluate(
+        std::string_view formula,
+        const FormulaContext& context,
+        DiceMode dice_mode = DiceMode::Random);
+
+    /**
+     * Estimate damage range for a formula at a given context.
+     * Calculates min (all 1s), max (all max), and avg for dice rolls.
+     * @param formula The damage formula to estimate
+     * @param context Variable values for the formula
+     * @return DamageEstimate with min/max/avg values
+     */
+    static DamageEstimate estimate_damage_range(
+        std::string_view formula,
+        const FormulaContext& context);
 
     /**
      * Roll dice in NdM format.
      * @param count Number of dice to roll
      * @param sides Number of sides per die
-     * @return Sum of all dice rolls
+     * @param mode How to evaluate (Random, Min, Max, Avg)
+     * @return Sum of all dice rolls (or calculated value for non-random modes)
      */
-    static int roll_dice(int count, int sides);
+    static double roll_dice(int count, int sides, DiceMode mode = DiceMode::Random);
 
 private:
     struct Parser {
         std::string_view input;
         size_t pos = 0;
         const FormulaContext& context;
+        DiceMode dice_mode = DiceMode::Random;
 
-        Parser(std::string_view input, const FormulaContext& ctx)
-            : input(input), context(ctx) {}
+        Parser(std::string_view input, const FormulaContext& ctx, DiceMode mode = DiceMode::Random)
+            : input(input), context(ctx), dice_mode(mode) {}
 
         std::expected<double, Error> parse();
         std::expected<double, Error> parse_expression();

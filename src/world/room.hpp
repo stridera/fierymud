@@ -3,6 +3,7 @@
 #include "../core/entity.hpp"
 #include "../core/result.hpp"
 #include "../core/ids.hpp"
+#include "../database/generated/db_enums.hpp"
 
 #include <memory>
 #include <vector>
@@ -21,7 +22,7 @@ class Zone;
 
 /**
  * Modern room system for FieryMUD.
- * 
+ *
  * Replaces legacy room structures with:
  * - Type-safe direction handling
  * - Modern container management for objects and actors
@@ -31,27 +32,11 @@ class Zone;
  * - Light level and visibility calculations
  */
 
-/** Cardinal and special directions */
-enum class Direction {
-    North = 0,
-    East,
-    South, 
-    West,
-    Up,
-    Down,
-    Northeast,
-    Northwest,
-    Southeast,
-    Southwest,
-    
-    // Special exits
-    In,
-    Out,
-    Portal,
-    
-    // Sentinel
-    None
-};
+/**
+ * Direction enum - use database-defined enum directly.
+ * This ensures the game and database stay in sync automatically.
+ */
+using Direction = db::Direction;
 
 /** Room sector types affecting movement and behavior */
 enum class SectorType {
@@ -83,75 +68,12 @@ enum class SectorType {
     Undefined
 };
 
-/** Room flags affecting behavior and access */
-enum class RoomFlag {
-    // Core flags (from legacy CircleMUD)
-    Dark = 0,           // Always dark
-    Death,              // Death trap
-    NoMob,              // Mobiles cannot enter
-    Indoors,            // Indoor room
-    Peaceful,           // No combat allowed
-    Soundproof,         // Sound doesn't carry
-    NoTrack,            // Cannot be tracked to/from
-    NoMagic,            // No magic allowed
-    Tunnel,             // Only one person at a time
-    Private,            // Private room (2 people max)
-    Godroom,            // Gods only
-    House,              // Player house
-    HouseCrash,         // House save on crash
-    Atrium,             // Multi-person private
-    OLC,                // OLC room
-    BFS_Mark,           // Breadth-First Search mark
-    Vehicle,            // Vehicle room
-    Underground,        // Underground room
-    Current,            // Has water current
-    Timed_DT,           // Timed death trap
-    Earth,              // Earth-aligned room
-    Air,                // Air-aligned room
-    Fire,               // Fire-aligned room
-    Water,              // Water-aligned room
-    NoRecall,           // Cannot recall from/to
-    NoSummon,           // Cannot summon to/from
-    NoLocate,           // Cannot locate in
-    NoTeleport,         // Cannot teleport to/from
-    AlwaysLit,          // Always lit (never dark)
-
-    // Clan system flags
-    ClanEntrance,       // Clan entrance room
-    ClanStorage,        // Clan storage room
-
-    // Special flags
-    Arena,              // Arena room
-    Shop,               // Shop room
-    Temple,             // Temple/holy place - player rises from meditation on return
-    Bank,               // Bank room
-    Inn,                // Rentable room - player checks out on return
-    Campsite,           // Designated camping area - player breaks camp on return
-
-    // Map and navigation flags
-    Worldmap,           // Part of world map
-    FerryDest,          // Ferry destination
-    Isolated,           // Isolated from main world
-    AltExit,            // Has alternative exit display
-    Observatory,        // Observatory room
-
-    // Room size flags (combat/capacity)
-    Large,              // Large room
-    MediumLarge,        // Medium-large room
-    Medium,             // Medium room
-    MediumSmall,        // Medium-small room
-    Small,              // Small room
-    VerySmall,          // Very small room
-    OnePerson,          // Single occupant only
-
-    // Special ability flags
-    Guildhall,          // Guild hall room
-    NoWell,             // Cannot use well of souls
-    NoScan,             // Cannot scan in room
-    Underdark,          // Underdark area
-    NoShift,            // Cannot plane shift
-    EffectsNext         // Effects carry to next room
-};
+// RoomFlag enum REMOVED - replaced by:
+// - base_light_level_ field for lighting (numeric, more flexible)
+// - Lua room restrictions for access control (godroom, no_mob, no_magic, etc.)
+// - Sector type for environment (indoors, underwater, underground, etc.)
+// - capacity_ field for occupancy limits
+// - Mob presence for features (shop, bank, inn, temple)
 
 /** Exit information with door states and access control */
 struct ExitInfo {
@@ -236,17 +158,17 @@ public:
     SectorType sector_type() const { return sector_type_; }
     void set_sector_type(SectorType sector) { sector_type_ = sector; }
     
-    int light_level() const { return light_level_; }
-    void set_light_level(int level) { light_level_ = std::max(0, level); }
-    
     EntityId zone_id() const { return zone_id_; }
     void set_zone_id(EntityId zone) { zone_id_ = zone; }
-    
-    // Flag management
-    bool has_flag(RoomFlag flag) const;
-    void set_flag(RoomFlag flag, bool value = true);
-    void remove_flag(RoomFlag flag) { set_flag(flag, false); }
-    const std::unordered_set<RoomFlag>& flags() const { return flags_; }
+
+    // Base light level (from database)
+    // Positive = lit, negative = dark, 0 = ambient (time/weather dependent)
+    int base_light_level() const { return base_light_level_; }
+    void set_base_light_level(int level) { base_light_level_ = level; }
+
+    // Capacity for occupancy limits (from database)
+    int capacity() const { return capacity_; }
+    void set_capacity(int cap) { capacity_ = cap; }
     
     // Exit system
     bool has_exit(Direction dir) const;
@@ -279,16 +201,31 @@ public:
     bool is_naturally_lit() const;
     int calculate_effective_light() const;
     bool can_see_in_room(const Actor* observer) const;
-    
-    // Room state queries
-    bool is_peaceful() const { return has_flag(RoomFlag::Peaceful); }
-    bool allows_magic() const { return !has_flag(RoomFlag::NoMagic); }
-    bool allows_recall() const { return !has_flag(RoomFlag::NoRecall); }
-    bool allows_summon() const { return !has_flag(RoomFlag::NoSummon); }
-    bool allows_teleport() const { return !has_flag(RoomFlag::NoTeleport); }
-    bool is_private() const { return has_flag(RoomFlag::Private); }
-    bool is_death_trap() const { return has_flag(RoomFlag::Death); }
-    
+
+    // Room state properties (from database)
+    bool is_peaceful() const { return is_peaceful_; }
+    void set_peaceful(bool peaceful) { is_peaceful_ = peaceful; }
+
+    bool allows_magic() const { return allows_magic_; }
+    void set_allows_magic(bool allows) { allows_magic_ = allows; }
+
+    bool allows_recall() const { return allows_recall_; }
+    void set_allows_recall(bool allows) { allows_recall_ = allows; }
+
+    bool allows_summon() const { return allows_summon_; }
+    void set_allows_summon(bool allows) { allows_summon_ = allows; }
+
+    bool allows_teleport() const { return allows_teleport_; }
+    void set_allows_teleport(bool allows) { allows_teleport_ = allows; }
+
+    bool is_death_trap() const { return is_death_trap_; }
+    void set_death_trap(bool death_trap) { is_death_trap_ = death_trap; }
+
+    // Entry restriction (Lua script for access control)
+    const std::string& entry_restriction() const { return entry_restriction_; }
+    void set_entry_restriction(std::string_view restriction) { entry_restriction_ = std::string(restriction); }
+    bool has_entry_restriction() const { return !entry_restriction_.empty(); }
+
     // Capacity checks
     int max_occupants() const;
     bool can_accommodate(const Actor* actor) const;
@@ -323,11 +260,22 @@ protected:
 
 private:
     SectorType sector_type_;
-    int light_level_;
+    int base_light_level_ = 0;   // Base light level from database
+    int capacity_ = 10;          // Max occupants (0 = unlimited)
     EntityId zone_id_;
-    std::unordered_set<RoomFlag> flags_;
     std::unordered_map<Direction, ExitInfo> exits_;
     RoomContents contents_;
+
+    // Room state flags (from database)
+    bool is_peaceful_ = false;      // No combat allowed
+    bool allows_magic_ = true;      // Magic can be cast
+    bool allows_recall_ = true;     // Recall spell works
+    bool allows_summon_ = true;     // Summon spell works
+    bool allows_teleport_ = true;   // Teleport works
+    bool is_death_trap_ = false;    // Instant death room
+
+    // Entry restriction Lua script (from database)
+    std::string entry_restriction_;
 
     // Layout coordinates for visual mapping
     std::optional<int> layout_x_;
@@ -364,12 +312,8 @@ namespace RoomUtils {
     /** Convert legacy numeric sector to SectorType enum */
     SectorType sector_from_number(int sector_num);
 
-    /** Get room flag name */
-    std::string_view get_flag_name(RoomFlag flag);
-    
-    /** Parse room flag from string */
-    std::optional<RoomFlag> parse_room_flag(std::string_view flag_name);
-    
+    // RoomFlag functions REMOVED - flags replaced by baseLightLevel and Lua restrictions
+
     /** Calculate movement cost for sector type */
     int get_movement_cost(SectorType sector);
     
@@ -411,22 +355,11 @@ struct fmt::formatter<SectorType> {
     constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
-    
+
     template<typename FormatContext>
     auto format(const SectorType& sector, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), "{}", RoomUtils::get_sector_name(sector));
     }
 };
 
-/** Formatting support for RoomFlag */
-template<>
-struct fmt::formatter<RoomFlag> {
-    constexpr auto parse(format_parse_context& ctx) {
-        return ctx.begin();
-    }
-    
-    template<typename FormatContext>
-    auto format(const RoomFlag& flag, FormatContext& ctx) const {
-        return fmt::format_to(ctx.out(), "{}", RoomUtils::get_flag_name(flag));
-    }
-};
+// RoomFlag formatter REMOVED - flags replaced by baseLightLevel and Lua restrictions

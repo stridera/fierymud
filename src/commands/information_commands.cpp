@@ -202,14 +202,8 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         bool found_others = false;
         for (const auto &actor : actors) {
             if (actor && actor != ctx.actor && actor->is_visible_to(*ctx.actor)) {
-                // Get description - prefer ground(), fall back to display_name
-                auto ground_desc = actor->ground();
-                std::string actor_desc;
-                if (!ground_desc.empty()) {
-                    actor_desc = std::string(ground_desc);
-                } else {
-                    actor_desc = actor->display_name();
-                }
+                // Get position-based description (e.g., "Strider is standing here.")
+                std::string actor_desc = actor->room_presence(ctx.actor);
                 if (actor_desc.empty()) {
                     continue;  // Skip actors with no description
                 }
@@ -218,9 +212,6 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 std::string indicators;
                 bool has_holylight = ctx.actor->is_holylight();
 
-                if (actor->position() == Position::Ghost) {
-                    indicators = "<cyan>(ghost)</> ";
-                }
                 // Invisible - holylight sees all invisible
                 if (actor->has_flag(ActorFlag::Invisible) &&
                     (ctx.actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
@@ -254,9 +245,6 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 if (actor->has_flag(ActorFlag::On_Fire)) {
                     indicators += "<red>(burning)</> ";
                 }
-                if (actor->has_flag(ActorFlag::Immobilized) || actor->has_flag(ActorFlag::Paralyzed)) {
-                    indicators += "<red>(immobilized)</> ";
-                }
                 // AFK indicator for players
                 if (actor->is_afk()) {
                     indicators += "<yellow>[AFK]</> ";
@@ -268,7 +256,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 }
 
                 if (!found_others) {
-                    full_desc << "\n<yellow>Also here:</>\n";
+                    full_desc << "\n";
                     found_others = true;
                 }
 
@@ -295,7 +283,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         auto container = target_info.object;
 
         // Check if it's a drink container first
-        if (container->type() == ObjectType::Liquid_Container) {
+        if (container->type() == ObjectType::Drinkcontainer) {
             const auto& liquid = container->liquid_info();
             // Get the object name and replace article with "The" for definite reference
             std::string obj_name = ctx.format_object_name(container);

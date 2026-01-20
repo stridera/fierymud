@@ -1434,6 +1434,7 @@ Result<CommandResult> cmd_ignore(const CommandContext &ctx) {
 Result<void> register_commands() {
     Commands()
         .command("quit", cmd_quit)
+        .alias("ex")
         .category("System")
         .privilege(PrivilegeLevel::Player)
         .build();

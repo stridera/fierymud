@@ -43,7 +43,7 @@ namespace BuiltinCommands {
         
         /** Format actor description for look command */
         std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_ptr<Actor> viewer);
-        
+
         /** Format inventory list */
         std::string format_inventory(std::shared_ptr<Actor> actor);
         

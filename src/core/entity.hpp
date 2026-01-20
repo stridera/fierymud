@@ -104,9 +104,20 @@ public:
     
     /** Get entity type name for serialization/debugging */
     virtual std::string_view type_name() const { return "Entity"; }
-    
+
     /** Create formatted display name with article (a, an, the) */
     virtual std::string display_name(bool with_article = false) const;
+
+    /**
+     * Get dynamic room presence description.
+     * Returns what you see when looking at this entity in a room.
+     * Unlike ground() which is static, this reflects current state
+     * (position, fighting status, etc.)
+     *
+     * @param viewer The actor viewing this entity (for "fighting YOU!" etc.)
+     * @return Description like "Strider is standing here." or the static ground() for NPCs
+     */
+    virtual std::string room_presence(std::shared_ptr<class Actor> viewer = nullptr) const;
     
 protected:
     friend class EntityFactory;

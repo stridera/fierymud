@@ -61,14 +61,12 @@ static bool wants_dice_details(const std::shared_ptr<Actor>& actor) {
  * @param base_ticks Original casting time in ticks
  * @param caster The actor casting the spell
  * @param spell_circle The circle of the spell being cast
- * @param violent True if this is a damage/combat spell
  * @return Reduced casting time in ticks, and whether quickcast was applied
  */
 std::pair<int, bool> calculate_quickcast_reduction(
     int base_ticks,
     const std::shared_ptr<Actor>& caster,
-    int spell_circle,
-    bool violent) {
+    int spell_circle) {
 
     auto player = std::dynamic_pointer_cast<Player>(caster);
     if (!player) {
@@ -1051,7 +1049,7 @@ std::expected<void, Error> AbilityExecutor::begin_casting(
 
     // Apply quickcast reduction
     auto [reduced_ticks, quickcast_applied] = calculate_quickcast_reduction(
-        base_ticks, caster, spell_circle, ability->violent);
+        base_ticks, caster, spell_circle);
 
     // Create casting state
     Actor::CastingState state;

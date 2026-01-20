@@ -684,13 +684,23 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         CombatManager::end_combat(target);
         attacker->set_position(Position::Standing);
 
-        long exp_gain = calculate_experience_gain(*attacker, *target);
-        result.experience_gained = exp_gain;
-        attacker->gain_experience(exp_gain);
-
+        // Calculate and grant experience (gods don't gain exp)
         result.type = CombatResult::Type::Death;
-        result.attacker_message += fmt::format(" You have killed <cyan>{}</>! You gain <experience>{}</> experience.",
-                                               target->display_name(), exp_gain);
+        bool is_god = false;
+        if (auto player = std::dynamic_pointer_cast<Player>(attacker)) {
+            is_god = player->is_god();
+        }
+
+        if (is_god) {
+            result.attacker_message += fmt::format(" You have killed <cyan>{}</>!",
+                                                   target->display_name());
+        } else {
+            long exp_gain = calculate_experience_gain(*attacker, *target);
+            result.experience_gained = exp_gain;
+            attacker->gain_experience(exp_gain);
+            result.attacker_message += fmt::format(" You have killed <cyan>{}</>! You gain <experience>{}</> experience.",
+                                                   target->display_name(), exp_gain);
+        }
 
         // Set death messages based on actor type (before die() modifies state)
         bool is_player = (target->type_name() == "Player");

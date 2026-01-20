@@ -130,7 +130,7 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
         .name = "Refreshed",
         .source = "drink",
         .flag = ActorFlag::Refreshed,
-        .duration_hours = refreshed_hours,
+        .duration_hours = static_cast<double>(refreshed_hours),
         .modifier_value = 0,
         .modifier_stat = "",
         .applied_at = std::chrono::steady_clock::now()
@@ -203,10 +203,10 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
 
         // Check type constraints
         if (liquid_only) {
-            if (obj->type() != ObjectType::Liquid_Container &&
+            if (obj->type() != ObjectType::Drinkcontainer &&
                 obj->type() != ObjectType::Fountain) return false;
         } else {
-            if (obj->type() != ObjectType::Liquid_Container &&
+            if (obj->type() != ObjectType::Drinkcontainer &&
                 obj->type() != ObjectType::Fountain &&
                 obj->type() != ObjectType::Potion &&
                 obj->type() != ObjectType::Food) {
@@ -220,7 +220,7 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
         }
 
         // For liquid containers and fountains, also check if target matches the liquid type
-        if (obj->type() == ObjectType::Liquid_Container || obj->type() == ObjectType::Fountain) {
+        if (obj->type() == ObjectType::Drinkcontainer || obj->type() == ObjectType::Fountain) {
             const auto& liquid = obj->liquid_info();
             // Fountains are always drinkable (infinite), containers need remaining > 0
             bool has_liquid = (obj->type() == ObjectType::Fountain) || (liquid.remaining > 0);
@@ -658,7 +658,7 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
                 // Remove from inventory
                 if (ctx.actor->inventory().remove_item(obj)) {
                     // Clear liquid identification when dropping
-                    if (obj->type() == ObjectType::Liquid_Container) {
+                    if (obj->type() == ObjectType::Drinkcontainer) {
                         LiquidInfo liquid = obj->liquid_info();
                         liquid.identified = false;
                         obj->set_liquid_info(liquid);
@@ -711,7 +711,7 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     }
 
     // Clear liquid identification when dropping
-    if (target_object->type() == ObjectType::Liquid_Container) {
+    if (target_object->type() == ObjectType::Drinkcontainer) {
         LiquidInfo liquid = target_object->liquid_info();
         liquid.identified = false;
         target_object->set_liquid_info(liquid);
@@ -880,7 +880,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     }
 
     // Liquid containers are for liquids, not objects
-    if (container->type() == ObjectType::Liquid_Container) {
+    if (container->type() == ObjectType::Drinkcontainer) {
         ctx.send_error(fmt::format("{} is for holding liquids, not objects.",
                                    ctx.format_object_name(container)));
         return CommandResult::InvalidTarget;
@@ -933,7 +933,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         }
 
         // Clear liquid identification when putting in a container
-        if (item_to_put->type() == ObjectType::Liquid_Container) {
+        if (item_to_put->type() == ObjectType::Drinkcontainer) {
             LiquidInfo liquid = item_to_put->liquid_info();
             liquid.identified = false;
             item_to_put->set_liquid_info(liquid);
@@ -999,7 +999,7 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
 
     // Clear liquid identification when giving to another player
     // (You know what you have, but the recipient doesn't know what you gave them)
-    if (removed_obj->type() == ObjectType::Liquid_Container) {
+    if (removed_obj->type() == ObjectType::Drinkcontainer) {
         LiquidInfo liquid = removed_obj->liquid_info();
         liquid.identified = false;
         removed_obj->set_liquid_info(liquid);
@@ -1784,7 +1784,7 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
                                    ctx.format_object_name(drink_item)));
         ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
         return CommandResult::Success;
-    } else if (drink_item->type() == ObjectType::Liquid_Container ||
+    } else if (drink_item->type() == ObjectType::Drinkcontainer ||
                drink_item->type() == ObjectType::Fountain) {
         // Use helper for liquid consumption - drink = 4 units
         constexpr int DRINK_AMOUNT = 4;
@@ -2021,7 +2021,7 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
             new_object->set_flag(ObjectFlag::Identified);
 
             // For drink containers, also mark the liquid as identified
-            if (new_object->type() == ObjectType::Liquid_Container) {
+            if (new_object->type() == ObjectType::Drinkcontainer) {
                 LiquidInfo liquid = new_object->liquid_info();
                 liquid.identified = true;
                 new_object->set_liquid_info(liquid);
@@ -2678,7 +2678,7 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
 
     for (const auto &obj : inventory_items) {
         if (obj && obj->matches_keyword(ctx.arg(0))) {
-            if (obj->type() == ObjectType::Liquid_Container) {
+            if (obj->type() == ObjectType::Drinkcontainer) {
                 container = obj;
                 break;
             }
@@ -2768,7 +2768,7 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
 
     for (const auto &obj : inventory_items) {
         if (obj && obj->matches_keyword(ctx.arg(0))) {
-            if (obj->type() == ObjectType::Liquid_Container) {
+            if (obj->type() == ObjectType::Drinkcontainer) {
                 source = obj;
                 break;
             }
@@ -2804,7 +2804,7 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
     std::shared_ptr<Object> target = nullptr;
     for (const auto &obj : inventory_items) {
         if (obj && obj->matches_keyword(ctx.arg(1)) && obj != source) {
-            if (obj->type() == ObjectType::Liquid_Container) {
+            if (obj->type() == ObjectType::Drinkcontainer) {
                 target = obj;
                 break;
             }

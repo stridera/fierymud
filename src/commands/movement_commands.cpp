@@ -221,7 +221,8 @@ Result<CommandResult> cmd_enter(const CommandContext &ctx) {
     }
 
     // No argument - try to enter an adjacent indoor room
-    if (ctx.room->has_flag(RoomFlag::Indoors)) {
+    // Check sector type for indoor status (Inside sector = indoors)
+    if (ctx.room->sector_type() == SectorType::Inside) {
         ctx.send("You are already indoors.");
         return CommandResult::InvalidState;
     }
@@ -254,8 +255,8 @@ Result<CommandResult> cmd_leave(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Must be indoors to leave
-    if (!ctx.room->has_flag(RoomFlag::Indoors)) {
+    // Must be indoors to leave (sector type Inside = indoors)
+    if (ctx.room->sector_type() != SectorType::Inside) {
         ctx.send("You are outside... where do you want to go?");
         return CommandResult::InvalidState;
     }
@@ -266,7 +267,7 @@ Result<CommandResult> cmd_leave(const CommandContext &ctx) {
         const auto* exit = ctx.room->get_exit(direction);
         if (exit && !exit->is_closed) {
             auto dest_room = WorldManager::instance().get_room(exit->to_room);
-            if (dest_room && !dest_room->has_flag(RoomFlag::Indoors)) {
+            if (dest_room && dest_room->sector_type() != SectorType::Inside) {
                 // Found an outdoor room - move there
                 return BuiltinCommands::Helpers::execute_movement(ctx, direction);
             }
@@ -315,7 +316,7 @@ Result<CommandResult> cmd_mount(const CommandContext &ctx) {
 
     // Check if target is mountable
     auto mob = std::dynamic_pointer_cast<Mobile>(target);
-    if (!mob || !mob->has_flag(MobFlag::Mountable)) {
+    if (!mob || !mob->has_trait(MobTrait::Mount)) {
         ctx.send_error("You can't mount that!");
         return CommandResult::InvalidTarget;
     }

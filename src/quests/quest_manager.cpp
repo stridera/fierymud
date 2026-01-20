@@ -17,6 +17,20 @@
 namespace FieryMUD {
 
 // ============================================================================
+// Helper Functions
+// ============================================================================
+
+namespace {
+    // Helper to get character_id from an Actor (returns empty if not a Player)
+    std::string_view get_character_id(const std::shared_ptr<Actor>& actor) {
+        if (!actor) return {};
+        auto player = std::dynamic_pointer_cast<Player>(actor);
+        if (!player) return {};
+        return player->database_id();
+    }
+}
+
+// ============================================================================
 // Singleton
 // ============================================================================
 
@@ -189,13 +203,17 @@ std::vector<const QuestQueries::QuestData*> QuestManager::get_available_quests(
 
     std::vector<const QuestQueries::QuestData*> result;
 
-    // Filter cached quests by level and visibility
+    // Filter cached quests by level, visibility, and character eligibility
     for (const auto& [key, quest] : quest_cache_) {
         if (quest.hidden) continue;
         if (level < quest.min_level || level > quest.max_level) continue;
 
-        // TODO: Check prerequisites and active status via database query
-        // For now, return all level-appropriate quests
+        // Skip quests already in progress
+        if (has_quest_in_progress(character_id, key.zone_id, key.quest_id)) continue;
+
+        // Skip non-repeatable quests already completed
+        if (!quest.repeatable && has_completed_quest(character_id, key.zone_id, key.quest_id)) continue;
+
         result.push_back(&quest);
     }
 
@@ -627,6 +645,11 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_level_triggers(
 
     std::vector<const QuestQueries::QuestData*> started;
 
+    auto character_id = get_character_id(actor);
+    if (character_id.empty()) {
+        return started;  // Only players have quests
+    }
+
     // Check cached level-triggered quests
     auto it = level_triggered_quests_.find(new_level);
     if (it == level_triggered_quests_.end()) {
@@ -636,15 +659,17 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_level_triggers(
     for (const auto& key : it->second) {
         auto quest_it = quest_cache_.find(key);
         if (quest_it != quest_cache_.end()) {
-            // TODO: Get character_id from actor and check eligibility
-            // For now, just return matching quests
-            started.push_back(&quest_it->second);
-            stats_.trigger_activations++;
+            // Check if player can accept this quest
+            if (!has_quest_in_progress(character_id, key.zone_id, key.quest_id) &&
+                (!quest_it->second.repeatable || !has_completed_quest(character_id, key.zone_id, key.quest_id))) {
+                started.push_back(&quest_it->second);
+                stats_.trigger_activations++;
+            }
         }
     }
 
     if (!started.empty()) {
-        spdlog::debug("Level {} triggered {} quests", new_level, started.size());
+        spdlog::debug("Level {} triggered {} quests for player {}", new_level, started.size(), character_id);
     }
 
     return started;
@@ -658,6 +683,11 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_item_triggers(
 
     if (!item) return started;
 
+    auto character_id = get_character_id(actor);
+    if (character_id.empty()) {
+        return started;  // Only players have quests
+    }
+
     // Get item EntityId and look up in item_triggered_quests_
     EntityId item_id = item->id();
     QuestKey item_key{static_cast<int>(item_id.zone_id()), static_cast<int>(item_id.local_id())};
@@ -670,13 +700,18 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_item_triggers(
     for (const auto& quest_key : it->second) {
         auto quest_it = quest_cache_.find(quest_key);
         if (quest_it != quest_cache_.end()) {
-            started.push_back(&quest_it->second);
-            stats_.trigger_activations++;
+            // Check if player can accept this quest
+            if (!has_quest_in_progress(character_id, quest_key.zone_id, quest_key.quest_id) &&
+                (!quest_it->second.repeatable || !has_completed_quest(character_id, quest_key.zone_id, quest_key.quest_id))) {
+                started.push_back(&quest_it->second);
+                stats_.trigger_activations++;
+            }
         }
     }
 
     if (!started.empty()) {
-        spdlog::debug("Item {}:{} triggered {} quests", item_id.zone_id(), item_id.local_id(), started.size());
+        spdlog::debug("Item {}:{} triggered {} quests for player {}",
+            item_id.zone_id(), item_id.local_id(), started.size(), character_id);
     }
 
     return started;
@@ -690,6 +725,11 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_room_triggers(
 
     if (!room) return started;
 
+    auto character_id = get_character_id(actor);
+    if (character_id.empty()) {
+        return started;  // Only players have quests
+    }
+
     // Get room EntityId and look up in room_triggered_quests_
     EntityId room_id = room->id();
     QuestKey room_key{static_cast<int>(room_id.zone_id()), static_cast<int>(room_id.local_id())};
@@ -702,13 +742,18 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_room_triggers(
     for (const auto& quest_key : it->second) {
         auto quest_it = quest_cache_.find(quest_key);
         if (quest_it != quest_cache_.end()) {
-            started.push_back(&quest_it->second);
-            stats_.trigger_activations++;
+            // Check if player can accept this quest
+            if (!has_quest_in_progress(character_id, quest_key.zone_id, quest_key.quest_id) &&
+                (!quest_it->second.repeatable || !has_completed_quest(character_id, quest_key.zone_id, quest_key.quest_id))) {
+                started.push_back(&quest_it->second);
+                stats_.trigger_activations++;
+            }
         }
     }
 
     if (!started.empty()) {
-        spdlog::debug("Room {}:{} triggered {} quests", room_id.zone_id(), room_id.local_id(), started.size());
+        spdlog::debug("Room {}:{} triggered {} quests for player {}",
+            room_id.zone_id(), room_id.local_id(), started.size(), character_id);
     }
 
     return started;
@@ -720,6 +765,11 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_skill_triggers(
 
     std::vector<const QuestQueries::QuestData*> started;
 
+    auto character_id = get_character_id(actor);
+    if (character_id.empty()) {
+        return started;  // Only players have quests
+    }
+
     auto it = skill_triggered_quests_.find(ability_id);
     if (it == skill_triggered_quests_.end()) {
         return started;
@@ -728,9 +778,17 @@ std::vector<const QuestQueries::QuestData*> QuestManager::check_skill_triggers(
     for (const auto& key : it->second) {
         auto quest_it = quest_cache_.find(key);
         if (quest_it != quest_cache_.end()) {
-            started.push_back(&quest_it->second);
-            stats_.trigger_activations++;
+            // Check if player can accept this quest
+            if (!has_quest_in_progress(character_id, key.zone_id, key.quest_id) &&
+                (!quest_it->second.repeatable || !has_completed_quest(character_id, key.zone_id, key.quest_id))) {
+                started.push_back(&quest_it->second);
+                stats_.trigger_activations++;
+            }
         }
+    }
+
+    if (!started.empty()) {
+        spdlog::debug("Skill {} triggered {} quests for player {}", ability_id, started.size(), character_id);
     }
 
     return started;
@@ -781,20 +839,105 @@ void QuestManager::on_mob_killed(
     std::shared_ptr<Actor> killer,
     const EntityId& killed_mob_id) {
 
-    // TODO: Look up killer's character_id
-    // TODO: Get active quests for killer
-    // TODO: Find KILL_MOB objectives targeting killed_mob_id
-    // TODO: Increment objective count
-    // TODO: Check if objective is complete
+    auto character_id = get_character_id(killer);
+    if (character_id.empty()) {
+        spdlog::trace("Mob killed by non-player: {}:{}", killed_mob_id.zone_id(), killed_mob_id.local_id());
+        return;
+    }
 
-    spdlog::trace("Mob killed: {}:{}", killed_mob_id.zone_id(), killed_mob_id.local_id());
+    spdlog::trace("Player {} killed mob {}:{}", character_id, killed_mob_id.zone_id(), killed_mob_id.local_id());
+
+    // Get active quests for this player
+    auto active_result = get_active_quests(character_id);
+    if (!active_result) {
+        return;
+    }
+
+    // Check each active quest for KILL_MOB objectives targeting this mob
+    for (const auto& progress : *active_result) {
+        const auto* quest = get_quest(progress.quest_id);
+        if (!quest || !progress.current_phase_id) continue;
+
+        // Find objectives in current phase
+        for (const auto& phase : quest->phases) {
+            if (phase.id != *progress.current_phase_id) continue;
+
+            for (const auto& objective : phase.objectives) {
+                if (objective.type != QuestQueries::QuestObjectiveType::KILL_MOB) continue;
+                if (!objective.target_mob || *objective.target_mob != killed_mob_id) continue;
+
+                // Found matching objective - increment progress
+                auto obj_progress = std::find_if(progress.objective_progress.begin(),
+                    progress.objective_progress.end(),
+                    [&](const auto& op) { return op.phase_id == phase.id && op.objective_id == objective.id; });
+
+                int current = (obj_progress != progress.objective_progress.end()) ? obj_progress->current_count : 0;
+                int new_count = current + 1;
+
+                spdlog::debug("Quest {}:{} objective {} progress: {}/{}",
+                    quest->id.zone_id(), quest->id.local_id(), objective.id,
+                    new_count, objective.required_count);
+
+                // Update in database
+                update_objective(character_id,
+                    static_cast<int>(quest->id.zone_id()), static_cast<int>(quest->id.local_id()),
+                    phase.id, objective.id, new_count);
+
+                stats_.objectives_completed++;
+            }
+        }
+    }
 }
 
 void QuestManager::on_item_collected(
     std::shared_ptr<Actor> collector,
     const EntityId& item_id) {
 
-    spdlog::trace("Item collected: {}:{}", item_id.zone_id(), item_id.local_id());
+    auto character_id = get_character_id(collector);
+    if (character_id.empty()) {
+        spdlog::trace("Item collected by non-player: {}:{}", item_id.zone_id(), item_id.local_id());
+        return;
+    }
+
+    spdlog::trace("Player {} collected item {}:{}", character_id, item_id.zone_id(), item_id.local_id());
+
+    // Get active quests for this player
+    auto active_result = get_active_quests(character_id);
+    if (!active_result) {
+        return;
+    }
+
+    // Check each active quest for COLLECT_ITEM objectives
+    for (const auto& progress : *active_result) {
+        const auto* quest = get_quest(progress.quest_id);
+        if (!quest || !progress.current_phase_id) continue;
+
+        for (const auto& phase : quest->phases) {
+            if (phase.id != *progress.current_phase_id) continue;
+
+            for (const auto& objective : phase.objectives) {
+                if (objective.type != QuestQueries::QuestObjectiveType::COLLECT_ITEM) continue;
+                if (!objective.target_object || *objective.target_object != item_id) continue;
+
+                auto obj_progress = std::find_if(progress.objective_progress.begin(),
+                    progress.objective_progress.end(),
+                    [&](const auto& op) { return op.phase_id == phase.id && op.objective_id == objective.id; });
+
+                int current = (obj_progress != progress.objective_progress.end()) ? obj_progress->current_count : 0;
+                int new_count = current + 1;
+
+                spdlog::debug("Quest {}:{} collect objective {} progress: {}/{}",
+                    quest->id.zone_id(), quest->id.local_id(), objective.id,
+                    new_count, objective.required_count);
+
+                update_objective(character_id,
+                    static_cast<int>(quest->id.zone_id()), static_cast<int>(quest->id.local_id()),
+                    phase.id, objective.id, new_count);
+
+                stats_.objectives_completed++;
+            }
+        }
+    }
 }
 
 void QuestManager::on_item_delivered(
@@ -802,30 +945,177 @@ void QuestManager::on_item_delivered(
     const EntityId& recipient_mob_id,
     const EntityId& item_id) {
 
-    spdlog::trace("Item delivered: {}:{} to {}:{}",
-        item_id.zone_id(), item_id.local_id(),
+    auto character_id = get_character_id(deliverer);
+    if (character_id.empty()) {
+        spdlog::trace("Item delivered by non-player: {}:{} to {}:{}",
+            item_id.zone_id(), item_id.local_id(),
+            recipient_mob_id.zone_id(), recipient_mob_id.local_id());
+        return;
+    }
+
+    spdlog::trace("Player {} delivered item {}:{} to {}:{}",
+        character_id, item_id.zone_id(), item_id.local_id(),
         recipient_mob_id.zone_id(), recipient_mob_id.local_id());
+
+    auto active_result = get_active_quests(character_id);
+    if (!active_result) {
+        return;
+    }
+
+    for (const auto& progress : *active_result) {
+        const auto* quest = get_quest(progress.quest_id);
+        if (!quest || !progress.current_phase_id) continue;
+
+        for (const auto& phase : quest->phases) {
+            if (phase.id != *progress.current_phase_id) continue;
+
+            for (const auto& objective : phase.objectives) {
+                if (objective.type != QuestQueries::QuestObjectiveType::DELIVER_ITEM) continue;
+                if (!objective.target_object || *objective.target_object != item_id) continue;
+                if (!objective.deliver_to_mob || *objective.deliver_to_mob != recipient_mob_id) continue;
+
+                spdlog::debug("Quest {}:{} deliver objective {} completed",
+                    quest->id.zone_id(), quest->id.local_id(), objective.id);
+
+                complete_objective(character_id,
+                    static_cast<int>(quest->id.zone_id()), static_cast<int>(quest->id.local_id()),
+                    phase.id, objective.id);
+
+                stats_.objectives_completed++;
+            }
+        }
+    }
 }
 
 void QuestManager::on_npc_talked(
     std::shared_ptr<Actor> talker,
     const EntityId& npc_id) {
 
-    spdlog::trace("NPC talked: {}:{}", npc_id.zone_id(), npc_id.local_id());
+    auto character_id = get_character_id(talker);
+    if (character_id.empty()) {
+        spdlog::trace("NPC talked to by non-player: {}:{}", npc_id.zone_id(), npc_id.local_id());
+        return;
+    }
+
+    spdlog::trace("Player {} talked to NPC {}:{}", character_id, npc_id.zone_id(), npc_id.local_id());
+
+    auto active_result = get_active_quests(character_id);
+    if (!active_result) {
+        return;
+    }
+
+    for (const auto& progress : *active_result) {
+        const auto* quest = get_quest(progress.quest_id);
+        if (!quest || !progress.current_phase_id) continue;
+
+        for (const auto& phase : quest->phases) {
+            if (phase.id != *progress.current_phase_id) continue;
+
+            for (const auto& objective : phase.objectives) {
+                if (objective.type != QuestQueries::QuestObjectiveType::TALK_TO_NPC) continue;
+                if (!objective.target_mob || *objective.target_mob != npc_id) continue;
+
+                spdlog::debug("Quest {}:{} talk objective {} completed",
+                    quest->id.zone_id(), quest->id.local_id(), objective.id);
+
+                complete_objective(character_id,
+                    static_cast<int>(quest->id.zone_id()), static_cast<int>(quest->id.local_id()),
+                    phase.id, objective.id);
+
+                stats_.objectives_completed++;
+            }
+        }
+    }
 }
 
 void QuestManager::on_room_visited(
     std::shared_ptr<Actor> visitor,
     const EntityId& room_id) {
 
-    spdlog::trace("Room visited: {}:{}", room_id.zone_id(), room_id.local_id());
+    auto character_id = get_character_id(visitor);
+    if (character_id.empty()) {
+        spdlog::trace("Room visited by non-player: {}:{}", room_id.zone_id(), room_id.local_id());
+        return;
+    }
+
+    spdlog::trace("Player {} visited room {}:{}", character_id, room_id.zone_id(), room_id.local_id());
+
+    auto active_result = get_active_quests(character_id);
+    if (!active_result) {
+        return;
+    }
+
+    for (const auto& progress : *active_result) {
+        const auto* quest = get_quest(progress.quest_id);
+        if (!quest || !progress.current_phase_id) continue;
+
+        for (const auto& phase : quest->phases) {
+            if (phase.id != *progress.current_phase_id) continue;
+
+            for (const auto& objective : phase.objectives) {
+                if (objective.type != QuestQueries::QuestObjectiveType::VISIT_ROOM) continue;
+                if (!objective.target_room || *objective.target_room != room_id) continue;
+
+                spdlog::debug("Quest {}:{} visit objective {} completed",
+                    quest->id.zone_id(), quest->id.local_id(), objective.id);
+
+                complete_objective(character_id,
+                    static_cast<int>(quest->id.zone_id()), static_cast<int>(quest->id.local_id()),
+                    phase.id, objective.id);
+
+                stats_.objectives_completed++;
+            }
+        }
+    }
 }
 
 void QuestManager::on_skill_used(
     std::shared_ptr<Actor> user,
     int ability_id) {
 
-    spdlog::trace("Skill used: {}", ability_id);
+    auto character_id = get_character_id(user);
+    if (character_id.empty()) {
+        spdlog::trace("Skill used by non-player: {}", ability_id);
+        return;
+    }
+
+    spdlog::trace("Player {} used skill {}", character_id, ability_id);
+
+    auto active_result = get_active_quests(character_id);
+    if (!active_result) {
+        return;
+    }
+
+    for (const auto& progress : *active_result) {
+        const auto* quest = get_quest(progress.quest_id);
+        if (!quest || !progress.current_phase_id) continue;
+
+        for (const auto& phase : quest->phases) {
+            if (phase.id != *progress.current_phase_id) continue;
+
+            for (const auto& objective : phase.objectives) {
+                if (objective.type != QuestQueries::QuestObjectiveType::USE_SKILL) continue;
+                if (!objective.target_ability_id || *objective.target_ability_id != ability_id) continue;
+
+                auto obj_progress = std::find_if(progress.objective_progress.begin(),
+                    progress.objective_progress.end(),
+                    [&](const auto& op) { return op.phase_id == phase.id && op.objective_id == objective.id; });
+
+                int current = (obj_progress != progress.objective_progress.end()) ? obj_progress->current_count : 0;
+                int new_count = current + 1;
+
+                spdlog::debug("Quest {}:{} skill objective {} progress: {}/{}",
+                    quest->id.zone_id(), quest->id.local_id(), objective.id,
+                    new_count, objective.required_count);
+
+                update_objective(character_id,
+                    static_cast<int>(quest->id.zone_id()), static_cast<int>(quest->id.local_id()),
+                    phase.id, objective.id, new_count);
+
+                stats_.objectives_completed++;
+            }
+        }
+    }
 }
 
 // ============================================================================

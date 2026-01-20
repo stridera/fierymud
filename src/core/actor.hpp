@@ -358,9 +358,15 @@ public:
     
     /** Get current position */
     Position position() const { return position_; }
-    
-    /** Set position */
-    void set_position(Position pos) { position_ = pos; }
+
+    /** Set position (triggers on_position_change if position actually changes) */
+    void set_position(Position pos) {
+        if (position_ != pos) {
+            Position old_pos = position_;
+            position_ = pos;
+            on_position_change(old_pos, pos);
+        }
+    }
     
     /** Check if actor has a flag */
     bool has_flag(ActorFlag flag) const;
@@ -436,7 +442,13 @@ public:
      * based on what the observer can detect via Detect_Invis, Detect_Align, etc.
      */
     std::string display_name_for_observer(const Actor& observer) const;
-    
+
+    /**
+     * Override room_presence for position-based descriptions.
+     * Returns descriptions like "Strider is standing here." or "A goblin is fighting YOU!"
+     */
+    std::string room_presence(std::shared_ptr<Actor> viewer = nullptr) const override;
+
     /** Item management convenience methods */
     Result<void> give_item(std::shared_ptr<Object> item);
     std::shared_ptr<Object> take_item(EntityId item_id);
@@ -658,6 +670,10 @@ protected:
     virtual void on_room_change([[maybe_unused]] std::shared_ptr<Room> old_room,
                                [[maybe_unused]] std::shared_ptr<Room> new_room) {}
 
+    /** Position change notification (override in derived classes for GMCP updates) */
+    virtual void on_position_change([[maybe_unused]] Position old_pos,
+                                    [[maybe_unused]] Position new_pos) {}
+
     /** Level up notification (override in derived classes) */
     virtual void on_level_up([[maybe_unused]] int old_level, [[maybe_unused]] int new_level) {}
 
@@ -735,95 +751,18 @@ public:
     }
 };
 
-/** Mobile (NPC) behavior flags - must match Prisma schema MobFlag enum exactly */
-enum class MobFlag {
-    // Core behavior (0-7)
-    Spec = 0,           // Has special procedure
-    Sentinel = 1,       // Stays in one room
-    Scavenger = 2,      // Picks up items
-    IsNpc = 3,          // Is an NPC (always set)
-    Aware = 4,          // Can't be backstabbed
-    Aggressive = 5,     // Attacks players on sight
-    StayZone = 6,       // Won't leave zone
-    Wimpy = 7,          // Flees when hurt
-
-    // Aggression targeting (8-10)
-    AggroEvil = 8,      // Attacks evil characters
-    AggroGood = 9,      // Attacks good characters
-    AggroNeutral = 10,  // Attacks neutral characters
-
-    // AI behavior (11-17)
-    Memory = 11,        // Remembers attackers
-    Helper = 12,        // Helps other mobs in combat
-    NoCharm = 13,       // Cannot be charmed
-    NoSummon = 14,      // Cannot be summoned
-    NoSleep = 15,       // Immune to sleep
-    NoBash = 16,        // Cannot be bashed
-    NoBlind = 17,       // Immune to blindness
-
-    // Movement/environment (18-21)
-    Mount = 18,         // Can be used as a mount
-    StaySect = 19,      // Stays in sector type
-    HatesSun = 20,      // Avoids sunlight
-    NoKill = 21,        // Cannot be killed
-
-    // Special abilities (22-24)
-    Track = 22,         // Can track players
-    Illusion = 23,      // Is an illusion
-    PoisonBite = 24,    // Has poisonous bite
-
-    // Class-based AI (25-40)
-    Thief = 25,         // Thief AI
-    Warrior = 26,       // Warrior AI
-    Sorcerer = 27,      // Sorcerer AI
-    Cleric = 28,        // Cleric AI
-    Paladin = 29,       // Paladin AI
-    AntiPaladin = 30,   // Anti-paladin AI
-    Ranger = 31,        // Ranger AI
-    Druid = 32,         // Druid AI
-    Shaman = 33,        // Shaman AI
-    Assassin = 34,      // Assassin AI
-    Mercenary = 35,     // Mercenary AI
-    Necromancer = 36,   // Necromancer AI
-    Conjurer = 37,      // Conjurer AI
-    Monk = 38,          // Monk AI
-    Berserker = 39,     // Berserker AI
-    Diabolist = 40,     // Diabolist AI
-
-    // Tracking/combat modifiers (41-42)
-    SlowTrack = 41,     // Tracks slowly
-    NoSilence = 42,     // Immune to silence
-
-    // Special roles (43-49)
-    Peaceful = 43,      // Won't attack
-    Protector = 44,     // Protects players
-    Peacekeeper = 45,   // Stops fights
-    Haste = 46,         // Has haste effect
-    Blur = 47,          // Has blur effect
-    Teacher = 48,       // Can train players
-    Mountable = 49,     // Can be mounted by players
-
-    // Restrictions (50-56)
-    NoVicious = 50,     // No vicious attacks
-    NoClassAi = 51,     // No class-based AI
-    FastTrack = 52,     // Tracks quickly
-    Aquatic = 53,       // Water-dwelling
-    NoEqRestrict = 54,  // No equipment restrictions
-    SummonedMount = 55, // Summoned mount
-    NoPoison = 56,      // Immune to poison
-
-    // Special NPC roles (57+)
-    Banker = 57,        // Can manage bank/vault access
-    Receptionist = 58,  // Can manage inn/lodging check-in
-    Postmaster = 59,    // Can send/receive mail
-    Shopkeeper = 60     // Is a shopkeeper NPC
-};
+/** Mobile (NPC) trait/behavior/profession enums - uses database-defined enums directly */
+using MobTrait = db::MobTrait;
+using MobBehavior = db::MobBehavior;
+using MobProfession = db::MobProfession;
 
 /** Mobile (NPC) class */
 class Mobile : public Actor {
 public:
-    /** Size of the mob_flags_ bitset - use this instead of magic numbers */
-    static constexpr size_t MOB_FLAG_CAPACITY = 64;
+    /** Capacity for bitsets - must accommodate highest enum value + 1 */
+    static constexpr size_t MOB_TRAIT_CAPACITY = 16;
+    static constexpr size_t MOB_BEHAVIOR_CAPACITY = 32;
+    static constexpr size_t MOB_PROFESSION_CAPACITY = 16;
 
     /** Create mobile */
     static Result<std::unique_ptr<Mobile>> create(EntityId id, std::string_view name, int level = 1);
@@ -933,21 +872,40 @@ public:
     /** Calculate and set HP from dice - returns the calculated max HP */
     int calculate_hp_from_dice();
 
-    /** Mobile behavior flags */
+    /** Mobile traits (what the mob IS - identity) */
     using Actor::set_flag;  // Bring base class ActorFlag version into scope
-    bool has_flag(MobFlag flag) const {
-        return mob_flags_.test(static_cast<size_t>(flag));
+    bool has_trait(MobTrait trait) const {
+        return traits_.test(static_cast<size_t>(trait));
     }
-    void set_flag(MobFlag flag, bool value = true) {
-        mob_flags_.set(static_cast<size_t>(flag), value);
-        // Sync special role booleans for commonly-used flags
-        if (flag == MobFlag::Teacher) is_teacher_ = value;
-        if (flag == MobFlag::Banker) is_banker_ = value;
-        if (flag == MobFlag::Receptionist) is_receptionist_ = value;
-        if (flag == MobFlag::Postmaster) is_postmaster_ = value;
-        if (flag == MobFlag::Shopkeeper) is_shopkeeper_ = value;
+    void set_trait(MobTrait trait, bool value = true) {
+        traits_.set(static_cast<size_t>(trait), value);
     }
-    void clear_flag(MobFlag flag) { set_flag(flag, false); }
+    void clear_trait(MobTrait trait) { set_trait(trait, false); }
+
+    /** Mobile behaviors (how the mob ACTS) */
+    bool has_behavior(MobBehavior behavior) const {
+        return behaviors_.test(static_cast<size_t>(behavior));
+    }
+    void set_behavior(MobBehavior behavior, bool value = true) {
+        behaviors_.set(static_cast<size_t>(behavior), value);
+        // Sync special role booleans for commonly-used behaviors
+        if (behavior == MobBehavior::Teacher) is_teacher_ = value;
+    }
+    void clear_behavior(MobBehavior behavior) { set_behavior(behavior, false); }
+
+    /** Mobile professions (services the mob provides) */
+    bool has_profession(MobProfession profession) const {
+        return professions_.test(static_cast<size_t>(profession));
+    }
+    void set_profession(MobProfession profession, bool value = true) {
+        professions_.set(static_cast<size_t>(profession), value);
+        // Sync special role booleans for commonly-used professions
+        if (profession == MobProfession::Banker) is_banker_ = value;
+        if (profession == MobProfession::Receptionist) is_receptionist_ = value;
+        if (profession == MobProfession::Postmaster) is_postmaster_ = value;
+        if (profession == MobProfession::Shopkeeper) is_shopkeeper_ = value;
+    }
+    void clear_profession(MobProfession profession) { set_profession(profession, false); }
 
     /** Effect flags (magical effects on this mob like Invisible, Fly, etc) */
     bool has_effect(EffectFlag effect) const {
@@ -998,13 +956,16 @@ protected:
     Mobile(EntityId id, std::string_view name, int level = 1);
 
 private:
-    std::bitset<MOB_FLAG_CAPACITY> mob_flags_;     // MobFlag bitset
-    std::optional<std::string> aggro_condition_;  // Lua expression from database for aggression
+    // Reorganized flag system (replaces old mobFlags)
+    std::bitset<MOB_TRAIT_CAPACITY> traits_;           // MobTrait - what mob IS
+    std::bitset<MOB_BEHAVIOR_CAPACITY> behaviors_;     // MobBehavior - how mob ACTS
+    std::bitset<MOB_PROFESSION_CAPACITY> professions_; // MobProfession - services provided
+    std::optional<std::string> aggro_condition_;       // Lua expression from database for aggression
     bool is_shopkeeper_ = false;
     bool is_banker_ = false;
     bool is_receptionist_ = false;
     bool is_postmaster_ = false;
-    bool is_teacher_ = false;       // Legacy: synced with MobFlag::Teacher
+    bool is_teacher_ = false;       // Synced with MobBehavior::Teacher
     EntityId prototype_id_;         // For spawned mobs, the prototype they came from
     std::vector<std::string> received_messages_;
     std::string description_ = "";  // Detailed description for NPCs
@@ -1398,7 +1359,10 @@ protected:
     
     /** Room change notification - sends GMCP room updates */
     void on_room_change(std::shared_ptr<Room> old_room, std::shared_ptr<Room> new_room) override;
-    
+
+    /** Position change notification - sends GMCP vitals updates */
+    void on_position_change(Position old_pos, Position new_pos) override;
+
     /** Level up notification - sends GMCP vitals updates */
     void on_level_up(int old_level, int new_level) override;
     

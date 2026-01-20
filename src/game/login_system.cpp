@@ -1,5 +1,6 @@
 #include "login_system.hpp"
 
+#include "../core/actor.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
@@ -1526,6 +1527,12 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             // Set experience
             stats.experience = char_data.experience;
 
+            // Set position from database (persists ghost state, etc.)
+            if (auto pos = ActorUtils::parse_position(char_data.position)) {
+                player->set_position(*pos);
+                Log::debug("Player {} position restored to {}", char_data.name, char_data.position);
+            }
+
             // Store the database character ID for saving later
             player->set_database_id(char_data.id);
 
@@ -1547,18 +1554,18 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             }
 
             // Set start room from saved location if available
-            // Priority: save_room (rent location) > current_room > world default
+            // Priority: current_room (for gods/ghosts/housing) > recall_room (touchstone) > race default
             // Room locations are stored as composite keys (zone_id, room_id)
-            if (char_data.save_room_zone_id && char_data.save_room_id) {
-                player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.save_room_zone_id),
-                                                static_cast<std::uint32_t>(*char_data.save_room_id)));
-                Log::debug("Player {} has save_room ({}, {}) -> {}", char_data.name, *char_data.save_room_zone_id,
-                           *char_data.save_room_id, player->start_room());
-            } else if (char_data.current_room_zone_id && char_data.current_room_id) {
+            if (char_data.current_room_zone_id && char_data.current_room_id) {
                 player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.current_room_zone_id),
                                                 static_cast<std::uint32_t>(*char_data.current_room_id)));
                 Log::debug("Player {} has current_room ({}, {}) -> {}", char_data.name, *char_data.current_room_zone_id,
                            *char_data.current_room_id, player->start_room());
+            } else if (char_data.recall_room_zone_id && char_data.recall_room_id) {
+                player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.recall_room_zone_id),
+                                                static_cast<std::uint32_t>(*char_data.recall_room_id)));
+                Log::debug("Player {} has recall_room ({}, {}) -> {}", char_data.name, *char_data.recall_room_zone_id,
+                           *char_data.recall_room_id, player->start_room());
             }
 
             // Update last login and online status
@@ -1581,7 +1588,7 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     // Load character items (equipment and inventory) from database
     load_player_items(player);
 
-    // Determine start room with priority: saveRoom > raceRoom > mudDefault
+    // Determine start room with priority: currentRoom > recallRoom > raceRoom > mudDefault
     auto &world_manager = WorldManager::instance();
     auto &game_data = GameDataCache::instance();
     auto saved_room = player->start_room();

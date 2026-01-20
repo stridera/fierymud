@@ -215,7 +215,7 @@ class WorldManager {
     void set_object_create_callback(ObjectCreateCallback callback) { object_create_callback_ = std::move(callback); }
 
     // World Search and Queries
-    std::vector<std::shared_ptr<Room>> find_rooms_with_flag(RoomFlag flag) const;
+    // find_rooms_with_flag REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions
     std::vector<std::shared_ptr<Zone>> find_zones_with_flag(ZoneFlag flag) const;
 
     std::vector<std::shared_ptr<Room>> find_rooms_by_sector(SectorType sector) const;

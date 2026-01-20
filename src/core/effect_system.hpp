@@ -141,7 +141,14 @@ struct EffectParams {
 
     // Resurrect effect params
     std::string exp_return_formula = "60";  // % of death exp returned: "60"
-    bool requires_corpse = true;            // Must have corpse in room
+    std::string hp_percent_formula = "10";  // % of max HP restored: "50" for 50%
+    bool requires_corpse = false;           // Must have corpse in room (false = can target ghost)
+
+    // Modify effect params (stat buffs/debuffs)
+    std::string modify_target;              // Target stat: "acc", "eva", "str", "dex", etc.
+    std::string modify_amount;              // Amount to modify (can be formula): "-4", "level / 2"
+    int modify_duration = 0;                // Duration value
+    std::string modify_duration_unit;       // Duration unit: "hours", "ticks", "minutes", "rounds"
 
     // Generic
     std::string chance_formula;             // Formula for chance

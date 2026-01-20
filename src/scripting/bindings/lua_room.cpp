@@ -66,28 +66,11 @@ void register_room_bindings(sol::state& lua) {
         }
     );
 
-    // RoomFlag enum (subset for scripting)
-    lua.new_enum<RoomFlag>("RoomFlag",
-        {
-            {"Dark", RoomFlag::Dark},
-            {"Death", RoomFlag::Death},
-            {"NoMob", RoomFlag::NoMob},
-            {"Indoors", RoomFlag::Indoors},
-            {"Peaceful", RoomFlag::Peaceful},
-            {"NoMagic", RoomFlag::NoMagic},
-            {"NoRecall", RoomFlag::NoRecall},
-            {"NoSummon", RoomFlag::NoSummon},
-            {"NoTeleport", RoomFlag::NoTeleport},
-            {"Private", RoomFlag::Private},
-            {"Godroom", RoomFlag::Godroom},
-            {"Shop", RoomFlag::Shop},
-            {"Bank", RoomFlag::Bank},
-            {"Inn", RoomFlag::Inn},
-            {"Temple", RoomFlag::Temple},
-            {"Arena", RoomFlag::Arena},
-            {"AlwaysLit", RoomFlag::AlwaysLit}
-        }
-    );
+    // RoomFlag enum REMOVED - replaced by:
+    // - base_light_level for lighting
+    // - Lua room restriction scripts for access control
+    // - Sector type for environment
+    // - Capacity for occupancy limits
 
     // Room class
     lua.new_usertype<Room>("Room",
@@ -108,7 +91,9 @@ void register_room_bindings(sol::state& lua) {
         "sector_name", sol::property([](const Room& r) -> std::string {
             return std::string(RoomUtils::get_sector_name(r.sector_type()));
         }),
-        "light_level", sol::property(&Room::light_level),
+        "base_light_level", sol::property(&Room::base_light_level),
+        "effective_light", sol::property(&Room::calculate_effective_light),
+        "capacity", sol::property(&Room::capacity),
 
         // State checks
         "is_dark", sol::property(&Room::is_dark),
@@ -117,14 +102,14 @@ void register_room_bindings(sol::state& lua) {
         "allows_recall", sol::property(&Room::allows_recall),
         "allows_summon", sol::property(&Room::allows_summon),
         "allows_teleport", sol::property(&Room::allows_teleport),
-        "is_private", sol::property(&Room::is_private),
         "is_death_trap", sol::property(&Room::is_death_trap),
         "is_full", sol::property(&Room::is_full),
 
-        // Room flag checks
-        "has_flag", [](const Room& r, RoomFlag flag) -> bool {
-            return r.has_flag(flag);
-        },
+        // Entry restriction (Lua script for access control)
+        "entry_restriction", sol::property([](const Room& r) -> std::string {
+            return r.entry_restriction();
+        }),
+        "has_entry_restriction", sol::property(&Room::has_entry_restriction),
 
         // Contents - actors
         "actors", sol::property([](Room& r) -> sol::as_table_t<std::vector<std::shared_ptr<Actor>>> {

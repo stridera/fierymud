@@ -2,6 +2,7 @@
 
 #include "entity.hpp"
 #include "../core/result.hpp"
+#include "../database/generated/db_enums.hpp"
 
 #include <array>
 #include <magic_enum/magic_enum.hpp>
@@ -16,44 +17,11 @@ enum class WeaponSpeed;
 
 using FieryMUD::WeaponSpeed;
 
-/** Object types for type-safe object handling */
-enum class ObjectType {
-    Undefined = 0,
-    Light = 1,          // Light sources (torches, lanterns)
-    Scroll = 2,         // Magic scrolls
-    Wand = 3,           // Magic wands
-    Staff = 4,          // Magic staves
-    Weapon = 5,         // Weapons (swords, axes, etc.)
-    Fireweapon = 6,     // Missile weapons (bows, crossbows)
-    Missile = 7,        // Ammunition (arrows, bolts)
-    Treasure = 8,       // Treasure items
-    Armor = 9,          // Armor and clothing
-    Potion = 10,        // Magic potions
-    Worn = 11,          // Wearable non-armor items
-    Other = 12,         // Miscellaneous items
-    Trash = 13,         // Junk items
-    Trap = 14,          // Trap objects
-    Container = 15,     // Storage containers
-    Note = 16,          // Readable notes
-    Liquid_Container = 17, // Drink containers
-    Key = 18,           // Keys for doors/containers
-    Food = 19,          // Consumable food
-    Money = 20,         // Currency
-    Pen = 21,           // Writing implements
-    Boat = 22,          // Transportation
-    Fountain = 23,      // Water sources
-    Vehicle = 24,       // Rideable vehicles
-    Board = 25,         // Message boards
-    Corpse = 26,        // Character remains
-    Portal = 27,        // Magical portals
-    Spellbook = 28,     // Spell books
-    Kit = 29,           // Tool kits
-    Wings = 30,         // Flight items
-    Perfume = 31,       // Scent items
-    Disguise = 32,      // Appearance modifiers
-    Poison = 33,        // Poison items
-    Touchstone = 34     // Home point setters
-};
+/**
+ * Object types - use database-defined enum directly.
+ * This ensures the game and database stay in sync automatically.
+ */
+using ObjectType = db::ObjectType;
 
 /** Equipment slots where objects can be worn/wielded */
 enum class EquipSlot {
@@ -314,7 +282,7 @@ public:
     
     /** Check if object is a container (includes corpses which hold loot) */
     bool is_container() const {
-        return type_ == ObjectType::Container || type_ == ObjectType::Liquid_Container || type_ == ObjectType::Corpse;
+        return type_ == ObjectType::Container || type_ == ObjectType::Drinkcontainer || type_ == ObjectType::Corpse;
     }
     
     /** Check if object is a light source */
@@ -529,7 +497,7 @@ protected:
     Object(EntityId id, std::string_view name, ObjectType type);
     
 private:
-    ObjectType type_ = ObjectType::Undefined;
+    ObjectType type_ = ObjectType::Nothing;
     int weight_ = 0;
     int value_ = 0;
     int level_ = 1;             // Level requirement for using object

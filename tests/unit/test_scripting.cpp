@@ -422,19 +422,13 @@ TEST_CASE("Lua Bindings: Enum availability", "[scripting][bindings]") {
         REQUIRE(result.value().get<bool>() == true);
     }
 
-    SECTION("RoomFlag enum is accessible") {
-        auto result = engine.execute(
-            "return RoomFlag.Dark ~= nil and RoomFlag.Peaceful ~= nil",
-            "test_room_flag_enum"
-        );
-        REQUIRE(result.has_value());
-        REQUIRE(result.value().get<bool>() == true);
-    }
+    // RoomFlag enum removed - room state is now controlled by individual properties
+    // (is_peaceful, allows_magic, base_light_level) rather than a flags enum
 
-    SECTION("MobFlag enum is accessible") {
+    SECTION("MobBehavior and MobTrait enums are accessible") {
         auto result = engine.execute(
-            "return MobFlag.Aggressive ~= nil and MobFlag.Sentinel ~= nil",
-            "test_mob_flag_enum"
+            "return MobBehavior.Sentinel ~= nil and MobTrait.Mount ~= nil",
+            "test_mob_enum"
         );
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);

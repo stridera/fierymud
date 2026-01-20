@@ -99,11 +99,9 @@ struct RichTextFormat {
     /** Create format with text style */
     static RichTextFormat with_style(TextStyle style);
 
-    /** Create format with RGB color */
-    static RichTextFormat with_rgb(const ColorRGB& color);
-
-    /** Create format with 256-color palette */
-    static RichTextFormat with_256(const Color256& color);
+    // Note: For RGB/256 colors, use ColorRGB or Color256 directly:
+    //   ColorRGB(255, 128, 0).to_foreground()
+    //   Color256(208).to_foreground()
 };
 
 /** Rich text builder with formatting support */

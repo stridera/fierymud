@@ -17,45 +17,6 @@
 
 namespace FieryMUD {
 
-namespace {
-
-// Helper to convert legacy DG script abbreviated effect flags to EffectFlag enum
-// Supports both legacy abbreviations (INVIS) and full names (INVISIBLE)
-std::optional<db::EffectFlag> effect_flag_from_string(std::string_view s) {
-    // First try the database string converter (handles full names like "INVISIBLE")
-    auto result = db::effect_flag_from_db(s);
-    if (result) {
-        return result;
-    }
-
-    // Legacy DG script abbreviations
-    static const std::unordered_map<std::string_view, db::EffectFlag> legacy_lookup = {
-        {"INVIS", db::EffectFlag::Invisible},
-        {"DETECT_INVIS", db::EffectFlag::DetectInvis},
-        {"DETECT_MAGIC", db::EffectFlag::DetectMagic},
-        {"SENSE_LIFE", db::EffectFlag::SenseLife},
-        {"SANCT", db::EffectFlag::Sanctuary},
-        {"PROT_EVIL", db::EffectFlag::ProtectEvil},
-        {"PROT_GOOD", db::EffectFlag::ProtectGood},
-        {"INFRA", db::EffectFlag::Infravision},
-        {"PARA", db::EffectFlag::MajorParalysis},
-        {"MINOR_PARA", db::EffectFlag::MinorParalysis},
-        {"PROT_FIRE", db::EffectFlag::ProtectFire},
-        {"PROT_COLD", db::EffectFlag::ProtectCold},
-        {"PROT_AIR", db::EffectFlag::ProtectAir},
-        {"PROT_EARTH", db::EffectFlag::ProtectEarth},
-    };
-
-    auto it = legacy_lookup.find(s);
-    if (it != legacy_lookup.end()) {
-        return it->second;
-    }
-
-    return std::nullopt;
-}
-
-} // anonymous namespace
-
 void register_actor_bindings(sol::state& lua) {
     // Position enum as string table
     lua.new_enum<Position>("Position",
@@ -119,6 +80,13 @@ void register_actor_bindings(sol::state& lua) {
         }),
         "is_player", sol::property([](const Actor& a) {
             return a.type_name() == "Player";
+        }),
+        // God/immortal check - works on any Actor, returns false for non-players
+        "is_god", sol::property([](const Actor& a) {
+            if (auto* player = dynamic_cast<const Player*>(&a)) {
+                return player->is_god();
+            }
+            return false;
         }),
 
         // State checks
@@ -198,17 +166,9 @@ void register_actor_bindings(sol::state& lua) {
             return a.has_flag(flag);
         },
 
-        // Legacy DG script method for checking effect flags (accepts string like "INVIS")
-        "get_aff_flagged", [](const Actor& a, const std::string& flag_name) -> bool {
-            auto flag = effect_flag_from_string(flag_name);
-            if (!flag) {
-                spdlog::warn("Unknown effect flag: {}", flag_name);
-                return false;
-            }
-            // Convert EffectFlag to string and use the string-based has_effect
-            // (Actor::has_effect(string) checks ActiveEffects by name)
-            auto flag_str = std::string(magic_enum::enum_name(*flag));
-            return a.has_effect(flag_str);
+        // Check if actor has a specific effect by name (e.g., "Invisible", "Sanctuary")
+        "has_effect_named", [](const Actor& a, const std::string& effect_name) -> bool {
+            return a.has_effect(effect_name);
         },
 
         // Methods - Movement (requires Room binding)
@@ -245,9 +205,15 @@ void register_actor_bindings(sol::state& lua) {
         "damage_dice_num", sol::property(&Mobile::bare_hand_damage_dice_num),
         "damage_dice_size", sol::property(&Mobile::bare_hand_damage_dice_size),
 
-        // Mob flags
-        "has_mob_flag", [](const Mobile& m, MobFlag flag) -> bool {
-            return m.has_flag(flag);
+        // Mob trait/behavior/profession checks (new system)
+        "has_trait", [](const Mobile& m, db::MobTrait trait) -> bool {
+            return m.has_trait(trait);
+        },
+        "has_behavior", [](const Mobile& m, db::MobBehavior behavior) -> bool {
+            return m.has_behavior(behavior);
+        },
+        "has_profession", [](const Mobile& m, db::MobProfession profession) -> bool {
+            return m.has_profession(profession);
         }
     );
 
@@ -277,24 +243,55 @@ void register_actor_bindings(sol::state& lua) {
         "is_pk_enabled", sol::property(&Player::is_pk_enabled)
     );
 
-    // MobFlag enum for script access (subset of commonly used flags)
-    lua.new_enum<MobFlag>("MobFlag",
+    // MobTrait enum - what the mob IS (identity)
+    lua.new_enum<db::MobTrait>("MobTrait",
         {
-            {"Aggressive", MobFlag::Aggressive},
-            {"Sentinel", MobFlag::Sentinel},
-            {"Scavenger", MobFlag::Scavenger},
-            {"Memory", MobFlag::Memory},
-            {"Helper", MobFlag::Helper},
-            {"NoCharm", MobFlag::NoCharm},
-            {"NoSummon", MobFlag::NoSummon},
-            {"NoSleep", MobFlag::NoSleep},
-            {"NoBash", MobFlag::NoBash},
-            {"NoBlind", MobFlag::NoBlind},
-            {"NoKill", MobFlag::NoKill},
-            {"Peaceful", MobFlag::Peaceful},
-            {"Spec", MobFlag::Spec},
-            {"Banker", MobFlag::Banker},
-            {"Teacher", MobFlag::Teacher}
+            {"Illusion", db::MobTrait::Illusion},
+            {"Animated", db::MobTrait::Animated},
+            {"PlayerPhantasm", db::MobTrait::PlayerPhantasm},
+            {"Aquatic", db::MobTrait::Aquatic},
+            {"Mount", db::MobTrait::Mount},
+            {"Summoned", db::MobTrait::Summoned},
+            {"Pet", db::MobTrait::Pet}
+        }
+    );
+
+    // MobBehavior enum - how the mob ACTS
+    lua.new_enum<db::MobBehavior>("MobBehavior",
+        {
+            {"Sentinel", db::MobBehavior::Sentinel},
+            {"StayZone", db::MobBehavior::StayZone},
+            {"Scavenger", db::MobBehavior::Scavenger},
+            {"Track", db::MobBehavior::Track},
+            {"SlowTrack", db::MobBehavior::SlowTrack},
+            {"FastTrack", db::MobBehavior::FastTrack},
+            {"Wimpy", db::MobBehavior::Wimpy},
+            {"Aware", db::MobBehavior::Aware},
+            {"Helper", db::MobBehavior::Helper},
+            {"Protector", db::MobBehavior::Protector},
+            {"Peacekeeper", db::MobBehavior::Peacekeeper},
+            {"NoBash", db::MobBehavior::NoBash},
+            {"NoSummon", db::MobBehavior::NoSummon},
+            {"NoVicious", db::MobBehavior::NoVicious},
+            {"Memory", db::MobBehavior::Memory},
+            {"Teacher", db::MobBehavior::Teacher},
+            {"Meditate", db::MobBehavior::Meditate},
+            {"NoScript", db::MobBehavior::NoScript},
+            {"NoClassAi", db::MobBehavior::NoClassAi},
+            {"Peaceful", db::MobBehavior::Peaceful},
+            {"NoKill", db::MobBehavior::NoKill}
+        }
+    );
+
+    // MobProfession enum - services the mob provides
+    lua.new_enum<db::MobProfession>("MobProfession",
+        {
+            {"Banker", db::MobProfession::Banker},
+            {"Shopkeeper", db::MobProfession::Shopkeeper},
+            {"Receptionist", db::MobProfession::Receptionist},
+            {"Postmaster", db::MobProfession::Postmaster},
+            {"Guildmaster", db::MobProfession::Guildmaster},
+            {"Trainer", db::MobProfession::Trainer}
         }
     );
 
@@ -319,45 +316,8 @@ void register_actor_bindings(sol::state& lua) {
         }
     );
 
-    // EffectFlag enum for script access (commonly used effect flags)
-    lua.new_enum<db::EffectFlag>("EffectFlag",
-        {
-            {"Blind", db::EffectFlag::Blind},
-            {"Invisible", db::EffectFlag::Invisible},
-            {"DetectAlign", db::EffectFlag::DetectAlign},
-            {"DetectInvis", db::EffectFlag::DetectInvis},
-            {"DetectMagic", db::EffectFlag::DetectMagic},
-            {"SenseLife", db::EffectFlag::SenseLife},
-            {"Waterwalk", db::EffectFlag::Waterwalk},
-            {"Sanctuary", db::EffectFlag::Sanctuary},
-            {"Confusion", db::EffectFlag::Confusion},
-            {"Curse", db::EffectFlag::Curse},
-            {"Infravision", db::EffectFlag::Infravision},
-            {"Poison", db::EffectFlag::Poison},
-            {"ProtectEvil", db::EffectFlag::ProtectEvil},
-            {"ProtectGood", db::EffectFlag::ProtectGood},
-            {"Sleep", db::EffectFlag::Sleep},
-            {"Berserk", db::EffectFlag::Berserk},
-            {"Sneak", db::EffectFlag::Sneak},
-            {"Stealth", db::EffectFlag::Stealth},
-            {"Fly", db::EffectFlag::Fly},
-            {"Charm", db::EffectFlag::Charm},
-            {"StoneSkin", db::EffectFlag::StoneSkin},
-            {"Haste", db::EffectFlag::Haste},
-            {"Blur", db::EffectFlag::Blur},
-            {"MajorParalysis", db::EffectFlag::MajorParalysis},
-            {"MinorParalysis", db::EffectFlag::MinorParalysis},
-            {"Silence", db::EffectFlag::Silence},
-            {"ProtectFire", db::EffectFlag::ProtectFire},
-            {"ProtectCold", db::EffectFlag::ProtectCold},
-            {"Fireshield", db::EffectFlag::Fireshield},
-            {"Coldshield", db::EffectFlag::Coldshield},
-            {"Fear", db::EffectFlag::Fear},
-            {"Disease", db::EffectFlag::Disease},
-            {"Bless", db::EffectFlag::Bless},
-            {"Hex", db::EffectFlag::Hex}
-        }
-    );
+    // Note: Effects are data-driven (stored in Effect table), not enum-based.
+    // Use actor:has_effect("EffectName") or actor:has_effect_named("EffectName") in Lua scripts.
 
     spdlog::debug("Lua Actor bindings registered");
 }

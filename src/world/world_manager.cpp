@@ -10,6 +10,7 @@
 #include "../database/trigger_queries.hpp"
 #include "../database/world_queries.hpp"
 #include "../scripting/trigger_manager.hpp"
+#include "../scripting/script_engine.hpp"
 
 #include <spdlog/spdlog.h>
 #include <filesystem>
@@ -238,7 +239,7 @@ Result<void> WorldManager::load_world() {
     logger->info("Performing initial zone resets to populate world...");
     for (const auto& [zone_id, zone] : zones_) {
         if (zone) {
-            logger->info("Force resetting zone {} ({}) with {} commands",
+            logger->trace("Force resetting zone {} ({}) with {} commands",
                         zone_id, zone->name(), zone->commands().size());
             zone->force_reset();
         }
@@ -1000,18 +1001,7 @@ void WorldManager::update_statistics() {
                  stats_.mobiles_loaded, spawned_mobiles);
 }
 
-std::vector<std::shared_ptr<Room>> WorldManager::find_rooms_with_flag(RoomFlag flag) const {
-    std::shared_lock lock(world_mutex_);
-    std::vector<std::shared_ptr<Room>> results;
-    
-    for (const auto& [id, room] : rooms_) {
-        if (room && room->has_flag(flag)) {
-            results.push_back(room);
-        }
-    }
-    
-    return results;
-}
+// find_rooms_with_flag REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions
 
 std::vector<std::shared_ptr<Zone>> WorldManager::find_zones_with_flag(ZoneFlag flag) const {
     std::shared_lock lock(world_mutex_);
@@ -1438,7 +1428,7 @@ Result<void> WorldManager::load_zones_from_database() {
                 stats_.mobiles_loaded++;
             }
             if (aggressive_count > 0) {
-                logger->info("Zone {} has {} aggressive mob prototype(s)", zone_id, aggressive_count);
+                logger->trace("Zone {} has {} aggressive mob prototype(s)", zone_id, aggressive_count);
             }
 
             // Load objects for this zone
@@ -1795,30 +1785,59 @@ MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> 
     // Check if actor is a Player to access god_level
     auto* player = dynamic_cast<const Player*>(actor.get());
     bool is_god = player && player->is_god();
-    bool is_mobile = (dynamic_cast<const Mobile*>(actor.get()) != nullptr) && !player;
 
-    // Check Godroom - only immortals can enter
-    if (to_room->has_flag(RoomFlag::Godroom) && !is_god) {
-        return MovementResult("Only immortals may enter this divine sanctum");
+    // Check capacity - room full
+    int current_occupants = static_cast<int>(to_room->contents().actors.size());
+    int max_occupants = to_room->max_occupants();
+    if (current_occupants >= max_occupants && !is_god) {
+        return MovementResult("There isn't enough room for you");
     }
 
-    // Check NoMob - mobiles (NPCs) cannot enter
-    if (to_room->has_flag(RoomFlag::NoMob) && is_mobile) {
-        return MovementResult("Mobiles cannot enter this area");
-    }
+    // Check Lua room entry restrictions
+    // The script can check actor type, level, flags, etc.
+    // Returns: true = allow, false = deny, string = deny with message
+    if (to_room->has_entry_restriction() && !is_god) {
+        auto& engine = FieryMUD::ScriptEngine::instance();
+        if (engine.is_initialized()) {
+            // Build the script that returns the restriction result
+            std::string script = fmt::format(R"(
+                local actor = ...
+                {}
+            )", to_room->entry_restriction());
 
-    // Check Tunnel - only one person at a time
-    if (to_room->has_flag(RoomFlag::Tunnel) && !to_room->contents().actors.empty()) {
-        // Allow gods to bypass tunnel restriction
-        if (!is_god) {
-            return MovementResult("The passage is too narrow for more than one person");
-        }
-    }
+            // Create a thread for this execution
+            sol::thread thread = engine.create_thread();
+            sol::state_view lua(thread.state());
 
-    // Check Private room - maximum 2 occupants
-    if (to_room->has_flag(RoomFlag::Private)) {
-        if (to_room->contents().actors.size() >= 2 && !is_god) {
-            return MovementResult("This is a private room");
+            // Load and execute the script
+            auto loaded = engine.load_cached(lua, script,
+                fmt::format("room_restriction:{}:{}", to_room->id().zone_id(), to_room->id().local_id()));
+
+            if (loaded) {
+                sol::protected_function func = *loaded;
+                auto result = func(actor);
+
+                if (result.valid()) {
+                    // Check the return type
+                    if (result.get_type() == sol::type::boolean) {
+                        if (!result.get<bool>()) {
+                            return MovementResult("You cannot enter that room");
+                        }
+                    } else if (result.get_type() == sol::type::string) {
+                        // String return means denied with custom message
+                        return MovementResult(result.get<std::string>());
+                    }
+                    // Any other return (including nil/true) allows entry
+                } else {
+                    // Script error - log but allow entry (fail open)
+                    sol::error err = result;
+                    spdlog::warn("Room entry restriction script error for room {}:{}: {}",
+                                 to_room->id().zone_id(), to_room->id().local_id(), err.what());
+                }
+            } else {
+                spdlog::warn("Failed to load room entry restriction for room {}:{}",
+                             to_room->id().zone_id(), to_room->id().local_id());
+            }
         }
     }
 
@@ -2108,22 +2127,13 @@ bool WorldManager::is_passable_for_actor(std::shared_ptr<Room> room, std::shared
     // Check actor-specific restrictions
     auto* player = dynamic_cast<const Player*>(actor.get());
     bool is_god = player && player->is_god();
-    bool is_mobile = (dynamic_cast<const Mobile*>(actor.get()) != nullptr) && !player;
 
     // Gods can go anywhere
     if (is_god) {
         return true;
     }
 
-    // Godroom restriction
-    if (room->has_flag(RoomFlag::Godroom)) {
-        return false;
-    }
-
-    // NoMob restriction for NPCs
-    if (room->has_flag(RoomFlag::NoMob) && is_mobile) {
-        return false;
-    }
+    // TODO: Check Lua room entry restrictions here
 
     // Check zone level restrictions
     auto zone = get_zone(room->zone_id());
@@ -2271,11 +2281,27 @@ Result<void> WorldManager::spawn_mobile_in_zone(Mobile* prototype, EntityId zone
                                       prototype->bare_hand_damage_dice_size(),
                                       prototype->bare_hand_damage_dice_bonus());
 
-    // Copy mob flags from prototype (the bitset with all MobFlag values)
-    for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
-        auto flag = static_cast<MobFlag>(i);
-        if (prototype->has_flag(flag)) {
-            new_mobile->set_flag(flag, true);
+    // Copy traits from prototype (what mob IS)
+    for (size_t i = 0; i < Mobile::MOB_TRAIT_CAPACITY; ++i) {
+        auto trait = static_cast<MobTrait>(i);
+        if (prototype->has_trait(trait)) {
+            new_mobile->set_trait(trait, true);
+        }
+    }
+
+    // Copy behaviors from prototype (how mob ACTS)
+    for (size_t i = 0; i < Mobile::MOB_BEHAVIOR_CAPACITY; ++i) {
+        auto behavior = static_cast<MobBehavior>(i);
+        if (prototype->has_behavior(behavior)) {
+            new_mobile->set_behavior(behavior, true);
+        }
+    }
+
+    // Copy professions from prototype (services mob provides)
+    for (size_t i = 0; i < Mobile::MOB_PROFESSION_CAPACITY; ++i) {
+        auto profession = static_cast<MobProfession>(i);
+        if (prototype->has_profession(profession)) {
+            new_mobile->set_profession(profession, true);
         }
     }
 
@@ -2405,11 +2431,27 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
                                       prototype->bare_hand_damage_dice_size(),
                                       prototype->bare_hand_damage_dice_bonus());
 
-    // Copy mob flags from prototype (the bitset with all MobFlag values)
-    for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
-        auto flag = static_cast<MobFlag>(i);
-        if (prototype->has_flag(flag)) {
-            new_mobile->set_flag(flag, true);
+    // Copy traits from prototype (what mob IS)
+    for (size_t i = 0; i < Mobile::MOB_TRAIT_CAPACITY; ++i) {
+        auto trait = static_cast<MobTrait>(i);
+        if (prototype->has_trait(trait)) {
+            new_mobile->set_trait(trait, true);
+        }
+    }
+
+    // Copy behaviors from prototype (how mob ACTS)
+    for (size_t i = 0; i < Mobile::MOB_BEHAVIOR_CAPACITY; ++i) {
+        auto behavior = static_cast<MobBehavior>(i);
+        if (prototype->has_behavior(behavior)) {
+            new_mobile->set_behavior(behavior, true);
+        }
+    }
+
+    // Copy professions from prototype (services mob provides)
+    for (size_t i = 0; i < Mobile::MOB_PROFESSION_CAPACITY; ++i) {
+        auto profession = static_cast<MobProfession>(i);
+        if (prototype->has_profession(profession)) {
+            new_mobile->set_profession(profession, true);
         }
     }
 
@@ -2765,11 +2807,27 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
                                       prototype->bare_hand_damage_dice_size(),
                                       prototype->bare_hand_damage_dice_bonus());
 
-    // Copy mob flags from prototype (the bitset with all MobFlag values)
-    for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
-        auto flag = static_cast<MobFlag>(i);
-        if (prototype->has_flag(flag)) {
-            new_mobile->set_flag(flag, true);
+    // Copy traits from prototype (what mob IS)
+    for (size_t i = 0; i < Mobile::MOB_TRAIT_CAPACITY; ++i) {
+        auto trait = static_cast<MobTrait>(i);
+        if (prototype->has_trait(trait)) {
+            new_mobile->set_trait(trait, true);
+        }
+    }
+
+    // Copy behaviors from prototype (how mob ACTS)
+    for (size_t i = 0; i < Mobile::MOB_BEHAVIOR_CAPACITY; ++i) {
+        auto behavior = static_cast<MobBehavior>(i);
+        if (prototype->has_behavior(behavior)) {
+            new_mobile->set_behavior(behavior, true);
+        }
+    }
+
+    // Copy professions from prototype (services mob provides)
+    for (size_t i = 0; i < Mobile::MOB_PROFESSION_CAPACITY; ++i) {
+        auto profession = static_cast<MobProfession>(i);
+        if (prototype->has_profession(profession)) {
+            new_mobile->set_profession(profession, true);
         }
     }
 

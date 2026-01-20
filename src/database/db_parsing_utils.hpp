@@ -36,14 +36,6 @@ std::vector<std::string> parse_pg_array(const std::string& pg_array);
  */
 std::optional<SectorType> sector_from_db_string(const std::string& sector_str);
 
-/**
- * Parse room flag from database string.
- *
- * Maps database enum values like "DARK", "NO_MOB", "PEACEFUL" to RoomFlag.
- *
- * @param flag_str The room flag string from database
- * @return Optional RoomFlag, nullopt if unknown
- */
-std::optional<RoomFlag> room_flag_from_db_string(const std::string& flag_str);
+// room_flag_from_db_string REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions
 
 } // namespace DbParsingUtils

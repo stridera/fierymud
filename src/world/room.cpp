@@ -275,7 +275,7 @@ void RoomContents::clear() {
 // Room Implementation
 
 Room::Room(EntityId id, std::string_view name, SectorType sector)
-    : Entity(id, name), sector_type_(sector), light_level_(0), zone_id_(INVALID_ENTITY_ID) {}
+    : Entity(id, name), sector_type_(sector), base_light_level_(0), capacity_(10), zone_id_(INVALID_ENTITY_ID) {}
 
 Result<std::unique_ptr<Room>> Room::create(EntityId id, std::string_view name, SectorType sector) {
     if (!id.is_valid()) {
@@ -292,8 +292,8 @@ Result<std::unique_ptr<Room>> Room::create(EntityId id, std::string_view name, S
 
     auto room = std::unique_ptr<Room>(new Room(id, name, sector));
 
-    // Set natural light level based on sector
-    room->light_level_ = RoomUtils::get_sector_light_level(sector);
+    // Base light level defaults to 0 (ambient)
+    // Actual light level is calculated from base + sector + light sources
 
     TRY(room->validate());
 
@@ -345,41 +345,24 @@ Result<std::unique_ptr<Room>> Room::from_json(const nlohmann::json &json) {
         room->set_short_description(base_entity->short_description());
 
         // Parse room-specific properties
-        if (json.contains("light_level")) {
-            room->set_light_level(json["light_level"].get<int>());
+        if (json.contains("base_light_level")) {
+            room->set_base_light_level(json["base_light_level"].get<int>());
+        }
+
+        if (json.contains("capacity")) {
+            room->set_capacity(json["capacity"].get<int>());
         }
 
         if (json.contains("zone_id")) {
             room->set_zone_id(EntityId{json["zone_id"].get<std::uint64_t>()});
         }
 
-        // Parse flags from comma-separated string
-        if (json.contains("flags")) {
-            if (json["flags"].is_string()) {
-                std::string flags_str = json["flags"].get<std::string>();
-                // Split comma-separated flags
-                std::istringstream iss(flags_str);
-                std::string flag;
-                while (std::getline(iss, flag, ',')) {
-                    flag = std::string(trim(flag));
+        if (json.contains("allows_magic")) {
+            room->set_allows_magic(json["allows_magic"].get<bool>());
+        }
 
-                    if (!flag.empty()) {
-                        if (auto parsed_flag = RoomUtils::parse_room_flag(flag)) {
-                            room->set_flag(parsed_flag.value());
-                        }
-                    }
-                }
-            } else if (json["flags"].is_array()) {
-                // Also handle array format for compatibility
-                for (const auto &flag_name : json["flags"]) {
-                    if (flag_name.is_string()) {
-                        std::string flag_str = flag_name.get<std::string>();
-                        if (auto flag = RoomUtils::parse_room_flag(flag_str)) {
-                            room->set_flag(flag.value());
-                        }
-                    }
-                }
-            }
+        if (json.contains("is_peaceful")) {
+            room->set_peaceful(json["is_peaceful"].get<bool>());
         }
 
         // Parse exits
@@ -403,15 +386,7 @@ Result<std::unique_ptr<Room>> Room::from_json(const nlohmann::json &json) {
     }
 }
 
-bool Room::has_flag(RoomFlag flag) const { return flags_.contains(flag); }
-
-void Room::set_flag(RoomFlag flag, bool value) {
-    if (value) {
-        flags_.insert(flag);
-    } else {
-        flags_.erase(flag);
-    }
-}
+// has_flag and set_flag REMOVED - flags replaced by baseLightLevel and Lua restrictions
 
 bool Room::has_exit(Direction dir) const { return exits_.contains(dir); }
 
@@ -480,24 +455,27 @@ std::vector<std::shared_ptr<Actor>> Room::find_actors_by_keyword(std::string_vie
     return contents_.find_actors_by_keyword(keyword);
 }
 
-bool Room::is_dark() const { return has_flag(RoomFlag::Dark) || calculate_effective_light() <= 0; }
+bool Room::is_dark() const {
+    // Light level 0 is ambient (not dark), only negative is truly dark
+    return calculate_effective_light() < 0;
+}
 
-bool Room::is_naturally_lit() const { return sector_provides_light() && !has_flag(RoomFlag::Dark); }
+bool Room::is_naturally_lit() const {
+    // Negative base light level forces darkness, overriding sector light
+    if (base_light_level_ < 0) {
+        return false;
+    }
+    // Room is naturally lit if base light level is positive or sector provides light
+    return base_light_level_ > 0 || sector_provides_light();
+}
 
 int Room::calculate_effective_light() const {
-    // AlwaysLit rooms are always lit regardless of other factors
-    if (has_flag(RoomFlag::AlwaysLit)) {
-        return 10; // High light level
-    }
+    // Start with base light level from database
+    // Positive = lit, negative = dark, 0 = ambient
+    int total_light = base_light_level_;
 
-    if (has_flag(RoomFlag::Dark)) {
-        return 0;
-    }
-
-    int total_light = light_level_;
-
-    // Add natural sector light
-    if (sector_provides_light()) {
+    // Add natural sector light for ambient rooms
+    if (base_light_level_ >= 0 && sector_provides_light()) {
         total_light += RoomUtils::get_sector_light_level(sector_type_);
     }
 
@@ -520,7 +498,7 @@ int Room::calculate_effective_light() const {
         }
     }
 
-    return std::max(0, total_light);
+    return total_light;
 }
 
 bool Room::can_see_in_room(const Actor *observer) const {
@@ -554,16 +532,8 @@ bool Room::can_see_in_room(const Actor *observer) const {
 }
 
 int Room::max_occupants() const {
-    if (has_flag(RoomFlag::Tunnel)) {
-        return 1;
-    }
-    if (has_flag(RoomFlag::Private)) {
-        return 2;
-    }
-    if (has_flag(RoomFlag::Atrium)) {
-        return 10;
-    }
-    return 100; // Default max
+    // Use capacity field from database (0 = unlimited)
+    return capacity_ > 0 ? capacity_ : 1000;
 }
 
 bool Room::can_accommodate(const Actor *actor) const {
@@ -571,27 +541,13 @@ bool Room::can_accommodate(const Actor *actor) const {
         return false;
     }
 
-    // Check if actor is a Mobile (NPC)
-    bool is_mobile = (dynamic_cast<const Mobile*>(actor) != nullptr);
-
     // Check capacity
     if (static_cast<int>(contents_.actors.size()) >= max_occupants()) {
         return false;
     }
 
-    // Check god room restriction - only immortals may enter
-    // For now, mobiles cannot enter god rooms
-    if (has_flag(RoomFlag::Godroom)) {
-        if (is_mobile) {
-            return false;  // NPCs cannot enter god rooms
-        }
-        // Players need god level check - handled in movement restrictions
-    }
-
-    // Check no-mob restriction - NPCs cannot enter
-    if (has_flag(RoomFlag::NoMob) && is_mobile) {
-        return false;  // NPCs blocked from NoMob rooms
-    }
+    // Additional restrictions (godroom, no_mob, etc.) are now handled by
+    // Lua room restriction scripts, not flags
 
     return true;
 }
@@ -683,19 +639,13 @@ nlohmann::json Room::to_json() const {
     nlohmann::json json = Entity::to_json();
 
     json["sector_type"] = std::string(magic_enum::enum_name(sector_type_));
-    json["light_level"] = light_level_;
+    json["base_light_level"] = base_light_level_;
+    json["capacity"] = capacity_;
+    json["allows_magic"] = allows_magic_;
+    json["is_peaceful"] = is_peaceful_;
 
     if (zone_id_.is_valid()) {
         json["zone_id"] = zone_id_.value();
-    }
-
-    // Serialize flags
-    std::vector<std::string> flag_names;
-    for (RoomFlag flag : flags_) {
-        flag_names.emplace_back(magic_enum::enum_name(flag));
-    }
-    if (!flag_names.empty()) {
-        json["flags"] = flag_names;
     }
 
     // Serialize exits
@@ -717,9 +667,7 @@ Result<void> Room::validate() const {
         return std::unexpected(Errors::InvalidState("Room sector type cannot be undefined"));
     }
 
-    if (light_level_ < 0) {
-        return std::unexpected(Errors::InvalidState("Room light level cannot be negative"));
-    }
+    // base_light_level_ can be negative (for dark rooms) - no validation needed
 
     // Validate exits
     for (const auto &[dir, exit] : exits_) {
@@ -851,19 +799,7 @@ SectorType sector_from_number(int sector_num) {
     }
 }
 
-std::string_view get_flag_name(RoomFlag flag) {
-    auto name = magic_enum::enum_name(flag);
-    return name.empty() ? "Unknown" : name;
-}
-
-std::optional<RoomFlag> parse_room_flag(std::string_view flag_name) {
-    // Handle legacy flag names that don't match enum names exactly
-    if (flag_name == "ALWAYSLIT") {
-        return RoomFlag::AlwaysLit;
-    }
-
-    return magic_enum::enum_cast<RoomFlag>(flag_name);
-}
+// get_flag_name and parse_room_flag REMOVED - flags replaced by baseLightLevel and Lua restrictions
 
 int get_movement_cost(SectorType sector) {
     static const std::unordered_map<SectorType, int> costs = {
@@ -951,25 +887,11 @@ std::string Room::get_stat_info() const {
     output << fmt::format("Zone: [{}], ID: [{}], Sector: {}\n",
                           id().zone_id(), id(), magic_enum::enum_name(sector_type()));
 
-    // Room flags
-    std::string flag_str = "<None>";
-    if (!flags_.empty()) {
-        std::vector<std::string> flag_names;
-        for (const auto &flag : flags_) {
-            flag_names.push_back(std::string{magic_enum::enum_name(flag)});
-        }
-        std::string joined = "";
-        for (size_t i = 0; i < flag_names.size(); ++i) {
-            if (i > 0)
-                joined += " ";
-            joined += flag_names[i];
-        }
-        flag_str = joined;
-    }
-    output << fmt::format("SpecProc: None, Flags: {}\n", flag_str);
+    // Lighting info
+    output << fmt::format("Base Light Level: {}, Capacity: {}\n", base_light_level_, capacity_);
 
     output << fmt::format("Room effects: <None>\n");
-    output << fmt::format("Ambient Light : {}\n", light_level_);
+    output << fmt::format("Effective Light: {}\n", calculate_effective_light());
 
     // Description
     output << fmt::format("Description:\n{}\n", description().empty() ? "  None." : description());

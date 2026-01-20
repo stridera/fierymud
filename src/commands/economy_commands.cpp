@@ -68,8 +68,12 @@ Result<CommandResult> cmd_value(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Check if there's a shopkeeper in the room
-    // TODO: Get the shopkeeper's buy price for the item
+    // Check if there's a shopkeeper in the room
+    auto shopkeeper = find_shopkeeper(ctx);
+    if (!shopkeeper) {
+        ctx.send_error("You need to find a shopkeeper to appraise items.");
+        return CommandResult::InvalidState;
+    }
 
     auto target = ctx.resolve_target(ctx.arg(0));
     if (!target.object) {
@@ -79,13 +83,14 @@ Result<CommandResult> cmd_value(const CommandContext &ctx) {
 
     auto obj = target.object;
 
-    // Simple value calculation (would be modified by shopkeeper)
+    // Get the shopkeeper's buy price for the item
     int base_value = obj->value();
     int sell_price = base_value / 2; // Shops typically pay half
 
-    ctx.send(fmt::format("The shopkeeper will give you {} gold for {}.",
-             sell_price, obj->display_name()));
-    ctx.send("Note: Shop pricing not yet fully implemented.");
+    ctx.send(fmt::format("{} tells you, 'I'll give you {} for {}.'",
+             shopkeeper->display_name(),
+             fiery::Money::from_copper(sell_price).to_string(),
+             obj->display_name()));
 
     return CommandResult::Success;
 }
@@ -97,8 +102,12 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Check if there's a shopkeeper who offers identify service
-    // TODO: Charge gold for identification
+    // Check if there's a shopkeeper who offers identify service
+    auto shopkeeper = find_shopkeeper(ctx);
+    if (!shopkeeper) {
+        ctx.send_error("You need to find a shopkeeper to identify items.");
+        return CommandResult::InvalidState;
+    }
 
     auto target = ctx.resolve_target(ctx.arg(0));
     if (!target.object) {
@@ -107,6 +116,20 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
     }
 
     auto obj = target.object;
+
+    // Charge gold for identification (100 copper = 1 gold)
+    constexpr int IDENTIFY_COST = 100;
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (player && !player->is_god()) {
+        auto cost = fiery::Money::from_copper(IDENTIFY_COST);
+        if (!player->spend(cost)) {
+            ctx.send_error(fmt::format("{} tells you, 'That will cost {}. You don't have enough.'",
+                shopkeeper->display_name(), cost.to_string()));
+            return CommandResult::ResourceError;
+        }
+        ctx.send(fmt::format("{} takes {} for the identification.",
+            shopkeeper->display_name(), cost.to_string()));
+    }
 
     // Mark the item as identified
     obj->set_flag(ObjectFlag::Identified);
@@ -131,8 +154,12 @@ Result<CommandResult> cmd_repair(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Check if there's a shopkeeper who offers repair service
-    // TODO: Implement item condition/durability system
+    // Check if there's a shopkeeper who offers repair service
+    auto shopkeeper = find_shopkeeper(ctx);
+    if (!shopkeeper) {
+        ctx.send_error("You need to find a shopkeeper to repair items.");
+        return CommandResult::InvalidState;
+    }
 
     auto target = ctx.resolve_target(ctx.arg(0));
     if (!target.object) {
@@ -141,9 +168,58 @@ Result<CommandResult> cmd_repair(const CommandContext &ctx) {
     }
 
     auto obj = target.object;
+    ctx.send(fmt::format("{} examines {}...", shopkeeper->display_name(), obj->display_name()));
 
-    ctx.send(fmt::format("{} is in perfect condition.", obj->display_name()));
-    ctx.send("Note: Item durability system not yet implemented.");
+    // Handle light sources (lanterns, torches) - refill fuel
+    if (obj->is_light_source()) {
+        auto light = obj->light_info();
+
+        // Permanent lights don't need refilling
+        if (light.permanent || light.duration < 0) {
+            ctx.send(fmt::format("{} tells you, 'This {} never runs out of fuel.'",
+                shopkeeper->display_name(), obj->display_name()));
+            return CommandResult::Success;
+        }
+
+        // Check if it needs refilling (less than full duration, assume 24 hours max)
+        constexpr int MAX_LIGHT_DURATION = 24;
+        if (light.duration >= MAX_LIGHT_DURATION) {
+            ctx.send(fmt::format("{} tells you, 'This {} is already fully fueled.'",
+                shopkeeper->display_name(), obj->display_name()));
+            return CommandResult::Success;
+        }
+
+        // Calculate refill cost based on how much fuel is needed
+        int hours_needed = MAX_LIGHT_DURATION - light.duration;
+        int refill_cost = hours_needed * 10;  // 10 copper per hour of fuel
+
+        auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+        if (player && !player->is_god()) {
+            auto cost = fiery::Money::from_copper(refill_cost);
+            if (!player->spend(cost)) {
+                ctx.send_error(fmt::format("{} tells you, 'That will cost {} to refill. You don't have enough.'",
+                    shopkeeper->display_name(), cost.to_string()));
+                return CommandResult::ResourceError;
+            }
+            ctx.send(fmt::format("{} takes {} for the fuel.",
+                shopkeeper->display_name(), cost.to_string()));
+        }
+
+        // Refill the light source
+        light.duration = MAX_LIGHT_DURATION;
+        obj->set_light_info(light);
+
+        ctx.send(fmt::format("{} refills {} with fresh oil.",
+            shopkeeper->display_name(), obj->display_name()));
+        ctx.send(fmt::format("Your {} now has {} hours of fuel.",
+            obj->display_name(), MAX_LIGHT_DURATION));
+
+        return CommandResult::Success;
+    }
+
+    // No repairs needed for other items (no durability system yet)
+    ctx.send(fmt::format("{} tells you, 'This item is in perfect condition. No repairs needed.'",
+        shopkeeper->display_name()));
 
     return CommandResult::Success;
 }

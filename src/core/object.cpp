@@ -126,7 +126,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         auto base_entity = std::move(base_result.value());
         
         // Parse object-specific fields with legacy type mapping
-        ObjectType type = ObjectType::Undefined;
+        ObjectType type = ObjectType::Nothing;
         std::string type_str;
         if (json.contains("object_type")) {
             type_str = json["object_type"].get<std::string>();
@@ -171,7 +171,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             } else if (type_str == "NOTE") {
                 type = ObjectType::Note;
             } else if (type_str == "DRINKCONTAINER" || type_str == "DRINKCON") {
-                type = ObjectType::Liquid_Container;
+                type = ObjectType::Drinkcontainer;
             } else if (type_str == "KEY") {
                 type = ObjectType::Key;
             } else if (type_str == "FOOD") {
@@ -208,7 +208,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         
         // Pre-parse capacity for containers to create with correct size
         int container_capacity = 10; // Default capacity
-        if (type == ObjectType::Container || type == ObjectType::Liquid_Container) {
+        if (type == ObjectType::Container || type == ObjectType::Drinkcontainer) {
             // Check for modern container_info format
             if (json.contains("container_info") && json["container_info"].contains("capacity")) {
                 container_capacity = json["container_info"]["capacity"].get<int>();
@@ -718,7 +718,7 @@ nlohmann::json Object::to_json() const {
 Result<void> Object::validate() const {
     TRY(Entity::validate());
     
-    if (type_ == ObjectType::Undefined) {
+    if (type_ == ObjectType::Nothing) {
         return std::unexpected(Errors::InvalidState("Object type cannot be undefined"));
     }
     
@@ -740,7 +740,7 @@ Result<void> Object::validate() const {
 
 std::string_view Object::fullness_descriptor() const {
     // For drink containers, calculate fullness based on liquid remaining vs capacity
-    if (type_ == ObjectType::Liquid_Container) {
+    if (type_ == ObjectType::Drinkcontainer) {
         if (liquid_info_.capacity <= 0) {
             return "";  // No capacity info
         }
@@ -785,7 +785,7 @@ bool Object::matches_keyword(std::string_view keyword) const {
 
     // For identified liquid containers with liquid, also match by liquid type
     // This allows "drink water" or "fill water-cup" to work
-    if (type_ == ObjectType::Liquid_Container &&
+    if (type_ == ObjectType::Drinkcontainer &&
         liquid_info_.remaining > 0 &&
         !liquid_info_.liquid_type.empty() &&
         has_flag(ObjectFlag::Identified)) {
@@ -886,7 +886,7 @@ std::string Object::display_name_full(bool with_article, bool force_identified) 
     result += base_name_;
 
     // For drink containers with liquid, append liquid description
-    if (type_ == ObjectType::Liquid_Container && liquid_info_.remaining > 0 &&
+    if (type_ == ObjectType::Drinkcontainer && liquid_info_.remaining > 0 &&
         !liquid_info_.liquid_type.empty()) {
 
         // Look up liquid data from database cache
@@ -1394,7 +1394,7 @@ std::string Object::get_stat_info() const {
             output << fmt::format("Currently: {}\n", light.lit ? "lit" : "unlit");
             break;
         }
-        case ObjectType::Liquid_Container:
+        case ObjectType::Drinkcontainer:
         case ObjectType::Fountain: {
             const auto& liq = liquid_info();
             output << fmt::format("Liquid: {} ({}/{})\n",

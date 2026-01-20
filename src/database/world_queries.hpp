@@ -378,10 +378,8 @@ struct CharacterData {
     // Location (composite keys: zone_id + room_id)
     std::optional<int> current_room_zone_id;
     std::optional<int> current_room_id;
-    std::optional<int> save_room_zone_id;
-    std::optional<int> save_room_id;
-    std::optional<int> home_room_zone_id;
-    std::optional<int> home_room_id;
+    std::optional<int> recall_room_zone_id;  // Bound touchstone location
+    std::optional<int> recall_room_id;
 
     // Combat stats
     int hit_roll = 0;
@@ -414,6 +412,9 @@ struct CharacterData {
     // Experience/Skills
     int experience = 0;
     int skill_points = 0;
+
+    // Position state (persisted so ghost state survives logout)
+    std::string position = "STANDING";  // Position enum as string
 
     // Creation time
     std::chrono::system_clock::time_point created_at;

@@ -571,7 +571,51 @@ void EffectParams::merge_override(std::string_view override_json) {
                 exp_return_formula = std::to_string(j["expReturn"].get<int>());
             }
         }
+        if (j.contains("expPenalty")) {
+            // Convert penalty (0.1 = 10% lost) to return (90% returned)
+            if (j["expPenalty"].is_number()) {
+                double penalty = j["expPenalty"].get<double>();
+                int return_pct = static_cast<int>((1.0 - penalty) * 100);
+                exp_return_formula = std::to_string(return_pct);
+            }
+        }
+        if (j.contains("hpPercent")) {
+            if (j["hpPercent"].is_number()) {
+                // Convert 0.5 to "50" percent
+                double pct = j["hpPercent"].get<double>();
+                hp_percent_formula = std::to_string(static_cast<int>(pct * 100));
+            } else if (j["hpPercent"].is_string()) {
+                hp_percent_formula = j["hpPercent"].get<std::string>();
+            }
+        }
         if (j.contains("requiresCorpse")) requires_corpse = j["requiresCorpse"].get<bool>();
+
+        // Modify params (stat buffs/debuffs)
+        if (j.contains("target")) modify_target = j["target"].get<std::string>();
+        if (j.contains("amount")) {
+            // Also store in modify_amount for Modify effects (amount_formula is set above)
+            if (j["amount"].is_string()) {
+                modify_amount = j["amount"].get<std::string>();
+            } else if (j["amount"].is_number()) {
+                modify_amount = std::to_string(j["amount"].get<int>());
+            }
+        }
+        if (j.contains("duration")) {
+            // Also store in modify_duration for Modify effects
+            if (j["duration"].is_number()) {
+                modify_duration = j["duration"].get<int>();
+            } else if (j["duration"].is_string()) {
+                std::string dur_str = j["duration"].get<std::string>();
+                if (dur_str != "toggle") {
+                    try {
+                        modify_duration = std::stoi(dur_str);
+                    } catch (...) {
+                        // Formula-based duration, leave as 0
+                    }
+                }
+            }
+        }
+        if (j.contains("durationUnit")) modify_duration_unit = j["durationUnit"].get<std::string>();
 
     } catch (const json::exception& e) {
         Log::warn("Failed to parse effect override JSON: {}", e.what());
@@ -2003,8 +2047,15 @@ std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(
         return std::unexpected(Errors::InvalidArgument("target", "is required for resurrect effect"));
     }
 
-    // Check if target is actually dead
-    if (context.target->stats().hit_points > 0) {
+    // Check if target is actually dead (ghost or dead position only)
+    // Note: Incapacitated/Mortally_Wounded with negative HP is NOT dead - use heal spells instead
+    bool is_dead = context.target->position() == Position::Ghost ||
+                   context.target->position() == Position::Dead;
+    if (!is_dead) {
+        if (context.target->stats().hit_points <= 0) {
+            return EffectResult::failure_result(fmt::format("{} is dying but not dead yet! Try healing them instead.",
+                context.target->display_name()));
+        }
         return EffectResult::failure_result(fmt::format("{} is not dead!",
             context.target->display_name()));
     }
@@ -2021,16 +2072,29 @@ std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(
     // Resurrect the target
     auto& stats = context.target->stats();
 
-    // Set HP to 1 (they're alive but weak)
-    stats.hit_points = 1;
+    // Evaluate HP percent to restore
+    int hp_percent = 10;  // Default: 10% of max HP
+    if (!params.hp_percent_formula.empty()) {
+        auto result = FormulaParser::evaluate(params.hp_percent_formula, context.formula_ctx);
+        if (result) {
+            hp_percent = std::clamp(*result, 1, 100);
+        }
+    }
+
+    // Restore HP based on percentage of max
+    int restored_hp = std::max(1, stats.max_hit_points * hp_percent / 100);
+    stats.hit_points = restored_hp;
+
+    // Set position back to standing (they're alive!)
+    context.target->set_position(Position::Standing);
 
     // Clear death-related flags if any
     context.target->set_flag(ActorFlag::Sleep, false);
     context.target->set_flag(ActorFlag::Paralyzed, false);
 
-    // Calculate exp to return (would need death exp tracking in a real implementation)
-    // For now, we'll just grant a small amount based on level
-    int exp_gained = stats.level * 100 * exp_return_percent / 100;
+    // TODO: Implement exp recovery when death exp tracking is added
+    // int exp_gained = stats.level * 100 * exp_return_percent / 100;
+    (void)exp_return_percent;  // Suppress unused warning until exp tracking is implemented
 
     // Move target to actor's room if they're not there
     auto actor_room = context.actor->current_room();
@@ -2043,14 +2107,14 @@ std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(
     }
 
     // Generate messages
-    std::string attacker_msg = fmt::format("You resurrect {}! They return to life with {} experience.",
-        context.target->display_name(), exp_gained);
-    std::string target_msg = fmt::format("{} resurrects you! You return to life with {} experience.",
-        context.actor->display_name(), exp_gained);
+    std::string attacker_msg = fmt::format("You resurrect {}! They return to life with {} HP.",
+        context.target->display_name(), restored_hp);
+    std::string target_msg = fmt::format("{} resurrects you! You return to life with {} HP.",
+        context.actor->display_name(), restored_hp);
     std::string room_msg = fmt::format("{} calls upon divine power to resurrect {}!",
         context.actor->display_name(), context.target->display_name());
 
-    return EffectResult::success_result(exp_gained, attacker_msg, target_msg, room_msg, "", EffectType::Resurrect);
+    return EffectResult::success_result(restored_hp, attacker_msg, target_msg, room_msg, "", EffectType::Resurrect);
 }
 
 } // namespace FieryMUD

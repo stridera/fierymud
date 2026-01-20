@@ -220,12 +220,12 @@ TEST_CASE("Quest: QuestManager initialization", "[quest][unit]") {
 
     SECTION("Manager tracks initialization state") {
         // After initialize, is_initialized should return true
-        manager.initialize();
+        (void)manager.initialize();
         REQUIRE(manager.is_initialized() == true);
     }
 
     SECTION("Manager can be shutdown and reinitialized") {
-        manager.initialize();
+        (void)manager.initialize();
         manager.shutdown();
 
         // After shutdown, reinitialize should work
@@ -236,7 +236,7 @@ TEST_CASE("Quest: QuestManager initialization", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager statistics", "[quest][unit]") {
     auto& manager = FieryMUD::QuestManager::instance();
-    manager.initialize();
+    (void)manager.initialize();
 
     SECTION("Stats can be reset") {
         manager.reset_stats();
@@ -265,7 +265,7 @@ TEST_CASE("Quest: QuestManager statistics", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager quest count", "[quest][unit]") {
     auto& manager = FieryMUD::QuestManager::instance();
-    manager.initialize();
+    (void)manager.initialize();
 
     SECTION("Empty manager has zero quest count") {
         manager.clear_all_quests();

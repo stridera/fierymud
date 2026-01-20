@@ -171,27 +171,30 @@ TEST_CASE("World Utils: Room", "[world][utils][room]") {
         REQUIRE_FALSE(undefined_sector.has_value());
     }
 
-    SECTION("Room flag management") {
+    SECTION("Room lighting management") {
         auto room = Room::create(EntityId{1001}, "Test Room", SectorType::Inside).value();
 
-        REQUIRE_FALSE(room->has_flag(RoomFlag::Dark));
+        // Indoor rooms start with ambient light (base_light_level 0)
+        REQUIRE_FALSE(room->is_dark());
 
-        room->set_flag(RoomFlag::Dark);
-        REQUIRE(room->has_flag(RoomFlag::Dark));
+        // Set to dark (negative light level)
+        room->set_base_light_level(-3);
+        REQUIRE(room->is_dark());
 
-        room->remove_flag(RoomFlag::Dark);
-        REQUIRE_FALSE(room->has_flag(RoomFlag::Dark));
+        // Reset to ambient
+        room->set_base_light_level(0);
+        REQUIRE_FALSE(room->is_dark());
     }
 
     SECTION("Room state queries") {
         auto room = Room::create(EntityId{1001}, "Test Room", SectorType::Inside).value();
 
         REQUIRE_FALSE(room->is_peaceful());
-        room->set_flag(RoomFlag::Peaceful);
+        room->set_peaceful(true);
         REQUIRE(room->is_peaceful());
 
         REQUIRE(room->allows_magic());
-        room->set_flag(RoomFlag::NoMagic);
+        room->set_allows_magic(false);
         REQUIRE_FALSE(room->allows_magic());
     }
 }
@@ -265,8 +268,8 @@ TEST_CASE("World Utils: Room Lighting System", "[world][utils][room][lighting]")
         REQUIRE(outdoor_room->is_naturally_lit());
         REQUIRE_FALSE(indoor_room->is_naturally_lit());
 
-        // Dark flag overrides natural light
-        outdoor_room->set_flag(RoomFlag::Dark);
+        // Negative light level forces darkness
+        outdoor_room->set_base_light_level(-3);
         REQUIRE_FALSE(outdoor_room->is_naturally_lit());
     }
 
@@ -276,13 +279,13 @@ TEST_CASE("World Utils: Room Lighting System", "[world][utils][room][lighting]")
         // Indoor room should have low light initially
         int initial_light = room->calculate_effective_light();
 
-        // Set manual light level
-        room->set_light_level(10);
+        // Set base light level
+        room->set_base_light_level(10);
         REQUIRE(room->calculate_effective_light() >= initial_light + 10);
 
-        // Dark flag should force light to 0
-        room->set_flag(RoomFlag::Dark);
-        REQUIRE(room->calculate_effective_light() == 0);
+        // Negative light level means darkness
+        room->set_base_light_level(-3);
+        REQUIRE(room->is_dark());
     }
 }
 
@@ -292,10 +295,12 @@ TEST_CASE("World Utils: Room Capacity and Occupancy", "[world][utils][room][capa
         auto tunnel = Room::create(EntityId{1002}, "Tunnel", SectorType::Inside).value();
         auto private_room = Room::create(EntityId{1003}, "Private Room", SectorType::Inside).value();
 
-        tunnel->set_flag(RoomFlag::Tunnel);
-        private_room->set_flag(RoomFlag::Private);
+        // Tunnel-like rooms have capacity 1
+        tunnel->set_capacity(1);
+        // Private rooms have capacity 2
+        private_room->set_capacity(2);
 
-        REQUIRE(normal_room->max_occupants() == 100);
+        REQUIRE(normal_room->max_occupants() >= 10);  // Default capacity
         REQUIRE(tunnel->max_occupants() == 1);
         REQUIRE(private_room->max_occupants() == 2);
     }
@@ -307,10 +312,10 @@ TEST_CASE("World Utils: Room JSON Serialization", "[world][utils][room][json]") 
         room->set_description("A dense forest with tall trees.");
         std::vector<std::string> keywords = {"forest", "trees", "dense"};
         room->set_keywords(keywords);
-        room->set_light_level(5);
+        room->set_base_light_level(5);
         room->set_zone_id(EntityId{100});
-        room->set_flag(RoomFlag::NoMagic);
-        room->set_flag(RoomFlag::Peaceful);
+        room->set_allows_magic(false);
+        room->set_peaceful(true);
 
         // Add exit
         ExitInfo exit;
@@ -325,11 +330,8 @@ TEST_CASE("World Utils: Room JSON Serialization", "[world][utils][room][json]") 
         REQUIRE(json["id"] == 1001);
         REQUIRE(json["name"] == "Test Room");
         REQUIRE(json["sector_type"] == "Forest");
-        REQUIRE(json["light_level"] == 5);
+        REQUIRE(json["base_light_level"] == 5);
         REQUIRE(json["zone_id"] == 100);
-
-        REQUIRE(json["flags"].is_array());
-        REQUIRE(json["flags"].size() == 2);
 
         REQUIRE(json["exits"].contains("North"));
         REQUIRE(json["exits"]["North"]["to_room"] == 1002);
@@ -342,10 +344,10 @@ TEST_CASE("World Utils: Room JSON Serialization", "[world][utils][room][json]") 
         REQUIRE(restored->id() == room->id());
         REQUIRE(restored->name() == room->name());
         REQUIRE(restored->sector_type() == room->sector_type());
-        REQUIRE(restored->light_level() == room->light_level());
+        REQUIRE(restored->base_light_level() == room->base_light_level());
         REQUIRE(restored->zone_id() == room->zone_id());
-        REQUIRE(restored->has_flag(RoomFlag::NoMagic));
-        REQUIRE(restored->has_flag(RoomFlag::Peaceful));
+        REQUIRE_FALSE(restored->allows_magic());
+        REQUIRE(restored->is_peaceful());
         REQUIRE(restored->has_exit(Direction::North));
     }
 }

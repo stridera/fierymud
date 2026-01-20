@@ -248,6 +248,12 @@ std::string Entity::display_name(bool with_article) const {
     return EntityUtils::format_entity_name(name_, short_, with_article);
 }
 
+std::string Entity::room_presence(std::shared_ptr<class Actor> /*viewer*/) const {
+    // Default implementation returns the static ground description
+    // Subclasses (like Actor) can override for dynamic descriptions
+    return std::string(ground_);
+}
+
 void Entity::ensure_name_in_keywords() {
     if (name_.empty()) {
         return;

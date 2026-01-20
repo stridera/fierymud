@@ -32,7 +32,7 @@ void register_object_bindings(sol::state& lua) {
             {"Other", ObjectType::Other},
             {"Container", ObjectType::Container},
             {"Note", ObjectType::Note},
-            {"LiquidContainer", ObjectType::Liquid_Container},
+            {"Drinkcontainer", ObjectType::Drinkcontainer},
             {"Key", ObjectType::Key},
             {"Food", ObjectType::Food},
             {"Money", ObjectType::Money},

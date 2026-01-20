@@ -58,17 +58,6 @@ RichTextFormat RichTextFormat::with_style(TextStyle style) {
     return format;
 }
 
-RichTextFormat RichTextFormat::with_rgb(const ColorRGB& color) {
-    // Note: RGB colors need special handling, not supported in basic RichTextFormat
-    // This would require extending the system further
-    return RichTextFormat{};
-}
-
-RichTextFormat RichTextFormat::with_256(const Color256& color) {
-    // Note: 256 colors need special handling, not supported in basic RichTextFormat
-    // This would require extending the system further
-    return RichTextFormat{};
-}
 
 //////////////////////////////////////////////////////////////////////////////
 // RichText Implementation

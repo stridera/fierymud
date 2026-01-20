@@ -12,7 +12,7 @@ namespace fierymud {
 
 void register_player_handlers(AdminServer& admin_server, ModernMUDServer& mud_server) {
     // GET /api/admin/players - List online players
-    admin_server.register_handler("/api/admin/players", [&mud_server](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/players", [&mud_server]([[maybe_unused]] const std::string& path, [[maybe_unused]] const std::string& body) -> std::string {
         spdlog::info("Received players list request");
 
         try {
@@ -54,7 +54,7 @@ void register_player_handlers(AdminServer& admin_server, ModernMUDServer& mud_se
     });
 
     // POST /api/admin/command - Execute a god command
-    admin_server.register_handler("/api/admin/command", [&mud_server](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/command", [&mud_server]([[maybe_unused]] const std::string& path, const std::string& body) -> std::string {
         spdlog::info("Received command execution request");
 
         try {
@@ -103,7 +103,7 @@ void register_player_handlers(AdminServer& admin_server, ModernMUDServer& mud_se
     });
 
     // POST /api/admin/broadcast - Send message to all players
-    admin_server.register_handler("/api/admin/broadcast", [&mud_server](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/broadcast", [&mud_server]([[maybe_unused]] const std::string& path, const std::string& body) -> std::string {
         spdlog::info("Received broadcast request");
 
         try {
@@ -153,7 +153,7 @@ void register_player_handlers(AdminServer& admin_server, ModernMUDServer& mud_se
     });
 
     // POST /api/admin/kick - Disconnect a player
-    admin_server.register_handler("/api/admin/kick", [&mud_server](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/kick", [&mud_server]([[maybe_unused]] const std::string& path, const std::string& body) -> std::string {
         spdlog::info("Received kick request");
 
         try {
@@ -211,7 +211,7 @@ void register_player_handlers(AdminServer& admin_server, ModernMUDServer& mud_se
     });
 
     // GET /api/admin/stats - Server statistics
-    admin_server.register_handler("/api/admin/stats", [&mud_server](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/stats", [&mud_server]([[maybe_unused]] const std::string& path, [[maybe_unused]] const std::string& body) -> std::string {
         spdlog::info("Received stats request");
 
         try {

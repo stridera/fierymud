@@ -310,7 +310,7 @@ public:
 
             // 10. Liquid container with liquid
             {
-                auto waterskin_result = Object::create(EntityId{object_id++}, "test_waterskin", ObjectType::Liquid_Container);
+                auto waterskin_result = Object::create(EntityId{object_id++}, "test_waterskin", ObjectType::Drinkcontainer);
                 if (waterskin_result.has_value()) {
                     auto waterskin = std::shared_ptr<Object>(waterskin_result.value().release());
                     waterskin->set_short_description("a test_waterskin");

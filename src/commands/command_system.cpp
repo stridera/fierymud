@@ -752,6 +752,11 @@ bool CommandSystem::check_command_conditions(std::shared_ptr<Actor> actor, const
             }
         }
 
+        // Allow all socials for ghosts (waving, sighing, etc. make sense for spirits)
+        if (command.category == "Social") {
+            return true;
+        }
+
         return false; // Dead/ghost players cannot use any other commands
     }
 

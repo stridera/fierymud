@@ -11,6 +11,10 @@ namespace FieryMUD {
 thread_local std::mt19937 FormulaParser::rng_;
 bool FormulaParser::rng_initialized_ = false;
 
+std::string DamageEstimate::to_string() const {
+    return fmt::format("{}-{} (avg {})", min, max, avg);
+}
+
 std::expected<int, Error> FormulaContext::get_variable(std::string_view name) const {
     // Check built-in actor variables
     if (name == "skill") return skill_level;
@@ -44,35 +48,68 @@ std::expected<int, Error> FormulaContext::get_variable(std::string_view name) co
     return std::unexpected(Errors::NotFound(fmt::format("variable '{}'", name)));
 }
 
-int FormulaParser::roll_dice(int count, int sides) {
-    if (!rng_initialized_) {
-        std::random_device rd;
-        rng_.seed(rd());
-        rng_initialized_ = true;
-    }
+double FormulaParser::roll_dice(int count, int sides, DiceMode mode) {
+    if (count <= 0 || sides <= 0) return 0.0;
 
-    if (count <= 0 || sides <= 0) return 0;
-
-    std::uniform_int_distribution<int> dist(1, sides);
-    int total = 0;
-    for (int i = 0; i < count; ++i) {
-        total += dist(rng_);
+    switch (mode) {
+        case DiceMode::Min:
+            return static_cast<double>(count);  // All 1s
+        case DiceMode::Max:
+            return static_cast<double>(count * sides);  // All max
+        case DiceMode::Avg:
+            return count * (1.0 + sides) / 2.0;  // Average
+        case DiceMode::Random:
+        default: {
+            if (!rng_initialized_) {
+                std::random_device rd;
+                rng_.seed(rd());
+                rng_initialized_ = true;
+            }
+            std::uniform_int_distribution<int> dist(1, sides);
+            int total = 0;
+            for (int i = 0; i < count; ++i) {
+                total += dist(rng_);
+            }
+            return static_cast<double>(total);
+        }
     }
-    return total;
 }
 
-std::expected<int, Error> FormulaParser::evaluate(std::string_view formula, const FormulaContext& context) {
+std::expected<int, Error> FormulaParser::evaluate(
+    std::string_view formula,
+    const FormulaContext& context,
+    DiceMode dice_mode) {
     if (formula.empty()) {
         return 0;
     }
 
-    Parser parser(formula, context);
+    Parser parser(formula, context, dice_mode);
     auto result = parser.parse();
     if (!result) {
         return std::unexpected(result.error());
     }
 
     return static_cast<int>(std::round(*result));
+}
+
+DamageEstimate FormulaParser::estimate_damage_range(
+    std::string_view formula,
+    const FormulaContext& context) {
+    DamageEstimate estimate;
+
+    // Calculate min (all dice roll 1)
+    auto min_result = evaluate(formula, context, DiceMode::Min);
+    estimate.min = min_result.value_or(0);
+
+    // Calculate max (all dice roll max)
+    auto max_result = evaluate(formula, context, DiceMode::Max);
+    estimate.max = max_result.value_or(0);
+
+    // Calculate average
+    auto avg_result = evaluate(formula, context, DiceMode::Avg);
+    estimate.avg = avg_result.value_or(0);
+
+    return estimate;
 }
 
 void FormulaParser::Parser::skip_whitespace() {
@@ -248,7 +285,7 @@ std::expected<double, Error> FormulaParser::Parser::parse_dice(int count) {
     std::string sides_str(input.substr(start, pos - start));
     int sides = std::stoi(sides_str);
 
-    return static_cast<double>(roll_dice(count, sides));
+    return FormulaParser::roll_dice(count, sides, dice_mode);
 }
 
 std::expected<double, Error> FormulaParser::Parser::parse_identifier() {
@@ -325,7 +362,7 @@ std::expected<double, Error> FormulaParser::Parser::parse_function(std::string_v
         if (args.size() != 2) {
             return std::unexpected(Errors::InvalidArgument(std::string(name), "requires 2 arguments"));
         }
-        return static_cast<double>(roll_dice(static_cast<int>(args[0]), static_cast<int>(args[1])));
+        return FormulaParser::roll_dice(static_cast<int>(args[0]), static_cast<int>(args[1]), dice_mode);
     }
 
     if (name == "abs") {

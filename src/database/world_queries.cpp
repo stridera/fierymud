@@ -23,10 +23,24 @@
 namespace WorldQueries {
 
 // Helper functions to convert db:: enums to game enums
-// Both enum sets have matching integer values (verified by generator)
-inline MobFlag to_game(db::MobFlag f) { return static_cast<MobFlag>(std::to_underlying(f)); }
-inline EffectFlag to_game(db::EffectFlag f) { return static_cast<EffectFlag>(std::to_underlying(f)); }
 inline ObjectFlag to_game(db::ObjectFlag f) { return static_cast<ObjectFlag>(std::to_underlying(f)); }
+
+/**
+ * Convert database object type string to ObjectType.
+ * Uses the generated db::object_type_from_db() directly since ObjectType IS db::ObjectType.
+ * Logs warnings for unknown types instead of silently defaulting.
+ */
+static ObjectType object_type_from_db_string(std::string_view type_str,
+                                              std::shared_ptr<Logger> logger,
+                                              int zone_id = 0, int obj_id = 0) {
+    auto result = db::object_type_from_db(type_str);
+    if (!result) {
+        logger->warn("Unknown object type '{}' for object ({}, {}), defaulting to Other",
+                    type_str, zone_id, obj_id);
+        return ObjectType::Other;
+    }
+    return *result;
+}
 
 // Helper function to parse PostgreSQL array format: {elem1,elem2,elem3} or {"elem 1","elem 2"}
 static std::vector<std::string> parse_pg_array(const std::string& pg_array) {
@@ -139,75 +153,10 @@ static SectorType sector_from_db_string(const std::string& sector_str) {
     return SectorType::Inside;
 }
 
-// Helper function to map database RoomFlag enum to C++ RoomFlag
-static std::optional<RoomFlag> room_flag_from_db_string(const std::string& flag_str) {
-    static const std::unordered_map<std::string, RoomFlag> flag_map = {
-        {"DARK", RoomFlag::Dark},
-        {"DEATH", RoomFlag::Death},
-        {"NO_MOB", RoomFlag::NoMob},
-        {"INDOORS", RoomFlag::Indoors},
-        {"PEACEFUL", RoomFlag::Peaceful},
-        {"SOUNDPROOF", RoomFlag::Soundproof},
-        {"NO_TRACK", RoomFlag::NoTrack},
-        {"NO_MAGIC", RoomFlag::NoMagic},
-        {"TUNNEL", RoomFlag::Tunnel},
-        {"PRIVATE", RoomFlag::Private},
-        {"GODROOM", RoomFlag::Godroom},
-        {"HOUSE", RoomFlag::House},
-        {"HOUSE_CRASH", RoomFlag::HouseCrash},
-        {"ATRIUM", RoomFlag::Atrium},
-        {"OLC", RoomFlag::OLC},
-        {"BFS_MARK", RoomFlag::BFS_Mark},
-        {"VEHICLE", RoomFlag::Vehicle},
-        {"UNDERGROUND", RoomFlag::Underground},
-        {"CURRENT", RoomFlag::Current},
-        {"TIMED_DT", RoomFlag::Timed_DT},
-        {"EARTH_SECT", RoomFlag::Earth},
-        {"AIR_SECT", RoomFlag::Air},
-        {"FIRE_SECT", RoomFlag::Fire},
-        {"WATER_SECT", RoomFlag::Water},
-        {"NO_RECALL", RoomFlag::NoRecall},
-        {"NO_SUMMON", RoomFlag::NoSummon},
-        {"NO_LOCATE", RoomFlag::NoLocate},
-        {"NO_TELEPORT", RoomFlag::NoTeleport},
-        {"ALWAYS_LIT", RoomFlag::AlwaysLit},
-        {"ARENA", RoomFlag::Arena},
-        {"SHOP", RoomFlag::Shop},
-        {"TEMPLE", RoomFlag::Temple},
-        {"BANK", RoomFlag::Bank},
-        {"GUILDHALL", RoomFlag::Guildhall},
-        {"NO_WELL", RoomFlag::NoWell},
-        {"NO_SCAN", RoomFlag::NoScan},
-        {"UNDERDARK", RoomFlag::Underdark},
-        {"NO_SHIFT", RoomFlag::NoShift},
-        {"ALT_EXIT", RoomFlag::AltExit},
-        {"OBSERVATORY", RoomFlag::Observatory},
-    };
+// room_flag_from_db_string REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions
 
-    auto it = flag_map.find(flag_str);
-    if (it != flag_map.end()) {
-        return it->second;
-    }
-    return std::nullopt;
-}
-
-// Helper function to map database Direction enum to C++ Direction
-static std::optional<Direction> direction_from_db_string(const std::string& dir_str) {
-    static const std::unordered_map<std::string, Direction> dir_map = {
-        {"NORTH", Direction::North},
-        {"EAST", Direction::East},
-        {"SOUTH", Direction::South},
-        {"WEST", Direction::West},
-        {"UP", Direction::Up},
-        {"DOWN", Direction::Down},
-    };
-
-    auto it = dir_map.find(dir_str);
-    if (it != dir_map.end()) {
-        return it->second;
-    }
-    return std::nullopt;
-}
+// Direction conversion: use db::direction_from_db() directly
+// Game's Direction enum is now unified with db::Direction via 'using' alias
 
 Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work& txn) {
     auto logger = Log::database();
@@ -314,14 +263,19 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
         // Query rooms using generated column constants
         auto result = txn.exec_params(
             fmt::format(R"(
-                SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}
+                SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} IS NULL
                 ORDER BY {}
             )",
             db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
-            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::FLAGS,
-            db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
+            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::BASE_LIGHT_LEVEL,
+            db::Room::CAPACITY, db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
+            // Room state and restriction fields
+            db::Room::IS_PEACEFUL, db::Room::ALLOWS_MAGIC, db::Room::ALLOWS_RECALL,
+            db::Room::ALLOWS_SUMMON, db::Room::ALLOWS_TELEPORT, db::Room::IS_DEATH_TRAP,
+            db::Room::ENTRY_RESTRICTION,
             db::Room::TABLE,
             db::Room::ZONE_ID, db::Room::DELETED_AT, db::Room::ID
         ), zone_id);
@@ -357,18 +311,14 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
                 // Set zone ID (zones use local_id 1 to ensure zone 0 is valid)
                 room->set_zone_id(EntityId(zone_id, 1));
 
-                // Parse and set room flags (PostgreSQL array)
-                if (!row[db::Room::FLAGS.data()].is_null()) {
-                    std::string flags_str = row[db::Room::FLAGS.data()].as<std::string>();
-                    auto flag_names = parse_pg_array(flags_str);
-                    for (const auto& flag_name : flag_names) {
-                        auto flag = room_flag_from_db_string(flag_name);
-                        if (flag) {
-                            room->set_flag(*flag);
-                        } else {
-                            logger->warn("Room ({}, {}): unknown flag '{}'", zone_id, local_id, flag_name);
-                        }
-                    }
+                // Set base light level (lighting system)
+                if (!row[db::Room::BASE_LIGHT_LEVEL.data()].is_null()) {
+                    room->set_base_light_level(row[db::Room::BASE_LIGHT_LEVEL.data()].as<int>());
+                }
+
+                // Set capacity (occupancy limit)
+                if (!row[db::Room::CAPACITY.data()].is_null()) {
+                    room->set_capacity(row[db::Room::CAPACITY.data()].as<int>());
                 }
 
                 // Set layout coordinates (for mapping)
@@ -383,6 +333,31 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
                     layout_z = row[db::Room::LAYOUT_Z.data()].as<int>();
                 }
                 room->set_layout_coords(layout_x, layout_y, layout_z);
+
+                // Set room state flags
+                if (!row[db::Room::IS_PEACEFUL.data()].is_null()) {
+                    room->set_peaceful(row[db::Room::IS_PEACEFUL.data()].as<bool>());
+                }
+                if (!row[db::Room::ALLOWS_MAGIC.data()].is_null()) {
+                    room->set_allows_magic(row[db::Room::ALLOWS_MAGIC.data()].as<bool>());
+                }
+                if (!row[db::Room::ALLOWS_RECALL.data()].is_null()) {
+                    room->set_allows_recall(row[db::Room::ALLOWS_RECALL.data()].as<bool>());
+                }
+                if (!row[db::Room::ALLOWS_SUMMON.data()].is_null()) {
+                    room->set_allows_summon(row[db::Room::ALLOWS_SUMMON.data()].as<bool>());
+                }
+                if (!row[db::Room::ALLOWS_TELEPORT.data()].is_null()) {
+                    room->set_allows_teleport(row[db::Room::ALLOWS_TELEPORT.data()].as<bool>());
+                }
+                if (!row[db::Room::IS_DEATH_TRAP.data()].is_null()) {
+                    room->set_death_trap(row[db::Room::IS_DEATH_TRAP.data()].as<bool>());
+                }
+
+                // Set entry restriction Lua script
+                if (!row[db::Room::ENTRY_RESTRICTION.data()].is_null()) {
+                    room->set_entry_restriction(row[db::Room::ENTRY_RESTRICTION.data()].as<std::string>());
+                }
 
                 rooms.push_back(std::move(room));
             }
@@ -406,13 +381,18 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
         // Query room using generated column constants
         auto result = txn.exec_params(
             fmt::format(R"(
-                SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}
+                SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                       {}, {}, {}, {}, {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
             db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
-            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::FLAGS,
-            db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
+            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::BASE_LIGHT_LEVEL,
+            db::Room::CAPACITY, db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
+            // Room state and restriction fields
+            db::Room::IS_PEACEFUL, db::Room::ALLOWS_MAGIC, db::Room::ALLOWS_RECALL,
+            db::Room::ALLOWS_SUMMON, db::Room::ALLOWS_TELEPORT, db::Room::IS_DEATH_TRAP,
+            db::Room::ENTRY_RESTRICTION,
             db::Room::TABLE,
             db::Room::ZONE_ID, db::Room::ID
         ), zone_id, room_local_id);
@@ -448,18 +428,14 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
             // Set zone ID
             room->set_zone_id(EntityId(zone_id, 1));
 
-            // Parse and set room flags (PostgreSQL array)
-            if (!row[db::Room::FLAGS.data()].is_null()) {
-                std::string flags_str = row[db::Room::FLAGS.data()].as<std::string>();
-                auto flag_names = parse_pg_array(flags_str);
-                for (const auto& flag_name : flag_names) {
-                    auto flag = room_flag_from_db_string(flag_name);
-                    if (flag) {
-                        room->set_flag(*flag);
-                    } else {
-                        logger->warn("Room ({}, {}): unknown flag '{}'", zone_id, room_local_id, flag_name);
-                    }
-                }
+            // Set base light level (lighting system)
+            if (!row[db::Room::BASE_LIGHT_LEVEL.data()].is_null()) {
+                room->set_base_light_level(row[db::Room::BASE_LIGHT_LEVEL.data()].as<int>());
+            }
+
+            // Set capacity (occupancy limit)
+            if (!row[db::Room::CAPACITY.data()].is_null()) {
+                room->set_capacity(row[db::Room::CAPACITY.data()].as<int>());
             }
 
             // Set layout coordinates (for mapping)
@@ -474,6 +450,31 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
                 layout_z = row[db::Room::LAYOUT_Z.data()].as<int>();
             }
             room->set_layout_coords(layout_x, layout_y, layout_z);
+
+            // Set room state flags
+            if (!row[db::Room::IS_PEACEFUL.data()].is_null()) {
+                room->set_peaceful(row[db::Room::IS_PEACEFUL.data()].as<bool>());
+            }
+            if (!row[db::Room::ALLOWS_MAGIC.data()].is_null()) {
+                room->set_allows_magic(row[db::Room::ALLOWS_MAGIC.data()].as<bool>());
+            }
+            if (!row[db::Room::ALLOWS_RECALL.data()].is_null()) {
+                room->set_allows_recall(row[db::Room::ALLOWS_RECALL.data()].as<bool>());
+            }
+            if (!row[db::Room::ALLOWS_SUMMON.data()].is_null()) {
+                room->set_allows_summon(row[db::Room::ALLOWS_SUMMON.data()].as<bool>());
+            }
+            if (!row[db::Room::ALLOWS_TELEPORT.data()].is_null()) {
+                room->set_allows_teleport(row[db::Room::ALLOWS_TELEPORT.data()].as<bool>());
+            }
+            if (!row[db::Room::IS_DEATH_TRAP.data()].is_null()) {
+                room->set_death_trap(row[db::Room::IS_DEATH_TRAP.data()].as<bool>());
+            }
+
+            // Set entry restriction Lua script
+            if (!row[db::Room::ENTRY_RESTRICTION.data()].is_null()) {
+                room->set_entry_restriction(row[db::Room::ENTRY_RESTRICTION.data()].as<std::string>());
+            }
 
             return std::move(room);
         }
@@ -564,13 +565,13 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                        {},
                        {}, {}, {},
                        "{}" AS life_force, {}, "{}" AS damage_type,
-                       "{}" AS mob_flags, {},
-                       "{}" AS effect_flags, {},
+                       {}, {}, {},
+                       {}, {},
                        {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
                        {}, {}, {},
                        {}, {},
-                       {}
+                       "{}" AS aggression_formula
                 FROM "{}"
                 WHERE {} = $1
                 ORDER BY {}
@@ -591,21 +592,22 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
             // Row 5b: camelCase columns with aliases
             db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
-            // Row 6: Flags/class (camelCase columns with aliases)
-            db::Mobs::MOB_FLAGS, db::Mobs::CLASS_ID,
-            db::Mobs::EFFECT_FLAGS, db::Mobs::STANCE,
-            // Row 7: Offensive stats
+            // Row 6: Traits/behaviors/professions (reorganized from old mobFlags)
+            db::Mobs::TRAITS, db::Mobs::BEHAVIORS, db::Mobs::PROFESSIONS,
+            // Row 7: Class and stance
+            db::Mobs::CLASS_ID, db::Mobs::STANCE,
+            // Row 8: Offensive stats
             db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
             db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
-            // Row 8: Defensive stats
+            // Row 9: Defensive stats
             db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
             db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
-            // Row 9: Other
+            // Row 10: Other
             db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
-            // Row 10: Display name components
+            // Row 11: Display name components
             db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
-            // Row 11: Aggression condition (Lua expression)
-            db::Mobs::AGGRO_CONDITION,
+            // Row 12: Aggression formula (Lua expression)
+            db::Mobs::AGGRESSION_FORMULA,
             // Table and WHERE
             db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
         ), zone_id);
@@ -741,31 +743,35 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             int dam_bonus = row[db::Mobs::DAMAGE_DICE_BONUS.data()].as<int>(0);
             mob->set_bare_hand_damage(dam_num, dam_size, dam_bonus);
 
-            // Process mob flags (PostgreSQL array of enums)
-            // Use generated db::mob_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
-            // Note: SQL uses alias "mob_flags" for the camelCase column "mobFlags"
-            if (!row["mob_flags"].is_null()) {
-                std::string flags_str = row["mob_flags"].as<std::string>();
-                auto flags = parse_pg_array(flags_str);
-                for (const auto& flag_name : flags) {
-                    if (auto flag = db::mob_flag_from_db(flag_name)) {
-                        mob->set_flag(to_game(*flag));
-                    } else {
-                        logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_id, flag_name);
+            // Process traits - what mob IS (identity)
+            if (!row[db::Mobs::TRAITS.data()].is_null()) {
+                auto traits_str = row[db::Mobs::TRAITS.data()].as<std::string>();
+                auto trait_names = parse_pg_array(traits_str);
+                for (const auto& trait_name : trait_names) {
+                    if (auto trait = db::mob_trait_from_db(trait_name)) {
+                        mob->set_trait(*trait, true);
                     }
                 }
             }
 
-            // Process effect flags (magical effects on the mob)
-            // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
-            if (!row["effect_flags"].is_null()) {
-                std::string effect_flags_str = row["effect_flags"].as<std::string>();
-                auto effect_flags = parse_pg_array(effect_flags_str);
-                for (const auto& flag_name : effect_flags) {
-                    if (auto flag = db::effect_flag_from_db(flag_name)) {
-                        mob->set_effect(to_game(*flag));
-                    } else {
-                        logger->warn("Mob ({}, {}): unknown effect flag '{}'", zone_id, mob_id, flag_name);
+            // Process behaviors - how mob ACTS
+            if (!row[db::Mobs::BEHAVIORS.data()].is_null()) {
+                auto behaviors_str = row[db::Mobs::BEHAVIORS.data()].as<std::string>();
+                auto behavior_names = parse_pg_array(behaviors_str);
+                for (const auto& behavior_name : behavior_names) {
+                    if (auto behavior = db::mob_behavior_from_db(behavior_name)) {
+                        mob->set_behavior(*behavior, true);
+                    }
+                }
+            }
+
+            // Process professions - services mob provides
+            if (!row[db::Mobs::PROFESSIONS.data()].is_null()) {
+                auto professions_str = row[db::Mobs::PROFESSIONS.data()].as<std::string>();
+                auto profession_names = parse_pg_array(professions_str);
+                for (const auto& profession_name : profession_names) {
+                    if (auto profession = db::mob_profession_from_db(profession_name)) {
+                        mob->set_profession(*profession, true);
                     }
                 }
             }
@@ -786,10 +792,10 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                 mob->set_article(std::nullopt);  // Calculate a/an dynamically
             }
 
-            // Set aggro_condition (Lua expression for aggression behavior)
+            // Set aggression_formula (Lua expression for aggression behavior)
             // Examples: "true" (attacks all), "target.alignment <= -350" (attacks evil)
-            if (!row[db::Mobs::AGGRO_CONDITION.data()].is_null()) {
-                mob->set_aggro_condition(row[db::Mobs::AGGRO_CONDITION.data()].as<std::string>());
+            if (!row["aggression_formula"].is_null()) {
+                mob->set_aggro_condition(row["aggression_formula"].as<std::string>());
             }
 
             mobs.push_back(std::move(mob));
@@ -822,13 +828,13 @@ Result<std::unique_ptr<Mobile>> load_mob(
                        {},
                        {}, {}, {},
                        "{}" AS life_force, {}, "{}" AS damage_type,
-                       "{}" AS mob_flags, {},
-                       "{}" AS effect_flags, {},
+                       {}, {}, {},
+                       {}, {},
                        {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
                        {}, {}, {},
                        {}, {},
-                       {}
+                       "{}" AS aggression_formula
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
@@ -848,21 +854,22 @@ Result<std::unique_ptr<Mobile>> load_mob(
             db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
             // Row 5b: camelCase columns with aliases
             db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
-            // Row 6: Flags/class (camelCase columns with aliases)
-            db::Mobs::MOB_FLAGS, db::Mobs::CLASS_ID,
-            db::Mobs::EFFECT_FLAGS, db::Mobs::STANCE,
-            // Row 7: Offensive stats
+            // Row 6: Traits/behaviors/professions (reorganized from old mobFlags)
+            db::Mobs::TRAITS, db::Mobs::BEHAVIORS, db::Mobs::PROFESSIONS,
+            // Row 7: Class and stance
+            db::Mobs::CLASS_ID, db::Mobs::STANCE,
+            // Row 8: Offensive stats
             db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
             db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
-            // Row 8: Defensive stats
+            // Row 9: Defensive stats
             db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
             db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
-            // Row 9: Other
+            // Row 10: Other
             db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
-            // Row 10: Display name components
+            // Row 11: Display name components
             db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
-            // Row 11: Aggression condition (Lua expression)
-            db::Mobs::AGGRO_CONDITION,
+            // Row 12: Aggression formula (Lua expression)
+            db::Mobs::AGGRESSION_FORMULA,
             // Table and WHERE
             db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
         ), zone_id, mob_local_id);
@@ -994,30 +1001,35 @@ Result<std::unique_ptr<Mobile>> load_mob(
         int dam_bonus = row[db::Mobs::DAMAGE_DICE_BONUS.data()].as<int>(0);
         mob->set_bare_hand_damage(dam_num, dam_size, dam_bonus);
 
-        // Process mob flags (PostgreSQL array of enums)
-        // Use generated db::mob_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
-        if (!row["mob_flags"].is_null()) {
-            std::string flags_str = row["mob_flags"].as<std::string>();
-            auto flags = parse_pg_array(flags_str);
-            for (const auto& flag_name : flags) {
-                if (auto flag = db::mob_flag_from_db(flag_name)) {
-                    mob->set_flag(to_game(*flag));
-                } else {
-                    logger->warn("Mob ({}, {}): unknown flag '{}'", zone_id, mob_local_id, flag_name);
+        // Process traits - what mob IS (identity)
+        if (!row[db::Mobs::TRAITS.data()].is_null()) {
+            auto traits_str = row[db::Mobs::TRAITS.data()].as<std::string>();
+            auto trait_names = parse_pg_array(traits_str);
+            for (const auto& trait_name : trait_names) {
+                if (auto trait = db::mob_trait_from_db(trait_name)) {
+                    mob->set_trait(*trait, true);
                 }
             }
         }
 
-        // Process effect flags (magical effects on the mob)
-        // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
-        if (!row["effect_flags"].is_null()) {
-            std::string effect_flags_str = row["effect_flags"].as<std::string>();
-            auto effect_flags = parse_pg_array(effect_flags_str);
-            for (const auto& flag_name : effect_flags) {
-                if (auto flag = db::effect_flag_from_db(flag_name)) {
-                    mob->set_effect(to_game(*flag));
-                } else {
-                    logger->warn("Mob ({}, {}): unknown effect flag '{}'", zone_id, mob_local_id, flag_name);
+        // Process behaviors - how mob ACTS
+        if (!row[db::Mobs::BEHAVIORS.data()].is_null()) {
+            auto behaviors_str = row[db::Mobs::BEHAVIORS.data()].as<std::string>();
+            auto behavior_names = parse_pg_array(behaviors_str);
+            for (const auto& behavior_name : behavior_names) {
+                if (auto behavior = db::mob_behavior_from_db(behavior_name)) {
+                    mob->set_behavior(*behavior, true);
+                }
+            }
+        }
+
+        // Process professions - services mob provides
+        if (!row[db::Mobs::PROFESSIONS.data()].is_null()) {
+            auto professions_str = row[db::Mobs::PROFESSIONS.data()].as<std::string>();
+            auto profession_names = parse_pg_array(professions_str);
+            for (const auto& profession_name : profession_names) {
+                if (auto profession = db::mob_profession_from_db(profession_name)) {
+                    mob->set_profession(*profession, true);
                 }
             }
         }
@@ -1038,9 +1050,9 @@ Result<std::unique_ptr<Mobile>> load_mob(
             mob->set_article(std::nullopt);  // Calculate a/an dynamically
         }
 
-        // Set aggro_condition (Lua expression for aggression behavior)
-        if (!row[db::Mobs::AGGRO_CONDITION.data()].is_null()) {
-            mob->set_aggro_condition(row[db::Mobs::AGGRO_CONDITION.data()].as<std::string>());
+        // Set aggression_formula (Lua expression for aggression behavior)
+        if (!row["aggression_formula"].is_null()) {
+            mob->set_aggro_condition(row["aggression_formula"].as<std::string>());
         }
 
         logger->debug("Loaded mob '{}' ({}, {})", mob_name, zone_id, mob_local_id);
@@ -1066,7 +1078,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       "{}" AS effect_flags, "{}" AS wear_flags,
+                       "{}" AS wear_flags,
                        {}, {}
                 FROM "{}"
                 WHERE {} = $1
@@ -1076,7 +1088,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             db::Objects::KEYWORDS, db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION,
             db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
             db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
-            db::Objects::FLAGS, db::Objects::EFFECT_FLAGS, db::Objects::WEAR_FLAGS,
+            db::Objects::FLAGS, db::Objects::WEAR_FLAGS,
             db::Objects::BASE_NAME, db::Objects::ARTICLE,
             db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
         ), zone_id);
@@ -1091,43 +1103,9 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
 
             std::string obj_name = row[db::Objects::NAME.data()].as<std::string>();
 
-            // Parse object type from string enum
+            // Parse object type using data-driven helper
             std::string type_str = row[db::Objects::TYPE.data()].as<std::string>();
-            ObjectType obj_type = ObjectType::Other;  // Default to Other instead of Undefined
-
-            // Map database ObjectType enum to C++ enum
-            if (type_str == "NOTHING") obj_type = ObjectType::Other;  // Map NOTHING to Other
-            else if (type_str == "LIGHT") obj_type = ObjectType::Light;
-            else if (type_str == "SCROLL") obj_type = ObjectType::Scroll;
-            else if (type_str == "WAND") obj_type = ObjectType::Wand;
-            else if (type_str == "STAFF") obj_type = ObjectType::Staff;
-            else if (type_str == "WEAPON") obj_type = ObjectType::Weapon;
-            else if (type_str == "FIREWEAPON") obj_type = ObjectType::Fireweapon;
-            else if (type_str == "MISSILE") obj_type = ObjectType::Missile;
-            else if (type_str == "TREASURE") obj_type = ObjectType::Treasure;
-            else if (type_str == "ARMOR") obj_type = ObjectType::Armor;
-            else if (type_str == "POTION") obj_type = ObjectType::Potion;
-            else if (type_str == "WORN") obj_type = ObjectType::Worn;
-            else if (type_str == "OTHER") obj_type = ObjectType::Other;
-            else if (type_str == "TRASH") obj_type = ObjectType::Trash;
-            else if (type_str == "TRAP") obj_type = ObjectType::Trap;
-            else if (type_str == "CONTAINER") obj_type = ObjectType::Container;
-            else if (type_str == "NOTE") obj_type = ObjectType::Note;
-            else if (type_str == "DRINKCONTAINER") obj_type = ObjectType::Liquid_Container;
-            else if (type_str == "KEY") obj_type = ObjectType::Key;
-            else if (type_str == "FOOD") obj_type = ObjectType::Food;
-            else if (type_str == "MONEY") obj_type = ObjectType::Money;
-            else if (type_str == "PEN") obj_type = ObjectType::Pen;
-            else if (type_str == "BOAT") obj_type = ObjectType::Boat;
-            else if (type_str == "FOUNTAIN") obj_type = ObjectType::Fountain;
-            else if (type_str == "PORTAL") obj_type = ObjectType::Portal;
-            else if (type_str == "SPELLBOOK") obj_type = ObjectType::Spellbook;
-            else if (type_str == "BOARD") obj_type = ObjectType::Board;
-            // Map database-only types to closest C++ equivalent
-            else if (type_str == "ROPE") obj_type = ObjectType::Other;
-            else if (type_str == "WALL") obj_type = ObjectType::Other;
-            else if (type_str == "TOUCHSTONE") obj_type = ObjectType::Touchstone;
-            else if (type_str == "INSTRUMENT") obj_type = ObjectType::Other;
+            ObjectType obj_type = object_type_from_db_string(type_str, logger, obj_zone_id, obj_id);
 
             // Create the object
             auto obj_result = Object::create(obj_entity_id, obj_name, obj_type);
@@ -1219,7 +1197,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                     auto values_json = nlohmann::json::parse(values_str);
 
                     // Parse liquid info for drink containers
-                    if (obj_type == ObjectType::Liquid_Container && values_json.is_object()) {
+                    if (obj_type == ObjectType::Drinkcontainer && values_json.is_object()) {
                         LiquidInfo liquid;
                         if (values_json.contains("Liquid")) {
                             liquid.liquid_type = values_json["Liquid"].get<std::string>();
@@ -1284,22 +1262,49 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 }
             }
 
-            // Parse effect flags (effects granted when equipped)
-            // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
-            if (!row["effect_flags"].is_null()) {
-                std::string effect_flags_str = row["effect_flags"].as<std::string>();
-                auto effect_flags = parse_pg_array(effect_flags_str);
-                for (const auto& flag_name : effect_flags) {
-                    if (auto flag = db::effect_flag_from_db(flag_name)) {
-                        obj->set_effect(to_game(*flag));
+            objects.push_back(std::move(obj));
+        }
+
+        // Load object effects from junction table (joined with Effect to get effect names)
+        auto effects_result = txn.exec_params(
+            fmt::format(R"(
+                SELECT oe.{}, e.{}
+                FROM "{}" oe
+                JOIN "{}" e ON oe.{} = e.{}
+                WHERE oe.{} = $1
+                ORDER BY oe.{}, oe.{}
+            )",
+            db::ObjectEffects::OBJECT_ID, db::Effect::NAME,
+            db::ObjectEffects::TABLE, db::Effect::TABLE,
+            db::ObjectEffects::EFFECT_ID, db::Effect::ID,
+            db::ObjectEffects::OBJECT_ZONE_ID,
+            db::ObjectEffects::OBJECT_ID, db::ObjectEffects::ID
+        ), zone_id);
+
+        // Build a map from object_id to effect names
+        std::unordered_map<int, std::vector<std::string>> effects_by_obj_id;
+        for (const auto& row : effects_result) {
+            int obj_id = row[db::ObjectEffects::OBJECT_ID.data()].as<int>();
+            std::string effect_name = row[db::Effect::NAME.data()].as<std::string>();
+            effects_by_obj_id[obj_id].push_back(effect_name);
+        }
+
+        // Apply effects to objects
+        for (auto& obj : objects) {
+            int obj_local_id = obj->id().local_id();
+            auto it = effects_by_obj_id.find(obj_local_id);
+            if (it != effects_by_obj_id.end()) {
+                for (const auto& effect_name : it->second) {
+                    // Convert effect name to EffectFlag enum using magic_enum
+                    auto effect_opt = magic_enum::enum_cast<EffectFlag>(effect_name);
+                    if (effect_opt) {
+                        obj->set_effect(*effect_opt, true);
                     } else {
-                        logger->warn("Object ({}, {}): unknown effect flag '{}'",
-                                    obj_zone_id, obj_id, flag_name);
+                        logger->warn("Unknown effect '{}' for object ({}, {})",
+                                    effect_name, zone_id, obj_local_id);
                     }
                 }
             }
-
-            objects.push_back(std::move(obj));
         }
 
         // Load extra descriptions for all objects in this zone
@@ -1366,7 +1371,7 @@ Result<std::unique_ptr<Object>> load_object(
             fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
-                       "{}" AS effect_flags, "{}" AS wear_flags,
+                       "{}" AS wear_flags,
                        {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
@@ -1375,7 +1380,7 @@ Result<std::unique_ptr<Object>> load_object(
             db::Objects::KEYWORDS, db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION,
             db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
             db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
-            db::Objects::FLAGS, db::Objects::EFFECT_FLAGS, db::Objects::WEAR_FLAGS,
+            db::Objects::FLAGS, db::Objects::WEAR_FLAGS,
             db::Objects::BASE_NAME, db::Objects::ARTICLE,
             db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
         ), zone_id, object_local_id);
@@ -1389,43 +1394,11 @@ Result<std::unique_ptr<Object>> load_object(
         EntityId obj_entity_id(zone_id, object_local_id);
         std::string obj_name = row[db::Objects::NAME.data()].as<std::string>();
 
-        // Parse object type from database
-        ObjectType obj_type = ObjectType::Other;  // Default to Other
-        if (!row[db::Objects::TYPE.data()].is_null()) {
-            std::string type_str = row[db::Objects::TYPE.data()].as<std::string>();
-            // Map database ObjectType enum to C++ enum
-            if (type_str == "NOTHING") obj_type = ObjectType::Other;
-            else if (type_str == "LIGHT") obj_type = ObjectType::Light;
-            else if (type_str == "SCROLL") obj_type = ObjectType::Scroll;
-            else if (type_str == "WAND") obj_type = ObjectType::Wand;
-            else if (type_str == "STAFF") obj_type = ObjectType::Staff;
-            else if (type_str == "WEAPON") obj_type = ObjectType::Weapon;
-            else if (type_str == "FIREWEAPON") obj_type = ObjectType::Fireweapon;
-            else if (type_str == "MISSILE") obj_type = ObjectType::Missile;
-            else if (type_str == "TREASURE") obj_type = ObjectType::Treasure;
-            else if (type_str == "ARMOR") obj_type = ObjectType::Armor;
-            else if (type_str == "POTION") obj_type = ObjectType::Potion;
-            else if (type_str == "WORN") obj_type = ObjectType::Worn;
-            else if (type_str == "OTHER") obj_type = ObjectType::Other;
-            else if (type_str == "TRASH") obj_type = ObjectType::Trash;
-            else if (type_str == "TRAP") obj_type = ObjectType::Trap;
-            else if (type_str == "CONTAINER") obj_type = ObjectType::Container;
-            else if (type_str == "NOTE") obj_type = ObjectType::Note;
-            else if (type_str == "DRINKCONTAINER") obj_type = ObjectType::Liquid_Container;
-            else if (type_str == "KEY") obj_type = ObjectType::Key;
-            else if (type_str == "FOOD") obj_type = ObjectType::Food;
-            else if (type_str == "MONEY") obj_type = ObjectType::Money;
-            else if (type_str == "PEN") obj_type = ObjectType::Pen;
-            else if (type_str == "BOAT") obj_type = ObjectType::Boat;
-            else if (type_str == "FOUNTAIN") obj_type = ObjectType::Fountain;
-            else if (type_str == "PORTAL") obj_type = ObjectType::Portal;
-            else if (type_str == "SPELLBOOK") obj_type = ObjectType::Spellbook;
-            else if (type_str == "BOARD") obj_type = ObjectType::Board;
-            else if (type_str == "ROPE") obj_type = ObjectType::Other;
-            else if (type_str == "WALL") obj_type = ObjectType::Other;
-            else if (type_str == "TOUCHSTONE") obj_type = ObjectType::Touchstone;
-            else if (type_str == "INSTRUMENT") obj_type = ObjectType::Other;
-        }
+        // Parse object type using data-driven helper
+        std::string type_str = row[db::Objects::TYPE.data()].is_null()
+            ? "OTHER"
+            : row[db::Objects::TYPE.data()].as<std::string>();
+        ObjectType obj_type = object_type_from_db_string(type_str, logger, zone_id, object_local_id);
 
         auto obj_result = Object::create(obj_entity_id, obj_name, obj_type);
         if (!obj_result) {
@@ -1492,7 +1465,7 @@ Result<std::unique_ptr<Object>> load_object(
                     }
                 } else if (values_json.is_object()) {
                     // Parse liquid info for drink containers
-                    if (obj_type == ObjectType::Liquid_Container) {
+                    if (obj_type == ObjectType::Drinkcontainer) {
                         LiquidInfo liquid;
                         if (values_json.contains("Liquid")) {
                             liquid.liquid_type = values_json["Liquid"].get<std::string>();
@@ -1568,18 +1541,28 @@ Result<std::unique_ptr<Object>> load_object(
             }
         }
 
-        // Parse effect flags (effects granted when equipped)
-        // Use generated db::effect_flag_from_db for SCREAMING_SNAKE_CASE -> PascalCase conversion
-        if (!row["effect_flags"].is_null()) {
-            std::string effect_flags_str = row["effect_flags"].as<std::string>();
-            auto effect_flags = parse_pg_array(effect_flags_str);
-            for (const auto& flag_name : effect_flags) {
-                if (auto flag = db::effect_flag_from_db(flag_name)) {
-                    obj->set_effect(to_game(*flag));
-                } else {
-                    logger->warn("Object ({}, {}): unknown effect flag '{}'",
-                                zone_id, object_local_id, flag_name);
-                }
+        // Load object effects from junction table
+        auto effects_result = txn.exec_params(
+            fmt::format(R"(
+                SELECT e.{}
+                FROM "{}" oe
+                JOIN "{}" e ON oe.{} = e.{}
+                WHERE oe.{} = $1 AND oe.{} = $2
+            )",
+            db::Effect::NAME,
+            db::ObjectEffects::TABLE, db::Effect::TABLE,
+            db::ObjectEffects::EFFECT_ID, db::Effect::ID,
+            db::ObjectEffects::OBJECT_ZONE_ID, db::ObjectEffects::OBJECT_ID
+        ), zone_id, object_local_id);
+
+        for (const auto& effect_row : effects_result) {
+            std::string effect_name = effect_row[db::Effect::NAME.data()].as<std::string>();
+            auto effect_opt = magic_enum::enum_cast<EffectFlag>(effect_name);
+            if (effect_opt) {
+                obj->set_effect(*effect_opt, true);
+            } else {
+                logger->warn("Unknown effect '{}' for object ({}, {})",
+                            effect_name, zone_id, object_local_id);
             }
         }
 
@@ -1636,9 +1619,9 @@ Result<std::vector<ExitData>> load_all_exits_in_zone(pqxx::work& txn, int zone_i
         for (const auto& row : result) {
             ExitData exit;
 
-            // Parse direction
+            // Parse direction using generated converter
             std::string dir_str = row["direction"].as<std::string>();
-            auto dir = direction_from_db_string(dir_str);
+            auto dir = db::direction_from_db(dir_str);
             if (!dir) {
                 logger->warn("Unknown direction '{}' in exit for room ({}, {})",
                             dir_str, zone_id, row["room_id"].as<int>());
@@ -2286,17 +2269,8 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
             ability.proficiency = row["proficiency"].as<int>(0);
             ability.violent = row["violent"].as<bool>(false);
 
-            // Convert ability type string to enum
-            std::string type_str = row["ability_type"].as<std::string>("SPELL");
-            if (type_str == "SKILL") {
-                ability.type = AbilityType::Skill;
-            } else if (type_str == "CHANT") {
-                ability.type = AbilityType::Chant;
-            } else if (type_str == "SONG") {
-                ability.type = AbilityType::Song;
-            } else {
-                ability.type = AbilityType::Spell;
-            }
+            // Convert ability type string to enum using shared helper
+            ability.type = parse_ability_type(row["ability_type"].as<std::string>("SPELL"));
 
             // Get spell circle from ClassAbilities join
             ability.circle = row["circle"].as<int>(0);
@@ -3038,15 +3012,14 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
                 c.wealth, c.bank_wealth,
                 c.password_hash, c.race_type, c.gender, c.player_class, c.class_id,
                 c.current_room_zone_id, c.current_room_id,
-                c.save_room_zone_id, c.save_room_id,
-                c.home_room_zone_id, c.home_room_id,
+                c.recall_room_zone_id, c.recall_room_id,
                 c.hit_roll, c.damage_roll, c.armor_class,
                 c.last_login, c.time_played, c.is_online,
                 c.hunger, c.thirst,
                 c.description, c.title,
                 c.prompt, c.page_length, c.wimpy_threshold,
                 c.player_flags, c.effect_flags, c.privilege_flags,
-                c.experience, c.skill_points,
+                c.experience, c.skill_points, c.position,
                 c.created_at, c.updated_at,
                 c.user_id,
                 COALESCE(u.account_wealth, 0) as account_wealth
@@ -3111,17 +3084,11 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         if (!row["current_room_id"].is_null()) {
             character.current_room_id = row["current_room_id"].as<int>();
         }
-        if (!row["save_room_zone_id"].is_null()) {
-            character.save_room_zone_id = row["save_room_zone_id"].as<int>();
+        if (!row["recall_room_zone_id"].is_null()) {
+            character.recall_room_zone_id = row["recall_room_zone_id"].as<int>();
         }
-        if (!row["save_room_id"].is_null()) {
-            character.save_room_id = row["save_room_id"].as<int>();
-        }
-        if (!row["home_room_zone_id"].is_null()) {
-            character.home_room_zone_id = row["home_room_zone_id"].as<int>();
-        }
-        if (!row["home_room_id"].is_null()) {
-            character.home_room_id = row["home_room_id"].as<int>();
+        if (!row["recall_room_id"].is_null()) {
+            character.recall_room_id = row["recall_room_id"].as<int>();
         }
 
         // Combat stats
@@ -3165,6 +3132,9 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         character.experience = row["experience"].as<int>(0);
         character.skill_points = row["skill_points"].as<int>(0);
 
+        // Position (for ghost state persistence)
+        character.position = row["position"].as<std::string>("STANDING");
+
         logger->debug("Loaded character '{}' (id: {})", character.name, character.id);
         return character;
 
@@ -3188,15 +3158,14 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
                 c.wealth, c.bank_wealth,
                 c.password_hash, c.race_type, c.gender, c.player_class, c.class_id,
                 c.current_room_zone_id, c.current_room_id,
-                c.save_room_zone_id, c.save_room_id,
-                c.home_room_zone_id, c.home_room_id,
+                c.recall_room_zone_id, c.recall_room_id,
                 c.hit_roll, c.damage_roll, c.armor_class,
                 c.last_login, c.time_played, c.is_online,
                 c.hunger, c.thirst,
                 c.description, c.title,
                 c.prompt, c.page_length, c.wimpy_threshold,
                 c.player_flags, c.effect_flags, c.privilege_flags,
-                c.experience, c.skill_points,
+                c.experience, c.skill_points, c.position,
                 c.created_at, c.updated_at,
                 c.user_id,
                 COALESCE(u.account_wealth, 0) as account_wealth
@@ -3250,17 +3219,11 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         if (!row["current_room_id"].is_null()) {
             character.current_room_id = row["current_room_id"].as<int>();
         }
-        if (!row["save_room_zone_id"].is_null()) {
-            character.save_room_zone_id = row["save_room_zone_id"].as<int>();
+        if (!row["recall_room_zone_id"].is_null()) {
+            character.recall_room_zone_id = row["recall_room_zone_id"].as<int>();
         }
-        if (!row["save_room_id"].is_null()) {
-            character.save_room_id = row["save_room_id"].as<int>();
-        }
-        if (!row["home_room_zone_id"].is_null()) {
-            character.home_room_zone_id = row["home_room_zone_id"].as<int>();
-        }
-        if (!row["home_room_id"].is_null()) {
-            character.home_room_id = row["home_room_id"].as<int>();
+        if (!row["recall_room_id"].is_null()) {
+            character.recall_room_id = row["recall_room_id"].as<int>();
         }
         character.hit_roll = row["hit_roll"].as<int>(0);
         character.damage_roll = row["damage_roll"].as<int>(0);
@@ -3289,6 +3252,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         }
         character.experience = row["experience"].as<int>(0);
         character.skill_points = row["skill_points"].as<int>(0);
+        character.position = row["position"].as<std::string>("STANDING");
 
         logger->debug("Loaded character '{}' by ID", character.name);
         return character;
@@ -3419,13 +3383,13 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 hit_points = $11, hit_points_max = $12, stamina = $13, stamina_max = $14,
                 wealth = $15, bank_wealth = $16,
                 current_room_zone_id = $17, current_room_id = $18,
-                save_room_zone_id = $19, save_room_id = $20,
+                recall_room_zone_id = $19, recall_room_id = $20,
                 hit_roll = $21, damage_roll = $22, armor_class = $23,
                 time_played = $24, hunger = $25, thirst = $26,
-                experience = $27, skill_points = $28,
-                title = $29, description = $30,
-                prompt = $31, page_length = $32, wimpy_threshold = $33,
-                player_flags = $34::text[],
+                experience = $27, skill_points = $28, position = $29::"Position",
+                title = $30, description = $31,
+                prompt = $32, page_length = $33, wimpy_threshold = $34,
+                player_flags = $35::text[],
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -3436,10 +3400,10 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
             character.hit_points, character.hit_points_max, character.stamina, character.stamina_max,
             character.wealth, character.bank_wealth,
             character.current_room_zone_id.value_or(0), character.current_room_id.value_or(0),
-            character.save_room_zone_id.value_or(0), character.save_room_id.value_or(0),
+            character.recall_room_zone_id.value_or(0), character.recall_room_id.value_or(0),
             character.hit_roll, character.damage_roll, character.armor_class,
             character.time_played, character.hunger, character.thirst,
-            character.experience, character.skill_points,
+            character.experience, character.skill_points, character.position,
             character.title, character.description,
             character.prompt, character.page_length, character.wimpy_threshold,
             player_flags_array
@@ -3506,7 +3470,6 @@ Result<void> save_character_location(
         txn.exec_params(R"(
             UPDATE "Characters" SET
                 current_room_zone_id = $2, current_room_id = $3,
-                save_room_zone_id = $2, save_room_id = $3,
                 updated_at = NOW()
             WHERE id = $1
         )", character_id, zone_id, room_id);

@@ -743,9 +743,6 @@ namespace {
 
     bool is_good_alignment(int alignment) { return alignment >= ALIGN_GOOD_THRESHOLD; }
     bool is_evil_alignment(int alignment) { return alignment <= ALIGN_EVIL_THRESHOLD; }
-    bool is_neutral_alignment(int alignment) {
-        return alignment > ALIGN_EVIL_THRESHOLD && alignment < ALIGN_GOOD_THRESHOLD;
-    }
 
     std::string_view alignment_name(int alignment) {
         if (is_good_alignment(alignment)) return "good";
@@ -817,14 +814,14 @@ void WorldServer::perform_mob_activity() {
                 // Attacks evil-aligned players
                 if (is_evil_alignment(player_align)) {
                     should_attack = true;
-                    attack_reason = fmt::format("aggro-evil (player align: {})", player_align);
+                    attack_reason = fmt::format("aggro-evil (player: {})", alignment_name(player_align));
                 }
             } else if (aggro_condition->find("ALIGN.GOOD") != std::string::npos ||
                        aggro_condition->find(">= 350") != std::string::npos) {
                 // Attacks good-aligned players
                 if (is_good_alignment(player_align)) {
                     should_attack = true;
-                    attack_reason = fmt::format("aggro-good (player align: {})", player_align);
+                    attack_reason = fmt::format("aggro-good (player: {})", alignment_name(player_align));
                 }
             } else {
                 // Unknown condition format - treat as aggressive to all for safety
@@ -833,8 +830,8 @@ void WorldServer::perform_mob_activity() {
             }
 
             if (!should_attack) {
-                Log::debug("Mob '{}' won't attack '{}' (align: {}) - condition '{}' not met",
-                          mobile->name(), actor->name(), player_align,
+                Log::debug("Mob '{}' won't attack '{}' ({}) - condition '{}' not met",
+                          mobile->name(), actor->name(), alignment_name(player_align),
                           aggro_condition ? *aggro_condition : "none");
                 continue;
             }
@@ -1065,6 +1062,9 @@ void WorldServer::perform_cleanup() {
 void WorldServer::perform_heartbeat() {
     // This runs on the world strand - thread safe!
 
+    // Track shutdown warning intervals (shared across calls)
+    static int64_t last_shutdown_warning_time = -1;
+
     // Check for shutdown request
     if (world_manager_ && world_manager_->is_shutdown_requested()) {
         if (world_manager_->should_shutdown_now()) {
@@ -1084,14 +1084,13 @@ void WorldServer::perform_heartbeat() {
         ).count();
 
         // Warn at specific intervals: 5min, 2min, 1min, 30sec, 10sec, 5sec
-        static int64_t last_warning_time = -1;
         bool should_warn = false;
-        if (time_left <= 5 && last_warning_time != 5) { should_warn = true; last_warning_time = 5; }
-        else if (time_left <= 10 && time_left > 5 && last_warning_time != 10) { should_warn = true; last_warning_time = 10; }
-        else if (time_left <= 30 && time_left > 10 && last_warning_time != 30) { should_warn = true; last_warning_time = 30; }
-        else if (time_left <= 60 && time_left > 30 && last_warning_time != 60) { should_warn = true; last_warning_time = 60; }
-        else if (time_left <= 120 && time_left > 60 && last_warning_time != 120) { should_warn = true; last_warning_time = 120; }
-        else if (time_left <= 300 && time_left > 120 && last_warning_time != 300) { should_warn = true; last_warning_time = 300; }
+        if (time_left <= 5 && last_shutdown_warning_time != 5) { should_warn = true; last_shutdown_warning_time = 5; }
+        else if (time_left <= 10 && time_left > 5 && last_shutdown_warning_time != 10) { should_warn = true; last_shutdown_warning_time = 10; }
+        else if (time_left <= 30 && time_left > 10 && last_shutdown_warning_time != 30) { should_warn = true; last_shutdown_warning_time = 30; }
+        else if (time_left <= 60 && time_left > 30 && last_shutdown_warning_time != 60) { should_warn = true; last_shutdown_warning_time = 60; }
+        else if (time_left <= 120 && time_left > 60 && last_shutdown_warning_time != 120) { should_warn = true; last_shutdown_warning_time = 120; }
+        else if (time_left <= 300 && time_left > 120 && last_shutdown_warning_time != 300) { should_warn = true; last_shutdown_warning_time = 300; }
 
         if (should_warn) {
             std::string time_str;
@@ -1108,8 +1107,7 @@ void WorldServer::perform_heartbeat() {
         }
     } else {
         // Reset warning tracker when shutdown is cancelled
-        static int64_t last_warning_time = -1;
-        last_warning_time = -1;
+        last_shutdown_warning_time = -1;
     }
 
     auto now = std::chrono::steady_clock::now();

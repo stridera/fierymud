@@ -10,7 +10,7 @@ namespace fierymud {
 
 void register_zone_reload_handlers(AdminServer& admin_server, WorldManager& world_manager) {
     // POST /api/admin/reload-zone - Reload a specific zone or all zones
-    admin_server.register_handler("/api/admin/reload-zone", [&world_manager](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/reload-zone", [&world_manager]([[maybe_unused]] const std::string& path, const std::string& body) -> std::string {
         spdlog::info("Received zone reload request");
 
         try {
@@ -43,7 +43,7 @@ void register_zone_reload_handlers(AdminServer& admin_server, WorldManager& worl
     });
 
     // GET /api/admin/zone-status - Get status of all zones
-    admin_server.register_handler("/api/admin/zone-status", [&world_manager](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/zone-status", [&world_manager]([[maybe_unused]] const std::string& path, [[maybe_unused]] const std::string& body) -> std::string {
         spdlog::info("Received zone status request");
 
         try {
@@ -71,7 +71,7 @@ void register_zone_reload_handlers(AdminServer& admin_server, WorldManager& worl
     });
 
     // GET /api/admin/health - Simple health check endpoint
-    admin_server.register_handler("/api/admin/health", [](const std::string& path, const std::string& body) -> std::string {
+    admin_server.register_handler("/api/admin/health", []([[maybe_unused]] const std::string& path, [[maybe_unused]] const std::string& body) -> std::string {
         json health = {
             {"status", "healthy"},
             {"service", "FieryMUD Admin API"},
@@ -83,7 +83,7 @@ void register_zone_reload_handlers(AdminServer& admin_server, WorldManager& worl
     spdlog::info("Registered zone reload handlers with admin server");
 }
 
-ReloadZoneResponse handle_zone_reload(WorldManager& world_manager, int zone_id, bool force) {
+ReloadZoneResponse handle_zone_reload([[maybe_unused]] WorldManager& world_manager, int zone_id, bool force) {
     ReloadZoneResponse response;
     response.success = false;
     response.zones_reloaded = 0;

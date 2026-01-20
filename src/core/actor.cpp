@@ -748,6 +748,85 @@ std::string Actor::display_name_for_observer(const Actor& observer) const {
     return result;
 }
 
+std::string Actor::room_presence(std::shared_ptr<Actor> viewer) const {
+    // For NPCs with a ground/long description, use that if they're in default position
+    // and not in a special state
+    auto ground_desc = ground();
+    bool use_ground_desc = !ground_desc.empty() &&
+                           position() == Position::Standing &&
+                           !is_fighting() &&
+                           !has_flag(ActorFlag::Paralyzed) &&
+                           !has_flag(ActorFlag::Immobilized);
+
+    if (use_ground_desc) {
+        return std::string(ground_desc);
+    }
+
+    // Otherwise, generate a position-based description
+    // For players, use display_name(); for NPCs, use short_description or display_name
+    std::string name;
+    auto short_desc = short_description();
+    if (short_desc.empty()) {
+        name = display_name();
+    } else {
+        name = std::string(short_desc);
+    }
+
+    // Check for special states first
+    if (has_flag(ActorFlag::Paralyzed)) {
+        return fmt::format("{} is standing here, completely motionless.", name);
+    }
+
+    if (has_flag(ActorFlag::Immobilized)) {
+        return fmt::format("{} is here, unable to move.", name);
+    }
+
+    // Fighting takes precedence
+    if (is_fighting()) {
+        auto opponent = get_fighting_target();
+        if (opponent) {
+            if (viewer && opponent == viewer) {
+                return fmt::format("{} is here, fighting <red>YOU</>!", name);
+            } else {
+                return fmt::format("{} is here, fighting {}!", name, opponent->display_name());
+            }
+        } else {
+            return fmt::format("{} is here, struggling with thin air.", name);
+        }
+    }
+
+    // Position-based descriptions
+    switch (position()) {
+    case Position::Dead:
+        return fmt::format("{} is lying here, dead.", name);
+    case Position::Ghost:
+        return fmt::format("The ghost of {} hovers here.", name);
+    case Position::Mortally_Wounded:
+        return fmt::format("{} is lying here, mortally wounded.", name);
+    case Position::Incapacitated:
+        return fmt::format("{} is lying here, incapacitated.", name);
+    case Position::Stunned:
+        return fmt::format("{} is lying here, stunned.", name);
+    case Position::Sleeping:
+        return fmt::format("{} is sleeping here.", name);
+    case Position::Resting:
+        return fmt::format("{} is resting here.", name);
+    case Position::Sitting:
+        return fmt::format("{} is sitting here.", name);
+    case Position::Prone:
+        return fmt::format("{} is lying here.", name);
+    case Position::Fighting:
+        // Already handled above, but just in case
+        return fmt::format("{} is here, fighting.", name);
+    case Position::Standing:
+        return fmt::format("{} is standing here.", name);
+    case Position::Flying:
+        return fmt::format("{} is hovering here.", name);
+    default:
+        return fmt::format("{} is here.", name);
+    }
+}
+
 Result<void> Actor::give_item(std::shared_ptr<Object> item) {
     if (!item) {
         return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
@@ -2673,6 +2752,11 @@ void Player::send_gmcp_vitals_update() {
     }
 }
 
+void Player::on_position_change(Position /* old_pos */, Position /* new_pos */) {
+    // Send GMCP vitals update when position changes (position is included in vitals)
+    send_gmcp_vitals_update();
+}
+
 void Player::initialize_spell_slots() {
     spell_slots().initialize_for_class(player_class_, stats().level);
     Log::debug("Initialized spell slots for player '{}' (class: {}, level: {})", 
@@ -3114,15 +3198,36 @@ std::string Actor::get_stat_info() const {
     
     // Character flags
     if (mobile) {
-        // Build list of set mob flags
-        // Iterate through all bits in the mob_flags_ bitset
-        // magic_enum::enum_name() returns empty string for undefined indices
+        // Build list of set traits, behaviors, and professions
         std::vector<std::string> flag_names;
 
-        for (size_t i = 0; i < Mobile::MOB_FLAG_CAPACITY; ++i) {
-            auto flag = static_cast<MobFlag>(i);
-            if (mobile->has_flag(flag)) {
-                auto name = magic_enum::enum_name(flag);
+        // Traits (what mob IS)
+        for (size_t i = 0; i < Mobile::MOB_TRAIT_CAPACITY; ++i) {
+            auto trait = static_cast<MobTrait>(i);
+            if (mobile->has_trait(trait)) {
+                auto name = magic_enum::enum_name(trait);
+                if (!name.empty()) {
+                    flag_names.emplace_back(name);
+                }
+            }
+        }
+
+        // Behaviors (how mob ACTS)
+        for (size_t i = 0; i < Mobile::MOB_BEHAVIOR_CAPACITY; ++i) {
+            auto behavior = static_cast<MobBehavior>(i);
+            if (mobile->has_behavior(behavior)) {
+                auto name = magic_enum::enum_name(behavior);
+                if (!name.empty()) {
+                    flag_names.emplace_back(name);
+                }
+            }
+        }
+
+        // Professions (services mob provides)
+        for (size_t i = 0; i < Mobile::MOB_PROFESSION_CAPACITY; ++i) {
+            auto profession = static_cast<MobProfession>(i);
+            if (mobile->has_profession(profession)) {
+                auto name = magic_enum::enum_name(profession);
                 if (!name.empty()) {
                     flag_names.emplace_back(name);
                 }

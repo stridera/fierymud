@@ -2,6 +2,7 @@
 #include "information_commands.hpp"
 #include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
+#include "../core/formula_parser.hpp"
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
 #include "../core/shopkeeper.hpp"
@@ -953,20 +954,9 @@ Result<CommandResult> cmd_rstat(const CommandContext &ctx) {
     ctx.send(fmt::format("ID: <b:yellow>{}:{}</>", room->id().zone_id(), room->id().local_id()));
     ctx.send(fmt::format("Zone: <b:white>{}</>", room->zone_id()));
     ctx.send(fmt::format("Sector: <b:green>{}</>", room->sector_type()));
-    ctx.send(fmt::format("Light Level: {}", room->light_level()));
-
-    // Flags
-    const auto& flags = room->flags();
-    if (!flags.empty()) {
-        std::string flag_str;
-        for (const auto& flag : flags) {
-            if (!flag_str.empty()) flag_str += ", ";
-            flag_str += std::string(RoomUtils::get_flag_name(flag));
-        }
-        ctx.send(fmt::format("Flags: <b:yellow>{}</>", flag_str));
-    } else {
-        ctx.send("Flags: <dim>none</>");
-    }
+    ctx.send(fmt::format("Base Light Level: {}, Effective: {}",
+        room->base_light_level(), room->calculate_effective_light()));
+    ctx.send(fmt::format("Capacity: {}", room->capacity()));
 
     // Exits
     auto exits = room->get_available_exits();
@@ -1308,15 +1298,27 @@ Result<CommandResult> cmd_mstat(const CommandContext &ctx) {
         target->hp_dice_num(), target->hp_dice_size(), target->hp_dice_bonus(),
         dam_num, dam_size, dam_bonus, target->damage_type()));
 
-    // Flags
-    std::string behavior_flags;
-    for (auto flag : magic_enum::enum_values<MobFlag>()) {
-        if (target->has_flag(flag)) {
-            if (!behavior_flags.empty()) behavior_flags += " ";
-            behavior_flags += std::string(magic_enum::enum_name(flag));
+    // Traits, behaviors, and professions
+    std::string all_flags;
+    for (auto trait : magic_enum::enum_values<MobTrait>()) {
+        if (target->has_trait(trait)) {
+            if (!all_flags.empty()) all_flags += " ";
+            all_flags += std::string(magic_enum::enum_name(trait));
         }
     }
-    ctx.send(fmt::format("NPC flags: {}", behavior_flags.empty() ? "<None>" : behavior_flags));
+    for (auto behavior : magic_enum::enum_values<MobBehavior>()) {
+        if (target->has_behavior(behavior)) {
+            if (!all_flags.empty()) all_flags += " ";
+            all_flags += std::string(magic_enum::enum_name(behavior));
+        }
+    }
+    for (auto profession : magic_enum::enum_values<MobProfession>()) {
+        if (target->has_profession(profession)) {
+            if (!all_flags.empty()) all_flags += " ";
+            all_flags += std::string(magic_enum::enum_name(profession));
+        }
+    }
+    ctx.send(fmt::format("NPC flags: {}", all_flags.empty() ? "<None>" : all_flags));
 
     // Aggression condition (Lua expression from database)
     const auto& aggro = target->aggro_condition();
@@ -2296,12 +2298,10 @@ Result<CommandResult> cmd_aggrodebug(const CommandContext &ctx) {
     ctx.send(fmt::format("Total spawned mobiles: {}", spawned_mobiles.size()));
 
     // Count aggressive mobs globally
+    // Note: Aggression is now controlled by aggressionFormula (Lua expression)
     int total_aggro = 0;
     for (const auto& [id, mob] : spawned_mobiles) {
-        if (mob->is_aggressive() ||
-            mob->has_flag(MobFlag::AggroGood) ||
-            mob->has_flag(MobFlag::AggroEvil) ||
-            mob->has_flag(MobFlag::AggroNeutral)) {
+        if (mob->is_aggressive()) {
             total_aggro++;
         }
     }
@@ -2359,10 +2359,8 @@ Result<CommandResult> cmd_aggrodebug(const CommandContext &ctx) {
         auto mob = std::dynamic_pointer_cast<Mobile>(actor);
         if (!mob) continue;
 
-        bool is_aggro = mob->is_aggressive() ||
-                        mob->has_flag(MobFlag::AggroGood) ||
-                        mob->has_flag(MobFlag::AggroEvil) ||
-                        mob->has_flag(MobFlag::AggroNeutral);
+        // Aggression is now controlled by aggressionFormula (Lua expression)
+        bool is_aggro = mob->is_aggressive();
         if (!is_aggro) continue;
 
         // Check if mob is in spawned_mobiles
@@ -2993,16 +2991,36 @@ Result<CommandResult> cmd_astat(const CommandContext &ctx) {
             if (effect_def) {
                 const auto& p = eff.params;
                 switch (effect_def->type) {
-                    case FieryMUD::EffectType::Damage:
-                        ctx.send(fmt::format("        Damage Type: {}", p.damage_type));
+                    case FieryMUD::EffectType::Damage: {
+                        // Only show single damage type if no damage components exist
+                        auto dmg_comps = cache.get_damage_components(ability->id);
+                        if (dmg_comps.empty()) {
+                            ctx.send(fmt::format("        Damage Type: {}", p.damage_type));
+                        } else {
+                            ctx.send("        Damage Type: (see Damage Components below)");
+                        }
                         if (!p.amount_formula.empty())
                             ctx.send(fmt::format("        Amount Formula: {}", p.amount_formula));
                         break;
+                    }
 
                     case FieryMUD::EffectType::Heal:
                         ctx.send(fmt::format("        Heal Resource: {}", p.heal_resource));
                         if (!p.heal_formula.empty())
                             ctx.send(fmt::format("        Heal Formula: {}", p.heal_formula));
+                        break;
+
+                    case FieryMUD::EffectType::Modify:
+                        if (!p.modify_target.empty())
+                            ctx.send(fmt::format("        Target Stat: {}", p.modify_target));
+                        if (!p.modify_amount.empty())
+                            ctx.send(fmt::format("        Amount: {}", p.modify_amount));
+                        if (p.modify_duration > 0) {
+                            if (!p.modify_duration_unit.empty())
+                                ctx.send(fmt::format("        Duration: {} {}", p.modify_duration, p.modify_duration_unit));
+                            else
+                                ctx.send(fmt::format("        Duration: {} ticks", p.modify_duration));
+                        }
                         break;
 
                     case FieryMUD::EffectType::Status:
@@ -3072,6 +3090,46 @@ Result<CommandResult> cmd_astat(const CommandContext &ctx) {
         for (const auto& comp : damage_components) {
             ctx.send(fmt::format("    {} ({}%): {}", comp.element, comp.percentage, comp.damage_formula));
         }
+    }
+
+    // Damage range estimation
+    // Find the first damage formula to estimate (from components or effect params)
+    std::string damage_formula;
+    if (!damage_components.empty()) {
+        // Use total damage formula from first component (they share the same base formula usually)
+        damage_formula = damage_components[0].damage_formula;
+    } else {
+        // Check effects for a damage effect
+        for (const auto& eff : effects) {
+            const auto* effect_def = cache.get_effect(eff.effect_id);
+            if (effect_def && effect_def->type == FieryMUD::EffectType::Damage) {
+                if (!eff.params.amount_formula.empty()) {
+                    damage_formula = eff.params.amount_formula;
+                }
+                break;
+            }
+        }
+    }
+
+    if (!damage_formula.empty()) {
+        ctx.send("");
+        ctx.send("<b:yellow>  Damage Estimates:</>");
+
+        // Skill 0 (untrained)
+        FieryMUD::FormulaContext ctx_low;
+        ctx_low.skill_level = 0;
+        ctx_low.actor_level = 1;
+        ctx_low.base_damage = 10;  // Approximate base damage for low level
+        auto range_low = FieryMUD::FormulaParser::estimate_damage_range(damage_formula, ctx_low);
+        ctx.send(fmt::format("    Skill 0:   {}", range_low.to_string()));
+
+        // Skill 100 (mastered)
+        FieryMUD::FormulaContext ctx_high;
+        ctx_high.skill_level = 100;
+        ctx_high.actor_level = 50;
+        ctx_high.base_damage = 100;  // Approximate base damage for high level
+        auto range_high = FieryMUD::FormulaParser::estimate_damage_range(damage_formula, ctx_high);
+        ctx.send(fmt::format("    Skill 100: {}", range_high.to_string()));
     }
 
     // Custom messages

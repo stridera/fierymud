@@ -269,7 +269,7 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
     }
 
     // Add object-specific details based on type
-    if (obj->type() == ObjectType::Liquid_Container) {
+    if (obj->type() == ObjectType::Drinkcontainer) {
         // Drink container - show liquid info, not item capacity
         const auto& liquid = obj->liquid_info();
         if (liquid.remaining > 0) {
