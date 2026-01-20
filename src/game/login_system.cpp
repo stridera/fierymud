@@ -1732,28 +1732,42 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
     // Load character items (equipment and inventory) from database
     load_player_items(player);
 
-    // Determine start room with priority: currentRoom > recallRoom > raceRoom > mudDefault
+    // Determine start room with priority:
+    // For mortals: 1. Saved location (only if rented) -> 2. Recall -> 3. Race default -> 4. MUD default
+    // For gods: Always use saved location if valid
     auto &world_manager = WorldManager::instance();
     auto &game_data = GameDataCache::instance();
     auto saved_room = player->start_room();
+    bool use_saved_room = false;
 
-    if (saved_room.is_valid()) {
-        // Player has a saved room - verify it exists
+    // Gods can return to their saved location regardless of how they logged out
+    if (player->is_god() && saved_room.is_valid()) {
         if (world_manager.get_room(saved_room)) {
-            Log::debug("Player {} will load at saved room {}", player->name(), saved_room);
+            Log::debug("God {} returning to saved room {}", player->name(), saved_room);
+            use_saved_room = true;
         } else {
-            // Saved room doesn't exist, clear it and fall through to alternatives
+            Log::info("God {} saved room {} doesn't exist, trying alternatives", player->name(), saved_room);
+        }
+    }
+    // Mortals use saved room if valid (only exists if they rented/camped - quit clears it)
+    else if (saved_room.is_valid()) {
+        if (world_manager.get_room(saved_room)) {
+            Log::debug("Player {} returning to saved room {}", player->name(), saved_room);
+            use_saved_room = true;
+        } else {
             Log::info("Player {} saved room {} doesn't exist, trying alternatives", player->name(), saved_room);
-            saved_room = EntityId{}; // Invalidate
         }
     }
 
-    if (!saved_room.is_valid()) {
-        // No valid saved room - try recall room (home/touchstone)
+    if (!use_saved_room) {
+        // Clear the saved room so fallbacks can take over
+        player->set_start_room(EntityId{});
+
+        // Try recall room (home/touchstone/savepoint)
         auto recall_room = player->recall_room();
         if (recall_room.is_valid() && world_manager.get_room(recall_room)) {
             player->set_start_room(recall_room);
-            Log::debug("Player {} using recall room (home): {}", player->name(), recall_room);
+            Log::debug("Player {} using recall room (savepoint): {}", player->name(), recall_room);
         }
     }
 

@@ -1023,6 +1023,14 @@ struct LearnedAbility {
     std::string sphere;             // Spell sphere (fire, water, healing, etc.)
 };
 
+/** Color output level preference */
+enum class ColorLevel {
+    Off = 0,        // No color codes
+    Sparse = 1,     // Minimal color (highlights only)
+    Normal = 2,     // Standard color usage
+    Complete = 3    // Full color everywhere
+};
+
 /** Player preference flags */
 enum class PlayerFlag {
     // Display preferences
@@ -1198,6 +1206,10 @@ public:
     /** Prompt format string - used for command prompt display */
     std::string_view prompt() const { return prompt_; }
     void set_prompt(std::string_view prompt_format) { prompt_ = prompt_format; }
+
+    /** Color level preference */
+    ColorLevel color_level() const { return color_level_; }
+    void set_color_level(ColorLevel level) { color_level_ = level; }
 
     /** Wimpy threshold - flee when HP falls below this value */
     int wimpy_threshold() const { return wimpy_threshold_; }
@@ -1395,6 +1407,7 @@ private:
     int wimpy_threshold_ = 0;               // Flee when HP falls below this
     std::string afk_message_ = "";          // AFK message to display
     std::string prompt_ = "<%h/%Hhp %v/%Vs>";  // Prompt format string
+    ColorLevel color_level_ = ColorLevel::Normal;  // Color output preference
 
     // Currency
     fiery::Money wallet_;        // Money on person
@@ -1425,6 +1438,12 @@ private:
 
     // Ability/Skill system
     std::unordered_map<int, LearnedAbility> abilities_;  // ability_id -> learned ability data
+
+    // Command aliases
+    std::unordered_map<std::string, std::string> aliases_;  // alias -> command
+
+    // Ignored players (by character name, lowercase)
+    std::unordered_set<std::string> ignored_players_;
 
     // Group/follow system
     std::weak_ptr<Actor> leader_;            // Who we are following (empty = we are leader or solo)
@@ -1629,6 +1648,79 @@ public:
     /** Clear all abilities (for reloading from database) */
     void clear_abilities() {
         abilities_.clear();
+    }
+
+    // ============================================================================
+    // Alias System
+    // ============================================================================
+
+    /** Get all aliases */
+    const std::unordered_map<std::string, std::string>& get_aliases() const {
+        return aliases_;
+    }
+
+    /** Set an alias (creates or updates) */
+    void set_alias(std::string_view alias, std::string_view command) {
+        aliases_[std::string(alias)] = std::string(command);
+    }
+
+    /** Remove an alias */
+    bool remove_alias(std::string_view alias) {
+        return aliases_.erase(std::string(alias)) > 0;
+    }
+
+    /** Check if an alias exists */
+    bool has_alias(std::string_view alias) const {
+        return aliases_.find(std::string(alias)) != aliases_.end();
+    }
+
+    /** Get the command for an alias (returns nullopt if not found) */
+    std::optional<std::string_view> get_alias(std::string_view alias) const {
+        auto it = aliases_.find(std::string(alias));
+        if (it != aliases_.end()) {
+            return it->second;
+        }
+        return std::nullopt;
+    }
+
+    /** Clear all aliases */
+    void clear_aliases() {
+        aliases_.clear();
+    }
+
+    // ============================================================================
+    // Ignored Players System
+    // ============================================================================
+
+    /** Ignore a player (stores lowercase name) */
+    void ignore_player(std::string_view player_name) {
+        std::string name_lower{player_name};
+        std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+        ignored_players_.insert(name_lower);
+    }
+
+    /** Stop ignoring a player */
+    bool unignore_player(std::string_view player_name) {
+        std::string name_lower{player_name};
+        std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+        return ignored_players_.erase(name_lower) > 0;
+    }
+
+    /** Check if ignoring a player */
+    bool is_ignoring(std::string_view player_name) const {
+        std::string name_lower{player_name};
+        std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+        return ignored_players_.find(name_lower) != ignored_players_.end();
+    }
+
+    /** Get all ignored players */
+    const std::unordered_set<std::string>& get_ignored_players() const {
+        return ignored_players_;
+    }
+
+    /** Clear all ignored players */
+    void clear_ignored_players() {
+        ignored_players_.clear();
     }
 };
 

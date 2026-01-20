@@ -36,6 +36,15 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
     ctx.send("Goodbye! Thanks for playing FieryMUD.");
     player->set_position(Position::Standing);  // Player remains standing until logout
 
+    // For mortals, remove from room BEFORE saving so they return to recall on login
+    // Gods keep their saved location regardless of how they log out
+    if (!player->is_god()) {
+        if (ctx.room) {
+            ctx.room->remove_actor(player->id());
+        }
+        player->set_current_room({});  // Ensure current_room is cleared for save
+    }
+
     // Save player data before logout
     auto save_result = PersistenceManager::instance().save_player(*player);
     if (!save_result) {
@@ -47,8 +56,8 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
 
     Log::info("Player {} quit the game", player->name());
 
-    // Remove player from room
-    if (ctx.room) {
+    // Remove god from room (mortals already removed above)
+    if (player->is_god() && ctx.room) {
         ctx.room->remove_actor(player->id());
     }
 
@@ -170,7 +179,7 @@ Result<CommandResult> cmd_rent(const CommandContext &ctx) {
                              removed, removed == 1 ? "" : "s"));
     }
 
-    // Save the player
+    // Save the player (while still in room, so location is preserved)
     auto save_result = PersistenceManager::instance().save_player(*player);
     if (!save_result) {
         Log::error("Rent save failed for player {}: {}", player->name(), save_result.error().message);
@@ -1289,11 +1298,32 @@ Result<CommandResult> cmd_clear(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_color(const CommandContext &ctx) {
-    static const std::vector<std::string> color_levels = {"off", "sparse", "normal", "complete"};
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can set color preferences.");
+        return CommandResult::InvalidState;
+    }
+
+    static const std::vector<std::pair<std::string, ColorLevel>> color_levels = {
+        {"off", ColorLevel::Off},
+        {"sparse", ColorLevel::Sparse},
+        {"normal", ColorLevel::Normal},
+        {"complete", ColorLevel::Complete}
+    };
+
+    auto level_to_name = [](ColorLevel level) -> std::string_view {
+        switch (level) {
+            case ColorLevel::Off: return "off";
+            case ColorLevel::Sparse: return "sparse";
+            case ColorLevel::Normal: return "normal";
+            case ColorLevel::Complete: return "complete";
+            default: return "normal";
+        }
+    };
 
     if (ctx.arg_count() == 0) {
         // Show current color level
-        ctx.send("Your current color level is: normal");
+        ctx.send(fmt::format("Your current color level is: {}", level_to_name(player->color_level())));
         ctx.send("Usage: color <off|sparse|normal|complete>");
         return CommandResult::Success;
     }
@@ -1302,26 +1332,26 @@ Result<CommandResult> cmd_color(const CommandContext &ctx) {
     std::transform(level_arg.begin(), level_arg.end(), level_arg.begin(),
                    [](unsigned char c) { return std::tolower(c); });
 
-    bool found = false;
-    for (const auto& level : color_levels) {
-        if (level.starts_with(level_arg)) {
-            found = true;
-            ctx.send(fmt::format("Your color level is now: {}", level));
-            // TODO: Store in player preferences when implemented
-            break;
+    for (const auto& [name, level] : color_levels) {
+        if (name.starts_with(level_arg)) {
+            player->set_color_level(level);
+            ctx.send(fmt::format("Your color level is now: {}", name));
+            return CommandResult::Success;
         }
     }
 
-    if (!found) {
-        ctx.send_error("Invalid color level.");
-        ctx.send("Usage: color <off|sparse|normal|complete>");
-        return CommandResult::InvalidSyntax;
-    }
-
-    return CommandResult::Success;
+    ctx.send_error("Invalid color level.");
+    ctx.send("Usage: color <off|sparse|normal|complete>");
+    return CommandResult::InvalidSyntax;
 }
 
 Result<CommandResult> cmd_display(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can set prompt preferences.");
+        return CommandResult::InvalidState;
+    }
+
     // Preset prompts
     static const std::vector<std::pair<std::string, std::string>> preset_prompts = {
         {"minimal", "<&h/&H hp &m/&M mv>"},
@@ -1337,6 +1367,7 @@ Result<CommandResult> cmd_display(const CommandContext &ctx) {
         for (const auto& [name, prompt] : preset_prompts) {
             ctx.send(fmt::format("{:2d}. {:<12} {}", i++, name, prompt));
         }
+        ctx.send(fmt::format("\nYour current prompt: {}", player->prompt()));
         ctx.send("Usage: display <number>");
         return CommandResult::Success;
     }
@@ -1347,21 +1378,33 @@ Result<CommandResult> cmd_display(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
+    player->set_prompt(preset_prompts[index].second);
     ctx.send(fmt::format("Your prompt is now set to the '{}' preset.", preset_prompts[index].first));
-    // TODO: Actually set the prompt in player preferences
 
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_alias(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can use aliases.");
+        return CommandResult::InvalidState;
+    }
+
     if (ctx.arg_count() == 0) {
         // List all aliases
-        ctx.send("Currently defined aliases:");
-        ctx.send("  None.");
+        const auto& aliases = player->get_aliases();
+        if (aliases.empty()) {
+            ctx.send("You have no aliases defined.");
+        } else {
+            ctx.send("Currently defined aliases:");
+            for (const auto& [name, command] : aliases) {
+                ctx.send(fmt::format("  {} -> {}", name, command));
+            }
+        }
         ctx.send("");
         ctx.send("Usage: alias <name> <command>");
         ctx.send("       alias <name>       - Delete alias");
-        // TODO: List actual aliases when player alias storage is implemented
         return CommandResult::Success;
     }
 
@@ -1374,8 +1417,12 @@ Result<CommandResult> cmd_alias(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 1) {
         // Delete alias
-        ctx.send(fmt::format("Alias '{}' deleted.", alias_name));
-        // TODO: Actually delete the alias
+        if (player->has_alias(alias_name)) {
+            player->remove_alias(alias_name);
+            ctx.send(fmt::format("Alias '{}' deleted.", alias_name));
+        } else {
+            ctx.send(fmt::format("No alias '{}' defined.", alias_name));
+        }
         return CommandResult::Success;
     }
 
@@ -1387,44 +1434,65 @@ Result<CommandResult> cmd_alias(const CommandContext &ctx) {
         replacement += ctx.arg(i);
     }
 
+    player->set_alias(alias_name, replacement);
     ctx.send(fmt::format("Alias '{}' set to '{}'.", alias_name, replacement));
-    // TODO: Actually store the alias in player data
 
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_ignore(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can use the ignore command.");
+        return CommandResult::InvalidState;
+    }
+
     if (ctx.arg_count() == 0) {
-        std::string_view arg = ctx.arg_or(0, "");
-        if (arg.empty() || arg == "off") {
-            ctx.send("You feel sociable and stop ignoring anyone.");
-            // TODO: Clear ignored list
-            return CommandResult::Success;
+        // List ignored players
+        const auto& ignored = player->get_ignored_players();
+        if (ignored.empty()) {
+            ctx.send("You are not ignoring anyone.");
+        } else {
+            ctx.send("Currently ignored players:");
+            for (const auto& name : ignored) {
+                ctx.send(fmt::format("  {}", name));
+            }
         }
+        ctx.send("");
+        ctx.send("Usage: ignore <player>  - Toggle ignoring a player");
+        ctx.send("       ignore off       - Stop ignoring everyone");
+        return CommandResult::Success;
     }
 
     if (ctx.arg(0) == "off") {
+        player->clear_ignored_players();
         ctx.send("You feel sociable and stop ignoring anyone.");
         return CommandResult::Success;
     }
 
     std::string_view target_name = ctx.arg(0);
 
-    // Try to find the target player
-    auto target = ctx.find_actor_target(target_name);
-    if (!target) {
-        ctx.send_error("No one by that name is here.");
-        return CommandResult::InvalidTarget;
+    // Check if already ignoring - toggle behavior
+    if (player->is_ignoring(target_name)) {
+        player->unignore_player(target_name);
+        ctx.send(fmt::format("You stop ignoring {}.", target_name));
+        return CommandResult::Success;
     }
 
-    // Can't ignore NPCs
-    if (!std::dynamic_pointer_cast<Player>(target)) {
-        ctx.send_error("You can only ignore players.");
-        return CommandResult::InvalidTarget;
+    // Try to find the target player in the game
+    auto target = ctx.find_actor_global(target_name);
+    if (target) {
+        // Can't ignore NPCs
+        if (!std::dynamic_pointer_cast<Player>(target)) {
+            ctx.send_error("You can only ignore players.");
+            return CommandResult::InvalidTarget;
+        }
+        target_name = target->name();  // Use proper capitalization
     }
+    // Allow ignoring by name even if player is not online
 
-    ctx.send(fmt::format("You now ignore {}.", target->display_name()));
-    // TODO: Actually store the ignored player in preferences
+    player->ignore_player(target_name);
+    ctx.send(fmt::format("You now ignore {}.", target_name));
 
     return CommandResult::Success;
 }
