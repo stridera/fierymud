@@ -282,8 +282,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             ctx.send_error(fmt::format("You don't see '{}' here.", target_name));
             return CommandResult::InvalidTarget;
         }
-    } else if (ctx.actor->position() == Position::Fighting) {
-        // If no target specified but we're fighting, use our opponent
+    } else if (ctx.actor->position() == Position::Fighting && known_spell->violent) {
+        // Violent spells auto-target opponent; non-violent (heals/buffs) will self-target later
         target = FieryMUD::CombatManager::get_opponent(*ctx.actor);
     }
 

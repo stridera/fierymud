@@ -728,6 +728,12 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
                     // Normal caster/target messages
                     result.attacker_message = format_ability_message(
                         custom_msgs->success_to_caster, ctx.actor, msg_target, result.total_damage);
+
+                    // Show damage number for violent spells (matching AOE format)
+                    if (ability->violent && result.total_damage > 0) {
+                        result.attacker_message += fmt::format(" ({})", result.total_damage);
+                    }
+
                     result.target_message = format_ability_message(
                         custom_msgs->success_to_victim, ctx.actor, msg_target, result.total_damage);
                     result.room_message = format_ability_message(
