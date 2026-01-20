@@ -2,10 +2,34 @@
 
 #include "command_system.hpp"
 
+#include <memory>
+#include <string>
+
+class Actor;
+class Room;
+
 namespace InformationCommands {
 
 // Module registration
 Result<void> register_commands();
+
+/**
+ * Display room information to an actor, respecting brief mode.
+ * This is the canonical way to show a room after any room change.
+ *
+ * @param actor The actor viewing the room
+ * @param room The room to display (uses actor's current room if null)
+ * @return The formatted room string (caller should send to actor)
+ *
+ * Display behavior:
+ * - Always shows room name (green)
+ * - Shows description only if brief mode is OFF
+ * - Shows exits if autoexit is enabled
+ * - Shows visible objects
+ * - Shows visible other actors
+ */
+std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
+                                   const std::shared_ptr<Room>& room = nullptr);
 
 // Information and status commands
 Result<CommandResult> cmd_look(const CommandContext &ctx);

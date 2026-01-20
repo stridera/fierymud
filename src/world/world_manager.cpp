@@ -17,6 +17,7 @@
 #include <fstream>
 #include <algorithm>
 #include <queue>
+#include <random>
 #include <unordered_set>
 
 // World manager constants
@@ -1788,15 +1789,20 @@ MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> 
     }
 
     // Check Lua room entry restrictions
-    // The script can check actor type, level, flags, etc.
-    // Returns: true = allow, false = deny, string = deny with message
+    // The script should be a Lua expression/function body that returns:
+    //   true/nil = allow, false = deny, string = deny with custom message
+    // SECURITY: Script runs in sandboxed Lua environment (no os/io/debug/package)
+    // SECURITY: Fail-closed policy - deny entry on script errors
     if (to_room->has_entry_restriction() && !is_god) {
         auto& engine = FieryMUD::ScriptEngine::instance();
         if (engine.is_initialized()) {
-            // Build the script that returns the restriction result
+            // Wrap the restriction in a function that receives actor as parameter
+            // This prevents direct code injection by treating restriction as function body
             std::string script = fmt::format(R"(
-                local actor = ...
-                {}
+                local check_restriction = function(actor)
+                    {}
+                end
+                return check_restriction(...)
             )", to_room->entry_restriction());
 
             // Create a thread for this execution
@@ -1823,14 +1829,17 @@ MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> 
                     }
                     // Any other return (including nil/true) allows entry
                 } else {
-                    // Script error - log but allow entry (fail open)
+                    // SECURITY: Fail-closed - deny entry on script error
                     sol::error err = result;
-                    spdlog::warn("Room entry restriction script error for room {}:{}: {}",
+                    spdlog::error("Room entry restriction script error for room {}:{}: {} - DENYING ENTRY",
                                  to_room->id().zone_id(), to_room->id().local_id(), err.what());
+                    return MovementResult("An error occurred checking room access. Entry denied.");
                 }
             } else {
-                spdlog::warn("Failed to load room entry restriction for room {}:{}",
+                // SECURITY: Fail-closed - deny entry if script fails to load
+                spdlog::error("Failed to load room entry restriction for room {}:{} - DENYING ENTRY",
                              to_room->id().zone_id(), to_room->id().local_id());
+                return MovementResult("An error occurred checking room access. Entry denied.");
             }
         }
     }
@@ -1976,7 +1985,9 @@ bool WorldManager::check_and_handle_falling(std::shared_ptr<Actor> actor) {
 
     // Calculate and apply fall damage (1d6 per room fallen)
     constexpr int FALL_DAMAGE_DICE = 6;
-    int fall_damage = (std::rand() % FALL_DAMAGE_DICE) + 1;
+    static thread_local std::mt19937 fall_rng{std::random_device{}()};
+    static thread_local std::uniform_int_distribution<int> fall_dist(1, FALL_DAMAGE_DICE);
+    int fall_damage = fall_dist(fall_rng);
 
     // Apply damage
     auto& stats = actor->stats();

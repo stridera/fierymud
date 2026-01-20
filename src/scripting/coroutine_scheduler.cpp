@@ -61,6 +61,23 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
         return 0;
     }
 
+    // Check global coroutine limit to prevent memory exhaustion
+    if (pending_.size() >= MAX_PENDING_COROUTINES) {
+        Log::warn("CoroutineScheduler: global limit reached ({} pending), rejecting new coroutine",
+                 pending_.size());
+        return 0;
+    }
+
+    // Check per-entity limit to prevent single script from abusing the scheduler
+    if (owner_id.is_valid()) {
+        std::size_t entity_count = pending_count_for(owner_id);
+        if (entity_count >= MAX_PENDING_PER_ENTITY) {
+            Log::warn("CoroutineScheduler: per-entity limit reached for {}:{} ({} pending)",
+                     owner_id.zone_id(), owner_id.local_id(), entity_count);
+            return 0;
+        }
+    }
+
     // Clamp delay to valid range
     delay_seconds = std::clamp(delay_seconds, MIN_DELAY_SECONDS, MAX_DELAY_SECONDS);
 

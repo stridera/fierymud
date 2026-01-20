@@ -1,6 +1,7 @@
 #include "player_connection.hpp"
 
 #include "../commands/command_system.hpp"
+#include "../commands/information_commands.hpp"
 #include "../core/actor.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
@@ -770,9 +771,24 @@ void PlayerConnection::start() {
     login_system_ = std::make_unique<LoginSystem>(shared_from_this());
     login_system_->set_player_loaded_callback([this](std::shared_ptr<Player> player) { on_login_completed(player); });
 
-    // For TLS connections, perform handshake first
+    // For TLS connections, perform handshake first with timeout
     if (is_tls_connection()) {
+        // Set up handshake timeout to prevent slowloris-style attacks
+        idle_check_timer_.expires_after(TLS_HANDSHAKE_TIMEOUT);
+        idle_check_timer_.async_wait([this, self = shared_from_this()](const asio::error_code& ec) {
+            if (!ec) {
+                // Timer fired - handshake took too long
+                Log::warn("TLS handshake timeout for {} after {} seconds",
+                         remote_address(), TLS_HANDSHAKE_TIMEOUT.count());
+                disconnect("TLS handshake timeout");
+            }
+            // If ec is operation_aborted, the timer was cancelled (handshake completed)
+        });
+
         connection_socket_->async_handshake([this, self = shared_from_this()](const asio::error_code& error) {
+            // Cancel the timeout timer
+            idle_check_timer_.cancel();
+
             if (!error) {
                 Log::debug("TLS handshake completed for {}", remote_address());
                 handle_connect();
@@ -1055,10 +1071,8 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     login_event.metadata["level"] = player_->level();
     fierymud::events::EventPublisher::instance().publish(std::move(login_event));
 
-    // Send room description after login
-    if (auto room = player_->current_room()) {
-        send_message(room->get_room_description(player_.get()));
-    }
+    // Send room info after login (respects brief mode, shows name/contents/actors)
+    send_message(InformationCommands::format_room_for_actor(player_));
 
     // Send initial GMCP data if supported
     if (supports_gmcp()) {
@@ -1089,11 +1103,9 @@ void PlayerConnection::attach_player(std::shared_ptr<Player> player) {
     
     Log::info("Player '{}' reconnected from {}", player_->name(), remote_address());
     
-    // Send reconnection message and current room info
+    // Send reconnection message and current room info (respects brief mode)
     send_message("=== Reconnected ===");
-    if (auto room = player_->current_room()) {
-        send_message(room->get_room_description(player_.get()));
-    }
+    send_message(InformationCommands::format_room_for_actor(player_));
     
     // Send room info for reconnections (vitals/status already established)
     if (supports_gmcp()) {

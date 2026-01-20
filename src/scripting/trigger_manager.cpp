@@ -8,6 +8,7 @@
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
+#include <random>
 
 namespace FieryMUD {
 
@@ -747,12 +748,16 @@ TriggerResult TriggerManager::dispatch_random(std::shared_ptr<Actor> owner) {
     auto entity_id = owner->id();
     auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::RANDOM);
 
+    // Thread-local RNG for random trigger chances
+    static thread_local std::mt19937 rng{std::random_device{}()};
+    static thread_local std::uniform_int_distribution<int> dist(0, 99);
+
     for (const auto& trigger : triggers) {
         // Check numeric_arg for random percentage
         int chance = trigger->numeric_arg > 0 ? trigger->numeric_arg : 100;
 
-        // Roll for random trigger
-        if (std::rand() % 100 >= chance) {
+        // Roll for random trigger using proper RNG
+        if (dist(rng) >= chance) {
             continue;
         }
 

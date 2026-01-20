@@ -61,6 +61,41 @@ std::string CharacterCreationData::get_race_name() const {
 // LoginSystem implementation
 LoginSystem::LoginSystem(std::shared_ptr<PlayerConnection> connection) : connection_(std::move(connection)) {}
 
+bool LoginSystem::check_rate_limit() {
+    if (login_attempts_ == 0) {
+        return true;  // No previous failures, allow immediately
+    }
+
+    // Calculate required delay based on number of failures (exponential backoff)
+    // 1st failure: 1s, 2nd: 2s, 3rd: 4s
+    int delay_ms = RATE_LIMIT_BASE_DELAY_MS * (1 << (login_attempts_ - 1));
+    auto required_wait = std::chrono::milliseconds(delay_ms);
+    auto elapsed = std::chrono::steady_clock::now() - last_failed_attempt_;
+
+    if (elapsed < required_wait) {
+        // Still rate limited - inform user of remaining wait time
+        auto remaining = std::chrono::duration_cast<std::chrono::seconds>(required_wait - elapsed).count();
+        if (remaining > 0) {
+            send_message(fmt::format("Please wait {} second{} before trying again.",
+                                    remaining, remaining == 1 ? "" : "s"));
+        }
+        return false;
+    }
+
+    return true;
+}
+
+void LoginSystem::record_failed_attempt(std::string_view attempted_name) {
+    login_attempts_++;
+    last_failed_attempt_ = std::chrono::steady_clock::now();
+
+    // Security logging: log failed attempts with IP for monitoring
+    std::string remote_addr = connection_ ? connection_->remote_address() : "unknown";
+    Log::warn("Failed login attempt #{} for '{}' from {} (state: {})",
+              login_attempts_, attempted_name, remote_addr,
+              magic_enum::enum_name(state_));
+}
+
 // Helper function to load character abilities from database
 void LoginSystem::load_player_abilities(std::shared_ptr<Player> &player) {
     // Gods get ALL abilities at max proficiency
@@ -575,14 +610,14 @@ void LoginSystem::handle_get_account(std::string_view input) {
                         player_loaded_callback_(player_);
                     }
 
-                    Log::info("Player '{}' logged in via quick login (legacy character)", player_->name());
+                    Log::info("Player '{}' logged in via quick login (character name)", player_->name());
                     return;
                 }
                 // Password was wrong for legacy character
             }
 
             // Neither account nor legacy character login worked
-            login_attempts_++;
+            record_failed_attempt(username);
             if (login_attempts_ >= MAX_LOGIN_ATTEMPTS) {
                 disconnect_with_message("Too many failed login attempts. Goodbye!");
                 return;
@@ -690,11 +725,11 @@ void LoginSystem::handle_get_account(std::string_view input) {
     }
 
     if (!exists_result.value()) {
-        // Account doesn't exist - check if it's a legacy character name
+        // Account doesn't exist - check if it's a character name
         auto char_exists = character_exists(input);
         if (char_exists && char_exists.value()) {
-            // It's a legacy character - switch to legacy login flow
-            send_message(fmt::format("Character '{}' found. Using legacy login.", input));
+            // It's a character without an account - use direct character login
+            send_message(fmt::format("Character '{}' found. Enter your character password.", input));
             creation_data_.name = normalize_name(input);
             transition_to(LoginState::GetPassword);
             send_prompt();
@@ -703,7 +738,7 @@ void LoginSystem::handle_get_account(std::string_view input) {
 
         // Neither account nor character exists
         send_message(fmt::format("Account '{}' not found.", account_name_));
-        send_message("Please register at https://fierymud.org or enter a character name for legacy login.");
+        send_message("Please register at https://fierymud.org or enter your character name to login.");
         send_prompt();
         return;
     }
@@ -715,6 +750,12 @@ void LoginSystem::handle_get_account(std::string_view input) {
 }
 
 void LoginSystem::handle_get_account_password(std::string_view input) {
+    // Rate limit check - enforce delay between failed attempts
+    if (!check_rate_limit()) {
+        send_prompt();
+        return;
+    }
+
     if (input.empty()) {
         send_message("Please enter your password.");
         send_prompt();
@@ -729,7 +770,7 @@ void LoginSystem::handle_get_account_password(std::string_view input) {
     }
 
     if (!verify_result.value()) {
-        login_attempts_++;
+        record_failed_attempt(account_name_);
         if (login_attempts_ >= MAX_LOGIN_ATTEMPTS) {
             disconnect_with_message("Too many failed login attempts. Goodbye!");
             return;
@@ -980,7 +1021,7 @@ void LoginSystem::handle_get_name(std::string_view input) {
             // Existing character - try to login directly with provided password
             auto load_result = load_character(name, password_part);
             if (!load_result) {
-                login_attempts_++;
+                record_failed_attempt(name);
                 if (login_attempts_ >= MAX_LOGIN_ATTEMPTS) {
                     disconnect_with_message("Too many failed login attempts. Goodbye!");
                     return;
@@ -1055,6 +1096,12 @@ void LoginSystem::handle_get_name(std::string_view input) {
 }
 
 void LoginSystem::handle_get_password(std::string_view input) {
+    // Rate limit check - enforce delay between failed attempts
+    if (!check_rate_limit()) {
+        send_prompt();
+        return;
+    }
+
     if (input.empty()) {
         send_message("Please enter your password.");
         send_prompt();
@@ -1063,7 +1110,7 @@ void LoginSystem::handle_get_password(std::string_view input) {
 
     auto load_result = load_character(creation_data_.name, input);
     if (!load_result) {
-        login_attempts_++;
+        record_failed_attempt(creation_data_.name);
         if (login_attempts_ >= MAX_LOGIN_ATTEMPTS) {
             disconnect_with_message("Too many failed login attempts. Goodbye!");
             return;

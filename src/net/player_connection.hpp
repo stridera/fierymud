@@ -289,6 +289,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     std::string original_host_;  // For reconnection validation
 
     // Connection limits and timeouts (declared first as some are used below)
+    static constexpr std::chrono::seconds TLS_HANDSHAKE_TIMEOUT{30}; // 30 seconds for TLS handshake
     static constexpr std::chrono::seconds LOGIN_TIMEOUT{180}; // 3 minutes
     static constexpr std::chrono::seconds IDLE_TIMEOUT{1800}; // 30 minutes
     static constexpr std::chrono::seconds AFK_TIMEOUT{900};   // 15 minutes for AFK detection

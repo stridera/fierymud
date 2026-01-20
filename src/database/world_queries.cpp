@@ -1,9 +1,12 @@
 #include "database/world_queries.hpp"
 #include "database/generated/db_tables.hpp"
 #include "database/generated/db_enums.hpp"
+#include "database/db_parsing_utils.hpp"
 #include "core/logging.hpp"
 #include "core/object.hpp"
 #include "text/string_utils.hpp"
+
+using DbParsingUtils::parse_pg_array;
 #include <magic_enum/magic_enum.hpp>
 #include <fmt/format.h>
 #include <fmt/chrono.h>
@@ -40,67 +43,6 @@ static ObjectType object_type_from_db_string(std::string_view type_str,
         return ObjectType::Other;
     }
     return *result;
-}
-
-// Helper function to parse PostgreSQL array format: {elem1,elem2,elem3} or {"elem 1","elem 2"}
-static std::vector<std::string> parse_pg_array(const std::string& pg_array) {
-    std::vector<std::string> result;
-
-    if (pg_array.empty() || pg_array == "{}") {
-        return result;
-    }
-
-    // Remove outer braces
-    std::string content = pg_array;
-    if (content.front() == '{' && content.back() == '}') {
-        content = content.substr(1, content.length() - 2);
-    }
-
-    if (content.empty()) {
-        return result;
-    }
-
-    // Parse comma-separated values, handling quoted strings
-    std::string current;
-    bool in_quotes = false;
-    bool escape_next = false;
-
-    for (size_t i = 0; i < content.size(); ++i) {
-        char c = content[i];
-
-        if (escape_next) {
-            current += c;
-            escape_next = false;
-            continue;
-        }
-
-        if (c == '\\') {
-            escape_next = true;
-            continue;
-        }
-
-        if (c == '"') {
-            in_quotes = !in_quotes;
-            continue;
-        }
-
-        if (c == ',' && !in_quotes) {
-            if (!current.empty()) {
-                result.push_back(current);
-                current.clear();
-            }
-            continue;
-        }
-
-        current += c;
-    }
-
-    // Don't forget the last element
-    if (!current.empty()) {
-        result.push_back(current);
-    }
-
-    return result;
 }
 
 // Helper function to parse PostgreSQL integer array format: {1,2,3}
@@ -2681,22 +2623,24 @@ Result<std::vector<AbilityEffectData>> load_abilities_effects(
     logger->debug("Loading effects for {} abilities", ability_ids.size());
 
     try {
-        // Build IN clause
-        std::string id_list;
+        // Build PostgreSQL array literal for parameterized query
+        // Using = ANY($1::int[]) is safer than dynamic IN clause
+        std::string id_array = "{";
         for (size_t i = 0; i < ability_ids.size(); ++i) {
-            if (i > 0) id_list += ",";
-            id_list += std::to_string(ability_ids[i]);
+            if (i > 0) id_array += ",";
+            id_array += std::to_string(ability_ids[i]);
         }
+        id_array += "}";
 
-        auto result = txn.exec(fmt::format(R"(
+        auto result = txn.exec_params(R"(
             SELECT
                 ability_id, effect_id,
                 override_params::text AS override_params,
                 "order", trigger, chance_pct, condition
             FROM "AbilityEffect"
-            WHERE ability_id IN ({})
+            WHERE ability_id = ANY($1::int[])
             ORDER BY ability_id, "order"
-        )", id_list));
+        )", id_array);
 
         std::vector<AbilityEffectData> effects;
         effects.reserve(result.size());
@@ -3091,7 +3035,22 @@ namespace {
         return result;
     }
 
+    // Helper to escape a string for PostgreSQL array literal
+    // Escapes backslashes and double quotes per PostgreSQL array syntax
+    std::string escape_pg_array_element(const std::string& str) {
+        std::string escaped;
+        escaped.reserve(str.size() + 8);  // Preallocate with some extra space
+        for (char c : str) {
+            if (c == '\\' || c == '"') {
+                escaped += '\\';
+            }
+            escaped += c;
+        }
+        return escaped;
+    }
+
     // Helper to convert vector<string> to PostgreSQL array literal
+    // Properly escapes special characters to prevent SQL injection
     std::string to_pg_array(const std::vector<std::string>& vec) {
         if (vec.empty()) {
             return "{}";
@@ -3099,7 +3058,7 @@ namespace {
         std::string result = "{";
         for (size_t i = 0; i < vec.size(); ++i) {
             if (i > 0) result += ",";
-            result += "\"" + vec[i] + "\"";
+            result += "\"" + escape_pg_array_element(vec[i]) + "\"";
         }
         result += "}";
         return result;
@@ -3144,11 +3103,38 @@ namespace {
         char* result = crypt_r(password.c_str(), salt.c_str(), &data);
 
         if (result == nullptr) {
-            // Fallback to simple hash if crypt fails
+            // Fallback to SHA-256 if crypt_r fails (should not happen on modern Linux)
             auto logger = Log::database();
-            logger->error("crypt_r failed, using fallback hash");
-            std::size_t hash = std::hash<std::string>{}(password);
-            return fmt::format("fallback${:016x}", hash);
+            logger->error("crypt_r failed, using SHA-256 fallback hash");
+
+            // Generate 16-byte salt
+            std::array<unsigned char, 16> fallback_salt{};
+            RAND_bytes(fallback_salt.data(), fallback_salt.size());
+
+            // Build salted password: salt + password
+            std::string salted = std::string(fallback_salt.begin(), fallback_salt.end()) + password;
+
+            // Compute SHA-256 hash using OpenSSL EVP
+            std::array<unsigned char, 32> hash_bytes{};
+            unsigned int hash_len = 0;
+            EVP_MD_CTX* ctx = EVP_MD_CTX_new();
+            if (ctx) {
+                EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+                EVP_DigestUpdate(ctx, salted.data(), salted.size());
+                EVP_DigestFinal_ex(ctx, hash_bytes.data(), &hash_len);
+                EVP_MD_CTX_free(ctx);
+            }
+
+            // Format as: fallback$<salt_hex>$<hash_hex>
+            std::string salt_hex;
+            std::string hash_hex;
+            for (auto b : fallback_salt) {
+                salt_hex += fmt::format("{:02x}", b);
+            }
+            for (unsigned int i = 0; i < hash_len; ++i) {
+                hash_hex += fmt::format("{:02x}", hash_bytes[i]);
+            }
+            return fmt::format("fallback${}${}", salt_hex, hash_hex);
         }
 
         return std::string(result);
@@ -3219,15 +3205,58 @@ namespace {
             }
 
             case HashType::FallbackHash: {
-                // Simple development hash
-                std::size_t hash = std::hash<std::string>{}(password);
-                return stored_hash == fmt::format("fallback${:016x}", hash);
+                // SHA-256 fallback hash: fallback$<salt_hex>$<hash_hex>
+                // Parse the stored hash to extract salt
+                auto first_dollar = stored_hash.find('$');
+                if (first_dollar == std::string::npos) return false;
+                auto second_dollar = stored_hash.find('$', first_dollar + 1);
+                if (second_dollar == std::string::npos) {
+                    // Old format: fallback$<hash_hex> (legacy std::hash - deprecated)
+                    // For backwards compatibility only - will be upgraded on next login
+                    std::size_t legacy_hash = std::hash<std::string>{}(password);
+                    return stored_hash == fmt::format("fallback${:016x}", legacy_hash);
+                }
+
+                // New format: fallback$<salt_hex>$<hash_hex>
+                std::string salt_hex = stored_hash.substr(first_dollar + 1, second_dollar - first_dollar - 1);
+                std::string stored_hash_hex = stored_hash.substr(second_dollar + 1);
+
+                // Convert salt from hex to bytes
+                std::string salt_bytes;
+                for (size_t i = 0; i + 1 < salt_hex.size(); i += 2) {
+                    int byte = std::stoi(salt_hex.substr(i, 2), nullptr, 16);
+                    salt_bytes += static_cast<char>(byte);
+                }
+
+                // Compute hash of salt + password
+                std::string salted = salt_bytes + password;
+                std::array<unsigned char, 32> computed_hash{};
+                unsigned int hash_len = 0;
+                EVP_MD_CTX* ctx = EVP_MD_CTX_new();
+                if (ctx) {
+                    EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+                    EVP_DigestUpdate(ctx, salted.data(), salted.size());
+                    EVP_DigestFinal_ex(ctx, computed_hash.data(), &hash_len);
+                    EVP_MD_CTX_free(ctx);
+                }
+
+                // Convert computed hash to hex and compare
+                std::string computed_hex;
+                for (unsigned int i = 0; i < hash_len; ++i) {
+                    computed_hex += fmt::format("{:02x}", computed_hash[i]);
+                }
+                return stored_hash_hex == computed_hex;
             }
 
             case HashType::Unknown:
-            default:
-                // Try direct comparison as last resort
-                return stored_hash == password;
+            default: {
+                // SECURITY: Reject unknown hash formats instead of direct comparison
+                // Direct comparison would allow plaintext passwords to work, which is dangerous
+                auto logger = Log::database();
+                logger->error("Password verification failed: unknown hash format (length {})",
+                             stored_hash.size());
+                return false;
+            }
         }
     }
 
@@ -4441,16 +4470,8 @@ Result<void> save_character_items(
             std::string equipped_loc_param = item.equipped_location.empty()
                 ? "" : item.equipped_location;
 
-            // Build instance flags as PostgreSQL array literal
-            std::string flags_array = "{}";
-            if (!item.instance_flags.empty()) {
-                flags_array = "{";
-                for (size_t i = 0; i < item.instance_flags.size(); ++i) {
-                    if (i > 0) flags_array += ",";
-                    flags_array += "\"" + item.instance_flags[i] + "\"";
-                }
-                flags_array += "}";
-            }
+            // Build instance flags as PostgreSQL array literal (with proper escaping)
+            std::string flags_array = to_pg_array(item.instance_flags);
 
             // Build liquid effects as PostgreSQL integer array literal
             std::string effects_array = "{}";

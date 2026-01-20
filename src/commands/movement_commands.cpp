@@ -1,5 +1,6 @@
 #include "movement_commands.hpp"
 #include "builtin_commands.hpp"
+#include "information_commands.hpp"
 
 #include "../core/actor.hpp"
 #include "../database/config_loader.hpp"
@@ -531,8 +532,8 @@ void complete_recall(std::shared_ptr<Actor> actor) {
         }
     }
 
-    // Show the new room
-    actor->send_message(dest_room->get_room_description(actor.get()));
+    // Show the new room (respects brief mode)
+    actor->send_message(InformationCommands::format_room_for_actor(actor));
 
     // Apply recall cooldown effect (configurable duration)
     ActiveEffect cooldown{

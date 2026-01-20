@@ -4,6 +4,7 @@
 #include "../core/ids.hpp"
 #include "../core/result.hpp"
 
+#include <chrono>
 #include <functional>
 #include <memory>
 #include <string>
@@ -170,7 +171,19 @@ class LoginSystem {
     // Callbacks
     PlayerLoadedCallback player_loaded_callback_;
 
-    // Attempt tracking
+    // Attempt tracking and rate limiting
     int login_attempts_{0};
     static constexpr int MAX_LOGIN_ATTEMPTS = 3;
+    std::chrono::steady_clock::time_point last_failed_attempt_{};
+
+    // Rate limiting: delay in seconds = BASE_DELAY * 2^(attempts-1)
+    // 1st failure: 1s, 2nd: 2s, 3rd: 4s (then disconnect)
+    static constexpr int RATE_LIMIT_BASE_DELAY_MS = 1000;
+
+    // Check if enough time has passed since last failed attempt
+    // Returns true if request should be processed, false if rate limited
+    bool check_rate_limit();
+
+    // Record a failed login attempt and log it
+    void record_failed_attempt(std::string_view attempted_name);
 };

@@ -1,70 +1,17 @@
 #include "database/trigger_queries.hpp"
 #include "database/generated/db_tables.hpp"
 #include "database/generated/db_enums.hpp"
+#include "database/db_parsing_utils.hpp"
 #include "core/logging.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 
+using DbParsingUtils::parse_pg_array;
+
 namespace TriggerQueries {
 
 namespace {
-
-// Helper to parse PostgreSQL array format: {elem1,elem2,elem3}
-std::vector<std::string> parse_pg_array(const std::string& pg_array) {
-    std::vector<std::string> result;
-
-    if (pg_array.empty() || pg_array == "{}") {
-        return result;
-    }
-
-    std::string content = pg_array;
-    if (content.front() == '{' && content.back() == '}') {
-        content = content.substr(1, content.length() - 2);
-    }
-
-    if (content.empty()) {
-        return result;
-    }
-
-    std::string current;
-    bool in_quotes = false;
-    bool escape_next = false;
-
-    for (char c : content) {
-        if (escape_next) {
-            current += c;
-            escape_next = false;
-            continue;
-        }
-
-        if (c == '\\') {
-            escape_next = true;
-            continue;
-        }
-
-        if (c == '"') {
-            in_quotes = !in_quotes;
-            continue;
-        }
-
-        if (c == ',' && !in_quotes) {
-            if (!current.empty()) {
-                result.push_back(current);
-                current.clear();
-            }
-            continue;
-        }
-
-        current += c;
-    }
-
-    if (!current.empty()) {
-        result.push_back(current);
-    }
-
-    return result;
-}
 
 // Convert db::TriggerFlag to scripting TriggerFlag
 FieryMUD::TriggerFlag convert_flag(db::TriggerFlag db_flag) {

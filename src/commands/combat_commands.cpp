@@ -1,5 +1,6 @@
 #include "combat_commands.hpp"
 #include "builtin_commands.hpp"
+#include "information_commands.hpp"
 
 #include "core/ability_executor.hpp"
 #include "../core/actor.hpp"
@@ -542,6 +543,9 @@ Result<CommandResult> cmd_flee(const CommandContext &ctx) {
         return CommandResult::ResourceError;
     }
 
+    // Show the room after fleeing (respects brief mode)
+    ctx.send(InformationCommands::format_room_for_actor(ctx.actor));
+
     return CommandResult::Success;
 }
 
@@ -601,6 +605,9 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
     ctx.send("You feel yourself drawn back to the mortal realm in a new body...");
     ctx.send("You have been returned to life!");
     ctx.send_to_room(fmt::format("{} materializes out of thin air!", ctx.actor->display_name()), true);
+
+    // Show the starting room (respects brief mode)
+    ctx.send(InformationCommands::format_room_for_actor(ctx.actor));
 
     return CommandResult::Success;
 }

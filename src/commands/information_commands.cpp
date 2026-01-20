@@ -135,136 +135,158 @@ std::string get_race_display_name(std::string_view race) {
 }
 
 // =============================================================================
+// Room Display Helper
+// =============================================================================
+
+std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
+                                   const std::shared_ptr<Room>& room_param) {
+    if (!actor) {
+        return "";
+    }
+
+    auto room = room_param ? room_param : actor->current_room();
+    if (!room) {
+        return "You are nowhere.";
+    }
+
+    // Check visibility
+    bool can_see = room->can_see_in_room(actor.get());
+
+    if (!can_see) {
+        // Room is dark - just return darkness message
+        return room->get_room_description(actor.get());
+    }
+
+    // Check if actor is a player with brief mode enabled
+    bool is_brief = false;
+    bool show_exits = true;
+    bool show_ids = false;
+    bool has_holylight = actor->is_holylight();
+
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        is_brief = player->is_brief();
+        show_exits = player->is_autoexit();
+        show_ids = player->is_show_ids();
+    }
+
+    std::ostringstream result;
+
+    // Always show room name
+    result << "<green>" << room->name() << "</>\n";
+
+    // Show description only if not in brief mode
+    if (!is_brief) {
+        result << room->get_room_description(actor.get()) << "\n";
+    }
+
+    // Show exits if autoexit enabled
+    if (show_exits) {
+        std::string exits = BuiltinCommands::Helpers::format_exits(room);
+        if (!exits.empty()) {
+            result << "\n" << exits << "\n";
+        }
+    }
+
+    // Show objects in room
+    auto objects = room->contents().objects;
+    bool found_objects = false;
+    for (const auto& obj : objects) {
+        if (obj) {
+            auto ground_desc = obj->ground();
+            if (ground_desc.empty()) {
+                ground_desc = obj->short_description();
+            }
+            if (ground_desc.empty()) {
+                continue;  // Skip objects with no description
+            }
+            if (!found_objects) {
+                result << "\n<yellow>You see:</>\n";
+                found_objects = true;
+            }
+            result << fmt::format("  {}\n", ground_desc);
+        }
+    }
+
+    // Show other actors
+    auto actors = room->contents().actors;
+    bool found_others = false;
+    for (const auto& other : actors) {
+        if (other && other != actor && other->is_visible_to(*actor)) {
+            std::string actor_desc = other->room_presence(actor);
+            if (actor_desc.empty()) {
+                continue;
+            }
+
+            // Build status indicators
+            std::string indicators;
+
+            // Invisible
+            if (other->has_flag(ActorFlag::Invisible) &&
+                (actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
+                indicators += "(invis) ";
+            }
+            // Alignment
+            if (actor->has_flag(ActorFlag::Detect_Align) || has_holylight) {
+                int alignment = other->stats().alignment;
+                if (alignment <= -350) {
+                    indicators += "(evil) ";
+                } else if (alignment >= 350) {
+                    indicators += "(good) ";
+                }
+            }
+            // Magic detection
+            if ((actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) &&
+                !other->active_effects().empty()) {
+                indicators += "(magical) ";
+            }
+            // Hidden
+            if (other->has_flag(ActorFlag::Hide) &&
+                (actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
+                indicators += "(hidden) ";
+            }
+            // Poison
+            if (other->has_flag(ActorFlag::Poison) &&
+                (actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
+                indicators += "<magenta>(poisoned)</> ";
+            }
+            // On fire
+            if (other->has_flag(ActorFlag::On_Fire)) {
+                indicators += "<red>(burning)</> ";
+            }
+            // AFK
+            if (other->is_afk()) {
+                indicators += "<yellow>[AFK]</> ";
+            }
+            // Show ID for immortals
+            if (show_ids) {
+                indicators += fmt::format("<cyan>[{}.{}]</> ",
+                    other->id().zone_id(), other->id().local_id());
+            }
+
+            if (!found_others) {
+                result << "\n";
+                found_others = true;
+            }
+            result << fmt::format("  {}{}\n", indicators, actor_desc);
+        }
+    }
+
+    return result.str();
+}
+
+// =============================================================================
 // Information Commands
 // =============================================================================
 
 Result<CommandResult> cmd_look(const CommandContext &ctx) {
     if (ctx.arg_count() == 0) {
-        // Look at room - get current room from actor, not from context
-        auto current_room = ctx.actor ? ctx.actor->current_room() : nullptr;
-        if (!current_room) {
+        // Look at room - use helper function that respects brief mode
+        std::string room_display = format_room_for_actor(ctx.actor);
+        if (room_display.empty()) {
             ctx.send_error("You are not in a room.");
             return CommandResult::InvalidState;
         }
-
-        // Cache visibility check to avoid redundant calculate_effective_light calls
-        bool can_see = current_room->can_see_in_room(ctx.actor.get());
-
-        // Use the room's own get_room_description method which properly handles lighting
-        std::string description = current_room->get_room_description(ctx.actor.get());
-
-        // Only add additional formatting (exits, objects, actors) if the room is visible
-        if (!can_see) {
-            // Room is dark, just send the darkness message
-            ctx.send(description);
-            return CommandResult::Success;
-        }
-
-        // Room is visible, add room name as header, then description, exits, objects, and actors
-        std::ostringstream full_desc;
-        full_desc << "<green>" << current_room->name() << "</>\n";
-        full_desc << description << "\n";
-
-        // Add exits (only if player has autoexit enabled)
-        bool show_exits = true;
-        if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
-            show_exits = player->is_autoexit();
-        }
-        if (show_exits) {
-            std::string exits = BuiltinCommands::Helpers::format_exits(current_room);
-            if (!exits.empty()) {
-                full_desc << fmt::format("\n{}\n", exits);
-            }
-        }
-
-        // Add objects in room
-        auto objects = current_room->contents().objects;
-        bool found_objects = false;
-        for (const auto &obj : objects) {
-            if (obj) {
-                auto ground_desc = obj->ground();
-                if (ground_desc.empty()) {
-                    ground_desc = obj->short_description();
-                }
-                if (ground_desc.empty()) {
-                    continue;  // Skip objects with no description
-                }
-                if (!found_objects) {
-                    full_desc << "\n<yellow>You see:</>\n";
-                    found_objects = true;
-                }
-                full_desc << fmt::format("  {}\n", ground_desc);
-            }
-        }
-
-        // Add other actors (check visibility)
-        auto actors = current_room->contents().actors;
-        bool found_others = false;
-        for (const auto &actor : actors) {
-            if (actor && actor != ctx.actor && actor->is_visible_to(*ctx.actor)) {
-                // Get position-based description (e.g., "Strider is standing here.")
-                std::string actor_desc = actor->room_presence(ctx.actor);
-                if (actor_desc.empty()) {
-                    continue;  // Skip actors with no description
-                }
-
-                // Build status indicator prefix
-                std::string indicators;
-                bool has_holylight = ctx.actor->is_holylight();
-
-                // Invisible - holylight sees all invisible
-                if (actor->has_flag(ActorFlag::Invisible) &&
-                    (ctx.actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
-                    indicators += "(invis) ";
-                }
-                // Alignment - holylight sees all alignments
-                if (ctx.actor->has_flag(ActorFlag::Detect_Align) || has_holylight) {
-                    int alignment = actor->stats().alignment;
-                    if (alignment <= -350) {
-                        indicators += "(evil) ";
-                    } else if (alignment >= 350) {
-                        indicators += "(good) ";
-                    }
-                }
-                // Magic detection - holylight sees all magical auras
-                if ((ctx.actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) &&
-                    !actor->active_effects().empty()) {
-                    indicators += "(magical) ";
-                }
-                // Hidden - holylight sees all hidden
-                if (actor->has_flag(ActorFlag::Hide) &&
-                    (ctx.actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
-                    indicators += "(hidden) ";
-                }
-                // Poison detection - holylight sees all poisoned
-                if (actor->has_flag(ActorFlag::Poison) &&
-                    (ctx.actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
-                    indicators += "<magenta>(poisoned)</> ";
-                }
-                // Status effects visible to all
-                if (actor->has_flag(ActorFlag::On_Fire)) {
-                    indicators += "<red>(burning)</> ";
-                }
-                // AFK indicator for players
-                if (actor->is_afk()) {
-                    indicators += "<yellow>[AFK]</> ";
-                }
-                // Show ID for immortals with ShowIds enabled
-                if (ctx.actor->is_show_ids()) {
-                    indicators += fmt::format("<cyan>[{}.{}]</> ",
-                        actor->id().zone_id(), actor->id().local_id());
-                }
-
-                if (!found_others) {
-                    full_desc << "\n";
-                    found_others = true;
-                }
-
-                full_desc << fmt::format("  {}{}\n", indicators, actor_desc);
-            }
-        }
-
-        ctx.send(full_desc.str());
+        ctx.send(room_display);
         return CommandResult::Success;
     }
 

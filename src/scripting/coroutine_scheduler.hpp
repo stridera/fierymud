@@ -124,6 +124,16 @@ public:
      */
     static constexpr double MIN_DELAY_SECONDS = 0.1; // 100ms
 
+    /**
+     * Maximum pending coroutines (prevent memory exhaustion)
+     */
+    static constexpr std::size_t MAX_PENDING_COROUTINES = 10000;
+
+    /**
+     * Maximum pending coroutines per entity (prevent single script abuse)
+     */
+    static constexpr std::size_t MAX_PENDING_PER_ENTITY = 100;
+
 private:
     /**
      * Resume a coroutine after its timer fires
