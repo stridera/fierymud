@@ -1069,4 +1069,32 @@ Result<std::vector<ReportData>> load_open_reports(
 /** Count open reports by type */
 Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type);
 
+// ============================================================================
+// Character Aliases
+// ============================================================================
+
+/**
+ * Character alias data for persistence.
+ * Maps to the CharacterAliases table.
+ */
+struct CharacterAliasData {
+    std::string character_id;   // Character UUID
+    std::string alias;          // Alias name (e.g., "kk")
+    std::string command;        // Command to execute (e.g., "kill kobold")
+};
+
+/** Load all aliases for a character */
+Result<std::vector<CharacterAliasData>> load_character_aliases(
+    pqxx::work& txn, const std::string& character_id);
+
+/** Save all aliases for a character (replaces existing) */
+Result<void> save_character_aliases(
+    pqxx::work& txn,
+    const std::string& character_id,
+    const std::vector<CharacterAliasData>& aliases);
+
+/** Delete all aliases for a character */
+Result<void> delete_character_aliases(
+    pqxx::work& txn, const std::string& character_id);
+
 } // namespace WorldQueries

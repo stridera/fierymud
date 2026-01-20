@@ -277,6 +277,7 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     ConnectionState state_{ConnectionState::Connected};
     std::shared_ptr<Player> player_;
     std::chrono::steady_clock::time_point connect_time_;
+    std::chrono::system_clock::time_point login_time_;  // When player successfully logged in
     
     // Enhanced session management
     std::chrono::steady_clock::time_point last_input_time_{std::chrono::steady_clock::now()};

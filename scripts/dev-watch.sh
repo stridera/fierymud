@@ -51,16 +51,26 @@ echo ""
 # Initial start
 start_server
 
+# Track binary modification time
+LAST_MTIME=$(stat -c %Y "$BINARY" 2>/dev/null || echo "0")
+
 # Watch for changes
 while true; do
-    # Wait for the binary to be modified or replaced
-    inotifywait -q -e close_write,moved_to,create "$(dirname $BINARY)" 2>/dev/null | grep -q "$(basename $BINARY)"
+    # Wait for any change in the build directory
+    inotifywait -q -q -e close_write,moved_to,create,modify "$(dirname $BINARY)" 2>/dev/null
 
-    if [ $? -eq 0 ]; then
+    # Brief pause to let the build fully complete
+    sleep 0.2
+
+    # Check if the binary's modification time actually changed
+    CURRENT_MTIME=$(stat -c %Y "$BINARY" 2>/dev/null || echo "0")
+
+    if [ "$CURRENT_MTIME" != "$LAST_MTIME" ] && [ -f "$BINARY" ]; then
         echo ""
         echo "[watch] Binary changed, restarting..."
         stop_server
-        sleep 0.5  # Brief pause to ensure file is fully written
+        sleep 0.3  # Brief pause to ensure file is fully written
         start_server
+        LAST_MTIME="$CURRENT_MTIME"
     fi
 done

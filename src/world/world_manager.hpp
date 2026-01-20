@@ -370,12 +370,6 @@ class WorldManager {
 
 /** World management utility functions */
 namespace WorldUtils {
-/** Check if world directory structure exists */
-bool validate_world_directory(const std::string &world_path);
-
-/** Create default world directory structure */
-Result<void> create_world_directory(const std::string &world_path);
-
 /** Get all zone files in directory */
 std::vector<std::string> get_zone_files(const std::string &zone_dir);
 

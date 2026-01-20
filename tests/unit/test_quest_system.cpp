@@ -275,7 +275,7 @@ TEST_CASE("Quest: QuestManager quest count", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager quest lookup", "[quest][unit]") {
     auto& manager = FieryMUD::QuestManager::instance();
-    manager.initialize();
+    (void)manager.initialize();
 
     SECTION("Looking up non-existent quest returns nullptr") {
         auto* quest = manager.get_quest(999, 999);
@@ -296,7 +296,7 @@ TEST_CASE("Quest: QuestManager quest lookup", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager available quests", "[quest][unit]") {
     auto& manager = FieryMUD::QuestManager::instance();
-    manager.initialize();
+    (void)manager.initialize();
     manager.clear_all_quests();
 
     SECTION("Available quests for non-existent character is empty when no quests loaded") {
@@ -307,7 +307,7 @@ TEST_CASE("Quest: QuestManager available quests", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager zone operations", "[quest][unit]") {
     auto& manager = FieryMUD::QuestManager::instance();
-    manager.initialize();
+    (void)manager.initialize();
 
     SECTION("Clear zone quests works on non-existent zone") {
         // Should not crash or error
@@ -323,7 +323,7 @@ TEST_CASE("Quest: QuestManager zone operations", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager without database", "[quest][unit]") {
     auto& manager = FieryMUD::QuestManager::instance();
-    manager.initialize();
+    (void)manager.initialize();
 
     SECTION("Load zone quests returns zero without database") {
         // Without a database connection, load should return 0 (not error)

@@ -168,7 +168,7 @@ bool test_zone_loading() {
     g_stats.record_pass("Verify zones loaded: " + std::to_string(zones.size()) + " zones");
 
     // Test loading first zone
-    int first_zone_id = zones[0]->id().zone_id();
+    auto first_zone_id = zones[0]->id().zone_id();
     auto single_zone = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
         return WorldQueries::load_zone(txn, first_zone_id);
     });
@@ -203,7 +203,7 @@ bool test_room_loading() {
         return false;
     }
 
-    int first_zone_id = (*zones_result)[0]->id().zone_id();
+    auto first_zone_id = (*zones_result)[0]->id().zone_id();
 
     // Test loading rooms for zone
     auto rooms_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
@@ -346,7 +346,7 @@ bool test_mob_loading() {
         return false;
     }
 
-    int first_zone_id = (*zones_result)[0]->id().zone_id();
+    auto first_zone_id = (*zones_result)[0]->id().zone_id();
 
     // Test loading mobs for zone
     auto mobs_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
@@ -397,7 +397,7 @@ bool test_object_loading() {
         return false;
     }
 
-    int first_zone_id = (*zones_result)[0]->id().zone_id();
+    auto first_zone_id = (*zones_result)[0]->id().zone_id();
 
     // Test loading objects for zone
     auto objects_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {

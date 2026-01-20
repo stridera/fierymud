@@ -209,8 +209,6 @@ Result<CommandResult> cmd_forget(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Remove spell from memorized list
-
     if (ctx.arg_count() == 0) {
         ctx.send("Forget what spell?");
         ctx.send("Usage: forget <spell name>");
@@ -398,9 +396,6 @@ Result<CommandResult> cmd_study(const CommandContext &ctx) {
         ctx.send_error("Only players can study spells.");
         return CommandResult::InvalidState;
     }
-
-    // Check if player is a spellcaster
-    // TODO: Implement proper class checking for spellcasting ability
 
     ctx.send("Available Spell Slots:");
     ctx.send("Note: Spell slot system display not yet fully implemented.");

@@ -6032,4 +6032,98 @@ Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type) 
     }
 }
 
+// ============================================================================
+// Character Aliases
+// ============================================================================
+
+Result<std::vector<CharacterAliasData>> load_character_aliases(
+    pqxx::work& txn, const std::string& character_id) {
+
+    auto logger = Log::database();
+    logger->debug("Loading aliases for character {}", character_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            SELECT alias, command
+            FROM "CharacterAliases"
+            WHERE character_id = $1
+            ORDER BY alias
+        )", character_id);
+
+        std::vector<CharacterAliasData> aliases;
+        aliases.reserve(result.size());
+
+        for (const auto& row : result) {
+            CharacterAliasData alias;
+            alias.character_id = character_id;
+            alias.alias = row["alias"].as<std::string>();
+            alias.command = row["command"].as<std::string>();
+            aliases.push_back(std::move(alias));
+        }
+
+        logger->debug("Loaded {} aliases for character {}", aliases.size(), character_id);
+        return aliases;
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error loading aliases for character {}: {}", character_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to load aliases: {}", e.what())});
+    }
+}
+
+Result<void> save_character_aliases(
+    pqxx::work& txn,
+    const std::string& character_id,
+    const std::vector<CharacterAliasData>& aliases) {
+
+    auto logger = Log::database();
+    logger->debug("Saving {} aliases for character {}", aliases.size(), character_id);
+
+    try {
+        // Delete existing aliases first
+        txn.exec_params(R"(
+            DELETE FROM "CharacterAliases"
+            WHERE character_id = $1
+        )", character_id);
+
+        // Insert new aliases
+        for (const auto& alias : aliases) {
+            txn.exec_params(R"(
+                INSERT INTO "CharacterAliases" (character_id, alias, command)
+                VALUES ($1, $2, $3)
+            )", character_id, alias.alias, alias.command);
+        }
+
+        logger->debug("Saved {} aliases for character {}", aliases.size(), character_id);
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error saving aliases for character {}: {}", character_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to save aliases: {}", e.what())});
+    }
+}
+
+Result<void> delete_character_aliases(
+    pqxx::work& txn, const std::string& character_id) {
+
+    auto logger = Log::database();
+    logger->debug("Deleting aliases for character {}", character_id);
+
+    try {
+        txn.exec_params(R"(
+            DELETE FROM "CharacterAliases"
+            WHERE character_id = $1
+        )", character_id);
+
+        logger->debug("Deleted aliases for character {}", character_id);
+        return Success();
+
+    } catch (const pqxx::sql_error& e) {
+        logger->error("SQL error deleting aliases for character {}: {}", character_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError,
+            fmt::format("Failed to delete aliases: {}", e.what())});
+    }
+}
+
 } // namespace WorldQueries

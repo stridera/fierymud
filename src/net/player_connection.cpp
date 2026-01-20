@@ -994,6 +994,7 @@ void PlayerConnection::transition_to(ConnectionState new_state) {
 
 void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     player_ = std::move(player);
+    login_time_ = std::chrono::system_clock::now();  // Track actual login time
 
     // Set the player's output interface
     player_->set_output(shared_from_this());
@@ -1264,8 +1265,6 @@ void PlayerConnection::send_discord_status() {
         player_->player_class(),
         player_->level());
 
-    auto login_time = std::chrono::system_clock::now();  // TODO: Track actual login time
-
     send_gmcp("External.Discord.Status", {
         {"state", "Playing FieryMUD (fierymud.org:4000)"},
         {"details", details},
@@ -1273,7 +1272,7 @@ void PlayerConnection::send_discord_status() {
         {"smallimage", nlohmann::json::array({"servericon"})},
         {"smallimagetext", "FieryMUD"},
         {"starttime", std::chrono::duration_cast<std::chrono::seconds>(
-            login_time.time_since_epoch()).count()}
+            login_time_.time_since_epoch()).count()}
     });
 }
 

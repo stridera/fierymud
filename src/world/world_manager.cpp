@@ -45,28 +45,22 @@ WorldManager& WorldManager::instance() {
 
 Result<void> WorldManager::initialize(const std::string& world_path, bool load_from_files) {
     std::unique_lock lock(world_mutex_);
-    
+
     if (initialized_.load()) {
         return std::unexpected(Errors::InvalidState("WorldManager already initialized"));
     }
-    
+
     world_path_ = world_path;
-    
-    // Validate world directory structure
-    if (!WorldUtils::validate_world_directory(world_path_)) {
-        auto logger = Log::game();
-        logger->warn("World directory structure invalid, attempting to create: {}", world_path_);
-        
-        TRY(WorldUtils::create_world_directory(world_path_));
-    }
-    
+
+    // World data comes from PostgreSQL database - no filesystem directory needed
+
     stats_.startup_time = std::chrono::steady_clock::now();
     stats_.last_save = stats_.startup_time;
-    
+
     initialized_.store(true);
-    
+
     auto logger = Log::game();
-    logger->info("WorldManager initialized with world path: {}", world_path_);
+    logger->info("WorldManager initialized");
 
     if (load_from_files) {
         auto world_load = load_world();
@@ -75,7 +69,7 @@ Result<void> WorldManager::initialize(const std::string& world_path, bool load_f
             return std::unexpected(world_load.error());
         }
     }
-    
+
     return Success();
 }
 
@@ -167,8 +161,8 @@ Result<void> WorldManager::load_world() {
     
     auto start_time = std::chrono::steady_clock::now();
     auto logger = Log::game();
-    
-    logger->info("Loading world from: {}", world_path_);
+
+    logger->info("Loading world from database...");
     
     // Clear existing data
     rooms_.clear();
@@ -3080,20 +3074,6 @@ void WorldManager::tick_all_effects() {
 // WorldUtils Implementation
 
 namespace WorldUtils {
-    bool validate_world_directory(const std::string& world_path) {
-        return std::filesystem::exists(world_path);
-    }
-    
-    Result<void> create_world_directory(const std::string& world_path) {
-        try {
-            std::filesystem::create_directories(world_path);
-            
-            return Success();
-        } catch (const std::filesystem::filesystem_error& e) {
-            return std::unexpected(Errors::FileAccessError(e.what()));
-        }
-    }
-    
     std::vector<std::string> get_zone_files(const std::string& world_dir) {
         std::vector<std::string> zone_files;
         

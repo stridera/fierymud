@@ -326,6 +326,43 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                     Log::debug("Cleared effects from database for player {}", player.name());
                 }
             }
+
+            // Save character aliases
+            const auto& player_aliases = player.get_aliases();
+            if (!player_aliases.empty()) {
+                std::vector<WorldQueries::CharacterAliasData> aliases_data;
+                aliases_data.reserve(player_aliases.size());
+
+                for (const auto& [alias, command] : player_aliases) {
+                    WorldQueries::CharacterAliasData alias_data;
+                    alias_data.character_id = char_id;
+                    alias_data.alias = alias;
+                    alias_data.command = command;
+                    aliases_data.push_back(std::move(alias_data));
+                }
+
+                auto aliases_save_result = ConnectionPool::instance().execute(
+                    [&char_id, &aliases_data](pqxx::work& txn) {
+                        return WorldQueries::save_character_aliases(txn, char_id, aliases_data);
+                    });
+
+                if (!aliases_save_result) {
+                    Log::error("Failed to save aliases for player {}: {}",
+                              player.name(), aliases_save_result.error().message);
+                } else {
+                    Log::debug("Saved {} aliases to database for player {}",
+                             aliases_data.size(), player.name());
+                }
+            } else {
+                // No aliases to save, clear any existing aliases in database
+                auto clear_result = ConnectionPool::instance().execute(
+                    [&char_id](pqxx::work& txn) {
+                        return WorldQueries::delete_character_aliases(txn, char_id);
+                    });
+                if (clear_result) {
+                    Log::debug("Cleared aliases from database for player {}", player.name());
+                }
+            }
         } else {
             Log::warn("Cannot save items to database: player {} has no database_id", player.name());
         }
@@ -477,6 +514,23 @@ Result<std::shared_ptr<Player>> PersistenceManager::load_player(std::string_view
         } else {
             Log::debug("No effects to load for player '{}': {}",
                       name, effects_result.error().message);
+        }
+
+        // Load character aliases
+        auto aliases_result = ConnectionPool::instance().execute(
+            [&char_id](pqxx::work& txn) {
+                return WorldQueries::load_character_aliases(txn, char_id);
+            });
+
+        if (aliases_result) {
+            for (const auto& alias_data : aliases_result.value()) {
+                player->set_alias(alias_data.alias, alias_data.command);
+            }
+            Log::debug("Loaded {} aliases for player '{}'",
+                      aliases_result.value().size(), name);
+        } else {
+            Log::debug("No aliases to load for player '{}': {}",
+                      name, aliases_result.error().message);
         }
     }
 

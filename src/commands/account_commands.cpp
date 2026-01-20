@@ -2,6 +2,7 @@
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../database/connection_pool.hpp"
+#include "../game/player_output.hpp"
 
 #include <chrono>
 #include <pqxx/pqxx>
@@ -310,7 +311,10 @@ Result<CommandResult> cmd_account_delete(const CommandContext &ctx) {
     // Clear the user_id so the player can't access account functions
     player->set_user_id("");
 
-    // TODO: Disconnect the player after a short delay
+    // Disconnect the player after the messages are sent
+    if (auto output = player->get_output()) {
+        output->disconnect("Account deleted");
+    }
 
     return CommandResult::Success;
 }

@@ -174,6 +174,61 @@ Result<CommandResult> CommandSystem::execute_command(std::shared_ptr<Actor> acto
         return std::unexpected(Errors::InvalidArgument("actor", "cannot be null"));
     }
 
+    // Check for player aliases
+    auto player = std::dynamic_pointer_cast<Player>(actor);
+    if (player) {
+        // Extract first word from input
+        std::string_view trimmed = input;
+        while (!trimmed.empty() && std::isspace(trimmed.front())) {
+            trimmed.remove_prefix(1);
+        }
+
+        size_t cmd_end = 0;
+        while (cmd_end < trimmed.size() && !std::isspace(trimmed[cmd_end])) {
+            cmd_end++;
+        }
+
+        if (cmd_end > 0) {
+            std::string_view first_word = trimmed.substr(0, cmd_end);
+            std::string_view rest_of_input = trimmed.substr(cmd_end);
+
+            // Check if this is an alias (but not "alias" command itself to allow managing aliases)
+            if (first_word != "alias") {
+                auto alias_cmd = player->get_alias(first_word);
+                if (alias_cmd.has_value()) {
+                    // Expand alias - the alias value replaces the first word
+                    std::string expanded = std::string(*alias_cmd);
+                    expanded += rest_of_input;
+
+                    // Handle semicolon-separated commands
+                    std::vector<std::string> commands;
+                    size_t start = 0;
+                    for (size_t i = 0; i <= expanded.size(); i++) {
+                        if (i == expanded.size() || expanded[i] == ';') {
+                            std::string cmd = expanded.substr(start, i - start);
+                            // Trim whitespace
+                            size_t begin = cmd.find_first_not_of(" \t");
+                            size_t end = cmd.find_last_not_of(" \t");
+                            if (begin != std::string::npos) {
+                                commands.push_back(cmd.substr(begin, end - begin + 1));
+                            }
+                            start = i + 1;
+                        }
+                    }
+
+                    // Execute each command
+                    Result<CommandResult> last_result = CommandResult::Success;
+                    for (const auto& cmd : commands) {
+                        if (!cmd.empty()) {
+                            last_result = execute_command(actor, cmd);
+                        }
+                    }
+                    return last_result;
+                }
+            }
+        }
+    }
+
     CommandParser parser;
     auto parse_result = parser.parse(input);
     if (!parse_result) {

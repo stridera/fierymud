@@ -551,18 +551,14 @@ Result<void> ModernMUDServer::initialize_logging() { return ServerUtils::setup_l
 Result<void> ModernMUDServer::initialize_directories() {
     namespace fs = std::filesystem;
 
-    std::vector<std::string> required_dirs = {config_.world_directory, config_.player_directory, config_.log_directory,
-                                              "data/backups"};
-
-    for (const auto &dir : required_dirs) {
-        if (!fs::exists(dir)) {
-            std::error_code ec;
-            if (!fs::create_directories(dir, ec)) {
-                return std::unexpected(
-                    Errors::FileSystem(fmt::format("Failed to create directory {}: {}", dir, ec.message())));
-            }
-            Log::info("Created directory: {}", dir);
+    // Only create log directory - world/player data comes from database
+    if (!fs::exists(config_.log_directory)) {
+        std::error_code ec;
+        if (!fs::create_directories(config_.log_directory, ec)) {
+            return std::unexpected(
+                Errors::FileSystem(fmt::format("Failed to create directory {}: {}", config_.log_directory, ec.message())));
         }
+        Log::info("Created directory: {}", config_.log_directory);
     }
 
     return Success();

@@ -5,12 +5,16 @@
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
 #include "../core/shopkeeper.hpp"
+#include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
+#include "../database/world_queries.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 
 #include <algorithm>
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
 
 namespace ObjectCommands {
 
@@ -1738,8 +1742,68 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
         };
         ctx.actor->add_effect(nourished_effect);
 
-        // TODO: Apply food effects from food_info.effects vector
-        // This would apply any buffs/debuffs associated with the food
+        // Apply food effects from food_info.effects vector
+        if (!food_info.effects.empty()) {
+            for (int effect_id : food_info.effects) {
+                auto effect_result = ConnectionPool::instance().execute(
+                    [effect_id](pqxx::work& txn) {
+                        return WorldQueries::load_effect(txn, effect_id);
+                    });
+
+                if (!effect_result) {
+                    Log::warn("Failed to load food effect {}: {}",
+                             effect_id, effect_result.error().message);
+                    continue;
+                }
+
+                const auto& effect_data = effect_result.value();
+
+                // Create and apply the effect
+                ActiveEffect food_effect{
+                    .effect_id = effect_data.id,
+                    .name = effect_data.name,
+                    .source = "food",
+                    .flag = ActorFlag::None,  // Effects specify their own flags via params
+                    .duration_hours = duration_hours,  // Same duration as nourished buff
+                    .modifier_value = 0,
+                    .modifier_stat = "",
+                    .applied_at = std::chrono::steady_clock::now()
+                };
+
+                // Parse default_params JSON for additional effect configuration
+                if (!effect_data.default_params.empty()) {
+                    try {
+                        auto params = nlohmann::json::parse(effect_data.default_params);
+
+                        // Apply modifier if present
+                        if (params.contains("modifier_stat") && params.contains("modifier_value")) {
+                            food_effect.modifier_stat = params["modifier_stat"].get<std::string>();
+                            food_effect.modifier_value = params["modifier_value"].get<int>();
+                        }
+
+                        // Apply flag if specified
+                        if (params.contains("flag")) {
+                            std::string flag_name = params["flag"].get<std::string>();
+                            auto flag_opt = magic_enum::enum_cast<ActorFlag>(flag_name);
+                            if (flag_opt.has_value()) {
+                                food_effect.flag = flag_opt.value();
+                            }
+                        }
+
+                        // Override duration if specified in effect params
+                        if (params.contains("duration_hours")) {
+                            food_effect.duration_hours = params["duration_hours"].get<double>();
+                        }
+                    } catch (const nlohmann::json::exception& e) {
+                        Log::warn("Failed to parse food effect {} params: {}",
+                                 effect_data.name, e.what());
+                    }
+                }
+
+                ctx.actor->add_effect(food_effect);
+                Log::debug("Applied food effect '{}' to {}", effect_data.name, ctx.actor->name());
+            }
+        }
     } else {
         // Potions consumed via eat command
         ctx.send_success(fmt::format("You drink the {}. You feel refreshed.", ctx.format_object_name(food_item)));
