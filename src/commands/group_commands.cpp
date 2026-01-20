@@ -2,6 +2,9 @@
 
 #include "../core/actor.hpp"
 #include "../core/money.hpp"
+#include "../database/generated/db_enums.hpp"
+
+#include <algorithm>
 
 namespace GroupCommands {
 
@@ -485,6 +488,93 @@ Result<CommandResult> cmd_gsay(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Summon/Pet Commands
+// =============================================================================
+
+Result<CommandResult> cmd_dismiss(const CommandContext &ctx) {
+    // Dismiss a summoned creature or pet
+    if (ctx.arg_count() == 0) {
+        // No argument - list dismissable followers
+        std::vector<std::shared_ptr<Actor>> dismissable;
+
+        for (const auto& weak_follower : ctx.actor->get_followers()) {
+            if (auto follower = weak_follower.lock()) {
+                if (auto mobile = std::dynamic_pointer_cast<Mobile>(follower)) {
+                    if (mobile->has_trait(MobTrait::Summoned) || mobile->has_trait(MobTrait::Pet)) {
+                        dismissable.push_back(follower);
+                    }
+                }
+            }
+        }
+
+        if (dismissable.empty()) {
+            ctx.send("You have no summoned creatures or pets to dismiss.");
+            return CommandResult::Success;
+        }
+
+        ctx.send("You can dismiss the following:");
+        for (const auto& creature : dismissable) {
+            ctx.send(fmt::format("  - {}", creature->display_name()));
+        }
+        ctx.send("Usage: dismiss <name>");
+        return CommandResult::Success;
+    }
+
+    std::string_view target_name = ctx.arg(0);
+
+    // Find the summoned creature among our followers
+    std::shared_ptr<Mobile> target_mobile;
+
+    for (const auto& weak_follower : ctx.actor->get_followers()) {
+        if (auto follower = weak_follower.lock()) {
+            if (auto mobile = std::dynamic_pointer_cast<Mobile>(follower)) {
+                // Check if it's a summon or pet
+                if (mobile->has_trait(MobTrait::Summoned) || mobile->has_trait(MobTrait::Pet)) {
+                    // Check if name matches (case-insensitive partial match)
+                    std::string follower_name = std::string(mobile->name());
+                    std::string search_name = std::string(target_name);
+
+                    // Convert both to lowercase for comparison
+                    std::transform(follower_name.begin(), follower_name.end(), follower_name.begin(), ::tolower);
+                    std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
+
+                    if (follower_name.find(search_name) != std::string::npos) {
+                        target_mobile = mobile;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (!target_mobile) {
+        ctx.send_error(fmt::format("You don't have a summoned creature named '{}'.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Get the name before we modify anything
+    std::string creature_name = std::string(target_mobile->display_name());
+
+    // Remove from our followers list
+    ctx.actor->remove_follower(target_mobile);
+
+    // Clear their master reference
+    target_mobile->clear_master();
+
+    // Send messages
+    ctx.send(fmt::format("You dismiss {}.", creature_name));
+    ctx.send_to_room(fmt::format("{} dismisses {}.", ctx.actor->display_name(), creature_name), true);
+
+    // The creature fades away / is removed from the game
+    // Remove from room and mark for cleanup
+    if (auto room = target_mobile->current_room()) {
+        room->remove_actor(target_mobile->id());
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -544,6 +634,12 @@ Result<void> register_commands() {
 
     Commands()
         .command("gsay", cmd_gsay)
+        .category("Group")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("dismiss", cmd_dismiss)
         .category("Group")
         .privilege(PrivilegeLevel::Player)
         .build();

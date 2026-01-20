@@ -406,8 +406,6 @@ struct CharacterData {
 
     // Flags (stored as arrays in database)
     std::vector<std::string> player_flags;
-    std::vector<std::string> effect_flags;
-    std::vector<std::string> privilege_flags;
 
     // Experience/Skills
     int experience = 0;

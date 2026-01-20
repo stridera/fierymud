@@ -142,6 +142,9 @@ private:
     /// Register utility functions (dice, random, wait, etc.)
     void register_utility_functions();
 
+    /// Register Effect table for typo-safe effect name lookups
+    void register_effect_table();
+
     std::unique_ptr<sol::state> lua_;  // unique_ptr for explicit destruction during shutdown
     std::unordered_map<std::string, sol::bytecode> bytecode_cache_;
     std::unordered_map<std::string, std::string> failed_script_cache_;  // cache_key -> error message

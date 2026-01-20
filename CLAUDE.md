@@ -105,6 +105,18 @@ When working on the MUD codebase, follow these modern C++23 practices:
 - No manual memory management or C-style arrays
 - No bare numbers/magic numbers - use named constants
 
+## ⚠️ DO NOT ADD LEGACY CRUFT TO FIERYMUD ⚠️
+
+**FieryMUD is a modern, clean codebase. By the time code reaches FieryMUD, everything should be new and modern.**
+
+- **NO legacy compatibility layers** - Don't add methods/functions just because old scripts or systems used them
+- **NO DG Script compatibility** - Scripts should be converted to modern Lua, not have C++ wrappers for old patterns
+- **NO CircleMUD patterns** - Don't replicate old CircleMUD design decisions or naming conventions
+- **NO giant hardcoded lists** - Effects, skills, flags, and similar data belong in the database, NOT in C++ code
+- **NO backwards compatibility hacks** - If something needs to change, change it properly everywhere
+
+**If a trigger/script fails because it uses legacy patterns, the trigger needs to be fixed - NOT the C++ code.**
+
 ### Terminology Changes from Legacy
 - **IDs not VNUMs**: The modern codebase uses `EntityId` (composite of zone_id + local_id), NOT legacy "vnums". Never use the term "vnum" in modern code - use "ID" or "entity ID" instead.
 - **Actors not Characters**: Use `Actor` for living beings, not `CharData` or "character"
@@ -117,12 +129,17 @@ When working on the MUD codebase, follow these modern C++23 practices:
 - Clean up commented-out code and obsolete functions
 
 ### Data-Driven Design Principles
+
+**CRITICAL: Everything should be data-driven. Avoid creating giant lists of effects, skills, flags, or similar data in C++ code because then we can't modify/update using the database or Muditor.**
+
 - **Database over hard-coding**: Store messages, descriptions, and configurable values in the database rather than hard-coding them in C++. This allows content to be edited via Muditor without recompiling.
 - **Effect messages**: Spell effect descriptions (what you see when looking at someone affected) should come from the Effects table, not hard-coded strings.
 - **Ability messages**: All ability/spell messages (cast, success, failure, wear-off) should come from the AbilityMessages table.
 - **Room/mob/object descriptions**: All world content comes from database tables, never hard-coded.
 - **Configuration**: Game constants and tunable values should be stored in configuration tables when they might need adjustment.
 - **Template system**: Use `{actor}`, `{target}`, `{damage}` placeholders in database messages for dynamic substitution at runtime.
+- **NO hardcoded mappings**: Don't create `std::unordered_map<std::string, EnumType>` for flag/effect/skill lookups. Use database lookups or `magic_enum` instead.
+- **Flag/effect names**: If scripts need to look up flags by name, the mapping should come from the database, not a hardcoded C++ map.
 
 ### Code Style Examples
 ```cpp

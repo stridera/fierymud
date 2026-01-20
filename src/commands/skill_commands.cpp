@@ -6,6 +6,7 @@
 #include "../core/logging.hpp"
 #include "../text/string_utils.hpp"
 
+#include <algorithm>
 #include <fmt/format.h>
 
 namespace SkillCommands {
@@ -92,6 +93,94 @@ Result<CommandResult> cmd_meditate(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Effect Management Commands
+// =============================================================================
+
+Result<CommandResult> cmd_cancel(const CommandContext &ctx) {
+    // Cancel (remove) a non-permanent buff from yourself
+    const auto& effects = ctx.actor->active_effects();
+
+    // Filter to only non-permanent effects
+    std::vector<const ActiveEffect*> cancellable;
+    for (const auto& effect : effects) {
+        if (!effect.is_permanent()) {
+            cancellable.push_back(&effect);
+        }
+    }
+
+    if (ctx.arg_count() == 0) {
+        // No argument - list cancellable effects
+        if (cancellable.empty()) {
+            ctx.send("You have no active effects that can be cancelled.");
+            return CommandResult::Success;
+        }
+
+        ctx.send("You can cancel the following effects:");
+        for (const auto* effect : cancellable) {
+            std::string duration_str;
+            if (effect->duration_hours > 0) {
+                int hours = static_cast<int>(effect->duration_hours);
+                int minutes = static_cast<int>((effect->duration_hours - hours) * 60);
+                if (hours > 0) {
+                    duration_str = fmt::format(" ({} hour{}, {} min remaining)",
+                        hours, hours == 1 ? "" : "s", minutes);
+                } else {
+                    duration_str = fmt::format(" ({} min remaining)", minutes);
+                }
+            }
+            ctx.send(fmt::format("  - {}{}", effect->name, duration_str));
+        }
+        ctx.send("Usage: cancel <effect name>");
+        return CommandResult::Success;
+    }
+
+    // Find the effect to cancel
+    std::string_view target_name = ctx.arg(0);
+    std::string search_lower = std::string(target_name);
+    std::transform(search_lower.begin(), search_lower.end(), search_lower.begin(), ::tolower);
+
+    const ActiveEffect* target_effect = nullptr;
+    for (const auto* effect : cancellable) {
+        std::string effect_lower = effect->name;
+        std::transform(effect_lower.begin(), effect_lower.end(), effect_lower.begin(), ::tolower);
+
+        // Support partial matching
+        if (effect_lower.find(search_lower) != std::string::npos) {
+            target_effect = effect;
+            break;
+        }
+    }
+
+    if (!target_effect) {
+        // Check if they're trying to cancel a permanent effect
+        for (const auto& effect : effects) {
+            if (effect.is_permanent()) {
+                std::string effect_lower = effect.name;
+                std::transform(effect_lower.begin(), effect_lower.end(), effect_lower.begin(), ::tolower);
+                if (effect_lower.find(search_lower) != std::string::npos) {
+                    ctx.send_error(fmt::format("'{}' is a permanent effect and cannot be cancelled.", effect.name));
+                    return CommandResult::InvalidTarget;
+                }
+            }
+        }
+
+        ctx.send_error(fmt::format("You don't have an effect called '{}'.", target_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    // Store the name before removing
+    std::string effect_name = target_effect->name;
+
+    // Remove the effect
+    ctx.actor->remove_effect(effect_name);
+
+    ctx.send(fmt::format("You cancel the {} effect.", effect_name));
+    ctx.send_to_room(fmt::format("{}'s {} effect fades away.", ctx.actor->display_name(), effect_name), true);
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -111,6 +200,12 @@ Result<void> register_commands() {
     Commands()
         .command("meditate", cmd_meditate)
         .alias("med")
+        .category("Skills")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands()
+        .command("cancel", cmd_cancel)
         .category("Skills")
         .privilege(PrivilegeLevel::Player)
         .build();

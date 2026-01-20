@@ -3018,7 +3018,7 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
                 c.hunger, c.thirst,
                 c.description, c.title,
                 c.prompt, c.page_length, c.wimpy_threshold,
-                c.player_flags, c.effect_flags, c.privilege_flags,
+                c.player_flags,
                 c.experience, c.skill_points, c.position,
                 c.created_at, c.updated_at,
                 c.user_id,
@@ -3121,12 +3121,6 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         if (!row["player_flags"].is_null()) {
             character.player_flags = parse_pg_string_array(row["player_flags"].as<std::string>());
         }
-        if (!row["effect_flags"].is_null()) {
-            character.effect_flags = parse_pg_string_array(row["effect_flags"].as<std::string>());
-        }
-        if (!row["privilege_flags"].is_null()) {
-            character.privilege_flags = parse_pg_string_array(row["privilege_flags"].as<std::string>());
-        }
 
         // Experience
         character.experience = row["experience"].as<int>(0);
@@ -3164,7 +3158,7 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
                 c.hunger, c.thirst,
                 c.description, c.title,
                 c.prompt, c.page_length, c.wimpy_threshold,
-                c.player_flags, c.effect_flags, c.privilege_flags,
+                c.player_flags,
                 c.experience, c.skill_points, c.position,
                 c.created_at, c.updated_at,
                 c.user_id,
@@ -3243,12 +3237,6 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         character.wimpy_threshold = row["wimpy_threshold"].as<int>(0);
         if (!row["player_flags"].is_null()) {
             character.player_flags = parse_pg_string_array(row["player_flags"].as<std::string>());
-        }
-        if (!row["effect_flags"].is_null()) {
-            character.effect_flags = parse_pg_string_array(row["effect_flags"].as<std::string>());
-        }
-        if (!row["privilege_flags"].is_null()) {
-            character.privilege_flags = parse_pg_string_array(row["privilege_flags"].as<std::string>());
         }
         character.experience = row["experience"].as<int>(0);
         character.skill_points = row["skill_points"].as<int>(0);

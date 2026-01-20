@@ -207,7 +207,65 @@ void ScriptEngine::register_bindings() {
     register_object_bindings(*lua_);
     register_quest_bindings(*lua_);
 
+    // Register Effect table for typo-safe effect name lookups
+    // Usage: actor:has_effect(Effect.Invisible) instead of actor:has_effect("Invisible")
+    // If Effect.Invisibl is used (typo), it returns nil which evaluates to false
+    register_effect_table();
+
     spdlog::debug("Lua game bindings registered");
+}
+
+void ScriptEngine::register_effect_table() {
+    // Create Effect table mapping effect names to their string values
+    // This allows typo-safe effect checks: Effect.Invisible returns "Invisible"
+    // If a typo like Effect.Invisibl is used, it returns nil
+    sol::table effect_table = lua_->create_table();
+
+    // Common spell effects
+    effect_table["Invisible"] = "Invisible";
+    effect_table["Sanctuary"] = "Sanctuary";
+    effect_table["Bless"] = "Bless";
+    effect_table["Armor"] = "Armor";
+    effect_table["Shield"] = "Shield";
+    effect_table["Stoneskin"] = "Stoneskin";
+    effect_table["Haste"] = "Haste";
+    effect_table["Slow"] = "Slow";
+    effect_table["Fly"] = "Fly";
+    effect_table["Flying"] = "Flying";
+    effect_table["Levitate"] = "Levitate";
+    effect_table["Infravision"] = "Infravision";
+    effect_table["DetectInvis"] = "DetectInvis";
+    effect_table["DetectMagic"] = "DetectMagic";
+    effect_table["DetectAlign"] = "DetectAlign";
+    effect_table["SenseLife"] = "SenseLife";
+    effect_table["Waterwalk"] = "Waterwalk";
+    effect_table["WaterBreathing"] = "WaterBreathing";
+
+    // Status effects
+    effect_table["Blind"] = "Blind";
+    effect_table["Poison"] = "Poison";
+    effect_table["Curse"] = "Curse";
+    effect_table["Paralyzed"] = "Paralyzed";
+    effect_table["Sleep"] = "Sleep";
+    effect_table["Charm"] = "Charm";
+    effect_table["Berserk"] = "Berserk";
+
+    // Stealth effects
+    effect_table["Sneak"] = "Sneak";
+    effect_table["Hide"] = "Hide";
+
+    // Protection effects
+    effect_table["ProtectionEvil"] = "ProtectionEvil";
+    effect_table["ProtectionGood"] = "ProtectionGood";
+    effect_table["FireShield"] = "FireShield";
+    effect_table["ColdShield"] = "ColdShield";
+    effect_table["HeatResistance"] = "HeatResistance";
+    effect_table["ColdResistance"] = "ColdResistance";
+
+    // Expose as global Effect table
+    (*lua_)["Effect"] = effect_table;
+
+    spdlog::debug("Lua Effect table registered with {} entries", effect_table.size());
 }
 
 sol::thread ScriptEngine::create_thread() {
