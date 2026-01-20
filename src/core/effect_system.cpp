@@ -1195,7 +1195,7 @@ std::expected<EffectResult, Error> EffectExecutor::execute_status(
     ActiveEffect effect;
     effect.name = context.ability_name.empty() ? format_effect_name(status) : context.ability_name;
     effect.source = context.ability_name.empty() ? "spell" : context.ability_name;  // Could be spell name, item, etc.
-    effect.flag = parsed_flag.value_or(ActorFlag::Bless);  // Use Bless as placeholder if no match
+    effect.flag = parsed_flag.value_or(ActorFlag::None);  // Use None if no matching flag
     effect.duration_hours = duration_hours;
     effect.modifier_value = modifier_value;
     effect.modifier_stat = modifier_stat;

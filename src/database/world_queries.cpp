@@ -3377,7 +3377,7 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 experience = $27, skill_points = $28, position = $29::"Position",
                 title = $30, description = $31,
                 prompt = $32, page_length = $33, wimpy_threshold = $34,
-                player_flags = $35::text[],
+                player_flags = $35::"PlayerFlag"[],
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -4212,7 +4212,7 @@ Result<void> save_character_items(
                     instance_flags, custom_name, custom_examine_description,
                     liquid_type, liquid_remaining, liquid_effects, liquid_identified,
                     updated_at
-                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::text[], $9, $10, $11, $12, $13::int[], $14, NOW())
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::"ItemInstanceFlag"[], $9, $10, $11, $12, $13::int[], $14, NOW())
             )",
                 character_id,
                 item.object_id.zone_id(),

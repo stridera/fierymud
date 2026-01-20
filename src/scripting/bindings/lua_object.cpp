@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/bindings/lua_object.cpp             Part of FieryMUD *
- *  Usage: Lua bindings for Object class                                    *
- ***************************************************************************/
-
 #include "lua_object.hpp"
 #include "../../core/object.hpp"
 

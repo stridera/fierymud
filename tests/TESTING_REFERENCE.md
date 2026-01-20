@@ -6,20 +6,21 @@ Quick reference card for developers using the FieryMUD test framework.
 
 ### Recommended Usage
 ```bash
-# Run stable tests (recommended)
-./run_tests.sh stable
-
-# Run all recommended tests  
+# Run all tests (unit + integration)
 ./run_tests.sh                  # Default
+
+# Run by category
+./run_tests.sh unit             # Unit tests only
+./run_tests.sh stable           # Integration tests only
+./run_tests.sh verbose          # Verbose output
 ```
 
 ### File Structure
 ```
 tests/
 ├── unit/test_*.cpp                    # Unit tests
-├── integration/test_*_stable.cpp      # Stable integration tests ← USE THESE
-├── integration/test_*.cpp             # Legacy integration tests (avoid)
-└── common/lightweight_test_harness.hpp # Modern test framework
+├── integration/test_*_stable.cpp      # Integration tests
+└── common/lightweight_test_harness.hpp # Test framework
 ```
 
 ## LightweightTestHarness Quick API
@@ -56,11 +57,11 @@ harness.execute_command_accumulate("say second");
 ```cpp
 // Output validation
 .then_output_contains("text")              // Must contain text
-.then_output_not_contains("error")         // Must NOT contain text  
+.then_output_not_contains("error")         // Must NOT contain text
 .then_output_matches_regex(R"(\d+)")       // Must match regex pattern
 .then_output_size_is(2)                    // Exact line count
 
-// State validation  
+// State validation
 REQUIRE(harness.current_room_id() == EntityId{100});
 REQUIRE(harness.player_is_in_room(EntityId{100}));
 REQUIRE(harness.player_has_item_named("sword"));
@@ -123,13 +124,13 @@ TEST_CASE("Command Test", "[integration][stable]") {
 ```cpp
 TEST_CASE("Equipment Workflow", "[integration][stable]") {
     LightweightTestHarness harness;
-    
+
     harness.execute_command("get test_sword")
            .then_output_contains("You get");
-           
+
     harness.execute_command("wield test_sword")
            .then_output_contains("You wield");
-           
+
     harness.execute_command("equipment")
            .then_output_contains("test_sword");
 }
@@ -139,10 +140,10 @@ TEST_CASE("Equipment Workflow", "[integration][stable]") {
 ```cpp
 TEST_CASE("Error Handling", "[integration][stable]") {
     LightweightTestHarness harness;
-    
+
     harness.execute_command("invalidcommand")
            .then_output_contains("Unknown command");
-    
+
     // State should remain consistent
     REQUIRE(harness.get_player()->is_alive());
 }
@@ -152,10 +153,10 @@ TEST_CASE("Error Handling", "[integration][stable]") {
 ```cpp
 TEST_CASE("Container Test", "[integration][stable]") {
     LightweightTestHarness harness;
-    
+
     // Get item from container
     harness.execute_command("get test_potion from test_chest");
-    
+
     // Test capacity limits
     harness.execute_command("put test_bread in test_bag");
     harness.execute_command("put test_key in test_bag");     // Should work
@@ -167,13 +168,13 @@ TEST_CASE("Container Test", "[integration][stable]") {
 ```cpp
 TEST_CASE("Performance", "[integration][stable][performance]") {
     LightweightTestHarness harness;
-    
+
     harness.then_executes_within_ms([&]() {
         for (int i = 0; i < 50; ++i) {
             harness.execute_command("look");
         }
     }, 500);
-    
+
     // Verify stability
     REQUIRE(harness.get_player()->is_alive());
 }
@@ -193,7 +194,7 @@ for (size_t i = 0; i < output.size(); ++i) {
 
 | Problem | Solution |
 |---------|----------|
-| Test not found | File must end with `_stable.cpp` |
+| Test not found | File must end with `_stable.cpp` for integration tests |
 | Compilation error | Include `lightweight_test_harness.hpp` and `catch2/catch_test_macros.hpp` |
 | Assertion failed | Use `.then_output_contains()` with exact expected text |
 | Slow tests | Use `--durations yes` to identify slow tests |
@@ -207,7 +208,7 @@ cmake --build build --target unit_tests
 
 # Run with filters
 ./build/stable_tests "[objects]"           # Object tests only
-./build/stable_tests "[enhanced]"          # Enhanced features  
+./build/stable_tests "[command][stable]"   # Command tests
 ./build/stable_tests --list-tests          # List available tests
 
 # Performance information
@@ -216,17 +217,16 @@ cmake --build build --target unit_tests
 
 ## Best Practices
 
-### ✅ DO
+### DO
 - Use `LightweightTestHarness` for integration tests
-- Name files `test_*_stable.cpp` 
-- Include `[stable]` tag in test cases
+- Name integration files `test_*_stable.cpp`
+- Include `[stable]` tag in integration test cases
 - Test both success and error cases
 - Use available test objects
 - Verify state changes after commands
 
-### ❌ DON'T  
-- Use legacy `TestHarness` (unstable)
-- Write tests without `[stable]` tag
+### DON'T
+- Write tests without proper tags
 - Share state between test cases
 - Ignore command execution results
 - Write overly complex tests
@@ -236,7 +236,7 @@ cmake --build build --target unit_tests
 ```cpp
 /***************************************************************************
  *   File: test_my_feature_stable.cpp                Part of FieryMUD      *
- *  Usage: Stable integration tests for MyFeature                          *
+ *  Usage: Integration tests for MyFeature                                 *
  ***************************************************************************/
 
 #include "../common/lightweight_test_harness.hpp"
@@ -244,12 +244,12 @@ cmake --build build --target unit_tests
 
 TEST_CASE("MyFeature: Basic Functionality", "[integration][stable][myfeature]") {
     LightweightTestHarness harness;
-    
+
     // Test basic functionality
     harness.execute_command("mycommand")
            .then_output_contains("expected output")
            .then_output_not_contains("error");
-    
+
     // Verify state changes
     REQUIRE(harness.current_room_id().is_valid());
     REQUIRE(harness.get_player()->is_alive());
@@ -257,16 +257,12 @@ TEST_CASE("MyFeature: Basic Functionality", "[integration][stable][myfeature]") 
 
 TEST_CASE("MyFeature: Error Handling", "[integration][stable][myfeature]") {
     LightweightTestHarness harness;
-    
+
     // Test error conditions
     harness.execute_command("mycommand invalid_args")
            .then_output_contains("Invalid");
-    
+
     // State should remain consistent
     REQUIRE(harness.get_player()->is_alive());
 }
 ```
-
----
-
-*Quick Reference v1.0 - Last Updated: 2024-08-27*

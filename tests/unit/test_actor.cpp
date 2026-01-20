@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: tests/test_actor_json_parsing.cpp              Part of FieryMUD *
- *  Usage: Unit tests for actor JSON parsing functionality                 *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include "../src/core/actor.hpp"
 
 #include <catch2/catch_test_macros.hpp>

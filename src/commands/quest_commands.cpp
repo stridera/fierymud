@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/commands/quest_commands.cpp                  Part of FieryMUD *
- *  Usage: Player quest system commands implementation                       *
- ***************************************************************************/
-
 #include "quest_commands.hpp"
 
 #include "../core/actor.hpp"

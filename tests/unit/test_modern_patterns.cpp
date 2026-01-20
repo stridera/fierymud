@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: test_modern_patterns.cpp                       Part of FieryMUD *
- *  Usage: Modern C++23 testing patterns and best practices               *
- ***************************************************************************/
-
 #include "../../src/core/result.hpp"
 #include "../../src/core/actor.hpp"
 #include "../../src/core/combat.hpp"

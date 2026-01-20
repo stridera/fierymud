@@ -6,9 +6,11 @@
 #include "database/connection_pool.hpp"
 #include "database/world_queries.hpp"
 #include "scripting/trigger_manager.hpp"
+#include "text/text_format.hpp"
 #include "world/room.hpp"
 
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <random>
 
@@ -142,16 +144,19 @@ std::pair<int, bool> calculate_quickcast_reduction(
 // =============================================================================
 
 /**
- * Format message template with named arguments using fmt::format style.
+ * Format message template using the canonical TextFormat::Message system.
  * Supported placeholders:
- *   {actor}  - actor's display name
- *   {target} - target's display name
- *   {damage} - damage value
- *   {healing} - healing value (alias for damage in healing context)
+ *   {actor}, {actor.name}    - Actor's display name
+ *   {target}, {target.name}  - Target's display name
+ *   {actor.pronoun.*}        - Actor's pronouns (subjective, objective, possessive, reflexive)
+ *   {actor.he}, {actor.him}  - Pronoun shortcuts
+ *   {target.pronoun.*}       - Target's pronouns
+ *   {damage}                 - Damage value
+ *   {healing}                - Healing value (alias for damage in healing context)
  *
- * Example: "You strike {target} for {damage} damage!"
+ * Example: "You strike {target.name} for {damage} damage!"
  */
-static std::string process_message_template(
+static std::string format_ability_message(
     std::string_view template_str,
     const std::shared_ptr<Actor>& actor,
     const std::shared_ptr<Actor>& target,
@@ -159,19 +164,12 @@ static std::string process_message_template(
 
     if (template_str.empty()) return "";
 
-    try {
-        return fmt::format(
-            fmt::runtime(template_str),
-            fmt::arg("actor", actor ? actor->display_name() : "someone"),
-            fmt::arg("target", target ? target->display_name() : "someone"),
-            fmt::arg("damage", damage),
-            fmt::arg("healing", damage)
-        );
-    } catch (const fmt::format_error& e) {
-        // If template is malformed, return it as-is with a warning
-        Log::warn("Invalid message template '{}': {}", template_str, e.what());
-        return std::string(template_str);
-    }
+    return TextFormat::Message()
+        .actor(actor.get())
+        .target(target.get())
+        .set("damage", damage)
+        .set("healing", damage)
+        .format(template_str);
 }
 
 // =============================================================================
@@ -496,9 +494,9 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
             // Check for custom wearoff messages
             const auto* custom_msgs = cache.get_ability_messages(ability->id);
             if (custom_msgs && !custom_msgs->wearoff_to_target.empty()) {
-                result.attacker_message = process_message_template(
+                result.attacker_message = format_ability_message(
                     custom_msgs->wearoff_to_target, ctx.actor, nullptr, 0);
-                result.room_message = process_message_template(
+                result.room_message = format_ability_message(
                     custom_msgs->wearoff_to_room, ctx.actor, nullptr, 0);
             } else {
                 result.attacker_message = fmt::format("You stop {}.", ability->name);
@@ -677,7 +675,7 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
                 // For AOE: First show cast message, then per-target hit messages
                 // Generate a "You cast X!" style message first (using success_to_self if available)
                 if (!custom_msgs->success_to_self.empty()) {
-                    result.attacker_message = process_message_template(
+                    result.attacker_message = format_ability_message(
                         custom_msgs->success_to_self, ctx.actor, ctx.actor, result.total_damage);
                 } else {
                     result.attacker_message = fmt::format("You unleash {}!", ability->name);
@@ -686,7 +684,7 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
                 // Generate per-target hit messages using the template
                 // Each target gets their own dice roll based on their stats
                 for (const auto& tr : target_results) {
-                    std::string target_hit_msg = process_message_template(
+                    std::string target_hit_msg = format_ability_message(
                         custom_msgs->success_to_caster, ctx.actor, tr.target, tr.damage);
                     target_hit_msg += fmt::format(" ({})", tr.damage);
 
@@ -700,7 +698,7 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
 
                 // Room message: announce the spell, mention all affected targets
                 if (!custom_msgs->success_to_room.empty() && !damaged_targets.empty()) {
-                    result.room_message = process_message_template(
+                    result.room_message = format_ability_message(
                         custom_msgs->success_to_room, ctx.actor, damaged_targets[0], result.total_damage);
                     if (damaged_targets.size() > 1) {
                         result.room_message += fmt::format(" and {} other{}!",
@@ -718,21 +716,21 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
 
                 if (self_cast && !custom_msgs->success_to_self.empty()) {
                     // Use self-specific messages when casting on self
-                    result.attacker_message = process_message_template(
+                    result.attacker_message = format_ability_message(
                         custom_msgs->success_to_self, ctx.actor, msg_target, result.total_damage);
                     // No target message for self-cast (caster IS the target)
-                    result.room_message = process_message_template(
+                    result.room_message = format_ability_message(
                         !custom_msgs->success_self_room.empty()
                             ? custom_msgs->success_self_room
                             : custom_msgs->success_to_room,
                         ctx.actor, msg_target, result.total_damage);
                 } else {
                     // Normal caster/target messages
-                    result.attacker_message = process_message_template(
+                    result.attacker_message = format_ability_message(
                         custom_msgs->success_to_caster, ctx.actor, msg_target, result.total_damage);
-                    result.target_message = process_message_template(
+                    result.target_message = format_ability_message(
                         custom_msgs->success_to_victim, ctx.actor, msg_target, result.total_damage);
-                    result.room_message = process_message_template(
+                    result.room_message = format_ability_message(
                         custom_msgs->success_to_room, ctx.actor, msg_target, result.total_damage);
 
                     // Append damage info for single-target spells
@@ -742,11 +740,11 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(
                 }
             }
         } else {
-            result.attacker_message = process_message_template(
+            result.attacker_message = format_ability_message(
                 custom_msgs->fail_to_caster, ctx.actor, target, 0);
-            result.target_message = process_message_template(
+            result.target_message = format_ability_message(
                 custom_msgs->fail_to_victim, ctx.actor, target, 0);
-            result.room_message = process_message_template(
+            result.room_message = format_ability_message(
                 custom_msgs->fail_to_room, ctx.actor, target, 0);
         }
     } else {
@@ -1237,7 +1235,12 @@ Result<CommandResult> execute_skill_command(
         ctx.send_to_actor(target, result->target_message);
     }
     if (!result->room_message.empty()) {
-        ctx.send_to_room(result->room_message, true);
+        // If target received a personalized message, exclude them from room message
+        if (target && !result->target_message.empty()) {
+            ctx.send_to_room(result->room_message, true, std::array{target});
+        } else {
+            ctx.send_to_room(result->room_message, true);
+        }
     }
 
     // Check for death
@@ -1246,8 +1249,9 @@ Result<CommandResult> execute_skill_command(
         target->set_position(Position::Dead);
         ctx.send(fmt::format("You have slain {}!", target->display_name()));
         ctx.send_to_actor(target, fmt::format("{} has slain you!", ctx.actor->display_name()));
+        // Exclude target from room message since they got their own death message
         ctx.send_to_room(fmt::format("{} has been slain by {}!",
-            target->display_name(), ctx.actor->display_name()), true);
+            target->display_name(), ctx.actor->display_name()), true, std::array{target});
     }
 
     return CommandResult::Success;

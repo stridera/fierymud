@@ -1553,19 +1553,21 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
                 player->set_user_id(*char_data.user_id);
             }
 
-            // Set start room from saved location if available
-            // Priority: current_room (for gods/ghosts/housing) > recall_room (touchstone) > race default
+            // Set start room (login location) from saved current_room
             // Room locations are stored as composite keys (zone_id, room_id)
             if (char_data.current_room_zone_id && char_data.current_room_id) {
                 player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.current_room_zone_id),
                                                 static_cast<std::uint32_t>(*char_data.current_room_id)));
-                Log::debug("Player {} has current_room ({}, {}) -> {}", char_data.name, *char_data.current_room_zone_id,
-                           *char_data.current_room_id, player->start_room());
-            } else if (char_data.recall_room_zone_id && char_data.recall_room_id) {
-                player->set_start_room(EntityId(static_cast<std::uint32_t>(*char_data.recall_room_zone_id),
-                                                static_cast<std::uint32_t>(*char_data.recall_room_id)));
-                Log::debug("Player {} has recall_room ({}, {}) -> {}", char_data.name, *char_data.recall_room_zone_id,
-                           *char_data.recall_room_id, player->start_room());
+                Log::debug("Player {} has current_room ({}, {}) -> start_room {}", char_data.name,
+                           *char_data.current_room_zone_id, *char_data.current_room_id, player->start_room());
+            }
+
+            // Set recall room (touchstone) separately - this is where recall command takes you
+            if (char_data.recall_room_zone_id && char_data.recall_room_id) {
+                player->set_recall_room(EntityId(static_cast<std::uint32_t>(*char_data.recall_room_zone_id),
+                                                 static_cast<std::uint32_t>(*char_data.recall_room_id)));
+                Log::debug("Player {} has recall_room ({}, {}) -> recall_room {}", char_data.name,
+                           *char_data.recall_room_zone_id, *char_data.recall_room_id, player->recall_room());
             }
 
             // Update last login and online status

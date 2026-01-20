@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: test_session_stable.cpp                        Part of FieryMUD *
- *  Usage: Stable session lifecycle tests using LightweightTestHarness     *
- ***************************************************************************/
-
 #include "../common/lightweight_test_harness.hpp"
 #include "../common/test_builders.hpp"
 #include <catch2/catch_test_macros.hpp>

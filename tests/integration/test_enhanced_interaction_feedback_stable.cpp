@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: test_enhanced_interaction_feedback_stable.cpp  Part of FieryMUD *
- *  Usage: Tests for enhanced object interaction feedback and error messages *
- ***************************************************************************/
-
 #include "../common/lightweight_test_harness.hpp"
 #include <catch2/catch_test_macros.hpp>
 

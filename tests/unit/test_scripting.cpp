@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/unit/test_scripting.cpp                      Part of FieryMUD *
- *  Usage: Unit tests for Lua scripting system                              *
- ***************************************************************************/
-
 #include "../src/scripting/script_engine.hpp"
 #include "../src/scripting/coroutine_scheduler.hpp"
 #include "../src/scripting/triggers/trigger_types.hpp"

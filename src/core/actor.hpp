@@ -322,7 +322,9 @@ enum class ActorFlag {
     Immobilized,        // Cannot move (roots, webs, etc.)
     // Food/drink buffs
     Refreshed,          // Well-hydrated from drinking (+50% stamina regen)
-    Nourished           // Well-fed from eating (+50% HP regen)
+    Nourished,          // Well-fed from eating (+50% HP regen)
+    // Sentinel value for effects that don't set a flag
+    None                // No flag (for cooldowns, debuffs without visual effects, etc.)
 };
 
 /** Active effect on an actor (spell effect, buff, debuff) */
@@ -1102,9 +1104,13 @@ public:
     bool is_online() const { return online_; }
     void set_online(bool value) { online_ = value; }
     
-    /** Start room management */
+    /** Start room (login location) management */
     EntityId start_room() const { return start_room_; }
     void set_start_room(EntityId room_id) { start_room_ = room_id; }
+
+    /** Recall room (touchstone/recall point) management */
+    EntityId recall_room() const { return recall_room_; }
+    void set_recall_room(EntityId room_id) { recall_room_ = room_id; }
     
     /** Output queue for session handling */
     const std::vector<std::string>& get_output_queue() const { return output_queue_; }
@@ -1373,7 +1379,8 @@ private:
     bool linkdead_ = false;  // Player connection lost but still in world
     int god_level_ = 0;
     std::shared_ptr<ComposerSystem> active_composer_;  // Multi-line text composer
-    EntityId start_room_ = INVALID_ENTITY_ID;  // Player's start room for revival
+    EntityId start_room_ = INVALID_ENTITY_ID;  // Player's login location (where they logged out)
+    EntityId recall_room_ = INVALID_ENTITY_ID; // Player's recall/touchstone location
     std::vector<std::string> output_queue_;
     std::shared_ptr<class PlayerOutput> output_;
     

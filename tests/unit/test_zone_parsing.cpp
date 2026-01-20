@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/test_zone_parsing.cpp                Part of FieryMUD *
- *  Usage: Unit tests for zone JSON parsing functionality                  *
- ***************************************************************************/
-
 #include "../src/world/zone.hpp"
 #include "../src/world/room.hpp"
 

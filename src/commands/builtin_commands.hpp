@@ -70,16 +70,17 @@ namespace BuiltinCommands {
         /** Validate target for social command */
         bool validate_social_target(const CommandContext& ctx, std::shared_ptr<Actor> target);
         
-        /** Send communication message */
-        void send_communication(const CommandContext& ctx, 
+        /** Send communication message with appropriate colors */
+        void send_communication(const CommandContext& ctx,
                                std::string_view message,
                                MessageType type,
                                std::string_view channel_name = "");
-        
-        /** Format communication message */
+
+        /** Format communication message with appropriate color */
         std::string format_communication(std::shared_ptr<Actor> sender,
                                        std::string_view message,
-                                       std::string_view channel = "");
+                                       std::string_view channel = "",
+                                       MessageType type = MessageType::Normal);
     }
 }
 

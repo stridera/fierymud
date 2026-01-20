@@ -2,6 +2,7 @@
 #include "builtin_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../text/text_format.hpp"
 #include "../core/object.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
@@ -364,6 +365,167 @@ Result<CommandResult> cmd_dismount(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Recall Command
+// =============================================================================
+
+// Recall cooldown effect name and duration
+// 1 MUD hour = 75 real seconds, so 12 MUD hours = 900 seconds = 15 real minutes
+constexpr std::string_view RECALL_COOLDOWN_EFFECT = "Recall Cooldown";
+constexpr double RECALL_COOLDOWN_HOURS = 12.0;  // 15 real minutes
+
+Result<CommandResult> cmd_recall(const CommandContext &ctx) {
+    if (!ctx.actor) {
+        return std::unexpected(Error{ErrorCode::InvalidState, "No actor context"});
+    }
+
+    // Check for recall cooldown
+    if (ctx.actor->has_effect(std::string{RECALL_COOLDOWN_EFFECT})) {
+        ctx.send_error("You must wait before recalling again.");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't recall while fighting
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You can't concentrate enough to recall while fighting!");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't recall while sitting/resting/sleeping
+    if (ctx.actor->position() != Position::Standing) {
+        ctx.send_error("You need to be standing to recall.");
+        return CommandResult::InvalidState;
+    }
+
+    auto current_room = ctx.actor->current_room();
+    if (!current_room) {
+        ctx.send_error("You are nowhere!");
+        return CommandResult::InvalidState;
+    }
+
+    // Get the recall destination from player's recall_room (touchstone), or default to Midgaard Temple
+    EntityId recall_room_id(30, 0);  // Default recall point
+    if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+        if (player->recall_room() != INVALID_ENTITY_ID) {
+            recall_room_id = player->recall_room();
+        }
+    }
+    auto dest_room = WorldManager::instance().get_room(recall_room_id);
+
+    if (!dest_room) {
+        ctx.send_error("The recall point no longer exists!");
+        return CommandResult::SystemError;
+    }
+
+    // Already at recall point?
+    if (current_room.get() == dest_room.get()) {
+        ctx.send_info("You are already at your recall point.");
+        return CommandResult::Success;
+    }
+
+    // Can't recall while already recalling/casting
+    if (ctx.actor->is_casting()) {
+        ctx.send_error("You are already concentrating on something.");
+        return CommandResult::InvalidState;
+    }
+
+    // Start the recall concentration (3 second delay = 6 ticks at 0.5s per tick)
+    constexpr int RECALL_TICKS = 6;  // 3 seconds
+
+    Actor::CastingState state{
+        .ability_id = RECALL_ABILITY_ID,  // From header
+        .ability_name = "recall",
+        .ticks_remaining = RECALL_TICKS,
+        .total_ticks = RECALL_TICKS,
+        .target = {},
+        .target_name = "",
+        .circle = 0,
+        .quickcast_applied = false
+    };
+    ctx.actor->start_casting(state);
+
+    // Send concentration messages
+    ctx.send("<cyan>You close your eyes and begin to concentrate on your recall point...</>");
+    ctx.send_to_room(TextFormat::format(
+        "<cyan>{actor} closes {actor.pos} eyes and begins to concentrate...</>",
+        ctx.actor.get()), true);
+
+    return CommandResult::Success;
+}
+
+void complete_recall(std::shared_ptr<Actor> actor) {
+    if (!actor) return;
+
+    auto current_room = actor->current_room();
+    if (!current_room) {
+        actor->send_message("<red>Your recall fails - you are nowhere!</>\n");
+        return;
+    }
+
+    // Get the recall destination from player's recall_room (touchstone), or default to Midgaard Temple
+    EntityId recall_room_id(30, 0);  // Default recall point
+    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
+        if (player->recall_room() != INVALID_ENTITY_ID) {
+            recall_room_id = player->recall_room();
+        }
+    }
+    auto dest_room = WorldManager::instance().get_room(recall_room_id);
+
+    if (!dest_room) {
+        actor->send_message("<red>Your recall fails - the recall point no longer exists!</>\n");
+        return;
+    }
+
+    // Already at recall point?
+    if (current_room.get() == dest_room.get()) {
+        actor->send_message("<cyan>You complete your concentration, but you're already at your recall point.</>\n");
+        return;
+    }
+
+    // Send departure message to old room
+    auto departure_msg = TextFormat::format(
+        "<cyan>{actor} vanishes in a shimmer of light.</>",
+        actor.get());
+    for (const auto& room_actor : current_room->contents().actors) {
+        if (room_actor && room_actor != actor) {
+            room_actor->send_message(departure_msg + "\n");
+        }
+    }
+
+    // Perform the teleport
+    current_room->remove_actor(actor->id());
+    dest_room->add_actor(actor);
+    actor->move_to(dest_room);
+
+    // Send messages to actor
+    actor->send_message("<cyan>You vanish in a shimmer of light and appear at your recall point!</>\n");
+
+    // Send arrival message to destination room
+    auto arrival_msg = TextFormat::format(
+        "<cyan>{actor} appears in a shimmer of light.</>",
+        actor.get());
+    for (const auto& room_actor : dest_room->contents().actors) {
+        if (room_actor && room_actor != actor) {
+            room_actor->send_message(arrival_msg + "\n");
+        }
+    }
+
+    // Show the new room
+    actor->send_message(dest_room->get_room_description(actor.get()));
+
+    // Apply recall cooldown effect
+    ActiveEffect cooldown{
+        .name = std::string{RECALL_COOLDOWN_EFFECT},
+        .source = "recall",
+        .flag = ActorFlag::None,  // No flag needed for cooldown effects
+        .duration_hours = RECALL_COOLDOWN_HOURS,
+        .modifier_value = 0,
+        .modifier_stat = "",
+        .applied_at = std::chrono::steady_clock::now()
+    };
+    actor->add_effect(cooldown);
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -467,6 +629,15 @@ Result<void> register_commands() {
         .category("Movement")
         .privilege(PrivilegeLevel::Player)
         .description("Dismount from a creature")
+        .usable_in_combat(false)
+        .build();
+
+    Commands()
+        .command("recall", cmd_recall)
+        .category("Movement")
+        .privilege(PrivilegeLevel::Player)
+        .description("Return to your recall point")
+        .usable_while_sitting(false)
         .usable_in_combat(false)
         .build();
 

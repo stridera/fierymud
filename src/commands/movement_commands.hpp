@@ -28,4 +28,13 @@ Result<CommandResult> cmd_leave(const CommandContext &ctx);
 Result<CommandResult> cmd_mount(const CommandContext &ctx);
 Result<CommandResult> cmd_dismount(const CommandContext &ctx);
 
+// Recall command
+Result<CommandResult> cmd_recall(const CommandContext &ctx);
+
+// Recall completion (called by WorldServer when concentration finishes)
+void complete_recall(std::shared_ptr<Actor> actor);
+
+// Recall ability ID constant (used to identify recall in CastingState)
+constexpr int RECALL_ABILITY_ID = -1;
+
 } // namespace MovementCommands

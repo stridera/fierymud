@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/quests/quest_manager.cpp                     Part of FieryMUD *
- *  Usage: Quest system management and tracking implementation              *
- ***************************************************************************/
-
 #include "core/actor.hpp"
 #include "core/object.hpp"
 #include "quest_manager.hpp"

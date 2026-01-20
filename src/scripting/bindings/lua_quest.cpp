@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/bindings/lua_quest.cpp              Part of FieryMUD *
- *  Usage: Lua bindings for Quest system                                   *
- ***************************************************************************/
-
 #include "lua_quest.hpp"
 #include "../../core/actor.hpp"
 #include "../../quests/quest_manager.hpp"

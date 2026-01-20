@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/mock_game_session.hpp                Part of FieryMUD *
- *  Usage: Mock game session for testing NetworkedPlayer connection flows  *
- ***************************************************************************/
-
 #pragma once
 
 #include "../src/core/ids.hpp"
@@ -10,9 +5,6 @@
 #include "../src/net/player_connection.hpp"
 #include "../src/server/networked_actor.hpp"
 #include "../src/server/world_server.hpp"
-#include "test_harness.hpp"
-
-#include "test_harness.hpp"
 
 #include <atomic>
 #include <chrono>

@@ -1012,7 +1012,7 @@ void Actor::add_effect(const ActiveEffect& effect) {
     active_effects_.push_back(effect);
 
     // Apply the associated flag if set
-    if (effect.flag != ActorFlag::Blind) {  // Blind is 0, so we use a real check
+    if (effect.flag != ActorFlag::None) {
         set_flag(effect.flag, true);
     }
 
@@ -1028,7 +1028,7 @@ void Actor::remove_effect(const std::string& effect_name) {
 
     if (it != active_effects_.end()) {
         // Remove the associated flag
-        if (it->flag != ActorFlag::Blind) {
+        if (it->flag != ActorFlag::None) {
             set_flag(it->flag, false);
         }
 
@@ -1062,7 +1062,7 @@ void Actor::tick_effects() {
                 send_message(fmt::format("Your {} effect wears off.\r\n", it->name));
 
                 // Remove the associated flag
-                if (it->flag != ActorFlag::Blind) {
+                if (it->flag != ActorFlag::None) {
                     set_flag(it->flag, false);
                 }
                 Log::game()->debug("Effect '{}' expired on {}", it->name, name());
@@ -1077,7 +1077,7 @@ void Actor::tick_effects() {
 void Actor::clear_effects() {
     // Remove all flags
     for (const auto& effect : active_effects_) {
-        if (effect.flag != ActorFlag::Blind) {
+        if (effect.flag != ActorFlag::None) {
             set_flag(effect.flag, false);
         }
     }
@@ -1304,7 +1304,7 @@ Actor::TickResult Actor::perform_hour_tick() {
                 send_message(fmt::format("Your {} effect wears off.\r\n", it->name));
 
                 // Remove the associated flag
-                if (it->flag != ActorFlag::Blind) {
+                if (it->flag != ActorFlag::None) {
                     set_flag(it->flag, false);
                 }
                 Log::game()->debug("Effect '{}' expired on {}", it->name, name());

@@ -13,6 +13,7 @@
 #include "../world/world_manager.hpp"
 
 #include <algorithm>
+#include <array>
 #include <random>
 
 namespace CombatCommands {
@@ -348,7 +349,12 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             ctx.send_to_actor(target, exec_result->target_message);
         }
         if (!exec_result->room_message.empty()) {
-            ctx.send_to_room(exec_result->room_message, true);
+            // Exclude target from room message if they got a personalized message
+            if (target && !exec_result->target_message.empty()) {
+                ctx.send_to_room(exec_result->room_message, true, std::array{target});
+            } else {
+                ctx.send_to_room(exec_result->room_message, true);
+            }
         }
 
         // Check if we dealt damage (only violent spells trigger combat)
@@ -621,7 +627,12 @@ Result<CommandResult> perform_attack(const CommandContext &ctx, std::shared_ptr<
     }
 
     if (!result.room_message.empty()) {
-        ctx.send_to_room(result.room_message, true);
+        // Exclude target from room message if they got a personalized message
+        if (target && !result.target_message.empty()) {
+            ctx.send_to_room(result.room_message, true, std::array{target});
+        } else {
+            ctx.send_to_room(result.room_message, true);
+        }
     }
 
     return CommandResult::Success;

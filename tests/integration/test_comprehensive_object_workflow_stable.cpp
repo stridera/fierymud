@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: test_comprehensive_object_workflow_stable.cpp  Part of FieryMUD *
- *  Usage: Comprehensive integration tests for full object workflow        *
- ***************************************************************************/
-
 #include "../common/lightweight_test_harness.hpp"
 #include <catch2/catch_test_macros.hpp>
 

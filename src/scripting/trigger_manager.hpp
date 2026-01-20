@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/trigger_manager.hpp              Part of FieryMUD *
- *  Usage: Trigger loading, caching, and dispatch system                   *
- ***************************************************************************/
-
 #pragma once
 
 #include "script_context.hpp"

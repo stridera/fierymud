@@ -1,13 +1,9 @@
-/***************************************************************************
- *   File: tests/mock_game_session.cpp                Part of FieryMUD *
- *  Usage: Implementation of mock game session for testing                 *
- ***************************************************************************/
-
 #include "mock_game_session.hpp"
 
 #include "../src/commands/builtin_commands.hpp"
 #include "../src/commands/command_system.hpp"
 #include "../src/core/logging.hpp"
+#include "../src/server/mud_server.hpp"
 #include "../src/world/world_manager.hpp"
 #include "../src/world/room.hpp"
 #include "../src/core/actor.hpp"

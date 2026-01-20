@@ -168,11 +168,24 @@ You can close tags in multiple ways:
 
 ```
 <red>text</red>      Full closing tag
-<red>text</>         Short closing tag (resets all formatting)
+<red>text</>         Short closing tag
 <red>text</red>      Named closing tag
 ```
 
-The short form `</>` resets all formatting and is recommended for simplicity.
+The short form `</>` is recommended for simplicity.
+
+### Nested Colors
+
+Color tags can be nested. When a closing tag `</>` is encountered, it restores
+the previous color rather than resetting to default. This allows colored item
+names to be embedded in colored sentences:
+
+```
+<green>You drink from a <brown>leather water skin</>. Refreshing!</>
+```
+
+Output: The sentence starts green, "leather water skin" appears brown, then
+". Refreshing!" returns to green before the final reset to default.
 
 ## Message Examples
 
@@ -293,11 +306,14 @@ to_room:   "<b:red>{target.name} has been KILLED by {actor.name}!</>"
    Bad:  "{target.name} looks at himself in the mirror."
    ```
 
-2. **Don't nest color tags** - Close one before opening another
+2. **Nested colors are supported** - The closing tag `</>` restores the previous color
    ```
+   Good: "<green>Outer <red>inner</> still green</>"
    Good: "<red>Fire</> and <blue>ice</>"
-   Bad:  "<red>Fire <blue>ice</></>"
    ```
+   Note: When `</>` is encountered inside nested colors, it pops the current color
+   and restores the outer color. This allows item names with colors to be embedded
+   in colored sentences without breaking the outer color.
 
 3. **Don't use colors excessively** - Reserve them for important information
 

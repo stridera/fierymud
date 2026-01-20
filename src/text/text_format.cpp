@@ -22,12 +22,15 @@ const std::unordered_map<std::string, std::string> COLOR_CODES = {
     {"red", "\033[31m"},
     {"green", "\033[32m"},
     {"yellow", "\033[33m"},
+    {"brown", "\033[33m"},  // Classic MUD brown = dark yellow
     {"blue", "\033[34m"},
     {"magenta", "\033[35m"},
+    {"purple", "\033[35m"}, // Alias for magenta
     {"cyan", "\033[36m"},
     {"white", "\033[37m"},
     {"gray", "\033[90m"},
     {"grey", "\033[90m"},
+    {"orange", "\033[38;5;208m"},  // 256-color orange
 
     // Bright colors
     {"b:black", "\033[90m"},
@@ -237,9 +240,58 @@ std::string substitute(std::string_view template_msg, VariableResolver resolver)
 // Color Processing
 // =============================================================================
 
+/**
+ * Parse a color/style tag and return the corresponding ANSI code.
+ * Returns empty string if not a recognized tag.
+ */
+std::string parse_color_tag(std::string_view tag_content) {
+    if (tag_content.empty()) {
+        return "";
+    }
+
+    // Hex color (#RRGGBB or #RGB)
+    if (tag_content[0] == '#') {
+        return hex_to_ansi(tag_content);
+    }
+
+    // Indexed color (c0-c255) or background indexed (bgc0-bgc255)
+    std::string indexed = parse_indexed_color(tag_content);
+    if (!indexed.empty()) {
+        return indexed;
+    }
+
+    // Combined format (b:c196, b:red, etc.)
+    std::string combined = parse_combined_tag(tag_content);
+    if (!combined.empty()) {
+        return combined;
+    }
+
+    // Named color or style
+    std::string tag_name = to_lower(tag_content);
+    auto it = COLOR_CODES.find(tag_name);
+    if (it != COLOR_CODES.end()) {
+        return it->second;
+    }
+
+    return "";
+}
+
+/**
+ * Apply color tags to a message, converting them to ANSI escape codes.
+ * Implements a color stack so that nested colors work correctly:
+ *
+ * Input:  "<green>Outer <red>inner</> still green</>"
+ * Output: "\033[32mOuter \033[31minner\033[0m\033[32m still green\033[0m"
+ *
+ * When a closing tag </> is encountered, the current color is popped and
+ * the previous color (if any) is restored.
+ */
 std::string apply_colors(std::string_view message) {
     std::string result;
     result.reserve(message.length() * 2);
+
+    // Stack of active ANSI codes for proper nesting
+    std::vector<std::string> color_stack;
 
     std::size_t i = 0;
     while (i < message.length()) {
@@ -248,48 +300,31 @@ std::string apply_colors(std::string_view message) {
             if (i + 1 < message.length() && message[i + 1] == '/') {
                 std::size_t end = message.find('>', i + 2);
                 if (end != std::string_view::npos) {
+                    // Pop from stack
+                    if (!color_stack.empty()) {
+                        color_stack.pop_back();
+                    }
+
+                    // Reset then restore previous color (if any)
                     result += RESET_CODE;
+                    if (!color_stack.empty()) {
+                        result += color_stack.back();
+                    }
+
                     i = end + 1;
                     continue;
                 }
             }
 
-            // Opening tag
+            // Opening tag - parse and push to stack
             std::size_t end = message.find('>', i + 1);
             if (end != std::string_view::npos) {
                 std::string_view tag_content = message.substr(i + 1, end - i - 1);
+                std::string ansi_code = parse_color_tag(tag_content);
 
-                // Hex color (#RRGGBB or #RGB)
-                if (!tag_content.empty() && tag_content[0] == '#') {
-                    std::string ansi = hex_to_ansi(tag_content);
-                    if (!ansi.empty()) {
-                        result += ansi;
-                        i = end + 1;
-                        continue;
-                    }
-                }
-
-                // Indexed color (c0-c255) or background indexed (bgc0-bgc255)
-                std::string indexed = parse_indexed_color(tag_content);
-                if (!indexed.empty()) {
-                    result += indexed;
-                    i = end + 1;
-                    continue;
-                }
-
-                // Combined format (b:c196, b:red, etc.)
-                std::string combined = parse_combined_tag(tag_content);
-                if (!combined.empty()) {
-                    result += combined;
-                    i = end + 1;
-                    continue;
-                }
-
-                // Named color or style
-                std::string tag_name = to_lower(tag_content);
-                auto it = COLOR_CODES.find(tag_name);
-                if (it != COLOR_CODES.end()) {
-                    result += it->second;
+                if (!ansi_code.empty()) {
+                    color_stack.push_back(ansi_code);
+                    result += ansi_code;
                     i = end + 1;
                     continue;
                 }
@@ -298,6 +333,11 @@ std::string apply_colors(std::string_view message) {
 
         result += message[i];
         ++i;
+    }
+
+    // Reset at end if colors are still active
+    if (!color_stack.empty()) {
+        result += RESET_CODE;
     }
 
     return result;

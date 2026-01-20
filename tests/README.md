@@ -4,114 +4,132 @@ This directory contains the test suite for FieryMUD, built using the Catch2 test
 
 ## Test Organization
 
-Tests are organized by functionality and tagged for easy filtering:
+Tests are organized by functionality:
 
-### Test Categories
+### Unit Tests (`tests/unit/`)
 
-#### Unit Tests `[unit]`
+Fast, isolated component tests:
+
 - **test_core.cpp** - Core system functionality (Entity, Result, Error handling)
-- **test_core_arguments.cpp** - Command argument parsing and handling  
+- **test_core_arguments.cpp** - Command argument parsing and handling
 - **test_combat_system.cpp** - Combat mechanics, class abilities, damage calculation
-- **test_actor.cpp** - Actor/Mobile JSON parsing, stats validation, level handling
-- **test_container_system.cpp** & **test_container_system_simple.cpp** - Object containers and inventory
+- **test_actor.cpp** - Actor/Mobile JSON parsing, stats validation
+- **test_container_system_simple.cpp** - Object containers and inventory
+- **test_container_inheritance.cpp** - Container inheritance hierarchies
 - **test_object_descriptions.cpp** - Object description system
-- **test_mobile_keywords.cpp** - Mobile keyword parsing and matching
-
-#### Integration Tests `[integration]`  
-- **test_session_integration.cpp** - Full session lifecycle, character creation, movement
-- **test_command_system.cpp** - Command registration, parsing, execution
-- **test_world.cpp** - Room and actor integration, object interaction
-- **test_object_interactions.cpp** - Complex object command interactions
-- **test_server_resilience.cpp** - Server error handling and recovery
-- **test_multiplayer.cpp** - Multi-player interactions
-- **test_performance.cpp** - Performance benchmarks
-- **test_emotes.cpp** - Emote command integration
-- **test_gmcp.cpp** - GMCP protocol integration
-- **test_session.cpp** - Basic session management
-
-#### Specialized Tests
-- **test_world_utils.cpp** - World management utilities 
+- **test_object_interactions.cpp** - Complex object interactions
+- **test_actual_bag_loading.cpp** - Bag loading and management
 - **test_world_parsing.cpp** - World file parsing
 - **test_zone_parsing.cpp** - Zone file parsing
-- **test_test_harness.cpp** - Test framework itself
+- **test_world_utils.cpp** - World management utilities
+- **test_player_revival.cpp** - Player revival and resurrection
+- **test_command_ability_link.cpp** - Command-to-ability binding
+- **test_quest_system.cpp** - Quest system functionality
+- **test_scripting.cpp** - Lua scripting integration
+- **test_db_parsing.cpp** - Database parsing utilities
+- **test_text_format.cpp** - Text formatting utilities
+- **test_modern_patterns.cpp** - Modern C++23 patterns
 
-### Test Infrastructure
+### Integration Tests (`tests/integration/`)
 
-- **test_harness.hpp** - Core testing infrastructure and utilities
+Comprehensive integration tests using `LightweightTestHarness`:
+
+- **test_command_system_stable.cpp** - Command registration, parsing, execution
+- **test_session_stable.cpp** - Session lifecycle and character creation
+- **test_multiplayer_stable.cpp** - Multi-player interactions
+- **test_comprehensive_object_workflow_stable.cpp** - Complex object workflows
+- **test_enhanced_features_demo_stable.cpp** - Enhanced MUD features
+- **test_enhanced_interaction_feedback_stable.cpp** - Interaction feedback systems
+
+### Test Infrastructure (`tests/common/`)
+
+- **lightweight_test_harness.hpp** - Modern test harness for integration testing
+- **test_builders.hpp** - Fluent builder pattern for test data creation
 - **mock_game_session.hpp/.cpp** - Mock objects for testing game sessions
 
 ## Running Tests
 
-### All Tests
+### Quick Start
 ```bash
-./run_tests.sh                  # All tests
-./build/tests                   # Direct execution
+./run_tests.sh              # Run all tests (unit + integration)
+./run_tests.sh verbose      # Run with verbose output
 ```
 
-### By Category  
+### By Category
 ```bash
-./run_tests.sh unit             # Unit tests only
-./run_tests.sh integration      # Integration tests only
-./run_tests.sh session          # Session tests only
-./build/tests "[unit]"          # Unit tests via Catch2
-./build/tests "[integration]"   # Integration tests via Catch2
+./run_tests.sh unit         # Unit tests only
+./run_tests.sh stable       # Integration tests only
+./build/tests "[unit]"      # Unit tests via Catch2
+./build/tests "[stable]"    # Integration tests via Catch2
 ```
 
 ### By Component
 ```bash
-./build/tests "[combat]"        # Combat system tests
-./build/tests "[actor]"         # Actor/Mobile tests  
-./build/tests "[emotes]"        # Emote tests
-./build/tests "[gmcp]"          # GMCP protocol tests
-```
-
-### Verbose Output
-```bash
-./run_tests.sh verbose          # Verbose test output
-./build/tests --verbosity high  # High verbosity
+./build/tests "[combat]"    # Combat system tests
+./build/tests "[actor]"     # Actor/Mobile tests
+./build/tests "[objects]"   # Object system tests
+./build/tests "[session]"   # Session tests
 ```
 
 ## Test Coverage
 
 ### Well-Covered Systems
-- ✅ Core systems (Entity, Result, Arguments)
-- ✅ Combat system (class abilities, damage calculation)
-- ✅ Command system (parsing, execution, permissions)
-- ✅ Actor/Mobile creation and management
-- ✅ Object containers and interactions
-- ✅ Session lifecycle and character creation
-- ✅ World and room management
-- ✅ GMCP protocol implementation
-
-### Recently Fixed/Implemented
-- ✅ Player start room initialization and revival (room 3001 default)
-- ✅ Dead player command restrictions (comprehensive whitelist)
-- ✅ Prompt system with combat status (HP/Move/Enemy condition)
+- Core systems (Entity, Result, Arguments)
+- Combat system (class abilities, damage calculation)
+- Command system (parsing, execution, permissions)
+- Actor/Mobile creation and management
+- Object containers and interactions
+- Session lifecycle and character creation
+- World and room management
+- Lua scripting integration
+- Quest system
 
 ### Areas Needing More Tests
-- ⚠️ Container system (some test failures)
-- ⚠️ Clan system functionality
-- ⚠️ Advanced combat scenarios
-- ⚠️ Complex multi-player interactions
-- ⚠️ Error recovery and edge cases
+- Advanced combat scenarios
+- Complex multi-player interactions
+- Error recovery and edge cases
 
 ## Adding New Tests
 
-1. **Create test file**: `test_[component].cpp`
-2. **Use appropriate tags**: `[unit]`, `[integration]`, `[component_name]`
-3. **Include test harness**: `#include "test_harness.hpp"`
-4. **Follow naming convention**: `TEST_CASE("Component: Feature Description", "[tags]")`
+### Unit Tests
+1. Create file: `tests/unit/test_[component].cpp`
+2. Use Catch2 with simple fixtures
+3. Include appropriate tags: `[unit][component_name]`
 
-### Example Test Structure
 ```cpp
 #include <catch2/catch_test_macros.hpp>
-#include "test_harness.hpp"
+#include "core/object.hpp"
 
 TEST_CASE("Component: Basic Functionality", "[unit][component]") {
-    TestHarness harness;
     // Test implementation
     REQUIRE(condition);
 }
+```
+
+### Integration Tests
+1. Create file: `tests/integration/test_[feature]_stable.cpp` (note the `_stable` suffix)
+2. Use `LightweightTestHarness`
+3. Include tags: `[integration][stable][feature_name]`
+
+```cpp
+#include "../common/lightweight_test_harness.hpp"
+#include <catch2/catch_test_macros.hpp>
+
+TEST_CASE("Feature: Description", "[integration][stable][feature]") {
+    LightweightTestHarness harness;
+
+    harness.execute_command("look")
+           .then_output_contains("Test Start Room")
+           .then_output_not_contains("error");
+}
+```
+
+## Build Targets
+
+```bash
+cmake --build build --target unit_tests     # Unit tests
+cmake --build build --target stable_tests   # Integration tests
+cmake --build build --target tests          # Combined (unit + integration)
 ```
 
 ## Continuous Integration

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/bindings/lua_quest.hpp              Part of FieryMUD *
- *  Usage: Lua bindings for Quest system                                   *
- ***************************************************************************/
-
 #pragma once
 
 #include <sol/forward.hpp>

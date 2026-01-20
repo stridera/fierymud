@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/quests/quest_manager.hpp                    Part of FieryMUD *
- *  Usage: Quest system management and tracking                             *
- ***************************************************************************/
-
 #pragma once
 
 #include "database/quest_queries.hpp"

@@ -908,19 +908,19 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
 
 void send_communication(const CommandContext &ctx, std::string_view message, MessageType type,
                         std::string_view channel_name) {
-    std::string formatted_message = format_communication(ctx.actor, message, channel_name);
+    std::string formatted_message = format_communication(ctx.actor, message, channel_name, type);
 
     switch (type) {
     case MessageType::Say:
-        ctx.send(fmt::format("You say, '{}'", message));
+        ctx.send(fmt::format("<white>You say, '{}'</>", message));
         ctx.send_to_room(formatted_message, true);
         break;
     case MessageType::Broadcast:
-        ctx.send(fmt::format("You {}, '{}'", channel_name, message));
+        ctx.send(fmt::format("<b:red>You {}, '{}'</>", channel_name, message));
         ctx.send_to_all(formatted_message, true);  // exclude self
         break;
     case MessageType::Channel:
-        ctx.send(fmt::format("You {}, '{}'", channel_name, message));
+        ctx.send(fmt::format("<magenta>You {}, '{}'</>", channel_name, message));
         ctx.send_to_all(formatted_message, true);  // exclude self
         break;
     default:
@@ -929,15 +929,39 @@ void send_communication(const CommandContext &ctx, std::string_view message, Mes
     }
 }
 
-std::string format_communication(std::shared_ptr<Actor> sender, std::string_view message, std::string_view channel) {
+std::string format_communication(std::shared_ptr<Actor> sender, std::string_view message,
+                                 std::string_view channel, MessageType type) {
     if (!sender) {
         return std::string{message};
     }
 
+    // Choose color based on message type
+    std::string_view color;
+    switch (type) {
+    case MessageType::Say:
+        color = "white";
+        break;
+    case MessageType::Broadcast:
+        color = "b:red";
+        break;
+    case MessageType::Channel:
+        color = "magenta";
+        break;
+    case MessageType::Tell:
+        color = "cyan";
+        break;
+    case MessageType::Emote:
+        color = "yellow";
+        break;
+    default:
+        color = "white";
+        break;
+    }
+
     if (channel.empty()) {
-        return fmt::format("{} says, '{}'", sender->display_name(), message);
+        return fmt::format("<{}>{} says, '{}'</>", color, sender->display_name(), message);
     } else {
-        return fmt::format("{} {}s, '{}'", sender->display_name(), channel, message);
+        return fmt::format("<{}>{} {}s, '{}'</>", color, sender->display_name(), channel, message);
     }
 }
 

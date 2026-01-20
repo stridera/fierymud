@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/bindings/lua_room.cpp               Part of FieryMUD *
- *  Usage: Lua bindings for Room class                                      *
- ***************************************************************************/
-
 #include "lua_room.hpp"
 #include "../../world/room.hpp"
 #include "../../world/world_manager.hpp"

@@ -1,12 +1,3 @@
-/***************************************************************************
- *   File: tests/unit/test_combat_system.cpp            Part of FieryMUD *
- *  Usage: Unit tests for modern ACC/EVA combat system                    *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.       *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
 

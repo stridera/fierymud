@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/test_core.cpp                                Part of FieryMUD *
- *  Usage: Unit tests for core data structures and utilities               *
- ***************************************************************************/
-
 #include "../src/core/ids.hpp"
 #include "../src/core/result.hpp"
 

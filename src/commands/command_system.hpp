@@ -5,6 +5,7 @@
 #include "command_context.hpp"
 #include "command_parser.hpp"
 
+#include <array>
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -167,7 +168,8 @@ struct CommandContext {
     void show_help() const;
 
     // Extended messaging
-    void send_to_room(std::string_view message, bool exclude_self = true) const;
+    void send_to_room(std::string_view message, bool exclude_self = true,
+                      std::span<const std::shared_ptr<Actor>> also_exclude = {}) const;
     void send_to_actor(std::shared_ptr<Actor> target, std::string_view message) const;
     void send_to_all(std::string_view message, bool exclude_self = false) const;
 

@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/commands/quest_commands.hpp                  Part of FieryMUD *
- *  Usage: Player quest system commands                                      *
- ***************************************************************************/
-
 #pragma once
 
 #include "command_system.hpp"

@@ -411,12 +411,8 @@ set(CORE_TEST_SOURCES
 # Unit test sources
 file(GLOB_RECURSE UNIT_TEST_FILES "tests/unit/*.cpp")
 
-# Integration test sources - prioritize stable tests
+# Integration test sources (stable tests only)
 file(GLOB STABLE_INTEGRATION_TEST_FILES "tests/integration/*_stable.cpp")
-file(GLOB_RECURSE INTEGRATION_TEST_FILES "tests/integration/*.cpp")
-
-# Remove stable tests from the general integration list to avoid duplicates
-list(REMOVE_ITEM INTEGRATION_TEST_FILES ${STABLE_INTEGRATION_TEST_FILES})
 
 # Common test infrastructure
 file(GLOB_RECURSE COMMON_TEST_FILES "tests/common/*.cpp")
@@ -434,14 +430,7 @@ add_executable(stable_tests
     ${COMMON_TEST_FILES}
 )
 
-# integration test executable (may segfault)
-add_executable(integration_tests 
-    ${CORE_TEST_SOURCES}
-    ${INTEGRATION_TEST_FILES}
-    ${COMMON_TEST_FILES}
-)
-
-# combined test executable (for backward compatibility)
+# combined test executable
 add_executable(tests 
     ${CORE_TEST_SOURCES}
     ${UNIT_TEST_FILES}
@@ -517,40 +506,6 @@ target_compile_options(stable_tests PRIVATE
     -g
 )
 
-# Configure integration tests executable
-target_include_directories(integration_tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
-
-target_link_libraries(integration_tests PRIVATE
-    fmt::fmt
-    spdlog::spdlog
-    nlohmann_json::nlohmann_json
-    magic_enum::magic_enum
-    cxxopts::cxxopts
-    asio
-    pqxx
-    PostgreSQL::PostgreSQL
-    Catch2::Catch2WithMain
-    OpenSSL::Crypto
-    crypt
-    lua
-    ${CMAKE_DL_LIBS}
-    sol2::sol2
-    ${HIREDIS_LIBRARIES}
-)
-
-target_compile_definitions(integration_tests PRIVATE
-    SPDLOG_COMPILED_LIB
-    SPDLOG_FMT_EXTERNAL
-)
-
-target_compile_options(integration_tests PRIVATE
-    -std=gnu++23
-    -Wall
-    -Wextra
-    -O3
-    -g
-)
-
 # Configure combined tests executable
 target_include_directories(tests PRIVATE src src/ . ${CMAKE_SOURCE_DIR} src/core src/world src/server src/commands src/text ${HIREDIS_INCLUDE_DIRS})
 
@@ -599,12 +554,6 @@ add_test(
 )
 
 add_test(
-    NAME Integration_Tests  
-    COMMAND integration_tests
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-add_test(
     NAME Combined_Tests
     COMMAND tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -619,11 +568,6 @@ set_tests_properties(Unit_Tests PROPERTIES
 set_tests_properties(Stable_Tests PROPERTIES
     TIMEOUT 30
     LABELS "integration;stable"
-)
-
-set_tests_properties(Integration_Tests PROPERTIES
-    TIMEOUT 120
-    LABELS "integration;unstable"
 )
 
 set_tests_properties(Combined_Tests PROPERTIES

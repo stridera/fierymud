@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/bindings/lua_actor.hpp              Part of FieryMUD *
- *  Usage: Lua bindings for Actor/Mobile/Player classes                     *
- ***************************************************************************/
-
 #pragma once
 
 #include <sol/forward.hpp>

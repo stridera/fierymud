@@ -2,6 +2,7 @@
 
 #include "../commands/builtin_commands.hpp"
 #include "../commands/command_system.hpp"
+#include "../commands/movement_commands.hpp"
 #include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../game/composer_system.hpp"
@@ -904,13 +905,21 @@ void WorldServer::perform_casting_processing() {
 
         // Advance the casting timer
         if (actor->advance_casting()) {
-            // Casting completed - show completion message
-            actor->send_message("\nYou complete your spell.\n");
             const auto& state_opt = actor->casting_state();
             if (state_opt.has_value()) {
                 const auto& state = state_opt.value();
                 Log::debug("Casting complete for {}: {} (target: {})",
                           actor->name(), state.ability_name, state.target_name);
+
+                // Handle recall completion specially
+                if (state.ability_id == MovementCommands::RECALL_ABILITY_ID) {
+                    MovementCommands::complete_recall(actor);
+                    actor->stop_casting();
+                    continue;
+                }
+
+                // Casting completed - show completion message for spells
+                actor->send_message("\nYou complete your spell.\n");
 
                 // Get the target actor if needed
                 std::shared_ptr<Actor> target_actor = state.target.lock();

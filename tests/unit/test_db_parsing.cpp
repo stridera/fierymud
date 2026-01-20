@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/unit/test_db_parsing.cpp                  Part of FieryMUD *
- *  Usage: Unit tests for database parsing utilities                        *
- ***************************************************************************/
-
 #include "../../src/database/db_parsing_utils.hpp"
 
 #include <catch2/catch_test_macros.hpp>

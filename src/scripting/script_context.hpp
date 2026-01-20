@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: src/scripting/script_context.hpp               Part of FieryMUD *
- *  Usage: Execution context for Lua trigger scripts                       *
- ***************************************************************************/
-
 #pragma once
 
 #include "triggers/trigger_data.hpp"

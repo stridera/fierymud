@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: test_enhanced_features_demo.cpp               Part of FieryMUD *
- *  Usage: Demonstration of enhanced LightweightTestHarness features       *
- ***************************************************************************/
-
 #include "../common/lightweight_test_harness.hpp"
 #include <catch2/catch_test_macros.hpp>
 

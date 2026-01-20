@@ -6,7 +6,10 @@
 #include "../events/event_publisher.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../server/world_server.hpp"
+#include "../text/text_format.hpp"
 #include "../world/room.hpp"
+
+#include <array>
 
 namespace CommunicationCommands {
 
@@ -22,9 +25,65 @@ namespace CommunicationCommands {
  * @param message The raw player-provided message
  * @return The message with a closing tag appended
  */
-std::string sanitize_player_message(std::string_view message) {
-    // Always append a reset tag to close any unclosed formatting
-    return fmt::format("{}</>", message);
+std::string sanitize_player_message(std::string_view message, std::shared_ptr<Actor> actor = nullptr) {
+    // Gods can use color codes in their messages
+    if (actor) {
+        auto priv = CommandSystem::instance().get_actor_privilege(actor);
+        if (priv >= PrivilegeLevel::God) {
+            // Process god message: balance color tags so they don't affect outer wrapper
+            std::string result;
+            result.reserve(message.length() + 10);
+
+            int open_count = 0;  // Color tags opened by god in this message
+
+            size_t i = 0;
+            while (i < message.length()) {
+                if (message[i] == '<') {
+                    size_t end = message.find('>', i + 1);
+                    if (end != std::string_view::npos) {
+                        std::string_view tag_content = message.substr(i + 1, end - i - 1);
+
+                        if (!tag_content.empty() && tag_content[0] == '/') {
+                            // Close tag - only include if god has opens to close
+                            if (open_count > 0) {
+                                result += message.substr(i, end - i + 1);
+                                open_count--;
+                            }
+                            // Otherwise skip this </> - it would pop outer color
+                            i = end + 1;
+                            continue;
+                        } else {
+                            // Opening tag - check if it's a color/style tag
+                            std::string tag_lower;
+                            for (char c : tag_content) {
+                                tag_lower += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+                            }
+                            // Count as open if it looks like a color tag (not empty, starts with letter or #)
+                            if (!tag_content.empty() &&
+                                (std::isalpha(static_cast<unsigned char>(tag_content[0])) || tag_content[0] == '#')) {
+                                open_count++;
+                            }
+                        }
+                    }
+                }
+                result += message[i];
+                i++;
+            }
+
+            // Close any unclosed tags the god opened
+            for (int j = 0; j < open_count; j++) {
+                result += "</>";
+            }
+
+            return result;
+        }
+    }
+
+    // Strip any color tags from regular player input to prevent them from
+    // breaking the message formatting or injecting unwanted colors.
+    // The message will be wrapped in appropriate color tags by the
+    // calling command, so player-supplied tags are not needed.
+    return TextFormat::strip_colors(message);
 }
 
 // =============================================================================
@@ -37,7 +96,7 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Check for SPEECH triggers on mobs in the room
     if (auto room = ctx.actor->current_room()) {
@@ -92,14 +151,14 @@ Result<CommandResult> cmd_tell(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(1));
+    std::string message = sanitize_player_message(ctx.args_from(1), ctx.actor);
 
-    // Send to target
-    std::string target_msg = fmt::format("{} tells you, '{}'", ctx.actor->display_name(), message);
+    // Send to target (cyan for tells)
+    std::string target_msg = fmt::format("<cyan>{} tells you, '{}'</>", ctx.actor->display_name(), message);
     ctx.send_to_actor(target, target_msg);
 
-    // Send confirmation to sender
-    std::string sender_msg = fmt::format("You tell {}, '{}'", target->display_name(), message);
+    // Send confirmation to sender (cyan for tells)
+    std::string sender_msg = fmt::format("<cyan>You tell {}, '{}'</>", target->display_name(), message);
     ctx.send(sender_msg);
 
     // Track the tell for reply functionality
@@ -129,8 +188,8 @@ Result<CommandResult> cmd_emote(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string action = sanitize_player_message(ctx.args_from(0));
-    std::string emote_msg = fmt::format("{} {}", ctx.actor->display_name(), action);
+    std::string action = sanitize_player_message(ctx.args_from(0), ctx.actor);
+    std::string emote_msg = fmt::format("<yellow>{} {}</>", ctx.actor->display_name(), action);
 
     // Send to everyone in the room including self - emotes show the same message to everyone
     ctx.send_to_room(emote_msg, false); // Include self - everyone sees the same thing
@@ -166,19 +225,20 @@ Result<CommandResult> cmd_whisper(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(1));
+    std::string message = sanitize_player_message(ctx.args_from(1), ctx.actor);
 
-    // Send to target
-    std::string target_msg = fmt::format("{} whispers to you, '{}'", ctx.actor->display_name(), message);
+    // Send to target (dim cyan for whispers - more subtle than tells)
+    std::string target_msg = fmt::format("<dim><cyan>{} whispers to you, '{}'</></>", ctx.actor->display_name(), message);
     ctx.send_to_actor(target, target_msg);
 
     // Send confirmation to sender
-    std::string sender_msg = fmt::format("You whisper to {}, '{}'", target->display_name(), message);
+    std::string sender_msg = fmt::format("<dim><cyan>You whisper to {}, '{}'</></>", target->display_name(), message);
     ctx.send(sender_msg);
 
-    // Let others see the whisper (but not the content)
-    std::string room_msg = fmt::format("{} whispers something to {}.", ctx.actor->display_name(), target->display_name());
-    ctx.send_to_room(room_msg, true);
+    // Let others see the whisper (but not the content) - dim/gray
+    // Exclude both sender (exclude_self=true) and target from this message
+    std::string room_msg = fmt::format("<dim>{} whispers something to {}.</>", ctx.actor->display_name(), target->display_name());
+    ctx.send_to_room(room_msg, true, std::array{target});
 
     return CommandResult::Success;
 }
@@ -189,7 +249,7 @@ Result<CommandResult> cmd_shout(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Broadcast, "shout");
 
     // Publish to Muditor bridge
@@ -207,7 +267,7 @@ Result<CommandResult> cmd_gossip(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Channel, "gossip");
 
     // Publish to Muditor bridge
@@ -247,14 +307,14 @@ Result<CommandResult> cmd_reply(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
-    // Send to target
-    std::string target_msg = fmt::format("{} tells you, '{}'", ctx.actor->display_name(), message);
+    // Send to target (cyan for tells)
+    std::string target_msg = fmt::format("<cyan>{} tells you, '{}'</>", ctx.actor->display_name(), message);
     ctx.send_to_actor(target, target_msg);
 
-    // Send confirmation to sender
-    std::string sender_msg = fmt::format("You tell {}, '{}'", target->display_name(), message);
+    // Send confirmation to sender (cyan for tells)
+    std::string sender_msg = fmt::format("<cyan>You tell {}, '{}'</>", target->display_name(), message);
     ctx.send(sender_msg);
 
     // Update tracking for reply chain
@@ -285,18 +345,18 @@ Result<CommandResult> cmd_ask(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    std::string question = sanitize_player_message(ctx.args_from(1));
+    std::string question = sanitize_player_message(ctx.args_from(1), ctx.actor);
 
-    // Send to target
-    std::string target_msg = fmt::format("{} asks you, '{}'", ctx.actor->display_name(), question);
+    // Send to target (white for ask, similar to say)
+    std::string target_msg = fmt::format("<white>{} asks you, '{}'</>", ctx.actor->display_name(), question);
     ctx.send_to_actor(target, target_msg);
 
     // Send confirmation to sender
-    std::string sender_msg = fmt::format("You ask {}, '{}'", target->display_name(), question);
+    std::string sender_msg = fmt::format("<white>You ask {}, '{}'</>", target->display_name(), question);
     ctx.send(sender_msg);
 
     // Let others in the room see the question
-    std::string room_msg = fmt::format("{} asks {}, '{}'", ctx.actor->display_name(), target->display_name(), question);
+    std::string room_msg = fmt::format("<white>{} asks {}, '{}'</>", ctx.actor->display_name(), target->display_name(), question);
     ctx.send_to_room(room_msg, true);
 
     return CommandResult::Success;
@@ -309,7 +369,7 @@ Result<CommandResult> cmd_petition(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Format the petition message for immortals
     // TODO: Add privilege-based filtering when send_to_all_with_privilege is implemented
@@ -330,7 +390,7 @@ Result<CommandResult> cmd_wiznet(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Send to actor first
     ctx.send(fmt::format("You wiznet, '{}'", message));
@@ -398,7 +458,7 @@ Result<CommandResult> cmd_gtell(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Format and send to group members
     std::string group_msg = fmt::format("[GROUP] {} tells the group: {}", ctx.actor->display_name(), message);
@@ -414,7 +474,7 @@ Result<CommandResult> cmd_gecho(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string message = sanitize_player_message(ctx.args_from(0));
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Send to all online actors
     ctx.send_to_all(message, false);  // Don't exclude self

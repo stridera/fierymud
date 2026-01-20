@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/test_world_parsing.cpp               Part of FieryMUD *
- *  Usage: Unit tests for world JSON parsing functionality               *
- ***************************************************************************/
-
 #include "../src/world/world_manager.hpp"
 #include "../src/world/room.hpp"
 #include "../src/world/zone.hpp"

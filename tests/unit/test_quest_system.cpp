@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/unit/test_quest_system.cpp                  Part of FieryMUD *
- *  Usage: Unit tests for quest system data structures and utilities        *
- ***************************************************************************/
-
 #include "../../src/quests/quest_manager.hpp"
 #include "../../src/database/quest_queries.hpp"
 #include "../../src/core/ids.hpp"

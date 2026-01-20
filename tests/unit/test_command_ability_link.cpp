@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/unit/test_command_ability_link.cpp          Part of FieryMUD *
- *  Usage: Unit tests for Command-to-Ability linkage and data-driven skills  *
- ***************************************************************************/
-
 #include "../src/database/world_queries.hpp"
 #include "../src/core/ability_executor.hpp"
 #include "../src/core/formula_parser.hpp"

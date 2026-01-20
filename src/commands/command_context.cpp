@@ -16,6 +16,7 @@
 #include <cctype>
 #include <fmt/format.h>
 #include <iostream>
+#include <ranges>
 
 using namespace std::string_view_literals;
 
@@ -205,7 +206,8 @@ void CommandContext::show_help() const {
     }
 }
 
-void CommandContext::send_to_room(std::string_view message, bool exclude_self) const {
+void CommandContext::send_to_room(std::string_view message, bool exclude_self,
+                                   std::span<const std::shared_ptr<Actor>> also_exclude) const {
     if (!room)
         return;
 
@@ -217,6 +219,13 @@ void CommandContext::send_to_room(std::string_view message, bool exclude_self) c
 
         // Skip self if exclude_self is true
         if (exclude_self && room_actor == actor) {
+            continue;
+        }
+
+        // Check exclusion list
+        bool excluded = std::ranges::any_of(also_exclude,
+            [&](const auto& ex) { return room_actor == ex; });
+        if (excluded) {
             continue;
         }
 
@@ -885,11 +894,39 @@ Direction reverse_direction(Direction dir) {
 }
 
 std::string format_message(std::string_view message, MessageType type) {
-    auto color_code = get_color_code(type);
-    if (color_code.empty()) {
+    // Use color TAGS instead of raw ANSI codes so that nested colors
+    // in the message content work correctly with apply_colors()
+    switch (type) {
+    case MessageType::Error:
+        return fmt::format("<red>{}</>", message);
+    case MessageType::Success:
+        return fmt::format("<green>{}</>", message);
+    case MessageType::Warning:
+        return fmt::format("<yellow>{}</>", message);
+    case MessageType::Info:
+        return fmt::format("<blue>{}</>", message);
+    case MessageType::System:
+        return fmt::format("<cyan>{}</>", message);
+    case MessageType::Debug:
+        return fmt::format("<gray>{}</>", message);
+    case MessageType::Combat:
+        return fmt::format("<magenta>{}</>", message);
+    case MessageType::Social:
+        return fmt::format("<yellow>{}</>", message);
+    case MessageType::Tell:
+        return fmt::format("<cyan>{}</>", message);
+    case MessageType::Say:
+        return fmt::format("<white>{}</>", message);
+    case MessageType::Emote:
+        return fmt::format("<yellow>{}</>", message);
+    case MessageType::Channel:
+        return fmt::format("<magenta>{}</>", message);
+    case MessageType::Broadcast:
+        return fmt::format("<red>{}</>", message);
+    case MessageType::Normal:
+    default:
         return std::string{message};
     }
-    return fmt::format("{}{}\033[0m", color_code, message);
 }
 
 std::string strip_color_codes(std::string_view message) {

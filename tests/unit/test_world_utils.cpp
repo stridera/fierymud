@@ -1,8 +1,3 @@
-/***************************************************************************
- *   File: tests/test_world_utils.cpp                 Part of FieryMUD *
- *  Usage: Unit tests for world-related utilities and data structures    *
- ***************************************************************************/
-
 #include "../src/world/room.hpp"
 #include "../src/world/world_manager.hpp"
 #include "../src/world/zone.hpp"
