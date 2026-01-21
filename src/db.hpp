@@ -81,6 +81,7 @@ int real_quest(unsigned short vnum);
 char *fread_string(FILE *fl, const char *error);
 int vnum_room(char *searchname, CharData *ch);
 int vnum_zone(char *searchname, CharData *ch);
+long get_set_exp(int level, int race, int class_num, int zone);
 
 void init_player(CharData *ch);
 CharData *create_char(void);

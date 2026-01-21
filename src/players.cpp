@@ -725,6 +725,17 @@ int load_player(const char *name, CharData *ch) {
     }
     reset_height_weight(ch);
 
+    /* Fix up experience totals to account for level curve change */
+    /* This has the beneficial side effect of mitigating the exp */
+    /* quirk of the Bard class change */
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+      long new_exp = adjust_exp_to_level(GET_LEVEL(ch), GET_CLASS(ch), GET_EXP(ch));
+      if (new_exp != GET_EXP(ch)) {
+        log("Adjusting {} (level {:d}) exp from {:d} to {:d} on load", GET_NAME(ch), GET_LEVEL(ch), GET_EXP(ch), new_exp);
+        GET_EXP(ch) = new_exp;
+      }
+    }
+
     fclose(fl);
     return (id);
 }
