@@ -192,6 +192,16 @@ struct CommandContext {
     // Target resolution
     TargetInfo resolve_target(std::string_view name) const;
 
+    // Entity ID parsing with current zone as default
+    // Accepts "zone:id" or just "id" (uses current room's zone)
+    EntityId parse_entity_id(std::string_view str) const {
+        std::optional<std::uint32_t> default_zone;
+        if (room) {
+            default_zone = room->id().zone_id();
+        }
+        return EntityId::parse(str, default_zone);
+    }
+
     // Utility methods
     std::string format_object_name(std::shared_ptr<Object> obj) const;
     Result<void> move_actor_direction(Direction dir) const;

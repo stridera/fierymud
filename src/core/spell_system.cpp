@@ -1,6 +1,7 @@
 #include "spell_system.hpp"
 #include "actor.hpp"
 #include "class_config.hpp"
+#include "../world/room.hpp"
 #include "commands/command_system.hpp"
 #include "core/logging.hpp"
 #include "text/string_utils.hpp"
@@ -569,4 +570,75 @@ void SpellRegistry::initialize_default_spells() {
     });
     
     Log::info("Initialized {} default spells", spells_.size());
+}
+
+// ============================================================================
+// SpellSystem Implementation
+// ============================================================================
+
+SpellSystem& SpellSystem::instance() {
+    static SpellSystem instance;
+    return instance;
+}
+
+std::expected<void, SpellError> SpellSystem::cast_spell(Actor& caster, std::string_view spell_name,
+                                                         Actor* target, int level) {
+    const Spell* spell = SpellRegistry::instance().find_spell(spell_name);
+    if (!spell) {
+        return std::unexpected(SpellError{"spell_not_found"});
+    }
+
+    // Check if caster can cast this spell
+    if (!spell->can_cast(caster)) {
+        return std::unexpected(SpellError{"cannot_cast"});
+    }
+
+    // Consume spell slot (if applicable)
+    if (caster.has_spell_slots(spell->circle)) {
+        if (!caster.consume_spell_slot(spell->circle)) {
+            return std::unexpected(SpellError{"no_spell_slots"});
+        }
+    }
+
+    // Apply spell effects based on type
+    // This is a simplified version - full implementation would use the effect system
+    switch (spell->type) {
+        case SpellType::Healing: {
+            // Self-heal or heal target
+            Actor& heal_target = target ? *target : caster;
+            int heal_amount = spell->circle * 10 + 5;
+            auto& stats = heal_target.stats();
+            stats.hit_points = std::min(stats.max_hit_points,
+                                        stats.hit_points + heal_amount);
+            heal_target.send_message(fmt::format("You are healed for {} hit points!", heal_amount));
+            break;
+        }
+        case SpellType::Offensive: {
+            if (target) {
+                int damage = (spell->circle * 8 + 2) * level / caster.stats().level;
+                target->stats().hit_points -= damage;
+                target->send_message(fmt::format("You are hit by {} for {} damage!",
+                                                 spell->name, damage));
+                caster.send_message(fmt::format("Your {} hits {} for {} damage!",
+                                                spell->name, target->display_name(), damage));
+            }
+            break;
+        }
+        default: {
+            // Generic spell effect message
+            caster.send_message(fmt::format("You cast {}!", spell->name));
+            if (auto room = caster.current_room()) {
+                std::string room_msg = fmt::format("{} casts {}!",
+                                                   caster.display_name(), spell->name);
+                for (const auto& actor : room->contents().actors) {
+                    if (actor && actor.get() != &caster) {
+                        actor->send_message(room_msg);
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    return {};
 }

@@ -1,4 +1,5 @@
 #include "logging.hpp"
+#include "log_subscriber.hpp"
 
 #include <spdlog/pattern_formatter.h>
 #include <atomic>
@@ -40,6 +41,11 @@ void Logger::initialize(const std::string& log_file, LogLevel level, bool consol
         file_sink->set_level(static_cast<spdlog::level::level_enum>(level));
         file_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%f] [%n] [%l] %v");
         sinks_.push_back(file_sink);
+
+        // Player log sink for in-game syslog viewing
+        auto player_sink = PlayerLogSink::instance();
+        player_sink->set_level(static_cast<spdlog::level::level_enum>(level));
+        sinks_.push_back(player_sink);
 
         // Create and register default logger with our sinks
         auto default_logger = std::make_shared<spdlog::logger>("fierymud", sinks_.begin(), sinks_.end());

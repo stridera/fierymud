@@ -5,8 +5,10 @@
 #include <nlohmann/json.hpp>
 #include <unordered_map>
 #include <string>
+#include <string_view>
 #include <vector>
 #include <array>
+#include <expected>
 
 // Forward declarations
 class Actor;
@@ -157,23 +159,56 @@ class SpellRegistry {
 public:
     /** Get singleton instance */
     static SpellRegistry& instance();
-    
+
     /** Register a spell */
     void register_spell(const Spell& spell);
-    
+
     /** Find spell by name (supports partial matching) */
     const Spell* find_spell(std::string_view name) const;
-    
+
     /** Get all spells of a specific circle */
     std::vector<const Spell*> get_spells_by_circle(int circle) const;
-    
+
     /** Get all spells of a specific type */
     std::vector<const Spell*> get_spells_by_type(SpellType type) const;
-    
+
     /** Initialize default spells */
     void initialize_default_spells();
-    
+
 private:
     SpellRegistry() = default;
     std::unordered_map<std::string, Spell> spells_;
+};
+
+/**
+ * Error information for spell operations.
+ */
+struct SpellError {
+    std::string message;
+};
+
+/**
+ * SpellSystem provides the scripting API for spell casting.
+ * Wraps SpellRegistry with additional casting logic.
+ */
+class SpellSystem {
+public:
+    static SpellSystem& instance();
+
+    /**
+     * Check if a spell exists.
+     */
+    bool spell_exists(std::string_view spell_name) const {
+        return SpellRegistry::instance().find_spell(spell_name) != nullptr;
+    }
+
+    /**
+     * Cast a spell from a script context.
+     * Simplified version that doesn't require a full CommandContext.
+     */
+    std::expected<void, SpellError> cast_spell(Actor& caster, std::string_view spell_name,
+                                                Actor* target, int level);
+
+private:
+    SpellSystem() = default;
 };

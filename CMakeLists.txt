@@ -168,6 +168,7 @@ configure_file(
 
 set(CORE_SOURCES
     src/core/logging.cpp
+    src/core/log_subscriber.cpp
     src/core/config.cpp
     src/core/entity.cpp
     src/core/actor.cpp
@@ -180,6 +181,7 @@ set(CORE_SOURCES
     src/core/effect_system.cpp
     src/core/ability_executor.cpp
     src/core/spell_system.cpp
+    src/core/skill_system.cpp
     src/core/class_config.cpp
     src/core/arguments.cpp
     src/text/text_format.cpp
@@ -190,6 +192,7 @@ set(CORE_SOURCES
     src/world/room.cpp
     src/world/zone.cpp
     src/world/world_manager.cpp
+    src/world/templates.cpp
     src/world/weather.cpp
     src/world/time_system.cpp
     src/server/world_server.cpp
@@ -238,10 +241,21 @@ set(CORE_SOURCES
     src/scripting/script_engine.cpp
     src/scripting/trigger_manager.cpp
     src/scripting/coroutine_scheduler.cpp
+    src/scripting/script_timer_manager.cpp
     src/scripting/bindings/lua_actor.cpp
     src/scripting/bindings/lua_room.cpp
     src/scripting/bindings/lua_object.cpp
     src/scripting/bindings/lua_quest.cpp
+    src/scripting/bindings/lua_combat.cpp
+    src/scripting/bindings/lua_world.cpp
+    src/scripting/bindings/lua_spells.cpp
+    src/scripting/bindings/lua_zone.cpp
+    src/scripting/bindings/lua_doors.cpp
+    src/scripting/bindings/lua_skills.cpp
+    src/scripting/bindings/lua_effects.cpp
+    src/scripting/bindings/lua_timers.cpp
+    src/scripting/bindings/lua_vars.cpp
+    src/scripting/bindings/lua_templates.cpp
     # Quest system
     src/quests/quest_manager.cpp
     # Event publishing for Muditor bridge

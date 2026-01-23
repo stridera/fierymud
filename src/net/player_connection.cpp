@@ -1065,7 +1065,7 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
         fmt::format("{} has entered the game", player_->name()));
     if (auto room = player_->current_room()) {
         login_event.zone_id = static_cast<int>(room->id().zone_id());
-        login_event.room_vnum = static_cast<int>(room->id().local_id());
+        login_event.room_id = room->id().to_string();
     }
     login_event.metadata["ip"] = remote_address();
     login_event.metadata["level"] = player_->level();

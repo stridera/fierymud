@@ -1,4 +1,5 @@
 #include "world_manager.hpp"
+#include "templates.hpp"
 #include "weather.hpp"
 #include "../core/actor.hpp"
 #include "../core/board.hpp"
@@ -3080,6 +3081,125 @@ void WorldManager::tick_hour_all() {
 void WorldManager::tick_all_effects() {
     // Legacy compatibility - calls regen tick
     tick_regen_all();
+}
+
+// Lua Scripting API Implementation
+
+std::shared_ptr<Mobile> WorldManager::find_mobile(std::string_view name) const {
+    // Search spawned mobiles by name (case-insensitive partial match)
+    std::string lower_name{name};
+    std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(), ::tolower);
+
+    for (const auto& [id, mobile] : spawned_mobiles_) {
+        if (!mobile) continue;
+
+        std::string mobile_name{mobile->name()};
+        std::transform(mobile_name.begin(), mobile_name.end(), mobile_name.begin(), ::tolower);
+
+        if (mobile_name.find(lower_name) != std::string::npos) {
+            return mobile;
+        }
+
+        // Also check keywords
+        for (const auto& keyword : mobile->keywords()) {
+            std::string lower_keyword = keyword;
+            std::transform(lower_keyword.begin(), lower_keyword.end(), lower_keyword.begin(), ::tolower);
+            if (lower_keyword.find(lower_name) != std::string::npos) {
+                return mobile;
+            }
+        }
+    }
+
+    return nullptr;
+}
+
+Result<void> WorldManager::destroy_mobile(std::shared_ptr<Mobile> mobile) {
+    if (!mobile) {
+        return std::unexpected(Errors::InvalidArgument("mobile", "cannot be null"));
+    }
+
+    auto logger = Log::game();
+    logger->debug("Destroying mobile: {} ({})", mobile->name(), mobile->id());
+
+    // Remove from current room
+    if (auto room = mobile->current_room()) {
+        room->remove_actor(mobile->id());
+    }
+
+    // Remove from spawned mobiles tracking
+    unregister_spawned_mobile(mobile->id());
+
+    return Success();
+}
+
+Result<void> WorldManager::destroy_object(std::shared_ptr<Object> object) {
+    if (!object) {
+        return std::unexpected(Errors::InvalidArgument("object", "cannot be null"));
+    }
+
+    auto logger = Log::game();
+    logger->debug("Destroying object: {} ({})", object->name(), object->id());
+
+    // Search all rooms for this object and remove it
+    for (const auto& [room_id, room] : rooms_) {
+        if (!room) continue;
+        if (room->remove_object(object->id())) {
+            logger->debug("Removed object {} from room {}", object->id(), room_id);
+            return Success();
+        }
+    }
+
+    // Object not found in any room - may be in an inventory
+    // Inventories are managed by Actors, so mark as success (object may already be gone)
+    return Success();
+}
+
+Result<void> WorldManager::zone_echo(int zone_id, std::string_view message) {
+    auto logger = Log::game();
+
+    // Find the zone
+    EntityId zid = EntityId(static_cast<uint64_t>(zone_id), 0);
+    auto zone = get_zone(zid);
+
+    // Get all rooms in the zone
+    auto zone_rooms = get_rooms_in_zone(zid);
+    if (zone_rooms.empty()) {
+        return std::unexpected(Errors::NotFound(fmt::format("zone {}", zone_id)));
+    }
+
+    // Send message to all actors in zone rooms
+    int recipients = 0;
+    for (const auto& room : zone_rooms) {
+        if (!room) continue;
+
+        for (const auto& actor : room->contents().actors) {
+            if (actor && actor->type_name() == "Player") {
+                actor->send_message(std::string(message));
+                recipients++;
+            }
+        }
+    }
+
+    logger->debug("zone_echo: sent to {} players in zone {}", recipients, zone_id);
+    return Success();
+}
+
+std::shared_ptr<ObjectTemplate> WorldManager::get_object_template(EntityId id) const {
+    auto* prototype = get_object_prototype(id);
+    if (!prototype) {
+        return nullptr;
+    }
+
+    return std::make_shared<FieryMUD::ObjectTemplate>(prototype);
+}
+
+std::shared_ptr<MobileTemplate> WorldManager::get_mobile_template(EntityId id) const {
+    auto* prototype = get_mobile_prototype(id);
+    if (!prototype) {
+        return nullptr;
+    }
+
+    return std::make_shared<FieryMUD::MobileTemplate>(prototype);
 }
 
 // WorldUtils Implementation

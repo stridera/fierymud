@@ -158,7 +158,7 @@ struct GameEvent {
     std::chrono::system_clock::time_point timestamp;
     std::optional<std::string> player_name;
     std::optional<int> zone_id;
-    std::optional<int> room_vnum;
+    std::optional<std::string> room_id;  // Format: "zone:local" (EntityId string)
     std::string message;
     nlohmann::json metadata;
 
@@ -171,7 +171,7 @@ struct GameEvent {
             .timestamp = std::chrono::system_clock::now(),
             .player_name = std::nullopt,
             .zone_id = std::nullopt,
-            .room_vnum = std::nullopt,
+            .room_id = std::nullopt,
             .message = std::move(message),
             .metadata = nlohmann::json::object()};
     }
@@ -225,8 +225,8 @@ struct GameEvent {
         if (zone_id) {
             j["zoneId"] = *zone_id;
         }
-        if (room_vnum) {
-            j["roomVnum"] = *room_vnum;
+        if (room_id) {
+            j["roomId"] = *room_id;
         }
         if (!metadata.empty()) {
             j["metadata"] = metadata;

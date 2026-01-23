@@ -9,8 +9,41 @@
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
+#include <algorithm>
+#include <unordered_map>
 
 namespace FieryMUD {
+
+namespace {
+
+// Parse direction string to Direction enum
+std::optional<Direction> parse_direction(const std::string& dir_str) {
+    static const std::unordered_map<std::string, Direction> dir_map = {
+        {"north", Direction::North}, {"n", Direction::North},
+        {"east", Direction::East}, {"e", Direction::East},
+        {"south", Direction::South}, {"s", Direction::South},
+        {"west", Direction::West}, {"w", Direction::West},
+        {"up", Direction::Up}, {"u", Direction::Up},
+        {"down", Direction::Down}, {"d", Direction::Down},
+        {"northeast", Direction::Northeast}, {"ne", Direction::Northeast},
+        {"northwest", Direction::Northwest}, {"nw", Direction::Northwest},
+        {"southeast", Direction::Southeast}, {"se", Direction::Southeast},
+        {"southwest", Direction::Southwest}, {"sw", Direction::Southwest},
+        {"in", Direction::In},
+        {"out", Direction::Out}
+    };
+
+    std::string lower = dir_str;
+    std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+
+    auto it = dir_map.find(lower);
+    if (it != dir_map.end()) {
+        return it->second;
+    }
+    return std::nullopt;
+}
+
+} // anonymous namespace
 
 void register_room_bindings(sol::state& lua) {
     // Direction enum
@@ -191,10 +224,104 @@ void register_room_bindings(sol::state& lua) {
         "find_objects", [](Room& r, const std::string& keyword)
             -> sol::as_table_t<std::vector<std::shared_ptr<Object>>> {
             return sol::as_table(r.find_objects_by_keyword(keyword));
-        }
+        },
 
-        // Note: spawn_mob and spawn_obj will be added in Phase 3
-        // when WorldManager integration is complete
+        // Get adjacent room by direction string (enables chaining: room:dir('n'):at(fn))
+        // Returns the room in that direction, or nil if no exit
+        "dir", [](const Room& r, const std::string& dir_str) -> std::shared_ptr<Room> {
+            auto dir = parse_direction(dir_str);
+            if (!dir) {
+                spdlog::warn("room:dir: Invalid direction '{}'", dir_str);
+                return nullptr;
+            }
+            const auto* exit = r.get_exit(*dir);
+            if (!exit || !exit->to_room.is_valid()) {
+                return nullptr;
+            }
+            return WorldManager::instance().get_room(exit->to_room);
+        },
+
+        // Execute a function in this room's context
+        // Usage: room:at(function() ... end)
+        // The function receives the room as its first argument
+        "at", [](std::shared_ptr<Room> room, sol::protected_function fn) -> sol::protected_function_result {
+            if (!room || !fn.valid()) {
+                return sol::protected_function_result();
+            }
+            // Call the function with the room as context
+            return fn(room);
+        },
+
+        // Spawn a mobile into this room
+        // Usage: room:spawn_mobile(zone_id, local_id)
+        // Returns the mobile if successful, nil otherwise
+        "spawn_mobile", [](std::shared_ptr<Room> room, int zone_id, int local_id) -> std::shared_ptr<Mobile> {
+            if (!room) return nullptr;
+
+            EntityId prototype_id(zone_id, local_id);
+            auto mobile = WorldManager::instance().spawn_mobile_to_room(prototype_id, room->id());
+            if (!mobile) {
+                spdlog::warn("room:spawn_mobile: Failed to spawn mobile {}:{}", zone_id, local_id);
+                return nullptr;
+            }
+
+            spdlog::debug("room:spawn_mobile: Spawned mobile {}:{} in room {}", zone_id, local_id, room->id().to_string());
+            return mobile;
+        },
+
+        // Spawn an object into this room
+        // Usage: room:spawn_object(zone_id, local_id)
+        // Returns the object if successful, nil otherwise
+        "spawn_object", [](std::shared_ptr<Room> room, int zone_id, int local_id) -> std::shared_ptr<Object> {
+            if (!room) return nullptr;
+
+            EntityId prototype_id(zone_id, local_id);
+            auto object = WorldManager::instance().create_object_instance(prototype_id);
+            if (!object) {
+                spdlog::warn("room:spawn_object: Failed to create object {}:{}", zone_id, local_id);
+                return nullptr;
+            }
+
+            // Add object to room contents
+            room->add_object(object);
+
+            spdlog::debug("room:spawn_object: Spawned object {}:{} in room {}", zone_id, local_id, room->id().to_string());
+            return object;
+        },
+
+        // Remove all NPCs and objects from this room (purge)
+        // Returns number of entities removed
+        "purge", [](std::shared_ptr<Room> room) -> int {
+            if (!room) return 0;
+
+            auto& world = WorldManager::instance();
+            int removed = 0;
+
+            // Get copies of the lists since we'll be modifying them
+            auto actors_copy = room->contents().actors;
+            auto objects_copy = room->contents().objects;
+
+            // Remove mobiles (not players)
+            for (auto& actor : actors_copy) {
+                if (dynamic_cast<Mobile*>(actor.get())) {
+                    auto result = world.destroy_mobile(std::dynamic_pointer_cast<Mobile>(actor));
+                    if (result) {
+                        removed++;
+                    }
+                }
+            }
+
+            // Remove objects
+            for (auto& obj : objects_copy) {
+                auto result = world.destroy_object(obj);
+                if (result) {
+                    removed++;
+                }
+            }
+
+            spdlog::debug("room:purge: Removed {} entities from room {}", removed, room->id().to_string());
+            return removed;
+        }
     );
 
     // Direction helper functions
@@ -206,47 +333,51 @@ void register_room_bindings(sol::state& lua) {
         return std::string(RoomUtils::get_direction_name(dir));
     });
 
-    // Global get_room function for script compatibility
-    // Accepts: number (legacy vnum), string ("zone:id"), or Room object
-    lua.set_function("get_room", [](sol::object arg) -> std::shared_ptr<Room> {
-        if (arg.is<std::shared_ptr<Room>>()) {
-            // If already a Room, just return it
-            return arg.as<std::shared_ptr<Room>>();
-        }
+    // Global get_room function - accepts (zone_id, local_id) composite format
+    // This is the modern API - two separate integer parameters
+    lua.set_function("get_room", sol::overload(
+        // Modern format: get_room(zone_id, local_id)
+        [](int zone_id, int local_id) -> std::shared_ptr<Room> {
+            return WorldManager::instance().get_room(EntityId(zone_id, local_id));
+        },
+        // Single arg overload for compatibility
+        [](sol::object arg) -> std::shared_ptr<Room> {
+            if (arg.is<std::shared_ptr<Room>>()) {
+                return arg.as<std::shared_ptr<Room>>();
+            }
 
-        if (arg.is<int>() || arg.is<double>()) {
-            // Legacy vnum format - convert to EntityId
-            auto vnum = static_cast<std::uint64_t>(arg.as<double>());
-            return WorldManager::instance().get_room(EntityId{vnum});
-        }
+            if (arg.is<int>() || arg.is<double>()) {
+                // Legacy numeric format - convert to EntityId
+                auto legacy_id = static_cast<std::uint64_t>(arg.as<double>());
+                return WorldManager::instance().get_room(EntityId{legacy_id});
+            }
 
-        if (arg.is<std::string>()) {
-            // String format "zone:local_id"
-            std::string id_str = arg.as<std::string>();
-            auto colon_pos = id_str.find(':');
-            if (colon_pos != std::string::npos) {
+            if (arg.is<std::string>()) {
+                std::string id_str = arg.as<std::string>();
+                auto colon_pos = id_str.find(':');
+                if (colon_pos != std::string::npos) {
+                    try {
+                        int zone_id = std::stoi(id_str.substr(0, colon_pos));
+                        int local_id = std::stoi(id_str.substr(colon_pos + 1));
+                        return WorldManager::instance().get_room(EntityId(zone_id, local_id));
+                    } catch (...) {
+                        spdlog::warn("get_room: Invalid room ID format: {}", id_str);
+                        return nullptr;
+                    }
+                }
                 try {
-                    int zone_id = std::stoi(id_str.substr(0, colon_pos));
-                    int local_id = std::stoi(id_str.substr(colon_pos + 1));
-                    return WorldManager::instance().get_room(EntityId(zone_id, local_id));
+                    auto legacy_id = static_cast<std::uint64_t>(std::stoll(id_str));
+                    return WorldManager::instance().get_room(EntityId{legacy_id});
                 } catch (...) {
-                    spdlog::warn("get_room: Invalid room ID format: {}", id_str);
+                    spdlog::warn("get_room: Cannot parse room ID: {}", id_str);
                     return nullptr;
                 }
             }
-            // Try parsing as single number
-            try {
-                auto vnum = static_cast<std::uint64_t>(std::stoll(id_str));
-                return WorldManager::instance().get_room(EntityId{vnum});
-            } catch (...) {
-                spdlog::warn("get_room: Cannot parse room ID: {}", id_str);
-                return nullptr;
-            }
-        }
 
-        spdlog::warn("get_room: Invalid argument type");
-        return nullptr;
-    });
+            spdlog::warn("get_room: Invalid argument type");
+            return nullptr;
+        }
+    ));
 
     spdlog::debug("Lua Room bindings registered");
 }

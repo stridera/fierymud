@@ -412,30 +412,31 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_world_triggers(
     }
 }
 
-Result<FieryMUD::TriggerDataPtr> load_trigger_by_id(pqxx::work& txn, int trigger_id)
+Result<FieryMUD::TriggerDataPtr> load_trigger_by_id(pqxx::work& txn, int zone_id, int trigger_id)
 {
     try {
         std::string query = fmt::format(
-            R"({} WHERE "{}" = $1)",
+            R"({} WHERE "{}" = $1 AND "{}" = $2)",
             build_trigger_select(),
+            db::Triggers::ZONE_ID,
             db::Triggers::ID
         );
 
-        auto result = txn.exec_params(query, trigger_id);
+        auto result = txn.exec_params(query, zone_id, trigger_id);
 
         if (result.empty()) {
             return std::unexpected(Errors::NotFound(
-                fmt::format("Trigger with ID {}", trigger_id)));
+                fmt::format("Trigger {}:{}", zone_id, trigger_id)));
         }
 
         return parse_trigger_row(result[0]);
 
     } catch (const pqxx::sql_error& e) {
         return std::unexpected(Errors::DatabaseError(
-            fmt::format("SQL error loading trigger {}: {}", trigger_id, e.what())));
+            fmt::format("SQL error loading trigger {}:{}: {}", zone_id, trigger_id, e.what())));
     } catch (const std::exception& e) {
         return std::unexpected(Errors::DatabaseError(
-            fmt::format("Error loading trigger {}: {}", trigger_id, e.what())));
+            fmt::format("Error loading trigger {}:{}: {}", zone_id, trigger_id, e.what())));
     }
 }
 
@@ -541,6 +542,263 @@ Result<std::vector<FieryMUD::TriggerDataPtr>> load_all_triggers(pqxx::work& txn)
     } catch (const std::exception& e) {
         return std::unexpected(Errors::DatabaseError(
             fmt::format("Error loading all triggers: {}", e.what())));
+    }
+}
+
+// ============================================================================
+// Error Logging Functions
+// ============================================================================
+
+Result<void> log_script_error(
+    pqxx::work& txn,
+    int zone_id,
+    int trigger_id,
+    std::string_view error_type,
+    std::string_view error_message,
+    std::optional<int> script_line,
+    std::optional<std::string> context_info)
+{
+    try {
+        // Insert into script_error_log table
+        std::string insert_query = R"(
+            INSERT INTO "script_error_log"
+                ("trigger_zone_id", "trigger_id", "error_type", "error_message", "script_line", "context_info", "occurred_at")
+            VALUES ($1, $2, $3, $4, $5, $6::jsonb, NOW())
+        )";
+
+        if (script_line && context_info) {
+            txn.exec_params(insert_query, zone_id, trigger_id,
+                            std::string(error_type), std::string(error_message),
+                            *script_line, *context_info);
+        } else if (script_line) {
+            txn.exec_params(insert_query, zone_id, trigger_id,
+                            std::string(error_type), std::string(error_message),
+                            *script_line, nullptr);
+        } else if (context_info) {
+            txn.exec_params(insert_query, zone_id, trigger_id,
+                            std::string(error_type), std::string(error_message),
+                            nullptr, *context_info);
+        } else {
+            txn.exec_params(insert_query, zone_id, trigger_id,
+                            std::string(error_type), std::string(error_message),
+                            nullptr, nullptr);
+        }
+
+        // Update the trigger's needsReview flag and syntaxError field
+        std::string update_query = fmt::format(R"(
+            UPDATE "{}"
+            SET "{}" = true, "{}" = $3
+            WHERE "{}" = $1 AND "{}" = $2
+        )",
+            db::Triggers::TABLE,
+            db::Triggers::NEEDS_REVIEW,
+            db::Triggers::SYNTAX_ERROR,
+            db::Triggers::ZONE_ID,
+            db::Triggers::ID
+        );
+
+        txn.exec_params(update_query, zone_id, trigger_id, std::string(error_message));
+
+        spdlog::debug("Logged script error for trigger {}:{}: {}", zone_id, trigger_id, error_type);
+        return {};
+
+    } catch (const pqxx::sql_error& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("SQL error logging script error for {}:{}: {}", zone_id, trigger_id, e.what())));
+    } catch (const std::exception& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("Error logging script error for {}:{}: {}", zone_id, trigger_id, e.what())));
+    }
+}
+
+Result<std::vector<FieryMUD::TriggerDataPtr>> get_triggers_needing_review(pqxx::work& txn)
+{
+    try {
+        std::string query = fmt::format(
+            R"({} WHERE "{}" = true)",
+            build_trigger_select(),
+            db::Triggers::NEEDS_REVIEW
+        );
+
+        auto result = txn.exec(query);
+
+        std::vector<FieryMUD::TriggerDataPtr> triggers;
+        triggers.reserve(result.size());
+
+        for (const auto& row : result) {
+            triggers.push_back(parse_trigger_row(row));
+        }
+
+        spdlog::debug("Found {} triggers needing review", triggers.size());
+        return triggers;
+
+    } catch (const pqxx::sql_error& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("SQL error getting triggers needing review: {}", e.what())));
+    } catch (const std::exception& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("Error getting triggers needing review: {}", e.what())));
+    }
+}
+
+Result<std::vector<FieryMUD::TriggerDataPtr>> get_triggers_needing_review_for_zone(
+    pqxx::work& txn, int zone_id)
+{
+    try {
+        std::string query = fmt::format(
+            R"({} WHERE "{}" = true AND "{}" = $1)",
+            build_trigger_select(),
+            db::Triggers::NEEDS_REVIEW,
+            db::Triggers::ZONE_ID
+        );
+
+        auto result = txn.exec_params(query, zone_id);
+
+        std::vector<FieryMUD::TriggerDataPtr> triggers;
+        triggers.reserve(result.size());
+
+        for (const auto& row : result) {
+            triggers.push_back(parse_trigger_row(row));
+        }
+
+        spdlog::debug("Found {} triggers needing review in zone {}", triggers.size(), zone_id);
+        return triggers;
+
+    } catch (const pqxx::sql_error& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("SQL error getting triggers needing review for zone {}: {}", zone_id, e.what())));
+    } catch (const std::exception& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("Error getting triggers needing review for zone {}: {}", zone_id, e.what())));
+    }
+}
+
+Result<std::vector<ScriptErrorEntry>> get_error_log_for_trigger(
+    pqxx::work& txn, int zone_id, int trigger_id, int limit)
+{
+    try {
+        std::string query = fmt::format(R"(
+            SELECT e."id", e."trigger_zone_id", e."trigger_id", t."{}",
+                   e."error_type", e."error_message", e."script_line",
+                   to_char(e."occurred_at", 'YYYY-MM-DD HH24:MI:SS') as occurred_at
+            FROM "script_error_log" e
+            JOIN "{}" t ON e."trigger_zone_id" = t."{}" AND e."trigger_id" = t."{}"
+            WHERE e."trigger_zone_id" = $1 AND e."trigger_id" = $2
+            ORDER BY e."occurred_at" DESC
+            LIMIT $3
+        )",
+            db::Triggers::NAME,
+            db::Triggers::TABLE,
+            db::Triggers::ZONE_ID,
+            db::Triggers::ID
+        );
+
+        auto result = txn.exec_params(query, zone_id, trigger_id, limit);
+
+        std::vector<ScriptErrorEntry> entries;
+        entries.reserve(result.size());
+
+        for (const auto& row : result) {
+            ScriptErrorEntry entry;
+            entry.id = row[0].as<int>();
+            entry.zone_id = row[1].as<int>();
+            entry.trigger_id = row[2].as<int>();
+            entry.trigger_name = row[3].as<std::string>();
+            entry.error_type = row[4].as<std::string>();
+            entry.error_message = row[5].as<std::string>();
+            if (!row[6].is_null()) {
+                entry.script_line = row[6].as<int>();
+            }
+            entry.occurred_at = row[7].as<std::string>();
+            entries.push_back(std::move(entry));
+        }
+
+        return entries;
+
+    } catch (const pqxx::sql_error& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("SQL error getting error log for trigger {}:{}: {}", zone_id, trigger_id, e.what())));
+    } catch (const std::exception& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("Error getting error log for trigger {}:{}: {}", zone_id, trigger_id, e.what())));
+    }
+}
+
+Result<std::vector<ScriptErrorEntry>> get_recent_script_errors(pqxx::work& txn, int limit)
+{
+    try {
+        std::string query = fmt::format(R"(
+            SELECT e."id", e."trigger_zone_id", e."trigger_id", t."{}",
+                   e."error_type", e."error_message", e."script_line",
+                   to_char(e."occurred_at", 'YYYY-MM-DD HH24:MI:SS') as occurred_at
+            FROM "script_error_log" e
+            JOIN "{}" t ON e."trigger_zone_id" = t."{}" AND e."trigger_id" = t."{}"
+            ORDER BY e."occurred_at" DESC
+            LIMIT $1
+        )",
+            db::Triggers::NAME,
+            db::Triggers::TABLE,
+            db::Triggers::ZONE_ID,
+            db::Triggers::ID
+        );
+
+        auto result = txn.exec_params(query, limit);
+
+        std::vector<ScriptErrorEntry> entries;
+        entries.reserve(result.size());
+
+        for (const auto& row : result) {
+            ScriptErrorEntry entry;
+            entry.id = row[0].as<int>();
+            entry.zone_id = row[1].as<int>();
+            entry.trigger_id = row[2].as<int>();
+            entry.trigger_name = row[3].as<std::string>();
+            entry.error_type = row[4].as<std::string>();
+            entry.error_message = row[5].as<std::string>();
+            if (!row[6].is_null()) {
+                entry.script_line = row[6].as<int>();
+            }
+            entry.occurred_at = row[7].as<std::string>();
+            entries.push_back(std::move(entry));
+        }
+
+        return entries;
+
+    } catch (const pqxx::sql_error& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("SQL error getting recent script errors: {}", e.what())));
+    } catch (const std::exception& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("Error getting recent script errors: {}", e.what())));
+    }
+}
+
+Result<void> clear_trigger_error(pqxx::work& txn, int zone_id, int trigger_id)
+{
+    try {
+        std::string query = fmt::format(R"(
+            UPDATE "{}"
+            SET "{}" = false, "{}" = NULL
+            WHERE "{}" = $1 AND "{}" = $2
+        )",
+            db::Triggers::TABLE,
+            db::Triggers::NEEDS_REVIEW,
+            db::Triggers::SYNTAX_ERROR,
+            db::Triggers::ZONE_ID,
+            db::Triggers::ID
+        );
+
+        txn.exec_params(query, zone_id, trigger_id);
+
+        spdlog::debug("Cleared error flag for trigger {}:{}", zone_id, trigger_id);
+        return {};
+
+    } catch (const pqxx::sql_error& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("SQL error clearing trigger error {}:{}: {}", zone_id, trigger_id, e.what())));
+    } catch (const std::exception& e) {
+        return std::unexpected(Errors::DatabaseError(
+            fmt::format("Error clearing trigger error {}:{}: {}", zone_id, trigger_id, e.what())));
     }
 }
 

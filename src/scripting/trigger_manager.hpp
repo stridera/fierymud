@@ -255,6 +255,21 @@ public:
         std::shared_ptr<Room> room);
 
     // ========================================================================
+    // Debug Execution (for admin dtrig command)
+    // ========================================================================
+
+    /// Execute a trigger for debugging purposes
+    /// @param trigger The trigger to execute
+    /// @param context The script context with variables set up
+    /// @return Execution result
+    TriggerResult debug_execute_trigger(const TriggerDataPtr& trigger, ScriptContext& context);
+
+    /// Find a trigger by its own EntityId (zone:id)
+    /// @param trigger_id The trigger's EntityId
+    /// @return The trigger if found, nullptr otherwise
+    [[nodiscard]] TriggerDataPtr find_trigger_by_id(const EntityId& trigger_id) const;
+
+    // ========================================================================
     // Diagnostics
     // ========================================================================
 

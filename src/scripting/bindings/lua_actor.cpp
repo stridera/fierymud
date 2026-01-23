@@ -1,6 +1,11 @@
 #include "lua_actor.hpp"
 #include "../../core/actor.hpp"
+#include "../../core/combat.hpp"
+#include "../../core/spell_system.hpp"
+#include "../../core/skill_system.hpp"
 #include "../../world/room.hpp"
+#include "../../world/world_manager.hpp"
+#include "../../commands/command_system.hpp"
 #include "../../database/generated/db_enums.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
@@ -172,7 +177,117 @@ void register_actor_bindings(sol::state& lua) {
             if (!room) return false;
             auto result = a.move_to(room);
             return result.has_value();
-        }
+        },
+
+        // Methods - Spawn object into actor's inventory
+        // Usage: actor:spawn_object(zone_id, local_id)
+        // Returns the object if successful, nil otherwise
+        "spawn_object", [](std::shared_ptr<Actor> self, int zone_id, int local_id) -> std::shared_ptr<Object> {
+            if (!self) return nullptr;
+
+            EntityId prototype_id(zone_id, local_id);
+            auto object = WorldManager::instance().create_object_instance(prototype_id);
+            if (!object) {
+                spdlog::warn("actor:spawn_object: Failed to create object {}:{}", zone_id, local_id);
+                return nullptr;
+            }
+
+            auto result = self->give_item(object);
+            if (!result) {
+                spdlog::warn("actor:spawn_object: Failed to give item to actor: {}", result.error().message);
+                return nullptr;
+            }
+
+            spdlog::debug("actor:spawn_object: Created object {}:{} for {}", zone_id, local_id, self->name());
+            return object;
+        },
+
+        // Methods - Command execution
+        // Execute a game command as this actor (e.g., self:command("smile bob"))
+        "command", [](std::shared_ptr<Actor> self, const std::string& cmd) -> bool {
+            if (!self || cmd.empty()) return false;
+            auto result = CommandSystem::instance().execute_command(self, cmd);
+            return result.has_value() && *result == CommandResult::Success;
+        },
+
+        // Methods - Combat wrappers (convenience methods that delegate to combat namespace)
+        "engage", [](std::shared_ptr<Actor> self, std::shared_ptr<Actor> target) -> bool {
+            if (!self || !target || self == target) return false;
+            if (CombatManager::is_in_combat(*self)) return false;
+            CombatManager::start_combat(self, target);
+            return true;
+        },
+
+        "rescue", [](std::shared_ptr<Actor> self, std::shared_ptr<Actor> target) -> bool {
+            if (!self || !target || self == target) return false;
+            if (!CombatManager::is_in_combat(*target)) return false;
+
+            auto target_attackers = target->get_all_enemies();
+            for (auto& attacker : target_attackers) {
+                if (attacker && attacker != self) {
+                    CombatManager::add_combat_pair(attacker, self);
+                    attacker->remove_enemy(target);
+                }
+            }
+            if (!CombatManager::is_in_combat(*self) && !target_attackers.empty()) {
+                self->set_position(Position::Fighting);
+            }
+            return true;
+        },
+
+        "disengage", [](std::shared_ptr<Actor> self) -> bool {
+            if (!self) return false;
+            if (!CombatManager::is_in_combat(*self)) return false;
+            CombatManager::end_combat(self);
+            return true;
+        },
+
+        // Methods - Spell casting wrapper
+        "cast", [](Actor& self, const std::string& spell_name, sol::optional<Actor*> target) -> bool {
+            if (spell_name.empty()) return false;
+            auto& spell_system = SpellSystem::instance();
+            if (!spell_system.spell_exists(spell_name)) return false;
+            Actor* target_actor = target.value_or(nullptr);
+            auto result = spell_system.cast_spell(self, spell_name, target_actor, self.stats().level);
+            return result.has_value();
+        },
+
+        // Methods - Communication
+        "whisper", [](Actor& self, std::shared_ptr<Actor> target, const std::string& msg) {
+            if (!target || msg.empty()) return;
+            std::string to_target = fmt::format("{} whispers to you, '{}'\n", self.display_name(), msg);
+            std::string to_self = fmt::format("You whisper to {}, '{}'\n", target->display_name(), msg);
+            target->send_message(to_target);
+            self.send_message(to_self);
+        },
+
+        // Methods - Movement in a direction
+        "move", [](std::shared_ptr<Actor> self, const std::string& dir_str) -> bool {
+            if (!self) return false;
+            // Execute the direction as a command (north, south, etc.)
+            auto result = CommandSystem::instance().execute_command(self, dir_str);
+            return result.has_value() && *result == CommandResult::Success;
+        },
+
+        // Gender pronoun properties (he/she/it, him/her/it, his/her/its)
+        "subject", sol::property([](const Actor& a) -> std::string {
+            auto gender = a.gender();
+            if (gender == "male") return "he";
+            if (gender == "female") return "she";
+            return "it";
+        }),
+        "object", sol::property([](const Actor& a) -> std::string {
+            auto gender = a.gender();
+            if (gender == "male") return "him";
+            if (gender == "female") return "her";
+            return "it";
+        }),
+        "possessive", sol::property([](const Actor& a) -> std::string {
+            auto gender = a.gender();
+            if (gender == "male") return "his";
+            if (gender == "female") return "her";
+            return "its";
+        })
     );
 
     // Mobile (NPC) class - inherits Actor, adds NPC-specific properties

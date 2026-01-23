@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <functional>
 #include <ostream>
+#include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <optional>
@@ -40,6 +41,42 @@ public:
           local_id_(static_cast<std::uint32_t>(legacy_id % 100)),
           valid_(true) {}
 
+    /**
+     * Parse EntityId from string in format "zone:id" or just "id".
+     * If only a single number is provided and default_zone is specified, uses that zone.
+     * @param str String to parse (e.g., "30:45" or "45")
+     * @param default_zone Optional zone to use if only local_id is provided
+     * @return Parsed EntityId, or invalid EntityId if parsing fails
+     */
+    static EntityId parse(std::string_view str, std::optional<std::uint32_t> default_zone = std::nullopt) {
+        auto colon_pos = str.find(':');
+        if (colon_pos != std::string_view::npos) {
+            // Full zone:id format
+            try {
+                int zone_id = std::stoi(std::string(str.substr(0, colon_pos)));
+                int local_id = std::stoi(std::string(str.substr(colon_pos + 1)));
+                if (zone_id >= 0 && local_id >= 0) {
+                    return EntityId(static_cast<std::uint32_t>(zone_id),
+                                    static_cast<std::uint32_t>(local_id));
+                }
+            } catch (const std::exception&) {
+                // Fall through to return invalid
+            }
+            return EntityId{};
+        }
+
+        // Single number format - use default zone if provided
+        try {
+            int local_id = std::stoi(std::string(str));
+            if (local_id >= 0 && default_zone.has_value()) {
+                return EntityId(*default_zone, static_cast<std::uint32_t>(local_id));
+            }
+        } catch (const std::exception&) {
+            // Fall through to return invalid
+        }
+        return EntityId{};
+    }
+
     /** Get zone ID component (for database composite keys) */
     constexpr std::uint32_t zone_id() const { return zone_id_; }
 
@@ -53,6 +90,11 @@ public:
 
     /** Check if ID is valid */
     constexpr bool is_valid() const { return valid_; }
+
+    /** Convert to string representation "zone:local" */
+    std::string to_string() const {
+        return std::to_string(zone_id_) + ":" + std::to_string(local_id_);
+    }
 
     /** Comparison operators for std::unordered_map compatibility */
     constexpr bool operator==(const EntityId& other) const {

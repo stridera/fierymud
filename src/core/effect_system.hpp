@@ -2,6 +2,7 @@
 
 #include <expected>
 #include <memory>
+#include <optional>
 #include <string>
 #include <string_view>
 #include <unordered_map>
@@ -10,9 +11,7 @@
 #include "core/active_effect.hpp"
 #include "core/result.hpp"
 #include "core/formula_parser.hpp"
-
-// Forward declarations
-class Actor;
+#include "core/actor.hpp"
 
 namespace FieryMUD {
 
@@ -288,6 +287,109 @@ private:
 
     // Roll for effect chance
     static bool roll_chance(int percent);
+};
+
+/**
+ * Options for applying effects via the scripting API.
+ */
+struct EffectOptions {
+    int duration = 0;   // Duration in ticks (0 = permanent/instant)
+    int power = 1;      // Effect power/strength
+};
+
+/**
+ * Error information for effect operations.
+ */
+struct EffectError {
+    std::string message;
+};
+
+/**
+ * EffectSystem provides the scripting API for effect management.
+ *
+ * Wraps the Actor's effect methods for simpler Lua access.
+ */
+class EffectSystem {
+public:
+    static EffectSystem& instance() {
+        static EffectSystem instance;
+        return instance;
+    }
+
+    /**
+     * Check if an effect type exists.
+     * For now, always returns true (effect names are arbitrary strings).
+     * TODO: Validate against database effect definitions.
+     */
+    bool effect_exists(std::string_view effect_name) const {
+        return !effect_name.empty();
+    }
+
+    /**
+     * Apply an effect to an actor.
+     */
+    std::expected<void, EffectError> apply_effect(Actor& actor,
+                                                   std::string_view effect_name,
+                                                   const EffectOptions& opts) {
+        if (effect_name.empty()) {
+            return std::unexpected(EffectError{"invalid_effect_name"});
+        }
+
+        // Create the effect
+        ActiveEffect effect;
+        effect.name = std::string(effect_name);
+        effect.source = "script";
+        effect.flag = ActorFlag::None;
+        effect.duration_hours = opts.duration > 0 ?
+            static_cast<double>(opts.duration) / 3600.0 : -1.0; // Convert seconds to hours, -1 = permanent
+        effect.modifier_value = opts.power;
+        effect.applied_at = std::chrono::steady_clock::now();
+
+        actor.add_effect(effect);
+        return {};
+    }
+
+    /**
+     * Remove an effect from an actor.
+     */
+    std::expected<void, EffectError> remove_effect(Actor& actor,
+                                                    std::string_view effect_name) {
+        if (!actor.has_effect(std::string(effect_name))) {
+            return std::unexpected(EffectError{"effect_not_found"});
+        }
+
+        actor.remove_effect(std::string(effect_name));
+        return {};
+    }
+
+    /**
+     * Check if actor has an effect.
+     */
+    bool has_effect(const Actor& actor, std::string_view effect_name) const {
+        return actor.has_effect(std::string(effect_name));
+    }
+
+    /**
+     * Get remaining duration of an effect in seconds.
+     */
+    std::optional<int> get_effect_duration(const Actor& actor,
+                                            std::string_view effect_name) const {
+        const ActiveEffect* effect = actor.get_effect(std::string(effect_name));
+        if (!effect) {
+            return std::nullopt;
+        }
+
+        if (effect->is_permanent()) {
+            return -1; // Permanent effect
+        }
+
+        // Convert remaining hours to seconds
+        // Note: This is simplified - full implementation would track elapsed time
+        return static_cast<int>(effect->duration_hours * 3600.0);
+    }
+
+private:
+    EffectSystem() = default;
 };
 
 } // namespace FieryMUD

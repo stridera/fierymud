@@ -5,12 +5,129 @@
 #include "coroutine_scheduler.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/trigger_queries.hpp"
+#include "../core/logging.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
+#include <nlohmann/json.hpp>
 #include <random>
 
 namespace FieryMUD {
+
+namespace {
+    /// Extract line number from Lua error message and return the source line
+    /// Error format: [string "trigger:2:..."]:5: error message
+    /// Returns empty string if line number cannot be extracted or source not available
+    std::string extract_source_line(std::string_view error_msg, std::string_view source_code) {
+        // Look for pattern like "]:5:" to extract line number
+        auto bracket_pos = error_msg.find("]:");
+        if (bracket_pos == std::string_view::npos) {
+            return "";
+        }
+
+        // Parse line number after "]:"
+        auto line_start = bracket_pos + 2;
+        auto colon_pos = error_msg.find(':', line_start);
+        if (colon_pos == std::string_view::npos) {
+            return "";
+        }
+
+        std::string line_str(error_msg.substr(line_start, colon_pos - line_start));
+        int line_num = 0;
+        try {
+            line_num = std::stoi(line_str);
+        } catch (...) {
+            return "";
+        }
+
+        if (line_num <= 0) {
+            return "";
+        }
+
+        // Find the nth line in source code
+        int current_line = 1;
+        size_t line_begin = 0;
+        for (size_t i = 0; i < source_code.size() && current_line < line_num; ++i) {
+            if (source_code[i] == '\n') {
+                current_line++;
+                line_begin = i + 1;
+            }
+        }
+
+        if (current_line != line_num) {
+            return "";
+        }
+
+        // Find end of line
+        size_t line_end = source_code.find('\n', line_begin);
+        if (line_end == std::string_view::npos) {
+            line_end = source_code.size();
+        }
+
+        // Extract and trim the line
+        std::string source_line(source_code.substr(line_begin, line_end - line_begin));
+
+        // Trim leading whitespace for readability
+        auto first_non_space = source_line.find_first_not_of(" \t");
+        if (first_non_space != std::string::npos) {
+            source_line = source_line.substr(first_non_space);
+        }
+
+        return source_line;
+    }
+
+    /// Log a script error to the database (fire-and-forget)
+    void log_error_to_database(const TriggerDataPtr& trigger, std::string_view error_type,
+                                std::string_view error_message, const ScriptContext& context) {
+        // Skip if database not available
+        auto& pool = ConnectionPool::instance();
+        if (!pool.is_initialized()) {
+            return;
+        }
+
+        // Build context info JSON
+        nlohmann::json context_info;
+        if (auto actor = context.owner_as_actor()) {
+            context_info["owner_type"] = actor->type_name();
+            context_info["owner_name"] = actor->name();
+            context_info["owner_id"] = fmt::format("{}:{}", actor->id().zone_id(), actor->id().local_id());
+        }
+        if (auto room = context.room()) {
+            context_info["room_id"] = fmt::format("{}:{}", room->id().zone_id(), room->id().local_id());
+        }
+        if (!context.command().empty()) {
+            context_info["command"] = std::string(context.command());
+        }
+        if (!context.argument().empty()) {
+            context_info["argument"] = std::string(context.argument());
+        }
+
+        std::string context_str = context_info.dump();
+
+        // Get zone_id from trigger
+        int zone_id = 0;
+        if (trigger->zone_id) {
+            zone_id = *trigger->zone_id;
+        } else if (trigger->mob_id) {
+            zone_id = static_cast<int>(trigger->mob_id->zone_id());
+        } else if (trigger->object_id) {
+            zone_id = static_cast<int>(trigger->object_id->zone_id());
+        }
+
+        // Log to database
+        auto result = pool.execute([zone_id, trigger_id = trigger->id,
+                                    err_type = std::string(error_type),
+                                    err_msg = std::string(error_message),
+                                    ctx_info = std::move(context_str)](pqxx::work& txn) -> Result<void> {
+            return TriggerQueries::log_script_error(txn, zone_id, trigger_id, err_type, err_msg,
+                                                     std::nullopt, ctx_info);
+        });
+
+        if (!result) {
+            spdlog::warn("Failed to log script error to database: {}", result.error().message);
+        }
+    }
+} // anonymous namespace
 
 TriggerManager& TriggerManager::instance() {
     static TriggerManager instance;
@@ -276,6 +393,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
         last_error_ = fmt::format("Trigger '{}' (id:{}) load error: {}",
                                    trigger->name, trigger->id, engine.last_error());
         spdlog::error("{}", last_error_);
+        log_error_to_database(trigger, "compilation", engine.last_error(), context);
         ++stats_.failed_executions;
         return TriggerResult::Error;
     }
@@ -299,6 +417,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
             last_error_ = fmt::format("Trigger '{}' (id:{}) execution timeout: exceeded {} instructions",
                                        trigger->name, trigger->id, engine.max_instructions());
             spdlog::error("{}", last_error_);
+            log_error_to_database(trigger, "timeout", last_error_, context);
             ++stats_.failed_executions;
             return TriggerResult::Error;
         }
@@ -306,6 +425,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
         last_error_ = fmt::format("Trigger '{}' (id:{}) sol exception: {}",
                                    trigger->name, trigger->id, e.what());
         spdlog::error("{}", last_error_);
+        log_error_to_database(trigger, "runtime", e.what(), context);
         ++stats_.failed_executions;
         return TriggerResult::Error;
     } catch (const std::exception& e) {
@@ -313,6 +433,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
         last_error_ = fmt::format("Trigger '{}' (id:{}) C++ exception: {}",
                                    trigger->name, trigger->id, e.what());
         spdlog::error("{}", last_error_);
+        log_error_to_database(trigger, "runtime", e.what(), context);
         ++stats_.failed_executions;
         return TriggerResult::Error;
     } catch (...) {
@@ -320,6 +441,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
         last_error_ = fmt::format("Trigger '{}' (id:{}) unknown exception",
                                    trigger->name, trigger->id);
         spdlog::error("{}", last_error_);
+        log_error_to_database(trigger, "runtime", "unknown exception", context);
         ++stats_.failed_executions;
         return TriggerResult::Error;
     }
@@ -332,6 +454,7 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
         last_error_ = fmt::format("Trigger '{}' (id:{}) execution timeout: exceeded {} instructions",
                                    trigger->name, trigger->id, engine.max_instructions());
         spdlog::error("{}", last_error_);
+        log_error_to_database(trigger, "timeout", last_error_, context);
         ++stats_.failed_executions;
         return TriggerResult::Error;
     }
@@ -344,9 +467,18 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr& trigger, Scr
             entity_info = fmt::format(" [owner: {} ({}:{})]",
                                        actor->name(), actor->id().zone_id(), actor->id().local_id());
         }
-        last_error_ = fmt::format("Trigger '{}' (id:{}) execution failed: {}{}",
-                                   trigger->name, trigger->id, err.what(), entity_info);
+
+        // Extract and include the failing source line for easier debugging
+        std::string source_info;
+        auto source_line = extract_source_line(err.what(), trigger->commands);
+        if (!source_line.empty()) {
+            source_info = fmt::format("\n  >> {}", source_line);
+        }
+
+        last_error_ = fmt::format("Trigger '{}' (id:{}) execution failed: {}{}{}",
+                                   trigger->name, trigger->id, err.what(), entity_info, source_info);
         spdlog::error("{}", last_error_);
+        log_error_to_database(trigger, "runtime", err.what(), context);
         ++stats_.failed_executions;
         return TriggerResult::Error;
     }
@@ -933,6 +1065,38 @@ TriggerResult TriggerManager::dispatch_defend(
     }
 
     return TriggerResult::Continue;
+}
+
+// ============================================================================
+// Debug Execution
+// ============================================================================
+
+TriggerResult TriggerManager::debug_execute_trigger(const TriggerDataPtr& trigger, ScriptContext& context) {
+    // Simply delegate to the private execute_trigger method
+    return execute_trigger(trigger, context);
+}
+
+TriggerDataPtr TriggerManager::find_trigger_by_id(const EntityId& trigger_id) const {
+    // Search through all cached triggers to find one by its own ID (zone:id)
+    for (const auto& [key, set] : trigger_cache_) {
+        for (const auto& trigger : set) {
+            // Check if this trigger's zone_id and id match
+            int trig_zone = 0;
+            if (trigger->zone_id) {
+                trig_zone = *trigger->zone_id;
+            } else if (trigger->mob_id) {
+                trig_zone = static_cast<int>(trigger->mob_id->zone_id());
+            } else if (trigger->object_id) {
+                trig_zone = static_cast<int>(trigger->object_id->zone_id());
+            }
+
+            if (static_cast<std::uint32_t>(trig_zone) == trigger_id.zone_id() &&
+                static_cast<std::uint32_t>(trigger->id) == trigger_id.local_id()) {
+                return trigger;
+            }
+        }
+    }
+    return nullptr;
 }
 
 // ============================================================================

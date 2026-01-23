@@ -127,7 +127,7 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
         std::string(ctx.args_from(0)));
     if (auto room = ctx.actor->current_room()) {
         event.zone_id = static_cast<int>(room->id().zone_id());
-        event.room_vnum = static_cast<int>(room->id().local_id());
+        event.room_id = room->id().to_string();
     }
     fierymud::events::EventPublisher::instance().publish(std::move(event));
 
@@ -201,7 +201,7 @@ Result<CommandResult> cmd_emote(const CommandContext &ctx) {
         std::string(ctx.args_from(0)));
     if (auto room = ctx.actor->current_room()) {
         event.zone_id = static_cast<int>(room->id().zone_id());
-        event.room_vnum = static_cast<int>(room->id().local_id());
+        event.room_id = room->id().to_string();
     }
     fierymud::events::EventPublisher::instance().publish(std::move(event));
 

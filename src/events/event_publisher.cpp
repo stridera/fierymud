@@ -179,11 +179,11 @@ void EventPublisher::publish_chat(GameEventType type, std::string_view player_na
 
 void EventPublisher::publish_player(GameEventType type, std::string_view player_name,
                                     std::string_view message, std::optional<int> zone_id,
-                                    std::optional<int> room_vnum) {
+                                    std::optional<std::string> room_id) {
     auto event =
         GameEvent::player_event(type, std::string(player_name), std::string(message));
     event.zone_id = zone_id;
-    event.room_vnum = room_vnum;
+    event.room_id = room_id;
     publish(std::move(event));
 }
 

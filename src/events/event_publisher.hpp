@@ -123,7 +123,7 @@ class EventPublisher {
      */
     void publish_player(GameEventType type, std::string_view player_name,
                         std::string_view message, std::optional<int> zone_id = std::nullopt,
-                        std::optional<int> room_vnum = std::nullopt);
+                        std::optional<std::string> room_id = std::nullopt);
 
     /**
      * @brief Publish an admin alert

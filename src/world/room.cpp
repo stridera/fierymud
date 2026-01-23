@@ -415,6 +415,72 @@ Result<void> Room::set_exit(Direction dir, const ExitInfo &exit) {
 
 void Room::remove_exit(Direction dir) { exits_.erase(dir); }
 
+// Door manipulation methods for scripting API
+Result<void> Room::open_door(Direction dir) {
+    auto it = exits_.find(dir);
+    if (it == exits_.end() || !it->second.has_door) {
+        return std::unexpected(Errors::NotFound("door"));
+    }
+    if (!it->second.is_closed) {
+        return std::unexpected(Errors::InvalidState("door already open"));
+    }
+    if (it->second.is_locked) {
+        return std::unexpected(Errors::InvalidState("door is locked"));
+    }
+    it->second.is_closed = false;
+    return Success();
+}
+
+Result<void> Room::close_door(Direction dir) {
+    auto it = exits_.find(dir);
+    if (it == exits_.end() || !it->second.has_door) {
+        return std::unexpected(Errors::NotFound("door"));
+    }
+    if (it->second.is_closed) {
+        return std::unexpected(Errors::InvalidState("door already closed"));
+    }
+    it->second.is_closed = true;
+    return Success();
+}
+
+Result<void> Room::lock_door(Direction dir) {
+    auto it = exits_.find(dir);
+    if (it == exits_.end() || !it->second.has_door) {
+        return std::unexpected(Errors::NotFound("door"));
+    }
+    if (!it->second.is_closed) {
+        return std::unexpected(Errors::InvalidState("door must be closed to lock"));
+    }
+    if (it->second.is_locked) {
+        return std::unexpected(Errors::InvalidState("door already locked"));
+    }
+    it->second.is_locked = true;
+    return Success();
+}
+
+Result<void> Room::unlock_door(Direction dir) {
+    auto it = exits_.find(dir);
+    if (it == exits_.end() || !it->second.has_door) {
+        return std::unexpected(Errors::NotFound("door"));
+    }
+    if (!it->second.is_locked) {
+        return std::unexpected(Errors::InvalidState("door is not locked"));
+    }
+    it->second.is_locked = false;
+    return Success();
+}
+
+Result<void> Room::set_door_state(Direction dir, const DoorState& state) {
+    auto it = exits_.find(dir);
+    if (it == exits_.end() || !it->second.has_door) {
+        return std::unexpected(Errors::NotFound("door"));
+    }
+    it->second.is_closed = state.closed;
+    it->second.is_locked = state.locked;
+    it->second.is_hidden = state.hidden;
+    return Success();
+}
+
 std::vector<Direction> Room::get_available_exits() const {
     std::vector<Direction> directions;
     for (const auto &[dir, exit] : exits_) {

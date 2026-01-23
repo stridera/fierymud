@@ -23,6 +23,14 @@
 class Actor;
 class Object;
 class Mobile;
+class Player;
+
+namespace FieryMUD {
+    class ObjectTemplate;
+    class MobileTemplate;
+}
+using FieryMUD::ObjectTemplate;
+using FieryMUD::MobileTemplate;
 
 /**
  * World management system for FieryMUD.
@@ -265,6 +273,58 @@ class WorldManager {
     // Prototype Access (for load command and similar admin features)
     Mobile* get_mobile_prototype(EntityId prototype_id) const;
     Object* get_object_prototype(EntityId prototype_id) const;
+
+    // Lua Scripting API
+    /**
+     * Find a player by name (case-insensitive).
+     * NOTE: Players are tracked by GameWorld, not WorldManager.
+     * This method requires integration with the active GameWorld instance.
+     */
+    std::shared_ptr<Player> find_player(std::string_view name) const {
+        (void)name;
+        // TODO: Integrate with GameWorld::get_online_players()
+        // WorldManager doesn't track players directly - they're in GameWorld
+        return nullptr;
+    }
+
+    /**
+     * Find a mobile by name in the world.
+     */
+    std::shared_ptr<Mobile> find_mobile(std::string_view name) const;
+
+    /**
+     * Destroy a mobile instance.
+     */
+    Result<void> destroy_mobile(std::shared_ptr<Mobile> mobile);
+
+    /**
+     * Destroy an object instance.
+     */
+    Result<void> destroy_object(std::shared_ptr<Object> object);
+
+    /**
+     * Send a message to all players in a zone.
+     */
+    Result<void> zone_echo(int zone_id, std::string_view message);
+
+    /**
+     * Trigger a zone reset.
+     */
+    Result<void> reset_zone(int zone_id) {
+        (void)zone_id;
+        // TODO: Implement zone reset via Zone::reset()
+        return std::unexpected(Errors::NotImplemented("zone reset"));
+    }
+
+    /**
+     * Get an object template for read-only access.
+     */
+    std::shared_ptr<ObjectTemplate> get_object_template(EntityId id) const;
+
+    /**
+     * Get a mobile template for read-only access.
+     */
+    std::shared_ptr<MobileTemplate> get_mobile_template(EntityId id) const;
 
     // Weather Integration
     void update_weather_system(std::chrono::minutes elapsed);

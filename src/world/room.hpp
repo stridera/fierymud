@@ -75,6 +75,13 @@ enum class SectorType {
 // - capacity_ field for occupancy limits
 // - Mob presence for features (shop, bank, inn, temple)
 
+/** Simple door state for scripting API */
+struct DoorState {
+    bool closed = false;
+    bool locked = false;
+    bool hidden = false;
+};
+
 /** Exit information with door states and access control */
 struct ExitInfo {
     EntityId to_room = INVALID_ENTITY_ID;     // Destination room
@@ -180,7 +187,14 @@ public:
     
     std::vector<Direction> get_available_exits() const;
     std::vector<Direction> get_visible_exits(const Actor* observer = nullptr) const;
-    
+
+    // Door manipulation (for scripting API)
+    Result<void> open_door(Direction dir);
+    Result<void> close_door(Direction dir);
+    Result<void> lock_door(Direction dir);
+    Result<void> unlock_door(Direction dir);
+    Result<void> set_door_state(Direction dir, const DoorState& state);
+
     // Contents management
     const RoomContents& contents() const { return contents_; }
     RoomContents& contents_mutable() { return contents_; }
