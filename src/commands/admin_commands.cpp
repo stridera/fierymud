@@ -3,9 +3,13 @@
 #include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/formula_parser.hpp"
+#include "../core/log_subscriber.hpp"
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
 #include "../core/shopkeeper.hpp"
+#include "../database/connection_pool.hpp"
+#include "../database/trigger_queries.hpp"
+#include "../scripting/script_context.hpp"
 #include "../scripting/script_engine.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../world/weather.hpp"
@@ -689,80 +693,57 @@ Result<CommandResult> cmd_tstat(const CommandContext &ctx) {
             ctx.send(fmt::format("\n<b:red>Last error:</> {}", trigger_mgr.last_error()));
         }
 
+        ctx.send("\nUsage: tstat <zone:id> - Show trigger script by ID");
         return CommandResult::Success;
     }
 
-    // Get current zone for shorthand ID parsing
-    std::optional<int> current_zone;
-    if (ctx.room) {
-        current_zone = static_cast<int>(ctx.room->id().zone_id());
-    }
-
-    // Parse entity ID from argument (accepts "id" or "zone:id")
-    auto entity_id_opt = parse_stat_entity_id(ctx.arg(0), current_zone);
-    if (!entity_id_opt || !entity_id_opt->is_valid()) {
-        ctx.send_error("Invalid entity ID format. Use zone:id (e.g., 30:0) or just id.");
+    // Parse trigger ID (zone:id format, or just id using current zone)
+    auto trigger_eid = ctx.parse_entity_id(ctx.arg(0));
+    if (!trigger_eid.is_valid()) {
+        ctx.send_error("Invalid trigger ID format. Use zone:id (e.g., 489:2) or just id for current zone.");
         return CommandResult::InvalidSyntax;
     }
+    int zone_id = static_cast<int>(trigger_eid.zone_id());
+    int trigger_id = static_cast<int>(trigger_eid.local_id());
 
-    EntityId entity_id = *entity_id_opt;
-
-    // Show triggers for this entity
-    ctx.send(fmt::format("<b:cyan>--- Triggers for Entity {}:{} ---</>",
-        entity_id.zone_id(), entity_id.local_id()));
-
-    // Helper to display a trigger with its script
-    auto display_trigger = [&ctx](const FieryMUD::TriggerDataPtr& trigger) {
-        ctx.send(fmt::format("\n<b:green>Trigger:</> {} (ID: {})", trigger->name, trigger->id));
-        ctx.send(fmt::format("  <b:white>Type:</> {}",
-            trigger->attach_type == FieryMUD::ScriptType::MOB ? "MOB" :
-            trigger->attach_type == FieryMUD::ScriptType::OBJECT ? "OBJECT" : "WORLD"));
-        ctx.send(fmt::format("  <b:white>Flags:</> {}", trigger->flags_string()));
-        if (trigger->num_args > 0) {
-            std::string args_str;
-            for (size_t i = 0; i < trigger->arg_list.size(); ++i) {
-                if (i > 0) args_str += ", ";
-                args_str += trigger->arg_list[i];
-            }
-            ctx.send(fmt::format("  <b:white>Args:</> {} - {}", trigger->num_args, args_str));
-        }
-        ctx.send("  <b:white>Script:</>");
-        // Split script by lines and indent each line
-        std::istringstream script_stream(trigger->commands);
-        std::string line;
-        while (std::getline(script_stream, line)) {
-            ctx.send(fmt::format("    {}", line));
-        }
-    };
-
-    auto mob_triggers = trigger_mgr.get_mob_triggers(entity_id);
-    if (!mob_triggers.empty()) {
-        ctx.send("<b:yellow>MOB triggers:</>");
-        for (const auto& trigger : mob_triggers) {
-            display_trigger(trigger);
-        }
+    // Load trigger from database
+    auto& pool = ConnectionPool::instance();
+    if (!pool.is_initialized()) {
+        ctx.send_error("Database not available.");
+        return CommandResult::SystemError;
     }
 
-    auto obj_triggers = trigger_mgr.get_object_triggers(entity_id);
-    if (!obj_triggers.empty()) {
-        ctx.send("<b:yellow>OBJECT triggers:</>");
-        for (const auto& trigger : obj_triggers) {
-            display_trigger(trigger);
-        }
+    auto result = pool.execute([zone_id, trigger_id](pqxx::work& txn)
+        -> Result<FieryMUD::TriggerDataPtr> {
+        return TriggerQueries::load_trigger_by_id(txn, zone_id, trigger_id);
+    });
+
+    if (!result) {
+        ctx.send_error(fmt::format("Trigger {}:{} not found.", zone_id, trigger_id));
+        return CommandResult::InvalidTarget;
     }
 
-    if (entity_id.local_id() == 0) {
-        auto world_triggers = trigger_mgr.get_world_triggers(static_cast<int>(entity_id.zone_id()));
-        if (!world_triggers.empty()) {
-            ctx.send("<b:yellow>WORLD triggers:</>");
-            for (const auto& trigger : world_triggers) {
-                display_trigger(trigger);
-            }
-        }
-    }
+    auto& trigger = *result;
 
-    if (mob_triggers.empty() && obj_triggers.empty()) {
-        ctx.send("No triggers found for this entity.");
+    ctx.send(fmt::format("<b:white>Trigger {}:{}</> - {}", zone_id, trigger_id, trigger->name));
+    ctx.send(fmt::format("Type: {}  Flags: {}",
+        trigger->attach_type == FieryMUD::ScriptType::MOB ? "MOB" :
+        trigger->attach_type == FieryMUD::ScriptType::OBJECT ? "OBJECT" : "WORLD",
+        trigger->flags_string()));
+    if (trigger->num_args > 0) {
+        std::string args_str;
+        for (size_t i = 0; i < trigger->arg_list.size(); ++i) {
+            if (i > 0) args_str += ", ";
+            args_str += trigger->arg_list[i];
+        }
+        ctx.send(fmt::format("Args: {} - {}", trigger->num_args, args_str));
+    }
+    ctx.send("<b:white>Script:</>");
+    // Split script by lines for cleaner display
+    std::istringstream script_stream(trigger->commands);
+    std::string line;
+    while (std::getline(script_stream, line)) {
+        ctx.send(line);
     }
 
     return CommandResult::Success;
@@ -3311,6 +3292,568 @@ Result<CommandResult> cmd_areload(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Script Debugging Commands
+// =============================================================================
+
+/**
+ * syslog - Subscribe to real-time log messages.
+ *
+ * Usage:
+ *   syslog                    - Show current subscription status
+ *   syslog off               - Stop watching logs
+ *   syslog <level>           - Watch logs at level (debug/info/warn/error)
+ *   syslog <level> <comp>    - Watch specific component at level
+ *   syslog <level> all       - Watch all components at level
+ */
+Result<CommandResult> cmd_syslog(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can use syslog.");
+        return CommandResult::InvalidState;
+    }
+
+    auto& subscriber = LogSubscriber::instance();
+
+    // No arguments - show status
+    if (ctx.arg_count() == 0) {
+        if (subscriber.is_subscribed(player)) {
+            auto sub = subscriber.get_subscription(player);
+            if (sub) {
+                std::string level_str{LogSubscriber::level_to_string(sub->min_level)};
+                std::string comp_str;
+                if (sub->components.empty()) {
+                    comp_str = "all components";
+                } else {
+                    for (const auto& c : sub->components) {
+                        if (!comp_str.empty()) comp_str += ", ";
+                        comp_str += c;
+                    }
+                }
+                ctx.send(fmt::format("<b:cyan>Syslog subscription active:</> {} level, {}", level_str, comp_str));
+            }
+        } else {
+            ctx.send("<b:yellow>Syslog subscription:</> inactive");
+        }
+        ctx.send("\n<b:white>Usage:</>");
+        ctx.send("  syslog off               - Stop watching logs");
+        ctx.send("  syslog <level>           - Watch all logs at level");
+        ctx.send("  syslog <level> <comp>    - Watch specific component");
+        ctx.send("  syslog <level> all       - Watch all components");
+        ctx.send("\n<b:white>Levels:</> trace, debug, info, warn, error, critical");
+        auto comps = LogSubscriber::available_components();
+        std::string comp_list;
+        for (size_t i = 0; i < comps.size(); ++i) {
+            if (i > 0) comp_list += ", ";
+            comp_list += comps[i];
+        }
+        ctx.send("<b:white>Components:</> " + comp_list);
+        return CommandResult::Success;
+    }
+
+    auto arg1 = std::string{ctx.arg(0)};
+    std::transform(arg1.begin(), arg1.end(), arg1.begin(), ::tolower);
+
+    // syslog off
+    if (arg1 == "off") {
+        if (subscriber.is_subscribed(player)) {
+            subscriber.unsubscribe(player);
+            ctx.send("<b:green>Syslog subscription stopped.</>");
+        } else {
+            ctx.send("You are not subscribed to syslog.");
+        }
+        return CommandResult::Success;
+    }
+
+    // Parse level
+    auto level = LogSubscriber::parse_level(arg1);
+    if (!level) {
+        ctx.send_error(fmt::format("Invalid log level: '{}'. Use: trace, debug, info, warn, error, critical", arg1));
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Parse optional component filter
+    std::set<std::string> components;
+    if (ctx.arg_count() > 1) {
+        auto comp = std::string{ctx.arg(1)};
+        std::transform(comp.begin(), comp.end(), comp.begin(), ::tolower);
+
+        if (comp != "all") {
+            // Check if valid component
+            auto available = LogSubscriber::available_components();
+            bool found = false;
+            for (const auto& c : available) {
+                if (c == comp) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                std::string avail_str;
+                for (size_t i = 0; i < available.size(); ++i) {
+                    if (i > 0) avail_str += ", ";
+                    avail_str += available[i];
+                }
+                ctx.send_error(fmt::format("Unknown component: '{}'. Available: {}",
+                    comp, avail_str));
+                return CommandResult::InvalidSyntax;
+            }
+            components.insert(comp);
+        }
+        // "all" leaves components empty, which matches all
+    }
+
+    // Subscribe
+    subscriber.subscribe(player, *level, components);
+
+    std::string comp_msg;
+    if (components.empty()) {
+        comp_msg = "all components";
+    } else {
+        for (const auto& c : components) {
+            if (!comp_msg.empty()) comp_msg += ", ";
+            comp_msg += c;
+        }
+    }
+    ctx.send(fmt::format("<b:green>Syslog subscription active:</> {} level, {}", LogSubscriber::level_to_string(*level), comp_msg));
+
+    return CommandResult::Success;
+}
+
+/**
+ * dtrig - Debug trigger command.
+ *
+ * Usage:
+ *   dtrig list <target>           - List all triggers on mob/object
+ *   dtrig info <zone:id>          - Show trigger details and last error
+ *   dtrig fire <target> <trigger> - Manually execute a trigger
+ */
+Result<CommandResult> cmd_dtrig(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send("<b:white>Debug Trigger Command</>");
+        ctx.send("Usage:");
+        ctx.send("  dtrig list <target>           - List all triggers on mob/object");
+        ctx.send("  dtrig info <zone:id>          - Show trigger details and last error");
+        ctx.send("  dtrig fire <target> <zone:id> - Manually execute a trigger by ID");
+        ctx.send("  (If zone omitted, uses current zone)");
+        return CommandResult::Success;
+    }
+
+    auto subcmd = std::string{ctx.arg(0)};
+    std::transform(subcmd.begin(), subcmd.end(), subcmd.begin(), ::tolower);
+
+    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+
+    if (subcmd == "list") {
+        if (ctx.arg_count() < 2) {
+            ctx.send_error("Usage: dtrig list <target>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // Find target - try actor first, then object
+        auto actor_target = ctx.find_actor_target(ctx.arg(1));
+        auto object_target = ctx.find_object_target(ctx.arg(1));
+
+        if (!actor_target && !object_target) {
+            ctx.send_error(fmt::format("Target '{}' not found.", ctx.arg(1)));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Get triggers based on target type
+        FieryMUD::TriggerSet triggers;
+        std::string target_name;
+
+        if (actor_target) {
+            triggers = trigger_mgr.get_mob_triggers(actor_target->id());
+            target_name = actor_target->display_name();
+        } else {
+            triggers = trigger_mgr.get_object_triggers(object_target->id());
+            target_name = object_target->display_name();
+        }
+
+        if (triggers.empty()) {
+            ctx.send(fmt::format("{} has no triggers attached.", target_name));
+            return CommandResult::Success;
+        }
+
+        ctx.send(fmt::format("<b:white>Triggers on {}:</>", target_name));
+        for (const auto& trigger : triggers) {
+            int trig_zone = trigger->zone_id.value_or(
+                trigger->mob_id ? static_cast<int>(trigger->mob_id->zone_id()) :
+                trigger->object_id ? static_cast<int>(trigger->object_id->zone_id()) : 0);
+            ctx.send(fmt::format("  [{}:{}] {} - flags: {}",
+                trig_zone, trigger->id,
+                trigger->name, trigger->flags_string()));
+        }
+        ctx.send(fmt::format("Total: {} triggers", triggers.size()));
+        return CommandResult::Success;
+    }
+
+    if (subcmd == "info") {
+        if (ctx.arg_count() < 2) {
+            ctx.send_error("Usage: dtrig info <zone:id>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // Parse trigger ID (zone:id format, or just id using current zone)
+        auto trigger_eid = ctx.parse_entity_id(ctx.arg(1));
+        if (!trigger_eid.is_valid()) {
+            ctx.send_error("Invalid trigger ID format. Use zone:id (e.g., 489:1) or just id for current zone.");
+            return CommandResult::InvalidSyntax;
+        }
+        int zone_id = static_cast<int>(trigger_eid.zone_id());
+        int trigger_id = static_cast<int>(trigger_eid.local_id());
+
+        // Load trigger from database
+        auto& pool = ConnectionPool::instance();
+        if (!pool.is_initialized()) {
+            ctx.send_error("Database not available.");
+            return CommandResult::SystemError;
+        }
+
+        auto result = pool.execute([zone_id, trigger_id](pqxx::work& txn)
+            -> Result<std::tuple<FieryMUD::TriggerDataPtr, std::vector<TriggerQueries::ScriptErrorEntry>>> {
+            auto trigger_result = TriggerQueries::load_trigger_by_id(txn, zone_id, trigger_id);
+            if (!trigger_result) {
+                return std::unexpected(trigger_result.error());
+            }
+            auto errors_result = TriggerQueries::get_error_log_for_trigger(txn, zone_id, trigger_id, 5);
+            std::vector<TriggerQueries::ScriptErrorEntry> errors;
+            if (errors_result) {
+                errors = *errors_result;
+            }
+            return std::make_tuple(*trigger_result, errors);
+        });
+
+        if (!result) {
+            ctx.send_error(fmt::format("Trigger {}:{} not found.", zone_id, trigger_id));
+            return CommandResult::InvalidTarget;
+        }
+
+        auto& [trigger, errors] = *result;
+
+        ctx.send(fmt::format("<b:white>Trigger {}:{}</> - {}", zone_id, trigger_id, trigger->name));
+        ctx.send(fmt::format("Type: {}  Flags: {}",
+            trigger->attach_type == FieryMUD::ScriptType::MOB ? "MOB" :
+            trigger->attach_type == FieryMUD::ScriptType::OBJECT ? "OBJECT" : "WORLD",
+            trigger->flags_string()));
+
+        // Show script (truncated)
+        auto script_preview = trigger->commands.substr(0, 200);
+        if (trigger->commands.length() > 200) script_preview += "...";
+        ctx.send("<b:white>Script:</>");
+        ctx.send(script_preview);
+
+        // Show recent errors
+        if (errors.empty()) {
+            ctx.send("\n<b:green>No recent errors.</>");
+        } else {
+            ctx.send("\n<b:white>Recent errors:</>");
+            for (const auto& error : errors) {
+                ctx.send(fmt::format("  [{}] <b:red>{}:</> {}", error.occurred_at, error.error_type, error.error_message));
+            }
+        }
+
+        return CommandResult::Success;
+    }
+
+    if (subcmd == "fire") {
+        if (ctx.arg_count() < 3) {
+            ctx.send_error("Usage: dtrig fire <target> <zone:id or id>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // Find target - try actor first, then object
+        auto actor_target = ctx.find_actor_target(ctx.arg(1));
+        auto object_target = ctx.find_object_target(ctx.arg(1));
+
+        if (!actor_target && !object_target) {
+            ctx.send_error(fmt::format("Target '{}' not found.", ctx.arg(1)));
+            return CommandResult::InvalidTarget;
+        }
+
+        // Parse trigger ID (zone:id format, or just id using current zone)
+        auto trigger_eid = ctx.parse_entity_id(ctx.arg(2));
+        if (!trigger_eid.is_valid()) {
+            ctx.send_error("Invalid trigger ID format. Use zone:id (e.g., 489:1) or just id for current zone.");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // Get triggers and target info based on type
+        FieryMUD::TriggerSet triggers;
+        std::string target_name;
+        EntityId target_id;
+
+        if (actor_target) {
+            triggers = trigger_mgr.get_mob_triggers(actor_target->id());
+            target_name = actor_target->display_name();
+            target_id = actor_target->id();
+        } else {
+            triggers = trigger_mgr.get_object_triggers(object_target->id());
+            target_name = object_target->display_name();
+            target_id = object_target->id();
+        }
+
+        // Find trigger by ID from the target's triggers
+        FieryMUD::TriggerDataPtr found_trigger;
+        for (const auto& t : triggers) {
+            int trig_zone = t->zone_id.value_or(
+                t->mob_id ? static_cast<int>(t->mob_id->zone_id()) :
+                t->object_id ? static_cast<int>(t->object_id->zone_id()) : 0);
+            if (static_cast<std::uint32_t>(trig_zone) == trigger_eid.zone_id() &&
+                t->id == static_cast<int>(trigger_eid.local_id())) {
+                found_trigger = t;
+                break;
+            }
+        }
+
+        if (!found_trigger) {
+            ctx.send_error(fmt::format("Trigger {} not found on {}.", trigger_eid, target_name));
+            return CommandResult::InvalidTarget;
+        }
+
+        ctx.send(fmt::format("<b:yellow>Firing trigger {} '{}' on {}...</>",
+            trigger_eid, found_trigger->name, target_name));
+
+        // Create context and execute based on target type
+        FieryMUD::ScriptContext script_ctx;
+        if (actor_target) {
+            script_ctx = FieryMUD::ScriptContext::Builder()
+                .set_trigger(found_trigger)
+                .set_owner(actor_target)
+                .set_actor(ctx.actor)
+                .set_room(actor_target->current_room())
+                .build();
+        } else {
+            script_ctx = FieryMUD::ScriptContext::Builder()
+                .set_trigger(found_trigger)
+                .set_owner(object_target)
+                .set_actor(ctx.actor)
+                .set_room(ctx.room)
+                .build();
+        }
+
+        auto result = trigger_mgr.debug_execute_trigger(found_trigger, script_ctx);
+
+        if (result == FieryMUD::TriggerResult::Error) {
+            ctx.send_error(fmt::format("Trigger execution failed: {}", trigger_mgr.last_error()));
+            return CommandResult::SystemError;
+        }
+
+        ctx.send("<b:green>Trigger executed.</>");
+        return CommandResult::Success;
+    }
+
+    ctx.send_error(fmt::format("Unknown subcommand: '{}'. Use 'list', 'info', or 'fire'.", subcmd));
+    return CommandResult::InvalidSyntax;
+}
+
+/**
+ * scripterrors - View and manage script errors.
+ *
+ * Usage:
+ *   scripterrors              - List triggers with needsReview=true
+ *   scripterrors <zone.id>    - Show error history for specific trigger
+ *   scripterrors clear <zone.id> - Clear needsReview flag after fix
+ */
+Result<CommandResult> cmd_scripterrors(const CommandContext &ctx) {
+    auto& pool = ConnectionPool::instance();
+    if (!pool.is_initialized()) {
+        ctx.send_error("Database not available.");
+        return CommandResult::SystemError;
+    }
+
+    if (ctx.arg_count() == 0) {
+        // List all triggers needing review
+        auto result = pool.execute([](pqxx::work& txn) {
+            return TriggerQueries::get_triggers_needing_review(txn);
+        });
+
+        if (!result) {
+            ctx.send_error(fmt::format("Database error: {}", result.error().message));
+            return CommandResult::SystemError;
+        }
+
+        if (result->empty()) {
+            ctx.send("<b:green>No script errors found! All triggers are clean.</>");
+            return CommandResult::Success;
+        }
+
+        ctx.send("<b:white>Triggers with errors:</>");
+        for (const auto& trigger : *result) {
+            int zone_id = trigger->zone_id.value_or(
+                trigger->mob_id ? static_cast<int>(trigger->mob_id->zone_id()) :
+                trigger->object_id ? static_cast<int>(trigger->object_id->zone_id()) : 0);
+
+            ctx.send(fmt::format("  <b:red>[{}:{}]</> {} - {}",
+                zone_id, trigger->id, trigger->name, trigger->flags_string()));
+        }
+        ctx.send(fmt::format("\nTotal: {} triggers with errors", result->size()));
+        ctx.send("Use 'scripterrors <zone.id>' to see error details.");
+        return CommandResult::Success;
+    }
+
+    auto arg1 = std::string{ctx.arg(0)};
+    std::transform(arg1.begin(), arg1.end(), arg1.begin(), ::tolower);
+
+    // scripterrors clear <zone:id>
+    if (arg1 == "clear") {
+        if (ctx.arg_count() < 2) {
+            ctx.send_error("Usage: scripterrors clear <zone:id>");
+            return CommandResult::InvalidSyntax;
+        }
+
+        // Parse trigger ID (zone:id format, or just id using current zone)
+        auto trigger_eid = ctx.parse_entity_id(ctx.arg(1));
+        if (!trigger_eid.is_valid()) {
+            ctx.send_error("Invalid trigger ID format. Use zone:id (e.g., 489:1) or just id for current zone.");
+            return CommandResult::InvalidSyntax;
+        }
+        int zone_id = static_cast<int>(trigger_eid.zone_id());
+        int trigger_id = static_cast<int>(trigger_eid.local_id());
+
+        auto result = pool.execute([zone_id, trigger_id](pqxx::work& txn) {
+            return TriggerQueries::clear_trigger_error(txn, zone_id, trigger_id);
+        });
+
+        if (!result) {
+            ctx.send_error(fmt::format("Failed to clear error: {}", result.error().message));
+            return CommandResult::SystemError;
+        }
+
+        ctx.send(fmt::format("<b:green>Cleared error flag for trigger {}:{}</>", zone_id, trigger_id));
+        return CommandResult::Success;
+    }
+
+    // scripterrors <zone:id> - show error history
+    auto trigger_eid = ctx.parse_entity_id(arg1);
+    if (!trigger_eid.is_valid()) {
+        ctx.send_error("Invalid trigger ID format. Use zone:id (e.g., 489:1) or just id for current zone.");
+        return CommandResult::InvalidSyntax;
+    }
+    int zone_id = static_cast<int>(trigger_eid.zone_id());
+    int trigger_id = static_cast<int>(trigger_eid.local_id());
+
+    auto result = pool.execute([zone_id, trigger_id](pqxx::work& txn) {
+        return TriggerQueries::get_error_log_for_trigger(txn, zone_id, trigger_id, 10);
+    });
+
+    if (!result) {
+        ctx.send_error(fmt::format("Database error: {}", result.error().message));
+        return CommandResult::SystemError;
+    }
+
+    if (result->empty()) {
+        ctx.send(fmt::format("No errors logged for trigger {}:{}", zone_id, trigger_id));
+        return CommandResult::Success;
+    }
+
+    ctx.send(fmt::format("<b:white>Error history for trigger {}:{}:</>", zone_id, trigger_id));
+    for (const auto& error : *result) {
+        ctx.send(fmt::format("  [{}] <b:red>{}:</>", error.occurred_at, error.error_type));
+        ctx.send(fmt::format("    {}", error.error_message));
+    }
+
+    return CommandResult::Success;
+}
+
+/**
+ * validate_scripts - Batch validation of script triggers.
+ *
+ * Usage:
+ *   validate_scripts              - Validate all triggers
+ *   validate_scripts zone <id>    - Validate triggers in specific zone
+ */
+Result<CommandResult> cmd_validate_scripts(const CommandContext &ctx) {
+    auto& pool = ConnectionPool::instance();
+    if (!pool.is_initialized()) {
+        ctx.send_error("Database not available.");
+        return CommandResult::SystemError;
+    }
+
+    auto& engine = FieryMUD::ScriptEngine::instance();
+    if (!engine.is_initialized()) {
+        ctx.send_error("Script engine not initialized.");
+        return CommandResult::SystemError;
+    }
+
+    std::optional<int> zone_filter;
+    if (ctx.arg_count() >= 2) {
+        auto subcmd = std::string{ctx.arg(0)};
+        std::transform(subcmd.begin(), subcmd.end(), subcmd.begin(), ::tolower);
+        if (subcmd == "zone") {
+            try {
+                zone_filter = std::stoi(std::string{ctx.arg(1)});
+            } catch (...) {
+                ctx.send_error("Invalid zone ID.");
+                return CommandResult::InvalidSyntax;
+            }
+        }
+    }
+
+    ctx.send(zone_filter ?
+        fmt::format("<b:yellow>Validating scripts in zone {}...</>", *zone_filter) :
+        "<b:yellow>Validating all scripts...</>");
+
+    // Load triggers from database
+    auto result = pool.execute([zone_filter](pqxx::work& txn)
+        -> Result<std::vector<FieryMUD::TriggerDataPtr>> {
+        if (zone_filter) {
+            return TriggerQueries::load_triggers_for_zone(txn, *zone_filter);
+        }
+        return TriggerQueries::load_all_triggers(txn);
+    });
+
+    if (!result) {
+        ctx.send_error(fmt::format("Failed to load triggers: {}", result.error().message));
+        return CommandResult::SystemError;
+    }
+
+    int total = 0, passed = 0, failed = 0;
+    std::vector<std::tuple<int, int, std::string, std::string>> failures; // zone, id, name, error
+
+    for (const auto& trigger : *result) {
+        ++total;
+
+        // Try to compile the script
+        auto compile_result = engine.compile_script(trigger->commands, trigger->name);
+        if (!compile_result) {
+            ++failed;
+            int zone_id = trigger->zone_id.value_or(
+                trigger->mob_id ? static_cast<int>(trigger->mob_id->zone_id()) :
+                trigger->object_id ? static_cast<int>(trigger->object_id->zone_id()) : 0);
+            failures.emplace_back(zone_id, trigger->id, trigger->name, engine.last_error());
+
+            // Log to database
+            pool.execute([zone_id, trigger_id = trigger->id, error = engine.last_error()](pqxx::work& txn) {
+                return TriggerQueries::log_script_error(txn, zone_id, trigger_id, "compilation", error);
+            });
+        } else {
+            ++passed;
+        }
+    }
+
+    // Display results
+    ctx.send(fmt::format("\n<b:white>Validation Results:</>"));
+    ctx.send(fmt::format("  Total:  {}", total));
+    ctx.send(fmt::format("  <b:green>Passed:</> {}", passed));
+    ctx.send(fmt::format("  <b:red>Failed:</> {}", failed));
+
+    if (!failures.empty()) {
+        ctx.send("\n<b:white>Failed triggers:</>");
+        int shown = 0;
+        for (const auto& [zone_id, trigger_id, name, error] : failures) {
+            if (++shown > 20) {
+                ctx.send(fmt::format("  ... and {} more", failures.size() - 20));
+                break;
+            }
+            ctx.send(fmt::format("  <b:red>[{}:{}]</> {} - {}", zone_id, trigger_id, name, error.substr(0, 60)));
+        }
+    }
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -3398,6 +3941,16 @@ Result<void> register_commands() {
         .command("tstat", cmd_tstat)
         .category("Development")
         .privilege(PrivilegeLevel::Coder)
+        .description("Show trigger script by ID")
+        .usage("tstat [zone:id]")
+        .help(
+            "<b:yellow>Show trigger statistics or script by ID:</>\n"
+            "  tstat                 - Show trigger system statistics\n"
+            "  tstat <zone:id>       - Show full script for trigger\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  tstat                 - System stats and execution counts\n"
+            "  tstat 489:2           - Show script for trigger 489:2\n"
+            "  tstat 5               - Show script for trigger 5 (current zone)")
         .build();
 
     Commands()
@@ -3583,6 +4136,75 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Coder)
         .description("Reload ability cache from database")
         .help("Reloads all abilities, effects, and related data from the database.")
+        .build();
+
+    // Script debugging commands
+    Commands()
+        .command("syslog", cmd_syslog)
+        .category("Development")
+        .privilege(PrivilegeLevel::God)
+        .description("Subscribe to real-time log messages")
+        .usage("syslog [off|<level> [component]]")
+        .help(
+            "<b:yellow>Subscribe to real-time log messages (like legacy syslog):</>\n"
+            "  syslog                    - Show current subscription status\n"
+            "  syslog off               - Stop watching logs\n"
+            "  syslog <level>           - Watch all logs at level\n"
+            "  syslog <level> <comp>    - Watch specific component\n"
+            "  syslog <level> all       - Watch all components\n"
+            "\n<b:yellow>Levels:</> trace, debug, info, warn, error, critical\n"
+            "<b:yellow>Components:</> game, combat, movement, commands, network, persistence, scripting, database")
+        .build();
+
+    Commands()
+        .command("dtrig", cmd_dtrig)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .description("Debug trigger commands")
+        .usage("dtrig <list|info|fire> <args>")
+        .help(
+            "<b:yellow>Debug trigger commands for script development:</>\n"
+            "  dtrig list <target>       - List all triggers on mob/object\n"
+            "  dtrig info <zone:id>      - Show trigger details and recent errors\n"
+            "  dtrig fire <target> <id>  - Manually execute a trigger by ID\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  dtrig list lokari         - List triggers on mob 'lokari'\n"
+            "  dtrig info 489:1          - Show details for trigger 489:1\n"
+            "  dtrig fire lokari 489:1   - Fire trigger 489:1 on lokari\n"
+            "  dtrig fire lokari 5       - Fire trigger 5 (current zone) on lokari")
+        .build();
+
+    Commands()
+        .command("scripterrors", cmd_scripterrors)
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .description("View and manage script errors")
+        .usage("scripterrors [zone:id|clear zone:id]")
+        .help(
+            "<b:yellow>View and manage script errors logged from trigger execution:</>\n"
+            "  scripterrors              - List all triggers with errors\n"
+            "  scripterrors <zone:id>    - Show error history for trigger\n"
+            "  scripterrors clear <zone:id> - Clear error flag after fixing\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  scripterrors              - See all broken triggers\n"
+            "  scripterrors 489:1        - See error history for trigger 489:1\n"
+            "  scripterrors clear 489:1  - Mark trigger as fixed")
+        .build();
+
+    Commands()
+        .command("validate_scripts", cmd_validate_scripts)
+        .alias("vscripts")
+        .category("Development")
+        .privilege(PrivilegeLevel::Coder)
+        .description("Batch validate script triggers")
+        .usage("validate_scripts [zone <id>]")
+        .help(
+            "<b:yellow>Batch validate all script triggers for compilation errors:</>\n"
+            "  validate_scripts          - Validate ALL triggers\n"
+            "  validate_scripts zone <id> - Validate triggers in specific zone\n"
+            "\n<b:yellow>Examples:</>\n"
+            "  validate_scripts          - Check all triggers across all zones\n"
+            "  validate_scripts zone 489 - Check only zone 489 triggers")
         .build();
 
     return Success();
