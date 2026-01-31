@@ -62,6 +62,12 @@ public:
     /** Check if any entity keyword starts with the given prefix (case-insensitive) */
     bool matches_keyword_prefix(std::string_view prefix) const;
 
+    /** Check if entity matches a targeting string, supporting compound keywords.
+     *  Compound keywords use hyphens as AND operators: "magician-sleeves" matches
+     *  if the entity has keywords matching BOTH "magician" AND "sleeves" (prefix match).
+     */
+    bool matches_target_string(std::string_view target) const;
+
     /** Check if entity matches any of the given keywords */
     bool matches_any_keyword(std::span<const std::string> keywords) const;
     

@@ -1,5 +1,6 @@
 #include "script_engine.hpp"
 #include "coroutine_scheduler.hpp"
+#include "trigger_manager.hpp"
 #include "bindings/lua_actor.hpp"
 #include "bindings/lua_room.hpp"
 #include "bindings/lua_object.hpp"
@@ -8,7 +9,7 @@
 #include "bindings/lua_world.hpp"
 #include "bindings/lua_spells.hpp"
 #include "bindings/lua_zone.hpp"
-#include "bindings/lua_doors.hpp"
+#include "bindings/lua_exit.hpp"
 #include "bindings/lua_skills.hpp"
 #include "bindings/lua_effects.hpp"
 #include "bindings/lua_timers.hpp"
@@ -63,6 +64,10 @@ ScriptResult<void> ScriptEngine::initialize() {
 
         // Register game bindings (to be implemented in Phase 2)
         register_bindings();
+
+        // Create persistent globals table for scripts to share variables
+        // This mimics DG Script's "global" variables that persist across trigger executions
+        (*lua_)["globals"] = lua_->create_table();
 
         initialized_ = true;
         spdlog::info("Lua scripting engine initialized successfully");
@@ -207,17 +212,28 @@ void ScriptEngine::register_utility_functions() {
         return seconds;
     }));
 
-    // Legacy ID conversion helpers for converted scripts
-    // These convert legacy numeric IDs (e.g., 3045) to zone_id and local_id
-    // Used when scripts have variable IDs that can't be converted at compile time
-    lua_->set_function("vnum_to_zone", [](int legacy_id) -> int {
+    // run_room_trigger(legacy_id) - Execute a world trigger by ID
+    // Used to invoke shared room-level effects (door manipulation, spawning, etc.)
+    lua_->set_function("run_room_trigger", [](int legacy_id) {
         int zone_id = legacy_id / 100;
-        // Zone 0 maps to zone 1000
-        return zone_id == 0 ? 1000 : zone_id;
-    });
+        if (zone_id == 0) zone_id = 1000;
+        int local_id = legacy_id % 100;
 
-    lua_->set_function("vnum_to_local", [](int legacy_id) -> int {
-        return legacy_id % 100;
+        auto& trigger_mgr = TriggerManager::instance();
+        EntityId trigger_eid(zone_id, local_id);
+
+        auto trigger = trigger_mgr.find_trigger_by_id(trigger_eid);
+        if (!trigger) {
+            spdlog::warn("run_room_trigger: Trigger {}:{} not found", zone_id, local_id);
+            return;
+        }
+
+        // Execute the trigger with minimal context (world triggers don't need owner)
+        ScriptContext ctx = ScriptContext::Builder()
+            .set_trigger(trigger)
+            .build();
+
+        trigger_mgr.debug_execute_trigger(trigger, ctx);
     });
 
     spdlog::debug("Lua utility functions registered");
@@ -235,7 +251,7 @@ void ScriptEngine::register_bindings() {
     register_world_bindings(*lua_);
     register_spell_bindings(*lua_);
     register_zone_bindings(*lua_);
-    register_door_bindings(*lua_);
+    register_exit_bindings(*lua_);
     register_skill_bindings(*lua_);
     register_effect_bindings(*lua_);
     register_timer_bindings(*lua_);

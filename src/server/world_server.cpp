@@ -128,6 +128,9 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     }
     Log::info("TriggerManager initialized successfully");
 
+    // Initialize coroutine scheduler for wait() support in triggers
+    FieryMUD::get_coroutine_scheduler().initialize(io_context_, world_strand_);
+
     // Initialize time system with default starting time
     GameTime start_time;
     start_time.hour = DEFAULT_START_HOUR;

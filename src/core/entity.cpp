@@ -69,6 +69,37 @@ bool Entity::matches_keyword_prefix(std::string_view prefix) const {
     return false;
 }
 
+bool Entity::matches_target_string(std::string_view target) const {
+    if (target.empty()) {
+        return false;
+    }
+
+    // Check for compound keyword (contains hyphen)
+    size_t hyphen_pos = target.find('-');
+    if (hyphen_pos == std::string_view::npos) {
+        // No hyphen - use regular prefix matching
+        return matches_keyword_prefix(target);
+    }
+
+    // Split on hyphens and require ALL parts to match
+    size_t start = 0;
+    while (start < target.size()) {
+        size_t end = target.find('-', start);
+        if (end == std::string_view::npos) {
+            end = target.size();
+        }
+
+        std::string_view part = target.substr(start, end - start);
+        if (!part.empty() && !matches_keyword_prefix(part)) {
+            return false;  // One part didn't match, fail
+        }
+
+        start = end + 1;
+    }
+
+    return true;  // All parts matched
+}
+
 bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
     return std::any_of(keywords.begin(), keywords.end(),
         [this](const std::string& kw) {

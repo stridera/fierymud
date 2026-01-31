@@ -2492,6 +2492,12 @@ std::shared_ptr<Mobile> WorldManager::spawn_mobile_for_zone(EntityId mobile_id, 
     // Register the spawned mobile for efficient lookups
     register_spawned_mobile(mobile_ptr);
 
+    // Fire LOAD triggers for this mobile
+    auto spawn_room = get_room(room_id);
+    if (spawn_room) {
+        FieryMUD::TriggerManager::instance().dispatch_load(mobile_ptr, spawn_room);
+    }
+
     return mobile_ptr;
 }
 
@@ -2864,9 +2870,12 @@ Result<void> WorldManager::spawn_mobile_in_specific_room(Mobile* prototype, Enti
     // Register the spawned mobile for efficient lookups
     auto mobile_ptr = std::static_pointer_cast<Mobile>(actor_ptr);
     register_spawned_mobile(mobile_ptr);
-    
+
     logger->debug("Spawned mobile '{}' in room '{}' ({})",
                 prototype->name(), spawn_room->name(), spawn_room->id());
+
+    // Fire LOAD triggers for this mobile
+    FieryMUD::TriggerManager::instance().dispatch_load(mobile_ptr, spawn_room);
 
     return Success();
 }

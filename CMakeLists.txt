@@ -250,7 +250,7 @@ set(CORE_SOURCES
     src/scripting/bindings/lua_world.cpp
     src/scripting/bindings/lua_spells.cpp
     src/scripting/bindings/lua_zone.cpp
-    src/scripting/bindings/lua_doors.cpp
+    src/scripting/bindings/lua_exit.cpp
     src/scripting/bindings/lua_skills.cpp
     src/scripting/bindings/lua_effects.cpp
     src/scripting/bindings/lua_timers.cpp

@@ -287,7 +287,68 @@ void register_actor_bindings(sol::state& lua) {
             if (gender == "male") return "his";
             if (gender == "female") return "her";
             return "its";
-        })
+        }),
+
+        // Methods - Following (uses master/follower system)
+        // Make this actor follow another actor
+        // Usage: actor:follow(target)
+        // Note: target is optional to handle nil values gracefully (avoids segfault)
+        "follow", [](std::shared_ptr<Actor> self, sol::optional<std::shared_ptr<Actor>> target_opt) -> bool {
+            if (!self) return false;
+            if (!target_opt.has_value() || !target_opt.value()) return false;
+            auto target = target_opt.value();
+            if (self == target) return false;  // Can't follow yourself
+            // Clear any previous master
+            if (auto old_master = self->get_master()) {
+                old_master->remove_follower(self);
+            }
+            // Set new master and register as follower
+            self->set_master(target);
+            target->add_follower(self);
+            spdlog::debug("actor:follow: {} now following {}", self->name(), target->name());
+            return true;
+        },
+
+        // Stop following
+        // Usage: actor:stop_following()
+        "stop_following", [](std::shared_ptr<Actor> self) -> bool {
+            if (!self) return false;
+            if (auto master = self->get_master()) {
+                master->remove_follower(self);
+            }
+            self->clear_master();
+            return true;
+        },
+
+        // Get who this actor is following
+        "master", sol::property([](const Actor& self) -> std::shared_ptr<Actor> {
+            return self.get_master();
+        }),
+
+        // Check if following someone
+        "has_master", sol::property([](const Actor& self) -> bool {
+            return self.has_master();
+        }),
+
+        // Methods - Inventory management
+        // Destroy an item in actor's inventory by keyword
+        // Usage: actor:destroy_item("keyword")
+        "destroy_item", [](std::shared_ptr<Actor> self, const std::string& keyword) -> bool {
+            if (!self || keyword.empty()) return false;
+
+            // Find item in inventory matching keyword
+            auto items = self->inventory().find_items_by_keyword(keyword);
+            if (items.empty()) {
+                spdlog::debug("actor:destroy_item: No item matching '{}' found on {}", keyword, self->name());
+                return false;
+            }
+
+            // Remove and destroy the first matching item
+            auto& item = items[0];
+            self->inventory().remove_item(item);
+            spdlog::debug("actor:destroy_item: Destroyed '{}' from {}", item->name(), self->name());
+            return true;
+        }
     );
 
     // Mobile (NPC) class - inherits Actor, adds NPC-specific properties

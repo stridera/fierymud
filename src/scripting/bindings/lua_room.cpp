@@ -1,4 +1,5 @@
 #include "lua_room.hpp"
+#include "lua_exit.hpp"
 #include "../../world/room.hpp"
 #include "../../world/world_manager.hpp"
 #include "../../core/actor.hpp"
@@ -188,6 +189,13 @@ void register_room_bindings(sol::state& lua) {
             const auto* exit = r.get_exit(dir);
             if (!exit) return false;
             return exit->is_locked;
+        },
+
+        // Get exit object for a direction (returns Exit object or nil)
+        // Usage: local exit = room:exit("north")
+        //        exit:set_state({has_door = true, closed = true})
+        "exit", [](std::shared_ptr<Room> room, const std::string& dir_str) -> std::shared_ptr<ExitWrapper> {
+            return create_exit_wrapper(room, dir_str);
         },
 
         // Communication methods
