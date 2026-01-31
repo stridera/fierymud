@@ -63,6 +63,7 @@ namespace {
  */
 struct TargetSpec {
     std::string keyword;
+    std::set<std::string> keywords;
     int match_index = 1;
     bool match_all = false;
 
@@ -94,6 +95,8 @@ struct TargetSpec {
         } else {
             spec.keyword = std::string{name};
         }
+
+        spec.keywords = EntityUtils::parse_target_string(spec.keyword);
 
         return spec;
     }
@@ -283,7 +286,7 @@ std::shared_ptr<Actor> CommandContext::find_actor_target(std::string_view name) 
         if (!room_actor->is_visible_to(*actor))
             continue;
 
-        if (room_actor->matches_target_string(spec.keyword)) {
+        if (room_actor->matches_all_keywords(spec.keywords)) {
             current_match++;
             if (current_match == spec.match_index) {
                 return room_actor;
@@ -311,7 +314,7 @@ std::shared_ptr<Actor> CommandContext::find_actor_global(std::string_view name) 
             if (!online_actor || online_actor == actor)
                 continue; // Skip self
 
-            if (online_actor->matches_target_string(spec.keyword)) {
+            if (online_actor->matches_all_keywords(spec.keywords)) {
                 current_match++;
                 if (current_match == spec.match_index) {
                     return online_actor;
@@ -342,7 +345,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
         if (!obj)
             continue;
 
-        if (obj->matches_target_string(spec.keyword)) {
+        if (obj->matches_all_keywords(spec.keywords)) {
             current_match++;
             if (current_match == spec.match_index) {
                 return obj;
@@ -356,7 +359,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
         if (!obj)
             continue;
 
-        if (obj->matches_target_string(spec.keyword)) {
+        if (obj->matches_all_keywords(spec.keywords)) {
             current_match++;
             if (current_match == spec.match_index) {
                 return obj;
@@ -371,7 +374,7 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
             if (!obj)
                 continue;
 
-            if (obj->matches_target_string(spec.keyword)) {
+            if (obj->matches_all_keywords(spec.keywords)) {
                 current_match++;
                 if (current_match == spec.match_index) {
                     return obj;
@@ -503,7 +506,7 @@ TargetInfo CommandContext::resolve_target(std::string_view name) const {
     }
 
     // Check if the name matches the current actor (allows "stat samui" to work on yourself)
-    if (actor && actor->matches_keyword_prefix(name)) {
+    if (actor && actor->matches_target_string(name)) {
         TargetInfo info;
         info.type = TargetType::Self;
         info.actor = actor;

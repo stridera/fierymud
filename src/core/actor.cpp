@@ -79,7 +79,7 @@ Result<void> Stats::validate() const {
         return std::unexpected(Errors::InvalidState(
             fmt::format("Charisma must be between {} and {}", MIN_ATTRIBUTE, MAX_ATTRIBUTE)));
     }
-    
+
     if (hit_points < 0 || hit_points > max_hit_points) {
         return std::unexpected(Errors::InvalidState("Hit points invalid"));
     }
@@ -89,7 +89,7 @@ Result<void> Stats::validate() const {
     if (stamina < 0 || stamina > max_stamina) {
         return std::unexpected(Errors::InvalidState("Stamina invalid"));
     }
-    
+
     if (level < MIN_LEVEL || level > MAX_LEVEL) {
         return std::unexpected(Errors::InvalidState(
             fmt::format("Level must be between {} and {}", MIN_LEVEL, MAX_LEVEL)));
@@ -100,7 +100,7 @@ Result<void> Stats::validate() const {
     if (gold < 0) {
         return std::unexpected(Errors::InvalidState("Gold cannot be negative"));
     }
-    
+
     return Success();
 }
 
@@ -167,21 +167,21 @@ nlohmann::json Stats::to_json() const {
 Result<Stats> Stats::from_json(const nlohmann::json& json) {
     try {
         Stats stats;
-        
+
         if (json.contains("strength")) stats.strength = json["strength"].get<int>();
         if (json.contains("dexterity")) stats.dexterity = json["dexterity"].get<int>();
         if (json.contains("intelligence")) stats.intelligence = json["intelligence"].get<int>();
         if (json.contains("wisdom")) stats.wisdom = json["wisdom"].get<int>();
         if (json.contains("constitution")) stats.constitution = json["constitution"].get<int>();
         if (json.contains("charisma")) stats.charisma = json["charisma"].get<int>();
-        
+
         if (json.contains("hit_points")) stats.hit_points = json["hit_points"].get<int>();
         if (json.contains("max_hit_points")) stats.max_hit_points = json["max_hit_points"].get<int>();
         if (json.contains("mana")) stats.mana = json["mana"].get<int>();
         if (json.contains("max_mana")) stats.max_mana = json["max_mana"].get<int>();
         if (json.contains("stamina")) stats.stamina = json["stamina"].get<int>();
         if (json.contains("max_stamina")) stats.max_stamina = json["max_stamina"].get<int>();
-        
+
         // New combat stats
         if (json.contains("accuracy")) stats.accuracy = json["accuracy"].get<int>();
         if (json.contains("attack_power")) stats.attack_power = json["attack_power"].get<int>();
@@ -206,11 +206,11 @@ Result<Stats> Stats::from_json(const nlohmann::json& json) {
         if (json.contains("experience")) stats.experience = json["experience"].get<long>();
         if (json.contains("gold")) stats.gold = json["gold"].get<long>();
         if (json.contains("alignment")) stats.alignment = json["alignment"].get<int>();
-        
+
         TRY(stats.validate());
-        
+
         return stats;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Stats JSON parsing error", e.what()));
     }
@@ -222,7 +222,7 @@ Result<void> Inventory::add_item(std::shared_ptr<Object> item) {
     if (!item) {
         return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
     }
-    
+
     items_.push_back(std::move(item));
     return Success();
 }
@@ -232,13 +232,13 @@ std::shared_ptr<Object> Inventory::remove_item(EntityId item_id) {
         [item_id](const std::shared_ptr<Object>& item) {
             return item && item->id() == item_id;
         });
-    
+
     if (it != items_.end()) {
         auto item = *it;
         items_.erase(it);
         return item;
     }
-    
+
     return nullptr;
 }
 
@@ -256,19 +256,19 @@ std::shared_ptr<Object> Inventory::find_item(EntityId item_id) const {
         [item_id](const std::shared_ptr<Object>& item) {
             return item && item->id() == item_id;
         });
-    
+
     return it != items_.end() ? *it : nullptr;
 }
 
 std::vector<std::shared_ptr<Object>> Inventory::find_items_by_keyword(std::string_view keyword) const {
     std::vector<std::shared_ptr<Object>> matches;
-    
+
     for (const auto& item : items_) {
-        if (item && item->matches_keyword(keyword)) {
+        if (item && item->matches_target_string(keyword)) {
             matches.push_back(item);
         }
     }
-    
+
     return matches;
 }
 
@@ -309,20 +309,20 @@ bool Inventory::can_carry(int additional_weight, int max_carry_weight) const {
 nlohmann::json Inventory::to_json() const {
     nlohmann::json json;
     json["items"] = nlohmann::json::array();
-    
+
     for (const auto& item : items_) {
         if (item) {
             json["items"].push_back(item->to_json());
         }
     }
-    
+
     return json;
 }
 
 Result<Inventory> Inventory::from_json(const nlohmann::json& json) {
     try {
         Inventory inventory;
-        
+
         if (json.contains("items") && json["items"].is_array()) {
             for (const auto& item_json : json["items"]) {
                 auto item_result = Object::from_json(item_json);
@@ -333,9 +333,9 @@ Result<Inventory> Inventory::from_json(const nlohmann::json& json) {
                 }
             }
         }
-        
+
         return inventory;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Inventory JSON parsing error", e.what()));
     }
@@ -369,7 +369,7 @@ std::string Equipment::get_slot_conflict_message(EquipSlot slot, const Object& i
             default:                    return "You are already wearing something there.";
         }
     }
-    
+
     // Check for two-handed weapon conflicts
     if (item.has_flag(ObjectFlag::TwoHanded) && slot == EquipSlot::Wield) {
         if (is_equipped(EquipSlot::Wield2)) {
@@ -379,14 +379,14 @@ std::string Equipment::get_slot_conflict_message(EquipSlot slot, const Object& i
             return "You can't wield a two-handed weapon while using a shield.";
         }
     }
-    
+
     if (slot == EquipSlot::Wield2 || slot == EquipSlot::Shield) {
         auto main_weapon = get_equipped(EquipSlot::Wield);
         if (main_weapon && main_weapon->has_flag(ObjectFlag::TwoHanded)) {
             return "You can't use that while wielding a two-handed weapon.";
         }
     }
-    
+
     return ""; // No conflict
 }
 
@@ -466,50 +466,50 @@ bool Equipment::is_equipped(EquipSlot slot) const {
 std::vector<std::shared_ptr<Object>> Equipment::get_all_equipped() const {
     std::vector<std::shared_ptr<Object>> items;
     items.reserve(equipped_.size());
-    
+
     for (const auto& [slot, item] : equipped_) {
         if (item) {
             items.push_back(item);
         }
     }
-    
+
     return items;
 }
 
 std::vector<std::pair<EquipSlot, std::shared_ptr<Object>>> Equipment::get_all_equipped_with_slots() const {
     std::vector<std::pair<EquipSlot, std::shared_ptr<Object>>> items;
     items.reserve(equipped_.size());
-    
+
     for (const auto& [slot, item] : equipped_) {
         if (item) {
             items.emplace_back(slot, item);
         }
     }
-    
+
     return items;
 }
 
 std::vector<std::shared_ptr<Object>> Equipment::get_equipped_by_type(ObjectType type) const {
     std::vector<std::shared_ptr<Object>> items;
-    
+
     for (const auto& [slot, item] : equipped_) {
         if (item && item->type() == type) {
             items.push_back(item);
         }
     }
-    
+
     return items;
 }
 
 int Equipment::calculate_total_armor_class() const {
     int total_ac = 0;
-    
+
     for (const auto& [slot, item] : equipped_) {
         if (item) {
             total_ac += item->armor_class();
         }
     }
-    
+
     return total_ac;
 }
 
@@ -573,53 +573,53 @@ bool Equipment::has_slot_conflict(EquipSlot slot, const Object& item) const {
     if (is_equipped(slot)) {
         return true;
     }
-    
+
     // Check for two-handed weapon conflicts
     if (item.has_flag(ObjectFlag::TwoHanded) && slot == EquipSlot::Wield) {
         return is_equipped(EquipSlot::Wield2) || is_equipped(EquipSlot::Shield);
     }
-    
+
     if (slot == EquipSlot::Wield2 || slot == EquipSlot::Shield) {
         auto main_weapon = get_equipped(EquipSlot::Wield);
         if (main_weapon && main_weapon->has_flag(ObjectFlag::TwoHanded)) {
             return true;
         }
     }
-    
+
     return false;
 }
 
 nlohmann::json Equipment::to_json() const {
     nlohmann::json json;
-    
+
     for (const auto& [slot, item] : equipped_) {
         if (item) {
             std::string slot_name = std::string(magic_enum::enum_name(slot));
             json[slot_name] = item->to_json();
         }
     }
-    
+
     return json;
 }
 
 Result<Equipment> Equipment::from_json(const nlohmann::json& json) {
     try {
         Equipment equipment;
-        
+
         for (const auto& [slot_name, item_json] : json.items()) {
             if (auto slot = magic_enum::enum_cast<EquipSlot>(slot_name)) {
                 auto item_result = Object::from_json(item_json);
                 if (item_result) {
                     equipment.equipped_[slot.value()] = std::move(item_result.value());
                 } else {
-                    Log::error("Failed to load equipped item in slot {}: {}", 
+                    Log::error("Failed to load equipped item in slot {}: {}",
                               slot_name, item_result.error().message);
                 }
             }
         }
-        
+
         return equipment;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Equipment JSON parsing error", e.what()));
     }
@@ -627,12 +627,12 @@ Result<Equipment> Equipment::from_json(const nlohmann::json& json) {
 
 // Actor Implementation
 
-Actor::Actor(EntityId id, std::string_view name) 
+Actor::Actor(EntityId id, std::string_view name)
     : Entity(id, name), spell_slots_(std::make_unique<SpellSlots>()) {}
 
-Actor::Actor(EntityId id, std::string_view name, 
+Actor::Actor(EntityId id, std::string_view name,
              const Stats& stats, const Inventory& inventory, const Equipment& equipment)
-    : Entity(id, name), stats_(stats), inventory_(inventory), equipment_(equipment), 
+    : Entity(id, name), stats_(stats), inventory_(inventory), equipment_(equipment),
       spell_slots_(std::make_unique<SpellSlots>()) {}
 
 bool Actor::has_flag(ActorFlag flag) const {
@@ -653,14 +653,14 @@ std::shared_ptr<Room> Actor::current_room() const {
 
 Result<void> Actor::move_to(std::shared_ptr<Room> new_room) {
     auto old_room = current_room_.lock();
-    
+
     if (old_room == new_room) {
         return Success(); // Already in the target room
     }
-    
+
     current_room_ = new_room;
     on_room_change(old_room, new_room);
-    
+
     return Success();
 }
 
@@ -689,7 +689,7 @@ bool Actor::can_see(const Actor& target) const {
     if (has_flag(ActorFlag::Blind)) {
         return false;
     }
-    
+
     return target.is_visible_to(*this);
 }
 
@@ -831,13 +831,13 @@ Result<void> Actor::give_item(std::shared_ptr<Object> item) {
     if (!item) {
         return std::unexpected(Errors::InvalidArgument("item", "cannot be null"));
     }
-    
+
     if (!inventory_.can_carry(item->weight(), max_carry_weight())) {
         return std::unexpected(Errors::InvalidState(fmt::format(
-            "Cannot carry that much weight: item {} weighs {}, current weight {}/{}", 
+            "Cannot carry that much weight: item {} weighs {}, current weight {}/{}",
             item->name(), item->weight(), current_carry_weight(), max_carry_weight())));
     }
-    
+
     return inventory_.add_item(std::move(item));
 }
 
@@ -850,14 +850,14 @@ Result<void> Actor::equip(EntityId item_id) {
     if (!item) {
         return std::unexpected(Errors::NotFound("Item not found in inventory"));
     }
-    
+
     auto result = equipment_.equip_item(item);
     if (!result) {
         // Put item back in inventory if equip failed
         TRY(inventory_.add_item(item));
         return std::unexpected(result.error());
     }
-    
+
     return Success();
 }
 
@@ -881,13 +881,13 @@ int Actor::max_carry_weight() const {
 
 int Actor::current_carry_weight() const {
     int total = inventory_.total_weight();
-    
+
     for (const auto& item : equipment_.get_all_equipped()) {
         if (item) {
             total += item->weight();
         }
     }
-    
+
     return total;
 }
 
@@ -897,10 +897,10 @@ bool Actor::is_overloaded() const {
 
 void Actor::gain_experience(long amount) {
     if (amount <= 0) return;
-    
+
     int old_level = stats_.level;
     stats_.experience += amount;
-    
+
     while (stats_.can_level_up() && stats_.level < MAX_LEVEL) {
         auto result = level_up();
         if (!result) {
@@ -908,7 +908,7 @@ void Actor::gain_experience(long amount) {
             break;
         }
     }
-    
+
     if (stats_.level > old_level) {
         on_level_up(old_level, stats_.level);
     }
@@ -918,24 +918,24 @@ Result<void> Actor::level_up() {
     if (!stats_.can_level_up()) {
         return std::unexpected(Errors::InvalidState("Not enough experience to level up"));
     }
-    
+
     stats_.level++;
-    
+
     // Increase hit points
     int hp_gain = 8 + Stats::attribute_modifier(stats_.constitution);
     stats_.max_hit_points += std::max(1, hp_gain);
     stats_.hit_points = stats_.max_hit_points; // Full heal on level up
-    
+
     // Increase mana
     int mana_gain = 4 + Stats::attribute_modifier(stats_.intelligence);
     stats_.max_mana += std::max(1, mana_gain);
     stats_.mana = stats_.max_mana;
-    
+
     // Increase stamina
     int stamina_gain = 2 + Stats::attribute_modifier(stats_.constitution) / 2;
     stats_.max_stamina += std::max(1, stamina_gain);
     stats_.stamina = stats_.max_stamina;
-    
+
     return Success();
 }
 
@@ -1030,7 +1030,7 @@ nlohmann::json Actor::to_json() const {
 Result<void> Actor::validate() const {
     TRY(Entity::validate());
     TRY(stats_.validate());
-    
+
     return Success();
 }
 
@@ -1040,7 +1040,7 @@ bool Actor::can_cast_spell(std::string_view spell_name) const {
     if (!spell) {
         return false;
     }
-    
+
     return spell->can_cast(*this) && has_spell_slots(spell->circle);
 }
 
@@ -1980,7 +1980,7 @@ fiery::HotTickResult Actor::process_hot_effects() {
 
 // Mobile Implementation
 
-Mobile::Mobile(EntityId id, std::string_view name, int level) 
+Mobile::Mobile(EntityId id, std::string_view name, int level)
     : Actor(id, name) {
     initialize_for_level(level);
 }
@@ -1989,26 +1989,26 @@ Result<std::unique_ptr<Mobile>> Mobile::create(EntityId id, std::string_view nam
     if (!id.is_valid()) {
         return std::unexpected(Errors::InvalidArgument("id", "must be valid"));
     }
-    
+
     if (name.empty()) {
         return std::unexpected(Errors::InvalidArgument("name", "cannot be empty"));
     }
-    
+
     if (level < MIN_LEVEL || level > MAX_LEVEL) {
         return std::unexpected(Errors::InvalidArgument("level",
             fmt::format("must be between {} and {}", MIN_LEVEL, MAX_LEVEL)));
     }
-    
+
     auto mobile = std::unique_ptr<Mobile>(new Mobile(id, name, level));
-    
+
     // Parse keywords from name (similar to Object::create)
     auto keywords = EntityUtils::parse_keyword_list(name);
     if (!keywords.empty()) {
         mobile->set_keywords(keywords);
     }
-    
+
     TRY(mobile->validate());
-    
+
     return mobile;
 }
 
@@ -2021,19 +2021,19 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
         if (!base_result) {
             return std::unexpected(base_result.error());
         }
-        
+
         auto base_entity = std::move(base_result.value());
-        
+
         int level = json.contains("level") ? json["level"].get<int>() : 1;
         // Handle legacy level 0 by converting to level 1
         if (level <= 0) level = 1;
         auto mobile = std::unique_ptr<Mobile>(new Mobile(base_entity->id(), base_entity->name(), level));
-        
+
         // Copy base properties
         mobile->set_keywords(base_entity->keywords());
         mobile->set_description(base_entity->description());
         mobile->set_short_description(base_entity->short_description());
-        
+
         // Parse mobile-specific properties
         if (json.contains("aggro_condition")) {
             auto cond_val = json["aggro_condition"];
@@ -2047,7 +2047,7 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
             int alignment = json["alignment"].get<int>();
             mobile->stats().alignment = alignment;
         }
-        
+
         // Parse mob flags (array of strings or comma-separated string)
         if (json.contains("mob_flags")) {
             try {
@@ -2083,7 +2083,7 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                 throw std::runtime_error("mob_flags parsing error: " + std::string(e.what()));
             }
         }
-        
+
         // Parse effect flags (array of strings or comma-separated string)
         if (json.contains("effect_flags")) {
             try {
@@ -2114,7 +2114,7 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                 throw std::runtime_error("effect_flags parsing error: " + std::string(e.what()));
             }
         }
-        
+
         // Parse stats object
         if (json.contains("stats")) {
             auto stats_result = Stats::from_json(json["stats"]);
@@ -2122,7 +2122,7 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                 mobile->stats() = stats_result.value();
             }
         }
-        
+
         // Parse individual stat fields (from flat JSON format)
         Stats& stats = mobile->stats();
         if (json.contains("level")) {
@@ -2158,12 +2158,12 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
         if (json.contains("attack_power")) stats.attack_power = json["attack_power"].get<int>();
         if (json.contains("evasion")) stats.evasion = json["evasion"].get<int>();
         if (json.contains("armor_rating")) stats.armor_rating = json["armor_rating"].get<int>();
-        
+
         // Parse money object - handle both string and number values
         if (json.contains("money")) {
             const auto& money = json["money"];
             long total_copper = 0;
-            
+
             // Helper lambda to parse money value (string or number)
             auto parse_money_value = [](const nlohmann::json& value) -> long {
                 long result = 0;
@@ -2175,7 +2175,7 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
                 // Treat negative values as 0 (common in legacy data for "no money")
                 return std::max(0L, result);
             };
-            
+
             if (money.contains("copper")) {
                 total_copper += parse_money_value(money["copper"]);
             }
@@ -2190,14 +2190,14 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json& json) {
             }
             stats.gold = total_copper;
         }
-        
+
         // Initialize mobile for its level
         mobile->initialize_for_level(stats.level);
-        
+
         TRY(mobile->validate());
-        
+
         return mobile;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Mobile JSON parsing error", e.what()));
     }
@@ -2536,15 +2536,15 @@ Result<std::unique_ptr<Player>> Player::create(EntityId id, std::string_view nam
     if (!id.is_valid()) {
         return std::unexpected(Errors::InvalidArgument("id", "must be valid"));
     }
-    
+
     if (name.empty()) {
         return std::unexpected(Errors::InvalidArgument("name", "cannot be empty"));
     }
-    
+
     auto player = std::unique_ptr<Player>(new Player(id, name));
-    
+
     TRY(player->validate());
-    
+
     return player;
 }
 
@@ -2944,7 +2944,7 @@ void Player::on_position_change(Position /* old_pos */, Position /* new_pos */) 
 
 void Player::initialize_spell_slots() {
     spell_slots().initialize_for_class(player_class_, stats().level);
-    Log::debug("Initialized spell slots for player '{}' (class: {}, level: {})", 
+    Log::debug("Initialized spell slots for player '{}' (class: {}, level: {})",
               name(), player_class_, stats().level);
 }
 
@@ -3131,19 +3131,19 @@ namespace ActorUtils {
         // Use a progressive scale: level^EXP_LEVEL_EXPONENT * EXP_BASE_MULTIPLIER
         return static_cast<long>(std::pow(level, EXP_LEVEL_EXPONENT) * EXP_BASE_MULTIPLIER);
     }
-    
+
     int calculate_hit_points(int level, int constitution) {
         int base = 8 * level;
         int con_bonus = Stats::attribute_modifier(constitution) * level;
         return std::max(level, base + con_bonus);
     }
-    
+
     int calculate_mana(int level, int intelligence) {
         int base = 4 * level;
         int int_bonus = Stats::attribute_modifier(intelligence) * level;
         return std::max(0, base + int_bonus);
     }
-    
+
     int calculate_stamina(int level, int constitution) {
         int base = 100 + (level * 2);
         int con_bonus = Stats::attribute_modifier(constitution) * 5;
@@ -3157,21 +3157,21 @@ namespace ActorUtils {
                           stats.stamina, stats.max_stamina,
                           stats.accuracy, stats.evasion, stats.armor_rating, stats.level);
     }
-    
+
     std::string_view get_position_name(Position position) {
         auto name = magic_enum::enum_name(position);
         return name.empty() ? "Unknown" : name;
     }
-    
+
     std::optional<Position> parse_position(std::string_view position_name) {
         return magic_enum::enum_cast<Position>(position_name);
     }
-    
+
     std::string_view get_flag_name(ActorFlag flag) {
         auto name = magic_enum::enum_name(flag);
         return name.empty() ? "Unknown" : name;
     }
-    
+
     std::optional<ActorFlag> parse_flag(std::string_view flag_name) {
         return magic_enum::enum_cast<ActorFlag>(flag_name);
     }
@@ -3199,7 +3199,7 @@ void to_json(nlohmann::json& json, const Actor& actor) {
 void from_json(const nlohmann::json& json, std::unique_ptr<Actor>& actor) {
     // This would need to determine actor type and call appropriate from_json
     std::string type = json.contains("type") ? json["type"].get<std::string>() : "Actor";
-    
+
     if (type == "Mobile") {
         auto result = Mobile::from_json(json);
         if (result) {
@@ -3221,11 +3221,11 @@ void from_json(const nlohmann::json& json, std::unique_ptr<Actor>& actor) {
 
 std::string Actor::get_stat_info() const {
     std::ostringstream output;
-    
+
     // Cast to specific types for additional information
     auto player = dynamic_cast<const Player*>(this);
     auto mobile = dynamic_cast<const Mobile*>(this);
-    
+
     // Helper to format EntityId as zone:local_id
     auto format_id = [](const EntityId& eid) -> std::string {
         return fmt::format("{}:{}", eid.zone_id(), eid.local_id());
@@ -3238,7 +3238,7 @@ std::string Actor::get_stat_info() const {
         name(),
         format_id(id()),
         room_str);
-    
+
     // Mobile-specific data
     if (mobile) {
         // Show keywords (what players can use to target this mob) in a visible format
@@ -3259,7 +3259,7 @@ std::string Actor::get_stat_info() const {
     } else if (player) {
         output << fmt::format("Title: {}\n", player->title().empty() ? "<None>" : player->title());
     }
-    
+
     // Character stats and abilities
     const auto& stats_ = stats();
 
@@ -3278,18 +3278,18 @@ std::string Actor::get_stat_info() const {
         stats_.level,
         stats_.experience,
         stats_.alignment);
-    
+
     // Player-specific data
     if (player) {
         // Format time displays
         auto format_time = [](std::time_t time) -> std::string {
             if (time == 0) return "Never";
             auto tm = *std::localtime(&time);
-            return fmt::format("{:02d}/{:02d}/{:4d} {:02d}:{:02d}", 
+            return fmt::format("{:02d}/{:02d}/{:4d} {:02d}:{:02d}",
                 tm.tm_mon + 1, tm.tm_mday, tm.tm_year + 1900,
                 tm.tm_hour, tm.tm_min);
         };
-        
+
         auto creation = format_time(player->creation_time());
         auto last_logon = format_time(player->last_logon_time());
         auto play_hours = player->total_play_time().count() / SECONDS_PER_HOUR;
@@ -3309,7 +3309,7 @@ std::string Actor::get_stat_info() const {
         }
         output << "\n";
     }
-    
+
     // Attributes display (similar to legacy format)
     output << fmt::format(
         "         STR   INT   WIS   DEX   CON   CHA\n"
@@ -3319,26 +3319,26 @@ std::string Actor::get_stat_info() const {
         stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma,
         stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma,
         stats_.strength, stats_.intelligence, stats_.wisdom, stats_.dexterity, stats_.constitution, stats_.charisma);
-    
+
     // Health, mana, and stamina
     output << fmt::format("HP: [{}/{}]  HP Gain: [{}] HP Regen Bonus: [{}]\n",
         stats_.hit_points, stats_.max_hit_points, 1, 0);
     output << fmt::format("Stamina: [{}/{}]  Stamina Gain: [{}]\n",
         stats_.stamina, stats_.max_stamina, 1);
     output << fmt::format("Focus: [{}]\n", stats_.mana);
-    
+
     // Money (convert from copper base to coins)
     long total_copper = stats_.gold;
     long platinum = total_copper / PLATINUM_TO_COPPER; total_copper %= PLATINUM_TO_COPPER;
     long gold = total_copper / GOLD_TO_COPPER; total_copper %= GOLD_TO_COPPER;
     long silver = total_copper / SILVER_TO_COPPER; total_copper %= SILVER_TO_COPPER;
     long copper = total_copper;
-    
+
     output << fmt::format(
         "Coins: [{}p / {}g / {}s / {}c], "
         "Bank: [0p / 0g / 0s / 0c]\n",
         platinum, gold, silver, copper);
-    
+
     // Combat stats (new ACC/EVA system)
     output << fmt::format("Accuracy: [{:2}], Evasion: [{:2}], Attack Power: [{:2}]\n",
         stats_.accuracy, stats_.evasion, stats_.attack_power);
@@ -3346,7 +3346,7 @@ std::string Actor::get_stat_info() const {
         stats_.armor_rating, stats_.damage_reduction_percent, stats_.spell_power);
     output << fmt::format("Saving throws: [Para: 0, Rod: 0, Petr: 0, Breath: 0, Spell: 0]\n");
     output << fmt::format("Perception: [{:4}], Stealth: [{:4}], Rage: [{:4}]\n", 0, 0, 0);
-    
+
     // Position and status
     output << fmt::format("Pos: {}", magic_enum::enum_name(position()));
     if (mobile) {
@@ -3354,12 +3354,12 @@ std::string Actor::get_stat_info() const {
     }
     output << fmt::format(", Fighting: <none>");
     output << "\n";
-    
+
     // Player connection info
     if (player) {
         output << fmt::format("Idle: [0 tics]\n");
     }
-    
+
     // Mobile combat info
     if (mobile) {
         // HP dice
@@ -3384,7 +3384,7 @@ std::string Actor::get_stat_info() const {
             hp_dice, damage_dice, mobile->damage_type());
         output << fmt::format("Mob Spec-Proc: None\n");
     }
-    
+
     // Character flags
     if (mobile) {
         // Build list of set traits, behaviors, and professions
@@ -3438,7 +3438,7 @@ std::string Actor::get_stat_info() const {
         output << fmt::format("PRF: <None>\n");
         output << fmt::format("PRV: <None>\n");
     }
-    
+
     // Weight and objects
     int worn_items = 0, worn_weight = 0;
     if (player) {
@@ -3450,15 +3450,15 @@ std::string Actor::get_stat_info() const {
             }
         }
     }
-    
+
     output << fmt::format(
         "Max Carry: {} ({} weight); "
         "Carried: {} ({} weight); "
         "Worn: {} ({} weight)\n",
-        20, max_carry_weight(), 
+        20, max_carry_weight(),
         inventory().item_count(), current_carry_weight(),
         worn_items, worn_weight);
-    
+
     // Show carried objects list
     const auto inventory_items = inventory().get_all_items();
     if (!inventory_items.empty()) {
@@ -3474,7 +3474,7 @@ std::string Actor::get_stat_info() const {
     } else {
         output << "Carrying: Nothing\n";
     }
-    
+
     // Drunk condition (0=sober, higher=more drunk)
     if (stats_.drunk > 0) {
         std::string drunk_str;
@@ -3483,11 +3483,11 @@ std::string Actor::get_stat_info() const {
         else drunk_str = "Slightly Buzzed";
         output << fmt::format("Intoxication: {} ({})\n", stats_.drunk, drunk_str);
     }
-    
+
     // Followers and groups
     output << fmt::format("Consented: <none>, Master is: <none>, Followers are:\n");
     output << fmt::format("Group Master is: <none>, groupees are:\n");
-    
+
     // Effects
     const auto& effects = active_effects_;
     if (effects.empty()) {
@@ -3507,9 +3507,9 @@ std::string Actor::get_stat_info() const {
         }
         output << "\n";
     }
-    
+
     // Events
     output << "No events.\n";
-    
+
     return output.str();
 }

@@ -716,7 +716,7 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
                 auto obj_proto = world.get_object_prototype(acct_item.object_id);
                 if (obj_proto) {
                     // Check if the object's keywords match
-                    if (obj_proto->matches_keyword(item_arg)) {
+                    if (obj_proto->matches_target_string(item_arg)) {
                         found_item = acct_item;
                         break;
                     }
