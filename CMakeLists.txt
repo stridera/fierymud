@@ -83,7 +83,7 @@ endif()
 CPMAddPackage(
     NAME sol2
     GITHUB_REPOSITORY ThePhD/sol2
-    GIT_TAG v3.3.0
+    GIT_TAG v3.5.0
 )
 
 # PostgreSQL C++ client library for database integration
@@ -129,8 +129,8 @@ CPMAddPackage(
 if(asio_ADDED)
     add_library(asio INTERFACE)
     target_include_directories(asio INTERFACE ${asio_SOURCE_DIR}/asio/include)
-    target_compile_definitions(asio INTERFACE 
-        ASIO_STANDALONE 
+    target_compile_definitions(asio INTERFACE
+        ASIO_STANDALONE
         ASIO_NO_DEPRECATED
         ASIO_HAS_STD_CHRONO
     )
@@ -393,7 +393,7 @@ add_test(
 )
 
 add_test(
-    NAME Integration_Tests_Filter  
+    NAME Integration_Tests_Filter
     COMMAND tests "[integration]"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
