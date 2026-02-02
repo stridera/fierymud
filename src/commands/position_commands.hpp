@@ -3,7 +3,9 @@
 #pragma once
 
 #include "command_system.hpp"
-#include "../core/actor.hpp"
+
+class Actor;
+enum class Position;
 
 namespace PositionCommands {
 

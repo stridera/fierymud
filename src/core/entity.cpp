@@ -1,11 +1,11 @@
 #include "entity.hpp"
-#include "../core/logging.hpp"
-#include "../text/string_utils.hpp"
+#include "core/logging.hpp"
+#include "text/string_utils.hpp"
 
 #include <algorithm>
 #include <cctype>
-#include <regex>
 #include <sstream>
+#include <nlohmann/json.hpp>
 
 namespace {
     // Entity validation constants

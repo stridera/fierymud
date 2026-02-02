@@ -5,6 +5,7 @@
 
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <nlohmann/json.hpp>
 #include <filesystem>
 #include <fstream>
 
@@ -636,42 +637,42 @@ TEST_CASE("World Utils: Object JSON Parsing", "[world][utils][object][json]") {
             {"name_list", "sculpture mielikki goddess"},
             {"short_description", "the living sculpture of Mielikki"}
         };
-        
+
         // Parse the object from JSON
         auto object_result = Object::from_json(object_json);
         REQUIRE(object_result.has_value());
-        
+
         auto object = std::move(object_result.value());
-        
+
         // Verify the object was created correctly
         REQUIRE(object->id() == EntityId{3007});
         REQUIRE(object->name() == "sculpture mielikki goddess");
-        
+
         // This is the critical test: short_description should be the exact value from JSON,
         // not the fallback to name_list/keywords
         REQUIRE(object->short_description() == "the living sculpture of Mielikki");
         REQUIRE(object->short_description() != object->name()); // Ensure it's not falling back to name
     }
-    
+
     SECTION("Object parsing handles empty short_description correctly") {
         // Create JSON without short_description field
         nlohmann::json object_json = {
             {"id", "3008"},
-            {"type", "OTHER"}, 
+            {"type", "OTHER"},
             {"name_list", "test object thing"}
         };
-        
+
         // Parse the object from JSON
         auto object_result = Object::from_json(object_json);
         REQUIRE(object_result.has_value());
-        
+
         auto object = std::move(object_result.value());
-        
+
         // When no short_description is provided, it should fall back to name
         REQUIRE(object->short_description() == "test object thing");
         REQUIRE(object->short_description() == object->name());
     }
-    
+
     SECTION("Object parsing handles blank short_description correctly") {
         // Create JSON with empty string short_description
         nlohmann::json object_json = {
@@ -680,13 +681,13 @@ TEST_CASE("World Utils: Object JSON Parsing", "[world][utils][object][json]") {
             {"name_list", "blank description item"},
             {"short_description", ""}
         };
-        
+
         // Parse the object from JSON
         auto object_result = Object::from_json(object_json);
         REQUIRE(object_result.has_value());
-        
+
         auto object = std::move(object_result.value());
-        
+
         // Empty short_description should be preserved as empty (the getter will handle fallback)
         REQUIRE(object->short_description() == "blank description item"); // Fallback behavior from getter
     }

@@ -1,7 +1,9 @@
-#include "../../src/core/result.hpp"
-#include "../../src/core/actor.hpp"
-#include "../../src/core/combat.hpp"
-#include "../../src/game/login_system.hpp"
+#include "core/result.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "game/login_system.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/generators/catch_generators.hpp>
 #include <catch2/generators/catch_generators_range.hpp>

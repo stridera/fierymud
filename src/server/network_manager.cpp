@@ -1,7 +1,8 @@
 #include "network_manager.hpp"
 
-#include "../core/logging.hpp"
-#include "../net/player_connection.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "net/player_connection.hpp"
 #include "mud_server.hpp"
 #include "world_server.hpp"
 
@@ -24,11 +25,11 @@ Result<void> NetworkManager::initialize() {
         acceptor_->set_option(asio::ip::tcp::acceptor::reuse_address(true));
 
         Log::info("Plain TCP acceptor initialized on port {}", config_.port);
-        
+
         // Initialize TLS if enabled
         if (config_.enable_tls) {
             Log::info("Initializing TLS support on port {}", config_.tls_port);
-            
+
             // Create TLS context manager
             tls_context_manager_ = std::make_unique<TLSContextManager>(config_);
             auto tls_init_result = tls_context_manager_->initialize();
@@ -41,7 +42,7 @@ Result<void> NetworkManager::initialize() {
                 asio::ip::tcp::endpoint tls_endpoint(asio::ip::tcp::v4(), config_.tls_port);
                 tls_acceptor_ = std::make_unique<asio::ip::tcp::acceptor>(io_context_, tls_endpoint);
                 tls_acceptor_->set_option(asio::ip::tcp::acceptor::reuse_address(true));
-                
+
                 Log::info("TLS acceptor initialized on port {}", config_.tls_port);
             }
         }
@@ -65,11 +66,11 @@ Result<void> NetworkManager::start() {
     try {
         // Start accepting connections
         start_accept();
-        
+
         // Start TLS accepting if enabled
         if (tls_acceptor_ && tls_context_manager_) {
             start_tls_accept();
-            Log::info("NetworkManager started - accepting connections on port {} (plain) and {} (TLS)", 
+            Log::info("NetworkManager started - accepting connections on port {} (plain) and {} (TLS)",
                       config_.port, config_.tls_port);
         } else {
             Log::info("NetworkManager started - accepting connections on port {} (plain only)", config_.port);
@@ -108,7 +109,7 @@ void NetworkManager::stop() {
         connections_to_close = connections_;
         connections_.clear();  // Clear first to prevent callback deadlock
     }
-    
+
     // Now disconnect all connections outside the mutex lock
     for (auto& connection : connections_to_close) {
         if (connection) {
@@ -248,7 +249,7 @@ void NetworkManager::start_tls_accept() {
     if (!tls_acceptor_ || !tls_context_manager_) {
         return;
     }
-    
+
     // Create a new TLS connection for this accept operation
     std::shared_ptr<WorldServer> world_server_shared;
     if (world_server_) {

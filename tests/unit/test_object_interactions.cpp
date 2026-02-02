@@ -2,10 +2,12 @@
 #include <catch2/matchers/catch_matchers_string.hpp>
 #include <memory>
 #include <string>
+#include <nlohmann/json.hpp>
 
-#include "../src/core/object.hpp"
-#include "../src/core/actor.hpp"
-#include "../src/world/room.hpp"
+#include "core/object.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "world/room.hpp"
 
 TEST_CASE("Object Interaction Integration Test", "[integration][objects][commands]") {
 

@@ -1,12 +1,14 @@
 #include "lua_actor.hpp"
-#include "../../core/actor.hpp"
-#include "../../core/combat.hpp"
-#include "../../core/spell_system.hpp"
-#include "../../core/skill_system.hpp"
-#include "../../world/room.hpp"
-#include "../../world/world_manager.hpp"
-#include "../../commands/command_system.hpp"
-#include "../../database/generated/db_enums.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/mobile.hpp"
+#include "core/spell_system.hpp"
+#include "core/skill_system.hpp"
+#include "core/player.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
+#include "commands/command_system.hpp"
+#include "database/generated/db_enums.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>

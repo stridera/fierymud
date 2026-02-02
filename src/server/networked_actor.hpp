@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../net/player_connection.hpp"
-#include "../world/world_manager.hpp"
-#include "../world/room.hpp"
+#include "core/player.hpp"
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "net/player_connection.hpp"
+#include "world/world_manager.hpp"
+#include "world/room.hpp"
 #include <memory>
 
 // NetworkedPlayer class - combines Player with network connection
@@ -23,31 +23,31 @@ public:
     void place_in_safe_room() {
         auto& world = WorldManager::instance();
         std::shared_ptr<Room> target_room = nullptr;
-        
+
         // First, check if player already has a valid room (from save file)
         auto current = current_room();
         if (current) {
             target_room = current;
         }
-        
+
         // If no current room or invalid, try WorldManager's starting room
         if (!target_room) {
             auto starting_room_id = world.get_start_room();
             if (starting_room_id.is_valid()) {
                 target_room = world.get_room(starting_room_id);
-                
+
                 // Set this as the player's personal start room if they don't have one
                 if (!start_room().is_valid()) {
                     set_start_room(starting_room_id);
                 }
             }
         }
-        
+
         // If starting room doesn't exist, try to find any available room
         if (!target_room) {
             target_room = world.get_first_available_room();
         }
-        
+
         // If still no room available, log error but don't crash
         if (target_room) {
             set_current_room(target_room);

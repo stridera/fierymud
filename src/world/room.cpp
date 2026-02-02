@@ -1,13 +1,16 @@
 #include "room.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../text/string_utils.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/mobile.hpp"
+#include "core/logging.hpp"
+#include "core/object.hpp"
+#include "text/string_utils.hpp"
 
 #include <algorithm>
 #include <sstream>
-#include <unordered_map>
+#include <nlohmann/json.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 // ExitInfo Implementation
 

@@ -1,7 +1,8 @@
 #include "lua_world.hpp"
-#include "../../core/actor.hpp"
-#include "../../core/object.hpp"
-#include "../../world/world_manager.hpp"
+#include "core/mobile.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "world/world_manager.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>

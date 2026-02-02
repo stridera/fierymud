@@ -1,11 +1,10 @@
 #pragma once
 
 #include "command_system.hpp"
-#include "command_context.hpp"
 
 /**
  * System commands for FieryMUD.
- * 
+ *
  * This module provides core system commands for players including
  * session management, help systems, and player information.
  */

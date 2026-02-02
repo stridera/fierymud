@@ -1,12 +1,13 @@
 #include "object.hpp"
 #include "combat.hpp"  // For WeaponSpeed enum
-#include "../core/logging.hpp"
-#include "../database/game_data_cache.hpp"
+#include "core/logging.hpp"
+#include "database/game_data_cache.hpp"
 
 #include <algorithm>
-#include <iostream>
 #include <sstream>
 #include <unordered_map>
+#include <nlohmann/json.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 // Object system constants
 namespace {

@@ -1,14 +1,13 @@
 #pragma once
 
-#include "core/entity.hpp"
 #include "core/result.hpp"
-#include <nlohmann/json.hpp>
 #include <unordered_map>
 #include <string>
 #include <string_view>
 #include <vector>
 #include <array>
 #include <expected>
+#include <nlohmann/json_fwd.hpp>
 
 // Forward declarations
 class Actor;
@@ -41,13 +40,13 @@ struct Spell {
     int cast_time_seconds = 3; // Time to cast
     int range_meters = 0;     // 0 = touch/self
     int duration_seconds = 0; // 0 = instant
-    
+
     /** Check if spell can be cast by actor */
     bool can_cast(const Actor& caster) const;
-    
+
     /** Execute spell effect (modifies caster for healing, buffs, etc.) */
     Result<void> cast(Actor& caster, const CommandContext& ctx) const;
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<Spell> from_json(const nlohmann::json& json);

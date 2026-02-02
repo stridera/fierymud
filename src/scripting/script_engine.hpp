@@ -7,7 +7,9 @@
 #include <unordered_map>
 
 #define SOL_ALL_SAFETIES_ON 1
-#include <sol/sol.hpp>
+#include <sol/forward.hpp>
+#include <sol/error.hpp>
+#include <sol/thread.hpp>
 
 #include <spdlog/spdlog.h>
 

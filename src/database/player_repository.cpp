@@ -7,7 +7,8 @@
 #include "connection_pool.hpp"
 #include "player_queries.hpp"
 #include "world_queries.hpp"
-#include "../core/logging.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
 
 // =============================================================================
 // PostgresPlayerRepository Implementation

@@ -1,16 +1,15 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
 
-#include <nlohmann/json.hpp>
 #include <fmt/format.h>
+#include <nlohmann/json_fwd.hpp>
 #include <string>
 #include <string_view>
 #include <vector>
 #include <span>
 #include <memory>
-#include <optional>
 #include <set>
 #include <ranges>
 

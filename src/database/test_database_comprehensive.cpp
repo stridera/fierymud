@@ -3,6 +3,8 @@
 #include "database/world_queries.hpp"
 #include "database/player_queries.hpp"
 #include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
 #include <iostream>
 #include <iomanip>
 

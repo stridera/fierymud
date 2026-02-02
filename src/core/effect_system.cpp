@@ -8,7 +8,6 @@
 
 #include <algorithm>
 #include <nlohmann/json.hpp>
-#include <optional>
 #include <random>
 
 // Effect system constants
@@ -646,6 +645,60 @@ EffectResult EffectResult::failure_result(std::string_view reason) {
     result.success = false;
     result.attacker_message = std::string(reason);
     return result;
+}
+
+// =============================================================================
+// EffectSystem
+// =============================================================================
+
+std::expected<void, EffectError> EffectSystem::apply_effect(Actor& actor,
+        std::string_view effect_name, const EffectOptions& opts) {
+    if (effect_name.empty()) {
+        return std::unexpected(EffectError{"invalid_effect_name"});
+    }
+
+    // Create the effect
+    ActiveEffect effect;
+    effect.name = std::string(effect_name);
+    effect.source = "script";
+    effect.flag = ActorFlag::None;
+    effect.duration_hours = opts.duration > 0 ?
+        static_cast<double>(opts.duration) / 3600.0 : -1.0; // Convert seconds to hours, -1 = permanent
+    effect.modifier_value = opts.power;
+    effect.applied_at = std::chrono::steady_clock::now();
+
+    actor.add_effect(effect);
+    return {};
+}
+
+std::expected<void, EffectError> EffectSystem::remove_effect(Actor& actor,
+        std::string_view effect_name) {
+    if (!actor.has_effect(std::string(effect_name))) {
+        return std::unexpected(EffectError{"effect_not_found"});
+    }
+
+    actor.remove_effect(std::string(effect_name));
+    return {};
+}
+
+bool EffectSystem::has_effect(const Actor& actor, std::string_view effect_name) const {
+    return actor.has_effect(std::string(effect_name));
+}
+
+std::optional<int> EffectSystem::get_effect_duration(const Actor& actor,
+                                        std::string_view effect_name) const {
+    const ActiveEffect* effect = actor.get_effect(std::string(effect_name));
+    if (!effect) {
+        return std::nullopt;
+    }
+
+    if (effect->is_permanent()) {
+        return -1; // Permanent effect
+    }
+
+    // Convert remaining hours to seconds
+    // Note: This is simplified - full implementation would track elapsed time
+    return static_cast<int>(effect->duration_hours * 3600.0);
 }
 
 // =============================================================================

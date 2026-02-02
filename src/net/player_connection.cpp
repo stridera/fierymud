@@ -1,27 +1,25 @@
 #include "player_connection.hpp"
 
-#include "../commands/command_system.hpp"
-#include "../commands/information_commands.hpp"
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../events/event_publisher.hpp"
-#include "../server/network_manager.hpp"
-#include "../server/world_server.hpp"
-#include "../text/text_format.hpp"
-#include "../world/world_manager.hpp"
+#include "commands/command_system.hpp"
+#include "commands/information_commands.hpp"
+#include "core/player.hpp"
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "events/event_types.hpp"
+#include "events/event_publisher.hpp"
+#include "server/network_manager.hpp"
+#include "server/world_server.hpp"
+#include "text/text_format.hpp"
+#include "world/world_manager.hpp"
 #include "mssp_handler.hpp"
 
-#include <algorithm>
-#include <chrono>
 #include <fmt/format.h>
-#include <regex>
 
 // GMCPHandler implementation
 GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection) {
     // Initialize with conservative defaults until client capabilities are detected
     terminal_capabilities_ = TerminalCapabilities::detect_capabilities();
-    
+
     // Initialize MSSP handler with network manager's config
     if (connection_.get_network_manager()) {
         // Note: NetworkManager constructor takes ServerConfig reference but we need access to it
@@ -33,7 +31,7 @@ GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection)
 void GMCPHandler::enable() {
     gmcp_enabled_ = true;
     terminal_capabilities_.supports_gmcp = true;  // Mark GMCP as supported
-    Log::info("GMCP enabled. Using conservative defaults until client capabilities detected: terminal={}, unicode={}, color={}, level={}", 
+    Log::info("GMCP enabled. Using conservative defaults until client capabilities detected: terminal={}, unicode={}, color={}, level={}",
               terminal_capabilities_.terminal_name,
               terminal_capabilities_.supports_unicode,
               terminal_capabilities_.supports_color,
@@ -68,7 +66,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return std::unexpected(Error{ErrorCode::InvalidArgument, fmt::format("Unknown telnet command: {}", command)});
         }
         break;
-        
+
     case TTYPE_OPTION:
         switch (command) {
         case TELNET_WILL:
@@ -84,7 +82,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return Result<void>{};
         }
         break;
-        
+
     case NEW_ENVIRON_OPTION:
         switch (command) {
         case TELNET_WILL:
@@ -100,7 +98,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return Result<void>{};
         }
         break;
-        
+
     case MSSP_OPTION:
         switch (command) {
         case TELNET_DO:
@@ -110,7 +108,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return Result<void>{}; // Ignore other MSSP commands
         }
         break;
-        
+
     default:
         return Result<void>{}; // Not our option, ignore
     }
@@ -126,7 +124,7 @@ Result<void> GMCPHandler::handle_gmcp_subnegotiation(std::string_view data) {
 
 Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
     Log::debug("Processing GMCP message: {}", message);
-    
+
     try {
         // GMCP messages are in the format "Module.SubModule JSON_DATA"
         // Find the first space to separate module from JSON data
@@ -135,18 +133,18 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
             Log::debug("GMCP message has no JSON data: {}", message);
             return Result<void>{};  // No JSON data, just module name
         }
-        
+
         std::string module = std::string(message.substr(0, space_pos));
         std::string json_str = std::string(message.substr(space_pos + 1));
-        
+
         Log::debug("GMCP module: '{}', JSON: '{}'", module, json_str);
-        
+
         auto json_data = nlohmann::json::parse(json_str);
 
         // Handle Core.Hello - client introduces itself
         if (module == "Core.Hello") {
             Log::info("GMCP client hello: {}", json_data.dump());
-            
+
             Log::debug("Processing Core.Hello - step 1: extracting client info");
             // Extract client information and update terminal capabilities
             if (json_data.contains("client")) {
@@ -157,7 +155,7 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
                 terminal_capabilities_.client_version = json_data["version"].get<std::string>();
                 Log::debug("Extracted client version: {}", terminal_capabilities_.client_version);
             }
-            
+
             Log::debug("Processing Core.Hello - step 2: calling detect_capabilities_from_gmcp");
             try {
                 // Preserve TLS status (based on actual connection, not client-reported)
@@ -172,8 +170,8 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
                 Log::error("Exception in detect_capabilities_from_gmcp: {}", e.what());
                 terminal_capabilities_.supports_gmcp = true;  // At least mark GMCP as supported
             }
-            
-            Log::info("Updated capabilities from GMCP Hello: client={} {}, unicode={}, color={}, level={}", 
+
+            Log::info("Updated capabilities from GMCP Hello: client={} {}, unicode={}, color={}, level={}",
                       terminal_capabilities_.client_name,
                       terminal_capabilities_.client_version,
                       terminal_capabilities_.supports_unicode,
@@ -702,15 +700,15 @@ Result<void> GMCPHandler::send_mssp_data() {
         // Create MSSP handler with access to the actual ServerConfig
         const auto& config = connection_.get_network_manager()->get_config();
         mssp_handler_ = std::make_unique<MSSPHandler>(config);
-        
+
         // Generate MSSP data using the proper handler
         auto mssp_data = mssp_handler_->generate_mssp_data(connection_.get_network_manager());
-        
+
         connection_.send_raw_data(mssp_data);
         Log::info("Sent MSSP data ({} bytes) to client", mssp_data.size());
         return Result<void>{};
     }
-    
+
     // If we have a proper handler, use it
     if (mssp_handler_) {
         auto mssp_data = mssp_handler_->generate_mssp_data(connection_.get_network_manager());
@@ -718,7 +716,7 @@ Result<void> GMCPHandler::send_mssp_data() {
         Log::info("Sent MSSP data ({} bytes) to client via handler", mssp_data.size());
         return Result<void>{};
     }
-    
+
     return std::unexpected(Error{ErrorCode::InternalError, "Unable to generate MSSP data"});
 }
 
@@ -742,7 +740,7 @@ std::shared_ptr<PlayerConnection> PlayerConnection::create_tls(asio::io_context 
 PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
                                    NetworkManager* network_manager)
     : io_context_(io_context), strand_(asio::make_strand(io_context)),
-      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context), 
+      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context),
       gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {
     // Create plain TCP socket
     connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context));
@@ -751,7 +749,7 @@ PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr
 PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
                                    NetworkManager* network_manager, TLSContextManager& tls_manager)
     : io_context_(io_context), strand_(asio::make_strand(io_context)),
-      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context), 
+      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context),
       gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {
     // Create TLS socket
     connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context), tls_manager.get_context());
@@ -866,7 +864,7 @@ void PlayerConnection::handle_read(const asio::error_code &error, std::size_t by
         if (error == asio::error::eof || error == asio::error::connection_reset ||
             error == asio::error::connection_aborted) {
             Log::debug("Connection closed from {}: {}", remote_address(), error.message());
-            
+
             // If player is actively playing, go linkdead instead of disconnecting
             if (state_ == ConnectionState::Playing && player_) {
                 set_linkdead(true, "Connection lost");
@@ -1052,7 +1050,7 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     // Store original host for reconnection validation
     original_host_ = remote_address();
-    
+
     // Start idle checking timer for session management
     start_idle_timer();
 
@@ -1088,30 +1086,30 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
 void PlayerConnection::attach_player(std::shared_ptr<Player> player) {
     player_ = std::move(player);
-    
+
     // Set the player's output interface to this connection
     player_->set_output(shared_from_this());
-    
+
     // Transition to playing state
     transition_to(ConnectionState::Playing);
-    
+
     // Store original host for reconnection validation
     original_host_ = remote_address();
-    
+
     // Start idle checking timer for session management
     start_idle_timer();
-    
+
     Log::info("Player '{}' reconnected from {}", player_->name(), remote_address());
-    
+
     // Send reconnection message and current room info (respects brief mode)
     send_message("=== Reconnected ===");
     send_message(InformationCommands::format_room_for_actor(player_));
-    
+
     // Send room info for reconnections (vitals/status already established)
     if (supports_gmcp()) {
         send_room_info();
     }
-    
+
     send_prompt();
 }
 
@@ -1172,7 +1170,7 @@ void PlayerConnection::flush_output() {
     write_in_progress_ = true;
 
     auto self = shared_from_this();
-    
+
     // Use async_write_some for TLS compatibility
     const std::string& data = output_queue_.front();
     connection_socket_->async_write_some(
@@ -1384,7 +1382,7 @@ std::chrono::seconds PlayerConnection::afk_time() const {
 
 void PlayerConnection::update_last_input_time() {
     last_input_time_ = std::chrono::steady_clock::now();
-    
+
     // If player was AFK, bring them back
     if (is_afk_) {
         set_afk(false);
@@ -1395,14 +1393,14 @@ void PlayerConnection::check_idle_timeout() {
     if (state_ != ConnectionState::Playing || !player_) {
         return;
     }
-    
+
     auto idle_duration = idle_time();
-    
+
     // Check for AFK state transition
     if (!is_afk_ && idle_duration >= AFK_TIMEOUT) {
         set_afk(true);
     }
-    
+
     // Check for linkdead state transition (only if connection is active)
     if (is_connected() && idle_duration >= IDLE_TIMEOUT) {
         set_linkdead(true, "Idle timeout");
@@ -1411,35 +1409,35 @@ void PlayerConnection::check_idle_timeout() {
 
 void PlayerConnection::set_afk(bool afk) {
     if (is_afk_ == afk) return;
-    
+
     is_afk_ = afk;
-    
+
     if (afk) {
         afk_start_time_ = std::chrono::steady_clock::now();
         transition_to(ConnectionState::AFK);
         send_message("You are now marked as AFK (Away From Keyboard).");
-        Log::info("Player {} went AFK after {} seconds idle", 
+        Log::info("Player {} went AFK after {} seconds idle",
                   player_ ? player_->name() : "unknown", idle_time().count());
     } else {
         afk_start_time_ = {};
         transition_to(ConnectionState::Playing);
         send_message("Welcome back! You are no longer AFK.");
-        Log::info("Player {} returned from AFK after {} seconds", 
+        Log::info("Player {} returned from AFK after {} seconds",
                   player_ ? player_->name() : "unknown", afk_time().count());
     }
 }
 
 void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
     if (is_linkdead_ == linkdead) return;
-    
+
     is_linkdead_ = linkdead;
     disconnect_reason_ = reason;
-    
+
     if (linkdead) {
         transition_to(ConnectionState::Linkdead);
-        Log::info("Player {} went linkdead: {}", 
+        Log::info("Player {} went linkdead: {}",
                   player_ ? player_->name() : "unknown", reason);
-        
+
         // Keep player in world but mark as linkdead
         // The world server will handle linkdead cleanup after timeout
         if (player_) {
@@ -1447,7 +1445,7 @@ void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
             Log::debug("Player {} marked linkdead, staying in world", player_->name());
         }
     } else {
-        Log::info("Player {} recovered from linkdead state", 
+        Log::info("Player {} recovered from linkdead state",
                   player_ ? player_->name() : "unknown");
         if (player_) {
             player_->set_linkdead(false);
@@ -1463,7 +1461,7 @@ void PlayerConnection::start_idle_timer() {
     // Start periodic idle checking every 60 seconds
     idle_check_timer_.expires_after(std::chrono::seconds(60));
     idle_check_timer_.async_wait(
-        asio::bind_executor(strand_, 
+        asio::bind_executor(strand_,
             [self = shared_from_this()](const asio::error_code &error) {
                 self->handle_idle_timer(error);
             }));
@@ -1477,7 +1475,7 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
         }
         return;
     }
-    
+
     // Check idle timeout for playing connections
     if (state_ == ConnectionState::Playing || state_ == ConnectionState::AFK) {
         check_idle_timeout();

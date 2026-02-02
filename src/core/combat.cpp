@@ -1,5 +1,7 @@
 #include "combat.hpp"
 #include "actor.hpp"
+#include "player.hpp"
+#include "mobile.hpp"
 #include "ability_executor.hpp"
 #include "logging.hpp"
 #include "money.hpp"

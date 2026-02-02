@@ -1,5 +1,6 @@
 #pragma once
 
+#include <nlohmann/json_fwd.hpp>
 #include "trigger_types.hpp"
 #include "core/ids.hpp"
 

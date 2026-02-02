@@ -1,15 +1,19 @@
 #include "economy_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/world_queries.hpp"
-#include "../world/world_manager.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/world_queries.hpp"
+#include "world/world_manager.hpp"
 #include "command_context.hpp"
 
 #include <charconv>
 #include <cctype>
+#include <magic_enum/magic_enum.hpp>
+#include <pqxx/pqxx>
 
 namespace EconomyCommands {
 

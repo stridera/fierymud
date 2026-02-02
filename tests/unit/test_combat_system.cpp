@@ -1,8 +1,10 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
 
-#include "../../src/core/combat.hpp"
-#include "../../src/core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/mobile.hpp"
 
 using namespace FieryMUD;
 using Catch::Approx;

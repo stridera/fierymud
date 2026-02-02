@@ -2,8 +2,8 @@
 
 #include "core/result.hpp"
 #include "core/ids.hpp"
+#include <nlohmann/json_fwd.hpp>
 #include <pqxx/pqxx>
-#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <vector>

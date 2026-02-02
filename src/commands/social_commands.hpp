@@ -3,8 +3,7 @@
 #pragma once
 
 #include "command_system.hpp"
-#include "command_context.hpp"
-#include "../database/social_queries.hpp"
+#include "database/social_queries.hpp"
 
 #include <memory>
 #include <string>

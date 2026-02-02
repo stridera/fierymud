@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "../core/result.hpp"
+#include <nlohmann/json_fwd.hpp>
+#include "core/result.hpp"
 #include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
@@ -15,7 +16,7 @@ class Player;
 
 /**
  * @brief Handles GMCP (Generic Mud Communication Protocol) for a player connection
- * 
+ *
  * GMCP uses telnet option 201 to send structured JSON data between client and server.
  * This enables modern MUD clients to display rich UI elements like health bars,
  * room information, and real-time updates.
@@ -52,10 +53,10 @@ public:
     // Core GMCP modules
     void send_hello();
     void send_supports_set();
-    
+
     // Room module
     void send_room_info(const Room& room);
-    
+
     // Char module
     void send_char_vitals(const class Player& player);
 

@@ -1,19 +1,16 @@
 #pragma once
 
-#include "../core/entity.hpp"
-#include "../core/result.hpp"
-#include "../core/ids.hpp"
-#include "../database/generated/db_enums.hpp"
+#include "core/entity.hpp"
+#include "core/result.hpp"
+#include "core/ids.hpp"
+#include "database/generated/db_enums.hpp"
 
 #include <memory>
 #include <vector>
 #include <unordered_map>
-#include <unordered_set>
 #include <string>
 #include <string_view>
 #include <optional>
-#include <magic_enum/magic_enum.hpp>
-#include <nlohmann/json.hpp>
 
 // Forward declarations
 class Actor;
@@ -63,7 +60,7 @@ enum class SectorType {
     Spirit,
     Badlands,
     Void,
-    
+
     // Sentinel
     Undefined
 };
@@ -87,30 +84,30 @@ struct ExitInfo {
     EntityId to_room = INVALID_ENTITY_ID;     // Destination room
     std::string description;                   // Exit description
     std::string keyword;                       // Door keyword
-    
+
     // Door state
     bool has_door = false;
     bool is_closed = false;
     bool is_locked = false;
     bool is_hidden = false;
     bool is_pickproof = false;
-    
+
     EntityId key_id = INVALID_ENTITY_ID;      // Key object ID
     int difficulty = 0;                        // Pick/bash difficulty
-    
+
     /** Check if exit is passable */
     bool is_passable() const {
         return to_room.is_valid() && (!has_door || !is_closed);
     }
-    
+
     /** Check if exit has functional door */
     bool has_functional_door() const {
         return has_door && !keyword.empty();
     }
-    
+
     /** Get door state description */
     std::string door_state_description() const;
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<ExitInfo> from_json(const nlohmann::json& json);
@@ -120,31 +117,31 @@ struct ExitInfo {
 struct RoomContents {
     std::vector<std::shared_ptr<Object>> objects;
     std::vector<std::shared_ptr<Actor>> actors;
-    
+
     /** Add object to room */
     void add_object(std::shared_ptr<Object> obj);
-    
+
     /** Remove object from room */
     bool remove_object(EntityId obj_id);
-    
+
     /** Add actor to room */
     void add_actor(std::shared_ptr<Actor> actor);
-    
+
     /** Remove actor from room */
     bool remove_actor(EntityId actor_id);
-    
+
     /** Find object by ID */
     std::shared_ptr<Object> find_object(EntityId id) const;
-    
+
     /** Find actor by ID */
     std::shared_ptr<Actor> find_actor(EntityId id) const;
-    
+
     /** Get all objects matching keyword */
     std::vector<std::shared_ptr<Object>> find_objects_by_keyword(std::string_view keyword) const;
-    
+
     /** Get all actors matching keyword */
     std::vector<std::shared_ptr<Actor>> find_actors_by_keyword(std::string_view keyword) const;
-    
+
     /** Clear all contents */
     void clear();
 };
@@ -154,17 +151,17 @@ class Room : public Entity {
 public:
     /** Create room with ID, name, and sector type */
     static Result<std::unique_ptr<Room>> create(EntityId id, std::string_view name, SectorType sector = SectorType::Inside);
-    
+
     /** Create room from JSON data */
     static Result<std::unique_ptr<Room>> from_json(const nlohmann::json& json);
-    
+
     /** Destructor */
     virtual ~Room() = default;
-    
+
     // Basic Properties
     SectorType sector_type() const { return sector_type_; }
     void set_sector_type(SectorType sector) { sector_type_ = sector; }
-    
+
     EntityId zone_id() const { return zone_id_; }
     void set_zone_id(EntityId zone) { zone_id_ = zone; }
 
@@ -176,15 +173,15 @@ public:
     // Capacity for occupancy limits (from database)
     int capacity() const { return capacity_; }
     void set_capacity(int cap) { capacity_ = cap; }
-    
+
     // Exit system
     bool has_exit(Direction dir) const;
     const ExitInfo* get_exit(Direction dir) const;
     ExitInfo* get_exit_mutable(Direction dir);
-    
+
     Result<void> set_exit(Direction dir, const ExitInfo& exit);
     void remove_exit(Direction dir);
-    
+
     std::vector<Direction> get_available_exits() const;
     std::vector<Direction> get_visible_exits(const Actor* observer = nullptr) const;
 
@@ -198,18 +195,18 @@ public:
     // Contents management
     const RoomContents& contents() const { return contents_; }
     RoomContents& contents_mutable() { return contents_; }
-    
+
     void add_object(std::shared_ptr<Object> obj);
     bool remove_object(EntityId obj_id);
     void add_actor(std::shared_ptr<Actor> actor);
     bool remove_actor(EntityId actor_id);
-    
+
     std::shared_ptr<Object> find_object(EntityId id) const;
     std::shared_ptr<Actor> find_actor(EntityId id) const;
-    
+
     std::vector<std::shared_ptr<Object>> find_objects_by_keyword(std::string_view keyword) const;
     std::vector<std::shared_ptr<Actor>> find_actors_by_keyword(std::string_view keyword) const;
-    
+
     // Visibility and lighting
     bool is_dark() const;
     bool is_naturally_lit() const;
@@ -244,16 +241,16 @@ public:
     int max_occupants() const;
     bool can_accommodate(const Actor* actor) const;
     bool is_full() const;
-    
+
     // Room descriptions
     std::string get_room_description(const Actor* observer = nullptr) const;
     std::string get_exits_description(const Actor* observer = nullptr) const;
     std::string get_contents_description(const Actor* observer = nullptr) const;
-    
+
     // Serialization
     nlohmann::json to_json() const override;
     Result<void> validate() const override;
-    
+
     /** Get comprehensive stat information for debugging/admin commands */
     std::string get_stat_info() const;
 
@@ -295,10 +292,10 @@ private:
     std::optional<int> layout_x_;
     std::optional<int> layout_y_;
     std::optional<int> layout_z_;
-    
+
     /** Update cached lighting calculations */
     void update_lighting_cache();
-    
+
     /** Check if room naturally has light based on sector */
     bool sector_provides_light() const;
 };
@@ -307,19 +304,19 @@ private:
 namespace RoomUtils {
     /** Get direction name */
     std::string_view get_direction_name(Direction dir);
-    
+
     /** Parse direction from string */
     std::optional<Direction> parse_direction(std::string_view dir_name);
-    
+
     /** Get opposite direction */
     Direction get_opposite_direction(Direction dir);
-    
+
     /** Get direction abbreviation */
     std::string_view get_direction_abbrev(Direction dir);
-    
+
     /** Get sector type name */
     std::string_view get_sector_name(SectorType sector);
-    
+
     /** Parse sector type from string */
     std::optional<SectorType> parse_sector_type(std::string_view sector_name);
 
@@ -330,19 +327,19 @@ namespace RoomUtils {
 
     /** Calculate movement cost for sector type */
     int get_movement_cost(SectorType sector);
-    
+
     /** Check if sector allows flying */
     bool sector_allows_flying(SectorType sector);
-    
+
     /** Check if sector is water */
     bool is_water_sector(SectorType sector);
-    
+
     /** Check if sector requires swimming */
     bool requires_swimming(SectorType sector);
-    
+
     /** Get natural light level for sector */
     int get_sector_light_level(SectorType sector);
-    
+
     /** Get sector color code for display */
     std::string_view get_sector_color(SectorType sector);
 
@@ -356,7 +353,7 @@ struct fmt::formatter<Direction> {
     constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
-    
+
     template<typename FormatContext>
     auto format(const Direction& dir, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), "{}", RoomUtils::get_direction_name(dir));

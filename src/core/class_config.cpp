@@ -3,6 +3,7 @@
 #include "text/string_utils.hpp"
 #include <fstream>
 #include <algorithm>
+#include <nlohmann/json.hpp>
 
 namespace fierymud {
 

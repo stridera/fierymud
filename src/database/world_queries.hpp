@@ -4,13 +4,14 @@
 #include "core/ids.hpp"
 #include "world/zone.hpp"
 #include "world/room.hpp"
-#include "core/actor.hpp"
 #include "core/object.hpp"
 #include <pqxx/pqxx>
 #include <vector>
 #include <memory>
 #include <chrono>
 #include <optional>
+
+class Mobile;
 
 /**
  * World data query layer for PostgreSQL database.

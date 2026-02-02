@@ -1,4 +1,6 @@
 #include "actor.hpp"
+#include "mobile.hpp"
+#include "player.hpp"
 #include "object.hpp"
 #include "spell_system.hpp"
 #include "../core/logging.hpp"
@@ -10,6 +12,7 @@
 #include "../net/player_connection.hpp"
 
 #include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
 #include <algorithm>
 #include <cmath>
 #include <sstream>

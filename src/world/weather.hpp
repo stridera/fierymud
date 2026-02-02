@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../core/entity.hpp"
-#include "../core/result.hpp"
-#include "../core/ids.hpp"
+#include "core/entity.hpp"
+#include "core/result.hpp"
+#include "core/ids.hpp"
 
 #include <memory>
 #include <string>
@@ -12,7 +12,6 @@
 #include <random>
 #include <optional>
 #include <magic_enum/magic_enum.hpp>
-#include <nlohmann/json.hpp>
 #include <fmt/format.h>
 
 // Forward declarations
@@ -22,7 +21,7 @@ class Actor;
 
 /**
  * Modern weather system for FieryMUD.
- * 
+ *
  * Provides realistic weather patterns with:
  * - Dynamic weather transitions based on patterns and randomness
  * - Zone-specific weather variations and overrides
@@ -34,7 +33,7 @@ class Actor;
 /** Weather conditions affecting the world */
 enum class WeatherType {
     Clear = 0,          // Clear skies, good visibility
-    Partly_Cloudy,      // Some clouds, normal visibility  
+    Partly_Cloudy,      // Some clouds, normal visibility
     Cloudy,             // Overcast, slightly reduced visibility
     Light_Rain,         // Light precipitation, reduced visibility
     Heavy_Rain,         // Heavy precipitation, poor visibility
@@ -102,10 +101,10 @@ struct WeatherEffects {
     bool provides_water = false;           // Can refill water containers
     bool fire_resistance = false;          // Fire spells less effective
     bool lightning_chance = false;         // Random lightning strikes possible
-    
+
     /** Get description of weather effects */
     std::string describe_effects() const;
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<WeatherEffects> from_json(const nlohmann::json& json);
@@ -122,16 +121,16 @@ struct WeatherState {
     std::chrono::minutes duration{0};      // How long this weather has lasted
     std::chrono::minutes predicted_duration{60}; // How long weather will likely last
     std::chrono::minutes disaster_duration{0};   // How long disaster has lasted
-    
+
     /** Get weather effects based on current state */
     WeatherEffects get_effects() const;
-    
+
     /** Get weather description for players */
     std::string get_description() const;
-    
+
     /** Get short weather summary */
     std::string get_summary() const;
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<WeatherState> from_json(const nlohmann::json& json);
@@ -144,10 +143,10 @@ struct WeatherConfig {
     std::unordered_map<WeatherType, float> type_probabilities; // Custom weather chances
     float change_frequency = 1.0f;         // Weather change rate multiplier
     WeatherIntensity max_intensity = WeatherIntensity::Extreme;
-    
+
     /** Get probability for weather type */
     float get_probability(WeatherType type) const;
-    
+
     /** JSON serialization */
     nlohmann::json to_json() const;
     static Result<WeatherConfig> from_json(const nlohmann::json& json);
@@ -159,7 +158,7 @@ struct WeatherForecast {
     WeatherType predicted_type;
     WeatherIntensity predicted_intensity;
     float confidence;                       // 0.0-1.0 prediction confidence
-    
+
     std::string describe() const;
 };
 
@@ -177,41 +176,41 @@ class WeatherSystem {
 public:
     /** Initialize weather system */
     static Result<void> initialize();
-    
+
     /** Get global weather system instance */
     static WeatherSystem& instance();
-    
+
     /** Shutdown weather system */
     void shutdown();
-    
+
     // Global Weather Management
     const WeatherState& global_weather() const { return global_weather_; }
     void set_global_weather(WeatherType type, WeatherIntensity intensity = WeatherIntensity::Moderate);
     void advance_global_weather(std::chrono::minutes elapsed);
-    
+
     // Zone-Specific Weather
     void set_zone_weather_config(EntityId zone_id, const WeatherConfig& config);
     WeatherConfig get_zone_weather_config(EntityId zone_id) const;
     WeatherState get_zone_weather(EntityId zone_id) const;
     void set_zone_weather(EntityId zone_id, WeatherType type, WeatherIntensity intensity = WeatherIntensity::Moderate);
-    
+
     // Weather Effects
     WeatherEffects get_weather_effects(EntityId zone_id) const;
     WeatherEffects get_room_weather_effects(EntityId room_id) const;
-    
+
     // Weather Forecasting
     std::vector<WeatherForecast> get_forecast(EntityId zone_id, std::chrono::hours duration = std::chrono::hours(24)) const;
     float get_weather_change_probability(WeatherType from, WeatherType to, Season season) const;
-    
+
     // Seasonal Management
     Season current_season() const { return current_season_; }
     void set_season(Season season);
     void advance_season(std::chrono::days elapsed);
-    
+
     // Weather Updates
     void update_weather(std::chrono::minutes elapsed);
     void process_weather_effects();
-    
+
     // Disaster Management
     void trigger_disaster(EntityId zone_id, DisasterType type, std::chrono::minutes duration = std::chrono::minutes(60));
     void end_disaster(EntityId zone_id);
@@ -223,40 +222,40 @@ public:
     void force_weather_change(EntityId zone_id = INVALID_ENTITY_ID);
     void reset_weather_to_default(EntityId zone_id = INVALID_ENTITY_ID);
     std::string get_weather_report(EntityId zone_id = INVALID_ENTITY_ID) const;
-    
+
     // Configuration
     void load_weather_patterns(const std::string& filename);
     void save_weather_state(const std::string& filename) const;
     Result<void> load_weather_state(const std::string& filename);
-    
+
     // Weather Event System
     using WeatherChangeCallback = std::function<void(EntityId zone_id, const WeatherState& old_state, const WeatherState& new_state)>;
     void set_weather_change_callback(WeatherChangeCallback callback) { weather_change_callback_ = std::move(callback); }
-    
+
 public:
     ~WeatherSystem() = default;
-    
+
 private:
     WeatherSystem() = default;
     WeatherSystem(const WeatherSystem&) = delete;
     WeatherSystem& operator=(const WeatherSystem&) = delete;
-    
+
     // Core weather state
     WeatherState global_weather_;
     Season current_season_ = Season::Spring;
     std::unordered_map<EntityId, WeatherState> zone_weather_;
     std::unordered_map<EntityId, WeatherConfig> zone_configs_;
-    
+
     // Weather transition system
     std::unordered_map<WeatherType, std::vector<WeatherTransition>> transitions_;
     std::unordered_map<Season, std::unordered_map<WeatherType, float>> seasonal_modifiers_;
-    
+
     // Random number generation
     mutable std::mt19937 rng_{std::random_device{}()};
-    
+
     // Event callbacks
     WeatherChangeCallback weather_change_callback_;
-    
+
     // Helper methods
     WeatherType generate_next_weather(const WeatherState& current, const WeatherConfig& config) const;
     std::chrono::minutes generate_weather_duration(WeatherType type, Season season) const;
@@ -270,7 +269,7 @@ private:
     float calculate_disaster_probability(const WeatherState& state) const;
     DisasterType select_disaster_type(const WeatherState& state, Season season) const;
     bool is_disaster_compatible_with_weather(DisasterType disaster, const WeatherState& state) const;
-    
+
     static std::unique_ptr<WeatherSystem> instance_;
     static bool initialized_;
 };
@@ -279,31 +278,31 @@ private:
 namespace WeatherUtils {
     /** Get weather type name */
     std::string_view get_weather_name(WeatherType type);
-    
+
     /** Get weather intensity name */
     std::string_view get_intensity_name(WeatherIntensity intensity);
-    
+
     /** Get season name */
     std::string_view get_season_name(Season season);
-    
+
     /** Parse weather type from string */
     std::optional<WeatherType> parse_weather_type(std::string_view name);
-    
+
     /** Parse weather intensity from string */
     std::optional<WeatherIntensity> parse_weather_intensity(std::string_view name);
-    
+
     /** Parse season from string */
     std::optional<Season> parse_season(std::string_view name);
-    
+
     /** Get weather color code for display */
     std::string get_weather_color(WeatherType type);
-    
+
     /** Get weather icon/symbol */
     std::string get_weather_symbol(WeatherType type);
-    
+
     /** Check if weather type is precipitation */
     bool is_precipitation(WeatherType type);
-    
+
     /** Check if weather type is extreme */
     bool is_extreme_weather(WeatherType type);
 
@@ -334,7 +333,7 @@ struct fmt::formatter<WeatherType> {
     constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
-    
+
     template<typename FormatContext>
     auto format(const WeatherType& type, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), "{}", WeatherUtils::get_weather_name(type));
@@ -346,7 +345,7 @@ struct fmt::formatter<WeatherIntensity> {
     constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
-    
+
     template<typename FormatContext>
     auto format(const WeatherIntensity& intensity, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), "{}", WeatherUtils::get_intensity_name(intensity));
@@ -358,7 +357,7 @@ struct fmt::formatter<Season> {
     constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
-    
+
     template<typename FormatContext>
     auto format(const Season& season, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), "{}", WeatherUtils::get_season_name(season));

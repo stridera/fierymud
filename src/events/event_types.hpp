@@ -8,6 +8,7 @@
  * to external systems (Muditor web editor, Discord bot) via Redis pub/sub.
  */
 
+#include <nlohmann/json_fwd.hpp>
 #include <chrono>
 #include <optional>
 #include <string>

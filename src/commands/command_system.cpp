@@ -1,18 +1,17 @@
 #include "command_system.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/ability_executor.hpp"
-#include "../database/world_queries.hpp"
-#include "../scripting/trigger_manager.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/logging.hpp"
+#include "core/ability_executor.hpp"
+#include "database/world_queries.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 #include "command_parser.hpp"
 
 #include <algorithm>
-#include <chrono>
-#include <mutex>
 #include <set>
 
 // CommandStats Implementation

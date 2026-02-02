@@ -4,7 +4,6 @@
 #include <unordered_map>
 #include <vector>
 #include <optional>
-#include <nlohmann/json.hpp>
 
 namespace fierymud {
 

@@ -1,5 +1,6 @@
 #include "skill_system.hpp"
 #include "actor.hpp"
+#include "player.hpp"
 #include "ability_executor.hpp"
 #include "../database/world_queries.hpp"
 #include "../world/room.hpp"

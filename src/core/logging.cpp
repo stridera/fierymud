@@ -1,9 +1,10 @@
 #include "logging.hpp"
 #include "log_subscriber.hpp"
 
-#include <spdlog/pattern_formatter.h>
 #include <atomic>
 #include <filesystem>
+#include <spdlog/sinks/rotating_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 // Static member definition
 std::unordered_map<std::string, std::shared_ptr<Logger>> Logger::loggers_;
@@ -149,11 +150,11 @@ std::shared_ptr<Logger> Logger::get(std::string_view component) {
 void Logger::log_error(const Error& error, const LogContext& ctx) {
     LogContext error_ctx = ctx;
     error_ctx.add("error_code", error.code_name());
-    
+
     if (!error.context.empty()) {
         error_ctx.add("error_context", error.context);
     }
-    
+
     this->error(error_ctx, "{}", error.message);
 }
 

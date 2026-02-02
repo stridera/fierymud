@@ -11,6 +11,8 @@
 #include <hiredis.h>
 #include <spdlog/spdlog.h>
 
+#include "events/event_types.hpp"
+
 namespace fierymud::events {
 
 EventPublisher& EventPublisher::instance() {

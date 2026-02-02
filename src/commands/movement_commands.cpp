@@ -2,12 +2,14 @@
 #include "builtin_commands.hpp"
 #include "information_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../database/config_loader.hpp"
-#include "../text/text_format.hpp"
-#include "../core/object.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "database/config_loader.hpp"
+#include "text/text_format.hpp"
+#include "core/object.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 #include <algorithm>
 
@@ -58,28 +60,28 @@ bool equipment_grants_flying(const Actor& actor) {
 // Movement Commands
 // =============================================================================
 
-Result<CommandResult> cmd_north(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::North); 
+Result<CommandResult> cmd_north(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::North);
 }
 
-Result<CommandResult> cmd_south(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::South); 
+Result<CommandResult> cmd_south(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::South);
 }
 
-Result<CommandResult> cmd_east(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::East); 
+Result<CommandResult> cmd_east(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::East);
 }
 
-Result<CommandResult> cmd_west(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::West); 
+Result<CommandResult> cmd_west(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::West);
 }
 
-Result<CommandResult> cmd_up(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Up); 
+Result<CommandResult> cmd_up(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Up);
 }
 
-Result<CommandResult> cmd_down(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Down); 
+Result<CommandResult> cmd_down(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Down);
 }
 
 Result<CommandResult> cmd_exits(const CommandContext &ctx) {

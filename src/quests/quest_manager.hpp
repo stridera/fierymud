@@ -1,7 +1,6 @@
 #pragma once
 
 #include "database/quest_queries.hpp"
-#include "core/ids.hpp"
 #include "core/result.hpp"
 
 #include <expected>
@@ -11,7 +10,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <nlohmann/json.hpp>
 
 // Forward declarations (in global namespace)
 class Actor;

@@ -8,14 +8,13 @@
 
 #pragma once
 
-#include "../core/result.hpp"
+#include "core/result.hpp"
 
 #include <chrono>
 #include <optional>
 #include <string>
 #include <string_view>
 #include <unordered_map>
-#include <variant>
 #include <vector>
 
 namespace fierymud::config {

@@ -1,24 +1,25 @@
 #include "login_system.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/game_data_cache.hpp"
-#include "../database/player_queries.hpp"
-#include "../database/world_queries.hpp"
-#include "../net/player_connection.hpp"
-#include "../server/network_manager.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/world_manager.hpp"
+#include "core/player.hpp"
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "database/connection_pool.hpp"
+#include "database/game_data_cache.hpp"
+#include "database/player_queries.hpp"
+#include "database/world_queries.hpp"
+#include "net/player_connection.hpp"
+#include "server/network_manager.hpp"
+#include "text/string_utils.hpp"
+#include "world/world_manager.hpp"
 
 #include <algorithm>
 #include <cctype>
 #include <filesystem>
 #include <fmt/format.h>
 #include <fstream>
+#include <nlohmann/json.hpp>
 #include <magic_enum/magic_enum.hpp>
 
 // Immortal level threshold - characters at or above this level are considered gods

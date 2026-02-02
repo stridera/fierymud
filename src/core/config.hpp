@@ -3,8 +3,8 @@
 #include "ids.hpp"
 #include "result.hpp"
 
+#include <nlohmann/json_fwd.hpp>
 #include <cstdint>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
 

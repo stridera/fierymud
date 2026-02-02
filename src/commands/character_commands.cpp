@@ -1,16 +1,18 @@
 #include "character_commands.hpp"
 #include "command_parser.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/world_queries.hpp"
-#include "../game/composer_system.hpp"
-#include "../server/persistence_manager.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/world_manager.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "core/logging.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "database/connection_pool.hpp"
+#include "database/world_queries.hpp"
+#include "game/composer_system.hpp"
+#include "server/persistence_manager.hpp"
+#include "text/string_utils.hpp"
+#include "world/world_manager.hpp"
 #include <fmt/format.h>
 #include <algorithm>
 

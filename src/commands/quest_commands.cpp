@@ -1,11 +1,12 @@
 #include "quest_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/quest_queries.hpp"
-#include "../quests/quest_manager.hpp"
-#include "../server/world_server.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/quest_queries.hpp"
+#include "quests/quest_manager.hpp"
+#include "server/world_server.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>

@@ -1,10 +1,10 @@
 #include "account_commands.hpp"
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../database/connection_pool.hpp"
-#include "../game/player_output.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/logging.hpp"
+#include "database/connection_pool.hpp"
+#include "game/player_output.hpp"
 
-#include <chrono>
 #include <pqxx/pqxx>
 
 namespace AccountCommands {

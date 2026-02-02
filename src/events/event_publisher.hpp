@@ -10,7 +10,6 @@
 
 #include <atomic>
 #include <condition_variable>
-#include <memory>
 #include <mutex>
 #include <optional>
 #include <queue>
@@ -18,12 +17,14 @@
 #include <string_view>
 #include <thread>
 
-#include "events/event_types.hpp"
 
 // Forward declare hiredis types
 struct redisContext;
 
 namespace fierymud::events {
+
+enum class GameEventType;
+struct GameEvent;
 
 /**
  * @brief Configuration for the event publisher

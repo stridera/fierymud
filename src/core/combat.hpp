@@ -1,15 +1,15 @@
 #pragma once
 
-#include "actor.hpp"
-#include "../game/login_system.hpp"  // For CharacterClass and CharacterRace enums
+#include "game/login_system.hpp"  // For CharacterClass and CharacterRace enums
 #include <algorithm>
 #include <chrono>
-#include <cstdint>
 #include <functional>
 #include <memory>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+class Actor;
 
 namespace FieryMUD {
 

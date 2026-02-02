@@ -1,22 +1,20 @@
 #include "command_context.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../server/world_server.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-#include "../text/rich_text.hpp"
-#include "../text/string_utils.hpp"
-#include "../text/terminal_capabilities.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "server/world_server.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
+#include "text/rich_text.hpp"
+#include "text/string_utils.hpp"
+#include "text/terminal_capabilities.hpp"
 #include "command_parser.hpp"
 #include "command_system.hpp"
 
 #include <algorithm>
 #include <cctype>
-#include <fmt/format.h>
-#include <iostream>
-#include <ranges>
 
 using namespace std::string_view_literals;
 

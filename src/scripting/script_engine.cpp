@@ -1,3 +1,4 @@
+#include <sol/sol.hpp>
 #include "script_engine.hpp"
 #include "coroutine_scheduler.hpp"
 #include "trigger_manager.hpp"
@@ -15,10 +16,9 @@
 #include "bindings/lua_timers.hpp"
 #include "bindings/lua_vars.hpp"
 #include "bindings/lua_templates.hpp"
-#include "../world/time_system.hpp"
+#include "world/time_system.hpp"
 
 #include <fmt/format.h>
-#include <spdlog/spdlog.h>
 
 #include <random>
 

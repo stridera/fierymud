@@ -1,11 +1,10 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
 #include "command_context.hpp"
 #include "command_parser.hpp"
 
-#include <array>
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -211,10 +210,10 @@ struct CommandContext {
     void act_to_room(std::string_view message, bool exclude_actor = true) const;
     void act_to_target(std::shared_ptr<Actor> target, std::string_view message) const;
     void act(std::string_view message, std::shared_ptr<Actor> target = nullptr, ActTarget type = ActTarget::ToAll) const;
-    
+
     // Variable substitution support
     std::string substitute_variables(std::string_view message, std::shared_ptr<Actor> target = nullptr) const;
-    
+
     // Social message execution helper
     Result<CommandResult> execute_social(const SocialMessage& social, std::string_view target_name = "") const;
 
@@ -222,15 +221,15 @@ struct CommandContext {
     void send_rich(const RichText& rich_text) const;
     void send_colored(std::string_view message, Color color) const;
     void send_progress_bar(std::string_view label, float percentage, int width = 20) const;
-    void send_table(const std::vector<std::string>& headers, 
+    void send_table(const std::vector<std::string>& headers,
                    const std::vector<std::vector<std::string>>& rows) const;
-    
+
     // Semantic formatting helpers
     void send_health_status(int current, int max) const;
     void send_damage_report(int amount, std::string_view source = "") const;
     void send_healing_report(int amount, std::string_view source = "") const;
     void send_object_description(std::string_view name, std::string_view quality = "common") const;
-    
+
     // UI element helpers
     void send_header(std::string_view title, char border_char = '=') const;
     void send_separator(char ch = '-', int width = 60) const;

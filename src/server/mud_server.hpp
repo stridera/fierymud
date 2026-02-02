@@ -1,16 +1,14 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
 // #include "../game/loop.hpp" // Game loop functionality integrated into server
-#include "../commands/command_system.hpp"
-#include "../world/world_manager.hpp"
-#include "world_server.hpp"
+#include "commands/command_system.hpp"
+#include "world/world_manager.hpp"
 
 #include <asio.hpp>
 #include <atomic>
 #include <chrono>
-#include <filesystem>
 #include <memory>
 #include <string>
 #include <string_view>
@@ -22,6 +20,7 @@ class NetworkManager;
 class PersistenceManager;
 class ConfigurationManager;
 class Player;
+class WorldServer;
 
 /**
  * Modern FieryMUD Server - Complete standalone implementation
@@ -41,7 +40,7 @@ struct ServerConfig {
     int port = 4001;
     int max_connections = 200;
     std::chrono::seconds connection_timeout{300};
-    
+
     // TLS/SSL settings
     bool enable_tls = true;
     int tls_port = 4443;
@@ -75,7 +74,7 @@ struct ServerConfig {
     // Debugging
     bool enable_debug_commands = false;
     std::string admin_password = "changeme";
-    
+
     // Logging settings
     std::string log_level = "info";
 

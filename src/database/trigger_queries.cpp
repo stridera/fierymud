@@ -2,7 +2,6 @@
 #include "database/generated/db_tables.hpp"
 #include "database/generated/db_enums.hpp"
 #include "database/db_parsing_utils.hpp"
-#include "core/logging.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>

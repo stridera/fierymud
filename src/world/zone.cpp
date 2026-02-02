@@ -1,11 +1,15 @@
 #include "zone.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../text/string_utils.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "core/logging.hpp"
+#include "core/object.hpp"
+#include "text/string_utils.hpp"
 #include "room.hpp"
 
+#include <nlohmann/json.hpp>
+#include <magic_enum/magic_enum.hpp>
 #include <algorithm>
 #include <fstream>
 #include <regex>
@@ -798,7 +802,7 @@ Result<bool> Zone::execute_load_mobile(const ZoneCommand &cmd) {
         logger->debug("Zone {} spawned mobile '{}' ({}) in room {}", name(), mobile->display_name(), mobile_id,
                       room_id);
         stats_.mobile_count++; // Track spawning stats
-        
+
         // Immediately process equipment and inventory for this specific mobile instance
         // Use reset_group to match only equipment from this specific MobReset
         process_mobile_equipment(mobile, mobile_id, cmd.reset_group);
@@ -840,14 +844,14 @@ void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mob
                 // Pass mobile_id directly to preserve full EntityId (don't use legacy constructor)
                 auto object = spawn_object_callback_(it->entity_id, mobile_id);
                 if (object) {
-                    logger->debug("Zone {} gave object '{}' ({}) to mobile '{}' ({})", 
-                                 name(), object->display_name(), it->entity_id, 
+                    logger->debug("Zone {} gave object '{}' ({}) to mobile '{}' ({})",
+                                 name(), object->display_name(), it->entity_id,
                                  mobile->display_name(), mobile_id);
                     stats_.object_count++;
                     inventory_items_processed++;
                     processed = true;
                 } else {
-                    logger->warn("Zone {} failed to create inventory object {} for mobile {}", 
+                    logger->warn("Zone {} failed to create inventory object {} for mobile {}",
                                 name(), it->entity_id, mobile_id);
                 }
             } else if (it->command_type == ZoneCommandType::Equip_Object) {
@@ -862,20 +866,20 @@ void Zone::process_mobile_equipment(std::shared_ptr<Mobile> mobile, EntityId mob
                     EntityId equip_room_id(static_cast<uint32_t>(equipment_slot), packed_mobile);
                     auto object = spawn_object_callback_(it->entity_id, equip_room_id);
                     if (object) {
-                        logger->debug("Zone {} equipped object '{}' ({}) on mobile '{}' ({}) slot {}", 
-                                     name(), object->display_name(), it->entity_id, 
+                        logger->debug("Zone {} equipped object '{}' ({}) on mobile '{}' ({}) slot {}",
+                                     name(), object->display_name(), it->entity_id,
                                      mobile->display_name(), mobile_id, equipment_slot);
                         stats_.object_count++;
                         processed_slots.insert(equipment_slot);
                         processed = true;
                     } else {
-                        logger->warn("Zone {} failed to create equipment object {} for mobile {} slot {}", 
+                        logger->warn("Zone {} failed to create equipment object {} for mobile {} slot {}",
                                     name(), it->entity_id, mobile_id, equipment_slot);
                     }
                 }
             }
         }
-        
+
         // Remove processed commands so they don't execute again later
         if (processed) {
             it = commands_.erase(it);
@@ -995,12 +999,12 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
                         equip_cmd.entity_id = EntityId{equip_obj["id"].get<std::uint64_t>()};
                         equip_cmd.container_id = load_mobile.entity_id; // Mobile ID
                         equip_cmd.reset_group = current_reset_group;
-                        
+
                         // Parse location (string or number) to EquipSlot enum value
                         if (equip_obj.contains("location")) {
                             int slot_value = 0;
                             const auto &location_field = equip_obj["location"];
-                            
+
                             if (location_field.is_string()) {
                                 // Modern format: string name like "Wrist", "Hands", etc.
                                 // Use ObjectUtils::parse_equip_slot for case-insensitive and DB value mapping
@@ -1011,7 +1015,7 @@ Result<void> Zone::parse_nested_zone_commands(const nlohmann::json &commands_jso
                                 // Legacy format: numeric slot ID
                                 slot_value = location_field.get<int>();
                             }
-                            
+
                             equip_cmd.max_count = slot_value;
                         } else {
                             equip_cmd.max_count = 0;
@@ -1256,17 +1260,17 @@ Result<bool> Zone::execute_equip_object(const ZoneCommand &cmd) {
 
 Result<bool> Zone::execute_remove_object(const ZoneCommand &cmd) {
     auto logger = Log::game();
-    
+
     EntityId object_id = cmd.entity_id;
     EntityId room_id = cmd.room_id;
-    
+
     logger->debug("Zone {} removing object {} from room {}", name(), object_id, room_id);
-    
+
     if (!remove_object_callback_) {
         logger->warn("Zone {} has no remove object callback set", name());
         return true; // Continue processing but don't remove
     }
-    
+
     // Remove the object from the specified room
     auto removed = remove_object_callback_(object_id, room_id);
     if (removed) {

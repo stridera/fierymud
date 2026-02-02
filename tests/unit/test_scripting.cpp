@@ -3,6 +3,7 @@
 #include "../src/scripting/triggers/trigger_types.hpp"
 #include "../src/scripting/triggers/trigger_data.hpp"
 #include "../src/core/ids.hpp"
+#include <sol/sol.hpp>
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>

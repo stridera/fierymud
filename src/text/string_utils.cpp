@@ -2,12 +2,9 @@
 
 #include "core/logging.hpp"
 
-
-
 #include <algorithm>
 #include <numeric>
 #include <ranges>
-#include <string>
 #include <utility>
 
 std::string ellipsis(const std::string_view str, int maxlen) {

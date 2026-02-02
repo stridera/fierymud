@@ -1,13 +1,11 @@
 #pragma once
 
 #include "entity.hpp"
-#include "../core/result.hpp"
-#include "../database/generated/db_enums.hpp"
+#include "core/result.hpp"
+#include "database/generated/db_enums.hpp"
 
 #include <array>
-#include <magic_enum/magic_enum.hpp>
 #include <optional>
-#include <unordered_map>
 #include <unordered_set>
 
 namespace FieryMUD {

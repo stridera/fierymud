@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
 #include "room.hpp"
 #include "zone.hpp"
 
@@ -10,13 +10,10 @@
 #include <filesystem>
 #include <functional>
 #include <memory>
-#include <mutex>
 #include <shared_mutex>
 #include <string>
 #include <string_view>
-#include <thread>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 // Forward declarations

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "../core/actor.hpp"
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
 
 #include <chrono>
 #include <functional>
@@ -14,6 +13,7 @@
 
 // Forward declarations
 class PlayerConnection;
+class Player;
 
 /**
  * @brief Login states for the connection state machine
@@ -143,7 +143,7 @@ class LoginSystem {
     bool is_valid_name(std::string_view name) const;
     bool is_valid_password(std::string_view password) const;
     std::string normalize_name(std::string_view name) const;
-    
+
     // Player file validation and migration
     struct PlayerFileValidation {
         bool is_valid{false};
@@ -152,7 +152,7 @@ class LoginSystem {
         std::string error_message;
         std::string suggested_fix;
     };
-    
+
     PlayerFileValidation validate_player_file(std::string_view name) const;
 
     // State

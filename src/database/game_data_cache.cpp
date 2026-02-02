@@ -1,9 +1,7 @@
 #include "game_data_cache.hpp"
 #include "connection_pool.hpp"
-#include "world_queries.hpp"
-#include "../core/logging.hpp"
+#include "core/logging.hpp"
 
-#include <algorithm>
 #include <cctype>
 
 // =============================================================================

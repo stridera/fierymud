@@ -167,6 +167,8 @@ configure_file(
 # static library that all targets link against.
 
 set(CORE_SOURCES
+    src/core/ids.cpp
+    src/core/result.cpp
     src/core/logging.cpp
     src/core/log_subscriber.cpp
     src/core/config.cpp
