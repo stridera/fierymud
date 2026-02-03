@@ -27,3 +27,6 @@ logs/
 
 # Development certificates (keep local, don't commit)
 certs/
+
+# Generated files
+src/database/generated

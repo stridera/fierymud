@@ -2,7 +2,7 @@
 
 #include "entity.hpp"
 #include "core/result.hpp"
-#include "database/generated/db_enums.hpp"
+#include "database/generated/db_object.hpp"
 
 #include <array>
 #include <optional>

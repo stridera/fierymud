@@ -4,8 +4,7 @@
 #include "money.hpp"
 #include "object.hpp"
 #include "active_effect.hpp"
-#include "../core/result.hpp"
-#include "../database/generated/db_enums.hpp"
+#include "core/result.hpp"
 
 #include <memory>
 #include <vector>

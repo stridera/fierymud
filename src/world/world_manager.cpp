@@ -12,6 +12,7 @@
 #include "database/game_data_cache.hpp"
 #include "database/trigger_queries.hpp"
 #include "database/world_queries.hpp"
+#include "database/generated/db_mob.hpp"
 #include "scripting/trigger_manager.hpp"
 #include "scripting/script_engine.hpp"
 

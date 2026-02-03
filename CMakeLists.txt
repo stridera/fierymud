@@ -161,6 +161,27 @@ configure_file(
 )
 
 # =============================================================================
+# Generate database headers / implementations
+# =============================================================================
+execute_process(
+    COMMAND python ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py --list
+    OUTPUT_VARIABLE DB_SOURCES
+    ERROR_QUIET
+)
+
+string(REGEX REPLACE "[ \t\r\n]+" ";" DB_SOURCES "${DB_SOURCES}")
+set(DB_HEADERS "${DB_SOURCES}")
+list(FILTER DB_SOURCES INCLUDE REGEX "cpp$")
+list(FILTER DB_HEADERS INCLUDE REGEX "hpp$")
+add_custom_command(
+    OUTPUT ${DB_SOURCES} ${DB_HEADERS}
+    COMMAND python ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py
+    DEPENDS ../muditor/packages/db/prisma/schema.prisma
+            scripts/generate_db_headers.py
+)
+
+
+# =============================================================================
 # Core Library (shared by fierymud and all test executables)
 # =============================================================================
 # This eliminates duplicate compilation - sources are compiled once into a
@@ -265,7 +286,7 @@ set(CORE_SOURCES
 )
 
 # Create the core static library
-add_library(fierymud_core STATIC ${CORE_SOURCES})
+add_library(fierymud_core STATIC ${CORE_SOURCES} ${DB_SOURCES})
 
 target_include_directories(fierymud_core PUBLIC
     src

@@ -1,6 +1,6 @@
 #include "database/world_queries.hpp"
 #include "database/generated/db_tables.hpp"
-#include "database/generated/db_enums.hpp"
+#include "database/generated/db_object.hpp"
 #include "database/db_parsing_utils.hpp"
 #include "core/mobile.hpp"
 #include "core/logging.hpp"

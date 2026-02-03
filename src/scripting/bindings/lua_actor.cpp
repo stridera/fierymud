@@ -8,7 +8,7 @@
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
 #include "commands/command_system.hpp"
-#include "database/generated/db_enums.hpp"
+#include "database/generated/db_mob.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>

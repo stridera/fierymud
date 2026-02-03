@@ -4,7 +4,6 @@
 #include "core/mobile.hpp"
 #include "core/money.hpp"
 #include "core/player.hpp"
-#include "database/generated/db_enums.hpp"
 
 #include <algorithm>
 

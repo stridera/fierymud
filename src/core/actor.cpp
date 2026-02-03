@@ -3,13 +3,14 @@
 #include "player.hpp"
 #include "object.hpp"
 #include "spell_system.hpp"
-#include "../core/logging.hpp"
-#include "../game/composer_system.hpp"
-#include "../game/player_output.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-#include "../net/player_connection.hpp"
+#include "core/logging.hpp"
+#include "game/composer_system.hpp"
+#include "game/player_output.hpp"
+#include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
+#include "net/player_connection.hpp"
+#include "database/generated/db_mob.hpp"
 
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>

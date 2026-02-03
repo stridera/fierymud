@@ -3,7 +3,7 @@
 #include "core/entity.hpp"
 #include "core/result.hpp"
 #include "core/ids.hpp"
-#include "database/generated/db_enums.hpp"
+#include "database/generated/db_room.hpp"
 
 #include <memory>
 #include <vector>
