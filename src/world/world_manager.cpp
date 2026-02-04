@@ -1,6 +1,8 @@
 #include "world_manager.hpp"
 #include "templates.hpp"
 #include "weather.hpp"
+#include "room.hpp"
+#include "zone.hpp"
 #include "core/actor.hpp"
 #include "core/player.hpp"
 #include "core/mobile.hpp"

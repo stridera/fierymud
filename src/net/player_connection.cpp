@@ -11,6 +11,7 @@
 #include "server/world_server.hpp"
 #include "text/text_format.hpp"
 #include "world/world_manager.hpp"
+#include "world/zone.hpp"
 #include "mssp_handler.hpp"
 
 #include <fmt/format.h>

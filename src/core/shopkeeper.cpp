@@ -4,7 +4,8 @@
 #include "money.hpp"
 #include "object.hpp"
 #include "logging.hpp"
-#include "../world/world_manager.hpp"
+#include "world/world_manager.hpp"
+#include "world/room.hpp"
 #include <algorithm>
 #include <fmt/format.h>
 

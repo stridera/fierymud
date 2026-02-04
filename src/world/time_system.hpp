@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../core/result.hpp"
-#include "weather.hpp"
 #include <string_view>
 #include <chrono>
 
@@ -10,6 +9,8 @@
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #include <functional>
 #pragma GCC diagnostic pop
+
+enum class Season;
 
 // Time constants matching legacy behavior
 namespace TimeConstants {

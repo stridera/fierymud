@@ -2,8 +2,8 @@
 
 #include "core/ids.hpp"
 #include "core/result.hpp"
-#include "room.hpp"
-#include "zone.hpp"
+#include "database/generated/db_room.hpp"
+#include "flags.hpp"
 
 #include <atomic>
 #include <chrono>
@@ -26,6 +26,10 @@ class Actor;
 class Object;
 class Mobile;
 class Player;
+class Room;
+class Zone;
+
+using Direction = db::Direction;
 
 namespace FieryMUD {
     class ObjectTemplate;

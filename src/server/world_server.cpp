@@ -17,6 +17,7 @@
 #include "scripting/trigger_manager.hpp"
 #include "text/text_format.hpp"
 #include "world/room.hpp"
+#include "world/weather.hpp"
 #include "world/world_manager.hpp"
 #include "mud_server.hpp"
 #include "persistence_manager.hpp"

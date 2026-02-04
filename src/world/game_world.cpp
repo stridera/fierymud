@@ -1,10 +1,12 @@
 #include "game_world.hpp"
 
-#include "../commands/command_system.hpp"
-#include "../core/actor.hpp"
-#include "../core/combat.hpp"
-#include "../core/logging.hpp"
-#include "../server/persistence_manager.hpp"
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "world/room.hpp"
+#include "server/persistence_manager.hpp"
 
 #include <algorithm>
 
@@ -131,7 +133,7 @@ std::vector<std::shared_ptr<Player>> GameWorld::get_online_players() const { ret
 void GameWorld::update() {
     // Process ongoing combat rounds
     FieryMUD::CombatManager::process_combat_rounds();
-    
+
     // World tick updates would go here
     // For now, this is a placeholder for:
     // - NPC AI updates
@@ -146,7 +148,7 @@ void GameWorld::start_game_loop() {
         Log::warn("Game loop already running");
         return;
     }
-    
+
     Log::info("Starting game loop with {}ms update interval", update_interval_.count());
     game_loop_running_ = true;
     schedule_next_update();
@@ -156,10 +158,10 @@ void GameWorld::stop_game_loop() {
     if (!game_loop_running_) {
         return;
     }
-    
+
     Log::info("Stopping game loop");
     game_loop_running_ = false;
-    
+
     if (update_timer_) {
         update_timer_->cancel();
     }
@@ -169,7 +171,7 @@ void GameWorld::schedule_next_update() {
     if (!game_loop_running_ || !update_timer_) {
         return;
     }
-    
+
     update_timer_->expires_after(update_interval_);
     auto self = shared_from_this();
     update_timer_->async_wait([this, self](const std::error_code& error) {
@@ -182,23 +184,23 @@ void GameWorld::handle_update_timer(const std::error_code& error) {
         // Timer was cancelled, normal during shutdown
         return;
     }
-    
+
     if (error) {
         Log::error("Game loop timer error: {}", error.message());
         return;
     }
-    
+
     if (!game_loop_running_) {
         return;
     }
-    
+
     try {
         // Call the update method which processes combat rounds
         update();
     } catch (const std::exception& e) {
         Log::error("Error during world update: {}", e.what());
     }
-    
+
     // Schedule the next update
     schedule_next_update();
 }
@@ -236,7 +238,7 @@ bool GameWorld::save_character(std::shared_ptr<Player> player) {
         Log::error("Failed to save character {}: {}", player->name(), save_result.error().message);
         return false;
     }
-    
+
     return true;
 }
 
@@ -249,7 +251,7 @@ std::shared_ptr<Player> GameWorld::load_character(const std::string &name) {
         Log::debug("Failed to load character {}: {}", name, load_result.error().message);
         return nullptr;
     }
-    
+
     return load_result.value();
 }
 

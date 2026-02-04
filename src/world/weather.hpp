@@ -1,6 +1,5 @@
 #pragma once
 
-#include "core/entity.hpp"
 #include "core/result.hpp"
 #include "core/ids.hpp"
 
@@ -13,6 +12,7 @@
 #include <optional>
 #include <magic_enum/magic_enum.hpp>
 #include <fmt/format.h>
+#include <nlohmann/json_fwd.hpp>
 
 // Forward declarations
 class Zone;

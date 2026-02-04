@@ -35,7 +35,7 @@ TEST_CASE("Combat System - Class ACC Rates", "[combat][unit]") {
 
 TEST_CASE("Combat System - Race Specific Bonuses", "[combat][unit]") {
     SECTION("Human bonuses (versatile)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Human);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Human);
 
         REQUIRE(bonus.acc == Approx(2.0));
         REQUIRE(bonus.eva == Approx(2.0));
@@ -43,7 +43,7 @@ TEST_CASE("Combat System - Race Specific Bonuses", "[combat][unit]") {
     }
 
     SECTION("Elf bonuses (dexterous)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Elf);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Elf);
 
         REQUIRE(bonus.acc == Approx(3.0));
         REQUIRE(bonus.eva == Approx(5.0));  // High evasion
@@ -51,7 +51,7 @@ TEST_CASE("Combat System - Race Specific Bonuses", "[combat][unit]") {
     }
 
     SECTION("Dwarf bonuses (tough)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Dwarf);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Dwarf);
 
         REQUIRE(bonus.ap == Approx(3.0));  // Strong attacks
         REQUIRE(bonus.ar == Approx(10.0));  // Extra armor
@@ -60,7 +60,7 @@ TEST_CASE("Combat System - Race Specific Bonuses", "[combat][unit]") {
     }
 
     SECTION("Halfling bonuses (evasive)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Halfling);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Halfling);
 
         REQUIRE(bonus.eva == Approx(8.0));  // Very evasive
         REQUIRE(bonus.crit_bonus == Approx(3.0));  // Lucky crits
@@ -80,13 +80,13 @@ TEST_CASE("Combat System - String to Enum Conversion", "[combat][unit]") {
     }
 
     SECTION("Character race conversion") {
-        REQUIRE(CombatSystem::string_to_race("human") == CharacterRace::Human);
-        REQUIRE(CombatSystem::string_to_race("elf") == CharacterRace::Elf);
-        REQUIRE(CombatSystem::string_to_race("dwarf") == CharacterRace::Dwarf);
-        REQUIRE(CombatSystem::string_to_race("halfling") == CharacterRace::Halfling);
+        REQUIRE(CombatSystem::string_to_race("human") == Race::Human);
+        REQUIRE(CombatSystem::string_to_race("elf") == Race::Elf);
+        REQUIRE(CombatSystem::string_to_race("dwarf") == Race::Dwarf);
+        REQUIRE(CombatSystem::string_to_race("halfling") == Race::Halfling);
 
         // Unknown race defaults to human
-        REQUIRE(CombatSystem::string_to_race("unknown") == CharacterRace::Human);
+        REQUIRE(CombatSystem::string_to_race("unknown") == Race::Human);
     }
 }
 
