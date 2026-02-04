@@ -1,7 +1,8 @@
 #pragma once
 
-#include "command_system.hpp"
-#include "command_context.hpp"
+#include <memory>
+#include <vector>
+#include "command_fwd.hpp"
 
 /**
  * Core built-in commands for FieryMUD.

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "actor.hpp"
+#include "money.hpp"
 
 /** Learned ability data stored on Player */
 struct LearnedAbility {

@@ -12,9 +12,14 @@
 #include <magic_enum/magic_enum.hpp>
 #include <algorithm>
 #include <fstream>
-#include <regex>
 #include <sstream>
 #include <thread>
+
+// Silence spurious warnings in <regex> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <regex>
+#pragma GCC diagnostic pop
 
 // ZoneCommand Implementation
 

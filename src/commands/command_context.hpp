@@ -2,6 +2,7 @@
 
 #include "core/result.hpp"
 #include "core/ids.hpp"
+#include "command_fwd.hpp"
 
 #include <string>
 #include <string_view>
@@ -22,35 +23,12 @@ class Entity;
 struct ParsedCommand;
 enum class PrivilegeLevel;
 
-// Need to include the Direction enum from room.hpp since it's used in TargetInfo
-// Forward declaration isn't sufficient for enum values
-#include "world/room.hpp"
-
 /**
  * Helper types for command execution context.
  *
  * The actual CommandContext is defined in command_system.hpp.
  * This file provides supporting enums and utility types.
  */
-
-/** Message formatting and delivery options */
-enum class MessageType {
-    Normal,         // Standard output
-    Error,          // Error messages (red text)
-    Success,        // Success messages (green text)
-    Warning,        // Warning messages (yellow text)
-    Info,           // Informational messages (blue text)
-    System,         // System messages (cyan text)
-    Debug,          // Debug messages (gray text)
-    Combat,         // Combat-related messages
-    Social,         // Social action messages
-    Tell,           // Private tell messages
-    Say,            // Say/speech messages
-    Emote,          // Emote/action messages
-    Channel,        // Channel communication
-    Broadcast       // System-wide broadcasts
-};
-
 /** Target types for command resolution */
 enum class TargetType {
     None,           // No target

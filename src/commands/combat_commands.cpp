@@ -9,6 +9,7 @@
 #include "core/object.hpp"
 #include "core/player.hpp"
 #include "core/spell_system.hpp"
+#include "commands/command_system.hpp"
 #include "text/string_utils.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"

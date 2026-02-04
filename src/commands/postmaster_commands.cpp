@@ -8,6 +8,7 @@
 #include "database/world_queries.hpp"
 #include "game/composer_system.hpp"
 #include "world/world_manager.hpp"
+#include "commands/command_system.hpp"
 
 #include <charconv>
 #include <chrono>

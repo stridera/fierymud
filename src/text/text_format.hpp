@@ -4,9 +4,14 @@
 
 #include <string>
 #include <string_view>
-#include <functional>
 #include <optional>
 #include <unordered_map>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // Forward declarations
 class Actor;

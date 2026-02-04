@@ -4,6 +4,7 @@
 #include "core/logging.hpp"
 #include "database/connection_pool.hpp"
 #include "game/player_output.hpp"
+#include "commands/command_system.hpp"
 
 #include <pqxx/pqxx>
 

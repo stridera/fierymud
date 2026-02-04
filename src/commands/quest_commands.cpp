@@ -3,6 +3,7 @@
 #include "core/actor.hpp"
 #include "core/logging.hpp"
 #include "core/player.hpp"
+#include "commands/command_system.hpp"
 #include "database/connection_pool.hpp"
 #include "database/quest_queries.hpp"
 #include "quests/quest_manager.hpp"

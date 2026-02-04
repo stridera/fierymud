@@ -5,12 +5,17 @@
 
 #include <algorithm>
 #include <format>
-#include <functional>
 #include <iostream>
 #include <memory>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // All of our functions should include these headers
 // Enhanced command categorization for intelligent disambiguation
@@ -345,12 +350,12 @@ class FunctionRegistry {
                     // Only use fuzzy match if there's a clear best candidate
                     if (fuzzy_matches.size() == 1 ||
                         (fuzzy_matches.size() <= 3 && fuzzy_matches[0].second < fuzzy_matches[1].second)) {
-                        
+
                         const auto &best_match = fuzzy_matches[0].first;
-                        
+
                         // Check permissions for the fuzzy match
                         if (can_call_function(best_match->name, user_permissions, character)) {
-                            log("Executing function '{}' using fuzzy match for '{}' (distance: {})", 
+                            log("Executing function '{}' using fuzzy match for '{}' (distance: {})",
                                 best_match->name, abbrev, fuzzy_matches[0].second);
                             best_match->func(character, args);
                             return true;
@@ -362,7 +367,7 @@ class FunctionRegistry {
                     }
                 }
             }
-            
+
             log("No function matches abbreviation '{}'", abbrev);
             return false;
         }

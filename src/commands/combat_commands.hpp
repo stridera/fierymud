@@ -1,6 +1,7 @@
 #pragma once
 
-#include "command_system.hpp"
+#include <memory>
+#include "command_fwd.hpp"
 
 namespace CombatCommands {
 

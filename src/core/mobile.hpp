@@ -1,6 +1,7 @@
 #pragma once
 
 #include "actor.hpp"
+#include "money.hpp"
 #include "database/generated/db_mob.hpp"
 
 /** Mobile (NPC) trait/behavior/profession enums - uses database-defined enums directly */

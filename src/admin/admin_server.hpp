@@ -2,11 +2,16 @@
 
 #include <asio.hpp>
 #include <atomic>
-#include <functional>
 #include <memory>
 #include <string>
 #include <thread>
 #include <vector>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 namespace fierymud {
 

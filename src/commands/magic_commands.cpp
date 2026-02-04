@@ -3,6 +3,8 @@
 #include "core/actor.hpp"
 #include "core/player.hpp"
 #include "core/spell_system.hpp"
+#include "commands/command_system.hpp"
+#include "commands/command_context.hpp"
 #include <algorithm>
 #include <fmt/format.h>
 #include <map>

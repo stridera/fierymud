@@ -4,7 +4,12 @@
 #include "weather.hpp"
 #include <string_view>
 #include <chrono>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #include <functional>
+#pragma GCC diagnostic pop
 
 // Time constants matching legacy behavior
 namespace TimeConstants {

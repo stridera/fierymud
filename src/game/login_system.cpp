@@ -46,13 +46,13 @@ std::string CharacterCreationData::get_class_name() const {
 
 std::string CharacterCreationData::get_race_name() const {
     switch (race) {
-    case CharacterRace::Human:
+    case Race::Human:
         return "Human";
-    case CharacterRace::Elf:
+    case Race::Elf:
         return "Elf";
-    case CharacterRace::Dwarf:
+    case Race::Dwarf:
         return "Dwarf";
-    case CharacterRace::Halfling:
+    case Race::Halfling:
         return "Halfling";
     default:
         return "Unknown";
@@ -1233,7 +1233,7 @@ void LoginSystem::handle_select_race(std::string_view input) {
         return;
     }
 
-    creation_data_.race = static_cast<CharacterRace>(choice);
+    creation_data_.race = static_cast<Race>(choice);
     transition_to(LoginState::ConfirmCreation);
     send_creation_summary();
     send_message("Is this correct? (yes/no)");

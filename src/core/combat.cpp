@@ -226,7 +226,7 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
         stats.acc += level * acc_rate;
 
         // Add race bonuses
-        CharacterRace char_race = string_to_race(player->race());
+        Race char_race = string_to_race(player->race());
         CombatStats race_bonus = get_race_combat_bonus(char_race);
         stats = stats + race_bonus;
     } else {
@@ -353,25 +353,25 @@ double CombatSystem::get_class_acc_rate(CharacterClass character_class) {
     }
 }
 
-CombatStats CombatSystem::get_race_combat_bonus(CharacterRace race) {
+CombatStats CombatSystem::get_race_combat_bonus(Race race) {
     CombatStats bonus;
 
     switch (race) {
-        case CharacterRace::Human:
+        case Race::Human:
             // Versatile - small bonuses
             bonus.acc = 2.0;
             bonus.eva = 2.0;
             bonus.ap = 1.0;
             break;
 
-        case CharacterRace::Elf:
+        case Race::Elf:
             // Dexterous - high EVA, crit bonus
             bonus.acc = 3.0;
             bonus.eva = 5.0;
             bonus.crit_bonus = 5.0;  // +5 to critical margin
             break;
 
-        case CharacterRace::Dwarf:
+        case Race::Dwarf:
             // Tough - high AR/DR, damage resistance
             bonus.acc = 0.0;
             bonus.eva = -2.0;
@@ -380,7 +380,7 @@ CombatStats CombatSystem::get_race_combat_bonus(CharacterRace race) {
             bonus.res_physical = 90.0;  // 10% physical resistance
             break;
 
-        case CharacterRace::Halfling:
+        case Race::Halfling:
             // Lucky and evasive
             bonus.acc = 2.0;
             bonus.eva = 8.0;
@@ -413,14 +413,14 @@ CharacterClass CombatSystem::string_to_class(const std::string& class_name) {
     return (it != class_map.end()) ? it->second : CharacterClass::Warrior;
 }
 
-CharacterRace CombatSystem::string_to_race(std::string_view race_name) {
-    static const std::unordered_map<std::string, CharacterRace> race_map = {
-        {"human", CharacterRace::Human},
-        {"elf", CharacterRace::Elf},
-        {"halfelf", CharacterRace::Elf},
-        {"half-elf", CharacterRace::Elf},
-        {"dwarf", CharacterRace::Dwarf},
-        {"halfling", CharacterRace::Halfling},
+Race CombatSystem::string_to_race(std::string_view race_name) {
+    static const std::unordered_map<std::string, Race> race_map = {
+        {"human", Race::Human},
+        {"elf", Race::Elf},
+        {"halfelf", Race::Elf},
+        {"half-elf", Race::Elf},
+        {"dwarf", Race::Dwarf},
+        {"halfling", Race::Halfling},
     };
 
     std::string lower_name;
@@ -430,7 +430,7 @@ CharacterRace CombatSystem::string_to_race(std::string_view race_name) {
     }
 
     auto it = race_map.find(lower_name);
-    return (it != race_map.end()) ? it->second : CharacterRace::Human;
+    return (it != race_map.end()) ? it->second : Race::Human;
 }
 
 HitCalcResult CombatSystem::calculate_hit(const CombatStats& attacker_stats,

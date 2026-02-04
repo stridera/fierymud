@@ -8,7 +8,7 @@
 #include "database/connection_pool.hpp"
 #include "database/world_queries.hpp"
 #include "world/world_manager.hpp"
-#include "command_context.hpp"
+#include "command_system.hpp"
 
 #include <charconv>
 #include <cctype>

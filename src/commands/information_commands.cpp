@@ -17,6 +17,8 @@
 #include "world/weather.hpp"
 #include "world/world_manager.hpp"
 #include "builtin_commands.hpp"
+#include "commands/command_system.hpp"
+#include "commands/command_context.hpp"
 
 #include <algorithm>
 #include <array>

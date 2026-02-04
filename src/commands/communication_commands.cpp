@@ -1,9 +1,10 @@
 #include "communication_commands.hpp"
-#include "builtin_commands.hpp"
 
 #include "core/actor.hpp"
 #include "core/logging.hpp"
 #include "core/player.hpp"
+#include "commands/builtin_commands.hpp"
+#include "commands/command_system.hpp"
 #include "events/event_types.hpp"
 #include "events/event_publisher.hpp"
 #include "scripting/trigger_manager.hpp"

@@ -10,6 +10,8 @@
 #include "core/object.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
+#include "commands/command_system.hpp"
+#include "commands/command_context.hpp"
 
 #include <algorithm>
 

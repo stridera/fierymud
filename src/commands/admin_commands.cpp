@@ -1,5 +1,6 @@
 #include "admin_commands.hpp"
 #include "information_commands.hpp"
+#include "commands/command_system.hpp"
 #include "core/ability_executor.hpp"
 #include "core/actor.hpp"
 #include "core/mobile.hpp"

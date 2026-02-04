@@ -3,7 +3,6 @@
 #pragma once
 
 #include <cstdint>
-#include <functional>
 #include <ostream>
 #include <string>
 #include <unordered_map>
@@ -11,6 +10,12 @@
 #include <optional>
 #include <memory>
 #include <vector>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 /**
  * Unified EntityId system to replace legacy ID types.

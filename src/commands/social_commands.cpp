@@ -1,8 +1,10 @@
 #include "social_commands.hpp"
 #include "text/text_format.hpp"
 #include "core/actor.hpp"
+#include "commands/command_system.hpp"
 #include "world/room.hpp"
 #include "database/connection_pool.hpp"
+#include "database/social_queries.hpp"
 
 #include <spdlog/spdlog.h>
 #include <algorithm>

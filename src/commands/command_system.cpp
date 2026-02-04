@@ -9,7 +9,6 @@
 #include "text/string_utils.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
-#include "command_parser.hpp"
 
 #include <algorithm>
 #include <set>
@@ -966,6 +965,15 @@ CommandSystem::CommandBuilder &CommandSystem::CommandBuilder::level_range(int mi
 }
 
 Result<void> CommandSystem::CommandBuilder::build() { return system_.register_command(std::move(info_)); }
+
+EntityId CommandContext::parse_entity_id(std::string_view str) const {
+    std::optional<std::uint32_t> default_zone;
+    if (room) {
+        default_zone = room->id().zone_id();
+    }
+    return EntityId::parse(str, default_zone);
+}
+
 
 // CommandSystemUtils Implementation
 

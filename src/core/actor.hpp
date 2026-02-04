@@ -1,7 +1,6 @@
 #pragma once
 
 #include "entity.hpp"
-#include "money.hpp"
 #include "object.hpp"
 #include "active_effect.hpp"
 #include "core/result.hpp"

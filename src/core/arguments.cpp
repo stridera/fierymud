@@ -1,5 +1,10 @@
 #include "arguments.hpp"
 
+#include "text/string_utils.hpp"
+
+std::string_view Arguments::get() const {
+  return trim(arg_);
+}
 
 std::string_view Arguments::command_shift(bool strict) {
     arg_ = trim(arg_);
