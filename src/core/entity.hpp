@@ -85,14 +85,6 @@ public:
     /** Legacy compatibility - get short description */
     std::string_view short_description() const { return short_desc(); }
 
-    /** Check if entity matches a given keyword (exact match, case-insensitive)
-     * Virtual to allow subclasses to add dynamic keyword matching (e.g., liquid types)
-     */
-    virtual bool matches_keyword(std::string_view keyword) const;
-
-    /** Check if any entity keyword starts with the given prefix (case-insensitive) */
-    bool matches_keyword_prefix(std::string_view prefix) const;
-
     /** Check if entity matches a targeting string, supporting compound keywords.
      *  Compound keywords use hyphens as AND operators: "magician-sleeves" matches
      *  if the entity has keywords matching BOTH "magician" AND "sleeves" (prefix match).
@@ -101,15 +93,14 @@ public:
         return EntityUtils::matches_target_string(keyword_set_, target);
     }
 
-    /** Check if entity matches any of the given keywords */
-    bool matches_any_keyword(std::span<const std::string> keywords) const;
-
     /** Check if entity matches all of the given keywords.
      *  Prefix matches are accepted.
      *  Precondition: Keywords must already be normalized.
      */
     template <typename C>
-    requires std::ranges::forward_range<C> && std::same_as<typename C::value_type, std::string>
+    requires std::ranges::forward_range<C> &&
+        (std::same_as<typename C::value_type, std::string> ||
+         std::same_as<typename C::value_type, const std::string>)
     bool matches_all_keywords(const C& keywords) const {
         for (const std::string& word : keywords) {
             auto match = keyword_set_.lower_bound(word);
@@ -193,6 +184,14 @@ protected:
 
     /** Validate entity state */
     virtual Result<void> validate() const;
+
+    /** Adds keywords that apply to this instance of the entity.
+     * Temporary keywords are not serialized.
+     * Setting temporary keywords will remove any temporary keywords that
+     * had been previously set on the entity.
+     * @param temp_keywords The temporary keywords to add
+     */
+    void set_temporary_keywords(std::span<const std::string> temp_keywords);
 
 private:
     EntityId id_;

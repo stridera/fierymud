@@ -38,22 +38,22 @@ std::string DamageProfile::to_dice_string() const {
     if (dice_count == 0) {
         return std::to_string(base_damage + damage_bonus);
     }
-    
+
     std::string result = fmt::format("{}d{}", dice_count, dice_sides);
-    
+
     int total_bonus = base_damage + damage_bonus;
     if (total_bonus > 0) {
         result += fmt::format("+{}", total_bonus);
     } else if (total_bonus < 0) {
         result += std::to_string(total_bonus);
     }
-    
+
     return result;
 }
 
 // Object Implementation
 
-Object::Object(EntityId id, std::string_view name, ObjectType type) 
+Object::Object(EntityId id, std::string_view name, ObjectType type)
     : Entity(id, name), type_(type) {
     equip_slot_ = ObjectUtils::get_default_slot(type);
 }
@@ -62,11 +62,11 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
     if (!id.is_valid()) {
         return std::unexpected(Errors::InvalidArgument("id", "must be valid"));
     }
-    
+
     if (name.empty()) {
         return std::unexpected(Errors::InvalidArgument("name", "cannot be empty"));
     }
-    
+
     // Create appropriate subclass based on object type (same logic as from_json)
     std::unique_ptr<Object> object;
     switch (type) {
@@ -103,15 +103,15 @@ Result<std::unique_ptr<Object>> Object::create(EntityId id, std::string_view nam
             break;
         }
     }
-    
+
     // Parse keywords from name (space-separated words)
     auto keywords = EntityUtils::parse_keyword_list(name);
     if (!keywords.empty()) {
         object->set_keywords(keywords);
     }
-    
+
     TRY(object->validate());
-    
+
     return object;
 }
 
@@ -122,9 +122,9 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         if (!base_result.has_value()) {
             return std::unexpected(base_result.error());
         }
-        
+
         auto base_entity = std::move(base_result.value());
-        
+
         // Parse object-specific fields with legacy type mapping
         ObjectType type = ObjectType::Nothing;
         std::string type_str;
@@ -133,11 +133,11 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
         } else if (json.contains("type")) {
             type_str = json["type"].get<std::string>();
         }
-        
+
         if (!type_str.empty()) {
             // Map legacy type names to modern enum names
             if (type_str == "NOTHING") {
-                type = ObjectType::Other;  // Nothing -> Other (miscellaneous items) 
+                type = ObjectType::Other;  // Nothing -> Other (miscellaneous items)
             } else if (type_str == "LIGHT") {
                 type = ObjectType::Light;
             } else if (type_str == "SCROLL") {
@@ -205,7 +205,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 }
             }
         }
-        
+
         // Pre-parse capacity for containers to create with correct size
         int container_capacity = 10; // Default capacity
         if (type == ObjectType::Container || type == ObjectType::Drinkcontainer) {
@@ -213,7 +213,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             if (json.contains("container_info") && json["container_info"].contains("capacity")) {
                 container_capacity = json["container_info"]["capacity"].get<int>();
             }
-            // Check for legacy values format 
+            // Check for legacy values format
             else if (json.contains("values") && json["values"].contains("Capacity")) {
                 try {
                     const std::string cap_str = json["values"]["Capacity"].get<std::string>();
@@ -225,7 +225,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 }
             }
         }
-        
+
         // Create appropriate subclass based on object type
         std::unique_ptr<Object> object;
         switch (type) {
@@ -261,12 +261,12 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 break;
             }
         }
-        
+
         // Copy all base entity properties
         object->set_keywords(base_entity->keywords());
         object->set_description(base_entity->description());
         object->set_short_description(base_entity->short_description());
-        
+
         // Parse object-specific properties with field mapping
         if (json.contains("weight")) {
             if (json["weight"].is_string()) {
@@ -275,7 +275,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 object->set_weight(json["weight"].get<int>());
             }
         }
-        
+
         if (json.contains("value")) {
             object->set_value(json["value"].get<int>());
         } else if (json.contains("cost")) {
@@ -285,7 +285,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 object->set_value(json["cost"].get<int>());
             }
         }
-        
+
         if (json.contains("level")) {
             if (json["level"].is_string()) {
                 object->set_level(std::stoi(json["level"].get<std::string>()));
@@ -293,11 +293,11 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 object->set_level(json["level"].get<int>());
             }
         }
-        
+
         if (json.contains("condition")) {
             object->set_condition(json["condition"].get<int>());
         }
-        
+
         if (json.contains("timer")) {
             int timer_value;
             if (json["timer"].is_string()) {
@@ -308,17 +308,17 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             object->set_timer(timer_value);
             object->has_timer_ = (timer_value > 0);
         }
-        
+
         if (json.contains("equip_slot")) {
             if (auto slot = ObjectUtils::parse_equip_slot(json["equip_slot"].get<std::string>())) {
                 object->set_equip_slot(slot.value());
             }
         }
-        
+
         if (json.contains("armor_class")) {
             object->set_armor_class(json["armor_class"].get<int>());
         }
-        
+
         // Parse flags
         if (json.contains("flags") && json["flags"].is_array()) {
             for (const auto& flag_name : json["flags"]) {
@@ -330,12 +330,12 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 }
             }
         }
-        
+
         // Parse damage profile
         if (json.contains("damage_profile")) {
             const auto& dmg_json = json["damage_profile"];
             DamageProfile damage;
-            
+
             if (dmg_json.contains("base_damage")) {
                 damage.base_damage = dmg_json["base_damage"].get<int>();
             }
@@ -348,15 +348,15 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             if (dmg_json.contains("damage_bonus")) {
                 damage.damage_bonus = dmg_json["damage_bonus"].get<int>();
             }
-            
+
             object->set_damage_profile(damage);
         }
-        
+
         // Parse container info
         if (json.contains("container_info")) {
             const auto& cont_json = json["container_info"];
             ContainerInfo container;
-            
+
             if (cont_json.contains("capacity")) {
                 container.capacity = cont_json["capacity"].get<int>();
             }
@@ -381,7 +381,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             if (cont_json.contains("key_id")) {
                 container.key_id = EntityId{cont_json["key_id"].get<std::uint64_t>()};
             }
-            
+
             object->set_container_info(container);
         }
         // Parse legacy container info from "values" section for CONTAINER type objects
@@ -471,12 +471,12 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                 object->set_container_info(default_container);
             }
         }
-        
+
         // Parse light info
         if (json.contains("light_info")) {
             const auto& light_json = json["light_info"];
             LightInfo light;
-            
+
             if (light_json.contains("duration")) {
                 light.duration = light_json["duration"].get<int>();
             }
@@ -486,14 +486,14 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             if (light_json.contains("lit")) {
                 light.lit = light_json["lit"].get<bool>();
             }
-            
+
             object->set_light_info(light);
         }
         // Parse legacy light info from "values" section for LIGHT type objects
         else if (type == ObjectType::Light && json.contains("values")) {
             const auto& values_json = json["values"];
             LightInfo light;
-            
+
             // Parse legacy light values with error handling
             try {
                 if (values_json.contains("Remaining")) {
@@ -516,7 +516,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                     std::string lit_str = values_json["Is_Lit:"].get<std::string>();
                     light.lit = (!lit_str.empty() && lit_str != "0");
                 }
-                
+
                 object->set_light_info(light);
             } catch (const std::exception& e) {
                 // If parsing legacy values fails, use defaults but continue loading
@@ -559,7 +559,7 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
             for (const auto& extra_json : json["extra_descriptions"]) {
                 if (extra_json.contains("keyword") && extra_json.contains("desc")) {
                     ExtraDescription extra;
-                    
+
                     // Handle both single keyword string and array of keywords
                     if (extra_json["keyword"].is_string()) {
                         std::string keyword_str = extra_json["keyword"].get<std::string>();
@@ -576,17 +576,17 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json& json) {
                             }
                         }
                     }
-                    
+
                     extra.description = extra_json["desc"].get<std::string>();
                     object->add_extra_description(extra);
                 }
             }
         }
-        
+
         TRY(object->validate());
-        
+
         return object;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Object JSON parsing error", e.what()));
     }
@@ -637,29 +637,38 @@ WeaponSpeed Object::weapon_speed() const {
     return WeaponSpeed::Medium;
 }
 
+void Object::set_liquid_info(const LiquidInfo& info) {
+    liquid_info_ = info;
+    std::vector<std::string> temp_keywords;
+    if (has_liquid() && liquid_info_.identified && !liquid_info_.liquid_type.empty()) {
+        temp_keywords.push_back(liquid_info_.liquid_type);
+    }
+    set_temporary_keywords(temp_keywords);
+}
+
 nlohmann::json Object::to_json() const {
     nlohmann::json json = Entity::to_json();
-    
+
     json["object_type"] = std::string(magic_enum::enum_name(type_));
     json["weight"] = weight_;
     json["value"] = value_;
     json["level"] = level_;
     json["condition"] = condition_;
-    
+
     if (has_timer_) {
         json["timer"] = timer_;
     }
-    
+
     json["equip_slot"] = std::string(magic_enum::enum_name(equip_slot_));
     json["armor_class"] = armor_class_;
-    
+
     // Serialize flags
     std::vector<std::string> flag_names;
     for (ObjectFlag flag : flags_) {
         flag_names.emplace_back(magic_enum::enum_name(flag));
     }
     json["flags"] = flag_names;
-    
+
     // Serialize damage profile if relevant
     if (is_weapon()) {
         json["damage_profile"] = {
@@ -669,7 +678,7 @@ nlohmann::json Object::to_json() const {
             {"damage_bonus", damage_profile_.damage_bonus}
         };
     }
-    
+
     // Serialize container info if relevant
     if (is_container()) {
         json["container_info"] = {
@@ -683,7 +692,7 @@ nlohmann::json Object::to_json() const {
             {"key_id", container_info_.key_id.value()}
         };
     }
-    
+
     // Serialize light info if relevant
     if (is_light_source()) {
         json["light_info"] = {
@@ -692,49 +701,49 @@ nlohmann::json Object::to_json() const {
             {"lit", light_info_.lit}
         };
     }
-    
+
     // Serialize extra descriptions
     if (!extra_descriptions_.empty()) {
         nlohmann::json extra_array = nlohmann::json::array();
         for (const auto& extra : extra_descriptions_) {
             nlohmann::json extra_json;
-            
+
             // Serialize keyword as single string if only one, array if multiple
             if (extra.keywords.size() == 1) {
                 extra_json["keyword"] = extra.keywords[0];
             } else {
                 extra_json["keyword"] = extra.keywords;
             }
-            
+
             extra_json["desc"] = extra.description;
             extra_array.push_back(extra_json);
         }
         json["extra_descriptions"] = extra_array;
     }
-    
+
     return json;
 }
 
 Result<void> Object::validate() const {
     TRY(Entity::validate());
-    
+
     if (type_ == ObjectType::Nothing) {
         return std::unexpected(Errors::InvalidState("Object type cannot be undefined"));
     }
-    
+
     if (weight_ < 0) {
         return std::unexpected(Errors::InvalidState("Object weight cannot be negative"));
     }
-    
+
     if (value_ < 0) {
         return std::unexpected(Errors::InvalidState("Object value cannot be negative"));
     }
-    
+
     if (condition_ < MIN_CONDITION || condition_ > MAX_CONDITION) {
         return std::unexpected(Errors::InvalidState(
             fmt::format("Object condition must be between {} and {}", MIN_CONDITION, MAX_CONDITION)));
     }
-    
+
     return Success();
 }
 
@@ -775,46 +784,6 @@ std::string_view Object::fullness_descriptor() const {
     }
 
     return "";  // No fullness descriptor for other types
-}
-
-bool Object::matches_keyword(std::string_view keyword) const {
-    // First try base Entity keyword matching
-    if (Entity::matches_keyword(keyword)) {
-        return true;
-    }
-
-    // For identified liquid containers with liquid, also match by liquid type
-    // This allows "drink water" or "fill water-cup" to work
-    if (type_ == ObjectType::Drinkcontainer &&
-        liquid_info_.remaining > 0 &&
-        !liquid_info_.liquid_type.empty() &&
-        has_flag(ObjectFlag::Identified)) {
-
-        // Normalize both to lowercase for comparison
-        std::string lower_keyword;
-        lower_keyword.reserve(keyword.size());
-        for (char c : keyword) {
-            lower_keyword.push_back(std::tolower(static_cast<unsigned char>(c)));
-        }
-
-        std::string lower_liquid;
-        lower_liquid.reserve(liquid_info_.liquid_type.size());
-        for (char c : liquid_info_.liquid_type) {
-            lower_liquid.push_back(std::tolower(static_cast<unsigned char>(c)));
-        }
-
-        // Check if keyword matches liquid type exactly
-        if (lower_keyword == lower_liquid) {
-            return true;
-        }
-
-        // Check if keyword contains liquid type (e.g., "water-cup" contains "water")
-        if (lower_keyword.find(lower_liquid) != std::string::npos) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 std::string Object::display_name(bool with_article) const {
@@ -952,7 +921,7 @@ std::string_view Object::quality_description() const {
 
 // Weapon Implementation
 
-Weapon::Weapon(EntityId id, std::string_view name, ObjectType type) 
+Weapon::Weapon(EntityId id, std::string_view name, ObjectType type)
     : Object(id, name, type) {
     if (type != ObjectType::Weapon && type != ObjectType::Fireweapon) {
         set_type(ObjectType::Weapon);
@@ -963,17 +932,17 @@ Result<std::unique_ptr<Weapon>> Weapon::create(EntityId id, std::string_view nam
     if (weapon_type != ObjectType::Weapon && weapon_type != ObjectType::Fireweapon) {
         return std::unexpected(Errors::InvalidArgument("weapon_type", "must be Weapon or Fireweapon"));
     }
-    
+
     auto weapon = std::unique_ptr<Weapon>(new Weapon(id, name, weapon_type));
-    
+
     TRY(weapon->validate());
-    
+
     return weapon;
 }
 
 // Armor Implementation
 
-Armor::Armor(EntityId id, std::string_view name, EquipSlot slot) 
+Armor::Armor(EntityId id, std::string_view name, EquipSlot slot)
     : Object(id, name, ObjectType::Armor) {
     set_equip_slot(slot);
 }
@@ -982,11 +951,11 @@ Result<std::unique_ptr<Armor>> Armor::create(EntityId id, std::string_view name,
     if (slot == EquipSlot::None) {
         return std::unexpected(Errors::InvalidArgument("slot", "armor must have valid equip slot"));
     }
-    
+
     auto armor = std::unique_ptr<Armor>(new Armor(id, name, slot));
-    
+
     TRY(armor->validate());
-    
+
     return armor;
 }
 
@@ -1014,15 +983,15 @@ Result<std::unique_ptr<Container>> Container::create(EntityId id, std::string_vi
 
 bool Container::can_store_item(const Object& item) const {
     const auto& info = container_info();
-    
+
     if (current_items_ >= info.capacity) {
         return false;
     }
-    
+
     if (current_weight_ + item.weight() > info.weight_capacity) {
         return false;
     }
-    
+
     return true;
 }
 
@@ -1066,7 +1035,7 @@ std::shared_ptr<Object> Container::remove_item(EntityId item_id) {
             auto item = *it;
             contents_.erase(it);
             current_items_ = contents_.size();
-            
+
             // Recalculate current weight
             current_weight_ = 0;
             for (const auto& obj : contents_) {
@@ -1074,7 +1043,7 @@ std::shared_ptr<Object> Container::remove_item(EntityId item_id) {
                     current_weight_ += obj->weight();
                 }
             }
-            
+
             return item;
         }
     }
@@ -1083,12 +1052,12 @@ std::shared_ptr<Object> Container::remove_item(EntityId item_id) {
 
 bool Container::remove_item(const std::shared_ptr<Object>& item) {
     if (!item) return false;
-    
+
     auto it = std::find(contents_.begin(), contents_.end(), item);
     if (it != contents_.end()) {
         contents_.erase(it);
         current_items_ = contents_.size();
-        
+
         // Recalculate current weight
         current_weight_ = 0;
         for (const auto& obj : contents_) {
@@ -1096,7 +1065,7 @@ bool Container::remove_item(const std::shared_ptr<Object>& item) {
                 current_weight_ += obj->weight();
             }
         }
-        
+
         return true;
     }
     return false;
@@ -1114,7 +1083,7 @@ std::shared_ptr<Object> Container::find_item(EntityId item_id) const {
 std::vector<std::shared_ptr<Object>> Container::find_items_by_keyword(std::string_view keyword) const {
     std::vector<std::shared_ptr<Object>> results;
     for (const auto& item : contents_) {
-        if (item && item->matches_keyword(keyword)) {
+        if (item && item->matches_target_string(keyword)) {
             results.push_back(item);
         }
     }
@@ -1147,16 +1116,16 @@ namespace ObjectUtils {
         auto name = magic_enum::enum_name(type);
         return name.empty() ? "Unknown" : name;
     }
-    
+
     std::optional<ObjectType> parse_object_type(std::string_view type_name) {
         return magic_enum::enum_cast<ObjectType>(type_name);
     }
-    
+
     std::string_view get_slot_name(EquipSlot slot) {
         auto name = magic_enum::enum_name(slot);
         return name.empty() ? "None" : name;
     }
-    
+
     std::optional<EquipSlot> parse_equip_slot(std::string_view slot_name) {
         // First try exact match with magic_enum
         if (auto slot = magic_enum::enum_cast<EquipSlot>(slot_name)) {
@@ -1207,13 +1176,13 @@ namespace ObjectUtils {
         // No match found
         return std::nullopt;
     }
-    
+
     bool can_equip_in_slot(ObjectType type, EquipSlot slot) {
         static const std::unordered_map<ObjectType, std::unordered_set<EquipSlot>> valid_slots = {
             {ObjectType::Light, {EquipSlot::Light, EquipSlot::Hold}},
             {ObjectType::Weapon, {EquipSlot::Wield, EquipSlot::Wield2, EquipSlot::Hold}},
             {ObjectType::Fireweapon, {EquipSlot::Wield, EquipSlot::Wield2, EquipSlot::Hold}},
-            {ObjectType::Armor, {EquipSlot::Body, EquipSlot::Head, EquipSlot::Legs, EquipSlot::Feet, 
+            {ObjectType::Armor, {EquipSlot::Body, EquipSlot::Head, EquipSlot::Legs, EquipSlot::Feet,
                                EquipSlot::Hands, EquipSlot::Arms, EquipSlot::Shield}},
             {ObjectType::Worn, {EquipSlot::Finger_R, EquipSlot::Finger_L, EquipSlot::Neck1, EquipSlot::Neck2,
                                EquipSlot::About, EquipSlot::Waist, EquipSlot::Wrist_R, EquipSlot::Wrist_L,
@@ -1221,15 +1190,15 @@ namespace ObjectUtils {
             {ObjectType::Wings, {EquipSlot::Wings}},
             {ObjectType::Disguise, {EquipSlot::Disguise}}
         };
-        
+
         auto it = valid_slots.find(type);
         if (it == valid_slots.end()) {
             return slot == EquipSlot::None;
         }
-        
+
         return it->second.contains(slot);
     }
-    
+
     EquipSlot get_default_slot(ObjectType type) {
         switch (type) {
             case ObjectType::Light: return EquipSlot::Light;
@@ -1241,7 +1210,7 @@ namespace ObjectUtils {
             default: return EquipSlot::None;
         }
     }
-    
+
     int calculate_base_value(ObjectType type, int level) {
         static const std::unordered_map<ObjectType, int> base_values = {
             {ObjectType::Light, 5},
@@ -1261,13 +1230,13 @@ namespace ObjectUtils {
             {ObjectType::Key, 1},
             {ObjectType::Money, 1}
         };
-        
+
         auto it = base_values.find(type);
         int base = it != base_values.end() ? it->second : 10;
-        
+
         return base * std::max(1, level);
     }
-    
+
     std::string_view get_condition_color(int condition) {
         if (condition >= 90) return "\033[0;32m";     // Green (excellent)
         if (condition >= 70) return "\033[0;33m";     // Yellow (good)
@@ -1275,7 +1244,7 @@ namespace ObjectUtils {
         if (condition > 0)   return "\033[0;35m";     // Magenta (poor)
         return "\033[0;31m\033[5m";                   // Blinking red (broken)
     }
-    
+
     std::string format_damage_profile(const DamageProfile& damage) {
         return damage.to_dice_string();
     }
@@ -1478,10 +1447,10 @@ std::string Object::get_stat_info() const {
 
 std::string Container::get_stat_info() const {
     std::ostringstream output;
-    
+
     // Start with base object information
     output << Object::get_stat_info();
-    
+
     // Add container-specific details
     output << "\n=== Container Details ===\n";
     output << fmt::format("Current contents: {}/{} items\n", contents_count(), container_info().capacity);
@@ -1495,30 +1464,30 @@ std::string Container::get_stat_info() const {
         const auto contents = get_contents();
         for (const auto& item : contents) {
             if (item) {
-                output << fmt::format("  {} ({})\n", 
-                    item->short_description(), 
+                output << fmt::format("  {} ({})\n",
+                    item->short_description(),
                     item->display_name_with_condition());
             }
         }
     } else {
         output << "Container is empty.\n";
     }
-    
+
     return output.str();
 }
 
 std::string Weapon::get_stat_info() const {
     std::ostringstream output;
-    
+
     // Start with base object information
     output << Object::get_stat_info();
-    
+
     // Add weapon-specific details
     output << "\n=== Weapon Details ===\n";
     output << fmt::format("Weapon type: {}\n", is_ranged() ? "Ranged" : "Melee");
     output << fmt::format("Reach: {} feet\n", reach());
     output << fmt::format("Speed: {} (lower is faster)\n", speed());
-    
+
     const auto& dmg = damage_profile();
     if (dmg.dice_count > 0 && dmg.dice_sides > 0) {
         output << fmt::format("Damage: {}d{}", dmg.dice_count, dmg.dice_sides);
@@ -1527,22 +1496,22 @@ std::string Weapon::get_stat_info() const {
         }
         output << fmt::format(" (avg: {:.1f})\n", dmg.average_damage());
     }
-    
+
     return output.str();
 }
 
 std::string Armor::get_stat_info() const {
     std::ostringstream output;
-    
+
     // Start with base object information
     output << Object::get_stat_info();
-    
+
     // Add armor-specific details
     output << "\n=== Armor Details ===\n";
     output << fmt::format("Material: {}\n", material());
     output << fmt::format("Armor Class bonus: {}\n", armor_class());
     output << fmt::format("Equip slot: {}\n", ObjectUtils::get_slot_name(equip_slot()));
     output << fmt::format("Condition: {}% ({})\n", condition(), quality_description());
-    
+
     return output.str();
 }

@@ -27,32 +27,6 @@ Entity::Entity(EntityId id, std::string_view name,
     set_keywords(keywords);
 }
 
-bool Entity::matches_keyword(std::string_view keyword) const {
-    std::string normalized = EntityUtils::normalize_keyword(keyword);
-    // O(log n) lookup using set instead of O(n) linear search
-    return keyword_set_.contains(normalized);
-}
-
-bool Entity::matches_keyword_prefix(std::string_view prefix) const {
-    if (prefix.empty()) {
-        return false;
-    }
-
-    std::string normalized_prefix = EntityUtils::normalize_keyword(prefix);
-    auto iter = keyword_set_.lower_bound(normalized_prefix);
-    if (iter == keyword_set_.end()) {
-        return false;
-    }
-    return !iter->starts_with(normalized_prefix);
-}
-
-bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
-    return std::any_of(keywords.begin(), keywords.end(),
-        [this](const std::string& kw) {
-            return matches_keyword(kw);
-        });
-}
-
 void Entity::set_keywords(std::span<const std::string> new_keywords) {
     keywords_.clear();
     keyword_set_.clear();
@@ -63,6 +37,17 @@ void Entity::set_keywords(std::span<const std::string> new_keywords) {
     }
 
     ensure_name_in_keywords();
+}
+
+void Entity::set_temporary_keywords(std::span<const std::string> temp_keywords) {
+    auto copied_keywords = keywords_;
+    set_keywords(copied_keywords);
+
+    for (const auto& keyword : temp_keywords) {
+        std::string normalized = EntityUtils::normalize_keyword(keyword);
+        // Don't add to keywords_ because it's only ever used for lookup
+        keyword_set_.insert(normalized);
+    }
 }
 
 void Entity::add_keyword(std::string_view keyword) {
