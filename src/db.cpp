@@ -350,7 +350,7 @@ int get_set_dice(int level, int race, int class_num, int state)
     cfactor = CLASS_DICEFACTOR(class_num);
     sfactor = RACE_DICEFACTOR(race);
 
-    /*dice calculations */
+    /*number of damage dice calculations */
     if (!state) {
         if (level < 10)
             dice = std::max(1, (int)((level / 3) + .5));
@@ -358,38 +358,27 @@ int get_set_dice(int level, int race, int class_num, int state)
         else if (level < 30)
             dice = (int)((float)(level / 3) + .5); /*under 30 */
 
-        else if (level <= 50)
+        else
             dice = (int)((level / 3) + .5); /*50 and under equation */
-
-        else if (level > 50)
-            dice = (int)((level / 2.5) + .5); /*51 and over equation */
 
         sfactor = ((int)((sfactor + cfactor) / 2));
         dice = (sbyte)(((float)(sfactor * dice) / 100));
     }
-    /*face calucs */
+
+    /*size of damage dice face calcs */
     if (state) {
-        if (level < 10)
+        if (level < 22)
             face = 3;
-        else if (level < 26)
+        else if (level < 40)
             face = 4;
-        else if (level < 36)
-            face = 4;
-
-        else if (level <= 50)
-            face = 5; /*50 and under equation */
-        else if ((level > 50) && (level <= 60))
-            face = 8; /*50 over equation */
-        else if (level > 60)
-            face = 10;
-
-        /*face = (sbyte) (((float)sfactor/100) * ((float)cfactor/100) * face);
-	 */ }
-
-        if (!state)
-            return dice;
         else
-            return face;
+            face = (level / 10) + 1;
+    }
+
+    if (!state)
+        return dice;
+    else
+        return face;
 }
 
 int get_copper(int i)
