@@ -279,10 +279,12 @@ set(CORE_SOURCES
     src/scripting/bindings/lua_timers.cpp
     src/scripting/bindings/lua_vars.cpp
     src/scripting/bindings/lua_templates.cpp
+    src/scripting/triggers/trigger_data.cpp
     # Quest system
     src/quests/quest_manager.cpp
     # Event publishing for Muditor bridge
     src/events/event_publisher.cpp
+    src/events/event_types.cpp
 )
 
 # Create the core static library

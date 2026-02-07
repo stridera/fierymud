@@ -1,7 +1,6 @@
 #pragma once
 
 #include "core/result.hpp"
-#include "net/tls_context.hpp"
 #include <asio.hpp>
 #include <memory>
 #include <vector>
@@ -13,6 +12,7 @@ struct ServerConfig;
 class Player;
 class WorldServer;
 class PlayerConnection;
+class TLSContextManager;
 
 /**
  * Modern Network Manager - Asynchronous I/O for player connections
@@ -33,7 +33,7 @@ public:
     std::vector<std::shared_ptr<Player>> get_connected_players() const;
 
     // TLS support
-    bool is_tls_enabled() const { return tls_context_manager_ && tls_context_manager_->is_initialized(); }
+    bool is_tls_enabled() const;
     const ServerConfig& get_config() const { return config_; } // Access for MSSP handler
 
     // Reconnection support

@@ -38,6 +38,7 @@
 #include <algorithm>
 #include <set>
 #include <sstream>
+#include <magic_enum/magic_enum.hpp>
 
 namespace BuiltinCommands {
 

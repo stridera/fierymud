@@ -5,13 +5,12 @@
 #include <string>
 #include <string_view>
 #include <unordered_map>
+#include <atomic>
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/forward.hpp>
-#include <sol/error.hpp>
-#include <sol/thread.hpp>
-
-#include <spdlog/spdlog.h>
+#include <sol/function.hpp>
+#include <sol/bytecode.hpp>
 
 namespace FieryMUD {
 
@@ -147,6 +146,8 @@ private:
     /// Register Effect table for typo-safe effect name lookups
     void register_effect_table();
 
+    ScriptResult<sol::protected_function_result> wrap_result(sol::protected_function_result&& result);
+
     std::unique_ptr<sol::state> lua_;  // unique_ptr for explicit destruction during shutdown
     std::unordered_map<std::string, sol::bytecode> bytecode_cache_;
     std::unordered_map<std::string, std::string> failed_script_cache_;  // cache_key -> error message
@@ -172,16 +173,7 @@ ScriptResult<sol::protected_function_result> ScriptEngine::safe_call(
         return std::unexpected(ScriptError::NotInitialized);
     }
 
-    auto result = func(std::forward<Args>(args)...);
-
-    if (!result.valid()) {
-        sol::error err = result;
-        last_error_ = err.what();
-        spdlog::error("Lua execution error: {}", last_error_);
-        return std::unexpected(ScriptError::ExecutionFailed);
-    }
-
-    return result;
+    return wrap_result(std::move(func(std::forward<Args>(args)...)));
 }
 
 } // namespace FieryMUD

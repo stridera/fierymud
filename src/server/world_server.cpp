@@ -15,6 +15,7 @@
 #include "scripting/coroutine_scheduler.hpp"
 #include "scripting/script_engine.hpp"
 #include "scripting/trigger_manager.hpp"
+#include "scripting/triggers/trigger_types.hpp"
 #include "text/text_format.hpp"
 #include "world/room.hpp"
 #include "world/weather.hpp"

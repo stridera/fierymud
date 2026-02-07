@@ -3,6 +3,7 @@
 #include "core/logging.hpp"
 #include "core/player.hpp"
 #include "net/player_connection.hpp"
+#include "net/tls_context.hpp"
 #include "mud_server.hpp"
 #include "world_server.hpp"
 
@@ -132,6 +133,10 @@ std::vector<std::shared_ptr<Player>> NetworkManager::get_connected_players() con
         }
     }
     return players;
+}
+
+bool NetworkManager::is_tls_enabled() const {
+    return tls_context_manager_ && tls_context_manager_->is_initialized();
 }
 
 // Removed cleanup_disconnected_connections() - linkdead connections should not be auto-cleaned

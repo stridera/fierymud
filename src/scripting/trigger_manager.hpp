@@ -1,6 +1,6 @@
 #pragma once
 
-#include "triggers/trigger_data.hpp"
+#include "triggers/trigger_enums.hpp"
 #include "core/ids.hpp"
 
 #include <sol/forward.hpp>
@@ -23,6 +23,9 @@ using Direction = db::Direction;
 namespace FieryMUD {
 
 class ScriptContext;
+struct TriggerSet;
+struct TriggerData;
+using TriggerDataPtr = std::shared_ptr<TriggerData>;
 
 /// Result of trigger execution
 enum class TriggerResult {

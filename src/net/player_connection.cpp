@@ -12,6 +12,9 @@
 #include "text/text_format.hpp"
 #include "world/world_manager.hpp"
 #include "world/zone.hpp"
+#include "world/room.hpp"
+#include "game/login_system.hpp"
+#include "tls_context.hpp"
 #include "mssp_handler.hpp"
 
 #include <fmt/format.h>
@@ -1499,4 +1502,18 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
     if (is_connected()) {
         start_idle_timer();
     }
+}
+
+
+asio::ip::tcp::socket& PlayerConnection::socket() {
+    return connection_socket_->tcp_socket();
+}
+
+const asio::ip::tcp::socket& PlayerConnection::socket() const {
+    return connection_socket_->tcp_socket();
+}
+
+// TLS support queries
+bool PlayerConnection::is_tls_connection() const {
+    return connection_socket_ && connection_socket_->is_tls();
 }

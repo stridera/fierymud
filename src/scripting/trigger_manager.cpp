@@ -1,6 +1,8 @@
 // trigger_manager.cpp - Trigger loading, caching, and dispatch
 
 #include "trigger_manager.hpp"
+#include "triggers/trigger_data.hpp"
+#include "triggers/trigger_types.hpp"
 #include "script_engine.hpp"
 #include "coroutine_scheduler.hpp"
 #include "database/connection_pool.hpp"
