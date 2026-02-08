@@ -163,11 +163,15 @@ configure_file(
 # =============================================================================
 # Generate database headers / implementations
 # =============================================================================
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
 execute_process(
-    COMMAND python ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py --list
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py --list
     OUTPUT_VARIABLE DB_SOURCES
-    ERROR_QUIET
+    RESULT_VARIABLE DB_LIST_RESULT
 )
+if(NOT DB_LIST_RESULT EQUAL 0)
+    message(FATAL_ERROR "generate_db_headers.py --list failed (exit ${DB_LIST_RESULT}). Is the Prisma schema available?")
+endif()
 
 string(REGEX REPLACE "[ \t\r\n]+" ";" DB_SOURCES "${DB_SOURCES}")
 set(DB_HEADERS "${DB_SOURCES}")
@@ -175,9 +179,9 @@ list(FILTER DB_SOURCES INCLUDE REGEX "cpp$")
 list(FILTER DB_HEADERS INCLUDE REGEX "hpp$")
 add_custom_command(
     OUTPUT ${DB_SOURCES} ${DB_HEADERS}
-    COMMAND python ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py
-    DEPENDS ../muditor/packages/db/prisma/schema.prisma
-            scripts/generate_db_headers.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../muditor/packages/db/prisma/schema.prisma
+            ${CMAKE_CURRENT_SOURCE_DIR}/scripts/generate_db_headers.py
 )
 
 
