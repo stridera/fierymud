@@ -1410,14 +1410,36 @@ ACMD(do_eye_gouge) {
     if (CONFUSED(ch))
         vict = random_attack_target(ch, vict, true);
 
-    percent = random_number(1, 101);
-    prob = GET_SKILL(ch, SKILL_EYE_GOUGE);
+    int thac0_01 = 25;
+    int thac0_00 = classes[(int)GET_CLASS(ch)].thac0;
+    int thac0 = (calc_thac0(GET_LEVEL(ch), thac0_01, thac0_00) * 10);
+    thac0 -= stat_bonus[GET_DEX(ch)].tohit * 10;
+    thac0 -= GET_HITROLL(ch);
+    thac0 -= GET_SKILL(ch, SKILL_EYE_GOUGE) / 2;
+    thac0 -= stat_bonus[GET_DEX(ch)].rogue_skills;
+
+    int diceroll = random_number(1, 200);
+
+    int victim_ac = GET_AC(vict) + stat_bonus[GET_DEX(vict)].defense * 10;
+    victim_ac = std::min(100, victim_ac);
+
+    bool success;
+    if (diceroll > 190 || !AWAKE(vict))
+        success = true;
+    else if (diceroll < 11)
+        success = false;
+    else
+        success = thac0 - diceroll <= victim_ac;
+
+    success = success && !parry(ch, vict);
+    success = success && !dodge(ch, vict);
+
     WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
     if (displaced(ch, vict))
         return;
-    if (percent > prob && AWAKE(vict))
+    if (!success) {
         damage(ch, vict, 0, SKILL_EYE_GOUGE); /* Miss message */
-    else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
+    } else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
         act(EVASIONCLR "Your thumbs poke harmlessly at $N" EVASIONCLR ".   If $E even has eyes.&0", false, ch, 0, vict,
             TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " tries poking at $N's eyes, but nothing seems to happen.&0", false, ch, 0, vict,
