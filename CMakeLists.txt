@@ -5,6 +5,19 @@ project(FieryMUD VERSION 3.0.0 LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Use ccache/sccache if available to cache compilation results across builds
+find_program(CCACHE_PROGRAM ccache)
+find_program(SCCACHE_PROGRAM sccache)
+if(CCACHE_PROGRAM)
+    message(STATUS "Using ccache: ${CCACHE_PROGRAM}")
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+elseif(SCCACHE_PROGRAM)
+    message(STATUS "Using sccache: ${SCCACHE_PROGRAM}")
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${SCCACHE_PROGRAM})
+    set(CMAKE_C_COMPILER_LAUNCHER ${SCCACHE_PROGRAM})
+endif()
+
 # Option to enable sanitizers for debugging memory issues
 # Default ON during development to catch memory bugs early
 option(ENABLE_SANITIZERS "Enable Address and Undefined Behavior sanitizers" ON)
@@ -327,6 +340,34 @@ target_compile_options(fierymud_core PRIVATE
     -Wextra
     -O3
     -g
+)
+
+# Precompiled headers - parse expensive standard library and third-party headers
+# once instead of in every translation unit
+target_precompile_headers(fierymud_core PRIVATE
+    # Standard library headers used across the codebase
+    <algorithm>
+    <array>
+    <chrono>
+    <cstdint>
+    <expected>
+    <format>
+    <functional>
+    <memory>
+    <optional>
+    <ranges>
+    <set>
+    <span>
+    <string>
+    <string_view>
+    <unordered_map>
+    <variant>
+    <vector>
+    # Third-party headers (heavy template libraries)
+    <fmt/format.h>
+    <spdlog/spdlog.h>
+    <nlohmann/json.hpp>
+    <magic_enum/magic_enum.hpp>
 )
 
 # =============================================================================
