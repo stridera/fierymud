@@ -1,24 +1,25 @@
 #include "login_system.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/game_data_cache.hpp"
-#include "../database/player_queries.hpp"
-#include "../database/world_queries.hpp"
-#include "../net/player_connection.hpp"
-#include "../server/network_manager.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/world_manager.hpp"
+#include "core/player.hpp"
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "database/connection_pool.hpp"
+#include "database/game_data_cache.hpp"
+#include "database/player_queries.hpp"
+#include "database/world_queries.hpp"
+#include "net/player_connection.hpp"
+#include "server/network_manager.hpp"
+#include "text/string_utils.hpp"
+#include "world/world_manager.hpp"
 
 #include <algorithm>
 #include <cctype>
 #include <filesystem>
 #include <fmt/format.h>
 #include <fstream>
+#include <nlohmann/json.hpp>
 #include <magic_enum/magic_enum.hpp>
 
 // Immortal level threshold - characters at or above this level are considered gods
@@ -45,13 +46,13 @@ std::string CharacterCreationData::get_class_name() const {
 
 std::string CharacterCreationData::get_race_name() const {
     switch (race) {
-    case CharacterRace::Human:
+    case Race::Human:
         return "Human";
-    case CharacterRace::Elf:
+    case Race::Elf:
         return "Elf";
-    case CharacterRace::Dwarf:
+    case Race::Dwarf:
         return "Dwarf";
-    case CharacterRace::Halfling:
+    case Race::Halfling:
         return "Halfling";
     default:
         return "Unknown";
@@ -1232,7 +1233,7 @@ void LoginSystem::handle_select_race(std::string_view input) {
         return;
     }
 
-    creation_data_.race = static_cast<CharacterRace>(choice);
+    creation_data_.race = static_cast<Race>(choice);
     transition_to(LoginState::ConfirmCreation);
     send_creation_summary();
     send_message("Is this correct? (yes/no)");

@@ -1,12 +1,14 @@
 #include "mock_game_session.hpp"
 
-#include "../src/commands/builtin_commands.hpp"
-#include "../src/commands/command_system.hpp"
-#include "../src/core/logging.hpp"
-#include "../src/server/mud_server.hpp"
-#include "../src/world/world_manager.hpp"
-#include "../src/world/room.hpp"
-#include "../src/core/actor.hpp"
+#include "commands/builtin_commands.hpp"
+#include "commands/command_system.hpp"
+#include "core/logging.hpp"
+#include "server/mud_server.hpp"
+#include "world/world_manager.hpp"
+#include "world/room.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/mobile.hpp"
 
 #include <iostream>
 #include <thread>
@@ -112,7 +114,7 @@ void MockPlayerConnection::handle_input_by_state(const std::string &input) {
         if (world_server_) {
             auto player = std::make_shared<NetworkedPlayer>(shared_from_this(), input);
             player->initialize();
-            
+
             // Special handling for test players that need specific rooms
             if (input == "WorldTester") {
                 auto& world_manager = WorldManager::instance();
@@ -128,7 +130,7 @@ void MockPlayerConnection::handle_input_by_state(const std::string &input) {
                     target_room->add_actor(player);
                 }
             }
-            
+
             world_server_->set_actor_for_connection(shared_from_this(), player);
             send_message(fmt::format("Welcome, {}!\r\n", input));
             world_server_->process_command(shared_from_this(), "look");
@@ -147,7 +149,7 @@ void MockPlayerConnection::handle_input_by_state(const std::string &input) {
 // MockGameSession Implementation
 
 MockGameSession::MockGameSession(WorldServer& world_server, asio::io_context& io_context)
-    : world_server_(std::shared_ptr<WorldServer>(&world_server, [](auto*){})), 
+    : world_server_(std::shared_ptr<WorldServer>(&world_server, [](auto*){})),
       io_context_(io_context),
       work_guard_(asio::make_work_guard(io_context)) {
     // Start the I/O thread after initialization to avoid destructor issues
@@ -338,7 +340,7 @@ UnifiedTestHarness::UnifiedTestHarness() : io_context_(), work_guard_(asio::make
         }
         builtin_commands_registered_ = true;
     }
-    
+
     // Start world server
     auto start_result = world_server_->start();
     if (!start_result) {
@@ -355,13 +357,13 @@ UnifiedTestHarness::~UnifiedTestHarness() {
         if (world_server_) {
             world_server_->stop();
         }
-        
+
         // Stop I/O context and join thread
         io_context_.stop();
         if (io_thread_.joinable()) {
             io_thread_.join();
         }
-        
+
         // Reset world server
         world_server_.reset();
     } catch (...) {
@@ -408,7 +410,7 @@ Result<void> UnifiedTestHarness::run_session_test(std::function<void(MockGameSes
     }
 }
 
-std::unique_ptr<MockGameSession> UnifiedTestHarness::create_session() { 
+std::unique_ptr<MockGameSession> UnifiedTestHarness::create_session() {
     return std::make_unique<MockGameSession>(*instance().world_server_, instance().io_context_);
 }
 
@@ -447,7 +449,7 @@ void UnifiedTestHarness::reset_world_state() {
     // Clear world manager state for clean tests
     auto &world_manager = WorldManager::instance();
     world_manager.clear_state();
-    
+
     // Recreate test rooms after clearing state
     // Create room with ID 1 as primary room for player spawning (first available room)
     auto default_room_result = Room::create(EntityId{1}, "Test Room");
@@ -457,14 +459,14 @@ void UnifiedTestHarness::reset_world_state() {
         default_room->set_short_description("a default test room");
         world_manager.add_room(default_room);
     }
-    
+
     // Create room with ID 100 (expected by World: Room and Actor Integration test)
     auto starting_room_result = Room::create(EntityId{100}, "Starting Room");
     if (starting_room_result.has_value()) {
         auto starting_room = std::shared_ptr<Room>(starting_room_result.value().release());
         starting_room->set_description("A test room for integration testing.");
         starting_room->set_short_description("a test room");
-        
+
         // Add a test NPC guard to satisfy the integration test expectations
         auto guard_result = Mobile::create(EntityId{200}, "test guard", 1);
         if (guard_result.has_value()) {
@@ -472,7 +474,7 @@ void UnifiedTestHarness::reset_world_state() {
             guard->set_current_room(starting_room);
             starting_room->add_actor(guard);
         }
-        
+
         world_manager.add_room(starting_room);
     }
 }

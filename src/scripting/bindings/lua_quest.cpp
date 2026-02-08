@@ -1,11 +1,12 @@
 #include "lua_quest.hpp"
-#include "../../core/actor.hpp"
-#include "../../quests/quest_manager.hpp"
+#include "core/actor.hpp"
+#include "quests/quest_manager.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
 
 #include <spdlog/spdlog.h>
+#include <nlohmann/json.hpp>
 
 namespace FieryMUD {
 

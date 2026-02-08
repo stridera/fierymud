@@ -1,6 +1,6 @@
 #include "templates.hpp"
-#include "../core/object.hpp"
-#include "../core/actor.hpp"  // Mobile is defined in actor.hpp
+#include "core/object.hpp"
+#include "core/mobile.hpp"
 #include <magic_enum/magic_enum.hpp>
 #include <sstream>
 

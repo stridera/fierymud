@@ -1,12 +1,16 @@
 // trigger_manager.cpp - Trigger loading, caching, and dispatch
 
 #include "trigger_manager.hpp"
+#include "triggers/trigger_data.hpp"
+#include "triggers/trigger_types.hpp"
 #include "script_engine.hpp"
 #include "coroutine_scheduler.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/trigger_queries.hpp"
-#include "../core/logging.hpp"
+#include "database/connection_pool.hpp"
+#include "database/trigger_queries.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
 
+#include <sol/sol.hpp>
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 #include <nlohmann/json.hpp>

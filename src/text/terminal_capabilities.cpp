@@ -1,10 +1,5 @@
 #include "terminal_capabilities.hpp"
 #include "string_utils.hpp"
-#include <cstdlib>
-#include <string>
-#include <algorithm>
-#include <locale>
-#include <unordered_map>
 #include <nlohmann/json.hpp>
 
 namespace TerminalCapabilities {
@@ -14,7 +9,7 @@ Capabilities detect_capabilities_from_mtts(uint32_t bitvector, std::string_view 
     caps.detection_method = DetectionMethod::MTTS;
     caps.mtts_bitvector = bitvector;
     caps.terminal_name = terminal_type;
-    
+
     // Parse MTTS bitvector
     caps.supports_color = (bitvector & MTTS::ANSI) != 0;
     caps.supports_unicode = (bitvector & MTTS::UTF8) != 0;
@@ -23,14 +18,14 @@ Capabilities detect_capabilities_from_mtts(uint32_t bitvector, std::string_view 
     caps.supports_mouse = (bitvector & MTTS::MOUSE) != 0;
     caps.supports_screen_reader = (bitvector & MTTS::SCREEN_READER) != 0;
     caps.supports_tls = (bitvector & MTTS::TLS) != 0;
-    
+
     // Basic formatting support assumed with ANSI
     if (caps.supports_color) {
         caps.supports_bold = true;
         caps.supports_underline = true;
         caps.supports_italic = true; // Most modern ANSI terminals support italic
     }
-    
+
     // Set overall support level
     if (caps.supports_true_color && caps.supports_unicode) {
         caps.overall_level = SupportLevel::Full;
@@ -41,7 +36,7 @@ Capabilities detect_capabilities_from_mtts(uint32_t bitvector, std::string_view 
     } else {
         caps.overall_level = SupportLevel::None;
     }
-    
+
     return caps;
 }
 
@@ -49,7 +44,7 @@ Capabilities detect_capabilities_from_gmcp(const nlohmann::json& client_info) {
     Capabilities caps;
     caps.detection_method = DetectionMethod::GMCP;
     caps.supports_gmcp = true;
-    
+
     try {
         // Parse client information from GMCP
         if (client_info.contains("client")) {
@@ -58,7 +53,7 @@ Capabilities detect_capabilities_from_gmcp(const nlohmann::json& client_info) {
         if (client_info.contains("version")) {
             caps.client_version = client_info["version"].get<std::string>();
         }
-        
+
         // Known client capabilities
         std::string client_lower = to_lowercase(caps.client_name);
 
@@ -100,43 +95,43 @@ Capabilities detect_capabilities_from_gmcp(const nlohmann::json& client_info) {
         caps.supports_bold = true;
         caps.overall_level = SupportLevel::Standard;
     }
-    
+
     return caps;
 }
 
 Capabilities detect_capabilities_from_new_environ(const std::unordered_map<std::string, std::string>& env_vars) {
     Capabilities caps;
     caps.detection_method = DetectionMethod::NewEnviron;
-    
+
     // Parse NEW-ENVIRON variables
     auto it = env_vars.find("TERM");
     if (it != env_vars.end()) {
         caps.terminal_name = it->second;
     }
-    
+
     it = env_vars.find("COLORTERM");
     if (it != env_vars.end() && (it->second == "truecolor" || it->second == "24bit")) {
         caps.supports_true_color = true;
         caps.supports_256_color = true;
         caps.supports_color = true;
     }
-    
+
     it = env_vars.find("CLIENT_NAME");
     if (it != env_vars.end()) {
         caps.client_name = it->second;
     }
-    
+
     it = env_vars.find("CLIENT_VERSION");
     if (it != env_vars.end()) {
         caps.client_version = it->second;
     }
-    
+
     it = env_vars.find("CHARSET");
     if (it != env_vars.end()) {
         std::string charset = to_lowercase(it->second);
         caps.supports_unicode = charset.find("utf") != std::string::npos;
     }
-    
+
     // Apply terminal-specific capabilities if we have a terminal name
     if (!caps.terminal_name.empty()) {
         Capabilities term_caps = get_capabilities_for_terminal(caps.terminal_name);
@@ -149,7 +144,7 @@ Capabilities detect_capabilities_from_new_environ(const std::unordered_map<std::
         caps.supports_italic = term_caps.supports_italic;
         caps.supports_underline = term_caps.supports_underline;
     }
-    
+
     // Set overall support level
     if (caps.supports_true_color && caps.supports_unicode) {
         caps.overall_level = SupportLevel::Full;
@@ -160,7 +155,7 @@ Capabilities detect_capabilities_from_new_environ(const std::unordered_map<std::
     } else {
         caps.overall_level = SupportLevel::None;
     }
-    
+
     return caps;
 }
 
@@ -173,12 +168,12 @@ Capabilities detect_capabilities() {
     caps.client_version = "";
     caps.detection_method = DetectionMethod::Environment;
     caps.overall_level = SupportLevel::Basic;
-    
+
     // Assume basic capabilities for standard telnet clients
     caps.supports_color = true;
     caps.supports_bold = true;
     caps.supports_underline = true;
-    
+
     return caps;
 }
 
@@ -232,13 +227,13 @@ Capabilities get_capabilities_for_terminal(std::string_view terminal_name) {
         caps.supports_bold = true;
         caps.overall_level = SupportLevel::Basic;
     }
-    
+
     return caps;
 }
 
 ProgressChars get_progress_chars(const Capabilities& caps) {
     ProgressChars chars;
-    
+
     if (caps.supports_unicode) {
         chars.filled = "█";  // Full block
         chars.empty = "░";   // Light shade
@@ -246,13 +241,13 @@ ProgressChars get_progress_chars(const Capabilities& caps) {
         chars.filled = "#";  // ASCII hash
         chars.empty = "-";   // ASCII dash
     }
-    
+
     return chars;
 }
 
 TableChars get_table_chars(const Capabilities& caps) {
     TableChars chars;
-    
+
     if (caps.supports_unicode) {
         chars.corner = "┌";     // Box drawing
         chars.horizontal = "─";
@@ -264,7 +259,7 @@ TableChars get_table_chars(const Capabilities& caps) {
         chars.vertical = "|";
         chars.cross = "+";
     }
-    
+
     return chars;
 }
 

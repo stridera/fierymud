@@ -1,6 +1,7 @@
 #include "log_subscriber.hpp"
 
 #include "actor.hpp"
+#include "player.hpp"
 
 #include <algorithm>
 #include <fmt/format.h>

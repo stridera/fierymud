@@ -1,19 +1,28 @@
 #pragma once
 
-#include "../core/actor.hpp"
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
+#include "game/character_class.hpp"
+#include "database/generated/db_character.hpp"
 
 #include <chrono>
-#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <tuple>
 #include <vector>
 
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
 // Forward declarations
 class PlayerConnection;
+class Player;
+
+using Race = db::Race;
 
 /**
  * @brief Login states for the connection state machine
@@ -47,23 +56,13 @@ enum class LoginState {
 };
 
 /**
- * @brief Character class options for creation
- */
-enum class CharacterClass { Warrior = 1, Cleric = 2, Sorcerer = 3, Rogue = 4 };
-
-/**
- * @brief Character race options for creation
- */
-enum class CharacterRace { Human = 1, Elf = 2, Dwarf = 3, Halfling = 4 };
-
-/**
  * @brief Character creation data collected during login
  */
 struct CharacterCreationData {
     std::string name;
     std::string password;
     CharacterClass character_class{CharacterClass::Warrior};
-    CharacterRace race{CharacterRace::Human};
+    Race race{Race::Human};
 
     bool is_complete() const;
     std::string get_class_name() const;
@@ -143,7 +142,7 @@ class LoginSystem {
     bool is_valid_name(std::string_view name) const;
     bool is_valid_password(std::string_view password) const;
     std::string normalize_name(std::string_view name) const;
-    
+
     // Player file validation and migration
     struct PlayerFileValidation {
         bool is_valid{false};
@@ -152,7 +151,7 @@ class LoginSystem {
         std::string error_message;
         std::string suggested_fix;
     };
-    
+
     PlayerFileValidation validate_player_file(std::string_view name) const;
 
     // State

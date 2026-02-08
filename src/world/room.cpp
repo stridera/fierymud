@@ -1,13 +1,16 @@
 #include "room.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../text/string_utils.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/mobile.hpp"
+#include "core/logging.hpp"
+#include "core/object.hpp"
+#include "text/string_utils.hpp"
 
 #include <algorithm>
 #include <sstream>
-#include <unordered_map>
+#include <nlohmann/json.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 // ExitInfo Implementation
 
@@ -247,7 +250,7 @@ std::vector<std::shared_ptr<Object>> RoomContents::find_objects_by_keyword(std::
     std::vector<std::shared_ptr<Object>> results;
 
     for (const auto &obj : objects) {
-        if (obj && obj->matches_keyword(keyword)) {
+        if (obj && obj->matches_target_string(keyword)) {
             results.push_back(obj);
         }
     }
@@ -259,7 +262,7 @@ std::vector<std::shared_ptr<Actor>> RoomContents::find_actors_by_keyword(std::st
     std::vector<std::shared_ptr<Actor>> results;
 
     for (const auto &actor : actors) {
-        if (actor && actor->matches_keyword(keyword)) {
+        if (actor && actor->matches_target_string(keyword)) {
             results.push_back(actor);
         }
     }

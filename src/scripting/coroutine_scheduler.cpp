@@ -1,7 +1,8 @@
 // coroutine_scheduler.cpp - Lua coroutine scheduling implementation
 
+#include <sol/sol.hpp>
 #include "coroutine_scheduler.hpp"
-#include "../core/logging.hpp"
+#include "core/logging.hpp"
 
 #include <algorithm>
 

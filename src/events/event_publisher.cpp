@@ -10,6 +10,9 @@
 #include <fmt/format.h>
 #include <hiredis.h>
 #include <spdlog/spdlog.h>
+#include <nlohmann/json.hpp>
+
+#include "events/event_types.hpp"
 
 namespace fierymud::events {
 

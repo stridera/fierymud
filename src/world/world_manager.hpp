@@ -1,29 +1,35 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-#include "room.hpp"
-#include "zone.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
+#include "database/generated/db_room.hpp"
+#include "flags.hpp"
 
 #include <atomic>
 #include <chrono>
 #include <filesystem>
-#include <functional>
 #include <memory>
-#include <mutex>
 #include <shared_mutex>
 #include <string>
 #include <string_view>
-#include <thread>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // Forward declarations
 class Actor;
 class Object;
 class Mobile;
 class Player;
+class Room;
+class Zone;
+
+using Direction = db::Direction;
 
 namespace FieryMUD {
     class ObjectTemplate;

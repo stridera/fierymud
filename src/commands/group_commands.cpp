@@ -1,8 +1,12 @@
 #include "group_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/money.hpp"
-#include "../database/generated/db_enums.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/player.hpp"
+#include "commands/command_system.hpp"
+#include "commands/command_context.hpp"
+#include "world/room.hpp"
 
 #include <algorithm>
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "triggers/trigger_data.hpp"
-#include "core/actor.hpp"
 #include "core/object.hpp"
 #include "world/room.hpp"
 
@@ -10,6 +9,8 @@
 #include <string>
 #include <unordered_map>
 #include <variant>
+
+class Actor;
 
 namespace FieryMUD {
 

@@ -1,6 +1,11 @@
 #pragma once
 
-#include "command_system.hpp"
+#include "core/result.hpp"
+#include <memory>
+
+class Actor;
+class CommandContext;
+enum class CommandResult;
 
 namespace MovementCommands {
 

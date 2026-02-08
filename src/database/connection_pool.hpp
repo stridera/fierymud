@@ -2,16 +2,15 @@
 
 #pragma once
 
-#include "database_config.hpp"
 #include "core/result.hpp"
 #include <pqxx/pqxx>
 #include <memory>
 #include <queue>
 #include <mutex>
-#include <shared_mutex>
 #include <condition_variable>
-#include <functional>
 #include <vector>
+
+class DatabaseConfig;
 
 /**
  * Thread-safe connection pool for PostgreSQL.

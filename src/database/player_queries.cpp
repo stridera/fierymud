@@ -1,4 +1,5 @@
 #include "database/player_queries.hpp"
+#include "core/player.hpp"
 #include "core/logging.hpp"
 #include <fmt/format.h>
 

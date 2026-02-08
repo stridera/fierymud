@@ -1,9 +1,8 @@
 #include "tls_context.hpp"
-#include "../server/mud_server.hpp"
-#include "../core/logging.hpp"
+#include "server/mud_server.hpp"
+#include "core/logging.hpp"
 #include <array>
 #include <filesystem>
-#include <fstream>
 
 // TLSContextManager implementation
 
@@ -14,14 +13,14 @@ TLSContextManager::TLSContextManager(const ServerConfig& config)
 
 Result<void> TLSContextManager::initialize() {
     Log::info("Initializing TLS context...");
-    
+
     try {
         // Configure basic SSL context options
         auto security_result = configure_security_options();
         if (!security_result) {
             return std::unexpected(security_result.error());
         }
-        
+
         // Load certificates
         auto cert_result = load_certificates();
         if (!cert_result) {
@@ -37,20 +36,20 @@ Result<void> TLSContextManager::initialize() {
                 return std::unexpected(cert_result.error());
             }
         }
-        
+
         // Load DH parameters if available
         auto dh_result = load_dh_params();
         if (!dh_result) {
             Log::warn("Failed to load DH parameters: {}", dh_result.error().message);
             Log::info("Continuing without custom DH parameters (will use defaults)");
         }
-        
+
         initialized_ = true;
         Log::info("TLS context initialized successfully");
         return Success();
-        
+
     } catch (const std::exception& e) {
-        return std::unexpected(Error{ErrorCode::NetworkError, 
+        return std::unexpected(Error{ErrorCode::NetworkError,
                                    fmt::format("TLS context initialization failed: {}", e.what())});
     }
 }
@@ -61,23 +60,23 @@ Result<void> TLSContextManager::load_certificates() {
             return std::unexpected(Error{ErrorCode::FileNotFound,
                                        fmt::format("Certificate file not found: {}", config_.tls_certificate_file)});
         }
-        
+
         if (!file_exists(config_.tls_private_key_file)) {
             return std::unexpected(Error{ErrorCode::FileNotFound,
                                        fmt::format("Private key file not found: {}", config_.tls_private_key_file)});
         }
-        
+
         // Load certificate chain
         ssl_context_.use_certificate_chain_file(config_.tls_certificate_file);
         Log::debug("Loaded certificate chain from: {}", config_.tls_certificate_file);
-        
+
         // Load private key
         ssl_context_.use_private_key_file(config_.tls_private_key_file, asio::ssl::context::pem);
         Log::debug("Loaded private key from: {}", config_.tls_private_key_file);
-        
+
         has_valid_certs_ = true;
         return Success();
-        
+
     } catch (const std::exception& e) {
         return std::unexpected(Error{ErrorCode::FileAccessError,
                                    fmt::format("Failed to load certificates: {}", e.what())});
@@ -90,11 +89,11 @@ Result<void> TLSContextManager::load_dh_params() {
             return std::unexpected(Error{ErrorCode::FileNotFound,
                                        fmt::format("DH params file not found: {}", config_.tls_dh_params_file)});
         }
-        
+
         ssl_context_.use_tmp_dh_file(config_.tls_dh_params_file);
         Log::debug("Loaded DH parameters from: {}", config_.tls_dh_params_file);
         return Success();
-        
+
     } catch (const std::exception& e) {
         return std::unexpected(Error{ErrorCode::FileAccessError,
                                    fmt::format("Failed to load DH parameters: {}", e.what())});
@@ -112,18 +111,18 @@ Result<void> TLSContextManager::configure_security_options() {
             asio::ssl::context::no_tlsv1_1 |
             asio::ssl::context::single_dh_use
         );
-        
+
         // Set up protocols and cipher list
         auto protocol_result = setup_protocols();
         if (!protocol_result) {
             return std::unexpected(protocol_result.error());
         }
-        
+
         auto cipher_result = setup_cipher_list();
         if (!cipher_result) {
             return std::unexpected(cipher_result.error());
         }
-        
+
         // Set up certificate verification if required
         if (config_.tls_require_client_cert) {
             ssl_context_.set_verify_mode(asio::ssl::verify_peer | asio::ssl::verify_fail_if_no_peer_cert);
@@ -135,9 +134,9 @@ Result<void> TLSContextManager::configure_security_options() {
             ssl_context_.set_verify_mode(asio::ssl::verify_none);
             Log::debug("TLS client certificate verification disabled");
         }
-        
+
         return Success();
-        
+
     } catch (const std::exception& e) {
         return std::unexpected(Error{ErrorCode::NetworkError,
                                    fmt::format("Failed to configure TLS security options: {}", e.what())});
@@ -154,21 +153,21 @@ Result<void> TLSContextManager::setup_cipher_list() {
     try {
         // Set secure cipher list (modern, secure ciphers only)
         SSL_CTX* ctx = ssl_context_.native_handle();
-        const char* cipher_list = 
+        const char* cipher_list =
             "ECDHE-RSA-AES256-GCM-SHA384:"
             "ECDHE-RSA-AES128-GCM-SHA256:"
             "ECDHE-RSA-AES256-SHA384:"
             "ECDHE-RSA-AES128-SHA256:"
             "DHE-RSA-AES256-GCM-SHA384:"
             "DHE-RSA-AES128-GCM-SHA256";
-            
+
         if (SSL_CTX_set_cipher_list(ctx, cipher_list) != 1) {
             return std::unexpected(Error{ErrorCode::NetworkError, "Failed to set TLS cipher list"});
         }
-        
+
         Log::debug("TLS cipher list configured with secure ciphers");
         return Success();
-        
+
     } catch (const std::exception& e) {
         return std::unexpected(Error{ErrorCode::NetworkError,
                                    fmt::format("Failed to setup cipher list: {}", e.what())});
@@ -182,14 +181,14 @@ bool TLSContextManager::verify_certificate(bool preverified, asio::ssl::verify_c
     X509_NAME_oneline(X509_get_subject_name(cert), subject_name.data(), subject_name.size());
 
     Log::debug("TLS certificate verification: subject={}, preverified={}", subject_name.data(), preverified);
-    
+
     // For now, accept the certificate if it passed OpenSSL's built-in verification
     return preverified;
 }
 
 Result<void> TLSContextManager::create_self_signed_certificate() {
     Log::info("Creating self-signed certificate for development...");
-    
+
     // Create certs directory if it doesn't exist
     std::filesystem::path cert_dir = std::filesystem::path(config_.tls_certificate_file).parent_path();
     try {
@@ -198,7 +197,7 @@ Result<void> TLSContextManager::create_self_signed_certificate() {
         return std::unexpected(Error{ErrorCode::FileAccessError,
                                    fmt::format("Failed to create certificate directory: {}", e.what())});
     }
-    
+
     // For now, just log that we would create a self-signed certificate
     // Full implementation would use OpenSSL to generate a certificate
     Log::warn("Self-signed certificate generation not yet implemented");
@@ -206,7 +205,7 @@ Result<void> TLSContextManager::create_self_signed_certificate() {
     Log::info("  Certificate: {}", config_.tls_certificate_file);
     Log::info("  Private key: {}", config_.tls_private_key_file);
     Log::info("  DH params:   {}", config_.tls_dh_params_file);
-    
+
     return std::unexpected(Error{ErrorCode::NotImplemented, "Self-signed certificate generation not implemented"});
 }
 
@@ -235,14 +234,14 @@ void TLSSocket::async_handshake(std::function<void(const asio::error_code&)> han
         });
         return;
     }
-    
+
     if (!tls_stream_) {
         asio::post(tcp_socket_.get_executor(), [handler]() {
             handler(asio::error::invalid_argument);
         });
         return;
     }
-    
+
     tls_stream_->async_handshake(asio::ssl::stream_base::server, [this, handler](const asio::error_code& error) {
         if (!error) {
             handshake_complete_ = true;

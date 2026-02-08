@@ -1,7 +1,7 @@
 #include "composer_system.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
+#include "core/player.hpp"
+#include "core/logging.hpp"
 
 #include <fmt/format.h>
 

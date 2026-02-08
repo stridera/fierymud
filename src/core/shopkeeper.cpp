@@ -1,9 +1,11 @@
 #include "shopkeeper.hpp"
 #include "actor.hpp"
+#include "player.hpp"
 #include "money.hpp"
 #include "object.hpp"
 #include "logging.hpp"
-#include "../world/world_manager.hpp"
+#include "world/world_manager.hpp"
+#include "world/room.hpp"
 #include <algorithm>
 #include <fmt/format.h>
 
@@ -451,19 +453,19 @@ ShopResult ShopManager::sell_item(std::shared_ptr<Actor> seller, EntityId shopke
 
 std::vector<EntityId> ShopManager::find_shops_in_room(EntityId room_id) const {
     std::vector<EntityId> shops_in_room;
-    
+
     // Get the room from WorldManager to check its contents
     auto room = WorldManager::instance().get_room(room_id);
     if (!room) {
         return shops_in_room; // Room doesn't exist
     }
-    
+
     // Check each actor in the room to see if they're a registered shopkeeper
     for (const auto& actor : room->contents().actors) {
         if (actor && shops_.find(actor->id()) != shops_.end()) {
             shops_in_room.push_back(actor->id());
         }
     }
-    
+
     return shops_in_room;
 }

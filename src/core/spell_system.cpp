@@ -1,14 +1,15 @@
 #include "spell_system.hpp"
 #include "actor.hpp"
+#include "player.hpp"
 #include "class_config.hpp"
-#include "../world/room.hpp"
+#include "world/room.hpp"
 #include "commands/command_system.hpp"
 #include "core/logging.hpp"
 #include "text/string_utils.hpp"
+
 #include <algorithm>
-#include <chrono>
-#include <sstream>
 #include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
 
 using fierymud::ClassConfigRegistry;
 using fierymud::ClassSpellConfig;
@@ -74,7 +75,7 @@ Result<void> Spell::cast(Actor& caster, const CommandContext& ctx) const {
             }
             break;
         }
-        
+
         case SpellType::Offensive: {
             // For now, just show message - full combat integration would be more complex
             int damage = circle * 8 + 2; // Simple damage formula
@@ -82,20 +83,20 @@ Result<void> Spell::cast(Actor& caster, const CommandContext& ctx) const {
             ctx.send_to_room(fmt::format("{}'s spell crackles with destructive energy!", caster.display_name()), true);
             break;
         }
-        
+
         case SpellType::Utility: {
             ctx.send("Your utility spell takes effect!");
             ctx.send_to_room(fmt::format("{}'s spell shimmers with magical energy!", caster.display_name()), true);
             break;
         }
-        
+
         default: {
             ctx.send("Your spell takes effect!");
             ctx.send_to_room(fmt::format("{}'s spell radiates magical energy!", caster.display_name()), true);
             break;
         }
     }
-    
+
     return Success();
 }
 
@@ -117,27 +118,27 @@ Result<Spell> Spell::from_json(const nlohmann::json& json) {
         spell.name = json.at("name").get<std::string>();
         spell.description = json.at("description").get<std::string>();
         spell.circle = json.at("circle").get<int>();
-        
+
         if (json.contains("type")) {
             if (auto type_opt = magic_enum::enum_cast<SpellType>(json["type"].get<std::string>())) {
                 spell.type = type_opt.value();
             }
         }
-        
+
         if (json.contains("cast_time_seconds")) {
             spell.cast_time_seconds = json["cast_time_seconds"].get<int>();
         }
-        
+
         if (json.contains("range_meters")) {
             spell.range_meters = json["range_meters"].get<int>();
         }
-        
+
         if (json.contains("duration_seconds")) {
             spell.duration_seconds = json["duration_seconds"].get<int>();
         }
-        
+
         return spell;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Spell JSON parsing error", e.what()));
     }
@@ -471,31 +472,31 @@ const Spell* SpellRegistry::find_spell(std::string_view name) const {
 
 std::vector<const Spell*> SpellRegistry::get_spells_by_circle(int circle) const {
     std::vector<const Spell*> result;
-    
+
     for (const auto& [name, spell] : spells_) {
         if (spell.circle == circle) {
             result.push_back(&spell);
         }
     }
-    
+
     return result;
 }
 
 std::vector<const Spell*> SpellRegistry::get_spells_by_type(SpellType type) const {
     std::vector<const Spell*> result;
-    
+
     for (const auto& [name, spell] : spells_) {
         if (spell.type == type) {
             result.push_back(&spell);
         }
     }
-    
+
     return result;
 }
 
 void SpellRegistry::initialize_default_spells() {
     spells_.clear();
-    
+
     // Circle 1 spells
     register_spell(Spell{
         .name = "cure light wounds",
@@ -506,7 +507,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 0,
         .duration_seconds = 0
     });
-    
+
     register_spell(Spell{
         .name = "magic missile",
         .description = "Launches unerring projectiles of magical force",
@@ -516,7 +517,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 10,
         .duration_seconds = 0
     });
-    
+
     register_spell(Spell{
         .name = "detect magic",
         .description = "Reveals magical auras",
@@ -526,7 +527,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 0,
         .duration_seconds = 300
     });
-    
+
     // Circle 2 spells
     register_spell(Spell{
         .name = "cure moderate wounds",
@@ -537,7 +538,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 0,
         .duration_seconds = 0
     });
-    
+
     register_spell(Spell{
         .name = "burning hands",
         .description = "Creates a cone of fire",
@@ -547,7 +548,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 3,
         .duration_seconds = 0
     });
-    
+
     // Circle 3 spells
     register_spell(Spell{
         .name = "fireball",
@@ -558,7 +559,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 15,
         .duration_seconds = 0
     });
-    
+
     register_spell(Spell{
         .name = "cure serious wounds",
         .description = "Heals serious injuries",
@@ -568,7 +569,7 @@ void SpellRegistry::initialize_default_spells() {
         .range_meters = 0,
         .duration_seconds = 0
     });
-    
+
     Log::info("Initialized {} default spells", spells_.size());
 }
 

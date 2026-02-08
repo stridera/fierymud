@@ -1,20 +1,19 @@
 #include "database/world_queries.hpp"
 #include "database/generated/db_tables.hpp"
-#include "database/generated/db_enums.hpp"
+#include "database/generated/db_object.hpp"
 #include "database/db_parsing_utils.hpp"
+#include "core/mobile.hpp"
 #include "core/logging.hpp"
-#include "core/object.hpp"
 #include "text/string_utils.hpp"
 
 using DbParsingUtils::parse_pg_array;
 #include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
 #include <fmt/format.h>
 #include <fmt/chrono.h>
 #include <sstream>
 #include <iomanip>
-#include <regex>
 #include <random>
-#include <functional>
 #include <algorithm>
 #include <utility>
 #include <crypt.h>

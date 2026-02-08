@@ -3,6 +3,7 @@
  * @brief Implementation of the Money class
  */
 
+#include <nlohmann/json.hpp>
 #include "money.hpp"
 #include "logging.hpp"
 

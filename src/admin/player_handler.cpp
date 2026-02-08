@@ -1,7 +1,7 @@
 #include "player_handler.hpp"
-#include "../server/mud_server.hpp"
-#include "../core/actor.hpp"
-#include "../world/room.hpp"
+#include "server/mud_server.hpp"
+#include "core/player.hpp"
+#include "world/room.hpp"
 #include <fmt/format.h>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>

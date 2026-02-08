@@ -1,11 +1,11 @@
 #include "entity.hpp"
-#include "../core/logging.hpp"
-#include "../text/string_utils.hpp"
+#include "core/logging.hpp"
+#include "text/string_utils.hpp"
 
 #include <algorithm>
 #include <cctype>
-#include <regex>
 #include <sstream>
+#include <nlohmann/json.hpp>
 
 namespace {
     // Entity validation constants
@@ -14,11 +14,9 @@ namespace {
 
 // Entity Implementation
 
-Entity::Entity(EntityId id, std::string_view name) 
+Entity::Entity(EntityId id, std::string_view name)
     : id_(id), name_(name) {
-    if (!name.empty()) {
-        ensure_name_in_keywords();
-    }
+    ensure_name_in_keywords();
 }
 
 Entity::Entity(EntityId id, std::string_view name,
@@ -26,85 +24,7 @@ Entity::Entity(EntityId id, std::string_view name,
                std::string_view ground,
                std::string_view short_desc)
     : id_(id), name_(name), ground_(ground), short_(short_desc) {
-
-    keywords_.reserve(keywords.size() + 1);
-    for (const auto& keyword : keywords) {
-        if (EntityUtils::is_valid_keyword(keyword)) {
-            std::string normalized = EntityUtils::normalize_keyword(keyword);
-            if (keyword_set_.find(normalized) == keyword_set_.end()) {
-                keywords_.push_back(normalized);
-                keyword_set_.insert(normalized);
-            }
-        }
-    }
-
-    ensure_name_in_keywords();
-}
-
-bool Entity::matches_keyword(std::string_view keyword) const {
-    std::string normalized = EntityUtils::normalize_keyword(keyword);
-    // O(1) lookup using unordered_set instead of O(n) linear search
-    return keyword_set_.find(normalized) != keyword_set_.end();
-}
-
-bool Entity::matches_keyword_prefix(std::string_view prefix) const {
-    if (prefix.empty()) {
-        return false;
-    }
-
-    std::string normalized_prefix = EntityUtils::normalize_keyword(prefix);
-
-    // First try exact match (O(1))
-    if (keyword_set_.find(normalized_prefix) != keyword_set_.end()) {
-        return true;
-    }
-
-    // Then try prefix match (O(n) but keywords are usually few)
-    for (const auto& keyword : keywords_) {
-        if (keyword.starts_with(normalized_prefix)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-bool Entity::matches_target_string(std::string_view target) const {
-    if (target.empty()) {
-        return false;
-    }
-
-    // Check for compound keyword (contains hyphen)
-    size_t hyphen_pos = target.find('-');
-    if (hyphen_pos == std::string_view::npos) {
-        // No hyphen - use regular prefix matching
-        return matches_keyword_prefix(target);
-    }
-
-    // Split on hyphens and require ALL parts to match
-    size_t start = 0;
-    while (start < target.size()) {
-        size_t end = target.find('-', start);
-        if (end == std::string_view::npos) {
-            end = target.size();
-        }
-
-        std::string_view part = target.substr(start, end - start);
-        if (!part.empty() && !matches_keyword_prefix(part)) {
-            return false;  // One part didn't match, fail
-        }
-
-        start = end + 1;
-    }
-
-    return true;  // All parts matched
-}
-
-bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
-    return std::any_of(keywords.begin(), keywords.end(),
-        [this](const std::string& kw) {
-            return matches_keyword(kw);
-        });
+    set_keywords(keywords);
 }
 
 void Entity::set_keywords(std::span<const std::string> new_keywords) {
@@ -113,18 +33,21 @@ void Entity::set_keywords(std::span<const std::string> new_keywords) {
     keywords_.reserve(new_keywords.size() + 1);
 
     for (const auto& keyword : new_keywords) {
-        if (EntityUtils::is_valid_keyword(keyword)) {
-            std::string normalized = EntityUtils::normalize_keyword(keyword);
-
-            // O(1) duplicate check using set
-            if (keyword_set_.find(normalized) == keyword_set_.end()) {
-                keywords_.push_back(normalized);
-                keyword_set_.insert(std::move(normalized));
-            }
-        }
+        add_keyword(keyword);
     }
 
     ensure_name_in_keywords();
+}
+
+void Entity::set_temporary_keywords(std::span<const std::string> temp_keywords) {
+    auto copied_keywords = keywords_;
+    set_keywords(copied_keywords);
+
+    for (const auto& keyword : temp_keywords) {
+        std::string normalized = EntityUtils::normalize_keyword(keyword);
+        // Don't add to keywords_ because it's only ever used for lookup
+        keyword_set_.insert(normalized);
+    }
 }
 
 void Entity::add_keyword(std::string_view keyword) {
@@ -134,10 +57,10 @@ void Entity::add_keyword(std::string_view keyword) {
 
     std::string normalized = EntityUtils::normalize_keyword(keyword);
 
-    // O(1) duplicate check using set
-    if (keyword_set_.find(normalized) == keyword_set_.end()) {
-        keywords_.push_back(normalized);
-        keyword_set_.insert(std::move(normalized));
+    // O(log n) duplicate check using set
+    auto [_, inserted] = keyword_set_.insert(normalized);
+    if (inserted) {
+        keywords_.push_back(std::move(normalized));
     }
 }
 
@@ -159,17 +82,17 @@ void Entity::remove_keyword(std::string_view keyword) {
 
 nlohmann::json Entity::to_json() const {
     nlohmann::json json;
-    
+
     json["type"] = type_name();
     json["id"] = id_.value();
     json["name"] = name_;
     json["keywords"] = keywords_;
     json["ground"] = ground_;
-    
+
     if (!short_.empty()) {
         json["short"] = short_;
     }
-    
+
     return json;
 }
 
@@ -179,7 +102,7 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         if (!json.contains("id")) {
             return std::unexpected(Errors::ParseError("Entity JSON missing 'id' field"));
         }
-        
+
         // Handle name field mapping: name -> short -> keywords -> name_list (legacy)
         std::string name;
         if (json.contains("name")) {
@@ -204,7 +127,7 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         } else {
             return std::unexpected(Errors::ParseError("Entity JSON missing 'name', 'short', 'keywords', or 'name_list' field"));
         }
-        
+
         // Handle ID conversion
         EntityId id;
         if (json["id"].is_string()) {
@@ -214,9 +137,9 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         } else {
             id = EntityId{json["id"].get<std::uint64_t>()};
         }
-        
+
         auto entity = std::unique_ptr<Entity>(new Entity(id, name));
-        
+
         // Parse optional fields with field mapping (new and legacy field names)
         if (json.contains("ground")) {
             entity->set_ground(json["ground"].get<std::string>());
@@ -225,7 +148,7 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         } else if (json.contains("long_description")) {
             entity->set_ground(json["long_description"].get<std::string>());
         }
-        
+
         if (json.contains("short")) {
             entity->set_short_desc(json["short"].get<std::string>());
         } else if (json.contains("short_desc")) {
@@ -233,7 +156,7 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
         } else if (json.contains("short_description")) {
             entity->set_short_desc(json["short_description"].get<std::string>());
         }
-        
+
         // Parse keywords from array or space-separated string
         // Priority: keywords (array) -> keywords (string) -> name_list (legacy)
         std::vector<std::string> keywords;
@@ -261,15 +184,15 @@ Result<std::unique_ptr<Entity>> Entity::from_json(const nlohmann::json& json) {
                 keywords.push_back(keyword);
             }
         }
-        
+
         if (!keywords.empty()) {
             entity->set_keywords(keywords);
         }
-        
+
         TRY(entity->validate());
-        
+
         return entity;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Entity JSON parsing", e.what()));
     }
@@ -303,15 +226,15 @@ Result<void> Entity::validate() const {
     if (!id_.is_valid()) {
         return std::unexpected(Errors::InvalidState("Entity has invalid ID"));
     }
-    
+
     if (name_.empty()) {
         return std::unexpected(Errors::InvalidState("Entity name cannot be empty"));
     }
-    
+
     if (keywords_.empty()) {
         return std::unexpected(Errors::InvalidState("Entity must have at least one keyword"));
     }
-    
+
     return Success();
 }
 
@@ -328,18 +251,18 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_from_json(const nlohmann::
         if (!json.contains("type")) {
             return std::unexpected(Errors::ParseError("JSON missing 'type' field"));
         }
-        
+
         std::string type = json["type"].get<std::string>();
-        
+
         auto it = creators_.find(type);
         if (it == creators_.end()) {
             // Fallback to base Entity if specific type not registered
             Log::debug("Unknown entity type '{}', using base Entity", type);
             return create_base_entity_from_json(json);
         }
-        
+
         return it->second(json);
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("JSON parsing error", e.what()));
     }
@@ -348,11 +271,11 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_from_json(const nlohmann::
 std::vector<std::string> EntityFactory::get_registered_types() {
     std::vector<std::string> types;
     types.reserve(creators_.size());
-    
+
     for (const auto& [type_name, creator] : creators_) {
         types.push_back(type_name);
     }
-    
+
     std::sort(types.begin(), types.end());
     return types;
 }
@@ -363,9 +286,9 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
         if (!json.contains("id")) {
             return std::unexpected(Errors::ParseError("Entity JSON missing 'id' field"));
         }
-        
+
         EntityId id{json["id"].get<std::uint64_t>()};
-        
+
         // Handle name field mapping: name -> short -> keywords fallback
         std::string name;
         if (json.contains("name")) {
@@ -383,16 +306,16 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
         } else {
             return std::unexpected(Errors::ParseError("Entity JSON missing 'name', 'short', or 'keywords' field"));
         }
-        
+
         auto entity = std::unique_ptr<Entity>(new Entity(id, name));
-        
+
         // Parse optional fields (new and legacy field names)
         if (json.contains("ground")) {
             entity->set_ground(json["ground"].get<std::string>());
         } else if (json.contains("description")) {
             entity->set_ground(json["description"].get<std::string>());
         }
-        
+
         if (json.contains("short")) {
             entity->set_short_desc(json["short"].get<std::string>());
         } else if (json.contains("short_desc")) {
@@ -400,7 +323,7 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
         } else if (json.contains("short_description")) {
             entity->set_short_desc(json["short_description"].get<std::string>());
         }
-        
+
         if (json.contains("keywords") && json["keywords"].is_array()) {
             std::vector<std::string> keywords;
             for (const auto& keyword : json["keywords"]) {
@@ -412,11 +335,11 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
                 entity->set_keywords(keywords);
             }
         }
-        
+
         TRY(entity->validate());
-        
+
         return entity;
-        
+
     } catch (const nlohmann::json::exception& e) {
         return std::unexpected(Errors::ParseError("Entity JSON parsing", e.what()));
     }
@@ -426,7 +349,7 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
 
 namespace EntityUtils {
     // Common articles that should not be keywords
-    static const std::unordered_set<std::string> ARTICLES = {"a", "an", "the", "some"};
+    static const std::set<std::string> ARTICLES = {"a", "an", "the", "some"};
 
     bool is_valid_keyword(std::string_view keyword) {
         if (keyword.empty() || keyword.length() > MAX_KEYWORD_LENGTH) {
@@ -452,36 +375,38 @@ namespace EntityUtils {
 
         return true;
     }
-    
+
     std::string normalize_keyword(std::string_view keyword) {
         std::string normalized;
         normalized.reserve(keyword.length());
-        
-        // Convert to lowercase and trim spaces
+
+        // Convert to lowercase and simplify separators
         bool in_word = false;
         for (char c : keyword) {
             if (std::isspace(c)) {
-                if (in_word) {
-                    normalized.push_back(' ');
-                    in_word = false;
-                }
+                c = ' ';
             } else {
-                normalized.push_back(std::tolower(c));
-                in_word = true;
+                c = std::tolower(c);
             }
+            bool is_space = (c == ' ' || c == '-');
+            if (is_space && !in_word) {
+                continue;
+            }
+            normalized.push_back(c);
+            in_word = !is_space;
         }
-        
+
         // Remove trailing space if any
         if (!normalized.empty() && normalized.back() == ' ') {
             normalized.pop_back();
         }
-        
+
         return normalized;
     }
-    
+
     std::vector<std::string> parse_keyword_list(std::string_view keyword_string) {
         std::vector<std::string> keywords;
-        
+
         // Split on whitespace and filter valid keywords
         std::string current;
         for (char c : keyword_string) {
@@ -496,19 +421,19 @@ namespace EntityUtils {
                 current.push_back(c);
             }
         }
-        
+
         // Handle last keyword
         if (!current.empty() && EntityUtils::is_valid_keyword(current)) {
             keywords.push_back(EntityUtils::normalize_keyword(current));
         }
-        
+
         // Remove duplicates
         std::sort(keywords.begin(), keywords.end());
         keywords.erase(std::unique(keywords.begin(), keywords.end()), keywords.end());
-        
+
         return keywords;
     }
-    
+
     std::string create_keyword_string(std::span<const std::string> keywords) {
         if (keywords.empty()) {
             return "";
@@ -527,48 +452,79 @@ namespace EntityUtils {
 
         return result;
     }
-    
+
     std::string_view get_article(std::string_view name, bool definite) {
         if (definite) {
             return "the";
         }
-        
+
         if (name.empty()) {
             return "a";
         }
-        
+
         char first = std::tolower(name[0]);
         if (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u') {
             return "an";
         }
-        
+
         return "a";
     }
-    
-    std::string format_entity_name(std::string_view name, std::string_view short_desc, 
-                             bool with_article, bool definite_article) {
-    std::string display_name = short_desc.empty() ? std::string(name) : std::string(short_desc);
-    
-    if (with_article) {
-        // Check if display_name already starts with an article
-        std::string lower_display = to_lowercase(display_name);
 
-        // Common articles and demonstratives
-        if (lower_display.starts_with("a ") || 
-            lower_display.starts_with("an ") || 
-            lower_display.starts_with("the ") ||
-            lower_display.starts_with("some ") ||
-            lower_display.starts_with("this ") ||
-            lower_display.starts_with("that ")) {
-            return display_name; // Already has article, don't add another
+    std::string format_entity_name(std::string_view name, std::string_view short_desc,
+                                   bool with_article, bool definite_article) {
+        std::string display_name = short_desc.empty() ? std::string(name) : std::string(short_desc);
+
+        if (with_article) {
+            // Check if display_name already starts with an article
+            std::string lower_display = to_lowercase(display_name);
+
+            // Common articles and demonstratives
+            if (lower_display.starts_with("a ") ||
+                lower_display.starts_with("an ") ||
+                lower_display.starts_with("the ") ||
+                lower_display.starts_with("some ") ||
+                lower_display.starts_with("this ") ||
+                lower_display.starts_with("that ")) {
+                return display_name; // Already has article, don't add another
+            }
+
+            std::string_view article = EntityUtils::get_article(display_name, definite_article);
+            return fmt::format("{} {}", article, display_name);
         }
-        
-        std::string_view article = EntityUtils::get_article(display_name, definite_article);
-        return fmt::format("{} {}", article, display_name);
+
+        return display_name;
     }
-    
-    return display_name;
-}
+
+    bool matches_target_string(const std::set<std::string>& keywords, std::string_view target) {
+        if (target.empty()) {
+            return false;
+        }
+
+        auto words = EntityUtils::normalize_keyword(target) | std::views::split('-');
+
+        for (const auto& split : words) {
+            std::string word{std::string_view(split)};
+            auto iter = keywords.lower_bound(word);
+            if (iter == keywords.end()) {
+                return false;
+            }
+            if (!iter->starts_with(word)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    std::set<std::string> parse_target_string(std::string_view target) {
+        auto words = EntityUtils::normalize_keyword(target) | std::views::split('-');
+
+        std::set<std::string> parsed;
+        for (const auto& split : words) {
+            parsed.emplace(split.begin(), split.end());
+        }
+        return parsed;
+    }
 }
 
 // JSON Support Functions

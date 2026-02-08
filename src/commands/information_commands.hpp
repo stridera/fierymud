@@ -1,12 +1,7 @@
 #pragma once
 
-#include "command_system.hpp"
-
 #include <memory>
-#include <string>
-
-class Actor;
-class Room;
+#include "command_fwd.hpp"
 
 namespace InformationCommands {
 

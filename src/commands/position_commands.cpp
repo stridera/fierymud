@@ -2,9 +2,10 @@
 
 #include "position_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../world/room.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "world/room.hpp"
+#include "commands/command_system.hpp"
 
 #include <fmt/format.h>
 

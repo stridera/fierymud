@@ -1,3 +1,4 @@
+#include <sol/sol.hpp>
 #include "script_engine.hpp"
 #include "coroutine_scheduler.hpp"
 #include "trigger_manager.hpp"
@@ -15,10 +16,12 @@
 #include "bindings/lua_timers.hpp"
 #include "bindings/lua_vars.hpp"
 #include "bindings/lua_templates.hpp"
-#include "../world/time_system.hpp"
+#include "world/time_system.hpp"
 
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
+#include <sol/error.hpp>
+#include <sol/thread.hpp>
 
 #include <random>
 
@@ -512,6 +515,17 @@ void ScriptEngine::install_timeout_hook(lua_State* L) {
 void ScriptEngine::remove_timeout_hook(lua_State* L) {
     // Remove the debug hook
     lua_sethook(L, nullptr, 0, 0);
+}
+
+ScriptResult<sol::protected_function_result> ScriptEngine::wrap_result(sol::protected_function_result&& result) {
+    if (!result.valid()) {
+        sol::error err = result;
+        last_error_ = err.what();
+        spdlog::error("Lua execution error: {}", last_error_);
+        return std::unexpected(ScriptError::ExecutionFailed);
+    }
+
+    return result;
 }
 
 } // namespace FieryMUD

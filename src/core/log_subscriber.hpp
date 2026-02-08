@@ -2,7 +2,6 @@
 
 #include "logging.hpp"
 
-#include <functional>
 #include <memory>
 #include <mutex>
 #include <set>

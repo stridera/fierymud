@@ -1,6 +1,6 @@
 #pragma once
 
-// Forward declarations  
+// Forward declarations
 class CharData;
 
 // Standard library includes for modern C++23 features
@@ -10,7 +10,6 @@ class CharData;
 #include <filesystem>
 #include <fmt/format.h>
 #include <fstream>
-#include <functional>
 #include <magic_enum/magic_enum.hpp>
 #include <map>
 #include <memory>
@@ -23,9 +22,15 @@ class CharData;
 #include <unordered_set>
 #include <vector>
 
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
 // Game-specific includes from legacy
 #include "../../legacy/src/chars.hpp"
-#include "../../legacy/src/comm.hpp" 
+#include "../../legacy/src/comm.hpp"
 #include "../../legacy/src/conf.hpp"
 #include "../../legacy/src/db.hpp"
 #include "../../legacy/src/screen.hpp"
@@ -43,14 +48,14 @@ enum class ClanPermission : std::uint32_t {
     CLAN_WHO = 2,            // View clan member list
     VIEW_MOTD = 3,           // View clan message of the day
     VIEW_RANKS = 4,          // View clan rank structure
-    
+
     // Invitation and membership management (11-20)
     INVITE_MEMBERS = 11,     // Invite new members
     KICK_MEMBERS = 12,       // Remove members from clan
     PROMOTE_MEMBERS = 13,    // Promote members to higher ranks
     DEMOTE_MEMBERS = 14,     // Demote members to lower ranks
     MANAGE_ALTS = 15,        // Add/remove alt characters
-    
+
     // Clan administration (21-30)
     MANAGE_RANKS = 21,       // Create/modify/delete ranks
     SET_MOTD = 22,           // Set clan message of the day
@@ -58,23 +63,23 @@ enum class ClanPermission : std::uint32_t {
     SET_DUES = 24,           // Set clan dues amounts
     SET_APP_FEES = 25,       // Set application fees
     SET_APP_LEVEL = 26,      // Set minimum application level
-    
+
     // Financial management (31-40)
     VIEW_FINANCES = 31,      // View clan treasury and financial info
     DEPOSIT_FUNDS = 32,      // Add money to clan treasury
     WITHDRAW_FUNDS = 33,     // Remove money from clan treasury
     MANAGE_BANK = 34,        // Set bank room and access rules
-    
+
     // Storage and equipment (41-50)
     VIEW_STORAGE = 41,       // View clan storage contents
     STORE_ITEMS = 42,        // Add items to clan storage
     RETRIEVE_ITEMS = 43,     // Remove items from clan storage
     MANAGE_STORAGE = 44,     // Set storage room and access rules
-    
+
     // Special privileges (51-60)
     LEADER_OVERRIDE = 51,    // Can use any clan command regardless of other permissions
     CLAN_ADMIN = 52,         // Administrative powers (gods only)
-    
+
     // Marker for bitset size
     MAX_PERMISSIONS,
 };
@@ -109,11 +114,11 @@ struct PermissionError {
     std::string reason;
     ClanPermission permission = ClanPermission::NONE;
     bool has_permission_context = false;
-    
+
     PermissionError(std::string_view msg) : reason(msg) {}
-    PermissionError(std::string_view msg, ClanPermission perm) 
+    PermissionError(std::string_view msg, ClanPermission perm)
         : reason(msg), permission(perm), has_permission_context(true) {}
-    PermissionError(std::string_view msg, ClanPermission perm, bool context) 
+    PermissionError(std::string_view msg, ClanPermission perm, bool context)
         : reason(msg), permission(perm), has_permission_context(context) {}
 };
 
@@ -121,7 +126,7 @@ struct ValidationError {
     std::string reason;
     std::string field;
     std::string value;
-    
+
     ValidationError(std::string_view msg, std::string_view fld, std::string_view val)
         : reason(msg), field(fld), value(val) {}
 };
@@ -136,21 +141,21 @@ class ClanRank {
 public:
     ClanRank() = default;
     ClanRank(std::string title, PermissionSet permissions);
-    
+
     // Accessors
     const std::string& title() const { return title_; }
     const PermissionSet& privileges() const { return permissions_; }
-    
+
     // Permission checking
     bool has_permission(ClanPermission permission) const;
-    
+
     // Setters (for JSON deserialization)
     void set_title(std::string title) { title_ = std::move(title); }
     void set_privileges(PermissionSet permissions) { permissions_ = std::move(permissions); }
-    
+
     // Comparison for rank cache
     bool operator==(const ClanRank& other) const = default;
-    
+
     // Hash function for unordered containers
     struct Hash {
         std::size_t operator()(const ClanRank& rank) const;
@@ -169,7 +174,7 @@ struct ClanMember {
     int rank_index = 0;
     time_t join_time = 0;
     std::vector<std::string> alts;
-    
+
     ClanMember() = default;
     ClanMember(std::string name, int rank_idx, time_t join_tm, std::vector<std::string> alts = {})
         : name(std::move(name)), rank_index(rank_idx), join_time(join_tm), alts(std::move(alts)) {}
@@ -183,59 +188,59 @@ public:
     // Constructors
     Clan(ClanID id, std::string name, std::string abbreviation);
     ~Clan() = default;
-    
+
     // Core accessors
     ClanID id() const { return id_; }
     const std::string& name() const { return name_; }
     const std::string& abbreviation() const { return abbreviation_; }
     const std::string& description() const { return description_; }
     const std::string& motd() const { return motd_; }
-    
+
     // Financial accessors
     unsigned int dues() const { return dues_; }
     unsigned int app_fee() const { return app_fee_; }
     unsigned int min_application_level() const { return min_application_level_; }
     const Money& treasure() const { return treasure_; }
-    
+
     // Room accessors
     room_num bank_room() const { return bank_room_; }
     room_num chest_room() const { return chest_room_; }
     room_num hall_room() const { return hall_room_; }
-    
+
     // Container accessors
     const std::vector<ClanRank>& ranks() const { return ranks_; }
     const std::vector<ClanMember>& members() const { return members_; }
     const std::unordered_map<unsigned long, int>& storage() const { return storage_; }
-    
+
     // Counts
     size_t member_count() const { return members_.size(); }
     size_t rank_count() const { return ranks_.size(); }
-    
+
     // Member management
     bool add_member(CharacterPtr character, int rank_index);
     void remove_member(const CharacterPtr& character);
     bool is_member(const CharacterPtr& character) const;
     std::optional<ClanMember> get_member_by_name(std::string_view name) const;
     std::vector<ClanMember> get_members_by_rank_index(int rank_index) const;
-    
+
     // Member management by name (for persistence)
-    bool add_member_by_name(const std::string& name, int rank_index, time_t join_time = 0, 
+    bool add_member_by_name(const std::string& name, int rank_index, time_t join_time = 0,
                            std::vector<std::string> alts = {});
     bool remove_member_by_name(const std::string& name);
     bool update_member_rank(const std::string& name, int new_rank_index);
-    
+
     // Online member management
     std::vector<CharacterPtr> get_members_by_rank(const ClanRank& rank) const;
-    
+
     // Permission system
     bool has_permission(const CharacterPtr& character, ClanPermission permission) const;
     bool has_permission(const CharData* character, ClanPermission permission) const;
     bool grant_permission(const CharacterPtr& character, ClanPermission permission);
-    
+
     // Communication
     void notify(const CharacterPtr& skip, std::string_view message);
     void notify(const CharData* skip, std::string_view message);
-    
+
     // Admin functions (for gods and initialization)
     void admin_set_dues(unsigned int dues) { dues_ = dues; }
     void admin_set_app_fee(unsigned int fee) { app_fee_ = fee; }
@@ -243,10 +248,10 @@ public:
     std::expected<void, std::string> admin_add_treasure(const Money& money);
     void admin_set_motd(std::string motd) { motd_ = std::move(motd); }
     std::expected<void, std::string> admin_add_rank(ClanRank rank);
-    
+
     // Cache invalidation
     void invalidate_rank_cache() { rank_cache_valid_ = false; }
-    
+
     // JSON serialization support (friend functions declared in cpp)
     friend void to_json(nlohmann::json& j, const Clan& clan);
     friend void from_json(const nlohmann::json& j, Clan& clan);
@@ -258,27 +263,27 @@ private:
     std::string abbreviation_;
     std::string description_;
     std::string motd_;
-    
+
     // Financial
     unsigned int dues_ = 0;
     unsigned int app_fee_ = 0;
     unsigned int min_application_level_ = 1;
     Money treasure_;
-    
+
     // Rooms
     room_num bank_room_ = NOWHERE;
     room_num chest_room_ = NOWHERE;
     room_num hall_room_ = NOWHERE;
-    
+
     // Members and structure
     std::vector<ClanRank> ranks_;
     std::vector<ClanMember> members_;
     std::unordered_map<unsigned long, int> storage_;
-    
+
     // Caching for online members
     mutable std::unordered_map<ClanRank, std::vector<CharacterPtr>, ClanRank::Hash> rank_cache_;
     mutable bool rank_cache_valid_ = false;
-    
+
     void build_rank_cache() const;
 };
 
@@ -291,32 +296,32 @@ public:
     std::optional<ClanPtr> find_by_id(ClanID id) const;
     std::optional<ClanPtr> find_by_name(std::string_view name) const;
     std::optional<ClanPtr> find_by_abbreviation(std::string_view abbr) const;
-    
+
     // All clans
     std::vector<ClanPtr> all() const;
-    
+
     // Persistence
     std::expected<void, std::string> save() const;
     std::expected<void, std::string> load();
     std::expected<void, std::string> save_to_file(const std::filesystem::path& filepath) const;
     std::expected<void, std::string> load_from_file(const std::filesystem::path& filepath);
-    
+
     // Initialization
     void init_clans();
     bool load_legacy(std::string_view clan_num);
-    
+
     // Management
     void add_clan(ClanPtr clan) { clans_[clan->id()] = std::move(clan); caches_valid_ = false; }
     void remove_clan(ClanID id) { clans_.erase(id); caches_valid_ = false; }
 
 private:
     std::unordered_map<ClanID, ClanPtr> clans_;
-    
+
     // Caches for fast lookups
     mutable std::unordered_map<std::string, ClanID> name_to_id_;
     mutable std::unordered_map<std::string, ClanID> abbr_to_id_;
     mutable bool caches_valid_ = false;
-    
+
     void build_caches() const;
 };
 
@@ -352,7 +357,7 @@ namespace clan_permissions {
     PermissionResult check_clan_member(const CharData* ch);
     bool check_god_override(const CharData* ch);
     std::string get_permission_error_message(ClanPermission permission);
-    
+
     // Command wrapper functions
     bool execute_with_clan_permission(CharData* ch, ClanPermission permission,
                                      std::function<void()> command_func);
@@ -375,18 +380,18 @@ namespace clan_security {
     ValidationResult validate_clan_abbreviation(std::string_view abbr);
     ValidationResult validate_clan_description(std::string_view desc);
     ValidationResult validate_player_name(std::string_view name);
-    
+
     CharData* find_player_safe(std::string_view name);
     CharData* find_clan_member_safe(std::string_view name);
-    
+
     bool check_member_limit(const Clan& clan);
     bool check_rank_limit(const Clan& clan);
     bool check_storage_limit(const Clan& clan);
-    
+
     std::expected<Money, std::string> safe_add_money(const Money& base, const Money& addition);
     std::expected<Money, std::string> safe_subtract_money(const Money& base, const Money& subtraction);
     std::expected<int, std::string> safe_add_quantity(int base, int addition);
-    
+
     bool contains_unsafe_characters(std::string_view input);
 }
 
@@ -416,12 +421,12 @@ inline std::optional<ClanRank> get_clan_rank(const CharData* ch) {
     if (!member) return std::nullopt;
     auto clan = get_clan(ch);
     if (!clan) return std::nullopt;
-    
+
     const auto& ranks = (*clan)->ranks();
     if (member->rank_index < 0 || member->rank_index >= static_cast<int>(ranks.size())) {
         return std::nullopt;
     }
-    
+
     return ranks[member->rank_index];
 }
 

@@ -2,8 +2,14 @@
 
 #pragma once
 
-#include "command_system.hpp"
-#include "../core/actor.hpp"
+#include "core/result.hpp"
+#include <memory>
+
+class CommandContext;
+enum class CommandResult;
+
+class Actor;
+enum class Position;
 
 namespace PositionCommands {
 

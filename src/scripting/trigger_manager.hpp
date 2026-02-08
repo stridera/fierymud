@@ -1,11 +1,9 @@
 #pragma once
 
-#include "script_context.hpp"
-#include "script_engine.hpp"
-#include "triggers/trigger_data.hpp"
-#include "triggers/trigger_types.hpp"
+#include "triggers/trigger_enums.hpp"
 #include "core/ids.hpp"
 
+#include <sol/forward.hpp>
 #include <expected>
 #include <memory>
 #include <string>
@@ -13,7 +11,21 @@
 #include <unordered_map>
 #include <vector>
 
+namespace db {
+enum class Direction;
+}
+
+class Actor;
+class Object;
+class Room;
+using Direction = db::Direction;
+
 namespace FieryMUD {
+
+class ScriptContext;
+struct TriggerSet;
+struct TriggerData;
+using TriggerDataPtr = std::shared_ptr<TriggerData>;
 
 /// Result of trigger execution
 enum class TriggerResult {

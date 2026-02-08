@@ -1,11 +1,9 @@
 #pragma once
 
 #include "core/result.hpp"
-#include "core/ids.hpp"
 #include "scripting/triggers/trigger_data.hpp"
 #include <pqxx/pqxx>
 #include <vector>
-#include <memory>
 
 /**
  * Trigger loading query layer for PostgreSQL database.

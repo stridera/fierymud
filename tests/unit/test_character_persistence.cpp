@@ -7,10 +7,10 @@
  * - Database save/load operations (when database is available)
  */
 
-#include "../src/core/actor.hpp"
-#include "../src/core/active_effect.hpp"
-#include "../src/core/money.hpp"
-#include "../src/core/ids.hpp"
+#include "core/player.hpp"
+#include "core/active_effect.hpp"
+#include "core/money.hpp"
+#include "core/ids.hpp"
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_string.hpp>

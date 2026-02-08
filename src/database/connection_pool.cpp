@@ -1,4 +1,5 @@
 #include "database/connection_pool.hpp"
+#include "database/database_config.hpp"
 #include "core/logging.hpp"
 #include <fmt/format.h>
 

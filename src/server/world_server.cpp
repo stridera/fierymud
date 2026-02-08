@@ -1,28 +1,29 @@
 #include "world_server.hpp"
 
-#include "../commands/builtin_commands.hpp"
-#include "../commands/command_system.hpp"
-#include "../commands/movement_commands.hpp"
-#include "../core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../game/composer_system.hpp"
-#include "../core/combat.hpp"
-#include "../core/logging.hpp"
-#include "../core/result.hpp"
-#include "../net/player_connection.hpp"
-#include "../scripting/coroutine_scheduler.hpp"
-#include "../scripting/script_engine.hpp"
-#include "../scripting/trigger_manager.hpp"
-#include "../text/text_format.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
+#include "commands/builtin_commands.hpp"
+#include "commands/command_system.hpp"
+#include "commands/movement_commands.hpp"
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "game/composer_system.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "core/result.hpp"
+#include "net/player_connection.hpp"
+#include "scripting/coroutine_scheduler.hpp"
+#include "scripting/script_engine.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "scripting/triggers/trigger_types.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
+#include "world/weather.hpp"
+#include "world/world_manager.hpp"
 #include "mud_server.hpp"
-#include "networked_actor.hpp"
 #include "persistence_manager.hpp"
 
 #include <algorithm>
-#include <memory>
-#include <random>
 #include <nlohmann/json.hpp>
 
 // World server constants
@@ -586,7 +587,7 @@ CommandSystem *WorldServer::get_command_system() const { return command_system_;
 std::vector<std::shared_ptr<Player>> WorldServer::get_online_players() const {
     // Extract Player objects from active connections
     std::vector<std::shared_ptr<Player>> players;
-    
+
     // Note: This accesses connection_actors_ which should be thread-safe for const access
     // since we're only reading the map, not modifying it
     for (const auto& [connection, actor] : connection_actors_) {
@@ -594,7 +595,7 @@ std::vector<std::shared_ptr<Player>> WorldServer::get_online_players() const {
             players.push_back(player);
         }
     }
-    
+
     return players;
 }
 
@@ -635,7 +636,7 @@ void WorldServer::handle_command(CommandRequest command) {
     // Full CommandSystem integration is pending player registry implementation
     // For now, just log the command - the existing process_command methods
     // in WorldManager will handle the actual command execution
-    
+
     if (command.player_id != INVALID_ENTITY_ID) {
         std::string input = command.command;
         if (!command.args.empty()) {

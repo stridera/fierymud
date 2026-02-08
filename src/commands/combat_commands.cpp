@@ -1,17 +1,18 @@
 #include "combat_commands.hpp"
-#include "builtin_commands.hpp"
 #include "information_commands.hpp"
 
 #include "core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/combat.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../core/spell_system.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "core/spell_system.hpp"
+#include "commands/command_system.hpp"
+#include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 #include <algorithm>
 #include <array>
@@ -565,13 +566,13 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
 
     // Move player to their personal starting room
     auto world_manager = &WorldManager::instance();
-    
+
     // Try to get player's personal start room first
     EntityId start_room_id = INVALID_ENTITY_ID;
     if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
         start_room_id = player->start_room();
     }
-    
+
     // If player doesn't have a personal start room, use world default
     if (!start_room_id.is_valid()) {
         start_room_id = world_manager->get_start_room();
@@ -579,7 +580,7 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
     } else {
         Log::debug("Player {} using personal start room: {}", ctx.actor->name(), start_room_id);
     }
-    
+
     auto start_room = world_manager->get_room(start_room_id);
 
     if (!start_room) {

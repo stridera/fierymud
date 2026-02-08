@@ -1,10 +1,9 @@
 #include "skill_commands.hpp"
-#include "builtin_commands.hpp"
 
 #include "core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../text/string_utils.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "text/string_utils.hpp"
 
 #include <algorithm>
 #include <fmt/format.h>
