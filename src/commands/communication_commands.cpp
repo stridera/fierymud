@@ -1,5 +1,4 @@
 #include "communication_commands.hpp"
-#include "builtin_commands.hpp"
 
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
@@ -8,6 +7,7 @@
 #include "../server/world_server.hpp"
 #include "../text/text_format.hpp"
 #include "../world/room.hpp"
+#include "builtin_commands.hpp"
 
 #include <array>
 
@@ -34,7 +34,7 @@ std::string sanitize_player_message(std::string_view message, std::shared_ptr<Ac
             std::string result;
             result.reserve(message.length() + 10);
 
-            int open_count = 0;  // Color tags opened by god in this message
+            int open_count = 0; // Color tags opened by god in this message
 
             size_t i = 0;
             while (i < message.length()) {
@@ -100,9 +100,9 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
 
     // Check for SPEECH triggers on mobs in the room
     if (auto room = ctx.actor->current_room()) {
-        auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
         if (trigger_mgr.is_initialized()) {
-            for (const auto& other : room->contents().actors) {
+            for (const auto &other : room->contents().actors) {
                 // Only mobs have triggers
                 if (other == ctx.actor || other->type_name() != "Mobile") {
                     continue;
@@ -121,10 +121,8 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Say, "say");
 
     // Publish to Muditor bridge (local room chat - include room info)
-    auto event = fierymud::events::GameEvent::chat_event(
-        fierymud::events::GameEventType::CHAT_SAY,
-        std::string(ctx.actor->name()),
-        std::string(ctx.args_from(0)));
+    auto event = fierymud::events::GameEvent::chat_event(fierymud::events::GameEventType::CHAT_SAY,
+                                                         std::string(ctx.actor->name()), std::string(ctx.args_from(0)));
     if (auto room = ctx.actor->current_room()) {
         event.zone_id = static_cast<int>(room->id().zone_id());
         event.room_id = room->id().to_string();
@@ -173,11 +171,8 @@ Result<CommandResult> cmd_tell(const CommandContext &ctx) {
     }
 
     // Publish to Muditor bridge (private message with target)
-    fierymud::events::EventPublisher::instance().publish_chat(
-        fierymud::events::GameEventType::CHAT_TELL,
-        ctx.actor->name(),
-        ctx.args_from(1),
-        target->name());
+    fierymud::events::EventPublisher::instance().publish_chat(fierymud::events::GameEventType::CHAT_TELL,
+                                                              ctx.actor->name(), ctx.args_from(1), target->name());
 
     return CommandResult::Success;
 }
@@ -195,10 +190,8 @@ Result<CommandResult> cmd_emote(const CommandContext &ctx) {
     ctx.send_to_room(emote_msg, false); // Include self - everyone sees the same thing
 
     // Publish to Muditor bridge (emote with room info)
-    auto event = fierymud::events::GameEvent::chat_event(
-        fierymud::events::GameEventType::CHAT_EMOTE,
-        std::string(ctx.actor->name()),
-        std::string(ctx.args_from(0)));
+    auto event = fierymud::events::GameEvent::chat_event(fierymud::events::GameEventType::CHAT_EMOTE,
+                                                         std::string(ctx.actor->name()), std::string(ctx.args_from(0)));
     if (auto room = ctx.actor->current_room()) {
         event.zone_id = static_cast<int>(room->id().zone_id());
         event.room_id = room->id().to_string();
@@ -228,7 +221,8 @@ Result<CommandResult> cmd_whisper(const CommandContext &ctx) {
     std::string message = sanitize_player_message(ctx.args_from(1), ctx.actor);
 
     // Send to target (dim cyan for whispers - more subtle than tells)
-    std::string target_msg = fmt::format("<dim><cyan>{} whispers to you, '{}'</></>", ctx.actor->display_name(), message);
+    std::string target_msg =
+        fmt::format("<dim><cyan>{} whispers to you, '{}'</></>", ctx.actor->display_name(), message);
     ctx.send_to_actor(target, target_msg);
 
     // Send confirmation to sender
@@ -237,7 +231,8 @@ Result<CommandResult> cmd_whisper(const CommandContext &ctx) {
 
     // Let others see the whisper (but not the content) - dim/gray
     // Exclude both sender (exclude_self=true) and target from this message
-    std::string room_msg = fmt::format("<dim>{} whispers something to {}.</>", ctx.actor->display_name(), target->display_name());
+    std::string room_msg =
+        fmt::format("<dim>{} whispers something to {}.</>", ctx.actor->display_name(), target->display_name());
     ctx.send_to_room(room_msg, true, std::array{target});
 
     return CommandResult::Success;
@@ -253,10 +248,8 @@ Result<CommandResult> cmd_shout(const CommandContext &ctx) {
     BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Broadcast, "shout");
 
     // Publish to Muditor bridge
-    fierymud::events::EventPublisher::instance().publish_chat(
-        fierymud::events::GameEventType::CHAT_SHOUT,
-        ctx.actor->name(),
-        ctx.args_from(0));
+    fierymud::events::EventPublisher::instance().publish_chat(fierymud::events::GameEventType::CHAT_SHOUT,
+                                                              ctx.actor->name(), ctx.args_from(0));
 
     return CommandResult::Success;
 }
@@ -272,9 +265,8 @@ Result<CommandResult> cmd_gossip(const CommandContext &ctx) {
 
     // Publish to Muditor bridge
     fierymud::events::EventPublisher::instance().publish_chat(
-        fierymud::events::GameEventType::CHAT_GOSSIP,
-        ctx.actor->name(),
-        ctx.args_from(0));  // Original message without sanitization suffix
+        fierymud::events::GameEventType::CHAT_GOSSIP, ctx.actor->name(),
+        ctx.args_from(0)); // Original message without sanitization suffix
 
     return CommandResult::Success;
 }
@@ -356,7 +348,8 @@ Result<CommandResult> cmd_ask(const CommandContext &ctx) {
     ctx.send(sender_msg);
 
     // Let others in the room see the question
-    std::string room_msg = fmt::format("<white>{} asks {}, '{}'</>", ctx.actor->display_name(), target->display_name(), question);
+    std::string room_msg =
+        fmt::format("<white>{} asks {}, '{}'</>", ctx.actor->display_name(), target->display_name(), question);
     ctx.send_to_room(room_msg, true);
 
     return CommandResult::Success;
@@ -477,7 +470,7 @@ Result<CommandResult> cmd_gecho(const CommandContext &ctx) {
     std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Send to all online actors
-    ctx.send_to_all(message, false);  // Don't exclude self
+    ctx.send_to_all(message, false); // Don't exclude self
 
     return CommandResult::Success;
 }
@@ -487,19 +480,9 @@ Result<CommandResult> cmd_gecho(const CommandContext &ctx) {
 // =============================================================================
 
 Result<void> register_commands() {
-    Commands()
-        .command("say", cmd_say)
-        .alias("'")
-        .category("Communication")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("say", cmd_say).alias("'").category("Communication").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("tell", cmd_tell)
-        .alias("t")
-        .category("Communication")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("tell", cmd_tell).alias("t").category("Communication").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("emote", cmd_emote)
@@ -536,23 +519,11 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("ask", cmd_ask)
-        .category("Communication")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("ask", cmd_ask).category("Communication").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("petition", cmd_petition)
-        .category("Communication")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("petition", cmd_petition).category("Communication").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("lasttells", cmd_lasttells)
-        .category("Communication")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("lasttells", cmd_lasttells).category("Communication").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("wiznet", cmd_wiznet)
@@ -561,11 +532,7 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::God)
         .build();
 
-    Commands()
-        .command("gtell", cmd_gtell)
-        .category("Communication")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("gtell", cmd_gtell).category("Communication").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("gecho", cmd_gecho)

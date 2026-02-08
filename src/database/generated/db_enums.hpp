@@ -8,8 +8,8 @@
  * Generated: 2026-01-19T18:48:11.181090
  */
 
-#include <string_view>
 #include <optional>
+#include <string_view>
 #include <unordered_map>
 
 namespace db {
@@ -78,29 +78,52 @@ inline std::optional<Sector> sector_from_db(std::string_view s) {
 /** Convert Sector enum to database string */
 inline std::string_view sector_to_db(Sector e) {
     switch (e) {
-        case Sector::Structure: return "STRUCTURE";
-        case Sector::City: return "CITY";
-        case Sector::Field: return "FIELD";
-        case Sector::Forest: return "FOREST";
-        case Sector::Hills: return "HILLS";
-        case Sector::Mountain: return "MOUNTAIN";
-        case Sector::Shallows: return "SHALLOWS";
-        case Sector::Water: return "WATER";
-        case Sector::Underwater: return "UNDERWATER";
-        case Sector::Air: return "AIR";
-        case Sector::Road: return "ROAD";
-        case Sector::Grasslands: return "GRASSLANDS";
-        case Sector::Cave: return "CAVE";
-        case Sector::Ruins: return "RUINS";
-        case Sector::Swamp: return "SWAMP";
-        case Sector::Beach: return "BEACH";
-        case Sector::Underdark: return "UNDERDARK";
-        case Sector::Astralplane: return "ASTRALPLANE";
-        case Sector::Airplane: return "AIRPLANE";
-        case Sector::Fireplane: return "FIREPLANE";
-        case Sector::Earthplane: return "EARTHPLANE";
-        case Sector::Etherealplane: return "ETHEREALPLANE";
-        case Sector::Avernus: return "AVERNUS";
+    case Sector::Structure:
+        return "STRUCTURE";
+    case Sector::City:
+        return "CITY";
+    case Sector::Field:
+        return "FIELD";
+    case Sector::Forest:
+        return "FOREST";
+    case Sector::Hills:
+        return "HILLS";
+    case Sector::Mountain:
+        return "MOUNTAIN";
+    case Sector::Shallows:
+        return "SHALLOWS";
+    case Sector::Water:
+        return "WATER";
+    case Sector::Underwater:
+        return "UNDERWATER";
+    case Sector::Air:
+        return "AIR";
+    case Sector::Road:
+        return "ROAD";
+    case Sector::Grasslands:
+        return "GRASSLANDS";
+    case Sector::Cave:
+        return "CAVE";
+    case Sector::Ruins:
+        return "RUINS";
+    case Sector::Swamp:
+        return "SWAMP";
+    case Sector::Beach:
+        return "BEACH";
+    case Sector::Underdark:
+        return "UNDERDARK";
+    case Sector::Astralplane:
+        return "ASTRALPLANE";
+    case Sector::Airplane:
+        return "AIRPLANE";
+    case Sector::Fireplane:
+        return "FIREPLANE";
+    case Sector::Earthplane:
+        return "EARTHPLANE";
+    case Sector::Etherealplane:
+        return "ETHEREALPLANE";
+    case Sector::Avernus:
+        return "AVERNUS";
     }
     return "";
 }
@@ -147,20 +170,34 @@ inline std::optional<Direction> direction_from_db(std::string_view s) {
 /** Convert Direction enum to database string */
 inline std::string_view direction_to_db(Direction e) {
     switch (e) {
-        case Direction::North: return "NORTH";
-        case Direction::East: return "EAST";
-        case Direction::South: return "SOUTH";
-        case Direction::West: return "WEST";
-        case Direction::Up: return "UP";
-        case Direction::Down: return "DOWN";
-        case Direction::Northeast: return "NORTHEAST";
-        case Direction::Northwest: return "NORTHWEST";
-        case Direction::Southeast: return "SOUTHEAST";
-        case Direction::Southwest: return "SOUTHWEST";
-        case Direction::In: return "IN";
-        case Direction::Out: return "OUT";
-        case Direction::Portal: return "PORTAL";
-        case Direction::None: return "NONE";
+    case Direction::North:
+        return "NORTH";
+    case Direction::East:
+        return "EAST";
+    case Direction::South:
+        return "SOUTH";
+    case Direction::West:
+        return "WEST";
+    case Direction::Up:
+        return "UP";
+    case Direction::Down:
+        return "DOWN";
+    case Direction::Northeast:
+        return "NORTHEAST";
+    case Direction::Northwest:
+        return "NORTHWEST";
+    case Direction::Southeast:
+        return "SOUTHEAST";
+    case Direction::Southwest:
+        return "SOUTHWEST";
+    case Direction::In:
+        return "IN";
+    case Direction::Out:
+        return "OUT";
+    case Direction::Portal:
+        return "PORTAL";
+    case Direction::None:
+        return "NONE";
     }
     return "";
 }
@@ -176,11 +213,8 @@ enum class ExitFlag {
 /** Convert database string to ExitFlag enum */
 inline std::optional<ExitFlag> exit_flag_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, ExitFlag> lookup = {
-        {"IS_DOOR", ExitFlag::IsDoor},
-        {"PICKPROOF", ExitFlag::Pickproof},
-        {"HIDDEN", ExitFlag::Hidden},
-        {"BASHABLE", ExitFlag::Bashable},
-        {"MAGICPROOF", ExitFlag::Magicproof},
+        {"IS_DOOR", ExitFlag::IsDoor},    {"PICKPROOF", ExitFlag::Pickproof},   {"HIDDEN", ExitFlag::Hidden},
+        {"BASHABLE", ExitFlag::Bashable}, {"MAGICPROOF", ExitFlag::Magicproof},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -189,11 +223,16 @@ inline std::optional<ExitFlag> exit_flag_from_db(std::string_view s) {
 /** Convert ExitFlag enum to database string */
 inline std::string_view exit_flag_to_db(ExitFlag e) {
     switch (e) {
-        case ExitFlag::IsDoor: return "IS_DOOR";
-        case ExitFlag::Pickproof: return "PICKPROOF";
-        case ExitFlag::Hidden: return "HIDDEN";
-        case ExitFlag::Bashable: return "BASHABLE";
-        case ExitFlag::Magicproof: return "MAGICPROOF";
+    case ExitFlag::IsDoor:
+        return "IS_DOOR";
+    case ExitFlag::Pickproof:
+        return "PICKPROOF";
+    case ExitFlag::Hidden:
+        return "HIDDEN";
+    case ExitFlag::Bashable:
+        return "BASHABLE";
+    case ExitFlag::Magicproof:
+        return "MAGICPROOF";
     }
     return "";
 }
@@ -218,9 +257,12 @@ inline std::optional<ExitState> exit_state_from_db(std::string_view s) {
 /** Convert ExitState enum to database string */
 inline std::string_view exit_state_to_db(ExitState e) {
     switch (e) {
-        case ExitState::Open: return "OPEN";
-        case ExitState::Closed: return "CLOSED";
-        case ExitState::Locked: return "LOCKED";
+    case ExitState::Open:
+        return "OPEN";
+    case ExitState::Closed:
+        return "CLOSED";
+    case ExitState::Locked:
+        return "LOCKED";
     }
     return "";
 }
@@ -244,18 +286,10 @@ enum class MagicAffinity {
 /** Convert database string to MagicAffinity enum */
 inline std::optional<MagicAffinity> magic_affinity_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, MagicAffinity> lookup = {
-        {"FIRE", MagicAffinity::Fire},
-        {"WATER", MagicAffinity::Water},
-        {"COLD", MagicAffinity::Cold},
-        {"EARTH", MagicAffinity::Earth},
-        {"AIR", MagicAffinity::Air},
-        {"HOLY", MagicAffinity::Holy},
-        {"UNHOLY", MagicAffinity::Unholy},
-        {"SHADOW", MagicAffinity::Shadow},
-        {"DEATH", MagicAffinity::Death},
-        {"ASTRAL", MagicAffinity::Astral},
-        {"NATURE", MagicAffinity::Nature},
-        {"ARCANE", MagicAffinity::Arcane},
+        {"FIRE", MagicAffinity::Fire},     {"WATER", MagicAffinity::Water},   {"COLD", MagicAffinity::Cold},
+        {"EARTH", MagicAffinity::Earth},   {"AIR", MagicAffinity::Air},       {"HOLY", MagicAffinity::Holy},
+        {"UNHOLY", MagicAffinity::Unholy}, {"SHADOW", MagicAffinity::Shadow}, {"DEATH", MagicAffinity::Death},
+        {"ASTRAL", MagicAffinity::Astral}, {"NATURE", MagicAffinity::Nature}, {"ARCANE", MagicAffinity::Arcane},
         {"CHAOS", MagicAffinity::Chaos},
     };
     auto it = lookup.find(s);
@@ -265,19 +299,32 @@ inline std::optional<MagicAffinity> magic_affinity_from_db(std::string_view s) {
 /** Convert MagicAffinity enum to database string */
 inline std::string_view magic_affinity_to_db(MagicAffinity e) {
     switch (e) {
-        case MagicAffinity::Fire: return "FIRE";
-        case MagicAffinity::Water: return "WATER";
-        case MagicAffinity::Cold: return "COLD";
-        case MagicAffinity::Earth: return "EARTH";
-        case MagicAffinity::Air: return "AIR";
-        case MagicAffinity::Holy: return "HOLY";
-        case MagicAffinity::Unholy: return "UNHOLY";
-        case MagicAffinity::Shadow: return "SHADOW";
-        case MagicAffinity::Death: return "DEATH";
-        case MagicAffinity::Astral: return "ASTRAL";
-        case MagicAffinity::Nature: return "NATURE";
-        case MagicAffinity::Arcane: return "ARCANE";
-        case MagicAffinity::Chaos: return "CHAOS";
+    case MagicAffinity::Fire:
+        return "FIRE";
+    case MagicAffinity::Water:
+        return "WATER";
+    case MagicAffinity::Cold:
+        return "COLD";
+    case MagicAffinity::Earth:
+        return "EARTH";
+    case MagicAffinity::Air:
+        return "AIR";
+    case MagicAffinity::Holy:
+        return "HOLY";
+    case MagicAffinity::Unholy:
+        return "UNHOLY";
+    case MagicAffinity::Shadow:
+        return "SHADOW";
+    case MagicAffinity::Death:
+        return "DEATH";
+    case MagicAffinity::Astral:
+        return "ASTRAL";
+    case MagicAffinity::Nature:
+        return "NATURE";
+    case MagicAffinity::Arcane:
+        return "ARCANE";
+    case MagicAffinity::Chaos:
+        return "CHAOS";
     }
     return "";
 }
@@ -298,12 +345,8 @@ enum class MobRole {
 /** Convert database string to MobRole enum */
 inline std::optional<MobRole> mob_role_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, MobRole> lookup = {
-        {"TRASH", MobRole::Trash},
-        {"NORMAL", MobRole::Normal},
-        {"ELITE", MobRole::Elite},
-        {"MINIBOSS", MobRole::Miniboss},
-        {"BOSS", MobRole::Boss},
-        {"RAID_BOSS", MobRole::RaidBoss},
+        {"TRASH", MobRole::Trash},       {"NORMAL", MobRole::Normal}, {"ELITE", MobRole::Elite},
+        {"MINIBOSS", MobRole::Miniboss}, {"BOSS", MobRole::Boss},     {"RAID_BOSS", MobRole::RaidBoss},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -312,12 +355,18 @@ inline std::optional<MobRole> mob_role_from_db(std::string_view s) {
 /** Convert MobRole enum to database string */
 inline std::string_view mob_role_to_db(MobRole e) {
     switch (e) {
-        case MobRole::Trash: return "TRASH";
-        case MobRole::Normal: return "NORMAL";
-        case MobRole::Elite: return "ELITE";
-        case MobRole::Miniboss: return "MINIBOSS";
-        case MobRole::Boss: return "BOSS";
-        case MobRole::RaidBoss: return "RAID_BOSS";
+    case MobRole::Trash:
+        return "TRASH";
+    case MobRole::Normal:
+        return "NORMAL";
+    case MobRole::Elite:
+        return "ELITE";
+    case MobRole::Miniboss:
+        return "MINIBOSS";
+    case MobRole::Boss:
+        return "BOSS";
+    case MobRole::RaidBoss:
+        return "RAID_BOSS";
     }
     return "";
 }
@@ -350,13 +399,20 @@ inline std::optional<MobTrait> mob_trait_from_db(std::string_view s) {
 /** Convert MobTrait enum to database string */
 inline std::string_view mob_trait_to_db(MobTrait e) {
     switch (e) {
-        case MobTrait::Illusion: return "ILLUSION";
-        case MobTrait::Animated: return "ANIMATED";
-        case MobTrait::PlayerPhantasm: return "PLAYER_PHANTASM";
-        case MobTrait::Aquatic: return "AQUATIC";
-        case MobTrait::Mount: return "MOUNT";
-        case MobTrait::Summoned: return "SUMMONED";
-        case MobTrait::Pet: return "PET";
+    case MobTrait::Illusion:
+        return "ILLUSION";
+    case MobTrait::Animated:
+        return "ANIMATED";
+    case MobTrait::PlayerPhantasm:
+        return "PLAYER_PHANTASM";
+    case MobTrait::Aquatic:
+        return "AQUATIC";
+    case MobTrait::Mount:
+        return "MOUNT";
+    case MobTrait::Summoned:
+        return "SUMMONED";
+    case MobTrait::Pet:
+        return "PET";
     }
     return "";
 }
@@ -417,27 +473,48 @@ inline std::optional<MobBehavior> mob_behavior_from_db(std::string_view s) {
 /** Convert MobBehavior enum to database string */
 inline std::string_view mob_behavior_to_db(MobBehavior e) {
     switch (e) {
-        case MobBehavior::Sentinel: return "SENTINEL";
-        case MobBehavior::StayZone: return "STAY_ZONE";
-        case MobBehavior::Scavenger: return "SCAVENGER";
-        case MobBehavior::Track: return "TRACK";
-        case MobBehavior::SlowTrack: return "SLOW_TRACK";
-        case MobBehavior::FastTrack: return "FAST_TRACK";
-        case MobBehavior::Wimpy: return "WIMPY";
-        case MobBehavior::Aware: return "AWARE";
-        case MobBehavior::Helper: return "HELPER";
-        case MobBehavior::Protector: return "PROTECTOR";
-        case MobBehavior::Peacekeeper: return "PEACEKEEPER";
-        case MobBehavior::NoBash: return "NO_BASH";
-        case MobBehavior::NoSummon: return "NO_SUMMON";
-        case MobBehavior::NoVicious: return "NO_VICIOUS";
-        case MobBehavior::Memory: return "MEMORY";
-        case MobBehavior::Teacher: return "TEACHER";
-        case MobBehavior::Meditate: return "MEDITATE";
-        case MobBehavior::NoScript: return "NO_SCRIPT";
-        case MobBehavior::NoClassAi: return "NO_CLASS_AI";
-        case MobBehavior::Peaceful: return "PEACEFUL";
-        case MobBehavior::NoKill: return "NO_KILL";
+    case MobBehavior::Sentinel:
+        return "SENTINEL";
+    case MobBehavior::StayZone:
+        return "STAY_ZONE";
+    case MobBehavior::Scavenger:
+        return "SCAVENGER";
+    case MobBehavior::Track:
+        return "TRACK";
+    case MobBehavior::SlowTrack:
+        return "SLOW_TRACK";
+    case MobBehavior::FastTrack:
+        return "FAST_TRACK";
+    case MobBehavior::Wimpy:
+        return "WIMPY";
+    case MobBehavior::Aware:
+        return "AWARE";
+    case MobBehavior::Helper:
+        return "HELPER";
+    case MobBehavior::Protector:
+        return "PROTECTOR";
+    case MobBehavior::Peacekeeper:
+        return "PEACEKEEPER";
+    case MobBehavior::NoBash:
+        return "NO_BASH";
+    case MobBehavior::NoSummon:
+        return "NO_SUMMON";
+    case MobBehavior::NoVicious:
+        return "NO_VICIOUS";
+    case MobBehavior::Memory:
+        return "MEMORY";
+    case MobBehavior::Teacher:
+        return "TEACHER";
+    case MobBehavior::Meditate:
+        return "MEDITATE";
+    case MobBehavior::NoScript:
+        return "NO_SCRIPT";
+    case MobBehavior::NoClassAi:
+        return "NO_CLASS_AI";
+    case MobBehavior::Peaceful:
+        return "PEACEFUL";
+    case MobBehavior::NoKill:
+        return "NO_KILL";
     }
     return "";
 }
@@ -474,15 +551,24 @@ inline std::optional<Position> position_from_db(std::string_view s) {
 /** Convert Position enum to database string */
 inline std::string_view position_to_db(Position e) {
     switch (e) {
-        case Position::Dead: return "DEAD";
-        case Position::Ghost: return "GHOST";
-        case Position::MortallyWounded: return "MORTALLY_WOUNDED";
-        case Position::Incapacitated: return "INCAPACITATED";
-        case Position::Stunned: return "STUNNED";
-        case Position::Sleeping: return "SLEEPING";
-        case Position::Resting: return "RESTING";
-        case Position::Sitting: return "SITTING";
-        case Position::Standing: return "STANDING";
+    case Position::Dead:
+        return "DEAD";
+    case Position::Ghost:
+        return "GHOST";
+    case Position::MortallyWounded:
+        return "MORTALLY_WOUNDED";
+    case Position::Incapacitated:
+        return "INCAPACITATED";
+    case Position::Stunned:
+        return "STUNNED";
+    case Position::Sleeping:
+        return "SLEEPING";
+    case Position::Resting:
+        return "RESTING";
+    case Position::Sitting:
+        return "SITTING";
+    case Position::Standing:
+        return "STANDING";
     }
     return "";
 }
@@ -501,14 +587,9 @@ enum class Stance {
 /** Convert database string to Stance enum */
 inline std::optional<Stance> stance_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, Stance> lookup = {
-        {"DEAD", Stance::Dead},
-        {"MORT", Stance::Mort},
-        {"INCAPACITATED", Stance::Incapacitated},
-        {"STUNNED", Stance::Stunned},
-        {"SLEEPING", Stance::Sleeping},
-        {"RESTING", Stance::Resting},
-        {"ALERT", Stance::Alert},
-        {"FIGHTING", Stance::Fighting},
+        {"DEAD", Stance::Dead},       {"MORT", Stance::Mort},         {"INCAPACITATED", Stance::Incapacitated},
+        {"STUNNED", Stance::Stunned}, {"SLEEPING", Stance::Sleeping}, {"RESTING", Stance::Resting},
+        {"ALERT", Stance::Alert},     {"FIGHTING", Stance::Fighting},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -517,14 +598,22 @@ inline std::optional<Stance> stance_from_db(std::string_view s) {
 /** Convert Stance enum to database string */
 inline std::string_view stance_to_db(Stance e) {
     switch (e) {
-        case Stance::Dead: return "DEAD";
-        case Stance::Mort: return "MORT";
-        case Stance::Incapacitated: return "INCAPACITATED";
-        case Stance::Stunned: return "STUNNED";
-        case Stance::Sleeping: return "SLEEPING";
-        case Stance::Resting: return "RESTING";
-        case Stance::Alert: return "ALERT";
-        case Stance::Fighting: return "FIGHTING";
+    case Stance::Dead:
+        return "DEAD";
+    case Stance::Mort:
+        return "MORT";
+    case Stance::Incapacitated:
+        return "INCAPACITATED";
+    case Stance::Stunned:
+        return "STUNNED";
+    case Stance::Sleeping:
+        return "SLEEPING";
+    case Stance::Resting:
+        return "RESTING";
+    case Stance::Alert:
+        return "ALERT";
+    case Stance::Fighting:
+        return "FIGHTING";
     }
     return "";
 }
@@ -551,10 +640,14 @@ inline std::optional<Gender> gender_from_db(std::string_view s) {
 /** Convert Gender enum to database string */
 inline std::string_view gender_to_db(Gender e) {
     switch (e) {
-        case Gender::Neutral: return "NEUTRAL";
-        case Gender::Male: return "MALE";
-        case Gender::Female: return "FEMALE";
-        case Gender::NonBinary: return "NON_BINARY";
+    case Gender::Neutral:
+        return "NEUTRAL";
+    case Gender::Male:
+        return "MALE";
+    case Gender::Female:
+        return "FEMALE";
+    case Gender::NonBinary:
+        return "NON_BINARY";
     }
     return "";
 }
@@ -593,16 +686,26 @@ inline std::optional<Size> size_from_db(std::string_view s) {
 /** Convert Size enum to database string */
 inline std::string_view size_to_db(Size e) {
     switch (e) {
-        case Size::Tiny: return "TINY";
-        case Size::Small: return "SMALL";
-        case Size::Medium: return "MEDIUM";
-        case Size::Large: return "LARGE";
-        case Size::Huge: return "HUGE";
-        case Size::Giant: return "GIANT";
-        case Size::Gargantuan: return "GARGANTUAN";
-        case Size::Colossal: return "COLOSSAL";
-        case Size::Titanic: return "TITANIC";
-        case Size::Mountainous: return "MOUNTAINOUS";
+    case Size::Tiny:
+        return "TINY";
+    case Size::Small:
+        return "SMALL";
+    case Size::Medium:
+        return "MEDIUM";
+    case Size::Large:
+        return "LARGE";
+    case Size::Huge:
+        return "HUGE";
+    case Size::Giant:
+        return "GIANT";
+    case Size::Gargantuan:
+        return "GARGANTUAN";
+    case Size::Colossal:
+        return "COLOSSAL";
+    case Size::Titanic:
+        return "TITANIC";
+    case Size::Mountainous:
+        return "MOUNTAINOUS";
     }
     return "";
 }
@@ -619,12 +722,8 @@ enum class LifeForce {
 /** Convert database string to LifeForce enum */
 inline std::optional<LifeForce> life_force_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, LifeForce> lookup = {
-        {"LIFE", LifeForce::Life},
-        {"UNDEAD", LifeForce::Undead},
-        {"MAGIC", LifeForce::Magic},
-        {"CELESTIAL", LifeForce::Celestial},
-        {"DEMONIC", LifeForce::Demonic},
-        {"ELEMENTAL", LifeForce::Elemental},
+        {"LIFE", LifeForce::Life},           {"UNDEAD", LifeForce::Undead},   {"MAGIC", LifeForce::Magic},
+        {"CELESTIAL", LifeForce::Celestial}, {"DEMONIC", LifeForce::Demonic}, {"ELEMENTAL", LifeForce::Elemental},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -633,12 +732,18 @@ inline std::optional<LifeForce> life_force_from_db(std::string_view s) {
 /** Convert LifeForce enum to database string */
 inline std::string_view life_force_to_db(LifeForce e) {
     switch (e) {
-        case LifeForce::Life: return "LIFE";
-        case LifeForce::Undead: return "UNDEAD";
-        case LifeForce::Magic: return "MAGIC";
-        case LifeForce::Celestial: return "CELESTIAL";
-        case LifeForce::Demonic: return "DEMONIC";
-        case LifeForce::Elemental: return "ELEMENTAL";
+    case LifeForce::Life:
+        return "LIFE";
+    case LifeForce::Undead:
+        return "UNDEAD";
+    case LifeForce::Magic:
+        return "MAGIC";
+    case LifeForce::Celestial:
+        return "CELESTIAL";
+    case LifeForce::Demonic:
+        return "DEMONIC";
+    case LifeForce::Elemental:
+        return "ELEMENTAL";
     }
     return "";
 }
@@ -662,18 +767,10 @@ enum class Composition {
 /** Convert database string to Composition enum */
 inline std::optional<Composition> composition_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, Composition> lookup = {
-        {"FLESH", Composition::Flesh},
-        {"EARTH", Composition::Earth},
-        {"AIR", Composition::Air},
-        {"FIRE", Composition::Fire},
-        {"WATER", Composition::Water},
-        {"ICE", Composition::Ice},
-        {"MIST", Composition::Mist},
-        {"ETHER", Composition::Ether},
-        {"METAL", Composition::Metal},
-        {"STONE", Composition::Stone},
-        {"BONE", Composition::Bone},
-        {"LAVA", Composition::Lava},
+        {"FLESH", Composition::Flesh}, {"EARTH", Composition::Earth}, {"AIR", Composition::Air},
+        {"FIRE", Composition::Fire},   {"WATER", Composition::Water}, {"ICE", Composition::Ice},
+        {"MIST", Composition::Mist},   {"ETHER", Composition::Ether}, {"METAL", Composition::Metal},
+        {"STONE", Composition::Stone}, {"BONE", Composition::Bone},   {"LAVA", Composition::Lava},
         {"PLANT", Composition::Plant},
     };
     auto it = lookup.find(s);
@@ -683,19 +780,32 @@ inline std::optional<Composition> composition_from_db(std::string_view s) {
 /** Convert Composition enum to database string */
 inline std::string_view composition_to_db(Composition e) {
     switch (e) {
-        case Composition::Flesh: return "FLESH";
-        case Composition::Earth: return "EARTH";
-        case Composition::Air: return "AIR";
-        case Composition::Fire: return "FIRE";
-        case Composition::Water: return "WATER";
-        case Composition::Ice: return "ICE";
-        case Composition::Mist: return "MIST";
-        case Composition::Ether: return "ETHER";
-        case Composition::Metal: return "METAL";
-        case Composition::Stone: return "STONE";
-        case Composition::Bone: return "BONE";
-        case Composition::Lava: return "LAVA";
-        case Composition::Plant: return "PLANT";
+    case Composition::Flesh:
+        return "FLESH";
+    case Composition::Earth:
+        return "EARTH";
+    case Composition::Air:
+        return "AIR";
+    case Composition::Fire:
+        return "FIRE";
+    case Composition::Water:
+        return "WATER";
+    case Composition::Ice:
+        return "ICE";
+    case Composition::Mist:
+        return "MIST";
+    case Composition::Ether:
+        return "ETHER";
+    case Composition::Metal:
+        return "METAL";
+    case Composition::Stone:
+        return "STONE";
+    case Composition::Bone:
+        return "BONE";
+    case Composition::Lava:
+        return "LAVA";
+    case Composition::Plant:
+        return "PLANT";
     }
     return "";
 }
@@ -731,30 +841,14 @@ enum class DamageType {
 /** Convert database string to DamageType enum */
 inline std::optional<DamageType> damage_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, DamageType> lookup = {
-        {"HIT", DamageType::Hit},
-        {"STING", DamageType::Sting},
-        {"WHIP", DamageType::Whip},
-        {"SLASH", DamageType::Slash},
-        {"BITE", DamageType::Bite},
-        {"BLUDGEON", DamageType::Bludgeon},
-        {"CRUSH", DamageType::Crush},
-        {"POUND", DamageType::Pound},
-        {"CLAW", DamageType::Claw},
-        {"MAUL", DamageType::Maul},
-        {"THRASH", DamageType::Thrash},
-        {"PIERCE", DamageType::Pierce},
-        {"BLAST", DamageType::Blast},
-        {"PUNCH", DamageType::Punch},
-        {"STAB", DamageType::Stab},
-        {"FIRE", DamageType::Fire},
-        {"COLD", DamageType::Cold},
-        {"ACID", DamageType::Acid},
-        {"SHOCK", DamageType::Shock},
-        {"POISON", DamageType::Poison},
-        {"ALIGN", DamageType::Align},
-        {"MENTAL", DamageType::Mental},
-        {"ROT", DamageType::Rot},
-        {"ENERGY", DamageType::Energy},
+        {"HIT", DamageType::Hit},       {"STING", DamageType::Sting},   {"WHIP", DamageType::Whip},
+        {"SLASH", DamageType::Slash},   {"BITE", DamageType::Bite},     {"BLUDGEON", DamageType::Bludgeon},
+        {"CRUSH", DamageType::Crush},   {"POUND", DamageType::Pound},   {"CLAW", DamageType::Claw},
+        {"MAUL", DamageType::Maul},     {"THRASH", DamageType::Thrash}, {"PIERCE", DamageType::Pierce},
+        {"BLAST", DamageType::Blast},   {"PUNCH", DamageType::Punch},   {"STAB", DamageType::Stab},
+        {"FIRE", DamageType::Fire},     {"COLD", DamageType::Cold},     {"ACID", DamageType::Acid},
+        {"SHOCK", DamageType::Shock},   {"POISON", DamageType::Poison}, {"ALIGN", DamageType::Align},
+        {"MENTAL", DamageType::Mental}, {"ROT", DamageType::Rot},       {"ENERGY", DamageType::Energy},
         {"WATER", DamageType::Water},
     };
     auto it = lookup.find(s);
@@ -764,31 +858,56 @@ inline std::optional<DamageType> damage_type_from_db(std::string_view s) {
 /** Convert DamageType enum to database string */
 inline std::string_view damage_type_to_db(DamageType e) {
     switch (e) {
-        case DamageType::Hit: return "HIT";
-        case DamageType::Sting: return "STING";
-        case DamageType::Whip: return "WHIP";
-        case DamageType::Slash: return "SLASH";
-        case DamageType::Bite: return "BITE";
-        case DamageType::Bludgeon: return "BLUDGEON";
-        case DamageType::Crush: return "CRUSH";
-        case DamageType::Pound: return "POUND";
-        case DamageType::Claw: return "CLAW";
-        case DamageType::Maul: return "MAUL";
-        case DamageType::Thrash: return "THRASH";
-        case DamageType::Pierce: return "PIERCE";
-        case DamageType::Blast: return "BLAST";
-        case DamageType::Punch: return "PUNCH";
-        case DamageType::Stab: return "STAB";
-        case DamageType::Fire: return "FIRE";
-        case DamageType::Cold: return "COLD";
-        case DamageType::Acid: return "ACID";
-        case DamageType::Shock: return "SHOCK";
-        case DamageType::Poison: return "POISON";
-        case DamageType::Align: return "ALIGN";
-        case DamageType::Mental: return "MENTAL";
-        case DamageType::Rot: return "ROT";
-        case DamageType::Energy: return "ENERGY";
-        case DamageType::Water: return "WATER";
+    case DamageType::Hit:
+        return "HIT";
+    case DamageType::Sting:
+        return "STING";
+    case DamageType::Whip:
+        return "WHIP";
+    case DamageType::Slash:
+        return "SLASH";
+    case DamageType::Bite:
+        return "BITE";
+    case DamageType::Bludgeon:
+        return "BLUDGEON";
+    case DamageType::Crush:
+        return "CRUSH";
+    case DamageType::Pound:
+        return "POUND";
+    case DamageType::Claw:
+        return "CLAW";
+    case DamageType::Maul:
+        return "MAUL";
+    case DamageType::Thrash:
+        return "THRASH";
+    case DamageType::Pierce:
+        return "PIERCE";
+    case DamageType::Blast:
+        return "BLAST";
+    case DamageType::Punch:
+        return "PUNCH";
+    case DamageType::Stab:
+        return "STAB";
+    case DamageType::Fire:
+        return "FIRE";
+    case DamageType::Cold:
+        return "COLD";
+    case DamageType::Acid:
+        return "ACID";
+    case DamageType::Shock:
+        return "SHOCK";
+    case DamageType::Poison:
+        return "POISON";
+    case DamageType::Align:
+        return "ALIGN";
+    case DamageType::Mental:
+        return "MENTAL";
+    case DamageType::Rot:
+        return "ROT";
+    case DamageType::Energy:
+        return "ENERGY";
+    case DamageType::Water:
+        return "WATER";
     }
     return "";
 }
@@ -887,44 +1006,82 @@ inline std::optional<ObjectType> object_type_from_db(std::string_view s) {
 /** Convert ObjectType enum to database string */
 inline std::string_view object_type_to_db(ObjectType e) {
     switch (e) {
-        case ObjectType::Nothing: return "NOTHING";
-        case ObjectType::Light: return "LIGHT";
-        case ObjectType::Scroll: return "SCROLL";
-        case ObjectType::Wand: return "WAND";
-        case ObjectType::Staff: return "STAFF";
-        case ObjectType::Weapon: return "WEAPON";
-        case ObjectType::Fireweapon: return "FIREWEAPON";
-        case ObjectType::Missile: return "MISSILE";
-        case ObjectType::Treasure: return "TREASURE";
-        case ObjectType::Armor: return "ARMOR";
-        case ObjectType::Potion: return "POTION";
-        case ObjectType::Worn: return "WORN";
-        case ObjectType::Other: return "OTHER";
-        case ObjectType::Trash: return "TRASH";
-        case ObjectType::Trap: return "TRAP";
-        case ObjectType::Container: return "CONTAINER";
-        case ObjectType::Note: return "NOTE";
-        case ObjectType::Drinkcontainer: return "DRINKCONTAINER";
-        case ObjectType::Key: return "KEY";
-        case ObjectType::Food: return "FOOD";
-        case ObjectType::Money: return "MONEY";
-        case ObjectType::Pen: return "PEN";
-        case ObjectType::Boat: return "BOAT";
-        case ObjectType::Fountain: return "FOUNTAIN";
-        case ObjectType::Portal: return "PORTAL";
-        case ObjectType::Rope: return "ROPE";
-        case ObjectType::Spellbook: return "SPELLBOOK";
-        case ObjectType::Wall: return "WALL";
-        case ObjectType::Touchstone: return "TOUCHSTONE";
-        case ObjectType::Board: return "BOARD";
-        case ObjectType::Instrument: return "INSTRUMENT";
-        case ObjectType::Vehicle: return "VEHICLE";
-        case ObjectType::Corpse: return "CORPSE";
-        case ObjectType::Kit: return "KIT";
-        case ObjectType::Wings: return "WINGS";
-        case ObjectType::Perfume: return "PERFUME";
-        case ObjectType::Disguise: return "DISGUISE";
-        case ObjectType::Poison: return "POISON";
+    case ObjectType::Nothing:
+        return "NOTHING";
+    case ObjectType::Light:
+        return "LIGHT";
+    case ObjectType::Scroll:
+        return "SCROLL";
+    case ObjectType::Wand:
+        return "WAND";
+    case ObjectType::Staff:
+        return "STAFF";
+    case ObjectType::Weapon:
+        return "WEAPON";
+    case ObjectType::Fireweapon:
+        return "FIREWEAPON";
+    case ObjectType::Missile:
+        return "MISSILE";
+    case ObjectType::Treasure:
+        return "TREASURE";
+    case ObjectType::Armor:
+        return "ARMOR";
+    case ObjectType::Potion:
+        return "POTION";
+    case ObjectType::Worn:
+        return "WORN";
+    case ObjectType::Other:
+        return "OTHER";
+    case ObjectType::Trash:
+        return "TRASH";
+    case ObjectType::Trap:
+        return "TRAP";
+    case ObjectType::Container:
+        return "CONTAINER";
+    case ObjectType::Note:
+        return "NOTE";
+    case ObjectType::Drinkcontainer:
+        return "DRINKCONTAINER";
+    case ObjectType::Key:
+        return "KEY";
+    case ObjectType::Food:
+        return "FOOD";
+    case ObjectType::Money:
+        return "MONEY";
+    case ObjectType::Pen:
+        return "PEN";
+    case ObjectType::Boat:
+        return "BOAT";
+    case ObjectType::Fountain:
+        return "FOUNTAIN";
+    case ObjectType::Portal:
+        return "PORTAL";
+    case ObjectType::Rope:
+        return "ROPE";
+    case ObjectType::Spellbook:
+        return "SPELLBOOK";
+    case ObjectType::Wall:
+        return "WALL";
+    case ObjectType::Touchstone:
+        return "TOUCHSTONE";
+    case ObjectType::Board:
+        return "BOARD";
+    case ObjectType::Instrument:
+        return "INSTRUMENT";
+    case ObjectType::Vehicle:
+        return "VEHICLE";
+    case ObjectType::Corpse:
+        return "CORPSE";
+    case ObjectType::Kit:
+        return "KIT";
+    case ObjectType::Wings:
+        return "WINGS";
+    case ObjectType::Perfume:
+        return "PERFUME";
+    case ObjectType::Disguise:
+        return "DISGUISE";
+    case ObjectType::Poison:
+        return "POISON";
     }
     return "";
 }
@@ -965,17 +1122,28 @@ inline std::optional<ObjectFlag> object_flag_from_db(std::string_view s) {
 /** Convert ObjectFlag enum to database string */
 inline std::string_view object_flag_to_db(ObjectFlag e) {
     switch (e) {
-        case ObjectFlag::Glow: return "GLOW";
-        case ObjectFlag::Hum: return "HUM";
-        case ObjectFlag::Invisible: return "INVISIBLE";
-        case ObjectFlag::Magic: return "MAGIC";
-        case ObjectFlag::Permanent: return "PERMANENT";
-        case ObjectFlag::Temporary: return "TEMPORARY";
-        case ObjectFlag::Decomposing: return "DECOMPOSING";
-        case ObjectFlag::Float: return "FLOAT";
-        case ObjectFlag::Buoyant: return "BUOYANT";
-        case ObjectFlag::Vehicle: return "VEHICLE";
-        case ObjectFlag::Soulbound: return "SOULBOUND";
+    case ObjectFlag::Glow:
+        return "GLOW";
+    case ObjectFlag::Hum:
+        return "HUM";
+    case ObjectFlag::Invisible:
+        return "INVISIBLE";
+    case ObjectFlag::Magic:
+        return "MAGIC";
+    case ObjectFlag::Permanent:
+        return "PERMANENT";
+    case ObjectFlag::Temporary:
+        return "TEMPORARY";
+    case ObjectFlag::Decomposing:
+        return "DECOMPOSING";
+    case ObjectFlag::Float:
+        return "FLOAT";
+    case ObjectFlag::Buoyant:
+        return "BUOYANT";
+    case ObjectFlag::Vehicle:
+        return "VEHICLE";
+    case ObjectFlag::Soulbound:
+        return "SOULBOUND";
     }
     return "";
 }
@@ -1008,27 +1176,13 @@ enum class WearFlag {
 /** Convert database string to WearFlag enum */
 inline std::optional<WearFlag> wear_flag_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, WearFlag> lookup = {
-        {"FINGER", WearFlag::Finger},
-        {"NECK", WearFlag::Neck},
-        {"EAR", WearFlag::Ear},
-        {"WRIST", WearFlag::Wrist},
-        {"HEAD", WearFlag::Head},
-        {"EYES", WearFlag::Eyes},
-        {"FACE", WearFlag::Face},
-        {"BODY", WearFlag::Body},
-        {"ABOUT", WearFlag::About},
-        {"ARMS", WearFlag::Arms},
-        {"HANDS", WearFlag::Hands},
-        {"WAIST", WearFlag::Waist},
-        {"BELT", WearFlag::Belt},
-        {"LEGS", WearFlag::Legs},
-        {"FEET", WearFlag::Feet},
-        {"TAIL", WearFlag::Tail},
-        {"MAINHAND", WearFlag::Mainhand},
-        {"OFFHAND", WearFlag::Offhand},
-        {"TWOHAND", WearFlag::Twohand},
-        {"BADGE", WearFlag::Badge},
-        {"HOVER", WearFlag::Hover},
+        {"FINGER", WearFlag::Finger},     {"NECK", WearFlag::Neck},         {"EAR", WearFlag::Ear},
+        {"WRIST", WearFlag::Wrist},       {"HEAD", WearFlag::Head},         {"EYES", WearFlag::Eyes},
+        {"FACE", WearFlag::Face},         {"BODY", WearFlag::Body},         {"ABOUT", WearFlag::About},
+        {"ARMS", WearFlag::Arms},         {"HANDS", WearFlag::Hands},       {"WAIST", WearFlag::Waist},
+        {"BELT", WearFlag::Belt},         {"LEGS", WearFlag::Legs},         {"FEET", WearFlag::Feet},
+        {"TAIL", WearFlag::Tail},         {"MAINHAND", WearFlag::Mainhand}, {"OFFHAND", WearFlag::Offhand},
+        {"TWOHAND", WearFlag::Twohand},   {"BADGE", WearFlag::Badge},       {"HOVER", WearFlag::Hover},
         {"DISGUISE", WearFlag::Disguise},
     };
     auto it = lookup.find(s);
@@ -1038,28 +1192,50 @@ inline std::optional<WearFlag> wear_flag_from_db(std::string_view s) {
 /** Convert WearFlag enum to database string */
 inline std::string_view wear_flag_to_db(WearFlag e) {
     switch (e) {
-        case WearFlag::Finger: return "FINGER";
-        case WearFlag::Neck: return "NECK";
-        case WearFlag::Ear: return "EAR";
-        case WearFlag::Wrist: return "WRIST";
-        case WearFlag::Head: return "HEAD";
-        case WearFlag::Eyes: return "EYES";
-        case WearFlag::Face: return "FACE";
-        case WearFlag::Body: return "BODY";
-        case WearFlag::About: return "ABOUT";
-        case WearFlag::Arms: return "ARMS";
-        case WearFlag::Hands: return "HANDS";
-        case WearFlag::Waist: return "WAIST";
-        case WearFlag::Belt: return "BELT";
-        case WearFlag::Legs: return "LEGS";
-        case WearFlag::Feet: return "FEET";
-        case WearFlag::Tail: return "TAIL";
-        case WearFlag::Mainhand: return "MAINHAND";
-        case WearFlag::Offhand: return "OFFHAND";
-        case WearFlag::Twohand: return "TWOHAND";
-        case WearFlag::Badge: return "BADGE";
-        case WearFlag::Hover: return "HOVER";
-        case WearFlag::Disguise: return "DISGUISE";
+    case WearFlag::Finger:
+        return "FINGER";
+    case WearFlag::Neck:
+        return "NECK";
+    case WearFlag::Ear:
+        return "EAR";
+    case WearFlag::Wrist:
+        return "WRIST";
+    case WearFlag::Head:
+        return "HEAD";
+    case WearFlag::Eyes:
+        return "EYES";
+    case WearFlag::Face:
+        return "FACE";
+    case WearFlag::Body:
+        return "BODY";
+    case WearFlag::About:
+        return "ABOUT";
+    case WearFlag::Arms:
+        return "ARMS";
+    case WearFlag::Hands:
+        return "HANDS";
+    case WearFlag::Waist:
+        return "WAIST";
+    case WearFlag::Belt:
+        return "BELT";
+    case WearFlag::Legs:
+        return "LEGS";
+    case WearFlag::Feet:
+        return "FEET";
+    case WearFlag::Tail:
+        return "TAIL";
+    case WearFlag::Mainhand:
+        return "MAINHAND";
+    case WearFlag::Offhand:
+        return "OFFHAND";
+    case WearFlag::Twohand:
+        return "TWOHAND";
+    case WearFlag::Badge:
+        return "BADGE";
+    case WearFlag::Hover:
+        return "HOVER";
+    case WearFlag::Disguise:
+        return "DISGUISE";
     }
     return "";
 }
@@ -1084,9 +1260,12 @@ inline std::optional<Alignment> alignment_from_db(std::string_view s) {
 /** Convert Alignment enum to database string */
 inline std::string_view alignment_to_db(Alignment e) {
     switch (e) {
-        case Alignment::Good: return "GOOD";
-        case Alignment::Neutral: return "NEUTRAL";
-        case Alignment::Evil: return "EVIL";
+    case Alignment::Good:
+        return "GOOD";
+    case Alignment::Neutral:
+        return "NEUTRAL";
+    case Alignment::Evil:
+        return "EVIL";
     }
     return "";
 }
@@ -1124,29 +1303,14 @@ enum class ElementType {
 /** Convert database string to ElementType enum */
 inline std::optional<ElementType> element_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, ElementType> lookup = {
-        {"PHYSICAL", ElementType::Physical},
-        {"SLASH", ElementType::Slash},
-        {"PIERCE", ElementType::Pierce},
-        {"CRUSH", ElementType::Crush},
-        {"FORCE", ElementType::Force},
-        {"SONIC", ElementType::Sonic},
-        {"BLEED", ElementType::Bleed},
-        {"FIRE", ElementType::Fire},
-        {"COLD", ElementType::Cold},
-        {"WATER", ElementType::Water},
-        {"EARTH", ElementType::Earth},
-        {"AIR", ElementType::Air},
-        {"SHOCK", ElementType::Shock},
-        {"ACID", ElementType::Acid},
-        {"POISON", ElementType::Poison},
-        {"RADIANT", ElementType::Radiant},
-        {"SHADOW", ElementType::Shadow},
-        {"HOLY", ElementType::Holy},
-        {"UNHOLY", ElementType::Unholy},
-        {"HEAL", ElementType::Heal},
-        {"NECROTIC", ElementType::Necrotic},
-        {"MENTAL", ElementType::Mental},
-        {"NATURE", ElementType::Nature},
+        {"PHYSICAL", ElementType::Physical}, {"SLASH", ElementType::Slash},   {"PIERCE", ElementType::Pierce},
+        {"CRUSH", ElementType::Crush},       {"FORCE", ElementType::Force},   {"SONIC", ElementType::Sonic},
+        {"BLEED", ElementType::Bleed},       {"FIRE", ElementType::Fire},     {"COLD", ElementType::Cold},
+        {"WATER", ElementType::Water},       {"EARTH", ElementType::Earth},   {"AIR", ElementType::Air},
+        {"SHOCK", ElementType::Shock},       {"ACID", ElementType::Acid},     {"POISON", ElementType::Poison},
+        {"RADIANT", ElementType::Radiant},   {"SHADOW", ElementType::Shadow}, {"HOLY", ElementType::Holy},
+        {"UNHOLY", ElementType::Unholy},     {"HEAL", ElementType::Heal},     {"NECROTIC", ElementType::Necrotic},
+        {"MENTAL", ElementType::Mental},     {"NATURE", ElementType::Nature},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -1155,29 +1319,52 @@ inline std::optional<ElementType> element_type_from_db(std::string_view s) {
 /** Convert ElementType enum to database string */
 inline std::string_view element_type_to_db(ElementType e) {
     switch (e) {
-        case ElementType::Physical: return "PHYSICAL";
-        case ElementType::Slash: return "SLASH";
-        case ElementType::Pierce: return "PIERCE";
-        case ElementType::Crush: return "CRUSH";
-        case ElementType::Force: return "FORCE";
-        case ElementType::Sonic: return "SONIC";
-        case ElementType::Bleed: return "BLEED";
-        case ElementType::Fire: return "FIRE";
-        case ElementType::Cold: return "COLD";
-        case ElementType::Water: return "WATER";
-        case ElementType::Earth: return "EARTH";
-        case ElementType::Air: return "AIR";
-        case ElementType::Shock: return "SHOCK";
-        case ElementType::Acid: return "ACID";
-        case ElementType::Poison: return "POISON";
-        case ElementType::Radiant: return "RADIANT";
-        case ElementType::Shadow: return "SHADOW";
-        case ElementType::Holy: return "HOLY";
-        case ElementType::Unholy: return "UNHOLY";
-        case ElementType::Heal: return "HEAL";
-        case ElementType::Necrotic: return "NECROTIC";
-        case ElementType::Mental: return "MENTAL";
-        case ElementType::Nature: return "NATURE";
+    case ElementType::Physical:
+        return "PHYSICAL";
+    case ElementType::Slash:
+        return "SLASH";
+    case ElementType::Pierce:
+        return "PIERCE";
+    case ElementType::Crush:
+        return "CRUSH";
+    case ElementType::Force:
+        return "FORCE";
+    case ElementType::Sonic:
+        return "SONIC";
+    case ElementType::Bleed:
+        return "BLEED";
+    case ElementType::Fire:
+        return "FIRE";
+    case ElementType::Cold:
+        return "COLD";
+    case ElementType::Water:
+        return "WATER";
+    case ElementType::Earth:
+        return "EARTH";
+    case ElementType::Air:
+        return "AIR";
+    case ElementType::Shock:
+        return "SHOCK";
+    case ElementType::Acid:
+        return "ACID";
+    case ElementType::Poison:
+        return "POISON";
+    case ElementType::Radiant:
+        return "RADIANT";
+    case ElementType::Shadow:
+        return "SHADOW";
+    case ElementType::Holy:
+        return "HOLY";
+    case ElementType::Unholy:
+        return "UNHOLY";
+    case ElementType::Heal:
+        return "HEAL";
+    case ElementType::Necrotic:
+        return "NECROTIC";
+    case ElementType::Mental:
+        return "MENTAL";
+    case ElementType::Nature:
+        return "NATURE";
     }
     return "";
 }
@@ -1252,34 +1439,62 @@ inline std::optional<ApplyType> apply_type_from_db(std::string_view s) {
 /** Convert ApplyType enum to database string */
 inline std::string_view apply_type_to_db(ApplyType e) {
     switch (e) {
-        case ApplyType::Ac: return "AC";
-        case ApplyType::Hitroll: return "HITROLL";
-        case ApplyType::Damroll: return "DAMROLL";
-        case ApplyType::Str: return "STR";
-        case ApplyType::Dex: return "DEX";
-        case ApplyType::Int: return "INT";
-        case ApplyType::Wis: return "WIS";
-        case ApplyType::Con: return "CON";
-        case ApplyType::Cha: return "CHA";
-        case ApplyType::SavingPara: return "SAVING_PARA";
-        case ApplyType::SavingRod: return "SAVING_ROD";
-        case ApplyType::SavingPetri: return "SAVING_PETRI";
-        case ApplyType::SavingBreath: return "SAVING_BREATH";
-        case ApplyType::SavingSpell: return "SAVING_SPELL";
-        case ApplyType::HitRegen: return "HIT_REGEN";
-        case ApplyType::MaxHp: return "MAX_HP";
-        case ApplyType::MaxMana: return "MAX_MANA";
-        case ApplyType::MaxMovement: return "MAX_MOVEMENT";
-        case ApplyType::Perception: return "PERCEPTION";
-        case ApplyType::Hiddenness: return "HIDDENNESS";
-        case ApplyType::Size: return "SIZE";
-        case ApplyType::Age: return "AGE";
-        case ApplyType::CharWeight: return "CHAR_WEIGHT";
-        case ApplyType::CharHeight: return "CHAR_HEIGHT";
-        case ApplyType::Focus: return "FOCUS";
-        case ApplyType::Composition: return "COMPOSITION";
-        case ApplyType::Level: return "LEVEL";
-        case ApplyType::None: return "NONE";
+    case ApplyType::Ac:
+        return "AC";
+    case ApplyType::Hitroll:
+        return "HITROLL";
+    case ApplyType::Damroll:
+        return "DAMROLL";
+    case ApplyType::Str:
+        return "STR";
+    case ApplyType::Dex:
+        return "DEX";
+    case ApplyType::Int:
+        return "INT";
+    case ApplyType::Wis:
+        return "WIS";
+    case ApplyType::Con:
+        return "CON";
+    case ApplyType::Cha:
+        return "CHA";
+    case ApplyType::SavingPara:
+        return "SAVING_PARA";
+    case ApplyType::SavingRod:
+        return "SAVING_ROD";
+    case ApplyType::SavingPetri:
+        return "SAVING_PETRI";
+    case ApplyType::SavingBreath:
+        return "SAVING_BREATH";
+    case ApplyType::SavingSpell:
+        return "SAVING_SPELL";
+    case ApplyType::HitRegen:
+        return "HIT_REGEN";
+    case ApplyType::MaxHp:
+        return "MAX_HP";
+    case ApplyType::MaxMana:
+        return "MAX_MANA";
+    case ApplyType::MaxMovement:
+        return "MAX_MOVEMENT";
+    case ApplyType::Perception:
+        return "PERCEPTION";
+    case ApplyType::Hiddenness:
+        return "HIDDENNESS";
+    case ApplyType::Size:
+        return "SIZE";
+    case ApplyType::Age:
+        return "AGE";
+    case ApplyType::CharWeight:
+        return "CHAR_WEIGHT";
+    case ApplyType::CharHeight:
+        return "CHAR_HEIGHT";
+    case ApplyType::Focus:
+        return "FOCUS";
+    case ApplyType::Composition:
+        return "COMPOSITION";
+    case ApplyType::Level:
+        return "LEVEL";
+    case ApplyType::None:
+        return "NONE";
     }
     return "";
 }
@@ -1374,42 +1589,78 @@ inline std::optional<Race> race_from_db(std::string_view s) {
 /** Convert Race enum to database string */
 inline std::string_view race_to_db(Race e) {
     switch (e) {
-        case Race::Human: return "HUMAN";
-        case Race::Elf: return "ELF";
-        case Race::Gnome: return "GNOME";
-        case Race::Dwarf: return "DWARF";
-        case Race::Drow: return "DROW";
-        case Race::Duergar: return "DUERGAR";
-        case Race::HalfElf: return "HALF_ELF";
-        case Race::Halfling: return "HALFLING";
-        case Race::Sverfneblin: return "SVERFNEBLIN";
-        case Race::Goliath: return "GOLIATH";
-        case Race::Brownie: return "BROWNIE";
-        case Race::FaerieSeelie: return "FAERIE_SEELIE";
-        case Race::FaerieUnseelie: return "FAERIE_UNSEELIE";
-        case Race::Nymph: return "NYMPH";
-        case Race::Arborean: return "ARBOREAN";
-        case Race::Troll: return "TROLL";
-        case Race::Ogre: return "OGRE";
-        case Race::Orc: return "ORC";
-        case Race::Goblin: return "GOBLIN";
-        case Race::Giant: return "GIANT";
-        case Race::Demon: return "DEMON";
-        case Race::DragonGeneral: return "DRAGON_GENERAL";
-        case Race::DragonFire: return "DRAGON_FIRE";
-        case Race::DragonFrost: return "DRAGON_FROST";
-        case Race::DragonAcid: return "DRAGON_ACID";
-        case Race::DragonLightning: return "DRAGON_LIGHTNING";
-        case Race::DragonGas: return "DRAGON_GAS";
-        case Race::DragonbornFire: return "DRAGONBORN_FIRE";
-        case Race::DragonbornFrost: return "DRAGONBORN_FROST";
-        case Race::DragonbornAcid: return "DRAGONBORN_ACID";
-        case Race::DragonbornLightning: return "DRAGONBORN_LIGHTNING";
-        case Race::DragonbornGas: return "DRAGONBORN_GAS";
-        case Race::Humanoid: return "HUMANOID";
-        case Race::Animal: return "ANIMAL";
-        case Race::Plant: return "PLANT";
-        case Race::Other: return "OTHER";
+    case Race::Human:
+        return "HUMAN";
+    case Race::Elf:
+        return "ELF";
+    case Race::Gnome:
+        return "GNOME";
+    case Race::Dwarf:
+        return "DWARF";
+    case Race::Drow:
+        return "DROW";
+    case Race::Duergar:
+        return "DUERGAR";
+    case Race::HalfElf:
+        return "HALF_ELF";
+    case Race::Halfling:
+        return "HALFLING";
+    case Race::Sverfneblin:
+        return "SVERFNEBLIN";
+    case Race::Goliath:
+        return "GOLIATH";
+    case Race::Brownie:
+        return "BROWNIE";
+    case Race::FaerieSeelie:
+        return "FAERIE_SEELIE";
+    case Race::FaerieUnseelie:
+        return "FAERIE_UNSEELIE";
+    case Race::Nymph:
+        return "NYMPH";
+    case Race::Arborean:
+        return "ARBOREAN";
+    case Race::Troll:
+        return "TROLL";
+    case Race::Ogre:
+        return "OGRE";
+    case Race::Orc:
+        return "ORC";
+    case Race::Goblin:
+        return "GOBLIN";
+    case Race::Giant:
+        return "GIANT";
+    case Race::Demon:
+        return "DEMON";
+    case Race::DragonGeneral:
+        return "DRAGON_GENERAL";
+    case Race::DragonFire:
+        return "DRAGON_FIRE";
+    case Race::DragonFrost:
+        return "DRAGON_FROST";
+    case Race::DragonAcid:
+        return "DRAGON_ACID";
+    case Race::DragonLightning:
+        return "DRAGON_LIGHTNING";
+    case Race::DragonGas:
+        return "DRAGON_GAS";
+    case Race::DragonbornFire:
+        return "DRAGONBORN_FIRE";
+    case Race::DragonbornFrost:
+        return "DRAGONBORN_FROST";
+    case Race::DragonbornAcid:
+        return "DRAGONBORN_ACID";
+    case Race::DragonbornLightning:
+        return "DRAGONBORN_LIGHTNING";
+    case Race::DragonbornGas:
+        return "DRAGONBORN_GAS";
+    case Race::Humanoid:
+        return "HUMANOID";
+    case Race::Animal:
+        return "ANIMAL";
+    case Race::Plant:
+        return "PLANT";
+    case Race::Other:
+        return "OTHER";
     }
     return "";
 }
@@ -1434,9 +1685,12 @@ inline std::optional<RaceAlign> race_align_from_db(std::string_view s) {
 /** Convert RaceAlign enum to database string */
 inline std::string_view race_align_to_db(RaceAlign e) {
     switch (e) {
-        case RaceAlign::Unknown: return "UNKNOWN";
-        case RaceAlign::Good: return "GOOD";
-        case RaceAlign::Evil: return "EVIL";
+    case RaceAlign::Unknown:
+        return "UNKNOWN";
+    case RaceAlign::Good:
+        return "GOOD";
+    case RaceAlign::Evil:
+        return "EVIL";
     }
     return "";
 }
@@ -1463,10 +1717,14 @@ inline std::optional<SkillCategory> skill_category_from_db(std::string_view s) {
 /** Convert SkillCategory enum to database string */
 inline std::string_view skill_category_to_db(SkillCategory e) {
     switch (e) {
-        case SkillCategory::Primary: return "PRIMARY";
-        case SkillCategory::Secondary: return "SECONDARY";
-        case SkillCategory::Restricted: return "RESTRICTED";
-        case SkillCategory::Forbidden: return "FORBIDDEN";
+    case SkillCategory::Primary:
+        return "PRIMARY";
+    case SkillCategory::Secondary:
+        return "SECONDARY";
+    case SkillCategory::Restricted:
+        return "RESTRICTED";
+    case SkillCategory::Forbidden:
+        return "FORBIDDEN";
     }
     return "";
 }
@@ -1486,15 +1744,9 @@ enum class SkillType {
 /** Convert database string to SkillType enum */
 inline std::optional<SkillType> skill_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, SkillType> lookup = {
-        {"WEAPON", SkillType::Weapon},
-        {"COMBAT", SkillType::Combat},
-        {"MAGIC", SkillType::Magic},
-        {"STEALTH", SkillType::Stealth},
-        {"SOCIAL", SkillType::Social},
-        {"CRAFTING", SkillType::Crafting},
-        {"SURVIVAL", SkillType::Survival},
-        {"KNOWLEDGE", SkillType::Knowledge},
-        {"UTILITY", SkillType::Utility},
+        {"WEAPON", SkillType::Weapon},     {"COMBAT", SkillType::Combat},       {"MAGIC", SkillType::Magic},
+        {"STEALTH", SkillType::Stealth},   {"SOCIAL", SkillType::Social},       {"CRAFTING", SkillType::Crafting},
+        {"SURVIVAL", SkillType::Survival}, {"KNOWLEDGE", SkillType::Knowledge}, {"UTILITY", SkillType::Utility},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -1503,15 +1755,24 @@ inline std::optional<SkillType> skill_type_from_db(std::string_view s) {
 /** Convert SkillType enum to database string */
 inline std::string_view skill_type_to_db(SkillType e) {
     switch (e) {
-        case SkillType::Weapon: return "WEAPON";
-        case SkillType::Combat: return "COMBAT";
-        case SkillType::Magic: return "MAGIC";
-        case SkillType::Stealth: return "STEALTH";
-        case SkillType::Social: return "SOCIAL";
-        case SkillType::Crafting: return "CRAFTING";
-        case SkillType::Survival: return "SURVIVAL";
-        case SkillType::Knowledge: return "KNOWLEDGE";
-        case SkillType::Utility: return "UTILITY";
+    case SkillType::Weapon:
+        return "WEAPON";
+    case SkillType::Combat:
+        return "COMBAT";
+    case SkillType::Magic:
+        return "MAGIC";
+    case SkillType::Stealth:
+        return "STEALTH";
+    case SkillType::Social:
+        return "SOCIAL";
+    case SkillType::Crafting:
+        return "CRAFTING";
+    case SkillType::Survival:
+        return "SURVIVAL";
+    case SkillType::Knowledge:
+        return "KNOWLEDGE";
+    case SkillType::Utility:
+        return "UTILITY";
     }
     return "";
 }
@@ -1556,17 +1817,28 @@ inline std::optional<SpellSphere> spell_sphere_from_db(std::string_view s) {
 /** Convert SpellSphere enum to database string */
 inline std::string_view spell_sphere_to_db(SpellSphere e) {
     switch (e) {
-        case SpellSphere::Generic: return "GENERIC";
-        case SpellSphere::Fire: return "FIRE";
-        case SpellSphere::Water: return "WATER";
-        case SpellSphere::Earth: return "EARTH";
-        case SpellSphere::Air: return "AIR";
-        case SpellSphere::Healing: return "HEALING";
-        case SpellSphere::Protection: return "PROTECTION";
-        case SpellSphere::Enchantment: return "ENCHANTMENT";
-        case SpellSphere::Summoning: return "SUMMONING";
-        case SpellSphere::Death: return "DEATH";
-        case SpellSphere::Divination: return "DIVINATION";
+    case SpellSphere::Generic:
+        return "GENERIC";
+    case SpellSphere::Fire:
+        return "FIRE";
+    case SpellSphere::Water:
+        return "WATER";
+    case SpellSphere::Earth:
+        return "EARTH";
+    case SpellSphere::Air:
+        return "AIR";
+    case SpellSphere::Healing:
+        return "HEALING";
+    case SpellSphere::Protection:
+        return "PROTECTION";
+    case SpellSphere::Enchantment:
+        return "ENCHANTMENT";
+    case SpellSphere::Summoning:
+        return "SUMMONING";
+    case SpellSphere::Death:
+        return "DEATH";
+    case SpellSphere::Divination:
+        return "DIVINATION";
     }
     return "";
 }
@@ -1607,17 +1879,28 @@ inline std::optional<TargetType> target_type_from_db(std::string_view s) {
 /** Convert TargetType enum to database string */
 inline std::string_view target_type_to_db(TargetType e) {
     switch (e) {
-        case TargetType::Self: return "SELF";
-        case TargetType::AllyPc: return "ALLY_PC";
-        case TargetType::AllyNpc: return "ALLY_NPC";
-        case TargetType::AllyGroup: return "ALLY_GROUP";
-        case TargetType::EnemyPc: return "ENEMY_PC";
-        case TargetType::EnemyNpc: return "ENEMY_NPC";
-        case TargetType::ObjectInv: return "OBJECT_INV";
-        case TargetType::ObjectWorld: return "OBJECT_WORLD";
-        case TargetType::Corpse: return "CORPSE";
-        case TargetType::Rider: return "RIDER";
-        case TargetType::Unconscious: return "UNCONSCIOUS";
+    case TargetType::Self:
+        return "SELF";
+    case TargetType::AllyPc:
+        return "ALLY_PC";
+    case TargetType::AllyNpc:
+        return "ALLY_NPC";
+    case TargetType::AllyGroup:
+        return "ALLY_GROUP";
+    case TargetType::EnemyPc:
+        return "ENEMY_PC";
+    case TargetType::EnemyNpc:
+        return "ENEMY_NPC";
+    case TargetType::ObjectInv:
+        return "OBJECT_INV";
+    case TargetType::ObjectWorld:
+        return "OBJECT_WORLD";
+    case TargetType::Corpse:
+        return "CORPSE";
+    case TargetType::Rider:
+        return "RIDER";
+    case TargetType::Unconscious:
+        return "UNCONSCIOUS";
     }
     return "";
 }
@@ -1636,14 +1919,9 @@ enum class TargetScope {
 /** Convert database string to TargetScope enum */
 inline std::optional<TargetScope> target_scope_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, TargetScope> lookup = {
-        {"SINGLE", TargetScope::Single},
-        {"ROOM", TargetScope::Room},
-        {"GROUP", TargetScope::Group},
-        {"AREA", TargetScope::Area},
-        {"CHAIN", TargetScope::Chain},
-        {"CONE", TargetScope::Cone},
-        {"LINE", TargetScope::Line},
-        {"SELF", TargetScope::Self},
+        {"SINGLE", TargetScope::Single}, {"ROOM", TargetScope::Room},   {"GROUP", TargetScope::Group},
+        {"AREA", TargetScope::Area},     {"CHAIN", TargetScope::Chain}, {"CONE", TargetScope::Cone},
+        {"LINE", TargetScope::Line},     {"SELF", TargetScope::Self},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -1652,14 +1930,22 @@ inline std::optional<TargetScope> target_scope_from_db(std::string_view s) {
 /** Convert TargetScope enum to database string */
 inline std::string_view target_scope_to_db(TargetScope e) {
     switch (e) {
-        case TargetScope::Single: return "SINGLE";
-        case TargetScope::Room: return "ROOM";
-        case TargetScope::Group: return "GROUP";
-        case TargetScope::Area: return "AREA";
-        case TargetScope::Chain: return "CHAIN";
-        case TargetScope::Cone: return "CONE";
-        case TargetScope::Line: return "LINE";
-        case TargetScope::Self: return "SELF";
+    case TargetScope::Single:
+        return "SINGLE";
+    case TargetScope::Room:
+        return "ROOM";
+    case TargetScope::Group:
+        return "GROUP";
+    case TargetScope::Area:
+        return "AREA";
+    case TargetScope::Chain:
+        return "CHAIN";
+    case TargetScope::Cone:
+        return "CONE";
+    case TargetScope::Line:
+        return "LINE";
+    case TargetScope::Self:
+        return "SELF";
     }
     return "";
 }
@@ -1684,9 +1970,12 @@ inline std::optional<SaveType> save_type_from_db(std::string_view s) {
 /** Convert SaveType enum to database string */
 inline std::string_view save_type_to_db(SaveType e) {
     switch (e) {
-        case SaveType::Reflex: return "REFLEX";
-        case SaveType::Fortitude: return "FORTITUDE";
-        case SaveType::Will: return "WILL";
+    case SaveType::Reflex:
+        return "REFLEX";
+    case SaveType::Fortitude:
+        return "FORTITUDE";
+    case SaveType::Will:
+        return "WILL";
     }
     return "";
 }
@@ -1702,11 +1991,8 @@ enum class SaveResult {
 /** Convert database string to SaveResult enum */
 inline std::optional<SaveResult> save_result_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, SaveResult> lookup = {
-        {"NONE", SaveResult::None},
-        {"HALF", SaveResult::Half},
-        {"NEGATE", SaveResult::Negate},
-        {"REDUCE25", SaveResult::Reduce25},
-        {"CUSTOM", SaveResult::Custom},
+        {"NONE", SaveResult::None},         {"HALF", SaveResult::Half},     {"NEGATE", SaveResult::Negate},
+        {"REDUCE25", SaveResult::Reduce25}, {"CUSTOM", SaveResult::Custom},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -1715,11 +2001,16 @@ inline std::optional<SaveResult> save_result_from_db(std::string_view s) {
 /** Convert SaveResult enum to database string */
 inline std::string_view save_result_to_db(SaveResult e) {
     switch (e) {
-        case SaveResult::None: return "NONE";
-        case SaveResult::Half: return "HALF";
-        case SaveResult::Negate: return "NEGATE";
-        case SaveResult::Reduce25: return "REDUCE25";
-        case SaveResult::Custom: return "CUSTOM";
+    case SaveResult::None:
+        return "NONE";
+    case SaveResult::Half:
+        return "HALF";
+    case SaveResult::Negate:
+        return "NEGATE";
+    case SaveResult::Reduce25:
+        return "REDUCE25";
+    case SaveResult::Custom:
+        return "CUSTOM";
     }
     return "";
 }
@@ -1746,10 +2037,14 @@ inline std::optional<StackingRule> stacking_rule_from_db(std::string_view s) {
 /** Convert StackingRule enum to database string */
 inline std::string_view stacking_rule_to_db(StackingRule e) {
     switch (e) {
-        case StackingRule::Refresh: return "REFRESH";
-        case StackingRule::Stack: return "STACK";
-        case StackingRule::Ignore: return "IGNORE";
-        case StackingRule::MaxOnly: return "MAX_ONLY";
+    case StackingRule::Refresh:
+        return "REFRESH";
+    case StackingRule::Stack:
+        return "STACK";
+    case StackingRule::Ignore:
+        return "IGNORE";
+    case StackingRule::MaxOnly:
+        return "MAX_ONLY";
     }
     return "";
 }
@@ -1780,10 +2075,14 @@ inline std::optional<ShopFlag> shop_flag_from_db(std::string_view s) {
 /** Convert ShopFlag enum to database string */
 inline std::string_view shop_flag_to_db(ShopFlag e) {
     switch (e) {
-        case ShopFlag::WillFight: return "WILL_FIGHT";
-        case ShopFlag::UsesBank: return "USES_BANK";
-        case ShopFlag::WillBankMoney: return "WILL_BANK_MONEY";
-        case ShopFlag::WillStartFight: return "WILL_START_FIGHT";
+    case ShopFlag::WillFight:
+        return "WILL_FIGHT";
+    case ShopFlag::UsesBank:
+        return "USES_BANK";
+    case ShopFlag::WillBankMoney:
+        return "WILL_BANK_MONEY";
+    case ShopFlag::WillStartFight:
+        return "WILL_START_FIGHT";
     }
     return "";
 }
@@ -1820,15 +2119,24 @@ inline std::optional<ShopTradesWith> shop_trades_with_from_db(std::string_view s
 /** Convert ShopTradesWith enum to database string */
 inline std::string_view shop_trades_with_to_db(ShopTradesWith e) {
     switch (e) {
-        case ShopTradesWith::Alignment: return "ALIGNMENT";
-        case ShopTradesWith::Race: return "RACE";
-        case ShopTradesWith::Class: return "CLASS";
-        case ShopTradesWith::TradeNogood: return "TRADE_NOGOOD";
-        case ShopTradesWith::TradeNoevil: return "TRADE_NOEVIL";
-        case ShopTradesWith::TradeNoneutral: return "TRADE_NONEUTRAL";
-        case ShopTradesWith::TradeNocleric: return "TRADE_NOCLERIC";
-        case ShopTradesWith::TradeNothief: return "TRADE_NOTHIEF";
-        case ShopTradesWith::TradeNowarrior: return "TRADE_NOWARRIOR";
+    case ShopTradesWith::Alignment:
+        return "ALIGNMENT";
+    case ShopTradesWith::Race:
+        return "RACE";
+    case ShopTradesWith::Class:
+        return "CLASS";
+    case ShopTradesWith::TradeNogood:
+        return "TRADE_NOGOOD";
+    case ShopTradesWith::TradeNoevil:
+        return "TRADE_NOEVIL";
+    case ShopTradesWith::TradeNoneutral:
+        return "TRADE_NONEUTRAL";
+    case ShopTradesWith::TradeNocleric:
+        return "TRADE_NOCLERIC";
+    case ShopTradesWith::TradeNothief:
+        return "TRADE_NOTHIEF";
+    case ShopTradesWith::TradeNowarrior:
+        return "TRADE_NOWARRIOR";
     }
     return "";
 }
@@ -1853,15 +2161,9 @@ enum class Climate {
 /** Convert database string to Climate enum */
 inline std::optional<Climate> climate_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, Climate> lookup = {
-        {"NONE", Climate::None},
-        {"SEMIARID", Climate::Semiarid},
-        {"ARID", Climate::Arid},
-        {"OCEANIC", Climate::Oceanic},
-        {"TEMPERATE", Climate::Temperate},
-        {"SUBTROPICAL", Climate::Subtropical},
-        {"TROPICAL", Climate::Tropical},
-        {"SUBARCTIC", Climate::Subarctic},
-        {"ARCTIC", Climate::Arctic},
+        {"NONE", Climate::None},         {"SEMIARID", Climate::Semiarid},   {"ARID", Climate::Arid},
+        {"OCEANIC", Climate::Oceanic},   {"TEMPERATE", Climate::Temperate}, {"SUBTROPICAL", Climate::Subtropical},
+        {"TROPICAL", Climate::Tropical}, {"SUBARCTIC", Climate::Subarctic}, {"ARCTIC", Climate::Arctic},
         {"ALPINE", Climate::Alpine},
     };
     auto it = lookup.find(s);
@@ -1871,16 +2173,26 @@ inline std::optional<Climate> climate_from_db(std::string_view s) {
 /** Convert Climate enum to database string */
 inline std::string_view climate_to_db(Climate e) {
     switch (e) {
-        case Climate::None: return "NONE";
-        case Climate::Semiarid: return "SEMIARID";
-        case Climate::Arid: return "ARID";
-        case Climate::Oceanic: return "OCEANIC";
-        case Climate::Temperate: return "TEMPERATE";
-        case Climate::Subtropical: return "SUBTROPICAL";
-        case Climate::Tropical: return "TROPICAL";
-        case Climate::Subarctic: return "SUBARCTIC";
-        case Climate::Arctic: return "ARCTIC";
-        case Climate::Alpine: return "ALPINE";
+    case Climate::None:
+        return "NONE";
+    case Climate::Semiarid:
+        return "SEMIARID";
+    case Climate::Arid:
+        return "ARID";
+    case Climate::Oceanic:
+        return "OCEANIC";
+    case Climate::Temperate:
+        return "TEMPERATE";
+    case Climate::Subtropical:
+        return "SUBTROPICAL";
+    case Climate::Tropical:
+        return "TROPICAL";
+    case Climate::Subarctic:
+        return "SUBARCTIC";
+    case Climate::Arctic:
+        return "ARCTIC";
+    case Climate::Alpine:
+        return "ALPINE";
     }
     return "";
 }
@@ -1907,10 +2219,14 @@ inline std::optional<Hemisphere> hemisphere_from_db(std::string_view s) {
 /** Convert Hemisphere enum to database string */
 inline std::string_view hemisphere_to_db(Hemisphere e) {
     switch (e) {
-        case Hemisphere::Northwest: return "NORTHWEST";
-        case Hemisphere::Northeast: return "NORTHEAST";
-        case Hemisphere::Southwest: return "SOUTHWEST";
-        case Hemisphere::Southeast: return "SOUTHEAST";
+    case Hemisphere::Northwest:
+        return "NORTHWEST";
+    case Hemisphere::Northeast:
+        return "NORTHEAST";
+    case Hemisphere::Southwest:
+        return "SOUTHWEST";
+    case Hemisphere::Southeast:
+        return "SOUTHEAST";
     }
     return "";
 }
@@ -1935,9 +2251,12 @@ inline std::optional<ResetMode> reset_mode_from_db(std::string_view s) {
 /** Convert ResetMode enum to database string */
 inline std::string_view reset_mode_to_db(ResetMode e) {
     switch (e) {
-        case ResetMode::Never: return "NEVER";
-        case ResetMode::Empty: return "EMPTY";
-        case ResetMode::Normal: return "NORMAL";
+    case ResetMode::Never:
+        return "NEVER";
+    case ResetMode::Empty:
+        return "EMPTY";
+    case ResetMode::Normal:
+        return "NORMAL";
     }
     return "";
 }
@@ -1966,9 +2285,12 @@ inline std::optional<ScriptType> script_type_from_db(std::string_view s) {
 /** Convert ScriptType enum to database string */
 inline std::string_view script_type_to_db(ScriptType e) {
     switch (e) {
-        case ScriptType::Mob: return "MOB";
-        case ScriptType::Object: return "OBJECT";
-        case ScriptType::World: return "WORLD";
+    case ScriptType::Mob:
+        return "MOB";
+    case ScriptType::Object:
+        return "OBJECT";
+    case ScriptType::World:
+        return "WORLD";
     }
     return "";
 }
@@ -2057,41 +2379,76 @@ inline std::optional<TriggerFlag> trigger_flag_from_db(std::string_view s) {
 /** Convert TriggerFlag enum to database string */
 inline std::string_view trigger_flag_to_db(TriggerFlag e) {
     switch (e) {
-        case TriggerFlag::Global: return "GLOBAL";
-        case TriggerFlag::Random: return "RANDOM";
-        case TriggerFlag::Command: return "COMMAND";
-        case TriggerFlag::Load: return "LOAD";
-        case TriggerFlag::Cast: return "CAST";
-        case TriggerFlag::Leave: return "LEAVE";
-        case TriggerFlag::Time: return "TIME";
-        case TriggerFlag::Speech: return "SPEECH";
-        case TriggerFlag::Act: return "ACT";
-        case TriggerFlag::Death: return "DEATH";
-        case TriggerFlag::Greet: return "GREET";
-        case TriggerFlag::GreetAll: return "GREET_ALL";
-        case TriggerFlag::Entry: return "ENTRY";
-        case TriggerFlag::Receive: return "RECEIVE";
-        case TriggerFlag::Fight: return "FIGHT";
-        case TriggerFlag::HitPercent: return "HIT_PERCENT";
-        case TriggerFlag::Bribe: return "BRIBE";
-        case TriggerFlag::Memory: return "MEMORY";
-        case TriggerFlag::Door: return "DOOR";
-        case TriggerFlag::SpeechTo: return "SPEECH_TO";
-        case TriggerFlag::Look: return "LOOK";
-        case TriggerFlag::Auto: return "AUTO";
-        case TriggerFlag::Attack: return "ATTACK";
-        case TriggerFlag::Defend: return "DEFEND";
-        case TriggerFlag::Timer: return "TIMER";
-        case TriggerFlag::Get: return "GET";
-        case TriggerFlag::Drop: return "DROP";
-        case TriggerFlag::Give: return "GIVE";
-        case TriggerFlag::Wear: return "WEAR";
-        case TriggerFlag::Remove: return "REMOVE";
-        case TriggerFlag::Use: return "USE";
-        case TriggerFlag::Consume: return "CONSUME";
-        case TriggerFlag::Reset: return "RESET";
-        case TriggerFlag::Preentry: return "PREENTRY";
-        case TriggerFlag::Postentry: return "POSTENTRY";
+    case TriggerFlag::Global:
+        return "GLOBAL";
+    case TriggerFlag::Random:
+        return "RANDOM";
+    case TriggerFlag::Command:
+        return "COMMAND";
+    case TriggerFlag::Load:
+        return "LOAD";
+    case TriggerFlag::Cast:
+        return "CAST";
+    case TriggerFlag::Leave:
+        return "LEAVE";
+    case TriggerFlag::Time:
+        return "TIME";
+    case TriggerFlag::Speech:
+        return "SPEECH";
+    case TriggerFlag::Act:
+        return "ACT";
+    case TriggerFlag::Death:
+        return "DEATH";
+    case TriggerFlag::Greet:
+        return "GREET";
+    case TriggerFlag::GreetAll:
+        return "GREET_ALL";
+    case TriggerFlag::Entry:
+        return "ENTRY";
+    case TriggerFlag::Receive:
+        return "RECEIVE";
+    case TriggerFlag::Fight:
+        return "FIGHT";
+    case TriggerFlag::HitPercent:
+        return "HIT_PERCENT";
+    case TriggerFlag::Bribe:
+        return "BRIBE";
+    case TriggerFlag::Memory:
+        return "MEMORY";
+    case TriggerFlag::Door:
+        return "DOOR";
+    case TriggerFlag::SpeechTo:
+        return "SPEECH_TO";
+    case TriggerFlag::Look:
+        return "LOOK";
+    case TriggerFlag::Auto:
+        return "AUTO";
+    case TriggerFlag::Attack:
+        return "ATTACK";
+    case TriggerFlag::Defend:
+        return "DEFEND";
+    case TriggerFlag::Timer:
+        return "TIMER";
+    case TriggerFlag::Get:
+        return "GET";
+    case TriggerFlag::Drop:
+        return "DROP";
+    case TriggerFlag::Give:
+        return "GIVE";
+    case TriggerFlag::Wear:
+        return "WEAR";
+    case TriggerFlag::Remove:
+        return "REMOVE";
+    case TriggerFlag::Use:
+        return "USE";
+    case TriggerFlag::Consume:
+        return "CONSUME";
+    case TriggerFlag::Reset:
+        return "RESET";
+    case TriggerFlag::Preentry:
+        return "PREENTRY";
+    case TriggerFlag::Postentry:
+        return "POSTENTRY";
     }
     return "";
 }
@@ -2112,12 +2469,9 @@ enum class UserRole {
 /** Convert database string to UserRole enum */
 inline std::optional<UserRole> user_role_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, UserRole> lookup = {
-        {"PLAYER", UserRole::Player},
-        {"IMMORTAL", UserRole::Immortal},
-        {"BUILDER", UserRole::Builder},
-        {"HEAD_BUILDER", UserRole::HeadBuilder},
-        {"CODER", UserRole::Coder},
-        {"GOD", UserRole::God},
+        {"PLAYER", UserRole::Player},   {"IMMORTAL", UserRole::Immortal},
+        {"BUILDER", UserRole::Builder}, {"HEAD_BUILDER", UserRole::HeadBuilder},
+        {"CODER", UserRole::Coder},     {"GOD", UserRole::God},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -2126,12 +2480,18 @@ inline std::optional<UserRole> user_role_from_db(std::string_view s) {
 /** Convert UserRole enum to database string */
 inline std::string_view user_role_to_db(UserRole e) {
     switch (e) {
-        case UserRole::Player: return "PLAYER";
-        case UserRole::Immortal: return "IMMORTAL";
-        case UserRole::Builder: return "BUILDER";
-        case UserRole::HeadBuilder: return "HEAD_BUILDER";
-        case UserRole::Coder: return "CODER";
-        case UserRole::God: return "GOD";
+    case UserRole::Player:
+        return "PLAYER";
+    case UserRole::Immortal:
+        return "IMMORTAL";
+    case UserRole::Builder:
+        return "BUILDER";
+    case UserRole::HeadBuilder:
+        return "HEAD_BUILDER";
+    case UserRole::Coder:
+        return "CODER";
+    case UserRole::God:
+        return "GOD";
     }
     return "";
 }
@@ -2158,10 +2518,14 @@ inline std::optional<GrantResourceType> grant_resource_type_from_db(std::string_
 /** Convert GrantResourceType enum to database string */
 inline std::string_view grant_resource_type_to_db(GrantResourceType e) {
     switch (e) {
-        case GrantResourceType::Zone: return "ZONE";
-        case GrantResourceType::Mob: return "MOB";
-        case GrantResourceType::Object: return "OBJECT";
-        case GrantResourceType::Shop: return "SHOP";
+    case GrantResourceType::Zone:
+        return "ZONE";
+    case GrantResourceType::Mob:
+        return "MOB";
+    case GrantResourceType::Object:
+        return "OBJECT";
+    case GrantResourceType::Shop:
+        return "SHOP";
     }
     return "";
 }
@@ -2188,10 +2552,14 @@ inline std::optional<GrantPermission> grant_permission_from_db(std::string_view 
 /** Convert GrantPermission enum to database string */
 inline std::string_view grant_permission_to_db(GrantPermission e) {
     switch (e) {
-        case GrantPermission::Read: return "READ";
-        case GrantPermission::Write: return "WRITE";
-        case GrantPermission::Delete: return "DELETE";
-        case GrantPermission::Admin: return "ADMIN";
+    case GrantPermission::Read:
+        return "READ";
+    case GrantPermission::Write:
+        return "WRITE";
+    case GrantPermission::Delete:
+        return "DELETE";
+    case GrantPermission::Admin:
+        return "ADMIN";
     }
     return "";
 }
@@ -2211,11 +2579,8 @@ enum class ConfigValueType {
 /** Convert database string to ConfigValueType enum */
 inline std::optional<ConfigValueType> config_value_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, ConfigValueType> lookup = {
-        {"STRING", ConfigValueType::String},
-        {"INT", ConfigValueType::Int},
-        {"FLOAT", ConfigValueType::Float},
-        {"BOOL", ConfigValueType::Bool},
-        {"JSON", ConfigValueType::Json},
+        {"STRING", ConfigValueType::String}, {"INT", ConfigValueType::Int},   {"FLOAT", ConfigValueType::Float},
+        {"BOOL", ConfigValueType::Bool},     {"JSON", ConfigValueType::Json},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -2224,11 +2589,16 @@ inline std::optional<ConfigValueType> config_value_type_from_db(std::string_view
 /** Convert ConfigValueType enum to database string */
 inline std::string_view config_value_type_to_db(ConfigValueType e) {
     switch (e) {
-        case ConfigValueType::String: return "STRING";
-        case ConfigValueType::Int: return "INT";
-        case ConfigValueType::Float: return "FLOAT";
-        case ConfigValueType::Bool: return "BOOL";
-        case ConfigValueType::Json: return "JSON";
+    case ConfigValueType::String:
+        return "STRING";
+    case ConfigValueType::Int:
+        return "INT";
+    case ConfigValueType::Float:
+        return "FLOAT";
+    case ConfigValueType::Bool:
+        return "BOOL";
+    case ConfigValueType::Json:
+        return "JSON";
     }
     return "";
 }
@@ -2255,10 +2625,14 @@ inline std::optional<SystemTextCategory> system_text_category_from_db(std::strin
 /** Convert SystemTextCategory enum to database string */
 inline std::string_view system_text_category_to_db(SystemTextCategory e) {
     switch (e) {
-        case SystemTextCategory::Login: return "LOGIN";
-        case SystemTextCategory::System: return "SYSTEM";
-        case SystemTextCategory::Combat: return "COMBAT";
-        case SystemTextCategory::Immortal: return "IMMORTAL";
+    case SystemTextCategory::Login:
+        return "LOGIN";
+    case SystemTextCategory::System:
+        return "SYSTEM";
+    case SystemTextCategory::Combat:
+        return "COMBAT";
+    case SystemTextCategory::Immortal:
+        return "IMMORTAL";
     }
     return "";
 }
@@ -2303,19 +2677,32 @@ inline std::optional<LoginStage> login_stage_from_db(std::string_view s) {
 /** Convert LoginStage enum to database string */
 inline std::string_view login_stage_to_db(LoginStage e) {
     switch (e) {
-        case LoginStage::WelcomeBanner: return "WELCOME_BANNER";
-        case LoginStage::UsernamePrompt: return "USERNAME_PROMPT";
-        case LoginStage::PasswordPrompt: return "PASSWORD_PROMPT";
-        case LoginStage::InvalidLogin: return "INVALID_LOGIN";
-        case LoginStage::TooManyAttempts: return "TOO_MANY_ATTEMPTS";
-        case LoginStage::CharacterSelect: return "CHARACTER_SELECT";
-        case LoginStage::CreateNamePrompt: return "CREATE_NAME_PROMPT";
-        case LoginStage::CreatePassword: return "CREATE_PASSWORD";
-        case LoginStage::ConfirmPassword: return "CONFIRM_PASSWORD";
-        case LoginStage::SelectClass: return "SELECT_CLASS";
-        case LoginStage::SelectRace: return "SELECT_RACE";
-        case LoginStage::CreationComplete: return "CREATION_COMPLETE";
-        case LoginStage::ReconnectMessage: return "RECONNECT_MESSAGE";
+    case LoginStage::WelcomeBanner:
+        return "WELCOME_BANNER";
+    case LoginStage::UsernamePrompt:
+        return "USERNAME_PROMPT";
+    case LoginStage::PasswordPrompt:
+        return "PASSWORD_PROMPT";
+    case LoginStage::InvalidLogin:
+        return "INVALID_LOGIN";
+    case LoginStage::TooManyAttempts:
+        return "TOO_MANY_ATTEMPTS";
+    case LoginStage::CharacterSelect:
+        return "CHARACTER_SELECT";
+    case LoginStage::CreateNamePrompt:
+        return "CREATE_NAME_PROMPT";
+    case LoginStage::CreatePassword:
+        return "CREATE_PASSWORD";
+    case LoginStage::ConfirmPassword:
+        return "CONFIRM_PASSWORD";
+    case LoginStage::SelectClass:
+        return "SELECT_CLASS";
+    case LoginStage::SelectRace:
+        return "SELECT_RACE";
+    case LoginStage::CreationComplete:
+        return "CREATION_COMPLETE";
+    case LoginStage::ReconnectMessage:
+        return "RECONNECT_MESSAGE";
     }
     return "";
 }
@@ -2358,18 +2745,30 @@ inline std::optional<CommandCategory> command_category_from_db(std::string_view 
 /** Convert CommandCategory enum to database string */
 inline std::string_view command_category_to_db(CommandCategory e) {
     switch (e) {
-        case CommandCategory::Movement: return "MOVEMENT";
-        case CommandCategory::Combat: return "COMBAT";
-        case CommandCategory::Communication: return "COMMUNICATION";
-        case CommandCategory::Object: return "OBJECT";
-        case CommandCategory::Information: return "INFORMATION";
-        case CommandCategory::Social: return "SOCIAL";
-        case CommandCategory::Admin: return "ADMIN";
-        case CommandCategory::Building: return "BUILDING";
-        case CommandCategory::System: return "SYSTEM";
-        case CommandCategory::Clan: return "CLAN";
-        case CommandCategory::Magic: return "MAGIC";
-        case CommandCategory::Skills: return "SKILLS";
+    case CommandCategory::Movement:
+        return "MOVEMENT";
+    case CommandCategory::Combat:
+        return "COMBAT";
+    case CommandCategory::Communication:
+        return "COMMUNICATION";
+    case CommandCategory::Object:
+        return "OBJECT";
+    case CommandCategory::Information:
+        return "INFORMATION";
+    case CommandCategory::Social:
+        return "SOCIAL";
+    case CommandCategory::Admin:
+        return "ADMIN";
+    case CommandCategory::Building:
+        return "BUILDING";
+    case CommandCategory::System:
+        return "SYSTEM";
+    case CommandCategory::Clan:
+        return "CLAN";
+    case CommandCategory::Magic:
+        return "MAGIC";
+    case CommandCategory::Skills:
+        return "SKILLS";
     }
     return "";
 }
@@ -2398,9 +2797,12 @@ inline std::optional<ReportType> report_type_from_db(std::string_view s) {
 /** Convert ReportType enum to database string */
 inline std::string_view report_type_to_db(ReportType e) {
     switch (e) {
-        case ReportType::Bug: return "BUG";
-        case ReportType::Idea: return "IDEA";
-        case ReportType::Typo: return "TYPO";
+    case ReportType::Bug:
+        return "BUG";
+    case ReportType::Idea:
+        return "IDEA";
+    case ReportType::Typo:
+        return "TYPO";
     }
     return "";
 }
@@ -2416,10 +2818,8 @@ enum class ReportStatus {
 /** Convert database string to ReportStatus enum */
 inline std::optional<ReportStatus> report_status_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, ReportStatus> lookup = {
-        {"OPEN", ReportStatus::Open},
-        {"IN_PROGRESS", ReportStatus::InProgress},
-        {"RESOLVED", ReportStatus::Resolved},
-        {"WONT_FIX", ReportStatus::WontFix},
+        {"OPEN", ReportStatus::Open},           {"IN_PROGRESS", ReportStatus::InProgress},
+        {"RESOLVED", ReportStatus::Resolved},   {"WONT_FIX", ReportStatus::WontFix},
         {"DUPLICATE", ReportStatus::Duplicate},
     };
     auto it = lookup.find(s);
@@ -2429,11 +2829,16 @@ inline std::optional<ReportStatus> report_status_from_db(std::string_view s) {
 /** Convert ReportStatus enum to database string */
 inline std::string_view report_status_to_db(ReportStatus e) {
     switch (e) {
-        case ReportStatus::Open: return "OPEN";
-        case ReportStatus::InProgress: return "IN_PROGRESS";
-        case ReportStatus::Resolved: return "RESOLVED";
-        case ReportStatus::WontFix: return "WONT_FIX";
-        case ReportStatus::Duplicate: return "DUPLICATE";
+    case ReportStatus::Open:
+        return "OPEN";
+    case ReportStatus::InProgress:
+        return "IN_PROGRESS";
+    case ReportStatus::Resolved:
+        return "RESOLVED";
+    case ReportStatus::WontFix:
+        return "WONT_FIX";
+    case ReportStatus::Duplicate:
+        return "DUPLICATE";
     }
     return "";
 }
@@ -2464,12 +2869,18 @@ inline std::optional<MobProfession> mob_profession_from_db(std::string_view s) {
 /** Convert MobProfession enum to database string */
 inline std::string_view mob_profession_to_db(MobProfession e) {
     switch (e) {
-        case MobProfession::Banker: return "BANKER";
-        case MobProfession::Shopkeeper: return "SHOPKEEPER";
-        case MobProfession::Receptionist: return "RECEPTIONIST";
-        case MobProfession::Postmaster: return "POSTMASTER";
-        case MobProfession::Guildmaster: return "GUILDMASTER";
-        case MobProfession::Trainer: return "TRAINER";
+    case MobProfession::Banker:
+        return "BANKER";
+    case MobProfession::Shopkeeper:
+        return "SHOPKEEPER";
+    case MobProfession::Receptionist:
+        return "RECEPTIONIST";
+    case MobProfession::Postmaster:
+        return "POSTMASTER";
+    case MobProfession::Guildmaster:
+        return "GUILDMASTER";
+    case MobProfession::Trainer:
+        return "TRAINER";
     }
     return "";
 }
@@ -2486,12 +2897,9 @@ enum class ObjectRestriction {
 /** Convert database string to ObjectRestriction enum */
 inline std::optional<ObjectRestriction> object_restriction_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, ObjectRestriction> lookup = {
-        {"NO_DROP", ObjectRestriction::NoDrop},
-        {"NO_TAKE", ObjectRestriction::NoTake},
-        {"NO_SELL", ObjectRestriction::NoSell},
-        {"NO_BURN", ObjectRestriction::NoBurn},
-        {"NO_LOCATE", ObjectRestriction::NoLocate},
-        {"NO_INVISIBLE", ObjectRestriction::NoInvisible},
+        {"NO_DROP", ObjectRestriction::NoDrop},     {"NO_TAKE", ObjectRestriction::NoTake},
+        {"NO_SELL", ObjectRestriction::NoSell},     {"NO_BURN", ObjectRestriction::NoBurn},
+        {"NO_LOCATE", ObjectRestriction::NoLocate}, {"NO_INVISIBLE", ObjectRestriction::NoInvisible},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -2500,12 +2908,18 @@ inline std::optional<ObjectRestriction> object_restriction_from_db(std::string_v
 /** Convert ObjectRestriction enum to database string */
 inline std::string_view object_restriction_to_db(ObjectRestriction e) {
     switch (e) {
-        case ObjectRestriction::NoDrop: return "NO_DROP";
-        case ObjectRestriction::NoTake: return "NO_TAKE";
-        case ObjectRestriction::NoSell: return "NO_SELL";
-        case ObjectRestriction::NoBurn: return "NO_BURN";
-        case ObjectRestriction::NoLocate: return "NO_LOCATE";
-        case ObjectRestriction::NoInvisible: return "NO_INVISIBLE";
+    case ObjectRestriction::NoDrop:
+        return "NO_DROP";
+    case ObjectRestriction::NoTake:
+        return "NO_TAKE";
+    case ObjectRestriction::NoSell:
+        return "NO_SELL";
+    case ObjectRestriction::NoBurn:
+        return "NO_BURN";
+    case ObjectRestriction::NoLocate:
+        return "NO_LOCATE";
+    case ObjectRestriction::NoInvisible:
+        return "NO_INVISIBLE";
     }
     return "";
 }
@@ -2522,12 +2936,9 @@ enum class MovementMode {
 /** Convert database string to MovementMode enum */
 inline std::optional<MovementMode> movement_mode_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, MovementMode> lookup = {
-        {"NORMAL", MovementMode::Normal},
-        {"FLYING", MovementMode::Flying},
-        {"SWIMMING", MovementMode::Swimming},
-        {"UNDERWATER", MovementMode::Underwater},
-        {"MOUNTED", MovementMode::Mounted},
-        {"ETHEREAL", MovementMode::Ethereal},
+        {"NORMAL", MovementMode::Normal},     {"FLYING", MovementMode::Flying},
+        {"SWIMMING", MovementMode::Swimming}, {"UNDERWATER", MovementMode::Underwater},
+        {"MOUNTED", MovementMode::Mounted},   {"ETHEREAL", MovementMode::Ethereal},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -2536,12 +2947,18 @@ inline std::optional<MovementMode> movement_mode_from_db(std::string_view s) {
 /** Convert MovementMode enum to database string */
 inline std::string_view movement_mode_to_db(MovementMode e) {
     switch (e) {
-        case MovementMode::Normal: return "NORMAL";
-        case MovementMode::Flying: return "FLYING";
-        case MovementMode::Swimming: return "SWIMMING";
-        case MovementMode::Underwater: return "UNDERWATER";
-        case MovementMode::Mounted: return "MOUNTED";
-        case MovementMode::Ethereal: return "ETHEREAL";
+    case MovementMode::Normal:
+        return "NORMAL";
+    case MovementMode::Flying:
+        return "FLYING";
+    case MovementMode::Swimming:
+        return "SWIMMING";
+    case MovementMode::Underwater:
+        return "UNDERWATER";
+    case MovementMode::Mounted:
+        return "MOUNTED";
+    case MovementMode::Ethereal:
+        return "ETHEREAL";
     }
     return "";
 }
@@ -2574,13 +2991,20 @@ inline std::optional<PositionMechanic> position_mechanic_from_db(std::string_vie
 /** Convert PositionMechanic enum to database string */
 inline std::string_view position_mechanic_to_db(PositionMechanic e) {
     switch (e) {
-        case PositionMechanic::Ground: return "GROUND";
-        case PositionMechanic::Aerial: return "AERIAL";
-        case PositionMechanic::Aquatic: return "AQUATIC";
-        case PositionMechanic::Submerged: return "SUBMERGED";
-        case PositionMechanic::Ethereal: return "ETHEREAL";
-        case PositionMechanic::Mounted: return "MOUNTED";
-        case PositionMechanic::Incapacitated: return "INCAPACITATED";
+    case PositionMechanic::Ground:
+        return "GROUND";
+    case PositionMechanic::Aerial:
+        return "AERIAL";
+    case PositionMechanic::Aquatic:
+        return "AQUATIC";
+    case PositionMechanic::Submerged:
+        return "SUBMERGED";
+    case PositionMechanic::Ethereal:
+        return "ETHEREAL";
+    case PositionMechanic::Mounted:
+        return "MOUNTED";
+    case PositionMechanic::Incapacitated:
+        return "INCAPACITATED";
     }
     return "";
 }
@@ -2643,28 +3067,50 @@ inline std::optional<PlayerFlag> player_flag_from_db(std::string_view s) {
 /** Convert PlayerFlag enum to database string */
 inline std::string_view player_flag_to_db(PlayerFlag e) {
     switch (e) {
-        case PlayerFlag::Brief: return "BRIEF";
-        case PlayerFlag::Compact: return "COMPACT";
-        case PlayerFlag::NoRepeat: return "NO_REPEAT";
-        case PlayerFlag::AutoLoot: return "AUTO_LOOT";
-        case PlayerFlag::AutoGold: return "AUTO_GOLD";
-        case PlayerFlag::AutoSplit: return "AUTO_SPLIT";
-        case PlayerFlag::AutoExit: return "AUTO_EXIT";
-        case PlayerFlag::AutoAssist: return "AUTO_ASSIST";
-        case PlayerFlag::Wimpy: return "WIMPY";
-        case PlayerFlag::ShowDiceRolls: return "SHOW_DICE_ROLLS";
-        case PlayerFlag::Afk: return "AFK";
-        case PlayerFlag::Deaf: return "DEAF";
-        case PlayerFlag::NoTell: return "NO_TELL";
-        case PlayerFlag::NoSummon: return "NO_SUMMON";
-        case PlayerFlag::Quest: return "QUEST";
-        case PlayerFlag::PkEnabled: return "PK_ENABLED";
-        case PlayerFlag::Consent: return "CONSENT";
-        case PlayerFlag::ColorBlind: return "COLOR_BLIND";
-        case PlayerFlag::Msp: return "MSP";
-        case PlayerFlag::MxpEnabled: return "MXP_ENABLED";
-        case PlayerFlag::HolyLight: return "HOLY_LIGHT";
-        case PlayerFlag::ShowIds: return "SHOW_IDS";
+    case PlayerFlag::Brief:
+        return "BRIEF";
+    case PlayerFlag::Compact:
+        return "COMPACT";
+    case PlayerFlag::NoRepeat:
+        return "NO_REPEAT";
+    case PlayerFlag::AutoLoot:
+        return "AUTO_LOOT";
+    case PlayerFlag::AutoGold:
+        return "AUTO_GOLD";
+    case PlayerFlag::AutoSplit:
+        return "AUTO_SPLIT";
+    case PlayerFlag::AutoExit:
+        return "AUTO_EXIT";
+    case PlayerFlag::AutoAssist:
+        return "AUTO_ASSIST";
+    case PlayerFlag::Wimpy:
+        return "WIMPY";
+    case PlayerFlag::ShowDiceRolls:
+        return "SHOW_DICE_ROLLS";
+    case PlayerFlag::Afk:
+        return "AFK";
+    case PlayerFlag::Deaf:
+        return "DEAF";
+    case PlayerFlag::NoTell:
+        return "NO_TELL";
+    case PlayerFlag::NoSummon:
+        return "NO_SUMMON";
+    case PlayerFlag::Quest:
+        return "QUEST";
+    case PlayerFlag::PkEnabled:
+        return "PK_ENABLED";
+    case PlayerFlag::Consent:
+        return "CONSENT";
+    case PlayerFlag::ColorBlind:
+        return "COLOR_BLIND";
+    case PlayerFlag::Msp:
+        return "MSP";
+    case PlayerFlag::MxpEnabled:
+        return "MXP_ENABLED";
+    case PlayerFlag::HolyLight:
+        return "HOLY_LIGHT";
+    case PlayerFlag::ShowIds:
+        return "SHOW_IDS";
     }
     return "";
 }
@@ -2737,33 +3183,60 @@ inline std::optional<Permission> permission_from_db(std::string_view s) {
 /** Convert Permission enum to database string */
 inline std::string_view permission_to_db(Permission e) {
     switch (e) {
-        case Permission::Build: return "BUILD";
-        case Permission::Code: return "CODE";
-        case Permission::Admin: return "ADMIN";
-        case Permission::God: return "GOD";
-        case Permission::Shutdown: return "SHUTDOWN";
-        case Permission::Wizlock: return "WIZLOCK";
-        case Permission::Syslog: return "SYSLOG";
-        case Permission::Log: return "LOG";
-        case Permission::Force: return "FORCE";
-        case Permission::Snoop: return "SNOOP";
-        case Permission::Freeze: return "FREEZE";
-        case Permission::Thaw: return "THAW";
-        case Permission::Ban: return "BAN";
-        case Permission::Unban: return "UNBAN";
-        case Permission::Dc: return "DC";
-        case Permission::Advance: return "ADVANCE";
-        case Permission::Restore: return "RESTORE";
-        case Permission::Notitle: return "NOTITLE";
-        case Permission::Squelch: return "SQUELCH";
-        case Permission::Teleport: return "TELEPORT";
-        case Permission::Transfer: return "TRANSFER";
-        case Permission::Summon: return "SUMMON";
-        case Permission::Invisible: return "INVISIBLE";
-        case Permission::Nohassle: return "NOHASSLE";
-        case Permission::ZoneReset: return "ZONE_RESET";
-        case Permission::Wiznet: return "WIZNET";
-        case Permission::Olc: return "OLC";
+    case Permission::Build:
+        return "BUILD";
+    case Permission::Code:
+        return "CODE";
+    case Permission::Admin:
+        return "ADMIN";
+    case Permission::God:
+        return "GOD";
+    case Permission::Shutdown:
+        return "SHUTDOWN";
+    case Permission::Wizlock:
+        return "WIZLOCK";
+    case Permission::Syslog:
+        return "SYSLOG";
+    case Permission::Log:
+        return "LOG";
+    case Permission::Force:
+        return "FORCE";
+    case Permission::Snoop:
+        return "SNOOP";
+    case Permission::Freeze:
+        return "FREEZE";
+    case Permission::Thaw:
+        return "THAW";
+    case Permission::Ban:
+        return "BAN";
+    case Permission::Unban:
+        return "UNBAN";
+    case Permission::Dc:
+        return "DC";
+    case Permission::Advance:
+        return "ADVANCE";
+    case Permission::Restore:
+        return "RESTORE";
+    case Permission::Notitle:
+        return "NOTITLE";
+    case Permission::Squelch:
+        return "SQUELCH";
+    case Permission::Teleport:
+        return "TELEPORT";
+    case Permission::Transfer:
+        return "TRANSFER";
+    case Permission::Summon:
+        return "SUMMON";
+    case Permission::Invisible:
+        return "INVISIBLE";
+    case Permission::Nohassle:
+        return "NOHASSLE";
+    case Permission::ZoneReset:
+        return "ZONE_RESET";
+    case Permission::Wiznet:
+        return "WIZNET";
+    case Permission::Olc:
+        return "OLC";
     }
     return "";
 }
@@ -2798,14 +3271,22 @@ inline std::optional<ItemInstanceFlag> item_instance_flag_from_db(std::string_vi
 /** Convert ItemInstanceFlag enum to database string */
 inline std::string_view item_instance_flag_to_db(ItemInstanceFlag e) {
     switch (e) {
-        case ItemInstanceFlag::Identified: return "IDENTIFIED";
-        case ItemInstanceFlag::CursedKnown: return "CURSED_KNOWN";
-        case ItemInstanceFlag::Attuned: return "ATTUNED";
-        case ItemInstanceFlag::CustomNamed: return "CUSTOM_NAMED";
-        case ItemInstanceFlag::CustomDescribed: return "CUSTOM_DESCRIBED";
-        case ItemInstanceFlag::Stolen: return "STOLEN";
-        case ItemInstanceFlag::QuestFlagged: return "QUEST_FLAGGED";
-        case ItemInstanceFlag::Heirloom: return "HEIRLOOM";
+    case ItemInstanceFlag::Identified:
+        return "IDENTIFIED";
+    case ItemInstanceFlag::CursedKnown:
+        return "CURSED_KNOWN";
+    case ItemInstanceFlag::Attuned:
+        return "ATTUNED";
+    case ItemInstanceFlag::CustomNamed:
+        return "CUSTOM_NAMED";
+    case ItemInstanceFlag::CustomDescribed:
+        return "CUSTOM_DESCRIBED";
+    case ItemInstanceFlag::Stolen:
+        return "STOLEN";
+    case ItemInstanceFlag::QuestFlagged:
+        return "QUEST_FLAGGED";
+    case ItemInstanceFlag::Heirloom:
+        return "HEIRLOOM";
     }
     return "";
 }
@@ -2832,10 +3313,14 @@ inline std::optional<ToggleCategory> toggle_category_from_db(std::string_view s)
 /** Convert ToggleCategory enum to database string */
 inline std::string_view toggle_category_to_db(ToggleCategory e) {
     switch (e) {
-        case ToggleCategory::Display: return "DISPLAY";
-        case ToggleCategory::Combat: return "COMBAT";
-        case ToggleCategory::Social: return "SOCIAL";
-        case ToggleCategory::Immortal: return "IMMORTAL";
+    case ToggleCategory::Display:
+        return "DISPLAY";
+    case ToggleCategory::Combat:
+        return "COMBAT";
+    case ToggleCategory::Social:
+        return "SOCIAL";
+    case ToggleCategory::Immortal:
+        return "IMMORTAL";
     }
     return "";
 }
@@ -2854,14 +3339,9 @@ enum class HitType {
 /** Convert database string to HitType enum */
 inline std::optional<HitType> hit_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, HitType> lookup = {
-        {"MISS", HitType::Miss},
-        {"GLANCING", HitType::Glancing},
-        {"HIT", HitType::Hit},
-        {"CRITICAL", HitType::Critical},
-        {"DEATH", HitType::Death},
-        {"DODGE", HitType::Dodge},
-        {"PARRY", HitType::Parry},
-        {"BLOCK", HitType::Block},
+        {"MISS", HitType::Miss},         {"GLANCING", HitType::Glancing}, {"HIT", HitType::Hit},
+        {"CRITICAL", HitType::Critical}, {"DEATH", HitType::Death},       {"DODGE", HitType::Dodge},
+        {"PARRY", HitType::Parry},       {"BLOCK", HitType::Block},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -2870,14 +3350,22 @@ inline std::optional<HitType> hit_type_from_db(std::string_view s) {
 /** Convert HitType enum to database string */
 inline std::string_view hit_type_to_db(HitType e) {
     switch (e) {
-        case HitType::Miss: return "MISS";
-        case HitType::Glancing: return "GLANCING";
-        case HitType::Hit: return "HIT";
-        case HitType::Critical: return "CRITICAL";
-        case HitType::Death: return "DEATH";
-        case HitType::Dodge: return "DODGE";
-        case HitType::Parry: return "PARRY";
-        case HitType::Block: return "BLOCK";
+    case HitType::Miss:
+        return "MISS";
+    case HitType::Glancing:
+        return "GLANCING";
+    case HitType::Hit:
+        return "HIT";
+    case HitType::Critical:
+        return "CRITICAL";
+    case HitType::Death:
+        return "DEATH";
+    case HitType::Dodge:
+        return "DODGE";
+    case HitType::Parry:
+        return "PARRY";
+    case HitType::Block:
+        return "BLOCK";
     }
     return "";
 }
@@ -2895,12 +3383,9 @@ enum class QuestObjectiveType {
 /** Convert database string to QuestObjectiveType enum */
 inline std::optional<QuestObjectiveType> quest_objective_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, QuestObjectiveType> lookup = {
-        {"KILL_MOB", QuestObjectiveType::KillMob},
-        {"COLLECT_ITEM", QuestObjectiveType::CollectItem},
-        {"DELIVER_ITEM", QuestObjectiveType::DeliverItem},
-        {"VISIT_ROOM", QuestObjectiveType::VisitRoom},
-        {"TALK_TO_NPC", QuestObjectiveType::TalkToNpc},
-        {"USE_SKILL", QuestObjectiveType::UseSkill},
+        {"KILL_MOB", QuestObjectiveType::KillMob},         {"COLLECT_ITEM", QuestObjectiveType::CollectItem},
+        {"DELIVER_ITEM", QuestObjectiveType::DeliverItem}, {"VISIT_ROOM", QuestObjectiveType::VisitRoom},
+        {"TALK_TO_NPC", QuestObjectiveType::TalkToNpc},    {"USE_SKILL", QuestObjectiveType::UseSkill},
         {"CUSTOM_LUA", QuestObjectiveType::CustomLua},
     };
     auto it = lookup.find(s);
@@ -2910,13 +3395,20 @@ inline std::optional<QuestObjectiveType> quest_objective_type_from_db(std::strin
 /** Convert QuestObjectiveType enum to database string */
 inline std::string_view quest_objective_type_to_db(QuestObjectiveType e) {
     switch (e) {
-        case QuestObjectiveType::KillMob: return "KILL_MOB";
-        case QuestObjectiveType::CollectItem: return "COLLECT_ITEM";
-        case QuestObjectiveType::DeliverItem: return "DELIVER_ITEM";
-        case QuestObjectiveType::VisitRoom: return "VISIT_ROOM";
-        case QuestObjectiveType::TalkToNpc: return "TALK_TO_NPC";
-        case QuestObjectiveType::UseSkill: return "USE_SKILL";
-        case QuestObjectiveType::CustomLua: return "CUSTOM_LUA";
+    case QuestObjectiveType::KillMob:
+        return "KILL_MOB";
+    case QuestObjectiveType::CollectItem:
+        return "COLLECT_ITEM";
+    case QuestObjectiveType::DeliverItem:
+        return "DELIVER_ITEM";
+    case QuestObjectiveType::VisitRoom:
+        return "VISIT_ROOM";
+    case QuestObjectiveType::TalkToNpc:
+        return "TALK_TO_NPC";
+    case QuestObjectiveType::UseSkill:
+        return "USE_SKILL";
+    case QuestObjectiveType::CustomLua:
+        return "CUSTOM_LUA";
     }
     return "";
 }
@@ -2945,11 +3437,16 @@ inline std::optional<QuestRewardType> quest_reward_type_from_db(std::string_view
 /** Convert QuestRewardType enum to database string */
 inline std::string_view quest_reward_type_to_db(QuestRewardType e) {
     switch (e) {
-        case QuestRewardType::Experience: return "EXPERIENCE";
-        case QuestRewardType::Item: return "ITEM";
-        case QuestRewardType::Gold: return "GOLD";
-        case QuestRewardType::Ability: return "ABILITY";
-        case QuestRewardType::SkillPoints: return "SKILL_POINTS";
+    case QuestRewardType::Experience:
+        return "EXPERIENCE";
+    case QuestRewardType::Item:
+        return "ITEM";
+    case QuestRewardType::Gold:
+        return "GOLD";
+    case QuestRewardType::Ability:
+        return "ABILITY";
+    case QuestRewardType::SkillPoints:
+        return "SKILL_POINTS";
     }
     return "";
 }
@@ -2965,10 +3462,8 @@ enum class QuestStatus {
 /** Convert database string to QuestStatus enum */
 inline std::optional<QuestStatus> quest_status_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, QuestStatus> lookup = {
-        {"AVAILABLE", QuestStatus::Available},
-        {"IN_PROGRESS", QuestStatus::InProgress},
-        {"COMPLETED", QuestStatus::Completed},
-        {"FAILED", QuestStatus::Failed},
+        {"AVAILABLE", QuestStatus::Available}, {"IN_PROGRESS", QuestStatus::InProgress},
+        {"COMPLETED", QuestStatus::Completed}, {"FAILED", QuestStatus::Failed},
         {"ABANDONED", QuestStatus::Abandoned},
     };
     auto it = lookup.find(s);
@@ -2978,11 +3473,16 @@ inline std::optional<QuestStatus> quest_status_from_db(std::string_view s) {
 /** Convert QuestStatus enum to database string */
 inline std::string_view quest_status_to_db(QuestStatus e) {
     switch (e) {
-        case QuestStatus::Available: return "AVAILABLE";
-        case QuestStatus::InProgress: return "IN_PROGRESS";
-        case QuestStatus::Completed: return "COMPLETED";
-        case QuestStatus::Failed: return "FAILED";
-        case QuestStatus::Abandoned: return "ABANDONED";
+    case QuestStatus::Available:
+        return "AVAILABLE";
+    case QuestStatus::InProgress:
+        return "IN_PROGRESS";
+    case QuestStatus::Completed:
+        return "COMPLETED";
+    case QuestStatus::Failed:
+        return "FAILED";
+    case QuestStatus::Abandoned:
+        return "ABANDONED";
     }
     return "";
 }
@@ -3013,12 +3513,18 @@ inline std::optional<DialogueMatchType> dialogue_match_type_from_db(std::string_
 /** Convert DialogueMatchType enum to database string */
 inline std::string_view dialogue_match_type_to_db(DialogueMatchType e) {
     switch (e) {
-        case DialogueMatchType::Exact: return "EXACT";
-        case DialogueMatchType::Contains: return "CONTAINS";
-        case DialogueMatchType::StartsWith: return "STARTS_WITH";
-        case DialogueMatchType::AnyResponse: return "ANY_RESPONSE";
-        case DialogueMatchType::AnyOf: return "ANY_OF";
-        case DialogueMatchType::Regex: return "REGEX";
+    case DialogueMatchType::Exact:
+        return "EXACT";
+    case DialogueMatchType::Contains:
+        return "CONTAINS";
+    case DialogueMatchType::StartsWith:
+        return "STARTS_WITH";
+    case DialogueMatchType::AnyResponse:
+        return "ANY_RESPONSE";
+    case DialogueMatchType::AnyOf:
+        return "ANY_OF";
+    case DialogueMatchType::Regex:
+        return "REGEX";
     }
     return "";
 }
@@ -3037,14 +3543,9 @@ enum class QuestTriggerType {
 /** Convert database string to QuestTriggerType enum */
 inline std::optional<QuestTriggerType> quest_trigger_type_from_db(std::string_view s) {
     static const std::unordered_map<std::string_view, QuestTriggerType> lookup = {
-        {"MOB", QuestTriggerType::Mob},
-        {"LEVEL", QuestTriggerType::Level},
-        {"ITEM", QuestTriggerType::Item},
-        {"ROOM", QuestTriggerType::Room},
-        {"SKILL", QuestTriggerType::Skill},
-        {"EVENT", QuestTriggerType::Event},
-        {"AUTO", QuestTriggerType::Auto},
-        {"MANUAL", QuestTriggerType::Manual},
+        {"MOB", QuestTriggerType::Mob},   {"LEVEL", QuestTriggerType::Level},   {"ITEM", QuestTriggerType::Item},
+        {"ROOM", QuestTriggerType::Room}, {"SKILL", QuestTriggerType::Skill},   {"EVENT", QuestTriggerType::Event},
+        {"AUTO", QuestTriggerType::Auto}, {"MANUAL", QuestTriggerType::Manual},
     };
     auto it = lookup.find(s);
     return it != lookup.end() ? std::optional{it->second} : std::nullopt;
@@ -3053,14 +3554,22 @@ inline std::optional<QuestTriggerType> quest_trigger_type_from_db(std::string_vi
 /** Convert QuestTriggerType enum to database string */
 inline std::string_view quest_trigger_type_to_db(QuestTriggerType e) {
     switch (e) {
-        case QuestTriggerType::Mob: return "MOB";
-        case QuestTriggerType::Level: return "LEVEL";
-        case QuestTriggerType::Item: return "ITEM";
-        case QuestTriggerType::Room: return "ROOM";
-        case QuestTriggerType::Skill: return "SKILL";
-        case QuestTriggerType::Event: return "EVENT";
-        case QuestTriggerType::Auto: return "AUTO";
-        case QuestTriggerType::Manual: return "MANUAL";
+    case QuestTriggerType::Mob:
+        return "MOB";
+    case QuestTriggerType::Level:
+        return "LEVEL";
+    case QuestTriggerType::Item:
+        return "ITEM";
+    case QuestTriggerType::Room:
+        return "ROOM";
+    case QuestTriggerType::Skill:
+        return "SKILL";
+    case QuestTriggerType::Event:
+        return "EVENT";
+    case QuestTriggerType::Auto:
+        return "AUTO";
+    case QuestTriggerType::Manual:
+        return "MANUAL";
     }
     return "";
 }

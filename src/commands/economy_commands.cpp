@@ -8,8 +8,8 @@
 #include "../world/world_manager.hpp"
 #include "command_context.hpp"
 
-#include <charconv>
 #include <cctype>
+#include <charconv>
 
 namespace EconomyCommands {
 
@@ -23,11 +23,12 @@ namespace {
  * Find a shopkeeper in the current room
  * @return The first shopkeeper found, or nullptr if none
  */
-std::shared_ptr<Mobile> find_shopkeeper(const CommandContext& ctx) {
-    if (!ctx.room) return nullptr;
+std::shared_ptr<Mobile> find_shopkeeper(const CommandContext &ctx) {
+    if (!ctx.room)
+        return nullptr;
 
-    const auto& room_contents = ctx.room->contents();
-    for (const auto& actor : room_contents.actors) {
+    const auto &room_contents = ctx.room->contents();
+    for (const auto &actor : room_contents.actors) {
         if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mobile->is_shopkeeper()) {
                 return mobile;
@@ -41,11 +42,12 @@ std::shared_ptr<Mobile> find_shopkeeper(const CommandContext& ctx) {
  * Find a banker in the current room
  * @return The first banker found, or nullptr if none
  */
-std::shared_ptr<Mobile> find_banker(const CommandContext& ctx) {
-    if (!ctx.room) return nullptr;
+std::shared_ptr<Mobile> find_banker(const CommandContext &ctx) {
+    if (!ctx.room)
+        return nullptr;
 
-    const auto& room_contents = ctx.room->contents();
-    for (const auto& actor : room_contents.actors) {
+    const auto &room_contents = ctx.room->contents();
+    for (const auto &actor : room_contents.actors) {
         if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mobile->is_banker()) {
                 return mobile;
@@ -87,10 +89,8 @@ Result<CommandResult> cmd_value(const CommandContext &ctx) {
     int base_value = obj->value();
     int sell_price = base_value / 2; // Shops typically pay half
 
-    ctx.send(fmt::format("{} tells you, 'I'll give you {} for {}.'",
-             shopkeeper->display_name(),
-             fiery::Money::from_copper(sell_price).to_string(),
-             obj->display_name()));
+    ctx.send(fmt::format("{} tells you, 'I'll give you {} for {}.'", shopkeeper->display_name(),
+                         fiery::Money::from_copper(sell_price).to_string(), obj->display_name()));
 
     return CommandResult::Success;
 }
@@ -124,11 +124,10 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
         auto cost = fiery::Money::from_copper(IDENTIFY_COST);
         if (!player->spend(cost)) {
             ctx.send_error(fmt::format("{} tells you, 'That will cost {}. You don't have enough.'",
-                shopkeeper->display_name(), cost.to_string()));
+                                       shopkeeper->display_name(), cost.to_string()));
             return CommandResult::ResourceError;
         }
-        ctx.send(fmt::format("{} takes {} for the identification.",
-            shopkeeper->display_name(), cost.to_string()));
+        ctx.send(fmt::format("{} takes {} for the identification.", shopkeeper->display_name(), cost.to_string()));
     }
 
     // Mark the item as identified
@@ -176,50 +175,47 @@ Result<CommandResult> cmd_repair(const CommandContext &ctx) {
 
         // Permanent lights don't need refilling
         if (light.permanent || light.duration < 0) {
-            ctx.send(fmt::format("{} tells you, 'This {} never runs out of fuel.'",
-                shopkeeper->display_name(), obj->display_name()));
+            ctx.send(fmt::format("{} tells you, 'This {} never runs out of fuel.'", shopkeeper->display_name(),
+                                 obj->display_name()));
             return CommandResult::Success;
         }
 
         // Check if it needs refilling (less than full duration, assume 24 hours max)
         constexpr int MAX_LIGHT_DURATION = 24;
         if (light.duration >= MAX_LIGHT_DURATION) {
-            ctx.send(fmt::format("{} tells you, 'This {} is already fully fueled.'",
-                shopkeeper->display_name(), obj->display_name()));
+            ctx.send(fmt::format("{} tells you, 'This {} is already fully fueled.'", shopkeeper->display_name(),
+                                 obj->display_name()));
             return CommandResult::Success;
         }
 
         // Calculate refill cost based on how much fuel is needed
         int hours_needed = MAX_LIGHT_DURATION - light.duration;
-        int refill_cost = hours_needed * 10;  // 10 copper per hour of fuel
+        int refill_cost = hours_needed * 10; // 10 copper per hour of fuel
 
         auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
         if (player && !player->is_god()) {
             auto cost = fiery::Money::from_copper(refill_cost);
             if (!player->spend(cost)) {
                 ctx.send_error(fmt::format("{} tells you, 'That will cost {} to refill. You don't have enough.'",
-                    shopkeeper->display_name(), cost.to_string()));
+                                           shopkeeper->display_name(), cost.to_string()));
                 return CommandResult::ResourceError;
             }
-            ctx.send(fmt::format("{} takes {} for the fuel.",
-                shopkeeper->display_name(), cost.to_string()));
+            ctx.send(fmt::format("{} takes {} for the fuel.", shopkeeper->display_name(), cost.to_string()));
         }
 
         // Refill the light source
         light.duration = MAX_LIGHT_DURATION;
         obj->set_light_info(light);
 
-        ctx.send(fmt::format("{} refills {} with fresh oil.",
-            shopkeeper->display_name(), obj->display_name()));
-        ctx.send(fmt::format("Your {} now has {} hours of fuel.",
-            obj->display_name(), MAX_LIGHT_DURATION));
+        ctx.send(fmt::format("{} refills {} with fresh oil.", shopkeeper->display_name(), obj->display_name()));
+        ctx.send(fmt::format("Your {} now has {} hours of fuel.", obj->display_name(), MAX_LIGHT_DURATION));
 
         return CommandResult::Success;
     }
 
     // No repairs needed for other items (no durability system yet)
     ctx.send(fmt::format("{} tells you, 'This item is in perfect condition. No repairs needed.'",
-        shopkeeper->display_name()));
+                         shopkeeper->display_name()));
 
     return CommandResult::Success;
 }
@@ -352,7 +348,7 @@ Result<CommandResult> cmd_balance(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    const auto& bank = player->bank();
+    const auto &bank = player->bank();
     if (bank.is_zero()) {
         ctx.send("Your bank account is empty.");
     } else {
@@ -381,7 +377,8 @@ Result<CommandResult> cmd_transfer(const CommandContext &ctx) {
     // Parse the money amount from remaining arguments
     std::string money_str;
     for (size_t i = 1; i < ctx.arg_count(); ++i) {
-        if (!money_str.empty()) money_str += " ";
+        if (!money_str.empty())
+            money_str += " ";
         money_str += ctx.arg(i);
     }
 
@@ -419,11 +416,9 @@ Result<CommandResult> cmd_transfer(const CommandContext &ctx) {
     // Transfer to target
     target_player->receive(*money);
 
-    ctx.send(fmt::format("You transfer {} to {}.",
-                        money->to_string(), target_player->display_name()));
+    ctx.send(fmt::format("You transfer {} to {}.", money->to_string(), target_player->display_name()));
     ctx.send_to_actor(target_player,
-                     fmt::format("{} transfers {} to you.",
-                                player->display_name(), money->to_string()));
+                      fmt::format("{} transfers {} to you.", player->display_name(), money->to_string()));
 
     return CommandResult::Success;
 }
@@ -439,7 +434,7 @@ Result<CommandResult> cmd_coins(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    const auto& wallet = player->wallet();
+    const auto &wallet = player->wallet();
     if (wallet.is_zero()) {
         ctx.send("You are broke.");
     } else {
@@ -478,7 +473,7 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
     // No arguments = show status and usage
     if (ctx.arg_count() == 0) {
         ctx.send("--- Account Status ---");
-        const auto& account_balance = player->account_bank();
+        const auto &account_balance = player->account_bank();
         if (account_balance.is_zero()) {
             ctx.send("Account bank: Empty");
         } else {
@@ -488,9 +483,8 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
 
         // Get item count from database
         int item_count = 0;
-        auto count_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::count_account_items(txn, std::string{player->user_id()});
-        });
+        auto count_result = ConnectionPool::instance().execute(
+            [&](pqxx::work &txn) { return WorldQueries::count_account_items(txn, std::string{player->user_id()}); });
         if (count_result) {
             item_count = *count_result;
         }
@@ -537,8 +531,8 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
             fiery::Money to_deposit = player->wallet();
             player->wallet() = fiery::Money();
             player->account_bank() += to_deposit;
-            ctx.send(fmt::format("{} says, 'I'll transfer {} to your account.'",
-                banker->display_name(), to_deposit.to_string()));
+            ctx.send(fmt::format("{} says, 'I'll transfer {} to your account.'", banker->display_name(),
+                                 to_deposit.to_string()));
             ctx.send(fmt::format("You deposit {} to your account bank.", to_deposit.to_string()));
             return CommandResult::Success;
         }
@@ -560,8 +554,8 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
 
-        ctx.send(fmt::format("{} says, 'I'll transfer {} to your account.'",
-            banker->display_name(), money->to_string()));
+        ctx.send(
+            fmt::format("{} says, 'I'll transfer {} to your account.'", banker->display_name(), money->to_string()));
         ctx.send(fmt::format("You deposit {} to your account bank.", money->to_string()));
         return CommandResult::Success;
     }
@@ -584,8 +578,8 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
             fiery::Money to_withdraw = player->account_bank();
             player->account_bank() = fiery::Money();
             player->wallet() += to_withdraw;
-            ctx.send(fmt::format("{} says, 'Here's {} from your account.'",
-                banker->display_name(), to_withdraw.to_string()));
+            ctx.send(fmt::format("{} says, 'Here's {} from your account.'", banker->display_name(),
+                                 to_withdraw.to_string()));
             ctx.send(fmt::format("You withdraw {} from your account bank.", to_withdraw.to_string()));
             return CommandResult::Success;
         }
@@ -607,15 +601,14 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
 
-        ctx.send(fmt::format("{} says, 'Here's {} from your account.'",
-            banker->display_name(), money->to_string()));
+        ctx.send(fmt::format("{} says, 'Here's {} from your account.'", banker->display_name(), money->to_string()));
         ctx.send(fmt::format("You withdraw {} from your account bank.", money->to_string()));
         return CommandResult::Success;
     }
 
     // Handle "balance" for money
     if (subcommand == "balance" || subcommand == "bal") {
-        const auto& account_balance = player->account_bank();
+        const auto &account_balance = player->account_bank();
         if (account_balance.is_zero()) {
             ctx.send("Your account bank is empty.");
         } else {
@@ -645,14 +638,11 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         auto obj = target.object;
 
         // Store the item in the database
-        auto store_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::store_account_item(
-                txn,
-                std::string{player->user_id()},
-                obj->id(),
-                1,  // quantity
-                std::optional<std::string>{std::string{player->database_id()}},
-                "{}"  // custom_data
+        auto store_result = ConnectionPool::instance().execute([&](pqxx::work &txn) {
+            return WorldQueries::store_account_item(txn, std::string{player->user_id()}, obj->id(),
+                                                    1, // quantity
+                                                    std::optional<std::string>{std::string{player->database_id()}},
+                                                    "{}" // custom_data
             );
         });
 
@@ -664,8 +654,7 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         // Remove item from player's inventory
         player->inventory().remove_item(obj);
 
-        ctx.send(fmt::format("{} says, 'I'll keep {} safe for you.'",
-            banker->display_name(), obj->display_name()));
+        ctx.send(fmt::format("{} says, 'I'll keep {} safe for you.'", banker->display_name(), obj->display_name()));
         ctx.send(fmt::format("You store {} in your account.", obj->display_name()));
         return CommandResult::Success;
     }
@@ -681,16 +670,15 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         std::string_view item_arg = ctx.arg(1);
 
         // Load all account items to search through
-        auto items_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::load_account_items(txn, std::string{player->user_id()});
-        });
+        auto items_result = ConnectionPool::instance().execute(
+            [&](pqxx::work &txn) { return WorldQueries::load_account_items(txn, std::string{player->user_id()}); });
 
         if (!items_result) {
             ctx.send_error("Failed to access account storage. Please try again later.");
             return CommandResult::SystemError;
         }
 
-        auto& items = *items_result;
+        auto &items = *items_result;
         if (items.empty()) {
             ctx.send_error("Your account storage is empty.");
             return CommandResult::InvalidState;
@@ -705,14 +693,14 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
             int slot_num = 0;
             auto result = std::from_chars(num_str.data(), num_str.data() + num_str.size(), slot_num);
             if (result.ec == std::errc() && slot_num >= 1 && static_cast<size_t>(slot_num) <= items.size()) {
-                found_item = items[slot_num - 1];  // Convert to 0-based index
+                found_item = items[slot_num - 1]; // Convert to 0-based index
             }
         }
 
         // If not found by slot, search by keyword
         if (!found_item) {
-            auto& world = WorldManager::instance();
-            for (const auto& acct_item : items) {
+            auto &world = WorldManager::instance();
+            for (const auto &acct_item : items) {
                 auto obj_proto = world.get_object_prototype(acct_item.object_id);
                 if (obj_proto) {
                     // Check if the object's keywords match
@@ -731,7 +719,7 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         }
 
         // Create an instance of the object
-        auto& world = WorldManager::instance();
+        auto &world = WorldManager::instance();
         auto new_obj = world.create_object_instance(found_item->object_id);
         if (!new_obj) {
             ctx.send_error("The stored item no longer exists in the world.");
@@ -739,9 +727,8 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         }
 
         // Remove from database
-        auto remove_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::remove_account_item(txn, found_item->id);
-        });
+        auto remove_result = ConnectionPool::instance().execute(
+            [&](pqxx::work &txn) { return WorldQueries::remove_account_item(txn, found_item->id); });
 
         if (!remove_result) {
             ctx.send_error("Failed to retrieve item. Please try again later.");
@@ -751,40 +738,39 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         // Give item to player
         player->inventory().add_item(new_obj);
 
-        ctx.send(fmt::format("{} says, 'Here's {} from your account.'",
-            banker->display_name(), new_obj->display_name()));
+        ctx.send(
+            fmt::format("{} says, 'Here's {} from your account.'", banker->display_name(), new_obj->display_name()));
         ctx.send(fmt::format("You retrieve {} from your account.", new_obj->display_name()));
         return CommandResult::Success;
     }
 
     // Handle "list" for items
     if (subcommand == "list" || subcommand == "items" || subcommand == "inventory" || subcommand == "inv") {
-        auto items_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::load_account_items(txn, std::string{player->user_id()});
-        });
+        auto items_result = ConnectionPool::instance().execute(
+            [&](pqxx::work &txn) { return WorldQueries::load_account_items(txn, std::string{player->user_id()}); });
 
         if (!items_result) {
             ctx.send_error("Failed to access account storage. Please try again later.");
             return CommandResult::SystemError;
         }
 
-        auto& items = *items_result;
+        auto &items = *items_result;
 
         ctx.send("--- Account Item Storage ---");
         if (items.empty()) {
             ctx.send("Your account storage is empty.");
         } else {
-            auto& world = WorldManager::instance();
+            auto &world = WorldManager::instance();
             int slot_num = 1;
-            for (const auto& acct_item : items) {
+            for (const auto &acct_item : items) {
                 auto obj_proto = world.get_object_prototype(acct_item.object_id);
                 if (obj_proto) {
-                    ctx.send(fmt::format("  #{}: {} (qty: {})",
-                        slot_num++, obj_proto->display_name(), acct_item.quantity));
+                    ctx.send(
+                        fmt::format("  #{}: {} (qty: {})", slot_num++, obj_proto->display_name(), acct_item.quantity));
                 } else {
-                    ctx.send(fmt::format("  #{}: [Unknown Item {}:{}] (qty: {})",
-                        slot_num++, acct_item.object_id.zone_id(),
-                        acct_item.object_id.local_id(), acct_item.quantity));
+                    ctx.send(fmt::format("  #{}: [Unknown Item {}:{}] (qty: {})", slot_num++,
+                                         acct_item.object_id.zone_id(), acct_item.object_id.local_id(),
+                                         acct_item.quantity));
                 }
             }
             ctx.send(fmt::format("Total: {} item(s)", items.size()));
@@ -844,8 +830,9 @@ Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
     // Validate coin types
     static const std::vector<std::string> valid_types = {"copper", "silver", "gold", "platinum"};
     auto is_valid_type = [&](std::string_view type) {
-        for (const auto& t : valid_types) {
-            if (t.starts_with(type)) return true;
+        for (const auto &t : valid_types) {
+            if (t.starts_with(type))
+                return true;
         }
         return false;
     };
@@ -868,12 +855,7 @@ Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
 
 Result<void> register_commands() {
     // Shop enhancement commands
-    Commands()
-        .command("value", cmd_value)
-        .alias("val")
-        .category("Economy")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("value", cmd_value).alias("val").category("Economy").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("identify", cmd_identify)
@@ -882,11 +864,7 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("repair", cmd_repair)
-        .category("Economy")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("repair", cmd_repair).category("Economy").privilege(PrivilegeLevel::Player).build();
 
     // Banking commands
     Commands()
@@ -910,11 +888,7 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("transfer", cmd_transfer)
-        .category("Economy")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("transfer", cmd_transfer).category("Economy").privilege(PrivilegeLevel::Player).build();
 
     // Currency commands
     Commands()

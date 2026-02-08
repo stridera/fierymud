@@ -13,6 +13,6 @@ namespace FieryMUD {
  *   timers.after(seconds, callback) - Execute callback after delay
  *   timers.cancel(timer_id)         - Cancel a pending timer
  */
-void register_timer_bindings(sol::state& lua);
+void register_timer_bindings(sol::state &lua);
 
 } // namespace FieryMUD

@@ -9,10 +9,9 @@
  */
 
 #include <chrono>
+#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
-
-#include <nlohmann/json.hpp>
 
 namespace fierymud::events {
 
@@ -58,54 +57,54 @@ enum class GameEventType {
  */
 [[nodiscard]] constexpr std::string_view to_string(GameEventType type) noexcept {
     switch (type) {
-        case GameEventType::PLAYER_LOGIN:
-            return "PLAYER_LOGIN";
-        case GameEventType::PLAYER_LOGOUT:
-            return "PLAYER_LOGOUT";
-        case GameEventType::PLAYER_DEATH:
-            return "PLAYER_DEATH";
-        case GameEventType::PLAYER_LEVEL_UP:
-            return "PLAYER_LEVEL_UP";
-        case GameEventType::PLAYER_QUIT:
-            return "PLAYER_QUIT";
-        case GameEventType::PLAYER_ZONE_ENTER:
-            return "PLAYER_ZONE_ENTER";
-        case GameEventType::CHAT_GOSSIP:
-            return "CHAT_GOSSIP";
-        case GameEventType::CHAT_SHOUT:
-            return "CHAT_SHOUT";
-        case GameEventType::CHAT_OOC:
-            return "CHAT_OOC";
-        case GameEventType::CHAT_CLAN:
-            return "CHAT_CLAN";
-        case GameEventType::CHAT_GROUP:
-            return "CHAT_GROUP";
-        case GameEventType::CHAT_TELL:
-            return "CHAT_TELL";
-        case GameEventType::CHAT_SAY:
-            return "CHAT_SAY";
-        case GameEventType::CHAT_EMOTE:
-            return "CHAT_EMOTE";
-        case GameEventType::ADMIN_CRASH:
-            return "ADMIN_CRASH";
-        case GameEventType::ADMIN_ZONE_RESET:
-            return "ADMIN_ZONE_RESET";
-        case GameEventType::ADMIN_WARNING:
-            return "ADMIN_WARNING";
-        case GameEventType::ADMIN_SHUTDOWN:
-            return "ADMIN_SHUTDOWN";
-        case GameEventType::ADMIN_BROADCAST:
-            return "ADMIN_BROADCAST";
-        case GameEventType::ZONE_LOADED:
-            return "ZONE_LOADED";
-        case GameEventType::ZONE_RESET:
-            return "ZONE_RESET";
-        case GameEventType::MOB_KILLED:
-            return "MOB_KILLED";
-        case GameEventType::BOSS_SPAWN:
-            return "BOSS_SPAWN";
-        case GameEventType::QUEST_COMPLETE:
-            return "QUEST_COMPLETE";
+    case GameEventType::PLAYER_LOGIN:
+        return "PLAYER_LOGIN";
+    case GameEventType::PLAYER_LOGOUT:
+        return "PLAYER_LOGOUT";
+    case GameEventType::PLAYER_DEATH:
+        return "PLAYER_DEATH";
+    case GameEventType::PLAYER_LEVEL_UP:
+        return "PLAYER_LEVEL_UP";
+    case GameEventType::PLAYER_QUIT:
+        return "PLAYER_QUIT";
+    case GameEventType::PLAYER_ZONE_ENTER:
+        return "PLAYER_ZONE_ENTER";
+    case GameEventType::CHAT_GOSSIP:
+        return "CHAT_GOSSIP";
+    case GameEventType::CHAT_SHOUT:
+        return "CHAT_SHOUT";
+    case GameEventType::CHAT_OOC:
+        return "CHAT_OOC";
+    case GameEventType::CHAT_CLAN:
+        return "CHAT_CLAN";
+    case GameEventType::CHAT_GROUP:
+        return "CHAT_GROUP";
+    case GameEventType::CHAT_TELL:
+        return "CHAT_TELL";
+    case GameEventType::CHAT_SAY:
+        return "CHAT_SAY";
+    case GameEventType::CHAT_EMOTE:
+        return "CHAT_EMOTE";
+    case GameEventType::ADMIN_CRASH:
+        return "ADMIN_CRASH";
+    case GameEventType::ADMIN_ZONE_RESET:
+        return "ADMIN_ZONE_RESET";
+    case GameEventType::ADMIN_WARNING:
+        return "ADMIN_WARNING";
+    case GameEventType::ADMIN_SHUTDOWN:
+        return "ADMIN_SHUTDOWN";
+    case GameEventType::ADMIN_BROADCAST:
+        return "ADMIN_BROADCAST";
+    case GameEventType::ZONE_LOADED:
+        return "ZONE_LOADED";
+    case GameEventType::ZONE_RESET:
+        return "ZONE_RESET";
+    case GameEventType::MOB_KILLED:
+        return "MOB_KILLED";
+    case GameEventType::BOSS_SPAWN:
+        return "BOSS_SPAWN";
+    case GameEventType::QUEST_COMPLETE:
+        return "QUEST_COMPLETE";
     }
     return "UNKNOWN";
 }
@@ -115,37 +114,37 @@ enum class GameEventType {
  */
 [[nodiscard]] constexpr std::string_view get_channel(GameEventType type) noexcept {
     switch (type) {
-        case GameEventType::PLAYER_LOGIN:
-        case GameEventType::PLAYER_LOGOUT:
-        case GameEventType::PLAYER_DEATH:
-        case GameEventType::PLAYER_LEVEL_UP:
-        case GameEventType::PLAYER_QUIT:
-        case GameEventType::PLAYER_ZONE_ENTER:
-            return "fierymud:events:player";
+    case GameEventType::PLAYER_LOGIN:
+    case GameEventType::PLAYER_LOGOUT:
+    case GameEventType::PLAYER_DEATH:
+    case GameEventType::PLAYER_LEVEL_UP:
+    case GameEventType::PLAYER_QUIT:
+    case GameEventType::PLAYER_ZONE_ENTER:
+        return "fierymud:events:player";
 
-        case GameEventType::CHAT_GOSSIP:
-        case GameEventType::CHAT_SHOUT:
-        case GameEventType::CHAT_OOC:
-        case GameEventType::CHAT_CLAN:
-        case GameEventType::CHAT_GROUP:
-        case GameEventType::CHAT_TELL:
-        case GameEventType::CHAT_SAY:
-        case GameEventType::CHAT_EMOTE:
-            return "fierymud:events:chat";
+    case GameEventType::CHAT_GOSSIP:
+    case GameEventType::CHAT_SHOUT:
+    case GameEventType::CHAT_OOC:
+    case GameEventType::CHAT_CLAN:
+    case GameEventType::CHAT_GROUP:
+    case GameEventType::CHAT_TELL:
+    case GameEventType::CHAT_SAY:
+    case GameEventType::CHAT_EMOTE:
+        return "fierymud:events:chat";
 
-        case GameEventType::ADMIN_CRASH:
-        case GameEventType::ADMIN_ZONE_RESET:
-        case GameEventType::ADMIN_WARNING:
-        case GameEventType::ADMIN_SHUTDOWN:
-        case GameEventType::ADMIN_BROADCAST:
-            return "fierymud:events:admin";
+    case GameEventType::ADMIN_CRASH:
+    case GameEventType::ADMIN_ZONE_RESET:
+    case GameEventType::ADMIN_WARNING:
+    case GameEventType::ADMIN_SHUTDOWN:
+    case GameEventType::ADMIN_BROADCAST:
+        return "fierymud:events:admin";
 
-        case GameEventType::ZONE_LOADED:
-        case GameEventType::ZONE_RESET:
-        case GameEventType::MOB_KILLED:
-        case GameEventType::BOSS_SPAWN:
-        case GameEventType::QUEST_COMPLETE:
-            return "fierymud:events:world";
+    case GameEventType::ZONE_LOADED:
+    case GameEventType::ZONE_RESET:
+    case GameEventType::MOB_KILLED:
+    case GameEventType::BOSS_SPAWN:
+    case GameEventType::QUEST_COMPLETE:
+        return "fierymud:events:world";
     }
     return "fierymud:events:unknown";
 }
@@ -158,7 +157,7 @@ struct GameEvent {
     std::chrono::system_clock::time_point timestamp;
     std::optional<std::string> player_name;
     std::optional<int> zone_id;
-    std::optional<std::string> room_id;  // Format: "zone:local" (EntityId string)
+    std::optional<std::string> room_id; // Format: "zone:local" (EntityId string)
     std::string message;
     nlohmann::json metadata;
 
@@ -166,21 +165,19 @@ struct GameEvent {
      * @brief Create a new event with the current timestamp
      */
     static GameEvent create(GameEventType type, std::string message) {
-        return GameEvent{
-            .type = type,
-            .timestamp = std::chrono::system_clock::now(),
-            .player_name = std::nullopt,
-            .zone_id = std::nullopt,
-            .room_id = std::nullopt,
-            .message = std::move(message),
-            .metadata = nlohmann::json::object()};
+        return GameEvent{.type = type,
+                         .timestamp = std::chrono::system_clock::now(),
+                         .player_name = std::nullopt,
+                         .zone_id = std::nullopt,
+                         .room_id = std::nullopt,
+                         .message = std::move(message),
+                         .metadata = nlohmann::json::object()};
     }
 
     /**
      * @brief Create a player-related event
      */
-    static GameEvent player_event(GameEventType type, std::string player_name,
-                                  std::string message) {
+    static GameEvent player_event(GameEventType type, std::string player_name, std::string message) {
         auto event = create(type, std::move(message));
         event.player_name = std::move(player_name);
         return event;
@@ -189,8 +186,7 @@ struct GameEvent {
     /**
      * @brief Create a chat event
      */
-    static GameEvent chat_event(GameEventType type, std::string player_name,
-                                std::string message,
+    static GameEvent chat_event(GameEventType type, std::string player_name, std::string message,
                                 std::optional<std::string> target = std::nullopt) {
         auto event = player_event(type, std::move(player_name), std::move(message));
         if (target) {
@@ -214,9 +210,7 @@ struct GameEvent {
     [[nodiscard]] nlohmann::json to_json() const {
         nlohmann::json j;
         j["type"] = std::string(to_string(type));
-        j["timestamp"] = std::chrono::duration_cast<std::chrono::milliseconds>(
-                             timestamp.time_since_epoch())
-                             .count();
+        j["timestamp"] = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count();
         j["message"] = message;
 
         if (player_name) {
@@ -241,4 +235,4 @@ struct GameEvent {
     [[nodiscard]] std::string_view channel() const noexcept { return get_channel(type); }
 };
 
-}  // namespace fierymud::events
+} // namespace fierymud::events

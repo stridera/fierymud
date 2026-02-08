@@ -2,6 +2,7 @@
 
 #include "../core/actor.hpp"
 #include "../core/spell_system.hpp"
+
 #include <algorithm>
 #include <fmt/format.h>
 #include <map>
@@ -14,15 +15,24 @@ namespace MagicCommands {
 
 // Helper to describe proficiency level
 static std::string_view proficiency_description(int proficiency) {
-    if (proficiency >= 95) return "(superb)";
-    if (proficiency >= 85) return "(excellent)";
-    if (proficiency >= 75) return "(very good)";
-    if (proficiency >= 65) return "(good)";
-    if (proficiency >= 55) return "(fair)";
-    if (proficiency >= 45) return "(average)";
-    if (proficiency >= 35) return "(below avg)";
-    if (proficiency >= 25) return "(poor)";
-    if (proficiency >= 15) return "(very poor)";
+    if (proficiency >= 95)
+        return "(superb)";
+    if (proficiency >= 85)
+        return "(excellent)";
+    if (proficiency >= 75)
+        return "(very good)";
+    if (proficiency >= 65)
+        return "(good)";
+    if (proficiency >= 55)
+        return "(fair)";
+    if (proficiency >= 45)
+        return "(average)";
+    if (proficiency >= 35)
+        return "(below avg)";
+    if (proficiency >= 25)
+        return "(poor)";
+    if (proficiency >= 15)
+        return "(very poor)";
     return "(awful)";
 }
 
@@ -38,17 +48,27 @@ static std::string get_sphere_color(std::string_view sphere) {
         sphere_lower += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
     }
 
-    if (sphere_lower == "fire") return "\033[31m";         // red
-    if (sphere_lower == "water") return "\033[34m";        // blue
-    if (sphere_lower == "earth") return "\033[33m";        // yellow
-    if (sphere_lower == "air") return "\033[36m";          // cyan
-    if (sphere_lower == "healing") return "\033[32m";      // green
-    if (sphere_lower == "protection") return "\033[34m";   // blue
-    if (sphere_lower == "enchantment") return "\033[35m";  // magenta
-    if (sphere_lower == "summoning") return "\033[35m";    // magenta
-    if (sphere_lower == "divination") return "\033[36m";   // cyan
-    if (sphere_lower == "necromancy") return "\033[35m";   // magenta
-    return "\033[35m";  // default: magenta (generic)
+    if (sphere_lower == "fire")
+        return "\033[31m"; // red
+    if (sphere_lower == "water")
+        return "\033[34m"; // blue
+    if (sphere_lower == "earth")
+        return "\033[33m"; // yellow
+    if (sphere_lower == "air")
+        return "\033[36m"; // cyan
+    if (sphere_lower == "healing")
+        return "\033[32m"; // green
+    if (sphere_lower == "protection")
+        return "\033[34m"; // blue
+    if (sphere_lower == "enchantment")
+        return "\033[35m"; // magenta
+    if (sphere_lower == "summoning")
+        return "\033[35m"; // magenta
+    if (sphere_lower == "divination")
+        return "\033[36m"; // cyan
+    if (sphere_lower == "necromancy")
+        return "\033[35m"; // magenta
+    return "\033[35m";     // default: magenta (generic)
 }
 
 Result<CommandResult> cmd_spells(const CommandContext &ctx) {
@@ -60,8 +80,8 @@ Result<CommandResult> cmd_spells(const CommandContext &ctx) {
 
     // Get known abilities and filter for spells
     auto known_abilities = player->get_known_abilities();
-    std::vector<const LearnedAbility*> spells;
-    for (const auto* ability : known_abilities) {
+    std::vector<const LearnedAbility *> spells;
+    for (const auto *ability : known_abilities) {
         if (ability->type == "SPELL") {
             spells.push_back(ability);
         }
@@ -73,17 +93,15 @@ Result<CommandResult> cmd_spells(const CommandContext &ctx) {
     }
 
     // Group spells by circle
-    std::map<int, std::vector<const LearnedAbility*>> spells_by_circle;
-    for (const auto* spell : spells) {
+    std::map<int, std::vector<const LearnedAbility *>> spells_by_circle;
+    for (const auto *spell : spells) {
         spells_by_circle[spell->circle].push_back(spell);
     }
 
     // Sort spells within each circle by name
-    for (auto& [circle, circle_spells] : spells_by_circle) {
+    for (auto &[circle, circle_spells] : spells_by_circle) {
         std::sort(circle_spells.begin(), circle_spells.end(),
-            [](const LearnedAbility* a, const LearnedAbility* b) {
-                return a->plain_name < b->plain_name;
-            });
+                  [](const LearnedAbility *a, const LearnedAbility *b) { return a->plain_name < b->plain_name; });
     }
 
     std::string output;
@@ -95,15 +113,15 @@ Result<CommandResult> cmd_spells(const CommandContext &ctx) {
 
     // Display spells grouped by circle (matching legacy format)
     // Legacy format: "Circle  N: spell_name (padded)    sphere_name (colored)"
-    for (const auto& [circle, circle_spells] : spells_by_circle) {
+    for (const auto &[circle, circle_spells] : spells_by_circle) {
         bool first_in_circle = true;
-        for (const auto* spell : circle_spells) {
+        for (const auto *spell : circle_spells) {
             // Circle header on first spell, spaces on subsequent
             if (first_in_circle) {
                 output += fmt::format("{}Circle {:>2}:{} ", BLUE_BOLD, circle, RESET);
                 first_in_circle = false;
             } else {
-                output += "           ";  // 11 spaces to align with "Circle XX: "
+                output += "           "; // 11 spaces to align with "Circle XX: "
             }
 
             // Spell name with color codes (use name, not plain_name)
@@ -113,8 +131,7 @@ Result<CommandResult> cmd_spells(const CommandContext &ctx) {
             // Sphere with color
             if (!spell->sphere.empty()) {
                 std::string sphere_lower = spell->sphere;
-                std::transform(sphere_lower.begin(), sphere_lower.end(),
-                              sphere_lower.begin(), ::tolower);
+                std::transform(sphere_lower.begin(), sphere_lower.end(), sphere_lower.begin(), ::tolower);
                 std::string sphere_color = get_sphere_color(spell->sphere);
                 output += fmt::format(" {}{}{}", sphere_color, sphere_lower, RESET);
             }
@@ -148,7 +165,7 @@ Result<CommandResult> cmd_memorize(const CommandContext &ctx) {
     output += "--- Spell Slots ---\n";
 
     // Get restoration queue for timing info
-    const auto& queue = player->spell_slots().restoration_queue();
+    const auto &queue = player->spell_slots().restoration_queue();
 
     // Display each circle
     for (int circle : circles) {
@@ -162,19 +179,21 @@ Result<CommandResult> cmd_memorize(const CommandContext &ctx) {
             int cumulative_ticks = 0;
             int focus_rate = player->get_spell_restore_rate();
 
-            for (const auto& entry : queue) {
+            for (const auto &entry : queue) {
                 if (entry.circle == circle) {
                     // Time until this slot restores depends on queue position
                     int ticks_for_this = entry.ticks_remaining;
                     if (position == 0) {
                         // Front of queue - just use remaining ticks
                         int seconds = (ticks_for_this + focus_rate - 1) / focus_rate;
-                        if (!time_info.empty()) time_info += ", ";
+                        if (!time_info.empty())
+                            time_info += ", ";
                         time_info += fmt::format("{}s", seconds);
                     } else {
                         // Behind other entries - estimate based on position
                         int seconds = (ticks_for_this + cumulative_ticks + focus_rate - 1) / focus_rate;
-                        if (!time_info.empty()) time_info += ", ";
+                        if (!time_info.empty())
+                            time_info += ", ";
                         time_info += fmt::format("~{}s", seconds);
                     }
                 }
@@ -182,8 +201,8 @@ Result<CommandResult> cmd_memorize(const CommandContext &ctx) {
                 position++;
             }
 
-            output += fmt::format("  Circle {}: {}/{} available, {} restoring ({})\n",
-                                  circle, current, max, restoring, time_info);
+            output += fmt::format("  Circle {}: {}/{} available, {} restoring ({})\n", circle, current, max, restoring,
+                                  time_info);
         } else {
             output += fmt::format("  Circle {}: {}/{} available\n", circle, current, max);
         }
@@ -245,18 +264,18 @@ Result<CommandResult> cmd_abilities(const CommandContext &ctx) {
     }
 
     // Sort by type then by name
-    std::sort(known_abilities.begin(), known_abilities.end(),
-        [](const LearnedAbility* a, const LearnedAbility* b) {
-            if (a->type != b->type) return a->type < b->type;
-            return a->plain_name < b->plain_name;
-        });
+    std::sort(known_abilities.begin(), known_abilities.end(), [](const LearnedAbility *a, const LearnedAbility *b) {
+        if (a->type != b->type)
+            return a->type < b->type;
+        return a->plain_name < b->plain_name;
+    });
 
     // Display abilities grouped by type
     std::string output;
     output += "--- Your Abilities ---\n";
 
     std::string current_type;
-    for (const auto* ability : known_abilities) {
+    for (const auto *ability : known_abilities) {
         if (ability->type != current_type) {
             current_type = ability->type;
             if (current_type == "SKILL") {
@@ -274,8 +293,7 @@ Result<CommandResult> cmd_abilities(const CommandContext &ctx) {
         // Proficiency stored as 0-1000, display as 0-100
         int display_prof = ability->proficiency / 10;
         std::string prof_desc(proficiency_description(display_prof));
-        output += fmt::format("  {:<30} {:12} {:3}%\n",
-            ability->name, prof_desc, display_prof);
+        output += fmt::format("  {:<30} {:12} {:3}%\n", ability->name, prof_desc, display_prof);
     }
 
     output += "\n--- End of Abilities ---";
@@ -325,8 +343,7 @@ Result<CommandResult> cmd_meditate(const CommandContext &ctx) {
     if (player->is_meditating()) {
         player->stop_meditation();
         ctx.send("You stop meditating and open your eyes.");
-        ctx.send_to_room(fmt::format("{} opens their eyes and stops meditating.",
-                         player->display_name()), true);
+        ctx.send_to_room(fmt::format("{} opens their eyes and stops meditating.", player->display_name()), true);
         return CommandResult::Success;
     }
 
@@ -339,8 +356,7 @@ Result<CommandResult> cmd_meditate(const CommandContext &ctx) {
     if (ctx.actor->position() == Position::Standing) {
         ctx.send("You sit down and close your eyes.");
         ctx.actor->set_position(Position::Sitting);
-    } else if (ctx.actor->position() == Position::Sitting ||
-               ctx.actor->position() == Position::Resting) {
+    } else if (ctx.actor->position() == Position::Sitting || ctx.actor->position() == Position::Resting) {
         ctx.send("You close your eyes and clear your mind.");
     } else {
         ctx.send_error("You need to be sitting or standing to meditate.");
@@ -353,14 +369,12 @@ Result<CommandResult> cmd_meditate(const CommandContext &ctx) {
     int restoring = player->spell_slots().get_total_restoring();
     if (restoring > 0) {
         ctx.send("You enter a meditative state, focusing on restoring your magical energies.");
-        ctx.send(fmt::format("({} spell slot{} restoring at 2x speed)",
-                            restoring, restoring == 1 ? "" : "s"));
+        ctx.send(fmt::format("({} spell slot{} restoring at 2x speed)", restoring, restoring == 1 ? "" : "s"));
     } else {
         ctx.send("You enter a meditative state, focusing your mind.");
     }
 
-    ctx.send_to_room(fmt::format("{} closes their eyes and begins to meditate.",
-                     player->display_name()), true);
+    ctx.send_to_room(fmt::format("{} closes their eyes and begins to meditate.", player->display_name()), true);
 
     return CommandResult::Success;
 }
@@ -471,11 +485,7 @@ Result<CommandResult> cmd_create(const CommandContext &ctx) {
 
 Result<void> register_commands() {
     // Spell management
-    Commands()
-        .command("spells", cmd_spells)
-        .category("Magic")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("spells", cmd_spells).category("Magic").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("memorize", cmd_memorize)
@@ -485,24 +495,12 @@ Result<void> register_commands() {
         .build();
 
     // Priest flavor alias for spell slots
-    Commands()
-        .command("pray", cmd_memorize)
-        .category("Magic")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("pray", cmd_memorize).category("Magic").privilege(PrivilegeLevel::Player).build();
 
     // Generic alias for spell slots
-    Commands()
-        .command("slots", cmd_memorize)
-        .category("Magic")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("slots", cmd_memorize).category("Magic").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("forget", cmd_forget)
-        .category("Magic")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("forget", cmd_forget).category("Magic").privilege(PrivilegeLevel::Player).build();
 
     // Skill/ability display
     Commands()
@@ -512,11 +510,7 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("innate", cmd_innate)
-        .category("Magic")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("innate", cmd_innate).category("Magic").privilege(PrivilegeLevel::Player).build();
 
     // Recovery commands
     Commands()

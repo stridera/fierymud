@@ -24,7 +24,7 @@ class PlayerConnection;
  */
 enum class LoginState {
     // Initial state - waiting for login system to initialize
-    Connecting,         // Connection established, waiting for start_login()
+    Connecting, // Connection established, waiting for start_login()
 
     // Account-based login flow
     GetAccount,         // Asking for account username or email
@@ -42,8 +42,8 @@ enum class LoginState {
     ConfirmCreation, // Final confirmation before creation
 
     // Terminal states
-    Playing,         // Successfully logged in and playing
-    Disconnected     // Connection closed
+    Playing,     // Successfully logged in and playing
+    Disconnected // Connection closed
 };
 
 /**
@@ -115,10 +115,10 @@ class LoginSystem {
     void send_prompt();
     void send_message(std::string_view message);
     void send_welcome_message();
-    void send_logo_full();           // Full dragon logo (256-color + Unicode)
-    void send_logo_extended();       // Extended logo (256-color, simpler art)
-    void send_logo_basic();          // Basic ASCII fallback
-    void send_login_instructions();  // Common footer with login info
+    void send_logo_full();          // Full dragon logo (256-color + Unicode)
+    void send_logo_extended();      // Extended logo (256-color, simpler art)
+    void send_logo_basic();         // Basic ASCII fallback
+    void send_login_instructions(); // Common footer with login info
     void send_class_menu();
     void send_race_menu();
     void send_creation_summary();
@@ -135,15 +135,15 @@ class LoginSystem {
     Result<std::shared_ptr<Player>> load_character(std::string_view name, std::string_view password);
     Result<std::shared_ptr<Player>> create_character();
     Result<void> save_character(std::shared_ptr<Player> player);
-    void load_player_abilities(std::shared_ptr<Player>& player);
-    void load_player_items(std::shared_ptr<Player>& player);
-    void load_player_effects(std::shared_ptr<Player>& player);
+    void load_player_abilities(std::shared_ptr<Player> &player);
+    void load_player_items(std::shared_ptr<Player> &player);
+    void load_player_effects(std::shared_ptr<Player> &player);
 
     // Validation
     bool is_valid_name(std::string_view name) const;
     bool is_valid_password(std::string_view password) const;
     std::string normalize_name(std::string_view name) const;
-    
+
     // Player file validation and migration
     struct PlayerFileValidation {
         bool is_valid{false};
@@ -152,19 +152,19 @@ class LoginSystem {
         std::string error_message;
         std::string suggested_fix;
     };
-    
+
     PlayerFileValidation validate_player_file(std::string_view name) const;
 
     // State
-    LoginState state_{LoginState::Connecting};  // Start in connecting state until start_login()
-    std::vector<std::string> buffered_input_;   // Input received before login started
+    LoginState state_{LoginState::Connecting}; // Start in connecting state until start_login()
+    std::vector<std::string> buffered_input_;  // Input received before login started
     std::shared_ptr<PlayerConnection> connection_;
     CharacterCreationData creation_data_;
     std::shared_ptr<Player> player_;
 
     // User/account state
-    std::string user_id_;           // UUID of logged-in user
-    std::string account_name_;      // Username or email used to login
+    std::string user_id_;      // UUID of logged-in user
+    std::string account_name_; // Username or email used to login
     std::vector<std::tuple<std::string, std::string, int, std::string>> user_characters_;
     // Characters: (id, name, level, class)
 

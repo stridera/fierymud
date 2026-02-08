@@ -37,6 +37,6 @@ namespace FieryMUD {
  *   actor:teleport(room) - Move actor to room
  *   actor:has_effect(name) - Check if actor has effect
  */
-void register_actor_bindings(sol::state& lua);
+void register_actor_bindings(sol::state &lua);
 
 } // namespace FieryMUD

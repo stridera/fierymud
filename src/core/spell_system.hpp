@@ -2,34 +2,35 @@
 
 #include "core/entity.hpp"
 #include "core/result.hpp"
-#include <nlohmann/json.hpp>
-#include <unordered_map>
-#include <string>
-#include <string_view>
-#include <vector>
+
 #include <array>
 #include <expected>
+#include <nlohmann/json.hpp>
+#include <string>
+#include <string_view>
+#include <unordered_map>
+#include <vector>
 
 // Forward declarations
 class Actor;
 class CommandContext;
 
 namespace fierymud {
-    struct ClassSpellConfig;
-    enum class SpellProgression;
-}
+struct ClassSpellConfig;
+enum class SpellProgression;
+} // namespace fierymud
 using fierymud::ClassSpellConfig;
 using fierymud::SpellProgression;
 
 /** Spell types available in the game */
 enum class SpellType {
-    Offensive,    // Damage-dealing spells
-    Defensive,    // Protective spells
-    Healing,      // Restoration spells
-    Utility,      // Non-combat utility spells
-    Enchantment,  // Status effects
-    Divination,   // Information gathering
-    Conjuration   // Summoning and creation
+    Offensive,   // Damage-dealing spells
+    Defensive,   // Protective spells
+    Healing,     // Restoration spells
+    Utility,     // Non-combat utility spells
+    Enchantment, // Status effects
+    Divination,  // Information gathering
+    Conjuration  // Summoning and creation
 };
 
 /** Individual spell definition */
@@ -37,20 +38,20 @@ struct Spell {
     std::string name;
     std::string description;
     SpellType type = SpellType::Utility;
-    int circle = 1;           // Spell circle (1-9)
+    int circle = 1;            // Spell circle (1-9)
     int cast_time_seconds = 3; // Time to cast
-    int range_meters = 0;     // 0 = touch/self
-    int duration_seconds = 0; // 0 = instant
-    
+    int range_meters = 0;      // 0 = touch/self
+    int duration_seconds = 0;  // 0 = instant
+
     /** Check if spell can be cast by actor */
-    bool can_cast(const Actor& caster) const;
-    
+    bool can_cast(const Actor &caster) const;
+
     /** Execute spell effect (modifies caster for healing, buffs, etc.) */
-    Result<void> cast(Actor& caster, const CommandContext& ctx) const;
-    
+    Result<void> cast(Actor &caster, const CommandContext &ctx) const;
+
     /** JSON serialization */
     nlohmann::json to_json() const;
-    static Result<Spell> from_json(const nlohmann::json& json);
+    static Result<Spell> from_json(const nlohmann::json &json);
 };
 
 /** Spell slot tracking for a specific circle */
@@ -63,35 +64,35 @@ struct SpellSlotCircle {
 
     /** JSON serialization */
     nlohmann::json to_json() const;
-    static Result<SpellSlotCircle> from_json(const nlohmann::json& json);
+    static Result<SpellSlotCircle> from_json(const nlohmann::json &json);
 };
 
 /** Entry in the spell slot restoration queue (FIFO) */
 struct SpellSlotRestoring {
-    int circle;           // Circle of the slot being restored
-    int ticks_remaining;  // Countdown to restoration (seconds)
+    int circle;          // Circle of the slot being restored
+    int ticks_remaining; // Countdown to restoration (seconds)
 
     nlohmann::json to_json() const;
-    static Result<SpellSlotRestoring> from_json(const nlohmann::json& json);
+    static Result<SpellSlotRestoring> from_json(const nlohmann::json &json);
 };
 
 /** Base recovery times per circle (in seconds/ticks) */
 constexpr std::array<int, 10> CIRCLE_RECOVERY_TICKS = {
-    0,    // Circle 0 (unused)
-    30,   // Circle 1
-    35,   // Circle 2
-    50,   // Circle 3
-    65,   // Circle 4
-    80,   // Circle 5
-    95,   // Circle 6
-    130,  // Circle 7
-    145,  // Circle 8
-    165   // Circle 9
+    0,   // Circle 0 (unused)
+    30,  // Circle 1
+    35,  // Circle 2
+    50,  // Circle 3
+    65,  // Circle 4
+    80,  // Circle 5
+    95,  // Circle 6
+    130, // Circle 7
+    145, // Circle 8
+    165  // Circle 9
 };
 
 /** Complete spell slot system for an actor */
 class SpellSlots {
-public:
+  public:
     SpellSlots() = default;
 
     /** Initialize spell slots for a character class and level */
@@ -130,7 +131,7 @@ public:
     int get_total_restoring() const;
 
     /** Get the restoration queue (for display purposes) */
-    const std::vector<SpellSlotRestoring>& restoration_queue() const { return restoration_queue_; }
+    const std::vector<SpellSlotRestoring> &restoration_queue() const { return restoration_queue_; }
 
     /** Get all available spell circles */
     std::vector<int> get_available_circles() const;
@@ -140,42 +141,41 @@ public:
 
     /** JSON serialization */
     nlohmann::json to_json() const;
-    static Result<SpellSlots> from_json(const nlohmann::json& json);
+    static Result<SpellSlots> from_json(const nlohmann::json &json);
 
-private:
+  private:
     /** Initialize slots from class configuration */
-    void initialize_slots_from_config(const ClassSpellConfig& config, int level);
+    void initialize_slots_from_config(const ClassSpellConfig &config, int level);
 
     /** Calculate slot count based on progression type and level */
-    static int calculate_slots(SpellProgression progression, int level,
-                               int required_level, int max_slots);
+    static int calculate_slots(SpellProgression progression, int level, int required_level, int max_slots);
 
-    std::unordered_map<int, SpellSlotCircle> slots_;       // circle -> slot info
-    std::vector<SpellSlotRestoring> restoration_queue_;    // FIFO restoration queue
+    std::unordered_map<int, SpellSlotCircle> slots_;    // circle -> slot info
+    std::vector<SpellSlotRestoring> restoration_queue_; // FIFO restoration queue
 };
 
 /** Global spell registry */
 class SpellRegistry {
-public:
+  public:
     /** Get singleton instance */
-    static SpellRegistry& instance();
+    static SpellRegistry &instance();
 
     /** Register a spell */
-    void register_spell(const Spell& spell);
+    void register_spell(const Spell &spell);
 
     /** Find spell by name (supports partial matching) */
-    const Spell* find_spell(std::string_view name) const;
+    const Spell *find_spell(std::string_view name) const;
 
     /** Get all spells of a specific circle */
-    std::vector<const Spell*> get_spells_by_circle(int circle) const;
+    std::vector<const Spell *> get_spells_by_circle(int circle) const;
 
     /** Get all spells of a specific type */
-    std::vector<const Spell*> get_spells_by_type(SpellType type) const;
+    std::vector<const Spell *> get_spells_by_type(SpellType type) const;
 
     /** Initialize default spells */
     void initialize_default_spells();
 
-private:
+  private:
     SpellRegistry() = default;
     std::unordered_map<std::string, Spell> spells_;
 };
@@ -192,8 +192,8 @@ struct SpellError {
  * Wraps SpellRegistry with additional casting logic.
  */
 class SpellSystem {
-public:
-    static SpellSystem& instance();
+  public:
+    static SpellSystem &instance();
 
     /**
      * Check if a spell exists.
@@ -206,9 +206,8 @@ public:
      * Cast a spell from a script context.
      * Simplified version that doesn't require a full CommandContext.
      */
-    std::expected<void, SpellError> cast_spell(Actor& caster, std::string_view spell_name,
-                                                Actor* target, int level);
+    std::expected<void, SpellError> cast_spell(Actor &caster, std::string_view spell_name, Actor *target, int level);
 
-private:
+  private:
     SpellSystem() = default;
 };

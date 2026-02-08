@@ -35,35 +35,31 @@ Result<CommandResult> cmd_group(const CommandContext &ctx) {
             // We're following someone
             auto leader_player = std::dynamic_pointer_cast<Player>(leader);
             if (leader_player) {
-                ctx.send(fmt::format("  {} (Leader) - HP: {}/{}, ST: {}/{}",
-                    leader_player->display_name(),
-                    leader_player->stats().hit_points, leader_player->stats().max_hit_points,
-                    leader_player->stats().stamina, leader_player->stats().max_stamina));
+                ctx.send(fmt::format("  {} (Leader) - HP: {}/{}, ST: {}/{}", leader_player->display_name(),
+                                     leader_player->stats().hit_points, leader_player->stats().max_hit_points,
+                                     leader_player->stats().stamina, leader_player->stats().max_stamina));
 
                 // Show all followers of the leader
-                for (const auto& weak_follower : leader_player->get_followers()) {
+                for (const auto &weak_follower : leader_player->get_followers()) {
                     if (auto follower = weak_follower.lock()) {
                         std::string marker = (follower == ctx.actor) ? " (You)" : "";
-                        ctx.send(fmt::format("  {}{} - HP: {}/{}, ST: {}/{}",
-                            follower->display_name(), marker,
-                            follower->stats().hit_points, follower->stats().max_hit_points,
-                            follower->stats().stamina, follower->stats().max_stamina));
+                        ctx.send(fmt::format("  {}{} - HP: {}/{}, ST: {}/{}", follower->display_name(), marker,
+                                             follower->stats().hit_points, follower->stats().max_hit_points,
+                                             follower->stats().stamina, follower->stats().max_stamina));
                     }
                 }
             }
         } else {
             // We're the leader
-            ctx.send(fmt::format("  {} (Leader - You) - HP: {}/{}, ST: {}/{}",
-                player->display_name(),
-                player->stats().hit_points, player->stats().max_hit_points,
-                player->stats().stamina, player->stats().max_stamina));
+            ctx.send(fmt::format("  {} (Leader - You) - HP: {}/{}, ST: {}/{}", player->display_name(),
+                                 player->stats().hit_points, player->stats().max_hit_points, player->stats().stamina,
+                                 player->stats().max_stamina));
 
-            for (const auto& weak_follower : player->get_followers()) {
+            for (const auto &weak_follower : player->get_followers()) {
                 if (auto follower = weak_follower.lock()) {
-                    ctx.send(fmt::format("  {} - HP: {}/{}, ST: {}/{}",
-                        follower->display_name(),
-                        follower->stats().hit_points, follower->stats().max_hit_points,
-                        follower->stats().stamina, follower->stats().max_stamina));
+                    ctx.send(fmt::format("  {} - HP: {}/{}, ST: {}/{}", follower->display_name(),
+                                         follower->stats().hit_points, follower->stats().max_hit_points,
+                                         follower->stats().stamina, follower->stats().max_stamina));
                 }
             }
         }
@@ -103,7 +99,7 @@ Result<CommandResult> cmd_group(const CommandContext &ctx) {
 
     // Check if they're already in our group
     if (player->is_group_leader()) {
-        for (const auto& weak_follower : player->get_followers()) {
+        for (const auto &weak_follower : player->get_followers()) {
             if (auto follower = weak_follower.lock()) {
                 if (follower == target) {
                     ctx.send(fmt::format("{} is already in your group.", target->display_name()));
@@ -113,8 +109,7 @@ Result<CommandResult> cmd_group(const CommandContext &ctx) {
         }
     }
 
-    ctx.send(fmt::format("{} must use 'follow {}' to join your group.",
-        target->display_name(), player->name()));
+    ctx.send(fmt::format("{} must use 'follow {}' to join your group.", target->display_name(), player->name()));
     return CommandResult::Success;
 }
 
@@ -254,12 +249,10 @@ Result<CommandResult> cmd_report(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    const auto& stats = player->stats();
-    std::string report = fmt::format("{} reports: HP: {}/{}, ST: {}/{}, XP: {}",
-        player->display_name(),
-        stats.hit_points, stats.max_hit_points,
-        stats.stamina, stats.max_stamina,
-        stats.experience);
+    const auto &stats = player->stats();
+    std::string report =
+        fmt::format("{} reports: HP: {}/{}, ST: {}/{}, XP: {}", player->display_name(), stats.hit_points,
+                    stats.max_hit_points, stats.stamina, stats.max_stamina, stats.experience);
 
     player->send_to_group(report);
 
@@ -317,7 +310,7 @@ Result<CommandResult> cmd_split(const CommandContext &ctx) {
         }
 
         // Check all followers
-        for (const auto& weak_follower : group_leader->get_followers()) {
+        for (const auto &weak_follower : group_leader->get_followers()) {
             if (auto follower = weak_follower.lock()) {
                 if (follower != ctx.actor && follower->current_room() == player->current_room()) {
                     if (auto follower_player = std::dynamic_pointer_cast<Player>(follower)) {
@@ -352,10 +345,10 @@ Result<CommandResult> cmd_split(const CommandContext &ctx) {
     }
 
     // Give each recipient their share
-    for (auto& recipient : recipients) {
+    for (auto &recipient : recipients) {
         recipient->receive(share);
-        ctx.send_to_actor(recipient, fmt::format("{} splits {}; you receive {}.",
-            player->display_name(), money->to_string(), share.to_string()));
+        ctx.send_to_actor(recipient, fmt::format("{} splits {}; you receive {}.", player->display_name(),
+                                                 money->to_string(), share.to_string()));
     }
 
     ctx.send(fmt::format("You split {} among {} group members.", money->to_string(), members_in_room));
@@ -386,7 +379,7 @@ Result<CommandResult> cmd_disband(const CommandContext &ctx) {
     }
 
     // Remove all followers
-    for (const auto& weak_follower : followers) {
+    for (const auto &weak_follower : followers) {
         if (auto follower = weak_follower.lock()) {
             if (auto follower_player = std::dynamic_pointer_cast<Player>(follower)) {
                 follower_player->clear_leader();
@@ -432,7 +425,7 @@ Result<CommandResult> cmd_abandon(const CommandContext &ctx) {
     }
 
     int count = 0;
-    for (const auto& weak_follower : followers) {
+    for (const auto &weak_follower : followers) {
         if (auto follower = weak_follower.lock()) {
             if (auto follower_player = std::dynamic_pointer_cast<Player>(follower)) {
                 follower_player->clear_leader();
@@ -497,7 +490,7 @@ Result<CommandResult> cmd_dismiss(const CommandContext &ctx) {
         // No argument - list dismissable followers
         std::vector<std::shared_ptr<Actor>> dismissable;
 
-        for (const auto& weak_follower : ctx.actor->get_followers()) {
+        for (const auto &weak_follower : ctx.actor->get_followers()) {
             if (auto follower = weak_follower.lock()) {
                 if (auto mobile = std::dynamic_pointer_cast<Mobile>(follower)) {
                     if (mobile->has_trait(MobTrait::Summoned) || mobile->has_trait(MobTrait::Pet)) {
@@ -513,7 +506,7 @@ Result<CommandResult> cmd_dismiss(const CommandContext &ctx) {
         }
 
         ctx.send("You can dismiss the following:");
-        for (const auto& creature : dismissable) {
+        for (const auto &creature : dismissable) {
             ctx.send(fmt::format("  - {}", creature->display_name()));
         }
         ctx.send("Usage: dismiss <name>");
@@ -525,7 +518,7 @@ Result<CommandResult> cmd_dismiss(const CommandContext &ctx) {
     // Find the summoned creature among our followers
     std::shared_ptr<Mobile> target_mobile;
 
-    for (const auto& weak_follower : ctx.actor->get_followers()) {
+    for (const auto &weak_follower : ctx.actor->get_followers()) {
         if (auto follower = weak_follower.lock()) {
             if (auto mobile = std::dynamic_pointer_cast<Mobile>(follower)) {
                 // Check if it's a summon or pet
@@ -579,70 +572,26 @@ Result<CommandResult> cmd_dismiss(const CommandContext &ctx) {
 // =============================================================================
 
 Result<void> register_commands() {
-    Commands()
-        .command("group", cmd_group)
-        .alias("gr")
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("group", cmd_group).alias("gr").category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("follow", cmd_follow)
-        .alias("fol")
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("follow", cmd_follow).alias("fol").category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("unfollow", cmd_unfollow)
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("unfollow", cmd_unfollow).category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("report", cmd_report)
-        .alias("rep")
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("report", cmd_report).alias("rep").category("Group").privilege(PrivilegeLevel::Player).build();
 
     // Group extension commands
-    Commands()
-        .command("split", cmd_split)
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("split", cmd_split).category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("disband", cmd_disband)
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("disband", cmd_disband).category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("abandon", cmd_abandon)
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("abandon", cmd_abandon).category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("gtell", cmd_gtell)
-        .alias("gt")
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("gtell", cmd_gtell).alias("gt").category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("gsay", cmd_gsay)
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("gsay", cmd_gsay).category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("dismiss", cmd_dismiss)
-        .category("Group")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("dismiss", cmd_dismiss).category("Group").privilege(PrivilegeLevel::Player).build();
 
     return Success();
 }

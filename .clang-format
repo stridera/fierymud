@@ -67,12 +67,12 @@ ForEachMacros:
   - BOOST_FOREACH
 IncludeBlocks:   Regroup #Preserve
 IncludeCategories:
-  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
-    Priority:        2
-  - Regex:           '^(<|"(gtest|gmock|isl|json)/)'
-    Priority:        3
-  - Regex:           '.*'
+  - Regex:           '^"'                # Local project headers
     Priority:        1
+  - Regex:           '<[a-z_]+\.hpp>'    # Third-party libraries (cxxopts, nlohmann, etc.)
+    Priority:        2
+  - Regex:           '<.*>'              # Standard library
+    Priority:        3
 IncludeIsMainRegex: '(Test)?$'
 IndentCaseLabels: false
 IndentPPDirectives: None
@@ -117,7 +117,7 @@ SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-Standard:        Cpp11
+Standard:        Latest
 StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION

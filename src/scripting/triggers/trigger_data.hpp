@@ -1,16 +1,16 @@
 #pragma once
 
-#include "trigger_types.hpp"
 #include "core/ids.hpp"
+#include "trigger_types.hpp"
 
 #include <cstdint>
+#include <fmt/format.h>
 #include <memory>
+#include <nlohmann/json.hpp>
 #include <optional>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <fmt/format.h>
-#include <nlohmann/json.hpp>
 
 namespace FieryMUD {
 
@@ -55,31 +55,29 @@ struct TriggerData {
     std::optional<EntityId> object_id;
 
     /// Check if trigger has a specific flag
-    [[nodiscard]] constexpr bool has_flag(TriggerFlag check) const {
-        return FieryMUD::has_flag(flags, check);
-    }
+    [[nodiscard]] constexpr bool has_flag(TriggerFlag check) const { return FieryMUD::has_flag(flags, check); }
 
     /// Get the entity ID this trigger is attached to
     [[nodiscard]] std::optional<EntityId> attached_entity_id() const {
         switch (attach_type) {
-            case ScriptType::MOB:
-                return mob_id;
-            case ScriptType::OBJECT:
-                return object_id;
-            case ScriptType::WORLD:
-                if (zone_id.has_value()) {
-                    // World triggers use zone_id as the entity
-                    return EntityId{static_cast<std::uint32_t>(*zone_id), 0};
-                }
-                return std::nullopt;
+        case ScriptType::MOB:
+            return mob_id;
+        case ScriptType::OBJECT:
+            return object_id;
+        case ScriptType::WORLD:
+            if (zone_id.has_value()) {
+                // World triggers use zone_id as the entity
+                return EntityId{static_cast<std::uint32_t>(*zone_id), 0};
+            }
+            return std::nullopt;
         }
         return std::nullopt;
     }
 
     /// Parse trigger flags from array of strings
-    static TriggerFlag parse_flags(const std::vector<std::string>& flag_strings) {
+    static TriggerFlag parse_flags(const std::vector<std::string> &flag_strings) {
         TriggerFlag result{};
-        for (const auto& str : flag_strings) {
+        for (const auto &str : flag_strings) {
             if (auto flag = string_to_trigger_flag(str)) {
                 result |= *flag;
             }
@@ -103,37 +101,29 @@ struct TriggerData {
         bool first = true;
 
         // Common flags (all types)
-        constexpr TriggerFlag common_flags[] = {
-            TriggerFlag::GLOBAL, TriggerFlag::RANDOM, TriggerFlag::COMMAND,
-            TriggerFlag::LOAD, TriggerFlag::CAST, TriggerFlag::LEAVE,
-            TriggerFlag::TIME
-        };
+        constexpr TriggerFlag common_flags[] = {TriggerFlag::GLOBAL, TriggerFlag::RANDOM, TriggerFlag::COMMAND,
+                                                TriggerFlag::LOAD,   TriggerFlag::CAST,   TriggerFlag::LEAVE,
+                                                TriggerFlag::TIME};
 
         // MOB-specific flags
-        constexpr TriggerFlag mob_flags[] = {
-            TriggerFlag::SPEECH, TriggerFlag::ACT, TriggerFlag::DEATH,
-            TriggerFlag::GREET, TriggerFlag::GREET_ALL, TriggerFlag::ENTRY,
-            TriggerFlag::RECEIVE, TriggerFlag::FIGHT, TriggerFlag::HIT_PERCENT,
-            TriggerFlag::BRIBE, TriggerFlag::MEMORY, TriggerFlag::DOOR,
-            TriggerFlag::SPEECH_TO, TriggerFlag::LOOK, TriggerFlag::AUTO
-        };
+        constexpr TriggerFlag mob_flags[] = {TriggerFlag::SPEECH,    TriggerFlag::ACT,       TriggerFlag::DEATH,
+                                             TriggerFlag::GREET,     TriggerFlag::GREET_ALL, TriggerFlag::ENTRY,
+                                             TriggerFlag::RECEIVE,   TriggerFlag::FIGHT,     TriggerFlag::HIT_PERCENT,
+                                             TriggerFlag::BRIBE,     TriggerFlag::MEMORY,    TriggerFlag::DOOR,
+                                             TriggerFlag::SPEECH_TO, TriggerFlag::LOOK,      TriggerFlag::AUTO};
 
         // OBJECT-specific flags (some share bits with WORLD flags)
         constexpr TriggerFlag object_flags[] = {
-            TriggerFlag::ATTACK, TriggerFlag::DEFEND, TriggerFlag::TIMER,
-            TriggerFlag::GET, TriggerFlag::DROP, TriggerFlag::GIVE,
-            TriggerFlag::WEAR, TriggerFlag::REMOVE, TriggerFlag::USE,
-            TriggerFlag::CONSUME
-        };
+            TriggerFlag::ATTACK, TriggerFlag::DEFEND, TriggerFlag::TIMER,  TriggerFlag::GET, TriggerFlag::DROP,
+            TriggerFlag::GIVE,   TriggerFlag::WEAR,   TriggerFlag::REMOVE, TriggerFlag::USE, TriggerFlag::CONSUME};
 
         // WORLD-specific flags (some share bits with OBJECT flags)
-        constexpr TriggerFlag world_flags[] = {
-            TriggerFlag::RESET, TriggerFlag::PREENTRY, TriggerFlag::POSTENTRY
-        };
+        constexpr TriggerFlag world_flags[] = {TriggerFlag::RESET, TriggerFlag::PREENTRY, TriggerFlag::POSTENTRY};
 
         auto append_flag = [&](TriggerFlag flag) {
             if (has_flag(flag)) {
-                if (!first) oss << " ";
+                if (!first)
+                    oss << " ";
                 oss << trigger_flag_to_string(flag);
                 first = false;
             }
@@ -146,21 +136,21 @@ struct TriggerData {
 
         // Check type-specific flags based on attach_type
         switch (attach_type) {
-            case ScriptType::MOB:
-                for (auto flag : mob_flags) {
-                    append_flag(flag);
-                }
-                break;
-            case ScriptType::OBJECT:
-                for (auto flag : object_flags) {
-                    append_flag(flag);
-                }
-                break;
-            case ScriptType::WORLD:
-                for (auto flag : world_flags) {
-                    append_flag(flag);
-                }
-                break;
+        case ScriptType::MOB:
+            for (auto flag : mob_flags) {
+                append_flag(flag);
+            }
+            break;
+        case ScriptType::OBJECT:
+            for (auto flag : object_flags) {
+                append_flag(flag);
+            }
+            break;
+        case ScriptType::WORLD:
+            for (auto flag : world_flags) {
+                append_flag(flag);
+            }
+            break;
         }
 
         return oss.str();
@@ -177,7 +167,7 @@ struct TriggerSet {
     /// Find all triggers matching a specific flag
     [[nodiscard]] std::vector<TriggerDataPtr> find_by_flag(TriggerFlag flag) const {
         std::vector<TriggerDataPtr> result;
-        for (const auto& trigger : triggers) {
+        for (const auto &trigger : triggers) {
             if (trigger->has_flag(flag)) {
                 result.push_back(trigger);
             }
@@ -186,24 +176,16 @@ struct TriggerSet {
     }
 
     /// Add a trigger to the set
-    void add(TriggerDataPtr trigger) {
-        triggers.push_back(std::move(trigger));
-    }
+    void add(TriggerDataPtr trigger) { triggers.push_back(std::move(trigger)); }
 
     /// Remove all triggers
-    void clear() {
-        triggers.clear();
-    }
+    void clear() { triggers.clear(); }
 
     /// Check if set is empty
-    [[nodiscard]] bool empty() const {
-        return triggers.empty();
-    }
+    [[nodiscard]] bool empty() const { return triggers.empty(); }
 
     /// Get number of triggers
-    [[nodiscard]] std::size_t size() const {
-        return triggers.size();
-    }
+    [[nodiscard]] std::size_t size() const { return triggers.size(); }
 
     // Iterator support for range-based for loops
     using iterator = std::vector<TriggerDataPtr>::iterator;

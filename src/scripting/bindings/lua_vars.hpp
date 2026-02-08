@@ -16,6 +16,6 @@ namespace FieryMUD {
  *   vars.clear(entity, key)      - Remove a variable from an entity
  *   vars.all(entity)             - Get all variables for an entity
  */
-void register_var_bindings(sol::state& lua);
+void register_var_bindings(sol::state &lua);
 
 } // namespace FieryMUD

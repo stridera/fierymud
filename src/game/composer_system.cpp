@@ -73,9 +73,7 @@ void ComposerSystem::process_input(std::string_view input) {
     send_prompt();
 }
 
-void ComposerSystem::cmd_save() {
-    finish(true);
-}
+void ComposerSystem::cmd_save() { finish(true); }
 
 void ComposerSystem::cmd_cancel() {
     send_message(config_.cancel_message);

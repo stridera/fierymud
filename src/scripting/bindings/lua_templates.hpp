@@ -14,6 +14,6 @@ namespace FieryMUD {
  *   objects.template(zone_id, local_id) - Get read-only object template
  *   mobiles.template(zone_id, local_id) - Get read-only mobile template
  */
-void register_template_bindings(sol::state& lua);
+void register_template_bindings(sol::state &lua);
 
 } // namespace FieryMUD

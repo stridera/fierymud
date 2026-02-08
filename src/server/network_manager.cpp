@@ -24,11 +24,11 @@ Result<void> NetworkManager::initialize() {
         acceptor_->set_option(asio::ip::tcp::acceptor::reuse_address(true));
 
         Log::info("Plain TCP acceptor initialized on port {}", config_.port);
-        
+
         // Initialize TLS if enabled
         if (config_.enable_tls) {
             Log::info("Initializing TLS support on port {}", config_.tls_port);
-            
+
             // Create TLS context manager
             tls_context_manager_ = std::make_unique<TLSContextManager>(config_);
             auto tls_init_result = tls_context_manager_->initialize();
@@ -41,7 +41,7 @@ Result<void> NetworkManager::initialize() {
                 asio::ip::tcp::endpoint tls_endpoint(asio::ip::tcp::v4(), config_.tls_port);
                 tls_acceptor_ = std::make_unique<asio::ip::tcp::acceptor>(io_context_, tls_endpoint);
                 tls_acceptor_->set_option(asio::ip::tcp::acceptor::reuse_address(true));
-                
+
                 Log::info("TLS acceptor initialized on port {}", config_.tls_port);
             }
         }
@@ -65,12 +65,12 @@ Result<void> NetworkManager::start() {
     try {
         // Start accepting connections
         start_accept();
-        
+
         // Start TLS accepting if enabled
         if (tls_acceptor_ && tls_context_manager_) {
             start_tls_accept();
-            Log::info("NetworkManager started - accepting connections on port {} (plain) and {} (TLS)", 
-                      config_.port, config_.tls_port);
+            Log::info("NetworkManager started - accepting connections on port {} (plain) and {} (TLS)", config_.port,
+                      config_.tls_port);
         } else {
             Log::info("NetworkManager started - accepting connections on port {} (plain only)", config_.port);
         }
@@ -79,7 +79,8 @@ Result<void> NetworkManager::start() {
 
     } catch (const std::exception &e) {
         running_.store(false);
-        return std::unexpected(Error(ErrorCode::NetworkError, fmt::format("Failed to start NetworkManager: {}", e.what())));
+        return std::unexpected(
+            Error(ErrorCode::NetworkError, fmt::format("Failed to start NetworkManager: {}", e.what())));
     }
 }
 
@@ -106,11 +107,11 @@ void NetworkManager::stop() {
     {
         std::lock_guard<std::mutex> lock(connections_mutex_);
         connections_to_close = connections_;
-        connections_.clear();  // Clear first to prevent callback deadlock
+        connections_.clear(); // Clear first to prevent callback deadlock
     }
-    
+
     // Now disconnect all connections outside the mutex lock
-    for (auto& connection : connections_to_close) {
+    for (auto &connection : connections_to_close) {
         if (connection) {
             connection->force_disconnect();
         }
@@ -136,7 +137,8 @@ std::vector<std::shared_ptr<Player>> NetworkManager::get_connected_players() con
 // Removed cleanup_disconnected_connections() - linkdead connections should not be auto-cleaned
 // Removed find_connection_by_player_name() - only internal unlocked version needed
 
-std::shared_ptr<PlayerConnection> NetworkManager::find_connection_by_player_name_unlocked(std::string_view player_name) const {
+std::shared_ptr<PlayerConnection>
+NetworkManager::find_connection_by_player_name_unlocked(std::string_view player_name) const {
     // NOTE: Assumes connections_mutex_ is already locked by caller
     for (const auto &connection : connections_) {
         if (auto player = connection->get_player()) {
@@ -148,7 +150,8 @@ std::shared_ptr<PlayerConnection> NetworkManager::find_connection_by_player_name
     return nullptr;
 }
 
-bool NetworkManager::handle_reconnection(std::shared_ptr<PlayerConnection> new_connection, std::string_view player_name) {
+bool NetworkManager::handle_reconnection(std::shared_ptr<PlayerConnection> new_connection,
+                                         std::string_view player_name) {
     std::lock_guard<std::mutex> lock(connections_mutex_);
 
     // Find existing connection for this player (mutex already locked)
@@ -179,10 +182,7 @@ bool NetworkManager::handle_reconnection(std::shared_ptr<PlayerConnection> new_c
 
     // Disconnect and remove the old connection from NetworkManager
     existing_connection->disconnect("Reconnected from another location");
-    connections_.erase(
-        std::remove(connections_.begin(), connections_.end(), existing_connection),
-        connections_.end()
-    );
+    connections_.erase(std::remove(connections_.begin(), connections_.end(), existing_connection), connections_.end());
 
     // Add the new connection to NetworkManager's list
     connections_.push_back(new_connection);
@@ -248,7 +248,7 @@ void NetworkManager::start_tls_accept() {
     if (!tls_acceptor_ || !tls_context_manager_) {
         return;
     }
-    
+
     // Create a new TLS connection for this accept operation
     std::shared_ptr<WorldServer> world_server_shared;
     if (world_server_) {

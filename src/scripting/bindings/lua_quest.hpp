@@ -36,6 +36,6 @@ namespace FieryMUD {
  *   "FAILED"      - Quest was failed
  *   "ABANDONED"   - Quest was abandoned
  */
-void register_quest_bindings(sol::state& lua);
+void register_quest_bindings(sol::state &lua);
 
 } // namespace FieryMUD

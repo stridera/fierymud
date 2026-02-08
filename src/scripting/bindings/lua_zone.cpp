@@ -1,24 +1,24 @@
 #include "lua_zone.hpp"
+
 #include "../../world/world_manager.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
-
 #include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 
-void register_zone_bindings(sol::state& lua) {
+void register_zone_bindings(sol::state &lua) {
     auto zone_table = lua.create_named_table("zone");
 
     // zone.echo(zone_id, message) - Send message to all players in a zone
     // Returns: void
-    zone_table["echo"] = [](int zone_id, const std::string& message) {
+    zone_table["echo"] = [](int zone_id, const std::string &message) {
         if (message.empty()) {
             return;
         }
 
-        auto& world = WorldManager::instance();
+        auto &world = WorldManager::instance();
         auto result = world.zone_echo(zone_id, message);
 
         if (result) {
@@ -31,7 +31,7 @@ void register_zone_bindings(sol::state& lua) {
     // zone.reset(zone_id) - Trigger zone reset
     // Returns: (bool success, string? error)
     zone_table["reset"] = [](int zone_id) -> std::tuple<bool, sol::optional<std::string>> {
-        auto& world = WorldManager::instance();
+        auto &world = WorldManager::instance();
         auto result = world.reset_zone(zone_id);
 
         if (!result) {

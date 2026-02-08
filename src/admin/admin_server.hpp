@@ -1,6 +1,7 @@
 #pragma once
 
 #include <asio.hpp>
+
 #include <atomic>
 #include <functional>
 #include <memory>
@@ -15,19 +16,19 @@ namespace fierymud {
  * Listens on a separate port from the game server for admin operations
  */
 class AdminServer {
-public:
+  public:
     /**
      * Handler function type for admin commands
      * Returns a JSON response string
      */
-    using CommandHandler = std::function<std::string(const std::string& path, const std::string& body)>;
+    using CommandHandler = std::function<std::string(const std::string &path, const std::string &body)>;
 
     /**
      * Constructor
      * @param port Port to listen on (default: 8080)
      * @param bind_address Address to bind to (default: 127.0.0.1 for localhost only)
      */
-    explicit AdminServer(uint16_t port = 8080, const std::string& bind_address = "127.0.0.1");
+    explicit AdminServer(uint16_t port = 8080, const std::string &bind_address = "127.0.0.1");
 
     ~AdminServer();
 
@@ -44,18 +45,18 @@ public:
     /**
      * Register a handler for a specific path (e.g., "/reload-zone")
      */
-    void register_handler(const std::string& path, CommandHandler handler);
+    void register_handler(const std::string &path, CommandHandler handler);
 
     /**
      * Check if server is running
      */
     bool is_running() const { return running_.load(); }
 
-private:
+  private:
     void start_accept();
     void handle_connection(std::shared_ptr<asio::ip::tcp::socket> socket);
-    std::string parse_request(const std::string& request, std::string& path, std::string& body);
-    std::string build_response(int status_code, const std::string& content_type, const std::string& body);
+    std::string parse_request(const std::string &request, std::string &path, std::string &body);
+    std::string build_response(int status_code, const std::string &content_type, const std::string &body);
 
     uint16_t port_;
     std::string bind_address_;
@@ -90,11 +91,11 @@ struct ReloadZoneResponse {
 /**
  * Parse a reload zone request from JSON
  */
-ReloadZoneRequest parse_reload_request(const std::string& json);
+ReloadZoneRequest parse_reload_request(const std::string &json);
 
 /**
  * Serialize a reload zone response to JSON
  */
-std::string serialize_reload_response(const ReloadZoneResponse& response);
+std::string serialize_reload_response(const ReloadZoneResponse &response);
 
 } // namespace fierymud

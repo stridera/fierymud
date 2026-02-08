@@ -63,7 +63,7 @@ class Config {
 
     // Configuration values loaded from JSON
     EntityId default_starting_room_{1001};
-    uint16_t port_ = 4003;  // v3 server uses 4003 (legacy uses 4000)
+    uint16_t port_ = 4003; // v3 server uses 4003 (legacy uses 4000)
     int starting_health_ = 100;
     int starting_movement_ = 100;
     int max_level_ = 50;

@@ -63,7 +63,7 @@ LoginSystem::LoginSystem(std::shared_ptr<PlayerConnection> connection) : connect
 
 bool LoginSystem::check_rate_limit() {
     if (login_attempts_ == 0) {
-        return true;  // No previous failures, allow immediately
+        return true; // No previous failures, allow immediately
     }
 
     // Calculate required delay based on number of failures (exponential backoff)
@@ -76,8 +76,8 @@ bool LoginSystem::check_rate_limit() {
         // Still rate limited - inform user of remaining wait time
         auto remaining = std::chrono::duration_cast<std::chrono::seconds>(required_wait - elapsed).count();
         if (remaining > 0) {
-            send_message(fmt::format("Please wait {} second{} before trying again.",
-                                    remaining, remaining == 1 ? "" : "s"));
+            send_message(
+                fmt::format("Please wait {} second{} before trying again.", remaining, remaining == 1 ? "" : "s"));
         }
         return false;
     }
@@ -91,8 +91,7 @@ void LoginSystem::record_failed_attempt(std::string_view attempted_name) {
 
     // Security logging: log failed attempts with IP for monitoring
     std::string remote_addr = connection_ ? connection_->remote_address() : "unknown";
-    Log::warn("Failed login attempt #{} for '{}' from {} (state: {})",
-              login_attempts_, attempted_name, remote_addr,
+    Log::warn("Failed login attempt #{} for '{}' from {} (state: {})", login_attempts_, attempted_name, remote_addr,
               magic_enum::enum_name(state_));
 }
 
@@ -319,9 +318,7 @@ void LoginSystem::load_player_effects(std::shared_ptr<Player> &player) {
 
     std::string char_id{player->database_id()};
     auto effects_result = ConnectionPool::instance().execute(
-        [&char_id](pqxx::work& txn) {
-            return WorldQueries::load_character_effects(txn, char_id);
-        });
+        [&char_id](pqxx::work &txn) { return WorldQueries::load_character_effects(txn, char_id); });
 
     if (!effects_result) {
         Log::debug("No effects to load for player '{}': {}", player->name(), effects_result.error().message);
@@ -331,7 +328,7 @@ void LoginSystem::load_player_effects(std::shared_ptr<Player> &player) {
     auto now = std::chrono::system_clock::now();
     int loaded_count = 0;
 
-    for (const auto& effect_data : effects_result.value()) {
+    for (const auto &effect_data : effects_result.value()) {
         try {
             nlohmann::json modifier_json = nlohmann::json::parse(effect_data.modifier_data);
             std::string effect_type = modifier_json.value("effect_type", "active");
@@ -417,8 +414,8 @@ void LoginSystem::load_player_effects(std::shared_ptr<Player> &player) {
 
                     // Adjust for time that has passed since saving
                     if (effect_data.expires_at.has_value()) {
-                        auto time_left = std::chrono::duration_cast<std::chrono::seconds>(
-                            *effect_data.expires_at - now);
+                        auto time_left =
+                            std::chrono::duration_cast<std::chrono::seconds>(*effect_data.expires_at - now);
                         if (time_left.count() > 0) {
                             effect.duration_hours = static_cast<double>(time_left.count()) / 3600.0;
                         } else {
@@ -427,14 +424,14 @@ void LoginSystem::load_player_effects(std::shared_ptr<Player> &player) {
                         }
                     }
                 } else {
-                    effect.duration_hours = -1;  // Permanent
+                    effect.duration_hours = -1; // Permanent
                 }
 
                 player->add_effect(effect);
                 loaded_count++;
                 Log::debug("Restored active effect '{}' for player {}", effect.name, player->name());
             }
-        } catch (const nlohmann::json::exception& e) {
+        } catch (const nlohmann::json::exception &e) {
             Log::warn("Failed to parse effect data for player {}: {}", player->name(), e.what());
         }
     }
@@ -556,7 +553,7 @@ void LoginSystem::handle_get_account(std::string_view input) {
         std::string username = std::string(input.substr(0, colon_pos));
         std::string rest = std::string(input.substr(colon_pos + 1));
         std::string password;
-        std::string quick_character;  // Optional character name for direct login
+        std::string quick_character; // Optional character name for direct login
 
         // Check for second colon (username:password:character format)
         auto second_colon = rest.find(':');
@@ -694,7 +691,8 @@ void LoginSystem::handle_get_account(std::string_view input) {
                             player_loaded_callback_(player_);
                         }
 
-                        Log::info("Player '{}' logged in via quick login (account:password:character)", player_->name());
+                        Log::info("Player '{}' logged in via quick login (account:password:character)",
+                                  player_->name());
                         found = true;
                         break;
                     }

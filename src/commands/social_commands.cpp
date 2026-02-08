@@ -1,12 +1,13 @@
 #include "social_commands.hpp"
-#include "../text/text_format.hpp"
-#include "../core/actor.hpp"
-#include "../world/room.hpp"
-#include "../database/connection_pool.hpp"
 
-#include <spdlog/spdlog.h>
+#include "../core/actor.hpp"
+#include "../database/connection_pool.hpp"
+#include "../text/text_format.hpp"
+#include "../world/room.hpp"
+
 #include <algorithm>
 #include <memory>
+#include <spdlog/spdlog.h>
 #include <string>
 #include <unordered_set>
 
@@ -23,7 +24,7 @@ std::unordered_set<std::string> registered_socials_;
  * Find target actor in the current room by name.
  * Uses CommandContext's built-in find_actor_target method.
  */
-std::shared_ptr<Actor> find_target(const CommandContext& ctx, std::string_view target_name) {
+std::shared_ptr<Actor> find_target(const CommandContext &ctx, std::string_view target_name) {
     if (target_name.empty()) {
         return nullptr;
     }
@@ -33,7 +34,7 @@ std::shared_ptr<Actor> find_target(const CommandContext& ctx, std::string_view t
 /**
  * Check if target is self.
  */
-bool is_self_target(const CommandContext& ctx, std::string_view target_name) {
+bool is_self_target(const CommandContext &ctx, std::string_view target_name) {
     if (target_name.empty() || !ctx.actor) {
         return false;
     }
@@ -60,18 +61,30 @@ bool is_self_target(const CommandContext& ctx, std::string_view target_name) {
  */
 Position convert_position(SocialPosition db_pos) {
     switch (db_pos) {
-        case SocialPosition::Dead: return Position::Dead;
-        case SocialPosition::MortallyWounded: return Position::Mortally_Wounded;
-        case SocialPosition::Incapacitated: return Position::Incapacitated;
-        case SocialPosition::Stunned: return Position::Stunned;
-        case SocialPosition::Sleeping: return Position::Sleeping;
-        case SocialPosition::Resting: return Position::Resting;
-        case SocialPosition::Sitting: return Position::Sitting;
-        case SocialPosition::Prone: return Position::Prone;
-        case SocialPosition::Kneeling: return Position::Sitting; // Map Kneeling to Sitting for now
-        case SocialPosition::Fighting: return Position::Fighting;
-        case SocialPosition::Standing: return Position::Standing;
-        case SocialPosition::Flying: return Position::Flying;
+    case SocialPosition::Dead:
+        return Position::Dead;
+    case SocialPosition::MortallyWounded:
+        return Position::Mortally_Wounded;
+    case SocialPosition::Incapacitated:
+        return Position::Incapacitated;
+    case SocialPosition::Stunned:
+        return Position::Stunned;
+    case SocialPosition::Sleeping:
+        return Position::Sleeping;
+    case SocialPosition::Resting:
+        return Position::Resting;
+    case SocialPosition::Sitting:
+        return Position::Sitting;
+    case SocialPosition::Prone:
+        return Position::Prone;
+    case SocialPosition::Kneeling:
+        return Position::Sitting; // Map Kneeling to Sitting for now
+    case SocialPosition::Fighting:
+        return Position::Fighting;
+    case SocialPosition::Standing:
+        return Position::Standing;
+    case SocialPosition::Flying:
+        return Position::Flying;
     }
     return Position::Standing;
 }
@@ -90,22 +103,22 @@ Result<void> initialize() {
     }
 
     // Register each social as a command
-    auto& cmd = CommandSystem::instance();
-    const auto& socials = SocialCache::instance().all();
+    auto &cmd = CommandSystem::instance();
+    const auto &socials = SocialCache::instance().all();
 
     registered_socials_.clear();
 
-    for (const auto& [name, social] : socials) {
+    for (const auto &[name, social] : socials) {
         // Note: The 'hide' flag means "hide from socials list", NOT "disable the command"
         // Hidden socials still work, they're just not shown in the socials list command
         auto handler = create_social_handler(name);
         auto result = cmd.command(name, handler)
-            .category("Social")
-            .privilege(PrivilegeLevel::Player)
-            .description(fmt::format("Perform the '{}' social action", name))
-            .usable_in_combat(true)
-            .usable_while_sitting(true)
-            .build();
+                          .category("Social")
+                          .privilege(PrivilegeLevel::Player)
+                          .description(fmt::format("Perform the '{}' social action", name))
+                          .usable_in_combat(true)
+                          .usable_while_sitting(true)
+                          .build();
 
         if (result) {
             registered_socials_.insert(std::string{name});
@@ -120,8 +133,8 @@ Result<void> initialize() {
 
 Result<void> reload_socials() {
     // Unregister existing social commands
-    auto& cmd = CommandSystem::instance();
-    for (const auto& name : registered_socials_) {
+    auto &cmd = CommandSystem::instance();
+    for (const auto &name : registered_socials_) {
         cmd.unregister_command(name);
     }
     registered_socials_.clear();
@@ -130,9 +143,7 @@ Result<void> reload_socials() {
     return initialize();
 }
 
-std::size_t social_count() {
-    return registered_socials_.size();
-}
+std::size_t social_count() { return registered_socials_.size(); }
 
 bool is_social(std::string_view name) {
     std::string lower_name{name};
@@ -145,11 +156,10 @@ bool is_social(std::string_view name) {
 // Social Execution
 // =============================================================================
 
-Result<CommandResult> execute_social_by_name(const CommandContext& ctx, std::string_view social_name) {
-    const Social* social = SocialCache::instance().get(social_name);
+Result<CommandResult> execute_social_by_name(const CommandContext &ctx, std::string_view social_name) {
+    const Social *social = SocialCache::instance().get(social_name);
     if (!social) {
-        return std::unexpected(Error{ErrorCode::NotFound,
-                         fmt::format("Unknown social: {}", social_name)});
+        return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Unknown social: {}", social_name)});
     }
 
     std::string_view target_name = ctx.arg_count() > 0 ? ctx.arg(0) : "";
@@ -159,9 +169,7 @@ Result<CommandResult> execute_social_by_name(const CommandContext& ctx, std::str
 CommandHandler create_social_handler(std::string_view social_name) {
     // Capture the social name in the lambda
     std::string name{social_name};
-    return [name](const CommandContext& ctx) -> Result<CommandResult> {
-        return execute_social_by_name(ctx, name);
-    };
+    return [name](const CommandContext &ctx) -> Result<CommandResult> { return execute_social_by_name(ctx, name); };
 }
 
 // =============================================================================
@@ -170,8 +178,7 @@ CommandHandler create_social_handler(std::string_view social_name) {
 
 namespace Helpers {
 
-std::string format_social_message(std::string_view action,
-                                  std::shared_ptr<Actor> actor,
+std::string format_social_message(std::string_view action, std::shared_ptr<Actor> actor,
                                   std::shared_ptr<Actor> target) {
     if (target) {
         return fmt::format("{} {} {}.", actor->display_name(), action, target->display_name());
@@ -180,14 +187,13 @@ std::string format_social_message(std::string_view action,
     }
 }
 
-bool validate_social_target(const CommandContext& ctx, std::shared_ptr<Actor> target) {
+bool validate_social_target(const CommandContext &ctx, std::shared_ptr<Actor> target) {
     if (!target) {
         return true; // No target is valid for most social commands
     }
 
     // Target must be in the same room
-    if (!ctx.actor || !ctx.actor->current_room() ||
-        target->current_room() != ctx.actor->current_room()) {
+    if (!ctx.actor || !ctx.actor->current_room() || target->current_room() != ctx.actor->current_room()) {
         return false;
     }
 
@@ -197,10 +203,8 @@ bool validate_social_target(const CommandContext& ctx, std::shared_ptr<Actor> ta
     return true;
 }
 
-Result<CommandResult> execute_database_social(
-    const CommandContext& ctx,
-    const Social& social,
-    std::string_view target_name) {
+Result<CommandResult> execute_database_social(const CommandContext &ctx, const Social &social,
+                                              std::string_view target_name) {
 
     if (!ctx.actor) {
         return std::unexpected(Error{ErrorCode::InvalidState, "No actor for social command"});
@@ -262,8 +266,7 @@ Result<CommandResult> execute_database_social(
     // Check target position
     Position min_pos = convert_position(social.min_victim_position);
     if (target->position() < min_pos) {
-        ctx.send_error(fmt::format("{} is not in a position to receive that.",
-                                   target->display_name()));
+        ctx.send_error(fmt::format("{} is not in a position to receive that.", target->display_name()));
         return CommandResult::InvalidTarget;
     }
 

@@ -15,6 +15,6 @@ namespace FieryMUD {
  *   skills.get_level(actor, skill_name)        - Get actor's skill level
  *   skills.set_level(actor, skill_name, level) - Set actor's skill level
  */
-void register_skill_bindings(sol::state& lua);
+void register_skill_bindings(sol::state &lua);
 
 } // namespace FieryMUD

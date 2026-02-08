@@ -5,6 +5,7 @@
 #include "room.hpp"
 
 #include <asio.hpp>
+
 #include <chrono>
 #include <memory>
 #include <string>
@@ -25,7 +26,7 @@ class CommandSystem;
  */
 class GameWorld : public std::enable_shared_from_this<GameWorld> {
   public:
-    explicit GameWorld(asio::io_context& io_context);
+    explicit GameWorld(asio::io_context &io_context);
     ~GameWorld() = default;
 
     // Character management functions - used by LoginSystem
@@ -61,13 +62,13 @@ class GameWorld : public std::enable_shared_from_this<GameWorld> {
     void load_test_world();
     void create_starting_room();
     void schedule_next_update();
-    void handle_update_timer(const std::error_code& error);
+    void handle_update_timer(const std::error_code &error);
 
     // Core systems
     mutable std::shared_ptr<CommandSystem> command_system_;
-    
+
     // Asio context and timer for game loop
-    asio::io_context& io_context_;
+    asio::io_context &io_context_;
     std::unique_ptr<asio::steady_timer> update_timer_;
     std::chrono::milliseconds update_interval_{100}; // 10 TPS (ticks per second)
     bool game_loop_running_ = false;

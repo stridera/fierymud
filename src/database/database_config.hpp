@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/result.hpp"
+
 #include <string>
 
 /**
@@ -40,7 +41,7 @@ struct DatabaseConfig {
      *   POSTGRES_USER=muditor
      *   POSTGRES_PASSWORD=password
      */
-    static Result<DatabaseConfig> from_env(const std::string& env_path = ".env");
+    static Result<DatabaseConfig> from_env(const std::string &env_path = ".env");
 
     /**
      * Load configuration from environment variables.

@@ -4,12 +4,12 @@
 #include "../../legacy/src/comm.hpp"
 #include "../../legacy/src/conf.hpp"
 #include "../../legacy/src/db.hpp"
+#include "../../legacy/src/find.hpp"
 #include "../../legacy/src/screen.hpp"
 #include "../../legacy/src/utils.hpp"
-#include "../../legacy/src/find.hpp"
 
-#include <format>
 #include <expected>
+#include <format>
 
 // Global clan repository instance
 ClanRepository clan_repository;
@@ -24,11 +24,11 @@ bool Clan::add_member(CharacterPtr character, int rank_index) {
     if (!character || !character->player.short_descr) {
         return false;
     }
-    
+
     if (rank_index < 0 || rank_index >= static_cast<int>(ranks_.size())) {
         return false;
     }
-    
+
     // Add to persistent storage
     bool success = add_member_by_name(character->player.short_descr, rank_index);
     if (success) {
@@ -36,21 +36,22 @@ bool Clan::add_member(CharacterPtr character, int rank_index) {
         character->player_specials->clan_id = id_;
         invalidate_rank_cache();
     }
-    
+
     return success;
 }
 
 void Clan::remove_member(const CharacterPtr &character) {
-    if (!character) return;
-    
+    if (!character)
+        return;
+
     // Clear character's clan_id
     character->player_specials->clan_id = CLAN_ID_NONE;
-    
+
     // Also remove from persistent member storage by name
     if (character->player.short_descr) {
         remove_member_by_name(character->player.short_descr);
     }
-    
+
     invalidate_rank_cache();
 }
 
@@ -58,12 +59,12 @@ bool Clan::is_member(const CharacterPtr &character) const {
     if (!character || !character->player.short_descr) {
         return false;
     }
-    
+
     // Check if character's clan_id matches this clan
     if (character->player_specials->clan_id != id_) {
         return false;
     }
-    
+
     // Verify the character is in our member list
     return get_member_by_name(character->player.short_descr).has_value();
 }
@@ -83,22 +84,23 @@ std::vector<ClanMember> Clan::get_members_by_rank_index(int rank_index) const {
     return result;
 }
 
-bool Clan::add_member_by_name(const std::string& name, int rank_index, time_t join_time, std::vector<std::string> alts) {
+bool Clan::add_member_by_name(const std::string &name, int rank_index, time_t join_time,
+                              std::vector<std::string> alts) {
     // Check if member already exists
     if (get_member_by_name(name).has_value()) {
         return false;
     }
-    
+
     if (join_time == 0) {
         join_time = time(nullptr);
     }
-    
+
     members_.emplace_back(name, rank_index, join_time, std::move(alts));
     invalidate_rank_cache();
     return true;
 }
 
-bool Clan::remove_member_by_name(const std::string& name) {
+bool Clan::remove_member_by_name(const std::string &name) {
     auto it = std::ranges::find_if(members_, [&name](const ClanMember &m) { return m.name == name; });
     if (it != members_.end()) {
         members_.erase(it);
@@ -108,11 +110,11 @@ bool Clan::remove_member_by_name(const std::string& name) {
     return false;
 }
 
-bool Clan::update_member_rank(const std::string& name, int new_rank_index) {
+bool Clan::update_member_rank(const std::string &name, int new_rank_index) {
     if (new_rank_index < 0 || new_rank_index >= static_cast<int>(ranks_.size())) {
         return false;
     }
-    
+
     auto it = std::ranges::find_if(members_, [&name](ClanMember &m) { return m.name == name; });
     if (it != members_.end()) {
         it->rank_index = new_rank_index;
@@ -123,45 +125,46 @@ bool Clan::update_member_rank(const std::string& name, int new_rank_index) {
 }
 
 void Clan::build_rank_cache() const {
-    if (rank_cache_valid_) return;
-    
+    if (rank_cache_valid_)
+        return;
+
     rank_cache_.clear();
-    
+
     // Build cache of online characters by rank
     for (CharData *ch = character_list; ch; ch = ch->next) {
         // Skip NPCs and characters without descriptors (not online)
         if (IS_NPC(ch) || !ch->desc) {
             continue;
         }
-        
+
         // Check if this character is a member of this clan
         if (ch->player_specials->clan_id != id_) {
             continue;
         }
-        
+
         // Get their clan membership info
         auto member_opt = get_member_by_name(ch->player.short_descr);
         if (!member_opt.has_value()) {
             continue;
         }
-        
+
         // Get their rank
         int rank_index = member_opt->rank_index;
         if (rank_index < 0 || rank_index >= static_cast<int>(ranks_.size())) {
             continue;
         }
-        
+
         const auto &rank = ranks_[rank_index];
-        
+
         // Create a shared_ptr wrapper for the character
         // Note: This is a temporary wrapper for the cache - the actual character
         // lifetime is managed by the game engine, not by these shared_ptrs
-        CharacterPtr char_ptr(ch, [](CharData*) { /* no-op deleter */ });
-        
+        CharacterPtr char_ptr(ch, [](CharData *) { /* no-op deleter */ });
+
         // Add to the cache
         rank_cache_[rank].push_back(char_ptr);
     }
-    
+
     rank_cache_valid_ = true;
 }
 
@@ -179,7 +182,7 @@ bool Clan::has_permission(const CharacterPtr &character, ClanPermission permissi
     return has_permission(character ? character.get() : nullptr, permission);
 }
 
-bool Clan::has_permission(const CharData* character, ClanPermission permission) const {
+bool Clan::has_permission(const CharData *character, ClanPermission permission) const {
     if (!character || !is_member(character)) {
         return false;
     }
@@ -210,29 +213,29 @@ void Clan::notify(const CharData *skip, const std::string_view messg) {
     if (messg.empty()) {
         return;
     }
-    
+
     // Iterate through all online characters and notify clan members
     for (CharData *ch = character_list; ch; ch = ch->next) {
         // Skip NPCs and characters without descriptors (not online)
         if (IS_NPC(ch) || !ch->desc) {
             continue;
         }
-        
+
         // Skip the character we don't want to notify
         if (skip && ch == skip) {
             continue;
         }
-        
+
         // Check if this character is a member of this clan
         if (ch->player_specials->clan_id != id_) {
             continue;
         }
-        
+
         // Verify they're actually in our member list
         if (!get_member_by_name(ch->player.short_descr).has_value()) {
             continue;
         }
-        
+
         // Send the message
         char_printf(ch, "{}", messg);
     }
@@ -384,13 +387,13 @@ void ClanRepository::init_clans() {
     auto result = load();
     if (!result) {
         log(LogSeverity::Info, LVL_IMMORT, "JSON clan data not found, trying legacy format: {}", result.error());
-        
+
         // Try to load legacy clan files
         std::filesystem::path clans_dir = "etc/clans";
         if (std::filesystem::exists(clans_dir)) {
             // Look for .clan files and load them
             int loaded_count = 0;
-            for (const auto& entry : std::filesystem::directory_iterator(clans_dir)) {
+            for (const auto &entry : std::filesystem::directory_iterator(clans_dir)) {
                 if (entry.is_regular_file() && entry.path().extension() == ".clan") {
                     std::string filename = entry.path().stem().string();
                     if (load_legacy(filename)) {
@@ -401,10 +404,11 @@ void ClanRepository::init_clans() {
                     }
                 }
             }
-            
+
             if (loaded_count > 0) {
-                log(LogSeverity::Info, LVL_IMMORT, "Loaded {} legacy clan(s). Consider converting to JSON format.", loaded_count);
-                
+                log(LogSeverity::Info, LVL_IMMORT, "Loaded {} legacy clan(s). Consider converting to JSON format.",
+                    loaded_count);
+
                 // Optionally save the loaded clans in JSON format for future use
                 auto save_result = save();
                 if (save_result) {
@@ -423,12 +427,12 @@ void ClanRepository::init_clans() {
 
 bool ClanRepository::load_legacy(const std::string_view clan_num) {
     std::filesystem::path clan_file = std::filesystem::path("etc/clans") / (std::string(clan_num) + ".clan");
-    
+
     std::ifstream file(clan_file);
     if (!file) {
         return false;
     }
-    
+
     // Create a temporary clan object to populate
     ClanID clan_id = 0;
     std::string clan_name;
@@ -440,19 +444,21 @@ bool ClanRepository::load_legacy(const std::string_view clan_num) {
     Money treasure;
     std::vector<ClanRank> ranks;
     std::vector<ClanMember> members;
-    
+
     // Maps to build ranks and permissions
     std::map<int, std::string> rank_titles;
     std::map<int, std::vector<std::string>> rank_privileges;
-    
+
     std::string line;
     while (std::getline(file, line)) {
-        if (line.empty()) continue;
-        
+        if (line.empty())
+            continue;
+
         std::istringstream iss(line);
         std::string key;
-        if (!(iss >> key)) continue;
-        
+        if (!(iss >> key))
+            continue;
+
         if (key == "number:") {
             iss >> clan_id;
         } else if (key == "name:") {
@@ -517,28 +523,28 @@ bool ClanRepository::load_legacy(const std::string_view clan_num) {
             int rank_index;
             time_t join_time;
             iss >> name >> rank_index >> join_time;
-            
+
             // Read optional alts
             std::vector<std::string> alts;
             std::string alt;
             while (iss >> alt) {
                 alts.push_back(alt);
             }
-            
+
             // Convert rank_index from 1-based to 0-based
             rank_index = rank_index > 0 ? rank_index - 1 : 0;
-            
+
             members.emplace_back(name, rank_index, join_time, std::move(alts));
         }
     }
-    
+
     // Build ranks from the collected data
-    for (const auto& [rank_num, title] : rank_titles) {
+    for (const auto &[rank_num, title] : rank_titles) {
         PermissionSet permissions;
-        
+
         auto priv_it = rank_privileges.find(rank_num);
         if (priv_it != rank_privileges.end()) {
-            for (const auto& priv : priv_it->second) {
+            for (const auto &priv : priv_it->second) {
                 if (priv == "desc" || priv == "setdesc") {
                     permissions.set(static_cast<size_t>(ClanPermission::SET_DESCRIPTION));
                 } else if (priv == "motd") {
@@ -578,19 +584,19 @@ bool ClanRepository::load_legacy(const std::string_view clan_num) {
                 }
             }
         }
-        
+
         // Special case: if a rank has 'grant' privilege, give it LEADER_OVERRIDE
         // This handles legacy admin ranks that may be missing some newer permissions
         if (permissions.test(static_cast<size_t>(ClanPermission::LEADER_OVERRIDE))) {
             // Leader override allows access to all clan commands
         }
-        
+
         ranks.emplace_back(title, permissions);
     }
-    
+
     // Create the clan and add it to the repository
     auto clan = std::make_shared<Clan>(clan_id, clan_name, clan_abbr);
-    
+
     // Set clan properties using admin methods
     clan->admin_set_dues(dues);
     clan->admin_set_app_fee(app_fee);
@@ -601,36 +607,38 @@ bool ClanRepository::load_legacy(const std::string_view clan_num) {
     if (!clan_motd.empty()) {
         clan->admin_set_motd(clan_motd);
     }
-    
+
     // Add ranks
-    for (auto& rank : ranks) {
+    for (auto &rank : ranks) {
         if (auto result = clan->admin_add_rank(std::move(rank)); !result) {
             log(LogSeverity::Warn, LVL_IMMORT, "Failed to add rank to clan {}: {}", clan_name, result.error());
         }
     }
-    
+
     // Add members
-    for (const auto& member : members) {
+    for (const auto &member : members) {
         if (!clan->add_member_by_name(member.name, member.rank_index, member.join_time, member.alts)) {
             log(LogSeverity::Warn, LVL_IMMORT, "Failed to add member {} to clan {}", member.name, clan_name);
         }
     }
-    
+
     // Add to repository
     clans_[clan_id] = clan;
     caches_valid_ = false;
-    
+
     return true;
 }
 
 // Clan snoop management functions (string-based, safe against dangling pointers)
 void add_clan_snoop(std::string_view char_name, ClanID clan_id) {
-    if (char_name.empty()) return;
+    if (char_name.empty())
+        return;
     clan_snoop_table[clan_id].insert(std::string(char_name));
 }
 
 void remove_clan_snoop(std::string_view char_name, ClanID clan_id) {
-    if (char_name.empty()) return;
+    if (char_name.empty())
+        return;
     auto it = clan_snoop_table.find(clan_id);
     if (it != clan_snoop_table.end()) {
         it->second.erase(std::string(char_name));
@@ -641,7 +649,8 @@ void remove_clan_snoop(std::string_view char_name, ClanID clan_id) {
 }
 
 void remove_all_clan_snoops(std::string_view char_name) {
-    if (char_name.empty()) return;
+    if (char_name.empty())
+        return;
     std::string name_str(char_name);
     for (auto it = clan_snoop_table.begin(); it != clan_snoop_table.end();) {
         it->second.erase(name_str);
@@ -654,7 +663,8 @@ void remove_all_clan_snoops(std::string_view char_name) {
 }
 
 bool is_snooping_clan(std::string_view char_name, ClanID clan_id) {
-    if (char_name.empty()) return false;
+    if (char_name.empty())
+        return false;
     auto it = clan_snoop_table.find(clan_id);
     if (it != clan_snoop_table.end()) {
         return it->second.count(std::string(char_name)) > 0;
@@ -664,10 +674,11 @@ bool is_snooping_clan(std::string_view char_name, ClanID clan_id) {
 
 std::vector<ClanID> get_snooped_clans(std::string_view char_name) {
     std::vector<ClanID> result;
-    if (char_name.empty()) return result;
+    if (char_name.empty())
+        return result;
 
     std::string name_str(char_name);
-    for (const auto& [clan_id, snoops] : clan_snoop_table) {
+    for (const auto &[clan_id, snoops] : clan_snoop_table) {
         if (snoops.count(name_str) > 0) {
             result.push_back(clan_id);
         }
@@ -676,28 +687,33 @@ std::vector<ClanID> get_snooped_clans(std::string_view char_name) {
 }
 
 // Legacy interface wrappers (extract name from CharData)
-void add_clan_snoop(CharData* ch, ClanID clan_id) {
-    if (!ch || !ch->player.short_descr) return;
+void add_clan_snoop(CharData *ch, ClanID clan_id) {
+    if (!ch || !ch->player.short_descr)
+        return;
     add_clan_snoop(std::string_view(ch->player.short_descr), clan_id);
 }
 
-void remove_clan_snoop(CharData* ch, ClanID clan_id) {
-    if (!ch || !ch->player.short_descr) return;
+void remove_clan_snoop(CharData *ch, ClanID clan_id) {
+    if (!ch || !ch->player.short_descr)
+        return;
     remove_clan_snoop(std::string_view(ch->player.short_descr), clan_id);
 }
 
-void remove_all_clan_snoops(CharData* ch) {
-    if (!ch || !ch->player.short_descr) return;
+void remove_all_clan_snoops(CharData *ch) {
+    if (!ch || !ch->player.short_descr)
+        return;
     remove_all_clan_snoops(std::string_view(ch->player.short_descr));
 }
 
-bool is_snooping_clan(CharData* ch, ClanID clan_id) {
-    if (!ch || !ch->player.short_descr) return false;
+bool is_snooping_clan(CharData *ch, ClanID clan_id) {
+    if (!ch || !ch->player.short_descr)
+        return false;
     return is_snooping_clan(std::string_view(ch->player.short_descr), clan_id);
 }
 
-std::vector<ClanID> get_snooped_clans(CharData* ch) {
-    if (!ch || !ch->player.short_descr) return {};
+std::vector<ClanID> get_snooped_clans(CharData *ch) {
+    if (!ch || !ch->player.short_descr)
+        return {};
     return get_snooped_clans(std::string_view(ch->player.short_descr));
 }
 
@@ -707,7 +723,7 @@ bool has_clan_permission_or_god(const CharData *ch, ClanPermission permission) {
     if (!ch) {
         return false;
     }
-    
+
     // Gods have all permissions
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
         return true;
@@ -717,297 +733,299 @@ bool has_clan_permission_or_god(const CharData *ch, ClanPermission permission) {
 
 // Modern C++23 permission checking implementation
 namespace clan_permissions {
-    
-    PermissionResult check_permission(const CharData *ch, ClanPermission permission) {
-        using enum ClanPermission;
-        
-        // Null character check
-        if (!ch) {
-            return std::unexpected(PermissionError{"Invalid character.", permission});
-        }
-        
-        // Check if character has a clan
-        auto clan = get_clan(ch);
-        if (!clan) {
-            return std::unexpected(PermissionError{"You are not a member of any clan.", permission});
-        }
-        
-        // Get character's rank
-        auto rank = get_clan_rank(ch);
-        if (!rank) {
-            return std::unexpected(PermissionError{"Unable to determine your clan rank.", permission});
-        }
-        
-        // Check permission
-        if (!rank->has_permission(permission)) {
-            auto permission_name = std::string(magic_enum::enum_name(permission));
-            return std::unexpected(PermissionError{
-                fmt::format("You need the '{}' permission to do that.", permission_name),
-                permission, true
-            });
-        }
-        
-        return {}; // Success
+
+PermissionResult check_permission(const CharData *ch, ClanPermission permission) {
+    using enum ClanPermission;
+
+    // Null character check
+    if (!ch) {
+        return std::unexpected(PermissionError{"Invalid character.", permission});
     }
-    
-    PermissionResult check_clan_member(const CharData *ch) {
-        auto clan = get_clan(ch);
-        if (!clan) {
-            return std::unexpected(PermissionError{"You are not a member of any clan."});
-        }
-        
-        auto member = get_clan_member(ch);
-        if (!member) {
-            return std::unexpected(PermissionError{"Unable to verify your clan membership."});
-        }
-        
-        return {}; // Success
+
+    // Check if character has a clan
+    auto clan = get_clan(ch);
+    if (!clan) {
+        return std::unexpected(PermissionError{"You are not a member of any clan.", permission});
     }
-    
-    // Simple permission checking helpers
-    bool check_god_override(const CharData *ch) {
-        return GET_LEVEL(ch) >= LVL_IMMORT;
+
+    // Get character's rank
+    auto rank = get_clan_rank(ch);
+    if (!rank) {
+        return std::unexpected(PermissionError{"Unable to determine your clan rank.", permission});
     }
-    
-    // Enhanced permission checking with detailed error messages
-    std::string get_permission_error_message(ClanPermission permission) {
+
+    // Check permission
+    if (!rank->has_permission(permission)) {
         auto permission_name = std::string(magic_enum::enum_name(permission));
-        return fmt::format("You need the '{}' permission to do that.", permission_name);
+        return std::unexpected(PermissionError{fmt::format("You need the '{}' permission to do that.", permission_name),
+                                               permission, true});
     }
-    
-    // Command wrapper functions (simpler than templates)
-    bool execute_with_clan_permission(CharData *ch, ClanPermission permission, 
-                                      std::function<void()> command_func) {
-        // Gods bypass all permission checks
-        if (check_god_override(ch)) {
-            command_func();
-            return true;
-        }
-        
-        // Check permission
-        auto result = check_permission(ch, permission);
-        if (!result) {
-            char_printf(ch, "{}", result.error().reason);
-            return false;
-        }
-        
-        // Execute command
+
+    return {}; // Success
+}
+
+PermissionResult check_clan_member(const CharData *ch) {
+    auto clan = get_clan(ch);
+    if (!clan) {
+        return std::unexpected(PermissionError{"You are not a member of any clan."});
+    }
+
+    auto member = get_clan_member(ch);
+    if (!member) {
+        return std::unexpected(PermissionError{"Unable to verify your clan membership."});
+    }
+
+    return {}; // Success
+}
+
+// Simple permission checking helpers
+bool check_god_override(const CharData *ch) { return GET_LEVEL(ch) >= LVL_IMMORT; }
+
+// Enhanced permission checking with detailed error messages
+std::string get_permission_error_message(ClanPermission permission) {
+    auto permission_name = std::string(magic_enum::enum_name(permission));
+    return fmt::format("You need the '{}' permission to do that.", permission_name);
+}
+
+// Command wrapper functions (simpler than templates)
+bool execute_with_clan_permission(CharData *ch, ClanPermission permission, std::function<void()> command_func) {
+    // Gods bypass all permission checks
+    if (check_god_override(ch)) {
         command_func();
         return true;
     }
-    
-    bool execute_with_clan_membership(CharData *ch, std::function<void()> command_func) {
-        // Gods bypass all permission checks
-        if (check_god_override(ch)) {
-            command_func();
-            return true;
-        }
-        
-        // Check clan membership
-        auto result = check_clan_member(ch);
-        if (!result) {
-            char_printf(ch, "{}", result.error().reason);
-            return false;
-        }
-        
-        // Execute command
+
+    // Check permission
+    auto result = check_permission(ch, permission);
+    if (!result) {
+        char_printf(ch, "{}", result.error().reason);
+        return false;
+    }
+
+    // Execute command
+    command_func();
+    return true;
+}
+
+bool execute_with_clan_membership(CharData *ch, std::function<void()> command_func) {
+    // Gods bypass all permission checks
+    if (check_god_override(ch)) {
         command_func();
         return true;
     }
-    
+
+    // Check clan membership
+    auto result = check_clan_member(ch);
+    if (!result) {
+        char_printf(ch, "{}", result.error().reason);
+        return false;
+    }
+
+    // Execute command
+    command_func();
+    return true;
+}
+
 } // namespace clan_permissions
-
-
 
 // Legacy permission conversion for existing clan files
 namespace legacy_conversion {
-    
-    // Convert old ClanPrivilege values to new ClanPermission values
-    std::optional<ClanPermission> convert_legacy_privilege(int legacy_value) {
-        switch (legacy_value) {
-            case 1: return ClanPermission::SET_DESCRIPTION;   // Description
-            case 2: return ClanPermission::SET_MOTD;          // Motd  
-            case 3: return ClanPermission::LEADER_OVERRIDE;   // Grant (legacy admin)
-            case 4: return ClanPermission::MANAGE_RANKS;      // Ranks
-            case 5: return ClanPermission::NONE;              // Title (deprecated)
-            case 6: return ClanPermission::INVITE_MEMBERS;    // Enroll
-            case 7: return ClanPermission::KICK_MEMBERS;      // Expel
-            case 8: return ClanPermission::PROMOTE_MEMBERS;   // Promote
-            case 9: return ClanPermission::DEMOTE_MEMBERS;    // Demote
-            case 10: return ClanPermission::SET_APP_FEES;     // App_Fees
-            case 11: return ClanPermission::SET_APP_LEVEL;    // App_Level
-            case 12: return ClanPermission::SET_DUES;         // Dues
-            case 13: return ClanPermission::DEPOSIT_FUNDS;    // Deposit
-            case 14: return ClanPermission::WITHDRAW_FUNDS;   // Withdraw
-            case 15: return ClanPermission::STORE_ITEMS;      // Store
-            case 16: return ClanPermission::RETRIEVE_ITEMS;   // Retrieve
-            case 17: return ClanPermission::MANAGE_ALTS;      // Alts
-            case 18: return ClanPermission::CLAN_CHAT;        // Chat
-            default: return std::nullopt;
-        }
+
+// Convert old ClanPrivilege values to new ClanPermission values
+std::optional<ClanPermission> convert_legacy_privilege(int legacy_value) {
+    switch (legacy_value) {
+    case 1:
+        return ClanPermission::SET_DESCRIPTION; // Description
+    case 2:
+        return ClanPermission::SET_MOTD; // Motd
+    case 3:
+        return ClanPermission::LEADER_OVERRIDE; // Grant (legacy admin)
+    case 4:
+        return ClanPermission::MANAGE_RANKS; // Ranks
+    case 5:
+        return ClanPermission::NONE; // Title (deprecated)
+    case 6:
+        return ClanPermission::INVITE_MEMBERS; // Enroll
+    case 7:
+        return ClanPermission::KICK_MEMBERS; // Expel
+    case 8:
+        return ClanPermission::PROMOTE_MEMBERS; // Promote
+    case 9:
+        return ClanPermission::DEMOTE_MEMBERS; // Demote
+    case 10:
+        return ClanPermission::SET_APP_FEES; // App_Fees
+    case 11:
+        return ClanPermission::SET_APP_LEVEL; // App_Level
+    case 12:
+        return ClanPermission::SET_DUES; // Dues
+    case 13:
+        return ClanPermission::DEPOSIT_FUNDS; // Deposit
+    case 14:
+        return ClanPermission::WITHDRAW_FUNDS; // Withdraw
+    case 15:
+        return ClanPermission::STORE_ITEMS; // Store
+    case 16:
+        return ClanPermission::RETRIEVE_ITEMS; // Retrieve
+    case 17:
+        return ClanPermission::MANAGE_ALTS; // Alts
+    case 18:
+        return ClanPermission::CLAN_CHAT; // Chat
+    default:
+        return std::nullopt;
     }
-    
-    // Convert legacy bitset to new permission set
-    PermissionSet convert_legacy_permissions(const std::bitset<64>& legacy_bits) {
-        PermissionSet new_permissions;
-        
-        // Convert each bit position
-        for (size_t i = 0; i < 64 && i < NUM_PERMISSIONS; ++i) {
-            if (legacy_bits.test(i)) {
-                auto new_perm = convert_legacy_privilege(static_cast<int>(i));
-                if (new_perm) {
-                    new_permissions.set(static_cast<size_t>(*new_perm));
-                }
+}
+
+// Convert legacy bitset to new permission set
+PermissionSet convert_legacy_permissions(const std::bitset<64> &legacy_bits) {
+    PermissionSet new_permissions;
+
+    // Convert each bit position
+    for (size_t i = 0; i < 64 && i < NUM_PERMISSIONS; ++i) {
+        if (legacy_bits.test(i)) {
+            auto new_perm = convert_legacy_privilege(static_cast<int>(i));
+            if (new_perm) {
+                new_permissions.set(static_cast<size_t>(*new_perm));
             }
         }
-        
-        return new_permissions;
     }
-    
+
+    return new_permissions;
+}
+
 } // namespace legacy_conversion
 
 // Security and validation utilities implementation
 namespace clan_security {
-    
-    ValidationResult validate_clan_name(std::string_view name) {
-        if (name.empty()) {
-            return std::unexpected(ValidationError{"Clan name cannot be empty.", "name", std::string(name)});
-        }
-        if (name.length() > MAX_CLAN_NAME_LENGTH) {
-            return std::unexpected(ValidationError{
-                fmt::format("Clan name too long (max {} characters).", MAX_CLAN_NAME_LENGTH),
-                "name", std::string(name)
-            });
-        }
-        if (contains_unsafe_characters(name)) {
-            return std::unexpected(ValidationError{"Clan name contains invalid characters.", "name", std::string(name)});
-        }
-        return {};
+
+ValidationResult validate_clan_name(std::string_view name) {
+    if (name.empty()) {
+        return std::unexpected(ValidationError{"Clan name cannot be empty.", "name", std::string(name)});
     }
-    
-    ValidationResult validate_clan_abbreviation(std::string_view abbr) {
-        if (abbr.empty()) {
-            return std::unexpected(ValidationError{"Clan abbreviation cannot be empty.", "abbreviation", std::string(abbr)});
-        }
-        if (abbr.length() > MAX_CLAN_ABBR_LENGTH) {
-            return std::unexpected(ValidationError{
-                fmt::format("Clan abbreviation too long (max {} characters).", MAX_CLAN_ABBR_LENGTH),
-                "abbreviation", std::string(abbr)
-            });
-        }
-        if (contains_unsafe_characters(abbr)) {
-            return std::unexpected(ValidationError{"Clan abbreviation contains invalid characters.", "abbreviation", std::string(abbr)});
-        }
-        return {};
+    if (name.length() > MAX_CLAN_NAME_LENGTH) {
+        return std::unexpected(ValidationError{
+            fmt::format("Clan name too long (max {} characters).", MAX_CLAN_NAME_LENGTH), "name", std::string(name)});
     }
-    
-    ValidationResult validate_clan_description(std::string_view desc) {
-        if (desc.length() > MAX_CLAN_DESCRIPTION_LENGTH) {
-            return std::unexpected(ValidationError{
-                fmt::format("Clan description too long (max {} characters).", MAX_CLAN_DESCRIPTION_LENGTH),
-                "description", std::string(desc)
-            });
-        }
-        return {}; // Descriptions can be empty and have more flexible character restrictions
+    if (contains_unsafe_characters(name)) {
+        return std::unexpected(ValidationError{"Clan name contains invalid characters.", "name", std::string(name)});
     }
-    
-    ValidationResult validate_player_name(std::string_view name) {
-        if (name.empty()) {
-            return std::unexpected(ValidationError{"Player name cannot be empty.", "player_name", std::string(name)});
+    return {};
+}
+
+ValidationResult validate_clan_abbreviation(std::string_view abbr) {
+    if (abbr.empty()) {
+        return std::unexpected(
+            ValidationError{"Clan abbreviation cannot be empty.", "abbreviation", std::string(abbr)});
+    }
+    if (abbr.length() > MAX_CLAN_ABBR_LENGTH) {
+        return std::unexpected(
+            ValidationError{fmt::format("Clan abbreviation too long (max {} characters).", MAX_CLAN_ABBR_LENGTH),
+                            "abbreviation", std::string(abbr)});
+    }
+    if (contains_unsafe_characters(abbr)) {
+        return std::unexpected(
+            ValidationError{"Clan abbreviation contains invalid characters.", "abbreviation", std::string(abbr)});
+    }
+    return {};
+}
+
+ValidationResult validate_clan_description(std::string_view desc) {
+    if (desc.length() > MAX_CLAN_DESCRIPTION_LENGTH) {
+        return std::unexpected(
+            ValidationError{fmt::format("Clan description too long (max {} characters).", MAX_CLAN_DESCRIPTION_LENGTH),
+                            "description", std::string(desc)});
+    }
+    return {}; // Descriptions can be empty and have more flexible character restrictions
+}
+
+ValidationResult validate_player_name(std::string_view name) {
+    if (name.empty()) {
+        return std::unexpected(ValidationError{"Player name cannot be empty.", "player_name", std::string(name)});
+    }
+    if (name.length() > 20) { // Standard player name limit
+        return std::unexpected(ValidationError{"Player name too long.", "player_name", std::string(name)});
+    }
+    // Basic character validation for player names
+    for (char c : name) {
+        if (!std::isalnum(c) && c != '_' && c != '-') {
+            return std::unexpected(ValidationError{"Player name contains invalid characters (alphanumeric, _, - only).",
+                                                   "player_name", std::string(name)});
         }
-        if (name.length() > 20) { // Standard player name limit
-            return std::unexpected(ValidationError{"Player name too long.", "player_name", std::string(name)});
-        }
-        // Basic character validation for player names
-        for (char c : name) {
-            if (!std::isalnum(c) && c != '_' && c != '-') {
-                return std::unexpected(ValidationError{
-                    "Player name contains invalid characters (alphanumeric, _, - only).", 
-                    "player_name", std::string(name)
-                });
+    }
+    return {};
+}
+
+CharData *find_player_safe(std::string_view name) {
+    // Validate input first
+    auto validation = validate_player_name(name);
+    if (!validation) {
+        return nullptr;
+    }
+
+    // Create a safe copy for the legacy API
+    std::string name_copy(name);
+    return find_char_in_world(find_by_name(name_copy.data()));
+}
+
+CharData *find_clan_member_safe(std::string_view name) {
+    // Same implementation as find_player_safe for now
+    // Could be extended with clan-specific validation
+    return find_player_safe(name);
+}
+
+bool check_member_limit(const Clan &clan) { return clan.member_count() < MAX_CLAN_MEMBERS; }
+
+bool check_rank_limit(const Clan &clan) { return clan.rank_count() < MAX_CLAN_RANKS; }
+
+bool check_storage_limit(const Clan &clan) { return clan.storage().size() < MAX_CLAN_STORAGE_ITEMS; }
+
+std::expected<Money, std::string> safe_add_money(const Money &base, const Money &addition) {
+    Money result = base;
+
+    // Check for overflow in each denomination
+    for (int denom = COPPER; denom <= PLATINUM; ++denom) {
+        if (base[denom] > 0 && addition[denom] > 0) {
+            // Check if addition would cause overflow
+            if (base[denom] > std::numeric_limits<int>::max() - addition[denom]) {
+                return std::unexpected("Money addition would cause overflow.");
             }
         }
-        return {};
+        result[denom] = base[denom] + addition[denom];
     }
-    
-    CharData* find_player_safe(std::string_view name) {
-        // Validate input first
-        auto validation = validate_player_name(name);
-        if (!validation) {
-            return nullptr;
+
+    return result;
+}
+
+std::expected<Money, std::string> safe_subtract_money(const Money &base, const Money &subtraction) {
+    Money result = base;
+
+    // Check for underflow in each denomination
+    for (int denom = COPPER; denom <= PLATINUM; ++denom) {
+        if (base[denom] < subtraction[denom]) {
+            return std::unexpected("Insufficient coins for withdrawal.");
         }
-        
-        // Create a safe copy for the legacy API
-        std::string name_copy(name);
-        return find_char_in_world(find_by_name(name_copy.data()));
+        result[denom] = base[denom] - subtraction[denom];
     }
-    
-    CharData* find_clan_member_safe(std::string_view name) {
-        // Same implementation as find_player_safe for now
-        // Could be extended with clan-specific validation
-        return find_player_safe(name);
-    }
-    
-    bool check_member_limit(const Clan& clan) {
-        return clan.member_count() < MAX_CLAN_MEMBERS;
-    }
-    
-    bool check_rank_limit(const Clan& clan) {
-        return clan.rank_count() < MAX_CLAN_RANKS;
-    }
-    
-    bool check_storage_limit(const Clan& clan) {
-        return clan.storage().size() < MAX_CLAN_STORAGE_ITEMS;
-    }
-    
-    std::expected<Money, std::string> safe_add_money(const Money& base, const Money& addition) {
-        Money result = base;
-        
-        // Check for overflow in each denomination
-        for (int denom = COPPER; denom <= PLATINUM; ++denom) {
-            if (base[denom] > 0 && addition[denom] > 0) {
-                // Check if addition would cause overflow
-                if (base[denom] > std::numeric_limits<int>::max() - addition[denom]) {
-                    return std::unexpected("Money addition would cause overflow.");
-                }
-            }
-            result[denom] = base[denom] + addition[denom];
+
+    return result;
+}
+
+std::expected<int, std::string> safe_add_quantity(int base, int addition) {
+    if (base > 0 && addition > 0) {
+        if (base > std::numeric_limits<int>::max() - addition) {
+            return std::unexpected("Quantity addition would cause overflow.");
         }
-        
-        return result;
     }
-    
-    std::expected<Money, std::string> safe_subtract_money(const Money& base, const Money& subtraction) {
-        Money result = base;
-        
-        // Check for underflow in each denomination
-        for (int denom = COPPER; denom <= PLATINUM; ++denom) {
-            if (base[denom] < subtraction[denom]) {
-                return std::unexpected("Insufficient coins for withdrawal.");
-            }
-            result[denom] = base[denom] - subtraction[denom];
+    return base + addition;
+}
+
+bool contains_unsafe_characters(std::string_view input) {
+    // Basic safety check - reject null bytes and some dangerous chars
+    for (char c : input) {
+        if (c == '\0' || c == '<' || c == '>' || c == '&' || c == '"' || c == '\'') {
+            return true;
         }
-        
-        return result;
     }
-    
-    std::expected<int, std::string> safe_add_quantity(int base, int addition) {
-        if (base > 0 && addition > 0) {
-            if (base > std::numeric_limits<int>::max() - addition) {
-                return std::unexpected("Quantity addition would cause overflow.");
-            }
-        }
-        return base + addition;
-    }
-    
-    bool contains_unsafe_characters(std::string_view input) {
-        // Basic safety check - reject null bytes and some dangerous chars
-        for (char c : input) {
-            if (c == '\0' || c == '<' || c == '>' || c == '&' || c == '"' || c == '\'') {
-                return true;
-            }
-        }
-        return false;
-    }
+    return false;
+}
 
 } // namespace clan_security

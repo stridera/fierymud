@@ -1,8 +1,8 @@
 #include "command_system.hpp"
 
+#include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
-#include "../core/ability_executor.hpp"
 #include "../database/world_queries.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../text/string_utils.hpp"
@@ -218,7 +218,7 @@ Result<CommandResult> CommandSystem::execute_command(std::shared_ptr<Actor> acto
 
                     // Execute each command
                     Result<CommandResult> last_result = CommandResult::Success;
-                    for (const auto& cmd : commands) {
+                    for (const auto &cmd : commands) {
                         if (!cmd.empty()) {
                             last_result = execute_command(actor, cmd);
                         }
@@ -246,12 +246,12 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
     // Check for COMMAND triggers on mobs in the room
     // Triggers can intercept commands before normal processing
     if (auto room = actor->current_room()) {
-        auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
         if (trigger_mgr.is_initialized()) {
             Log::debug("execute_parsed_command: checking COMMAND triggers in room");
             // Check each mob in the room for COMMAND triggers
             int mob_count = 0;
-            for (const auto& other : room->contents().actors) {
+            for (const auto &other : room->contents().actors) {
                 // Skip self and players (only mobs have triggers)
                 if (other == actor || other->type_name() != "Mobile") {
                     continue;
@@ -263,19 +263,15 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
                 std::string argument = command.args_from(0);
 
                 // Dispatch to mob's COMMAND triggers
-                auto result = trigger_mgr.dispatch_command(
-                    other,      // The mob owning the trigger
-                    actor,      // The actor who typed the command
-                    command.command,
-                    argument
-                );
+                auto result = trigger_mgr.dispatch_command(other, // The mob owning the trigger
+                                                           actor, // The actor who typed the command
+                                                           command.command, argument);
                 Log::debug("execute_parsed_command: dispatch_command returned {}", static_cast<int>(result));
 
                 // If trigger returned Halt, the command was handled by the script
                 if (result == FieryMUD::TriggerResult::Halt) {
-                    Log::debug("Command '{}' intercepted by trigger on {}",
-                        command.command, other->name());
-                    return CommandResult::Success;  // Trigger handled it
+                    Log::debug("Command '{}' intercepted by trigger on {}", command.command, other->name());
+                    return CommandResult::Success; // Trigger handled it
                 }
             }
             Log::debug("execute_parsed_command: finished checking {} mobs", mob_count);
@@ -295,14 +291,14 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
 
     if (!cmd_copy_opt) {
         // Try data-driven skill lookup from ability database
-        auto& ability_cache = FieryMUD::AbilityCache::instance();
+        auto &ability_cache = FieryMUD::AbilityCache::instance();
         if (!ability_cache.is_initialized()) {
             auto init_result = ability_cache.initialize();
             if (!init_result) {
                 Log::game()->warn("Failed to initialize ability cache: {}", init_result.error().message);
             }
         }
-        const auto* ability = ability_cache.get_ability_by_name(command.command);
+        const auto *ability = ability_cache.get_ability_by_name(command.command);
 
         // Check if it's a non-spell ability (skills, chants, songs can be used as commands)
         if (ability && ability->type != WorldQueries::AbilityType::Spell) {
@@ -318,7 +314,7 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
             if (ability->is_toggle && actor->has_effect(ability->name)) {
                 // Toggle off
                 actor->remove_effect(ability->name);
-                const auto* messages = ability_cache.get_ability_messages(ability->id);
+                const auto *messages = ability_cache.get_ability_messages(ability->id);
                 if (messages && !messages->wearoff_to_target.empty()) {
                     actor->send_message(messages->wearoff_to_target + "\n");
                 } else {
@@ -332,8 +328,7 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
             bool requires_target = ability->violent;
             bool can_initiate_combat = ability->violent;
 
-            return FieryMUD::execute_skill_command(context, command.command,
-                                                    requires_target, can_initiate_combat);
+            return FieryMUD::execute_skill_command(context, command.command, requires_target, can_initiate_combat);
         }
 
         // Compute suggestions without holding the global lock

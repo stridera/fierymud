@@ -21,7 +21,7 @@
  */
 struct BoardMessageEdit {
     int id;
-    std::string editor;     // Character name who edited
+    std::string editor; // Character name who edited
     std::chrono::system_clock::time_point edited_at;
 };
 
@@ -31,12 +31,12 @@ struct BoardMessageEdit {
 struct BoardMessage {
     int id;
     int board_id;
-    std::string poster;         // Character name who posted
-    int poster_level;           // Poster's level at time of posting
+    std::string poster; // Character name who posted
+    int poster_level;   // Poster's level at time of posting
     std::chrono::system_clock::time_point posted_at;
     std::string subject;
-    std::string content;        // Message body with color codes
-    bool sticky;                // Sticky messages float to top
+    std::string content; // Message body with color codes
+    bool sticky;         // Sticky messages float to top
     std::vector<BoardMessageEdit> edits;
 };
 
@@ -45,14 +45,14 @@ struct BoardMessage {
  * Each board can have different rules for each privilege.
  */
 enum class BoardPrivilege {
-    Read = 0,           // Can read messages
-    WriteNew = 1,       // Can post new messages
-    RemoveOwn = 2,      // Can remove own messages
-    EditOwn = 3,        // Can edit own messages
-    RemoveAny = 4,      // Can remove any message
-    EditAny = 5,        // Can edit any message
-    WriteSticky = 6,    // Can write sticky messages
-    Lock = 7            // Can lock/unlock the board
+    Read = 0,        // Can read messages
+    WriteNew = 1,    // Can post new messages
+    RemoveOwn = 2,   // Can remove own messages
+    EditOwn = 3,     // Can edit own messages
+    RemoveAny = 4,   // Can remove any message
+    EditAny = 5,     // Can edit any message
+    WriteSticky = 6, // Can write sticky messages
+    Lock = 7         // Can lock/unlock the board
 };
 
 constexpr int NUM_BOARD_PRIVILEGES = 8;
@@ -61,10 +61,10 @@ constexpr int NUM_BOARD_PRIVILEGES = 8;
  * A bulletin board containing messages.
  */
 struct BoardData {
-    int id;                     // Board ID (matches object's board_number)
-    std::string alias;          // Short name used as filename (e.g., "mortal", "god")
-    std::string title;          // Display title
-    bool locked;                // If true, no new posts allowed
+    int id;            // Board ID (matches object's board_number)
+    std::string alias; // Short name used as filename (e.g., "mortal", "god")
+    std::string title; // Display title
+    bool locked;       // If true, no new posts allowed
 
     // Messages sorted by sticky (desc), then posted_at (desc)
     std::vector<BoardMessage> messages;
@@ -78,13 +78,13 @@ struct BoardData {
  * Handles loading boards from database and caching for in-game access.
  */
 class BoardSystem {
-public:
+  public:
     BoardSystem() = default;
     ~BoardSystem() = default;
 
     // Non-copyable
-    BoardSystem(const BoardSystem&) = delete;
-    BoardSystem& operator=(const BoardSystem&) = delete;
+    BoardSystem(const BoardSystem &) = delete;
+    BoardSystem &operator=(const BoardSystem &) = delete;
 
     /**
      * Load all boards from the database.
@@ -97,14 +97,14 @@ public:
      * @param board_id The board's database ID
      * @return Pointer to board data, or nullptr if not found
      */
-    const BoardData* get_board(int board_id) const;
+    const BoardData *get_board(int board_id) const;
 
     /**
      * Get a board by its alias.
      * @param alias The board's alias (e.g., "mortal", "god")
      * @return Pointer to board data, or nullptr if not found
      */
-    const BoardData* get_board_by_alias(const std::string& alias) const;
+    const BoardData *get_board_by_alias(const std::string &alias) const;
 
     /**
      * Get the number of loaded boards.
@@ -132,9 +132,8 @@ public:
      * @param content Message body
      * @return Message ID on success, error on failure
      */
-    Result<int> post_message(int board_id, const std::string& poster,
-                             int poster_level, const std::string& subject,
-                             const std::string& content);
+    Result<int> post_message(int board_id, const std::string &poster, int poster_level, const std::string &subject,
+                             const std::string &content);
 
     /**
      * Remove a message from a board.
@@ -150,11 +149,11 @@ public:
      * @param message_index 1-based message index
      * @return Pointer to message, or nullptr if not found
      */
-    const BoardMessage* get_message(int board_id, int message_index) const;
+    const BoardMessage *get_message(int board_id, int message_index) const;
 
-private:
+  private:
     std::vector<std::unique_ptr<BoardData>> boards_;
 };
 
 // Global board system instance
-extern BoardSystem& board_system();
+extern BoardSystem &board_system();

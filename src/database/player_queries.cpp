@@ -1,5 +1,7 @@
 #include "database/player_queries.hpp"
+
 #include "core/logging.hpp"
+
 #include <fmt/format.h>
 
 namespace PlayerQueries {
@@ -7,7 +9,7 @@ namespace PlayerQueries {
 // Level at which characters become immortals
 constexpr int kImmortalLevel = 100;
 
-Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string_view name) {
+Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string_view name) {
     auto logger = Log::database();
     logger->debug("Loading player '{}' from database", name);
 
@@ -27,15 +29,15 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
             FROM "Characters"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
-        )", std::string(name));
+        )",
+                                      std::string(name));
 
         if (result.empty()) {
             logger->debug("Player '{}' not found in database", name);
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Player '{}' not found", name)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Player '{}' not found", name)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
 
         // Extract basic character data
         std::string player_id = row["id"].as<std::string>();
@@ -45,7 +47,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         // Create player using factory method
         // Note: Player creation might need EntityId - for now using a placeholder
         // Players don't use zone-based IDs like rooms/mobs
-        EntityId player_entity_id(0, 0);  // Players might need special ID handling
+        EntityId player_entity_id(0, 0); // Players might need special ID handling
 
         auto player_result = Player::create(player_entity_id, player_name);
         if (!player_result) {
@@ -58,7 +60,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
         player->set_database_id(player_id);
 
         // Stats - set level FIRST (before set_class, which needs level for spell slots)
-        auto& stats = player->stats();
+        auto &stats = player->stats();
         stats.level = level;
 
         // Set god level for immortals (level 100+)
@@ -140,21 +142,20 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work& txn, std::string
             player->set_prompt(row["prompt"].as<std::string>());
         }
 
-        logger->debug("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database",
-                    player_name, player_id, level,
-                    row["player_class"].is_null() ? "Unknown" : row["player_class"].as<std::string>(),
-                    row["race"].is_null() ? "Unknown" : row["race"].as<std::string>());
+        logger->debug("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database", player_name,
+                      player_id, level,
+                      row["player_class"].is_null() ? "Unknown" : row["player_class"].as<std::string>(),
+                      row["race"].is_null() ? "Unknown" : row["race"].as<std::string>());
 
         return player;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading player '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load player: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load player: {}", e.what())});
     }
 }
 
-Result<std::unique_ptr<Player>> load_player_by_id(pqxx::work& txn, std::string_view player_id) {
+Result<std::unique_ptr<Player>> load_player_by_id(pqxx::work &txn, std::string_view player_id) {
     auto logger = Log::database();
     logger->debug("Loading player by ID '{}' from database", player_id);
 
@@ -168,43 +169,43 @@ Result<std::unique_ptr<Player>> load_player_by_id(pqxx::work& txn, std::string_v
             FROM "Characters"
             WHERE id = $1
             LIMIT 1
-        )", std::string(player_id));
+        )",
+                                      std::string(player_id));
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Player ID '{}' not found", player_id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Player ID '{}' not found", player_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         std::string player_name = row["name"].as<std::string>();
 
         // Reuse load_by_name logic
         return load_player_by_name(txn, player_name);
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading player by ID '{}': {}", player_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load player: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load player: {}", e.what())});
     }
 }
 
-bool player_exists(pqxx::work& txn, std::string_view name) {
+bool player_exists(pqxx::work &txn, std::string_view name) {
     try {
         auto result = txn.exec_params(R"(
             SELECT 1 FROM "Characters"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
-        )", std::string(name));
+        )",
+                                      std::string(name));
 
         return !result.empty();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         Log::database()->error("SQL error checking player existence '{}': {}", name, e.what());
         return false;
     }
 }
 
-int get_player_count(pqxx::work& txn) {
+int get_player_count(pqxx::work &txn) {
     try {
         auto result = txn.exec(R"(
             SELECT COUNT(*) as count FROM "Characters"
@@ -216,7 +217,7 @@ int get_player_count(pqxx::work& txn) {
 
         return 0;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         Log::database()->error("SQL error getting player count: {}", e.what());
         return 0;
     }

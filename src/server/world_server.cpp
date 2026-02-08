@@ -5,10 +5,10 @@
 #include "../commands/movement_commands.hpp"
 #include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
-#include "../game/composer_system.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
 #include "../core/result.hpp"
+#include "../game/composer_system.hpp"
 #include "../net/player_connection.hpp"
 #include "../scripting/coroutine_scheduler.hpp"
 #include "../scripting/script_engine.hpp"
@@ -22,54 +22,54 @@
 
 #include <algorithm>
 #include <memory>
-#include <random>
 #include <nlohmann/json.hpp>
+#include <random>
 
 // World server constants
 namespace {
-    // Timer intervals
-    constexpr auto CLEANUP_INTERVAL = std::chrono::minutes(5);
-    constexpr auto HEARTBEAT_INTERVAL = std::chrono::seconds(30);
-    constexpr auto COMBAT_PROCESSING_INTERVAL = std::chrono::milliseconds(100);
-    constexpr auto PLAYER_SAVE_INTERVAL = std::chrono::minutes(5);
-    constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
-    constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500);  // 2 ticks per second
-    constexpr auto REGEN_TICK_INTERVAL = std::chrono::seconds(4);  // HP/move regen like legacy
-    constexpr auto MOB_ACTIVITY_INTERVAL = std::chrono::seconds(2);  // Mob AI tick (aggression, etc.)
+// Timer intervals
+constexpr auto CLEANUP_INTERVAL = std::chrono::minutes(5);
+constexpr auto HEARTBEAT_INTERVAL = std::chrono::seconds(30);
+constexpr auto COMBAT_PROCESSING_INTERVAL = std::chrono::milliseconds(100);
+constexpr auto PLAYER_SAVE_INTERVAL = std::chrono::minutes(5);
+constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
+constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500); // 2 ticks per second
+constexpr auto REGEN_TICK_INTERVAL = std::chrono::seconds(4);          // HP/move regen like legacy
+constexpr auto MOB_ACTIVITY_INTERVAL = std::chrono::seconds(2);        // Mob AI tick (aggression, etc.)
 
-    // Game time defaults
-    constexpr int DEFAULT_LORE_YEAR = 1000;
-    constexpr int DEFAULT_START_HOUR = 12;  // Noon
+// Game time defaults
+constexpr int DEFAULT_LORE_YEAR = 1000;
+constexpr int DEFAULT_START_HOUR = 12; // Noon
 
-    // Starting room IDs (zone_id, local_id composite keys)
-    constexpr std::uint32_t DEFAULT_START_ZONE_ID = 30;
-    constexpr std::uint32_t DEFAULT_START_LOCAL_ID = 1;   // Forest Temple of Mielikki
-    constexpr std::uint32_t TEST_START_ZONE_ID = 1;
-    constexpr std::uint32_t TEST_START_LOCAL_ID = 0;      // Test world starting room
+// Starting room IDs (zone_id, local_id composite keys)
+constexpr std::uint32_t DEFAULT_START_ZONE_ID = 30;
+constexpr std::uint32_t DEFAULT_START_LOCAL_ID = 1; // Forest Temple of Mielikki
+constexpr std::uint32_t TEST_START_ZONE_ID = 1;
+constexpr std::uint32_t TEST_START_LOCAL_ID = 0; // Test world starting room
 
-    // Combat condition thresholds (HP percentage)
-    constexpr int CONDITION_PERFECT = 95;
-    constexpr int CONDITION_SCRATCHED = 85;
-    constexpr int CONDITION_HURT = 70;
-    constexpr int CONDITION_WOUNDED = 50;
-    constexpr int CONDITION_BLEEDING = 30;
-    constexpr int CONDITION_CRITICAL = 15;
+// Combat condition thresholds (HP percentage)
+constexpr int CONDITION_PERFECT = 95;
+constexpr int CONDITION_SCRATCHED = 85;
+constexpr int CONDITION_HURT = 70;
+constexpr int CONDITION_WOUNDED = 50;
+constexpr int CONDITION_BLEEDING = 30;
+constexpr int CONDITION_CRITICAL = 15;
 
-    // Percentage calculation base
-    constexpr int PERCENT_MULTIPLIER = 100;
-}
+// Percentage calculation base
+constexpr int PERCENT_MULTIPLIER = 100;
+} // namespace
 
 // Thread-safe static instance pointer for singleton-like access
 // Note: WorldServer requires constructor parameters, so this is a "single instance with static accessor"
 // pattern rather than a true singleton. Only one WorldServer should exist at a time.
-static std::atomic<WorldServer*> g_world_server_instance{nullptr};
+static std::atomic<WorldServer *> g_world_server_instance{nullptr};
 
 WorldServer::WorldServer(asio::io_context &io_context, const ServerConfig &config)
     : io_context_(io_context), world_strand_(asio::make_strand(io_context)), config_(config),
       start_time_(std::chrono::steady_clock::now()) {
 
     // Ensure only one WorldServer instance exists at a time
-    WorldServer* expected = nullptr;
+    WorldServer *expected = nullptr;
     if (!g_world_server_instance.compare_exchange_strong(expected, this)) {
         Log::error("Attempted to create multiple WorldServer instances - this is not allowed");
         throw std::runtime_error("Multiple WorldServer instances not allowed");
@@ -83,9 +83,7 @@ WorldServer::~WorldServer() {
     g_world_server_instance.store(nullptr, std::memory_order_release);
 }
 
-WorldServer* WorldServer::instance() {
-    return g_world_server_instance.load(std::memory_order_acquire);
-}
+WorldServer *WorldServer::instance() { return g_world_server_instance.load(std::memory_order_acquire); }
 
 Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     Log::info("Initializing WorldServer...");
@@ -113,7 +111,7 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     }
 
     // Initialize Lua scripting engine
-    auto& script_engine = FieryMUD::ScriptEngine::instance();
+    auto &script_engine = FieryMUD::ScriptEngine::instance();
     if (!script_engine.initialize()) {
         Log::error("Failed to initialize ScriptEngine: {}", script_engine.last_error());
         return std::unexpected(Errors::InternalError("WorldServer::initialize", "ScriptEngine initialization failed"));
@@ -121,10 +119,11 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     Log::info("ScriptEngine initialized successfully");
 
     // Initialize trigger manager (requires ScriptEngine)
-    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
     if (!trigger_mgr.initialize()) {
         Log::error("Failed to initialize TriggerManager: {}", trigger_mgr.last_error());
-        return std::unexpected(Errors::InternalError("WorldServer::initialize", "TriggerManager initialization failed"));
+        return std::unexpected(
+            Errors::InternalError("WorldServer::initialize", "TriggerManager initialization failed"));
     }
     Log::info("TriggerManager initialized successfully");
 
@@ -144,17 +143,18 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     }
 
     // Register callbacks for time events
-    TimeSystem::instance().on_sunlight_changed([this](SunlightState /* old_state */, SunlightState new_state, Hemisphere hemisphere) {
-        // Only broadcast for the primary hemisphere (Northeast) to avoid duplicate messages
-        // The 4 hemispheres have offset day/night cycles, so we pick one as canonical
-        if (hemisphere != Hemisphere::Northeast) {
-            return;
-        }
+    TimeSystem::instance().on_sunlight_changed(
+        [this](SunlightState /* old_state */, SunlightState new_state, Hemisphere hemisphere) {
+            // Only broadcast for the primary hemisphere (Northeast) to avoid duplicate messages
+            // The 4 hemispheres have offset day/night cycles, so we pick one as canonical
+            if (hemisphere != Hemisphere::Northeast) {
+                return;
+            }
 
-        // Broadcast sunlight changes to outdoor players
-        std::string message;
+            // Broadcast sunlight changes to outdoor players
+            std::string message;
 
-        switch (new_state) {
+            switch (new_state) {
             case SunlightState::Rise:
                 message = "\x1B[33mThe sun rises in the east, painting the sky with brilliant colors.\x1B[0m\r\n";
                 break;
@@ -167,47 +167,47 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
             case SunlightState::Dark:
                 message = "\x1B[34mThe night falls, shrouding the land in darkness.\x1B[0m\r\n";
                 break;
-        }
+            }
 
-        // Send message to all outdoor players
-        // Post to world strand to ensure thread safety
-        asio::post(world_strand_, [this, message]() {
-            for (auto& conn : active_connections_) {
-                if (auto player = conn->get_player()) {
-                    if (auto room = player->current_room()) {
-                        if (RoomUtils::is_outdoor_sector(room->sector_type())) {
-                            conn->send_message(message);
+            // Send message to all outdoor players
+            // Post to world strand to ensure thread safety
+            asio::post(world_strand_, [this, message]() {
+                for (auto &conn : active_connections_) {
+                    if (auto player = conn->get_player()) {
+                        if (auto room = player->current_room()) {
+                            if (RoomUtils::is_outdoor_sector(room->sector_type())) {
+                                conn->send_message(message);
+                            }
                         }
                     }
                 }
-            }
+            });
         });
-    });
 
     // Register callback for month changes to update season
-    TimeSystem::instance().on_month_changed([this](const GameTime& /* old_time */, const GameTime& new_time) {
+    TimeSystem::instance().on_month_changed([this](const GameTime & /* old_time */, const GameTime &new_time) {
         Season new_season = new_time.get_season();
         WeatherSystem::instance().set_season(new_season);
 
         // Broadcast season change to all players
         std::string season_message;
         switch (new_season) {
-            case Season::Spring:
-                season_message = "\x1B[32mSpring has arrived! The world awakens with new life and growth.\x1B[0m\r\n";
-                break;
-            case Season::Summer:
-                season_message = "\x1B[33mSummer begins! The days grow long and warm under the bright sun.\x1B[0m\r\n";
-                break;
-            case Season::Autumn:
-                season_message = "\x1B[31mAutumn descends! Leaves turn golden and the air grows crisp.\x1B[0m\r\n";
-                break;
-            case Season::Winter:
-                season_message = "\x1B[36mWinter arrives! The cold settles in and frost covers the land.\x1B[0m\r\n";
-                break;
+        case Season::Spring:
+            season_message = "\x1B[32mSpring has arrived! The world awakens with new life and growth.\x1B[0m\r\n";
+            break;
+        case Season::Summer:
+            season_message = "\x1B[33mSummer begins! The days grow long and warm under the bright sun.\x1B[0m\r\n";
+            break;
+        case Season::Autumn:
+            season_message = "\x1B[31mAutumn descends! Leaves turn golden and the air grows crisp.\x1B[0m\r\n";
+            break;
+        case Season::Winter:
+            season_message = "\x1B[36mWinter arrives! The cold settles in and frost covers the land.\x1B[0m\r\n";
+            break;
         }
 
         asio::post(world_strand_, [this, season_message]() {
-            for (auto& conn : active_connections_) {
+            for (auto &conn : active_connections_) {
                 if (auto player = conn->get_player()) {
                     conn->send_message(season_message);
                 }
@@ -216,25 +216,22 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     });
 
     // Register callback for hour changes to tick spell durations and conditions
-    TimeSystem::instance().on_hour_changed([this](const GameTime& /* old_time */, const GameTime& /* new_time */) {
+    TimeSystem::instance().on_hour_changed([this](const GameTime & /* old_time */, const GameTime & /* new_time */) {
         // Tick down spell effect durations, process drunk sobering, etc.
-        asio::post(world_strand_, [this]() {
-            world_manager_->tick_hour_all();
-        });
+        asio::post(world_strand_, [this]() { world_manager_->tick_hour_all(); });
     });
 
     // Register callback for hour changes to fire TIME triggers
-    TimeSystem::instance().on_hour_changed([this](const GameTime& /* old_time */, const GameTime& new_time) {
+    TimeSystem::instance().on_hour_changed([this](const GameTime & /* old_time */, const GameTime &new_time) {
         // Fire TIME triggers for all mobs in the world
         asio::post(world_strand_, [this, hour = new_time.hour]() {
-            auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+            auto &trigger_mgr = FieryMUD::TriggerManager::instance();
             if (!trigger_mgr.is_initialized()) {
                 return;
             }
             // Process TIME triggers for all loaded mobs
-            world_manager_->for_each_mobile([&trigger_mgr, hour](std::shared_ptr<Mobile> mob) {
-                trigger_mgr.dispatch_time(mob, hour);
-            });
+            world_manager_->for_each_mobile(
+                [&trigger_mgr, hour](std::shared_ptr<Mobile> mob) { trigger_mgr.dispatch_time(mob, hour); });
         });
     });
 
@@ -267,8 +264,7 @@ Result<void> WorldServer::start() {
 
             // Signal failure via exception in the promise
             try {
-                throw std::runtime_error(fmt::format(
-                    "Failed to load world data: {}", world_load.error().message));
+                throw std::runtime_error(fmt::format("Failed to load world data: {}", world_load.error().message));
             } catch (...) {
                 world_loaded_promise_.set_exception(std::current_exception());
             }
@@ -281,7 +277,7 @@ Result<void> WorldServer::start() {
         Log::info("World data loaded successfully on world strand");
         world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
         Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki",
-                 EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
+                  EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
         world_loaded_promise_.set_value();
     });
 
@@ -501,7 +497,7 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
             // Send prompt after command execution (unless player entered composer mode)
             if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
                 if (player->is_composing()) {
-                    return;  // Don't send game prompt while composing
+                    return; // Don't send game prompt while composing
                 }
             }
             send_prompt_to_actor(actor);
@@ -515,17 +511,20 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
 // Player Management
 
 void WorldServer::add_player_connection(std::shared_ptr<PlayerConnection> connection) {
-    if (!running_.load()) return;  // Skip during shutdown
+    if (!running_.load())
+        return; // Skip during shutdown
     asio::post(world_strand_, [this, connection]() { handle_player_connection(connection); });
 }
 
 void WorldServer::remove_player_connection(std::shared_ptr<PlayerConnection> connection) {
-    if (!running_.load()) return;  // Skip during shutdown - connections already cleared
+    if (!running_.load())
+        return; // Skip during shutdown - connections already cleared
     asio::post(world_strand_, [this, connection]() { handle_player_disconnection(connection); });
 }
 
 void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> connection, std::shared_ptr<Actor> actor) {
-    if (!running_.load()) return;  // Skip during shutdown
+    if (!running_.load())
+        return; // Skip during shutdown
     asio::post(world_strand_, [this, connection, actor]() {
         // Remove old actor from its room if replacing an existing actor
         auto old_it = connection_actors_.find(connection);
@@ -533,8 +532,8 @@ void WorldServer::set_actor_for_connection(std::shared_ptr<PlayerConnection> con
             auto old_actor = old_it->second;
             if (auto room = old_actor->current_room()) {
                 room->remove_actor(old_actor->id());
-                Log::debug("Removed old actor '{}' from room {} before replacing with '{}'",
-                          old_actor->name(), room->id(), actor ? actor->name() : "null");
+                Log::debug("Removed old actor '{}' from room {} before replacing with '{}'", old_actor->name(),
+                           room->id(), actor ? actor->name() : "null");
             }
         }
         connection_actors_[connection] = actor;
@@ -586,15 +585,15 @@ CommandSystem *WorldServer::get_command_system() const { return command_system_;
 std::vector<std::shared_ptr<Player>> WorldServer::get_online_players() const {
     // Extract Player objects from active connections
     std::vector<std::shared_ptr<Player>> players;
-    
+
     // Note: This accesses connection_actors_ which should be thread-safe for const access
     // since we're only reading the map, not modifying it
-    for (const auto& [connection, actor] : connection_actors_) {
+    for (const auto &[connection, actor] : connection_actors_) {
         if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
             players.push_back(player);
         }
     }
-    
+
     return players;
 }
 
@@ -604,7 +603,7 @@ std::vector<std::shared_ptr<Actor>> WorldServer::get_online_actors() const {
 
     // Note: This accesses connection_actors_ which should be thread-safe for const access
     // since we're only reading the map, not modifying it
-    for (const auto& [connection, actor] : connection_actors_) {
+    for (const auto &[connection, actor] : connection_actors_) {
         if (actor) {
             actors.push_back(actor);
         }
@@ -635,7 +634,7 @@ void WorldServer::handle_command(CommandRequest command) {
     // Full CommandSystem integration is pending player registry implementation
     // For now, just log the command - the existing process_command methods
     // in WorldManager will handle the actual command execution
-    
+
     if (command.player_id != INVALID_ENTITY_ID) {
         std::string input = command.command;
         if (!command.args.empty()) {
@@ -742,36 +741,42 @@ void WorldServer::schedule_mob_activity() {
 
 // Alignment thresholds for aggression checks
 namespace {
-    constexpr int ALIGN_GOOD_THRESHOLD = 350;
-    constexpr int ALIGN_EVIL_THRESHOLD = -350;
+constexpr int ALIGN_GOOD_THRESHOLD = 350;
+constexpr int ALIGN_EVIL_THRESHOLD = -350;
 
-    bool is_good_alignment(int alignment) { return alignment >= ALIGN_GOOD_THRESHOLD; }
-    bool is_evil_alignment(int alignment) { return alignment <= ALIGN_EVIL_THRESHOLD; }
+bool is_good_alignment(int alignment) { return alignment >= ALIGN_GOOD_THRESHOLD; }
+bool is_evil_alignment(int alignment) { return alignment <= ALIGN_EVIL_THRESHOLD; }
 
-    std::string_view alignment_name(int alignment) {
-        if (is_good_alignment(alignment)) return "good";
-        if (is_evil_alignment(alignment)) return "evil";
-        return "neutral";
-    }
+std::string_view alignment_name(int alignment) {
+    if (is_good_alignment(alignment))
+        return "good";
+    if (is_evil_alignment(alignment))
+        return "evil";
+    return "neutral";
 }
+} // namespace
 
 void WorldServer::perform_mob_activity() {
     // Process mob AI for all spawned mobiles
     // This handles aggression, following, special behaviors, etc.
 
-    if (!world_manager_) return;
+    if (!world_manager_)
+        return;
 
     // Get all spawned mobiles
-    auto& mobiles = world_manager_->spawned_mobiles();
+    auto &mobiles = world_manager_->spawned_mobiles();
 
-    for (auto& [id, mobile] : mobiles) {
-        if (!mobile || !mobile->is_alive()) continue;
+    for (auto &[id, mobile] : mobiles) {
+        if (!mobile || !mobile->is_alive())
+            continue;
 
         // Skip mobs already in combat
-        if (mobile->is_fighting()) continue;
+        if (mobile->is_fighting())
+            continue;
 
         // Check if mob has aggro_condition set (Lua expression from database)
-        if (!mobile->is_aggressive()) continue;
+        if (!mobile->is_aggressive())
+            continue;
 
         auto room = mobile->current_room();
         if (!room) {
@@ -779,14 +784,16 @@ void WorldServer::perform_mob_activity() {
             continue;
         }
 
-        const auto& aggro_condition = mobile->aggro_condition();
+        const auto &aggro_condition = mobile->aggro_condition();
 
         // Look for players in the room to attack
-        for (const auto& actor : room->contents().actors) {
-            if (!actor || actor.get() == mobile.get()) continue;
+        for (const auto &actor : room->contents().actors) {
+            if (!actor || actor.get() == mobile.get())
+                continue;
 
             // Only attack players (not other mobs)
-            if (actor->type_name() != "Player") continue;
+            if (actor->type_name() != "Player")
+                continue;
 
             // Check if player is alive
             if (!actor->is_alive()) {
@@ -796,8 +803,7 @@ void WorldServer::perform_mob_activity() {
 
             // Don't attack immortals (level 100+)
             if (actor->stats().level >= 100) {
-                Log::debug("Player '{}' is immortal (level {}), skipping",
-                          actor->name(), actor->stats().level);
+                Log::debug("Player '{}' is immortal (level {}), skipping", actor->name(), actor->stats().level);
                 continue;
             }
 
@@ -808,7 +814,7 @@ void WorldServer::perform_mob_activity() {
             std::string attack_reason;
 
             if (!aggro_condition || aggro_condition->empty()) {
-                continue;  // No condition set, skip
+                continue; // No condition set, skip
             } else if (*aggro_condition == "true") {
                 // Attacks everyone
                 should_attack = true;
@@ -834,19 +840,16 @@ void WorldServer::perform_mob_activity() {
             }
 
             if (!should_attack) {
-                Log::debug("Mob '{}' won't attack '{}' ({}) - condition '{}' not met",
-                          mobile->name(), actor->name(), alignment_name(player_align),
-                          aggro_condition ? *aggro_condition : "none");
+                Log::debug("Mob '{}' won't attack '{}' ({}) - condition '{}' not met", mobile->name(), actor->name(),
+                           alignment_name(player_align), aggro_condition ? *aggro_condition : "none");
                 continue;
             }
 
             // Always attack when condition matches (no random roll)
-            Log::debug("Aggro check: {} ({}) vs {} - attacking",
-                      mobile->name(), attack_reason, actor->name());
+            Log::debug("Aggro check: {} ({}) vs {} - attacking", mobile->name(), attack_reason, actor->name());
 
             // Start combat!
-            Log::info("{} ({}) attacks {}!",
-                     mobile->name(), attack_reason, actor->name());
+            Log::info("{} ({}) attacks {}!", mobile->name(), attack_reason, actor->name());
 
             // Use add_combat_pair so multiple mobs can attack same player
             FieryMUD::CombatManager::add_combat_pair(mobile, actor);
@@ -856,10 +859,9 @@ void WorldServer::perform_mob_activity() {
             actor->send_message(fmt::format("{} attacks you!", mobile->display_name()));
 
             // Notify room
-            for (const auto& witness : room->contents().actors) {
+            for (const auto &witness : room->contents().actors) {
                 if (witness && witness != mobile && witness != actor) {
-                    witness->send_message(fmt::format("{} attacks {}!",
-                        mobile->display_name(), actor->display_name()));
+                    witness->send_message(fmt::format("{} attacks {}!", mobile->display_name(), actor->display_name()));
                 }
             }
 
@@ -867,12 +869,11 @@ void WorldServer::perform_mob_activity() {
             break;
         }
     }
-
 }
 
 void WorldServer::perform_spell_restoration() {
     // Process spell slot restoration for all connected players
-    for (auto& conn : active_connections_) {
+    for (auto &conn : active_connections_) {
         if (auto player = conn->get_player()) {
             // Get player's focus-based restoration rate
             int rate = player->get_spell_restore_rate();
@@ -882,9 +883,8 @@ void WorldServer::perform_spell_restoration() {
 
             // Notify player if a slot was restored
             if (restored_circle > 0) {
-                player->send_message(fmt::format(
-                    "You feel your magical energies return. (Circle {} slot restored)",
-                    restored_circle));
+                player->send_message(
+                    fmt::format("You feel your magical energies return. (Circle {} slot restored)", restored_circle));
             }
         }
     }
@@ -893,13 +893,13 @@ void WorldServer::perform_spell_restoration() {
 void WorldServer::perform_casting_processing() {
 
     // Process casting ticks for all connected actors
-    for (auto& conn : active_connections_) {
+    for (auto &conn : active_connections_) {
         auto it = connection_actors_.find(conn);
         if (it == connection_actors_.end() || !it->second) {
             continue;
         }
 
-        auto& actor = it->second;
+        auto &actor = it->second;
 
         // Skip if not casting
         if (!actor->is_casting()) {
@@ -908,11 +908,11 @@ void WorldServer::perform_casting_processing() {
 
         // Advance the casting timer
         if (actor->advance_casting()) {
-            const auto& state_opt = actor->casting_state();
+            const auto &state_opt = actor->casting_state();
             if (state_opt.has_value()) {
-                const auto& state = state_opt.value();
-                Log::debug("Casting complete for {}: {} (target: {})",
-                          actor->name(), state.ability_name, state.target_name);
+                const auto &state = state_opt.value();
+                Log::debug("Casting complete for {}: {} (target: {})", actor->name(), state.ability_name,
+                           state.target_name);
 
                 // Handle recall completion specially
                 if (state.ability_id == MovementCommands::RECALL_ABILITY_ID) {
@@ -931,13 +931,14 @@ void WorldServer::perform_casting_processing() {
                 if (!target_actor && !state.target_name.empty()) {
                     auto room = actor->current_room();
                     if (room) {
-                        for (const auto& room_actor : room->contents().actors) {
+                        for (const auto &room_actor : room->contents().actors) {
                             if (room_actor && room_actor != actor) {
                                 // Match by name (case insensitive prefix match)
                                 std::string lower_name{room_actor->name()};
                                 std::string lower_target = state.target_name;
                                 std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(), ::tolower);
-                                std::transform(lower_target.begin(), lower_target.end(), lower_target.begin(), ::tolower);
+                                std::transform(lower_target.begin(), lower_target.end(), lower_target.begin(),
+                                               ::tolower);
                                 if (lower_name.starts_with(lower_target) || lower_target.starts_with(lower_name)) {
                                     target_actor = room_actor;
                                     Log::debug("Re-targeted {} to {} in room", state.ability_name, room_actor->name());
@@ -949,12 +950,11 @@ void WorldServer::perform_casting_processing() {
                 }
 
                 // Execute the completed spell through ability executor
-                auto exec_result = FieryMUD::AbilityExecutor::execute_completed_cast(
-                    actor, state.ability_id, target_actor);
+                auto exec_result =
+                    FieryMUD::AbilityExecutor::execute_completed_cast(actor, state.ability_id, target_actor);
 
                 if (!exec_result) {
-                    actor->send_message(fmt::format("Your spell fizzles! ({})\n",
-                                                   exec_result.error().message));
+                    actor->send_message(fmt::format("Your spell fizzles! ({})\n", exec_result.error().message));
                 } else if (exec_result->success) {
                     // Send the generated messages
                     if (!exec_result->attacker_message.empty()) {
@@ -967,7 +967,7 @@ void WorldServer::perform_casting_processing() {
                     // Send room message to others
                     if (!exec_result->room_message.empty()) {
                         if (auto room = actor->current_room()) {
-                            for (const auto& other : room->contents().actors) {
+                            for (const auto &other : room->contents().actors) {
                                 if (other != actor && other != target_actor) {
                                     other->send_message(exec_result->room_message + "\n");
                                 }
@@ -986,9 +986,10 @@ void WorldServer::perform_casting_processing() {
                             if (target_is_player) {
                                 target_actor->send_message("You are DEAD! You feel your spirit leave your body...\n");
                                 if (auto room = actor->current_room()) {
-                                    std::string death_msg = fmt::format("{} is DEAD! Their spirit rises from their body.\n",
-                                                                       target_actor->display_name());
-                                    for (const auto& other : room->contents().actors) {
+                                    std::string death_msg =
+                                        fmt::format("{} is DEAD! Their spirit rises from their body.\n",
+                                                    target_actor->display_name());
+                                    for (const auto &other : room->contents().actors) {
                                         if (other != target_actor) {
                                             other->send_message(death_msg);
                                         }
@@ -996,9 +997,10 @@ void WorldServer::perform_casting_processing() {
                                 }
                             } else {
                                 if (auto room = actor->current_room()) {
-                                    std::string death_msg = fmt::format("{} is DEAD! Their corpse falls to the ground.\n",
-                                                                       target_actor->display_name());
-                                    for (const auto& other : room->contents().actors) {
+                                    std::string death_msg =
+                                        fmt::format("{} is DEAD! Their corpse falls to the ground.\n",
+                                                    target_actor->display_name());
+                                    for (const auto &other : room->contents().actors) {
                                         other->send_message(death_msg);
                                     }
                                 }
@@ -1012,8 +1014,8 @@ void WorldServer::perform_casting_processing() {
                                 actor->set_position(Position::Fighting);
                                 target_actor->set_position(Position::Fighting);
                                 FieryMUD::CombatManager::start_combat(actor, target_actor);
-                                Log::debug("Started combat between {} and {} after spell damage",
-                                          actor->name(), target_actor->name());
+                                Log::debug("Started combat between {} and {} after spell damage", actor->name(),
+                                           target_actor->name());
                             }
                         }
                     }
@@ -1024,13 +1026,12 @@ void WorldServer::perform_casting_processing() {
             }
         } else {
             // Casting still in progress - show progress indicator
-            const auto& state_opt = actor->casting_state();
+            const auto &state_opt = actor->casting_state();
             if (state_opt.has_value()) {
-                const auto& state = state_opt.value();
+                const auto &state = state_opt.value();
                 // Build progress indicator with stars
                 std::string stars(state.ticks_remaining, '*');
-                actor->send_message(fmt::format("\nCasting: {} {}\n",
-                                               state.ability_name, stars));
+                actor->send_message(fmt::format("\nCasting: {} {}\n", state.ability_name, stars));
             }
         }
     }
@@ -1048,7 +1049,8 @@ void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::functi
             // Execute task on world strand
             asio::post(world_strand_, [this, task, interval, timer]() {
                 // Check again before executing - shutdown may have started
-                if (!running_.load()) return;
+                if (!running_.load())
+                    return;
                 task();
                 // Reschedule
                 schedule_timer(interval, task, timer);
@@ -1063,7 +1065,7 @@ void WorldServer::perform_cleanup() {
 
     // First, collect disconnected connections so we can clean them from both structures
     std::vector<std::shared_ptr<PlayerConnection>> disconnected;
-    for (const auto& conn : active_connections_) {
+    for (const auto &conn : active_connections_) {
         if (!conn->is_connected()) {
             disconnected.push_back(conn);
         }
@@ -1077,7 +1079,7 @@ void WorldServer::perform_cleanup() {
             active_connections_.end());
 
         // Also remove from connection_actors_
-        for (const auto& conn : disconnected) {
+        for (const auto &conn : disconnected) {
             auto it = connection_actors_.find(conn);
             if (it != connection_actors_.end()) {
                 auto player_name = it->second ? it->second->name() : "unknown";
@@ -1086,18 +1088,18 @@ void WorldServer::perform_cleanup() {
             }
         }
 
-        Log::info("Cleaned up {} stale connections. Active: {}, Playing: {}",
-                  disconnected.size(), active_connections_.size(), connection_actors_.size());
+        Log::info("Cleaned up {} stale connections. Active: {}, Playing: {}", disconnected.size(),
+                  active_connections_.size(), connection_actors_.size());
     }
 
     // Also clean up orphaned connection_actors_ entries (connections not in active_connections_)
     std::vector<std::shared_ptr<PlayerConnection>> orphaned_actors;
-    for (const auto& [conn, actor] : connection_actors_) {
+    for (const auto &[conn, actor] : connection_actors_) {
         if (std::find(active_connections_.begin(), active_connections_.end(), conn) == active_connections_.end()) {
             orphaned_actors.push_back(conn);
         }
     }
-    for (const auto& conn : orphaned_actors) {
+    for (const auto &conn : orphaned_actors) {
         auto it = connection_actors_.find(conn);
         if (it != connection_actors_.end()) {
             auto player_name = it->second ? it->second->name() : "unknown";
@@ -1125,22 +1127,35 @@ void WorldServer::perform_heartbeat() {
                 Log::warn("Shutdown requested but no callback set - triggering stop() directly");
                 running_.store(false);
             }
-            return;  // Don't continue with heartbeat if shutting down
+            return; // Don't continue with heartbeat if shutting down
         }
 
         // Send periodic shutdown warnings
-        auto time_left = std::chrono::duration_cast<std::chrono::seconds>(
-            world_manager_->get_shutdown_time() - std::chrono::steady_clock::now()
-        ).count();
+        auto time_left = std::chrono::duration_cast<std::chrono::seconds>(world_manager_->get_shutdown_time() -
+                                                                          std::chrono::steady_clock::now())
+                             .count();
 
         // Warn at specific intervals: 5min, 2min, 1min, 30sec, 10sec, 5sec
         bool should_warn = false;
-        if (time_left <= 5 && last_shutdown_warning_time != 5) { should_warn = true; last_shutdown_warning_time = 5; }
-        else if (time_left <= 10 && time_left > 5 && last_shutdown_warning_time != 10) { should_warn = true; last_shutdown_warning_time = 10; }
-        else if (time_left <= 30 && time_left > 10 && last_shutdown_warning_time != 30) { should_warn = true; last_shutdown_warning_time = 30; }
-        else if (time_left <= 60 && time_left > 30 && last_shutdown_warning_time != 60) { should_warn = true; last_shutdown_warning_time = 60; }
-        else if (time_left <= 120 && time_left > 60 && last_shutdown_warning_time != 120) { should_warn = true; last_shutdown_warning_time = 120; }
-        else if (time_left <= 300 && time_left > 120 && last_shutdown_warning_time != 300) { should_warn = true; last_shutdown_warning_time = 300; }
+        if (time_left <= 5 && last_shutdown_warning_time != 5) {
+            should_warn = true;
+            last_shutdown_warning_time = 5;
+        } else if (time_left <= 10 && time_left > 5 && last_shutdown_warning_time != 10) {
+            should_warn = true;
+            last_shutdown_warning_time = 10;
+        } else if (time_left <= 30 && time_left > 10 && last_shutdown_warning_time != 30) {
+            should_warn = true;
+            last_shutdown_warning_time = 30;
+        } else if (time_left <= 60 && time_left > 30 && last_shutdown_warning_time != 60) {
+            should_warn = true;
+            last_shutdown_warning_time = 60;
+        } else if (time_left <= 120 && time_left > 60 && last_shutdown_warning_time != 120) {
+            should_warn = true;
+            last_shutdown_warning_time = 120;
+        } else if (time_left <= 300 && time_left > 120 && last_shutdown_warning_time != 300) {
+            should_warn = true;
+            last_shutdown_warning_time = 300;
+        }
 
         if (should_warn) {
             std::string time_str;
@@ -1149,10 +1164,11 @@ void WorldServer::perform_heartbeat() {
             } else {
                 time_str = fmt::format("{} second{}", time_left, time_left != 1 ? "s" : "");
             }
-            std::string msg = fmt::format("\r\n*** SYSTEM: MUD shutting down in {}. {} ***\r\n",
-                                          time_str, world_manager_->get_shutdown_reason());
-            for (auto& conn : active_connections_) {
-                if (conn) conn->send_line(msg);
+            std::string msg = fmt::format("\r\n*** SYSTEM: MUD shutting down in {}. {} ***\r\n", time_str,
+                                          world_manager_->get_shutdown_reason());
+            for (auto &conn : active_connections_) {
+                if (conn)
+                    conn->send_line(msg);
             }
         }
     } else {
@@ -1170,20 +1186,18 @@ void WorldServer::perform_heartbeat() {
     last_heartbeat_time = now;
 
     // Log current game time
-    auto& time = TimeSystem::instance().current_time();
-    Log::trace("WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}, Game time: {} of {}, Year {}",
-               uptime,
-               active_connections_.size(),
-               commands_processed_.load(),
-               time.hour,
-               time.month_name(),
-               time.year);
+    auto &time = TimeSystem::instance().current_time();
+    Log::trace(
+        "WorldServer heartbeat - Uptime: {}s, Active connections: {}, Commands processed: {}, Game time: {} of {}, "
+        "Year {}",
+        uptime, active_connections_.size(), commands_processed_.load(), time.hour, time.month_name(), time.year);
 }
 
 void WorldServer::perform_combat_processing() {
     // This runs on the world strand - thread safe!
     // Early exit if shutting down
-    if (!running_.load()) return;
+    if (!running_.load())
+        return;
 
     // Process all active combat rounds
     bool rounds_processed = FieryMUD::CombatManager::process_combat_rounds();
@@ -1200,13 +1214,13 @@ void WorldServer::perform_combat_processing() {
 
     // Process queued spells for players who are ready to cast
     // (not casting and not in blackout)
-    for (auto& conn : active_connections_) {
+    for (auto &conn : active_connections_) {
         auto it = connection_actors_.find(conn);
         if (it == connection_actors_.end() || !it->second) {
             continue;
         }
 
-        auto& actor = it->second;
+        auto &actor = it->second;
 
         // Only process queued spell if actor is completely ready to cast:
         // - Has a queued spell
@@ -1234,15 +1248,14 @@ void WorldServer::perform_player_save() {
     int saved_count = 0;
     int failed_count = 0;
 
-    for (auto& conn : active_connections_) {
+    for (auto &conn : active_connections_) {
         if (auto player = conn->get_player()) {
             auto save_result = PersistenceManager::instance().save_player(*player);
             if (save_result) {
                 saved_count++;
             } else {
                 failed_count++;
-                Log::warn("Failed to auto-save player {}: {}",
-                         player->name(), save_result.error().message);
+                Log::warn("Failed to auto-save player {}: {}", player->name(), save_result.error().message);
             }
         }
     }
@@ -1270,7 +1283,8 @@ Result<void> WorldServer::create_default_world() {
         Log::info("Creating default world...");
 
         // Create a simple starting room
-        auto room_result = Room::create(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID}, "The Forest Temple of Mielikki", SectorType::Inside);
+        auto room_result = Room::create(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID},
+                                        "The Forest Temple of Mielikki", SectorType::Inside);
         if (!room_result) {
             Log::error("Failed to create starting room: {}", room_result.error().message);
             return;
@@ -1291,7 +1305,7 @@ Result<void> WorldServer::create_default_world() {
         world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
 
         Log::info("Default world created with starting room [{}] - The Forest Temple of Mielikki",
-                 EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
+                  EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
     });
     return Success();
 }
@@ -1373,49 +1387,64 @@ static std::string get_condition_string(int hp_percent) {
  *
  * Color markup is preserved in output and processed by terminal rendering.
  */
-static std::string expand_prompt_format(
-    std::string_view format,
-    const Stats& stats,
-    std::shared_ptr<Actor> fighting = nullptr
-) {
+static std::string expand_prompt_format(std::string_view format, const Stats &stats,
+                                        std::shared_ptr<Actor> fighting = nullptr) {
     std::string result;
-    result.reserve(format.size() * 2);  // Pre-allocate for efficiency
+    result.reserve(format.size() * 2); // Pre-allocate for efficiency
 
     for (size_t i = 0; i < format.size(); ++i) {
         if (format[i] == '%' && i + 1 < format.size()) {
             char code = format[++i];
             switch (code) {
-                case 'h': result += std::to_string(stats.hit_points); break;
-                case 'H': result += std::to_string(stats.max_hit_points); break;
-                case 'v': result += std::to_string(stats.stamina); break;
-                case 'V': result += std::to_string(stats.max_stamina); break;
-                case 'l': result += std::to_string(stats.level); break;
-                case 'g': result += std::to_string(stats.gold); break;
-                case 'x': result += std::to_string(stats.experience); break;
-                case 'X': {
-                    // Experience to next level (simplified - could be more complex)
-                    long next_level_exp = static_cast<long>(stats.level) * 1000;
-                    result += std::to_string(std::max(0L, next_level_exp - stats.experience));
-                    break;
+            case 'h':
+                result += std::to_string(stats.hit_points);
+                break;
+            case 'H':
+                result += std::to_string(stats.max_hit_points);
+                break;
+            case 'v':
+                result += std::to_string(stats.stamina);
+                break;
+            case 'V':
+                result += std::to_string(stats.max_stamina);
+                break;
+            case 'l':
+                result += std::to_string(stats.level);
+                break;
+            case 'g':
+                result += std::to_string(stats.gold);
+                break;
+            case 'x':
+                result += std::to_string(stats.experience);
+                break;
+            case 'X': {
+                // Experience to next level (simplified - could be more complex)
+                long next_level_exp = static_cast<long>(stats.level) * 1000;
+                result += std::to_string(std::max(0L, next_level_exp - stats.experience));
+                break;
+            }
+            case 't':
+            case 'T': {
+                // Target/tank condition - show fighting opponent's condition
+                if (fighting) {
+                    const auto &opp_stats = fighting->stats();
+                    int hp_percent =
+                        (opp_stats.hit_points * PERCENT_MULTIPLIER) / std::max(1, opp_stats.max_hit_points);
+                    result += get_condition_string(hp_percent);
                 }
-                case 't':
-                case 'T': {
-                    // Target/tank condition - show fighting opponent's condition
-                    if (fighting) {
-                        const auto& opp_stats = fighting->stats();
-                        int hp_percent = (opp_stats.hit_points * PERCENT_MULTIPLIER) /
-                                        std::max(1, opp_stats.max_hit_points);
-                        result += get_condition_string(hp_percent);
-                    }
-                    break;
-                }
-                case 'n': result += "\n"; break;
-                case '%': result += "%"; break;
-                default:
-                    // Unknown code - keep original
-                    result += '%';
-                    result += code;
-                    break;
+                break;
+            }
+            case 'n':
+                result += "\n";
+                break;
+            case '%':
+                result += "%";
+                break;
+            default:
+                // Unknown code - keep original
+                result += '%';
+                result += code;
+                break;
             }
         } else {
             result += format[i];
@@ -1434,7 +1463,7 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     const auto &stats = actor->stats();
 
     // Get the player's custom prompt format, or use default
-    std::string_view format = "<%h/%Hhp %v/%Vs>";  // Default format
+    std::string_view format = "<%h/%Hhp %v/%Vs>"; // Default format
 
     auto player = std::dynamic_pointer_cast<Player>(actor);
     if (player && !player->prompt().empty()) {

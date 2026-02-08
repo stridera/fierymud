@@ -11,13 +11,13 @@
 #include "triggers/trigger_types.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
-#include <sol/sol.hpp>
-
 #include <asio.hpp>
+
 #include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
+#include <sol/sol.hpp>
 #include <unordered_map>
 #include <vector>
 
@@ -35,12 +35,10 @@ struct PendingCoroutine {
     EntityId owner_id;                             // Entity that owns this script
     std::chrono::steady_clock::time_point created; // When it was scheduled
 
-    PendingCoroutine(std::uint64_t id_, sol::thread t, sol::coroutine co,
-                     ScriptContext ctx, std::shared_ptr<asio::steady_timer> timer_,
-                     EntityId owner)
-        : id(id_), thread(std::move(t)), coroutine(std::move(co)),
-          context(std::move(ctx)), timer(std::move(timer_)), owner_id(owner),
-          created(std::chrono::steady_clock::now()) {}
+    PendingCoroutine(std::uint64_t id_, sol::thread t, sol::coroutine co, ScriptContext ctx,
+                     std::shared_ptr<asio::steady_timer> timer_, EntityId owner)
+        : id(id_), thread(std::move(t)), coroutine(std::move(co)), context(std::move(ctx)), timer(std::move(timer_)),
+          owner_id(owner), created(std::chrono::steady_clock::now()) {}
 };
 
 /**
@@ -58,14 +56,13 @@ struct PendingCoroutine {
  * 4. If the owning entity dies, call cancel_for_entity() to clean up
  */
 class CoroutineScheduler {
-public:
+  public:
     /**
      * Initialize the scheduler with ASIO context and strand
      * @param io_context The ASIO io_context for creating timers
      * @param strand The world strand for thread-safe resume
      */
-    void initialize(asio::io_context& io_context,
-                    asio::strand<asio::io_context::executor_type>& strand);
+    void initialize(asio::io_context &io_context, asio::strand<asio::io_context::executor_type> &strand);
 
     /**
      * Shut down the scheduler, canceling all pending coroutines
@@ -86,8 +83,7 @@ public:
      * @param delay_seconds How long to wait before resuming
      * @return The coroutine ID (for tracking/debugging)
      */
-    std::uint64_t schedule_wait(sol::thread thread, sol::coroutine coroutine,
-                                ScriptContext context, EntityId owner_id,
+    std::uint64_t schedule_wait(sol::thread thread, sol::coroutine coroutine, ScriptContext context, EntityId owner_id,
                                 double delay_seconds);
 
     /**
@@ -134,7 +130,7 @@ public:
      */
     static constexpr std::size_t MAX_PENDING_PER_ENTITY = 100;
 
-private:
+  private:
     /**
      * Resume a coroutine after its timer fires
      * Called on the world strand
@@ -148,8 +144,8 @@ private:
 
     // State (initialized_ is atomic for thread-safe access from timer callbacks)
     std::atomic<bool> initialized_{false};
-    asio::io_context* io_context_ = nullptr;
-    asio::strand<asio::io_context::executor_type>* strand_ = nullptr;
+    asio::io_context *io_context_ = nullptr;
+    asio::strand<asio::io_context::executor_type> *strand_ = nullptr;
 
     // Pending coroutines keyed by ID
     std::unordered_map<std::uint64_t, PendingCoroutine> pending_;
@@ -166,6 +162,6 @@ private:
 /**
  * Get the global CoroutineScheduler instance
  */
-CoroutineScheduler& get_coroutine_scheduler();
+CoroutineScheduler &get_coroutine_scheduler();
 
 } // namespace FieryMUD

@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "command_system.hpp"
 #include "../core/actor.hpp"
+#include "command_system.hpp"
 
 namespace PositionCommands {
 
@@ -23,6 +23,6 @@ Result<CommandResult> cmd_recline(const CommandContext &ctx);
 
 // Helper functions
 std::string_view position_name(Position pos);
-bool can_change_position(std::shared_ptr<Actor> actor, Position new_pos, std::string& reason);
+bool can_change_position(std::shared_ptr<Actor> actor, Position new_pos, std::string &reason);
 
 } // namespace PositionCommands

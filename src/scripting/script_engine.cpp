@@ -1,30 +1,30 @@
 #include "script_engine.hpp"
-#include "coroutine_scheduler.hpp"
-#include "trigger_manager.hpp"
+
+#include "../world/time_system.hpp"
 #include "bindings/lua_actor.hpp"
-#include "bindings/lua_room.hpp"
+#include "bindings/lua_combat.hpp"
+#include "bindings/lua_effects.hpp"
+#include "bindings/lua_exit.hpp"
 #include "bindings/lua_object.hpp"
 #include "bindings/lua_quest.hpp"
-#include "bindings/lua_combat.hpp"
-#include "bindings/lua_world.hpp"
-#include "bindings/lua_spells.hpp"
-#include "bindings/lua_zone.hpp"
-#include "bindings/lua_exit.hpp"
+#include "bindings/lua_room.hpp"
 #include "bindings/lua_skills.hpp"
-#include "bindings/lua_effects.hpp"
+#include "bindings/lua_spells.hpp"
+#include "bindings/lua_templates.hpp"
 #include "bindings/lua_timers.hpp"
 #include "bindings/lua_vars.hpp"
-#include "bindings/lua_templates.hpp"
-#include "../world/time_system.hpp"
+#include "bindings/lua_world.hpp"
+#include "bindings/lua_zone.hpp"
+#include "coroutine_scheduler.hpp"
+#include "trigger_manager.hpp"
 
 #include <fmt/format.h>
-#include <spdlog/spdlog.h>
-
 #include <random>
+#include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 
-ScriptEngine& ScriptEngine::instance() {
+ScriptEngine &ScriptEngine::instance() {
     static ScriptEngine instance;
     return instance;
 }
@@ -48,13 +48,7 @@ ScriptResult<void> ScriptEngine::initialize() {
         lua_ = std::make_unique<sol::state>();
 
         // Open Lua libraries
-        lua_->open_libraries(
-            sol::lib::base,
-            sol::lib::coroutine,
-            sol::lib::string,
-            sol::lib::table,
-            sol::lib::math
-        );
+        lua_->open_libraries(sol::lib::base, sol::lib::coroutine, sol::lib::string, sol::lib::table, sol::lib::math);
 
         // Configure sandbox (remove dangerous functions)
         configure_sandbox();
@@ -74,10 +68,10 @@ ScriptResult<void> ScriptEngine::initialize() {
 
         return {};
 
-    } catch (const sol::error& e) {
+    } catch (const sol::error &e) {
         last_error_ = fmt::format("Lua initialization failed: {}", e.what());
         spdlog::error("{}", last_error_);
-        lua_.reset();  // Clean up on failure
+        lua_.reset(); // Clean up on failure
         return std::unexpected(ScriptError::InvalidState);
     }
 }
@@ -117,14 +111,14 @@ void ScriptEngine::configure_sandbox() {
     // Remove dangerous base library functions
     (*lua_)["loadfile"] = sol::nil;
     (*lua_)["dofile"] = sol::nil;
-    (*lua_)["load"] = sol::nil;      // Could load arbitrary bytecode
+    (*lua_)["load"] = sol::nil; // Could load arbitrary bytecode
     (*lua_)["loadstring"] = sol::nil;
-    (*lua_)["rawset"] = sol::nil;    // Could modify protected tables
+    (*lua_)["rawset"] = sol::nil; // Could modify protected tables
     (*lua_)["rawget"] = sol::nil;
     (*lua_)["rawequal"] = sol::nil;
-    (*lua_)["collectgarbage"] = sol::nil;  // Could cause performance issues
-    (*lua_)["getmetatable"] = sol::nil;    // Could access internal structures
-    (*lua_)["setmetatable"] = sol::nil;    // Could modify behavior
+    (*lua_)["collectgarbage"] = sol::nil; // Could cause performance issues
+    (*lua_)["getmetatable"] = sol::nil;   // Could access internal structures
+    (*lua_)["setmetatable"] = sol::nil;   // Could modify behavior
 
     // These libraries are NOT loaded (blocked entirely):
     // - io: File system access
@@ -143,7 +137,8 @@ void ScriptEngine::register_utility_functions() {
 
     // dice(count, sides) - Roll dice: dice(2, 6) = 2d6
     lua_->set_function("dice", [](int count, int sides) -> int {
-        if (count <= 0 || sides <= 0) return 0;
+        if (count <= 0 || sides <= 0)
+            return 0;
         std::uniform_int_distribution<int> dist(1, sides);
         int total = 0;
         for (int i = 0; i < count; ++i) {
@@ -154,7 +149,8 @@ void ScriptEngine::register_utility_functions() {
 
     // random(min, max) - Random integer in range [min, max]
     lua_->set_function("random", [](int min_val, int max_val) -> int {
-        if (min_val > max_val) std::swap(min_val, max_val);
+        if (min_val > max_val)
+            std::swap(min_val, max_val);
         std::uniform_int_distribution<int> dist(min_val, max_val);
         return dist(rng);
     });
@@ -166,32 +162,24 @@ void ScriptEngine::register_utility_functions() {
     });
 
     // echo(message) - Debug output to server logs
-    lua_->set_function("echo", [](std::string_view message) {
-        spdlog::info("[Lua] {}", message);
-    });
+    lua_->set_function("echo", [](std::string_view message) { spdlog::info("[Lua] {}", message); });
 
     // log_debug(message) - Debug level logging
-    lua_->set_function("log_debug", [](std::string_view message) {
-        spdlog::debug("[Lua] {}", message);
-    });
+    lua_->set_function("log_debug", [](std::string_view message) { spdlog::debug("[Lua] {}", message); });
 
     // log_warn(message) - Warning level logging
-    lua_->set_function("log_warn", [](std::string_view message) {
-        spdlog::warn("[Lua] {}", message);
-    });
+    lua_->set_function("log_warn", [](std::string_view message) { spdlog::warn("[Lua] {}", message); });
 
     // log_error(message) - Error level logging
-    lua_->set_function("log_error", [](std::string_view message) {
-        spdlog::error("[Lua] {}", message);
-    });
+    lua_->set_function("log_error", [](std::string_view message) { spdlog::error("[Lua] {}", message); });
 
     // MUD time function - returns current in-game time
     lua_->set_function("mud_time", [this]() -> sol::table {
-        const auto& time = TimeSystem::instance().current_time();
+        const auto &time = TimeSystem::instance().current_time();
         auto result = lua_->create_table();
         result["hour"] = time.hour;
-        result["day"] = time.day + 1;  // Convert 0-indexed to 1-indexed for Lua
-        result["month"] = static_cast<int>(time.month) + 1;  // Convert 0-indexed to 1-indexed
+        result["day"] = time.day + 1;                       // Convert 0-indexed to 1-indexed for Lua
+        result["month"] = static_cast<int>(time.month) + 1; // Convert 0-indexed to 1-indexed
         result["year"] = time.year;
         return result;
     });
@@ -200,26 +188,26 @@ void ScriptEngine::register_utility_functions() {
     // The actual scheduling is handled by TriggerManager when it sees the yield
     // This function yields with the delay value using sol::yielding wrapper
     lua_->set_function("wait", sol::yielding([](double seconds) -> double {
-        // Clamp delay to valid range
-        seconds = std::clamp(seconds,
-                             CoroutineScheduler::MIN_DELAY_SECONDS,
-                             CoroutineScheduler::MAX_DELAY_SECONDS);
+                           // Clamp delay to valid range
+                           seconds = std::clamp(seconds, CoroutineScheduler::MIN_DELAY_SECONDS,
+                                                CoroutineScheduler::MAX_DELAY_SECONDS);
 
-        spdlog::debug("[Lua] wait({}) called - yielding coroutine", seconds);
+                           spdlog::debug("[Lua] wait({}) called - yielding coroutine", seconds);
 
-        // Return the delay value - it will be yielded to the caller
-        // TriggerManager will read this value and schedule resume
-        return seconds;
-    }));
+                           // Return the delay value - it will be yielded to the caller
+                           // TriggerManager will read this value and schedule resume
+                           return seconds;
+                       }));
 
     // run_room_trigger(legacy_id) - Execute a world trigger by ID
     // Used to invoke shared room-level effects (door manipulation, spawning, etc.)
     lua_->set_function("run_room_trigger", [](int legacy_id) {
         int zone_id = legacy_id / 100;
-        if (zone_id == 0) zone_id = 1000;
+        if (zone_id == 0)
+            zone_id = 1000;
         int local_id = legacy_id % 100;
 
-        auto& trigger_mgr = TriggerManager::instance();
+        auto &trigger_mgr = TriggerManager::instance();
         EntityId trigger_eid(zone_id, local_id);
 
         auto trigger = trigger_mgr.find_trigger_by_id(trigger_eid);
@@ -229,9 +217,7 @@ void ScriptEngine::register_utility_functions() {
         }
 
         // Execute the trigger with minimal context (world triggers don't need owner)
-        ScriptContext ctx = ScriptContext::Builder()
-            .set_trigger(trigger)
-            .build();
+        ScriptContext ctx = ScriptContext::Builder().set_trigger(trigger).build();
 
         trigger_mgr.debug_execute_trigger(trigger, ctx);
     });
@@ -319,19 +305,14 @@ void ScriptEngine::register_effect_table() {
     spdlog::debug("Lua Effect table registered with {} entries", effect_table.size());
 }
 
-sol::thread ScriptEngine::create_thread() {
-    return sol::thread::create(lua_->lua_state());
-}
+sol::thread ScriptEngine::create_thread() { return sol::thread::create(lua_->lua_state()); }
 
 bool ScriptEngine::is_cached(std::string_view cache_key) const {
     return bytecode_cache_.contains(std::string{cache_key});
 }
 
-ScriptResult<sol::function> ScriptEngine::load_cached(
-    sol::state_view thread_state,
-    std::string_view script_code,
-    std::string_view cache_key)
-{
+ScriptResult<sol::function> ScriptEngine::load_cached(sol::state_view thread_state, std::string_view script_code,
+                                                      std::string_view cache_key) {
     if (!initialized_) {
         last_error_ = "ScriptEngine not initialized";
         return std::unexpected(ScriptError::NotInitialized);
@@ -352,21 +333,18 @@ ScriptResult<sol::function> ScriptEngine::load_cached(
     if (it != bytecode_cache_.end()) {
         // Load from cached bytecode
         try {
-            sol::load_result loaded = thread_state.load(it->second.as_string_view(), key,
-                                                         sol::load_mode::binary);
+            sol::load_result loaded = thread_state.load(it->second.as_string_view(), key, sol::load_mode::binary);
             if (!loaded.valid()) {
                 sol::error err = loaded;
-                last_error_ = fmt::format("Failed to load cached bytecode '{}': {}",
-                                           cache_key, err.what());
+                last_error_ = fmt::format("Failed to load cached bytecode '{}': {}", cache_key, err.what());
                 spdlog::error("{}", last_error_);
                 // Fall through to recompile
             } else {
                 spdlog::trace("Loaded script from bytecode cache: {}", cache_key);
                 return loaded.get<sol::function>();
             }
-        } catch (const sol::error& e) {
-            spdlog::warn("Failed to load bytecode for '{}', recompiling: {}",
-                         cache_key, e.what());
+        } catch (const sol::error &e) {
+            spdlog::warn("Failed to load bytecode for '{}', recompiling: {}", cache_key, e.what());
             // Fall through to recompile
         }
     }
@@ -377,8 +355,7 @@ ScriptResult<sol::function> ScriptEngine::load_cached(
 
         if (!loaded.valid()) {
             sol::error err = loaded;
-            last_error_ = fmt::format("Compilation error in '{}': {}",
-                                       cache_key, err.what());
+            last_error_ = fmt::format("Compilation error in '{}': {}", cache_key, err.what());
             spdlog::error("{}", last_error_);
             // Cache the failure to prevent repeated compilation attempts
             failed_script_cache_[key] = last_error_;
@@ -393,9 +370,8 @@ ScriptResult<sol::function> ScriptEngine::load_cached(
         spdlog::debug("Compiled and cached script: {}", cache_key);
         return func;
 
-    } catch (const sol::error& e) {
-        last_error_ = fmt::format("Unexpected error compiling '{}': {}",
-                                   cache_key, e.what());
+    } catch (const sol::error &e) {
+        last_error_ = fmt::format("Unexpected error compiling '{}': {}", cache_key, e.what());
         spdlog::error("{}", last_error_);
         // Cache the failure to prevent repeated compilation attempts
         failed_script_cache_[key] = last_error_;
@@ -403,10 +379,7 @@ ScriptResult<sol::function> ScriptEngine::load_cached(
     }
 }
 
-ScriptResult<void> ScriptEngine::compile_script(
-    std::string_view script_code,
-    std::string_view script_name)
-{
+ScriptResult<void> ScriptEngine::compile_script(std::string_view script_code, std::string_view script_name) {
     if (!initialized_) {
         last_error_ = "ScriptEngine not initialized";
         return std::unexpected(ScriptError::NotInitialized);
@@ -418,8 +391,7 @@ ScriptResult<void> ScriptEngine::compile_script(
 
         if (!loaded.valid()) {
             sol::error err = loaded;
-            last_error_ = fmt::format("Compilation error in '{}': {}",
-                                       script_name, err.what());
+            last_error_ = fmt::format("Compilation error in '{}': {}", script_name, err.what());
             spdlog::error("{}", last_error_);
             return std::unexpected(ScriptError::CompilationFailed);
         }
@@ -434,40 +406,34 @@ ScriptResult<void> ScriptEngine::compile_script(
         spdlog::debug("Compiled and cached script: {}", script_name);
         return {};
 
-    } catch (const sol::error& e) {
-        last_error_ = fmt::format("Unexpected error compiling '{}': {}",
-                                   script_name, e.what());
+    } catch (const sol::error &e) {
+        last_error_ = fmt::format("Unexpected error compiling '{}': {}", script_name, e.what());
         spdlog::error("{}", last_error_);
         return std::unexpected(ScriptError::CompilationFailed);
     }
 }
 
-ScriptResult<sol::protected_function_result> ScriptEngine::execute(
-    std::string_view script_code,
-    std::string_view script_name)
-{
+ScriptResult<sol::protected_function_result> ScriptEngine::execute(std::string_view script_code,
+                                                                   std::string_view script_name) {
     if (!initialized_) {
         last_error_ = "ScriptEngine not initialized";
         return std::unexpected(ScriptError::NotInitialized);
     }
 
     try {
-        auto result = lua_->safe_script(script_code,
-                                        sol::script_pass_on_error);
+        auto result = lua_->safe_script(script_code, sol::script_pass_on_error);
 
         if (!result.valid()) {
             sol::error err = result;
-            last_error_ = fmt::format("Execution error in '{}': {}",
-                                       script_name, err.what());
+            last_error_ = fmt::format("Execution error in '{}': {}", script_name, err.what());
             spdlog::error("{}", last_error_);
             return std::unexpected(ScriptError::ExecutionFailed);
         }
 
         return result;
 
-    } catch (const sol::error& e) {
-        last_error_ = fmt::format("Unexpected error in '{}': {}",
-                                   script_name, e.what());
+    } catch (const sol::error &e) {
+        last_error_ = fmt::format("Unexpected error in '{}': {}", script_name, e.what());
         spdlog::error("{}", last_error_);
         return std::unexpected(ScriptError::ExecutionFailed);
     }
@@ -477,9 +443,9 @@ ScriptResult<sol::protected_function_result> ScriptEngine::execute(
 // Timeout Protection Implementation
 // ============================================================================
 
-void ScriptEngine::timeout_hook(lua_State* L, lua_Debug* /*ar*/) {
+void ScriptEngine::timeout_hook(lua_State *L, lua_Debug * /*ar*/) {
     // Get the ScriptEngine instance and increment instruction count
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
 
     // Increment instruction counter by the hook interval
     int count = engine.instruction_count_.fetch_add(HOOK_INTERVAL, std::memory_order_relaxed);
@@ -488,18 +454,16 @@ void ScriptEngine::timeout_hook(lua_State* L, lua_Debug* /*ar*/) {
     // Check if we've exceeded the limit
     if (engine.max_instructions_ > 0 && count >= engine.max_instructions_) {
         engine.timed_out_.store(true, std::memory_order_release);
-        spdlog::error("Script execution timeout: exceeded {} instructions - aborting!",
-                      engine.max_instructions_);
+        spdlog::error("Script execution timeout: exceeded {} instructions - aborting!", engine.max_instructions_);
 
         // Force a Lua error to abort execution
-        luaL_error(L, "Script execution timeout: exceeded %d instructions",
-                   engine.max_instructions_);
+        luaL_error(L, "Script execution timeout: exceeded %d instructions", engine.max_instructions_);
     }
 }
 
-void ScriptEngine::install_timeout_hook(lua_State* L) {
+void ScriptEngine::install_timeout_hook(lua_State *L) {
     if (max_instructions_ <= 0) {
-        return;  // No limit set
+        return; // No limit set
     }
 
     // Reset counters before installing hook
@@ -509,7 +473,7 @@ void ScriptEngine::install_timeout_hook(lua_State* L) {
     lua_sethook(L, timeout_hook, LUA_MASKCOUNT, HOOK_INTERVAL);
 }
 
-void ScriptEngine::remove_timeout_hook(lua_State* L) {
+void ScriptEngine::remove_timeout_hook(lua_State *L) {
     // Remove the debug hook
     lua_sethook(L, nullptr, 0, 0);
 }

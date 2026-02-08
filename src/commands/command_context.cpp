@@ -4,11 +4,11 @@
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
 #include "../server/world_server.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
 #include "../text/rich_text.hpp"
 #include "../text/string_utils.hpp"
 #include "../text/terminal_capabilities.hpp"
+#include "../world/room.hpp"
+#include "../world/world_manager.hpp"
 #include "command_parser.hpp"
 #include "command_system.hpp"
 
@@ -99,7 +99,7 @@ struct TargetSpec {
     }
 };
 
-}  // namespace
+} // namespace
 
 //////////////////////////////////////////////////////////////////////////////
 // CommandExecutionState Implementation
@@ -160,11 +160,12 @@ void CommandContext::send_usage(std::string_view usage) const {
 }
 
 void CommandContext::show_help() const {
-    if (!actor) return;
+    if (!actor)
+        return;
 
     // Look up the command in the system
-    auto& cmd_system = CommandSystem::instance();
-    const CommandInfo* cmd_info = cmd_system.find_command(command.command);
+    auto &cmd_system = CommandSystem::instance();
+    const CommandInfo *cmd_info = cmd_system.find_command(command.command);
 
     if (!cmd_info) {
         send_error("No help available for this command.");
@@ -194,7 +195,8 @@ void CommandContext::show_help() const {
     if (!cmd_info->aliases.empty()) {
         std::string alias_str;
         for (size_t i = 0; i < cmd_info->aliases.size(); ++i) {
-            if (i > 0) alias_str += ", ";
+            if (i > 0)
+                alias_str += ", ";
             alias_str += cmd_info->aliases[i];
         }
         send(fmt::format("\n<dim>Aliases: {}</>", alias_str));
@@ -207,7 +209,7 @@ void CommandContext::show_help() const {
 }
 
 void CommandContext::send_to_room(std::string_view message, bool exclude_self,
-                                   std::span<const std::shared_ptr<Actor>> also_exclude) const {
+                                  std::span<const std::shared_ptr<Actor>> also_exclude) const {
     if (!room)
         return;
 
@@ -223,8 +225,7 @@ void CommandContext::send_to_room(std::string_view message, bool exclude_self,
         }
 
         // Check exclusion list
-        bool excluded = std::ranges::any_of(also_exclude,
-            [&](const auto& ex) { return room_actor == ex; });
+        bool excluded = std::ranges::any_of(also_exclude, [&](const auto &ex) { return room_actor == ex; });
         if (excluded) {
             continue;
         }
@@ -383,8 +384,8 @@ std::shared_ptr<Object> CommandContext::find_object_target(std::string_view name
     return nullptr;
 }
 
-std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
-    std::string_view name, bool search_room) const {
+std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(std::string_view name,
+                                                                           bool search_room) const {
     std::vector<std::shared_ptr<Object>> results;
 
     if (!actor)
@@ -393,7 +394,7 @@ std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
     // Parse dot-notation: "all.keyword", "N.keyword", or just "keyword"
     std::string keyword;
     bool match_all = false;
-    int match_index = 0;  // 0 means first match (default), N means Nth match
+    int match_index = 0; // 0 means first match (default), N means Nth match
 
     size_t dot_pos = name.find('.');
     if (dot_pos != std::string_view::npos) {
@@ -407,7 +408,7 @@ std::vector<std::shared_ptr<Object>> CommandContext::find_objects_matching(
             try {
                 match_index = std::stoi(std::string{prefix});
                 if (match_index < 1) {
-                    match_index = 1;  // Minimum is 1 (1-indexed)
+                    match_index = 1; // Minimum is 1 (1-indexed)
                 }
             } catch (...) {
                 // Not a number, treat whole thing as keyword

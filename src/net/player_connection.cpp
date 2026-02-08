@@ -21,7 +21,7 @@
 GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection) {
     // Initialize with conservative defaults until client capabilities are detected
     terminal_capabilities_ = TerminalCapabilities::detect_capabilities();
-    
+
     // Initialize MSSP handler with network manager's config
     if (connection_.get_network_manager()) {
         // Note: NetworkManager constructor takes ServerConfig reference but we need access to it
@@ -32,12 +32,12 @@ GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection)
 
 void GMCPHandler::enable() {
     gmcp_enabled_ = true;
-    terminal_capabilities_.supports_gmcp = true;  // Mark GMCP as supported
-    Log::info("GMCP enabled. Using conservative defaults until client capabilities detected: terminal={}, unicode={}, color={}, level={}", 
-              terminal_capabilities_.terminal_name,
-              terminal_capabilities_.supports_unicode,
-              terminal_capabilities_.supports_color,
-              static_cast<int>(terminal_capabilities_.overall_level));
+    terminal_capabilities_.supports_gmcp = true; // Mark GMCP as supported
+    Log::info(
+        "GMCP enabled. Using conservative defaults until client capabilities detected: terminal={}, unicode={}, "
+        "color={}, level={}",
+        terminal_capabilities_.terminal_name, terminal_capabilities_.supports_unicode,
+        terminal_capabilities_.supports_color, static_cast<int>(terminal_capabilities_.overall_level));
 }
 
 Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) {
@@ -65,10 +65,11 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             disable();
             return Result<void>{};
         default:
-            return std::unexpected(Error{ErrorCode::InvalidArgument, fmt::format("Unknown telnet command: {}", command)});
+            return std::unexpected(
+                Error{ErrorCode::InvalidArgument, fmt::format("Unknown telnet command: {}", command)});
         }
         break;
-        
+
     case TTYPE_OPTION:
         switch (command) {
         case TELNET_WILL:
@@ -84,7 +85,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return Result<void>{};
         }
         break;
-        
+
     case NEW_ENVIRON_OPTION:
         switch (command) {
         case TELNET_WILL:
@@ -100,7 +101,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return Result<void>{};
         }
         break;
-        
+
     case MSSP_OPTION:
         switch (command) {
         case TELNET_DO:
@@ -110,7 +111,7 @@ Result<void> GMCPHandler::handle_telnet_option(uint8_t command, uint8_t option) 
             return Result<void>{}; // Ignore other MSSP commands
         }
         break;
-        
+
     default:
         return Result<void>{}; // Not our option, ignore
     }
@@ -126,27 +127,27 @@ Result<void> GMCPHandler::handle_gmcp_subnegotiation(std::string_view data) {
 
 Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
     Log::debug("Processing GMCP message: {}", message);
-    
+
     try {
         // GMCP messages are in the format "Module.SubModule JSON_DATA"
         // Find the first space to separate module from JSON data
         size_t space_pos = message.find(' ');
         if (space_pos == std::string::npos) {
             Log::debug("GMCP message has no JSON data: {}", message);
-            return Result<void>{};  // No JSON data, just module name
+            return Result<void>{}; // No JSON data, just module name
         }
-        
+
         std::string module = std::string(message.substr(0, space_pos));
         std::string json_str = std::string(message.substr(space_pos + 1));
-        
+
         Log::debug("GMCP module: '{}', JSON: '{}'", module, json_str);
-        
+
         auto json_data = nlohmann::json::parse(json_str);
 
         // Handle Core.Hello - client introduces itself
         if (module == "Core.Hello") {
             Log::info("GMCP client hello: {}", json_data.dump());
-            
+
             Log::debug("Processing Core.Hello - step 1: extracting client info");
             // Extract client information and update terminal capabilities
             if (json_data.contains("client")) {
@@ -157,7 +158,7 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
                 terminal_capabilities_.client_version = json_data["version"].get<std::string>();
                 Log::debug("Extracted client version: {}", terminal_capabilities_.client_version);
             }
-            
+
             Log::debug("Processing Core.Hello - step 2: calling detect_capabilities_from_gmcp");
             try {
                 // Preserve TLS status (based on actual connection, not client-reported)
@@ -165,19 +166,17 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
 
                 // Update capabilities based on known clients
                 terminal_capabilities_ = TerminalCapabilities::detect_capabilities_from_gmcp(json_data);
-                terminal_capabilities_.supports_gmcp = true;  // Obviously true if we're getting GMCP
-                terminal_capabilities_.supports_tls = was_tls;  // Restore actual TLS status
+                terminal_capabilities_.supports_gmcp = true;   // Obviously true if we're getting GMCP
+                terminal_capabilities_.supports_tls = was_tls; // Restore actual TLS status
                 Log::debug("Processing Core.Hello - step 3: capabilities updated successfully");
-            } catch (const std::exception& e) {
+            } catch (const std::exception &e) {
                 Log::error("Exception in detect_capabilities_from_gmcp: {}", e.what());
-                terminal_capabilities_.supports_gmcp = true;  // At least mark GMCP as supported
+                terminal_capabilities_.supports_gmcp = true; // At least mark GMCP as supported
             }
-            
-            Log::info("Updated capabilities from GMCP Hello: client={} {}, unicode={}, color={}, level={}", 
-                      terminal_capabilities_.client_name,
-                      terminal_capabilities_.client_version,
-                      terminal_capabilities_.supports_unicode,
-                      terminal_capabilities_.supports_color,
+
+            Log::info("Updated capabilities from GMCP Hello: client={} {}, unicode={}, color={}, level={}",
+                      terminal_capabilities_.client_name, terminal_capabilities_.client_version,
+                      terminal_capabilities_.supports_unicode, terminal_capabilities_.supports_color,
                       static_cast<int>(terminal_capabilities_.overall_level));
         }
         // Handle Core.Supports.Set - client tells us what modules it supports
@@ -191,10 +190,7 @@ Result<void> GMCPHandler::process_gmcp_message(std::string_view message) {
         else if (module == "External.Discord.Hello") {
             Log::info("Client requested Discord integration");
             // Send Discord info in response
-            send_gmcp("External.Discord.Info", {
-                {"inviteurl", "https://discord.gg/aqhapUCgFz"},
-                {"applicationid", ""}
-            });
+            send_gmcp("External.Discord.Info", {{"inviteurl", "https://discord.gg/aqhapUCgFz"}, {"applicationid", ""}});
         }
 
         return Result<void>{};
@@ -243,24 +239,14 @@ void GMCPHandler::send_server_services() {
     send_gmcp("Client.Map", client_map);
 
     // Send Discord integration info
-    send_gmcp("External.Discord.Info", {
-        {"inviteurl", "https://discord.gg/aqhapUCgFz"},
-        {"applicationid", "998826809686765569"}
-    });
+    send_gmcp("External.Discord.Info",
+              {{"inviteurl", "https://discord.gg/aqhapUCgFz"}, {"applicationid", "998826809686765569"}});
 }
 
 void GMCPHandler::send_supports_set() {
     // Advertise all supported GMCP modules
-    nlohmann::json supports = nlohmann::json::array({
-        "Core 1",
-        "Room 1",
-        "Char 1",
-        "Char.Vitals 1",
-        "Char.Status 1",
-        "Char.Skills 1",
-        "Char.Items 1",
-        "External.Discord 1"
-    });
+    nlohmann::json supports = nlohmann::json::array({"Core 1", "Room 1", "Char 1", "Char.Vitals 1", "Char.Status 1",
+                                                     "Char.Skills 1", "Char.Items 1", "External.Discord 1"});
 
     send_gmcp("Core.Supports.Set", supports);
 }
@@ -272,20 +258,34 @@ void GMCPHandler::send_room_info(const Room &room) {
     // Helper function to convert Direction to string
     auto direction_to_string = [](Direction dir) -> std::string {
         switch (dir) {
-            case Direction::North: return "n";
-            case Direction::East: return "e";
-            case Direction::South: return "s";
-            case Direction::West: return "w";
-            case Direction::Up: return "u";
-            case Direction::Down: return "d";
-            case Direction::Northeast: return "ne";
-            case Direction::Northwest: return "nw";
-            case Direction::Southeast: return "se";
-            case Direction::Southwest: return "sw";
-            case Direction::In: return "in";
-            case Direction::Out: return "out";
-            case Direction::Portal: return "portal";
-            default: return "unknown";
+        case Direction::North:
+            return "n";
+        case Direction::East:
+            return "e";
+        case Direction::South:
+            return "s";
+        case Direction::West:
+            return "w";
+        case Direction::Up:
+            return "u";
+        case Direction::Down:
+            return "d";
+        case Direction::Northeast:
+            return "ne";
+        case Direction::Northwest:
+            return "nw";
+        case Direction::Southeast:
+            return "se";
+        case Direction::Southwest:
+            return "sw";
+        case Direction::In:
+            return "in";
+        case Direction::Out:
+            return "out";
+        case Direction::Portal:
+            return "portal";
+        default:
+            return "unknown";
         }
     };
 
@@ -301,7 +301,7 @@ void GMCPHandler::send_room_info(const Room &room) {
     // Build exits information with door details (matches legacy format)
     nlohmann::json exits = nlohmann::json::object();
     for (Direction dir : room.get_visible_exits()) {
-        const auto* exit_info = room.get_exit(dir);
+        const auto *exit_info = room.get_exit(dir);
         if (exit_info && exit_info->to_room.is_valid()) {
             nlohmann::json exit_json = {{"to_room", exit_info->to_room.value()}};
 
@@ -328,14 +328,12 @@ void GMCPHandler::send_room_info(const Room &room) {
     std::string sector_name = std::string(RoomUtils::get_sector_name(room.sector_type()));
 
     // Build Room GMCP data (matches legacy format + enhancements)
-    nlohmann::json room_data = {
-        {"zone", zone_name},
-        {"id", room.id().value()},
-        {"name", room.name()},
-        {"type", sector_name},
-        {"environment", static_cast<int>(room.sector_type())},
-        {"Exits", exits}
-    };
+    nlohmann::json room_data = {{"zone", zone_name},
+                                {"id", room.id().value()},
+                                {"name", room.name()},
+                                {"type", sector_name},
+                                {"environment", static_cast<int>(room.sector_type())},
+                                {"Exits", exits}};
 
     // Add layout coordinates for mapping if available
     if (room.layout_x().has_value()) {
@@ -386,7 +384,7 @@ void GMCPHandler::handle_terminal_type(std::string_view ttype) {
             // Also update terminal name
             terminal_capabilities_.terminal_name = terminal_name;
             Log::info("MTTS terminal type: {} with bitvector: {}", terminal_name, mtts_bitvector);
-        } catch (const std::exception& e) {
+        } catch (const std::exception &e) {
             Log::warn("Failed to parse MTTS bitvector from '{}': {}", ttype, e.what());
             // Fall back to basic terminal type detection - but don't overwrite GMCP
             merge_terminal_capabilities(TerminalCapabilities::get_capabilities_for_terminal(ttype));
@@ -403,17 +401,18 @@ void GMCPHandler::handle_terminal_type(std::string_view ttype) {
         // Merge only if TTYPE provides better capabilities
         if (ttype_caps.overall_level > terminal_capabilities_.overall_level) {
             merge_terminal_capabilities(ttype_caps);
-            Log::info("TTYPE upgraded capabilities: terminal={}, level={}",
-                      ttype_str, static_cast<int>(terminal_capabilities_.overall_level));
+            Log::info("TTYPE upgraded capabilities: terminal={}, level={}", ttype_str,
+                      static_cast<int>(terminal_capabilities_.overall_level));
         } else {
-            Log::debug("TTYPE terminal type: {} (not overwriting existing level {})",
-                      ttype_str, static_cast<int>(terminal_capabilities_.overall_level));
+            Log::debug("TTYPE terminal type: {} (not overwriting existing level {})", ttype_str,
+                       static_cast<int>(terminal_capabilities_.overall_level));
         }
     }
 }
 
 void GMCPHandler::handle_mtts_capability(uint32_t bitvector) {
-    auto mtts_caps = TerminalCapabilities::detect_capabilities_from_mtts(bitvector, terminal_capabilities_.terminal_name);
+    auto mtts_caps =
+        TerminalCapabilities::detect_capabilities_from_mtts(bitvector, terminal_capabilities_.terminal_name);
 
     // MTTS is reliable - merge with existing capabilities
     // Detection priority: GMCP > MTTS > others, but MTTS can provide complementary info
@@ -427,8 +426,8 @@ void GMCPHandler::handle_mtts_capability(uint32_t bitvector) {
             Log::info("MTTS upgraded GMCP-detected capabilities to level {}",
                       static_cast<int>(terminal_capabilities_.overall_level));
         } else {
-            Log::debug("MTTS bitvector {} parsed, but not overwriting GMCP level {}",
-                      bitvector, static_cast<int>(terminal_capabilities_.overall_level));
+            Log::debug("MTTS bitvector {} parsed, but not overwriting GMCP level {}", bitvector,
+                       static_cast<int>(terminal_capabilities_.overall_level));
         }
     } else {
         // No GMCP, use MTTS as authoritative
@@ -436,32 +435,40 @@ void GMCPHandler::handle_mtts_capability(uint32_t bitvector) {
         terminal_capabilities_.detection_method = DetectionMethod::MTTS;
     }
 
-    Log::info("MTTS capabilities (bitvector: {}): terminal={}, color={}, 256color={}, truecolor={}, unicode={}, mouse={}, screen_reader={}, tls={}, level={}",
-              bitvector,
-              terminal_capabilities_.terminal_name,
-              terminal_capabilities_.supports_color,
-              terminal_capabilities_.supports_256_color,
-              terminal_capabilities_.supports_true_color,
-              terminal_capabilities_.supports_unicode,
-              terminal_capabilities_.supports_mouse,
-              terminal_capabilities_.supports_screen_reader,
-              terminal_capabilities_.supports_tls,
-              static_cast<int>(terminal_capabilities_.overall_level));
+    Log::info(
+        "MTTS capabilities (bitvector: {}): terminal={}, color={}, 256color={}, truecolor={}, unicode={}, mouse={}, "
+        "screen_reader={}, tls={}, level={}",
+        bitvector, terminal_capabilities_.terminal_name, terminal_capabilities_.supports_color,
+        terminal_capabilities_.supports_256_color, terminal_capabilities_.supports_true_color,
+        terminal_capabilities_.supports_unicode, terminal_capabilities_.supports_mouse,
+        terminal_capabilities_.supports_screen_reader, terminal_capabilities_.supports_tls,
+        static_cast<int>(terminal_capabilities_.overall_level));
 }
 
-void GMCPHandler::merge_terminal_capabilities(const TerminalCapabilities::Capabilities& new_caps) {
+void GMCPHandler::merge_terminal_capabilities(const TerminalCapabilities::Capabilities &new_caps) {
     // Merge capabilities - only upgrade, never downgrade individual features
-    if (new_caps.supports_color) terminal_capabilities_.supports_color = true;
-    if (new_caps.supports_256_color) terminal_capabilities_.supports_256_color = true;
-    if (new_caps.supports_true_color) terminal_capabilities_.supports_true_color = true;
-    if (new_caps.supports_unicode) terminal_capabilities_.supports_unicode = true;
-    if (new_caps.supports_bold) terminal_capabilities_.supports_bold = true;
-    if (new_caps.supports_italic) terminal_capabilities_.supports_italic = true;
-    if (new_caps.supports_underline) terminal_capabilities_.supports_underline = true;
-    if (new_caps.supports_mouse) terminal_capabilities_.supports_mouse = true;
-    if (new_caps.supports_screen_reader) terminal_capabilities_.supports_screen_reader = true;
-    if (new_caps.supports_tls) terminal_capabilities_.supports_tls = true;
-    if (new_caps.supports_hyperlinks) terminal_capabilities_.supports_hyperlinks = true;
+    if (new_caps.supports_color)
+        terminal_capabilities_.supports_color = true;
+    if (new_caps.supports_256_color)
+        terminal_capabilities_.supports_256_color = true;
+    if (new_caps.supports_true_color)
+        terminal_capabilities_.supports_true_color = true;
+    if (new_caps.supports_unicode)
+        terminal_capabilities_.supports_unicode = true;
+    if (new_caps.supports_bold)
+        terminal_capabilities_.supports_bold = true;
+    if (new_caps.supports_italic)
+        terminal_capabilities_.supports_italic = true;
+    if (new_caps.supports_underline)
+        terminal_capabilities_.supports_underline = true;
+    if (new_caps.supports_mouse)
+        terminal_capabilities_.supports_mouse = true;
+    if (new_caps.supports_screen_reader)
+        terminal_capabilities_.supports_screen_reader = true;
+    if (new_caps.supports_tls)
+        terminal_capabilities_.supports_tls = true;
+    if (new_caps.supports_hyperlinks)
+        terminal_capabilities_.supports_hyperlinks = true;
 
     // Update overall level only if improved
     if (new_caps.overall_level > terminal_capabilities_.overall_level) {
@@ -525,24 +532,20 @@ std::unordered_map<std::string, std::string> GMCPHandler::parse_new_environ_data
     return env_vars;
 }
 
-void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, std::string>& env_vars) {
+void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, std::string> &env_vars) {
     // Get NEW-ENVIRON capabilities
     auto new_caps = TerminalCapabilities::detect_capabilities_from_new_environ(env_vars);
 
     // Log what NEW-ENVIRON provided
-    Log::debug("NEW-ENVIRON raw detection from {} variables: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}",
-              env_vars.size(),
-              new_caps.terminal_name,
-              new_caps.client_name,
-              new_caps.client_version,
-              new_caps.supports_color,
-              new_caps.supports_256_color,
-              new_caps.supports_true_color,
-              new_caps.supports_unicode,
-              static_cast<int>(new_caps.overall_level));
+    Log::debug(
+        "NEW-ENVIRON raw detection from {} variables: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, "
+        "unicode={}, level={}",
+        env_vars.size(), new_caps.terminal_name, new_caps.client_name, new_caps.client_version, new_caps.supports_color,
+        new_caps.supports_256_color, new_caps.supports_true_color, new_caps.supports_unicode,
+        static_cast<int>(new_caps.overall_level));
 
     // Log some key environment variables for debugging
-    for (const auto& [key, value] : env_vars) {
+    for (const auto &[key, value] : env_vars) {
         Log::debug("NEW-ENVIRON {}: {}", key, value);
     }
 
@@ -559,12 +562,11 @@ void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, 
         if (new_caps.overall_level > terminal_capabilities_.overall_level) {
             should_merge = true;
             Log::info("NEW-ENVIRON upgrading GMCP-detected capabilities from level {} to {}",
-                      static_cast<int>(terminal_capabilities_.overall_level),
-                      static_cast<int>(new_caps.overall_level));
+                      static_cast<int>(terminal_capabilities_.overall_level), static_cast<int>(new_caps.overall_level));
         } else {
             Log::debug("Ignoring NEW-ENVIRON: GMCP already detected level {} (NEW-ENVIRON: {})",
-                      static_cast<int>(terminal_capabilities_.overall_level),
-                      static_cast<int>(new_caps.overall_level));
+                       static_cast<int>(terminal_capabilities_.overall_level),
+                       static_cast<int>(new_caps.overall_level));
         }
     }
     // If we have MTTS detection, it's also reliable
@@ -572,12 +574,11 @@ void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, 
         if (new_caps.overall_level > terminal_capabilities_.overall_level) {
             should_merge = true;
             Log::info("NEW-ENVIRON upgrading MTTS-detected capabilities from level {} to {}",
-                      static_cast<int>(terminal_capabilities_.overall_level),
-                      static_cast<int>(new_caps.overall_level));
+                      static_cast<int>(terminal_capabilities_.overall_level), static_cast<int>(new_caps.overall_level));
         } else {
             Log::debug("Ignoring NEW-ENVIRON: MTTS already detected level {} (NEW-ENVIRON: {})",
-                      static_cast<int>(terminal_capabilities_.overall_level),
-                      static_cast<int>(new_caps.overall_level));
+                       static_cast<int>(terminal_capabilities_.overall_level),
+                       static_cast<int>(new_caps.overall_level));
         }
     }
     // For Environment or unknown detection, NEW-ENVIRON can upgrade
@@ -589,13 +590,20 @@ void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, 
 
     if (should_merge) {
         // Merge capabilities - only upgrade, never downgrade individual features
-        if (new_caps.supports_color) terminal_capabilities_.supports_color = true;
-        if (new_caps.supports_256_color) terminal_capabilities_.supports_256_color = true;
-        if (new_caps.supports_true_color) terminal_capabilities_.supports_true_color = true;
-        if (new_caps.supports_unicode) terminal_capabilities_.supports_unicode = true;
-        if (new_caps.supports_bold) terminal_capabilities_.supports_bold = true;
-        if (new_caps.supports_italic) terminal_capabilities_.supports_italic = true;
-        if (new_caps.supports_underline) terminal_capabilities_.supports_underline = true;
+        if (new_caps.supports_color)
+            terminal_capabilities_.supports_color = true;
+        if (new_caps.supports_256_color)
+            terminal_capabilities_.supports_256_color = true;
+        if (new_caps.supports_true_color)
+            terminal_capabilities_.supports_true_color = true;
+        if (new_caps.supports_unicode)
+            terminal_capabilities_.supports_unicode = true;
+        if (new_caps.supports_bold)
+            terminal_capabilities_.supports_bold = true;
+        if (new_caps.supports_italic)
+            terminal_capabilities_.supports_italic = true;
+        if (new_caps.supports_underline)
+            terminal_capabilities_.supports_underline = true;
 
         // Update terminal/client info if NEW-ENVIRON provides useful data
         if (!new_caps.terminal_name.empty() && new_caps.terminal_name != "unknown") {
@@ -614,19 +622,16 @@ void GMCPHandler::handle_new_environ_data(const std::unordered_map<std::string, 
             terminal_capabilities_.detection_method = DetectionMethod::NewEnviron;
         }
 
-        Log::info("NEW-ENVIRON merged: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}",
-                  terminal_capabilities_.terminal_name,
-                  terminal_capabilities_.client_name,
-                  terminal_capabilities_.client_version,
-                  terminal_capabilities_.supports_color,
-                  terminal_capabilities_.supports_256_color,
-                  terminal_capabilities_.supports_true_color,
-                  terminal_capabilities_.supports_unicode,
-                  static_cast<int>(terminal_capabilities_.overall_level));
+        Log::info(
+            "NEW-ENVIRON merged: terminal={}, client={} {}, color={}, 256color={}, truecolor={}, unicode={}, level={}",
+            terminal_capabilities_.terminal_name, terminal_capabilities_.client_name,
+            terminal_capabilities_.client_version, terminal_capabilities_.supports_color,
+            terminal_capabilities_.supports_256_color, terminal_capabilities_.supports_true_color,
+            terminal_capabilities_.supports_unicode, static_cast<int>(terminal_capabilities_.overall_level));
     }
 }
 
-const TerminalCapabilities::Capabilities& GMCPHandler::get_terminal_capabilities() const {
+const TerminalCapabilities::Capabilities &GMCPHandler::get_terminal_capabilities() const {
     return terminal_capabilities_;
 }
 
@@ -700,17 +705,17 @@ Result<void> GMCPHandler::send_mssp_data() {
     // Create MSSP handler if not already created
     if (!mssp_handler_ && connection_.get_network_manager()) {
         // Create MSSP handler with access to the actual ServerConfig
-        const auto& config = connection_.get_network_manager()->get_config();
+        const auto &config = connection_.get_network_manager()->get_config();
         mssp_handler_ = std::make_unique<MSSPHandler>(config);
-        
+
         // Generate MSSP data using the proper handler
         auto mssp_data = mssp_handler_->generate_mssp_data(connection_.get_network_manager());
-        
+
         connection_.send_raw_data(mssp_data);
         Log::info("Sent MSSP data ({} bytes) to client", mssp_data.size());
         return Result<void>{};
     }
-    
+
     // If we have a proper handler, use it
     if (mssp_handler_) {
         auto mssp_data = mssp_handler_->generate_mssp_data(connection_.get_network_manager());
@@ -718,41 +723,43 @@ Result<void> GMCPHandler::send_mssp_data() {
         Log::info("Sent MSSP data ({} bytes) to client via handler", mssp_data.size());
         return Result<void>{};
     }
-    
+
     return std::unexpected(Error{ErrorCode::InternalError, "Unable to generate MSSP data"});
 }
 
 // PlayerConnection implementation
 std::shared_ptr<PlayerConnection> PlayerConnection::create(asio::io_context &io_context,
                                                            std::shared_ptr<WorldServer> world_server,
-                                                           NetworkManager* network_manager) {
+                                                           NetworkManager *network_manager) {
 
     // Use private constructor with shared_ptr
-    return std::shared_ptr<PlayerConnection>(new PlayerConnection(io_context, std::move(world_server), network_manager));
+    return std::shared_ptr<PlayerConnection>(
+        new PlayerConnection(io_context, std::move(world_server), network_manager));
 }
 
 std::shared_ptr<PlayerConnection> PlayerConnection::create_tls(asio::io_context &io_context,
-                                                              std::shared_ptr<WorldServer> world_server,
-                                                              NetworkManager* network_manager,
-                                                              TLSContextManager& tls_manager) {
+                                                               std::shared_ptr<WorldServer> world_server,
+                                                               NetworkManager *network_manager,
+                                                               TLSContextManager &tls_manager) {
     // Use private TLS constructor with shared_ptr
-    return std::shared_ptr<PlayerConnection>(new PlayerConnection(io_context, std::move(world_server), network_manager, tls_manager));
+    return std::shared_ptr<PlayerConnection>(
+        new PlayerConnection(io_context, std::move(world_server), network_manager, tls_manager));
 }
 
 PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
-                                   NetworkManager* network_manager)
-    : io_context_(io_context), strand_(asio::make_strand(io_context)),
-      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context), 
-      gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {
+                                   NetworkManager *network_manager)
+    : io_context_(io_context), strand_(asio::make_strand(io_context)), world_server_(std::move(world_server)),
+      network_manager_(network_manager), idle_check_timer_(io_context), gmcp_handler_(*this),
+      connect_time_(std::chrono::steady_clock::now()) {
     // Create plain TCP socket
     connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context));
 }
 
 PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
-                                   NetworkManager* network_manager, TLSContextManager& tls_manager)
-    : io_context_(io_context), strand_(asio::make_strand(io_context)),
-      world_server_(std::move(world_server)), network_manager_(network_manager), idle_check_timer_(io_context), 
-      gmcp_handler_(*this), connect_time_(std::chrono::steady_clock::now()) {
+                                   NetworkManager *network_manager, TLSContextManager &tls_manager)
+    : io_context_(io_context), strand_(asio::make_strand(io_context)), world_server_(std::move(world_server)),
+      network_manager_(network_manager), idle_check_timer_(io_context), gmcp_handler_(*this),
+      connect_time_(std::chrono::steady_clock::now()) {
     // Create TLS socket
     connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context), tls_manager.get_context());
 }
@@ -775,17 +782,17 @@ void PlayerConnection::start() {
     if (is_tls_connection()) {
         // Set up handshake timeout to prevent slowloris-style attacks
         idle_check_timer_.expires_after(TLS_HANDSHAKE_TIMEOUT);
-        idle_check_timer_.async_wait([this, self = shared_from_this()](const asio::error_code& ec) {
+        idle_check_timer_.async_wait([this, self = shared_from_this()](const asio::error_code &ec) {
             if (!ec) {
                 // Timer fired - handshake took too long
-                Log::warn("TLS handshake timeout for {} after {} seconds",
-                         remote_address(), TLS_HANDSHAKE_TIMEOUT.count());
+                Log::warn("TLS handshake timeout for {} after {} seconds", remote_address(),
+                          TLS_HANDSHAKE_TIMEOUT.count());
                 disconnect("TLS handshake timeout");
             }
             // If ec is operation_aborted, the timer was cancelled (handshake completed)
         });
 
-        connection_socket_->async_handshake([this, self = shared_from_this()](const asio::error_code& error) {
+        connection_socket_->async_handshake([this, self = shared_from_this()](const asio::error_code &error) {
             // Cancel the timeout timer
             idle_check_timer_.cancel();
 
@@ -824,12 +831,11 @@ void PlayerConnection::handle_connect() {
     auto self = shared_from_this();
     auto welcome_timer = std::make_shared<asio::steady_timer>(io_context_);
     welcome_timer->expires_after(std::chrono::milliseconds(200));
-    welcome_timer->async_wait(asio::bind_executor(strand_,
-        [self, welcome_timer](const asio::error_code& error) {
-            if (!error && self->is_connected()) {
-                self->login_system_->start_login();
-            }
-        }));
+    welcome_timer->async_wait(asio::bind_executor(strand_, [self, welcome_timer](const asio::error_code &error) {
+        if (!error && self->is_connected()) {
+            self->login_system_->start_login();
+        }
+    }));
 }
 
 void PlayerConnection::send_telnet_negotiation() {
@@ -866,7 +872,7 @@ void PlayerConnection::handle_read(const asio::error_code &error, std::size_t by
         if (error == asio::error::eof || error == asio::error::connection_reset ||
             error == asio::error::connection_aborted) {
             Log::debug("Connection closed from {}: {}", remote_address(), error.message());
-            
+
             // If player is actively playing, go linkdead instead of disconnecting
             if (state_ == ConnectionState::Playing && player_) {
                 set_linkdead(true, "Connection lost");
@@ -905,8 +911,8 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
         } else if (in_telnet_negotiation_) {
             // Check size limit before adding to buffer (prevent DoS)
             if (telnet_buffer_.size() >= MAX_TELNET_SUBNEG_LENGTH) {
-                Log::warn("Telnet subnegotiation from {} exceeded max size ({}), aborting",
-                          remote_address(), MAX_TELNET_SUBNEG_LENGTH);
+                Log::warn("Telnet subnegotiation from {} exceeded max size ({}), aborting", remote_address(),
+                          MAX_TELNET_SUBNEG_LENGTH);
                 in_telnet_negotiation_ = false;
                 telnet_buffer_.clear();
                 continue;
@@ -922,7 +928,8 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
                     command == GMCPHandler::TELNET_DO || command == GMCPHandler::TELNET_DONT) {
 
                     // Simple 3-byte command
-                    Log::debug("Received telnet option from {}: command={} option={}", remote_address(), command, option);
+                    Log::debug("Received telnet option from {}: command={} option={}", remote_address(), command,
+                               option);
                     gmcp_handler_.handle_telnet_option(command, option);
                     in_telnet_negotiation_ = false;
                 } else if (command == GMCPHandler::TELNET_SB) {
@@ -1010,7 +1017,7 @@ void PlayerConnection::transition_to(ConnectionState new_state) {
 
 void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
     player_ = std::move(player);
-    login_time_ = std::chrono::system_clock::now();  // Track actual login time
+    login_time_ = std::chrono::system_clock::now(); // Track actual login time
 
     // Set the player's output interface
     player_->set_output(shared_from_this());
@@ -1026,15 +1033,15 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
         auto move_result = WorldManager::instance().move_actor_to_room(player_, target_room_id);
 
         if (!move_result.success) {
-            Log::warn("Failed to place player '{}' in room {}: {}",
-                     player_->name(), target_room_id, move_result.failure_reason);
+            Log::warn("Failed to place player '{}' in room {}: {}", player_->name(), target_room_id,
+                      move_result.failure_reason);
             // Try default as fallback if saved room failed
             if (target_room_id != Config::instance().default_starting_room()) {
                 auto default_room = Config::instance().default_starting_room();
                 move_result = WorldManager::instance().move_actor_to_room(player_, default_room);
                 if (move_result.success) {
-                    Log::info("Placed player '{}' in default room {} (saved room failed)",
-                             player_->name(), default_room);
+                    Log::info("Placed player '{}' in default room {} (saved room failed)", player_->name(),
+                              default_room);
                 }
             }
         } else {
@@ -1052,7 +1059,7 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     // Store original host for reconnection validation
     original_host_ = remote_address();
-    
+
     // Start idle checking timer for session management
     start_idle_timer();
 
@@ -1060,8 +1067,7 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
     // Publish login event to Muditor bridge
     auto login_event = fierymud::events::GameEvent::player_event(
-        fierymud::events::GameEventType::PLAYER_LOGIN,
-        std::string(player_->name()),
+        fierymud::events::GameEventType::PLAYER_LOGIN, std::string(player_->name()),
         fmt::format("{} has entered the game", player_->name()));
     if (auto room = player_->current_room()) {
         login_event.zone_id = static_cast<int>(room->id().zone_id());
@@ -1088,30 +1094,30 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
 void PlayerConnection::attach_player(std::shared_ptr<Player> player) {
     player_ = std::move(player);
-    
+
     // Set the player's output interface to this connection
     player_->set_output(shared_from_this());
-    
+
     // Transition to playing state
     transition_to(ConnectionState::Playing);
-    
+
     // Store original host for reconnection validation
     original_host_ = remote_address();
-    
+
     // Start idle checking timer for session management
     start_idle_timer();
-    
+
     Log::info("Player '{}' reconnected from {}", player_->name(), remote_address());
-    
+
     // Send reconnection message and current room info (respects brief mode)
     send_message("=== Reconnected ===");
     send_message(InformationCommands::format_room_for_actor(player_));
-    
+
     // Send room info for reconnections (vitals/status already established)
     if (supports_gmcp()) {
         send_room_info();
     }
-    
+
     send_prompt();
 }
 
@@ -1172,9 +1178,9 @@ void PlayerConnection::flush_output() {
     write_in_progress_ = true;
 
     auto self = shared_from_this();
-    
+
     // Use async_write_some for TLS compatibility
-    const std::string& data = output_queue_.front();
+    const std::string &data = output_queue_.front();
     connection_socket_->async_write_some(
         asio::buffer(data),
         asio::bind_executor(strand_, [this, self](const asio::error_code &error, std::size_t bytes_transferred) {
@@ -1272,20 +1278,17 @@ void PlayerConnection::send_discord_status() {
         return;
 
     // Send Discord rich presence status
-    std::string details = fmt::format("Character: {}  Class: {}  Level: {}",
-        player_->name(),
-        player_->player_class(),
-        player_->level());
+    std::string details =
+        fmt::format("Character: {}  Class: {}  Level: {}", player_->name(), player_->player_class(), player_->level());
 
-    send_gmcp("External.Discord.Status", {
-        {"state", "Playing FieryMUD (fierymud.org:4000)"},
-        {"details", details},
-        {"game", "FieryMUD"},
-        {"smallimage", nlohmann::json::array({"servericon"})},
-        {"smallimagetext", "FieryMUD"},
-        {"starttime", std::chrono::duration_cast<std::chrono::seconds>(
-            login_time_.time_since_epoch()).count()}
-    });
+    send_gmcp(
+        "External.Discord.Status",
+        {{"state", "Playing FieryMUD (fierymud.org:4000)"},
+         {"details", details},
+         {"game", "FieryMUD"},
+         {"smallimage", nlohmann::json::array({"servericon"})},
+         {"smallimagetext", "FieryMUD"},
+         {"starttime", std::chrono::duration_cast<std::chrono::seconds>(login_time_.time_since_epoch()).count()}});
 }
 
 void PlayerConnection::disconnect(std::string_view reason) {
@@ -1335,8 +1338,7 @@ void PlayerConnection::cleanup_connection() {
     if (player_) {
         // Publish logout event to Muditor bridge
         fierymud::events::EventPublisher::instance().publish_player(
-            fierymud::events::GameEventType::PLAYER_LOGOUT,
-            player_->name(),
+            fierymud::events::GameEventType::PLAYER_LOGOUT, player_->name(),
             fmt::format("{} has left the game", player_->name()));
 
         Log::debug("Cleaning up connection for player: {}", player_->name());
@@ -1377,14 +1379,15 @@ std::chrono::seconds PlayerConnection::idle_time() const {
 }
 
 std::chrono::seconds PlayerConnection::afk_time() const {
-    if (!is_afk_) return std::chrono::seconds{0};
+    if (!is_afk_)
+        return std::chrono::seconds{0};
     auto now = std::chrono::steady_clock::now();
     return std::chrono::duration_cast<std::chrono::seconds>(now - afk_start_time_);
 }
 
 void PlayerConnection::update_last_input_time() {
     last_input_time_ = std::chrono::steady_clock::now();
-    
+
     // If player was AFK, bring them back
     if (is_afk_) {
         set_afk(false);
@@ -1395,14 +1398,14 @@ void PlayerConnection::check_idle_timeout() {
     if (state_ != ConnectionState::Playing || !player_) {
         return;
     }
-    
+
     auto idle_duration = idle_time();
-    
+
     // Check for AFK state transition
     if (!is_afk_ && idle_duration >= AFK_TIMEOUT) {
         set_afk(true);
     }
-    
+
     // Check for linkdead state transition (only if connection is active)
     if (is_connected() && idle_duration >= IDLE_TIMEOUT) {
         set_linkdead(true, "Idle timeout");
@@ -1410,36 +1413,37 @@ void PlayerConnection::check_idle_timeout() {
 }
 
 void PlayerConnection::set_afk(bool afk) {
-    if (is_afk_ == afk) return;
-    
+    if (is_afk_ == afk)
+        return;
+
     is_afk_ = afk;
-    
+
     if (afk) {
         afk_start_time_ = std::chrono::steady_clock::now();
         transition_to(ConnectionState::AFK);
         send_message("You are now marked as AFK (Away From Keyboard).");
-        Log::info("Player {} went AFK after {} seconds idle", 
-                  player_ ? player_->name() : "unknown", idle_time().count());
+        Log::info("Player {} went AFK after {} seconds idle", player_ ? player_->name() : "unknown",
+                  idle_time().count());
     } else {
         afk_start_time_ = {};
         transition_to(ConnectionState::Playing);
         send_message("Welcome back! You are no longer AFK.");
-        Log::info("Player {} returned from AFK after {} seconds", 
-                  player_ ? player_->name() : "unknown", afk_time().count());
+        Log::info("Player {} returned from AFK after {} seconds", player_ ? player_->name() : "unknown",
+                  afk_time().count());
     }
 }
 
 void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
-    if (is_linkdead_ == linkdead) return;
-    
+    if (is_linkdead_ == linkdead)
+        return;
+
     is_linkdead_ = linkdead;
     disconnect_reason_ = reason;
-    
+
     if (linkdead) {
         transition_to(ConnectionState::Linkdead);
-        Log::info("Player {} went linkdead: {}", 
-                  player_ ? player_->name() : "unknown", reason);
-        
+        Log::info("Player {} went linkdead: {}", player_ ? player_->name() : "unknown", reason);
+
         // Keep player in world but mark as linkdead
         // The world server will handle linkdead cleanup after timeout
         if (player_) {
@@ -1447,8 +1451,7 @@ void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
             Log::debug("Player {} marked linkdead, staying in world", player_->name());
         }
     } else {
-        Log::info("Player {} recovered from linkdead state", 
-                  player_ ? player_->name() : "unknown");
+        Log::info("Player {} recovered from linkdead state", player_ ? player_->name() : "unknown");
         if (player_) {
             player_->set_linkdead(false);
         }
@@ -1462,11 +1465,8 @@ void PlayerConnection::set_linkdead(bool linkdead, std::string_view reason) {
 void PlayerConnection::start_idle_timer() {
     // Start periodic idle checking every 60 seconds
     idle_check_timer_.expires_after(std::chrono::seconds(60));
-    idle_check_timer_.async_wait(
-        asio::bind_executor(strand_, 
-            [self = shared_from_this()](const asio::error_code &error) {
-                self->handle_idle_timer(error);
-            }));
+    idle_check_timer_.async_wait(asio::bind_executor(
+        strand_, [self = shared_from_this()](const asio::error_code &error) { self->handle_idle_timer(error); }));
 }
 
 void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
@@ -1477,7 +1477,7 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
         }
         return;
     }
-    
+
     // Check idle timeout for playing connections
     if (state_ == ConnectionState::Playing || state_ == ConnectionState::AFK) {
         check_idle_timeout();
@@ -1488,8 +1488,7 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
     if (state_ == ConnectionState::Connected || state_ == ConnectionState::Login) {
         auto connected_duration = std::chrono::steady_clock::now() - connect_time_;
         if (connected_duration >= LOGIN_TIMEOUT) {
-            Log::info("Disconnecting {} - login timeout after {} seconds",
-                      remote_address(),
+            Log::info("Disconnecting {} - login timeout after {} seconds", remote_address(),
                       std::chrono::duration_cast<std::chrono::seconds>(connected_duration).count());
             disconnect("Login timeout - please reconnect to try again");
             return;

@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "../core/result.hpp"
-#include "../core/actor.hpp"
 #include "../core/active_effect.hpp"
+#include "../core/actor.hpp"
+#include "../core/result.hpp"
 #include "world_queries.hpp"
 
 #include <memory>
@@ -29,7 +29,7 @@
  * - MockPlayerRepository: In-memory storage for testing
  */
 class IPlayerRepository {
-public:
+  public:
     virtual ~IPlayerRepository() = default;
 
     // =========================================================================
@@ -72,7 +72,7 @@ public:
      * @param char_data Character data to save
      * @return Success or error
      */
-    virtual Result<void> save_character(const WorldQueries::CharacterData& char_data) = 0;
+    virtual Result<void> save_character(const WorldQueries::CharacterData &char_data) = 0;
 
     /**
      * Save character items (inventory and equipment)
@@ -80,9 +80,8 @@ public:
      * @param items Item data to save
      * @return Success or error
      */
-    virtual Result<void> save_character_items(
-        std::string_view character_id,
-        const std::vector<WorldQueries::CharacterItemData>& items) = 0;
+    virtual Result<void> save_character_items(std::string_view character_id,
+                                              const std::vector<WorldQueries::CharacterItemData> &items) = 0;
 
     /**
      * Save character active effects
@@ -90,9 +89,8 @@ public:
      * @param effects Effect data to save
      * @return Success or error
      */
-    virtual Result<void> save_character_effects(
-        std::string_view character_id,
-        const std::vector<WorldQueries::CharacterEffectData>& effects) = 0;
+    virtual Result<void> save_character_effects(std::string_view character_id,
+                                                const std::vector<WorldQueries::CharacterEffectData> &effects) = 0;
 
     /**
      * Save account wealth (shared across characters)
@@ -111,8 +109,8 @@ public:
      * @param character_id Database UUID of character
      * @return Vector of effect data or error
      */
-    virtual Result<std::vector<WorldQueries::CharacterEffectData>> load_character_effects(
-        std::string_view character_id) = 0;
+    virtual Result<std::vector<WorldQueries::CharacterEffectData>>
+    load_character_effects(std::string_view character_id) = 0;
 };
 
 /**
@@ -120,23 +118,21 @@ public:
  * @brief Real database implementation using ConnectionPool
  */
 class PostgresPlayerRepository : public IPlayerRepository {
-public:
+  public:
     Result<std::unique_ptr<Player>> load_player_by_name(std::string_view name) override;
     Result<std::unique_ptr<Player>> load_player_by_id(std::string_view player_id) override;
     bool player_exists(std::string_view name) override;
     int get_player_count() override;
 
-    Result<void> save_character(const WorldQueries::CharacterData& char_data) override;
-    Result<void> save_character_items(
-        std::string_view character_id,
-        const std::vector<WorldQueries::CharacterItemData>& items) override;
-    Result<void> save_character_effects(
-        std::string_view character_id,
-        const std::vector<WorldQueries::CharacterEffectData>& effects) override;
+    Result<void> save_character(const WorldQueries::CharacterData &char_data) override;
+    Result<void> save_character_items(std::string_view character_id,
+                                      const std::vector<WorldQueries::CharacterItemData> &items) override;
+    Result<void> save_character_effects(std::string_view character_id,
+                                        const std::vector<WorldQueries::CharacterEffectData> &effects) override;
     Result<void> save_account_wealth(std::string_view user_id, long wealth_copper) override;
 
-    Result<std::vector<WorldQueries::CharacterEffectData>> load_character_effects(
-        std::string_view character_id) override;
+    Result<std::vector<WorldQueries::CharacterEffectData>>
+    load_character_effects(std::string_view character_id) override;
 };
 
 /**
@@ -146,12 +142,12 @@ public:
  * Allows swapping between real and mock implementations for testing.
  */
 class PlayerRepositoryProvider {
-public:
+  public:
     /** Get singleton instance */
-    static PlayerRepositoryProvider& instance();
+    static PlayerRepositoryProvider &instance();
 
     /** Get current repository */
-    IPlayerRepository& get();
+    IPlayerRepository &get();
 
     /** Set repository (for testing - injects mock) */
     void set(std::unique_ptr<IPlayerRepository> repo);
@@ -162,7 +158,7 @@ public:
     /** Check if using mock */
     bool is_mock() const { return is_mock_; }
 
-private:
+  private:
     PlayerRepositoryProvider();
     std::unique_ptr<IPlayerRepository> repository_;
     bool is_mock_ = false;

@@ -1,8 +1,5 @@
 #include "combat_commands.hpp"
-#include "builtin_commands.hpp"
-#include "information_commands.hpp"
 
-#include "core/ability_executor.hpp"
 #include "../core/actor.hpp"
 #include "../core/combat.hpp"
 #include "../core/logging.hpp"
@@ -12,6 +9,9 @@
 #include "../text/string_utils.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
+#include "builtin_commands.hpp"
+#include "core/ability_executor.hpp"
+#include "information_commands.hpp"
 
 #include <algorithm>
 #include <array>
@@ -124,18 +124,18 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             ctx.actor->queue_spell(full_args, "");
 
             if (state_opt.has_value()) {
-                const auto& state = state_opt.value();
-                double remaining_sec = state.ticks_remaining * 0.5;  // 500ms per tick
-                ctx.send(fmt::format("You are still casting {} ({:.1f}s remaining).",
-                                    state.ability_name, remaining_sec));
+                const auto &state = state_opt.value();
+                double remaining_sec = state.ticks_remaining * 0.5; // 500ms per tick
+                ctx.send(
+                    fmt::format("You are still casting {} ({:.1f}s remaining).", state.ability_name, remaining_sec));
             }
             ctx.send(fmt::format("Your next spell '{}' has been queued.", spell_display));
         } else {
             if (state_opt.has_value()) {
-                const auto& state = state_opt.value();
+                const auto &state = state_opt.value();
                 double remaining_sec = state.ticks_remaining * 0.5;
-                ctx.send(fmt::format("You are still casting {} ({:.1f}s remaining).",
-                                    state.ability_name, remaining_sec));
+                ctx.send(
+                    fmt::format("You are still casting {} ({:.1f}s remaining).", state.ability_name, remaining_sec));
             }
             ctx.send("You already have a spell queued - use 'abort' to cancel.");
         }
@@ -157,7 +157,7 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             if (spell_display.length() > 30) {
                 spell_display = spell_display.substr(0, 27) + "...";
             }
-            ctx.actor->queue_spell(full_args, "");  // Store full args for later parsing
+            ctx.actor->queue_spell(full_args, ""); // Store full args for later parsing
             ctx.send(fmt::format("You are still recovering from your last spell ({:.1f}s remaining).", remaining_sec));
             ctx.send(fmt::format("Your next spell '{}' has been queued.", spell_display));
         } else {
@@ -192,11 +192,12 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
         auto known_abilities = player->get_known_abilities();
         std::string full_args_lower = to_lowercase(full_args);
 
-        const LearnedAbility* best_match = nullptr;
+        const LearnedAbility *best_match = nullptr;
         size_t best_match_len = 0;
 
-        for (const auto* ability : known_abilities) {
-            if (ability->type != "SPELL") continue;
+        for (const auto *ability : known_abilities) {
+            if (ability->type != "SPELL")
+                continue;
 
             // Try matching against display name (with spaces)
             std::string name_lower = to_lowercase(ability->name);
@@ -204,8 +205,7 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             // Check if input starts with this spell's display name
             if (full_args_lower.find(name_lower) == 0) {
                 // Make sure it's a complete word match (followed by space or end)
-                if (full_args_lower.size() == name_lower.size() ||
-                    full_args_lower[name_lower.size()] == ' ') {
+                if (full_args_lower.size() == name_lower.size() || full_args_lower[name_lower.size()] == ' ') {
                     if (name_lower.size() > best_match_len) {
                         best_match = ability;
                         best_match_len = name_lower.size();
@@ -240,10 +240,11 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
 
     // Check if player knows this spell from their abilities
     auto known_abilities = player->get_known_abilities();
-    const LearnedAbility* known_spell = nullptr;
+    const LearnedAbility *known_spell = nullptr;
 
-    for (const auto* ability : known_abilities) {
-        if (ability->type != "SPELL") continue;
+    for (const auto *ability : known_abilities) {
+        if (ability->type != "SPELL")
+            continue;
 
         // Compare against both plain_name (with underscores) and display name (with spaces)
         std::string plain_lower = to_lowercase(ability->plain_name);
@@ -256,8 +257,7 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
         }
 
         // Try per-word fuzzy match: "det inv" matches "detect invisible"
-        if (matches_words(search_lower, name_lower) ||
-            matches_words(search_normalized, plain_lower)) {
+        if (matches_words(search_lower, name_lower) || matches_words(search_normalized, plain_lower)) {
             known_spell = ability;
             break;
         }
@@ -270,8 +270,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
 
     // Check minimum level
     if (ctx.actor->stats().level < known_spell->min_level) {
-        ctx.send_error(fmt::format("You need to be at least level {} to cast '{}'.",
-                                 known_spell->min_level, known_spell->name));
+        ctx.send_error(
+            fmt::format("You need to be at least level {} to cast '{}'.", known_spell->min_level, known_spell->name));
         return CommandResult::InvalidTarget;
     }
 
@@ -289,8 +289,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     }
 
     // Violent single-target spells require a target; AOE spells auto-target enemies
-    auto& ability_cache = FieryMUD::AbilityCache::instance();
-    const auto* ability_data = ability_cache.get_ability(known_spell->ability_id);
+    auto &ability_cache = FieryMUD::AbilityCache::instance();
+    const auto *ability_data = ability_cache.get_ability(known_spell->ability_id);
     bool is_area_spell = ability_data && ability_data->is_area;
     bool targets_corpse = ability_data && ability_data->targets_corpse;
 
@@ -319,14 +319,14 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             }
         }
         if (!has_available_slot) {
-            ctx.send_error(fmt::format("You don't have any spell slots available for circle {} spells.",
-                                      known_spell->circle));
+            ctx.send_error(
+                fmt::format("You don't have any spell slots available for circle {} spells.", known_spell->circle));
             return CommandResult::InvalidState;
         }
 
         // Non-god casting a spell with a circle - use casting time
-        auto cast_result = FieryMUD::AbilityExecutor::begin_casting(
-            ctx.actor, known_spell->ability_id, target, known_spell->circle);
+        auto cast_result =
+            FieryMUD::AbilityExecutor::begin_casting(ctx.actor, known_spell->ability_id, target, known_spell->circle);
 
         if (!cast_result) {
             ctx.send_error(fmt::format("Failed to begin casting: {}", cast_result.error().message));
@@ -338,8 +338,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     }
 
     // Gods cast instantly, or skill/chant with no circle - execute immediately
-    auto exec_result = FieryMUD::AbilityExecutor::execute(ctx, known_spell->plain_name, target,
-                                                           known_spell->proficiency / 10);
+    auto exec_result =
+        FieryMUD::AbilityExecutor::execute(ctx, known_spell->plain_name, target, known_spell->proficiency / 10);
 
     if (exec_result && exec_result->success && !exec_result->effect_results.empty()) {
         // Send the generated messages
@@ -370,10 +370,12 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
 
                 if (target_is_player) {
                     ctx.send_to_actor(target, "You are DEAD! You feel your spirit leave your body...");
-                    ctx.send_to_room(fmt::format("{} is DEAD! Their spirit rises from their body.", target->display_name()), true);
+                    ctx.send_to_room(
+                        fmt::format("{} is DEAD! Their spirit rises from their body.", target->display_name()), true);
                 } else {
-                    ctx.send_to_room(fmt::format("{} is DEAD! {} corpse falls to the ground.",
-                                                target->display_name(), target->display_name()), true);
+                    ctx.send_to_room(fmt::format("{} is DEAD! {} corpse falls to the ground.", target->display_name(),
+                                                 target->display_name()),
+                                     true);
                 }
 
                 // Polymorphic death handling - Player becomes ghost, Mobile creates corpse and despawns
@@ -386,7 +388,7 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                     if (player->is_autogold()) {
                         auto contents = corpse->get_contents();
                         std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
-                        for (const auto& item : items_copy) {
+                        for (const auto &item : items_copy) {
                             if (item && item->type() == ObjectType::Money) {
                                 int coin_value = item->value();
                                 if (coin_value > 0) {
@@ -404,8 +406,9 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                         auto contents = corpse->get_contents();
                         std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
                         int looted_count = 0;
-                        for (const auto& item : items_copy) {
-                            if (!item || item->type() == ObjectType::Money) continue;
+                        for (const auto &item : items_copy) {
+                            if (!item || item->type() == ObjectType::Money)
+                                continue;
 
                             int obj_weight = item->weight();
                             if (!player->inventory().can_carry(obj_weight, player->max_carry_weight())) {
@@ -423,8 +426,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                             }
                         }
                         if (looted_count > 0) {
-                            ctx.send(fmt::format("You autoloot {} item{}.",
-                                looted_count, looted_count == 1 ? "" : "s"));
+                            ctx.send(
+                                fmt::format("You autoloot {} item{}.", looted_count, looted_count == 1 ? "" : "s"));
                         }
                     }
                 }
@@ -433,8 +436,7 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
                 long exp_gain = FieryMUD::CombatSystem::calculate_experience_gain(*ctx.actor, *target);
                 ctx.actor->gain_experience(exp_gain);
 
-                ctx.send(fmt::format("You have killed {}! You gain {} experience.",
-                                    target->display_name(), exp_gain));
+                ctx.send(fmt::format("You have killed {}! You gain {} experience.", target->display_name(), exp_gain));
             } else {
                 // Target survived - start combat if not already fighting
                 if (ctx.actor->position() != Position::Fighting) {
@@ -443,15 +445,15 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
             }
         }
 
-        Log::info("SPELL_CAST: {} cast '{}' on {} via AbilityExecutor (damage: {})",
-                 ctx.actor->name(), known_spell->plain_name,
-                 target ? target->name() : "no target", exec_result->total_damage);
+        Log::info("SPELL_CAST: {} cast '{}' on {} via AbilityExecutor (damage: {})", ctx.actor->name(),
+                  known_spell->plain_name, target ? target->name() : "no target", exec_result->total_damage);
     } else {
         // AbilityExecutor failed or has no effects - this is a configuration error
-        Log::warn("SPELL_ERROR: {} tried to cast '{}' but spell has no effects defined in database!",
-                 ctx.actor->name(), known_spell->plain_name);
-        ctx.send(fmt::format("<red>Error:</> The spell '{}' is not configured correctly. Please report this to an immortal.",
-                            known_spell->name));
+        Log::warn("SPELL_ERROR: {} tried to cast '{}' but spell has no effects defined in database!", ctx.actor->name(),
+                  known_spell->plain_name);
+        ctx.send(
+            fmt::format("<red>Error:</> The spell '{}' is not configured correctly. Please report this to an immortal.",
+                        known_spell->name));
         // Don't show fake cast messages - the spell didn't actually work
         return CommandResult::SystemError;
     }
@@ -475,7 +477,7 @@ Result<CommandResult> cmd_abort(const CommandContext &ctx) {
         } else {
             ctx.send("You abort your spell.");
         }
-        ctx.actor->stop_casting(true);  // Interrupted = true
+        ctx.actor->stop_casting(true); // Interrupted = true
         aborted_anything = true;
     }
 
@@ -501,8 +503,8 @@ Result<CommandResult> cmd_flee(const CommandContext &ctx) {
         if (state_opt.has_value()) {
             ctx.send(fmt::format("You abort your {} spell as you panic!", state_opt->ability_name));
         }
-        ctx.actor->stop_casting(true);  // Interrupted = true
-        ctx.actor->clear_queued_spell();  // Also clear queued spell
+        ctx.actor->stop_casting(true);   // Interrupted = true
+        ctx.actor->clear_queued_spell(); // Also clear queued spell
     }
 
     // Check if fighting
@@ -560,18 +562,19 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
     auto current_room = ctx.actor->current_room();
     if (current_room) {
         create_actor_corpse(ctx.actor, current_room);
-        ctx.send_to_room(fmt::format("The ghost of {} fades away, leaving behind a corpse.", ctx.actor->display_name()), true);
+        ctx.send_to_room(fmt::format("The ghost of {} fades away, leaving behind a corpse.", ctx.actor->display_name()),
+                         true);
     }
 
     // Move player to their personal starting room
     auto world_manager = &WorldManager::instance();
-    
+
     // Try to get player's personal start room first
     EntityId start_room_id = INVALID_ENTITY_ID;
     if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
         start_room_id = player->start_room();
     }
-    
+
     // If player doesn't have a personal start room, use world default
     if (!start_room_id.is_valid()) {
         start_room_id = world_manager->get_start_room();
@@ -579,7 +582,7 @@ Result<CommandResult> cmd_release(const CommandContext &ctx) {
     } else {
         Log::debug("Player {} using personal start room: {}", ctx.actor->name(), start_room_id);
     }
-    
+
     auto start_room = world_manager->get_room(start_room_id);
 
     if (!start_room) {
@@ -704,7 +707,7 @@ void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> roo
 
     // Add keywords: "corpse" plus all keywords from the dead actor
     corpse->add_keyword("corpse");
-    for (const auto& kw : actor->keywords()) {
+    for (const auto &kw : actor->keywords()) {
         corpse->add_keyword(kw);
     }
 
@@ -715,10 +718,10 @@ void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> roo
             auto result = corpse->add_item(item);
             if (result.has_value()) {
                 Log::debug("Transferred equipped item '{}' to {}'s corpse", item->display_name(),
-                         actor->display_name());
+                           actor->display_name());
             } else {
-                Log::warn("Failed to add equipped item '{}' to corpse: {}",
-                         item->display_name(), result.error().message);
+                Log::warn("Failed to add equipped item '{}' to corpse: {}", item->display_name(),
+                          result.error().message);
                 room->add_object(item); // Drop in room if corpse full
             }
         }
@@ -731,10 +734,10 @@ void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> roo
             auto result = corpse->add_item(item);
             if (result.has_value()) {
                 Log::debug("Transferred inventory item '{}' to {}'s corpse", item->display_name(),
-                         actor->display_name());
+                           actor->display_name());
             } else {
-                Log::warn("Failed to add inventory item '{}' to corpse: {}",
-                         item->display_name(), result.error().message);
+                Log::warn("Failed to add inventory item '{}' to corpse: {}", item->display_name(),
+                          result.error().message);
                 room->add_object(item); // Drop in room if corpse full
             }
         }
@@ -746,8 +749,8 @@ void create_actor_corpse(std::shared_ptr<Actor> actor, std::shared_ptr<Room> roo
     // Check if corpse should fall (if in flying sector)
     World().check_and_handle_object_falling(corpse, room);
 
-    Log::info("Created corpse for {} with {} items in room {}",
-              actor->display_name(), corpse->current_capacity(), room->id());
+    Log::info("Created corpse for {} with {} items in room {}", actor->display_name(), corpse->current_capacity(),
+              room->id());
 }
 
 // =============================================================================
@@ -798,25 +801,25 @@ Result<CommandResult> cmd_rescue(const CommandContext &ctx) {
     // Base chance: 50% + (rescuer_level - enemy_level) * 2% + dexterity_bonus
     int rescuer_level = ctx.actor->stats().level;
     int enemy_level = enemy->stats().level;
-    int dex_bonus = (ctx.actor->stats().dexterity - 10) / 2;  // D&D-style modifier
+    int dex_bonus = (ctx.actor->stats().dexterity - 10) / 2; // D&D-style modifier
 
     int success_chance = 50 + (rescuer_level - enemy_level) * 2 + dex_bonus * 3;
-    success_chance = std::clamp(success_chance, 10, 95);  // Always 10-95% chance
+    success_chance = std::clamp(success_chance, 10, 95); // Always 10-95% chance
 
     static thread_local std::mt19937 gen{std::random_device{}()};
     std::uniform_int_distribution<> roll(1, 100);
 
     if (roll(gen) > success_chance) {
-        ctx.send(fmt::format("You fail to rescue {} from {}!",
-                            target->display_name(), enemy->display_name()));
-        ctx.send_to_room(fmt::format("{} attempts to rescue {} but fails!",
-                        ctx.actor->display_name(), target->display_name()), true);
+        ctx.send(fmt::format("You fail to rescue {} from {}!", target->display_name(), enemy->display_name()));
+        ctx.send_to_room(
+            fmt::format("{} attempts to rescue {} but fails!", ctx.actor->display_name(), target->display_name()),
+            true);
         // Failed rescue still provokes the enemy
         if (!FieryMUD::CombatManager::is_in_combat(*ctx.actor)) {
             ctx.actor->set_position(Position::Fighting);
             FieryMUD::CombatManager::start_combat(ctx.actor, enemy);
         }
-        return CommandResult::Success;  // Command executed, just failed the attempt
+        return CommandResult::Success; // Command executed, just failed the attempt
     }
 
     // End target's combat
@@ -831,8 +834,9 @@ Result<CommandResult> cmd_rescue(const CommandContext &ctx) {
     ctx.send(fmt::format("You rescue {} from {}!", target->display_name(), enemy->display_name()));
     ctx.send_to_actor(target, fmt::format("{} rescues you from {}!", ctx.actor->display_name(), enemy->display_name()));
     ctx.send_to_actor(enemy, fmt::format("{} rescues {} from you!", ctx.actor->display_name(), target->display_name()));
-    ctx.send_to_room(fmt::format("{} heroically rescues {} from {}!", ctx.actor->display_name(),
-                     target->display_name(), enemy->display_name()), true);
+    ctx.send_to_room(fmt::format("{} heroically rescues {} from {}!", ctx.actor->display_name(), target->display_name(),
+                                 enemy->display_name()),
+                     true);
 
     return CommandResult::Success;
 }
@@ -889,9 +893,11 @@ Result<CommandResult> cmd_assist(const CommandContext &ctx) {
 
     ctx.send(fmt::format("You assist {} against {}!", target->display_name(), enemy->display_name()));
     ctx.send_to_actor(target, fmt::format("{} joins the fight on your side!", ctx.actor->display_name()));
-    ctx.send_to_actor(enemy, fmt::format("{} assists {} against you!", ctx.actor->display_name(), target->display_name()));
-    ctx.send_to_room(fmt::format("{} assists {} against {}!", ctx.actor->display_name(),
-                     target->display_name(), enemy->display_name()), true);
+    ctx.send_to_actor(enemy,
+                      fmt::format("{} assists {} against you!", ctx.actor->display_name(), target->display_name()));
+    ctx.send_to_room(fmt::format("{} assists {} against {}!", ctx.actor->display_name(), target->display_name(),
+                                 enemy->display_name()),
+                     true);
 
     return CommandResult::Success;
 }
@@ -940,17 +946,9 @@ Result<CommandResult> cmd_backstab(const CommandContext &ctx) {
 // =============================================================================
 
 Result<void> register_commands() {
-    Commands()
-        .command("kill", cmd_kill)
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("kill", cmd_kill).category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("hit", cmd_hit)
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("hit", cmd_hit).category("Combat").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("cast", cmd_cast)
@@ -961,50 +959,20 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("abort", cmd_abort)
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("abort", cmd_abort).category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("flee", cmd_flee)
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("flee", cmd_flee).category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("release", cmd_release)
-        .category("Death")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("release", cmd_release).category("Death").privilege(PrivilegeLevel::Player).build();
 
     // Combat skill commands
-    Commands()
-        .command("rescue", cmd_rescue)
-        .alias("res")
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("rescue", cmd_rescue).alias("res").category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("assist", cmd_assist)
-        .alias("ass")
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("assist", cmd_assist).alias("ass").category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("kick", cmd_kick)
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("kick", cmd_kick).category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("bash", cmd_bash)
-        .category("Combat")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("bash", cmd_bash).category("Combat").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("backstab", cmd_backstab)

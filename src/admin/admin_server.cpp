@@ -1,10 +1,11 @@
 #include "admin_server.hpp"
-#include <fmt/format.h>
-#include <nlohmann/json.hpp>
-#include <spdlog/spdlog.h>
+
 #include <algorithm>
 #include <cstdlib>
+#include <fmt/format.h>
 #include <iostream>
+#include <nlohmann/json.hpp>
+#include <spdlog/spdlog.h>
 
 using json = nlohmann::json;
 using namespace asio;
@@ -12,26 +13,26 @@ using namespace asio::ip;
 
 // Admin server constants
 namespace {
-    // Buffer sizes
-    constexpr size_t HTTP_REQUEST_BUFFER_SIZE = 8192;
+// Buffer sizes
+constexpr size_t HTTP_REQUEST_BUFFER_SIZE = 8192;
 
-    // HTTP status codes
-    constexpr int HTTP_OK = 200;
-    constexpr int HTTP_BAD_REQUEST = 400;
-    constexpr int HTTP_UNAUTHORIZED = 401;
-    constexpr int HTTP_NOT_FOUND = 404;
-    constexpr int HTTP_INTERNAL_ERROR = 500;
+// HTTP status codes
+constexpr int HTTP_OK = 200;
+constexpr int HTTP_BAD_REQUEST = 400;
+constexpr int HTTP_UNAUTHORIZED = 401;
+constexpr int HTTP_NOT_FOUND = 404;
+constexpr int HTTP_INTERNAL_ERROR = 500;
 
-    // HTTP header parsing
-    constexpr size_t AUTH_BEARER_PREFIX_LEN = 22;  // Length of "Authorization: Bearer "
-}
+// HTTP header parsing
+constexpr size_t AUTH_BEARER_PREFIX_LEN = 22; // Length of "Authorization: Bearer "
+} // namespace
 
 namespace fierymud {
 
-AdminServer::AdminServer(uint16_t port, const std::string& bind_address)
+AdminServer::AdminServer(uint16_t port, const std::string &bind_address)
     : port_(port), bind_address_(bind_address), running_(false) {
     // Load authentication token from environment
-    const char* token_env = std::getenv("FIERYMUD_ADMIN_TOKEN");
+    const char *token_env = std::getenv("FIERYMUD_ADMIN_TOKEN");
     if (token_env) {
         auth_token_ = token_env;
     } else {
@@ -41,9 +42,7 @@ AdminServer::AdminServer(uint16_t port, const std::string& bind_address)
     }
 }
 
-AdminServer::~AdminServer() {
-    stop();
-}
+AdminServer::~AdminServer() { stop(); }
 
 void AdminServer::start() {
     if (running_.load()) {
@@ -55,8 +54,8 @@ void AdminServer::start() {
     io_context_ = std::make_unique<io_context>();
 
     // Create acceptor
-    acceptor_ = std::make_unique<tcp::acceptor>(*io_context_,
-        tcp::endpoint(asio::ip::make_address(bind_address_), port_));
+    acceptor_ =
+        std::make_unique<tcp::acceptor>(*io_context_, tcp::endpoint(asio::ip::make_address(bind_address_), port_));
     acceptor_->set_option(socket_base::reuse_address(true));
 
     spdlog::info("Starting admin server on {}:{}", bind_address_, port_);
@@ -74,7 +73,7 @@ void AdminServer::start() {
 
 void AdminServer::stop() {
     if (!running_.exchange(false)) {
-        return;  // Already stopped
+        return; // Already stopped
     }
 
     spdlog::info("Stopping admin server...");
@@ -96,7 +95,7 @@ void AdminServer::stop() {
     spdlog::info("Admin server stopped");
 }
 
-void AdminServer::register_handler(const std::string& path, CommandHandler handler) {
+void AdminServer::register_handler(const std::string &path, CommandHandler handler) {
     handlers_[path] = std::move(handler);
     spdlog::debug("Registered admin handler for path: {}", path);
 }
@@ -108,12 +107,12 @@ void AdminServer::start_accept() {
 
     auto socket = std::make_shared<tcp::socket>(*io_context_);
 
-    acceptor_->async_accept(*socket, [this, socket](const std::error_code& ec) {
+    acceptor_->async_accept(*socket, [this, socket](const std::error_code &ec) {
         if (ec) {
             if (ec != asio::error::operation_aborted && running_.load()) {
                 spdlog::error("Admin server accept error: {}", ec.message());
             }
-            return;  // Don't continue accepting on error
+            return; // Don't continue accepting on error
         }
 
         // Handle connection in the io_context thread (no need for separate thread)
@@ -146,8 +145,9 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
         if (!auth_token_.empty()) {
             size_t auth_pos = request.find("Authorization: Bearer ");
             if (auth_pos == std::string::npos) {
-                std::string response = build_response(HTTP_UNAUTHORIZED, "application/json",
-                    R"({"error": "Unauthorized", "message": "Missing authentication token"})");
+                std::string response =
+                    build_response(HTTP_UNAUTHORIZED, "application/json",
+                                   R"({"error": "Unauthorized", "message": "Missing authentication token"})");
                 asio::write(*socket, asio::buffer(response), ec);
                 return;
             }
@@ -157,8 +157,9 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
             std::string provided_token = request.substr(token_start, token_end - token_start);
 
             if (provided_token != auth_token_) {
-                std::string response = build_response(HTTP_UNAUTHORIZED, "application/json",
-                    R"({"error": "Unauthorized", "message": "Invalid authentication token"})");
+                std::string response =
+                    build_response(HTTP_UNAUTHORIZED, "application/json",
+                                   R"({"error": "Unauthorized", "message": "Invalid authentication token"})");
                 asio::write(*socket, asio::buffer(response), ec);
                 return;
             }
@@ -171,20 +172,15 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
                 std::string response_body = handler_it->second(path, body);
                 std::string response = build_response(HTTP_OK, "application/json", response_body);
                 asio::write(*socket, asio::buffer(response), ec);
-            } catch (const std::exception& e) {
+            } catch (const std::exception &e) {
                 spdlog::error("Handler error for {}: {}", path, e.what());
-                json error_json = {
-                    {"error", "Internal Server Error"},
-                    {"message", e.what()}
-                };
+                json error_json = {{"error", "Internal Server Error"}, {"message", e.what()}};
                 std::string response = build_response(HTTP_INTERNAL_ERROR, "application/json", error_json.dump());
                 asio::write(*socket, asio::buffer(response), ec);
             }
         } else {
-            json error_json = {
-                {"error", "Not Found"},
-                {"message", fmt::format("No handler registered for path: {}", path)}
-            };
+            json error_json = {{"error", "Not Found"},
+                               {"message", fmt::format("No handler registered for path: {}", path)}};
             std::string response = build_response(HTTP_NOT_FOUND, "application/json", error_json.dump());
             asio::write(*socket, asio::buffer(response), ec);
         }
@@ -192,12 +188,12 @@ void AdminServer::handle_connection(std::shared_ptr<tcp::socket> socket) {
         socket->shutdown(tcp::socket::shutdown_both, ec);
         socket->close(ec);
 
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         spdlog::error("Error handling admin connection: {}", e.what());
     }
 }
 
-std::string AdminServer::parse_request(const std::string& request, std::string& path, std::string& body) {
+std::string AdminServer::parse_request(const std::string &request, std::string &path, std::string &body) {
     // Simple HTTP parser - just extract method, path, and body
     size_t method_end = request.find(' ');
     std::string method = request.substr(0, method_end);
@@ -215,15 +211,27 @@ std::string AdminServer::parse_request(const std::string& request, std::string& 
     return method;
 }
 
-std::string AdminServer::build_response(int status_code, const std::string& content_type, const std::string& body) {
+std::string AdminServer::build_response(int status_code, const std::string &content_type, const std::string &body) {
     std::string status_text;
     switch (status_code) {
-        case HTTP_OK: status_text = "OK"; break;
-        case HTTP_BAD_REQUEST: status_text = "Bad Request"; break;
-        case HTTP_UNAUTHORIZED: status_text = "Unauthorized"; break;
-        case HTTP_NOT_FOUND: status_text = "Not Found"; break;
-        case HTTP_INTERNAL_ERROR: status_text = "Internal Server Error"; break;
-        default: status_text = "Unknown"; break;
+    case HTTP_OK:
+        status_text = "OK";
+        break;
+    case HTTP_BAD_REQUEST:
+        status_text = "Bad Request";
+        break;
+    case HTTP_UNAUTHORIZED:
+        status_text = "Unauthorized";
+        break;
+    case HTTP_NOT_FOUND:
+        status_text = "Not Found";
+        break;
+    case HTTP_INTERNAL_ERROR:
+        status_text = "Internal Server Error";
+        break;
+    default:
+        status_text = "Unknown";
+        break;
     }
 
     return fmt::format(
@@ -235,20 +243,19 @@ std::string AdminServer::build_response(int status_code, const std::string& cont
         "Access-Control-Allow-Headers: Content-Type, Authorization\r\n"
         "\r\n"
         "{}",
-        status_code, status_text, content_type, body.size(), body
-    );
+        status_code, status_text, content_type, body.size(), body);
 }
 
 // Helper functions for zone reload
 
-ReloadZoneRequest parse_reload_request(const std::string& json_str) {
+ReloadZoneRequest parse_reload_request(const std::string &json_str) {
     ReloadZoneRequest request;
 
     try {
         json j = json::parse(json_str);
         request.zone_id = j.value("zone_id", 0);
         request.force = j.value("force", false);
-    } catch (const json::exception& e) {
+    } catch (const json::exception &e) {
         spdlog::error("Failed to parse reload request: {}", e.what());
         throw std::runtime_error(fmt::format("Invalid JSON: {}", e.what()));
     }
@@ -256,13 +263,11 @@ ReloadZoneRequest parse_reload_request(const std::string& json_str) {
     return request;
 }
 
-std::string serialize_reload_response(const ReloadZoneResponse& response) {
-    json j = {
-        {"success", response.success},
-        {"message", response.message},
-        {"zones_reloaded", response.zones_reloaded},
-        {"errors", response.errors}
-    };
+std::string serialize_reload_response(const ReloadZoneResponse &response) {
+    json j = {{"success", response.success},
+              {"message", response.message},
+              {"zones_reloaded", response.zones_reloaded},
+              {"errors", response.errors}};
 
     return j.dump();
 }

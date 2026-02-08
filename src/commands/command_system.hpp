@@ -186,8 +186,7 @@ struct CommandContext {
      * @param search_room Whether to also search the current room
      * @return Vector of matching objects (may be empty, one item, or multiple)
      */
-    std::vector<std::shared_ptr<Object>> find_objects_matching(
-        std::string_view name, bool search_room = false) const;
+    std::vector<std::shared_ptr<Object>> find_objects_matching(std::string_view name, bool search_room = false) const;
 
     // Target resolution
     TargetInfo resolve_target(std::string_view name) const;
@@ -210,27 +209,27 @@ struct CommandContext {
     void act_to_char(std::string_view message) const;
     void act_to_room(std::string_view message, bool exclude_actor = true) const;
     void act_to_target(std::shared_ptr<Actor> target, std::string_view message) const;
-    void act(std::string_view message, std::shared_ptr<Actor> target = nullptr, ActTarget type = ActTarget::ToAll) const;
-    
+    void act(std::string_view message, std::shared_ptr<Actor> target = nullptr,
+             ActTarget type = ActTarget::ToAll) const;
+
     // Variable substitution support
     std::string substitute_variables(std::string_view message, std::shared_ptr<Actor> target = nullptr) const;
-    
+
     // Social message execution helper
-    Result<CommandResult> execute_social(const SocialMessage& social, std::string_view target_name = "") const;
+    Result<CommandResult> execute_social(const SocialMessage &social, std::string_view target_name = "") const;
 
     // Rich text formatting methods (requires #include "rich_text.hpp")
-    void send_rich(const RichText& rich_text) const;
+    void send_rich(const RichText &rich_text) const;
     void send_colored(std::string_view message, Color color) const;
     void send_progress_bar(std::string_view label, float percentage, int width = 20) const;
-    void send_table(const std::vector<std::string>& headers, 
-                   const std::vector<std::vector<std::string>>& rows) const;
-    
+    void send_table(const std::vector<std::string> &headers, const std::vector<std::vector<std::string>> &rows) const;
+
     // Semantic formatting helpers
     void send_health_status(int current, int max) const;
     void send_damage_report(int amount, std::string_view source = "") const;
     void send_healing_report(int amount, std::string_view source = "") const;
     void send_object_description(std::string_view name, std::string_view quality = "common") const;
-    
+
     // UI element helpers
     void send_header(std::string_view title, char border_char = '=') const;
     void send_separator(char ch = '-', int width = 60) const;

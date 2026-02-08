@@ -1,17 +1,19 @@
 #define SOL_ALL_SAFETIES_ON 1
 #include "script_timer_manager.hpp"
+
 #include "../core/logging.hpp"
+
 #include <vector>
 
 namespace FieryMUD {
 
-ScriptTimerManager& ScriptTimerManager::instance() {
+ScriptTimerManager &ScriptTimerManager::instance() {
     static ScriptTimerManager instance;
     return instance;
 }
 
-std::expected<std::uint64_t, TimerError> ScriptTimerManager::schedule(
-    double delay_seconds, sol::protected_function callback) {
+std::expected<std::uint64_t, TimerError> ScriptTimerManager::schedule(double delay_seconds,
+                                                                      sol::protected_function callback) {
 
     if (delay_seconds < 0) {
         return std::unexpected(TimerError{"Delay must be non-negative"});
@@ -27,15 +29,14 @@ std::expected<std::uint64_t, TimerError> ScriptTimerManager::schedule(
 
     TimerEntry entry;
     entry.id = timer_id;
-    entry.expires_at = std::chrono::steady_clock::now() +
-        std::chrono::duration_cast<std::chrono::steady_clock::duration>(
-            std::chrono::duration<double>(delay_seconds));
+    entry.expires_at =
+        std::chrono::steady_clock::now() +
+        std::chrono::duration_cast<std::chrono::steady_clock::duration>(std::chrono::duration<double>(delay_seconds));
     entry.callback = std::move(callback);
 
     timers_[timer_id] = std::move(entry);
 
-    Log::debug("Timer scheduled: id={}, delay={}s, pending={}",
-               timer_id, delay_seconds, timers_.size());
+    Log::debug("Timer scheduled: id={}, delay={}s, pending={}", timer_id, delay_seconds, timers_.size());
 
     return timer_id;
 }
@@ -63,7 +64,7 @@ void ScriptTimerManager::tick() {
         auto now = std::chrono::steady_clock::now();
         std::vector<std::uint64_t> to_remove;
 
-        for (auto& [id, entry] : timers_) {
+        for (auto &[id, entry] : timers_) {
             if (entry.expires_at <= now) {
                 expired.push_back(std::move(entry));
                 to_remove.push_back(id);
@@ -77,23 +78,20 @@ void ScriptTimerManager::tick() {
     }
 
     // Execute callbacks outside the lock
-    for (auto& entry : expired) {
+    for (auto &entry : expired) {
         try {
             auto result = entry.callback();
             if (!result.valid()) {
                 sol::error err = result;
-                Log::error("Timer callback error (id={}): {}",
-                          entry.id, err.what());
+                Log::error("Timer callback error (id={}): {}", entry.id, err.what());
             }
-        } catch (const std::exception& e) {
-            Log::error("Timer callback exception (id={}): {}",
-                      entry.id, e.what());
+        } catch (const std::exception &e) {
+            Log::error("Timer callback exception (id={}): {}", entry.id, e.what());
         }
     }
 
     if (!expired.empty()) {
-        Log::debug("Executed {} timers, {} remaining",
-                   expired.size(), pending_count());
+        Log::debug("Executed {} timers, {} remaining", expired.size(), pending_count());
     }
 }
 

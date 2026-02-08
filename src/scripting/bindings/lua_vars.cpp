@@ -1,12 +1,12 @@
 #include "lua_vars.hpp"
+
 #include "../../core/actor.hpp"
+#include "../../core/entity_var_store.hpp"
 #include "../../core/object.hpp"
 #include "../../world/room.hpp"
-#include "../../core/entity_var_store.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
-
 #include <spdlog/spdlog.h>
 
 namespace FieryMUD {
@@ -16,21 +16,24 @@ namespace {
 // Get entity ID from various entity types
 std::optional<EntityId> get_entity_id(sol::object entity) {
     // Try as Actor pointer
-    if (entity.is<Actor*>()) {
-        auto* actor = entity.as<Actor*>();
-        if (actor) return actor->id();
+    if (entity.is<Actor *>()) {
+        auto *actor = entity.as<Actor *>();
+        if (actor)
+            return actor->id();
     }
 
     // Try as shared_ptr<Room>
     if (entity.is<std::shared_ptr<Room>>()) {
         auto room = entity.as<std::shared_ptr<Room>>();
-        if (room) return room->id();
+        if (room)
+            return room->id();
     }
 
     // Try as shared_ptr<Object>
     if (entity.is<std::shared_ptr<Object>>()) {
         auto obj = entity.as<std::shared_ptr<Object>>();
-        if (obj) return obj->id();
+        if (obj)
+            return obj->id();
     }
 
     return std::nullopt;
@@ -53,7 +56,7 @@ nlohmann::json lua_to_json(sol::object value) {
         int expected_index = 1;
 
         // Check if it's an array (sequential integer keys starting at 1)
-        for (auto& [k, v] : tbl) {
+        for (auto &[k, v] : tbl) {
             if (!k.is<int>() || k.as<int>() != expected_index) {
                 is_array = false;
                 break;
@@ -63,20 +66,20 @@ nlohmann::json lua_to_json(sol::object value) {
 
         if (is_array) {
             nlohmann::json arr = nlohmann::json::array();
-            for (auto& [k, v] : tbl) {
+            for (auto &[k, v] : tbl) {
                 arr.push_back(lua_to_json(v));
             }
             return arr;
         } else {
             nlohmann::json obj = nlohmann::json::object();
-            for (auto& [k, v] : tbl) {
+            for (auto &[k, v] : tbl) {
                 std::string key;
                 if (k.is<std::string>()) {
                     key = k.as<std::string>();
                 } else if (k.is<int>()) {
                     key = std::to_string(k.as<int>());
                 } else {
-                    continue;  // Skip non-string/int keys
+                    continue; // Skip non-string/int keys
                 }
                 obj[key] = lua_to_json(v);
             }
@@ -87,7 +90,7 @@ nlohmann::json lua_to_json(sol::object value) {
 }
 
 // Convert JSON to Lua value
-sol::object json_to_lua(sol::state& lua, const nlohmann::json& json) {
+sol::object json_to_lua(sol::state &lua, const nlohmann::json &json) {
     if (json.is_boolean()) {
         return sol::make_object(lua, json.get<bool>());
     } else if (json.is_number_integer()) {
@@ -99,13 +102,13 @@ sol::object json_to_lua(sol::state& lua, const nlohmann::json& json) {
     } else if (json.is_array()) {
         sol::table tbl = lua.create_table();
         int index = 1;
-        for (const auto& item : json) {
+        for (const auto &item : json) {
             tbl[index++] = json_to_lua(lua, item);
         }
         return tbl;
     } else if (json.is_object()) {
         sol::table tbl = lua.create_table();
-        for (auto& [key, val] : json.items()) {
+        for (auto &[key, val] : json.items()) {
             tbl[key] = json_to_lua(lua, val);
         }
         return tbl;
@@ -115,12 +118,12 @@ sol::object json_to_lua(sol::state& lua, const nlohmann::json& json) {
 
 } // anonymous namespace
 
-void register_var_bindings(sol::state& lua) {
+void register_var_bindings(sol::state &lua) {
     auto vars_table = lua.create_named_table("vars");
 
     // vars.set(entity, key, value) - Set a variable on an entity
     // Returns: void
-    vars_table["set"] = [](sol::object entity, const std::string& key, sol::object value) {
+    vars_table["set"] = [](sol::object entity, const std::string &key, sol::object value) {
         if (key.empty()) {
             spdlog::warn("vars.set: empty key");
             return;
@@ -140,7 +143,7 @@ void register_var_bindings(sol::state& lua) {
 
     // vars.get(entity, key) - Get a variable from an entity
     // Returns: any (or nil if not found)
-    vars_table["get"] = [&lua](sol::object entity, const std::string& key) -> sol::object {
+    vars_table["get"] = [&lua](sol::object entity, const std::string &key) -> sol::object {
         if (key.empty()) {
             return sol::nil;
         }
@@ -160,7 +163,7 @@ void register_var_bindings(sol::state& lua) {
 
     // vars.has(entity, key) - Check if entity has a variable
     // Returns: bool
-    vars_table["has"] = [](sol::object entity, const std::string& key) -> bool {
+    vars_table["has"] = [](sol::object entity, const std::string &key) -> bool {
         if (key.empty()) {
             return false;
         }
@@ -175,7 +178,7 @@ void register_var_bindings(sol::state& lua) {
 
     // vars.clear(entity, key) - Remove a variable from an entity
     // Returns: void
-    vars_table["clear"] = [](sol::object entity, const std::string& key) {
+    vars_table["clear"] = [](sol::object entity, const std::string &key) {
         if (key.empty()) {
             return;
         }
@@ -200,7 +203,7 @@ void register_var_bindings(sol::state& lua) {
         }
 
         auto vars = EntityVarStore::instance().all(*entity_id);
-        for (const auto& [key, value] : vars) {
+        for (const auto &[key, value] : vars) {
             result[key] = json_to_lua(lua, value);
         }
 

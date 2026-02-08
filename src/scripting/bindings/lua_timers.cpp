@@ -1,14 +1,14 @@
 #define SOL_ALL_SAFETIES_ON 1
-#include <sol/sol.hpp>
-
 #include "lua_timers.hpp"
+
 #include "../script_timer_manager.hpp"
 
+#include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 
-void register_timer_bindings(sol::state& lua) {
+void register_timer_bindings(sol::state &lua) {
     auto timers_table = lua.create_named_table("timers");
 
     // timers.after(seconds, callback) - Execute callback after delay
@@ -22,10 +22,10 @@ void register_timer_bindings(sol::state& lua) {
 
         // Clamp delay to reasonable bounds
         constexpr double MIN_DELAY = 0.1;
-        constexpr double MAX_DELAY = 3600.0;  // 1 hour max
+        constexpr double MAX_DELAY = 3600.0; // 1 hour max
         seconds = std::clamp(seconds, MIN_DELAY, MAX_DELAY);
 
-        auto& timer_manager = ScriptTimerManager::instance();
+        auto &timer_manager = ScriptTimerManager::instance();
         auto result = timer_manager.schedule(seconds, std::move(callback));
 
         if (!result) {
@@ -39,7 +39,7 @@ void register_timer_bindings(sol::state& lua) {
     // timers.cancel(timer_id) - Cancel a pending timer
     // Returns: bool (true if cancelled, false if not found)
     timers_table["cancel"] = [](std::uint64_t timer_id) -> bool {
-        auto& timer_manager = ScriptTimerManager::instance();
+        auto &timer_manager = ScriptTimerManager::instance();
         bool cancelled = timer_manager.cancel(timer_id);
 
         if (cancelled) {

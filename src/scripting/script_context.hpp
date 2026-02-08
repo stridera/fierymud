@@ -1,8 +1,8 @@
 #pragma once
 
-#include "triggers/trigger_data.hpp"
 #include "core/actor.hpp"
 #include "core/object.hpp"
+#include "triggers/trigger_data.hpp"
 #include "world/room.hpp"
 
 #include <memory>
@@ -23,85 +23,81 @@ namespace FieryMUD {
  * Contexts are short-lived and created fresh for each trigger execution.
  */
 class ScriptContext {
-public:
+  public:
     /// The entity that owns the trigger (mob, object, or room for world triggers)
-    using OwnerVariant = std::variant<
-        std::shared_ptr<Actor>,
-        std::shared_ptr<Object>,
-        std::shared_ptr<Room>
-    >;
+    using OwnerVariant = std::variant<std::shared_ptr<Actor>, std::shared_ptr<Object>, std::shared_ptr<Room>>;
 
     /// Builder pattern for creating contexts
     class Builder {
-    public:
-        Builder& set_trigger(TriggerDataPtr trigger) {
+      public:
+        Builder &set_trigger(TriggerDataPtr trigger) {
             trigger_ = std::move(trigger);
             return *this;
         }
 
-        Builder& set_owner(std::shared_ptr<Actor> owner) {
+        Builder &set_owner(std::shared_ptr<Actor> owner) {
             owner_ = std::move(owner);
             return *this;
         }
 
-        Builder& set_owner(std::shared_ptr<Object> owner) {
+        Builder &set_owner(std::shared_ptr<Object> owner) {
             owner_ = std::move(owner);
             return *this;
         }
 
-        Builder& set_owner(std::shared_ptr<Room> owner) {
+        Builder &set_owner(std::shared_ptr<Room> owner) {
             owner_ = std::move(owner);
             return *this;
         }
 
-        Builder& set_actor(std::shared_ptr<Actor> actor) {
+        Builder &set_actor(std::shared_ptr<Actor> actor) {
             actor_ = std::move(actor);
             return *this;
         }
 
-        Builder& set_target(std::shared_ptr<Actor> target) {
+        Builder &set_target(std::shared_ptr<Actor> target) {
             target_ = std::move(target);
             return *this;
         }
 
-        Builder& set_object(std::shared_ptr<Object> object) {
+        Builder &set_object(std::shared_ptr<Object> object) {
             object_ = std::move(object);
             return *this;
         }
 
-        Builder& set_room(std::shared_ptr<Room> room) {
+        Builder &set_room(std::shared_ptr<Room> room) {
             room_ = std::move(room);
             return *this;
         }
 
-        Builder& set_command(std::string_view command) {
+        Builder &set_command(std::string_view command) {
             command_ = std::string{command};
             return *this;
         }
 
-        Builder& set_argument(std::string_view argument) {
+        Builder &set_argument(std::string_view argument) {
             argument_ = std::string{argument};
             return *this;
         }
 
-        Builder& set_speech(std::string_view speech) {
+        Builder &set_speech(std::string_view speech) {
             speech_ = std::string{speech};
             return *this;
         }
 
-        Builder& set_direction(Direction dir) {
+        Builder &set_direction(Direction dir) {
             direction_ = dir;
             return *this;
         }
 
-        Builder& set_amount(int amount) {
+        Builder &set_amount(int amount) {
             amount_ = amount;
             return *this;
         }
 
         [[nodiscard]] ScriptContext build() const;
 
-    private:
+      private:
         TriggerDataPtr trigger_;
         std::optional<OwnerVariant> owner_;
         std::shared_ptr<Actor> actor_;
@@ -121,7 +117,7 @@ public:
     [[nodiscard]] TriggerDataPtr trigger() const { return trigger_; }
 
     /// The owner of the trigger (self in scripts)
-    [[nodiscard]] const std::optional<OwnerVariant>& owner() const { return owner_; }
+    [[nodiscard]] const std::optional<OwnerVariant> &owner() const { return owner_; }
 
     /// The actor that triggered the event (player/mob who did something)
     [[nodiscard]] std::shared_ptr<Actor> actor() const { return actor_; }
@@ -176,7 +172,7 @@ public:
         return nullptr;
     }
 
-private:
+  private:
     friend class Builder;
 
     TriggerDataPtr trigger_;

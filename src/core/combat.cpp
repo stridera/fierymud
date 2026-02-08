@@ -1,19 +1,21 @@
 #include "combat.hpp"
-#include "actor.hpp"
-#include "ability_executor.hpp"
-#include "logging.hpp"
-#include "money.hpp"
+
 #include "../game/composer_system.hpp"
 #include "../scripting/coroutine_scheduler.hpp"
 #include "../scripting/trigger_manager.hpp"
 #include "../text/text_format.hpp"
 #include "../world/room.hpp"
-#include <random>
+#include "ability_executor.hpp"
+#include "actor.hpp"
+#include "logging.hpp"
+#include "money.hpp"
+
 #include <algorithm>
-#include <unordered_map>
-#include <unordered_set>
 #include <fmt/format.h>
 #include <magic_enum/magic_enum.hpp>
+#include <random>
+#include <unordered_map>
+#include <unordered_set>
 
 namespace FieryMUD {
 
@@ -32,7 +34,7 @@ static thread_local std::mt19937 gen(rd());
 // ============================================================================
 
 /** Check if an actor has ShowDiceRolls preference enabled */
-static bool wants_dice_details(const std::shared_ptr<Actor>& actor) {
+static bool wants_dice_details(const std::shared_ptr<Actor> &actor) {
     if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
         return player->is_show_dice_rolls();
     }
@@ -53,55 +55,48 @@ struct MitigationDetails {
 /** Get color tag based on hit result */
 static std::string_view get_dice_color(HitResult hit_result) {
     switch (hit_result) {
-        case HitResult::Critical: return "<b:red>";
-        case HitResult::Hit:      return "<yellow>";
-        case HitResult::Glancing: return "<dim>";
-        case HitResult::Miss:     return "<cyan>";
-        default:                  return "<dim>";
+    case HitResult::Critical:
+        return "<b:red>";
+    case HitResult::Hit:
+        return "<yellow>";
+    case HitResult::Glancing:
+        return "<dim>";
+    case HitResult::Miss:
+        return "<cyan>";
+    default:
+        return "<dim>";
     }
 }
 
 /** Format attack roll details line */
-static std::string format_roll_details(const HitCalcResult& hit_calc,
-                                       const CombatStats& attacker_stats,
-                                       const CombatStats& defender_stats,
-                                       HitResult result) {
+static std::string format_roll_details(const HitCalcResult &hit_calc, const CombatStats &attacker_stats,
+                                       const CombatStats &defender_stats, HitResult result) {
     auto color = get_dice_color(result);
-    return fmt::format("\r\n  {}[Roll: {}+{:.0f}={:.0f} vs {}+{:.0f}={:.0f}, margin {:+d}]</>",
-        color,
-        hit_calc.attacker_roll, attacker_stats.acc, hit_calc.attacker_total,
-        hit_calc.defender_roll, defender_stats.eva, hit_calc.defender_total,
-        hit_calc.margin);
+    return fmt::format("\r\n  {}[Roll: {}+{:.0f}={:.0f} vs {}+{:.0f}={:.0f}, margin {:+d}]</>", color,
+                       hit_calc.attacker_roll, attacker_stats.acc, hit_calc.attacker_total, hit_calc.defender_roll,
+                       defender_stats.eva, hit_calc.defender_total, hit_calc.margin);
 }
 
 /** Format damage mitigation breakdown line */
-static std::string format_mitigation_details(const MitigationDetails& mit, HitResult result) {
+static std::string format_mitigation_details(const MitigationDetails &mit, HitResult result) {
     auto color = get_dice_color(result);
 
     if (result == HitResult::Glancing) {
-        return fmt::format("\r\n  {}[Base: {:.0f} -> Soak: -{:.0f} -> DR: {:.0f}% -> x{:.1f} glance -> Final: {:.0f}]</>",
-            color,
-            mit.damage_before_mitigation,
-            mit.effective_soak,
-            mit.effective_dr_percent * 100,
-            mit.glancing_multiplier,
+        return fmt::format(
+            "\r\n  {}[Base: {:.0f} -> Soak: -{:.0f} -> DR: {:.0f}% -> x{:.1f} glance -> Final: {:.0f}]</>", color,
+            mit.damage_before_mitigation, mit.effective_soak, mit.effective_dr_percent * 100, mit.glancing_multiplier,
             mit.final_damage);
     }
 
-    return fmt::format("\r\n  {}[Base: {:.0f} -> Soak: -{:.0f} -> DR: {:.0f}% -> Final: {:.0f}]</>",
-        color,
-        mit.damage_before_mitigation,
-        mit.effective_soak,
-        mit.effective_dr_percent * 100,
-        mit.final_damage);
+    return fmt::format("\r\n  {}[Base: {:.0f} -> Soak: -{:.0f} -> DR: {:.0f}% -> Final: {:.0f}]</>", color,
+                       mit.damage_before_mitigation, mit.effective_soak, mit.effective_dr_percent * 100,
+                       mit.final_damage);
 }
 
 /** Calculate mitigation details for ShowDiceRolls display */
-static MitigationDetails calculate_mitigation_details(double raw_damage,
-                                                       const CombatStats& attacker_stats,
-                                                       const CombatStats& defender_stats,
-                                                       double final_damage,
-                                                       HitResult hit_result) {
+static MitigationDetails calculate_mitigation_details(double raw_damage, const CombatStats &attacker_stats,
+                                                      const CombatStats &defender_stats, double final_damage,
+                                                      HitResult hit_result) {
     MitigationDetails mit;
     mit.damage_before_mitigation = raw_damage;
     mit.final_damage = final_damage;
@@ -130,7 +125,8 @@ static MitigationDetails calculate_mitigation_details(double raw_damage,
 // ============================================================================
 
 double CombatStats::calculate_dr_percent(double ar, int level) {
-    if (ar <= 0) return 0.0;
+    if (ar <= 0)
+        return 0.0;
 
     double k = get_dr_k_constant(level);
     double dr = ar / (ar + k);
@@ -149,7 +145,7 @@ double CombatStats::get_dr_k_constant(int level) {
     }
 }
 
-CombatStats CombatStats::operator+(const CombatStats& other) const {
+CombatStats CombatStats::operator+(const CombatStats &other) const {
     CombatStats result;
 
     // Offensive stats (additive)
@@ -209,16 +205,16 @@ double CombatSystem::roll_damage(int num_dice, int dice_size, int bonus) {
     return total + bonus;
 }
 
-CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
+CombatStats CombatSystem::calculate_combat_stats(const Actor &actor) {
     CombatStats stats;
-    const Stats& actor_stats = actor.stats();
+    const Stats &actor_stats = actor.stats();
     int level = actor_stats.level;
 
     // Base ACC from level
     stats.acc = CombatConstants::ACC_BASE;
 
     // Class-specific ACC rate
-    if (const auto* player = dynamic_cast<const Player*>(&actor)) {
+    if (const auto *player = dynamic_cast<const Player *>(&actor)) {
         CharacterClass char_class = string_to_class(player->player_class());
         double acc_rate = get_class_acc_rate(char_class);
         stats.acc += level * acc_rate;
@@ -256,19 +252,19 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     stats.eva += actor_stats.evasion;
 
     // Add skill contributions (dodge, parry, riposte) from player abilities
-    if (const auto* player = dynamic_cast<const Player*>(&actor)) {
-        auto& cache = AbilityCache::instance();
+    if (const auto *player = dynamic_cast<const Player *>(&actor)) {
+        auto &cache = AbilityCache::instance();
 
         // Look up skill abilities and get proficiency
-        if (const auto* dodge = cache.get_ability_by_name("dodge")) {
+        if (const auto *dodge = cache.get_ability_by_name("dodge")) {
             int dodge_skill = player->get_proficiency(dodge->id);
             stats.eva += dodge_skill * CombatConstants::DODGE_TO_EVA;
         }
-        if (const auto* parry = cache.get_ability_by_name("parry")) {
+        if (const auto *parry = cache.get_ability_by_name("parry")) {
             int parry_skill = player->get_proficiency(parry->id);
             stats.eva += parry_skill * CombatConstants::PARRY_TO_EVA;
         }
-        if (const auto* riposte = cache.get_ability_by_name("riposte")) {
+        if (const auto *riposte = cache.get_ability_by_name("riposte")) {
             int riposte_skill = player->get_proficiency(riposte->id);
             stats.eva += riposte_skill * CombatConstants::RIPOSTE_TO_EVA;
         }
@@ -291,7 +287,7 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     stats.dr_pct += CombatStats::calculate_dr_percent(stats.ar, level);
 
     // Get weapon stats from mob if applicable
-    if (const auto* mobile = dynamic_cast<const Mobile*>(&actor)) {
+    if (const auto *mobile = dynamic_cast<const Mobile *>(&actor)) {
         stats.weapon_dice_num = mobile->bare_hand_damage_dice_num();
         stats.weapon_dice_size = mobile->bare_hand_damage_dice_size();
         stats.weapon_base_damage = mobile->bare_hand_damage_dice_bonus();
@@ -307,7 +303,7 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
     }
 
     // Check for equipped weapon and get its speed
-    if (const auto* player = dynamic_cast<const Player*>(&actor)) {
+    if (const auto *player = dynamic_cast<const Player *>(&actor)) {
         auto weapon = player->equipment().get_equipped(EquipSlot::Wield);
         if (weapon) {
             // Get weapon damage dice from the weapon
@@ -338,16 +334,16 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor& actor) {
 
 double CombatSystem::get_class_acc_rate(CharacterClass character_class) {
     switch (character_class) {
-        case CharacterClass::Warrior:
-            return ClassAccRates::WARRIOR;
-        case CharacterClass::Rogue:
-            return ClassAccRates::ROGUE;
-        case CharacterClass::Cleric:
-            return ClassAccRates::CLERIC;
-        case CharacterClass::Sorcerer:
-            return ClassAccRates::SORCERER;
-        default:
-            return 0.5; // Default moderate rate
+    case CharacterClass::Warrior:
+        return ClassAccRates::WARRIOR;
+    case CharacterClass::Rogue:
+        return ClassAccRates::ROGUE;
+    case CharacterClass::Cleric:
+        return ClassAccRates::CLERIC;
+    case CharacterClass::Sorcerer:
+        return ClassAccRates::SORCERER;
+    default:
+        return 0.5; // Default moderate rate
     }
 }
 
@@ -355,50 +351,48 @@ CombatStats CombatSystem::get_race_combat_bonus(CharacterRace race) {
     CombatStats bonus;
 
     switch (race) {
-        case CharacterRace::Human:
-            // Versatile - small bonuses
-            bonus.acc = 2.0;
-            bonus.eva = 2.0;
-            bonus.ap = 1.0;
-            break;
+    case CharacterRace::Human:
+        // Versatile - small bonuses
+        bonus.acc = 2.0;
+        bonus.eva = 2.0;
+        bonus.ap = 1.0;
+        break;
 
-        case CharacterRace::Elf:
-            // Dexterous - high EVA, crit bonus
-            bonus.acc = 3.0;
-            bonus.eva = 5.0;
-            bonus.crit_bonus = 5.0;  // +5 to critical margin
-            break;
+    case CharacterRace::Elf:
+        // Dexterous - high EVA, crit bonus
+        bonus.acc = 3.0;
+        bonus.eva = 5.0;
+        bonus.crit_bonus = 5.0; // +5 to critical margin
+        break;
 
-        case CharacterRace::Dwarf:
-            // Tough - high AR/DR, damage resistance
-            bonus.acc = 0.0;
-            bonus.eva = -2.0;
-            bonus.ap = 3.0;
-            bonus.ar = 10.0;
-            bonus.res_physical = 90.0;  // 10% physical resistance
-            break;
+    case CharacterRace::Dwarf:
+        // Tough - high AR/DR, damage resistance
+        bonus.acc = 0.0;
+        bonus.eva = -2.0;
+        bonus.ap = 3.0;
+        bonus.ar = 10.0;
+        bonus.res_physical = 90.0; // 10% physical resistance
+        break;
 
-        case CharacterRace::Halfling:
-            // Lucky and evasive
-            bonus.acc = 2.0;
-            bonus.eva = 8.0;
-            bonus.crit_bonus = 3.0;
-            break;
+    case CharacterRace::Halfling:
+        // Lucky and evasive
+        bonus.acc = 2.0;
+        bonus.eva = 8.0;
+        bonus.crit_bonus = 3.0;
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 
     return bonus;
 }
 
-CharacterClass CombatSystem::string_to_class(const std::string& class_name) {
+CharacterClass CombatSystem::string_to_class(const std::string &class_name) {
     static const std::unordered_map<std::string, CharacterClass> class_map = {
-        {"warrior", CharacterClass::Warrior},
-        {"cleric", CharacterClass::Cleric},
-        {"sorcerer", CharacterClass::Sorcerer},
-        {"rogue", CharacterClass::Rogue},
-        {"thief", CharacterClass::Rogue},  // Alias
+        {"warrior", CharacterClass::Warrior},   {"cleric", CharacterClass::Cleric},
+        {"sorcerer", CharacterClass::Sorcerer}, {"rogue", CharacterClass::Rogue},
+        {"thief", CharacterClass::Rogue}, // Alias
     };
 
     std::string lower_name;
@@ -413,12 +407,8 @@ CharacterClass CombatSystem::string_to_class(const std::string& class_name) {
 
 CharacterRace CombatSystem::string_to_race(std::string_view race_name) {
     static const std::unordered_map<std::string, CharacterRace> race_map = {
-        {"human", CharacterRace::Human},
-        {"elf", CharacterRace::Elf},
-        {"halfelf", CharacterRace::Elf},
-        {"half-elf", CharacterRace::Elf},
-        {"dwarf", CharacterRace::Dwarf},
-        {"halfling", CharacterRace::Halfling},
+        {"human", CharacterRace::Human},  {"elf", CharacterRace::Elf},     {"halfelf", CharacterRace::Elf},
+        {"half-elf", CharacterRace::Elf}, {"dwarf", CharacterRace::Dwarf}, {"halfling", CharacterRace::Halfling},
     };
 
     std::string lower_name;
@@ -431,8 +421,7 @@ CharacterRace CombatSystem::string_to_race(std::string_view race_name) {
     return (it != race_map.end()) ? it->second : CharacterRace::Human;
 }
 
-HitCalcResult CombatSystem::calculate_hit(const CombatStats& attacker_stats,
-                                          const CombatStats& defender_stats) {
+HitCalcResult CombatSystem::calculate_hit(const CombatStats &attacker_stats, const CombatStats &defender_stats) {
     HitCalcResult result;
 
     // Roll d100 for each side
@@ -447,7 +436,7 @@ HitCalcResult CombatSystem::calculate_hit(const CombatStats& attacker_stats,
     }
     if (result.attacker_roll == 100) {
         result.auto_hit = true;
-        result.result = HitResult::Critical;  // Natural 100 = crit
+        result.result = HitResult::Critical; // Natural 100 = crit
         return result;
     }
 
@@ -472,11 +461,10 @@ HitCalcResult CombatSystem::calculate_hit(const CombatStats& attacker_stats,
     return result;
 }
 
-double CombatSystem::apply_mitigation(double raw_damage,
-                                      const CombatStats& attacker_stats,
-                                      const CombatStats& defender_stats,
-                                      int /* damage_type */) {
-    if (raw_damage <= 0) return 0.0;
+double CombatSystem::apply_mitigation(double raw_damage, const CombatStats &attacker_stats,
+                                      const CombatStats &defender_stats, int /* damage_type */) {
+    if (raw_damage <= 0)
+        return 0.0;
 
     // Step 1: Apply Soak (flat reduction) - reduced by attacker's flat penetration
     double effective_soak = std::max(0.0, defender_stats.soak - attacker_stats.pen_flat);
@@ -496,17 +484,15 @@ double CombatSystem::apply_mitigation(double raw_damage,
     return std::max(CombatConstants::MIN_DAMAGE, final_damage);
 }
 
-double CombatSystem::calculate_damage(const Actor& attacker, const CombatStats& attacker_stats,
-                                      const Actor& defender, const CombatStats& defender_stats,
-                                      HitResult hit_result) {
+double CombatSystem::calculate_damage(const Actor &attacker, const CombatStats &attacker_stats, const Actor &defender,
+                                      const CombatStats &defender_stats, HitResult hit_result) {
     if (hit_result == HitResult::Miss) {
         return 0.0;
     }
 
     // Roll weapon damage
-    double base_damage = roll_damage(attacker_stats.weapon_dice_num,
-                                     attacker_stats.weapon_dice_size,
-                                     attacker_stats.weapon_base_damage);
+    double base_damage =
+        roll_damage(attacker_stats.weapon_dice_num, attacker_stats.weapon_dice_size, attacker_stats.weapon_base_damage);
 
     // Add Attack Power
     base_damage += attacker_stats.ap;
@@ -514,16 +500,16 @@ double CombatSystem::calculate_damage(const Actor& attacker, const CombatStats& 
     // Apply hit type multiplier
     double multiplier = 1.0;
     switch (hit_result) {
-        case HitResult::Critical:
-            multiplier = CombatConstants::CRITICAL_MULTIPLIER;
-            break;
-        case HitResult::Glancing:
-            multiplier = CombatConstants::GLANCING_MULTIPLIER;
-            break;
-        case HitResult::Hit:
-        default:
-            multiplier = 1.0;
-            break;
+    case HitResult::Critical:
+        multiplier = CombatConstants::CRITICAL_MULTIPLIER;
+        break;
+    case HitResult::Glancing:
+        multiplier = CombatConstants::GLANCING_MULTIPLIER;
+        break;
+    case HitResult::Hit:
+    default:
+        multiplier = 1.0;
+        break;
     }
     base_damage *= multiplier;
 
@@ -565,16 +551,16 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     // Handle miss
     if (result.hit_calc.result == HitResult::Miss) {
         result.type = CombatResult::Type::Miss;
-        result.attacker_message = fmt::format("Your attack misses <cyan>{}</>.",
-            target->display_name());
-        result.target_message = TextFormat::capitalize(fmt::format("{}'s attack misses you.",
-            attacker->display_name()));
-        result.room_message = TextFormat::capitalize(fmt::format("{}'s attack misses <cyan>{}</>.",
-            attacker->display_name(), target->display_name()));
+        result.attacker_message = fmt::format("Your attack misses <cyan>{}</>.", target->display_name());
+        result.target_message =
+            TextFormat::capitalize(fmt::format("{}'s attack misses you.", attacker->display_name()));
+        result.room_message = TextFormat::capitalize(
+            fmt::format("{}'s attack misses <cyan>{}</>.", attacker->display_name(), target->display_name()));
 
         // Add dice roll details if attacker wants to see them
         if (wants_dice_details(attacker)) {
-            result.attacker_message += format_roll_details(result.hit_calc, attacker_stats, defender_stats, HitResult::Miss);
+            result.attacker_message +=
+                format_roll_details(result.hit_calc, attacker_stats, defender_stats, HitResult::Miss);
         }
 
         fire_event(CombatEvent(CombatEvent::EventType::AttackMiss, attacker, target));
@@ -587,30 +573,30 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
 
     // Set result type based on hit type
     switch (result.hit_calc.result) {
-        case HitResult::Critical:
-            result.type = CombatResult::Type::CriticalHit;
-            fire_event(CombatEvent(CombatEvent::EventType::AttackCritical, attacker, target));
-            break;
-        case HitResult::Glancing:
-            result.type = CombatResult::Type::Glancing;
-            fire_event(CombatEvent(CombatEvent::EventType::AttackGlancing, attacker, target));
-            break;
-        case HitResult::Hit:
-        default:
-            result.type = CombatResult::Type::Hit;
-            fire_event(CombatEvent(CombatEvent::EventType::AttackHit, attacker, target));
-            break;
+    case HitResult::Critical:
+        result.type = CombatResult::Type::CriticalHit;
+        fire_event(CombatEvent(CombatEvent::EventType::AttackCritical, attacker, target));
+        break;
+    case HitResult::Glancing:
+        result.type = CombatResult::Type::Glancing;
+        fire_event(CombatEvent(CombatEvent::EventType::AttackGlancing, attacker, target));
+        break;
+    case HitResult::Hit:
+    default:
+        result.type = CombatResult::Type::Hit;
+        fire_event(CombatEvent(CombatEvent::EventType::AttackHit, attacker, target));
+        break;
     }
 
     // Apply damage to target
-    auto& target_stats = target->stats();
+    auto &target_stats = target->stats();
     int damage_int = static_cast<int>(std::round(damage));
     target_stats.hit_points -= damage_int;
 
     fire_event(CombatEvent(CombatEvent::EventType::DamageDealt, attacker, target));
 
     // Execute ATTACK trigger for wielded weapon
-    auto& trigger_mgr = TriggerManager::instance();
+    auto &trigger_mgr = TriggerManager::instance();
     if (trigger_mgr.is_initialized()) {
         auto weapon = attacker->equipment().get_equipped(EquipSlot::Wield);
         if (weapon) {
@@ -622,7 +608,7 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     // Check HIT_PERCENT triggers for mobs
     if (target_stats.max_hit_points > 0) {
         int hp_percent = (target_stats.hit_points * 100) / target_stats.max_hit_points;
-        auto& trigger_mgr = TriggerManager::instance();
+        auto &trigger_mgr = TriggerManager::instance();
         if (trigger_mgr.is_initialized()) {
             trigger_mgr.dispatch_hit_percent(target, attacker, hp_percent);
         }
@@ -632,42 +618,44 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     std::string hit_type_text;
     std::string damage_color;
     switch (result.hit_calc.result) {
-        case HitResult::Critical:
-            hit_type_text = " <b:red>CRITICALLY</>";
-            damage_color = "b:red";
-            break;
-        case HitResult::Glancing:
-            hit_type_text = " <dim>glancingly</>";
-            damage_color = "dim";
-            break;
-        default:
-            hit_type_text = "";
-            damage_color = "yellow";
-            break;
+    case HitResult::Critical:
+        hit_type_text = " <b:red>CRITICALLY</>";
+        damage_color = "b:red";
+        break;
+    case HitResult::Glancing:
+        hit_type_text = " <dim>glancingly</>";
+        damage_color = "dim";
+        break;
+    default:
+        hit_type_text = "";
+        damage_color = "yellow";
+        break;
     }
 
-    result.attacker_message = fmt::format("You{} hit <cyan>{}</> for <{}>{:.0f}</> damage.",
-        hit_type_text, target->display_name(), damage_color, damage);
-    result.target_message = TextFormat::capitalize(fmt::format("{}{} hits you for <{}>{:.0f}</> damage.",
-        attacker->display_name(), hit_type_text, damage_color, damage));
-    result.room_message = TextFormat::capitalize(fmt::format("{}{} hits <cyan>{}</> for <{}>{:.0f}</> damage.",
-        attacker->display_name(), hit_type_text, target->display_name(), damage_color, damage));
+    result.attacker_message = fmt::format("You{} hit <cyan>{}</> for <{}>{:.0f}</> damage.", hit_type_text,
+                                          target->display_name(), damage_color, damage);
+    result.target_message = TextFormat::capitalize(fmt::format(
+        "{}{} hits you for <{}>{:.0f}</> damage.", attacker->display_name(), hit_type_text, damage_color, damage));
+    result.room_message =
+        TextFormat::capitalize(fmt::format("{}{} hits <cyan>{}</> for <{}>{:.0f}</> damage.", attacker->display_name(),
+                                           hit_type_text, target->display_name(), damage_color, damage));
 
     // Add dice roll and mitigation details if attacker wants to see them
     if (wants_dice_details(attacker)) {
-        result.attacker_message += format_roll_details(result.hit_calc, attacker_stats, defender_stats, result.hit_calc.result);
+        result.attacker_message +=
+            format_roll_details(result.hit_calc, attacker_stats, defender_stats, result.hit_calc.result);
 
         // Estimate base damage for mitigation breakdown
         // Use average weapon damage + AP, then apply multiplier
-        double avg_weapon = attacker_stats.weapon_dice_num *
-                           (attacker_stats.weapon_dice_size / 2.0 + 0.5) +
-                           attacker_stats.weapon_base_damage + attacker_stats.ap;
-        double multiplier = (result.hit_calc.result == HitResult::Critical) ? CombatConstants::CRITICAL_MULTIPLIER :
-                           (result.hit_calc.result == HitResult::Glancing) ? CombatConstants::GLANCING_MULTIPLIER : 1.0;
+        double avg_weapon = attacker_stats.weapon_dice_num * (attacker_stats.weapon_dice_size / 2.0 + 0.5) +
+                            attacker_stats.weapon_base_damage + attacker_stats.ap;
+        double multiplier = (result.hit_calc.result == HitResult::Critical)   ? CombatConstants::CRITICAL_MULTIPLIER
+                            : (result.hit_calc.result == HitResult::Glancing) ? CombatConstants::GLANCING_MULTIPLIER
+                                                                              : 1.0;
         double estimated_base = avg_weapon * multiplier;
 
-        MitigationDetails mit = calculate_mitigation_details(estimated_base, attacker_stats, defender_stats,
-                                                              damage, result.hit_calc.result);
+        MitigationDetails mit = calculate_mitigation_details(estimated_base, attacker_stats, defender_stats, damage,
+                                                             result.hit_calc.result);
         result.attacker_message += format_mitigation_details(mit, result.hit_calc.result);
     }
 
@@ -692,14 +680,14 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         }
 
         if (is_god) {
-            result.attacker_message += fmt::format(" You have killed <cyan>{}</>!",
-                                                   target->display_name());
+            result.attacker_message += fmt::format(" You have killed <cyan>{}</>!", target->display_name());
         } else {
             long exp_gain = calculate_experience_gain(*attacker, *target);
             result.experience_gained = exp_gain;
             attacker->gain_experience(exp_gain);
-            result.attacker_message += fmt::format(" You have killed <cyan>{}</>! You gain <experience>{}</> experience.",
-                                                   target->display_name(), exp_gain);
+            result.attacker_message +=
+                fmt::format(" You have killed <cyan>{}</>! You gain <experience>{}</> experience.",
+                            target->display_name(), exp_gain);
         }
 
         // Set death messages based on actor type (before die() modifies state)
@@ -707,22 +695,24 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
 
         if (is_player) {
             result.target_message += "\r\n<b:red>You are DEAD!</> You feel your spirit leave your body...";
-            result.room_message += " " + TextFormat::capitalize(fmt::format("{} is <b:red>DEAD</>! Their spirit rises from their body.",
-                target->display_name()));
+            result.room_message +=
+                " " + TextFormat::capitalize(fmt::format("{} is <b:red>DEAD</>! Their spirit rises from their body.",
+                                                         target->display_name()));
         } else {
             result.target_message += "\r\n<b:red>You are DEAD!</>";
-            result.room_message += " " + TextFormat::capitalize(fmt::format("{} is <b:red>DEAD</>! Its corpse falls to the ground.",
-                target->display_name()));
+            result.room_message +=
+                " " + TextFormat::capitalize(
+                          fmt::format("{} is <b:red>DEAD</>! Its corpse falls to the ground.", target->display_name()));
         }
 
         // Execute DEATH trigger for mobs before they die
-        auto& trigger_mgr = TriggerManager::instance();
+        auto &trigger_mgr = TriggerManager::instance();
         if (trigger_mgr.is_initialized()) {
             trigger_mgr.dispatch_death(target, attacker);
         }
 
         // Cancel any pending Lua script coroutines for the dying entity
-        auto& scheduler = get_coroutine_scheduler();
+        auto &scheduler = get_coroutine_scheduler();
         if (scheduler.is_initialized()) {
             scheduler.cancel_for_entity(target->id());
         }
@@ -733,20 +723,21 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
 
         // Handle autoloot and autogold for Player attackers killing Mobiles
         if (!is_player && attacker->type_name() == "Player" && corpse) {
-            auto* player = dynamic_cast<Player*>(attacker.get());
+            auto *player = dynamic_cast<Player *>(attacker.get());
             if (player) {
                 // Autogold: Find and take money from corpse
                 if (player->is_autogold()) {
                     auto contents = corpse->get_contents();
                     std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
-                    for (const auto& item : items_copy) {
+                    for (const auto &item : items_copy) {
                         if (item && item->type() == ObjectType::Money) {
                             int coin_value = item->value();
                             if (coin_value > 0) {
                                 player->receive(coin_value);
                                 corpse->remove_item(item);
                                 auto received = fiery::Money::from_copper(coin_value);
-                                result.attacker_message += fmt::format("\r\nYou get {} from the corpse.", received.to_string());
+                                result.attacker_message +=
+                                    fmt::format("\r\nYou get {} from the corpse.", received.to_string());
                             }
                         }
                     }
@@ -757,8 +748,9 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
                     auto contents = corpse->get_contents();
                     std::vector<std::shared_ptr<Object>> items_copy(contents.begin(), contents.end());
                     int looted_count = 0;
-                    for (const auto& item : items_copy) {
-                        if (!item || item->type() == ObjectType::Money) continue;
+                    for (const auto &item : items_copy) {
+                        if (!item || item->type() == ObjectType::Money)
+                            continue;
 
                         int obj_weight = item->weight();
                         if (!player->inventory().can_carry(obj_weight, player->max_carry_weight())) {
@@ -776,8 +768,8 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
                         }
                     }
                     if (looted_count > 0) {
-                        result.attacker_message += fmt::format("\r\nYou autoloot {} item{}.",
-                            looted_count, looted_count == 1 ? "" : "s");
+                        result.attacker_message +=
+                            fmt::format("\r\nYou autoloot {} item{}.", looted_count, looted_count == 1 ? "" : "s");
                     }
                 }
             }
@@ -790,7 +782,7 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     return result;
 }
 
-long CombatSystem::calculate_experience_gain(const Actor& victor, const Actor& defeated) {
+long CombatSystem::calculate_experience_gain(const Actor &victor, const Actor &defeated) {
     constexpr int EXP_BASE_PER_LEVEL = 100;
     constexpr double EXP_HIGHER_LEVEL_BONUS = 0.1;
     constexpr double EXP_LOWER_LEVEL_PENALTY = 0.05;
@@ -813,12 +805,12 @@ void CombatSystem::register_event_handler(CombatEvent::EventType event_type, Com
     event_handlers_.emplace_back(event_type, std::move(handler));
 }
 
-void CombatSystem::fire_event(const CombatEvent& event) {
-    for (const auto& [type, handler] : event_handlers_) {
+void CombatSystem::fire_event(const CombatEvent &event) {
+    for (const auto &[type, handler] : event_handlers_) {
         if (type == event.type()) {
             try {
                 handler(event);
-            } catch (const std::exception& e) {
+            } catch (const std::exception &e) {
                 Log::game()->error("Combat event handler error: {}", e.what());
             }
         }
@@ -829,14 +821,14 @@ void CombatSystem::fire_event(const CombatEvent& event) {
 // ClassAbilities Implementation
 // ============================================================================
 
-bool ClassAbilities::warrior_extra_attack_available(const Actor& actor) {
+bool ClassAbilities::warrior_extra_attack_available(const Actor &actor) {
     constexpr int EXTRA_ATTACK_LEVEL = 6;
     return actor.stats().level >= EXTRA_ATTACK_LEVEL;
 }
 
-bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const Actor& target) {
+bool ClassAbilities::rogue_sneak_attack_available(const Actor &attacker, const Actor &target) {
     // Must be a rogue
-    if (const auto* player = dynamic_cast<const Player*>(&attacker)) {
+    if (const auto *player = dynamic_cast<const Player *>(&attacker)) {
         if (CombatSystem::string_to_class(player->player_class()) != CharacterClass::Rogue) {
             return false;
         }
@@ -858,9 +850,7 @@ bool ClassAbilities::rogue_sneak_attack_available(const Actor& attacker, const A
 
     // 3. Target is incapacitated (sleeping, stunned, paralyzed, etc.)
     Position target_pos = target.position();
-    if (target_pos == Position::Sleeping ||
-        target_pos == Position::Stunned ||
-        target_pos == Position::Incapacitated) {
+    if (target_pos == Position::Sleeping || target_pos == Position::Stunned || target_pos == Position::Incapacitated) {
         return true;
     }
 
@@ -888,9 +878,9 @@ double ClassAbilities::rogue_sneak_attack_damage(int level) {
     return total;
 }
 
-bool ClassAbilities::cleric_can_turn_undead(const Actor& actor) {
+bool ClassAbilities::cleric_can_turn_undead(const Actor &actor) {
     constexpr int TURN_UNDEAD_MIN_LEVEL = 2;
-    if (const auto* player = dynamic_cast<const Player*>(&actor)) {
+    if (const auto *player = dynamic_cast<const Player *>(&actor)) {
         return CombatSystem::string_to_class(player->player_class()) == CharacterClass::Cleric &&
                actor.stats().level >= TURN_UNDEAD_MIN_LEVEL;
     }
@@ -921,7 +911,8 @@ static void interrupt_for_combat(std::shared_ptr<Actor> actor) {
 }
 
 void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<Actor> actor2) {
-    if (!actor1 || !actor2 || actor1 == actor2) return;
+    if (!actor1 || !actor2 || actor1 == actor2)
+        return;
 
     // Clear existing enemies for a fresh 1v1 combat start
     actor1->clear_enemies();
@@ -947,7 +938,8 @@ void CombatManager::start_combat(std::shared_ptr<Actor> actor1, std::shared_ptr<
 }
 
 void CombatManager::add_combat_pair(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> defender) {
-    if (!attacker || !defender || attacker == defender) return;
+    if (!attacker || !defender || attacker == defender)
+        return;
 
     // Add each other to fighting lists (doesn't clear existing enemies)
     attacker->add_enemy(defender);
@@ -968,7 +960,8 @@ void CombatManager::add_combat_pair(std::shared_ptr<Actor> attacker, std::shared
 }
 
 void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
-    if (!actor) return;
+    if (!actor)
+        return;
 
     // Get all enemies before clearing
     auto enemies = actor->get_all_enemies();
@@ -977,14 +970,14 @@ void CombatManager::end_combat(std::shared_ptr<Actor> actor) {
     actor->clear_enemies();
 
     // Remove this actor from all enemy lists
-    for (auto& enemy : enemies) {
+    for (auto &enemy : enemies) {
         if (enemy) {
             enemy->remove_enemy(actor);
             // If enemy has no more enemies, they stop fighting
             if (!enemy->has_enemies() && enemy->is_alive()) {
                 enemy->set_position(Position::Standing);
                 fighting_actors_.erase(enemy);
-                last_attack_times_.erase(enemy);  // Clean up attack timing
+                last_attack_times_.erase(enemy); // Clean up attack timing
             }
         }
     }
@@ -1021,12 +1014,14 @@ bool CombatManager::process_combat_rounds() {
     // Make a copy since fighting_actors_ may be modified during iteration (deaths)
     std::vector<std::shared_ptr<Actor>> actors_to_process(fighting_actors_.begin(), fighting_actors_.end());
 
-    for (const auto& actor : actors_to_process) {
+    for (const auto &actor : actors_to_process) {
         // Skip if actor died during this round
-        if (!actor || !actor->is_alive()) continue;
+        if (!actor || !actor->is_alive())
+            continue;
 
         // Check if this actor is ready to attack (based on their weapon speed + effects)
-        if (!is_actor_attack_ready(actor)) continue;
+        if (!is_actor_attack_ready(actor))
+            continue;
 
         // Get valid target in same room
         auto target = actor->get_fighting_target();
@@ -1045,16 +1040,12 @@ bool CombatManager::process_combat_rounds() {
     return any_attacks;
 }
 
-bool CombatManager::is_in_combat(const Actor& actor) {
-    return actor.is_fighting() && actor.has_enemies();
-}
+bool CombatManager::is_in_combat(const Actor &actor) { return actor.is_fighting() && actor.has_enemies(); }
 
-std::shared_ptr<Actor> CombatManager::get_opponent(const Actor& actor) {
-    return actor.get_fighting_target();
-}
+std::shared_ptr<Actor> CombatManager::get_opponent(const Actor &actor) { return actor.get_fighting_target(); }
 
 void CombatManager::clear_all_combat() {
-    for (const auto& actor : fighting_actors_) {
+    for (const auto &actor : fighting_actors_) {
         if (actor) {
             actor->clear_enemies();
             if (actor->position() == Position::Fighting) {
@@ -1064,7 +1055,7 @@ void CombatManager::clear_all_combat() {
     }
 
     fighting_actors_.clear();
-    last_attack_times_.clear();  // Clear all attack timing data
+    last_attack_times_.clear(); // Clear all attack timing data
     Log::debug("All combat cleared");
 }
 
@@ -1072,7 +1063,7 @@ void CombatManager::cleanup_invalid_actors() {
     // Remove dead or actors with no enemies from the fighting set
     std::vector<std::shared_ptr<Actor>> to_remove;
 
-    for (const auto& actor : fighting_actors_) {
+    for (const auto &actor : fighting_actors_) {
         if (!actor || !actor->is_alive()) {
             to_remove.push_back(actor);
             continue;
@@ -1089,24 +1080,27 @@ void CombatManager::cleanup_invalid_actors() {
         }
     }
 
-    for (const auto& actor : to_remove) {
+    for (const auto &actor : to_remove) {
         fighting_actors_.erase(actor);
-        last_attack_times_.erase(actor);  // Clean up attack timing data
+        last_attack_times_.erase(actor); // Clean up attack timing data
     }
 }
 
 void CombatManager::execute_actor_attack(std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> target) {
-    if (!attacker || !target) return;
-    if (!attacker->is_alive() || !target->is_alive()) return;
+    if (!attacker || !target)
+        return;
+    if (!attacker->is_alive() || !target->is_alive())
+        return;
 
     // Execute FIGHT trigger for attacker (allows scripted combat behavior)
-    auto& trigger_mgr = TriggerManager::instance();
+    auto &trigger_mgr = TriggerManager::instance();
     if (trigger_mgr.is_initialized()) {
         trigger_mgr.dispatch_fight(attacker, target);
     }
 
     // Check if still valid after trigger (trigger might have ended combat)
-    if (!attacker->is_alive() || !target->is_alive()) return;
+    if (!attacker->is_alive() || !target->is_alive())
+        return;
 
     // Perform the attack
     auto result = CombatSystem::perform_attack(attacker, target);
@@ -1117,7 +1111,7 @@ void CombatManager::execute_actor_attack(std::shared_ptr<Actor> attacker, std::s
         target->send_message(result.target_message);
 
         if (!result.room_message.empty()) {
-            for (const auto& actor : room->contents().actors) {
+            for (const auto &actor : room->contents().actors) {
                 if (actor && actor != attacker && actor != target) {
                     actor->send_message(result.room_message);
                 }
@@ -1142,8 +1136,9 @@ std::vector<std::shared_ptr<Actor>> CombatManager::get_all_fighting_actors() {
     return std::vector<std::shared_ptr<Actor>>(fighting_actors_.begin(), fighting_actors_.end());
 }
 
-bool CombatManager::is_actor_attack_ready(const std::shared_ptr<Actor>& actor) {
-    if (!actor) return false;
+bool CombatManager::is_actor_attack_ready(const std::shared_ptr<Actor> &actor) {
+    if (!actor)
+        return false;
 
     auto it = last_attack_times_.find(actor);
     if (it == last_attack_times_.end()) {
@@ -1158,8 +1153,9 @@ bool CombatManager::is_actor_attack_ready(const std::shared_ptr<Actor>& actor) {
     return elapsed.count() >= attack_speed_ms;
 }
 
-int CombatManager::get_actor_attack_speed(const std::shared_ptr<Actor>& actor) {
-    if (!actor) return CombatConstants::BASE_ATTACK_SPEED_MS;
+int CombatManager::get_actor_attack_speed(const std::shared_ptr<Actor> &actor) {
+    if (!actor)
+        return CombatConstants::BASE_ATTACK_SPEED_MS;
 
     // Calculate combat stats which includes weapon speed and haste/slow
     CombatStats stats = CombatSystem::calculate_combat_stats(*actor);
@@ -1167,8 +1163,9 @@ int CombatManager::get_actor_attack_speed(const std::shared_ptr<Actor>& actor) {
     return stats.effective_attack_speed_ms();
 }
 
-void CombatManager::record_attack_time(const std::shared_ptr<Actor>& actor) {
-    if (!actor) return;
+void CombatManager::record_attack_time(const std::shared_ptr<Actor> &actor) {
+    if (!actor)
+        return;
     last_attack_times_[actor] = std::chrono::steady_clock::now();
 }
 

@@ -4,11 +4,12 @@
  */
 
 #include "db_parsing_utils.hpp"
+
 #include <unordered_map>
 
 namespace DbParsingUtils {
 
-std::vector<std::string> parse_pg_array(const std::string& pg_array) {
+std::vector<std::string> parse_pg_array(const std::string &pg_array) {
     std::vector<std::string> result;
 
     if (pg_array.empty() || pg_array == "{}") {
@@ -68,7 +69,7 @@ std::vector<std::string> parse_pg_array(const std::string& pg_array) {
     return result;
 }
 
-std::optional<SectorType> sector_from_db_string(const std::string& sector_str) {
+std::optional<SectorType> sector_from_db_string(const std::string &sector_str) {
     static const std::unordered_map<std::string, SectorType> sector_map = {
         {"STRUCTURE", SectorType::Inside},
         {"CITY", SectorType::City},
@@ -99,7 +100,7 @@ std::optional<SectorType> sector_from_db_string(const std::string& sector_str) {
     if (it != sector_map.end()) {
         return it->second;
     }
-    return std::nullopt;  // Returns nullopt for unknown instead of default
+    return std::nullopt; // Returns nullopt for unknown instead of default
 }
 
 // room_flag_from_db_string REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions

@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include "command_system.hpp"
-#include "command_context.hpp"
 #include "../database/social_queries.hpp"
+#include "command_context.hpp"
+#include "command_system.hpp"
 
 #include <memory>
 #include <string>
@@ -71,9 +71,7 @@ bool is_social(std::string_view name);
  * @param social_name Name of the social to execute
  * @return Command result
  */
-Result<CommandResult> execute_social_by_name(
-    const CommandContext& ctx,
-    std::string_view social_name);
+Result<CommandResult> execute_social_by_name(const CommandContext &ctx, std::string_view social_name);
 
 /**
  * Create a command handler for a specific social.
@@ -89,27 +87,24 @@ CommandHandler create_social_handler(std::string_view social_name);
 // =============================================================================
 
 namespace Helpers {
-    /** Format social action message */
-    std::string format_social_message(std::string_view action,
-                                      std::shared_ptr<Actor> actor,
-                                      std::shared_ptr<Actor> target = nullptr);
+/** Format social action message */
+std::string format_social_message(std::string_view action, std::shared_ptr<Actor> actor,
+                                  std::shared_ptr<Actor> target = nullptr);
 
-    /** Validate target for social command */
-    bool validate_social_target(const CommandContext& ctx, std::shared_ptr<Actor> target);
+/** Validate target for social command */
+bool validate_social_target(const CommandContext &ctx, std::shared_ptr<Actor> target);
 
-    /**
-     * Execute a social from a Social struct (database format).
-     * Handles message template processing and sending to appropriate targets.
-     *
-     * @param ctx Command context
-     * @param social The social to execute
-     * @param target_name Name of the target (empty for no-target socials)
-     * @return Command result
-     */
-    Result<CommandResult> execute_database_social(
-        const CommandContext& ctx,
-        const Social& social,
-        std::string_view target_name);
-}
+/**
+ * Execute a social from a Social struct (database format).
+ * Handles message template processing and sending to appropriate targets.
+ *
+ * @param ctx Command context
+ * @param social The social to execute
+ * @param target_name Name of the target (empty for no-target socials)
+ * @return Command result
+ */
+Result<CommandResult> execute_database_social(const CommandContext &ctx, const Social &social,
+                                              std::string_view target_name);
+} // namespace Helpers
 
 } // namespace SocialCommands

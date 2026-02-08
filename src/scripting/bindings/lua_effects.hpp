@@ -13,6 +13,6 @@ namespace FieryMUD {
  *   effects.has(actor, effect)             - Check if actor has an effect
  *   effects.duration(actor, effect)        - Get remaining duration
  */
-void register_effect_bindings(sol::state& lua);
+void register_effect_bindings(sol::state &lua);
 
 } // namespace FieryMUD

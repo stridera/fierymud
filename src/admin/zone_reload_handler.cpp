@@ -1,5 +1,7 @@
 #include "zone_reload_handler.hpp"
+
 #include "../world/world_manager.hpp"
+
 #include <fmt/format.h>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
@@ -8,82 +10,74 @@ using json = nlohmann::json;
 
 namespace fierymud {
 
-void register_zone_reload_handlers(AdminServer& admin_server, WorldManager& world_manager) {
+void register_zone_reload_handlers(AdminServer &admin_server, WorldManager &world_manager) {
     // POST /api/admin/reload-zone - Reload a specific zone or all zones
-    admin_server.register_handler("/api/admin/reload-zone", [&world_manager]([[maybe_unused]] const std::string& path, const std::string& body) -> std::string {
-        spdlog::info("Received zone reload request");
+    admin_server.register_handler(
+        "/api/admin/reload-zone",
+        [&world_manager]([[maybe_unused]] const std::string &path, const std::string &body) -> std::string {
+            spdlog::info("Received zone reload request");
 
-        try {
-            // Parse request
-            ReloadZoneRequest request = parse_reload_request(body);
+            try {
+                // Parse request
+                ReloadZoneRequest request = parse_reload_request(body);
 
-            // Validate zone ID
-            if (request.zone_id < 0) {
-                json error_json = {
-                    {"error", "Bad Request"},
-                    {"message", "Invalid zone_id: must be >= 0"}
-                };
+                // Validate zone ID
+                if (request.zone_id < 0) {
+                    json error_json = {{"error", "Bad Request"}, {"message", "Invalid zone_id: must be >= 0"}};
+                    return error_json.dump();
+                }
+
+                // Execute reload
+                ReloadZoneResponse response = handle_zone_reload(world_manager, request.zone_id, request.force);
+
+                // Return response
+                return serialize_reload_response(response);
+
+            } catch (const std::exception &e) {
+                spdlog::error("Zone reload handler error: {}", e.what());
+                json error_json = {{"error", "Internal Server Error"}, {"message", e.what()}};
                 return error_json.dump();
             }
-
-            // Execute reload
-            ReloadZoneResponse response = handle_zone_reload(world_manager, request.zone_id, request.force);
-
-            // Return response
-            return serialize_reload_response(response);
-
-        } catch (const std::exception& e) {
-            spdlog::error("Zone reload handler error: {}", e.what());
-            json error_json = {
-                {"error", "Internal Server Error"},
-                {"message", e.what()}
-            };
-            return error_json.dump();
-        }
-    });
+        });
 
     // GET /api/admin/zone-status - Get status of all zones
-    admin_server.register_handler("/api/admin/zone-status", [&world_manager]([[maybe_unused]] const std::string& path, [[maybe_unused]] const std::string& body) -> std::string {
-        spdlog::info("Received zone status request");
+    admin_server.register_handler("/api/admin/zone-status",
+                                  [&world_manager]([[maybe_unused]] const std::string &path,
+                                                   [[maybe_unused]] const std::string &body) -> std::string {
+                                      spdlog::info("Received zone status request");
 
-        try {
-            json zones_json = json::array();
+                                      try {
+                                          json zones_json = json::array();
 
-            // Get all zone information from world manager
-            // NOTE: This requires implementing get_zone_info() in WorldManager
-            // For now, return a placeholder response
-            json response = {
-                {"zones", zones_json},
-                {"total_zones", 0},
-                {"message", "Zone status endpoint not yet fully implemented"}
-            };
+                                          // Get all zone information from world manager
+                                          // NOTE: This requires implementing get_zone_info() in WorldManager
+                                          // For now, return a placeholder response
+                                          json response = {
+                                              {"zones", zones_json},
+                                              {"total_zones", 0},
+                                              {"message", "Zone status endpoint not yet fully implemented"}};
 
-            return response.dump();
+                                          return response.dump();
 
-        } catch (const std::exception& e) {
-            spdlog::error("Zone status handler error: {}", e.what());
-            json error_json = {
-                {"error", "Internal Server Error"},
-                {"message", e.what()}
-            };
-            return error_json.dump();
-        }
-    });
+                                      } catch (const std::exception &e) {
+                                          spdlog::error("Zone status handler error: {}", e.what());
+                                          json error_json = {{"error", "Internal Server Error"}, {"message", e.what()}};
+                                          return error_json.dump();
+                                      }
+                                  });
 
     // GET /api/admin/health - Simple health check endpoint
-    admin_server.register_handler("/api/admin/health", []([[maybe_unused]] const std::string& path, [[maybe_unused]] const std::string& body) -> std::string {
-        json health = {
-            {"status", "healthy"},
-            {"service", "FieryMUD Admin API"},
-            {"timestamp", std::time(nullptr)}
-        };
-        return health.dump();
-    });
+    admin_server.register_handler(
+        "/api/admin/health",
+        []([[maybe_unused]] const std::string &path, [[maybe_unused]] const std::string &body) -> std::string {
+            json health = {{"status", "healthy"}, {"service", "FieryMUD Admin API"}, {"timestamp", std::time(nullptr)}};
+            return health.dump();
+        });
 
     spdlog::info("Registered zone reload handlers with admin server");
 }
 
-ReloadZoneResponse handle_zone_reload([[maybe_unused]] WorldManager& world_manager, int zone_id, bool force) {
+ReloadZoneResponse handle_zone_reload([[maybe_unused]] WorldManager &world_manager, int zone_id, bool force) {
     ReloadZoneResponse response;
     response.success = false;
     response.zones_reloaded = 0;
@@ -134,7 +128,7 @@ ReloadZoneResponse handle_zone_reload([[maybe_unused]] WorldManager& world_manag
             return response;
         }
 
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         spdlog::error("Zone reload failed: {}", e.what());
         response.success = false;
         response.message = fmt::format("Zone reload failed: {}", e.what());

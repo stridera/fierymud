@@ -8,17 +8,17 @@
 #include "admin_commands.hpp"
 #include "character_commands.hpp"
 #include "combat_commands.hpp"
-#include "skill_commands.hpp"
 #include "communication_commands.hpp"
 #include "economy_commands.hpp"
-#include "postmaster_commands.hpp"
 #include "group_commands.hpp"
 #include "information_commands.hpp"
 #include "magic_commands.hpp"
 #include "movement_commands.hpp"
 #include "object_commands.hpp"
 #include "position_commands.hpp"
+#include "postmaster_commands.hpp"
 #include "quest_commands.hpp"
+#include "skill_commands.hpp"
 #include "social_commands.hpp"
 #include "system_commands.hpp"
 
@@ -27,9 +27,9 @@
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/object.hpp"
+#include "../text/rich_text.hpp"
 #include "../text/string_utils.hpp"
 #include "../text/text_format.hpp"
-#include "../text/rich_text.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
 
@@ -255,8 +255,8 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
 
     // Show magical aura if viewer has Detect_Magic and object is magical
     if (viewer && viewer->has_flag(ActorFlag::Detect_Magic)) {
-        if (obj->has_flag(ObjectFlag::Magic) || obj->has_flag(ObjectFlag::Glow) ||
-            obj->has_flag(ObjectFlag::Hum) || obj->has_flag(ObjectFlag::Bless)) {
+        if (obj->has_flag(ObjectFlag::Magic) || obj->has_flag(ObjectFlag::Glow) || obj->has_flag(ObjectFlag::Hum) ||
+            obj->has_flag(ObjectFlag::Bless)) {
             desc << "<magenta>It glows with a magical aura.</>\n";
         }
     }
@@ -271,15 +271,20 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
     // Add object-specific details based on type
     if (obj->type() == ObjectType::Drinkcontainer) {
         // Drink container - show liquid info, not item capacity
-        const auto& liquid = obj->liquid_info();
+        const auto &liquid = obj->liquid_info();
         if (liquid.remaining > 0) {
             std::string fullness;
             int percent = (liquid.capacity > 0) ? (liquid.remaining * 100 / liquid.capacity) : 0;
-            if (percent >= 90) fullness = "full";
-            else if (percent >= 60) fullness = "mostly full";
-            else if (percent >= 40) fullness = "about half full";
-            else if (percent >= 20) fullness = "less than half full";
-            else fullness = "almost empty";
+            if (percent >= 90)
+                fullness = "full";
+            else if (percent >= 60)
+                fullness = "mostly full";
+            else if (percent >= 40)
+                fullness = "about half full";
+            else if (percent >= 20)
+                fullness = "less than half full";
+            else
+                fullness = "almost empty";
 
             std::string liquid_name = liquid.liquid_type.empty() ? "liquid" : to_lowercase(liquid.liquid_type);
             desc << fmt::format("It is {} of {}.\n", fullness, liquid_name);
@@ -305,7 +310,7 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
 
     // Show lit status for light sources (duration -1 = infinite)
     if (obj->is_light_source()) {
-        const auto& light = obj->light_info();
+        const auto &light = obj->light_info();
         if (light.permanent) {
             desc << "It glows with a permanent light.\n";
         } else if (light.lit) {
@@ -377,17 +382,19 @@ std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_
 
     // Get gender-appropriate pronouns
     auto gender = TextFormat::get_actor_gender(*target);
-    const auto& pronouns = TextFormat::get_pronouns(gender);
+    const auto &pronouns = TextFormat::get_pronouns(gender);
 
     // Capitalize first letter of pronoun for sentence start
     auto cap_subjective = [&pronouns]() {
         std::string s{pronouns.subjective};
-        if (!s.empty()) s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
+        if (!s.empty())
+            s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
         return s;
     };
     auto cap_possessive = [&pronouns]() {
         std::string s{pronouns.possessive};
-        if (!s.empty()) s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
+        if (!s.empty())
+            s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
         return s;
     };
 
@@ -450,22 +457,23 @@ std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_
     if (!size_str.empty()) {
         // Convert to lowercase for display
         std::string size_lower{size_str};
-        for (char& c : size_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        for (char &c : size_lower)
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
         desc << fmt::format("{} {} {} in size.\n", cap_subjective(), pronouns.verb_be, size_lower);
     }
 
     // Show spell effects from active effects (data-driven from database)
-    auto& ability_cache = FieryMUD::AbilityCache::instance();
-    for (const auto& effect : target->active_effects()) {
+    auto &ability_cache = FieryMUD::AbilityCache::instance();
+    for (const auto &effect : target->active_effects()) {
         // Look up the ability that applied this effect
-        auto* ability = ability_cache.get_ability_by_name(effect.source);
+        auto *ability = ability_cache.get_ability_by_name(effect.source);
         if (ability) {
-            auto* messages = ability_cache.get_ability_messages(ability->id);
+            auto *messages = ability_cache.get_ability_messages(ability->id);
             if (messages && !messages->look_message.empty()) {
                 // Process template: replace {pronoun.possessive}, {pronoun.subjective}, {actor}
                 std::string msg = messages->look_message;
                 // Simple template replacement
-                auto replace_all = [](std::string& str, std::string_view from, std::string_view to) {
+                auto replace_all = [](std::string &str, std::string_view from, std::string_view to) {
                     size_t pos = 0;
                     while ((pos = str.find(from, pos)) != std::string::npos) {
                         str.replace(pos, from.length(), to);
@@ -487,7 +495,8 @@ std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_
         if (!composition.empty() && composition != "Flesh") {
             // Convert to lowercase for display
             std::string comp_lower{composition};
-            for (char& c : comp_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            for (char &c : comp_lower)
+                c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
             desc << fmt::format("{} body seems to be made of {}!\n", cap_possessive(), comp_lower);
         }
     }
@@ -498,7 +507,8 @@ std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_
         if (!life_force.empty() && life_force != "Life") {
             // Convert to lowercase for display
             std::string lf_lower{life_force};
-            for (char& c : lf_lower) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            for (char &c : lf_lower)
+                c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
             desc << fmt::format("{} {} animated by {}.\n", cap_subjective(), pronouns.verb_be, lf_lower);
         }
     }
@@ -549,7 +559,8 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
     std::unordered_map<EntityId, std::string> id_to_description;
 
     for (const auto &item : inventory) {
-        if (!item) continue;
+        if (!item)
+            continue;
 
         EntityId proto_id = item->id();
         auto it = id_to_index.find(proto_id);
@@ -579,10 +590,10 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
 
 std::string get_equipment_slot_display_name(EquipSlot slot) {
     // ANSI color codes: cyan for most slots, bright yellow for wielded/held
-    constexpr std::string_view cyan = "\033[36m";       // Cyan for worn items
+    constexpr std::string_view cyan = "\033[36m";        // Cyan for worn items
     constexpr std::string_view bright_cyan = "\033[96m"; // Bright cyan for light
-    constexpr std::string_view yellow = "\033[33m";     // Yellow for wielded/held
-    constexpr std::string_view magenta = "\033[35m";    // Magenta for floating
+    constexpr std::string_view yellow = "\033[33m";      // Yellow for wielded/held
+    constexpr std::string_view magenta = "\033[35m";     // Magenta for floating
     constexpr std::string_view reset = "\033[0m";
 
     switch (slot) {
@@ -730,7 +741,7 @@ bool can_move_direction(std::shared_ptr<Actor> actor, Direction dir, std::string
                 bool can_fly = actor->has_flag(ActorFlag::Flying);
 
                 // Check if actor is a god
-                if (auto* player = dynamic_cast<const Player*>(actor.get())) {
+                if (auto *player = dynamic_cast<const Player *>(actor.get())) {
                     if (player->is_god()) {
                         can_fly = true;
                     }
@@ -745,8 +756,9 @@ bool can_move_direction(std::shared_ptr<Actor> actor, Direction dir, std::string
             // Check underwater sector
             if (sector == SectorType::Underwater) {
                 bool can_breathe = actor->has_flag(ActorFlag::Underwater_Breathing);
-                if (auto* player = dynamic_cast<const Player*>(actor.get())) {
-                    if (player->is_god()) can_breathe = true;
+                if (auto *player = dynamic_cast<const Player *>(actor.get())) {
+                    if (player->is_god())
+                        can_breathe = true;
                 }
                 if (!can_breathe) {
                     failure_reason = "You can't breathe underwater!";
@@ -756,10 +768,10 @@ bool can_move_direction(std::shared_ptr<Actor> actor, Direction dir, std::string
 
             // Check water sectors
             if (RoomUtils::requires_swimming(sector)) {
-                bool can_traverse = actor->has_flag(ActorFlag::Waterwalk) ||
-                                   actor->has_flag(ActorFlag::Flying);
-                if (auto* player = dynamic_cast<const Player*>(actor.get())) {
-                    if (player->is_god()) can_traverse = true;
+                bool can_traverse = actor->has_flag(ActorFlag::Waterwalk) || actor->has_flag(ActorFlag::Flying);
+                if (auto *player = dynamic_cast<const Player *>(actor.get())) {
+                    if (player->is_god())
+                        can_traverse = true;
                 }
                 if (!can_traverse) {
                     failure_reason = "You need to be able to swim or walk on water!";
@@ -784,7 +796,7 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     }
 
     // Calculate movement cost based on destination room sector
-    int move_cost = 1;  // Default cost
+    int move_cost = 1; // Default cost
     auto room = ctx.actor->current_room();
     if (room) {
         auto exit = room->get_exit(dir);
@@ -794,8 +806,7 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
                 move_cost = RoomUtils::get_movement_cost(dest_room->sector_type());
 
                 // Flying reduces movement cost to 1 for most terrain
-                if (ctx.actor->position() == Position::Flying ||
-                    ctx.actor->has_flag(ActorFlag::Flying)) {
+                if (ctx.actor->position() == Position::Flying || ctx.actor->has_flag(ActorFlag::Flying)) {
                     move_cost = 1;
                 }
 
@@ -805,8 +816,7 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
                 }
 
                 // Waterwalk reduces water sector cost
-                if (ctx.actor->has_flag(ActorFlag::Waterwalk) &&
-                    RoomUtils::is_water_sector(dest_room->sector_type())) {
+                if (ctx.actor->has_flag(ActorFlag::Waterwalk) && RoomUtils::is_water_sector(dest_room->sector_type())) {
                     move_cost = 1;
                 }
             }
@@ -815,7 +825,7 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
 
     // Check if actor has enough movement points (skip for gods)
     bool is_god = false;
-    if (auto* player = dynamic_cast<const Player*>(ctx.actor.get())) {
+    if (auto *player = dynamic_cast<const Player *>(ctx.actor.get())) {
         is_god = player->is_god();
     }
 
@@ -836,9 +846,9 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
     auto old_room = ctx.actor->current_room();
 
     // Dispatch LEAVE triggers to mobs in the old room
-    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
     if (trigger_mgr.is_initialized() && old_room) {
-        for (const auto& other : old_room->contents().actors) {
+        for (const auto &other : old_room->contents().actors) {
             // Only mobs have triggers, skip self and players
             if (other == ctx.actor || other->type_name() != "Mobile") {
                 continue;
@@ -868,7 +878,7 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
         // Calculate the direction the actor came FROM (opposite of movement)
         Direction from_direction = RoomUtils::get_opposite_direction(dir);
 
-        for (const auto& other : new_room->contents().actors) {
+        for (const auto &other : new_room->contents().actors) {
             // Only mobs have triggers, skip self and players
             if (other == ctx.actor || other->type_name() != "Mobile") {
                 continue;
@@ -917,11 +927,11 @@ void send_communication(const CommandContext &ctx, std::string_view message, Mes
         break;
     case MessageType::Broadcast:
         ctx.send(fmt::format("<b:red>You {}, '{}'</>", channel_name, message));
-        ctx.send_to_all(formatted_message, true);  // exclude self
+        ctx.send_to_all(formatted_message, true); // exclude self
         break;
     case MessageType::Channel:
         ctx.send(fmt::format("<magenta>You {}, '{}'</>", channel_name, message));
-        ctx.send_to_all(formatted_message, true);  // exclude self
+        ctx.send_to_all(formatted_message, true); // exclude self
         break;
     default:
         ctx.send_to_room(formatted_message, false);
@@ -929,8 +939,8 @@ void send_communication(const CommandContext &ctx, std::string_view message, Mes
     }
 }
 
-std::string format_communication(std::shared_ptr<Actor> sender, std::string_view message,
-                                 std::string_view channel, MessageType type) {
+std::string format_communication(std::shared_ptr<Actor> sender, std::string_view message, std::string_view channel,
+                                 MessageType type) {
     if (!sender) {
         return std::string{message};
     }

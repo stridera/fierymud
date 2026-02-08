@@ -1,10 +1,11 @@
-#include "database/database_config.hpp"
-#include "database/connection_pool.hpp"
-#include "database/world_queries.hpp"
-#include "database/player_queries.hpp"
 #include "core/logging.hpp"
-#include <iostream>
+#include "database/connection_pool.hpp"
+#include "database/database_config.hpp"
+#include "database/player_queries.hpp"
+#include "database/world_queries.hpp"
+
 #include <iomanip>
+#include <iostream>
 
 // Test result tracking
 struct TestStats {
@@ -12,13 +13,13 @@ struct TestStats {
     int passed_tests = 0;
     int failed_tests = 0;
 
-    void record_pass(const std::string& test_name) {
+    void record_pass(const std::string &test_name) {
         total_tests++;
         passed_tests++;
         std::cout << "  ✓ " << test_name << "\n";
     }
 
-    void record_fail(const std::string& test_name, const std::string& error) {
+    void record_fail(const std::string &test_name, const std::string &error) {
         total_tests++;
         failed_tests++;
         std::cout << "  ✗ " << test_name << "\n";
@@ -30,8 +31,8 @@ struct TestStats {
         std::cout << "Total tests: " << total_tests << "\n";
         std::cout << "Passed: " << passed_tests << " ✓\n";
         std::cout << "Failed: " << failed_tests << " ✗\n";
-        std::cout << "Success rate: " << std::fixed << std::setprecision(1)
-                  << (100.0 * passed_tests / total_tests) << "%\n";
+        std::cout << "Success rate: " << std::fixed << std::setprecision(1) << (100.0 * passed_tests / total_tests)
+                  << "%\n";
     }
 };
 
@@ -49,7 +50,7 @@ bool test_database_config() {
 
     g_stats.record_pass("Load .env configuration");
 
-    const auto& config = *config_result;
+    const auto &config = *config_result;
 
     // Validate configuration values
     if (config.host.empty()) {
@@ -122,22 +123,20 @@ bool test_connection_pool() {
     // Test pool statistics
     auto stats = ConnectionPool::instance().get_stats();
     if (stats.total_connections != 10) {
-        g_stats.record_fail("Verify total connections",
-            "Expected 10, got " + std::to_string(stats.total_connections));
+        g_stats.record_fail("Verify total connections", "Expected 10, got " + std::to_string(stats.total_connections));
         return false;
     }
     g_stats.record_pass("Verify total connections: " + std::to_string(stats.total_connections));
 
     if (stats.available_connections != 10) {
         g_stats.record_fail("Verify available connections",
-            "Expected 10, got " + std::to_string(stats.available_connections));
+                            "Expected 10, got " + std::to_string(stats.available_connections));
         return false;
     }
     g_stats.record_pass("Verify available connections: " + std::to_string(stats.available_connections));
 
     if (stats.active_connections != 0) {
-        g_stats.record_fail("Verify active connections",
-            "Expected 0, got " + std::to_string(stats.active_connections));
+        g_stats.record_fail("Verify active connections", "Expected 0, got " + std::to_string(stats.active_connections));
         return false;
     }
     g_stats.record_pass("Verify active connections: " + std::to_string(stats.active_connections));
@@ -149,9 +148,8 @@ bool test_connection_pool() {
 bool test_zone_loading() {
     std::cout << "\n[Test 3] Zone Loading\n";
 
-    auto zones_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_all_zones(txn);
-    });
+    auto zones_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_all_zones(txn); });
 
     if (!zones_result) {
         g_stats.record_fail("Load all zones", zones_result.error().message);
@@ -160,7 +158,7 @@ bool test_zone_loading() {
 
     g_stats.record_pass("Load all zones");
 
-    auto& zones = *zones_result;
+    auto &zones = *zones_result;
     if (zones.empty()) {
         g_stats.record_fail("Verify zones loaded", "No zones returned");
         return false;
@@ -169,9 +167,8 @@ bool test_zone_loading() {
 
     // Test loading first zone
     auto first_zone_id = zones[0]->id().zone_id();
-    auto single_zone = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
-        return WorldQueries::load_zone(txn, first_zone_id);
-    });
+    auto single_zone = ConnectionPool::instance().execute(
+        [first_zone_id](pqxx::work &txn) { return WorldQueries::load_zone(txn, first_zone_id); });
 
     if (!single_zone) {
         g_stats.record_fail("Load single zone", single_zone.error().message);
@@ -194,9 +191,8 @@ bool test_room_loading() {
     std::cout << "\n[Test 4] Room Loading\n";
 
     // Load zones first
-    auto zones_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_all_zones(txn);
-    });
+    auto zones_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_all_zones(txn); });
 
     if (!zones_result || zones_result->empty()) {
         g_stats.record_fail("Load zones for room test", "No zones available");
@@ -206,9 +202,8 @@ bool test_room_loading() {
     auto first_zone_id = (*zones_result)[0]->id().zone_id();
 
     // Test loading rooms for zone
-    auto rooms_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
-        return WorldQueries::load_rooms_in_zone(txn, first_zone_id);
-    });
+    auto rooms_result = ConnectionPool::instance().execute(
+        [first_zone_id](pqxx::work &txn) { return WorldQueries::load_rooms_in_zone(txn, first_zone_id); });
 
     if (!rooms_result) {
         g_stats.record_fail("Load rooms for zone", rooms_result.error().message);
@@ -216,13 +211,13 @@ bool test_room_loading() {
     }
     g_stats.record_pass("Load rooms for zone " + std::to_string(first_zone_id));
 
-    auto& rooms = *rooms_result;
+    auto &rooms = *rooms_result;
     std::cout << "    Loaded " << rooms.size() << " rooms\n";
 
     if (!rooms.empty()) {
         // Test loading single room
         int first_room_local_id = rooms[0]->id().local_id();
-        auto single_room = ConnectionPool::instance().execute([first_zone_id, first_room_local_id](pqxx::work& txn) {
+        auto single_room = ConnectionPool::instance().execute([first_zone_id, first_room_local_id](pqxx::work &txn) {
             return WorldQueries::load_room(txn, first_zone_id, first_room_local_id);
         });
 
@@ -231,7 +226,7 @@ bool test_room_loading() {
             return false;
         }
         g_stats.record_pass("Load single room (" + std::to_string(first_zone_id) + ", " +
-                          std::to_string(first_room_local_id) + ")");
+                            std::to_string(first_room_local_id) + ")");
 
         // Verify room data
         if ((*single_room)->name().empty()) {
@@ -249,9 +244,8 @@ bool test_player_queries() {
     std::cout << "\n[Test 5] Player Queries\n";
 
     // Test player count
-    auto count_result = ConnectionPool::instance().execute([](pqxx::work& txn) -> Result<int> {
-        return PlayerQueries::get_player_count(txn);
-    });
+    auto count_result = ConnectionPool::instance().execute(
+        [](pqxx::work &txn) -> Result<int> { return PlayerQueries::get_player_count(txn); });
 
     if (!count_result) {
         g_stats.record_fail("Get player count", count_result.error().message);
@@ -260,9 +254,8 @@ bool test_player_queries() {
     g_stats.record_pass("Get player count: " + std::to_string(*count_result));
 
     // Test player existence check (should not exist)
-    auto exists_result = ConnectionPool::instance().execute([](pqxx::work& txn) -> Result<bool> {
-        return PlayerQueries::player_exists(txn, "NonExistentPlayer");
-    });
+    auto exists_result = ConnectionPool::instance().execute(
+        [](pqxx::work &txn) -> Result<bool> { return PlayerQueries::player_exists(txn, "NonExistentPlayer"); });
 
     if (!exists_result) {
         g_stats.record_fail("Check player existence", exists_result.error().message);
@@ -276,9 +269,8 @@ bool test_player_queries() {
     g_stats.record_pass("Verify non-existent player check works");
 
     // Test loading non-existent player (should fail gracefully)
-    auto player_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return PlayerQueries::load_player_by_name(txn, "NonExistentPlayer");
-    });
+    auto player_result = ConnectionPool::instance().execute(
+        [](pqxx::work &txn) { return PlayerQueries::load_player_by_name(txn, "NonExistentPlayer"); });
 
     if (player_result) {
         g_stats.record_fail("Load non-existent player", "Should have returned error");
@@ -303,9 +295,8 @@ bool test_connection_pool_stress() {
     int successful = 0;
 
     for (int i = 0; i < num_queries; ++i) {
-        auto result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-            return WorldQueries::load_all_zones(txn);
-        });
+        auto result =
+            ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_all_zones(txn); });
 
         if (result) {
             successful++;
@@ -314,7 +305,7 @@ bool test_connection_pool_stress() {
 
     if (successful != num_queries) {
         g_stats.record_fail("Execute concurrent queries",
-            std::to_string(successful) + "/" + std::to_string(num_queries) + " succeeded");
+                            std::to_string(successful) + "/" + std::to_string(num_queries) + " succeeded");
         return false;
     }
     g_stats.record_pass("Execute concurrent queries: " + std::to_string(num_queries) + " successful");
@@ -323,8 +314,8 @@ bool test_connection_pool_stress() {
     auto stats = ConnectionPool::instance().get_stats();
     if (stats.available_connections != stats.total_connections) {
         g_stats.record_fail("Verify connections returned to pool",
-            "Expected " + std::to_string(stats.total_connections) +
-            " available, got " + std::to_string(stats.available_connections));
+                            "Expected " + std::to_string(stats.total_connections) + " available, got " +
+                                std::to_string(stats.available_connections));
         return false;
     }
     g_stats.record_pass("Verify all connections returned to pool");
@@ -337,9 +328,8 @@ bool test_mob_loading() {
     std::cout << "\n[Test 7] Mob Loading\n";
 
     // Load zones first
-    auto zones_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_all_zones(txn);
-    });
+    auto zones_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_all_zones(txn); });
 
     if (!zones_result || zones_result->empty()) {
         g_stats.record_fail("Load zones for mob test", "No zones available");
@@ -349,9 +339,8 @@ bool test_mob_loading() {
     auto first_zone_id = (*zones_result)[0]->id().zone_id();
 
     // Test loading mobs for zone
-    auto mobs_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
-        return WorldQueries::load_mobs_in_zone(txn, first_zone_id);
-    });
+    auto mobs_result = ConnectionPool::instance().execute(
+        [first_zone_id](pqxx::work &txn) { return WorldQueries::load_mobs_in_zone(txn, first_zone_id); });
 
     if (!mobs_result) {
         g_stats.record_fail("Load mobs for zone", mobs_result.error().message);
@@ -359,7 +348,7 @@ bool test_mob_loading() {
     }
     g_stats.record_pass("Load mobs for zone " + std::to_string(first_zone_id));
 
-    auto& mobs = *mobs_result;
+    auto &mobs = *mobs_result;
     std::cout << "    Loaded " << mobs.size() << " mobs\n";
 
     if (!mobs.empty()) {
@@ -376,8 +365,8 @@ bool test_mob_loading() {
             g_stats.record_fail("Verify mob zone ID", "Zone ID mismatch");
             return false;
         }
-        g_stats.record_pass("Verify mob has valid ID: (" + std::to_string(mob_id.zone_id()) +
-                          ", " + std::to_string(mob_id.local_id()) + ")");
+        g_stats.record_pass("Verify mob has valid ID: (" + std::to_string(mob_id.zone_id()) + ", " +
+                            std::to_string(mob_id.local_id()) + ")");
     }
 
     return true;
@@ -388,9 +377,8 @@ bool test_object_loading() {
     std::cout << "\n[Test 8] Object Loading\n";
 
     // Load zones first
-    auto zones_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_all_zones(txn);
-    });
+    auto zones_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_all_zones(txn); });
 
     if (!zones_result || zones_result->empty()) {
         g_stats.record_fail("Load zones for object test", "No zones available");
@@ -400,9 +388,8 @@ bool test_object_loading() {
     auto first_zone_id = (*zones_result)[0]->id().zone_id();
 
     // Test loading objects for zone
-    auto objects_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
-        return WorldQueries::load_objects_in_zone(txn, first_zone_id);
-    });
+    auto objects_result = ConnectionPool::instance().execute(
+        [first_zone_id](pqxx::work &txn) { return WorldQueries::load_objects_in_zone(txn, first_zone_id); });
 
     if (!objects_result) {
         g_stats.record_fail("Load objects for zone", objects_result.error().message);
@@ -410,7 +397,7 @@ bool test_object_loading() {
     }
     g_stats.record_pass("Load objects for zone " + std::to_string(first_zone_id));
 
-    auto& objects = *objects_result;
+    auto &objects = *objects_result;
     std::cout << "    Loaded " << objects.size() << " objects\n";
 
     if (!objects.empty()) {
@@ -427,8 +414,8 @@ bool test_object_loading() {
             g_stats.record_fail("Verify object zone ID", "Zone ID mismatch");
             return false;
         }
-        g_stats.record_pass("Verify object has valid ID: (" + std::to_string(obj_id.zone_id()) +
-                          ", " + std::to_string(obj_id.local_id()) + ")");
+        g_stats.record_pass("Verify object has valid ID: (" + std::to_string(obj_id.zone_id()) + ", " +
+                            std::to_string(obj_id.local_id()) + ")");
     }
 
     return true;
@@ -439,9 +426,8 @@ bool test_error_handling() {
     std::cout << "\n[Test 9] Error Handling\n";
 
     // Test invalid zone ID
-    auto invalid_zone = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_zone(txn, 99999);
-    });
+    auto invalid_zone =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_zone(txn, 99999); });
 
     if (invalid_zone) {
         g_stats.record_fail("Load invalid zone ID", "Should have returned error");
@@ -455,9 +441,8 @@ bool test_error_handling() {
     g_stats.record_pass("Load invalid zone returns NotFound error");
 
     // Test invalid room
-    auto invalid_room = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_room(txn, 1, 99999);
-    });
+    auto invalid_room =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_room(txn, 1, 99999); });
 
     if (invalid_room) {
         g_stats.record_fail("Load invalid room", "Should have returned error");

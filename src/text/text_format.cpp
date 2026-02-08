@@ -1,8 +1,10 @@
 #include "text_format.hpp"
+
 #include "core/actor.hpp"
 #include "string_utils.hpp"
-#include <fmt/format.h>
+
 #include <cctype>
+#include <fmt/format.h>
 
 namespace TextFormat {
 
@@ -22,7 +24,7 @@ const std::unordered_map<std::string, std::string> COLOR_CODES = {
     {"red", "\033[31m"},
     {"green", "\033[32m"},
     {"yellow", "\033[33m"},
-    {"brown", "\033[33m"},  // Classic MUD brown = dark yellow
+    {"brown", "\033[33m"}, // Classic MUD brown = dark yellow
     {"blue", "\033[34m"},
     {"magenta", "\033[35m"},
     {"purple", "\033[35m"}, // Alias for magenta
@@ -30,7 +32,7 @@ const std::unordered_map<std::string, std::string> COLOR_CODES = {
     {"white", "\033[37m"},
     {"gray", "\033[90m"},
     {"grey", "\033[90m"},
-    {"orange", "\033[38;5;208m"},  // 256-color orange
+    {"orange", "\033[38;5;208m"}, // 256-color orange
 
     // Bright colors
     {"b:black", "\033[90m"},
@@ -167,7 +169,7 @@ std::string hex_to_ansi(std::string_view hex) {
     }
 }
 
-std::string get_actor_name(const Actor* actor) {
+std::string get_actor_name(const Actor *actor) {
     if (!actor) {
         return "someone";
     }
@@ -180,7 +182,7 @@ std::string get_actor_name(const Actor* actor) {
 // Gender and Pronouns
 // =============================================================================
 
-Gender get_actor_gender(const Actor& actor) {
+Gender get_actor_gender(const Actor &actor) {
     std::string_view g = actor.gender();
     if (g == "Male") {
         return Gender::Male;
@@ -190,15 +192,15 @@ Gender get_actor_gender(const Actor& actor) {
     return Gender::Neutral;
 }
 
-const Pronouns& get_pronouns(Gender gender) {
+const Pronouns &get_pronouns(Gender gender) {
     switch (gender) {
-        case Gender::Male:
-            return MALE_PRONOUNS;
-        case Gender::Female:
-            return FEMALE_PRONOUNS;
-        case Gender::Neutral:
-        default:
-            return NEUTRAL_PRONOUNS;
+    case Gender::Male:
+        return MALE_PRONOUNS;
+    case Gender::Female:
+        return FEMALE_PRONOUNS;
+    case Gender::Neutral:
+    default:
+        return NEUTRAL_PRONOUNS;
     }
 }
 
@@ -369,8 +371,7 @@ bool has_colors(std::string_view message) {
         std::size_t end = message.find('>', pos + 1);
         if (end != std::string_view::npos) {
             std::string_view tag = message.substr(pos + 1, end - pos - 1);
-            if (!tag.empty() && (tag[0] == '/' || tag[0] == '#' ||
-                std::isalpha(static_cast<unsigned char>(tag[0])))) {
+            if (!tag.empty() && (tag[0] == '/' || tag[0] == '#' || std::isalpha(static_cast<unsigned char>(tag[0])))) {
                 return true;
             }
         }
@@ -415,54 +416,51 @@ std::string capitalize(std::string_view str) {
 }
 
 bool has_variables(std::string_view message) {
-    return message.find('{') != std::string_view::npos &&
-           message.find('}') != std::string_view::npos;
+    return message.find('{') != std::string_view::npos && message.find('}') != std::string_view::npos;
 }
 
 // =============================================================================
 // Message Context Builder
 // =============================================================================
 
-Message& Message::actor(const Actor* a) {
+Message &Message::actor(const Actor *a) {
     actor_ = a;
     return *this;
 }
 
-Message& Message::target(const Actor* t) {
+Message &Message::target(const Actor *t) {
     target_ = t;
     return *this;
 }
 
-Message& Message::object(const Object* o) {
+Message &Message::object(const Object *o) {
     object_ = o;
     return *this;
 }
 
-Message& Message::set(std::string_view name, std::string_view value) {
+Message &Message::set(std::string_view name, std::string_view value) {
     custom_vars_[std::string{name}] = std::string{value};
     return *this;
 }
 
-Message& Message::set(std::string_view name, std::string value) {
+Message &Message::set(std::string_view name, std::string value) {
     custom_vars_[std::string{name}] = std::move(value);
     return *this;
 }
 
-Message& Message::set(std::string_view name, int value) {
+Message &Message::set(std::string_view name, int value) {
     custom_vars_[std::string{name}] = std::to_string(value);
     return *this;
 }
 
-Message& Message::set(std::string_view name, double value) {
+Message &Message::set(std::string_view name, double value) {
     custom_vars_[std::string{name}] = fmt::format("{:.1f}", value);
     return *this;
 }
 
 std::string Message::format(std::string_view template_msg) const {
     // Substitute variables
-    std::string result = substitute(template_msg, [this](std::string_view var) {
-        return resolve(var);
-    });
+    std::string result = substitute(template_msg, [this](std::string_view var) { return resolve(var); });
 
     // Apply colors
     if (has_colors(result)) {
@@ -476,9 +474,7 @@ std::string Message::format(std::string_view template_msg) const {
 }
 
 std::string Message::format_plain(std::string_view template_msg) const {
-    std::string result = substitute(template_msg, [this](std::string_view var) {
-        return resolve(var);
-    });
+    std::string result = substitute(template_msg, [this](std::string_view var) { return resolve(var); });
     return capitalize(result);
 }
 
@@ -526,18 +522,16 @@ std::optional<std::string> Message::resolve(std::string_view var_name) const {
     }
 
     // Route to appropriate entity resolver
-    if (entity_type == "actor" || entity_type == "char" || entity_type == "self" ||
-        entity_type == "attacker" || entity_type == "caster") {
+    if (entity_type == "actor" || entity_type == "char" || entity_type == "self" || entity_type == "attacker" ||
+        entity_type == "caster") {
         return resolve_actor(property);
     }
 
-    if (entity_type == "target" || entity_type == "vict" || entity_type == "victim" ||
-        entity_type == "defender") {
+    if (entity_type == "target" || entity_type == "vict" || entity_type == "victim" || entity_type == "defender") {
         return resolve_target(property);
     }
 
-    if (entity_type == "object" || entity_type == "obj" || entity_type == "item" ||
-        entity_type == "weapon") {
+    if (entity_type == "object" || entity_type == "obj" || entity_type == "item" || entity_type == "weapon") {
         return resolve_object(property);
     }
 
@@ -565,7 +559,7 @@ std::optional<std::string> Message::resolve_object(std::string_view property) co
     return std::nullopt;
 }
 
-std::optional<std::string> Message::resolve_entity(const Actor* entity, std::string_view property) const {
+std::optional<std::string> Message::resolve_entity(const Actor *entity, std::string_view property) const {
     std::string prop = to_lower(property);
 
     if (prop == "name") {
@@ -575,7 +569,7 @@ std::optional<std::string> Message::resolve_entity(const Actor* entity, std::str
     if (!entity) {
         // For pronouns, use neutral if no entity
         Gender gender = Gender::Neutral;
-        const Pronouns& pronouns = get_pronouns(gender);
+        const Pronouns &pronouns = get_pronouns(gender);
 
         if (prop == "he" || prop == "she" || prop == "they" || prop == "subjective" || prop == "sub") {
             return std::string{pronouns.subjective};
@@ -593,7 +587,7 @@ std::optional<std::string> Message::resolve_entity(const Actor* entity, std::str
     }
 
     Gender gender = get_actor_gender(*entity);
-    const Pronouns& pronouns = get_pronouns(gender);
+    const Pronouns &pronouns = get_pronouns(gender);
 
     // Direct pronoun shortcuts
     if (prop == "he" || prop == "she" || prop == "they" || prop == "subjective" || prop == "sub") {
@@ -616,7 +610,7 @@ std::optional<std::string> Message::resolve_entity(const Actor* entity, std::str
 // Convenience Functions
 // =============================================================================
 
-std::string format(std::string_view template_msg, const Actor* actor, const Actor* target) {
+std::string format(std::string_view template_msg, const Actor *actor, const Actor *target) {
     return Message().actor(actor).target(target).format(template_msg);
 }
 

@@ -6,21 +6,20 @@
 #include "events/event_publisher.hpp"
 
 #include <cstdlib>
-
 #include <fmt/format.h>
 #include <hiredis.h>
 #include <spdlog/spdlog.h>
 
 namespace fierymud::events {
 
-EventPublisher& EventPublisher::instance() {
+EventPublisher &EventPublisher::instance() {
     static EventPublisher instance;
     return instance;
 }
 
 EventPublisher::~EventPublisher() { shutdown(); }
 
-bool EventPublisher::initialize(const EventPublisherConfig& config) {
+bool EventPublisher::initialize(const EventPublisherConfig &config) {
     std::lock_guard lock(redis_mutex_);
 
     if (running_) {
@@ -38,16 +37,17 @@ bool EventPublisher::initialize(const EventPublisherConfig& config) {
 
     // Try initial connection
     if (!connect()) {
-        spdlog::warn("EventPublisher: Initial Redis connection failed, will retry in "
-                     "background");
+        spdlog::warn(
+            "EventPublisher: Initial Redis connection failed, will retry in "
+            "background");
     }
 
     // Start background publisher thread
     running_ = true;
     publisher_thread_ = std::thread(&EventPublisher::publisher_thread, this);
 
-    spdlog::info("EventPublisher initialized (host={}:{}, enabled={})", config_.redis_host,
-                 config_.redis_port, enabled_.load());
+    spdlog::info("EventPublisher initialized (host={}:{}, enabled={})", config_.redis_host, config_.redis_port,
+                 enabled_.load());
 
     return true;
 }
@@ -56,7 +56,7 @@ bool EventPublisher::initialize_from_env() {
     EventPublisherConfig config;
 
     // REDIS_URL format: redis://[:password@]host[:port]
-    if (const char* url = std::getenv("REDIS_URL"); url != nullptr) {
+    if (const char *url = std::getenv("REDIS_URL"); url != nullptr) {
         std::string_view url_view(url);
 
         // Skip redis:// prefix
@@ -82,22 +82,22 @@ bool EventPublisher::initialize_from_env() {
         }
     } else {
         // Individual environment variables
-        if (const char* host = std::getenv("REDIS_HOST"); host != nullptr) {
+        if (const char *host = std::getenv("REDIS_HOST"); host != nullptr) {
             config.redis_host = host;
         }
-        if (const char* port = std::getenv("REDIS_PORT"); port != nullptr) {
+        if (const char *port = std::getenv("REDIS_PORT"); port != nullptr) {
             config.redis_port = std::stoi(port);
         }
-        if (const char* pass = std::getenv("REDIS_PASSWORD"); pass != nullptr) {
+        if (const char *pass = std::getenv("REDIS_PASSWORD"); pass != nullptr) {
             config.redis_password = pass;
         }
     }
 
     // Check if events are enabled
-    if (const char* enabled = std::getenv("FIERYMUD_EVENTS_ENABLED"); enabled != nullptr) {
+    if (const char *enabled = std::getenv("FIERYMUD_EVENTS_ENABLED"); enabled != nullptr) {
         std::string_view enabled_view(enabled);
-        config.enabled = (enabled_view == "1" || enabled_view == "true" ||
-                          enabled_view == "yes" || enabled_view == "on");
+        config.enabled =
+            (enabled_view == "1" || enabled_view == "true" || enabled_view == "yes" || enabled_view == "on");
     }
 
     return initialize(config);
@@ -105,7 +105,7 @@ bool EventPublisher::initialize_from_env() {
 
 void EventPublisher::shutdown() {
     if (!running_.exchange(false)) {
-        return;  // Already shutdown
+        return; // Already shutdown
     }
 
     spdlog::info("EventPublisher shutting down...");
@@ -124,8 +124,8 @@ void EventPublisher::shutdown() {
     // Disconnect from Redis
     disconnect();
 
-    spdlog::info("EventPublisher shutdown complete (published={}, dropped={})",
-                 events_published_.load(), events_dropped_.load());
+    spdlog::info("EventPublisher shutdown complete (published={}, dropped={})", events_published_.load(),
+                 events_dropped_.load());
 }
 
 bool EventPublisher::is_connected() const noexcept {
@@ -166,22 +166,18 @@ void EventPublisher::publish_raw(std::string_view channel, std::string message) 
     queue_cv_.notify_one();
 }
 
-void EventPublisher::publish_chat(GameEventType type, std::string_view player_name,
-                                  std::string_view message,
+void EventPublisher::publish_chat(GameEventType type, std::string_view player_name, std::string_view message,
                                   std::optional<std::string_view> target) {
     std::optional<std::string> target_str;
     if (target) {
         target_str = std::string(*target);
     }
-    publish(GameEvent::chat_event(type, std::string(player_name), std::string(message),
-                                  target_str));
+    publish(GameEvent::chat_event(type, std::string(player_name), std::string(message), target_str));
 }
 
-void EventPublisher::publish_player(GameEventType type, std::string_view player_name,
-                                    std::string_view message, std::optional<int> zone_id,
-                                    std::optional<std::string> room_id) {
-    auto event =
-        GameEvent::player_event(type, std::string(player_name), std::string(message));
+void EventPublisher::publish_player(GameEventType type, std::string_view player_name, std::string_view message,
+                                    std::optional<int> zone_id, std::optional<std::string> room_id) {
+    auto event = GameEvent::player_event(type, std::string(player_name), std::string(message));
     event.zone_id = zone_id;
     event.room_id = room_id;
     publish(std::move(event));
@@ -191,8 +187,7 @@ void EventPublisher::publish_admin(GameEventType type, std::string_view message)
     publish(GameEvent::create(type, std::string(message)));
 }
 
-void EventPublisher::publish_zone(GameEventType type, int zone_id,
-                                  std::string_view message) {
+void EventPublisher::publish_zone(GameEventType type, int zone_id, std::string_view message) {
     publish(GameEvent::zone_event(type, zone_id, std::string(message)));
 }
 
@@ -256,8 +251,7 @@ bool EventPublisher::connect() {
     timeout.tv_sec = config_.connection_timeout_ms / 1000;
     timeout.tv_usec = (config_.connection_timeout_ms % 1000) * 1000;
 
-    redis_ctx_ =
-        redisConnectWithTimeout(config_.redis_host.c_str(), config_.redis_port, timeout);
+    redis_ctx_ = redisConnectWithTimeout(config_.redis_host.c_str(), config_.redis_port, timeout);
 
     if (redis_ctx_ == nullptr) {
         spdlog::error("EventPublisher: Failed to allocate Redis context");
@@ -273,8 +267,7 @@ bool EventPublisher::connect() {
 
     // Authenticate if password is set
     if (!config_.redis_password.empty()) {
-        auto* reply = static_cast<redisReply*>(
-            redisCommand(redis_ctx_, "AUTH %s", config_.redis_password.c_str()));
+        auto *reply = static_cast<redisReply *>(redisCommand(redis_ctx_, "AUTH %s", config_.redis_password.c_str()));
         if (reply == nullptr || redis_ctx_->err) {
             spdlog::error("EventPublisher: Redis AUTH failed");
             redisFree(redis_ctx_);
@@ -284,8 +277,7 @@ bool EventPublisher::connect() {
         freeReplyObject(reply);
     }
 
-    spdlog::info("EventPublisher: Connected to Redis at {}:{}", config_.redis_host,
-                 config_.redis_port);
+    spdlog::info("EventPublisher: Connected to Redis at {}:{}", config_.redis_host, config_.redis_port);
     return true;
 }
 
@@ -303,9 +295,8 @@ bool EventPublisher::do_publish(std::string_view channel, std::string_view messa
         return false;
     }
 
-    auto* reply = static_cast<redisReply*>(redisCommand(
-        redis_ctx_, "PUBLISH %b %b", channel.data(), channel.size(), message.data(),
-        message.size()));
+    auto *reply = static_cast<redisReply *>(
+        redisCommand(redis_ctx_, "PUBLISH %b %b", channel.data(), channel.size(), message.data(), message.size()));
 
     if (reply == nullptr) {
         spdlog::error("EventPublisher: PUBLISH failed: {}", redis_ctx_->errstr);
@@ -318,4 +309,4 @@ bool EventPublisher::do_publish(std::string_view channel, std::string_view messa
     return success;
 }
 
-}  // namespace fierymud::events
+} // namespace fierymud::events

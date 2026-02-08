@@ -1,6 +1,7 @@
 #pragma once
 
 #include "result.hpp"
+
 #include <expected>
 #include <string>
 #include <string_view>
@@ -24,14 +25,13 @@ struct SkillError {
  * Uses the AbilityExecutor for actual execution.
  */
 class SkillSystem {
-public:
-    static SkillSystem& instance();
+  public:
+    static SkillSystem &instance();
 
     /**
      * Execute a skill (looks up from database and executes via AbilityExecutor).
      */
-    std::expected<void, SkillError> execute_skill(Actor& actor, std::string_view skill_name,
-                                                   Actor* target = nullptr);
+    std::expected<void, SkillError> execute_skill(Actor &actor, std::string_view skill_name, Actor *target = nullptr);
 
     /**
      * Check if a skill exists in the ability cache.
@@ -41,14 +41,14 @@ public:
     /**
      * Get actor's skill level (proficiency).
      */
-    int get_skill_level(const Actor& actor, std::string_view skill_name) const;
+    int get_skill_level(const Actor &actor, std::string_view skill_name) const;
 
     /**
      * Set actor's skill level (proficiency).
      */
-    void set_skill_level(Actor& actor, std::string_view skill_name, int level);
+    void set_skill_level(Actor &actor, std::string_view skill_name, int level);
 
-private:
+  private:
     SkillSystem() = default;
 };
 

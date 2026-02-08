@@ -1,18 +1,19 @@
 #include "database/database_config.hpp"
+
 #include "core/logging.hpp"
 #include "text/string_utils.hpp"
+
+#include <cstdlib>
+#include <filesystem>
 #include <fmt/format.h>
 #include <fstream>
 #include <sstream>
-#include <cstdlib>
-#include <filesystem>
 
 std::string DatabaseConfig::connection_string() const {
-    return fmt::format("host={} port={} dbname={} user={} password={}",
-                      host, port, dbname, user, password);
+    return fmt::format("host={} port={} dbname={} user={} password={}", host, port, dbname, user, password);
 }
 
-Result<DatabaseConfig> DatabaseConfig::from_env(const std::string& env_path) {
+Result<DatabaseConfig> DatabaseConfig::from_env(const std::string &env_path) {
     auto logger = Log::database();
     logger->debug("Loading database configuration from: {}", env_path);
 
@@ -60,7 +61,7 @@ Result<DatabaseConfig> DatabaseConfig::from_env(const std::string& env_path) {
         } else if (key == "POSTGRES_PORT") {
             try {
                 config.port = std::stoi(value);
-            } catch (const std::exception& e) {
+            } catch (const std::exception &e) {
                 logger->warn("Invalid POSTGRES_PORT value '{}', using default: {}", value, config.port);
             }
         } else if (key == "POSTGRES_DB") {
@@ -77,8 +78,8 @@ Result<DatabaseConfig> DatabaseConfig::from_env(const std::string& env_path) {
         return std::unexpected(Errors::InvalidArgument("POSTGRES_PASSWORD not set"));
     }
 
-    logger->info("Database configuration loaded: host={} port={} db={} user={}",
-                config.host, config.port, config.dbname, config.user);
+    logger->info("Database configuration loaded: host={} port={} db={} user={}", config.host, config.port,
+                 config.dbname, config.user);
 
     return config;
 }
@@ -90,27 +91,27 @@ Result<DatabaseConfig> DatabaseConfig::from_environment() {
     DatabaseConfig config;
 
     // Read from environment variables with defaults
-    if (const char* host = std::getenv("POSTGRES_HOST")) {
+    if (const char *host = std::getenv("POSTGRES_HOST")) {
         config.host = host;
     }
 
-    if (const char* port_str = std::getenv("POSTGRES_PORT")) {
+    if (const char *port_str = std::getenv("POSTGRES_PORT")) {
         try {
             config.port = std::stoi(port_str);
-        } catch (const std::exception& e) {
+        } catch (const std::exception &e) {
             logger->warn("Invalid POSTGRES_PORT environment variable, using default: {}", config.port);
         }
     }
 
-    if (const char* dbname = std::getenv("POSTGRES_DB")) {
+    if (const char *dbname = std::getenv("POSTGRES_DB")) {
         config.dbname = dbname;
     }
 
-    if (const char* user = std::getenv("POSTGRES_USER")) {
+    if (const char *user = std::getenv("POSTGRES_USER")) {
         config.user = user;
     }
 
-    if (const char* password = std::getenv("POSTGRES_PASSWORD")) {
+    if (const char *password = std::getenv("POSTGRES_PASSWORD")) {
         config.password = password;
     }
 
@@ -119,8 +120,8 @@ Result<DatabaseConfig> DatabaseConfig::from_environment() {
         return std::unexpected(Errors::InvalidArgument("POSTGRES_PASSWORD environment variable not set"));
     }
 
-    logger->info("Database configuration loaded from environment: host={} port={} db={} user={}",
-                config.host, config.port, config.dbname, config.user);
+    logger->info("Database configuration loaded from environment: host={} port={} db={} user={}", config.host,
+                 config.port, config.dbname, config.user);
 
     return config;
 }

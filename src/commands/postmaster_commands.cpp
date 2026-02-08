@@ -24,19 +24,18 @@ namespace {
 /**
  * Sanitize player-provided message content by closing any unclosed markup tags.
  */
-std::string sanitize_player_message(std::string_view message) {
-    return fmt::format("{}</>", message);
-}
+std::string sanitize_player_message(std::string_view message) { return fmt::format("{}</>", message); }
 
 /**
  * Find a postmaster in the current room
  * @return The first postmaster found, or nullptr if none
  */
-std::shared_ptr<Mobile> find_postmaster(const CommandContext& ctx) {
-    if (!ctx.room) return nullptr;
+std::shared_ptr<Mobile> find_postmaster(const CommandContext &ctx) {
+    if (!ctx.room)
+        return nullptr;
 
-    const auto& room_contents = ctx.room->contents();
-    for (const auto& actor : room_contents.actors) {
+    const auto &room_contents = ctx.room->contents();
+    for (const auto &actor : room_contents.actors) {
         if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mobile->is_postmaster()) {
                 return mobile;
@@ -49,7 +48,7 @@ std::shared_ptr<Mobile> find_postmaster(const CommandContext& ctx) {
 /**
  * Format a timestamp for display
  */
-std::string format_timestamp(const std::chrono::system_clock::time_point& tp) {
+std::string format_timestamp(const std::chrono::system_clock::time_point &tp) {
     auto time = std::chrono::system_clock::to_time_t(tp);
     auto tm = *std::localtime(&time);
     return fmt::format("{:%b %d, %Y}", tm);
@@ -58,7 +57,7 @@ std::string format_timestamp(const std::chrono::system_clock::time_point& tp) {
 /**
  * Get a sender name for display (handles legacy IDs and missing characters)
  */
-std::string get_sender_name(pqxx::work& txn, const WorldQueries::PlayerMailData& mail) {
+std::string get_sender_name(pqxx::work &txn, const WorldQueries::PlayerMailData &mail) {
     // Try to get name from sender character ID
     if (mail.sender_character_id) {
         auto name_result = WorldQueries::get_character_name_by_id(txn, *mail.sender_character_id);
@@ -78,21 +77,15 @@ std::string get_sender_name(pqxx::work& txn, const WorldQueries::PlayerMailData&
 /**
  * Send mail after composer completes
  */
-void send_composed_mail(std::shared_ptr<Player> player,
-                        const std::string& recipient_id,
-                        const std::string& recipient_name,
-                        const std::string& message) {
+void send_composed_mail(std::shared_ptr<Player> player, const std::string &recipient_id,
+                        const std::string &recipient_name, const std::string &message) {
     // Sanitize and send the mail
     std::string sanitized = sanitize_player_message(message);
 
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-        return WorldQueries::send_player_mail(
-            txn,
-            std::string{player->database_id()},
-            recipient_id,
-            sanitized,
-            0, 0, 0, 0,  // No wealth attachment
-            std::nullopt  // No object attachment
+    auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) {
+        return WorldQueries::send_player_mail(txn, std::string{player->database_id()}, recipient_id, sanitized, 0, 0, 0,
+                                              0,           // No wealth attachment
+                                              std::nullopt // No object attachment
         );
     });
 
@@ -135,60 +128,60 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
     std::string recipient_input = std::string{ctx.arg(0)};
 
     // Validate recipient exists before starting composer
-    auto validate_result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<std::pair<std::string, std::string>> {
-        std::string recipient_id;
-        std::string actual_name;
+    auto validate_result =
+        ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::pair<std::string, std::string>> {
+            std::string recipient_id;
+            std::string actual_name;
 
-        // Check if recipient looks like an email address
-        if (recipient_input.find('@') != std::string::npos) {
-            // Look up user by email
-            auto user_result = WorldQueries::load_user_by_email(txn, recipient_input);
-            if (!user_result) {
-                return std::unexpected(Error{ErrorCode::NotFound, "No account found with that email"});
+            // Check if recipient looks like an email address
+            if (recipient_input.find('@') != std::string::npos) {
+                // Look up user by email
+                auto user_result = WorldQueries::load_user_by_email(txn, recipient_input);
+                if (!user_result) {
+                    return std::unexpected(Error{ErrorCode::NotFound, "No account found with that email"});
+                }
+
+                // Get characters for this user
+                auto chars_result = WorldQueries::get_user_characters(txn, user_result->id);
+                if (!chars_result || chars_result->empty()) {
+                    return std::unexpected(Error{ErrorCode::NotFound, "That account has no characters"});
+                }
+
+                // Use the first character
+                auto &first_char = (*chars_result)[0];
+                recipient_id = first_char.id;
+                actual_name = first_char.name;
+            } else {
+                // Find recipient by character name
+                auto recipient_result = WorldQueries::find_character_id_by_name(txn, recipient_input);
+                if (!recipient_result) {
+                    return std::unexpected(recipient_result.error());
+                }
+
+                if (!*recipient_result) {
+                    return std::unexpected(Error{ErrorCode::NotFound, "Player not found"});
+                }
+
+                recipient_id = **recipient_result;
+
+                // Get recipient's actual name (for proper capitalization)
+                auto name_result = WorldQueries::get_character_name_by_id(txn, recipient_id);
+                if (!name_result || !*name_result) {
+                    return std::unexpected(Error{ErrorCode::NotFound, "Player not found"});
+                }
+
+                actual_name = **name_result;
             }
 
-            // Get characters for this user
-            auto chars_result = WorldQueries::get_user_characters(txn, user_result->id);
-            if (!chars_result || chars_result->empty()) {
-                return std::unexpected(Error{ErrorCode::NotFound, "That account has no characters"});
-            }
-
-            // Use the first character
-            auto& first_char = (*chars_result)[0];
-            recipient_id = first_char.id;
-            actual_name = first_char.name;
-        } else {
-            // Find recipient by character name
-            auto recipient_result = WorldQueries::find_character_id_by_name(txn, recipient_input);
-            if (!recipient_result) {
-                return std::unexpected(recipient_result.error());
-            }
-
-            if (!*recipient_result) {
-                return std::unexpected(Error{ErrorCode::NotFound, "Player not found"});
-            }
-
-            recipient_id = **recipient_result;
-
-            // Get recipient's actual name (for proper capitalization)
-            auto name_result = WorldQueries::get_character_name_by_id(txn, recipient_id);
-            if (!name_result || !*name_result) {
-                return std::unexpected(Error{ErrorCode::NotFound, "Player not found"});
-            }
-
-            actual_name = **name_result;
-        }
-
-        return std::make_pair(recipient_id, actual_name);
-    });
+            return std::make_pair(recipient_id, actual_name);
+        });
 
     if (!validate_result) {
         ctx.send_error(fmt::format("{}", validate_result.error().message));
         return CommandResult::InvalidTarget;
     }
 
-    auto& [recipient_id, recipient_name] = *validate_result;
+    auto &[recipient_id, recipient_name] = *validate_result;
 
     // If no message provided, use the composer
     if (ctx.arg_count() < 2) {
@@ -201,8 +194,7 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
         std::string captured_id = recipient_id;
         std::string captured_name = recipient_name;
 
-        auto composer = std::make_shared<ComposerSystem>(
-            std::weak_ptr<Player>(player), config);
+        auto composer = std::make_shared<ComposerSystem>(std::weak_ptr<Player>(player), config);
 
         composer->set_completion_callback([player, captured_id, captured_name](ComposerResult result) {
             if (result.success && !result.combined_text.empty()) {
@@ -215,8 +207,8 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
 
         player->start_composing(composer);
 
-        ctx.send(fmt::format("{} says, 'Take your time composing your message to {}.'",
-            postmaster->display_name(), recipient_name));
+        ctx.send(fmt::format("{} says, 'Take your time composing your message to {}.'", postmaster->display_name(),
+                             recipient_name));
 
         return CommandResult::Success;
     }
@@ -224,14 +216,10 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
     // Single-line message - send directly
     std::string message = sanitize_player_message(ctx.args_from(1));
 
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-        return WorldQueries::send_player_mail(
-            txn,
-            std::string{player->database_id()},
-            recipient_id,
-            message,
-            0, 0, 0, 0,  // No wealth attachment for now
-            std::nullopt  // No object attachment
+    auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) {
+        return WorldQueries::send_player_mail(txn, std::string{player->database_id()}, recipient_id, message, 0, 0, 0,
+                                              0,           // No wealth attachment for now
+                                              std::nullopt // No object attachment
         );
     });
 
@@ -240,8 +228,8 @@ Result<CommandResult> cmd_mail(const CommandContext &ctx) {
         return CommandResult::SystemError;
     }
 
-    ctx.send(fmt::format("{} says, 'I'll make sure {} gets your message.'",
-        postmaster->display_name(), recipient_name));
+    ctx.send(
+        fmt::format("{} says, 'I'll make sure {} gets your message.'", postmaster->display_name(), recipient_name));
     ctx.send(fmt::format("You send mail to {}.", recipient_name));
 
     return CommandResult::Success;
@@ -266,28 +254,27 @@ Result<CommandResult> cmd_check(const CommandContext &ctx) {
     }
 
     // Load all mail for this character
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<std::vector<WorldQueries::PlayerMailData>> {
-        return WorldQueries::load_character_mail(txn, std::string{player->database_id()});
-    });
+    auto result =
+        ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::vector<WorldQueries::PlayerMailData>> {
+            return WorldQueries::load_character_mail(txn, std::string{player->database_id()});
+        });
 
     if (!result) {
         ctx.send_error("Failed to check mail. Please try again later.");
         return CommandResult::SystemError;
     }
 
-    auto& mails = *result;
+    auto &mails = *result;
 
     if (mails.empty()) {
-        ctx.send(fmt::format("{} says, 'Sorry, you don't have any mail.'",
-            postmaster->display_name()));
+        ctx.send(fmt::format("{} says, 'Sorry, you don't have any mail.'", postmaster->display_name()));
         return CommandResult::Success;
     }
 
     // Count unread and mails with unretrieved attachments
     int unread_count = 0;
     int with_attachments = 0;
-    for (const auto& mail : mails) {
+    for (const auto &mail : mails) {
         if (!mail.read_at.has_value()) {
             ++unread_count;
         }
@@ -296,21 +283,18 @@ Result<CommandResult> cmd_check(const CommandContext &ctx) {
         }
     }
 
-    ctx.send(fmt::format("{} says, 'You have {} message{}!'",
-        postmaster->display_name(),
-        mails.size(),
-        mails.size() == 1 ? "" : "s"));
+    ctx.send(fmt::format("{} says, 'You have {} message{}!'", postmaster->display_name(), mails.size(),
+                         mails.size() == 1 ? "" : "s"));
     ctx.send("");
 
     // Display mail list
     ctx.send("--- Your Mail ---");
 
     // Get sender names for all mails
-    auto names_result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<std::vector<std::string>> {
+    auto names_result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::vector<std::string>> {
         std::vector<std::string> names;
         names.reserve(mails.size());
-        for (const auto& mail : mails) {
+        for (const auto &mail : mails) {
             names.push_back(get_sender_name(txn, mail));
         }
         return names;
@@ -323,7 +307,7 @@ Result<CommandResult> cmd_check(const CommandContext &ctx) {
 
     int index = 1;
     for (size_t i = 0; i < mails.size(); ++i) {
-        const auto& mail = mails[i];
+        const auto &mail = mails[i];
         std::string sender = i < sender_names.size() ? sender_names[i] : "<unknown>";
         std::string date = format_timestamp(mail.sent_at);
 
@@ -346,8 +330,8 @@ Result<CommandResult> cmd_check(const CommandContext &ctx) {
     ctx.send("");
     ctx.send("Use 'receive <number>' to read a message and claim attachments.");
     if (with_attachments > 0) {
-        ctx.send(fmt::format("You have {} message{} with unretrieved attachments.",
-            with_attachments, with_attachments == 1 ? "" : "s"));
+        ctx.send(fmt::format("You have {} message{} with unretrieved attachments.", with_attachments,
+                             with_attachments == 1 ? "" : "s"));
     }
 
     return CommandResult::Success;
@@ -388,10 +372,8 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
 
     // Handle "receive all" - retrieve all attachments from all mail
     if (arg == "all") {
-        auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-            -> Result<std::pair<fiery::Money, int>> {
-            auto mails_result = WorldQueries::load_character_mail(
-                txn, std::string{player->database_id()});
+        auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::pair<fiery::Money, int>> {
+            auto mails_result = WorldQueries::load_character_mail(txn, std::string{player->database_id()});
             if (!mails_result) {
                 return std::unexpected(mails_result.error());
             }
@@ -399,19 +381,15 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
             fiery::Money total_wealth;
             int items_received = 0;
 
-            for (const auto& mail : *mails_result) {
+            for (const auto &mail : *mails_result) {
                 // Retrieve wealth if not already retrieved
                 if (mail.has_unretrieved_wealth()) {
-                    fiery::Money mail_wealth(
-                        mail.attached_platinum,
-                        mail.attached_gold,
-                        mail.attached_silver,
-                        mail.attached_copper
-                    );
+                    fiery::Money mail_wealth(mail.attached_platinum, mail.attached_gold, mail.attached_silver,
+                                             mail.attached_copper);
                     total_wealth += mail_wealth;
 
-                    auto mark_result = WorldQueries::mark_mail_wealth_retrieved(
-                        txn, mail.id, std::string{player->database_id()});
+                    auto mark_result =
+                        WorldQueries::mark_mail_wealth_retrieved(txn, mail.id, std::string{player->database_id()});
                     if (!mark_result) {
                         return std::unexpected(mark_result.error());
                     }
@@ -441,7 +419,7 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
             return CommandResult::SystemError;
         }
 
-        auto& [total_wealth, items_received] = *result;
+        auto &[total_wealth, items_received] = *result;
 
         if (total_wealth.is_zero() && items_received == 0) {
             ctx.send("You have no attachments to retrieve.");
@@ -451,14 +429,14 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
         // Give player the wealth
         if (!total_wealth.is_zero()) {
             player->wallet() += total_wealth;
-            ctx.send(fmt::format("{} says, 'Here's {} from your mail.'",
-                postmaster->display_name(), total_wealth.to_string()));
+            ctx.send(fmt::format("{} says, 'Here's {} from your mail.'", postmaster->display_name(),
+                                 total_wealth.to_string()));
         }
 
         // Create object instances
         if (items_received > 0) {
-            ctx.send(fmt::format("You receive {} item{} from your mail.",
-                items_received, items_received == 1 ? "" : "s"));
+            ctx.send(
+                fmt::format("You receive {} item{} from your mail.", items_received, items_received == 1 ? "" : "s"));
             ctx.send("Note: Item instantiation not yet fully implemented.");
         }
 
@@ -489,31 +467,30 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
     }
 
     // Load the specific mail
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<std::tuple<WorldQueries::PlayerMailData, std::string, bool>> {
-        // Load all mail to find by index
-        auto mails_result = WorldQueries::load_character_mail(
-            txn, std::string{player->database_id()});
-        if (!mails_result) {
-            return std::unexpected(mails_result.error());
-        }
+    auto result = ConnectionPool::instance().execute(
+        [&](pqxx::work &txn) -> Result<std::tuple<WorldQueries::PlayerMailData, std::string, bool>> {
+            // Load all mail to find by index
+            auto mails_result = WorldQueries::load_character_mail(txn, std::string{player->database_id()});
+            if (!mails_result) {
+                return std::unexpected(mails_result.error());
+            }
 
-        auto& mails = *mails_result;
-        if (static_cast<size_t>(mail_num) > mails.size()) {
-            return std::unexpected(Error{ErrorCode::NotFound, "Mail not found"});
-        }
+            auto &mails = *mails_result;
+            if (static_cast<size_t>(mail_num) > mails.size()) {
+                return std::unexpected(Error{ErrorCode::NotFound, "Mail not found"});
+            }
 
-        auto& mail = mails[mail_num - 1];
-        std::string sender = get_sender_name(txn, mail);
+            auto &mail = mails[mail_num - 1];
+            std::string sender = get_sender_name(txn, mail);
 
-        // Mark as read
-        bool was_unread = !mail.read_at.has_value();
-        if (was_unread) {
-            WorldQueries::mark_mail_read(txn, mail.id);
-        }
+            // Mark as read
+            bool was_unread = !mail.read_at.has_value();
+            if (was_unread) {
+                WorldQueries::mark_mail_read(txn, mail.id);
+            }
 
-        return std::make_tuple(mail, sender, was_unread);
-    });
+            return std::make_tuple(mail, sender, was_unread);
+        });
 
     if (!result) {
         if (result.error().code == ErrorCode::NotFound) {
@@ -524,7 +501,7 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    auto& [mail, sender_name, was_unread] = *result;
+    auto &[mail, sender_name, was_unread] = *result;
 
     // Display the mail
     ctx.send(fmt::format("--- Mail from {} ---", sender_name));
@@ -535,17 +512,11 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
 
     // Handle wealth retrieval
     if (mail.has_unretrieved_wealth() && !item_only) {
-        fiery::Money wealth(
-            mail.attached_platinum,
-            mail.attached_gold,
-            mail.attached_silver,
-            mail.attached_copper
-        );
+        fiery::Money wealth(mail.attached_platinum, mail.attached_gold, mail.attached_silver, mail.attached_copper);
 
         // Mark wealth as retrieved
-        auto wealth_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::mark_mail_wealth_retrieved(
-                txn, mail.id, std::string{player->database_id()});
+        auto wealth_result = ConnectionPool::instance().execute([&](pqxx::work &txn) {
+            return WorldQueries::mark_mail_wealth_retrieved(txn, mail.id, std::string{player->database_id()});
         });
 
         if (wealth_result) {
@@ -554,8 +525,8 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
         } else {
             ctx.send_error("Failed to retrieve coins. Try again with 'receive <num> wealth'.");
         }
-    } else if (mail.attached_copper > 0 || mail.attached_silver > 0 ||
-               mail.attached_gold > 0 || mail.attached_platinum > 0) {
+    } else if (mail.attached_copper > 0 || mail.attached_silver > 0 || mail.attached_gold > 0 ||
+               mail.attached_platinum > 0) {
         if (mail.wealth_retrieved_at.has_value()) {
             ctx.send("(Coins already retrieved)");
         }
@@ -563,29 +534,28 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
 
     // Handle object retrieval
     if (mail.has_unretrieved_object() && mail.attached_object_id && !wealth_only) {
-        auto& world = WorldManager::instance();
+        auto &world = WorldManager::instance();
         auto obj = world.create_object_instance(*mail.attached_object_id);
 
         if (obj) {
             // Mark object as retrieved
-            auto obj_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-                return WorldQueries::mark_mail_object_retrieved(
-                    txn, mail.id, std::string{player->database_id()}, false);
+            auto obj_result = ConnectionPool::instance().execute([&](pqxx::work &txn) {
+                return WorldQueries::mark_mail_object_retrieved(txn, mail.id, std::string{player->database_id()},
+                                                                false);
             });
 
             if (obj_result) {
                 player->inventory().add_item(obj);
-                ctx.send(fmt::format("{} hands you {}.",
-                    postmaster->display_name(), obj->display_name()));
+                ctx.send(fmt::format("{} hands you {}.", postmaster->display_name(), obj->display_name()));
             } else {
                 ctx.send_error("Failed to retrieve item. Try again with 'receive <num> item'.");
             }
         } else {
             ctx.send_error("The attached item no longer exists in the world.");
             // Still mark as retrieved so it doesn't keep showing
-            ConnectionPool::instance().execute([&](pqxx::work& txn) {
-                return WorldQueries::mark_mail_object_retrieved(
-                    txn, mail.id, std::string{player->database_id()}, false);
+            ConnectionPool::instance().execute([&](pqxx::work &txn) {
+                return WorldQueries::mark_mail_object_retrieved(txn, mail.id, std::string{player->database_id()},
+                                                                false);
             });
         }
     } else if (mail.attached_object_id) {
@@ -598,9 +568,8 @@ Result<CommandResult> cmd_receive(const CommandContext &ctx) {
 
     // Handle deletion if requested
     if (delete_after) {
-        auto delete_result = ConnectionPool::instance().execute([&](pqxx::work& txn) {
-            return WorldQueries::delete_mail(txn, mail.id);
-        });
+        auto delete_result = ConnectionPool::instance().execute(
+            [&](pqxx::work &txn) { return WorldQueries::delete_mail(txn, mail.id); });
 
         if (delete_result) {
             ctx.send("Message deleted.");

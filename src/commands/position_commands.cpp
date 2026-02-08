@@ -16,21 +16,32 @@ namespace PositionCommands {
 
 std::string_view position_name(Position pos) {
     switch (pos) {
-        case Position::Dead: return "dead";
-        case Position::Ghost: return "a ghost";
-        case Position::Mortally_Wounded: return "mortally wounded";
-        case Position::Incapacitated: return "incapacitated";
-        case Position::Stunned: return "stunned";
-        case Position::Sleeping: return "sleeping";
-        case Position::Resting: return "resting";
-        case Position::Sitting: return "sitting";
-        case Position::Fighting: return "fighting";
-        case Position::Standing: return "standing";
-        default: return "in an unknown position";
+    case Position::Dead:
+        return "dead";
+    case Position::Ghost:
+        return "a ghost";
+    case Position::Mortally_Wounded:
+        return "mortally wounded";
+    case Position::Incapacitated:
+        return "incapacitated";
+    case Position::Stunned:
+        return "stunned";
+    case Position::Sleeping:
+        return "sleeping";
+    case Position::Resting:
+        return "resting";
+    case Position::Sitting:
+        return "sitting";
+    case Position::Fighting:
+        return "fighting";
+    case Position::Standing:
+        return "standing";
+    default:
+        return "in an unknown position";
     }
 }
 
-bool can_change_position(std::shared_ptr<Actor> actor, Position new_pos, std::string& reason) {
+bool can_change_position(std::shared_ptr<Actor> actor, Position new_pos, std::string &reason) {
     if (!actor) {
         reason = "Invalid actor.";
         return false;

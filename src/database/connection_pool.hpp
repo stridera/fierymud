@@ -2,15 +2,16 @@
 
 #pragma once
 
-#include "database_config.hpp"
 #include "core/result.hpp"
-#include <pqxx/pqxx>
-#include <memory>
-#include <queue>
-#include <mutex>
-#include <shared_mutex>
+#include "database_config.hpp"
+
 #include <condition_variable>
 #include <functional>
+#include <memory>
+#include <mutex>
+#include <pqxx/pqxx>
+#include <queue>
+#include <shared_mutex>
 #include <vector>
 
 /**
@@ -30,12 +31,12 @@
  *   });
  */
 class ConnectionPool {
-public:
+  public:
     /** Get singleton instance */
-    static ConnectionPool& instance();
+    static ConnectionPool &instance();
 
     /** Initialize connection pool with configuration */
-    Result<void> initialize(const DatabaseConfig& config, std::size_t pool_size = 10);
+    Result<void> initialize(const DatabaseConfig &config, std::size_t pool_size = 10);
 
     /** Shutdown connection pool and release all connections */
     void shutdown();
@@ -57,16 +58,14 @@ public:
      *       return WorldQueries::load_all_zones(txn);
      *   });
      */
-    template<typename Func>
-    auto execute(Func&& func) -> decltype(func(std::declval<pqxx::work&>())) {
+    template <typename Func> auto execute(Func &&func) -> decltype(func(std::declval<pqxx::work &>())) {
         auto conn = acquire_connection();
         if (!conn) {
-            return std::unexpected(Error{ErrorCode::ResourceExhausted,
-                "Failed to acquire database connection"});
+            return std::unexpected(Error{ErrorCode::ResourceExhausted, "Failed to acquire database connection"});
         }
 
         try {
-            decltype(func(std::declval<pqxx::work&>())) result;
+            decltype(func(std::declval<pqxx::work &>())) result;
             {
                 // transaction must be destroyed before releasing connection
                 pqxx::work txn(*conn);
@@ -75,14 +74,12 @@ public:
             }
             release_connection(std::move(conn));
             return result;
-        } catch (const pqxx::sql_error& e) {
+        } catch (const pqxx::sql_error &e) {
             release_connection(std::move(conn));
-            return std::unexpected(Error{ErrorCode::InternalError,
-                fmt::format("SQL error: {}", e.what())});
-        } catch (const std::exception& e) {
+            return std::unexpected(Error{ErrorCode::InternalError, fmt::format("SQL error: {}", e.what())});
+        } catch (const std::exception &e) {
             release_connection(std::move(conn));
-            return std::unexpected(Error{ErrorCode::InternalError,
-                fmt::format("Database error: {}", e.what())});
+            return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Database error: {}", e.what())});
         }
     }
 
@@ -90,16 +87,15 @@ public:
      * Execute a read-only query (no transaction needed).
      * More efficient for simple queries that don't modify data.
      */
-    template<typename Func>
-    auto execute_read_only(Func&& func) -> decltype(func(std::declval<pqxx::nontransaction&>())) {
+    template <typename Func>
+    auto execute_read_only(Func &&func) -> decltype(func(std::declval<pqxx::nontransaction &>())) {
         auto conn = acquire_connection();
         if (!conn) {
-            return std::unexpected(Error{ErrorCode::ResourceExhausted,
-                "Failed to acquire database connection"});
+            return std::unexpected(Error{ErrorCode::ResourceExhausted, "Failed to acquire database connection"});
         }
 
         try {
-            decltype(func(std::declval<pqxx::nontransaction&>())) result;
+            decltype(func(std::declval<pqxx::nontransaction &>())) result;
             {
                 // nontransaction must be destroyed before releasing connection
                 pqxx::nontransaction txn(*conn);
@@ -107,14 +103,12 @@ public:
             }
             release_connection(std::move(conn));
             return result;
-        } catch (const pqxx::sql_error& e) {
+        } catch (const pqxx::sql_error &e) {
             release_connection(std::move(conn));
-            return std::unexpected(Error{ErrorCode::InternalError,
-                fmt::format("SQL error: {}", e.what())});
-        } catch (const std::exception& e) {
+            return std::unexpected(Error{ErrorCode::InternalError, fmt::format("SQL error: {}", e.what())});
+        } catch (const std::exception &e) {
             release_connection(std::move(conn));
-            return std::unexpected(Error{ErrorCode::InternalError,
-                fmt::format("Database error: {}", e.what())});
+            return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Database error: {}", e.what())});
         }
     }
 
@@ -126,13 +120,13 @@ public:
     };
     PoolStats get_stats() const;
 
-private:
+  private:
     ConnectionPool() = default;
     ~ConnectionPool();
 
     // Prevent copying
-    ConnectionPool(const ConnectionPool&) = delete;
-    ConnectionPool& operator=(const ConnectionPool&) = delete;
+    ConnectionPool(const ConnectionPool &) = delete;
+    ConnectionPool &operator=(const ConnectionPool &) = delete;
 
     /** Acquire a connection from the pool (blocks if none available) */
     std::unique_ptr<pqxx::connection> acquire_connection();
@@ -141,7 +135,7 @@ private:
     void release_connection(std::unique_ptr<pqxx::connection> conn);
 
     /** Check if a connection is still healthy */
-    bool is_connection_healthy(pqxx::connection& conn);
+    bool is_connection_healthy(pqxx::connection &conn);
 
     std::string connection_string_;
     std::size_t pool_size_ = 0;

@@ -1,21 +1,21 @@
 #include "lua_combat.hpp"
+
 #include "../../core/actor.hpp"
 #include "../../core/combat.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
-
 #include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 
-void register_combat_bindings(sol::state& lua) {
+void register_combat_bindings(sol::state &lua) {
     auto combat_table = lua.create_named_table("combat");
 
     // combat.engage(attacker, defender) - Start combat between two actors
     // Returns: (bool success, string? error)
-    combat_table["engage"] = [](std::shared_ptr<Actor> attacker, std::shared_ptr<Actor> defender)
-        -> std::tuple<bool, sol::optional<std::string>> {
+    combat_table["engage"] = [](std::shared_ptr<Actor> attacker,
+                                std::shared_ptr<Actor> defender) -> std::tuple<bool, sol::optional<std::string>> {
         if (!attacker) {
             return std::make_tuple(false, std::string("invalid_target"));
         }
@@ -41,8 +41,8 @@ void register_combat_bindings(sol::state& lua) {
     // combat.rescue(rescuer, target) - Rescuer intervenes to protect target
     // Rescuer takes over aggro from target's attackers
     // Returns: (bool success, string? error)
-    combat_table["rescue"] = [](std::shared_ptr<Actor> rescuer, std::shared_ptr<Actor> target)
-        -> std::tuple<bool, sol::optional<std::string>> {
+    combat_table["rescue"] = [](std::shared_ptr<Actor> rescuer,
+                                std::shared_ptr<Actor> target) -> std::tuple<bool, sol::optional<std::string>> {
         if (!rescuer) {
             return std::make_tuple(false, std::string("invalid_target"));
         }
@@ -60,7 +60,7 @@ void register_combat_bindings(sol::state& lua) {
 
         // Get target's attackers and make them attack rescuer instead
         auto target_attackers = target->get_all_enemies();
-        for (auto& attacker : target_attackers) {
+        for (auto &attacker : target_attackers) {
             if (attacker && attacker != rescuer) {
                 // Add combat pair: attacker now fights rescuer
                 CombatManager::add_combat_pair(attacker, rescuer);
@@ -80,8 +80,7 @@ void register_combat_bindings(sol::state& lua) {
 
     // combat.disengage(actor) - Remove actor from combat
     // Returns: (bool success, string? error)
-    combat_table["disengage"] = [](std::shared_ptr<Actor> actor)
-        -> std::tuple<bool, sol::optional<std::string>> {
+    combat_table["disengage"] = [](std::shared_ptr<Actor> actor) -> std::tuple<bool, sol::optional<std::string>> {
         if (!actor) {
             return std::make_tuple(false, std::string("invalid_target"));
         }

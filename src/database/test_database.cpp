@@ -1,8 +1,9 @@
-#include "database/database_config.hpp"
+#include "core/logging.hpp"
 #include "database/connection_pool.hpp"
+#include "database/database_config.hpp"
 #include "database/world_queries.hpp"
 #include "world/room.hpp"
-#include "core/logging.hpp"
+
 #include <iostream>
 
 int main() {
@@ -18,8 +19,7 @@ int main() {
         std::cerr << "   FAILED: " << db_config_result.error().message << "\n";
         return 1;
     }
-    std::cout << "   SUCCESS: Connected to " << db_config_result->host
-              << ":" << db_config_result->port << "\n\n";
+    std::cout << "   SUCCESS: Connected to " << db_config_result->host << ":" << db_config_result->port << "\n\n";
 
     // Step 2: Initialize connection pool
     std::cout << "2. Initializing connection pool (10 connections)\n";
@@ -32,9 +32,8 @@ int main() {
 
     // Step 3: Load all zones
     std::cout << "3. Loading zones from database\n";
-    auto zones_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_all_zones(txn);
-    });
+    auto zones_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_all_zones(txn); });
 
     if (!zones_result) {
         std::cerr << "   FAILED: " << zones_result.error().message << "\n";
@@ -46,9 +45,8 @@ int main() {
     // Display first 5 zones
     std::cout << "   First 5 zones:\n";
     for (size_t i = 0; i < std::min(size_t(5), zones_result->size()); ++i) {
-        const auto& zone = (*zones_result)[i];
-        std::cout << "     - Zone " << zone->id().zone_id()
-                  << ": " << zone->name() << "\n";
+        const auto &zone = (*zones_result)[i];
+        std::cout << "     - Zone " << zone->id().zone_id() << ": " << zone->name() << "\n";
     }
     std::cout << "\n";
 
@@ -57,9 +55,8 @@ int main() {
         int first_zone_id = (*zones_result)[0]->id().zone_id();
         std::cout << "4. Loading rooms for zone " << first_zone_id << "\n";
 
-        auto rooms_result = ConnectionPool::instance().execute([first_zone_id](pqxx::work& txn) {
-            return WorldQueries::load_rooms_in_zone(txn, first_zone_id);
-        });
+        auto rooms_result = ConnectionPool::instance().execute(
+            [first_zone_id](pqxx::work &txn) { return WorldQueries::load_rooms_in_zone(txn, first_zone_id); });
 
         if (!rooms_result) {
             std::cerr << "   FAILED: " << rooms_result.error().message << "\n";
@@ -71,10 +68,9 @@ int main() {
         // Display first 5 rooms
         std::cout << "   First 5 rooms:\n";
         for (size_t i = 0; i < std::min(size_t(5), rooms_result->size()); ++i) {
-            const auto& room = (*rooms_result)[i];
-            std::cout << "     - Room (" << room->id().zone_id()
-                      << ", " << room->id().local_id() << "): "
-                      << room->name() << "\n";
+            const auto &room = (*rooms_result)[i];
+            std::cout << "     - Room (" << room->id().zone_id() << ", " << room->id().local_id()
+                      << "): " << room->name() << "\n";
         }
         std::cout << "\n";
     }
@@ -88,9 +84,8 @@ int main() {
 
     // Step 6: Test room property loading for room 30:1 (Temple of Midgaard)
     std::cout << "6. Testing room property loading for room 30:1 (Temple)\n";
-    auto room_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_room(txn, 30, 1);
-    });
+    auto room_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_room(txn, 30, 1); });
 
     if (!room_result) {
         std::cerr << "   FAILED: " << room_result.error().message << "\n";
@@ -98,7 +93,7 @@ int main() {
         return 1;
     }
 
-    const auto& room = *room_result;
+    const auto &room = *room_result;
     std::cout << "   Room loaded: " << room->id() << " - " << room->name() << "\n";
     std::cout << "   Base light level: " << room->base_light_level() << "\n";
     std::cout << "   Is peaceful: " << (room->is_peaceful() ? "yes" : "no") << "\n";
@@ -108,9 +103,8 @@ int main() {
 
     // Step 7: Test room property loading via load_rooms_in_zone (server path)
     std::cout << "7. Testing room property loading via load_rooms_in_zone (zone 30)\n";
-    auto rooms_z30_result = ConnectionPool::instance().execute([](pqxx::work& txn) {
-        return WorldQueries::load_rooms_in_zone(txn, 30);
-    });
+    auto rooms_z30_result =
+        ConnectionPool::instance().execute([](pqxx::work &txn) { return WorldQueries::load_rooms_in_zone(txn, 30); });
 
     if (!rooms_z30_result) {
         std::cerr << "   FAILED: " << rooms_z30_result.error().message << "\n";
@@ -121,8 +115,8 @@ int main() {
     std::cout << "   Loaded " << rooms_z30_result->size() << " rooms from zone 30\n";
 
     // Find room 30:1 in the results
-    Room* temple_room = nullptr;
-    for (const auto& r : *rooms_z30_result) {
+    Room *temple_room = nullptr;
+    for (const auto &r : *rooms_z30_result) {
         if (r->id().local_id() == 1) {
             temple_room = r.get();
             break;

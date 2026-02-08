@@ -396,9 +396,7 @@ std::string_view trim(std::string_view str) {
     return ::trim(str);
 }
 
-std::string to_lower(std::string_view str) {
-    return to_lowercase(str);
-}
+std::string to_lower(std::string_view str) { return to_lowercase(str); }
 
 bool starts_with_ci(std::string_view str, std::string_view prefix) {
     if (str.length() < prefix.length()) {

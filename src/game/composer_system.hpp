@@ -16,19 +16,19 @@ class PlayerConnection;
  * @brief State machine states for the composer
  */
 enum class ComposerState {
-    Inactive,   // Not composing
-    Composing,  // Actively composing text
-    Completed,  // Finished composing (. entered)
-    Cancelled   // Cancelled composing (~q entered)
+    Inactive,  // Not composing
+    Composing, // Actively composing text
+    Completed, // Finished composing (. entered)
+    Cancelled  // Cancelled composing (~q entered)
 };
 
 /**
  * @brief Result of a completed composition
  */
 struct ComposerResult {
-    bool success{false};                // true if completed, false if cancelled
-    std::vector<std::string> lines;     // Individual lines entered
-    std::string combined_text;          // Lines joined with \n
+    bool success{false};            // true if completed, false if cancelled
+    std::vector<std::string> lines; // Individual lines entered
+    std::string combined_text;      // Lines joined with \n
 
     /** Get combined text for database storage */
     std::string to_database_text() const { return combined_text; }
@@ -43,7 +43,7 @@ struct ComposerConfig {
     std::string cancel_message{"Cancelled."};
     std::string prompt{">"};
     int max_lines{100};
-    int max_line_length{2000};  // Prevent abuse
+    int max_line_length{2000}; // Prevent abuse
 };
 
 /**
@@ -75,10 +75,10 @@ class ComposerSystem {
     ~ComposerSystem() = default;
 
     // Non-copyable, movable
-    ComposerSystem(const ComposerSystem&) = delete;
-    ComposerSystem& operator=(const ComposerSystem&) = delete;
-    ComposerSystem(ComposerSystem&&) = default;
-    ComposerSystem& operator=(ComposerSystem&&) = default;
+    ComposerSystem(const ComposerSystem &) = delete;
+    ComposerSystem &operator=(const ComposerSystem &) = delete;
+    ComposerSystem(ComposerSystem &&) = default;
+    ComposerSystem &operator=(ComposerSystem &&) = default;
 
     /**
      * @brief Start the composer session
@@ -114,7 +114,7 @@ class ComposerSystem {
     /**
      * @brief Get current lines entered
      */
-    const std::vector<std::string>& lines() const { return lines_; }
+    const std::vector<std::string> &lines() const { return lines_; }
 
     /**
      * @brief Get current line count
@@ -123,11 +123,11 @@ class ComposerSystem {
 
   private:
     // Command handlers
-    void cmd_save();       // "." - Save and complete
-    void cmd_cancel();     // "~q" - Cancel and discard
-    void cmd_preview();    // "~p" - Show current text
-    void cmd_clear();      // "~c" - Clear and continue
-    void cmd_help();       // "~h" - Show help
+    void cmd_save();    // "." - Save and complete
+    void cmd_cancel();  // "~q" - Cancel and discard
+    void cmd_preview(); // "~p" - Show current text
+    void cmd_clear();   // "~c" - Clear and continue
+    void cmd_help();    // "~h" - Show help
 
     // Helper methods
     void send_message(std::string_view message);

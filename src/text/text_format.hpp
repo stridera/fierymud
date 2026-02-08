@@ -2,12 +2,12 @@
 
 #pragma once
 
+#include <functional>
+#include <memory>
+#include <optional>
 #include <string>
 #include <string_view>
-#include <functional>
-#include <optional>
 #include <unordered_map>
-#include <memory>
 #include <variant>
 
 // Forward declarations
@@ -44,30 +44,26 @@ namespace TextFormat {
 // Gender and Pronouns
 // =============================================================================
 
-enum class Gender {
-    Male,
-    Female,
-    Neutral
-};
+enum class Gender { Male, Female, Neutral };
 
 struct Pronouns {
-    std::string_view subjective;   // he/she/they
-    std::string_view objective;    // him/her/them
-    std::string_view possessive;   // his/her/their
-    std::string_view reflexive;    // himself/herself/themselves
-    std::string_view verb_be;      // is/is/are (for subject-verb agreement)
+    std::string_view subjective; // he/she/they
+    std::string_view objective;  // him/her/them
+    std::string_view possessive; // his/her/their
+    std::string_view reflexive;  // himself/herself/themselves
+    std::string_view verb_be;    // is/is/are (for subject-verb agreement)
 };
 
 /**
  * Get the gender of an actor.
  * Maps actor.gender() string ("Male", "Female", "Neuter") to Gender enum.
  */
-Gender get_actor_gender(const Actor& actor);
+Gender get_actor_gender(const Actor &actor);
 
 /**
  * Get pronouns for a gender.
  */
-const Pronouns& get_pronouns(Gender gender);
+const Pronouns &get_pronouns(Gender gender);
 
 // =============================================================================
 // Variable Resolution
@@ -145,19 +141,19 @@ bool has_variables(std::string_view message);
  *       .format("You hit {target.name} for <red>{damage}</red> damage!");
  */
 class Message {
-public:
+  public:
     Message() = default;
 
     // Entity setters
-    Message& actor(const Actor* a);
-    Message& target(const Actor* t);
-    Message& object(const Object* o);
+    Message &actor(const Actor *a);
+    Message &target(const Actor *t);
+    Message &object(const Object *o);
 
     // Custom variable setters
-    Message& set(std::string_view name, std::string_view value);
-    Message& set(std::string_view name, std::string value);
-    Message& set(std::string_view name, int value);
-    Message& set(std::string_view name, double value);
+    Message &set(std::string_view name, std::string_view value);
+    Message &set(std::string_view name, std::string value);
+    Message &set(std::string_view name, int value);
+    Message &set(std::string_view name, double value);
 
     // Format the message
     std::string format(std::string_view template_msg) const;
@@ -165,16 +161,16 @@ public:
     // Format without color processing (for plain text)
     std::string format_plain(std::string_view template_msg) const;
 
-private:
+  private:
     std::optional<std::string> resolve(std::string_view var_name) const;
     std::optional<std::string> resolve_actor(std::string_view property) const;
     std::optional<std::string> resolve_target(std::string_view property) const;
     std::optional<std::string> resolve_object(std::string_view property) const;
-    std::optional<std::string> resolve_entity(const Actor* entity, std::string_view property) const;
+    std::optional<std::string> resolve_entity(const Actor *entity, std::string_view property) const;
 
-    const Actor* actor_ = nullptr;
-    const Actor* target_ = nullptr;
-    const Object* object_ = nullptr;
+    const Actor *actor_ = nullptr;
+    const Actor *target_ = nullptr;
+    const Object *object_ = nullptr;
     std::unordered_map<std::string, std::string> custom_vars_;
 };
 
@@ -186,9 +182,7 @@ private:
  * Format a message with actor and optional target.
  * Shorthand for Message().actor(a).target(t).format(msg)
  */
-std::string format(std::string_view template_msg,
-                   const Actor* actor,
-                   const Actor* target = nullptr);
+std::string format(std::string_view template_msg, const Actor *actor, const Actor *target = nullptr);
 
 /**
  * Format a message with just color processing (no variables).

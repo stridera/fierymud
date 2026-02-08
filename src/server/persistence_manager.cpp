@@ -1,21 +1,21 @@
 #include "persistence_manager.hpp"
 
-#include "../core/logging.hpp"
-#include "../core/actor.hpp"
 #include "../core/active_effect.hpp"
+#include "../core/actor.hpp"
 #include "../core/config.hpp"
+#include "../core/logging.hpp"
 #include "../core/object.hpp"
-#include "mud_server.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/player_queries.hpp"
 #include "../database/world_queries.hpp"
+#include "mud_server.hpp"
 
 #include <algorithm>
 #include <chrono>
-#include <nlohmann/json.hpp>
 #include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
 
-PersistenceManager& PersistenceManager::instance() {
+PersistenceManager &PersistenceManager::instance() {
     static PersistenceManager instance;
     return instance;
 }
@@ -36,7 +36,7 @@ Result<void> PersistenceManager::backup_data() {
     return Success();
 }
 
-Result<void> PersistenceManager::save_player(const Player& player) {
+Result<void> PersistenceManager::save_player(const Player &player) {
     if (!config_) {
         return std::unexpected(Errors::InvalidState("PersistenceManager not initialized"));
     }
@@ -102,13 +102,11 @@ Result<void> PersistenceManager::save_player(const Player& player) {
 
             // Save to database
             auto char_save_result = ConnectionPool::instance().execute(
-                [&char_data](pqxx::work& txn) {
-                    return WorldQueries::save_character(txn, char_data);
-                });
+                [&char_data](pqxx::work &txn) { return WorldQueries::save_character(txn, char_data); });
 
             if (!char_save_result) {
-                Log::error("Failed to save character data for player {}: {}",
-                          player.name(), char_save_result.error().message);
+                Log::error("Failed to save character data for player {}: {}", player.name(),
+                           char_save_result.error().message);
                 // Don't fail entire save - JSON backup was successful
             } else {
                 Log::debug("Saved character data to database for player {}", player.name());
@@ -121,14 +119,16 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             std::vector<WorldQueries::CharacterItemData> items_data;
 
             // Add inventory items (skip Temporary items - they're dynamic and not saved)
-            for (const auto& item : player.inventory().get_all_items()) {
-                if (!item) continue;
-                if (item->has_flag(ObjectFlag::Temporary)) continue;
+            for (const auto &item : player.inventory().get_all_items()) {
+                if (!item)
+                    continue;
+                if (item->has_flag(ObjectFlag::Temporary))
+                    continue;
 
                 WorldQueries::CharacterItemData item_data;
                 item_data.character_id = char_id;
                 item_data.object_id = item->id();
-                item_data.equipped_location = "";  // Not equipped
+                item_data.equipped_location = ""; // Not equipped
                 item_data.condition = item->condition();
                 item_data.charges = item->charges();
                 // Container nesting handled through database relationships
@@ -137,9 +137,11 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             }
 
             // Add equipped items (skip Temporary items - they're dynamic and not saved)
-            for (const auto& [slot, item] : player.equipment().get_all_equipped_with_slots()) {
-                if (!item) continue;
-                if (item->has_flag(ObjectFlag::Temporary)) continue;
+            for (const auto &[slot, item] : player.equipment().get_all_equipped_with_slots()) {
+                if (!item)
+                    continue;
+                if (item->has_flag(ObjectFlag::Temporary))
+                    continue;
 
                 WorldQueries::CharacterItemData item_data;
                 item_data.character_id = char_id;
@@ -152,18 +154,15 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             }
 
             // Save to database
-            auto save_result = ConnectionPool::instance().execute(
-                [&char_id, &items_data](pqxx::work& txn) {
-                    return WorldQueries::save_character_items(txn, char_id, items_data);
-                });
+            auto save_result = ConnectionPool::instance().execute([&char_id, &items_data](pqxx::work &txn) {
+                return WorldQueries::save_character_items(txn, char_id, items_data);
+            });
 
             if (!save_result) {
-                Log::error("Failed to save items for player {}: {}",
-                          player.name(), save_result.error().message);
+                Log::error("Failed to save items for player {}: {}", player.name(), save_result.error().message);
                 // Don't fail the entire save - JSON backup was successful
             } else {
-                Log::info("Saved {} items to database for player {}",
-                         items_data.size(), player.name());
+                Log::info("Saved {} items to database for player {}", items_data.size(), player.name());
             }
 
             // Save account wealth if player has a linked user account
@@ -171,17 +170,16 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                 std::string user_id{player.user_id()};
                 long account_wealth = player.account_bank().value();
 
-                auto account_save_result = ConnectionPool::instance().execute(
-                    [&user_id, account_wealth](pqxx::work& txn) {
+                auto account_save_result =
+                    ConnectionPool::instance().execute([&user_id, account_wealth](pqxx::work &txn) {
                         return WorldQueries::save_account_wealth(txn, user_id, account_wealth);
                     });
 
                 if (!account_save_result) {
-                    Log::error("Failed to save account wealth for player {}: {}",
-                              player.name(), account_save_result.error().message);
+                    Log::error("Failed to save account wealth for player {}: {}", player.name(),
+                               account_save_result.error().message);
                 } else {
-                    Log::debug("Saved account wealth {} for player {}",
-                              account_wealth, player.name());
+                    Log::debug("Saved account wealth {} for player {}", account_wealth, player.name());
                 }
             }
 
@@ -190,7 +188,7 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             auto now = std::chrono::system_clock::now();
 
             // Convert ActiveEffects to CharacterEffectData
-            for (const auto& effect : player.active_effects()) {
+            for (const auto &effect : player.active_effects()) {
                 // Skip effects without a valid effect_id (shouldn't happen, but be safe)
                 if (effect.effect_id <= 0) {
                     Log::warn("Effect '{}' has no effect_id ({}), skipping save", effect.name, effect.effect_id);
@@ -213,7 +211,7 @@ Result<void> PersistenceManager::save_player(const Player& player) {
 
                 // Store modifier info in JSON
                 nlohmann::json modifier_json;
-                modifier_json["effect_name"] = effect.name;  // Save original spell/ability name
+                modifier_json["effect_name"] = effect.name; // Save original spell/ability name
                 modifier_json["flag"] = std::string(magic_enum::enum_name(effect.flag));
                 modifier_json["modifier_value"] = effect.modifier_value;
                 modifier_json["modifier_stat"] = effect.modifier_stat;
@@ -224,7 +222,7 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             }
 
             // Convert DoT effects to CharacterEffectData
-            for (const auto& dot : player.dot_effects()) {
+            for (const auto &dot : player.dot_effects()) {
                 WorldQueries::CharacterEffectData effect_data;
                 effect_data.character_id = char_id;
                 effect_data.effect_id = dot.effect_id;
@@ -264,7 +262,7 @@ Result<void> PersistenceManager::save_player(const Player& player) {
             }
 
             // Convert HoT effects to CharacterEffectData
-            for (const auto& hot : player.hot_effects()) {
+            for (const auto &hot : player.hot_effects()) {
                 WorldQueries::CharacterEffectData effect_data;
                 effect_data.character_id = char_id;
                 effect_data.effect_id = hot.effect_id;
@@ -304,36 +302,33 @@ Result<void> PersistenceManager::save_player(const Player& player) {
 
             // Save effects to database
             if (!effects_data.empty()) {
-                auto effects_save_result = ConnectionPool::instance().execute(
-                    [&char_id, &effects_data](pqxx::work& txn) {
+                auto effects_save_result =
+                    ConnectionPool::instance().execute([&char_id, &effects_data](pqxx::work &txn) {
                         return WorldQueries::save_character_effects(txn, char_id, effects_data);
                     });
 
                 if (!effects_save_result) {
-                    Log::error("Failed to save effects for player {}: {}",
-                              player.name(), effects_save_result.error().message);
+                    Log::error("Failed to save effects for player {}: {}", player.name(),
+                               effects_save_result.error().message);
                 } else {
-                    Log::info("Saved {} effects to database for player {}",
-                             effects_data.size(), player.name());
+                    Log::info("Saved {} effects to database for player {}", effects_data.size(), player.name());
                 }
             } else {
                 // No effects to save, clear any existing effects in database
                 auto clear_result = ConnectionPool::instance().execute(
-                    [&char_id](pqxx::work& txn) {
-                        return WorldQueries::delete_character_effects(txn, char_id);
-                    });
+                    [&char_id](pqxx::work &txn) { return WorldQueries::delete_character_effects(txn, char_id); });
                 if (clear_result) {
                     Log::debug("Cleared effects from database for player {}", player.name());
                 }
             }
 
             // Save character aliases
-            const auto& player_aliases = player.get_aliases();
+            const auto &player_aliases = player.get_aliases();
             if (!player_aliases.empty()) {
                 std::vector<WorldQueries::CharacterAliasData> aliases_data;
                 aliases_data.reserve(player_aliases.size());
 
-                for (const auto& [alias, command] : player_aliases) {
+                for (const auto &[alias, command] : player_aliases) {
                     WorldQueries::CharacterAliasData alias_data;
                     alias_data.character_id = char_id;
                     alias_data.alias = alias;
@@ -341,24 +336,21 @@ Result<void> PersistenceManager::save_player(const Player& player) {
                     aliases_data.push_back(std::move(alias_data));
                 }
 
-                auto aliases_save_result = ConnectionPool::instance().execute(
-                    [&char_id, &aliases_data](pqxx::work& txn) {
+                auto aliases_save_result =
+                    ConnectionPool::instance().execute([&char_id, &aliases_data](pqxx::work &txn) {
                         return WorldQueries::save_character_aliases(txn, char_id, aliases_data);
                     });
 
                 if (!aliases_save_result) {
-                    Log::error("Failed to save aliases for player {}: {}",
-                              player.name(), aliases_save_result.error().message);
+                    Log::error("Failed to save aliases for player {}: {}", player.name(),
+                               aliases_save_result.error().message);
                 } else {
-                    Log::debug("Saved {} aliases to database for player {}",
-                             aliases_data.size(), player.name());
+                    Log::debug("Saved {} aliases to database for player {}", aliases_data.size(), player.name());
                 }
             } else {
                 // No aliases to save, clear any existing aliases in database
                 auto clear_result = ConnectionPool::instance().execute(
-                    [&char_id](pqxx::work& txn) {
-                        return WorldQueries::delete_character_aliases(txn, char_id);
-                    });
+                    [&char_id](pqxx::work &txn) { return WorldQueries::delete_character_aliases(txn, char_id); });
                 if (clear_result) {
                     Log::debug("Cleared aliases from database for player {}", player.name());
                 }
@@ -370,7 +362,7 @@ Result<void> PersistenceManager::save_player(const Player& player) {
         Log::info("Saved player {}", player.name());
         return Success();
 
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         return std::unexpected(Errors::FileSystem("Failed to save player: " + std::string(e.what())));
     }
 }
@@ -381,9 +373,8 @@ Result<std::shared_ptr<Player>> PersistenceManager::load_player(std::string_view
     }
 
     // Load player from database using connection pool
-    auto player_result = ConnectionPool::instance().execute([name](pqxx::work& txn) {
-        return PlayerQueries::load_player_by_name(txn, name);
-    });
+    auto player_result = ConnectionPool::instance().execute(
+        [name](pqxx::work &txn) { return PlayerQueries::load_player_by_name(txn, name); });
 
     if (!player_result) {
         Log::debug("Failed to load player '{}' from database: {}", name, player_result.error().message);
@@ -397,22 +388,19 @@ Result<std::shared_ptr<Player>> PersistenceManager::load_player(std::string_view
     std::string char_id{player->database_id()};
     if (!char_id.empty()) {
         auto effects_result = ConnectionPool::instance().execute(
-            [&char_id](pqxx::work& txn) {
-                return WorldQueries::load_character_effects(txn, char_id);
-            });
+            [&char_id](pqxx::work &txn) { return WorldQueries::load_character_effects(txn, char_id); });
 
         if (effects_result) {
             auto now = std::chrono::system_clock::now();
 
-            for (const auto& effect_data : effects_result.value()) {
+            for (const auto &effect_data : effects_result.value()) {
                 try {
                     nlohmann::json modifier_json = nlohmann::json::parse(effect_data.modifier_data);
                     std::string effect_type = modifier_json.value("effect_type", "active");
 
                     // Check if effect has expired
                     if (effect_data.expires_at.has_value() && *effect_data.expires_at <= now) {
-                        Log::debug("Skipping expired effect '{}' for player {}",
-                                  effect_data.effect_name, name);
+                        Log::debug("Skipping expired effect '{}' for player {}", effect_data.effect_name, name);
                         continue;
                     }
 
@@ -488,8 +476,8 @@ Result<std::shared_ptr<Player>> PersistenceManager::load_player(std::string_view
 
                             // Adjust for time that has passed since saving
                             if (effect_data.expires_at.has_value()) {
-                                auto time_left = std::chrono::duration_cast<std::chrono::seconds>(
-                                    *effect_data.expires_at - now);
+                                auto time_left =
+                                    std::chrono::duration_cast<std::chrono::seconds>(*effect_data.expires_at - now);
                                 if (time_left.count() > 0) {
                                     effect.duration_hours = static_cast<double>(time_left.count()) / 3600.0;
                                 } else {
@@ -498,39 +486,33 @@ Result<std::shared_ptr<Player>> PersistenceManager::load_player(std::string_view
                                 }
                             }
                         } else {
-                            effect.duration_hours = -1;  // Permanent
+                            effect.duration_hours = -1; // Permanent
                         }
 
                         player->add_effect(effect);
                         Log::debug("Restored active effect '{}' for player {}", effect.name, name);
                     }
-                } catch (const nlohmann::json::exception& e) {
+                } catch (const nlohmann::json::exception &e) {
                     Log::warn("Failed to parse effect data for player {}: {}", name, e.what());
                 }
             }
 
-            Log::info("Loaded {} effects for player '{}'",
-                     effects_result.value().size(), name);
+            Log::info("Loaded {} effects for player '{}'", effects_result.value().size(), name);
         } else {
-            Log::debug("No effects to load for player '{}': {}",
-                      name, effects_result.error().message);
+            Log::debug("No effects to load for player '{}': {}", name, effects_result.error().message);
         }
 
         // Load character aliases
         auto aliases_result = ConnectionPool::instance().execute(
-            [&char_id](pqxx::work& txn) {
-                return WorldQueries::load_character_aliases(txn, char_id);
-            });
+            [&char_id](pqxx::work &txn) { return WorldQueries::load_character_aliases(txn, char_id); });
 
         if (aliases_result) {
-            for (const auto& alias_data : aliases_result.value()) {
+            for (const auto &alias_data : aliases_result.value()) {
                 player->set_alias(alias_data.alias, alias_data.command);
             }
-            Log::debug("Loaded {} aliases for player '{}'",
-                      aliases_result.value().size(), name);
+            Log::debug("Loaded {} aliases for player '{}'", aliases_result.value().size(), name);
         } else {
-            Log::debug("No aliases to load for player '{}': {}",
-                      name, aliases_result.error().message);
+            Log::debug("No aliases to load for player '{}': {}", name, aliases_result.error().message);
         }
     }
 

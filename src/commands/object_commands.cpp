@@ -1,9 +1,10 @@
 #include "object_commands.hpp"
+
 #include "../core/ability_executor.hpp"
 #include "../core/actor.hpp"
-#include "../core/object.hpp"
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
+#include "../core/object.hpp"
 #include "../core/shopkeeper.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/game_data_cache.hpp"
@@ -30,8 +31,9 @@ namespace {
  * @return true if pickup was successful, false otherwise
  */
 bool handle_pickup(const CommandContext &ctx, std::shared_ptr<Object> obj,
-                   std::vector<std::string>* gotten_names = nullptr) {
-    if (!obj) return false;
+                   std::vector<std::string> *gotten_names = nullptr) {
+    if (!obj)
+        return false;
 
     // Check if this is a money/coins object
     if (obj->type() == ObjectType::Money) {
@@ -77,11 +79,9 @@ bool handle_pickup(const CommandContext &ctx, std::shared_ptr<Object> obj,
  * @param action_verb "drink" or "sip" for message formatting
  * @return CommandResult indicating success or failure
  */
-Result<CommandResult> consume_liquid(const CommandContext &ctx,
-                                      std::shared_ptr<Object> drink_item,
-                                      int amount,
-                                      std::string_view action_verb) {
-    const auto& liquid = drink_item->liquid_info();
+Result<CommandResult> consume_liquid(const CommandContext &ctx, std::shared_ptr<Object> drink_item, int amount,
+                                     std::string_view action_verb) {
+    const auto &liquid = drink_item->liquid_info();
 
     // Check if empty (fountains are always full - infinite supply)
     bool is_fountain = (drink_item->type() == ObjectType::Fountain);
@@ -91,8 +91,8 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
     }
 
     // Look up liquid data for condition effects
-    const auto& game_cache = GameDataCache::instance();
-    const LiquidData* liquid_data = game_cache.find_liquid_by_name(liquid.liquid_type);
+    const auto &game_cache = GameDataCache::instance();
+    const LiquidData *liquid_data = game_cache.find_liquid_by_name(liquid.liquid_type);
 
     // Check if too drunk to drink (alcoholic drinks only)
     if (liquid_data && liquid_data->is_alcoholic() && ctx.actor->stats().is_too_drunk()) {
@@ -102,7 +102,7 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
 
     // Consume liquid (fountains have infinite supply)
     LiquidInfo updated_liquid = liquid;
-    int consumed = amount;  // Assume full drink amount
+    int consumed = amount; // Assume full drink amount
 
     // Only deduct from non-fountain containers
     if (drink_item->type() != ObjectType::Fountain) {
@@ -118,35 +118,33 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
         liquid_name = "water";
     }
     std::transform(liquid_name.begin(), liquid_name.end(), liquid_name.begin(),
-                  [](unsigned char c) { return std::tolower(c); });
+                   [](unsigned char c) { return std::tolower(c); });
 
     // Apply drunk effect from alcoholic beverages
     if (liquid_data && liquid_data->drunk_effect > 0) {
-        auto& stats = ctx.actor->stats();
+        auto &stats = ctx.actor->stats();
         int drunk_gain = (liquid_data->drunk_effect * consumed) / 4;
         stats.gain_condition(stats.drunk, drunk_gain);
     }
 
     // Apply Refreshed buff (provides +50% stamina regen) - refreshes duration each drink
     // Duration: 2 hours base, more for larger drinks
-    int refreshed_hours = 2 + (consumed / 2);  // 2-4 hours depending on amount
-    ActiveEffect refreshed_effect{
-        .name = "Refreshed",
-        .source = "drink",
-        .flag = ActorFlag::Refreshed,
-        .duration_hours = static_cast<double>(refreshed_hours),
-        .modifier_value = 0,
-        .modifier_stat = "",
-        .applied_at = std::chrono::steady_clock::now()
-    };
+    int refreshed_hours = 2 + (consumed / 2); // 2-4 hours depending on amount
+    ActiveEffect refreshed_effect{.name = "Refreshed",
+                                  .source = "drink",
+                                  .flag = ActorFlag::Refreshed,
+                                  .duration_hours = static_cast<double>(refreshed_hours),
+                                  .modifier_value = 0,
+                                  .modifier_stat = "",
+                                  .applied_at = std::chrono::steady_clock::now()};
     ctx.actor->add_effect(refreshed_effect);
 
     // Check if the liquid has any effects (poison, buffs, etc.)
     bool has_harmful_effects = false;
     if (!liquid.effects.empty()) {
-        auto& ability_cache = FieryMUD::AbilityCache::instance();
+        auto &ability_cache = FieryMUD::AbilityCache::instance();
         for (int effect_id : liquid.effects) {
-            const auto* effect_def = ability_cache.get_effect(effect_id);
+            const auto *effect_def = ability_cache.get_effect(effect_id);
             if (effect_def) {
                 FieryMUD::EffectContext effect_ctx;
                 effect_ctx.actor = ctx.actor;
@@ -168,24 +166,24 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
     // Show consumption message with condition feedback
     bool is_sip = (action_verb == "sip");
     if (has_harmful_effects) {
-        ctx.send_error(fmt::format("You {} some {} from {}... it tastes strange!",
-                                 action_verb, liquid_name, ctx.format_object_name(drink_item)));
+        ctx.send_error(fmt::format("You {} some {} from {}... it tastes strange!", action_verb, liquid_name,
+                                   ctx.format_object_name(drink_item)));
     } else if (ctx.actor->stats().is_too_drunk()) {
-        ctx.send_success(fmt::format("You {} some {} from {}. You feel very drunk!",
-                                   action_verb, liquid_name, ctx.format_object_name(drink_item)));
+        ctx.send_success(fmt::format("You {} some {} from {}. You feel very drunk!", action_verb, liquid_name,
+                                     ctx.format_object_name(drink_item)));
     } else if (ctx.actor->stats().is_slurring()) {
-        ctx.send_success(fmt::format("You {} some {} from {}. *hic*",
-                                   action_verb, liquid_name, ctx.format_object_name(drink_item)));
+        ctx.send_success(
+            fmt::format("You {} some {} from {}. *hic*", action_verb, liquid_name, ctx.format_object_name(drink_item)));
     } else if (is_sip) {
-        ctx.send_success(fmt::format("You sip a little {} from {}.",
-                                   liquid_name, ctx.format_object_name(drink_item)));
+        ctx.send_success(fmt::format("You sip a little {} from {}.", liquid_name, ctx.format_object_name(drink_item)));
     } else {
-        ctx.send_success(fmt::format("You drink some {} from {}. Refreshing!",
-                                   liquid_name, ctx.format_object_name(drink_item)));
+        ctx.send_success(
+            fmt::format("You drink some {} from {}. Refreshing!", liquid_name, ctx.format_object_name(drink_item)));
     }
 
     std::string room_verb = is_sip ? "sips from" : "drinks from";
-    ctx.send_to_room(fmt::format("{} {} {}.", ctx.actor->display_name(), room_verb, ctx.format_object_name(drink_item)), true);
+    ctx.send_to_room(fmt::format("{} {} {}.", ctx.actor->display_name(), room_verb, ctx.format_object_name(drink_item)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -199,21 +197,19 @@ Result<CommandResult> consume_liquid(const CommandContext &ctx,
  * @param liquid_only If true, only match Liquid_Container (for sip)
  * @return Matching drinkable object or nullptr
  */
-std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
-                                        std::string_view target_name,
-                                        bool liquid_only = false) {
-    auto matches_drink_target = [&target_name, liquid_only](const std::shared_ptr<Object>& obj) -> bool {
-        if (!obj) return false;
+std::shared_ptr<Object> find_drinkable(const CommandContext &ctx, std::string_view target_name,
+                                       bool liquid_only = false) {
+    auto matches_drink_target = [&target_name, liquid_only](const std::shared_ptr<Object> &obj) -> bool {
+        if (!obj)
+            return false;
 
         // Check type constraints
         if (liquid_only) {
-            if (obj->type() != ObjectType::Drinkcontainer &&
-                obj->type() != ObjectType::Fountain) return false;
+            if (obj->type() != ObjectType::Drinkcontainer && obj->type() != ObjectType::Fountain)
+                return false;
         } else {
-            if (obj->type() != ObjectType::Drinkcontainer &&
-                obj->type() != ObjectType::Fountain &&
-                obj->type() != ObjectType::Potion &&
-                obj->type() != ObjectType::Food) {
+            if (obj->type() != ObjectType::Drinkcontainer && obj->type() != ObjectType::Fountain &&
+                obj->type() != ObjectType::Potion && obj->type() != ObjectType::Food) {
                 return false;
             }
         }
@@ -225,7 +221,7 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx,
 
         // For liquid containers and fountains, also check if target matches the liquid type
         if (obj->type() == ObjectType::Drinkcontainer || obj->type() == ObjectType::Fountain) {
-            const auto& liquid = obj->liquid_info();
+            const auto &liquid = obj->liquid_info();
             // Fountains are always drinkable (infinite), containers need remaining > 0
             bool has_liquid = (obj->type() == ObjectType::Fountain) || (liquid.remaining > 0);
             if (!liquid.liquid_type.empty() && has_liquid) {
@@ -352,7 +348,8 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         }
 
         if (!source_container) {
-            ctx.send_error(fmt::format("You can't get anything from {} - it's not a container.", ctx.format_object_name(potential_container)));
+            ctx.send_error(fmt::format("You can't get anything from {} - it's not a container.",
+                                       ctx.format_object_name(potential_container)));
             return CommandResult::InvalidTarget;
         }
 
@@ -392,7 +389,8 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             std::vector<std::shared_ptr<Object>> items_to_get(all_items.begin(), all_items.end());
 
             for (const auto &item : items_to_get) {
-                if (!item) continue;
+                if (!item)
+                    continue;
 
                 // Check if actor can carry more weight
                 int object_weight = item->weight();
@@ -424,11 +422,17 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
 
             if (gotten_count > 0) {
                 if (gotten_count == 1) {
-                    ctx.send_success(fmt::format("You get {} from {}.", gotten_names[0], ctx.format_object_name(source_container)));
-                    ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->display_name(), gotten_names[0], ctx.format_object_name(source_container)), true);
+                    ctx.send_success(
+                        fmt::format("You get {} from {}.", gotten_names[0], ctx.format_object_name(source_container)));
+                    ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->display_name(), gotten_names[0],
+                                                 ctx.format_object_name(source_container)),
+                                     true);
                 } else {
-                    ctx.send_success(fmt::format("You get {} items from {}.", gotten_count, ctx.format_object_name(source_container)));
-                    ctx.send_to_room(fmt::format("{} gets several items from {}.", ctx.actor->display_name(), ctx.format_object_name(source_container)), true);
+                    ctx.send_success(fmt::format("You get {} items from {}.", gotten_count,
+                                                 ctx.format_object_name(source_container)));
+                    ctx.send_to_room(fmt::format("{} gets several items from {}.", ctx.actor->display_name(),
+                                                 ctx.format_object_name(source_container)),
+                                     true);
                 }
                 return CommandResult::Success;
             } else {
@@ -468,10 +472,11 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             if (coin_value > 0) {
                 ctx.actor->give_wealth(coin_value);
                 auto coins = fiery::Money::from_copper(coin_value);
-                ctx.send_success(fmt::format("You get {} from {}.", coins.to_string(),
-                                             ctx.format_object_name(source_container)));
+                ctx.send_success(
+                    fmt::format("You get {} from {}.", coins.to_string(), ctx.format_object_name(source_container)));
                 ctx.send_to_room(fmt::format("{} gets some coins from {}.", ctx.actor->display_name(),
-                                             ctx.format_object_name(source_container)), true);
+                                             ctx.format_object_name(source_container)),
+                                 true);
             }
             return CommandResult::Success;
         }
@@ -486,8 +491,8 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
 
         ctx.send_success(fmt::format("You get {} from {}.", ctx.format_object_name(item_to_get),
                                      ctx.format_object_name(source_container)));
-        ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->display_name(), ctx.format_object_name(item_to_get),
-                                     ctx.format_object_name(source_container)),
+        ctx.send_to_room(fmt::format("{} gets {} from {}.", ctx.actor->display_name(),
+                                     ctx.format_object_name(item_to_get), ctx.format_object_name(source_container)),
                          true);
 
         return CommandResult::Success;
@@ -511,7 +516,8 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             bool is_god = player && player->is_god();
 
             for (const auto &obj : objects_to_get) {
-                if (!obj) continue;
+                if (!obj)
+                    continue;
 
                 // Check if object can be picked up (gods can pick up anything)
                 if (!obj->can_take() && !is_god) {
@@ -621,7 +627,8 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         }
 
         ctx.send_success(fmt::format("You get {}.", ctx.format_object_name(target_object)));
-        ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+        ctx.send_to_room(fmt::format("{} gets {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                         true);
 
         return CommandResult::Success;
     }
@@ -644,7 +651,7 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
 
     auto inventory_items = ctx.actor->inventory().get_all_items();
 
-    // Handle "drop all" 
+    // Handle "drop all"
     if (ctx.arg(0) == "all") {
         if (inventory_items.empty()) {
             ctx.send("You aren't carrying anything.");
@@ -725,7 +732,8 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     ctx.room->contents_mutable().objects.push_back(target_object);
 
     ctx.send_success(fmt::format("You drop {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} drops {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                     true);
 
     // Check if object falls (in flying sector)
     World().check_and_handle_object_falling(target_object, ctx.room);
@@ -751,7 +759,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     // "put N object in container"
     std::string_view object_name;
     std::string_view container_name;
-    int put_count = 0;  // 0 means use dot-notation logic, >0 means put exactly N items
+    int put_count = 0; // 0 means use dot-notation logic, >0 means put exactly N items
 
     // Check if first arg is a pure number (count syntax)
     bool first_arg_is_count = true;
@@ -766,7 +774,8 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         // "put N object container" or "put N object in container" syntax
         try {
             put_count = std::stoi(std::string{ctx.arg(0)});
-            if (put_count < 1) put_count = 1;
+            if (put_count < 1)
+                put_count = 1;
         } catch (...) {
             put_count = 1;
         }
@@ -848,7 +857,8 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
                     break;
                 }
             }
-            if (is_item_to_put) continue;
+            if (is_item_to_put)
+                continue;
 
             potential_container = obj;
             if (obj->is_container()) {
@@ -885,8 +895,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
 
     // Liquid containers are for liquids, not objects
     if (container->type() == ObjectType::Drinkcontainer) {
-        ctx.send_error(fmt::format("{} is for holding liquids, not objects.",
-                                   ctx.format_object_name(container)));
+        ctx.send_error(fmt::format("{} is for holding liquids, not objects.", ctx.format_object_name(container)));
         return CommandResult::InvalidTarget;
     }
 
@@ -921,8 +930,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         // Try to add item to container
         auto add_result = container_obj->add_item(item_to_put);
         if (!add_result) {
-            ctx.send_error(fmt::format("The {} is full - couldn't put {}.",
-                                       ctx.format_object_name(container),
+            ctx.send_error(fmt::format("The {} is full - couldn't put {}.", ctx.format_object_name(container),
                                        ctx.format_object_name(item_to_put)));
             fail_count++;
             continue;
@@ -946,21 +954,16 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         success_count++;
 
         // Send individual messages for each item
-        ctx.send_success(fmt::format("You put {} in {}.",
-                                     ctx.format_object_name(item_to_put),
-                                     ctx.format_object_name(container)));
-        ctx.send_to_room(fmt::format("{} puts {} in {}.",
-                                     ctx.actor->display_name(),
-                                     ctx.format_object_name(item_to_put),
-                                     ctx.format_object_name(container)),
+        ctx.send_success(
+            fmt::format("You put {} in {}.", ctx.format_object_name(item_to_put), ctx.format_object_name(container)));
+        ctx.send_to_room(fmt::format("{} puts {} in {}.", ctx.actor->display_name(),
+                                     ctx.format_object_name(item_to_put), ctx.format_object_name(container)),
                          true);
     }
 
     // Summary for multiple items
     if (inventory_items_to_put.size() > 1 && success_count > 0) {
-        ctx.send_info(fmt::format("Put {} item{} in {}.",
-                                  success_count,
-                                  success_count == 1 ? "" : "s",
+        ctx.send_info(fmt::format("Put {} item{} in {}.", success_count, success_count == 1 ? "" : "s",
                                   ctx.format_object_name(container)));
     }
 
@@ -1019,7 +1022,7 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
 
     // Fire RECEIVE trigger for mobs receiving items
     // For money objects, fire BRIBE trigger instead
-    auto& trigger_mgr = FieryMUD::TriggerManager::instance();
+    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
     if (trigger_mgr.is_initialized()) {
         if (obj->type() == ObjectType::Money && obj->value() > 0) {
             // BRIBE trigger for gold
@@ -1034,7 +1037,8 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
 
     ctx.send_to_actor(target, fmt::format("{} gives you {}.", ctx.actor->display_name(), ctx.format_object_name(obj)));
 
-    ctx.send_to_room(fmt::format("{} gives {} to {}.", ctx.actor->display_name(), ctx.format_object_name(obj), target->display_name()),
+    ctx.send_to_room(fmt::format("{} gives {} to {}.", ctx.actor->display_name(), ctx.format_object_name(obj),
+                                 target->display_name()),
                      true);
 
     return CommandResult::Success;
@@ -1066,10 +1070,12 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
         std::vector<std::shared_ptr<Object>> items_to_try(inventory_items.begin(), inventory_items.end());
 
         for (const auto &obj : items_to_try) {
-            if (!obj) continue;
+            if (!obj)
+                continue;
 
             // Skip non-wearable items silently
-            if (!obj->is_wearable()) continue;
+            if (!obj->is_wearable())
+                continue;
 
             // Try to equip the item
             auto equip_result = ctx.actor->equipment().equip_item(obj);
@@ -1126,7 +1132,8 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
     ctx.actor->inventory().remove_item(target_object);
 
     ctx.send_success(fmt::format("You wear {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} wears {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} wears {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -1169,7 +1176,8 @@ Result<CommandResult> cmd_wield(const CommandContext &ctx) {
     ctx.actor->inventory().remove_item(target_object);
 
     ctx.send_success(fmt::format("You wield {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} wields {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} wields {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -1222,7 +1230,8 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     }
 
     ctx.send_success(fmt::format("You remove {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} removes {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} removes {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -1257,12 +1266,14 @@ Result<CommandResult> cmd_grip(const CommandContext &ctx) {
         ctx.send_success(fmt::format("You adjust your grip on {}, now wielding it with both hands.",
                                      ctx.format_object_name(weapon)));
         ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it with both hands.",
-                                     ctx.actor->display_name(), ctx.format_object_name(weapon)), true);
+                                     ctx.actor->display_name(), ctx.format_object_name(weapon)),
+                         true);
     } else {
-        ctx.send_success(fmt::format("You adjust your grip on {}, now wielding it in one hand.",
-                                     ctx.format_object_name(weapon)));
-        ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it in one hand.",
-                                     ctx.actor->display_name(), ctx.format_object_name(weapon)), true);
+        ctx.send_success(
+            fmt::format("You adjust your grip on {}, now wielding it in one hand.", ctx.format_object_name(weapon)));
+        ctx.send_to_room(fmt::format("{} adjusts their grip on {}, wielding it in one hand.", ctx.actor->display_name(),
+                                     ctx.format_object_name(weapon)),
+                         true);
     }
 
     return CommandResult::Success;
@@ -1286,7 +1297,7 @@ Result<CommandResult> cmd_open(const CommandContext &ctx) {
 
     // Find container in room or inventory
     std::shared_ptr<Object> target_obj = nullptr;
-    
+
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
@@ -1295,7 +1306,7 @@ Result<CommandResult> cmd_open(const CommandContext &ctx) {
             break;
         }
     }
-    
+
     // If not found in inventory, check room
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
@@ -1318,17 +1329,17 @@ Result<CommandResult> cmd_open(const CommandContext &ctx) {
     }
 
     auto container_info = target_obj->container_info();
-    
+
     if (!container_info.closeable) {
         ctx.send_error(fmt::format("The {} cannot be opened.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidTarget;
     }
-    
+
     if (!container_info.closed) {
         ctx.send_error(fmt::format("The {} is already open.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidState;
     }
-    
+
     if (container_info.locked) {
         ctx.send_error(fmt::format("The {} is locked.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidState;
@@ -1358,7 +1369,7 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
 
     // Find container in room or inventory
     std::shared_ptr<Object> target_obj = nullptr;
-    
+
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
@@ -1367,7 +1378,7 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
             break;
         }
     }
-    
+
     // If not found in inventory, check room
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
@@ -1390,12 +1401,12 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
     }
 
     auto container_info = target_obj->container_info();
-    
+
     if (!container_info.closeable) {
         ctx.send_error(fmt::format("The {} cannot be closed.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidTarget;
     }
-    
+
     if (container_info.closed) {
         ctx.send_error(fmt::format("The {} is already closed.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidState;
@@ -1425,7 +1436,7 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
 
     // Find container in room or inventory
     std::shared_ptr<Object> target_obj = nullptr;
-    
+
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
@@ -1434,7 +1445,7 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
             break;
         }
     }
-    
+
     // If not found in inventory, check room
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
@@ -1457,17 +1468,17 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
     }
 
     auto container_info = target_obj->container_info();
-    
+
     if (!container_info.lockable) {
         ctx.send_error(fmt::format("The {} cannot be locked.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidTarget;
     }
-    
+
     if (!container_info.closed) {
         ctx.send_error(fmt::format("You must close {} first before locking it.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidState;
     }
-    
+
     if (container_info.locked) {
         ctx.send_error(fmt::format("The {} is already locked.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidState;
@@ -1497,7 +1508,7 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
 
     // Find container in room or inventory
     std::shared_ptr<Object> target_obj = nullptr;
-    
+
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
@@ -1506,7 +1517,7 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
             break;
         }
     }
-    
+
     // If not found in inventory, check room
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
@@ -1529,12 +1540,12 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
     }
 
     auto container_info = target_obj->container_info();
-    
+
     if (!container_info.lockable) {
         ctx.send_error(fmt::format("The {} cannot be unlocked.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidTarget;
     }
-    
+
     if (!container_info.locked) {
         ctx.send_error(fmt::format("The {} is not locked.", ctx.format_object_name(target_obj)));
         return CommandResult::InvalidState;
@@ -1545,7 +1556,8 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
     target_obj->set_container_info(container_info);
 
     ctx.send_success(fmt::format("You unlock {}.", ctx.format_object_name(target_obj)));
-    ctx.send_to_room(fmt::format("{} unlocks {}.", ctx.actor->display_name(), ctx.format_object_name(target_obj)), true);
+    ctx.send_to_room(fmt::format("{} unlocks {}.", ctx.actor->display_name(), ctx.format_object_name(target_obj)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -1613,7 +1625,8 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
     light_source->set_light_info(new_light_info);
 
     ctx.send_success(fmt::format("You light the {}. It glows brightly.", ctx.format_object_name(light_source)));
-    ctx.send_to_room(fmt::format("{} lights {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)), true);
+    ctx.send_to_room(fmt::format("{} lights {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -1675,7 +1688,8 @@ Result<CommandResult> cmd_extinguish(const CommandContext &ctx) {
     light_source->set_light_info(new_light_info);
 
     ctx.send_success(fmt::format("You extinguish the {}.", ctx.format_object_name(light_source)));
-    ctx.send_to_room(fmt::format("{} extinguishes {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)), true);
+    ctx.send_to_room(
+        fmt::format("{} extinguishes {}.", ctx.actor->display_name(), ctx.format_object_name(light_source)), true);
 
     return CommandResult::Success;
 }
@@ -1722,53 +1736,47 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
 
     if (food_item->type() == ObjectType::Food) {
         ctx.send_success(fmt::format("You eat the {}. It's delicious!", ctx.format_object_name(food_item)));
-        ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)), true);
+        ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)),
+                         true);
 
         // Calculate nourished duration based on fillingness
         // 10 fillingness = 4 hours, 60 fillingness = 24 hours (capped)
         // Formula: duration = min(24, max(0.25, fillingness * 0.4))
-        const auto& food_info = food_item->food_info();
+        const auto &food_info = food_item->food_info();
         double duration_hours = std::min(24.0, std::max(0.25, food_info.fillingness * 0.4));
 
         // Apply Nourished buff (provides +50% HP regen)
-        ActiveEffect nourished_effect{
-            .name = "Nourished",
-            .source = "food",
-            .flag = ActorFlag::Nourished,
-            .duration_hours = duration_hours,
-            .modifier_value = 0,
-            .modifier_stat = "",
-            .applied_at = std::chrono::steady_clock::now()
-        };
+        ActiveEffect nourished_effect{.name = "Nourished",
+                                      .source = "food",
+                                      .flag = ActorFlag::Nourished,
+                                      .duration_hours = duration_hours,
+                                      .modifier_value = 0,
+                                      .modifier_stat = "",
+                                      .applied_at = std::chrono::steady_clock::now()};
         ctx.actor->add_effect(nourished_effect);
 
         // Apply food effects from food_info.effects vector
         if (!food_info.effects.empty()) {
             for (int effect_id : food_info.effects) {
                 auto effect_result = ConnectionPool::instance().execute(
-                    [effect_id](pqxx::work& txn) {
-                        return WorldQueries::load_effect(txn, effect_id);
-                    });
+                    [effect_id](pqxx::work &txn) { return WorldQueries::load_effect(txn, effect_id); });
 
                 if (!effect_result) {
-                    Log::warn("Failed to load food effect {}: {}",
-                             effect_id, effect_result.error().message);
+                    Log::warn("Failed to load food effect {}: {}", effect_id, effect_result.error().message);
                     continue;
                 }
 
-                const auto& effect_data = effect_result.value();
+                const auto &effect_data = effect_result.value();
 
                 // Create and apply the effect
-                ActiveEffect food_effect{
-                    .effect_id = effect_data.id,
-                    .name = effect_data.name,
-                    .source = "food",
-                    .flag = ActorFlag::None,  // Effects specify their own flags via params
-                    .duration_hours = duration_hours,  // Same duration as nourished buff
-                    .modifier_value = 0,
-                    .modifier_stat = "",
-                    .applied_at = std::chrono::steady_clock::now()
-                };
+                ActiveEffect food_effect{.effect_id = effect_data.id,
+                                         .name = effect_data.name,
+                                         .source = "food",
+                                         .flag = ActorFlag::None,          // Effects specify their own flags via params
+                                         .duration_hours = duration_hours, // Same duration as nourished buff
+                                         .modifier_value = 0,
+                                         .modifier_stat = "",
+                                         .applied_at = std::chrono::steady_clock::now()};
 
                 // Parse default_params JSON for additional effect configuration
                 if (!effect_data.default_params.empty()) {
@@ -1794,9 +1802,8 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
                         if (params.contains("duration_hours")) {
                             food_effect.duration_hours = params["duration_hours"].get<double>();
                         }
-                    } catch (const nlohmann::json::exception& e) {
-                        Log::warn("Failed to parse food effect {} params: {}",
-                                 effect_data.name, e.what());
+                    } catch (const nlohmann::json::exception &e) {
+                        Log::warn("Failed to parse food effect {} params: {}", effect_data.name, e.what());
                     }
                 }
 
@@ -1807,7 +1814,8 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
     } else {
         // Potions consumed via eat command
         ctx.send_success(fmt::format("You drink the {}. You feel refreshed.", ctx.format_object_name(food_item)));
-        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)), true);
+        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)),
+                         true);
     }
 
     return CommandResult::Success;
@@ -1845,19 +1853,20 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
         }
 
         ctx.send_success(fmt::format("You drink the {}. You feel its effects course through your body.",
-                                   ctx.format_object_name(drink_item)));
-        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
+                                     ctx.format_object_name(drink_item)));
+        ctx.send_to_room(fmt::format("{} drinks {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)),
+                         true);
         return CommandResult::Success;
-    } else if (drink_item->type() == ObjectType::Drinkcontainer ||
-               drink_item->type() == ObjectType::Fountain) {
+    } else if (drink_item->type() == ObjectType::Drinkcontainer || drink_item->type() == ObjectType::Fountain) {
         // Use helper for liquid consumption - drink = 4 units
         constexpr int DRINK_AMOUNT = 4;
         return consume_liquid(ctx, drink_item, DRINK_AMOUNT, "drink");
     } else {
         // Food items (like fruits with juice)
-        ctx.send_success(fmt::format("You drink from the {}. It quenches your thirst.",
-                                   ctx.format_object_name(drink_item)));
-        ctx.send_to_room(fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
+        ctx.send_success(
+            fmt::format("You drink from the {}. It quenches your thirst.", ctx.format_object_name(drink_item)));
+        ctx.send_to_room(
+            fmt::format("{} drinks from {}.", ctx.actor->display_name(), ctx.format_object_name(drink_item)), true);
         return CommandResult::Success;
     }
 }
@@ -1906,42 +1915,42 @@ Result<CommandResult> cmd_list(const CommandContext &ctx) {
     }
 
     // Look for shopkeepers in the room
-    const auto& room_contents = ctx.room->contents();
+    const auto &room_contents = ctx.room->contents();
     std::vector<std::shared_ptr<Actor>> shopkeepers;
-    
-    for (const auto& actor : room_contents.actors) {
+
+    for (const auto &actor : room_contents.actors) {
         if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mobile->is_shopkeeper()) {
                 shopkeepers.push_back(mobile);
             }
         }
     }
-    
+
     if (shopkeepers.empty()) {
         ctx.send_error("There are no shopkeepers here.");
         return CommandResult::ResourceError;
     }
-    
+
     // Use the first shopkeeper found (could be enhanced to let user choose)
     auto shopkeeper_actor = shopkeepers[0];
     auto shopkeeper_mobile = std::dynamic_pointer_cast<Mobile>(shopkeeper_actor);
 
     // Look up shop by the mob's prototype ID (which is how shops are registered)
-    auto& shop_manager = ShopManager::instance();
+    auto &shop_manager = ShopManager::instance();
     EntityId lookup_id = shopkeeper_mobile ? shopkeeper_mobile->prototype_id() : shopkeeper_actor->id();
-    const auto* shop = shop_manager.get_shopkeeper(lookup_id);
+    const auto *shop = shop_manager.get_shopkeeper(lookup_id);
 
     if (!shop) {
         ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
         return CommandResult::ResourceError;
     }
-    
+
     // Display shop listing
     auto listing = shop->get_shop_listing();
-    for (const auto& line : listing) {
+    for (const auto &line : listing) {
         ctx.send(line);
     }
-    
+
     return CommandResult::Success;
 }
 
@@ -1961,32 +1970,32 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
     }
 
     std::string item_name{ctx.arg(0)};
-    
+
     // Look for shopkeepers in the room
-    const auto& room_contents = ctx.room->contents();
+    const auto &room_contents = ctx.room->contents();
     std::vector<std::shared_ptr<Actor>> shopkeepers;
-    
-    for (const auto& actor : room_contents.actors) {
+
+    for (const auto &actor : room_contents.actors) {
         if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mobile->is_shopkeeper()) {
                 shopkeepers.push_back(mobile);
             }
         }
     }
-    
+
     if (shopkeepers.empty()) {
         ctx.send_error("There are no shopkeepers here.");
         return CommandResult::ResourceError;
     }
-    
+
     // Use the first shopkeeper found
     auto shopkeeper_actor = shopkeepers[0];
     auto shopkeeper_mobile = std::dynamic_pointer_cast<Mobile>(shopkeeper_actor);
 
     // Look up shop by the mob's prototype ID (which is how shops are registered)
-    auto& shop_manager = ShopManager::instance();
+    auto &shop_manager = ShopManager::instance();
     EntityId lookup_id = shopkeeper_mobile ? shopkeeper_mobile->prototype_id() : shopkeeper_actor->id();
-    const auto* shop = shop_manager.get_shopkeeper(lookup_id);
+    const auto *shop = shop_manager.get_shopkeeper(lookup_id);
 
     if (!shop) {
         ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
@@ -1995,12 +2004,12 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
 
     // Find item by keyword prefix matching (case-insensitive)
     auto available_items = shop->get_available_items();
-    const ShopItem* target_item = nullptr;
-    auto& world = WorldManager::instance();
+    const ShopItem *target_item = nullptr;
+    auto &world = WorldManager::instance();
 
-    for (const auto& item : available_items) {
+    for (const auto &item : available_items) {
         // Look up the object prototype to check keywords
-        const auto* obj_proto = world.get_object_prototype(item.prototype_id);
+        const auto *obj_proto = world.get_object_prototype(item.prototype_id);
         if (obj_proto && obj_proto->matches_keyword_prefix(item_name)) {
             target_item = &item;
             break;
@@ -2011,11 +2020,11 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
     std::optional<ShopMob> target_mob;
     if (!target_item && shop->sells_mobs()) {
         auto available_mobs = shop->get_available_mobs();
-        for (const auto& mob : available_mobs) {
+        for (const auto &mob : available_mobs) {
             // Look up the mob prototype to check keywords
-            const auto* mob_proto = world.get_mobile_prototype(mob.prototype_id);
+            const auto *mob_proto = world.get_mobile_prototype(mob.prototype_id);
             if (mob_proto && mob_proto->matches_keyword_prefix(item_name)) {
-                target_mob = mob;  // Copy the mob data
+                target_mob = mob; // Copy the mob data
                 break;
             }
         }
@@ -2032,34 +2041,33 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
         auto result = ShopManager::instance().buy_mob(ctx.actor, lookup_id, target_mob->prototype_id);
 
         switch (result) {
-            case ShopResult::Success: {
-                // Spawn the pet in the current room
-                auto new_mob = WorldManager::instance().spawn_mobile_to_room(
-                    target_mob->prototype_id, ctx.room->id());
-                if (!new_mob) {
-                    ctx.send_error("The shopkeeper tries to hand you something, but it runs away!");
-                    Log::error("Failed to spawn mobile instance for prototype {} after successful purchase",
-                              target_mob->prototype_id);
-                    return CommandResult::InvalidState;
-                }
-
-                // Set the pet to follow the buyer
-                new_mob->set_master(ctx.actor);
-                ctx.actor->add_follower(new_mob);
-
-                ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_mob->name, price));
-                ctx.send(fmt::format("{} starts following you.", new_mob->short_desc()));
-                break;
+        case ShopResult::Success: {
+            // Spawn the pet in the current room
+            auto new_mob = WorldManager::instance().spawn_mobile_to_room(target_mob->prototype_id, ctx.room->id());
+            if (!new_mob) {
+                ctx.send_error("The shopkeeper tries to hand you something, but it runs away!");
+                Log::error("Failed to spawn mobile instance for prototype {} after successful purchase",
+                           target_mob->prototype_id);
+                return CommandResult::InvalidState;
             }
-            case ShopResult::InsufficientFunds:
-                ctx.send_error("You don't have enough money to buy that.");
-                return CommandResult::InvalidSyntax;
-            case ShopResult::InsufficientStock:
-                ctx.send_error("That pet is not available right now.");
-                return CommandResult::InvalidTarget;
-            default:
-                ctx.send_error("You cannot buy that pet.");
-                return CommandResult::InvalidTarget;
+
+            // Set the pet to follow the buyer
+            new_mob->set_master(ctx.actor);
+            ctx.actor->add_follower(new_mob);
+
+            ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_mob->name, price));
+            ctx.send(fmt::format("{} starts following you.", new_mob->short_desc()));
+            break;
+        }
+        case ShopResult::InsufficientFunds:
+            ctx.send_error("You don't have enough money to buy that.");
+            return CommandResult::InvalidSyntax;
+        case ShopResult::InsufficientStock:
+            ctx.send_error("That pet is not available right now.");
+            return CommandResult::InvalidTarget;
+        default:
+            ctx.send_error("You cannot buy that pet.");
+            return CommandResult::InvalidTarget;
         }
         return CommandResult::Success;
     }
@@ -2071,50 +2079,50 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
     auto result = ShopManager::instance().buy_item(ctx.actor, lookup_id, target_item->prototype_id);
 
     switch (result) {
-        case ShopResult::Success: {
-            // Create an instance of the object from the prototype
-            auto new_object = WorldManager::instance().create_object_instance(target_item->prototype_id);
-            if (!new_object) {
-                ctx.send_error("The shopkeeper hands you something, but it crumbles to dust!");
-                Log::error("Failed to create object instance for prototype {} after successful purchase",
-                          target_item->prototype_id);
-                return CommandResult::InvalidState;
-            }
-
-            // Mark shop items as identified (the shopkeeper knows what they're selling)
-            new_object->set_flag(ObjectFlag::Identified);
-
-            // For drink containers, also mark the liquid as identified
-            if (new_object->type() == ObjectType::Drinkcontainer) {
-                LiquidInfo liquid = new_object->liquid_info();
-                liquid.identified = true;
-                new_object->set_liquid_info(liquid);
-            }
-
-            // Add the object to the player's inventory
-            auto add_result = ctx.actor->inventory().add_item(new_object);
-            if (!add_result) {
-                ctx.send_error("You can't carry any more items!");
-                // Refund the player
-                if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
-                    player->receive(price);
-                    ctx.send("The shopkeeper refunds your money.");
-                }
-                return CommandResult::InvalidState;
-            }
-
-            ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_item->name, price));
-            break;
+    case ShopResult::Success: {
+        // Create an instance of the object from the prototype
+        auto new_object = WorldManager::instance().create_object_instance(target_item->prototype_id);
+        if (!new_object) {
+            ctx.send_error("The shopkeeper hands you something, but it crumbles to dust!");
+            Log::error("Failed to create object instance for prototype {} after successful purchase",
+                       target_item->prototype_id);
+            return CommandResult::InvalidState;
         }
-        case ShopResult::InsufficientFunds:
-            ctx.send_error("You don't have enough money to buy that.");
-            return CommandResult::InvalidSyntax;
-        case ShopResult::InsufficientStock:
-            ctx.send_error("That item is out of stock.");
-            return CommandResult::InvalidTarget;
-        default:
-            ctx.send_error("You cannot buy that item.");
-            return CommandResult::InvalidTarget;
+
+        // Mark shop items as identified (the shopkeeper knows what they're selling)
+        new_object->set_flag(ObjectFlag::Identified);
+
+        // For drink containers, also mark the liquid as identified
+        if (new_object->type() == ObjectType::Drinkcontainer) {
+            LiquidInfo liquid = new_object->liquid_info();
+            liquid.identified = true;
+            new_object->set_liquid_info(liquid);
+        }
+
+        // Add the object to the player's inventory
+        auto add_result = ctx.actor->inventory().add_item(new_object);
+        if (!add_result) {
+            ctx.send_error("You can't carry any more items!");
+            // Refund the player
+            if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+                player->receive(price);
+                ctx.send("The shopkeeper refunds your money.");
+            }
+            return CommandResult::InvalidState;
+        }
+
+        ctx.send_success(fmt::format("You buy {} for {} copper coins.", target_item->name, price));
+        break;
+    }
+    case ShopResult::InsufficientFunds:
+        ctx.send_error("You don't have enough money to buy that.");
+        return CommandResult::InvalidSyntax;
+    case ShopResult::InsufficientStock:
+        ctx.send_error("That item is out of stock.");
+        return CommandResult::InvalidTarget;
+    default:
+        ctx.send_error("You cannot buy that item.");
+        return CommandResult::InvalidTarget;
     }
 
     return CommandResult::Success;
@@ -2139,30 +2147,30 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
     }
 
     // Look for shopkeepers in the room
-    const auto& room_contents = ctx.room->contents();
+    const auto &room_contents = ctx.room->contents();
     std::vector<std::shared_ptr<Actor>> shopkeepers;
-    
-    for (const auto& actor : room_contents.actors) {
+
+    for (const auto &actor : room_contents.actors) {
         if (auto mobile = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mobile->is_shopkeeper()) {
                 shopkeepers.push_back(mobile);
             }
         }
     }
-    
+
     if (shopkeepers.empty()) {
         ctx.send_error("There are no shopkeepers here.");
         return CommandResult::ResourceError;
     }
-    
+
     // Use the first shopkeeper found
     auto shopkeeper_actor = shopkeepers[0];
     auto shopkeeper_mobile = std::dynamic_pointer_cast<Mobile>(shopkeeper_actor);
 
     // Look up shop by the mob's prototype ID (which is how shops are registered)
-    auto& shop_manager = ShopManager::instance();
+    auto &shop_manager = ShopManager::instance();
     EntityId lookup_id = shopkeeper_mobile ? shopkeeper_mobile->prototype_id() : shopkeeper_actor->id();
-    const auto* shop = shop_manager.get_shopkeeper(lookup_id);
+    const auto *shop = shop_manager.get_shopkeeper(lookup_id);
 
     if (!shop) {
         ctx.send_error("The shopkeeper doesn't seem to be selling anything right now.");
@@ -2172,20 +2180,19 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
     // Find item in player's inventory (simplified search for now)
     auto inventory_items = ctx.actor->inventory().get_all_items();
     std::shared_ptr<Object> target_object = nullptr;
-    
-    for (const auto& item : inventory_items) {
-        if (item->name().find(target_name) != std::string::npos || 
-            item->name() == target_name) {
+
+    for (const auto &item : inventory_items) {
+        if (item->name().find(target_name) != std::string::npos || item->name() == target_name) {
             target_object = item;
             break;
         }
     }
-    
+
     if (!target_object) {
         ctx.send_error(fmt::format("You don't have '{}' to sell.", target_name));
         return CommandResult::InvalidTarget;
     }
-    
+
     // Calculate sell price
     int price = shop->calculate_sell_price(*target_object);
 
@@ -2208,17 +2215,14 @@ Result<CommandResult> cmd_sell(const CommandContext &ctx) {
     // Format price nicely
     auto price_money = fiery::Money::from_copper(price);
 
-    ctx.send_success(fmt::format("You sell {} to {} for {}.",
-                                 target_object->display_name(),
-                                 shopkeeper_actor->display_name(),
-                                 price_money.to_string()));
-    ctx.send_to_room(fmt::format("{} sells {} to {}.",
-                                 ctx.actor->display_name(),
-                                 target_object->display_name(),
-                                 shopkeeper_actor->display_name()), true);
+    ctx.send_success(fmt::format("You sell {} to {} for {}.", target_object->display_name(),
+                                 shopkeeper_actor->display_name(), price_money.to_string()));
+    ctx.send_to_room(fmt::format("{} sells {} to {}.", ctx.actor->display_name(), target_object->display_name(),
+                                 shopkeeper_actor->display_name()),
+                     true);
 
-    Log::info("Player {} sold '{}' to shopkeeper {} for {} copper",
-              player->name(), target_object->name(), shopkeeper_actor->display_name(), price);
+    Log::info("Player {} sold '{}' to shopkeeper {} for {} copper", player->name(), target_object->name(),
+              shopkeeper_actor->display_name(), price);
 
     return CommandResult::Success;
 }
@@ -2265,7 +2269,8 @@ Result<CommandResult> cmd_hold(const CommandContext &ctx) {
     ctx.actor->inventory().remove_item(target_object);
 
     ctx.send_success(fmt::format("You hold {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} holds {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} holds {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -2316,7 +2321,8 @@ Result<CommandResult> cmd_grab(const CommandContext &ctx) {
     }
 
     ctx.send_success(fmt::format("You quickly grab {}.", ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} quickly grabs {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(
+        fmt::format("{} quickly grabs {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
 
     return CommandResult::Success;
 }
@@ -2355,10 +2361,11 @@ Result<CommandResult> cmd_quaff(const CommandContext &ctx) {
         return CommandResult::ResourceError;
     }
 
-    ctx.send_success(fmt::format("You quaff {}. Magical energies course through your body!",
-                                 ctx.format_object_name(potion)));
-    ctx.send_to_room(fmt::format("{} quaffs {} and is surrounded by a brief magical glow.",
-                                 ctx.actor->display_name(), ctx.format_object_name(potion)), true);
+    ctx.send_success(
+        fmt::format("You quaff {}. Magical energies course through your body!", ctx.format_object_name(potion)));
+    ctx.send_to_room(fmt::format("{} quaffs {} and is surrounded by a brief magical glow.", ctx.actor->display_name(),
+                                 ctx.format_object_name(potion)),
+                     true);
 
     // Apply potion spell effects (target is always self for potions)
     for (int spell_id : potion->spell_ids()) {
@@ -2422,8 +2429,9 @@ Result<CommandResult> cmd_recite(const CommandContext &ctx) {
 
     ctx.send_success(fmt::format("You recite {}. The scroll crumbles to dust as its magic is released!",
                                  ctx.format_object_name(scroll)));
-    ctx.send_to_room(fmt::format("{} recites {} and the scroll crumbles to dust.",
-                                 ctx.actor->display_name(), ctx.format_object_name(scroll)), true);
+    ctx.send_to_room(fmt::format("{} recites {} and the scroll crumbles to dust.", ctx.actor->display_name(),
+                                 ctx.format_object_name(scroll)),
+                     true);
 
     // Apply scroll spell effects on target
     for (int spell_id : scroll->spell_ids()) {
@@ -2485,68 +2493,68 @@ Result<CommandResult> cmd_use(const CommandContext &ctx) {
 
     // Handle different object types
     switch (target_object->type()) {
-        case ObjectType::Wand:
-        case ObjectType::Staff: {
-            // Check if item has charges
-            if (target_object->charges() <= 0) {
-                ctx.send_error(fmt::format("{} has no charges left.",
-                                          ctx.format_object_name(target_object)));
-                return CommandResult::ResourceError;
+    case ObjectType::Wand:
+    case ObjectType::Staff: {
+        // Check if item has charges
+        if (target_object->charges() <= 0) {
+            ctx.send_error(fmt::format("{} has no charges left.", ctx.format_object_name(target_object)));
+            return CommandResult::ResourceError;
+        }
+
+        // Determine target for wand/staff
+        std::shared_ptr<Actor> spell_target = ctx.actor; // Default to self
+        if (ctx.arg_count() > 1) {
+            spell_target = ctx.find_actor_target(ctx.arg(1));
+            if (!spell_target) {
+                ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(1)));
+                return CommandResult::InvalidTarget;
             }
+        }
 
-            // Determine target for wand/staff
-            std::shared_ptr<Actor> spell_target = ctx.actor; // Default to self
-            if (ctx.arg_count() > 1) {
-                spell_target = ctx.find_actor_target(ctx.arg(1));
-                if (!spell_target) {
-                    ctx.send_error(fmt::format("You don't see '{}' here.", ctx.arg(1)));
-                    return CommandResult::InvalidTarget;
-                }
-            }
+        // Use a charge
+        target_object->set_charges(target_object->charges() - 1);
 
-            // Use a charge
-            target_object->set_charges(target_object->charges() - 1);
+        ctx.send_success(
+            fmt::format("You wave {} and it flashes with magical energy!", ctx.format_object_name(target_object)));
+        ctx.send_to_room(fmt::format("{} waves {} and it flashes with magical energy.", ctx.actor->display_name(),
+                                     ctx.format_object_name(target_object)),
+                         true);
 
-            ctx.send_success(fmt::format("You wave {} and it flashes with magical energy!",
-                                         ctx.format_object_name(target_object)));
-            ctx.send_to_room(fmt::format("{} waves {} and it flashes with magical energy.",
-                                         ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
-
-            // Apply spell effects from wand/staff (typically just the first spell)
-            for (int spell_id : target_object->spell_ids()) {
-                if (spell_id > 0) {
-                    auto result = FieryMUD::AbilityExecutor::execute_by_id(ctx, spell_id, spell_target,
-                                                                 target_object->spell_level());
-                    if (result) {
-                        if (!result->attacker_message.empty()) {
-                            ctx.send(result->attacker_message);
-                        }
-                        if (spell_target != ctx.actor && !result->target_message.empty()) {
-                            ctx.send_to_actor(spell_target, result->target_message);
-                        }
+        // Apply spell effects from wand/staff (typically just the first spell)
+        for (int spell_id : target_object->spell_ids()) {
+            if (spell_id > 0) {
+                auto result =
+                    FieryMUD::AbilityExecutor::execute_by_id(ctx, spell_id, spell_target, target_object->spell_level());
+                if (result) {
+                    if (!result->attacker_message.empty()) {
+                        ctx.send(result->attacker_message);
+                    }
+                    if (spell_target != ctx.actor && !result->target_message.empty()) {
+                        ctx.send_to_actor(spell_target, result->target_message);
                     }
                 }
             }
-
-            // Notify when charges run out
-            if (target_object->charges() == 0) {
-                ctx.send(fmt::format("{} is now depleted.", ctx.format_object_name(target_object)));
-            } else if (target_object->charges() <= 3) {
-                ctx.send(fmt::format("{} is running low on charges.", ctx.format_object_name(target_object)));
-            }
-            break;
         }
-        case ObjectType::Potion:
-            ctx.send("Use 'quaff' to drink potions.");
-            return CommandResult::InvalidSyntax;
-        case ObjectType::Scroll:
-            ctx.send("Use 'recite' to use scrolls.");
-            return CommandResult::InvalidSyntax;
-        default:
-            ctx.send_success(fmt::format("You use {}.", ctx.format_object_name(target_object)));
-            ctx.send_to_room(fmt::format("{} uses {}.", ctx.actor->display_name(),
-                                         ctx.format_object_name(target_object)), true);
-            break;
+
+        // Notify when charges run out
+        if (target_object->charges() == 0) {
+            ctx.send(fmt::format("{} is now depleted.", ctx.format_object_name(target_object)));
+        } else if (target_object->charges() <= 3) {
+            ctx.send(fmt::format("{} is running low on charges.", ctx.format_object_name(target_object)));
+        }
+        break;
+    }
+    case ObjectType::Potion:
+        ctx.send("Use 'quaff' to drink potions.");
+        return CommandResult::InvalidSyntax;
+    case ObjectType::Scroll:
+        ctx.send("Use 'recite' to use scrolls.");
+        return CommandResult::InvalidSyntax;
+    default:
+        ctx.send_success(fmt::format("You use {}.", ctx.format_object_name(target_object)));
+        ctx.send_to_room(fmt::format("{} uses {}.", ctx.actor->display_name(), ctx.format_object_name(target_object)),
+                         true);
+        break;
     }
 
     return CommandResult::Success;
@@ -2584,9 +2592,11 @@ Result<CommandResult> cmd_junk(const CommandContext &ctx) {
         return CommandResult::ResourceError;
     }
 
-    ctx.send_success(fmt::format("You junk {} - it disintegrates into nothing.", ctx.format_object_name(target_object)));
+    ctx.send_success(
+        fmt::format("You junk {} - it disintegrates into nothing.", ctx.format_object_name(target_object)));
     ctx.send_to_room(fmt::format("{} junks {} which disintegrates.", ctx.actor->display_name(),
-                                 ctx.format_object_name(target_object)), true);
+                                 ctx.format_object_name(target_object)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -2628,8 +2638,9 @@ Result<CommandResult> cmd_donate(const CommandContext &ctx) {
 
     ctx.send_success(fmt::format("You donate {}. It vanishes in a puff of smoke to help those in need.",
                                  ctx.format_object_name(target_object)));
-    ctx.send_to_room(fmt::format("{} donates {} which vanishes in a puff of smoke.",
-                                 ctx.actor->display_name(), ctx.format_object_name(target_object)), true);
+    ctx.send_to_room(fmt::format("{} donates {} which vanishes in a puff of smoke.", ctx.actor->display_name(),
+                                 ctx.format_object_name(target_object)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -2755,7 +2766,7 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
     }
 
     // Check if container is already full
-    const auto& liquid = container->liquid_info();
+    const auto &liquid = container->liquid_info();
     if (liquid.remaining >= liquid.capacity) {
         ctx.send_error(fmt::format("{} is already full.", ctx.format_object_name(container)));
         return CommandResult::InvalidState;
@@ -2763,7 +2774,7 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
 
     // Find water source (fountain) in room
     std::shared_ptr<Object> fountain = nullptr;
-    for (const auto& obj : ctx.room->contents().objects) {
+    for (const auto &obj : ctx.room->contents().objects) {
         if (obj && obj->type() == ObjectType::Fountain) {
             fountain = obj;
             break;
@@ -2776,7 +2787,7 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
     }
 
     // Get the fountain's liquid type (default to water)
-    const auto& fountain_liquid = fountain->liquid_info();
+    const auto &fountain_liquid = fountain->liquid_info();
     std::string source_liquid_type = fountain_liquid.liquid_type.empty() ? "water" : fountain_liquid.liquid_type;
 
     // Check liquid compatibility - can only fill if container is empty or has same liquid
@@ -2788,8 +2799,7 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
         std::transform(fountain_type.begin(), fountain_type.end(), fountain_type.begin(), ::tolower);
 
         if (container_type != fountain_type) {
-            ctx.send_error(fmt::format("You can't mix {} with {}.",
-                                       liquid.liquid_type, source_liquid_type));
+            ctx.send_error(fmt::format("You can't mix {} with {}.", liquid.liquid_type, source_liquid_type));
             return CommandResult::InvalidState;
         }
     }
@@ -2798,20 +2808,17 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
     LiquidInfo new_liquid = liquid;
     new_liquid.liquid_type = source_liquid_type;
     new_liquid.remaining = new_liquid.capacity;
-    new_liquid.effects = fountain_liquid.effects;  // Inherit effects from source
+    new_liquid.effects = fountain_liquid.effects; // Inherit effects from source
     // Only identify liquid if fountain is a trusted source (town fountain, etc.)
     new_liquid.identified = fountain->has_flag(ObjectFlag::TrustedSource);
     container->set_liquid_info(new_liquid);
 
-    ctx.send_success(fmt::format("You fill {} with {} from {}.",
-                                 ctx.format_object_name(container),
-                                 source_liquid_type,
+    ctx.send_success(fmt::format("You fill {} with {} from {}.", ctx.format_object_name(container), source_liquid_type,
                                  ctx.format_object_name(fountain)));
-    ctx.send_to_room(fmt::format("{} fills {} with {} from {}.",
-                                 ctx.actor->display_name(),
-                                 ctx.format_object_name(container),
-                                 source_liquid_type,
-                                 ctx.format_object_name(fountain)), true);
+    ctx.send_to_room(fmt::format("{} fills {} with {} from {}.", ctx.actor->display_name(),
+                                 ctx.format_object_name(container), source_liquid_type,
+                                 ctx.format_object_name(fountain)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -2846,7 +2853,7 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
 
     // Check if pouring out
     if (ctx.arg(1) == "out") {
-        const auto& source_liquid = source->liquid_info();
+        const auto &source_liquid = source->liquid_info();
         if (source_liquid.remaining <= 0) {
             ctx.send_error(fmt::format("The {} is already empty.", ctx.format_object_name(source)));
             return CommandResult::InvalidState;
@@ -2857,10 +2864,11 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
         emptied.remaining = 0;
         source->set_liquid_info(emptied);
 
-        ctx.send_success(fmt::format("You pour the contents of {} out onto the ground.",
-                                     ctx.format_object_name(source)));
-        ctx.send_to_room(fmt::format("{} pours the contents of {} onto the ground.",
-                                     ctx.actor->display_name(), ctx.format_object_name(source)), true);
+        ctx.send_success(
+            fmt::format("You pour the contents of {} out onto the ground.", ctx.format_object_name(source)));
+        ctx.send_to_room(fmt::format("{} pours the contents of {} onto the ground.", ctx.actor->display_name(),
+                                     ctx.format_object_name(source)),
+                         true);
         return CommandResult::Success;
     }
 
@@ -2880,8 +2888,8 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
-    const auto& source_liquid = source->liquid_info();
-    const auto& target_liquid = target->liquid_info();
+    const auto &source_liquid = source->liquid_info();
+    const auto &target_liquid = target->liquid_info();
 
     // Check if source has liquid
     if (source_liquid.remaining <= 0) {
@@ -2897,8 +2905,7 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
 
     // Check liquid compatibility - can only pour if target is empty or has same liquid
     if (target_liquid.remaining > 0 && target_liquid.liquid_type != source_liquid.liquid_type) {
-        ctx.send_error(fmt::format("You can't mix {} with {}.",
-                                   source_liquid.liquid_type, target_liquid.liquid_type));
+        ctx.send_error(fmt::format("You can't mix {} with {}.", source_liquid.liquid_type, target_liquid.liquid_type));
         return CommandResult::InvalidState;
     }
 
@@ -2914,16 +2921,16 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
     // Update target
     LiquidInfo new_target = target_liquid;
     new_target.remaining += amount_to_transfer;
-    new_target.liquid_type = source_liquid.liquid_type;  // Set liquid type
-    new_target.effects = source_liquid.effects;          // Transfer effects
-    new_target.identified = source_liquid.identified;    // Inherit identification from source
+    new_target.liquid_type = source_liquid.liquid_type; // Set liquid type
+    new_target.effects = source_liquid.effects;         // Transfer effects
+    new_target.identified = source_liquid.identified;   // Inherit identification from source
     target->set_liquid_info(new_target);
 
-    ctx.send_success(fmt::format("You pour the contents of {} into {}.",
-                                 ctx.format_object_name(source), ctx.format_object_name(target)));
-    ctx.send_to_room(fmt::format("{} pours from {} into {}.",
-                                 ctx.actor->display_name(), ctx.format_object_name(source),
-                                 ctx.format_object_name(target)), true);
+    ctx.send_success(fmt::format("You pour the contents of {} into {}.", ctx.format_object_name(source),
+                                 ctx.format_object_name(target)));
+    ctx.send_to_room(fmt::format("{} pours from {} into {}.", ctx.actor->display_name(), ctx.format_object_name(source),
+                                 ctx.format_object_name(target)),
+                     true);
 
     return CommandResult::Success;
 }
@@ -2942,47 +2949,17 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("drop", cmd_drop)
-        .alias("dr")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("drop", cmd_drop).alias("dr").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("put", cmd_put)
-        .alias("p")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("put", cmd_put).alias("p").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("give", cmd_give)
-        .alias("gi")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("give", cmd_give).alias("gi").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("wear", cmd_wear)
-        .alias("we")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("wear", cmd_wear).alias("we").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("wield", cmd_wield)
-        .alias("wi")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("wield", cmd_wield).alias("wi").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("remove", cmd_remove)
-        .alias("rem")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("remove", cmd_remove).alias("rem").category("Object").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("grip", cmd_grip)
@@ -2992,126 +2969,46 @@ Result<void> register_commands() {
         .build();
 
     // Container and object interaction commands
-    Commands()
-        .command("open", cmd_open)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("open", cmd_open).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("close", cmd_close)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("close", cmd_close).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("lock", cmd_lock)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("lock", cmd_lock).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("unlock", cmd_unlock)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("unlock", cmd_unlock).category("Object").privilege(PrivilegeLevel::Player).build();
 
     // Consumable and utility commands
-    Commands()
-        .command("light", cmd_light)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("light", cmd_light).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("extinguish", cmd_extinguish)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("extinguish", cmd_extinguish).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("eat", cmd_eat)
-        .alias("taste")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("eat", cmd_eat).alias("taste").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("drink", cmd_drink)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("drink", cmd_drink).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("sip", cmd_sip)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("sip", cmd_sip).category("Object").privilege(PrivilegeLevel::Player).build();
 
     // Shop commands
-    Commands()
-        .command("list", cmd_list)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("list", cmd_list).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("buy", cmd_buy)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("buy", cmd_buy).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("sell", cmd_sell)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("sell", cmd_sell).category("Object").privilege(PrivilegeLevel::Player).build();
 
     // Phase 1.4 object manipulation commands
-    Commands()
-        .command("hold", cmd_hold)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("hold", cmd_hold).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("grab", cmd_grab)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("grab", cmd_grab).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("quaff", cmd_quaff)
-        .alias("qu")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("quaff", cmd_quaff).alias("qu").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("recite", cmd_recite)
-        .alias("rec")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("recite", cmd_recite).alias("rec").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("use", cmd_use)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("use", cmd_use).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("junk", cmd_junk)
-        .alias("trash")
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("junk", cmd_junk).alias("trash").category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("donate", cmd_donate)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("donate", cmd_donate).category("Object").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("compare", cmd_compare)
@@ -3121,17 +3018,9 @@ Result<void> register_commands() {
         .build();
 
     // Liquid container commands
-    Commands()
-        .command("fill", cmd_fill)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("fill", cmd_fill).category("Object").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("pour", cmd_pour)
-        .category("Object")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("pour", cmd_pour).category("Object").privilege(PrivilegeLevel::Player).build();
 
     return Success();
 }

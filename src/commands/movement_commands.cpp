@@ -1,13 +1,13 @@
 #include "movement_commands.hpp"
-#include "builtin_commands.hpp"
-#include "information_commands.hpp"
 
 #include "../core/actor.hpp"
+#include "../core/object.hpp"
 #include "../database/config_loader.hpp"
 #include "../text/text_format.hpp"
-#include "../core/object.hpp"
 #include "../world/room.hpp"
 #include "../world/world_manager.hpp"
+#include "builtin_commands.hpp"
+#include "information_commands.hpp"
 
 #include <algorithm>
 
@@ -26,16 +26,13 @@ bool race_can_fly(std::string_view race) {
                    [](unsigned char c) { return std::tolower(c); });
 
     // Races with natural flight ability
-    static const std::unordered_set<std::string> flying_races = {
-        "sprite", "pixie", "fairy", "faerie", "fae",
-        "avian", "aarakocra", "kenku", "tengu",
-        "imp", "demon", "devil", "succubus", "incubus",
-        "dragon", "dragonborn",  // Some dragon variants can fly
-        "air elemental", "djinn", "djinni", "genie",
-        "ghost", "specter", "spectre", "wraith", "banshee",
-        "angel", "archon", "deva", "solar",
-        "harpy", "gargoyle", "pteranodon"
-    };
+    static const std::unordered_set<std::string>
+        flying_races = {"sprite",        "pixie",   "fairy",    "faerie",     "fae",    "avian",
+                        "aarakocra",     "kenku",   "tengu",    "imp",        "demon",  "devil",
+                        "succubus",      "incubus", "dragon",   "dragonborn", // Some dragon variants can fly
+                        "air elemental", "djinn",   "djinni",   "genie",      "ghost",  "specter",
+                        "spectre",       "wraith",  "banshee",  "angel",      "archon", "deva",
+                        "solar",         "harpy",   "gargoyle", "pteranodon"};
 
     return flying_races.contains(lower_race);
 }
@@ -43,8 +40,8 @@ bool race_can_fly(std::string_view race) {
 /**
  * Check if any equipped item grants the Fly effect.
  */
-bool equipment_grants_flying(const Actor& actor) {
-    for (const auto& item : actor.equipment().get_all_equipped()) {
+bool equipment_grants_flying(const Actor &actor) {
+    for (const auto &item : actor.equipment().get_all_equipped()) {
         if (item && item->has_effect(EffectFlag::Fly)) {
             return true;
         }
@@ -58,28 +55,28 @@ bool equipment_grants_flying(const Actor& actor) {
 // Movement Commands
 // =============================================================================
 
-Result<CommandResult> cmd_north(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::North); 
+Result<CommandResult> cmd_north(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::North);
 }
 
-Result<CommandResult> cmd_south(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::South); 
+Result<CommandResult> cmd_south(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::South);
 }
 
-Result<CommandResult> cmd_east(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::East); 
+Result<CommandResult> cmd_east(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::East);
 }
 
-Result<CommandResult> cmd_west(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::West); 
+Result<CommandResult> cmd_west(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::West);
 }
 
-Result<CommandResult> cmd_up(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Up); 
+Result<CommandResult> cmd_up(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Up);
 }
 
-Result<CommandResult> cmd_down(const CommandContext &ctx) { 
-    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Down); 
+Result<CommandResult> cmd_down(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Down);
 }
 
 Result<CommandResult> cmd_exits(const CommandContext &ctx) {
@@ -235,7 +232,7 @@ Result<CommandResult> cmd_enter(const CommandContext &ctx) {
     // For now, just find first valid exit and try to move there
     for (int dir = 0; dir < 6; ++dir) {
         Direction direction = static_cast<Direction>(dir);
-        const auto* exit = ctx.room->get_exit(direction);
+        const auto *exit = ctx.room->get_exit(direction);
         if (exit && exit->is_passable()) {
             // Try to move - execute_movement handles validation
             return BuiltinCommands::Helpers::execute_movement(ctx, direction);
@@ -267,7 +264,7 @@ Result<CommandResult> cmd_leave(const CommandContext &ctx) {
     // Look for an exit to an outdoor room
     for (int dir = 0; dir < 6; ++dir) {
         Direction direction = static_cast<Direction>(dir);
-        const auto* exit = ctx.room->get_exit(direction);
+        const auto *exit = ctx.room->get_exit(direction);
         if (exit && !exit->is_closed) {
             auto dest_room = WorldManager::instance().get_room(exit->to_room);
             if (dest_room && dest_room->sector_type() != SectorType::Inside) {
@@ -376,7 +373,7 @@ constexpr std::string_view RECALL_COOLDOWN_EFFECT = "Recall Cooldown";
 // Default values (used if not configured in database)
 // 1 MUD hour = 75 real seconds, so 12 MUD hours = 900 seconds = 15 real minutes
 constexpr double DEFAULT_RECALL_COOLDOWN_HOURS = 12.0;
-constexpr int DEFAULT_RECALL_CAST_TICKS = 6;  // 3 seconds at 0.5s per tick
+constexpr int DEFAULT_RECALL_CAST_TICKS = 6; // 3 seconds at 0.5s per tick
 
 /**
  * Get the recall cooldown duration in MUD hours from database config.
@@ -426,7 +423,7 @@ Result<CommandResult> cmd_recall(const CommandContext &ctx) {
     }
 
     // Get the recall destination from player's recall_room (touchstone), or default to Midgaard Temple
-    EntityId recall_room_id(30, 0);  // Default recall point
+    EntityId recall_room_id(30, 0); // Default recall point
     if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
         if (player->recall_room() != INVALID_ENTITY_ID) {
             recall_room_id = player->recall_room();
@@ -454,29 +451,28 @@ Result<CommandResult> cmd_recall(const CommandContext &ctx) {
     // Start the recall concentration (configurable casting time)
     int recall_ticks = get_recall_cast_ticks();
 
-    Actor::CastingState state{
-        .ability_id = RECALL_ABILITY_ID,  // From header
-        .ability_name = "recall",
-        .ticks_remaining = recall_ticks,
-        .total_ticks = recall_ticks,
-        .target = {},
-        .target_name = "",
-        .circle = 0,
-        .quickcast_applied = false
-    };
+    Actor::CastingState state{.ability_id = RECALL_ABILITY_ID, // From header
+                              .ability_name = "recall",
+                              .ticks_remaining = recall_ticks,
+                              .total_ticks = recall_ticks,
+                              .target = {},
+                              .target_name = "",
+                              .circle = 0,
+                              .quickcast_applied = false};
     ctx.actor->start_casting(state);
 
     // Send concentration messages
     ctx.send("<cyan>You close your eyes and begin to concentrate on your recall point...</>");
-    ctx.send_to_room(TextFormat::format(
-        "<cyan>{actor} closes {actor.pos} eyes and begins to concentrate...</>",
-        ctx.actor.get()), true);
+    ctx.send_to_room(
+        TextFormat::format("<cyan>{actor} closes {actor.pos} eyes and begins to concentrate...</>", ctx.actor.get()),
+        true);
 
     return CommandResult::Success;
 }
 
 void complete_recall(std::shared_ptr<Actor> actor) {
-    if (!actor) return;
+    if (!actor)
+        return;
 
     auto current_room = actor->current_room();
     if (!current_room) {
@@ -485,7 +481,7 @@ void complete_recall(std::shared_ptr<Actor> actor) {
     }
 
     // Get the recall destination from player's recall_room (touchstone), or default to Midgaard Temple
-    EntityId recall_room_id(30, 0);  // Default recall point
+    EntityId recall_room_id(30, 0); // Default recall point
     if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
         if (player->recall_room() != INVALID_ENTITY_ID) {
             recall_room_id = player->recall_room();
@@ -505,10 +501,8 @@ void complete_recall(std::shared_ptr<Actor> actor) {
     }
 
     // Send departure message to old room
-    auto departure_msg = TextFormat::format(
-        "<cyan>{actor} vanishes in a shimmer of light.</>",
-        actor.get());
-    for (const auto& room_actor : current_room->contents().actors) {
+    auto departure_msg = TextFormat::format("<cyan>{actor} vanishes in a shimmer of light.</>", actor.get());
+    for (const auto &room_actor : current_room->contents().actors) {
         if (room_actor && room_actor != actor) {
             room_actor->send_message(departure_msg + "\n");
         }
@@ -523,10 +517,8 @@ void complete_recall(std::shared_ptr<Actor> actor) {
     actor->send_message("<cyan>You vanish in a shimmer of light and appear at your recall point!</>\n");
 
     // Send arrival message to destination room
-    auto arrival_msg = TextFormat::format(
-        "<cyan>{actor} appears in a shimmer of light.</>",
-        actor.get());
-    for (const auto& room_actor : dest_room->contents().actors) {
+    auto arrival_msg = TextFormat::format("<cyan>{actor} appears in a shimmer of light.</>", actor.get());
+    for (const auto &room_actor : dest_room->contents().actors) {
         if (room_actor && room_actor != actor) {
             room_actor->send_message(arrival_msg + "\n");
         }
@@ -536,15 +528,13 @@ void complete_recall(std::shared_ptr<Actor> actor) {
     actor->send_message(InformationCommands::format_room_for_actor(actor));
 
     // Apply recall cooldown effect (configurable duration)
-    ActiveEffect cooldown{
-        .name = std::string{RECALL_COOLDOWN_EFFECT},
-        .source = "recall",
-        .flag = ActorFlag::None,  // No flag needed for cooldown effects
-        .duration_hours = get_recall_cooldown_hours(),
-        .modifier_value = 0,
-        .modifier_stat = "",
-        .applied_at = std::chrono::steady_clock::now()
-    };
+    ActiveEffect cooldown{.name = std::string{RECALL_COOLDOWN_EFFECT},
+                          .source = "recall",
+                          .flag = ActorFlag::None, // No flag needed for cooldown effects
+                          .duration_hours = get_recall_cooldown_hours(),
+                          .modifier_value = 0,
+                          .modifier_stat = "",
+                          .applied_at = std::chrono::steady_clock::now()};
     actor->add_effect(cooldown);
 }
 
@@ -601,11 +591,7 @@ Result<void> register_commands() {
         .usable_while_sitting(false)
         .build();
 
-    Commands()
-        .command("exits", cmd_exits)
-        .category("Movement")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("exits", cmd_exits).category("Movement").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("fly", cmd_fly)
@@ -614,11 +600,7 @@ Result<void> register_commands() {
         .usable_while_sitting(false)
         .build();
 
-    Commands()
-        .command("land", cmd_land)
-        .category("Movement")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("land", cmd_land).category("Movement").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("enter", cmd_enter)

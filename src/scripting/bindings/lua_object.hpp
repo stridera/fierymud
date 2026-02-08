@@ -24,6 +24,6 @@ namespace FieryMUD {
  *   object:is_weapon     - True if weapon
  *   object:is_armor      - True if armor
  */
-void register_object_bindings(sol::state& lua);
+void register_object_bindings(sol::state &lua);
 
 } // namespace FieryMUD

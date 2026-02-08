@@ -1,4 +1,5 @@
 #include "configuration_manager.hpp"
+
 #include "../core/logging.hpp"
 
 Result<void> ConfigurationManager::initialize() {

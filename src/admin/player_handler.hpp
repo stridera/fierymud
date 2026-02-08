@@ -17,6 +17,6 @@ namespace fierymud {
  *   POST /api/admin/kick      - Disconnect a player
  *   GET  /api/admin/stats     - Server statistics
  */
-void register_player_handlers(AdminServer& admin_server, ModernMUDServer& mud_server);
+void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_server);
 
-}  // namespace fierymud
+} // namespace fierymud

@@ -2,41 +2,54 @@
 
 #include <cctype>
 #include <cmath>
-#include <random>
-
 #include <fmt/format.h>
+#include <random>
 
 namespace FieryMUD {
 
 thread_local std::mt19937 FormulaParser::rng_;
 bool FormulaParser::rng_initialized_ = false;
 
-std::string DamageEstimate::to_string() const {
-    return fmt::format("{}-{} (avg {})", min, max, avg);
-}
+std::string DamageEstimate::to_string() const { return fmt::format("{}-{} (avg {})", min, max, avg); }
 
 std::expected<int, Error> FormulaContext::get_variable(std::string_view name) const {
     // Check built-in actor variables
-    if (name == "skill") return skill_level;
-    if (name == "level") return actor_level;
-    if (name == "str_bonus" || name == "str") return str_bonus;
-    if (name == "dex_bonus" || name == "dex") return dex_bonus;
-    if (name == "con_bonus" || name == "con") return con_bonus;
-    if (name == "int_bonus" || name == "int") return int_bonus;
-    if (name == "wis_bonus" || name == "wis") return wis_bonus;
-    if (name == "cha_bonus" || name == "cha") return cha_bonus;
-    if (name == "weapon_damage" || name == "weapon") return weapon_damage;
-    if (name == "base_damage" || name == "base") return base_damage;
+    if (name == "skill")
+        return skill_level;
+    if (name == "level")
+        return actor_level;
+    if (name == "str_bonus" || name == "str")
+        return str_bonus;
+    if (name == "dex_bonus" || name == "dex")
+        return dex_bonus;
+    if (name == "con_bonus" || name == "con")
+        return con_bonus;
+    if (name == "int_bonus" || name == "int")
+        return int_bonus;
+    if (name == "wis_bonus" || name == "wis")
+        return wis_bonus;
+    if (name == "cha_bonus" || name == "cha")
+        return cha_bonus;
+    if (name == "weapon_damage" || name == "weapon")
+        return weapon_damage;
+    if (name == "base_damage" || name == "base")
+        return base_damage;
 
     // Actor's detection stats
-    if (name == "perception") return perception;
-    if (name == "concealment") return concealment;
+    if (name == "perception")
+        return perception;
+    if (name == "concealment")
+        return concealment;
 
     // Target stats for contested checks
-    if (name == "armor_rating" || name == "ar") return armor_rating;
-    if (name == "target_level") return target_level;
-    if (name == "target_perception") return target_perception;
-    if (name == "target_concealment") return target_concealment;
+    if (name == "armor_rating" || name == "ar")
+        return armor_rating;
+    if (name == "target_level")
+        return target_level;
+    if (name == "target_perception")
+        return target_perception;
+    if (name == "target_concealment")
+        return target_concealment;
 
     // Check custom variables
     std::string name_str(name);
@@ -49,36 +62,35 @@ std::expected<int, Error> FormulaContext::get_variable(std::string_view name) co
 }
 
 double FormulaParser::roll_dice(int count, int sides, DiceMode mode) {
-    if (count <= 0 || sides <= 0) return 0.0;
+    if (count <= 0 || sides <= 0)
+        return 0.0;
 
     switch (mode) {
-        case DiceMode::Min:
-            return static_cast<double>(count);  // All 1s
-        case DiceMode::Max:
-            return static_cast<double>(count * sides);  // All max
-        case DiceMode::Avg:
-            return count * (1.0 + sides) / 2.0;  // Average
-        case DiceMode::Random:
-        default: {
-            if (!rng_initialized_) {
-                std::random_device rd;
-                rng_.seed(rd());
-                rng_initialized_ = true;
-            }
-            std::uniform_int_distribution<int> dist(1, sides);
-            int total = 0;
-            for (int i = 0; i < count; ++i) {
-                total += dist(rng_);
-            }
-            return static_cast<double>(total);
+    case DiceMode::Min:
+        return static_cast<double>(count); // All 1s
+    case DiceMode::Max:
+        return static_cast<double>(count * sides); // All max
+    case DiceMode::Avg:
+        return count * (1.0 + sides) / 2.0; // Average
+    case DiceMode::Random:
+    default: {
+        if (!rng_initialized_) {
+            std::random_device rd;
+            rng_.seed(rd());
+            rng_initialized_ = true;
         }
+        std::uniform_int_distribution<int> dist(1, sides);
+        int total = 0;
+        for (int i = 0; i < count; ++i) {
+            total += dist(rng_);
+        }
+        return static_cast<double>(total);
+    }
     }
 }
 
-std::expected<int, Error> FormulaParser::evaluate(
-    std::string_view formula,
-    const FormulaContext& context,
-    DiceMode dice_mode) {
+std::expected<int, Error> FormulaParser::evaluate(std::string_view formula, const FormulaContext &context,
+                                                  DiceMode dice_mode) {
     if (formula.empty()) {
         return 0;
     }
@@ -92,9 +104,7 @@ std::expected<int, Error> FormulaParser::evaluate(
     return static_cast<int>(std::round(*result));
 }
 
-DamageEstimate FormulaParser::estimate_damage_range(
-    std::string_view formula,
-    const FormulaContext& context) {
+DamageEstimate FormulaParser::estimate_damage_range(std::string_view formula, const FormulaContext &context) {
     DamageEstimate estimate;
 
     // Calculate min (all dice roll 1)
@@ -119,12 +129,14 @@ void FormulaParser::Parser::skip_whitespace() {
 }
 
 char FormulaParser::Parser::peek() const {
-    if (pos >= input.size()) return '\0';
+    if (pos >= input.size())
+        return '\0';
     return input[pos];
 }
 
 char FormulaParser::Parser::advance() {
-    if (pos >= input.size()) return '\0';
+    if (pos >= input.size())
+        return '\0';
     return input[pos++];
 }
 
@@ -137,18 +149,17 @@ bool FormulaParser::Parser::match(char c) {
     return false;
 }
 
-bool FormulaParser::Parser::at_end() const {
-    return pos >= input.size();
-}
+bool FormulaParser::Parser::at_end() const { return pos >= input.size(); }
 
 std::expected<double, Error> FormulaParser::Parser::parse() {
     auto result = parse_expression();
-    if (!result) return result;
+    if (!result)
+        return result;
 
     skip_whitespace();
     if (!at_end()) {
-        return std::unexpected(Errors::ParseError(
-            fmt::format("Unexpected character '{}' at position {}", peek(), pos)));
+        return std::unexpected(
+            Errors::ParseError(fmt::format("Unexpected character '{}' at position {}", peek(), pos)));
     }
 
     return result;
@@ -156,17 +167,20 @@ std::expected<double, Error> FormulaParser::Parser::parse() {
 
 std::expected<double, Error> FormulaParser::Parser::parse_expression() {
     auto left = parse_term();
-    if (!left) return left;
+    if (!left)
+        return left;
 
     while (true) {
         skip_whitespace();
         if (match('+')) {
             auto right = parse_term();
-            if (!right) return right;
+            if (!right)
+                return right;
             left = *left + *right;
         } else if (match('-')) {
             auto right = parse_term();
-            if (!right) return right;
+            if (!right)
+                return right;
             left = *left - *right;
         } else {
             break;
@@ -178,17 +192,20 @@ std::expected<double, Error> FormulaParser::Parser::parse_expression() {
 
 std::expected<double, Error> FormulaParser::Parser::parse_term() {
     auto left = parse_factor();
-    if (!left) return left;
+    if (!left)
+        return left;
 
     while (true) {
         skip_whitespace();
         if (match('*')) {
             auto right = parse_factor();
-            if (!right) return right;
+            if (!right)
+                return right;
             left = *left * *right;
         } else if (match('/')) {
             auto right = parse_factor();
-            if (!right) return right;
+            if (!right)
+                return right;
             if (*right == 0) {
                 return std::unexpected(Errors::InvalidArgument("divisor", "cannot be zero"));
             }
@@ -207,7 +224,8 @@ std::expected<double, Error> FormulaParser::Parser::parse_factor() {
     // Handle unary minus
     if (match('-')) {
         auto val = parse_factor();
-        if (!val) return val;
+        if (!val)
+            return val;
         return -*val;
     }
 
@@ -225,7 +243,8 @@ std::expected<double, Error> FormulaParser::Parser::parse_primary() {
     // Parenthesized expression
     if (match('(')) {
         auto result = parse_expression();
-        if (!result) return result;
+        if (!result)
+            return result;
         skip_whitespace();
         if (!match(')')) {
             return std::unexpected(Errors::ParseError("Expected closing parenthesis"));
@@ -243,8 +262,7 @@ std::expected<double, Error> FormulaParser::Parser::parse_primary() {
         return parse_identifier();
     }
 
-    return std::unexpected(Errors::ParseError(
-        fmt::format("Unexpected character '{}' at position {}", peek(), pos)));
+    return std::unexpected(Errors::ParseError(fmt::format("Unexpected character '{}' at position {}", peek(), pos)));
 }
 
 std::expected<double, Error> FormulaParser::Parser::parse_number() {
@@ -252,7 +270,8 @@ std::expected<double, Error> FormulaParser::Parser::parse_number() {
     bool has_decimal = false;
 
     while (std::isdigit(peek()) || (peek() == '.' && !has_decimal)) {
-        if (peek() == '.') has_decimal = true;
+        if (peek() == '.')
+            has_decimal = true;
         advance();
     }
 
@@ -323,11 +342,13 @@ std::expected<double, Error> FormulaParser::Parser::parse_function(std::string_v
     if (peek() != ')') {
         while (true) {
             auto arg = parse_expression();
-            if (!arg) return arg;
+            if (!arg)
+                return arg;
             args.push_back(*arg);
 
             skip_whitespace();
-            if (!match(',')) break;
+            if (!match(','))
+                break;
         }
     }
 

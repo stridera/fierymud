@@ -1,27 +1,28 @@
 #include "database/world_queries.hpp"
-#include "database/generated/db_tables.hpp"
-#include "database/generated/db_enums.hpp"
-#include "database/db_parsing_utils.hpp"
+
 #include "core/logging.hpp"
 #include "core/object.hpp"
+#include "database/db_parsing_utils.hpp"
+#include "database/generated/db_enums.hpp"
+#include "database/generated/db_tables.hpp"
 #include "text/string_utils.hpp"
 
 using DbParsingUtils::parse_pg_array;
-#include <magic_enum/magic_enum.hpp>
-#include <fmt/format.h>
-#include <fmt/chrono.h>
-#include <sstream>
-#include <iomanip>
-#include <regex>
-#include <random>
-#include <functional>
 #include <algorithm>
-#include <utility>
-#include <crypt.h>
-#include <openssl/rand.h>
-#include <openssl/evp.h>
 #include <array>
+#include <crypt.h>
 #include <cstring>
+#include <fmt/chrono.h>
+#include <fmt/format.h>
+#include <functional>
+#include <iomanip>
+#include <magic_enum/magic_enum.hpp>
+#include <openssl/evp.h>
+#include <openssl/rand.h>
+#include <random>
+#include <regex>
+#include <sstream>
+#include <utility>
 
 namespace WorldQueries {
 
@@ -33,27 +34,25 @@ inline ObjectFlag to_game(db::ObjectFlag f) { return static_cast<ObjectFlag>(std
  * Uses the generated db::object_type_from_db() directly since ObjectType IS db::ObjectType.
  * Logs warnings for unknown types instead of silently defaulting.
  */
-static ObjectType object_type_from_db_string(std::string_view type_str,
-                                              std::shared_ptr<Logger> logger,
-                                              int zone_id = 0, int obj_id = 0) {
+static ObjectType object_type_from_db_string(std::string_view type_str, std::shared_ptr<Logger> logger, int zone_id = 0,
+                                             int obj_id = 0) {
     auto result = db::object_type_from_db(type_str);
     if (!result) {
-        logger->warn("Unknown object type '{}' for object ({}, {}), defaulting to Other",
-                    type_str, zone_id, obj_id);
+        logger->warn("Unknown object type '{}' for object ({}, {}), defaulting to Other", type_str, zone_id, obj_id);
         return ObjectType::Other;
     }
     return *result;
 }
 
 // Helper function to parse PostgreSQL integer array format: {1,2,3}
-static std::vector<int> parse_pg_int_array(const std::string& pg_array) {
+static std::vector<int> parse_pg_int_array(const std::string &pg_array) {
     std::vector<int> result;
     auto str_values = parse_pg_array(pg_array);
     result.reserve(str_values.size());
-    for (const auto& str : str_values) {
+    for (const auto &str : str_values) {
         try {
             result.push_back(std::stoi(str));
-        } catch (const std::exception&) {
+        } catch (const std::exception &) {
             // Skip invalid integers
         }
     }
@@ -61,7 +60,7 @@ static std::vector<int> parse_pg_int_array(const std::string& pg_array) {
 }
 
 // Helper function to map database Sector enum to C++ SectorType
-static SectorType sector_from_db_string(const std::string& sector_str) {
+static SectorType sector_from_db_string(const std::string &sector_str) {
     static const std::unordered_map<std::string, SectorType> sector_map = {
         {"STRUCTURE", SectorType::Inside},
         {"CITY", SectorType::City},
@@ -100,28 +99,25 @@ static SectorType sector_from_db_string(const std::string& sector_str) {
 // Direction conversion: use db::direction_from_db() directly
 // Game's Direction enum is now unified with db::Direction via 'using' alias
 
-Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work& txn) {
+Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all zones from database");
 
     try {
         // Query zones using generated column constants
         // Note: camelCase columns use aliases for reliable pqxx access
-        auto result = txn.exec(
-            fmt::format(R"(
+        auto result = txn.exec(fmt::format(R"(
                 SELECT {}, {}, {}, "{}" AS reset_mode
                 FROM "{}"
                 ORDER BY {}
             )",
-            db::Zones::ID, db::Zones::NAME, db::Zones::LIFESPAN, db::Zones::RESET_MODE,
-            db::Zones::TABLE,
-            db::Zones::ID
-        ));
+                                           db::Zones::ID, db::Zones::NAME, db::Zones::LIFESPAN, db::Zones::RESET_MODE,
+                                           db::Zones::TABLE, db::Zones::ID));
 
         std::vector<std::unique_ptr<Zone>> zones;
         zones.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             int zone_id = row[db::Zones::ID.data()].as<int>();
             std::string name = row[db::Zones::NAME.data()].as<std::string>();
             int lifespan = row[db::Zones::LIFESPAN.data()].as<int>(30);
@@ -129,11 +125,8 @@ Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work& txn) {
             // Create zone with composite EntityId using factory method
             // Zones use (zoneId, 1) as their ID to ensure zone 0 is valid
             // (EntityId(0, 0) is INVALID_ENTITY_ID)
-            auto zone_result = Zone::create(
-                EntityId(zone_id, 1),
-                name,
-                lifespan,
-                ResetMode::Always  // Default reset mode
+            auto zone_result = Zone::create(EntityId(zone_id, 1), name, lifespan,
+                                            ResetMode::Always // Default reset mode
             );
 
             if (zone_result) {
@@ -144,59 +137,51 @@ Result<std::vector<std::unique_ptr<Zone>>> load_all_zones(pqxx::work& txn) {
         logger->debug("Loaded {} zones from database", zones.size());
         return zones;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading zones: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load zones: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load zones: {}", e.what())});
     }
 }
 
-Result<std::unique_ptr<Zone>> load_zone(pqxx::work& txn, int zone_id) {
+Result<std::unique_ptr<Zone>> load_zone(pqxx::work &txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading zone {} from database", zone_id);
 
     try {
         // Query zone using generated column constants
         // Note: camelCase columns use aliases for reliable pqxx access
-        auto result = txn.exec_params(
-            fmt::format(R"(
+        auto result = txn.exec_params(fmt::format(R"(
                 SELECT {}, {}, {}, "{}" AS reset_mode
                 FROM "{}"
                 WHERE {} = $1
             )",
-            db::Zones::ID, db::Zones::NAME, db::Zones::LIFESPAN, db::Zones::RESET_MODE,
-            db::Zones::TABLE,
-            db::Zones::ID
-        ), zone_id);
+                                                  db::Zones::ID, db::Zones::NAME, db::Zones::LIFESPAN,
+                                                  db::Zones::RESET_MODE, db::Zones::TABLE, db::Zones::ID),
+                                      zone_id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Zone {} not found", zone_id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Zone {} not found", zone_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         std::string name = row[db::Zones::NAME.data()].as<std::string>();
         int lifespan = row[db::Zones::LIFESPAN.data()].as<int>(30);
 
         // Zones use (zoneId, 1) to ensure zone 0 is valid
-        auto zone = Zone::create(
-            EntityId(zone_id, 1),
-            name,
-            lifespan,
-            ResetMode::Always  // Default reset mode
+        auto zone = Zone::create(EntityId(zone_id, 1), name, lifespan,
+                                 ResetMode::Always // Default reset mode
         );
 
         return zone;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load zone {}: {}", zone_id, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load zone {}: {}", zone_id, e.what())});
     }
 }
 
-Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
-    pqxx::work& txn, int zone_id) {
+Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(pqxx::work &txn, int zone_id) {
 
     auto logger = Log::database();
     logger->debug("Loading rooms for zone {} from database", zone_id);
@@ -211,21 +196,19 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
                 WHERE {} = $1 AND {} IS NULL
                 ORDER BY {}
             )",
-            db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
-            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::BASE_LIGHT_LEVEL,
-            db::Room::CAPACITY, db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
-            // Room state and restriction fields
-            db::Room::IS_PEACEFUL, db::Room::ALLOWS_MAGIC, db::Room::ALLOWS_RECALL,
-            db::Room::ALLOWS_SUMMON, db::Room::ALLOWS_TELEPORT, db::Room::IS_DEATH_TRAP,
-            db::Room::ENTRY_RESTRICTION,
-            db::Room::TABLE,
-            db::Room::ZONE_ID, db::Room::DELETED_AT, db::Room::ID
-        ), zone_id);
+                        db::Room::ZONE_ID, db::Room::ID, db::Room::NAME, db::Room::ROOM_DESCRIPTION, db::Room::SECTOR,
+                        db::Room::BASE_LIGHT_LEVEL, db::Room::CAPACITY, db::Room::LAYOUT_X, db::Room::LAYOUT_Y,
+                        db::Room::LAYOUT_Z,
+                        // Room state and restriction fields
+                        db::Room::IS_PEACEFUL, db::Room::ALLOWS_MAGIC, db::Room::ALLOWS_RECALL, db::Room::ALLOWS_SUMMON,
+                        db::Room::ALLOWS_TELEPORT, db::Room::IS_DEATH_TRAP, db::Room::ENTRY_RESTRICTION,
+                        db::Room::TABLE, db::Room::ZONE_ID, db::Room::DELETED_AT, db::Room::ID),
+            zone_id);
 
         std::vector<std::unique_ptr<Room>> rooms;
         rooms.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             int local_id = row[db::Room::ID.data()].as<int>();
             std::string name = row[db::Room::NAME.data()].as<std::string>();
             std::string description = row[db::Room::ROOM_DESCRIPTION.data()].as<std::string>("");
@@ -238,14 +221,10 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
             }
 
             // Create room with composite EntityId using factory method
-            auto room_result = Room::create(
-                EntityId(zone_id, local_id),
-                name,
-                sector
-            );
+            auto room_result = Room::create(EntityId(zone_id, local_id), name, sector);
 
             if (room_result) {
-                auto& room = *room_result;
+                auto &room = *room_result;
 
                 // Set room description
                 room->set_description(description);
@@ -308,43 +287,41 @@ Result<std::vector<std::unique_ptr<Room>>> load_rooms_in_zone(
         logger->debug("Loaded {} rooms for zone {}", rooms.size(), zone_id);
         return rooms;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading rooms for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load rooms for zone {}: {}", zone_id, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load rooms for zone {}: {}", zone_id, e.what())});
     }
 }
 
-Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_local_id) {
+Result<std::unique_ptr<Room>> load_room(pqxx::work &txn, int zone_id, int room_local_id) {
     auto logger = Log::database();
     logger->debug("Loading room ({}, {}) from database", zone_id, room_local_id);
 
     try {
         // Query room using generated column constants
-        auto result = txn.exec_params(
-            fmt::format(R"(
+        auto result =
+            txn.exec_params(fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
-            db::Room::ZONE_ID, db::Room::ID, db::Room::NAME,
-            db::Room::ROOM_DESCRIPTION, db::Room::SECTOR, db::Room::BASE_LIGHT_LEVEL,
-            db::Room::CAPACITY, db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
-            // Room state and restriction fields
-            db::Room::IS_PEACEFUL, db::Room::ALLOWS_MAGIC, db::Room::ALLOWS_RECALL,
-            db::Room::ALLOWS_SUMMON, db::Room::ALLOWS_TELEPORT, db::Room::IS_DEATH_TRAP,
-            db::Room::ENTRY_RESTRICTION,
-            db::Room::TABLE,
-            db::Room::ZONE_ID, db::Room::ID
-        ), zone_id, room_local_id);
+                                        db::Room::ZONE_ID, db::Room::ID, db::Room::NAME, db::Room::ROOM_DESCRIPTION,
+                                        db::Room::SECTOR, db::Room::BASE_LIGHT_LEVEL, db::Room::CAPACITY,
+                                        db::Room::LAYOUT_X, db::Room::LAYOUT_Y, db::Room::LAYOUT_Z,
+                                        // Room state and restriction fields
+                                        db::Room::IS_PEACEFUL, db::Room::ALLOWS_MAGIC, db::Room::ALLOWS_RECALL,
+                                        db::Room::ALLOWS_SUMMON, db::Room::ALLOWS_TELEPORT, db::Room::IS_DEATH_TRAP,
+                                        db::Room::ENTRY_RESTRICTION, db::Room::TABLE, db::Room::ZONE_ID, db::Room::ID),
+                            zone_id, room_local_id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Room ({}, {}) not found", zone_id, room_local_id)});
+            return std::unexpected(
+                Error{ErrorCode::NotFound, fmt::format("Room ({}, {}) not found", zone_id, room_local_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         std::string name = row[db::Room::NAME.data()].as<std::string>();
         std::string description = row[db::Room::ROOM_DESCRIPTION.data()].as<std::string>("");
 
@@ -355,14 +332,10 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
             sector = sector_from_db_string(sector_str);
         }
 
-        auto room_result = Room::create(
-            EntityId(zone_id, room_local_id),
-            name,
-            sector
-        );
+        auto room_result = Room::create(EntityId(zone_id, room_local_id), name, sector);
 
         if (room_result) {
-            auto& room = *room_result;
+            auto &room = *room_result;
 
             // Set room description
             room->set_description(description);
@@ -421,40 +394,38 @@ Result<std::unique_ptr<Room>> load_room(pqxx::work& txn, int zone_id, int room_l
             return std::move(room);
         }
 
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to create room ({}, {})", zone_id, room_local_id)});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to create room ({}, {})", zone_id, room_local_id)});
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading room ({}, {}): {}", zone_id, room_local_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load room ({}, {}): {}", zone_id, room_local_id, e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load room ({}, {}): {}", zone_id,
+                                                                           room_local_id, e.what())});
     }
 }
 
-Result<std::vector<ExitData>> load_room_exits(
-    pqxx::work& txn, int zone_id, int room_local_id) {
+Result<std::vector<ExitData>> load_room_exits(pqxx::work &txn, int zone_id, int room_local_id) {
 
     auto logger = Log::database();
     logger->debug("Loading exits for room ({}, {})", zone_id, room_local_id);
 
     try {
         // Query exits using generated column constants
-        auto result = txn.exec_params(
-            fmt::format(R"(
+        auto result =
+            txn.exec_params(fmt::format(R"(
                 SELECT {}, {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
-            db::RoomExit::DIRECTION, db::RoomExit::TO_ZONE_ID,
-            db::RoomExit::TO_ROOM_ID, db::RoomExit::DESCRIPTION,
-            db::RoomExit::TABLE,
-            db::RoomExit::ROOM_ZONE_ID, db::RoomExit::ROOM_ID
-        ), zone_id, room_local_id);
+                                        db::RoomExit::DIRECTION, db::RoomExit::TO_ZONE_ID, db::RoomExit::TO_ROOM_ID,
+                                        db::RoomExit::DESCRIPTION, db::RoomExit::TABLE, db::RoomExit::ROOM_ZONE_ID,
+                                        db::RoomExit::ROOM_ID),
+                            zone_id, room_local_id);
 
         std::vector<ExitData> exits;
         exits.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ExitData exit;
 
             // Parse direction enum from database string value
@@ -462,7 +433,7 @@ Result<std::vector<ExitData>> load_room_exits(
             auto parsed_dir = RoomUtils::parse_direction(dir_str);
             if (!parsed_dir) {
                 logger->warn("Invalid direction '{}' for exit in room ({}, {})", dir_str, zone_id, room_local_id);
-                continue;  // Skip invalid exits
+                continue; // Skip invalid exits
             }
             exit.direction = parsed_dir.value();
 
@@ -482,16 +453,14 @@ Result<std::vector<ExitData>> load_room_exits(
         logger->debug("Loaded {} exits for room ({}, {})", exits.size(), zone_id, room_local_id);
         return exits;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading exits for room ({}, {}): {}", zone_id, room_local_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load exits: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load exits: {}", e.what())});
     }
 }
 
 // Stub implementations for mobs and objects (to be fully implemented)
-Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
-    pqxx::work& txn, int zone_id) {
+Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(pqxx::work &txn, int zone_id) {
 
     auto logger = Log::database();
     logger->debug("Loading mobs for zone {} from database", zone_id);
@@ -499,8 +468,8 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
     try {
         // Query all mobs in this zone using generated column constants
         // Note: camelCase columns use aliases for reliable pqxx access
-        auto result = txn.exec_params(
-            fmt::format(R"(
+        auto result =
+            txn.exec_params(fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
@@ -518,58 +487,57 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
                 WHERE {} = $1
                 ORDER BY {}
             )",
-            // Row 1: Basic info
-            db::Mobs::ZONE_ID, db::Mobs::ID, db::Mobs::NAME, db::Mobs::KEYWORDS,
-            db::Mobs::ROOM_DESCRIPTION, db::Mobs::EXAMINE_DESCRIPTION,
-            // Row 2: Level/dice info
-            db::Mobs::LEVEL, db::Mobs::ALIGNMENT, db::Mobs::DAMAGE_DICE_NUM,
-            db::Mobs::DAMAGE_DICE_SIZE, db::Mobs::DAMAGE_DICE_BONUS,
-            db::Mobs::HP_DICE_NUM, db::Mobs::HP_DICE_SIZE, db::Mobs::HP_DICE_BONUS,
-            // Row 3: Attributes
-            db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
-            db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
-            // Row 4: Currency (single wealth column in copper)
-            db::Mobs::WEALTH,
-            // Row 5: Race/physical
-            db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
-            // Row 5b: camelCase columns with aliases
-            db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
-            // Row 6: Traits/behaviors/professions (reorganized from old mobFlags)
-            db::Mobs::TRAITS, db::Mobs::BEHAVIORS, db::Mobs::PROFESSIONS,
-            // Row 7: Class and stance
-            db::Mobs::CLASS_ID, db::Mobs::STANCE,
-            // Row 8: Offensive stats
-            db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
-            db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
-            // Row 9: Defensive stats
-            db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
-            db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
-            // Row 10: Other
-            db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
-            // Row 11: Display name components
-            db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
-            // Row 12: Aggression formula (Lua expression)
-            db::Mobs::AGGRESSION_FORMULA,
-            // Table and WHERE
-            db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
-        ), zone_id);
+                                        // Row 1: Basic info
+                                        db::Mobs::ZONE_ID, db::Mobs::ID, db::Mobs::NAME, db::Mobs::KEYWORDS,
+                                        db::Mobs::ROOM_DESCRIPTION, db::Mobs::EXAMINE_DESCRIPTION,
+                                        // Row 2: Level/dice info
+                                        db::Mobs::LEVEL, db::Mobs::ALIGNMENT, db::Mobs::DAMAGE_DICE_NUM,
+                                        db::Mobs::DAMAGE_DICE_SIZE, db::Mobs::DAMAGE_DICE_BONUS, db::Mobs::HP_DICE_NUM,
+                                        db::Mobs::HP_DICE_SIZE, db::Mobs::HP_DICE_BONUS,
+                                        // Row 3: Attributes
+                                        db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
+                                        db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
+                                        // Row 4: Currency (single wealth column in copper)
+                                        db::Mobs::WEALTH,
+                                        // Row 5: Race/physical
+                                        db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
+                                        // Row 5b: camelCase columns with aliases
+                                        db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
+                                        // Row 6: Traits/behaviors/professions (reorganized from old mobFlags)
+                                        db::Mobs::TRAITS, db::Mobs::BEHAVIORS, db::Mobs::PROFESSIONS,
+                                        // Row 7: Class and stance
+                                        db::Mobs::CLASS_ID, db::Mobs::STANCE,
+                                        // Row 8: Offensive stats
+                                        db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
+                                        db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
+                                        // Row 9: Defensive stats
+                                        db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
+                                        db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
+                                        // Row 10: Other
+                                        db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
+                                        // Row 11: Display name components
+                                        db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
+                                        // Row 12: Aggression formula (Lua expression)
+                                        db::Mobs::AGGRESSION_FORMULA,
+                                        // Table and WHERE
+                                        db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID),
+                            zone_id);
 
         std::vector<std::unique_ptr<Mobile>> mobs;
         mobs.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             int mob_zone_id = row[db::Mobs::ZONE_ID.data()].as<int>();
             int mob_id = row[db::Mobs::ID.data()].as<int>();
             EntityId mob_entity_id(mob_zone_id, mob_id);
 
             std::string mob_name = row[db::Mobs::NAME.data()].as<std::string>();
-            int mob_level = std::max(1, row[db::Mobs::LEVEL.data()].as<int>(1));  // Clamp to minimum 1
+            int mob_level = std::max(1, row[db::Mobs::LEVEL.data()].as<int>(1)); // Clamp to minimum 1
 
             // Create the mobile
             auto mob_result = Mobile::create(mob_entity_id, mob_name, mob_level);
             if (!mob_result) {
-                logger->error("Failed to create mob ({}, {}): {}",
-                             mob_zone_id, mob_id, mob_result.error().message);
+                logger->error("Failed to create mob ({}, {}): {}", mob_zone_id, mob_id, mob_result.error().message);
                 continue;
             }
 
@@ -581,37 +549,57 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             }
 
             // Set stats from database
-            Stats& mob_stats = mob->stats();
+            Stats &mob_stats = mob->stats();
 
             // Base attributes
-            if (!row[db::Mobs::STRENGTH.data()].is_null()) mob_stats.strength = row[db::Mobs::STRENGTH.data()].as<int>();
-            if (!row[db::Mobs::INTELLIGENCE.data()].is_null()) mob_stats.intelligence = row[db::Mobs::INTELLIGENCE.data()].as<int>();
-            if (!row[db::Mobs::WISDOM.data()].is_null()) mob_stats.wisdom = row[db::Mobs::WISDOM.data()].as<int>();
-            if (!row[db::Mobs::DEXTERITY.data()].is_null()) mob_stats.dexterity = row[db::Mobs::DEXTERITY.data()].as<int>();
-            if (!row[db::Mobs::CONSTITUTION.data()].is_null()) mob_stats.constitution = row[db::Mobs::CONSTITUTION.data()].as<int>();
-            if (!row[db::Mobs::CHARISMA.data()].is_null()) mob_stats.charisma = row[db::Mobs::CHARISMA.data()].as<int>();
+            if (!row[db::Mobs::STRENGTH.data()].is_null())
+                mob_stats.strength = row[db::Mobs::STRENGTH.data()].as<int>();
+            if (!row[db::Mobs::INTELLIGENCE.data()].is_null())
+                mob_stats.intelligence = row[db::Mobs::INTELLIGENCE.data()].as<int>();
+            if (!row[db::Mobs::WISDOM.data()].is_null())
+                mob_stats.wisdom = row[db::Mobs::WISDOM.data()].as<int>();
+            if (!row[db::Mobs::DEXTERITY.data()].is_null())
+                mob_stats.dexterity = row[db::Mobs::DEXTERITY.data()].as<int>();
+            if (!row[db::Mobs::CONSTITUTION.data()].is_null())
+                mob_stats.constitution = row[db::Mobs::CONSTITUTION.data()].as<int>();
+            if (!row[db::Mobs::CHARISMA.data()].is_null())
+                mob_stats.charisma = row[db::Mobs::CHARISMA.data()].as<int>();
 
             // Alignment
-            if (!row[db::Mobs::ALIGNMENT.data()].is_null()) mob_stats.alignment = row[db::Mobs::ALIGNMENT.data()].as<int>();
+            if (!row[db::Mobs::ALIGNMENT.data()].is_null())
+                mob_stats.alignment = row[db::Mobs::ALIGNMENT.data()].as<int>();
 
             // Offensive stats
-            if (!row[db::Mobs::ACCURACY.data()].is_null()) mob_stats.accuracy = row[db::Mobs::ACCURACY.data()].as<int>();
-            if (!row[db::Mobs::ATTACK_POWER.data()].is_null()) mob_stats.attack_power = row[db::Mobs::ATTACK_POWER.data()].as<int>();
-            if (!row[db::Mobs::SPELL_POWER.data()].is_null()) mob_stats.spell_power = row[db::Mobs::SPELL_POWER.data()].as<int>();
-            if (!row[db::Mobs::PENETRATION_FLAT.data()].is_null()) mob_stats.penetration_flat = row[db::Mobs::PENETRATION_FLAT.data()].as<int>();
-            if (!row[db::Mobs::PENETRATION_PERCENT.data()].is_null()) mob_stats.penetration_percent = row[db::Mobs::PENETRATION_PERCENT.data()].as<int>();
+            if (!row[db::Mobs::ACCURACY.data()].is_null())
+                mob_stats.accuracy = row[db::Mobs::ACCURACY.data()].as<int>();
+            if (!row[db::Mobs::ATTACK_POWER.data()].is_null())
+                mob_stats.attack_power = row[db::Mobs::ATTACK_POWER.data()].as<int>();
+            if (!row[db::Mobs::SPELL_POWER.data()].is_null())
+                mob_stats.spell_power = row[db::Mobs::SPELL_POWER.data()].as<int>();
+            if (!row[db::Mobs::PENETRATION_FLAT.data()].is_null())
+                mob_stats.penetration_flat = row[db::Mobs::PENETRATION_FLAT.data()].as<int>();
+            if (!row[db::Mobs::PENETRATION_PERCENT.data()].is_null())
+                mob_stats.penetration_percent = row[db::Mobs::PENETRATION_PERCENT.data()].as<int>();
 
             // Defensive stats
-            if (!row[db::Mobs::EVASION.data()].is_null()) mob_stats.evasion = row[db::Mobs::EVASION.data()].as<int>();
-            if (!row[db::Mobs::ARMOR_RATING.data()].is_null()) mob_stats.armor_rating = row[db::Mobs::ARMOR_RATING.data()].as<int>();
-            if (!row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].is_null()) mob_stats.damage_reduction_percent = row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].as<int>();
-            if (!row[db::Mobs::SOAK.data()].is_null()) mob_stats.soak = row[db::Mobs::SOAK.data()].as<int>();
-            if (!row[db::Mobs::HARDNESS.data()].is_null()) mob_stats.hardness = row[db::Mobs::HARDNESS.data()].as<int>();
-            if (!row[db::Mobs::WARD_PERCENT.data()].is_null()) mob_stats.ward_percent = row[db::Mobs::WARD_PERCENT.data()].as<int>();
+            if (!row[db::Mobs::EVASION.data()].is_null())
+                mob_stats.evasion = row[db::Mobs::EVASION.data()].as<int>();
+            if (!row[db::Mobs::ARMOR_RATING.data()].is_null())
+                mob_stats.armor_rating = row[db::Mobs::ARMOR_RATING.data()].as<int>();
+            if (!row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].is_null())
+                mob_stats.damage_reduction_percent = row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].as<int>();
+            if (!row[db::Mobs::SOAK.data()].is_null())
+                mob_stats.soak = row[db::Mobs::SOAK.data()].as<int>();
+            if (!row[db::Mobs::HARDNESS.data()].is_null())
+                mob_stats.hardness = row[db::Mobs::HARDNESS.data()].as<int>();
+            if (!row[db::Mobs::WARD_PERCENT.data()].is_null())
+                mob_stats.ward_percent = row[db::Mobs::WARD_PERCENT.data()].as<int>();
 
             // Perception and concealment
-            if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
-            if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
+            if (!row[db::Mobs::PERCEPTION.data()].is_null())
+                mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
+            if (!row[db::Mobs::CONCEALMENT.data()].is_null())
+                mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
             // Currency - wealth is already stored in copper
             if (!row[db::Mobs::WEALTH.data()].is_null()) {
@@ -622,13 +610,19 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::RESISTANCES.data()].is_null()) {
                 try {
                     auto resistances_json = nlohmann::json::parse(row[db::Mobs::RESISTANCES.data()].as<std::string>());
-                    if (resistances_json.contains("FIRE")) mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
-                    if (resistances_json.contains("COLD")) mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
-                    if (resistances_json.contains("LIGHTNING")) mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
-                    if (resistances_json.contains("ACID")) mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
-                    if (resistances_json.contains("POISON")) mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
-                } catch (const nlohmann::json::exception& e) {
-                    logger->warn("Failed to parse resistances JSON for mob {}: {}", row[db::Mobs::NAME.data()].as<std::string>("unknown"), e.what());
+                    if (resistances_json.contains("FIRE"))
+                        mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
+                    if (resistances_json.contains("COLD"))
+                        mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
+                    if (resistances_json.contains("LIGHTNING"))
+                        mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
+                    if (resistances_json.contains("ACID"))
+                        mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
+                    if (resistances_json.contains("POISON"))
+                        mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
+                } catch (const nlohmann::json::exception &e) {
+                    logger->warn("Failed to parse resistances JSON for mob {}: {}",
+                                 row[db::Mobs::NAME.data()].as<std::string>("unknown"), e.what());
                 }
             }
 
@@ -689,7 +683,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::TRAITS.data()].is_null()) {
                 auto traits_str = row[db::Mobs::TRAITS.data()].as<std::string>();
                 auto trait_names = parse_pg_array(traits_str);
-                for (const auto& trait_name : trait_names) {
+                for (const auto &trait_name : trait_names) {
                     if (auto trait = db::mob_trait_from_db(trait_name)) {
                         mob->set_trait(*trait, true);
                     }
@@ -700,7 +694,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::BEHAVIORS.data()].is_null()) {
                 auto behaviors_str = row[db::Mobs::BEHAVIORS.data()].as<std::string>();
                 auto behavior_names = parse_pg_array(behaviors_str);
-                for (const auto& behavior_name : behavior_names) {
+                for (const auto &behavior_name : behavior_names) {
                     if (auto behavior = db::mob_behavior_from_db(behavior_name)) {
                         mob->set_behavior(*behavior, true);
                     }
@@ -711,7 +705,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::PROFESSIONS.data()].is_null()) {
                 auto professions_str = row[db::Mobs::PROFESSIONS.data()].as<std::string>();
                 auto profession_names = parse_pg_array(professions_str);
-                for (const auto& profession_name : profession_names) {
+                for (const auto &profession_name : profession_names) {
                     if (auto profession = db::mob_profession_from_db(profession_name)) {
                         mob->set_profession(*profession, true);
                     }
@@ -731,7 +725,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
             if (!row[db::Mobs::ARTICLE.data()].is_null()) {
                 mob->set_article(row[db::Mobs::ARTICLE.data()].as<std::string>());
             } else {
-                mob->set_article(std::nullopt);  // Calculate a/an dynamically
+                mob->set_article(std::nullopt); // Calculate a/an dynamically
             }
 
             // Set aggression_formula (Lua expression for aggression behavior)
@@ -746,15 +740,13 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(
         logger->debug("Loaded {} mobs for zone {}", mobs.size(), zone_id);
         return mobs;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading mobs for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mobs: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load mobs: {}", e.what())});
     }
 }
 
-Result<std::unique_ptr<Mobile>> load_mob(
-    pqxx::work& txn, int zone_id, int mob_local_id) {
+Result<std::unique_ptr<Mobile>> load_mob(pqxx::work &txn, int zone_id, int mob_local_id) {
 
     auto logger = Log::database();
     logger->debug("Loading mob ({}, {})", zone_id, mob_local_id);
@@ -762,8 +754,8 @@ Result<std::unique_ptr<Mobile>> load_mob(
     try {
         // Query using generated column constants
         // Note: camelCase columns use aliases for reliable pqxx access
-        auto result = txn.exec_params(
-            fmt::format(R"(
+        auto result =
+            txn.exec_params(fmt::format(R"(
                 SELECT {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {}, {}, {},
                        {}, {}, {}, {}, {}, {},
@@ -780,48 +772,48 @@ Result<std::unique_ptr<Mobile>> load_mob(
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
-            // Row 1: Basic info
-            db::Mobs::ZONE_ID, db::Mobs::ID, db::Mobs::NAME, db::Mobs::KEYWORDS,
-            db::Mobs::ROOM_DESCRIPTION, db::Mobs::EXAMINE_DESCRIPTION,
-            // Row 2: Level/dice info
-            db::Mobs::LEVEL, db::Mobs::ALIGNMENT, db::Mobs::DAMAGE_DICE_NUM,
-            db::Mobs::DAMAGE_DICE_SIZE, db::Mobs::DAMAGE_DICE_BONUS,
-            db::Mobs::HP_DICE_NUM, db::Mobs::HP_DICE_SIZE, db::Mobs::HP_DICE_BONUS,
-            // Row 3: Attributes
-            db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
-            db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
-            // Row 4: Currency (single wealth column in copper)
-            db::Mobs::WEALTH,
-            // Row 5: Race/physical
-            db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
-            // Row 5b: camelCase columns with aliases
-            db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
-            // Row 6: Traits/behaviors/professions (reorganized from old mobFlags)
-            db::Mobs::TRAITS, db::Mobs::BEHAVIORS, db::Mobs::PROFESSIONS,
-            // Row 7: Class and stance
-            db::Mobs::CLASS_ID, db::Mobs::STANCE,
-            // Row 8: Offensive stats
-            db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
-            db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
-            // Row 9: Defensive stats
-            db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
-            db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
-            // Row 10: Other
-            db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
-            // Row 11: Display name components
-            db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
-            // Row 12: Aggression formula (Lua expression)
-            db::Mobs::AGGRESSION_FORMULA,
-            // Table and WHERE
-            db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID
-        ), zone_id, mob_local_id);
+                                        // Row 1: Basic info
+                                        db::Mobs::ZONE_ID, db::Mobs::ID, db::Mobs::NAME, db::Mobs::KEYWORDS,
+                                        db::Mobs::ROOM_DESCRIPTION, db::Mobs::EXAMINE_DESCRIPTION,
+                                        // Row 2: Level/dice info
+                                        db::Mobs::LEVEL, db::Mobs::ALIGNMENT, db::Mobs::DAMAGE_DICE_NUM,
+                                        db::Mobs::DAMAGE_DICE_SIZE, db::Mobs::DAMAGE_DICE_BONUS, db::Mobs::HP_DICE_NUM,
+                                        db::Mobs::HP_DICE_SIZE, db::Mobs::HP_DICE_BONUS,
+                                        // Row 3: Attributes
+                                        db::Mobs::STRENGTH, db::Mobs::INTELLIGENCE, db::Mobs::WISDOM,
+                                        db::Mobs::DEXTERITY, db::Mobs::CONSTITUTION, db::Mobs::CHARISMA,
+                                        // Row 4: Currency (single wealth column in copper)
+                                        db::Mobs::WEALTH,
+                                        // Row 5: Race/physical
+                                        db::Mobs::RACE, db::Mobs::GENDER, db::Mobs::SIZE,
+                                        // Row 5b: camelCase columns with aliases
+                                        db::Mobs::LIFE_FORCE, db::Mobs::COMPOSITION, db::Mobs::DAMAGE_TYPE,
+                                        // Row 6: Traits/behaviors/professions (reorganized from old mobFlags)
+                                        db::Mobs::TRAITS, db::Mobs::BEHAVIORS, db::Mobs::PROFESSIONS,
+                                        // Row 7: Class and stance
+                                        db::Mobs::CLASS_ID, db::Mobs::STANCE,
+                                        // Row 8: Offensive stats
+                                        db::Mobs::ACCURACY, db::Mobs::ATTACK_POWER, db::Mobs::SPELL_POWER,
+                                        db::Mobs::PENETRATION_FLAT, db::Mobs::PENETRATION_PERCENT,
+                                        // Row 9: Defensive stats
+                                        db::Mobs::EVASION, db::Mobs::ARMOR_RATING, db::Mobs::DAMAGE_REDUCTION_PERCENT,
+                                        db::Mobs::SOAK, db::Mobs::HARDNESS, db::Mobs::WARD_PERCENT,
+                                        // Row 10: Other
+                                        db::Mobs::RESISTANCES, db::Mobs::PERCEPTION, db::Mobs::CONCEALMENT,
+                                        // Row 11: Display name components
+                                        db::Mobs::BASE_NAME, db::Mobs::ARTICLE,
+                                        // Row 12: Aggression formula (Lua expression)
+                                        db::Mobs::AGGRESSION_FORMULA,
+                                        // Table and WHERE
+                                        db::Mobs::TABLE, db::Mobs::ZONE_ID, db::Mobs::ID),
+                            zone_id, mob_local_id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Mob ({}, {}) not found", zone_id, mob_local_id)});
+            return std::unexpected(
+                Error{ErrorCode::NotFound, fmt::format("Mob ({}, {}) not found", zone_id, mob_local_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         EntityId mob_entity_id(zone_id, mob_local_id);
         std::string mob_name = row[db::Mobs::NAME.data()].as<std::string>();
         int mob_level = std::max(1, row[db::Mobs::LEVEL.data()].as<int>(1));
@@ -839,37 +831,57 @@ Result<std::unique_ptr<Mobile>> load_mob(
         }
 
         // Set stats from database
-        Stats& mob_stats = mob->stats();
+        Stats &mob_stats = mob->stats();
 
         // Base attributes
-        if (!row[db::Mobs::STRENGTH.data()].is_null()) mob_stats.strength = row[db::Mobs::STRENGTH.data()].as<int>();
-        if (!row[db::Mobs::INTELLIGENCE.data()].is_null()) mob_stats.intelligence = row[db::Mobs::INTELLIGENCE.data()].as<int>();
-        if (!row[db::Mobs::WISDOM.data()].is_null()) mob_stats.wisdom = row[db::Mobs::WISDOM.data()].as<int>();
-        if (!row[db::Mobs::DEXTERITY.data()].is_null()) mob_stats.dexterity = row[db::Mobs::DEXTERITY.data()].as<int>();
-        if (!row[db::Mobs::CONSTITUTION.data()].is_null()) mob_stats.constitution = row[db::Mobs::CONSTITUTION.data()].as<int>();
-        if (!row[db::Mobs::CHARISMA.data()].is_null()) mob_stats.charisma = row[db::Mobs::CHARISMA.data()].as<int>();
+        if (!row[db::Mobs::STRENGTH.data()].is_null())
+            mob_stats.strength = row[db::Mobs::STRENGTH.data()].as<int>();
+        if (!row[db::Mobs::INTELLIGENCE.data()].is_null())
+            mob_stats.intelligence = row[db::Mobs::INTELLIGENCE.data()].as<int>();
+        if (!row[db::Mobs::WISDOM.data()].is_null())
+            mob_stats.wisdom = row[db::Mobs::WISDOM.data()].as<int>();
+        if (!row[db::Mobs::DEXTERITY.data()].is_null())
+            mob_stats.dexterity = row[db::Mobs::DEXTERITY.data()].as<int>();
+        if (!row[db::Mobs::CONSTITUTION.data()].is_null())
+            mob_stats.constitution = row[db::Mobs::CONSTITUTION.data()].as<int>();
+        if (!row[db::Mobs::CHARISMA.data()].is_null())
+            mob_stats.charisma = row[db::Mobs::CHARISMA.data()].as<int>();
 
         // Alignment
-        if (!row[db::Mobs::ALIGNMENT.data()].is_null()) mob_stats.alignment = row[db::Mobs::ALIGNMENT.data()].as<int>();
+        if (!row[db::Mobs::ALIGNMENT.data()].is_null())
+            mob_stats.alignment = row[db::Mobs::ALIGNMENT.data()].as<int>();
 
         // Offensive stats
-        if (!row[db::Mobs::ACCURACY.data()].is_null()) mob_stats.accuracy = row[db::Mobs::ACCURACY.data()].as<int>();
-        if (!row[db::Mobs::ATTACK_POWER.data()].is_null()) mob_stats.attack_power = row[db::Mobs::ATTACK_POWER.data()].as<int>();
-        if (!row[db::Mobs::SPELL_POWER.data()].is_null()) mob_stats.spell_power = row[db::Mobs::SPELL_POWER.data()].as<int>();
-        if (!row[db::Mobs::PENETRATION_FLAT.data()].is_null()) mob_stats.penetration_flat = row[db::Mobs::PENETRATION_FLAT.data()].as<int>();
-        if (!row[db::Mobs::PENETRATION_PERCENT.data()].is_null()) mob_stats.penetration_percent = row[db::Mobs::PENETRATION_PERCENT.data()].as<int>();
+        if (!row[db::Mobs::ACCURACY.data()].is_null())
+            mob_stats.accuracy = row[db::Mobs::ACCURACY.data()].as<int>();
+        if (!row[db::Mobs::ATTACK_POWER.data()].is_null())
+            mob_stats.attack_power = row[db::Mobs::ATTACK_POWER.data()].as<int>();
+        if (!row[db::Mobs::SPELL_POWER.data()].is_null())
+            mob_stats.spell_power = row[db::Mobs::SPELL_POWER.data()].as<int>();
+        if (!row[db::Mobs::PENETRATION_FLAT.data()].is_null())
+            mob_stats.penetration_flat = row[db::Mobs::PENETRATION_FLAT.data()].as<int>();
+        if (!row[db::Mobs::PENETRATION_PERCENT.data()].is_null())
+            mob_stats.penetration_percent = row[db::Mobs::PENETRATION_PERCENT.data()].as<int>();
 
         // Defensive stats
-        if (!row[db::Mobs::EVASION.data()].is_null()) mob_stats.evasion = row[db::Mobs::EVASION.data()].as<int>();
-        if (!row[db::Mobs::ARMOR_RATING.data()].is_null()) mob_stats.armor_rating = row[db::Mobs::ARMOR_RATING.data()].as<int>();
-        if (!row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].is_null()) mob_stats.damage_reduction_percent = row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].as<int>();
-        if (!row[db::Mobs::SOAK.data()].is_null()) mob_stats.soak = row[db::Mobs::SOAK.data()].as<int>();
-        if (!row[db::Mobs::HARDNESS.data()].is_null()) mob_stats.hardness = row[db::Mobs::HARDNESS.data()].as<int>();
-        if (!row[db::Mobs::WARD_PERCENT.data()].is_null()) mob_stats.ward_percent = row[db::Mobs::WARD_PERCENT.data()].as<int>();
+        if (!row[db::Mobs::EVASION.data()].is_null())
+            mob_stats.evasion = row[db::Mobs::EVASION.data()].as<int>();
+        if (!row[db::Mobs::ARMOR_RATING.data()].is_null())
+            mob_stats.armor_rating = row[db::Mobs::ARMOR_RATING.data()].as<int>();
+        if (!row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].is_null())
+            mob_stats.damage_reduction_percent = row[db::Mobs::DAMAGE_REDUCTION_PERCENT.data()].as<int>();
+        if (!row[db::Mobs::SOAK.data()].is_null())
+            mob_stats.soak = row[db::Mobs::SOAK.data()].as<int>();
+        if (!row[db::Mobs::HARDNESS.data()].is_null())
+            mob_stats.hardness = row[db::Mobs::HARDNESS.data()].as<int>();
+        if (!row[db::Mobs::WARD_PERCENT.data()].is_null())
+            mob_stats.ward_percent = row[db::Mobs::WARD_PERCENT.data()].as<int>();
 
         // Perception and concealment
-        if (!row[db::Mobs::PERCEPTION.data()].is_null()) mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
-        if (!row[db::Mobs::CONCEALMENT.data()].is_null()) mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
+        if (!row[db::Mobs::PERCEPTION.data()].is_null())
+            mob_stats.perception = row[db::Mobs::PERCEPTION.data()].as<int>();
+        if (!row[db::Mobs::CONCEALMENT.data()].is_null())
+            mob_stats.concealment = row[db::Mobs::CONCEALMENT.data()].as<int>();
 
         // Currency - wealth is already stored in copper
         if (!row[db::Mobs::WEALTH.data()].is_null()) {
@@ -880,12 +892,17 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row[db::Mobs::RESISTANCES.data()].is_null()) {
             try {
                 auto resistances_json = nlohmann::json::parse(row[db::Mobs::RESISTANCES.data()].as<std::string>());
-                if (resistances_json.contains("FIRE")) mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
-                if (resistances_json.contains("COLD")) mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
-                if (resistances_json.contains("LIGHTNING")) mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
-                if (resistances_json.contains("ACID")) mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
-                if (resistances_json.contains("POISON")) mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
-            } catch (const nlohmann::json::exception& e) {
+                if (resistances_json.contains("FIRE"))
+                    mob_stats.resistance_fire = resistances_json["FIRE"].get<int>();
+                if (resistances_json.contains("COLD"))
+                    mob_stats.resistance_cold = resistances_json["COLD"].get<int>();
+                if (resistances_json.contains("LIGHTNING"))
+                    mob_stats.resistance_lightning = resistances_json["LIGHTNING"].get<int>();
+                if (resistances_json.contains("ACID"))
+                    mob_stats.resistance_acid = resistances_json["ACID"].get<int>();
+                if (resistances_json.contains("POISON"))
+                    mob_stats.resistance_poison = resistances_json["POISON"].get<int>();
+            } catch (const nlohmann::json::exception &e) {
                 logger->warn("Failed to parse resistances JSON for mob {}: {}", mob_name, e.what());
             }
         }
@@ -947,7 +964,7 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row[db::Mobs::TRAITS.data()].is_null()) {
             auto traits_str = row[db::Mobs::TRAITS.data()].as<std::string>();
             auto trait_names = parse_pg_array(traits_str);
-            for (const auto& trait_name : trait_names) {
+            for (const auto &trait_name : trait_names) {
                 if (auto trait = db::mob_trait_from_db(trait_name)) {
                     mob->set_trait(*trait, true);
                 }
@@ -958,7 +975,7 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row[db::Mobs::BEHAVIORS.data()].is_null()) {
             auto behaviors_str = row[db::Mobs::BEHAVIORS.data()].as<std::string>();
             auto behavior_names = parse_pg_array(behaviors_str);
-            for (const auto& behavior_name : behavior_names) {
+            for (const auto &behavior_name : behavior_names) {
                 if (auto behavior = db::mob_behavior_from_db(behavior_name)) {
                     mob->set_behavior(*behavior, true);
                 }
@@ -969,7 +986,7 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row[db::Mobs::PROFESSIONS.data()].is_null()) {
             auto professions_str = row[db::Mobs::PROFESSIONS.data()].as<std::string>();
             auto profession_names = parse_pg_array(professions_str);
-            for (const auto& profession_name : profession_names) {
+            for (const auto &profession_name : profession_names) {
                 if (auto profession = db::mob_profession_from_db(profession_name)) {
                     mob->set_profession(*profession, true);
                 }
@@ -989,7 +1006,7 @@ Result<std::unique_ptr<Mobile>> load_mob(
         if (!row[db::Mobs::ARTICLE.data()].is_null()) {
             mob->set_article(row[db::Mobs::ARTICLE.data()].as<std::string>());
         } else {
-            mob->set_article(std::nullopt);  // Calculate a/an dynamically
+            mob->set_article(std::nullopt); // Calculate a/an dynamically
         }
 
         // Set aggression_formula (Lua expression for aggression behavior)
@@ -1000,15 +1017,13 @@ Result<std::unique_ptr<Mobile>> load_mob(
         logger->debug("Loaded mob '{}' ({}, {})", mob_name, zone_id, mob_local_id);
         return mob;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading mob ({}, {}): {}", zone_id, mob_local_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mob: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load mob: {}", e.what())});
     }
 }
 
-Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
-    pqxx::work& txn, int zone_id) {
+Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(pqxx::work &txn, int zone_id) {
 
     auto logger = Log::database();
     logger->debug("Loading objects for zone {} from database", zone_id);
@@ -1026,19 +1041,17 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 WHERE {} = $1
                 ORDER BY {}
             )",
-            db::Objects::ZONE_ID, db::Objects::ID, db::Objects::NAME,
-            db::Objects::KEYWORDS, db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION,
-            db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
-            db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
-            db::Objects::FLAGS, db::Objects::WEAR_FLAGS,
-            db::Objects::BASE_NAME, db::Objects::ARTICLE,
-            db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
-        ), zone_id);
+                        db::Objects::ZONE_ID, db::Objects::ID, db::Objects::NAME, db::Objects::KEYWORDS,
+                        db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION, db::Objects::EXAMINE_DESCRIPTION,
+                        db::Objects::WEIGHT, db::Objects::COST, db::Objects::LEVEL, db::Objects::TIMER,
+                        db::Objects::VALUES, db::Objects::FLAGS, db::Objects::WEAR_FLAGS, db::Objects::BASE_NAME,
+                        db::Objects::ARTICLE, db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID),
+            zone_id);
 
         std::vector<std::unique_ptr<Object>> objects;
         objects.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             int obj_zone_id = row[db::Objects::ZONE_ID.data()].as<int>();
             int obj_id = row[db::Objects::ID.data()].as<int>();
             EntityId obj_entity_id(obj_zone_id, obj_id);
@@ -1052,8 +1065,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             // Create the object
             auto obj_result = Object::create(obj_entity_id, obj_name, obj_type);
             if (!obj_result) {
-                logger->error("Failed to create object ({}, {}): {}",
-                             obj_zone_id, obj_id, obj_result.error().message);
+                logger->error("Failed to create object ({}, {}): {}", obj_zone_id, obj_id, obj_result.error().message);
                 continue;
             }
 
@@ -1116,7 +1128,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
             if (!row["wear_flags"].is_null()) {
                 std::string wear_flags_str = row["wear_flags"].as<std::string>();
                 auto wear_flags = parse_pg_array(wear_flags_str);
-                for (const auto& flag : wear_flags) {
+                for (const auto &flag : wear_flags) {
                     // Check for TAKE flag - allows object to be picked up
                     if (flag == "TAKE") {
                         obj->set_can_take(true);
@@ -1127,7 +1139,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                     auto slot_opt = ObjectUtils::parse_equip_slot(flag);
                     if (slot_opt && *slot_opt != EquipSlot::None) {
                         obj->set_equip_slot(*slot_opt);
-                        break;  // Use the first valid wear position found
+                        break; // Use the first valid wear position found
                     }
                 }
             }
@@ -1152,7 +1164,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                         }
                         // Load effects array if present
                         if (values_json.contains("Effects") && values_json["Effects"].is_array()) {
-                            for (const auto& effect_id : values_json["Effects"]) {
+                            for (const auto &effect_id : values_json["Effects"]) {
                                 if (effect_id.is_number_integer()) {
                                     liquid.effects.push_back(effect_id.get<int>());
                                 }
@@ -1182,7 +1194,7 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                         if (values_json.contains("Permanent")) {
                             light.permanent = values_json["Permanent"].get<bool>();
                             if (light.permanent) {
-                                light.lit = true;  // Permanent lights are always lit
+                                light.lit = true; // Permanent lights are always lit
                             }
                         }
                         obj->set_light_info(light);
@@ -1194,13 +1206,11 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                         if (values_json.is_object() && values_json.contains("Pages")) {
                             int board_num = values_json["Pages"].get<int>();
                             obj->set_board_number(board_num);
-                            logger->trace("Set board number {} for board ({}, {})",
-                                        board_num, obj_zone_id, obj_id);
+                            logger->trace("Set board number {} for board ({}, {})", board_num, obj_zone_id, obj_id);
                         }
                     }
-                } catch (const nlohmann::json::exception& e) {
-                    logger->warn("Failed to parse values JSON for object ({}, {}): {}",
-                                obj_zone_id, obj_id, e.what());
+                } catch (const nlohmann::json::exception &e) {
+                    logger->warn("Failed to parse values JSON for object ({}, {}): {}", obj_zone_id, obj_id, e.what());
                 }
             }
 
@@ -1216,59 +1226,53 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
                 WHERE oe.{} = $1
                 ORDER BY oe.{}, oe.{}
             )",
-            db::ObjectEffects::OBJECT_ID, db::Effect::NAME,
-            db::ObjectEffects::TABLE, db::Effect::TABLE,
-            db::ObjectEffects::EFFECT_ID, db::Effect::ID,
-            db::ObjectEffects::OBJECT_ZONE_ID,
-            db::ObjectEffects::OBJECT_ID, db::ObjectEffects::ID
-        ), zone_id);
+                        db::ObjectEffects::OBJECT_ID, db::Effect::NAME, db::ObjectEffects::TABLE, db::Effect::TABLE,
+                        db::ObjectEffects::EFFECT_ID, db::Effect::ID, db::ObjectEffects::OBJECT_ZONE_ID,
+                        db::ObjectEffects::OBJECT_ID, db::ObjectEffects::ID),
+            zone_id);
 
         // Build a map from object_id to effect names
         std::unordered_map<int, std::vector<std::string>> effects_by_obj_id;
-        for (const auto& row : effects_result) {
+        for (const auto &row : effects_result) {
             int obj_id = row[db::ObjectEffects::OBJECT_ID.data()].as<int>();
             std::string effect_name = row[db::Effect::NAME.data()].as<std::string>();
             effects_by_obj_id[obj_id].push_back(effect_name);
         }
 
         // Apply effects to objects
-        for (auto& obj : objects) {
+        for (auto &obj : objects) {
             int obj_local_id = obj->id().local_id();
             auto it = effects_by_obj_id.find(obj_local_id);
             if (it != effects_by_obj_id.end()) {
-                for (const auto& effect_name : it->second) {
+                for (const auto &effect_name : it->second) {
                     // Convert effect name to EffectFlag enum using magic_enum
                     auto effect_opt = magic_enum::enum_cast<EffectFlag>(effect_name);
                     if (effect_opt) {
                         obj->set_effect(*effect_opt, true);
                     } else {
-                        logger->warn("Unknown effect '{}' for object ({}, {})",
-                                    effect_name, zone_id, obj_local_id);
+                        logger->warn("Unknown effect '{}' for object ({}, {})", effect_name, zone_id, obj_local_id);
                     }
                 }
             }
         }
 
         // Load extra descriptions for all objects in this zone
-        auto extras_result = txn.exec_params(
-            fmt::format(R"(
+        auto extras_result =
+            txn.exec_params(fmt::format(R"(
                 SELECT {}, {}, {}
                 FROM "{}"
                 WHERE {} = $1
                 ORDER BY {}, {}
             )",
-            db::ObjectExtraDescriptions::OBJECT_ID,
-            db::ObjectExtraDescriptions::KEYWORDS,
-            db::ObjectExtraDescriptions::DESCRIPTION,
-            db::ObjectExtraDescriptions::TABLE,
-            db::ObjectExtraDescriptions::OBJECT_ZONE_ID,
-            db::ObjectExtraDescriptions::OBJECT_ID,
-            db::ObjectExtraDescriptions::ID
-        ), zone_id);
+                                        db::ObjectExtraDescriptions::OBJECT_ID, db::ObjectExtraDescriptions::KEYWORDS,
+                                        db::ObjectExtraDescriptions::DESCRIPTION, db::ObjectExtraDescriptions::TABLE,
+                                        db::ObjectExtraDescriptions::OBJECT_ZONE_ID,
+                                        db::ObjectExtraDescriptions::OBJECT_ID, db::ObjectExtraDescriptions::ID),
+                            zone_id);
 
         // Build a map from object_id to extra descriptions
         std::unordered_map<int, std::vector<ExtraDescription>> extras_by_obj_id;
-        for (const auto& row : extras_result) {
+        for (const auto &row : extras_result) {
             int obj_id = row[db::ObjectExtraDescriptions::OBJECT_ID.data()].as<int>();
             std::string keywords_str = row[db::ObjectExtraDescriptions::KEYWORDS.data()].as<std::string>();
             std::string description = row[db::ObjectExtraDescriptions::DESCRIPTION.data()].as<std::string>();
@@ -1280,29 +1284,27 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(
         }
 
         // Assign extra descriptions to objects
-        for (auto& obj : objects) {
+        for (auto &obj : objects) {
             int obj_local_id = obj->id().local_id();
             auto it = extras_by_obj_id.find(obj_local_id);
             if (it != extras_by_obj_id.end()) {
-                for (const auto& extra : it->second) {
+                for (const auto &extra : it->second) {
                     obj->add_extra_description(extra);
                 }
             }
         }
 
-        logger->debug("Loaded {} objects with {} extra descriptions for zone {}",
-                     objects.size(), extras_result.size(), zone_id);
+        logger->debug("Loaded {} objects with {} extra descriptions for zone {}", objects.size(), extras_result.size(),
+                      zone_id);
         return objects;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading objects for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load objects: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load objects: {}", e.what())});
     }
 }
 
-Result<std::unique_ptr<Object>> load_object(
-    pqxx::work& txn, int zone_id, int object_local_id) {
+Result<std::unique_ptr<Object>> load_object(pqxx::work &txn, int zone_id, int object_local_id) {
 
     auto logger = Log::database();
     logger->debug("Loading object ({}, {})", zone_id, object_local_id);
@@ -1318,28 +1320,25 @@ Result<std::unique_ptr<Object>> load_object(
                 FROM "{}"
                 WHERE {} = $1 AND {} = $2
             )",
-            db::Objects::ZONE_ID, db::Objects::ID, db::Objects::NAME,
-            db::Objects::KEYWORDS, db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION,
-            db::Objects::EXAMINE_DESCRIPTION, db::Objects::WEIGHT, db::Objects::COST,
-            db::Objects::LEVEL, db::Objects::TIMER, db::Objects::VALUES,
-            db::Objects::FLAGS, db::Objects::WEAR_FLAGS,
-            db::Objects::BASE_NAME, db::Objects::ARTICLE,
-            db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID
-        ), zone_id, object_local_id);
+                        db::Objects::ZONE_ID, db::Objects::ID, db::Objects::NAME, db::Objects::KEYWORDS,
+                        db::Objects::TYPE, db::Objects::ROOM_DESCRIPTION, db::Objects::EXAMINE_DESCRIPTION,
+                        db::Objects::WEIGHT, db::Objects::COST, db::Objects::LEVEL, db::Objects::TIMER,
+                        db::Objects::VALUES, db::Objects::FLAGS, db::Objects::WEAR_FLAGS, db::Objects::BASE_NAME,
+                        db::Objects::ARTICLE, db::Objects::TABLE, db::Objects::ZONE_ID, db::Objects::ID),
+            zone_id, object_local_id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Object ({}, {}) not found", zone_id, object_local_id)});
+            return std::unexpected(
+                Error{ErrorCode::NotFound, fmt::format("Object ({}, {}) not found", zone_id, object_local_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         EntityId obj_entity_id(zone_id, object_local_id);
         std::string obj_name = row[db::Objects::NAME.data()].as<std::string>();
 
         // Parse object type using data-driven helper
-        std::string type_str = row[db::Objects::TYPE.data()].is_null()
-            ? "OTHER"
-            : row[db::Objects::TYPE.data()].as<std::string>();
+        std::string type_str =
+            row[db::Objects::TYPE.data()].is_null() ? "OTHER" : row[db::Objects::TYPE.data()].as<std::string>();
         ObjectType obj_type = object_type_from_db_string(type_str, logger, zone_id, object_local_id);
 
         auto obj_result = Object::create(obj_entity_id, obj_name, obj_type);
@@ -1420,7 +1419,7 @@ Result<std::unique_ptr<Object>> load_object(
                         }
                         // Load effects array if present
                         if (values_json.contains("Effects") && values_json["Effects"].is_array()) {
-                            for (const auto& effect_id : values_json["Effects"]) {
+                            for (const auto &effect_id : values_json["Effects"]) {
                                 if (effect_id.is_number_integer()) {
                                     liquid.effects.push_back(effect_id.get<int>());
                                 }
@@ -1450,7 +1449,7 @@ Result<std::unique_ptr<Object>> load_object(
                         if (values_json.contains("Permanent")) {
                             light.permanent = values_json["Permanent"].get<bool>();
                             if (light.permanent) {
-                                light.lit = true;  // Permanent lights are always lit
+                                light.lit = true; // Permanent lights are always lit
                             }
                         }
                         obj->set_light_info(light);
@@ -1463,9 +1462,8 @@ Result<std::unique_ptr<Object>> load_object(
                         }
                     }
                 }
-            } catch (const nlohmann::json::exception& e) {
-                logger->warn("Failed to parse values for object ({}, {}): {}",
-                            zone_id, object_local_id, e.what());
+            } catch (const nlohmann::json::exception &e) {
+                logger->warn("Failed to parse values for object ({}, {}): {}", zone_id, object_local_id, e.what());
             }
         }
 
@@ -1474,7 +1472,7 @@ Result<std::unique_ptr<Object>> load_object(
         if (!row[db::Objects::FLAGS.data()].is_null()) {
             std::string flags_str = row[db::Objects::FLAGS.data()].as<std::string>();
             auto flag_names = parse_pg_array(flags_str);
-            for (const auto& flag_name : flag_names) {
+            for (const auto &flag_name : flag_names) {
                 if (auto flag = db::object_flag_from_db(flag_name)) {
                     obj->set_flag(to_game(*flag));
                 } else {
@@ -1491,20 +1489,17 @@ Result<std::unique_ptr<Object>> load_object(
                 JOIN "{}" e ON oe.{} = e.{}
                 WHERE oe.{} = $1 AND oe.{} = $2
             )",
-            db::Effect::NAME,
-            db::ObjectEffects::TABLE, db::Effect::TABLE,
-            db::ObjectEffects::EFFECT_ID, db::Effect::ID,
-            db::ObjectEffects::OBJECT_ZONE_ID, db::ObjectEffects::OBJECT_ID
-        ), zone_id, object_local_id);
+                        db::Effect::NAME, db::ObjectEffects::TABLE, db::Effect::TABLE, db::ObjectEffects::EFFECT_ID,
+                        db::Effect::ID, db::ObjectEffects::OBJECT_ZONE_ID, db::ObjectEffects::OBJECT_ID),
+            zone_id, object_local_id);
 
-        for (const auto& effect_row : effects_result) {
+        for (const auto &effect_row : effects_result) {
             std::string effect_name = effect_row[db::Effect::NAME.data()].as<std::string>();
             auto effect_opt = magic_enum::enum_cast<EffectFlag>(effect_name);
             if (effect_opt) {
                 obj->set_effect(*effect_opt, true);
             } else {
-                logger->warn("Unknown effect '{}' for object ({}, {})",
-                            effect_name, zone_id, object_local_id);
+                logger->warn("Unknown effect '{}' for object ({}, {})", effect_name, zone_id, object_local_id);
             }
         }
 
@@ -1514,7 +1509,7 @@ Result<std::unique_ptr<Object>> load_object(
         if (!row["wear_flags"].is_null()) {
             std::string wear_flags_str = row["wear_flags"].as<std::string>();
             auto wear_flags = parse_pg_array(wear_flags_str);
-            for (const auto& flag : wear_flags) {
+            for (const auto &flag : wear_flags) {
                 // Check for TAKE flag - allows object to be picked up
                 if (flag == "TAKE") {
                     obj->set_can_take(true);
@@ -1525,7 +1520,7 @@ Result<std::unique_ptr<Object>> load_object(
                 auto slot_opt = ObjectUtils::parse_equip_slot(flag);
                 if (slot_opt && *slot_opt != EquipSlot::None) {
                     obj->set_equip_slot(*slot_opt);
-                    break;  // Use the first valid wear position found
+                    break; // Use the first valid wear position found
                 }
             }
         }
@@ -1533,14 +1528,13 @@ Result<std::unique_ptr<Object>> load_object(
         logger->debug("Loaded object '{}' ({}, {})", obj_name, zone_id, object_local_id);
         return obj;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading object ({}, {}): {}", zone_id, object_local_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load object: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load object: {}", e.what())});
     }
 }
 
-Result<std::vector<ExitData>> load_all_exits_in_zone(pqxx::work& txn, int zone_id) {
+Result<std::vector<ExitData>> load_all_exits_in_zone(pqxx::work &txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading all exits for zone {} from database", zone_id);
 
@@ -1553,20 +1547,21 @@ Result<std::vector<ExitData>> load_all_exits_in_zone(pqxx::work& txn, int zone_i
             FROM "RoomExit" re
             WHERE re.room_zone_id = $1
             ORDER BY re.room_zone_id, re.room_id, re.direction
-        )", zone_id);
+        )",
+                                      zone_id);
 
         std::vector<ExitData> exits;
         exits.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ExitData exit;
 
             // Parse direction using generated converter
             std::string dir_str = row["direction"].as<std::string>();
             auto dir = db::direction_from_db(dir_str);
             if (!dir) {
-                logger->warn("Unknown direction '{}' in exit for room ({}, {})",
-                            dir_str, zone_id, row["room_id"].as<int>());
+                logger->warn("Unknown direction '{}' in exit for room ({}, {})", dir_str, zone_id,
+                             row["room_id"].as<int>());
                 continue;
             }
             exit.direction = *dir;
@@ -1605,14 +1600,13 @@ Result<std::vector<ExitData>> load_all_exits_in_zone(pqxx::work& txn, int zone_i
         logger->debug("Loaded {} exits for zone {}", exits.size(), zone_id);
         return exits;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading exits for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load exits: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load exits: {}", e.what())});
     }
 }
 
-Result<std::vector<MobResetData>> load_mob_resets_in_zone(pqxx::work& txn, int zone_id) {
+Result<std::vector<MobResetData>> load_mob_resets_in_zone(pqxx::work &txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading mob resets for zone {} from database", zone_id);
 
@@ -1624,22 +1618,17 @@ Result<std::vector<MobResetData>> load_mob_resets_in_zone(pqxx::work& txn, int z
             FROM "MobResets"
             WHERE zone_id = $1
             ORDER BY id
-        )", zone_id);
+        )",
+                                      zone_id);
 
         std::vector<MobResetData> resets;
         resets.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             MobResetData reset;
             reset.id = row["id"].as<int>();
-            reset.mob_id = EntityId(
-                row["mob_zone_id"].as<int>(),
-                row["mob_id"].as<int>()
-            );
-            reset.room_id = EntityId(
-                row["room_zone_id"].as<int>(),
-                row["room_id"].as<int>()
-            );
+            reset.mob_id = EntityId(row["mob_zone_id"].as<int>(), row["mob_id"].as<int>());
+            reset.room_id = EntityId(row["room_zone_id"].as<int>(), row["room_id"].as<int>());
             reset.max_instances = row["max_instances"].as<int>(1);
             reset.probability = row["probability"].as<float>(1.0f);
             if (!row["comment"].is_null()) {
@@ -1651,14 +1640,13 @@ Result<std::vector<MobResetData>> load_mob_resets_in_zone(pqxx::work& txn, int z
         logger->debug("Loaded {} mob resets for zone {}", resets.size(), zone_id);
         return resets;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading mob resets for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mob resets: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load mob resets: {}", e.what())});
     }
 }
 
-Result<std::vector<MobEquipmentData>> load_mob_equipment_for_reset(pqxx::work& txn, int reset_id) {
+Result<std::vector<MobEquipmentData>> load_mob_equipment_for_reset(pqxx::work &txn, int reset_id) {
     auto logger = Log::database();
     logger->debug("Loading equipment for mob reset {}", reset_id);
 
@@ -1670,18 +1658,16 @@ Result<std::vector<MobEquipmentData>> load_mob_equipment_for_reset(pqxx::work& t
             FROM "MobResetEquipment"
             WHERE reset_id = $1
             ORDER BY id
-        )", reset_id);
+        )",
+                                      reset_id);
 
         std::vector<MobEquipmentData> equipment;
         equipment.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             MobEquipmentData equip;
             equip.reset_id = row["reset_id"].as<int>();
-            equip.object_id = EntityId(
-                row["object_zone_id"].as<int>(),
-                row["object_id"].as<int>()
-            );
+            equip.object_id = EntityId(row["object_zone_id"].as<int>(), row["object_id"].as<int>());
             if (!row["wear_location"].is_null()) {
                 equip.wear_location = row["wear_location"].as<std::string>();
             }
@@ -1692,14 +1678,14 @@ Result<std::vector<MobEquipmentData>> load_mob_equipment_for_reset(pqxx::work& t
 
         return equipment;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading equipment for reset {}: {}", reset_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mob equipment: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load mob equipment: {}", e.what())});
     }
 }
 
-Result<std::vector<MobEquipmentData>> load_all_mob_equipment_in_zone(pqxx::work& txn, int zone_id) {
+Result<std::vector<MobEquipmentData>> load_all_mob_equipment_in_zone(pqxx::work &txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading all mob equipment for zone {}", zone_id);
 
@@ -1712,18 +1698,16 @@ Result<std::vector<MobEquipmentData>> load_all_mob_equipment_in_zone(pqxx::work&
             JOIN "MobResets" mr ON mr.id = mre.reset_id
             WHERE mr.zone_id = $1
             ORDER BY mre.reset_id, mre.id
-        )", zone_id);
+        )",
+                                      zone_id);
 
         std::vector<MobEquipmentData> equipment;
         equipment.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             MobEquipmentData equip;
             equip.reset_id = row["reset_id"].as<int>();
-            equip.object_id = EntityId(
-                row["object_zone_id"].as<int>(),
-                row["object_id"].as<int>()
-            );
+            equip.object_id = EntityId(row["object_zone_id"].as<int>(), row["object_id"].as<int>());
             if (!row["wear_location"].is_null()) {
                 equip.wear_location = row["wear_location"].as<std::string>();
             }
@@ -1735,42 +1719,42 @@ Result<std::vector<MobEquipmentData>> load_all_mob_equipment_in_zone(pqxx::work&
         logger->debug("Loaded {} mob equipment items for zone {}", equipment.size(), zone_id);
         return equipment;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading mob equipment for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mob equipment: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load mob equipment: {}", e.what())});
     }
 }
 
 namespace {
-    // Helper to build content tree from flat results (used by load_object_resets_in_zone)
-    std::vector<ObjectResetContentData> build_content_tree(
-        const std::unordered_map<int, std::vector<int>>& children_map,
-        const std::unordered_map<int, ObjectResetContentData>& content_map,
-        int parent_id  // 0 means root (direct child of reset)
-    ) {
-        std::vector<ObjectResetContentData> result;
+// Helper to build content tree from flat results (used by load_object_resets_in_zone)
+std::vector<ObjectResetContentData>
+build_content_tree(const std::unordered_map<int, std::vector<int>> &children_map,
+                   const std::unordered_map<int, ObjectResetContentData> &content_map,
+                   int parent_id // 0 means root (direct child of reset)
+) {
+    std::vector<ObjectResetContentData> result;
 
-        auto it = children_map.find(parent_id);
-        if (it == children_map.end()) {
-            return result;
-        }
-
-        for (int child_id : it->second) {
-            auto content_it = content_map.find(child_id);
-            if (content_it != content_map.end()) {
-                ObjectResetContentData content = content_it->second;
-                // Recursively build nested contents
-                content.contents = build_content_tree(children_map, content_map, child_id);
-                result.push_back(std::move(content));
-            }
-        }
-
+    auto it = children_map.find(parent_id);
+    if (it == children_map.end()) {
         return result;
     }
-}
 
-Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn, int zone_id) {
+    for (int child_id : it->second) {
+        auto content_it = content_map.find(child_id);
+        if (content_it != content_map.end()) {
+            ObjectResetContentData content = content_it->second;
+            // Recursively build nested contents
+            content.contents = build_content_tree(children_map, content_map, child_id);
+            result.push_back(std::move(content));
+        }
+    }
+
+    return result;
+}
+} // namespace
+
+Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work &txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading object resets for zone {} from database", zone_id);
 
@@ -1784,7 +1768,8 @@ Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn,
             FROM "ObjectResets"
             WHERE zone_id = $1
             ORDER BY id
-        )", zone_id);
+        )",
+                                            zone_id);
 
         // Load all contents for this zone's resets in one query
         auto content_result = txn.exec_params(R"(
@@ -1796,24 +1781,22 @@ Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn,
             JOIN "ObjectResets" r ON r.id = orc.reset_id
             WHERE r.zone_id = $1
             ORDER BY orc.id
-        )", zone_id);
+        )",
+                                              zone_id);
 
         // Build lookup maps for nested content construction
         // Maps: reset_id -> { parent_id -> [child_ids] } and content_id -> ContentData
         std::unordered_map<int, std::unordered_map<int, std::vector<int>>> reset_children;
         std::unordered_map<int, std::unordered_map<int, ObjectResetContentData>> reset_contents;
 
-        for (const auto& row : content_result) {
+        for (const auto &row : content_result) {
             int content_id = row["id"].as<int>();
             int reset_id = row["reset_id"].as<int>();
             int parent_id = row["parent_content_id"].is_null() ? 0 : row["parent_content_id"].as<int>();
 
             ObjectResetContentData content;
             content.id = content_id;
-            content.object_id = EntityId(
-                row["object_zone_id"].as<int>(),
-                row["object_id"].as<int>()
-            );
+            content.object_id = EntityId(row["object_zone_id"].as<int>(), row["object_id"].as<int>());
             content.quantity = row["quantity"].as<int>(1);
             if (!row["comment"].is_null()) {
                 content.comment = row["comment"].as<std::string>();
@@ -1827,17 +1810,11 @@ Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn,
         std::vector<ObjectResetData> resets;
         resets.reserve(reset_result.size());
 
-        for (const auto& row : reset_result) {
+        for (const auto &row : reset_result) {
             ObjectResetData reset;
             reset.id = row["id"].as<int>();
-            reset.object_id = EntityId(
-                row["object_zone_id"].as<int>(),
-                row["object_id"].as<int>()
-            );
-            reset.room_id = EntityId(
-                row["room_zone_id"].as<int>(),
-                row["room_id"].as<int>()
-            );
+            reset.object_id = EntityId(row["object_zone_id"].as<int>(), row["object_id"].as<int>());
+            reset.room_id = EntityId(row["room_zone_id"].as<int>(), row["room_id"].as<int>());
             reset.max_instances = row["max_instances"].as<int>(1);
             reset.probability = row["probability"].as<float>(1.0f);
             if (!row["comment"].is_null()) {
@@ -1848,24 +1825,22 @@ Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn,
             auto children_it = reset_children.find(reset.id);
             auto contents_it = reset_contents.find(reset.id);
             if (children_it != reset_children.end() && contents_it != reset_contents.end()) {
-                reset.contents = build_content_tree(
-                    children_it->second,
-                    contents_it->second,
-                    0  // Start with root contents (parent_id = 0/null)
+                reset.contents = build_content_tree(children_it->second, contents_it->second,
+                                                    0 // Start with root contents (parent_id = 0/null)
                 );
             }
 
             resets.push_back(std::move(reset));
         }
 
-        logger->debug("Loaded {} object resets for zone {} ({} total content items)",
-            resets.size(), zone_id, content_result.size());
+        logger->debug("Loaded {} object resets for zone {} ({} total content items)", resets.size(), zone_id,
+                      content_result.size());
         return resets;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading object resets for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load object resets: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load object resets: {}", e.what())});
     }
 }
 
@@ -1874,26 +1849,34 @@ Result<std::vector<ObjectResetData>> load_object_resets_in_zone(pqxx::work& txn,
 // ============================================================================
 
 namespace {
-    AbilityType parse_ability_type(const std::string& type_str) {
-        if (type_str == "SKILL") return AbilityType::Skill;
-        if (type_str == "CHANT") return AbilityType::Chant;
-        if (type_str == "SONG") return AbilityType::Song;
-        return AbilityType::Spell;  // Default
-    }
-
-    // Parse Position enum string from database to integer
-    // Maps to C++ Position enum values (lower = can use in worse condition)
-    int parse_position(const std::string& pos_str) {
-        if (pos_str == "PRONE") return 5;      // Sleeping/Resting level
-        if (pos_str == "SITTING") return 7;    // Sitting
-        if (pos_str == "KNEELING") return 7;   // Treat as Sitting
-        if (pos_str == "STANDING") return 9;   // Standing
-        if (pos_str == "FLYING") return 9;     // Standing (need to stand to fly)
-        return 9;  // Default to Standing
-    }
+AbilityType parse_ability_type(const std::string &type_str) {
+    if (type_str == "SKILL")
+        return AbilityType::Skill;
+    if (type_str == "CHANT")
+        return AbilityType::Chant;
+    if (type_str == "SONG")
+        return AbilityType::Song;
+    return AbilityType::Spell; // Default
 }
 
-Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
+// Parse Position enum string from database to integer
+// Maps to C++ Position enum values (lower = can use in worse condition)
+int parse_position(const std::string &pos_str) {
+    if (pos_str == "PRONE")
+        return 5; // Sleeping/Resting level
+    if (pos_str == "SITTING")
+        return 7; // Sitting
+    if (pos_str == "KNEELING")
+        return 7; // Treat as Sitting
+    if (pos_str == "STANDING")
+        return 9; // Standing
+    if (pos_str == "FLYING")
+        return 9; // Standing (need to stand to fly)
+    return 9;     // Default to Standing
+}
+} // namespace
+
+Result<std::vector<AbilityData>> load_all_abilities(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all abilities from database");
 
@@ -1915,7 +1898,7 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
         std::vector<AbilityData> abilities;
         abilities.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityData ability;
             ability.id = row["id"].as<int>();
             ability.name = row["name"].as<std::string>("");
@@ -1943,18 +1926,16 @@ Result<std::vector<AbilityData>> load_all_abilities(pqxx::work& txn) {
         logger->debug("Loaded {} abilities from database", abilities.size());
         return abilities;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading abilities: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load abilities: {}", e.what())});
-    } catch (const std::exception& e) {
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load abilities: {}", e.what())});
+    } catch (const std::exception &e) {
         logger->error("Exception loading abilities: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load abilities: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load abilities: {}", e.what())});
     }
 }
 
-Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
+Result<AbilityData> load_ability(pqxx::work &txn, int ability_id) {
     auto logger = Log::database();
     logger->debug("Loading ability {}", ability_id);
 
@@ -1971,14 +1952,14 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
             FROM "Ability" a
             LEFT JOIN "AbilityTargeting" t ON t.ability_id = a.id
             WHERE a.id = $1
-        )", ability_id);
+        )",
+                                      ability_id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Ability {} not found", ability_id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Ability {} not found", ability_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         AbilityData ability;
         ability.id = row["id"].as<int>();
         ability.name = row["name"].as<std::string>("");
@@ -2003,14 +1984,13 @@ Result<AbilityData> load_ability(pqxx::work& txn, int ability_id) {
 
         return ability;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability {}: {}", ability_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load ability: {}", e.what())});
     }
 }
 
-Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& name) {
+Result<AbilityData> load_ability_by_name(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Loading ability by name: {}", name);
 
@@ -2025,14 +2005,14 @@ Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& nam
                 pages, memorization_time, quest_only, humanoid_only
             FROM "Ability"
             WHERE UPPER(plain_name) = UPPER($1)
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Ability '{}' not found", name)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Ability '{}' not found", name)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         AbilityData ability;
         ability.id = row["id"].as<int>();
         ability.name = row["name"].as<std::string>("");
@@ -2053,14 +2033,13 @@ Result<AbilityData> load_ability_by_name(pqxx::work& txn, const std::string& nam
 
         return ability;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load ability: {}", e.what())});
     }
 }
 
-Result<std::vector<ClassAbilityData>> load_class_abilities(pqxx::work& txn, int class_id) {
+Result<std::vector<ClassAbilityData>> load_class_abilities(pqxx::work &txn, int class_id) {
     auto logger = Log::database();
     logger->debug("Loading abilities for class {}", class_id);
 
@@ -2077,12 +2056,13 @@ Result<std::vector<ClassAbilityData>> load_class_abilities(pqxx::work& txn, int 
             LEFT JOIN "ClassAbilityCircles" cac ON cac.class_id = ca.class_id AND cac.circle = ca.circle
             WHERE ca.class_id = $1
             ORDER BY min_level, ability_id
-        )", class_id);
+        )",
+                                      class_id);
 
         std::vector<ClassAbilityData> abilities;
         abilities.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ClassAbilityData ability;
             ability.ability_id = row["ability_id"].as<int>();
             ability.class_id = row["class_id"].as<int>();
@@ -2094,15 +2074,14 @@ Result<std::vector<ClassAbilityData>> load_class_abilities(pqxx::work& txn, int 
         logger->debug("Loaded {} class abilities for class {}", abilities.size(), class_id);
         return abilities;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading class abilities for {}: {}", class_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load class abilities: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load class abilities: {}", e.what())});
     }
 }
 
-Result<std::vector<CharacterAbilityData>> load_character_abilities(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::vector<CharacterAbilityData>> load_character_abilities(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Loading abilities for character {}", character_id);
 
@@ -2112,12 +2091,13 @@ Result<std::vector<CharacterAbilityData>> load_character_abilities(
             FROM "CharacterAbilities"
             WHERE character_id = $1
             ORDER BY ability_id
-        )", character_id);
+        )",
+                                      character_id);
 
         std::vector<CharacterAbilityData> abilities;
         abilities.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CharacterAbilityData ability;
             ability.character_id = row["character_id"].as<std::string>();
             ability.ability_id = row["ability_id"].as<int>();
@@ -2135,22 +2115,18 @@ Result<std::vector<CharacterAbilityData>> load_character_abilities(
         logger->debug("Loaded {} abilities for character {}", abilities.size(), character_id);
         return abilities;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading character abilities for {}: {}", character_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load character abilities: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load character abilities: {}", e.what())});
     }
 }
 
-Result<void> save_character_ability(
-    pqxx::work& txn,
-    const std::string& character_id,
-    int ability_id,
-    bool known,
-    int proficiency) {
+Result<void> save_character_ability(pqxx::work &txn, const std::string &character_id, int ability_id, bool known,
+                                    int proficiency) {
     auto logger = Log::database();
-    logger->debug("Saving ability {} for character {} (known={}, prof={})",
-                 ability_id, character_id, known, proficiency);
+    logger->debug("Saving ability {} for character {} (known={}, prof={})", ability_id, character_id, known,
+                  proficiency);
 
     try {
         // Upsert - insert or update on conflict
@@ -2159,20 +2135,21 @@ Result<void> save_character_ability(
             VALUES ($1, $2, $3, $4)
             ON CONFLICT (character_id, ability_id)
             DO UPDATE SET known = $3, proficiency = $4
-        )", character_id, ability_id, known, proficiency);
+        )",
+                        character_id, ability_id, known, proficiency);
 
         logger->debug("Saved ability {} for character {}", ability_id, character_id);
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving character ability: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save character ability: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to save character ability: {}", e.what())});
     }
 }
 
-Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_metadata(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::vector<CharacterAbilityWithMetadata>>
+load_character_abilities_with_metadata(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Loading abilities with metadata for character {}", character_id);
 
@@ -2196,12 +2173,13 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
             LEFT JOIN "ClassAbilities" cla ON cla.class_id = c.class_id AND cla.ability_id = ca.ability_id
             WHERE ca.character_id = $1
             ORDER BY a."abilityType", a.name
-        )", character_id);
+        )",
+                                      character_id);
 
         std::vector<CharacterAbilityWithMetadata> abilities;
         abilities.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CharacterAbilityWithMetadata ability;
             ability.ability_id = row["ability_id"].as<int>();
             ability.name = row["name"].as<std::string>("");
@@ -2225,15 +2203,13 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
             abilities.push_back(ability);
         }
 
-        logger->debug("Loaded {} abilities with metadata for character {}",
-                     abilities.size(), character_id);
+        logger->debug("Loaded {} abilities with metadata for character {}", abilities.size(), character_id);
         return abilities;
 
-    } catch (const pqxx::sql_error& e) {
-        logger->error("SQL error loading character abilities with metadata for {}: {}",
-                     character_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load character abilities: {}", e.what())});
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error loading character abilities with metadata for {}: {}", character_id, e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load character abilities: {}", e.what())});
     }
 }
 
@@ -2241,7 +2217,7 @@ Result<std::vector<CharacterAbilityWithMetadata>> load_character_abilities_with_
 // Effect System Queries
 // =============================================================================
 
-Result<std::vector<EffectData>> load_all_effects(pqxx::work& txn) {
+Result<std::vector<EffectData>> load_all_effects(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all effects from database");
 
@@ -2258,7 +2234,7 @@ Result<std::vector<EffectData>> load_all_effects(pqxx::work& txn) {
         std::vector<EffectData> effects;
         effects.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             EffectData effect;
             effect.id = row["id"].as<int>();
             effect.name = row["name"].as<std::string>("");
@@ -2271,14 +2247,13 @@ Result<std::vector<EffectData>> load_all_effects(pqxx::work& txn) {
         logger->debug("Loaded {} effects from database", effects.size());
         return effects;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading effects: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load effects: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load effects: {}", e.what())});
     }
 }
 
-Result<EffectData> load_effect(pqxx::work& txn, int effect_id) {
+Result<EffectData> load_effect(pqxx::work &txn, int effect_id) {
     auto logger = Log::database();
     logger->debug("Loading effect by ID: {}", effect_id);
 
@@ -2290,14 +2265,14 @@ Result<EffectData> load_effect(pqxx::work& txn, int effect_id) {
                 default_params::text AS default_params
             FROM "Effect"
             WHERE id = $1
-        )", effect_id);
+        )",
+                                      effect_id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Effect with ID {} not found", effect_id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Effect with ID {} not found", effect_id)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         EffectData effect;
         effect.id = row["id"].as<int>();
         effect.name = row["name"].as<std::string>("");
@@ -2307,14 +2282,13 @@ Result<EffectData> load_effect(pqxx::work& txn, int effect_id) {
 
         return effect;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading effect {}: {}", effect_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load effect: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load effect: {}", e.what())});
     }
 }
 
-Result<EffectData> load_effect_by_name(pqxx::work& txn, const std::string& name) {
+Result<EffectData> load_effect_by_name(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Loading effect by name: {}", name);
 
@@ -2326,14 +2300,14 @@ Result<EffectData> load_effect_by_name(pqxx::work& txn, const std::string& name)
                 default_params::text AS default_params
             FROM "Effect"
             WHERE LOWER(name) = LOWER($1)
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Effect '{}' not found", name)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Effect '{}' not found", name)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         EffectData effect;
         effect.id = row["id"].as<int>();
         effect.name = row["name"].as<std::string>("");
@@ -2343,10 +2317,9 @@ Result<EffectData> load_effect_by_name(pqxx::work& txn, const std::string& name)
 
         return effect;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading effect '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load effect: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load effect: {}", e.what())});
     }
 }
 
@@ -2354,8 +2327,7 @@ Result<EffectData> load_effect_by_name(pqxx::work& txn, const std::string& name)
 // Character Active Effects Persistence
 // =============================================================================
 
-Result<std::vector<CharacterEffectData>> load_character_effects(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::vector<CharacterEffectData>> load_character_effects(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Loading character effects for: {}", character_id);
 
@@ -2378,12 +2350,13 @@ Result<std::vector<CharacterEffectData>> load_character_effects(
             JOIN "Effect" e ON ce.effect_id = e.id
             WHERE ce.character_id = $1
             ORDER BY ce.applied_at
-        )", character_id);
+        )",
+                                      character_id);
 
         std::vector<CharacterEffectData> effects;
         effects.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CharacterEffectData effect;
             effect.id = row["id"].as<int>();
             effect.character_id = row["character_id"].as<std::string>();
@@ -2426,17 +2399,15 @@ Result<std::vector<CharacterEffectData>> load_character_effects(
         logger->debug("Loaded {} effects for character {}", effects.size(), character_id);
         return effects;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading character effects: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load character effects: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load character effects: {}", e.what())});
     }
 }
 
-Result<void> save_character_effects(
-    pqxx::work& txn,
-    const std::string& character_id,
-    const std::vector<CharacterEffectData>& effects) {
+Result<void> save_character_effects(pqxx::work &txn, const std::string &character_id,
+                                    const std::vector<CharacterEffectData> &effects) {
     auto logger = Log::database();
     logger->debug("Saving {} effects for character {}", effects.size(), character_id);
 
@@ -2445,12 +2416,13 @@ Result<void> save_character_effects(
         txn.exec_params(R"(
             DELETE FROM "CharacterEffects"
             WHERE character_id = $1
-        )", character_id);
+        )",
+                        character_id);
 
         // Insert new effects
-        for (const auto& effect : effects) {
+        for (const auto &effect : effects) {
             // Format timestamps for PostgreSQL
-            auto format_time = [](const std::chrono::system_clock::time_point& tp) -> std::string {
+            auto format_time = [](const std::chrono::system_clock::time_point &tp) -> std::string {
                 auto time_t_val = std::chrono::system_clock::to_time_t(tp);
                 std::tm tm = *std::gmtime(&time_t_val);
                 std::ostringstream ss;
@@ -2469,36 +2441,37 @@ Result<void> save_character_effects(
                         (character_id, effect_id, duration, strength, modifier_data,
                          source_type, source_id, applied_at, expires_at)
                         VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7, $8::timestamp, $9::timestamp)
-                    )", character_id, effect.effect_id, *effect.duration_seconds,
-                        effect.strength, effect.modifier_data, effect.source_type,
-                        *effect.source_id, applied_at_str, expires_at_str);
+                    )",
+                                    character_id, effect.effect_id, *effect.duration_seconds, effect.strength,
+                                    effect.modifier_data, effect.source_type, *effect.source_id, applied_at_str,
+                                    expires_at_str);
                 } else if (effect.duration_seconds.has_value()) {
                     txn.exec_params(R"(
                         INSERT INTO "CharacterEffects"
                         (character_id, effect_id, duration, strength, modifier_data,
                          source_type, applied_at, expires_at)
                         VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7::timestamp, $8::timestamp)
-                    )", character_id, effect.effect_id, *effect.duration_seconds,
-                        effect.strength, effect.modifier_data, effect.source_type,
-                        applied_at_str, expires_at_str);
+                    )",
+                                    character_id, effect.effect_id, *effect.duration_seconds, effect.strength,
+                                    effect.modifier_data, effect.source_type, applied_at_str, expires_at_str);
                 } else if (effect.source_id.has_value()) {
                     txn.exec_params(R"(
                         INSERT INTO "CharacterEffects"
                         (character_id, effect_id, strength, modifier_data,
                          source_type, source_id, applied_at, expires_at)
                         VALUES ($1, $2, $3, $4::jsonb, $5, $6, $7::timestamp, $8::timestamp)
-                    )", character_id, effect.effect_id, effect.strength,
-                        effect.modifier_data, effect.source_type,
-                        *effect.source_id, applied_at_str, expires_at_str);
+                    )",
+                                    character_id, effect.effect_id, effect.strength, effect.modifier_data,
+                                    effect.source_type, *effect.source_id, applied_at_str, expires_at_str);
                 } else {
                     txn.exec_params(R"(
                         INSERT INTO "CharacterEffects"
                         (character_id, effect_id, strength, modifier_data,
                          source_type, applied_at, expires_at)
                         VALUES ($1, $2, $3, $4::jsonb, $5, $6::timestamp, $7::timestamp)
-                    )", character_id, effect.effect_id, effect.strength,
-                        effect.modifier_data, effect.source_type,
-                        applied_at_str, expires_at_str);
+                    )",
+                                    character_id, effect.effect_id, effect.strength, effect.modifier_data,
+                                    effect.source_type, applied_at_str, expires_at_str);
                 }
             } else {
                 // No expires_at
@@ -2508,51 +2481,51 @@ Result<void> save_character_effects(
                         (character_id, effect_id, duration, strength, modifier_data,
                          source_type, source_id, applied_at)
                         VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7, $8::timestamp)
-                    )", character_id, effect.effect_id, *effect.duration_seconds,
-                        effect.strength, effect.modifier_data, effect.source_type,
-                        *effect.source_id, applied_at_str);
+                    )",
+                                    character_id, effect.effect_id, *effect.duration_seconds, effect.strength,
+                                    effect.modifier_data, effect.source_type, *effect.source_id, applied_at_str);
                 } else if (effect.duration_seconds.has_value()) {
                     txn.exec_params(R"(
                         INSERT INTO "CharacterEffects"
                         (character_id, effect_id, duration, strength, modifier_data,
                          source_type, applied_at)
                         VALUES ($1, $2, $3, $4, $5::jsonb, $6, $7::timestamp)
-                    )", character_id, effect.effect_id, *effect.duration_seconds,
-                        effect.strength, effect.modifier_data, effect.source_type,
-                        applied_at_str);
+                    )",
+                                    character_id, effect.effect_id, *effect.duration_seconds, effect.strength,
+                                    effect.modifier_data, effect.source_type, applied_at_str);
                 } else if (effect.source_id.has_value()) {
                     txn.exec_params(R"(
                         INSERT INTO "CharacterEffects"
                         (character_id, effect_id, strength, modifier_data,
                          source_type, source_id, applied_at)
                         VALUES ($1, $2, $3, $4::jsonb, $5, $6, $7::timestamp)
-                    )", character_id, effect.effect_id, effect.strength,
-                        effect.modifier_data, effect.source_type,
-                        *effect.source_id, applied_at_str);
+                    )",
+                                    character_id, effect.effect_id, effect.strength, effect.modifier_data,
+                                    effect.source_type, *effect.source_id, applied_at_str);
                 } else {
                     txn.exec_params(R"(
                         INSERT INTO "CharacterEffects"
                         (character_id, effect_id, strength, modifier_data,
                          source_type, applied_at)
                         VALUES ($1, $2, $3, $4::jsonb, $5, $6::timestamp)
-                    )", character_id, effect.effect_id, effect.strength,
-                        effect.modifier_data, effect.source_type, applied_at_str);
+                    )",
+                                    character_id, effect.effect_id, effect.strength, effect.modifier_data,
+                                    effect.source_type, applied_at_str);
                 }
             }
         }
 
-        logger->info("Saved {} effects to database for character {}",
-                    effects.size(), character_id);
+        logger->info("Saved {} effects to database for character {}", effects.size(), character_id);
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving character effects: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save character effects: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to save character effects: {}", e.what())});
     }
 }
 
-Result<void> delete_character_effects(pqxx::work& txn, const std::string& character_id) {
+Result<void> delete_character_effects(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Deleting all effects for character {}", character_id);
 
@@ -2560,19 +2533,20 @@ Result<void> delete_character_effects(pqxx::work& txn, const std::string& charac
         auto result = txn.exec_params(R"(
             DELETE FROM "CharacterEffects"
             WHERE character_id = $1
-        )", character_id);
+        )",
+                                      character_id);
 
         logger->debug("Deleted effects for character {}", character_id);
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error deleting character effects: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to delete character effects: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to delete character effects: {}", e.what())});
     }
 }
 
-Result<std::vector<AbilityEffectData>> load_ability_effects(pqxx::work& txn, int ability_id) {
+Result<std::vector<AbilityEffectData>> load_ability_effects(pqxx::work &txn, int ability_id) {
     auto logger = Log::database();
     logger->debug("Loading effects for ability {}", ability_id);
 
@@ -2585,12 +2559,13 @@ Result<std::vector<AbilityEffectData>> load_ability_effects(pqxx::work& txn, int
             FROM "AbilityEffect"
             WHERE ability_id = $1
             ORDER BY "order"
-        )", ability_id);
+        )",
+                                      ability_id);
 
         std::vector<AbilityEffectData> effects;
         effects.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityEffectData effect;
             effect.ability_id = row["ability_id"].as<int>();
             effect.effect_id = row["effect_id"].as<int>();
@@ -2605,15 +2580,14 @@ Result<std::vector<AbilityEffectData>> load_ability_effects(pqxx::work& txn, int
         logger->debug("Loaded {} effects for ability {}", effects.size(), ability_id);
         return effects;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability effects for {}: {}", ability_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability effects: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability effects: {}", e.what())});
     }
 }
 
-Result<std::vector<AbilityEffectData>> load_abilities_effects(
-    pqxx::work& txn, const std::vector<int>& ability_ids) {
+Result<std::vector<AbilityEffectData>> load_abilities_effects(pqxx::work &txn, const std::vector<int> &ability_ids) {
     auto logger = Log::database();
 
     if (ability_ids.empty()) {
@@ -2627,7 +2601,8 @@ Result<std::vector<AbilityEffectData>> load_abilities_effects(
         // Using = ANY($1::int[]) is safer than dynamic IN clause
         std::string id_array = "{";
         for (size_t i = 0; i < ability_ids.size(); ++i) {
-            if (i > 0) id_array += ",";
+            if (i > 0)
+                id_array += ",";
             id_array += std::to_string(ability_ids[i]);
         }
         id_array += "}";
@@ -2640,12 +2615,13 @@ Result<std::vector<AbilityEffectData>> load_abilities_effects(
             FROM "AbilityEffect"
             WHERE ability_id = ANY($1::int[])
             ORDER BY ability_id, "order"
-        )", id_array);
+        )",
+                                      id_array);
 
         std::vector<AbilityEffectData> effects;
         effects.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityEffectData effect;
             effect.ability_id = row["ability_id"].as<int>();
             effect.effect_id = row["effect_id"].as<int>();
@@ -2660,10 +2636,10 @@ Result<std::vector<AbilityEffectData>> load_abilities_effects(
         logger->debug("Loaded {} effects for {} abilities", effects.size(), ability_ids.size());
         return effects;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading abilities effects: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load abilities effects: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load abilities effects: {}", e.what())});
     }
 }
 
@@ -2671,7 +2647,7 @@ Result<std::vector<AbilityEffectData>> load_abilities_effects(
 // Ability Messages, Restrictions, and Damage Components
 // =============================================================================
 
-Result<std::vector<AbilityMessagesData>> load_all_ability_messages(pqxx::work& txn) {
+Result<std::vector<AbilityMessagesData>> load_all_ability_messages(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all ability messages from database");
 
@@ -2691,21 +2667,25 @@ Result<std::vector<AbilityMessagesData>> load_all_ability_messages(pqxx::work& t
         std::vector<AbilityMessagesData> messages;
         messages.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityMessagesData msg;
             msg.ability_id = row["ability_id"].as<int>();
             msg.start_to_caster = row["start_to_caster"].is_null() ? "" : row["start_to_caster"].as<std::string>();
             msg.start_to_victim = row["start_to_victim"].is_null() ? "" : row["start_to_victim"].as<std::string>();
             msg.start_to_room = row["start_to_room"].is_null() ? "" : row["start_to_room"].as<std::string>();
-            msg.success_to_caster = row["success_to_caster"].is_null() ? "" : row["success_to_caster"].as<std::string>();
-            msg.success_to_victim = row["success_to_victim"].is_null() ? "" : row["success_to_victim"].as<std::string>();
+            msg.success_to_caster =
+                row["success_to_caster"].is_null() ? "" : row["success_to_caster"].as<std::string>();
+            msg.success_to_victim =
+                row["success_to_victim"].is_null() ? "" : row["success_to_victim"].as<std::string>();
             msg.success_to_room = row["success_to_room"].is_null() ? "" : row["success_to_room"].as<std::string>();
             msg.success_to_self = row["success_to_self"].is_null() ? "" : row["success_to_self"].as<std::string>();
-            msg.success_self_room = row["success_self_room"].is_null() ? "" : row["success_self_room"].as<std::string>();
+            msg.success_self_room =
+                row["success_self_room"].is_null() ? "" : row["success_self_room"].as<std::string>();
             msg.fail_to_caster = row["fail_to_caster"].is_null() ? "" : row["fail_to_caster"].as<std::string>();
             msg.fail_to_victim = row["fail_to_victim"].is_null() ? "" : row["fail_to_victim"].as<std::string>();
             msg.fail_to_room = row["fail_to_room"].is_null() ? "" : row["fail_to_room"].as<std::string>();
-            msg.wearoff_to_target = row["wearoff_to_target"].is_null() ? "" : row["wearoff_to_target"].as<std::string>();
+            msg.wearoff_to_target =
+                row["wearoff_to_target"].is_null() ? "" : row["wearoff_to_target"].as<std::string>();
             msg.wearoff_to_room = row["wearoff_to_room"].is_null() ? "" : row["wearoff_to_room"].as<std::string>();
             msg.look_message = row["look_message"].is_null() ? "" : row["look_message"].as<std::string>();
             messages.push_back(std::move(msg));
@@ -2714,15 +2694,14 @@ Result<std::vector<AbilityMessagesData>> load_all_ability_messages(pqxx::work& t
         logger->debug("Loaded {} ability messages from database", messages.size());
         return messages;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability messages: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability messages: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability messages: {}", e.what())});
     }
 }
 
-Result<std::optional<AbilityMessagesData>> load_ability_messages(
-    pqxx::work& txn, int ability_id) {
+Result<std::optional<AbilityMessagesData>> load_ability_messages(pqxx::work &txn, int ability_id) {
     auto logger = Log::database();
 
     try {
@@ -2737,13 +2716,14 @@ Result<std::optional<AbilityMessagesData>> load_ability_messages(
                 look_message
             FROM "AbilityMessages"
             WHERE ability_id = $1
-        )", ability_id);
+        )",
+                                      ability_id);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         AbilityMessagesData msg;
         msg.ability_id = row["ability_id"].as<int>();
         msg.start_to_caster = row["start_to_caster"].is_null() ? "" : row["start_to_caster"].as<std::string>();
@@ -2763,14 +2743,14 @@ Result<std::optional<AbilityMessagesData>> load_ability_messages(
 
         return msg;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability messages for {}: {}", ability_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability messages: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability messages: {}", e.what())});
     }
 }
 
-Result<std::vector<AbilityRestrictionsData>> load_all_ability_restrictions(pqxx::work& txn) {
+Result<std::vector<AbilityRestrictionsData>> load_all_ability_restrictions(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all ability restrictions from database");
 
@@ -2786,26 +2766,26 @@ Result<std::vector<AbilityRestrictionsData>> load_all_ability_restrictions(pqxx:
         std::vector<AbilityRestrictionsData> restrictions;
         restrictions.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityRestrictionsData restr;
             restr.ability_id = row["ability_id"].as<int>();
             restr.requirements_json = row["requirements"].is_null() ? "[]" : row["requirements"].as<std::string>();
-            restr.custom_requirement_lua = row["custom_requirement_lua"].is_null() ? "" : row["custom_requirement_lua"].as<std::string>();
+            restr.custom_requirement_lua =
+                row["custom_requirement_lua"].is_null() ? "" : row["custom_requirement_lua"].as<std::string>();
             restrictions.push_back(std::move(restr));
         }
 
         logger->debug("Loaded {} ability restrictions from database", restrictions.size());
         return restrictions;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability restrictions: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability restrictions: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability restrictions: {}", e.what())});
     }
 }
 
-Result<std::optional<AbilityRestrictionsData>> load_ability_restrictions(
-    pqxx::work& txn, int ability_id) {
+Result<std::optional<AbilityRestrictionsData>> load_ability_restrictions(pqxx::work &txn, int ability_id) {
     auto logger = Log::database();
 
     try {
@@ -2816,28 +2796,30 @@ Result<std::optional<AbilityRestrictionsData>> load_ability_restrictions(
                 custom_requirement_lua
             FROM "AbilityRestrictions"
             WHERE ability_id = $1
-        )", ability_id);
+        )",
+                                      ability_id);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         AbilityRestrictionsData restr;
         restr.ability_id = row["ability_id"].as<int>();
         restr.requirements_json = row["requirements"].is_null() ? "[]" : row["requirements"].as<std::string>();
-        restr.custom_requirement_lua = row["custom_requirement_lua"].is_null() ? "" : row["custom_requirement_lua"].as<std::string>();
+        restr.custom_requirement_lua =
+            row["custom_requirement_lua"].is_null() ? "" : row["custom_requirement_lua"].as<std::string>();
 
         return restr;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability restrictions for {}: {}", ability_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability restrictions: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability restrictions: {}", e.what())});
     }
 }
 
-Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_components(pqxx::work& txn) {
+Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_components(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all ability damage components from database");
 
@@ -2852,7 +2834,7 @@ Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_componen
         std::vector<AbilityDamageComponentData> components;
         components.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityDamageComponentData comp;
             comp.ability_id = row["ability_id"].as<int>();
             comp.element = row["element"].is_null() ? "PHYSICAL" : row["element"].as<std::string>();
@@ -2865,15 +2847,14 @@ Result<std::vector<AbilityDamageComponentData>> load_all_ability_damage_componen
         logger->debug("Loaded {} ability damage components from database", components.size());
         return components;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability damage components: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability damage components: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability damage components: {}", e.what())});
     }
 }
 
-Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
-    pqxx::work& txn, int ability_id) {
+Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(pqxx::work &txn, int ability_id) {
     auto logger = Log::database();
 
     try {
@@ -2883,12 +2864,13 @@ Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
             FROM "AbilityDamageComponent"
             WHERE ability_id = $1
             ORDER BY sequence
-        )", ability_id);
+        )",
+                                      ability_id);
 
         std::vector<AbilityDamageComponentData> components;
         components.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityDamageComponentData comp;
             comp.ability_id = row["ability_id"].as<int>();
             comp.element = row["element"].is_null() ? "PHYSICAL" : row["element"].as<std::string>();
@@ -2900,14 +2882,14 @@ Result<std::vector<AbilityDamageComponentData>> load_ability_damage_components(
 
         return components;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability damage components for {}: {}", ability_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability damage components: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability damage components: {}", e.what())});
     }
 }
 
-Result<std::vector<AbilityClassData>> load_all_ability_classes(pqxx::work& txn) {
+Result<std::vector<AbilityClassData>> load_all_ability_classes(pqxx::work &txn) {
     auto logger = Log::database();
 
     try {
@@ -2927,7 +2909,7 @@ Result<std::vector<AbilityClassData>> load_all_ability_classes(pqxx::work& txn) 
         std::vector<AbilityClassData> classes;
         classes.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AbilityClassData cls;
             cls.ability_id = row["ability_id"].as<int>();
             cls.class_id = row["class_id"].as<int>();
@@ -2939,15 +2921,14 @@ Result<std::vector<AbilityClassData>> load_all_ability_classes(pqxx::work& txn) 
         logger->debug("Loaded {} ability-class mappings", classes.size());
         return classes;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading ability classes: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load ability classes: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load ability classes: {}", e.what())});
     }
 }
 
-std::vector<AbilityRequirement> parse_ability_requirements(
-    std::string_view json_str, int ability_id) {
+std::vector<AbilityRequirement> parse_ability_requirements(std::string_view json_str, int ability_id) {
     std::vector<AbilityRequirement> requirements;
     if (json_str.empty() || json_str == "[]") {
         return requirements;
@@ -2959,8 +2940,9 @@ std::vector<AbilityRequirement> parse_ability_requirements(
             return requirements;
         }
 
-        for (const auto& item : j) {
-            if (!item.is_object()) continue;
+        for (const auto &item : j) {
+            if (!item.is_object())
+                continue;
 
             AbilityRequirement req;
             if (item.contains("type")) {
@@ -2980,12 +2962,13 @@ std::vector<AbilityRequirement> parse_ability_requirements(
             }
             requirements.push_back(std::move(req));
         }
-    } catch (const nlohmann::json::exception& e) {
+    } catch (const nlohmann::json::exception &e) {
         // Include ability ID and truncated JSON in error for easier debugging
         std::string json_preview(json_str.substr(0, std::min(json_str.size(), size_t(200))));
-        if (json_str.size() > 200) json_preview += "...";
-        Log::warn("Failed to parse ability requirements JSON for ability_id={}: {} | JSON: {}",
-                  ability_id, e.what(), json_preview);
+        if (json_str.size() > 200)
+            json_preview += "...";
+        Log::warn("Failed to parse ability requirements JSON for ability_id={}: {} | JSON: {}", ability_id, e.what(),
+                  json_preview);
     }
 
     return requirements;
@@ -2996,297 +2979,302 @@ std::vector<AbilityRequirement> parse_ability_requirements(
 // =============================================================================
 
 namespace {
-    // Helper to parse PostgreSQL array to vector<string>
-    std::vector<std::string> parse_pg_string_array(const std::string& pg_array) {
-        std::vector<std::string> result;
-        if (pg_array.empty() || pg_array == "{}") {
-            return result;
-        }
-
-        // Remove outer braces
-        std::string inner = pg_array;
-        if (inner.front() == '{') inner = inner.substr(1);
-        if (inner.back() == '}') inner = inner.substr(0, inner.size() - 1);
-
-        // Split by comma (simple parser, doesn't handle quotes perfectly)
-        size_t start = 0;
-        bool in_quotes = false;
-        for (size_t i = 0; i < inner.size(); ++i) {
-            if (inner[i] == '"') {
-                in_quotes = !in_quotes;
-            } else if (inner[i] == ',' && !in_quotes) {
-                std::string item = inner.substr(start, i - start);
-                // Remove quotes if present
-                if (item.front() == '"') item = item.substr(1);
-                if (item.back() == '"') item = item.substr(0, item.size() - 1);
-                result.push_back(item);
-                start = i + 1;
-            }
-        }
-        // Last item
-        if (start < inner.size()) {
-            std::string item = inner.substr(start);
-            if (!item.empty()) {
-                if (item.front() == '"') item = item.substr(1);
-                if (!item.empty() && item.back() == '"') item = item.substr(0, item.size() - 1);
-                result.push_back(item);
-            }
-        }
+// Helper to parse PostgreSQL array to vector<string>
+std::vector<std::string> parse_pg_string_array(const std::string &pg_array) {
+    std::vector<std::string> result;
+    if (pg_array.empty() || pg_array == "{}") {
         return result;
     }
 
-    // Helper to escape a string for PostgreSQL array literal
-    // Escapes backslashes and double quotes per PostgreSQL array syntax
-    std::string escape_pg_array_element(const std::string& str) {
-        std::string escaped;
-        escaped.reserve(str.size() + 8);  // Preallocate with some extra space
-        for (char c : str) {
-            if (c == '\\' || c == '"') {
-                escaped += '\\';
-            }
-            escaped += c;
+    // Remove outer braces
+    std::string inner = pg_array;
+    if (inner.front() == '{')
+        inner = inner.substr(1);
+    if (inner.back() == '}')
+        inner = inner.substr(0, inner.size() - 1);
+
+    // Split by comma (simple parser, doesn't handle quotes perfectly)
+    size_t start = 0;
+    bool in_quotes = false;
+    for (size_t i = 0; i < inner.size(); ++i) {
+        if (inner[i] == '"') {
+            in_quotes = !in_quotes;
+        } else if (inner[i] == ',' && !in_quotes) {
+            std::string item = inner.substr(start, i - start);
+            // Remove quotes if present
+            if (item.front() == '"')
+                item = item.substr(1);
+            if (item.back() == '"')
+                item = item.substr(0, item.size() - 1);
+            result.push_back(item);
+            start = i + 1;
         }
-        return escaped;
+    }
+    // Last item
+    if (start < inner.size()) {
+        std::string item = inner.substr(start);
+        if (!item.empty()) {
+            if (item.front() == '"')
+                item = item.substr(1);
+            if (!item.empty() && item.back() == '"')
+                item = item.substr(0, item.size() - 1);
+            result.push_back(item);
+        }
+    }
+    return result;
+}
+
+// Helper to escape a string for PostgreSQL array literal
+// Escapes backslashes and double quotes per PostgreSQL array syntax
+std::string escape_pg_array_element(const std::string &str) {
+    std::string escaped;
+    escaped.reserve(str.size() + 8); // Preallocate with some extra space
+    for (char c : str) {
+        if (c == '\\' || c == '"') {
+            escaped += '\\';
+        }
+        escaped += c;
+    }
+    return escaped;
+}
+
+// Helper to convert vector<string> to PostgreSQL array literal
+// Properly escapes special characters to prevent SQL injection
+std::string to_pg_array(const std::vector<std::string> &vec) {
+    if (vec.empty()) {
+        return "{}";
+    }
+    std::string result = "{";
+    for (size_t i = 0; i < vec.size(); ++i) {
+        if (i > 0)
+            result += ",";
+        result += "\"" + escape_pg_array_element(vec[i]) + "\"";
+    }
+    result += "}";
+    return result;
+}
+
+// Generate a UUID for new characters
+std::string generate_uuid() {
+    // Simple UUID generation using random
+    static std::random_device rd;
+    static std::mt19937_64 gen(rd());
+    static std::uniform_int_distribution<uint64_t> dist;
+
+    uint64_t a = dist(gen);
+    uint64_t b = dist(gen);
+
+    // Format as UUID string using fmt::format
+    return fmt::format("{:08x}-{:04x}-{:04x}-{:04x}-{:012x}", static_cast<unsigned int>(a >> 32),
+                       static_cast<unsigned int>((a >> 16) & 0xFFFF), static_cast<unsigned int>(a & 0xFFFF),
+                       static_cast<unsigned int>(b >> 48), static_cast<unsigned long long>(b & 0xFFFFFFFFFFFFULL));
+}
+
+// Bcrypt-style password hashing using crypt() with SHA-512
+// Format: $6$<salt>$<hash> (SHA-512 crypt)
+std::string hash_password(const std::string &password) {
+    // Generate random salt for SHA-512 crypt
+    std::array<unsigned char, 16> salt_bytes{};
+    RAND_bytes(salt_bytes.data(), salt_bytes.size());
+
+    // Encode salt as base64-like string
+    constexpr std::string_view b64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    std::string salt = "$6$"; // SHA-512 prefix
+    for (const auto &byte : salt_bytes) {
+        salt += b64[byte % 64];
+    }
+    salt += "$";
+
+    // Use crypt_r for thread safety
+    struct crypt_data data{}; // Zero-initialize with {}
+    char *result = crypt_r(password.c_str(), salt.c_str(), &data);
+
+    if (result == nullptr) {
+        // Fallback to SHA-256 if crypt_r fails (should not happen on modern Linux)
+        auto logger = Log::database();
+        logger->error("crypt_r failed, using SHA-256 fallback hash");
+
+        // Generate 16-byte salt
+        std::array<unsigned char, 16> fallback_salt{};
+        RAND_bytes(fallback_salt.data(), fallback_salt.size());
+
+        // Build salted password: salt + password
+        std::string salted = std::string(fallback_salt.begin(), fallback_salt.end()) + password;
+
+        // Compute SHA-256 hash using OpenSSL EVP
+        std::array<unsigned char, 32> hash_bytes{};
+        unsigned int hash_len = 0;
+        EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+        if (ctx) {
+            EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+            EVP_DigestUpdate(ctx, salted.data(), salted.size());
+            EVP_DigestFinal_ex(ctx, hash_bytes.data(), &hash_len);
+            EVP_MD_CTX_free(ctx);
+        }
+
+        // Format as: fallback$<salt_hex>$<hash_hex>
+        std::string salt_hex;
+        std::string hash_hex;
+        for (auto b : fallback_salt) {
+            salt_hex += fmt::format("{:02x}", b);
+        }
+        for (unsigned int i = 0; i < hash_len; ++i) {
+            hash_hex += fmt::format("{:02x}", hash_bytes[i]);
+        }
+        return fmt::format("fallback${}${}", salt_hex, hash_hex);
     }
 
-    // Helper to convert vector<string> to PostgreSQL array literal
-    // Properly escapes special characters to prevent SQL injection
-    std::string to_pg_array(const std::vector<std::string>& vec) {
-        if (vec.empty()) {
-            return "{}";
-        }
-        std::string result = "{";
-        for (size_t i = 0; i < vec.size(); ++i) {
-            if (i > 0) result += ",";
-            result += "\"" + escape_pg_array_element(vec[i]) + "\"";
-        }
-        result += "}";
-        return result;
+    return std::string(result);
+}
+
+// Detect password hash type
+enum class HashType {
+    LegacyCrypt,  // 10-13 character DES/Unix crypt
+    SHA512Crypt,  // $6$...$... format
+    BcryptHash,   // $2a$, $2b$, $2y$ format (bcrypt)
+    FallbackHash, // fallback$... format
+    Unknown
+};
+
+HashType detect_hash_type(const std::string &hash) {
+    if (hash.starts_with("$6$")) {
+        return HashType::SHA512Crypt;
+    }
+    // Bcrypt hashes: $2a$, $2b$, or $2y$ prefix (60 characters total)
+    if ((hash.starts_with("$2a$") || hash.starts_with("$2b$") || hash.starts_with("$2y$")) && hash.length() == 60) {
+        return HashType::BcryptHash;
+    }
+    if (hash.starts_with("fallback$")) {
+        return HashType::FallbackHash;
+    }
+    // Legacy Unix crypt hashes are 10-13 characters
+    if (hash.length() >= 10 && hash.length() <= 13) {
+        return HashType::LegacyCrypt;
+    }
+    return HashType::Unknown;
+}
+
+// Verify password against stored hash (supports multiple formats)
+bool verify_password_hash(const std::string &password, const std::string &stored_hash) {
+    HashType type = detect_hash_type(stored_hash);
+
+    switch (type) {
+    case HashType::SHA512Crypt: {
+        // Modern SHA-512 crypt - use crypt_r with stored hash as salt
+        struct crypt_data data{}; // Zero-initialize with {}
+        char *result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
+        return result && stored_hash == result;
     }
 
-    // Generate a UUID for new characters
-    std::string generate_uuid() {
-        // Simple UUID generation using random
-        static std::random_device rd;
-        static std::mt19937_64 gen(rd());
-        static std::uniform_int_distribution<uint64_t> dist;
-
-        uint64_t a = dist(gen);
-        uint64_t b = dist(gen);
-
-        // Format as UUID string using fmt::format
-        return fmt::format("{:08x}-{:04x}-{:04x}-{:04x}-{:012x}",
-            static_cast<unsigned int>(a >> 32),
-            static_cast<unsigned int>((a >> 16) & 0xFFFF),
-            static_cast<unsigned int>(a & 0xFFFF),
-            static_cast<unsigned int>(b >> 48),
-            static_cast<unsigned long long>(b & 0xFFFFFFFFFFFFULL));
-    }
-
-    // Bcrypt-style password hashing using crypt() with SHA-512
-    // Format: $6$<salt>$<hash> (SHA-512 crypt)
-    std::string hash_password(const std::string& password) {
-        // Generate random salt for SHA-512 crypt
-        std::array<unsigned char, 16> salt_bytes{};
-        RAND_bytes(salt_bytes.data(), salt_bytes.size());
-
-        // Encode salt as base64-like string
-        constexpr std::string_view b64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        std::string salt = "$6$";  // SHA-512 prefix
-        for (const auto& byte : salt_bytes) {
-            salt += b64[byte % 64];
-        }
-        salt += "$";
-
-        // Use crypt_r for thread safety
-        struct crypt_data data{};  // Zero-initialize with {}
-        char* result = crypt_r(password.c_str(), salt.c_str(), &data);
-
-        if (result == nullptr) {
-            // Fallback to SHA-256 if crypt_r fails (should not happen on modern Linux)
+    case HashType::BcryptHash: {
+        // Bcrypt hash ($2a$, $2b$, $2y$ format) - use crypt_r if supported
+        // libxcrypt on modern Linux supports bcrypt via crypt_r
+        struct crypt_data data{}; // Zero-initialize with {}
+        char *result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
+        if (!result) {
+            // crypt_r doesn't support bcrypt on this system
             auto logger = Log::database();
-            logger->error("crypt_r failed, using SHA-256 fallback hash");
-
-            // Generate 16-byte salt
-            std::array<unsigned char, 16> fallback_salt{};
-            RAND_bytes(fallback_salt.data(), fallback_salt.size());
-
-            // Build salted password: salt + password
-            std::string salted = std::string(fallback_salt.begin(), fallback_salt.end()) + password;
-
-            // Compute SHA-256 hash using OpenSSL EVP
-            std::array<unsigned char, 32> hash_bytes{};
-            unsigned int hash_len = 0;
-            EVP_MD_CTX* ctx = EVP_MD_CTX_new();
-            if (ctx) {
-                EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
-                EVP_DigestUpdate(ctx, salted.data(), salted.size());
-                EVP_DigestFinal_ex(ctx, hash_bytes.data(), &hash_len);
-                EVP_MD_CTX_free(ctx);
-            }
-
-            // Format as: fallback$<salt_hex>$<hash_hex>
-            std::string salt_hex;
-            std::string hash_hex;
-            for (auto b : fallback_salt) {
-                salt_hex += fmt::format("{:02x}", b);
-            }
-            for (unsigned int i = 0; i < hash_len; ++i) {
-                hash_hex += fmt::format("{:02x}", hash_bytes[i]);
-            }
-            return fmt::format("fallback${}${}", salt_hex, hash_hex);
+            logger->warn("Bcrypt hash verification failed - crypt_r may not support bcrypt on this system");
+            return false;
         }
-
-        return std::string(result);
+        return stored_hash == result;
     }
 
-    // Detect password hash type
-    enum class HashType {
-        LegacyCrypt,     // 10-13 character DES/Unix crypt
-        SHA512Crypt,     // $6$...$... format
-        BcryptHash,      // $2a$, $2b$, $2y$ format (bcrypt)
-        FallbackHash,    // fallback$... format
-        Unknown
-    };
-
-    HashType detect_hash_type(const std::string& hash) {
-        if (hash.starts_with("$6$")) {
-            return HashType::SHA512Crypt;
-        }
-        // Bcrypt hashes: $2a$, $2b$, or $2y$ prefix (60 characters total)
-        if ((hash.starts_with("$2a$") || hash.starts_with("$2b$") || hash.starts_with("$2y$"))
-            && hash.length() == 60) {
-            return HashType::BcryptHash;
-        }
-        if (hash.starts_with("fallback$")) {
-            return HashType::FallbackHash;
-        }
-        // Legacy Unix crypt hashes are 10-13 characters
-        if (hash.length() >= 10 && hash.length() <= 13) {
-            return HashType::LegacyCrypt;
-        }
-        return HashType::Unknown;
+    case HashType::LegacyCrypt: {
+        // Legacy Unix crypt (DES) - 10-13 character hash
+        // Salt is first 2 characters of the hash
+        struct crypt_data data{}; // Zero-initialize with {}
+        char *result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
+        if (!result)
+            return false;
+        // Legacy hashes compare first 10 characters
+        return std::strncmp(result, stored_hash.c_str(), 10) == 0;
     }
 
-    // Verify password against stored hash (supports multiple formats)
-    bool verify_password_hash(const std::string& password, const std::string& stored_hash) {
-        HashType type = detect_hash_type(stored_hash);
-
-        switch (type) {
-            case HashType::SHA512Crypt: {
-                // Modern SHA-512 crypt - use crypt_r with stored hash as salt
-                struct crypt_data data{};  // Zero-initialize with {}
-                char* result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
-                return result && stored_hash == result;
-            }
-
-            case HashType::BcryptHash: {
-                // Bcrypt hash ($2a$, $2b$, $2y$ format) - use crypt_r if supported
-                // libxcrypt on modern Linux supports bcrypt via crypt_r
-                struct crypt_data data{};  // Zero-initialize with {}
-                char* result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
-                if (!result) {
-                    // crypt_r doesn't support bcrypt on this system
-                    auto logger = Log::database();
-                    logger->warn("Bcrypt hash verification failed - crypt_r may not support bcrypt on this system");
-                    return false;
-                }
-                return stored_hash == result;
-            }
-
-            case HashType::LegacyCrypt: {
-                // Legacy Unix crypt (DES) - 10-13 character hash
-                // Salt is first 2 characters of the hash
-                struct crypt_data data{};  // Zero-initialize with {}
-                char* result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
-                if (!result) return false;
-                // Legacy hashes compare first 10 characters
-                return std::strncmp(result, stored_hash.c_str(), 10) == 0;
-            }
-
-            case HashType::FallbackHash: {
-                // SHA-256 fallback hash: fallback$<salt_hex>$<hash_hex>
-                // Parse the stored hash to extract salt
-                auto first_dollar = stored_hash.find('$');
-                if (first_dollar == std::string::npos) return false;
-                auto second_dollar = stored_hash.find('$', first_dollar + 1);
-                if (second_dollar == std::string::npos) {
-                    // Old format: fallback$<hash_hex> (legacy std::hash - deprecated)
-                    // For backwards compatibility only - will be upgraded on next login
-                    std::size_t legacy_hash = std::hash<std::string>{}(password);
-                    return stored_hash == fmt::format("fallback${:016x}", legacy_hash);
-                }
-
-                // New format: fallback$<salt_hex>$<hash_hex>
-                std::string salt_hex = stored_hash.substr(first_dollar + 1, second_dollar - first_dollar - 1);
-                std::string stored_hash_hex = stored_hash.substr(second_dollar + 1);
-
-                // Convert salt from hex to bytes
-                std::string salt_bytes;
-                for (size_t i = 0; i + 1 < salt_hex.size(); i += 2) {
-                    int byte = std::stoi(salt_hex.substr(i, 2), nullptr, 16);
-                    salt_bytes += static_cast<char>(byte);
-                }
-
-                // Compute hash of salt + password
-                std::string salted = salt_bytes + password;
-                std::array<unsigned char, 32> computed_hash{};
-                unsigned int hash_len = 0;
-                EVP_MD_CTX* ctx = EVP_MD_CTX_new();
-                if (ctx) {
-                    EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
-                    EVP_DigestUpdate(ctx, salted.data(), salted.size());
-                    EVP_DigestFinal_ex(ctx, computed_hash.data(), &hash_len);
-                    EVP_MD_CTX_free(ctx);
-                }
-
-                // Convert computed hash to hex and compare
-                std::string computed_hex;
-                for (unsigned int i = 0; i < hash_len; ++i) {
-                    computed_hex += fmt::format("{:02x}", computed_hash[i]);
-                }
-                return stored_hash_hex == computed_hex;
-            }
-
-            case HashType::Unknown:
-            default: {
-                // SECURITY: Reject unknown hash formats instead of direct comparison
-                // Direct comparison would allow plaintext passwords to work, which is dangerous
-                auto logger = Log::database();
-                logger->error("Password verification failed: unknown hash format (length {})",
-                             stored_hash.size());
-                return false;
-            }
+    case HashType::FallbackHash: {
+        // SHA-256 fallback hash: fallback$<salt_hex>$<hash_hex>
+        // Parse the stored hash to extract salt
+        auto first_dollar = stored_hash.find('$');
+        if (first_dollar == std::string::npos)
+            return false;
+        auto second_dollar = stored_hash.find('$', first_dollar + 1);
+        if (second_dollar == std::string::npos) {
+            // Old format: fallback$<hash_hex> (legacy std::hash - deprecated)
+            // For backwards compatibility only - will be upgraded on next login
+            std::size_t legacy_hash = std::hash<std::string>{}(password);
+            return stored_hash == fmt::format("fallback${:016x}", legacy_hash);
         }
+
+        // New format: fallback$<salt_hex>$<hash_hex>
+        std::string salt_hex = stored_hash.substr(first_dollar + 1, second_dollar - first_dollar - 1);
+        std::string stored_hash_hex = stored_hash.substr(second_dollar + 1);
+
+        // Convert salt from hex to bytes
+        std::string salt_bytes;
+        for (size_t i = 0; i + 1 < salt_hex.size(); i += 2) {
+            int byte = std::stoi(salt_hex.substr(i, 2), nullptr, 16);
+            salt_bytes += static_cast<char>(byte);
+        }
+
+        // Compute hash of salt + password
+        std::string salted = salt_bytes + password;
+        std::array<unsigned char, 32> computed_hash{};
+        unsigned int hash_len = 0;
+        EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+        if (ctx) {
+            EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+            EVP_DigestUpdate(ctx, salted.data(), salted.size());
+            EVP_DigestFinal_ex(ctx, computed_hash.data(), &hash_len);
+            EVP_MD_CTX_free(ctx);
+        }
+
+        // Convert computed hash to hex and compare
+        std::string computed_hex;
+        for (unsigned int i = 0; i < hash_len; ++i) {
+            computed_hex += fmt::format("{:02x}", computed_hash[i]);
+        }
+        return stored_hash_hex == computed_hex;
     }
 
-    // Check if a password hash should be upgraded to modern format
-    bool should_upgrade_password(const std::string& stored_hash) {
-        HashType type = detect_hash_type(stored_hash);
-        // Upgrade legacy crypt and fallback hashes to SHA-512
-        return type == HashType::LegacyCrypt || type == HashType::FallbackHash;
+    case HashType::Unknown:
+    default: {
+        // SECURITY: Reject unknown hash formats instead of direct comparison
+        // Direct comparison would allow plaintext passwords to work, which is dangerous
+        auto logger = Log::database();
+        logger->error("Password verification failed: unknown hash format (length {})", stored_hash.size());
+        return false;
+    }
     }
 }
 
-Result<bool> character_exists(pqxx::work& txn, const std::string& name) {
+// Check if a password hash should be upgraded to modern format
+bool should_upgrade_password(const std::string &stored_hash) {
+    HashType type = detect_hash_type(stored_hash);
+    // Upgrade legacy crypt and fallback hashes to SHA-512
+    return type == HashType::LegacyCrypt || type == HashType::FallbackHash;
+}
+} // namespace
+
+Result<bool> character_exists(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Checking if character '{}' exists", name);
 
     try {
         auto result = txn.exec_params(R"(
             SELECT 1 FROM "Characters" WHERE UPPER(name) = UPPER($1) LIMIT 1
-        )", name);
+        )",
+                                      name);
 
         return !result.empty();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error checking character existence: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to check character existence: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to check character existence: {}", e.what())});
     }
 }
 
-Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string& name) {
+Result<CharacterData> load_character_by_name(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Loading character by name: {}", name);
 
@@ -3313,14 +3301,14 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
             FROM "Characters" c
             LEFT JOIN "Users" u ON c.user_id = u.id
             WHERE UPPER(c.name) = UPPER($1)
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Character '{}' not found", name)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Character '{}' not found", name)});
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         CharacterData character;
 
         character.id = row["id"].as<std::string>();
@@ -3419,14 +3407,13 @@ Result<CharacterData> load_character_by_name(pqxx::work& txn, const std::string&
         logger->debug("Loaded character '{}' (id: {})", character.name, character.id);
         return character;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading character '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load character: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load character: {}", e.what())});
     }
 }
 
-Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& id) {
+Result<CharacterData> load_character_by_id(pqxx::work &txn, const std::string &id) {
     auto logger = Log::database();
     logger->debug("Loading character by ID: {}", id);
 
@@ -3453,15 +3440,15 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
             FROM "Characters" c
             LEFT JOIN "Users" u ON c.user_id = u.id
             WHERE c.id = $1
-        )", id);
+        )",
+                                      id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Character with ID '{}' not found", id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Character with ID '{}' not found", id)});
         }
 
         // Same field parsing as load_character_by_name
-        const auto& row = result[0];
+        const auto &row = result[0];
         CharacterData character;
 
         character.id = row["id"].as<std::string>();
@@ -3532,28 +3519,24 @@ Result<CharacterData> load_character_by_id(pqxx::work& txn, const std::string& i
         logger->debug("Loaded character '{}' by ID", character.name);
         return character;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading character by ID '{}': {}", id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load character: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load character: {}", e.what())});
     }
 }
 
-Result<bool> verify_character_password(
-    pqxx::work& txn,
-    const std::string& name,
-    const std::string& password) {
+Result<bool> verify_character_password(pqxx::work &txn, const std::string &name, const std::string &password) {
     auto logger = Log::database();
     logger->debug("Verifying password for character '{}'", name);
 
     try {
         auto result = txn.exec_params(R"(
             SELECT id, password_hash FROM "Characters" WHERE UPPER(name) = UPPER($1)
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Character '{}' not found", name)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Character '{}' not found", name)});
         }
 
         std::string character_id = result[0]["id"].as<std::string>();
@@ -3566,26 +3549,22 @@ Result<bool> verify_character_password(
             txn.exec_params(R"(
                 UPDATE "Characters" SET password_hash = $1, updated_at = NOW()
                 WHERE id = $2
-            )", new_hash, character_id);
+            )",
+                            new_hash, character_id);
             logger->debug("Upgraded password hash for character '{}' from legacy to SHA-512", name);
         }
 
         logger->debug("Password verification for '{}': {}", name, matches ? "success" : "failed");
         return matches;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error verifying password for '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to verify password: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to verify password: {}", e.what())});
     }
 }
 
-Result<CharacterData> create_character(
-    pqxx::work& txn,
-    const std::string& name,
-    const std::string& password,
-    const std::string& player_class,
-    const std::string& race) {
+Result<CharacterData> create_character(pqxx::work &txn, const std::string &name, const std::string &password,
+                                       const std::string &player_class, const std::string &race) {
     auto logger = Log::database();
     logger->info("Creating new character: {} ({} {})", name, race, player_class);
 
@@ -3609,8 +3588,12 @@ Result<CharacterData> create_character(
                 100, 100, 100, 100,
                 NOW(), NOW()
             )
-        )", character_id, name, password_hash_str, player_class, race_lower,
-            race == "Human" ? "HUMAN" : race == "Elf" ? "ELF" : race == "Dwarf" ? "DWARF" : "HALFLING");
+        )",
+                        character_id, name, password_hash_str, player_class, race_lower,
+                        race == "Human"   ? "HUMAN"
+                        : race == "Elf"   ? "ELF"
+                        : race == "Dwarf" ? "DWARF"
+                                          : "HALFLING");
 
         // Return the created character data
         CharacterData character;
@@ -3635,14 +3618,14 @@ Result<CharacterData> create_character(
         logger->info("Created character '{}' with ID {}", name, character_id);
         return character;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error creating character '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to create character: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to create character: {}", e.what())});
     }
 }
 
-Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
+Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
     auto logger = Log::database();
     logger->debug("Saving character '{}' (id: {})", character.name, character.id);
 
@@ -3650,7 +3633,8 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
         // Convert player_flags to PostgreSQL array format
         std::string player_flags_array = to_pg_array(character.player_flags);
 
-        txn.exec_params(R"(
+        txn.exec_params(
+            R"(
             UPDATE "Characters" SET
                 level = $2, alignment = $3,
                 strength = $4, intelligence = $5, wisdom = $6, dexterity = $7,
@@ -3668,76 +3652,63 @@ Result<void> save_character(pqxx::work& txn, const CharacterData& character) {
                 updated_at = NOW()
             WHERE id = $1
         )",
-            character.id,
-            character.level, character.alignment,
-            character.strength, character.intelligence, character.wisdom, character.dexterity,
-            character.constitution, character.charisma, character.luck,
-            character.hit_points, character.hit_points_max, character.stamina, character.stamina_max,
-            character.wealth, character.bank_wealth,
-            character.current_room_zone_id.value_or(0), character.current_room_id.value_or(0),
-            character.recall_room_zone_id.value_or(0), character.recall_room_id.value_or(0),
-            character.hit_roll, character.damage_roll, character.armor_class,
-            character.time_played, character.hunger, character.thirst,
-            character.experience, character.skill_points, character.position,
-            character.title, character.description,
-            character.prompt, character.page_length, character.wimpy_threshold,
-            player_flags_array
-        );
+            character.id, character.level, character.alignment, character.strength, character.intelligence,
+            character.wisdom, character.dexterity, character.constitution, character.charisma, character.luck,
+            character.hit_points, character.hit_points_max, character.stamina, character.stamina_max, character.wealth,
+            character.bank_wealth, character.current_room_zone_id.value_or(0), character.current_room_id.value_or(0),
+            character.recall_room_zone_id.value_or(0), character.recall_room_id.value_or(0), character.hit_roll,
+            character.damage_roll, character.armor_class, character.time_played, character.hunger, character.thirst,
+            character.experience, character.skill_points, character.position, character.title, character.description,
+            character.prompt, character.page_length, character.wimpy_threshold, player_flags_array);
 
         logger->debug("Saved character '{}' successfully", character.name);
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving character '{}': {}", character.name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save character: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to save character: {}", e.what())});
     }
 }
 
-Result<void> set_character_online(
-    pqxx::work& txn,
-    const std::string& character_id,
-    bool is_online) {
+Result<void> set_character_online(pqxx::work &txn, const std::string &character_id, bool is_online) {
     auto logger = Log::database();
     logger->debug("Setting character {} online status to {}", character_id, is_online);
 
     try {
         txn.exec_params(R"(
             UPDATE "Characters" SET is_online = $2, updated_at = NOW() WHERE id = $1
-        )", character_id, is_online);
+        )",
+                        character_id, is_online);
 
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error updating online status: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to update online status: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to update online status: {}", e.what())});
     }
 }
 
-Result<void> update_last_login(pqxx::work& txn, const std::string& character_id) {
+Result<void> update_last_login(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Updating last login for character {}", character_id);
 
     try {
         txn.exec_params(R"(
             UPDATE "Characters" SET last_login = NOW(), updated_at = NOW() WHERE id = $1
-        )", character_id);
+        )",
+                        character_id);
 
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error updating last login: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to update last login: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to update last login: {}", e.what())});
     }
 }
 
-Result<void> save_character_location(
-    pqxx::work& txn,
-    const std::string& character_id,
-    int zone_id,
-    int room_id) {
+Result<void> save_character_location(pqxx::work &txn, const std::string &character_id, int zone_id, int room_id) {
     auto logger = Log::database();
     logger->debug("Saving location for character {}: zone {} room {}", character_id, zone_id, room_id);
 
@@ -3747,14 +3718,15 @@ Result<void> save_character_location(
                 current_room_zone_id = $2, current_room_id = $3,
                 updated_at = NOW()
             WHERE id = $1
-        )", character_id, zone_id, room_id);
+        )",
+                        character_id, zone_id, room_id);
 
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving character location: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save character location: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to save character location: {}", e.what())});
     }
 }
 
@@ -3763,32 +3735,38 @@ Result<void> save_character_location(
 // =============================================================================
 
 namespace {
-    // Parse UserRole from database string
-    UserRole parse_user_role(const std::string& role_str) {
-        if (role_str == "PLAYER") return UserRole::Player;
-        if (role_str == "IMMORTAL") return UserRole::Immortal;
-        if (role_str == "BUILDER") return UserRole::Builder;
-        if (role_str == "HEAD_BUILDER") return UserRole::HeadBuilder;
-        if (role_str == "CODER") return UserRole::Coder;
-        if (role_str == "GOD") return UserRole::God;
-        return UserRole::Player;  // Default
-    }
-
-    // Helper to populate UserData from a database row
-    UserData row_to_user_data(const pqxx::row& row) {
-        UserData user;
-        user.id = row["id"].as<std::string>();
-        user.email = row["email"].as<std::string>();
-        user.username = row["username"].as<std::string>();
-        user.password_hash = row["password_hash"].as<std::string>("");
-        user.role = parse_user_role(row["role"].as<std::string>("PLAYER"));
-        user.failed_login_attempts = row["failed_login_attempts"].as<int>(0);
-        // Timestamps would need proper parsing - leaving as default for now
-        return user;
-    }
+// Parse UserRole from database string
+UserRole parse_user_role(const std::string &role_str) {
+    if (role_str == "PLAYER")
+        return UserRole::Player;
+    if (role_str == "IMMORTAL")
+        return UserRole::Immortal;
+    if (role_str == "BUILDER")
+        return UserRole::Builder;
+    if (role_str == "HEAD_BUILDER")
+        return UserRole::HeadBuilder;
+    if (role_str == "CODER")
+        return UserRole::Coder;
+    if (role_str == "GOD")
+        return UserRole::God;
+    return UserRole::Player; // Default
 }
 
-Result<bool> user_exists(pqxx::work& txn, const std::string& username_or_email) {
+// Helper to populate UserData from a database row
+UserData row_to_user_data(const pqxx::row &row) {
+    UserData user;
+    user.id = row["id"].as<std::string>();
+    user.email = row["email"].as<std::string>();
+    user.username = row["username"].as<std::string>();
+    user.password_hash = row["password_hash"].as<std::string>("");
+    user.role = parse_user_role(row["role"].as<std::string>("PLAYER"));
+    user.failed_login_attempts = row["failed_login_attempts"].as<int>(0);
+    // Timestamps would need proper parsing - leaving as default for now
+    return user;
+}
+} // namespace
+
+Result<bool> user_exists(pqxx::work &txn, const std::string &username_or_email) {
     auto logger = Log::database();
     logger->debug("Checking if user '{}' exists", username_or_email);
 
@@ -3797,18 +3775,19 @@ Result<bool> user_exists(pqxx::work& txn, const std::string& username_or_email) 
             SELECT 1 FROM "Users"
             WHERE UPPER(username) = UPPER($1) OR UPPER(email) = UPPER($1)
             LIMIT 1
-        )", username_or_email);
+        )",
+                                      username_or_email);
 
         return !result.empty();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error checking user existence: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to check user existence: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to check user existence: {}", e.what())});
     }
 }
 
-Result<UserData> load_user_by_username(pqxx::work& txn, const std::string& username) {
+Result<UserData> load_user_by_username(pqxx::work &txn, const std::string &username) {
     auto logger = Log::database();
     logger->debug("Loading user by username: {}", username);
 
@@ -3820,25 +3799,24 @@ Result<UserData> load_user_by_username(pqxx::work& txn, const std::string& usern
                 created_at, updated_at
             FROM "Users"
             WHERE UPPER(username) = UPPER($1)
-        )", username);
+        )",
+                                      username);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("User '{}' not found", username)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User '{}' not found", username)});
         }
 
         auto user = row_to_user_data(result[0]);
         logger->debug("Loaded user '{}' (id: {})", user.username, user.id);
         return user;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading user '{}': {}", username, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load user: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load user: {}", e.what())});
     }
 }
 
-Result<UserData> load_user_by_email(pqxx::work& txn, const std::string& email) {
+Result<UserData> load_user_by_email(pqxx::work &txn, const std::string &email) {
     auto logger = Log::database();
     logger->debug("Loading user by email: {}", email);
 
@@ -3850,25 +3828,24 @@ Result<UserData> load_user_by_email(pqxx::work& txn, const std::string& email) {
                 created_at, updated_at
             FROM "Users"
             WHERE UPPER(email) = UPPER($1)
-        )", email);
+        )",
+                                      email);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("User with email '{}' not found", email)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User with email '{}' not found", email)});
         }
 
         auto user = row_to_user_data(result[0]);
         logger->debug("Loaded user '{}' by email", user.username);
         return user;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading user by email '{}': {}", email, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load user: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load user: {}", e.what())});
     }
 }
 
-Result<UserData> load_user_by_id(pqxx::work& txn, const std::string& id) {
+Result<UserData> load_user_by_id(pqxx::work &txn, const std::string &id) {
     auto logger = Log::database();
     logger->debug("Loading user by ID: {}", id);
 
@@ -3880,28 +3857,24 @@ Result<UserData> load_user_by_id(pqxx::work& txn, const std::string& id) {
                 created_at, updated_at
             FROM "Users"
             WHERE id = $1
-        )", id);
+        )",
+                                      id);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("User with ID '{}' not found", id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User with ID '{}' not found", id)});
         }
 
         auto user = row_to_user_data(result[0]);
         logger->debug("Loaded user '{}' by ID", user.username);
         return user;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading user by ID '{}': {}", id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load user: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load user: {}", e.what())});
     }
 }
 
-Result<bool> verify_user_password(
-    pqxx::work& txn,
-    const std::string& username_or_email,
-    const std::string& password) {
+Result<bool> verify_user_password(pqxx::work &txn, const std::string &username_or_email, const std::string &password) {
     auto logger = Log::database();
     logger->debug("Verifying password for user '{}'", username_or_email);
 
@@ -3911,11 +3884,11 @@ Result<bool> verify_user_password(
             SELECT id, password_hash, locked_until
             FROM "Users"
             WHERE UPPER(username) = UPPER($1) OR UPPER(email) = UPPER($1)
-        )", username_or_email);
+        )",
+                                      username_or_email);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("User '{}' not found", username_or_email)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User '{}' not found", username_or_email)});
         }
 
         std::string user_id = result[0]["id"].as<std::string>();
@@ -3936,7 +3909,8 @@ Result<bool> verify_user_password(
                 txn.exec_params(R"(
                     UPDATE "Users" SET password_hash = $1, updated_at = NOW()
                     WHERE id = $2
-                )", new_hash, user_id);
+                )",
+                                new_hash, user_id);
                 logger->debug("Upgraded password hash for user '{}' from legacy to SHA-512", username_or_email);
             }
         }
@@ -3944,16 +3918,13 @@ Result<bool> verify_user_password(
         logger->debug("Password verification for user '{}': {}", username_or_email, matches ? "success" : "failed");
         return matches;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error verifying password for user '{}': {}", username_or_email, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to verify password: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to verify password: {}", e.what())});
     }
 }
 
-Result<std::vector<CharacterSummary>> get_user_characters(
-    pqxx::work& txn,
-    const std::string& user_id) {
+Result<std::vector<CharacterSummary>> get_user_characters(pqxx::work &txn, const std::string &user_id) {
     auto logger = Log::database();
     logger->debug("Loading characters for user {}", user_id);
 
@@ -3964,12 +3935,13 @@ Result<std::vector<CharacterSummary>> get_user_characters(
             FROM "Characters"
             WHERE user_id = $1
             ORDER BY last_login DESC NULLS LAST, name ASC
-        )", user_id);
+        )",
+                                      user_id);
 
         std::vector<CharacterSummary> characters;
         characters.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CharacterSummary summary;
             summary.id = row["id"].as<std::string>();
             summary.name = row["name"].as<std::string>();
@@ -3984,14 +3956,14 @@ Result<std::vector<CharacterSummary>> get_user_characters(
         logger->debug("Loaded {} characters for user {}", characters.size(), user_id);
         return characters;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading characters for user {}: {}", user_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load user characters: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load user characters: {}", e.what())});
     }
 }
 
-Result<void> update_user_last_login(pqxx::work& txn, const std::string& user_id) {
+Result<void> update_user_last_login(pqxx::work &txn, const std::string &user_id) {
     auto logger = Log::database();
     logger->debug("Updating last login for user {}", user_id);
 
@@ -4003,18 +3975,19 @@ Result<void> update_user_last_login(pqxx::work& txn, const std::string& user_id)
                 locked_until = NULL,
                 updated_at = NOW()
             WHERE id = $1
-        )", user_id);
+        )",
+                        user_id);
 
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error updating last login: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to update last login: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to update last login: {}", e.what())});
     }
 }
 
-Result<void> increment_failed_login(pqxx::work& txn, const std::string& user_id) {
+Result<void> increment_failed_login(pqxx::work &txn, const std::string &user_id) {
     auto logger = Log::database();
     logger->debug("Incrementing failed login attempts for user {}", user_id);
 
@@ -4025,21 +3998,20 @@ Result<void> increment_failed_login(pqxx::work& txn, const std::string& user_id)
                 last_failed_login = NOW(),
                 updated_at = NOW()
             WHERE id = $1
-        )", user_id);
+        )",
+                        user_id);
 
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error incrementing failed login: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to increment failed login: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to increment failed login: {}", e.what())});
     }
 }
 
-Result<void> lock_user_account(
-    pqxx::work& txn,
-    const std::string& user_id,
-    std::chrono::system_clock::time_point until) {
+Result<void> lock_user_account(pqxx::work &txn, const std::string &user_id,
+                               std::chrono::system_clock::time_point until) {
     auto logger = Log::database();
     logger->debug("Locking user account {}", user_id);
 
@@ -4052,22 +4024,20 @@ Result<void> lock_user_account(
             SET locked_until = $2::timestamp,
                 updated_at = NOW()
             WHERE id = $1
-        )", user_id, timestamp);
+        )",
+                        user_id, timestamp);
 
         logger->debug("Locked user account {} until {}", user_id, timestamp);
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error locking user account: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to lock user account: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to lock user account: {}", e.what())});
     }
 }
 
-Result<void> link_character_to_user(
-    pqxx::work& txn,
-    const std::string& character_id,
-    const std::string& user_id) {
+Result<void> link_character_to_user(pqxx::work &txn, const std::string &character_id, const std::string &user_id) {
     auto logger = Log::database();
     logger->debug("Linking character {} to user {}", character_id, user_id);
 
@@ -4076,22 +4046,20 @@ Result<void> link_character_to_user(
             UPDATE "Characters"
             SET user_id = $2, updated_at = NOW()
             WHERE id = $1
-        )", character_id, user_id);
+        )",
+                        character_id, user_id);
 
         logger->debug("Linked character {} to user {}", character_id, user_id);
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error linking character to user: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to link character to user: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to link character to user: {}", e.what())});
     }
 }
 
-Result<void> save_account_wealth(
-    pqxx::work& txn,
-    const std::string& user_id,
-    long account_wealth) {
+Result<void> save_account_wealth(pqxx::work &txn, const std::string &user_id, long account_wealth) {
     auto logger = Log::database();
     logger->debug("Saving account wealth {} for user {}", account_wealth, user_id);
 
@@ -4100,15 +4068,16 @@ Result<void> save_account_wealth(
             UPDATE "Users"
             SET account_wealth = $2, updated_at = NOW()
             WHERE id = $1
-        )", user_id, account_wealth);
+        )",
+                        user_id, account_wealth);
 
         logger->debug("Saved account wealth {} for user {}", account_wealth, user_id);
         return {};
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving account wealth: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save account wealth: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to save account wealth: {}", e.what())});
     }
 }
 
@@ -4116,7 +4085,7 @@ Result<void> save_account_wealth(
 // Shop System Queries
 // =============================================================================
 
-Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn) {
+Result<std::vector<ShopData>> load_all_shops(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all shops from database");
 
@@ -4135,7 +4104,7 @@ Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn) {
         std::vector<ShopData> shops;
         shops.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ShopData shop;
             shop.zone_id = row["zone_id"].as<int>();
             shop.id = row["id"].as<int>();
@@ -4175,14 +4144,13 @@ Result<std::vector<ShopData>> load_all_shops(pqxx::work& txn) {
         logger->debug("Loaded {} shops from database", shops.size());
         return shops;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading shops: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load shops: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load shops: {}", e.what())});
     }
 }
 
-Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id) {
+Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work &txn, int zone_id) {
     auto logger = Log::database();
     logger->debug("Loading shops for zone {}", zone_id);
 
@@ -4197,12 +4165,13 @@ Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id) {
             WHERE zone_id = $1
               AND keeper_zone_id IS NOT NULL AND keeper_id IS NOT NULL
             ORDER BY id
-        )", zone_id);
+        )",
+                                      zone_id);
 
         std::vector<ShopData> shops;
         shops.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ShopData shop;
             shop.zone_id = row["zone_id"].as<int>();
             shop.id = row["id"].as<int>();
@@ -4242,15 +4211,14 @@ Result<std::vector<ShopData>> load_shops_in_zone(pqxx::work& txn, int zone_id) {
         logger->debug("Loaded {} shops for zone {}", shops.size(), zone_id);
         return shops;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading shops for zone {}: {}", zone_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load shops for zone {}: {}", zone_id, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load shops for zone {}: {}", zone_id, e.what())});
     }
 }
 
-Result<std::vector<ShopItemData>> load_shop_items(
-    pqxx::work& txn, int shop_zone_id, int shop_id) {
+Result<std::vector<ShopItemData>> load_shop_items(pqxx::work &txn, int shop_zone_id, int shop_id) {
     auto logger = Log::database();
     logger->debug("Loading items for shop ({}, {})", shop_zone_id, shop_id);
 
@@ -4260,12 +4228,13 @@ Result<std::vector<ShopItemData>> load_shop_items(
             FROM "ShopItems"
             WHERE shop_zone_id = $1 AND shop_id = $2
             ORDER BY id
-        )", shop_zone_id, shop_id);
+        )",
+                                      shop_zone_id, shop_id);
 
         std::vector<ShopItemData> items;
         items.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ShopItemData item;
             int obj_zone = row["object_zone_id"].as<int>();
             int obj_id = row["object_id"].as<int>();
@@ -4282,15 +4251,13 @@ Result<std::vector<ShopItemData>> load_shop_items(
         logger->debug("Loaded {} items for shop ({}, {})", items.size(), shop_zone_id, shop_id);
         return items;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading shop items: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load shop items: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load shop items: {}", e.what())});
     }
 }
 
-Result<std::vector<ShopMobData>> load_shop_mobs(
-    pqxx::work& txn, int shop_zone_id, int shop_id) {
+Result<std::vector<ShopMobData>> load_shop_mobs(pqxx::work &txn, int shop_zone_id, int shop_id) {
     auto logger = Log::database();
     logger->debug("Loading mobs for shop ({}, {})", shop_zone_id, shop_id);
 
@@ -4300,12 +4267,13 @@ Result<std::vector<ShopMobData>> load_shop_mobs(
             FROM "ShopMobs"
             WHERE shop_zone_id = $1 AND shop_id = $2
             ORDER BY id
-        )", shop_zone_id, shop_id);
+        )",
+                                      shop_zone_id, shop_id);
 
         std::vector<ShopMobData> mobs;
         mobs.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ShopMobData mob;
             int mob_zone = row["mob_zone_id"].as<int>();
             int mob_local = row["mob_id"].as<int>();
@@ -4322,15 +4290,13 @@ Result<std::vector<ShopMobData>> load_shop_mobs(
         logger->debug("Loaded {} mobs for shop ({}, {})", mobs.size(), shop_zone_id, shop_id);
         return mobs;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading shop mobs: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load shop mobs: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load shop mobs: {}", e.what())});
     }
 }
 
-Result<std::vector<ShopAbilityData>> load_shop_abilities(
-    pqxx::work& txn, int shop_zone_id, int shop_id) {
+Result<std::vector<ShopAbilityData>> load_shop_abilities(pqxx::work &txn, int shop_zone_id, int shop_id) {
     auto logger = Log::database();
     logger->debug("Loading abilities for shop ({}, {})", shop_zone_id, shop_id);
 
@@ -4341,32 +4307,31 @@ Result<std::vector<ShopAbilityData>> load_shop_abilities(
             FROM "ShopAbilities"
             WHERE shop_zone_id = $1 AND shop_id = $2
             ORDER BY id
-        )", shop_zone_id, shop_id);
+        )",
+                                      shop_zone_id, shop_id);
 
         std::vector<ShopAbilityData> abilities;
         abilities.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ShopAbilityData ability;
             ability.ability_id = row["ability_id"].as<int>();
             ability.price = row["price"].is_null() ? 0 : row["price"].as<int>();
-            ability.spawn_chance = row["spawn_chance"].is_null() ? 1.0f
-                : row["spawn_chance"].as<float>();
-            ability.visibility_requirement = row["visibility_requirement"].is_null() ? ""
-                : row["visibility_requirement"].as<std::string>();
-            ability.purchase_requirement = row["purchase_requirement"].is_null() ? ""
-                : row["purchase_requirement"].as<std::string>();
+            ability.spawn_chance = row["spawn_chance"].is_null() ? 1.0f : row["spawn_chance"].as<float>();
+            ability.visibility_requirement =
+                row["visibility_requirement"].is_null() ? "" : row["visibility_requirement"].as<std::string>();
+            ability.purchase_requirement =
+                row["purchase_requirement"].is_null() ? "" : row["purchase_requirement"].as<std::string>();
             abilities.push_back(ability);
         }
 
-        logger->debug("Loaded {} abilities for shop ({}, {})",
-            abilities.size(), shop_zone_id, shop_id);
+        logger->debug("Loaded {} abilities for shop ({}, {})", abilities.size(), shop_zone_id, shop_id);
         return abilities;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading shop abilities: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load shop abilities: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load shop abilities: {}", e.what())});
     }
 }
 
@@ -4374,8 +4339,7 @@ Result<std::vector<ShopAbilityData>> load_shop_abilities(
 // Character Item Queries
 // =============================================================================
 
-Result<std::vector<CharacterItemData>> load_character_items(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::vector<CharacterItemData>> load_character_items(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Loading items for character {}", character_id);
 
@@ -4388,12 +4352,13 @@ Result<std::vector<CharacterItemData>> load_character_items(
             FROM "CharacterItems"
             WHERE character_id = $1
             ORDER BY id
-        )", character_id);
+        )",
+                                      character_id);
 
         std::vector<CharacterItemData> items;
         items.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CharacterItemData item;
             item.id = row["id"].as<int>();
             item.character_id = row["character_id"].as<std::string>();
@@ -4440,17 +4405,15 @@ Result<std::vector<CharacterItemData>> load_character_items(
         logger->debug("Loaded {} items for character {}", items.size(), character_id);
         return items;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading character items: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load character items: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load character items: {}", e.what())});
     }
 }
 
-Result<void> save_character_items(
-    pqxx::work& txn,
-    const std::string& character_id,
-    const std::vector<CharacterItemData>& items) {
+Result<void> save_character_items(pqxx::work &txn, const std::string &character_id,
+                                  const std::vector<CharacterItemData> &items) {
     auto logger = Log::database();
     logger->debug("Saving {} items for character {}", items.size(), character_id);
 
@@ -4458,17 +4421,17 @@ Result<void> save_character_items(
         // Delete existing items for this character
         txn.exec_params(R"(
             DELETE FROM "CharacterItems" WHERE character_id = $1
-        )", character_id);
+        )",
+                        character_id);
 
         // Insert new items
-        for (const auto& item : items) {
+        for (const auto &item : items) {
             std::optional<int> container_id_param;
             if (item.container_id) {
                 container_id_param = *item.container_id;
             }
 
-            std::string equipped_loc_param = item.equipped_location.empty()
-                ? "" : item.equipped_location;
+            std::string equipped_loc_param = item.equipped_location.empty() ? "" : item.equipped_location;
 
             // Build instance flags as PostgreSQL array literal (with proper escaping)
             std::string flags_array = to_pg_array(item.instance_flags);
@@ -4478,7 +4441,8 @@ Result<void> save_character_items(
             if (!item.liquid_effects.empty()) {
                 effects_array = "{";
                 for (size_t i = 0; i < item.liquid_effects.size(); ++i) {
-                    if (i > 0) effects_array += ",";
+                    if (i > 0)
+                        effects_array += ",";
                     effects_array += std::to_string(item.liquid_effects[i]);
                 }
                 effects_array += "}";
@@ -4493,30 +4457,22 @@ Result<void> save_character_items(
                     updated_at
                 ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::"ItemInstanceFlag"[], $9, $10, $11, $12, $13::int[], $14, NOW())
             )",
-                character_id,
-                item.object_id.zone_id(),
-                item.object_id.local_id(),
-                container_id_param,
-                equipped_loc_param.empty() ? std::optional<std::string>{} : equipped_loc_param,
-                item.condition,
-                item.charges,
-                flags_array,
-                item.custom_name.empty() ? std::optional<std::string>{} : item.custom_name,
-                item.custom_description.empty() ? std::optional<std::string>{} : item.custom_description,
-                item.liquid_type.empty() ? std::optional<std::string>{} : item.liquid_type,
-                item.liquid_remaining,
-                effects_array,
-                item.liquid_identified
-            );
+                            character_id, item.object_id.zone_id(), item.object_id.local_id(), container_id_param,
+                            equipped_loc_param.empty() ? std::optional<std::string>{} : equipped_loc_param,
+                            item.condition, item.charges, flags_array,
+                            item.custom_name.empty() ? std::optional<std::string>{} : item.custom_name,
+                            item.custom_description.empty() ? std::optional<std::string>{} : item.custom_description,
+                            item.liquid_type.empty() ? std::optional<std::string>{} : item.liquid_type,
+                            item.liquid_remaining, effects_array, item.liquid_identified);
         }
 
         logger->debug("Saved {} items for character {}", items.size(), character_id);
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving character items: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save character items: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to save character items: {}", e.what())});
     }
 }
 
@@ -4524,7 +4480,7 @@ Result<void> save_character_items(
 // Command Queries
 // =============================================================================
 
-Result<std::vector<CommandData>> load_all_commands(pqxx::work& txn) {
+Result<std::vector<CommandData>> load_all_commands(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all commands from database");
 
@@ -4539,7 +4495,7 @@ Result<std::vector<CommandData>> load_all_commands(pqxx::work& txn) {
         std::vector<CommandData> commands;
         commands.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CommandData cmd;
             cmd.name = row["name"].as<std::string>();
 
@@ -4575,15 +4531,13 @@ Result<std::vector<CommandData>> load_all_commands(pqxx::work& txn) {
         logger->debug("Loaded {} commands from database", commands.size());
         return commands;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading commands: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load commands: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load commands: {}", e.what())});
     }
 }
 
-Result<std::optional<CommandData>> load_command_by_name(
-    pqxx::work& txn, const std::string& name) {
+Result<std::optional<CommandData>> load_command_by_name(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Loading command: {}", name);
 
@@ -4593,13 +4547,14 @@ Result<std::optional<CommandData>> load_command_by_name(
                    immortal_only, permissions, ability_id
             FROM "Command"
             WHERE LOWER(name) = LOWER($1)
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         CommandData cmd;
         cmd.name = row["name"].as<std::string>();
 
@@ -4631,10 +4586,10 @@ Result<std::optional<CommandData>> load_command_by_name(
 
         return cmd;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading command '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load command '{}': {}", name, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load command '{}': {}", name, e.what())});
     }
 }
 
@@ -4642,8 +4597,7 @@ Result<std::optional<CommandData>> load_command_by_name(
 // Account Item Storage Queries
 // =============================================================================
 
-Result<std::vector<AccountItemData>> load_account_items(
-    pqxx::work& txn, const std::string& user_id) {
+Result<std::vector<AccountItemData>> load_account_items(pqxx::work &txn, const std::string &user_id) {
     auto logger = Log::database();
     logger->debug("Loading account items for user {}", user_id);
 
@@ -4654,12 +4608,13 @@ Result<std::vector<AccountItemData>> load_account_items(
             FROM "account_items"
             WHERE user_id = $1
             ORDER BY slot, id
-        )", user_id);
+        )",
+                                      user_id);
 
         std::vector<AccountItemData> items;
         items.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             AccountItemData item;
             item.id = row["id"].as<int>();
             item.user_id = row["user_id"].as<std::string>();
@@ -4699,20 +4654,15 @@ Result<std::vector<AccountItemData>> load_account_items(
         logger->debug("Loaded {} account items for user {}", items.size(), user_id);
         return items;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading account items for user {}: {}", user_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load account items: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load account items: {}", e.what())});
     }
 }
 
-Result<int> store_account_item(
-    pqxx::work& txn,
-    const std::string& user_id,
-    EntityId object_id,
-    int quantity,
-    const std::optional<std::string>& character_id,
-    const std::string& custom_data) {
+Result<int> store_account_item(pqxx::work &txn, const std::string &user_id, EntityId object_id, int quantity,
+                               const std::optional<std::string> &character_id, const std::string &custom_data) {
     auto logger = Log::database();
     logger->debug("Storing item ({},{}) for user {}", object_id.zone_id(), object_id.local_id(), user_id);
 
@@ -4722,7 +4672,8 @@ Result<int> store_account_item(
             SELECT COALESCE(MAX(slot) + 1, 0) as next_slot
             FROM "account_items"
             WHERE user_id = $1
-        )", user_id);
+        )",
+                                           user_id);
 
         int next_slot = slot_result[0]["next_slot"].as<int>();
 
@@ -4734,30 +4685,23 @@ Result<int> store_account_item(
             ) VALUES ($1, $2, $3, $4, $5, $6::json, NOW(), $7)
             RETURNING id
         )",
-            user_id,
-            next_slot,
-            object_id.zone_id(),
-            object_id.local_id(),
-            quantity,
-            custom_data,
-            character_id ? *character_id : std::optional<std::string>{}
-        );
+                                      user_id, next_slot, object_id.zone_id(), object_id.local_id(), quantity,
+                                      custom_data, character_id ? *character_id : std::optional<std::string>{});
 
         int new_id = result[0]["id"].as<int>();
-        logger->debug("Stored account item {} for user {} (object {},{})",
-            new_id, user_id, object_id.zone_id(), object_id.local_id());
+        logger->debug("Stored account item {} for user {} (object {},{})", new_id, user_id, object_id.zone_id(),
+                      object_id.local_id());
 
         return new_id;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error storing account item: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to store account item: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to store account item: {}", e.what())});
     }
 }
 
-Result<AccountItemData> remove_account_item(
-    pqxx::work& txn, int item_id) {
+Result<AccountItemData> remove_account_item(pqxx::work &txn, int item_id) {
     auto logger = Log::database();
     logger->debug("Removing account item {}", item_id);
 
@@ -4768,14 +4712,14 @@ Result<AccountItemData> remove_account_item(
                    quantity, custom_data::text, stored_at, stored_by_character_id
             FROM "account_items"
             WHERE id = $1
-        )", item_id);
+        )",
+                                             item_id);
 
         if (select_result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Account item {} not found", item_id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Account item {} not found", item_id)});
         }
 
-        const auto& row = select_result[0];
+        const auto &row = select_result[0];
         AccountItemData item;
         item.id = row["id"].as<int>();
         item.user_id = row["user_id"].as<std::string>();
@@ -4810,25 +4754,23 @@ Result<AccountItemData> remove_account_item(
         // Now delete the item
         txn.exec_params(R"(
             DELETE FROM "account_items" WHERE id = $1
-        )", item_id);
+        )",
+                        item_id);
 
         logger->debug("Removed account item {} from user {}", item_id, item.user_id);
         return item;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error removing account item {}: {}", item_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to remove account item: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to remove account item: {}", e.what())});
     }
 }
 
-Result<std::optional<AccountItemData>> find_account_item(
-    pqxx::work& txn,
-    const std::string& user_id,
-    EntityId object_id) {
+Result<std::optional<AccountItemData>> find_account_item(pqxx::work &txn, const std::string &user_id,
+                                                         EntityId object_id) {
     auto logger = Log::database();
-    logger->debug("Finding account item ({},{}) for user {}",
-        object_id.zone_id(), object_id.local_id(), user_id);
+    logger->debug("Finding account item ({},{}) for user {}", object_id.zone_id(), object_id.local_id(), user_id);
 
     try {
         auto result = txn.exec_params(R"(
@@ -4838,13 +4780,14 @@ Result<std::optional<AccountItemData>> find_account_item(
             WHERE user_id = $1 AND object_zone_id = $2 AND object_id = $3
             ORDER BY id
             LIMIT 1
-        )", user_id, object_id.zone_id(), object_id.local_id());
+        )",
+                                      user_id, object_id.zone_id(), object_id.local_id());
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         AccountItemData item;
         item.id = row["id"].as<int>();
         item.user_id = row["user_id"].as<std::string>();
@@ -4878,15 +4821,14 @@ Result<std::optional<AccountItemData>> find_account_item(
 
         return item;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error finding account item: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to find account item: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to find account item: {}", e.what())});
     }
 }
 
-Result<int> count_account_items(
-    pqxx::work& txn, const std::string& user_id) {
+Result<int> count_account_items(pqxx::work &txn, const std::string &user_id) {
     auto logger = Log::database();
 
     try {
@@ -4894,14 +4836,15 @@ Result<int> count_account_items(
             SELECT COUNT(*) as count
             FROM "account_items"
             WHERE user_id = $1
-        )", user_id);
+        )",
+                                      user_id);
 
         return result[0]["count"].as<int>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error counting account items: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to count account items: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to count account items: {}", e.what())});
     }
 }
 
@@ -4912,7 +4855,7 @@ Result<int> count_account_items(
 namespace {
 
 // Helper to parse PostgreSQL timestamp string to time_point
-std::chrono::system_clock::time_point parse_timestamp(const std::string& timestamp_str) {
+std::chrono::system_clock::time_point parse_timestamp(const std::string &timestamp_str) {
     // PostgreSQL timestamp format: "2024-01-15 10:30:45.123456" or "2024-01-15 10:30:45"
     std::tm tm = {};
     std::istringstream ss(timestamp_str);
@@ -4925,7 +4868,7 @@ std::chrono::system_clock::time_point parse_timestamp(const std::string& timesta
 }
 
 // Helper to parse a PlayerMailData from a database row
-PlayerMailData parse_mail_row(const pqxx::row& row) {
+PlayerMailData parse_mail_row(const pqxx::row &row) {
     PlayerMailData mail;
     mail.id = row["id"].as<int>();
 
@@ -4960,10 +4903,8 @@ PlayerMailData parse_mail_row(const pqxx::row& row) {
 
     // Object attachment
     if (!row["attached_object_zone_id"].is_null() && !row["attached_object_id"].is_null()) {
-        mail.attached_object_id = EntityId(
-            row["attached_object_zone_id"].as<int>(),
-            row["attached_object_id"].as<int>()
-        );
+        mail.attached_object_id =
+            EntityId(row["attached_object_zone_id"].as<int>(), row["attached_object_id"].as<int>());
     }
 
     // Retrieval tracking
@@ -4988,8 +4929,7 @@ PlayerMailData parse_mail_row(const pqxx::row& row) {
 }
 } // anonymous namespace
 
-Result<std::vector<PlayerMailData>> load_character_mail(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::vector<PlayerMailData>> load_character_mail(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
     logger->debug("Loading mail for character {}", character_id);
 
@@ -5006,26 +4946,25 @@ Result<std::vector<PlayerMailData>> load_character_mail(
             FROM "PlayerMail"
             WHERE recipient_character_id = $1 AND is_deleted = false
             ORDER BY sent_at DESC
-        )", character_id);
+        )",
+                                      character_id);
 
         std::vector<PlayerMailData> mails;
         mails.reserve(result.size());
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             mails.push_back(parse_mail_row(row));
         }
 
         logger->debug("Loaded {} mail messages for character {}", mails.size(), character_id);
         return mails;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading character mail: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mail: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load mail: {}", e.what())});
     }
 }
 
-Result<int> count_unread_mail(
-    pqxx::work& txn, const std::string& character_id) {
+Result<int> count_unread_mail(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
 
     try {
@@ -5035,19 +4974,19 @@ Result<int> count_unread_mail(
             WHERE recipient_character_id = $1
               AND is_deleted = false
               AND read_at IS NULL
-        )", character_id);
+        )",
+                                      character_id);
 
         return result[0]["count"].as<int>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error counting unread mail: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to count unread mail: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to count unread mail: {}", e.what())});
     }
 }
 
-Result<int> count_all_mail(
-    pqxx::work& txn, const std::string& character_id) {
+Result<int> count_all_mail(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
 
     try {
@@ -5056,19 +4995,18 @@ Result<int> count_all_mail(
             FROM "PlayerMail"
             WHERE recipient_character_id = $1
               AND is_deleted = false
-        )", character_id);
+        )",
+                                      character_id);
 
         return result[0]["count"].as<int>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error counting mail: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to count mail: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to count mail: {}", e.what())});
     }
 }
 
-Result<std::optional<PlayerMailData>> load_mail_by_id(
-    pqxx::work& txn, int mail_id) {
+Result<std::optional<PlayerMailData>> load_mail_by_id(pqxx::work &txn, int mail_id) {
     auto logger = Log::database();
     logger->debug("Loading mail by ID {}", mail_id);
 
@@ -5084,7 +5022,8 @@ Result<std::optional<PlayerMailData>> load_mail_by_id(
                    object_moved_to_account_storage, is_deleted
             FROM "PlayerMail"
             WHERE id = $1
-        )", mail_id);
+        )",
+                                      mail_id);
 
         if (result.empty()) {
             return std::nullopt;
@@ -5092,23 +5031,16 @@ Result<std::optional<PlayerMailData>> load_mail_by_id(
 
         return parse_mail_row(result[0]);
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading mail by ID: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load mail: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load mail: {}", e.what())});
     }
 }
 
-Result<int> send_player_mail(
-    pqxx::work& txn,
-    const std::string& sender_character_id,
-    const std::string& recipient_character_id,
-    const std::string& body,
-    int attached_copper,
-    int attached_silver,
-    int attached_gold,
-    int attached_platinum,
-    const std::optional<EntityId>& attached_object_id) {
+Result<int> send_player_mail(pqxx::work &txn, const std::string &sender_character_id,
+                             const std::string &recipient_character_id, const std::string &body, int attached_copper,
+                             int attached_silver, int attached_gold, int attached_platinum,
+                             const std::optional<EntityId> &attached_object_id) {
     auto logger = Log::database();
     logger->debug("Sending mail from {} to {}", sender_character_id, recipient_character_id);
 
@@ -5129,30 +5061,22 @@ Result<int> send_player_mail(
             ) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8, $9, NOW(), NOW())
             RETURNING id
         )",
-            sender_character_id,
-            recipient_character_id,
-            body,
-            attached_copper,
-            attached_silver,
-            attached_gold,
-            attached_platinum,
-            obj_zone_id ? std::optional<int>(*obj_zone_id) : std::nullopt,
-            obj_id ? std::optional<int>(*obj_id) : std::nullopt
-        );
+                                      sender_character_id, recipient_character_id, body, attached_copper,
+                                      attached_silver, attached_gold, attached_platinum,
+                                      obj_zone_id ? std::optional<int>(*obj_zone_id) : std::nullopt,
+                                      obj_id ? std::optional<int>(*obj_id) : std::nullopt);
 
         int new_id = result[0]["id"].as<int>();
         logger->debug("Mail sent successfully with ID {}", new_id);
         return new_id;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error sending mail: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to send mail: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to send mail: {}", e.what())});
     }
 }
 
-Result<void> mark_mail_read(
-    pqxx::work& txn, int mail_id) {
+Result<void> mark_mail_read(pqxx::work &txn, int mail_id) {
     auto logger = Log::database();
     logger->debug("Marking mail {} as read", mail_id);
 
@@ -5161,19 +5085,18 @@ Result<void> mark_mail_read(
             UPDATE "PlayerMail"
             SET read_at = NOW()
             WHERE id = $1 AND read_at IS NULL
-        )", mail_id);
+        )",
+                        mail_id);
 
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error marking mail read: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to mark mail read: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to mark mail read: {}", e.what())});
     }
 }
 
-Result<void> mark_mail_wealth_retrieved(
-    pqxx::work& txn, int mail_id, const std::string& retrieved_by_character_id) {
+Result<void> mark_mail_wealth_retrieved(pqxx::work &txn, int mail_id, const std::string &retrieved_by_character_id) {
     auto logger = Log::database();
     logger->debug("Marking wealth retrieved from mail {} by {}", mail_id, retrieved_by_character_id);
 
@@ -5183,23 +5106,23 @@ Result<void> mark_mail_wealth_retrieved(
             SET wealth_retrieved_at = NOW(),
                 wealth_retrieved_by_character_id = $2
             WHERE id = $1 AND wealth_retrieved_at IS NULL
-        )", mail_id, retrieved_by_character_id);
+        )",
+                        mail_id, retrieved_by_character_id);
 
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error marking wealth retrieved: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to mark wealth retrieved: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to mark wealth retrieved: {}", e.what())});
     }
 }
 
-Result<void> mark_mail_object_retrieved(
-    pqxx::work& txn, int mail_id, const std::string& retrieved_by_character_id,
-    bool moved_to_account_storage) {
+Result<void> mark_mail_object_retrieved(pqxx::work &txn, int mail_id, const std::string &retrieved_by_character_id,
+                                        bool moved_to_account_storage) {
     auto logger = Log::database();
-    logger->debug("Marking object retrieved from mail {} by {} (to_account: {})",
-        mail_id, retrieved_by_character_id, moved_to_account_storage);
+    logger->debug("Marking object retrieved from mail {} by {} (to_account: {})", mail_id, retrieved_by_character_id,
+                  moved_to_account_storage);
 
     try {
         txn.exec_params(R"(
@@ -5208,19 +5131,19 @@ Result<void> mark_mail_object_retrieved(
                 object_retrieved_by_character_id = $2,
                 object_moved_to_account_storage = $3
             WHERE id = $1 AND object_retrieved_at IS NULL
-        )", mail_id, retrieved_by_character_id, moved_to_account_storage);
+        )",
+                        mail_id, retrieved_by_character_id, moved_to_account_storage);
 
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error marking object retrieved: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to mark object retrieved: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to mark object retrieved: {}", e.what())});
     }
 }
 
-Result<void> delete_mail(
-    pqxx::work& txn, int mail_id) {
+Result<void> delete_mail(pqxx::work &txn, int mail_id) {
     auto logger = Log::database();
     logger->debug("Soft-deleting mail {}", mail_id);
 
@@ -5229,19 +5152,18 @@ Result<void> delete_mail(
             UPDATE "PlayerMail"
             SET is_deleted = true
             WHERE id = $1
-        )", mail_id);
+        )",
+                        mail_id);
 
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error deleting mail: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to delete mail: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to delete mail: {}", e.what())});
     }
 }
 
-Result<std::optional<std::string>> find_character_id_by_name(
-    pqxx::work& txn, const std::string& name) {
+Result<std::optional<std::string>> find_character_id_by_name(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Finding character by name: {}", name);
 
@@ -5250,7 +5172,8 @@ Result<std::optional<std::string>> find_character_id_by_name(
             SELECT id FROM "Characters"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
             return std::nullopt;
@@ -5258,15 +5181,13 @@ Result<std::optional<std::string>> find_character_id_by_name(
 
         return result[0]["id"].as<std::string>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error finding character by name: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to find character: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to find character: {}", e.what())});
     }
 }
 
-Result<std::optional<std::string>> get_character_name_by_id(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::optional<std::string>> get_character_name_by_id(pqxx::work &txn, const std::string &character_id) {
     auto logger = Log::database();
 
     try {
@@ -5274,7 +5195,8 @@ Result<std::optional<std::string>> get_character_name_by_id(
             SELECT name FROM "Characters"
             WHERE id = $1
             LIMIT 1
-        )", character_id);
+        )",
+                                      character_id);
 
         if (result.empty()) {
             return std::nullopt;
@@ -5282,10 +5204,10 @@ Result<std::optional<std::string>> get_character_name_by_id(
 
         return result[0]["name"].as<std::string>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error getting character name: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to get character name: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to get character name: {}", e.what())});
     }
 }
 
@@ -5293,8 +5215,7 @@ Result<std::optional<std::string>> get_character_name_by_id(
 // System Text Queries (MOTD, Credits, News, Policy)
 // =============================================================================
 
-Result<std::optional<SystemTextData>> load_system_text(
-    pqxx::work& txn, const std::string& key) {
+Result<std::optional<SystemTextData>> load_system_text(pqxx::work &txn, const std::string &key) {
     auto logger = Log::database();
     logger->debug("Loading system text: {}", key);
 
@@ -5304,13 +5225,14 @@ Result<std::optional<SystemTextData>> load_system_text(
             FROM "SystemText"
             WHERE key = $1 AND is_active = true
             LIMIT 1
-        )", key);
+        )",
+                                      key);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         SystemTextData data;
         data.id = row["id"].as<int>();
         data.key = row["key"].as<std::string>();
@@ -5324,14 +5246,14 @@ Result<std::optional<SystemTextData>> load_system_text(
 
         return data;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading system text '{}': {}", key, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load system text '{}': {}", key, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load system text '{}': {}", key, e.what())});
     }
 }
 
-Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work& txn) {
+Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all system text entries");
 
@@ -5346,7 +5268,7 @@ Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work& txn) {
         std::vector<SystemTextData> entries;
         entries.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             SystemTextData data;
             data.id = row["id"].as<int>();
             data.key = row["key"].as<std::string>();
@@ -5363,10 +5285,10 @@ Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work& txn) {
         logger->debug("Loaded {} system text entries", entries.size());
         return entries;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading system text: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load system text: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load system text: {}", e.what())});
     }
 }
 
@@ -5374,8 +5296,7 @@ Result<std::vector<SystemTextData>> load_all_system_text(pqxx::work& txn) {
 // Help Entry Queries
 // =============================================================================
 
-Result<std::optional<HelpEntryData>> load_help_entry(
-    pqxx::work& txn, const std::string& keyword) {
+Result<std::optional<HelpEntryData>> load_help_entry(pqxx::work &txn, const std::string &keyword) {
     auto logger = Log::database();
     logger->debug("Searching help for keyword: {}", keyword);
 
@@ -5391,7 +5312,8 @@ Result<std::optional<HelpEntryData>> load_help_entry(
                 WHERE LOWER(kw) = LOWER($1)
             )
             LIMIT 1
-        )", keyword);
+        )",
+                                      keyword);
 
         // If no exact match, try partial match
         if (result.empty()) {
@@ -5405,14 +5327,15 @@ Result<std::optional<HelpEntryData>> load_help_entry(
                 )
                 ORDER BY title
                 LIMIT 1
-            )", keyword);
+            )",
+                                     keyword);
         }
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         HelpEntryData data;
         data.id = row["id"].as<int>();
         if (!row["keywords"].is_null()) {
@@ -5437,14 +5360,13 @@ Result<std::optional<HelpEntryData>> load_help_entry(
 
         return data;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error searching help for '{}': {}", keyword, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to search help: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to search help: {}", e.what())});
     }
 }
 
-Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work& txn) {
+Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all help entries");
 
@@ -5459,7 +5381,7 @@ Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work& txn) {
         std::vector<HelpEntryData> entries;
         entries.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             HelpEntryData data;
             data.id = row["id"].as<int>();
             if (!row["keywords"].is_null()) {
@@ -5488,10 +5410,10 @@ Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work& txn) {
         logger->debug("Loaded {} help entries", entries.size());
         return entries;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading help entries: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load help entries: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load help entries: {}", e.what())});
     }
 }
 
@@ -5499,7 +5421,7 @@ Result<std::vector<HelpEntryData>> load_all_help_entries(pqxx::work& txn) {
 // Player Toggle Queries
 // =============================================================================
 
-Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work& txn) {
+Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all player toggle definitions");
 
@@ -5514,7 +5436,7 @@ Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work& txn) {
         std::vector<PlayerToggleData> toggles;
         toggles.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             PlayerToggleData data;
             data.id = row["id"].as<int>();
             data.name = row["name"].as<std::string>();
@@ -5530,15 +5452,14 @@ Result<std::vector<PlayerToggleData>> load_all_player_toggles(pqxx::work& txn) {
         logger->debug("Loaded {} player toggle definitions", toggles.size());
         return toggles;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading player toggles: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load player toggles: {}", e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load player toggles: {}", e.what())});
     }
 }
 
-Result<std::optional<PlayerToggleData>> load_player_toggle(
-    pqxx::work& txn, const std::string& name) {
+Result<std::optional<PlayerToggleData>> load_player_toggle(pqxx::work &txn, const std::string &name) {
     auto logger = Log::database();
     logger->debug("Loading player toggle: {}", name);
 
@@ -5549,13 +5470,14 @@ Result<std::optional<PlayerToggleData>> load_player_toggle(
             FROM "PlayerToggle"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
-        )", name);
+        )",
+                                      name);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         PlayerToggleData data;
         data.id = row["id"].as<int>();
         data.name = row["name"].as<std::string>();
@@ -5568,10 +5490,10 @@ Result<std::optional<PlayerToggleData>> load_player_toggle(
 
         return data;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading player toggle '{}': {}", name, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load player toggle '{}': {}", name, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load player toggle '{}': {}", name, e.what())});
     }
 }
 
@@ -5579,8 +5501,7 @@ Result<std::optional<PlayerToggleData>> load_player_toggle(
 // Board System Queries
 // =============================================================================
 
-Result<std::vector<BoardMessageEditData>> load_message_edits(
-    pqxx::work& txn, int message_id) {
+Result<std::vector<BoardMessageEditData>> load_message_edits(pqxx::work &txn, int message_id) {
     auto logger = Log::database();
 
     try {
@@ -5589,12 +5510,13 @@ Result<std::vector<BoardMessageEditData>> load_message_edits(
             FROM "BoardMessageEdit"
             WHERE message_id = $1
             ORDER BY edited_at ASC
-        )", message_id);
+        )",
+                                      message_id);
 
         std::vector<BoardMessageEditData> edits;
         edits.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             BoardMessageEditData edit;
             edit.id = row["id"].as<int>();
             edit.message_id = row["message_id"].as<int>();
@@ -5612,16 +5534,14 @@ Result<std::vector<BoardMessageEditData>> load_message_edits(
 
         return edits;
 
-    } catch (const pqxx::sql_error& e) {
-        logger->error("SQL error loading message edits for message {}: {}",
-                     message_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load message edits: {}", e.what())});
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error loading message edits for message {}: {}", message_id, e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load message edits: {}", e.what())});
     }
 }
 
-Result<std::vector<BoardMessageData>> load_board_messages(
-    pqxx::work& txn, int board_id) {
+Result<std::vector<BoardMessageData>> load_board_messages(pqxx::work &txn, int board_id) {
     auto logger = Log::database();
 
     try {
@@ -5631,12 +5551,13 @@ Result<std::vector<BoardMessageData>> load_board_messages(
             FROM "BoardMessage"
             WHERE board_id = $1
             ORDER BY sticky DESC, posted_at DESC
-        )", board_id);
+        )",
+                                      board_id);
 
         std::vector<BoardMessageData> messages;
         messages.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             BoardMessageData msg;
             msg.id = row["id"].as<int>();
             msg.board_id = row["board_id"].as<int>();
@@ -5666,15 +5587,14 @@ Result<std::vector<BoardMessageData>> load_board_messages(
         logger->debug("Loaded {} messages for board {}", messages.size(), board_id);
         return messages;
 
-    } catch (const pqxx::sql_error& e) {
-        logger->error("SQL error loading messages for board {}: {}",
-                     board_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load board messages: {}", e.what())});
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error loading messages for board {}: {}", board_id, e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load board messages: {}", e.what())});
     }
 }
 
-Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work& txn) {
+Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work &txn) {
     auto logger = Log::database();
     logger->debug("Loading all boards from database");
 
@@ -5688,7 +5608,7 @@ Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work& txn) {
         std::vector<BoardDataDB> boards;
         boards.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             BoardDataDB board;
             board.id = row["id"].as<int>();
             board.alias = row["alias"].as<std::string>();
@@ -5713,14 +5633,13 @@ Result<std::vector<BoardDataDB>> load_all_boards(pqxx::work& txn) {
         logger->debug("Loaded {} boards from database", boards.size());
         return boards;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading boards: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load boards: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load boards: {}", e.what())});
     }
 }
 
-Result<std::optional<BoardDataDB>> load_board(pqxx::work& txn, int board_id) {
+Result<std::optional<BoardDataDB>> load_board(pqxx::work &txn, int board_id) {
     auto logger = Log::database();
     logger->debug("Loading board {}", board_id);
 
@@ -5730,13 +5649,14 @@ Result<std::optional<BoardDataDB>> load_board(pqxx::work& txn, int board_id) {
             FROM "Board"
             WHERE id = $1
             LIMIT 1
-        )", board_id);
+        )",
+                                      board_id);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         BoardDataDB board;
         board.id = row["id"].as<int>();
         board.alias = row["alias"].as<std::string>();
@@ -5757,15 +5677,14 @@ Result<std::optional<BoardDataDB>> load_board(pqxx::work& txn, int board_id) {
 
         return board;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading board {}: {}", board_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load board {}: {}", board_id, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load board {}: {}", board_id, e.what())});
     }
 }
 
-Result<std::optional<BoardDataDB>> load_board_by_alias(
-    pqxx::work& txn, const std::string& alias) {
+Result<std::optional<BoardDataDB>> load_board_by_alias(pqxx::work &txn, const std::string &alias) {
     auto logger = Log::database();
     logger->debug("Loading board by alias: {}", alias);
 
@@ -5775,13 +5694,14 @@ Result<std::optional<BoardDataDB>> load_board_by_alias(
             FROM "Board"
             WHERE LOWER(alias) = LOWER($1)
             LIMIT 1
-        )", alias);
+        )",
+                                      alias);
 
         if (result.empty()) {
             return std::nullopt;
         }
 
-        const auto& row = result[0];
+        const auto &row = result[0];
         BoardDataDB board;
         board.id = row["id"].as<int>();
         board.alias = row["alias"].as<std::string>();
@@ -5802,30 +5722,28 @@ Result<std::optional<BoardDataDB>> load_board_by_alias(
 
         return board;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading board '{}': {}", alias, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load board '{}': {}", alias, e.what())});
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load board '{}': {}", alias, e.what())});
     }
 }
 
-Result<int> count_boards(pqxx::work& txn) {
+Result<int> count_boards(pqxx::work &txn) {
     auto logger = Log::database();
 
     try {
         auto result = txn.exec(R"(SELECT COUNT(*) as count FROM "Board")");
         return result[0]["count"].as<int>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error counting boards: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to count boards: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to count boards: {}", e.what())});
     }
 }
 
-Result<int> post_board_message(
-    pqxx::work& txn, int board_id, const std::string& poster,
-    int poster_level, const std::string& subject, const std::string& content) {
+Result<int> post_board_message(pqxx::work &txn, int board_id, const std::string &poster, int poster_level,
+                               const std::string &subject, const std::string &content) {
 
     auto logger = Log::database();
 
@@ -5834,31 +5752,31 @@ Result<int> post_board_message(
             INSERT INTO "BoardMessage" (board_id, poster, poster_level, posted_at, subject, content, updated_at)
             VALUES ($1, $2, $3, NOW(), $4, $5, NOW())
             RETURNING id
-        )", board_id, poster, poster_level, subject, content);
+        )",
+                                      board_id, poster, poster_level, subject, content);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::InternalError,
-                "Failed to insert board message"});
+            return std::unexpected(Error{ErrorCode::InternalError, "Failed to insert board message"});
         }
 
         int message_id = result[0]["id"].as<int>();
         logger->debug("Posted message {} to board {} by {}", message_id, board_id, poster);
         return message_id;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error posting board message: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to post message: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to post message: {}", e.what())});
     }
 }
 
-Result<bool> delete_board_message(pqxx::work& txn, int message_id) {
+Result<bool> delete_board_message(pqxx::work &txn, int message_id) {
     auto logger = Log::database();
 
     try {
         auto result = txn.exec_params(R"(
             DELETE FROM "BoardMessage" WHERE id = $1
-        )", message_id);
+        )",
+                                      message_id);
 
         bool deleted = result.affected_rows() > 0;
         if (deleted) {
@@ -5866,10 +5784,9 @@ Result<bool> delete_board_message(pqxx::work& txn, int message_id) {
         }
         return deleted;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error deleting board message: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to delete message: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to delete message: {}", e.what())});
     }
 }
 
@@ -5877,14 +5794,9 @@ Result<bool> delete_board_message(pqxx::work& txn, int message_id) {
 // Report System Queries
 // =============================================================================
 
-Result<int> save_report(
-    pqxx::work& txn,
-    const std::string& report_type,
-    const std::string& reporter_name,
-    const std::optional<std::string>& reporter_id,
-    const std::optional<int>& room_zone_id,
-    const std::optional<int>& room_id,
-    const std::string& message) {
+Result<int> save_report(pqxx::work &txn, const std::string &report_type, const std::string &reporter_name,
+                        const std::optional<std::string> &reporter_id, const std::optional<int> &room_zone_id,
+                        const std::optional<int> &room_id, const std::string &message) {
 
     auto logger = Log::database();
     logger->debug("Saving {} report from {}", report_type, reporter_name);
@@ -5902,31 +5814,26 @@ Result<int> save_report(
             )
             RETURNING id
         )",
-            report_type,
-            reporter_name,
-            reporter_id.has_value() ? reporter_id.value() : std::optional<std::string>{},
-            room_zone_id.has_value() ? room_zone_id.value() : std::optional<int>{},
-            room_id.has_value() ? room_id.value() : std::optional<int>{},
-            message);
+                                      report_type, reporter_name,
+                                      reporter_id.has_value() ? reporter_id.value() : std::optional<std::string>{},
+                                      room_zone_id.has_value() ? room_zone_id.value() : std::optional<int>{},
+                                      room_id.has_value() ? room_id.value() : std::optional<int>{}, message);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::InternalError,
-                "Failed to insert report - no ID returned"});
+            return std::unexpected(Error{ErrorCode::InternalError, "Failed to insert report - no ID returned"});
         }
 
         int report_id = result[0]["id"].as<int>();
         logger->info("Saved {} report #{} from {}", report_type, report_id, reporter_name);
         return report_id;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving report: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save report: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to save report: {}", e.what())});
     }
 }
 
-Result<std::vector<ReportData>> load_reports_by_type(
-    pqxx::work& txn, const std::string& report_type) {
+Result<std::vector<ReportData>> load_reports_by_type(pqxx::work &txn, const std::string &report_type) {
 
     auto logger = Log::database();
 
@@ -5938,12 +5845,13 @@ Result<std::vector<ReportData>> load_reports_by_type(
             FROM "reports"
             WHERE report_type = $1::text::"ReportType"
             ORDER BY created_at DESC
-        )", report_type);
+        )",
+                                      report_type);
 
         std::vector<ReportData> reports;
         reports.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ReportData report;
             report.id = row["id"].as<int>();
             report.report_type = row["report_type"].as<std::string>();
@@ -5975,15 +5883,13 @@ Result<std::vector<ReportData>> load_reports_by_type(
         logger->debug("Loaded {} {} reports", reports.size(), report_type);
         return reports;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading reports: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load reports: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load reports: {}", e.what())});
     }
 }
 
-Result<std::vector<ReportData>> load_open_reports(
-    pqxx::work& txn, const std::string& report_type) {
+Result<std::vector<ReportData>> load_open_reports(pqxx::work &txn, const std::string &report_type) {
 
     auto logger = Log::database();
 
@@ -5996,12 +5902,13 @@ Result<std::vector<ReportData>> load_open_reports(
             WHERE report_type = $1::text::"ReportType"
               AND status = 'OPEN'::"ReportStatus"
             ORDER BY created_at DESC
-        )", report_type);
+        )",
+                                      report_type);
 
         std::vector<ReportData> reports;
         reports.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             ReportData report;
             report.id = row["id"].as<int>();
             report.report_type = row["report_type"].as<std::string>();
@@ -6026,14 +5933,13 @@ Result<std::vector<ReportData>> load_open_reports(
         logger->debug("Loaded {} open {} reports", reports.size(), report_type);
         return reports;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading open reports: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load reports: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load reports: {}", e.what())});
     }
 }
 
-Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type) {
+Result<int> count_open_reports(pqxx::work &txn, const std::string &report_type) {
     auto logger = Log::database();
 
     try {
@@ -6042,14 +5948,14 @@ Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type) 
             FROM "reports"
             WHERE report_type = $1::text::"ReportType"
               AND status = 'OPEN'::"ReportStatus"
-        )", report_type);
+        )",
+                                      report_type);
 
         return result[0]["count"].as<int>();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error counting reports: {}", e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to count reports: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to count reports: {}", e.what())});
     }
 }
 
@@ -6057,8 +5963,7 @@ Result<int> count_open_reports(pqxx::work& txn, const std::string& report_type) 
 // Character Aliases
 // ============================================================================
 
-Result<std::vector<CharacterAliasData>> load_character_aliases(
-    pqxx::work& txn, const std::string& character_id) {
+Result<std::vector<CharacterAliasData>> load_character_aliases(pqxx::work &txn, const std::string &character_id) {
 
     auto logger = Log::database();
     logger->debug("Loading aliases for character {}", character_id);
@@ -6069,12 +5974,13 @@ Result<std::vector<CharacterAliasData>> load_character_aliases(
             FROM "CharacterAliases"
             WHERE character_id = $1
             ORDER BY alias
-        )", character_id);
+        )",
+                                      character_id);
 
         std::vector<CharacterAliasData> aliases;
         aliases.reserve(result.size());
 
-        for (const auto& row : result) {
+        for (const auto &row : result) {
             CharacterAliasData alias;
             alias.character_id = character_id;
             alias.alias = row["alias"].as<std::string>();
@@ -6085,17 +5991,14 @@ Result<std::vector<CharacterAliasData>> load_character_aliases(
         logger->debug("Loaded {} aliases for character {}", aliases.size(), character_id);
         return aliases;
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error loading aliases for character {}: {}", character_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to load aliases: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load aliases: {}", e.what())});
     }
 }
 
-Result<void> save_character_aliases(
-    pqxx::work& txn,
-    const std::string& character_id,
-    const std::vector<CharacterAliasData>& aliases) {
+Result<void> save_character_aliases(pqxx::work &txn, const std::string &character_id,
+                                    const std::vector<CharacterAliasData> &aliases) {
 
     auto logger = Log::database();
     logger->debug("Saving {} aliases for character {}", aliases.size(), character_id);
@@ -6105,28 +6008,28 @@ Result<void> save_character_aliases(
         txn.exec_params(R"(
             DELETE FROM "CharacterAliases"
             WHERE character_id = $1
-        )", character_id);
+        )",
+                        character_id);
 
         // Insert new aliases
-        for (const auto& alias : aliases) {
+        for (const auto &alias : aliases) {
             txn.exec_params(R"(
                 INSERT INTO "CharacterAliases" (character_id, alias, command)
                 VALUES ($1, $2, $3)
-            )", character_id, alias.alias, alias.command);
+            )",
+                            character_id, alias.alias, alias.command);
         }
 
         logger->debug("Saved {} aliases for character {}", aliases.size(), character_id);
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error saving aliases for character {}: {}", character_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to save aliases: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to save aliases: {}", e.what())});
     }
 }
 
-Result<void> delete_character_aliases(
-    pqxx::work& txn, const std::string& character_id) {
+Result<void> delete_character_aliases(pqxx::work &txn, const std::string &character_id) {
 
     auto logger = Log::database();
     logger->debug("Deleting aliases for character {}", character_id);
@@ -6135,15 +6038,15 @@ Result<void> delete_character_aliases(
         txn.exec_params(R"(
             DELETE FROM "CharacterAliases"
             WHERE character_id = $1
-        )", character_id);
+        )",
+                        character_id);
 
         logger->debug("Deleted aliases for character {}", character_id);
         return Success();
 
-    } catch (const pqxx::sql_error& e) {
+    } catch (const pqxx::sql_error &e) {
         logger->error("SQL error deleting aliases for character {}: {}", character_id, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError,
-            fmt::format("Failed to delete aliases: {}", e.what())});
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to delete aliases: {}", e.what())});
     }
 }
 

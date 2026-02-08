@@ -2,15 +2,15 @@
 
 #pragma once
 
-#include "terminal_capabilities.hpp"
 #include "rich_text.hpp"
+#include "terminal_capabilities.hpp"
 
+#include <expected>
+#include <optional>
 #include <string>
 #include <string_view>
-#include <vector>
-#include <optional>
 #include <variant>
-#include <expected>
+#include <vector>
 
 /**
  * XML-Lite Markup Parser for FieryMUD
@@ -32,10 +32,10 @@ namespace MarkupParser {
 
 /** Color types supported by markup system */
 enum class ColorType {
-    None,           // No color specified
-    Named,          // Named 16-color (red, green, blue, etc.)
-    Indexed,        // 256-color palette (c0-c255)
-    RGB             // 24-bit truecolor (#RRGGBB)
+    None,    // No color specified
+    Named,   // Named 16-color (red, green, blue, etc.)
+    Indexed, // 256-color palette (c0-c255)
+    RGB      // 24-bit truecolor (#RRGGBB)
 };
 
 /** Color value with type discrimination */
@@ -43,9 +43,11 @@ struct ColorValue {
     ColorType type = ColorType::None;
 
     // Type-specific values
-    Color named_color = Color::Default;                  // For ColorType::Named
-    int indexed_value = 0;                               // For ColorType::Indexed (0-255)
-    struct { int r, g, b; } rgb_value = {0, 0, 0};      // For ColorType::RGB
+    Color named_color = Color::Default; // For ColorType::Named
+    int indexed_value = 0;              // For ColorType::Indexed (0-255)
+    struct {
+        int r, g, b;
+    } rgb_value = {0, 0, 0}; // For ColorType::RGB
 
     /** Create no color */
     static ColorValue none() { return ColorValue{}; }
@@ -60,10 +62,10 @@ struct ColorValue {
     static ColorValue rgb(int r, int g, int b);
 
     /** Convert to ANSI escape sequence for foreground */
-    std::string to_foreground_ansi(const TerminalCapabilities::Capabilities& caps) const;
+    std::string to_foreground_ansi(const TerminalCapabilities::Capabilities &caps) const;
 
     /** Convert to ANSI escape sequence for background */
-    std::string to_background_ansi(const TerminalCapabilities::Capabilities& caps) const;
+    std::string to_background_ansi(const TerminalCapabilities::Capabilities &caps) const;
 
     /** Check if color is specified */
     bool has_color() const { return type != ColorType::None; }
@@ -75,7 +77,7 @@ struct ColorValue {
 
 /** Single layer in the style stack */
 struct StyleLayer {
-    std::string tag_name;                      // Empty for anonymous tags
+    std::string tag_name; // Empty for anonymous tags
 
     // Text attributes
     bool bold = false;
@@ -95,7 +97,7 @@ struct StyleLayer {
     bool has_styling() const;
 
     /** Generate ANSI codes for this layer only */
-    std::string to_ansi(const TerminalCapabilities::Capabilities& caps) const;
+    std::string to_ansi(const TerminalCapabilities::Capabilities &caps) const;
 };
 
 /** Complete style state (combined from all stack layers) */
@@ -112,7 +114,7 @@ struct StyleState {
     std::optional<ColorValue> background;
 
     /** Generate ANSI escape sequence for current state */
-    std::string to_ansi(const TerminalCapabilities::Capabilities& caps) const;
+    std::string to_ansi(const TerminalCapabilities::Capabilities &caps) const;
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -121,25 +123,27 @@ struct StyleState {
 
 /** Modifier type classification */
 enum class ModifierType {
-    Attribute,              // b, dim, u, i, s, blink, reverse, hide
-    NamedForeground,        // red, green, blue, etc.
-    NamedBackground,        // bg-red, bg-green, etc.
-    IndexedForeground,      // cN (0-255)
-    IndexedBackground,      // bgcN (0-255)
-    RGBForeground,          // #RRGGBB
-    RGBBackground,          // bg#RRGGBB
+    Attribute,         // b, dim, u, i, s, blink, reverse, hide
+    NamedForeground,   // red, green, blue, etc.
+    NamedBackground,   // bg-red, bg-green, etc.
+    IndexedForeground, // cN (0-255)
+    IndexedBackground, // bgcN (0-255)
+    RGBForeground,     // #RRGGBB
+    RGBBackground,     // bg#RRGGBB
     Unknown
 };
 
 /** Single parsed modifier */
 struct Modifier {
     ModifierType type;
-    std::string value;      // Original token
+    std::string value; // Original token
 
     // Type-specific parsed values
     Color named_color = Color::Default;
     int indexed_value = 0;
-    struct { int r, g, b; } rgb_value = {0, 0, 0};
+    struct {
+        int r, g, b;
+    } rgb_value = {0, 0, 0};
 };
 
 /** Parse a single modifier token */
@@ -157,20 +161,20 @@ std::optional<std::tuple<int, int, int>> parse_hex_color(std::string_view hex);
 
 /** Tag type */
 enum class TagType {
-    Opening,        // <name> or <name:mod>
-    ClosingNamed,   // </name>
-    ClosingReset,   // </>
-    Text            // Not a tag
+    Opening,      // <name> or <name:mod>
+    ClosingNamed, // </name>
+    ClosingReset, // </>
+    Text          // Not a tag
 };
 
 /** Parsed tag information */
 struct Tag {
     TagType type;
-    std::string tag_name;                  // Empty for anonymous or reset
-    std::vector<Modifier> modifiers;       // For opening tags
-    size_t start_pos;                      // Position in source string
-    size_t end_pos;                        // Position after tag
-    std::string_view text;                 // For TagType::Text only
+    std::string tag_name;            // Empty for anonymous or reset
+    std::vector<Modifier> modifiers; // For opening tags
+    size_t start_pos;                // Position in source string
+    size_t end_pos;                  // Position after tag
+    std::string_view text;           // For TagType::Text only
 };
 
 /** Parse next tag or text segment from input */
@@ -182,11 +186,11 @@ std::expected<Tag, std::string> parse_next_tag(std::string_view input, size_t st
 
 /** Stack-based style manager */
 class StyleStack {
-public:
+  public:
     StyleStack() = default;
 
     /** Push a new style layer */
-    void push(const StyleLayer& layer);
+    void push(const StyleLayer &layer);
 
     /** Pop the most recent layer with given tag name */
     bool pop_named(std::string_view tag_name);
@@ -203,7 +207,7 @@ public:
     /** Check if stack is empty */
     bool empty() const { return stack_.empty(); }
 
-private:
+  private:
     std::vector<StyleLayer> stack_;
 };
 
@@ -213,20 +217,18 @@ private:
 
 /** Parser configuration and limits */
 struct ParserConfig {
-    size_t max_markup_length = 4096;       // Maximum total string length
-    size_t max_tag_name_length = 32;       // Maximum tag name length
-    size_t max_nesting_depth = 16;         // Maximum style stack depth
-    size_t max_modifier_count = 8;         // Maximum modifiers per tag
-    size_t max_tag_count = 100;            // Maximum total tags in string
+    size_t max_markup_length = 4096; // Maximum total string length
+    size_t max_tag_name_length = 32; // Maximum tag name length
+    size_t max_nesting_depth = 16;   // Maximum style stack depth
+    size_t max_modifier_count = 8;   // Maximum modifiers per tag
+    size_t max_tag_count = 100;      // Maximum total tags in string
 
-    bool strict_mode = false;              // Strict error handling vs. best-effort
-    bool allow_anonymous_tags = true;      // Allow tags without names
+    bool strict_mode = false;         // Strict error handling vs. best-effort
+    bool allow_anonymous_tags = true; // Allow tags without names
 };
 
 /** Default parser configuration */
-constexpr ParserConfig default_config() {
-    return ParserConfig{};
-}
+constexpr ParserConfig default_config() { return ParserConfig{}; }
 
 //////////////////////////////////////////////////////////////////////////////
 // Parsing Modes
@@ -234,9 +236,9 @@ constexpr ParserConfig default_config() {
 
 /** Markup processing mode */
 enum class ProcessingMode {
-    Parse,      // Convert markup to ANSI
-    Strip,      // Remove all markup (plain text)
-    Validate    // Check syntax without rendering
+    Parse,   // Convert markup to ANSI
+    Strip,   // Remove all markup (plain text)
+    Validate // Check syntax without rendering
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -245,29 +247,22 @@ enum class ProcessingMode {
 
 /** Result of markup parsing */
 struct ParseResult {
-    std::string output;                    // Rendered output (ANSI or plain)
-    std::vector<std::string> warnings;     // Non-fatal issues
-    bool success = true;                   // Overall success flag
+    std::string output;                // Rendered output (ANSI or plain)
+    std::vector<std::string> warnings; // Non-fatal issues
+    bool success = true;               // Overall success flag
 };
 
 /** Parse and render XML-Lite markup to ANSI */
-ParseResult parse_markup(
-    std::string_view markup,
-    const TerminalCapabilities::Capabilities& caps = TerminalCapabilities::detect_capabilities(),
-    const ParserConfig& config = default_config()
-);
+ParseResult parse_markup(std::string_view markup,
+                         const TerminalCapabilities::Capabilities &caps = TerminalCapabilities::detect_capabilities(),
+                         const ParserConfig &config = default_config());
 
 /** Strip all markup and return plain text */
-std::string strip_markup(
-    std::string_view markup,
-    const ParserConfig& config = default_config()
-);
+std::string strip_markup(std::string_view markup, const ParserConfig &config = default_config());
 
 /** Validate markup syntax without rendering */
-std::expected<void, std::vector<std::string>> validate_markup(
-    std::string_view markup,
-    const ParserConfig& config = default_config()
-);
+std::expected<void, std::vector<std::string>> validate_markup(std::string_view markup,
+                                                              const ParserConfig &config = default_config());
 
 //////////////////////////////////////////////////////////////////////////////
 // Utility Functions
@@ -283,10 +278,7 @@ std::string truncate_markup(std::string_view markup, size_t max_visible_length);
 std::string escape_markup(std::string_view text);
 
 /** Preview markup with terminal capabilities */
-std::string preview_markup(
-    std::string_view markup,
-    TerminalCapabilities::SupportLevel level
-);
+std::string preview_markup(std::string_view markup, TerminalCapabilities::SupportLevel level);
 
 //////////////////////////////////////////////////////////////////////////////
 // Named Color Mapping
@@ -309,10 +301,7 @@ int nearest_256_color(int r, int g, int b);
 Color nearest_ansi_color(int r, int g, int b);
 
 /** Downsample ColorValue based on terminal capabilities */
-ColorValue downsample_color(
-    const ColorValue& color,
-    const TerminalCapabilities::Capabilities& caps
-);
+ColorValue downsample_color(const ColorValue &color, const TerminalCapabilities::Capabilities &caps);
 
 //////////////////////////////////////////////////////////////////////////////
 // Error Types
@@ -320,26 +309,26 @@ ColorValue downsample_color(
 
 /** Parse error types */
 enum class ParseErrorType {
-    InvalidTag,             // Malformed tag syntax
-    UnclosedTag,            // Tag opened but never closed
-    InvalidModifier,        // Unknown or malformed modifier
-    NestingTooDeep,         // Stack depth exceeded
-    StringTooLong,          // Input exceeds length limit
-    TooManyTags,            // Tag count exceeded
-    InvalidColor,           // Invalid color format
-    TagNameTooLong,         // Tag name exceeds limit
-    TooManyModifiers        // Modifier count exceeded
+    InvalidTag,      // Malformed tag syntax
+    UnclosedTag,     // Tag opened but never closed
+    InvalidModifier, // Unknown or malformed modifier
+    NestingTooDeep,  // Stack depth exceeded
+    StringTooLong,   // Input exceeds length limit
+    TooManyTags,     // Tag count exceeded
+    InvalidColor,    // Invalid color format
+    TagNameTooLong,  // Tag name exceeds limit
+    TooManyModifiers // Modifier count exceeded
 };
 
 /** Detailed parse error */
 struct ParseError {
     ParseErrorType type;
     std::string message;
-    size_t position = 0;        // Position in input where error occurred
-    std::string context;        // Surrounding text for context
+    size_t position = 0; // Position in input where error occurred
+    std::string context; // Surrounding text for context
 };
 
 /** Format parse error for display */
-std::string format_parse_error(const ParseError& error, std::string_view input);
+std::string format_parse_error(const ParseError &error, std::string_view input);
 
 } // namespace MarkupParser

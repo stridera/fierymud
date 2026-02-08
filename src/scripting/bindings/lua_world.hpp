@@ -12,6 +12,6 @@ namespace FieryMUD {
  *   world.find_mobile(name)  - Find a mobile by name in the world
  *   world.destroy(entity)    - Remove an entity (mobile or object) from the world
  */
-void register_world_bindings(sol::state& lua);
+void register_world_bindings(sol::state &lua);
 
 } // namespace FieryMUD

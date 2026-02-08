@@ -2,8 +2,6 @@
 
 #include "core/logging.hpp"
 
-
-
 #include <algorithm>
 #include <numeric>
 #include <ranges>
@@ -195,7 +193,8 @@ bool matches_words(std::string_view search, std::string_view target) {
     std::string_view remaining = search;
     while (!remaining.empty()) {
         size_t start = remaining.find_first_not_of(" _");
-        if (start == std::string_view::npos) break;
+        if (start == std::string_view::npos)
+            break;
         remaining = remaining.substr(start);
         size_t end = remaining.find_first_of(" _");
         if (end == std::string_view::npos) {
@@ -206,14 +205,16 @@ bool matches_words(std::string_view search, std::string_view target) {
         remaining = remaining.substr(end);
     }
 
-    if (search_words.empty()) return false;
+    if (search_words.empty())
+        return false;
 
     // Split target into words
     std::vector<std::string_view> target_words;
     remaining = target;
     while (!remaining.empty()) {
         size_t start = remaining.find_first_not_of(" _");
-        if (start == std::string_view::npos) break;
+        if (start == std::string_view::npos)
+            break;
         remaining = remaining.substr(start);
         size_t end = remaining.find_first_of(" _");
         if (end == std::string_view::npos) {
@@ -225,7 +226,8 @@ bool matches_words(std::string_view search, std::string_view target) {
     }
 
     // Each search word must be a prefix of the corresponding target word
-    if (search_words.size() > target_words.size()) return false;
+    if (search_words.size() > target_words.size())
+        return false;
 
     for (size_t i = 0; i < search_words.size(); ++i) {
         if (!matches_start(search_words[i], target_words[i])) {

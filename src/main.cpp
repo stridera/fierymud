@@ -1,15 +1,16 @@
+#include "admin/admin_server.hpp"
+#include "admin/player_handler.hpp"
+#include "admin/zone_reload_handler.hpp"
 #include "core/logging.hpp"
 #include "core/result.hpp"
 #include "server/mud_server.hpp"
-#include "admin/admin_server.hpp"
-#include "admin/zone_reload_handler.hpp"
-#include "admin/player_handler.hpp"
+
+#include <cxxopts.hpp>
 
 #include <atomic>
 #include <chrono>
 #include <csignal>
 #include <cstdlib>
-#include <cxxopts.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -24,7 +25,7 @@
  * @param env_path Path to the .env file
  * @return Number of variables loaded, or -1 on error
  */
-int load_dotenv(const std::string& env_path) {
+int load_dotenv(const std::string &env_path) {
     if (!std::filesystem::exists(env_path)) {
         return 0; // Not an error, just no file
     }
@@ -52,12 +53,16 @@ int load_dotenv(const std::string& env_path) {
         std::string value = line.substr(equals_pos + 1);
 
         // Trim whitespace from key
-        while (!key.empty() && std::isspace(key.front())) key.erase(0, 1);
-        while (!key.empty() && std::isspace(key.back())) key.pop_back();
+        while (!key.empty() && std::isspace(key.front()))
+            key.erase(0, 1);
+        while (!key.empty() && std::isspace(key.back()))
+            key.pop_back();
 
         // Trim whitespace and quotes from value
-        while (!value.empty() && std::isspace(value.front())) value.erase(0, 1);
-        while (!value.empty() && std::isspace(value.back())) value.pop_back();
+        while (!value.empty() && std::isspace(value.front()))
+            value.erase(0, 1);
+        while (!value.empty() && std::isspace(value.back()))
+            value.pop_back();
         if (value.size() >= 2 && value.front() == '"' && value.back() == '"') {
             value = value.substr(1, value.size() - 2);
         }
@@ -82,7 +87,7 @@ std::atomic<bool> g_reload_requested{false};
  * Print user-friendly suggestions based on error type.
  * Helps users diagnose and fix common startup issues.
  */
-void print_error_suggestions(const Error& error) {
+void print_error_suggestions(const Error &error) {
     std::cerr << "\n";
 
     switch (error.code) {
@@ -139,13 +144,12 @@ int main(int argc, char *argv[]) {
         // Parse command line options
         cxxopts::Options options("fierymud", "Modern FieryMUD Server v3.0");
 
-        options.add_options()
-            ("h,help", "Show help message")
-            ("e,env", "Path to .env file", cxxopts::value<std::string>()->default_value(".env"))
-            ("p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4003"))
-            ("d,database", "Database name override", cxxopts::value<std::string>())
-            ("l,log-level", "Log level (trace, debug, info, warn, error)", cxxopts::value<std::string>()->default_value("info"))
-            ("v,version", "Show version information");
+        options.add_options()("h,help", "Show help message")("e,env", "Path to .env file",
+                                                             cxxopts::value<std::string>()->default_value(".env"))(
+            "p,port", "Port number to listen on", cxxopts::value<std::string>()->default_value("4003"))(
+            "d,database", "Database name override", cxxopts::value<std::string>())(
+            "l,log-level", "Log level (trace, debug, info, warn, error)",
+            cxxopts::value<std::string>()->default_value("info"))("v,version", "Show version information");
 
         auto result = options.parse(argc, argv);
 
@@ -191,7 +195,7 @@ int main(int argc, char *argv[]) {
         // Port: command line > environment > default
         if (result.count("port")) {
             config.port = std::stoi(result["port"].as<std::string>());
-        } else if (const char* port_env = std::getenv("PORT")) {
+        } else if (const char *port_env = std::getenv("PORT")) {
             config.port = std::stoi(port_env);
         } else {
             config.port = 4003;
@@ -200,7 +204,7 @@ int main(int argc, char *argv[]) {
         // Log level: command line > environment > default
         if (result.count("log-level")) {
             config.log_level = result["log-level"].as<std::string>();
-        } else if (const char* log_env = std::getenv("LOG_LEVEL")) {
+        } else if (const char *log_env = std::getenv("LOG_LEVEL")) {
             config.log_level = log_env;
         } else {
             config.log_level = "info";

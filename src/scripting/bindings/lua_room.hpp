@@ -26,6 +26,6 @@ namespace FieryMUD {
  *   room:spawn_mob(id)   - Spawn mobile in room (future)
  *   room:spawn_obj(id)   - Spawn object in room (future)
  */
-void register_room_bindings(sol::state& lua);
+void register_room_bindings(sol::state &lua);
 
 } // namespace FieryMUD

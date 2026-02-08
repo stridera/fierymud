@@ -15,7 +15,7 @@ namespace fiery {
  * to provide variety in game output.
  */
 class MessageUtils {
-public:
+  public:
     /**
      * @brief Select a random message from an array of messages
      *
@@ -30,7 +30,7 @@ public:
      * @param messages Vector of message strings to choose from
      * @return A random message, or empty string if vector is empty
      */
-    [[nodiscard]] static std::string_view select_random(const std::vector<std::string>& messages);
+    [[nodiscard]] static std::string_view select_random(const std::vector<std::string> &messages);
 
     /**
      * @brief Substitute placeholders in a message template
@@ -44,20 +44,16 @@ public:
      * @param weapon_name Name of the weapon (optional)
      * @return Formatted message with placeholders replaced
      */
-    [[nodiscard]] static std::string format_message(
-        std::string_view message_template,
-        std::string_view actor_name,
-        std::string_view target_name = "",
-        int damage = -1,
-        std::string_view weapon_name = ""
-    );
+    [[nodiscard]] static std::string format_message(std::string_view message_template, std::string_view actor_name,
+                                                    std::string_view target_name = "", int damage = -1,
+                                                    std::string_view weapon_name = "");
 
     /**
      * @brief Get random number generator (thread-local for thread safety)
      */
-    static std::mt19937& get_rng();
+    static std::mt19937 &get_rng();
 
-private:
+  private:
     // Thread-local random number generator
     static thread_local std::mt19937 rng_;
     static thread_local bool rng_initialized_;

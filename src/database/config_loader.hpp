@@ -23,13 +23,7 @@ namespace fierymud::config {
 /**
  * Configuration value types matching the database schema.
  */
-enum class ConfigValueType {
-    STRING,
-    INT,
-    FLOAT,
-    BOOL,
-    JSON
-};
+enum class ConfigValueType { STRING, INT, FLOAT, BOOL, JSON };
 
 /**
  * A single configuration entry from the database.
@@ -66,17 +60,17 @@ struct ConfigEntry {
  *   }
  */
 class ConfigLoader {
-public:
+  public:
     /**
      * Get the singleton instance.
      */
-    static ConfigLoader& instance();
+    static ConfigLoader &instance();
 
     // Delete copy/move constructors
-    ConfigLoader(const ConfigLoader&) = delete;
-    ConfigLoader& operator=(const ConfigLoader&) = delete;
-    ConfigLoader(ConfigLoader&&) = delete;
-    ConfigLoader& operator=(ConfigLoader&&) = delete;
+    ConfigLoader(const ConfigLoader &) = delete;
+    ConfigLoader &operator=(const ConfigLoader &) = delete;
+    ConfigLoader(ConfigLoader &&) = delete;
+    ConfigLoader &operator=(ConfigLoader &&) = delete;
 
     /**
      * Load all configuration from the database.
@@ -108,58 +102,47 @@ public:
     /**
      * Get a string configuration value.
      */
-    [[nodiscard]] std::optional<std::string> get_string(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] std::optional<std::string> get_string(std::string_view category, std::string_view key) const;
 
     /**
      * Get an integer configuration value.
      */
-    [[nodiscard]] std::optional<int> get_int(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] std::optional<int> get_int(std::string_view category, std::string_view key) const;
 
     /**
      * Get a floating-point configuration value.
      */
-    [[nodiscard]] std::optional<double> get_float(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] std::optional<double> get_float(std::string_view category, std::string_view key) const;
 
     /**
      * Get a boolean configuration value.
      */
-    [[nodiscard]] std::optional<bool> get_bool(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] std::optional<bool> get_bool(std::string_view category, std::string_view key) const;
 
     /**
      * Get a duration in seconds.
      */
-    [[nodiscard]] std::optional<std::chrono::seconds> get_seconds(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] std::optional<std::chrono::seconds> get_seconds(std::string_view category,
+                                                                  std::string_view key) const;
 
     /**
      * Get a duration in minutes.
      */
-    [[nodiscard]] std::optional<std::chrono::minutes> get_minutes(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] std::optional<std::chrono::minutes> get_minutes(std::string_view category,
+                                                                  std::string_view key) const;
 
     // ========================================
     // Typed Getters with Defaults
     // ========================================
 
-    [[nodiscard]] std::string get_string_or(
-        std::string_view category, std::string_view key,
-        std::string_view default_value) const;
+    [[nodiscard]] std::string get_string_or(std::string_view category, std::string_view key,
+                                            std::string_view default_value) const;
 
-    [[nodiscard]] int get_int_or(
-        std::string_view category, std::string_view key,
-        int default_value) const;
+    [[nodiscard]] int get_int_or(std::string_view category, std::string_view key, int default_value) const;
 
-    [[nodiscard]] double get_float_or(
-        std::string_view category, std::string_view key,
-        double default_value) const;
+    [[nodiscard]] double get_float_or(std::string_view category, std::string_view key, double default_value) const;
 
-    [[nodiscard]] bool get_bool_or(
-        std::string_view category, std::string_view key,
-        bool default_value) const;
+    [[nodiscard]] bool get_bool_or(std::string_view category, std::string_view key, bool default_value) const;
 
     // ========================================
     // Category Access
@@ -168,8 +151,7 @@ public:
     /**
      * Get all entries in a category.
      */
-    [[nodiscard]] std::vector<ConfigEntry> get_category(
-        std::string_view category) const;
+    [[nodiscard]] std::vector<ConfigEntry> get_category(std::string_view category) const;
 
     /**
      * Get all available categories.
@@ -181,7 +163,7 @@ public:
      */
     [[nodiscard]] bool has(std::string_view category, std::string_view key) const;
 
-private:
+  private:
     ConfigLoader() = default;
     ~ConfigLoader() = default;
 
@@ -193,8 +175,7 @@ private:
     /**
      * Get raw entry by category and key.
      */
-    [[nodiscard]] const ConfigEntry* get_entry(
-        std::string_view category, std::string_view key) const;
+    [[nodiscard]] const ConfigEntry *get_entry(std::string_view category, std::string_view key) const;
 
     // Configuration storage
     std::unordered_map<std::string, ConfigEntry> entries_;

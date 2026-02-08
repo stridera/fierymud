@@ -1,7 +1,8 @@
 #include "game_data_cache.hpp"
+
+#include "../core/logging.hpp"
 #include "connection_pool.hpp"
 #include "world_queries.hpp"
-#include "../core/logging.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -28,7 +29,7 @@ std::string RaceData::lookup_key() const {
     key.reserve(plain_name.size());
     for (char c : plain_name) {
         if (c == '-' || c == '_' || c == ' ') {
-            continue;  // Skip separators for flexible matching
+            continue; // Skip separators for flexible matching
         }
         key += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
     }
@@ -44,7 +45,7 @@ std::string LiquidData::lookup_key() const {
     key.reserve(alias.size());
     for (char c : alias) {
         if (c == '-' || c == '_' || c == ' ') {
-            continue;  // Skip separators for flexible matching
+            continue; // Skip separators for flexible matching
         }
         key += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
     }
@@ -55,7 +56,7 @@ std::string LiquidData::lookup_key() const {
 // GameDataCache Implementation
 // =============================================================================
 
-GameDataCache& GameDataCache::instance() {
+GameDataCache &GameDataCache::instance() {
     static GameDataCache instance;
     return instance;
 }
@@ -65,7 +66,7 @@ std::string GameDataCache::normalize_key(std::string_view input) {
     key.reserve(input.size());
     for (char c : input) {
         if (c == '-' || c == '_' || c == ' ') {
-            continue;  // Skip separators
+            continue; // Skip separators
         }
         key += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
     }
@@ -91,14 +92,14 @@ Result<void> GameDataCache::load_all() {
     loaded_ = true;
     last_load_time_ = std::chrono::system_clock::now();
 
-    Log::info("GameDataCache loaded: {} classes, {} races, {} liquids",
-              classes_.size(), races_.size(), liquids_.size());
+    Log::info("GameDataCache loaded: {} classes, {} races, {} liquids", classes_.size(), races_.size(),
+              liquids_.size());
 
     return Success();
 }
 
 Result<void> GameDataCache::load_classes() {
-    auto result = ConnectionPool::instance().execute([this](pqxx::work& txn) -> Result<void> {
+    auto result = ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<void> {
         try {
             auto query_result = txn.exec(R"(
                 SELECT id, name, plain_name, description, hit_dice, primary_stat,
@@ -114,7 +115,7 @@ Result<void> GameDataCache::load_classes() {
             class_by_id_.clear();
             class_by_name_.clear();
 
-            for (const auto& row : query_result) {
+            for (const auto &row : query_result) {
                 ClassData data;
                 data.id = row["id"].as<int>();
                 data.name = row["name"].as<std::string>();
@@ -153,9 +154,8 @@ Result<void> GameDataCache::load_classes() {
 
             return Success();
 
-        } catch (const std::exception& e) {
-            return std::unexpected(Errors::DatabaseError(
-                fmt::format("Failed to load classes: {}", e.what())));
+        } catch (const std::exception &e) {
+            return std::unexpected(Errors::DatabaseError(fmt::format("Failed to load classes: {}", e.what())));
         }
     });
 
@@ -168,7 +168,7 @@ Result<void> GameDataCache::load_classes() {
 }
 
 Result<void> GameDataCache::load_races() {
-    auto result = ConnectionPool::instance().execute([this](pqxx::work& txn) -> Result<void> {
+    auto result = ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<void> {
         try {
             auto query_result = txn.exec(R"(
                 SELECT race, name, plain_name, playable, humanoid,
@@ -187,7 +187,7 @@ Result<void> GameDataCache::load_races() {
             race_by_key_.clear();
             race_by_name_.clear();
 
-            for (const auto& row : query_result) {
+            for (const auto &row : query_result) {
                 RaceData data;
                 data.race_key = row["race"].as<std::string>();
                 data.name = row["name"].as<std::string>();
@@ -248,9 +248,8 @@ Result<void> GameDataCache::load_races() {
 
             return Success();
 
-        } catch (const std::exception& e) {
-            return std::unexpected(Errors::DatabaseError(
-                fmt::format("Failed to load races: {}", e.what())));
+        } catch (const std::exception &e) {
+            return std::unexpected(Errors::DatabaseError(fmt::format("Failed to load races: {}", e.what())));
         }
     });
 
@@ -263,7 +262,7 @@ Result<void> GameDataCache::load_races() {
 }
 
 Result<void> GameDataCache::load_liquids() {
-    auto result = ConnectionPool::instance().execute([this](pqxx::work& txn) -> Result<void> {
+    auto result = ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<void> {
         try {
             auto query_result = txn.exec(R"(
                 SELECT id, name, alias, color_desc,
@@ -278,7 +277,7 @@ Result<void> GameDataCache::load_liquids() {
             liquid_by_name_.clear();
             liquid_by_alias_.clear();
 
-            for (const auto& row : query_result) {
+            for (const auto &row : query_result) {
                 LiquidData data;
                 data.id = row["id"].as<int>();
                 data.name = row["name"].as<std::string>();
@@ -298,9 +297,8 @@ Result<void> GameDataCache::load_liquids() {
 
             return Success();
 
-        } catch (const std::exception& e) {
-            return std::unexpected(Errors::DatabaseError(
-                fmt::format("Failed to load liquids: {}", e.what())));
+        } catch (const std::exception &e) {
+            return std::unexpected(Errors::DatabaseError(fmt::format("Failed to load liquids: {}", e.what())));
         }
     });
 
@@ -317,7 +315,7 @@ Result<void> GameDataCache::reload() {
     return load_all();
 }
 
-const ClassData* GameDataCache::find_class_by_id(int id) const {
+const ClassData *GameDataCache::find_class_by_id(int id) const {
     auto it = class_by_id_.find(id);
     if (it != class_by_id_.end() && it->second < classes_.size()) {
         return &classes_[it->second];
@@ -325,7 +323,7 @@ const ClassData* GameDataCache::find_class_by_id(int id) const {
     return nullptr;
 }
 
-const ClassData* GameDataCache::find_class_by_name(std::string_view name) const {
+const ClassData *GameDataCache::find_class_by_name(std::string_view name) const {
     std::string key = normalize_key(name);
     auto it = class_by_name_.find(key);
     if (it != class_by_name_.end() && it->second < classes_.size()) {
@@ -334,7 +332,7 @@ const ClassData* GameDataCache::find_class_by_name(std::string_view name) const 
     return nullptr;
 }
 
-const RaceData* GameDataCache::find_race_by_key(std::string_view key) const {
+const RaceData *GameDataCache::find_race_by_key(std::string_view key) const {
     std::string normalized = normalize_key(key);
     auto it = race_by_key_.find(normalized);
     if (it != race_by_key_.end() && it->second < races_.size()) {
@@ -343,7 +341,7 @@ const RaceData* GameDataCache::find_race_by_key(std::string_view key) const {
     return nullptr;
 }
 
-const RaceData* GameDataCache::find_race_by_name(std::string_view name) const {
+const RaceData *GameDataCache::find_race_by_name(std::string_view name) const {
     std::string key = normalize_key(name);
     auto it = race_by_name_.find(key);
     if (it != race_by_name_.end() && it->second < races_.size()) {
@@ -352,9 +350,9 @@ const RaceData* GameDataCache::find_race_by_name(std::string_view name) const {
     return nullptr;
 }
 
-std::vector<const RaceData*> GameDataCache::playable_races() const {
-    std::vector<const RaceData*> result;
-    for (const auto& race : races_) {
+std::vector<const RaceData *> GameDataCache::playable_races() const {
+    std::vector<const RaceData *> result;
+    for (const auto &race : races_) {
         if (race.playable) {
             result.push_back(&race);
         }
@@ -362,7 +360,7 @@ std::vector<const RaceData*> GameDataCache::playable_races() const {
     return result;
 }
 
-const LiquidData* GameDataCache::find_liquid_by_name(std::string_view name) const {
+const LiquidData *GameDataCache::find_liquid_by_name(std::string_view name) const {
     std::string key = normalize_key(name);
     auto it = liquid_by_name_.find(key);
     if (it != liquid_by_name_.end() && it->second < liquids_.size()) {
@@ -371,7 +369,7 @@ const LiquidData* GameDataCache::find_liquid_by_name(std::string_view name) cons
     return nullptr;
 }
 
-const LiquidData* GameDataCache::find_liquid_by_alias(std::string_view alias) const {
+const LiquidData *GameDataCache::find_liquid_by_alias(std::string_view alias) const {
     std::string key = normalize_key(alias);
     auto it = liquid_by_alias_.find(key);
     if (it != liquid_by_alias_.end() && it->second < liquids_.size()) {

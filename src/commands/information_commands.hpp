@@ -28,8 +28,7 @@ Result<void> register_commands();
  * - Shows visible objects
  * - Shows visible other actors
  */
-std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
-                                   const std::shared_ptr<Room>& room = nullptr);
+std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std::shared_ptr<Room> &room = nullptr);
 
 // Information and status commands
 Result<CommandResult> cmd_look(const CommandContext &ctx);

@@ -10,8 +10,7 @@ LogSubscriber &LogSubscriber::instance() {
     return instance;
 }
 
-void LogSubscriber::subscribe(std::shared_ptr<Player> player, LogLevel level,
-                              const std::set<std::string> &components) {
+void LogSubscriber::subscribe(std::shared_ptr<Player> player, LogLevel level, const std::set<std::string> &components) {
     if (!player) {
         return;
     }
@@ -89,7 +88,8 @@ void LogSubscriber::broadcast(const std::string &component, LogLevel level, std:
     }
 
     // Format: [LEVEL] [component] message
-    std::string formatted = fmt::format("<b:{}>[{}]</> [<b:cyan>{}</>] {}\r\n", level_color, level_str, component, message);
+    std::string formatted =
+        fmt::format("<b:{}>[{}]</> [<b:cyan>{}</>] {}\r\n", level_color, level_str, component, message);
 
     // Iterate through subscriptions and send to matching players
     for (auto it = subscriptions_.begin(); it != subscriptions_.end();) {
@@ -115,12 +115,18 @@ std::optional<LogLevel> LogSubscriber::parse_level(std::string_view str) {
     std::string lower{str};
     std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
 
-    if (lower == "trace") return LogLevel::Trace;
-    if (lower == "debug") return LogLevel::Debug;
-    if (lower == "info") return LogLevel::Info;
-    if (lower == "warn" || lower == "warning") return LogLevel::Warning;
-    if (lower == "error") return LogLevel::Error;
-    if (lower == "critical" || lower == "crit") return LogLevel::Critical;
+    if (lower == "trace")
+        return LogLevel::Trace;
+    if (lower == "debug")
+        return LogLevel::Debug;
+    if (lower == "info")
+        return LogLevel::Info;
+    if (lower == "warn" || lower == "warning")
+        return LogLevel::Warning;
+    if (lower == "error")
+        return LogLevel::Error;
+    if (lower == "critical" || lower == "crit")
+        return LogLevel::Critical;
 
     return std::nullopt;
 }

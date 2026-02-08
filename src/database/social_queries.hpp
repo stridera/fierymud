@@ -1,12 +1,13 @@
 #pragma once
 
 #include "../core/result.hpp"
+
+#include <optional>
 #include <pqxx/pqxx>
 #include <string>
 #include <string_view>
-#include <vector>
-#include <optional>
 #include <unordered_map>
+#include <vector>
 
 /**
  * SocialPosition enum matching the database Position enum.
@@ -21,8 +22,8 @@ enum class SocialPosition {
     Sleeping = 4,
     Resting = 5,
     Sitting = 6,
-    Prone = 7,           // Lying down
-    Kneeling = 8,        // Kneeling position
+    Prone = 7,    // Lying down
+    Kneeling = 8, // Kneeling position
     Fighting = 9,
     Standing = 10,
     Flying = 11
@@ -47,40 +48,36 @@ enum class SocialPosition {
  */
 struct Social {
     int id;
-    std::string name;                      // Command name (lowercase)
-    bool hide;                             // Hide who initiated the action
-    SocialPosition min_victim_position;    // Minimum position for target
+    std::string name;                   // Command name (lowercase)
+    bool hide;                          // Hide who initiated the action
+    SocialPosition min_victim_position; // Minimum position for target
 
     // No argument provided - actor alone
-    std::optional<std::string> char_no_arg;    // Message to actor
-    std::optional<std::string> others_no_arg;  // Message to room
+    std::optional<std::string> char_no_arg;   // Message to actor
+    std::optional<std::string> others_no_arg; // Message to room
 
     // Target found
-    std::optional<std::string> char_found;     // Message to actor
-    std::optional<std::string> others_found;   // Message to room (excluding target)
-    std::optional<std::string> vict_found;     // Message to target
+    std::optional<std::string> char_found;   // Message to actor
+    std::optional<std::string> others_found; // Message to room (excluding target)
+    std::optional<std::string> vict_found;   // Message to target
 
     // Target not found
-    std::optional<std::string> not_found;      // "Can't find that person"
+    std::optional<std::string> not_found; // "Can't find that person"
 
     // Self-targeting (actor targets themselves)
-    std::optional<std::string> char_auto;      // Message to actor
-    std::optional<std::string> others_auto;    // Message to room
+    std::optional<std::string> char_auto;   // Message to actor
+    std::optional<std::string> others_auto; // Message to room
 
     /**
      * Check if this social supports targeting.
      * A social supports targeting if it has char_found defined.
      */
-    bool supports_target() const {
-        return char_found.has_value();
-    }
+    bool supports_target() const { return char_found.has_value(); }
 
     /**
      * Check if this social supports self-targeting.
      */
-    bool supports_self_target() const {
-        return char_auto.has_value();
-    }
+    bool supports_self_target() const { return char_auto.has_value(); }
 };
 
 /**
@@ -100,7 +97,7 @@ namespace SocialQueries {
  * @param txn Database transaction
  * @return Result containing vector of Social objects or error
  */
-Result<std::vector<Social>> load_all_socials(pqxx::work& txn);
+Result<std::vector<Social>> load_all_socials(pqxx::work &txn);
 
 /**
  * Load all socials using a read-only connection.
@@ -108,7 +105,7 @@ Result<std::vector<Social>> load_all_socials(pqxx::work& txn);
  * @param txn Non-transaction connection
  * @return Result containing vector of Social objects or error
  */
-Result<std::vector<Social>> load_all_socials(pqxx::nontransaction& txn);
+Result<std::vector<Social>> load_all_socials(pqxx::nontransaction &txn);
 
 /**
  * Load a single social by name (case-insensitive).
@@ -117,9 +114,7 @@ Result<std::vector<Social>> load_all_socials(pqxx::nontransaction& txn);
  * @param name Social command name
  * @return Result containing optional Social or error
  */
-Result<std::optional<Social>> load_social_by_name(
-    pqxx::work& txn,
-    std::string_view name);
+Result<std::optional<Social>> load_social_by_name(pqxx::work &txn, std::string_view name);
 
 /**
  * Load a single social by ID.
@@ -128,9 +123,7 @@ Result<std::optional<Social>> load_social_by_name(
  * @param id Social ID
  * @return Result containing optional Social or error
  */
-Result<std::optional<Social>> load_social_by_id(
-    pqxx::work& txn,
-    int id);
+Result<std::optional<Social>> load_social_by_id(pqxx::work &txn, int id);
 
 /**
  * Get count of all socials in database.
@@ -138,7 +131,7 @@ Result<std::optional<Social>> load_social_by_id(
  * @param txn Database transaction
  * @return Number of socials
  */
-int get_social_count(pqxx::work& txn);
+int get_social_count(pqxx::work &txn);
 
 /**
  * Search socials by name pattern.
@@ -147,9 +140,7 @@ int get_social_count(pqxx::work& txn);
  * @param pattern Search pattern (supports % wildcards)
  * @return Result containing matching socials
  */
-Result<std::vector<Social>> search_socials(
-    pqxx::work& txn,
-    std::string_view pattern);
+Result<std::vector<Social>> search_socials(pqxx::work &txn, std::string_view pattern);
 
 /**
  * Parse a SocialPosition enum from database string.
@@ -176,11 +167,11 @@ std::string_view position_to_string(SocialPosition pos);
  * This is populated at server startup and refreshed as needed.
  */
 class SocialCache {
-public:
+  public:
     /**
      * Get the singleton instance.
      */
-    static SocialCache& instance();
+    static SocialCache &instance();
 
     /**
      * Load or reload all socials from database.
@@ -195,30 +186,24 @@ public:
      * @param name Social command name
      * @return Pointer to social or nullptr if not found
      */
-    const Social* get(std::string_view name) const;
+    const Social *get(std::string_view name) const;
 
     /**
      * Get all loaded socials.
      *
      * @return Reference to the social map
      */
-    const std::unordered_map<std::string, Social>& all() const {
-        return socials_;
-    }
+    const std::unordered_map<std::string, Social> &all() const { return socials_; }
 
     /**
      * Get number of loaded socials.
      */
-    std::size_t count() const {
-        return socials_.size();
-    }
+    std::size_t count() const { return socials_.size(); }
 
     /**
      * Check if socials have been loaded.
      */
-    bool is_loaded() const {
-        return loaded_;
-    }
+    bool is_loaded() const { return loaded_; }
 
     /**
      * Find socials matching a prefix (for command abbreviation).
@@ -228,11 +213,11 @@ public:
      */
     std::vector<std::string_view> find_by_prefix(std::string_view prefix) const;
 
-private:
+  private:
     SocialCache() = default;
     ~SocialCache() = default;
-    SocialCache(const SocialCache&) = delete;
-    SocialCache& operator=(const SocialCache&) = delete;
+    SocialCache(const SocialCache &) = delete;
+    SocialCache &operator=(const SocialCache &) = delete;
 
     std::unordered_map<std::string, Social> socials_;
     bool loaded_ = false;

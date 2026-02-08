@@ -2,12 +2,12 @@
 
 #include "../core/actor.hpp"
 #include "../core/class_config.hpp"
-#include "../game/player_output.hpp"
 #include "../core/config.hpp"
 #include "../core/logging.hpp"
 #include "../database/config_loader.hpp"
 #include "../database/connection_pool.hpp"
 #include "../database/database_config.hpp"
+#include "../game/player_output.hpp"
 #include "../text/string_utils.hpp"
 #include "configuration_manager.hpp"
 #include "network_manager.hpp"
@@ -103,21 +103,20 @@ Result<ServerConfig> ServerConfig::load_from_database() {
     auto &loader = ConfigLoader::instance();
     auto load_result = loader.load_from_database();
     if (!load_result) {
-        return std::unexpected(Errors::SystemError(
-            fmt::format("Failed to load config from database: {}", load_result.error())));
+        return std::unexpected(
+            Errors::SystemError(fmt::format("Failed to load config from database: {}", load_result.error())));
     }
 
     ServerConfig config;
 
     // Network settings from "server" category
-    config.port = loader.get_int_or("server", "port", 4003);  // v3 uses 4003, legacy uses 4000
+    config.port = loader.get_int_or("server", "port", 4003); // v3 uses 4003, legacy uses 4000
     config.tls_port = loader.get_int_or("server", "tls_port", 4443);
     config.max_connections = loader.get_int_or("server", "max_connections", 200);
     config.connection_timeout =
         loader.get_seconds("server", "connection_timeout_seconds").value_or(std::chrono::seconds{300});
     config.target_tps = loader.get_int_or("server", "target_tps", 10);
-    config.max_command_queue_size =
-        static_cast<size_t>(loader.get_int_or("server", "max_command_queue_size", 10000));
+    config.max_command_queue_size = static_cast<size_t>(loader.get_int_or("server", "max_command_queue_size", 10000));
 
     // Persistence settings
     config.auto_save_interval =
@@ -128,13 +127,11 @@ Result<ServerConfig> ServerConfig::load_from_database() {
 
     // Display settings
     config.mud_name = loader.get_string_or("display", "mud_name", "FieryMUD");
-    config.default_starting_room =
-        static_cast<uint64_t>(loader.get_int_or("display", "default_starting_room", 3001));
+    config.default_starting_room = static_cast<uint64_t>(loader.get_int_or("display", "default_starting_room", 3001));
 
     // Security settings
     config.max_login_attempts = loader.get_int_or("security", "max_login_attempts", 3);
-    config.login_timeout =
-        loader.get_minutes("security", "login_timeout_minutes").value_or(std::chrono::minutes{15});
+    config.login_timeout = loader.get_minutes("security", "login_timeout_minutes").value_or(std::chrono::minutes{15});
     config.enable_new_player_creation = loader.get_bool_or("security", "enable_new_player_creation", true);
     config.enable_debug_commands = loader.get_bool_or("security", "enable_debug_commands", false);
     config.enable_tls = loader.get_bool_or("security", "enable_tls", true);
@@ -394,7 +391,7 @@ void ModernMUDServer::stop(bool exit_process) {
     // accepted and try to run during/after shutdown, causing io_context to hang waiting for
     // strand work that never completes.
     if (world_server_) {
-        world_server_->begin_shutdown();  // Sets running_ = false, cancels timers
+        world_server_->begin_shutdown(); // Sets running_ = false, cancels timers
     }
 
     // Stop networking - disconnect all players
@@ -484,7 +481,7 @@ void ModernMUDServer::stop(bool exit_process) {
 
 void ModernMUDServer::restart() {
     Log::info("Restarting Modern FieryMUD Server...");
-    stop(false);  // Don't exit process, we want to start again
+    stop(false); // Don't exit process, we want to start again
 
     // Small delay for cleanup
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -555,8 +552,8 @@ Result<void> ModernMUDServer::initialize_directories() {
     if (!fs::exists(config_.log_directory)) {
         std::error_code ec;
         if (!fs::create_directories(config_.log_directory, ec)) {
-            return std::unexpected(
-                Errors::FileSystem(fmt::format("Failed to create directory {}: {}", config_.log_directory, ec.message())));
+            return std::unexpected(Errors::FileSystem(
+                fmt::format("Failed to create directory {}: {}", config_.log_directory, ec.message())));
         }
         Log::info("Created directory: {}", config_.log_directory);
     }
@@ -575,8 +572,8 @@ Result<void> ModernMUDServer::initialize_database() {
         return std::unexpected(db_config_result.error());
     }
 
-    logger->info("Database configuration loaded: {}:{}/{}",
-                db_config_result->host, db_config_result->port, db_config_result->dbname);
+    logger->info("Database configuration loaded: {}:{}/{}", db_config_result->host, db_config_result->port,
+                 db_config_result->dbname);
 
     // Initialize connection pool with 10 connections
     auto pool_init = ConnectionPool::instance().initialize(*db_config_result, 10);
@@ -717,7 +714,7 @@ std::vector<std::shared_ptr<Player>> ModernMUDServer::get_online_players() const
 
 std::shared_ptr<Player> ModernMUDServer::find_player(std::string_view name) const {
     auto players = get_online_players();
-    for (const auto& player : players) {
+    for (const auto &player : players) {
         if (player && player->name() == name) {
             return player;
         }
@@ -725,9 +722,7 @@ std::shared_ptr<Player> ModernMUDServer::find_player(std::string_view name) cons
     return nullptr;
 }
 
-size_t ModernMUDServer::online_player_count() const {
-    return get_online_players().size();
-}
+size_t ModernMUDServer::online_player_count() const { return get_online_players().size(); }
 
 void ModernMUDServer::kick_player(std::string_view player_name, std::string_view reason) {
     auto player = find_player(player_name);

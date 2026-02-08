@@ -6,9 +6,9 @@
  * Configuration Manager - Runtime configuration management
  */
 class ConfigurationManager {
-public:
+  public:
     Result<void> initialize();
-    
-private:
+
+  private:
     // Placeholder for now
 };

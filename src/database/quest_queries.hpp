@@ -1,14 +1,15 @@
 #pragma once
 
-#include "core/result.hpp"
 #include "core/ids.hpp"
-#include <pqxx/pqxx>
+#include "core/result.hpp"
+
+#include <chrono>
 #include <nlohmann/json.hpp>
+#include <optional>
+#include <pqxx/pqxx>
 #include <string>
 #include <string_view>
 #include <vector>
-#include <optional>
-#include <chrono>
 
 /**
  * Quest query layer for PostgreSQL database.
@@ -25,40 +26,21 @@ namespace QuestQueries {
 // Quest Objective Types (matches database enum)
 // ============================================================================
 
-enum class QuestObjectiveType {
-    KILL_MOB,
-    COLLECT_ITEM,
-    DELIVER_ITEM,
-    VISIT_ROOM,
-    TALK_TO_NPC,
-    USE_SKILL,
-    CUSTOM_LUA
-};
+enum class QuestObjectiveType { KILL_MOB, COLLECT_ITEM, DELIVER_ITEM, VISIT_ROOM, TALK_TO_NPC, USE_SKILL, CUSTOM_LUA };
 
-enum class QuestRewardType {
-    EXPERIENCE,
-    GOLD,
-    ITEM,
-    ABILITY
-};
+enum class QuestRewardType { EXPERIENCE, GOLD, ITEM, ABILITY };
 
-enum class QuestStatus {
-    AVAILABLE,
-    IN_PROGRESS,
-    COMPLETED,
-    FAILED,
-    ABANDONED
-};
+enum class QuestStatus { AVAILABLE, IN_PROGRESS, COMPLETED, FAILED, ABANDONED };
 
 enum class QuestTriggerType {
-    MOB,        // Talk to NPC (traditional quest giver)
-    LEVEL,      // Auto-granted when reaching certain level
-    ITEM,       // Triggered when picking up/examining specific item
-    ROOM,       // Triggered when entering specific room
-    SKILL,      // Triggered when using specific skill
-    EVENT,      // Triggered by game event (seasonal, etc.)
-    AUTO,       // Auto-granted to all characters (tutorial)
-    MANUAL      // Only granted via GM command or scripts
+    MOB,   // Talk to NPC (traditional quest giver)
+    LEVEL, // Auto-granted when reaching certain level
+    ITEM,  // Triggered when picking up/examining specific item
+    ROOM,  // Triggered when entering specific room
+    SKILL, // Triggered when using specific skill
+    EVENT, // Triggered by game event (seasonal, etc.)
+    AUTO,  // Auto-granted to all characters (tutorial)
+    MANUAL // Only granted via GM command or scripts
 };
 
 // ============================================================================
@@ -121,11 +103,11 @@ struct QuestData {
 
     // Quest trigger configuration
     QuestTriggerType trigger_type;
-    std::optional<int> trigger_level;             // For LEVEL trigger
-    std::optional<EntityId> trigger_item;         // For ITEM trigger
-    std::optional<EntityId> trigger_room;         // For ROOM trigger
-    std::optional<int> trigger_ability_id;        // For SKILL trigger
-    std::optional<int> trigger_event_id;          // For EVENT trigger
+    std::optional<int> trigger_level;      // For LEVEL trigger
+    std::optional<EntityId> trigger_item;  // For ITEM trigger
+    std::optional<EntityId> trigger_room;  // For ROOM trigger
+    std::optional<int> trigger_ability_id; // For SKILL trigger
+    std::optional<int> trigger_event_id;   // For EVENT trigger
 
     // Quest giver/completer (still used for MOB trigger and turn-in)
     std::optional<EntityId> giver_mob;
@@ -170,7 +152,7 @@ struct CharacterQuestProgress {
  * @param quest_id Quest local ID
  * @return Result containing QuestData or error
  */
-Result<QuestData> load_quest(pqxx::work& txn, int zone_id, int quest_id);
+Result<QuestData> load_quest(pqxx::work &txn, int zone_id, int quest_id);
 
 /**
  * Load all quests in a zone.
@@ -179,7 +161,7 @@ Result<QuestData> load_quest(pqxx::work& txn, int zone_id, int quest_id);
  * @param zone_id Zone ID to load quests from
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_quests_in_zone(pqxx::work& txn, int zone_id);
+Result<std::vector<QuestData>> load_quests_in_zone(pqxx::work &txn, int zone_id);
 
 /**
  * Load all available quests for a character (based on level and prerequisites).
@@ -189,10 +171,7 @@ Result<std::vector<QuestData>> load_quests_in_zone(pqxx::work& txn, int zone_id)
  * @param level Character's current level
  * @return Result containing vector of available QuestData or error
  */
-Result<std::vector<QuestData>> load_available_quests(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int level);
+Result<std::vector<QuestData>> load_available_quests(pqxx::work &txn, std::string_view character_id, int level);
 
 /**
  * Check if a character can accept a quest (level, prerequisites, not already active).
@@ -204,11 +183,7 @@ Result<std::vector<QuestData>> load_available_quests(
  * @param level Character's current level
  * @return Result containing true if acceptable, false otherwise
  */
-Result<bool> can_accept_quest(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id,
-    int level);
+Result<bool> can_accept_quest(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id, int level);
 
 /**
  * Load quests triggered by reaching a specific level.
@@ -217,7 +192,7 @@ Result<bool> can_accept_quest(
  * @param level Level to check for
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_level_triggered_quests(pqxx::work& txn, int level);
+Result<std::vector<QuestData>> load_level_triggered_quests(pqxx::work &txn, int level);
 
 /**
  * Load quests triggered by picking up a specific item.
@@ -227,9 +202,7 @@ Result<std::vector<QuestData>> load_level_triggered_quests(pqxx::work& txn, int 
  * @param item_id Item's local ID
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_item_triggered_quests(
-    pqxx::work& txn,
-    int item_zone_id, int item_id);
+Result<std::vector<QuestData>> load_item_triggered_quests(pqxx::work &txn, int item_zone_id, int item_id);
 
 /**
  * Load quests triggered by entering a specific room.
@@ -239,9 +212,7 @@ Result<std::vector<QuestData>> load_item_triggered_quests(
  * @param room_id Room's local ID
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_room_triggered_quests(
-    pqxx::work& txn,
-    int room_zone_id, int room_id);
+Result<std::vector<QuestData>> load_room_triggered_quests(pqxx::work &txn, int room_zone_id, int room_id);
 
 /**
  * Load quests triggered by using a specific ability.
@@ -250,7 +221,7 @@ Result<std::vector<QuestData>> load_room_triggered_quests(
  * @param ability_id Ability ID
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_skill_triggered_quests(pqxx::work& txn, int ability_id);
+Result<std::vector<QuestData>> load_skill_triggered_quests(pqxx::work &txn, int ability_id);
 
 /**
  * Load quests triggered by a specific event.
@@ -259,7 +230,7 @@ Result<std::vector<QuestData>> load_skill_triggered_quests(pqxx::work& txn, int 
  * @param event_id Event ID
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_event_triggered_quests(pqxx::work& txn, int event_id);
+Result<std::vector<QuestData>> load_event_triggered_quests(pqxx::work &txn, int event_id);
 
 /**
  * Load all auto-triggered quests (tutorial quests, etc.).
@@ -267,7 +238,7 @@ Result<std::vector<QuestData>> load_event_triggered_quests(pqxx::work& txn, int 
  * @param txn Database transaction
  * @return Result containing vector of QuestData or error
  */
-Result<std::vector<QuestData>> load_auto_triggered_quests(pqxx::work& txn);
+Result<std::vector<QuestData>> load_auto_triggered_quests(pqxx::work &txn);
 
 // ============================================================================
 // Character Quest Progress Queries
@@ -282,10 +253,8 @@ Result<std::vector<QuestData>> load_auto_triggered_quests(pqxx::work& txn);
  * @param quest_id Quest local ID
  * @return Result containing CharacterQuestProgress or NotFound error
  */
-Result<CharacterQuestProgress> load_character_quest(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id);
+Result<CharacterQuestProgress> load_character_quest(pqxx::work &txn, std::string_view character_id, int zone_id,
+                                                    int quest_id);
 
 /**
  * Load all active quests for a character.
@@ -294,9 +263,8 @@ Result<CharacterQuestProgress> load_character_quest(
  * @param character_id Character's database ID
  * @return Result containing vector of CharacterQuestProgress or error
  */
-Result<std::vector<CharacterQuestProgress>> load_character_active_quests(
-    pqxx::work& txn,
-    std::string_view character_id);
+Result<std::vector<CharacterQuestProgress>> load_character_active_quests(pqxx::work &txn,
+                                                                         std::string_view character_id);
 
 /**
  * Load all completed quests for a character.
@@ -305,9 +273,8 @@ Result<std::vector<CharacterQuestProgress>> load_character_active_quests(
  * @param character_id Character's database ID
  * @return Result containing vector of CharacterQuestProgress or error
  */
-Result<std::vector<CharacterQuestProgress>> load_character_completed_quests(
-    pqxx::work& txn,
-    std::string_view character_id);
+Result<std::vector<CharacterQuestProgress>> load_character_completed_quests(pqxx::work &txn,
+                                                                            std::string_view character_id);
 
 // ============================================================================
 // Quest Progress Mutations
@@ -322,10 +289,7 @@ Result<std::vector<CharacterQuestProgress>> load_character_completed_quests(
  * @param quest_id Quest local ID
  * @return Result<void> on success, error on failure
  */
-Result<void> start_quest(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id);
+Result<void> start_quest(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id);
 
 /**
  * Update objective progress for a character.
@@ -339,12 +303,8 @@ Result<void> start_quest(
  * @param new_count New progress count
  * @return Result<void> on success, error on failure
  */
-Result<void> update_objective_progress(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id,
-    int phase_id, int objective_id,
-    int new_count);
+Result<void> update_objective_progress(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id,
+                                       int phase_id, int objective_id, int new_count);
 
 /**
  * Mark an objective as completed.
@@ -357,11 +317,8 @@ Result<void> update_objective_progress(
  * @param objective_id Objective ID
  * @return Result<void> on success, error on failure
  */
-Result<void> complete_objective(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id,
-    int phase_id, int objective_id);
+Result<void> complete_objective(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id, int phase_id,
+                                int objective_id);
 
 /**
  * Advance to the next phase of a quest.
@@ -373,11 +330,8 @@ Result<void> complete_objective(
  * @param next_phase_id Next phase ID to advance to
  * @return Result<void> on success, error on failure
  */
-Result<void> advance_phase(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id,
-    int next_phase_id);
+Result<void> advance_phase(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id,
+                           int next_phase_id);
 
 /**
  * Complete a quest for a character.
@@ -388,10 +342,7 @@ Result<void> advance_phase(
  * @param quest_id Quest local ID
  * @return Result<void> on success, error on failure
  */
-Result<void> complete_quest(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id);
+Result<void> complete_quest(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id);
 
 /**
  * Abandon a quest for a character.
@@ -402,10 +353,7 @@ Result<void> complete_quest(
  * @param quest_id Quest local ID
  * @return Result<void> on success, error on failure
  */
-Result<void> abandon_quest(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id);
+Result<void> abandon_quest(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id);
 
 // ============================================================================
 // Quest Variables
@@ -422,12 +370,8 @@ Result<void> abandon_quest(
  * @param value Variable value (JSON)
  * @return Result<void> on success, error on failure
  */
-Result<void> set_quest_variable(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id,
-    const std::string& name,
-    const nlohmann::json& value);
+Result<void> set_quest_variable(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id,
+                                const std::string &name, const nlohmann::json &value);
 
 /**
  * Get a quest variable for a character's quest progress.
@@ -439,11 +383,8 @@ Result<void> set_quest_variable(
  * @param name Variable name
  * @return Result containing the variable value (JSON) or NotFound error
  */
-Result<nlohmann::json> get_quest_variable(
-    pqxx::work& txn,
-    std::string_view character_id,
-    int zone_id, int quest_id,
-    const std::string& name);
+Result<nlohmann::json> get_quest_variable(pqxx::work &txn, std::string_view character_id, int zone_id, int quest_id,
+                                          const std::string &name);
 
 // ============================================================================
 // Helper Functions

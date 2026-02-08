@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../world/room.hpp"
+
 #include <optional>
 #include <string>
 #include <vector>
@@ -24,7 +25,7 @@ namespace DbParsingUtils {
  * @param pg_array The PostgreSQL array string (e.g., "{NORTH,SOUTH}")
  * @return Vector of parsed string elements
  */
-std::vector<std::string> parse_pg_array(const std::string& pg_array);
+std::vector<std::string> parse_pg_array(const std::string &pg_array);
 
 /**
  * Parse sector type from database string.
@@ -34,7 +35,7 @@ std::vector<std::string> parse_pg_array(const std::string& pg_array);
  * @param sector_str The sector type string from database
  * @return Optional SectorType, nullopt if unknown
  */
-std::optional<SectorType> sector_from_db_string(const std::string& sector_str);
+std::optional<SectorType> sector_from_db_string(const std::string &sector_str);
 
 // room_flag_from_db_string REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions
 

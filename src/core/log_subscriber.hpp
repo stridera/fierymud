@@ -50,8 +50,7 @@ class LogSubscriber {
     /// @param player The player to subscribe
     /// @param level Minimum log level to receive
     /// @param components Set of component names to filter (empty = all)
-    void subscribe(std::shared_ptr<Player> player, LogLevel level,
-                   const std::set<std::string> &components = {});
+    void subscribe(std::shared_ptr<Player> player, LogLevel level, const std::set<std::string> &components = {});
 
     /// Unsubscribe a player from log messages
     void unsubscribe(std::shared_ptr<Player> player);

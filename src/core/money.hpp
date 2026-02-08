@@ -9,23 +9,18 @@
 
 #pragma once
 
+#include <fmt/format.h>
+#include <nlohmann/json.hpp>
+#include <optional>
 #include <string>
 #include <string_view>
-#include <optional>
-#include <nlohmann/json.hpp>
-#include <fmt/format.h>
 
 namespace fiery {
 
 /**
  * Currency denomination types (for display and parsing)
  */
-enum class CoinType {
-    Platinum = 0,
-    Gold = 1,
-    Silver = 2,
-    Copper = 3
-};
+enum class CoinType { Platinum = 0, Gold = 1, Silver = 2, Copper = 3 };
 
 // Number of coin types
 constexpr int NUM_COIN_TYPES = 4;
@@ -40,36 +35,30 @@ constexpr long COPPER_VALUE = 1;
  * Coin definition for display and parsing
  */
 struct CoinDef {
-    std::string_view name;        // Full name (e.g., "platinum")
-    std::string_view short_name;  // Short name (e.g., "plat")
-    std::string_view initial;     // Single letter (e.g., "p")
-    std::string_view open_tag;    // XML-lite markup opening tag
-    std::string_view close_tag;   // XML-lite markup closing tag
-    long value;                   // Value in copper
+    std::string_view name;       // Full name (e.g., "platinum")
+    std::string_view short_name; // Short name (e.g., "plat")
+    std::string_view initial;    // Single letter (e.g., "p")
+    std::string_view open_tag;   // XML-lite markup opening tag
+    std::string_view close_tag;  // XML-lite markup closing tag
+    long value;                  // Value in copper
 };
 
 // Coin definitions array with XML-lite markup tags
 // Platinum: bold white, Gold: bold yellow, Silver: white, Copper: yellow
-inline constexpr CoinDef COIN_DEFS[NUM_COIN_TYPES] = {
-    {"platinum", "plat", "p", "<b:white>", "</b>", PLATINUM_VALUE},
-    {"gold", "gol", "g", "<b:yellow>", "</b>", GOLD_VALUE},
-    {"silver", "sil", "s", "<white>", "</white>", SILVER_VALUE},
-    {"copper", "cop", "c", "<yellow>", "</yellow>", COPPER_VALUE}
-};
+inline constexpr CoinDef COIN_DEFS[NUM_COIN_TYPES] = {{"platinum", "plat", "p", "<b:white>", "</b>", PLATINUM_VALUE},
+                                                      {"gold", "gol", "g", "<b:yellow>", "</b>", GOLD_VALUE},
+                                                      {"silver", "sil", "s", "<white>", "</white>", SILVER_VALUE},
+                                                      {"copper", "cop", "c", "<yellow>", "</yellow>", COPPER_VALUE}};
 
 /**
  * Get coin definition for a coin type
  */
-inline const CoinDef& get_coin_def(CoinType type) {
-    return COIN_DEFS[static_cast<int>(type)];
-}
+inline const CoinDef &get_coin_def(CoinType type) { return COIN_DEFS[static_cast<int>(type)]; }
 
 /**
  * Get coin value in copper for a coin type
  */
-inline long get_coin_value(CoinType type) {
-    return COIN_DEFS[static_cast<int>(type)].value;
-}
+inline long get_coin_value(CoinType type) { return COIN_DEFS[static_cast<int>(type)].value; }
 
 /**
  * Parse a coin type from a string (e.g., "gold", "g", "gol")
@@ -96,7 +85,7 @@ std::optional<CoinType> parse_coin_type(std::string_view input);
  * @endcode
  */
 class Money {
-public:
+  public:
     /** Default constructor - zero value */
     constexpr Money() = default;
 
@@ -105,13 +94,11 @@ public:
 
     /** Constructor from individual coin amounts (converted to copper) */
     constexpr Money(int platinum, int gold, int silver, int copper)
-        : copper_(static_cast<long>(platinum) * PLATINUM_VALUE +
-                  static_cast<long>(gold) * GOLD_VALUE +
-                  static_cast<long>(silver) * SILVER_VALUE +
-                  static_cast<long>(copper)) {}
+        : copper_(static_cast<long>(platinum) * PLATINUM_VALUE + static_cast<long>(gold) * GOLD_VALUE +
+                  static_cast<long>(silver) * SILVER_VALUE + static_cast<long>(copper)) {}
 
     /** Constructor from JSON */
-    explicit Money(const nlohmann::json& json);
+    explicit Money(const nlohmann::json &json);
 
     // =========================================================================
     // Factory Methods
@@ -150,9 +137,7 @@ public:
     // =========================================================================
 
     /** Get platinum portion for display */
-    [[nodiscard]] constexpr int platinum() const noexcept {
-        return static_cast<int>(copper_ / PLATINUM_VALUE);
-    }
+    [[nodiscard]] constexpr int platinum() const noexcept { return static_cast<int>(copper_ / PLATINUM_VALUE); }
 
     /** Get gold portion for display (after platinum) */
     [[nodiscard]] constexpr int gold() const noexcept {
@@ -165,9 +150,7 @@ public:
     }
 
     /** Get copper portion for display (remainder) */
-    [[nodiscard]] constexpr int copper() const noexcept {
-        return static_cast<int>(copper_ % SILVER_VALUE);
-    }
+    [[nodiscard]] constexpr int copper() const noexcept { return static_cast<int>(copper_ % SILVER_VALUE); }
 
     /** Get coin count by type (for display) */
     [[nodiscard]] int get(CoinType type) const noexcept;
@@ -177,14 +160,10 @@ public:
     // =========================================================================
 
     /** Check if this money can afford a cost (in copper) */
-    [[nodiscard]] constexpr bool can_afford(long copper_cost) const noexcept {
-        return copper_ >= copper_cost;
-    }
+    [[nodiscard]] constexpr bool can_afford(long copper_cost) const noexcept { return copper_ >= copper_cost; }
 
     /** Check if this money can afford another Money amount */
-    [[nodiscard]] constexpr bool can_afford(const Money& cost) const noexcept {
-        return copper_ >= cost.copper_;
-    }
+    [[nodiscard]] constexpr bool can_afford(const Money &cost) const noexcept { return copper_ >= cost.copper_; }
 
     /**
      * Deduct an amount from this money
@@ -198,21 +177,22 @@ public:
      * @param cost The Money amount to deduct
      * @return true if successful, false if insufficient funds
      */
-    bool charge(const Money& cost) { return charge(cost.copper_); }
+    bool charge(const Money &cost) { return charge(cost.copper_); }
 
     /**
      * Add copper to this money
      * @param copper_amount The copper amount to add
      */
     void receive(long copper_amount) {
-        if (copper_amount > 0) copper_ += copper_amount;
+        if (copper_amount > 0)
+            copper_ += copper_amount;
     }
 
     /**
      * Transfer all money from another Money object to this one
      * @param other The money to take (will be zeroed out)
      */
-    void transfer_from(Money& other) {
+    void transfer_from(Money &other) {
         copper_ += other.copper_;
         other.copper_ = 0;
     }
@@ -221,41 +201,38 @@ public:
     // Arithmetic Operators
     // =========================================================================
 
-    Money operator+(const Money& other) const noexcept {
-        return Money(copper_ + other.copper_);
-    }
+    Money operator+(const Money &other) const noexcept { return Money(copper_ + other.copper_); }
 
-    Money& operator+=(const Money& other) noexcept {
+    Money &operator+=(const Money &other) noexcept {
         copper_ += other.copper_;
         return *this;
     }
 
-    Money operator-(const Money& other) const noexcept {
-        return Money(copper_ - other.copper_);
-    }
+    Money operator-(const Money &other) const noexcept { return Money(copper_ - other.copper_); }
 
-    Money& operator-=(const Money& other) noexcept {
+    Money &operator-=(const Money &other) noexcept {
         copper_ -= other.copper_;
-        if (copper_ < 0) copper_ = 0;
+        if (copper_ < 0)
+            copper_ = 0;
         return *this;
     }
 
-    Money operator*(long multiplier) const noexcept {
-        return Money(copper_ * multiplier);
-    }
+    Money operator*(long multiplier) const noexcept { return Money(copper_ * multiplier); }
 
-    Money& operator*=(long multiplier) noexcept {
+    Money &operator*=(long multiplier) noexcept {
         copper_ *= multiplier;
         return *this;
     }
 
     Money operator/(long divisor) const noexcept {
-        if (divisor == 0) return *this;
+        if (divisor == 0)
+            return *this;
         return Money(copper_ / divisor);
     }
 
-    Money& operator/=(long divisor) noexcept {
-        if (divisor != 0) copper_ /= divisor;
+    Money &operator/=(long divisor) noexcept {
+        if (divisor != 0)
+            copper_ /= divisor;
         return *this;
     }
 
@@ -263,12 +240,12 @@ public:
     // Comparison Operators
     // =========================================================================
 
-    bool operator==(const Money& other) const noexcept { return copper_ == other.copper_; }
-    bool operator!=(const Money& other) const noexcept { return copper_ != other.copper_; }
-    bool operator<(const Money& other) const noexcept { return copper_ < other.copper_; }
-    bool operator<=(const Money& other) const noexcept { return copper_ <= other.copper_; }
-    bool operator>(const Money& other) const noexcept { return copper_ > other.copper_; }
-    bool operator>=(const Money& other) const noexcept { return copper_ >= other.copper_; }
+    bool operator==(const Money &other) const noexcept { return copper_ == other.copper_; }
+    bool operator!=(const Money &other) const noexcept { return copper_ != other.copper_; }
+    bool operator<(const Money &other) const noexcept { return copper_ < other.copper_; }
+    bool operator<=(const Money &other) const noexcept { return copper_ <= other.copper_; }
+    bool operator>(const Money &other) const noexcept { return copper_ > other.copper_; }
+    bool operator>=(const Money &other) const noexcept { return copper_ >= other.copper_; }
 
     // =========================================================================
     // Serialization
@@ -278,7 +255,7 @@ public:
     [[nodiscard]] nlohmann::json to_json() const;
 
     /** Load from JSON */
-    static Money from_json(const nlohmann::json& json);
+    static Money from_json(const nlohmann::json &json);
 
     // =========================================================================
     // String Formatting
@@ -306,7 +283,7 @@ public:
      */
     [[nodiscard]] std::string to_shop_format(bool include_color = false) const;
 
-private:
+  private:
     long copper_ = 0;
 };
 
@@ -330,23 +307,23 @@ std::string_view get_money_pile_description(long copper_value);
 // fmt::formatter specialization for Money
 // =============================================================================
 
-template<>
-struct fmt::formatter<fiery::Money> {
+template <> struct fmt::formatter<fiery::Money> {
     bool use_color = false;
     bool use_brief = false;
 
-    constexpr auto parse(format_parse_context& ctx) {
+    constexpr auto parse(format_parse_context &ctx) {
         auto it = ctx.begin();
         while (it != ctx.end() && *it != '}') {
-            if (*it == 'c') use_color = true;
-            else if (*it == 'b') use_brief = true;
+            if (*it == 'c')
+                use_color = true;
+            else if (*it == 'b')
+                use_brief = true;
             ++it;
         }
         return it;
     }
 
-    template<typename FormatContext>
-    auto format(const fiery::Money& money, FormatContext& ctx) const {
+    template <typename FormatContext> auto format(const fiery::Money &money, FormatContext &ctx) const {
         if (use_brief) {
             return fmt::format_to(ctx.out(), "{}", money.to_brief());
         }
@@ -354,12 +331,10 @@ struct fmt::formatter<fiery::Money> {
     }
 };
 
-template<>
-struct fmt::formatter<fiery::CoinType> {
-    constexpr auto parse(format_parse_context& ctx) { return ctx.begin(); }
+template <> struct fmt::formatter<fiery::CoinType> {
+    constexpr auto parse(format_parse_context &ctx) { return ctx.begin(); }
 
-    template<typename FormatContext>
-    auto format(fiery::CoinType type, FormatContext& ctx) const {
+    template <typename FormatContext> auto format(fiery::CoinType type, FormatContext &ctx) const {
         return fmt::format_to(ctx.out(), "{}", fiery::get_coin_def(type).name);
     }
 };

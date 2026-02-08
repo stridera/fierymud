@@ -1,6 +1,7 @@
 // coroutine_scheduler.cpp - Lua coroutine scheduling implementation
 
 #include "coroutine_scheduler.hpp"
+
 #include "../core/logging.hpp"
 
 #include <algorithm>
@@ -10,12 +11,10 @@ namespace FieryMUD {
 // Global instance
 static CoroutineScheduler g_scheduler;
 
-CoroutineScheduler& get_coroutine_scheduler() {
-    return g_scheduler;
-}
+CoroutineScheduler &get_coroutine_scheduler() { return g_scheduler; }
 
-void CoroutineScheduler::initialize(asio::io_context& io_context,
-                                     asio::strand<asio::io_context::executor_type>& strand) {
+void CoroutineScheduler::initialize(asio::io_context &io_context,
+                                    asio::strand<asio::io_context::executor_type> &strand) {
     if (initialized_) {
         Log::warn("CoroutineScheduler already initialized");
         return;
@@ -38,7 +37,7 @@ void CoroutineScheduler::shutdown() {
     initialized_.store(false);
 
     // Cancel all pending coroutines
-    for (auto& [id, pending] : pending_) {
+    for (auto &[id, pending] : pending_) {
         if (pending.timer) {
             pending.timer->cancel();
         }
@@ -49,13 +48,12 @@ void CoroutineScheduler::shutdown() {
     io_context_ = nullptr;
     strand_ = nullptr;
 
-    Log::info("CoroutineScheduler shutdown - scheduled: {}, completed: {}, cancelled: {}",
-              total_scheduled_, total_completed_, total_cancelled_);
+    Log::info("CoroutineScheduler shutdown - scheduled: {}, completed: {}, cancelled: {}", total_scheduled_,
+              total_completed_, total_cancelled_);
 }
 
-std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::coroutine coroutine,
-                                                 ScriptContext context, EntityId owner_id,
-                                                 double delay_seconds) {
+std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::coroutine coroutine, ScriptContext context,
+                                                EntityId owner_id, double delay_seconds) {
     if (!initialized_) {
         Log::error("CoroutineScheduler not initialized");
         return 0;
@@ -63,8 +61,7 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
 
     // Check global coroutine limit to prevent memory exhaustion
     if (pending_.size() >= MAX_PENDING_COROUTINES) {
-        Log::warn("CoroutineScheduler: global limit reached ({} pending), rejecting new coroutine",
-                 pending_.size());
+        Log::warn("CoroutineScheduler: global limit reached ({} pending), rejecting new coroutine", pending_.size());
         return 0;
     }
 
@@ -72,8 +69,8 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
     if (owner_id.is_valid()) {
         std::size_t entity_count = pending_count_for(owner_id);
         if (entity_count >= MAX_PENDING_PER_ENTITY) {
-            Log::warn("CoroutineScheduler: per-entity limit reached for {}:{} ({} pending)",
-                     owner_id.zone_id(), owner_id.local_id(), entity_count);
+            Log::warn("CoroutineScheduler: per-entity limit reached for {}:{} ({} pending)", owner_id.zone_id(),
+                      owner_id.local_id(), entity_count);
             return 0;
         }
     }
@@ -83,9 +80,7 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
 
     // Create timer
     auto timer = std::make_shared<asio::steady_timer>(
-        *io_context_,
-        std::chrono::milliseconds(static_cast<long>(delay_seconds * 1000))
-    );
+        *io_context_, std::chrono::milliseconds(static_cast<long>(delay_seconds * 1000)));
 
     // Generate ID
     std::uint64_t id = next_id_++;
@@ -93,14 +88,11 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
 
     // Store pending coroutine
     pending_.emplace(
-        std::piecewise_construct,
-        std::forward_as_tuple(id),
-        std::forward_as_tuple(id, std::move(thread), std::move(coroutine),
-                              std::move(context), timer, owner_id)
-    );
+        std::piecewise_construct, std::forward_as_tuple(id),
+        std::forward_as_tuple(id, std::move(thread), std::move(coroutine), std::move(context), timer, owner_id));
 
     // Set up timer callback - posts to strand for thread safety
-    timer->async_wait([this, id](const asio::error_code& ec) {
+    timer->async_wait([this, id](const asio::error_code &ec) {
         if (ec) {
             if (ec != asio::error::operation_aborted) {
                 Log::error("Coroutine timer error: {}", ec.message());
@@ -114,13 +106,11 @@ std::uint64_t CoroutineScheduler::schedule_wait(sol::thread thread, sol::corouti
         }
 
         // Post resume to world strand for thread-safe execution
-        asio::post(*strand_, [this, id]() {
-            resume_coroutine(id);
-        });
+        asio::post(*strand_, [this, id]() { resume_coroutine(id); });
     });
 
-    Log::debug("Scheduled coroutine {} for {} seconds (owner: {}:{})",
-               id, delay_seconds, owner_id.zone_id(), owner_id.local_id());
+    Log::debug("Scheduled coroutine {} for {} seconds (owner: {}:{})", id, delay_seconds, owner_id.zone_id(),
+               owner_id.local_id());
 
     return id;
 }
@@ -137,18 +127,17 @@ void CoroutineScheduler::resume_coroutine(std::uint64_t coroutine_id) {
         return;
     }
 
-    auto& pending = it->second;
+    auto &pending = it->second;
 
-    Log::debug("Resuming coroutine {} (owner: {}:{})",
-               coroutine_id, pending.owner_id.zone_id(), pending.owner_id.local_id());
+    Log::debug("Resuming coroutine {} (owner: {}:{})", coroutine_id, pending.owner_id.zone_id(),
+               pending.owner_id.local_id());
 
     // Check coroutine status
     sol::state_view lua(pending.thread.lua_state());
     auto status = pending.coroutine.status();
 
     if (status != sol::call_status::yielded) {
-        Log::warn("Coroutine {} not in yielded state (status: {})", coroutine_id,
-                  static_cast<int>(status));
+        Log::warn("Coroutine {} not in yielded state (status: {})", coroutine_id, static_cast<int>(status));
         remove_coroutine(coroutine_id);
         return;
     }
@@ -193,7 +182,7 @@ std::size_t CoroutineScheduler::cancel_for_entity(EntityId entity_id) {
 
     // Find all coroutines for this entity
     std::vector<std::uint64_t> to_cancel;
-    for (const auto& [id, pending] : pending_) {
+    for (const auto &[id, pending] : pending_) {
         if (pending.owner_id == entity_id) {
             to_cancel.push_back(id);
         }
@@ -207,8 +196,7 @@ std::size_t CoroutineScheduler::cancel_for_entity(EntityId entity_id) {
     }
 
     if (cancelled > 0) {
-        Log::debug("Cancelled {} coroutines for entity {}:{}",
-                   cancelled, entity_id.zone_id(), entity_id.local_id());
+        Log::debug("Cancelled {} coroutines for entity {}:{}", cancelled, entity_id.zone_id(), entity_id.local_id());
     }
 
     return cancelled;
@@ -231,7 +219,7 @@ bool CoroutineScheduler::cancel_coroutine(std::uint64_t coroutine_id) {
 
 std::size_t CoroutineScheduler::pending_count_for(EntityId entity_id) const {
     std::size_t count = 0;
-    for (const auto& [id, pending] : pending_) {
+    for (const auto &[id, pending] : pending_) {
         if (pending.owner_id == entity_id) {
             count++;
         }

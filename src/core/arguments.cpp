@@ -62,7 +62,7 @@ std::string Arguments::shift_clean() {
 std::optional<int> Arguments::try_shift_number() {
     // Save the current state in case we need to restore it
     std::string_view saved_arg = arg_;
-    
+
     std::string_view arg_ = shift();
     if (arg_.empty()) {
         // Restore state since we couldn't parse anything
@@ -83,7 +83,7 @@ std::optional<int> Arguments::try_shift_number() {
 std::optional<std::pair<int, std::string_view>> Arguments::try_shift_number_and_arg() {
     // Save the current state in case we need to restore it
     std::string_view saved_arg = arg_;
-    
+
     std::string_view arg_ = shift();
     if (arg_.empty()) {
         // Restore state since we couldn't parse anything
@@ -92,13 +92,13 @@ std::optional<std::pair<int, std::string_view>> Arguments::try_shift_number_and_
     }
 
     size_t dot_pos = arg_.find('.');
-    
+
     // If there is no dot, this is not a number.item format, so restore and fail
     if (dot_pos == std::string::npos) {
         this->arg_ = saved_arg;
         return std::nullopt;
     }
-    
+
     std::string_view number_str = arg_.substr(0, dot_pos);
     std::string_view rest = arg_.substr(dot_pos + 1);
 
@@ -112,7 +112,7 @@ std::optional<std::pair<int, std::string_view>> Arguments::try_shift_number_and_
     if (number_str == "all") {
         return std::make_pair(MAX_ITEMS, rest);
     }
-    
+
     // If the number part is not an integer, this is not a valid format
     if (!is_integer(number_str)) {
         this->arg_ = saved_arg;

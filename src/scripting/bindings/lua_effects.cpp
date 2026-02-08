@@ -1,23 +1,22 @@
 #include "lua_effects.hpp"
+
 #include "../../core/actor.hpp"
 #include "../../core/effect_system.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
-
 #include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 
-void register_effect_bindings(sol::state& lua) {
+void register_effect_bindings(sol::state &lua) {
     auto effects_table = lua.create_named_table("effects");
 
     // effects.apply(actor, effect, options?) - Apply an effect to an actor
     // options table: { duration = int, power = int, source = Actor }
     // Returns: (bool success, string? error)
-    effects_table["apply"] = [](Actor* actor, const std::string& effect_name,
-                                sol::optional<sol::table> options)
-        -> std::tuple<bool, sol::optional<std::string>> {
+    effects_table["apply"] = [](Actor *actor, const std::string &effect_name,
+                                sol::optional<sol::table> options) -> std::tuple<bool, sol::optional<std::string>> {
         if (!actor) {
             return std::make_tuple(false, std::string("invalid_target"));
         }
@@ -26,7 +25,7 @@ void register_effect_bindings(sol::state& lua) {
             return std::make_tuple(false, std::string("effect_not_found"));
         }
 
-        auto& effect_system = EffectSystem::instance();
+        auto &effect_system = EffectSystem::instance();
 
         // Check if effect type exists
         if (!effect_system.effect_exists(effect_name)) {
@@ -53,8 +52,8 @@ void register_effect_bindings(sol::state& lua) {
 
     // effects.remove(actor, effect) - Remove an effect from an actor
     // Returns: (bool success, string? error)
-    effects_table["remove"] = [](Actor* actor, const std::string& effect_name)
-        -> std::tuple<bool, sol::optional<std::string>> {
+    effects_table["remove"] = [](Actor *actor,
+                                 const std::string &effect_name) -> std::tuple<bool, sol::optional<std::string>> {
         if (!actor) {
             return std::make_tuple(false, std::string("invalid_target"));
         }
@@ -63,7 +62,7 @@ void register_effect_bindings(sol::state& lua) {
             return std::make_tuple(false, std::string("effect_not_found"));
         }
 
-        auto& effect_system = EffectSystem::instance();
+        auto &effect_system = EffectSystem::instance();
         auto result = effect_system.remove_effect(*actor, effect_name);
 
         if (!result) {
@@ -76,7 +75,7 @@ void register_effect_bindings(sol::state& lua) {
 
     // effects.has(actor, effect) - Check if actor has an effect
     // Returns: bool
-    effects_table["has"] = [](Actor* actor, const std::string& effect_name) -> bool {
+    effects_table["has"] = [](Actor *actor, const std::string &effect_name) -> bool {
         if (!actor || effect_name.empty()) {
             return false;
         }
@@ -85,8 +84,7 @@ void register_effect_bindings(sol::state& lua) {
 
     // effects.duration(actor, effect) - Get remaining duration in seconds
     // Returns: int? (nil if effect not present)
-    effects_table["duration"] = [](Actor* actor, const std::string& effect_name)
-        -> sol::optional<int> {
+    effects_table["duration"] = [](Actor *actor, const std::string &effect_name) -> sol::optional<int> {
         if (!actor || effect_name.empty()) {
             return sol::nullopt;
         }

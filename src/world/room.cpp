@@ -470,7 +470,7 @@ Result<void> Room::unlock_door(Direction dir) {
     return Success();
 }
 
-Result<void> Room::set_door_state(Direction dir, const DoorState& state) {
+Result<void> Room::set_door_state(Direction dir, const DoorState &state) {
     auto it = exits_.find(dir);
     if (it == exits_.end() || !it->second.has_door) {
         return std::unexpected(Errors::NotFound("door"));
@@ -587,7 +587,7 @@ bool Room::can_see_in_room(const Actor *observer) const {
             return true;
         }
         // Check if actor is an immortal/god
-        auto* player = dynamic_cast<const Player*>(observer);
+        auto *player = dynamic_cast<const Player *>(observer);
         if (player && player->is_god()) {
             return true;
         }
@@ -767,29 +767,38 @@ std::optional<Direction> parse_direction(std::string_view dir_name) {
     }
 
     // Try lowercase, uppercase, and abbreviations (for database and user input)
-    static const std::unordered_map<std::string_view, Direction> dir_map = {
-        // Lowercase
-        {"n", Direction::North},      {"north", Direction::North},
-        {"e", Direction::East},       {"east", Direction::East},
-        {"s", Direction::South},      {"south", Direction::South},
-        {"w", Direction::West},       {"west", Direction::West},
-        {"u", Direction::Up},         {"up", Direction::Up},
-        {"d", Direction::Down},       {"down", Direction::Down},
-        {"ne", Direction::Northeast}, {"northeast", Direction::Northeast},
-        {"nw", Direction::Northwest}, {"northwest", Direction::Northwest},
-        {"se", Direction::Southeast}, {"southeast", Direction::Southeast},
-        {"sw", Direction::Southwest}, {"southwest", Direction::Southwest},
-        // Uppercase (for database enum values)
-        {"NORTH", Direction::North},
-        {"EAST", Direction::East},
-        {"SOUTH", Direction::South},
-        {"WEST", Direction::West},
-        {"UP", Direction::Up},
-        {"DOWN", Direction::Down},
-        {"NORTHEAST", Direction::Northeast},
-        {"NORTHWEST", Direction::Northwest},
-        {"SOUTHEAST", Direction::Southeast},
-        {"SOUTHWEST", Direction::Southwest}};
+    static const std::unordered_map<std::string_view, Direction> dir_map = {// Lowercase
+                                                                            {"n", Direction::North},
+                                                                            {"north", Direction::North},
+                                                                            {"e", Direction::East},
+                                                                            {"east", Direction::East},
+                                                                            {"s", Direction::South},
+                                                                            {"south", Direction::South},
+                                                                            {"w", Direction::West},
+                                                                            {"west", Direction::West},
+                                                                            {"u", Direction::Up},
+                                                                            {"up", Direction::Up},
+                                                                            {"d", Direction::Down},
+                                                                            {"down", Direction::Down},
+                                                                            {"ne", Direction::Northeast},
+                                                                            {"northeast", Direction::Northeast},
+                                                                            {"nw", Direction::Northwest},
+                                                                            {"northwest", Direction::Northwest},
+                                                                            {"se", Direction::Southeast},
+                                                                            {"southeast", Direction::Southeast},
+                                                                            {"sw", Direction::Southwest},
+                                                                            {"southwest", Direction::Southwest},
+                                                                            // Uppercase (for database enum values)
+                                                                            {"NORTH", Direction::North},
+                                                                            {"EAST", Direction::East},
+                                                                            {"SOUTH", Direction::South},
+                                                                            {"WEST", Direction::West},
+                                                                            {"UP", Direction::Up},
+                                                                            {"DOWN", Direction::Down},
+                                                                            {"NORTHEAST", Direction::Northeast},
+                                                                            {"NORTHWEST", Direction::Northwest},
+                                                                            {"SOUTHEAST", Direction::Southeast},
+                                                                            {"SOUTHWEST", Direction::Southwest}};
 
     auto it = dir_map.find(dir_name);
     return it != dir_map.end() ? std::optional<Direction>{it->second} : std::nullopt;
@@ -838,30 +847,54 @@ SectorType sector_from_number(int sector_num) {
     // CircleMUD sector values: 0=Inside, 1=City, 2=Field, 3=Forest, 4=Hills,
     // 5=Mountain, 6=Water_Swim, 7=Water_NoSwim, 8=Air/Flying, 9=Underwater
     switch (sector_num) {
-    case 0: return SectorType::Inside;
-    case 1: return SectorType::City;
-    case 2: return SectorType::Field;
-    case 3: return SectorType::Forest;
-    case 4: return SectorType::Hills;
-    case 5: return SectorType::Mountains;
-    case 6: return SectorType::Water_Swim;
-    case 7: return SectorType::Water_Noswim;
-    case 8: return SectorType::Flying;
-    case 9: return SectorType::Underwater;
-    case 10: return SectorType::Desert;
-    case 11: return SectorType::Swamp;
-    case 12: return SectorType::Beach;
-    case 13: return SectorType::Road;
-    case 14: return SectorType::Underground;
-    case 15: return SectorType::Lava;
-    case 16: return SectorType::Ice;
-    case 17: return SectorType::Astral;
-    case 18: return SectorType::Fire;
-    case 19: return SectorType::Lightning;
-    case 20: return SectorType::Spirit;
-    case 21: return SectorType::Badlands;
-    case 22: return SectorType::Void;
-    default: return SectorType::Undefined;
+    case 0:
+        return SectorType::Inside;
+    case 1:
+        return SectorType::City;
+    case 2:
+        return SectorType::Field;
+    case 3:
+        return SectorType::Forest;
+    case 4:
+        return SectorType::Hills;
+    case 5:
+        return SectorType::Mountains;
+    case 6:
+        return SectorType::Water_Swim;
+    case 7:
+        return SectorType::Water_Noswim;
+    case 8:
+        return SectorType::Flying;
+    case 9:
+        return SectorType::Underwater;
+    case 10:
+        return SectorType::Desert;
+    case 11:
+        return SectorType::Swamp;
+    case 12:
+        return SectorType::Beach;
+    case 13:
+        return SectorType::Road;
+    case 14:
+        return SectorType::Underground;
+    case 15:
+        return SectorType::Lava;
+    case 16:
+        return SectorType::Ice;
+    case 17:
+        return SectorType::Astral;
+    case 18:
+        return SectorType::Fire;
+    case 19:
+        return SectorType::Lightning;
+    case 20:
+        return SectorType::Spirit;
+    case 21:
+        return SectorType::Badlands;
+    case 22:
+        return SectorType::Void;
+    default:
+        return SectorType::Undefined;
     }
 }
 
@@ -934,12 +967,12 @@ std::string_view get_sector_color(SectorType sector) {
 bool is_outdoor_sector(SectorType sector) {
     // Indoor sectors that don't see weather or sunlight changes
     switch (sector) {
-        case SectorType::Inside:
-        case SectorType::Underground:
-        case SectorType::Underwater:
-            return false;
-        default:
-            return true;
+    case SectorType::Inside:
+    case SectorType::Underground:
+    case SectorType::Underwater:
+        return false;
+    default:
+        return true;
     }
 }
 } // namespace RoomUtils
@@ -950,8 +983,8 @@ std::string Room::get_stat_info() const {
     // Room name and basic info
     output << fmt::format("Room name: {}\n", name());
 
-    output << fmt::format("Zone: [{}], ID: [{}], Sector: {}\n",
-                          id().zone_id(), id(), magic_enum::enum_name(sector_type()));
+    output << fmt::format("Zone: [{}], ID: [{}], Sector: {}\n", id().zone_id(), id(),
+                          magic_enum::enum_name(sector_type()));
 
     // Lighting info
     output << fmt::format("Base Light Level: {}, Capacity: {}\n", base_light_level_, capacity_);
@@ -1030,8 +1063,8 @@ std::string Room::get_stat_info() const {
             key_str = fmt::format("{}:{}", exit.key_id.zone_id(), exit.key_id.local_id());
         }
 
-        output << fmt::format("Exit {:>5}:  To: [{}], Key: [{}], Keywrd: {}, Type: {}\n", dir_name, to_room,
-                              key_str, exit.keyword.empty() ? "None" : exit.keyword, exit_flags);
+        output << fmt::format("Exit {:>5}:  To: [{}], Key: [{}], Keywrd: {}, Type: {}\n", dir_name, to_room, key_str,
+                              exit.keyword.empty() ? "None" : exit.keyword, exit_flags);
 
         if (!exit.description.empty()) {
             output << fmt::format("Extra Desc: {}\n", exit.description);

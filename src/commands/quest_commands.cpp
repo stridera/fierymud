@@ -7,10 +7,10 @@
 #include "../quests/quest_manager.hpp"
 #include "../server/world_server.hpp"
 
-#include <fmt/format.h>
-#include <spdlog/spdlog.h>
 #include <algorithm>
 #include <cctype>
+#include <fmt/format.h>
+#include <spdlog/spdlog.h>
 
 namespace QuestCommands {
 
@@ -19,11 +19,16 @@ namespace {
 // Helper: Format a quest status for display
 std::string_view format_quest_status(QuestQueries::QuestStatus status) {
     switch (status) {
-        case QuestQueries::QuestStatus::AVAILABLE: return "<white>Available</>";
-        case QuestQueries::QuestStatus::IN_PROGRESS: return "<yellow>In Progress</>";
-        case QuestQueries::QuestStatus::COMPLETED: return "<green>Completed</>";
-        case QuestQueries::QuestStatus::FAILED: return "<red>Failed</>";
-        case QuestQueries::QuestStatus::ABANDONED: return "<gray>Abandoned</>";
+    case QuestQueries::QuestStatus::AVAILABLE:
+        return "<white>Available</>";
+    case QuestQueries::QuestStatus::IN_PROGRESS:
+        return "<yellow>In Progress</>";
+    case QuestQueries::QuestStatus::COMPLETED:
+        return "<green>Completed</>";
+    case QuestQueries::QuestStatus::FAILED:
+        return "<red>Failed</>";
+    case QuestQueries::QuestStatus::ABANDONED:
+        return "<gray>Abandoned</>";
     }
     return "Unknown";
 }
@@ -31,13 +36,20 @@ std::string_view format_quest_status(QuestQueries::QuestStatus status) {
 // Helper: Format objective type for display
 std::string_view format_objective_type(QuestQueries::QuestObjectiveType type) {
     switch (type) {
-        case QuestQueries::QuestObjectiveType::KILL_MOB: return "Kill";
-        case QuestQueries::QuestObjectiveType::COLLECT_ITEM: return "Collect";
-        case QuestQueries::QuestObjectiveType::DELIVER_ITEM: return "Deliver";
-        case QuestQueries::QuestObjectiveType::VISIT_ROOM: return "Visit";
-        case QuestQueries::QuestObjectiveType::TALK_TO_NPC: return "Talk to";
-        case QuestQueries::QuestObjectiveType::USE_SKILL: return "Use skill";
-        case QuestQueries::QuestObjectiveType::CUSTOM_LUA: return "Special";
+    case QuestQueries::QuestObjectiveType::KILL_MOB:
+        return "Kill";
+    case QuestQueries::QuestObjectiveType::COLLECT_ITEM:
+        return "Collect";
+    case QuestQueries::QuestObjectiveType::DELIVER_ITEM:
+        return "Deliver";
+    case QuestQueries::QuestObjectiveType::VISIT_ROOM:
+        return "Visit";
+    case QuestQueries::QuestObjectiveType::TALK_TO_NPC:
+        return "Talk to";
+    case QuestQueries::QuestObjectiveType::USE_SKILL:
+        return "Use skill";
+    case QuestQueries::QuestObjectiveType::CUSTOM_LUA:
+        return "Special";
     }
     return "Unknown";
 }
@@ -45,40 +57,53 @@ std::string_view format_objective_type(QuestQueries::QuestObjectiveType type) {
 // Helper: Format trigger type for display
 std::string_view format_trigger_type(QuestQueries::QuestTriggerType type) {
     switch (type) {
-        case QuestQueries::QuestTriggerType::MOB: return "Talk to NPC";
-        case QuestQueries::QuestTriggerType::LEVEL: return "Level up";
-        case QuestQueries::QuestTriggerType::ITEM: return "Item pickup";
-        case QuestQueries::QuestTriggerType::ROOM: return "Enter room";
-        case QuestQueries::QuestTriggerType::SKILL: return "Use skill";
-        case QuestQueries::QuestTriggerType::EVENT: return "Game event";
-        case QuestQueries::QuestTriggerType::AUTO: return "Automatic";
-        case QuestQueries::QuestTriggerType::MANUAL: return "Manual";
+    case QuestQueries::QuestTriggerType::MOB:
+        return "Talk to NPC";
+    case QuestQueries::QuestTriggerType::LEVEL:
+        return "Level up";
+    case QuestQueries::QuestTriggerType::ITEM:
+        return "Item pickup";
+    case QuestQueries::QuestTriggerType::ROOM:
+        return "Enter room";
+    case QuestQueries::QuestTriggerType::SKILL:
+        return "Use skill";
+    case QuestQueries::QuestTriggerType::EVENT:
+        return "Game event";
+    case QuestQueries::QuestTriggerType::AUTO:
+        return "Automatic";
+    case QuestQueries::QuestTriggerType::MANUAL:
+        return "Manual";
     }
     return "Unknown";
 }
 
 // Helper: Get character_id from actor (only works for Players)
-std::string get_character_id(const Actor* actor) {
-    if (!actor) return "";
-    const auto* player = dynamic_cast<const Player*>(actor);
-    if (!player) return "";
+std::string get_character_id(const Actor *actor) {
+    if (!actor)
+        return "";
+    const auto *player = dynamic_cast<const Player *>(actor);
+    if (!player)
+        return "";
     return std::string(player->database_id());
 }
 
 // Helper: Find online player by name prefix
 std::shared_ptr<Player> find_online_player(std::string_view name) {
-    if (name.empty()) return nullptr;
+    if (name.empty())
+        return nullptr;
 
-    auto* world_server = WorldServer::instance();
-    if (!world_server) return nullptr;
+    auto *world_server = WorldServer::instance();
+    if (!world_server)
+        return nullptr;
 
     // Convert search name to lowercase
     std::string search_name{name};
     std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
 
     auto players = world_server->get_online_players();
-    for (const auto& player : players) {
-        if (!player) continue;
+    for (const auto &player : players) {
+        if (!player)
+            continue;
 
         std::string player_name{player->name()};
         std::transform(player_name.begin(), player_name.end(), player_name.begin(), ::tolower);
@@ -92,7 +117,7 @@ std::shared_ptr<Player> find_online_player(std::string_view name) {
 }
 
 // Helper: Parse quest identifier - supports "zone:id" or just "id" (uses current zone)
-bool parse_quest_id(std::string_view arg, int default_zone, int& zone_id, int& quest_id) {
+bool parse_quest_id(std::string_view arg, int default_zone, int &zone_id, int &quest_id) {
     auto colon_pos = arg.find(':');
     if (colon_pos != std::string_view::npos) {
         try {
@@ -115,15 +140,15 @@ bool parse_quest_id(std::string_view arg, int default_zone, int& zone_id, int& q
 }
 
 // Helper: Find quest by name in available quests
-const QuestQueries::QuestData* find_quest_by_name(
-    std::string_view name,
-    const std::vector<const QuestQueries::QuestData*>& quests) {
+const QuestQueries::QuestData *find_quest_by_name(std::string_view name,
+                                                  const std::vector<const QuestQueries::QuestData *> &quests) {
 
     std::string search_name{name};
     std::transform(search_name.begin(), search_name.end(), search_name.begin(), ::tolower);
 
-    for (const auto* quest : quests) {
-        if (!quest) continue;
+    for (const auto *quest : quests) {
+        if (!quest)
+            continue;
 
         std::string quest_name = quest->name;
         std::transform(quest_name.begin(), quest_name.end(), quest_name.begin(), ::tolower);
@@ -144,11 +169,7 @@ const QuestQueries::QuestData* find_quest_by_name(
 
 Result<void> register_commands() {
     // Player quest commands
-    Commands()
-        .command("quest", cmd_quest)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("quest", cmd_quest).category("Information").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("quests", cmd_quests)
@@ -157,48 +178,20 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("questinfo", cmd_questinfo)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("questinfo", cmd_questinfo).category("Information").privilege(PrivilegeLevel::Player).build();
 
     // God/Admin commands
-    Commands()
-        .command("qstat", cmd_qstat)
-        .category("Admin")
-        .privilege(PrivilegeLevel::God)
-        .build();
+    Commands().command("qstat", cmd_qstat).category("Admin").privilege(PrivilegeLevel::God).build();
 
-    Commands()
-        .command("qgive", cmd_qgive)
-        .category("Admin")
-        .privilege(PrivilegeLevel::God)
-        .build();
+    Commands().command("qgive", cmd_qgive).category("Admin").privilege(PrivilegeLevel::God).build();
 
-    Commands()
-        .command("qcomplete", cmd_qcomplete)
-        .category("Admin")
-        .privilege(PrivilegeLevel::God)
-        .build();
+    Commands().command("qcomplete", cmd_qcomplete).category("Admin").privilege(PrivilegeLevel::God).build();
 
-    Commands()
-        .command("qlist", cmd_qlist)
-        .category("Admin")
-        .privilege(PrivilegeLevel::God)
-        .build();
+    Commands().command("qlist", cmd_qlist).category("Admin").privilege(PrivilegeLevel::God).build();
 
-    Commands()
-        .command("qload", cmd_qload)
-        .category("Admin")
-        .privilege(PrivilegeLevel::God)
-        .build();
+    Commands().command("qload", cmd_qload).category("Admin").privilege(PrivilegeLevel::God).build();
 
-    Commands()
-        .command("qreload", cmd_qreload)
-        .category("Admin")
-        .privilege(PrivilegeLevel::God)
-        .build();
+    Commands().command("qreload", cmd_qreload).category("Admin").privilege(PrivilegeLevel::God).build();
 
     spdlog::debug("Quest commands registered");
     return Success();
@@ -227,7 +220,7 @@ Result<CommandResult> cmd_quest(const CommandContext &ctx) {
     std::string subcommand{ctx.arg(0)};
     std::transform(subcommand.begin(), subcommand.end(), subcommand.begin(), ::tolower);
 
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
 
     if (subcommand == "accept") {
         if (ctx.arg_count() < 2) {
@@ -243,7 +236,7 @@ Result<CommandResult> cmd_quest(const CommandContext &ctx) {
             // Start quest by ID
             auto result = manager.start_quest(character_id, zone_id, quest_id);
             if (result) {
-                const auto* quest = manager.get_quest(zone_id, quest_id);
+                const auto *quest = manager.get_quest(zone_id, quest_id);
                 if (quest) {
                     ctx.send(fmt::format("You have accepted the quest: <white>{}</>\r\n", quest->name));
                 } else {
@@ -256,7 +249,7 @@ Result<CommandResult> cmd_quest(const CommandContext &ctx) {
             // Try to find by quest name in available quests
             int level = ctx.actor->stats().level;
             auto available = manager.get_available_quests(character_id, level);
-            const auto* quest = find_quest_by_name(quest_arg, available);
+            const auto *quest = find_quest_by_name(quest_arg, available);
 
             if (quest) {
                 auto result = manager.start_quest(character_id, quest->id.zone_id(), quest->id.local_id());
@@ -284,7 +277,7 @@ Result<CommandResult> cmd_quest(const CommandContext &ctx) {
         if (parse_quest_id(quest_arg, 0, zone_id, quest_id) && zone_id > 0) {
             auto result = manager.abandon_quest(character_id, zone_id, quest_id);
             if (result) {
-                const auto* quest = manager.get_quest(zone_id, quest_id);
+                const auto *quest = manager.get_quest(zone_id, quest_id);
                 if (quest) {
                     ctx.send(fmt::format("You have abandoned the quest: <white>{}</>\r\n", quest->name));
                 } else {
@@ -297,13 +290,13 @@ Result<CommandResult> cmd_quest(const CommandContext &ctx) {
             // Try to find by name in active quests
             auto active_result = manager.get_active_quests(character_id);
             if (active_result) {
-                const QuestQueries::QuestData* found_quest = nullptr;
+                const QuestQueries::QuestData *found_quest = nullptr;
 
                 std::string search = quest_arg;
                 std::transform(search.begin(), search.end(), search.begin(), ::tolower);
 
-                for (const auto& progress : *active_result) {
-                    const auto* quest = manager.get_quest(progress.quest_id);
+                for (const auto &progress : *active_result) {
+                    const auto *quest = manager.get_quest(progress.quest_id);
                     if (quest) {
                         std::string qname = quest->name;
                         std::transform(qname.begin(), qname.end(), qname.begin(), ::tolower);
@@ -315,8 +308,8 @@ Result<CommandResult> cmd_quest(const CommandContext &ctx) {
                 }
 
                 if (found_quest) {
-                    auto result = manager.abandon_quest(character_id,
-                        found_quest->id.zone_id(), found_quest->id.local_id());
+                    auto result =
+                        manager.abandon_quest(character_id, found_quest->id.zone_id(), found_quest->id.local_id());
                     if (result) {
                         ctx.send(fmt::format("You have abandoned the quest: <white>{}</>\r\n", found_quest->name));
                     } else {
@@ -367,23 +360,21 @@ Result<CommandResult> cmd_quests(const CommandContext &ctx) {
     std::string output;
     output += "<white>=== Quest Log ===</>\r\n\r\n";
 
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
 
     if (show_active) {
         auto active_result = manager.get_active_quests(character_id);
         if (active_result && !active_result->empty()) {
             output += "<yellow>Active Quests:</>\r\n";
-            for (const auto& progress : *active_result) {
-                const auto* quest = manager.get_quest(progress.quest_id);
+            for (const auto &progress : *active_result) {
+                const auto *quest = manager.get_quest(progress.quest_id);
                 if (quest) {
-                    output += fmt::format("  <cyan>{}:{}</> - <white>{}</>\r\n",
-                        progress.quest_id.zone_id(),
-                        progress.quest_id.local_id(),
-                        quest->name);
+                    output += fmt::format("  <cyan>{}:{}</> - <white>{}</>\r\n", progress.quest_id.zone_id(),
+                                          progress.quest_id.local_id(), quest->name);
 
                     // Show current phase if available
                     if (progress.current_phase_id) {
-                        for (const auto& phase : quest->phases) {
+                        for (const auto &phase : quest->phases) {
                             if (phase.id == *progress.current_phase_id) {
                                 output += fmt::format("    Phase: {}\r\n", phase.name);
                                 break;
@@ -402,13 +393,11 @@ Result<CommandResult> cmd_quests(const CommandContext &ctx) {
         auto completed_result = manager.get_completed_quests(character_id);
         if (completed_result && !completed_result->empty()) {
             output += "<green>Completed Quests:</>\r\n";
-            for (const auto& progress : *completed_result) {
-                const auto* quest = manager.get_quest(progress.quest_id);
+            for (const auto &progress : *completed_result) {
+                const auto *quest = manager.get_quest(progress.quest_id);
                 if (quest) {
-                    output += fmt::format("  <cyan>{}:{}</> - <white>{}</>",
-                        progress.quest_id.zone_id(),
-                        progress.quest_id.local_id(),
-                        quest->name);
+                    output += fmt::format("  <cyan>{}:{}</> - <white>{}</>", progress.quest_id.zone_id(),
+                                          progress.quest_id.local_id(), quest->name);
 
                     if (progress.completion_count > 1) {
                         output += fmt::format(" (x{})", progress.completion_count);
@@ -454,8 +443,8 @@ Result<CommandResult> cmd_questinfo(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
-    const auto* quest = manager.get_quest(zone_id, quest_id);
+    auto &manager = FieryMUD::QuestManager::instance();
+    const auto *quest = manager.get_quest(zone_id, quest_id);
 
     if (!quest) {
         ctx.send("Quest not found.\r\n");
@@ -475,34 +464,31 @@ Result<CommandResult> cmd_questinfo(const CommandContext &ctx) {
 
     if (!quest->phases.empty()) {
         output += "\r\n<cyan>Phases:</>\r\n";
-        for (const auto& phase : quest->phases) {
+        for (const auto &phase : quest->phases) {
             output += fmt::format("  <white>{}. {}</>\r\n", phase.order, phase.name);
-            for (const auto& obj : phase.objectives) {
-                output += fmt::format("    - [{}] {}\r\n",
-                    format_objective_type(obj.type),
-                    obj.player_description);
+            for (const auto &obj : phase.objectives) {
+                output += fmt::format("    - [{}] {}\r\n", format_objective_type(obj.type), obj.player_description);
             }
         }
     }
 
     if (!quest->rewards.empty()) {
         output += "\r\n<cyan>Rewards:</>\r\n";
-        for (const auto& reward : quest->rewards) {
+        for (const auto &reward : quest->rewards) {
             switch (reward.type) {
-                case QuestQueries::QuestRewardType::EXPERIENCE:
-                    output += fmt::format("  {} experience\r\n", reward.amount.value_or(0));
-                    break;
-                case QuestQueries::QuestRewardType::GOLD:
-                    output += fmt::format("  {} gold\r\n", reward.amount.value_or(0));
-                    break;
-                case QuestQueries::QuestRewardType::ITEM:
-                    output += fmt::format("  Item: {}:{}\r\n",
-                        reward.object ? reward.object->zone_id() : 0,
-                        reward.object ? reward.object->local_id() : 0);
-                    break;
-                case QuestQueries::QuestRewardType::ABILITY:
-                    output += fmt::format("  Ability: {}\r\n", reward.ability_id.value_or(0));
-                    break;
+            case QuestQueries::QuestRewardType::EXPERIENCE:
+                output += fmt::format("  {} experience\r\n", reward.amount.value_or(0));
+                break;
+            case QuestQueries::QuestRewardType::GOLD:
+                output += fmt::format("  {} gold\r\n", reward.amount.value_or(0));
+                break;
+            case QuestQueries::QuestRewardType::ITEM:
+                output += fmt::format("  Item: {}:{}\r\n", reward.object ? reward.object->zone_id() : 0,
+                                      reward.object ? reward.object->local_id() : 0);
+                break;
+            case QuestQueries::QuestRewardType::ABILITY:
+                output += fmt::format("  Ability: {}\r\n", reward.ability_id.value_or(0));
+                break;
             }
         }
     }
@@ -539,7 +525,7 @@ Result<CommandResult> cmd_qstat(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
 
     std::string output;
     output += fmt::format("<white>=== Quest Status for {} ===</>\r\n\r\n", target->name());
@@ -548,26 +534,25 @@ Result<CommandResult> cmd_qstat(const CommandContext &ctx) {
     auto active_result = manager.get_active_quests(character_id);
     if (active_result && !active_result->empty()) {
         output += "<yellow>Active Quests:</>\r\n";
-        for (const auto& progress : *active_result) {
-            const auto* quest = manager.get_quest(progress.quest_id);
+        for (const auto &progress : *active_result) {
+            const auto *quest = manager.get_quest(progress.quest_id);
             if (quest) {
-                output += fmt::format("  <cyan>{}:{}</> - <white>{}</> ({})\r\n",
-                    progress.quest_id.zone_id(),
-                    progress.quest_id.local_id(),
-                    quest->name,
-                    format_quest_status(progress.status));
+                output += fmt::format("  <cyan>{}:{}</> - <white>{}</> ({})\r\n", progress.quest_id.zone_id(),
+                                      progress.quest_id.local_id(), quest->name, format_quest_status(progress.status));
 
                 // Show objective progress
                 if (progress.current_phase_id) {
-                    for (const auto& obj_prog : progress.objective_progress) {
+                    for (const auto &obj_prog : progress.objective_progress) {
                         if (obj_prog.phase_id == *progress.current_phase_id) {
                             // Find matching objective
-                            for (const auto& phase : quest->phases) {
+                            for (const auto &phase : quest->phases) {
                                 if (phase.id == obj_prog.phase_id) {
-                                    for (const auto& obj : phase.objectives) {
+                                    for (const auto &obj : phase.objectives) {
                                         if (obj.id == obj_prog.objective_id) {
-                                            std::string status = obj_prog.completed ? "<green>[DONE]</>" :
-                                                fmt::format("[{}/{}]", obj_prog.current_count, obj.required_count);
+                                            std::string status = obj_prog.completed
+                                                                     ? "<green>[DONE]</>"
+                                                                     : fmt::format("[{}/{}]", obj_prog.current_count,
+                                                                                   obj.required_count);
                                             output += fmt::format("    {} {}\r\n", status, obj.player_description);
                                         }
                                     }
@@ -625,12 +610,11 @@ Result<CommandResult> cmd_qgive(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
-    const auto* quest = manager.get_quest(zone_id, quest_id);
+    auto &manager = FieryMUD::QuestManager::instance();
+    const auto *quest = manager.get_quest(zone_id, quest_id);
 
     if (!quest) {
-        ctx.send(fmt::format("Quest {}:{} not found in cache. Try loading the zone first.\r\n",
-            zone_id, quest_id));
+        ctx.send(fmt::format("Quest {}:{} not found in cache. Try loading the zone first.\r\n", zone_id, quest_id));
         return CommandResult::Success;
     }
 
@@ -679,8 +663,8 @@ Result<CommandResult> cmd_qcomplete(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
-    const auto* quest = manager.get_quest(zone_id, quest_id);
+    auto &manager = FieryMUD::QuestManager::instance();
+    const auto *quest = manager.get_quest(zone_id, quest_id);
 
     // Complete the quest
     auto result = manager.complete_quest(character_id, zone_id, quest_id);
@@ -693,34 +677,35 @@ Result<CommandResult> cmd_qcomplete(const CommandContext &ctx) {
 
         // Grant rewards if quest data is available
         if (quest && !quest->rewards.empty()) {
-            for (const auto& reward : quest->rewards) {
+            for (const auto &reward : quest->rewards) {
                 switch (reward.type) {
-                    case QuestQueries::QuestRewardType::EXPERIENCE:
-                        if (reward.amount) {
-                            target->gain_experience(*reward.amount);
-                            target->send_message(fmt::format("You gain {} experience!\r\n", *reward.amount));
-                        }
-                        break;
-                    case QuestQueries::QuestRewardType::GOLD:
-                        if (reward.amount) {
-                            target->stats().gold += *reward.amount;
-                            target->send_message(fmt::format("You receive {} gold coins!\r\n", *reward.amount));
-                        }
-                        break;
-                    case QuestQueries::QuestRewardType::ITEM:
-                        // TODO: Load item from database and give to player
-                        if (reward.object) {
-                            target->send_message(fmt::format("You would receive item {}:{} (item loading not implemented)\r\n",
-                                reward.object->zone_id(), reward.object->local_id()));
-                        }
-                        break;
-                    case QuestQueries::QuestRewardType::ABILITY:
-                        // TODO: Teach ability to player
-                        if (reward.ability_id) {
-                            target->send_message(fmt::format("You would learn ability {} (ability teaching not implemented)\r\n",
-                                *reward.ability_id));
-                        }
-                        break;
+                case QuestQueries::QuestRewardType::EXPERIENCE:
+                    if (reward.amount) {
+                        target->gain_experience(*reward.amount);
+                        target->send_message(fmt::format("You gain {} experience!\r\n", *reward.amount));
+                    }
+                    break;
+                case QuestQueries::QuestRewardType::GOLD:
+                    if (reward.amount) {
+                        target->stats().gold += *reward.amount;
+                        target->send_message(fmt::format("You receive {} gold coins!\r\n", *reward.amount));
+                    }
+                    break;
+                case QuestQueries::QuestRewardType::ITEM:
+                    // TODO: Load item from database and give to player
+                    if (reward.object) {
+                        target->send_message(
+                            fmt::format("You would receive item {}:{} (item loading not implemented)\r\n",
+                                        reward.object->zone_id(), reward.object->local_id()));
+                    }
+                    break;
+                case QuestQueries::QuestRewardType::ABILITY:
+                    // TODO: Teach ability to player
+                    if (reward.ability_id) {
+                        target->send_message(fmt::format(
+                            "You would learn ability {} (ability teaching not implemented)\r\n", *reward.ability_id));
+                    }
+                    break;
                 }
             }
         }
@@ -736,7 +721,7 @@ Result<CommandResult> cmd_qlist(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor in context"));
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
 
     std::string output;
 
@@ -757,16 +742,14 @@ Result<CommandResult> cmd_qlist(const CommandContext &ctx) {
         }
 
         output += fmt::format("<white>=== Quests in Zone {} ({} total) ===</>\r\n\r\n", zone_id, quests.size());
-        for (const auto* quest : quests) {
-            output += fmt::format("  <cyan>{}:{}</> - <white>{}</> [Lvl {}-{}]{}\r\n",
-                quest->id.zone_id(), quest->id.local_id(),
-                quest->name,
-                quest->min_level, quest->max_level,
-                quest->hidden ? " <gray>(hidden)</>" : "");
+        for (const auto *quest : quests) {
+            output += fmt::format("  <cyan>{}:{}</> - <white>{}</> [Lvl {}-{}]{}\r\n", quest->id.zone_id(),
+                                  quest->id.local_id(), quest->name, quest->min_level, quest->max_level,
+                                  quest->hidden ? " <gray>(hidden)</>" : "");
         }
     } else {
         // Show summary of all loaded quests
-        const auto& stats = manager.stats();
+        const auto &stats = manager.stats();
         output += fmt::format("<white>=== Quest System Summary ===</>\r\n\r\n");
         output += fmt::format("  Total quests loaded: {}\r\n", manager.quest_count());
         output += fmt::format("  Quests started:      {}\r\n", stats.quests_started);
@@ -798,7 +781,7 @@ Result<CommandResult> cmd_qload(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     auto result = manager.load_zone_quests(zone_id);
 
     if (result) {
@@ -828,7 +811,7 @@ Result<CommandResult> cmd_qreload(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     auto result = manager.reload_zone_quests(zone_id);
 
     if (result) {

@@ -250,7 +250,8 @@ class FunctionRegistry {
     }
 
     // Check if a function can be called with given permissions
-    static bool can_call_function(std::string_view name, PermissionFlags user_permissions, CharData *character = nullptr) {
+    static bool can_call_function(std::string_view name, PermissionFlags user_permissions,
+                                  CharData *character = nullptr) {
         auto it = function_map_.find(std::string(name));
         if (it == function_map_.end()) {
             return false;
@@ -345,13 +346,13 @@ class FunctionRegistry {
                     // Only use fuzzy match if there's a clear best candidate
                     if (fuzzy_matches.size() == 1 ||
                         (fuzzy_matches.size() <= 3 && fuzzy_matches[0].second < fuzzy_matches[1].second)) {
-                        
+
                         const auto &best_match = fuzzy_matches[0].first;
-                        
+
                         // Check permissions for the fuzzy match
                         if (can_call_function(best_match->name, user_permissions, character)) {
-                            log("Executing function '{}' using fuzzy match for '{}' (distance: {})", 
-                                best_match->name, abbrev, fuzzy_matches[0].second);
+                            log("Executing function '{}' using fuzzy match for '{}' (distance: {})", best_match->name,
+                                abbrev, fuzzy_matches[0].second);
                             best_match->func(character, args);
                             return true;
                         } else {
@@ -362,7 +363,7 @@ class FunctionRegistry {
                     }
                 }
             }
-            
+
             log("No function matches abbreviation '{}'", abbrev);
             return false;
         }

@@ -1,7 +1,7 @@
 #include "config.hpp"
 
-#include "logging.hpp"
 #include "../server/mud_server.hpp"
+#include "logging.hpp"
 
 #include <filesystem>
 #include <fmt/format.h>

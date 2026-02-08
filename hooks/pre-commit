@@ -1,0 +1,71 @@
+#!/bin/bash
+# Pre-commit hook to enforce formatting
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+# Get staged C++ files
+STAGED_CPP=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(cpp|hpp|h)$' || true)
+
+if [[ -z "$STAGED_CPP" ]]; then
+    exit 0
+fi
+
+echo -e "${YELLOW}Checking formatting of staged C++ files...${NC}"
+
+# Find clang-format (prefer newer versions for C++23 support)
+CLANG_FORMAT=""
+for version in 19 18 17 ""; do
+    candidate="clang-format${version:+-$version}"
+    if command -v "$candidate" &>/dev/null; then
+        CLANG_FORMAT="$candidate"
+        break
+    fi
+done
+
+if [[ -z "$CLANG_FORMAT" ]]; then
+    echo -e "${RED}Error: clang-format not found. Install with: sudo apt install clang-format-19${NC}"
+    exit 1
+fi
+
+FAILED_FILES=()
+
+for file in $STAGED_CPP; do
+    if [[ -f "$file" ]]; then
+        # Check formatting
+        if ! $CLANG_FORMAT --dry-run --Werror "$file" 2>/dev/null; then
+            FAILED_FILES+=("$file")
+        fi
+
+        # Check trailing whitespace
+        if grep -q '[[:space:]]$' "$file"; then
+            echo -e "${RED}  $file: trailing whitespace${NC}"
+            FAILED_FILES+=("$file (whitespace)")
+        fi
+
+        # Check final newline
+        if [[ -n "$(tail -c 1 "$file")" ]]; then
+            echo -e "${RED}  $file: missing final newline${NC}"
+            FAILED_FILES+=("$file (newline)")
+        fi
+    fi
+done
+
+if [[ ${#FAILED_FILES[@]} -gt 0 ]]; then
+    echo ""
+    echo -e "${RED}Commit blocked: formatting issues found${NC}"
+    echo -e "Run: ${GREEN}./format.sh --fix-whitespace && ./format.sh${NC}"
+    echo -e "Then: ${GREEN}git add -u && git commit${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}All staged C++ files are properly formatted${NC}"
+exit 0

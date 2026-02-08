@@ -1,8 +1,7 @@
 #include "system_commands.hpp"
-#include "../text/rich_text.hpp"
-#include "../text/terminal_capabilities.hpp"
-#include "../core/actor.hpp"
+
 #include "../core/ability_executor.hpp"
+#include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../core/money.hpp"
 #include "../core/object.hpp"
@@ -11,6 +10,8 @@
 #include "../database/world_queries.hpp"
 #include "../net/player_connection.hpp"
 #include "../server/persistence_manager.hpp"
+#include "../text/rich_text.hpp"
+#include "../text/terminal_capabilities.hpp"
 
 #include <algorithm>
 #include <fmt/format.h>
@@ -34,7 +35,7 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
     }
 
     ctx.send("Goodbye! Thanks for playing FieryMUD.");
-    player->set_position(Position::Standing);  // Player remains standing until logout
+    player->set_position(Position::Standing); // Player remains standing until logout
 
     // For mortals, remove from room BEFORE saving so they return to recall on login
     // Gods keep their saved location regardless of how they log out
@@ -42,7 +43,7 @@ Result<CommandResult> cmd_quit(const CommandContext &ctx) {
         if (ctx.room) {
             ctx.room->remove_actor(player->id());
         }
-        player->set_current_room({});  // Ensure current_room is cleared for save
+        player->set_current_room({}); // Ensure current_room is cleared for save
     }
 
     // Save player data before logout
@@ -75,7 +76,7 @@ Result<CommandResult> cmd_save(const CommandContext &ctx) {
     }
 
     ctx.send("Saving your character...");
-    
+
     if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
         auto save_result = PersistenceManager::instance().save_player(*player);
         if (!save_result) {
@@ -98,12 +99,12 @@ Result<CommandResult> cmd_save(const CommandContext &ctx) {
  * Helper to remove temporary items from player inventory/equipment
  * Returns count of items removed
  */
-static int remove_temporary_items(Player& player, const CommandContext& ctx) {
+static int remove_temporary_items(Player &player, const CommandContext &ctx) {
     int removed = 0;
 
     // Remove from inventory
     auto inv_items = player.inventory().get_all_items();
-    for (const auto& item : inv_items) {
+    for (const auto &item : inv_items) {
         if (item && item->has_flag(ObjectFlag::Temporary)) {
             player.inventory().remove_item(item);
             ctx.send(fmt::format("  {} crumbles to dust.", item->display_name()));
@@ -113,7 +114,7 @@ static int remove_temporary_items(Player& player, const CommandContext& ctx) {
 
     // Remove from equipment
     auto equipped = player.equipment().get_all_equipped_with_slots();
-    for (const auto& [slot, item] : equipped) {
+    for (const auto &[slot, item] : equipped) {
         if (item && item->has_flag(ObjectFlag::Temporary)) {
             player.equipment().unequip_item(slot);
             ctx.send(fmt::format("  {} crumbles to dust.", item->display_name()));
@@ -141,7 +142,7 @@ Result<CommandResult> cmd_rent(const CommandContext &ctx) {
 
     // Check for receptionist in the room
     bool has_receptionist = false;
-    for (const auto& actor : ctx.room->contents().actors) {
+    for (const auto &actor : ctx.room->contents().actors) {
         if (auto mob = std::dynamic_pointer_cast<Mobile>(actor)) {
             if (mob->is_receptionist()) {
                 has_receptionist = true;
@@ -157,13 +158,13 @@ Result<CommandResult> cmd_rent(const CommandContext &ctx) {
 
     // Calculate rent cost based on player level and items
     long rent_cost = player->level() * 10; // Base: 10 copper per level
-    Log::info("Rent calculation: player {} level {} * 10 = {} copper, current gold = {}",
-              player->name(), player->level(), rent_cost, player->stats().gold);
+    Log::info("Rent calculation: player {} level {} * 10 = {} copper, current gold = {}", player->name(),
+              player->level(), rent_cost, player->stats().gold);
 
     if (!player->can_afford(rent_cost)) {
         auto cost_money = fiery::Money::from_copper(rent_cost);
-        ctx.send(fmt::format("The receptionist says, 'That will be {}. You don't have enough!'",
-                             cost_money.to_string()));
+        ctx.send(
+            fmt::format("The receptionist says, 'That will be {}. You don't have enough!'", cost_money.to_string()));
         return CommandResult::ResourceError;
     }
 
@@ -175,8 +176,7 @@ Result<CommandResult> cmd_rent(const CommandContext &ctx) {
     // Remove temporary items
     int removed = remove_temporary_items(*player, ctx);
     if (removed > 0) {
-        ctx.send(fmt::format("{} temporary item{} could not be stored.",
-                             removed, removed == 1 ? "" : "s"));
+        ctx.send(fmt::format("{} temporary item{} could not be stored.", removed, removed == 1 ? "" : "s"));
     }
 
     // Save the player (while still in room, so location is preserved)
@@ -232,8 +232,7 @@ Result<CommandResult> cmd_camp(const CommandContext &ctx) {
     // Remove temporary items
     int removed = remove_temporary_items(*player, ctx);
     if (removed > 0) {
-        ctx.send(fmt::format("{} temporary item{} faded away as you made camp.",
-                             removed, removed == 1 ? "" : "s"));
+        ctx.send(fmt::format("{} temporary item{} faded away as you made camp.", removed, removed == 1 ? "" : "s"));
     }
 
     // Save the player
@@ -251,7 +250,7 @@ Result<CommandResult> cmd_camp(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_help(const CommandContext &ctx) {
-    auto& cmd_system = CommandSystem::instance();
+    auto &cmd_system = CommandSystem::instance();
 
     if (ctx.arg_count() == 0) {
         ctx.send("FieryMUD Help System");
@@ -272,7 +271,7 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
     std::string topic{ctx.arg(0)};
 
     // First, check if it's a registered command
-    const CommandInfo* cmd_info = cmd_system.find_command(topic);
+    const CommandInfo *cmd_info = cmd_system.find_command(topic);
     if (cmd_info) {
         // Display command help
         ctx.send(fmt::format("Help: {}", cmd_info->name));
@@ -297,7 +296,8 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
         if (!cmd_info->aliases.empty()) {
             std::string alias_str;
             for (size_t i = 0; i < cmd_info->aliases.size(); ++i) {
-                if (i > 0) alias_str += ", ";
+                if (i > 0)
+                    alias_str += ", ";
                 alias_str += cmd_info->aliases[i];
             }
             ctx.send(fmt::format("\nAliases: {}", alias_str));
@@ -318,18 +318,18 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
 
     // Check if it's a spell, skill, or ability
     if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
-        const LearnedAbility* learned = player->find_ability_by_name(topic);
+        const LearnedAbility *learned = player->find_ability_by_name(topic);
         if (learned) {
             // Get full ability data from cache
-            auto& cache = FieryMUD::AbilityCache::instance();
-            const auto* ability = cache.get_ability(learned->ability_id);
+            auto &cache = FieryMUD::AbilityCache::instance();
+            const auto *ability = cache.get_ability(learned->ability_id);
 
             ctx.send("===============================================");
 
             // Usage line
             std::string type_lower = learned->type;
             std::transform(type_lower.begin(), type_lower.end(), type_lower.begin(),
-                          [](unsigned char c) { return std::tolower(c); });
+                           [](unsigned char c) { return std::tolower(c); });
             if (type_lower == "spell") {
                 ctx.send(fmt::format("Usage         : cast '{}' [target]", learned->plain_name));
             } else if (type_lower == "skill") {
@@ -360,32 +360,25 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
                 // Sphere/School
                 if (!ability->sphere.empty()) {
                     std::string sphere_lower = ability->sphere;
-                    std::transform(sphere_lower.begin(), sphere_lower.end(),
-                                  sphere_lower.begin(), ::tolower);
+                    std::transform(sphere_lower.begin(), sphere_lower.end(), sphere_lower.begin(), ::tolower);
                     ctx.send(fmt::format("Sphere        : {}", sphere_lower));
                 }
 
                 // Cast time - use database value if set, otherwise circle-based default
-                int cast_rounds = ability->cast_time_rounds > 0
-                    ? ability->cast_time_rounds
-                    : (learned->circle + 1);
-                ctx.send(fmt::format("Cast time     : {} round{}",
-                                    cast_rounds,
-                                    cast_rounds == 1 ? "" : "s"));
+                int cast_rounds = ability->cast_time_rounds > 0 ? ability->cast_time_rounds : (learned->circle + 1);
+                ctx.send(fmt::format("Cast time     : {} round{}", cast_rounds, cast_rounds == 1 ? "" : "s"));
             }
 
             // Classes and circles
             auto classes = cache.get_ability_classes(learned->ability_id);
             if (!classes.empty()) {
                 bool first = true;
-                for (const auto& cls : classes) {
+                for (const auto &cls : classes) {
                     if (first) {
-                        ctx.send(fmt::format("Classes       : {:<12} Circle {}",
-                                            cls.class_name, cls.circle));
+                        ctx.send(fmt::format("Classes       : {:<12} Circle {}", cls.class_name, cls.circle));
                         first = false;
                     } else {
-                        ctx.send(fmt::format("              : {:<12} Circle {}",
-                                            cls.class_name, cls.circle));
+                        ctx.send(fmt::format("              : {:<12} Circle {}", cls.class_name, cls.circle));
                     }
                 }
             }
@@ -403,7 +396,7 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
             if (!learned->sphere.empty()) {
                 std::string sphere_upper = learned->sphere;
                 std::transform(sphere_upper.begin(), sphere_upper.end(), sphere_upper.begin(),
-                              [](unsigned char c) { return std::toupper(c); });
+                               [](unsigned char c) { return std::toupper(c); });
                 ctx.send(fmt::format("\nSee also: {}", sphere_upper));
             }
 
@@ -423,13 +416,13 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
     }
 
     // Try to find help entry in database (covers all topics including lore, cities, etc.)
-    auto help_result = ConnectionPool::instance().execute([&topic](pqxx::work& txn)
-        -> Result<std::optional<WorldQueries::HelpEntryData>> {
-        return WorldQueries::load_help_entry(txn, topic);
-    });
+    auto help_result = ConnectionPool::instance().execute(
+        [&topic](pqxx::work &txn) -> Result<std::optional<WorldQueries::HelpEntryData>> {
+            return WorldQueries::load_help_entry(txn, topic);
+        });
 
     if (help_result && *help_result) {
-        const auto& entry = **help_result;
+        const auto &entry = **help_result;
 
         // Check level requirement
         int player_level = 0;
@@ -471,7 +464,8 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
         if (entry.keywords.size() > 1) {
             std::string keywords_str;
             for (size_t i = 0; i < entry.keywords.size(); ++i) {
-                if (i > 0) keywords_str += ", ";
+                if (i > 0)
+                    keywords_str += ", ";
                 keywords_str += entry.keywords[i];
             }
             ctx.send(fmt::format("\nSee also: {}", keywords_str));
@@ -524,7 +518,7 @@ Result<CommandResult> cmd_help(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_commands(const CommandContext &ctx) {
-    auto& cmd_system = CommandSystem::instance();
+    auto &cmd_system = CommandSystem::instance();
 
     ctx.send("Available Commands:");
     ctx.send("===================");
@@ -539,8 +533,8 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
     auto available_commands = cmd_system.get_available_commands(ctx.actor);
 
     // Group commands by category
-    for (const auto& cmd_name : available_commands) {
-        const CommandInfo* info = cmd_system.find_command(cmd_name);
+    for (const auto &cmd_name : available_commands) {
+        const CommandInfo *info = cmd_system.find_command(cmd_name);
         if (info) {
             std::string category = info->category.empty() ? "Other" : info->category;
 
@@ -552,7 +546,7 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
             }
 
             // Avoid duplicates (aliases might cause the same command to appear multiple times)
-            auto& cmds = category_commands[category];
+            auto &cmds = category_commands[category];
             if (std::find(cmds.begin(), cmds.end(), cmd_display) == cmds.end()) {
                 cmds.push_back(cmd_display);
             }
@@ -560,20 +554,18 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
     }
 
     // Define category display order (most common first)
-    std::vector<std::string> category_order = {
-        "Information", "Communication", "Movement", "Position",
-        "Object", "Combat", "Social", "System",
-        "Building", "Administration", "Other"
-    };
+    std::vector<std::string> category_order = {"Information", "Communication",  "Movement", "Position",
+                                               "Object",      "Combat",         "Social",   "System",
+                                               "Building",    "Administration", "Other"};
 
     // Display commands by category
-    for (const auto& cat_name : category_order) {
+    for (const auto &cat_name : category_order) {
         auto it = category_commands.find(cat_name);
         if (it != category_commands.end() && !it->second.empty()) {
             ctx.send(fmt::format("\n{}:", cat_name));
 
             // Sort commands in this category
-            auto& cmds = it->second;
+            auto &cmds = it->second;
             std::sort(cmds.begin(), cmds.end());
 
             // Format commands in columns (roughly 4 per line, 18 chars each)
@@ -582,7 +574,7 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
 
             std::string line = "  ";
             int col = 0;
-            for (const auto& cmd : cmds) {
+            for (const auto &cmd : cmds) {
                 // Truncate if too long
                 std::string display = cmd;
                 if (display.length() > COLUMN_WIDTH - 2) {
@@ -607,14 +599,14 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
     }
 
     // Show any categories not in the predefined order
-    for (const auto& [cat_name, cmds] : category_commands) {
+    for (const auto &[cat_name, cmds] : category_commands) {
         if (std::find(category_order.begin(), category_order.end(), cat_name) == category_order.end()) {
             if (!cmds.empty()) {
                 ctx.send(fmt::format("\n{}:", cat_name));
 
                 std::string line = "  ";
                 int col = 0;
-                for (const auto& cmd : cmds) {
+                for (const auto &cmd : cmds) {
                     line += fmt::format("{:<18}", cmd);
                     col++;
                     if (col >= 4) {
@@ -636,14 +628,14 @@ Result<CommandResult> cmd_commands(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_socials(const CommandContext &ctx) {
-    auto& cache = SocialCache::instance();
+    auto &cache = SocialCache::instance();
 
     if (!cache.is_loaded()) {
         ctx.send_error("Socials have not been loaded from the database.");
         return CommandResult::SystemError;
     }
 
-    const auto& socials = cache.all();
+    const auto &socials = cache.all();
 
     ctx.send("Available Social Commands:");
     ctx.send("==========================");
@@ -652,7 +644,7 @@ Result<CommandResult> cmd_socials(const CommandContext &ctx) {
     // Collect all social names and sort them
     std::vector<std::string> names;
     names.reserve(socials.size());
-    for (const auto& [name, social] : socials) {
+    for (const auto &[name, social] : socials) {
         if (!social.hide) {
             names.push_back(name);
         }
@@ -665,7 +657,7 @@ Result<CommandResult> cmd_socials(const CommandContext &ctx) {
 
     std::string line = "  ";
     int col = 0;
-    for (const auto& name : names) {
+    for (const auto &name : names) {
         std::string display = name;
         if (display.length() > COLUMN_WIDTH - 1) {
             display = display.substr(0, COLUMN_WIDTH - 2) + ".";
@@ -719,12 +711,12 @@ Result<CommandResult> cmd_socials(const CommandContext &ctx) {
 Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
     // Preset prompts
     static const std::vector<std::pair<std::string, std::string>> preset_prompts = {
-        {"minimal",     "<%h/%Hhp %v/%Vs>"},
-        {"standard",    "<%h/%Hhp %v/%Vs %x/exp>"},
-        {"combat",      "<%h/%Hhp %v/%Vs %T>"},
-        {"full",        "<%h/%Hhp %v/%Vs %x/exp %g/gold %T>"},
-        {"colored",     "<<red>%h</>/%Hhp <yellow>%v</>/%Vs>"},
-        {"classic",     "<%h/%Hhp %v/%Vs>"},
+        {"minimal", "<%h/%Hhp %v/%Vs>"},
+        {"standard", "<%h/%Hhp %v/%Vs %x/exp>"},
+        {"combat", "<%h/%Hhp %v/%Vs %T>"},
+        {"full", "<%h/%Hhp %v/%Vs %x/exp %g/gold %T>"},
+        {"colored", "<<red>%h</>/%Hhp <yellow>%v</>/%Vs>"},
+        {"classic", "<%h/%Hhp %v/%Vs>"},
     };
 
     // Get the player
@@ -747,7 +739,7 @@ Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
         ctx.send("Available preset prompts:");
         ctx.send("");
         int i = 0;
-        for (const auto& [name, format] : preset_prompts) {
+        for (const auto &[name, format] : preset_prompts) {
             ctx.send(fmt::format("  {:2d}. {:<12} {}", i++, name, format));
         }
         ctx.send("");
@@ -771,7 +763,7 @@ Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
             return CommandResult::InvalidSyntax;
         }
 
-        const auto& [name, format] = preset_prompts[index];
+        const auto &[name, format] = preset_prompts[index];
         player->set_prompt(format);
         ctx.send(fmt::format("Your prompt is now set to the '{}' preset.", name));
         ctx.send(fmt::format("Format: {}", format));
@@ -795,7 +787,7 @@ Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
 /**
  * Test command to demonstrate the rich text formatting system.
  * Usage: richtest [demo_type]
- * 
+ *
  * Demo types:
  * - colors: Show color palette
  * - progress: Show progress bars
@@ -803,72 +795,72 @@ Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
  * - combat: Show combat message formatting
  * - all: Show all demos
  */
-Result<CommandResult> cmd_richtest(const CommandContext& ctx) {
+Result<CommandResult> cmd_richtest(const CommandContext &ctx) {
     std::string demo_type = ctx.arg_or(0, "all");
-    
+
     // Detect terminal capabilities first
     auto caps = TerminalCapabilities::detect_capabilities();
-    
+
     if (demo_type == "capabilities" || demo_type == "all") {
         ctx.send_header("Terminal Capabilities");
-        
+
         RichText cap_info;
         cap_info.text("Terminal: ").bold(caps.terminal_name).text("\n");
         cap_info.text("Color support: ");
-        cap_info.colored(caps.supports_color ? "Yes" : "No", 
-                        caps.supports_color ? Color::BrightGreen : Color::BrightRed);
+        cap_info.colored(caps.supports_color ? "Yes" : "No",
+                         caps.supports_color ? Color::BrightGreen : Color::BrightRed);
         cap_info.text("\n");
-        
+
         cap_info.text("256-color support: ");
         cap_info.colored(caps.supports_256_color ? "Yes" : "No",
-                        caps.supports_256_color ? Color::BrightGreen : Color::BrightRed);
+                         caps.supports_256_color ? Color::BrightGreen : Color::BrightRed);
         cap_info.text("\n");
-        
+
         cap_info.text("True color (RGB): ");
         cap_info.colored(caps.supports_true_color ? "Yes" : "No",
-                        caps.supports_true_color ? Color::BrightGreen : Color::BrightRed);
+                         caps.supports_true_color ? Color::BrightGreen : Color::BrightRed);
         cap_info.text("\n");
-        
+
         cap_info.text("Unicode support: ");
         cap_info.colored(caps.supports_unicode ? "Yes" : "No",
-                        caps.supports_unicode ? Color::BrightGreen : Color::BrightRed);
+                         caps.supports_unicode ? Color::BrightGreen : Color::BrightRed);
         cap_info.text("\n");
-        
+
         std::string level_name;
         Color level_color = Color::White;
         switch (caps.overall_level) {
-            case TerminalCapabilities::SupportLevel::None:
-                level_name = "None (Text only)";
-                level_color = Color::BrightRed;
-                break;
-            case TerminalCapabilities::SupportLevel::Basic:
-                level_name = "Basic (16 colors)";
-                level_color = Color::Yellow;
-                break;
-            case TerminalCapabilities::SupportLevel::Standard:
-                level_name = "Standard (ANSI colors)";
-                level_color = Color::BrightYellow;
-                break;
-            case TerminalCapabilities::SupportLevel::Extended:
-                level_name = "Extended (256 colors)";
-                level_color = Color::BrightCyan;
-                break;
-            case TerminalCapabilities::SupportLevel::Full:
-                level_name = "Full (True color + Unicode)";
-                level_color = Color::BrightGreen;
-                break;
+        case TerminalCapabilities::SupportLevel::None:
+            level_name = "None (Text only)";
+            level_color = Color::BrightRed;
+            break;
+        case TerminalCapabilities::SupportLevel::Basic:
+            level_name = "Basic (16 colors)";
+            level_color = Color::Yellow;
+            break;
+        case TerminalCapabilities::SupportLevel::Standard:
+            level_name = "Standard (ANSI colors)";
+            level_color = Color::BrightYellow;
+            break;
+        case TerminalCapabilities::SupportLevel::Extended:
+            level_name = "Extended (256 colors)";
+            level_color = Color::BrightCyan;
+            break;
+        case TerminalCapabilities::SupportLevel::Full:
+            level_name = "Full (True color + Unicode)";
+            level_color = Color::BrightGreen;
+            break;
         }
-        
+
         cap_info.text("Overall level: ");
         cap_info.colored(level_name, level_color);
-        
+
         ctx.send_rich(cap_info);
         ctx.send_separator();
     }
-    
+
     if (demo_type == "colors" || demo_type == "all") {
         ctx.send_header("Color Palette Demo");
-        
+
         RichText color_demo;
         color_demo.text("Standard Colors: ");
         color_demo.colored("Red ", Color::Red);
@@ -878,7 +870,7 @@ Result<CommandResult> cmd_richtest(const CommandContext& ctx) {
         color_demo.colored("Cyan ", Color::Cyan);
         color_demo.colored("Magenta", Color::Magenta);
         color_demo.text("\n");
-        
+
         color_demo.text("Bright Colors: ");
         color_demo.colored("Red ", Color::BrightRed);
         color_demo.colored("Green ", Color::BrightGreen);
@@ -887,7 +879,7 @@ Result<CommandResult> cmd_richtest(const CommandContext& ctx) {
         color_demo.colored("Cyan ", Color::BrightCyan);
         color_demo.colored("Magenta", Color::BrightMagenta);
         color_demo.text("\n");
-        
+
         color_demo.text("RGB Colors: ");
         color_demo.rgb("Health ", Colors::Health);
         color_demo.rgb("Mana ", Colors::Mana);
@@ -895,55 +887,53 @@ Result<CommandResult> cmd_richtest(const CommandContext& ctx) {
         color_demo.rgb("Healing ", Colors::Healing);
         color_demo.rgb("Experience", Colors::Experience);
         color_demo.text("\n");
-        
+
         ctx.send_rich(color_demo);
         ctx.send_separator();
     }
-    
+
     if (demo_type == "progress" || demo_type == "all") {
         ctx.send_header("Progress Bar Demo");
-        
+
         ctx.send_progress_bar("Health", 0.85f);
-        ctx.send_progress_bar("Mana", 0.42f);  
+        ctx.send_progress_bar("Mana", 0.42f);
         ctx.send_progress_bar("Movement", 1.0f);
         ctx.send_progress_bar("Experience", 0.15f);
-        
+
         RichText custom_bars;
         custom_bars.text("Custom Progress Bars:\n");
-        
+
         // Use adaptive characters based on terminal capabilities
         auto progress_chars = TerminalCapabilities::get_progress_chars(caps);
-        
+
         custom_bars.text("Loading: ");
         custom_bars.progress_bar(0.7f, 30, progress_chars.filled, progress_chars.empty);
         custom_bars.text("\nDownload: ");
         custom_bars.progress_bar(0.3f, 20, "=", ".");
-        
+
         ctx.send_rich(custom_bars);
         ctx.send_separator();
     }
-    
+
     if (demo_type == "table" || demo_type == "all") {
         ctx.send_header("Table Formatting Demo");
-        
+
         std::vector<std::string> headers = {"Player", "Level", "Class", "HP", "Status"};
-        std::vector<std::vector<std::string>> rows = {
-            {"Gandalf", "50", "Wizard", "450/450", "Healthy"},
-            {"Legolas", "45", "Ranger", "380/400", "Injured"},
-            {"Gimli", "48", "Warrior", "500/500", "Healthy"},
-            {"Frodo", "25", "Rogue", "220/250", "Tired"}
-        };
-        
+        std::vector<std::vector<std::string>> rows = {{"Gandalf", "50", "Wizard", "450/450", "Healthy"},
+                                                      {"Legolas", "45", "Ranger", "380/400", "Injured"},
+                                                      {"Gimli", "48", "Warrior", "500/500", "Healthy"},
+                                                      {"Frodo", "25", "Rogue", "220/250", "Tired"}};
+
         ctx.send_table(headers, rows);
         ctx.send_separator();
     }
-    
+
     if (demo_type == "combat" || demo_type == "all") {
         ctx.send_header("Combat Message Demo");
-        
+
         ctx.send_damage_report(25, "longsword");
         ctx.send_healing_report(15, "healing potion");
-        
+
         RichText combat_scene;
         combat_scene.text("The ");
         combat_scene.bold("orc warrior");
@@ -952,20 +942,20 @@ Result<CommandResult> cmd_richtest(const CommandContext& ctx) {
         combat_scene.text(" at you, dealing ");
         combat_scene.rgb("18", Colors::Damage);
         combat_scene.text(" damage!\n");
-        
+
         combat_scene.text("You cast ");
         combat_scene.italic("heal");
         combat_scene.text(" on yourself, restoring ");
         combat_scene.rgb("+12", Colors::Healing);
         combat_scene.text(" hit points.");
-        
+
         ctx.send_rich(combat_scene);
         ctx.send_separator();
     }
-    
+
     if (demo_type == "text" || demo_type == "all") {
         ctx.send_header("Text Styling Demo");
-        
+
         RichText styles;
         styles.text("Text Styles: ");
         styles.bold("Bold ");
@@ -973,38 +963,38 @@ Result<CommandResult> cmd_richtest(const CommandContext& ctx) {
         styles.underline("Underlined ");
         styles.strikethrough("Strikethrough");
         styles.text("\n");
-        
+
         styles.text("Highlights: ");
         styles.highlight("Important", Color::Black, BackgroundColor::BrightYellow);
         styles.text(" ");
         styles.highlight("Warning", Color::White, BackgroundColor::Red);
         styles.text(" ");
         styles.highlight("Success", Color::Black, BackgroundColor::Green);
-        
+
         ctx.send_rich(styles);
         ctx.send_separator();
     }
-    
+
     RichText summary;
     summary.colored("✓ Rich text formatting system is working!", Color::BrightGreen);
     ctx.send_rich(summary);
-    
+
     return CommandResult::Success;
 }
 
-Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
+Result<CommandResult> cmd_clientinfo(const CommandContext &ctx) {
     if (!ctx.actor) {
         ctx.send_line("Error: No actor available.");
         return CommandResult::InvalidSyntax;
     }
-    
+
     // Cast Actor to Player to access get_output()
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
         ctx.send_line("Error: Only players can view client information.");
         return CommandResult::InvalidSyntax;
     }
-    
+
     // Cast PlayerOutput to PlayerConnection to access capabilities
     auto output = player->get_output();
     auto connection = std::dynamic_pointer_cast<PlayerConnection>(output);
@@ -1012,11 +1002,11 @@ Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
         ctx.send_line("Error: No connection available or not a player connection.");
         return CommandResult::InvalidSyntax;
     }
-    
-    const auto& caps = connection->get_terminal_capabilities();
-    
+
+    const auto &caps = connection->get_terminal_capabilities();
+
     ctx.send_header("Client Capability Information");
-    
+
     // Basic client info
     RichText client_info;
     client_info.colored("Client: ", Color::BrightCyan);
@@ -1025,39 +1015,39 @@ Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
     } else {
         client_info.text(fmt::format("{}\n", caps.client_name));
     }
-    
+
     client_info.colored("Terminal: ", Color::BrightCyan);
     client_info.text(fmt::format("{}\n", caps.terminal_name));
-    
+
     client_info.colored("Detection Method: ", Color::BrightCyan);
     std::string method_name;
     switch (caps.detection_method) {
-        case TerminalCapabilities::DetectionMethod::Environment:
-            method_name = "Server Environment";
-            break;
-        case TerminalCapabilities::DetectionMethod::MTTS:
-            method_name = fmt::format("MTTS (bitvector: {})", caps.mtts_bitvector);
-            break;
-        case TerminalCapabilities::DetectionMethod::GMCP:
-            method_name = "GMCP Client Info";
-            break;
-        case TerminalCapabilities::DetectionMethod::NewEnviron:
-            method_name = "NEW-ENVIRON Protocol";
-            break;
+    case TerminalCapabilities::DetectionMethod::Environment:
+        method_name = "Server Environment";
+        break;
+    case TerminalCapabilities::DetectionMethod::MTTS:
+        method_name = fmt::format("MTTS (bitvector: {})", caps.mtts_bitvector);
+        break;
+    case TerminalCapabilities::DetectionMethod::GMCP:
+        method_name = "GMCP Client Info";
+        break;
+    case TerminalCapabilities::DetectionMethod::NewEnviron:
+        method_name = "NEW-ENVIRON Protocol";
+        break;
     }
     client_info.text(method_name);
     ctx.send_rich(client_info);
-    
+
     ctx.send_separator();
-    
+
     // Display capabilities in a table
     std::vector<std::string> headers = {"Capability", "Supported"};
     std::vector<std::vector<std::string>> rows;
-    
-    auto add_capability = [&](const std::string& name, bool supported) {
+
+    auto add_capability = [&](const std::string &name, bool supported) {
         rows.push_back({name, supported ? "✓ Yes" : "✗ No"});
     };
-    
+
     add_capability("Basic Colors", caps.supports_color);
     add_capability("256 Colors", caps.supports_256_color);
     add_capability("True Color (24-bit)", caps.supports_true_color);
@@ -1069,44 +1059,44 @@ Result<CommandResult> cmd_clientinfo(const CommandContext& ctx) {
     add_capability("Mouse Support", caps.supports_mouse);
     add_capability("Hyperlinks", caps.supports_hyperlinks);
     add_capability("Screen Reader", caps.supports_screen_reader);
-    
+
     ctx.send_table(headers, rows);
-    
+
     ctx.send_separator();
-    
+
     // Overall support level
     RichText support_level;
     support_level.colored("Overall Support Level: ", Color::BrightYellow);
-    
+
     Color level_color = Color::White;
     std::string level_name;
-    
+
     switch (caps.overall_level) {
-        case TerminalCapabilities::SupportLevel::None:
-            level_name = "None (Basic text only)";
-            level_color = Color::Red;
-            break;
-        case TerminalCapabilities::SupportLevel::Basic:
-            level_name = "Basic (Limited colors)";
-            level_color = Color::Yellow;
-            break;
-        case TerminalCapabilities::SupportLevel::Standard:
-            level_name = "Standard (16 colors + formatting)";
-            level_color = Color::BrightBlue;
-            break;
-        case TerminalCapabilities::SupportLevel::Extended:
-            level_name = "Extended (256 colors + advanced)";
-            level_color = Color::BrightGreen;
-            break;
-        case TerminalCapabilities::SupportLevel::Full:
-            level_name = "Full (True color + all features)";
-            level_color = Color::BrightMagenta;
-            break;
+    case TerminalCapabilities::SupportLevel::None:
+        level_name = "None (Basic text only)";
+        level_color = Color::Red;
+        break;
+    case TerminalCapabilities::SupportLevel::Basic:
+        level_name = "Basic (Limited colors)";
+        level_color = Color::Yellow;
+        break;
+    case TerminalCapabilities::SupportLevel::Standard:
+        level_name = "Standard (16 colors + formatting)";
+        level_color = Color::BrightBlue;
+        break;
+    case TerminalCapabilities::SupportLevel::Extended:
+        level_name = "Extended (256 colors + advanced)";
+        level_color = Color::BrightGreen;
+        break;
+    case TerminalCapabilities::SupportLevel::Full:
+        level_name = "Full (True color + all features)";
+        level_color = Color::BrightMagenta;
+        break;
     }
-    
+
     support_level.colored(level_name, level_color);
     ctx.send_rich(support_level);
-    
+
     return CommandResult::Success;
 }
 
@@ -1119,20 +1109,13 @@ namespace {
  * Helper function to save a report to the database.
  * Returns the report ID on success, or an error message on failure.
  */
-Result<int> save_report_to_db(
-    const std::string& report_type,
-    const std::string& reporter_name,
-    const std::optional<std::string>& reporter_id,
-    const std::optional<int>& room_zone_id,
-    const std::optional<int>& room_id,
-    const std::string& message) {
+Result<int> save_report_to_db(const std::string &report_type, const std::string &reporter_name,
+                              const std::optional<std::string> &reporter_id, const std::optional<int> &room_zone_id,
+                              const std::optional<int> &room_id, const std::string &message) {
 
-    return ConnectionPool::instance().execute(
-        [&](pqxx::work& txn) -> Result<int> {
-            return WorldQueries::save_report(
-                txn, report_type, reporter_name, reporter_id,
-                room_zone_id, room_id, message);
-        });
+    return ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<int> {
+        return WorldQueries::save_report(txn, report_type, reporter_name, reporter_id, room_zone_id, room_id, message);
+    });
 }
 } // anonymous namespace
 
@@ -1166,16 +1149,14 @@ Result<CommandResult> cmd_bug(const CommandContext &ctx) {
     // Save to database
     auto result = save_report_to_db("BUG", player_name, reporter_id, room_zone_id, room_id, message);
     if (result) {
-        Log::info("[BUG] Report #{} from {} [Room {}:{}]: {}",
-            *result, player_name,
-            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        Log::info("[BUG] Report #{} from {} [Room {}:{}]: {}", *result, player_name, room_zone_id.value_or(-1),
+                  room_id.value_or(-1), message);
         ctx.send("Thank you for reporting this bug! Your report has been saved.");
     } else {
         // Fall back to logging if database save fails
-        Log::warn("[BUG] Database save failed for {}: {} (logging to file instead)",
-            player_name, result.error().message);
-        Log::info("[BUG] {} [Room {}:{}]: {}", player_name,
-            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        Log::warn("[BUG] Database save failed for {}: {} (logging to file instead)", player_name,
+                  result.error().message);
+        Log::info("[BUG] {} [Room {}:{}]: {}", player_name, room_zone_id.value_or(-1), room_id.value_or(-1), message);
         ctx.send("Thank you for reporting this bug! The immortals have been notified.");
     }
 
@@ -1212,16 +1193,14 @@ Result<CommandResult> cmd_idea(const CommandContext &ctx) {
     // Save to database
     auto result = save_report_to_db("IDEA", player_name, reporter_id, room_zone_id, room_id, message);
     if (result) {
-        Log::info("[IDEA] Report #{} from {} [Room {}:{}]: {}",
-            *result, player_name,
-            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        Log::info("[IDEA] Report #{} from {} [Room {}:{}]: {}", *result, player_name, room_zone_id.value_or(-1),
+                  room_id.value_or(-1), message);
         ctx.send("Thank you for sharing your idea! Your suggestion has been saved.");
     } else {
         // Fall back to logging if database save fails
-        Log::warn("[IDEA] Database save failed for {}: {} (logging to file instead)",
-            player_name, result.error().message);
-        Log::info("[IDEA] {} [Room {}:{}]: {}", player_name,
-            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        Log::warn("[IDEA] Database save failed for {}: {} (logging to file instead)", player_name,
+                  result.error().message);
+        Log::info("[IDEA] {} [Room {}:{}]: {}", player_name, room_zone_id.value_or(-1), room_id.value_or(-1), message);
         ctx.send("Thank you for sharing your idea! The immortals have been notified.");
     }
 
@@ -1258,16 +1237,14 @@ Result<CommandResult> cmd_typo(const CommandContext &ctx) {
     // Save to database
     auto result = save_report_to_db("TYPO", player_name, reporter_id, room_zone_id, room_id, message);
     if (result) {
-        Log::info("[TYPO] Report #{} from {} [Room {}:{}]: {}",
-            *result, player_name,
-            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        Log::info("[TYPO] Report #{} from {} [Room {}:{}]: {}", *result, player_name, room_zone_id.value_or(-1),
+                  room_id.value_or(-1), message);
         ctx.send("Thank you for reporting this typo! Your report has been saved.");
     } else {
         // Fall back to logging if database save fails
-        Log::warn("[TYPO] Database save failed for {}: {} (logging to file instead)",
-            player_name, result.error().message);
-        Log::info("[TYPO] {} [Room {}:{}]: {}", player_name,
-            room_zone_id.value_or(-1), room_id.value_or(-1), message);
+        Log::warn("[TYPO] Database save failed for {}: {} (logging to file instead)", player_name,
+                  result.error().message);
+        Log::info("[TYPO] {} [Room {}:{}]: {}", player_name, room_zone_id.value_or(-1), room_id.value_or(-1), message);
         ctx.send("Thank you for reporting this typo! The immortals have been notified.");
     }
 
@@ -1281,7 +1258,7 @@ Result<CommandResult> cmd_typo(const CommandContext &ctx) {
 Result<CommandResult> cmd_date(const CommandContext &ctx) {
     auto now = std::chrono::system_clock::now();
     auto time_t_now = std::chrono::system_clock::to_time_t(now);
-    std::tm* tm_now = std::localtime(&time_t_now);
+    std::tm *tm_now = std::localtime(&time_t_now);
 
     char buffer[128];
     std::strftime(buffer, sizeof(buffer), "%A, %B %d, %Y at %H:%M:%S", tm_now);
@@ -1304,20 +1281,23 @@ Result<CommandResult> cmd_color(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    static const std::vector<std::pair<std::string, ColorLevel>> color_levels = {
-        {"off", ColorLevel::Off},
-        {"sparse", ColorLevel::Sparse},
-        {"normal", ColorLevel::Normal},
-        {"complete", ColorLevel::Complete}
-    };
+    static const std::vector<std::pair<std::string, ColorLevel>> color_levels = {{"off", ColorLevel::Off},
+                                                                                 {"sparse", ColorLevel::Sparse},
+                                                                                 {"normal", ColorLevel::Normal},
+                                                                                 {"complete", ColorLevel::Complete}};
 
     auto level_to_name = [](ColorLevel level) -> std::string_view {
         switch (level) {
-            case ColorLevel::Off: return "off";
-            case ColorLevel::Sparse: return "sparse";
-            case ColorLevel::Normal: return "normal";
-            case ColorLevel::Complete: return "complete";
-            default: return "normal";
+        case ColorLevel::Off:
+            return "off";
+        case ColorLevel::Sparse:
+            return "sparse";
+        case ColorLevel::Normal:
+            return "normal";
+        case ColorLevel::Complete:
+            return "complete";
+        default:
+            return "normal";
         }
     };
 
@@ -1332,7 +1312,7 @@ Result<CommandResult> cmd_color(const CommandContext &ctx) {
     std::transform(level_arg.begin(), level_arg.end(), level_arg.begin(),
                    [](unsigned char c) { return std::tolower(c); });
 
-    for (const auto& [name, level] : color_levels) {
+    for (const auto &[name, level] : color_levels) {
         if (name.starts_with(level_arg)) {
             player->set_color_level(level);
             ctx.send(fmt::format("Your color level is now: {}", name));
@@ -1364,7 +1344,7 @@ Result<CommandResult> cmd_display(const CommandContext &ctx) {
     if (ctx.arg_count() == 0 || !std::isdigit(ctx.arg(0)[0])) {
         ctx.send("Available pre-set prompts:");
         int i = 0;
-        for (const auto& [name, prompt] : preset_prompts) {
+        for (const auto &[name, prompt] : preset_prompts) {
             ctx.send(fmt::format("{:2d}. {:<12} {}", i++, name, prompt));
         }
         ctx.send(fmt::format("\nYour current prompt: {}", player->prompt()));
@@ -1393,12 +1373,12 @@ Result<CommandResult> cmd_alias(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 0) {
         // List all aliases
-        const auto& aliases = player->get_aliases();
+        const auto &aliases = player->get_aliases();
         if (aliases.empty()) {
             ctx.send("You have no aliases defined.");
         } else {
             ctx.send("Currently defined aliases:");
-            for (const auto& [name, command] : aliases) {
+            for (const auto &[name, command] : aliases) {
                 ctx.send(fmt::format("  {} -> {}", name, command));
             }
         }
@@ -1430,7 +1410,8 @@ Result<CommandResult> cmd_alias(const CommandContext &ctx) {
     // The replacement is everything after the alias name
     std::string replacement;
     for (size_t i = 1; i < ctx.arg_count(); ++i) {
-        if (!replacement.empty()) replacement += " ";
+        if (!replacement.empty())
+            replacement += " ";
         replacement += ctx.arg(i);
     }
 
@@ -1449,12 +1430,12 @@ Result<CommandResult> cmd_ignore(const CommandContext &ctx) {
 
     if (ctx.arg_count() == 0) {
         // List ignored players
-        const auto& ignored = player->get_ignored_players();
+        const auto &ignored = player->get_ignored_players();
         if (ignored.empty()) {
             ctx.send("You are not ignoring anyone.");
         } else {
             ctx.send("Currently ignored players:");
-            for (const auto& name : ignored) {
+            for (const auto &name : ignored) {
                 ctx.send(fmt::format("  {}", name));
             }
         }
@@ -1487,7 +1468,7 @@ Result<CommandResult> cmd_ignore(const CommandContext &ctx) {
             ctx.send_error("You can only ignore players.");
             return CommandResult::InvalidTarget;
         }
-        target_name = target->name();  // Use proper capitalization
+        target_name = target->name(); // Use proper capitalization
     }
     // Allow ignoring by name even if player is not online
 
@@ -1502,12 +1483,7 @@ Result<CommandResult> cmd_ignore(const CommandContext &ctx) {
 // =============================================================================
 
 Result<void> register_commands() {
-    Commands()
-        .command("quit", cmd_quit)
-        .alias("ex")
-        .category("System")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("quit", cmd_quit).alias("ex").category("System").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("save", cmd_save)
@@ -1554,23 +1530,11 @@ Result<void> register_commands() {
         .description("List all available social commands")
         .build();
 
-    Commands()
-        .command("prompt", cmd_prompt)
-        .category("System")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("prompt", cmd_prompt).category("System").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("richtest", cmd_richtest)
-        .category("System")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("richtest", cmd_richtest).category("System").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("clientinfo", cmd_clientinfo)
-        .category("System")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("clientinfo", cmd_clientinfo).category("System").privilege(PrivilegeLevel::Player).build();
 
     // Feedback commands
     Commands()

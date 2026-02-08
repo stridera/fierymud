@@ -27,8 +27,8 @@ struct TimerError {
  * from the game loop.
  */
 class ScriptTimerManager {
-public:
-    static ScriptTimerManager& instance();
+  public:
+    static ScriptTimerManager &instance();
 
     /**
      * Schedule a callback to execute after a delay.
@@ -36,8 +36,7 @@ public:
      * @param callback Lua function to call
      * @return Timer ID for cancellation, or error
      */
-    std::expected<std::uint64_t, TimerError> schedule(double delay_seconds,
-                                                       sol::protected_function callback);
+    std::expected<std::uint64_t, TimerError> schedule(double delay_seconds, sol::protected_function callback);
 
     /**
      * Cancel a pending timer.
@@ -62,7 +61,7 @@ public:
      */
     void clear();
 
-private:
+  private:
     ScriptTimerManager() = default;
 
     struct TimerEntry {
@@ -72,7 +71,7 @@ private:
     };
 
     std::uint64_t next_timer_id_ = 1;
-    std::map<std::uint64_t, TimerEntry> timers_;  // id -> timer
+    std::map<std::uint64_t, TimerEntry> timers_; // id -> timer
     mutable std::mutex mutex_;
 };
 

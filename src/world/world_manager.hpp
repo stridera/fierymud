@@ -26,11 +26,11 @@ class Mobile;
 class Player;
 
 namespace FieryMUD {
-    class ObjectTemplate;
-    class MobileTemplate;
-}
-using FieryMUD::ObjectTemplate;
+class ObjectTemplate;
+class MobileTemplate;
+} // namespace FieryMUD
 using FieryMUD::MobileTemplate;
+using FieryMUD::ObjectTemplate;
 
 /**
  * World management system for FieryMUD.
@@ -256,9 +256,8 @@ class WorldManager {
     void despawn_mobile(EntityId mobile_id);
 
     // Mobile Iteration (for scripting triggers, effects, etc.)
-    template<typename Func>
-    void for_each_mobile(Func&& func) const {
-        for (const auto& [id, mobile] : spawned_mobiles_) {
+    template <typename Func> void for_each_mobile(Func &&func) const {
+        for (const auto &[id, mobile] : spawned_mobiles_) {
             if (mobile) {
                 func(mobile);
             }
@@ -266,13 +265,11 @@ class WorldManager {
     }
 
     // Get all spawned mobiles (for mob activity/AI processing)
-    const std::unordered_map<EntityId, std::shared_ptr<Mobile>>& spawned_mobiles() const {
-        return spawned_mobiles_;
-    }
+    const std::unordered_map<EntityId, std::shared_ptr<Mobile>> &spawned_mobiles() const { return spawned_mobiles_; }
 
     // Prototype Access (for load command and similar admin features)
-    Mobile* get_mobile_prototype(EntityId prototype_id) const;
-    Object* get_object_prototype(EntityId prototype_id) const;
+    Mobile *get_mobile_prototype(EntityId prototype_id) const;
+    Object *get_object_prototype(EntityId prototype_id) const;
 
     // Lua Scripting API
     /**
@@ -331,9 +328,9 @@ class WorldManager {
     void initialize_weather_callbacks();
 
     // Tick Systems
-    void tick_regen_all();      // Fast tick (every 4s) - HP/move regen, DoT/HoT
-    void tick_hour_all();       // Hour tick (every 75s) - effect durations, conditions
-    void tick_all_effects();    // Legacy compatibility - calls tick_regen_all()
+    void tick_regen_all();   // Fast tick (every 4s) - HP/move regen, DoT/HoT
+    void tick_hour_all();    // Hour tick (every 75s) - effect durations, conditions
+    void tick_all_effects(); // Legacy compatibility - calls tick_regen_all()
 
   private:
     WorldManager() = default;
@@ -347,10 +344,10 @@ class WorldManager {
 
     // Object and mobile prototypes (for spawning instances)
     // Using shared_ptr for both storage and lookup to prevent dangling pointer issues
-    std::unordered_map<EntityId, std::shared_ptr<Object>> objects_;  // Quick lookup by ID
-    std::unordered_map<EntityId, std::shared_ptr<Mobile>> mobiles_;  // Quick lookup by ID
-    std::vector<std::shared_ptr<Object>> object_prototypes_;         // Owned prototypes
-    std::vector<std::shared_ptr<Mobile>> mobile_prototypes_;         // Owned prototypes
+    std::unordered_map<EntityId, std::shared_ptr<Object>> objects_; // Quick lookup by ID
+    std::unordered_map<EntityId, std::shared_ptr<Mobile>> mobiles_; // Quick lookup by ID
+    std::vector<std::shared_ptr<Object>> object_prototypes_;        // Owned prototypes
+    std::vector<std::shared_ptr<Mobile>> mobile_prototypes_;        // Owned prototypes
 
     // Spawned instance tracking (for efficient equipment lookups)
     std::unordered_map<EntityId, std::shared_ptr<Mobile>> spawned_mobiles_; // Live mobile instances by ID
@@ -386,7 +383,7 @@ class WorldManager {
 
     // Helper methods
     Result<void> load_zones_from_directory(const std::string &zone_dir);
-    Result<void> load_zones_from_database();  // Load zones from PostgreSQL database
+    Result<void> load_zones_from_database(); // Load zones from PostgreSQL database
     Result<void> load_rooms_from_directory(const std::string &room_dir);
 
     // Mobile spawning

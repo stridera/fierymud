@@ -5,6 +5,7 @@
 #include "../world/game_world.hpp"
 
 #include <asio.hpp>
+
 #include <memory>
 #include <string>
 #include <string_view>

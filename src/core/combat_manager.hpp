@@ -1,6 +1,7 @@
 #pragma once
 
 #include "result.hpp"
+
 #include <expected>
 #include <memory>
 
@@ -23,8 +24,8 @@ struct CombatError {
  * TODO: Implement full combat system.
  */
 class CombatManager {
-public:
-    static CombatManager& instance() {
+  public:
+    static CombatManager &instance() {
         static CombatManager instance;
         return instance;
     }
@@ -32,7 +33,7 @@ public:
     /**
      * Start combat between attacker and defender.
      */
-    std::expected<void, CombatError> engage(Actor& attacker, Actor& defender) {
+    std::expected<void, CombatError> engage(Actor &attacker, Actor &defender) {
         // TODO: Implement combat engagement
         return std::unexpected(CombatError{"Combat system not yet implemented"});
     }
@@ -40,7 +41,7 @@ public:
     /**
      * Rescuer intervenes to protect target.
      */
-    std::expected<void, CombatError> rescue(Actor& rescuer, Actor& target) {
+    std::expected<void, CombatError> rescue(Actor &rescuer, Actor &target) {
         // TODO: Implement rescue
         return std::unexpected(CombatError{"Combat system not yet implemented"});
     }
@@ -48,7 +49,7 @@ public:
     /**
      * Remove actor from combat.
      */
-    std::expected<void, CombatError> disengage(Actor& actor) {
+    std::expected<void, CombatError> disengage(Actor &actor) {
         // TODO: Implement disengage
         return std::unexpected(CombatError{"Combat system not yet implemented"});
     }
@@ -56,12 +57,12 @@ public:
     /**
      * Check if actor is in combat.
      */
-    bool is_fighting(const Actor& actor) const {
+    bool is_fighting(const Actor &actor) const {
         // TODO: Check combat state
         return false;
     }
 
-private:
+  private:
     CombatManager() = default;
 };
 

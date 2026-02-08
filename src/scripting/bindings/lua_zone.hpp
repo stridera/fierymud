@@ -11,6 +11,6 @@ namespace FieryMUD {
  *   zone.echo(zone_id, message) - Send message to all players in a zone
  *   zone.reset(zone_id)         - Trigger zone reset
  */
-void register_zone_bindings(sol::state& lua);
+void register_zone_bindings(sol::state &lua);
 
 } // namespace FieryMUD

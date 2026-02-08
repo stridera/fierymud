@@ -1,4 +1,5 @@
 #include "account_commands.hpp"
+
 #include "../core/actor.hpp"
 #include "../core/logging.hpp"
 #include "../database/connection_pool.hpp"
@@ -14,7 +15,7 @@ namespace AccountCommands {
 // =============================================================================
 
 Result<CommandResult> cmd_account(const CommandContext &ctx) {
-    auto* player = dynamic_cast<Player*>(ctx.actor.get());
+    auto *player = dynamic_cast<Player *>(ctx.actor.get());
     if (!player) {
         ctx.send_error("Only players can use account commands.");
         return CommandResult::InvalidState;
@@ -48,15 +49,11 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
     }
 
     // Query account information from database
-    auto result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction& txn)
-        -> Result<void> {
-        auto row = txn.exec1(
-            fmt::format(
-                "SELECT id, email, username, role, created_at, last_login_at, account_wealth "
-                "FROM \"Users\" WHERE id = {} AND deleted_at IS NULL",
-                txn.quote(std::string(player->user_id()))
-            )
-        );
+    auto result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction &txn) -> Result<void> {
+        auto row =
+            txn.exec1(fmt::format("SELECT id, email, username, role, created_at, last_login_at, account_wealth "
+                                  "FROM \"Users\" WHERE id = {} AND deleted_at IS NULL",
+                                  txn.quote(std::string(player->user_id()))));
 
         ctx.send_header("Account Information");
         ctx.send_line(fmt::format("Username: {}", row["username"].as<std::string>()));
@@ -72,12 +69,10 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         ctx.send_line(fmt::format("Account Bank: {}p {}g {}s {}c", platinum, gold, silver, copper));
 
         // Get character count
-        auto char_count = txn.exec1(
-            fmt::format(
-                "SELECT COUNT(*) FROM \"Characters\" WHERE user_id = {} AND deleted_at IS NULL",
-                txn.quote(std::string(player->user_id()))
-            )
-        )[0].as<int>();
+        auto char_count =
+            txn.exec1(fmt::format("SELECT COUNT(*) FROM \"Characters\" WHERE user_id = {} AND deleted_at IS NULL",
+                                  txn.quote(std::string(player->user_id()))))[0]
+                .as<int>();
         ctx.send_line(fmt::format("Characters: {}", char_count));
 
         ctx.send_separator();
@@ -100,7 +95,7 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_account_link(const CommandContext &ctx) {
-    auto* player = dynamic_cast<Player*>(ctx.actor.get());
+    auto *player = dynamic_cast<Player *>(ctx.actor.get());
     if (!player) {
         ctx.send_error("Only players can use account commands.");
         return CommandResult::InvalidState;
@@ -122,14 +117,9 @@ Result<CommandResult> cmd_account_link(const CommandContext &ctx) {
     auto email = std::string(ctx.arg(1));
 
     // Look up the account by email
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<std::string> {
-        auto rows = txn.exec(
-            fmt::format(
-                "SELECT id, username FROM \"Users\" WHERE email = {} AND deleted_at IS NULL",
-                txn.quote(email)
-            )
-        );
+    auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::string> {
+        auto rows = txn.exec(fmt::format("SELECT id, username FROM \"Users\" WHERE email = {} AND deleted_at IS NULL",
+                                         txn.quote(email)));
 
         if (rows.empty()) {
             return std::unexpected(Error{ErrorCode::NotFound, "No account found with that email."});
@@ -139,13 +129,8 @@ Result<CommandResult> cmd_account_link(const CommandContext &ctx) {
         auto username = rows[0]["username"].as<std::string>();
 
         // Link the character to the account
-        txn.exec(
-            fmt::format(
-                "UPDATE \"Characters\" SET user_id = {} WHERE name = {}",
-                txn.quote(user_id),
-                txn.quote(std::string(player->name()))
-            )
-        );
+        txn.exec(fmt::format("UPDATE \"Characters\" SET user_id = {} WHERE name = {}", txn.quote(user_id),
+                             txn.quote(std::string(player->name()))));
 
         return username;
     });
@@ -157,16 +142,12 @@ Result<CommandResult> cmd_account_link(const CommandContext &ctx) {
 
     // Update the player object
     // Note: We need to query for the user_id since result only has username
-    auto user_result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction& txn)
-        -> Result<std::string> {
-        auto row = txn.exec1(
-            fmt::format(
-                "SELECT id FROM \"Users\" WHERE email = {} AND deleted_at IS NULL",
-                txn.quote(email)
-            )
-        );
-        return row["id"].as<std::string>();
-    });
+    auto user_result =
+        ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction &txn) -> Result<std::string> {
+            auto row = txn.exec1(
+                fmt::format("SELECT id FROM \"Users\" WHERE email = {} AND deleted_at IS NULL", txn.quote(email)));
+            return row["id"].as<std::string>();
+        });
 
     if (user_result) {
         player->set_user_id(*user_result);
@@ -183,7 +164,7 @@ Result<CommandResult> cmd_account_link(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_account_unlink(const CommandContext &ctx) {
-    auto* player = dynamic_cast<Player*>(ctx.actor.get());
+    auto *player = dynamic_cast<Player *>(ctx.actor.get());
     if (!player) {
         ctx.send_error("Only players can use account commands.");
         return CommandResult::InvalidState;
@@ -195,14 +176,9 @@ Result<CommandResult> cmd_account_unlink(const CommandContext &ctx) {
     }
 
     // Unlink from database
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<void> {
-        txn.exec(
-            fmt::format(
-                "UPDATE \"Characters\" SET user_id = NULL WHERE name = {}",
-                txn.quote(std::string(player->name()))
-            )
-        );
+    auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<void> {
+        txn.exec(fmt::format("UPDATE \"Characters\" SET user_id = NULL WHERE name = {}",
+                             txn.quote(std::string(player->name()))));
         return {};
     });
 
@@ -224,7 +200,7 @@ Result<CommandResult> cmd_account_unlink(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_account_delete(const CommandContext &ctx) {
-    auto* player = dynamic_cast<Player*>(ctx.actor.get());
+    auto *player = dynamic_cast<Player *>(ctx.actor.get());
     if (!player) {
         ctx.send_error("Only players can use account commands.");
         return CommandResult::InvalidState;
@@ -250,18 +226,12 @@ Result<CommandResult> cmd_account_delete(const CommandContext &ctx) {
         ctx.send_line("Affected characters will be:");
 
         // List characters on account
-        auto list_result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction& txn)
-            -> Result<void> {
-            auto rows = txn.exec(
-                fmt::format(
-                    "SELECT name, level FROM \"Characters\" WHERE user_id = {} AND deleted_at IS NULL ORDER BY level DESC",
-                    txn.quote(std::string(player->user_id()))
-                )
-            );
-            for (const auto& row : rows) {
-                ctx.send_line(fmt::format("  - {} (level {})",
-                    row["name"].as<std::string>(),
-                    row["level"].as<int>()));
+        auto list_result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction &txn) -> Result<void> {
+            auto rows = txn.exec(fmt::format(
+                "SELECT name, level FROM \"Characters\" WHERE user_id = {} AND deleted_at IS NULL ORDER BY level DESC",
+                txn.quote(std::string(player->user_id()))));
+            for (const auto &row : rows) {
+                ctx.send_line(fmt::format("  - {} (level {})", row["name"].as<std::string>(), row["level"].as<int>()));
             }
             return {};
         });
@@ -274,26 +244,19 @@ Result<CommandResult> cmd_account_delete(const CommandContext &ctx) {
 
     // Perform soft delete
     auto user_id = std::string(player->user_id());
-    auto result = ConnectionPool::instance().execute([&](pqxx::work& txn)
-        -> Result<int> {
+    auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<int> {
         // Soft delete all characters on the account
-        auto char_result = txn.exec(
-            fmt::format(
-                "UPDATE \"Characters\" SET deleted_at = NOW(), deletion_reason = 'Account deletion requested by user' "
-                "WHERE user_id = {} AND deleted_at IS NULL",
-                txn.quote(user_id)
-            )
-        );
+        auto char_result = txn.exec(fmt::format(
+            "UPDATE \"Characters\" SET deleted_at = NOW(), deletion_reason = 'Account deletion requested by user' "
+            "WHERE user_id = {} AND deleted_at IS NULL",
+            txn.quote(user_id)));
         int chars_deleted = char_result.affected_rows();
 
         // Soft delete the account
         txn.exec(
-            fmt::format(
-                "UPDATE \"Users\" SET deleted_at = NOW(), deletion_reason = 'Deletion requested by user' "
-                "WHERE id = {} AND deleted_at IS NULL",
-                txn.quote(user_id)
-            )
-        );
+            fmt::format("UPDATE \"Users\" SET deleted_at = NOW(), deletion_reason = 'Deletion requested by user' "
+                        "WHERE id = {} AND deleted_at IS NULL",
+                        txn.quote(user_id)));
 
         return chars_deleted;
     });
@@ -324,7 +287,7 @@ Result<CommandResult> cmd_account_delete(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_account_characters(const CommandContext &ctx) {
-    auto* player = dynamic_cast<Player*>(ctx.actor.get());
+    auto *player = dynamic_cast<Player *>(ctx.actor.get());
     if (!player) {
         ctx.send_error("Only players can use account commands.");
         return CommandResult::InvalidState;
@@ -335,23 +298,19 @@ Result<CommandResult> cmd_account_characters(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    auto result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction& txn)
-        -> Result<void> {
-        auto rows = txn.exec(
-            fmt::format(
-                "SELECT name, level, race, player_class, last_login, is_online "
-                "FROM \"Characters\" WHERE user_id = {} AND deleted_at IS NULL "
-                "ORDER BY last_login DESC NULLS LAST",
-                txn.quote(std::string(player->user_id()))
-            )
-        );
+    auto result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction &txn) -> Result<void> {
+        auto rows =
+            txn.exec(fmt::format("SELECT name, level, race, player_class, last_login, is_online "
+                                 "FROM \"Characters\" WHERE user_id = {} AND deleted_at IS NULL "
+                                 "ORDER BY last_login DESC NULLS LAST",
+                                 txn.quote(std::string(player->user_id()))));
 
         ctx.send_header("Characters on Account");
 
         if (rows.empty()) {
             ctx.send_line("No characters found.");
         } else {
-            for (const auto& row : rows) {
+            for (const auto &row : rows) {
                 auto name = row["name"].as<std::string>();
                 auto level = row["level"].as<int>();
                 auto race = row["race"].as<std::string>("Unknown");
@@ -359,8 +318,7 @@ Result<CommandResult> cmd_account_characters(const CommandContext &ctx) {
                 auto online = row["is_online"].as<bool>(false);
 
                 std::string status = online ? " [ONLINE]" : "";
-                ctx.send_line(fmt::format("  {} - Level {} {} {}{}",
-                    name, level, race, pclass, status));
+                ctx.send_line(fmt::format("  {} - Level {} {} {}{}", name, level, race, pclass, status));
             }
         }
 

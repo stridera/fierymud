@@ -27,8 +27,7 @@
 namespace InformationCommands {
 
 // Helper to format container contents with grouping of identical items
-std::vector<std::string> format_grouped_contents(
-    std::span<const std::shared_ptr<Object>> contents) {
+std::vector<std::string> format_grouped_contents(std::span<const std::shared_ptr<Object>> contents) {
 
     std::vector<std::string> result;
 
@@ -37,8 +36,9 @@ std::vector<std::string> format_grouped_contents(
     std::unordered_map<std::string, std::string> item_names;
     std::vector<std::string> order; // Preserve display order
 
-    for (const auto& item : contents) {
-        if (!item) continue;
+    for (const auto &item : contents) {
+        if (!item)
+            continue;
 
         std::string key = fmt::format("{}", item->id());
         if (item_counts.find(key) == item_counts.end()) {
@@ -49,7 +49,7 @@ std::vector<std::string> format_grouped_contents(
     }
 
     // Format output with counts
-    for (const auto& key : order) {
+    for (const auto &key : order) {
         int count = item_counts[key];
         if (count > 1) {
             result.push_back(fmt::format("  {} (x{})", item_names[key], count));
@@ -78,11 +78,12 @@ static std::string format_effect_duration(int hours) {
 
 // Helper function to get class display name with colors from cache
 std::string get_class_display_name(std::string_view player_class) {
-    if (player_class.empty()) return "Unknown";
+    if (player_class.empty())
+        return "Unknown";
 
-    const auto* class_data = GameDataCache::instance().find_class_by_name(player_class);
+    const auto *class_data = GameDataCache::instance().find_class_by_name(player_class);
     if (class_data) {
-        return class_data->name;  // Returns name with color codes
+        return class_data->name; // Returns name with color codes
     }
 
     // Fallback: simple title case
@@ -104,11 +105,12 @@ std::string get_class_display_name(std::string_view player_class) {
 
 // Helper function to get race display name with colors from cache
 std::string get_race_display_name(std::string_view race) {
-    if (race.empty()) return "Human";
+    if (race.empty())
+        return "Human";
 
-    const auto* race_data = GameDataCache::instance().find_race_by_name(race);
+    const auto *race_data = GameDataCache::instance().find_race_by_name(race);
     if (race_data) {
-        return race_data->name;  // Returns name with color codes
+        return race_data->name; // Returns name with color codes
     }
 
     // Also try by key (for "HALF_ELF" style lookups)
@@ -138,8 +140,7 @@ std::string get_race_display_name(std::string_view race) {
 // Room Display Helper
 // =============================================================================
 
-std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
-                                   const std::shared_ptr<Room>& room_param) {
+std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std::shared_ptr<Room> &room_param) {
     if (!actor) {
         return "";
     }
@@ -190,14 +191,14 @@ std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
     // Show objects in room
     auto objects = room->contents().objects;
     bool found_objects = false;
-    for (const auto& obj : objects) {
+    for (const auto &obj : objects) {
         if (obj) {
             auto ground_desc = obj->ground();
             if (ground_desc.empty()) {
                 ground_desc = obj->short_description();
             }
             if (ground_desc.empty()) {
-                continue;  // Skip objects with no description
+                continue; // Skip objects with no description
             }
             if (!found_objects) {
                 result << "\n<yellow>You see:</>\n";
@@ -210,7 +211,7 @@ std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
     // Show other actors
     auto actors = room->contents().actors;
     bool found_others = false;
-    for (const auto& other : actors) {
+    for (const auto &other : actors) {
         if (other && other != actor && other->is_visible_to(*actor)) {
             std::string actor_desc = other->room_presence(actor);
             if (actor_desc.empty()) {
@@ -221,8 +222,7 @@ std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
             std::string indicators;
 
             // Invisible
-            if (other->has_flag(ActorFlag::Invisible) &&
-                (actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
+            if (other->has_flag(ActorFlag::Invisible) && (actor->has_flag(ActorFlag::Detect_Invis) || has_holylight)) {
                 indicators += "(invis) ";
             }
             // Alignment
@@ -235,18 +235,15 @@ std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
                 }
             }
             // Magic detection
-            if ((actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) &&
-                !other->active_effects().empty()) {
+            if ((actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) && !other->active_effects().empty()) {
                 indicators += "(magical) ";
             }
             // Hidden
-            if (other->has_flag(ActorFlag::Hide) &&
-                (actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
+            if (other->has_flag(ActorFlag::Hide) && (actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
                 indicators += "(hidden) ";
             }
             // Poison
-            if (other->has_flag(ActorFlag::Poison) &&
-                (actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
+            if (other->has_flag(ActorFlag::Poison) && (actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
                 indicators += "<magenta>(poisoned)</> ";
             }
             // On fire
@@ -259,8 +256,7 @@ std::string format_room_for_actor(const std::shared_ptr<Actor>& actor,
             }
             // Show ID for immortals
             if (show_ids) {
-                indicators += fmt::format("<cyan>[{}.{}]</> ",
-                    other->id().zone_id(), other->id().local_id());
+                indicators += fmt::format("<cyan>[{}.{}]</> ", other->id().zone_id(), other->id().local_id());
             }
 
             if (!found_others) {
@@ -306,7 +302,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         // Check if it's a drink container first
         if (container->type() == ObjectType::Drinkcontainer) {
-            const auto& liquid = container->liquid_info();
+            const auto &liquid = container->liquid_info();
             // Get the object name and replace article with "The" for definite reference
             std::string obj_name = ctx.format_object_name(container);
             // Strip leading "a " or "an " and replace with "The "
@@ -343,15 +339,16 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 bool is_identified = liquid.identified;
 
                 // Look up liquid data from cache
-                auto& cache = GameDataCache::instance();
-                const LiquidData* liquid_data = cache.find_liquid_by_name(liquid.liquid_type);
+                auto &cache = GameDataCache::instance();
+                const LiquidData *liquid_data = cache.find_liquid_by_name(liquid.liquid_type);
 
                 if (liquid_data) {
                     if (is_identified) {
-                        liquid_desc = liquid_data->name;  // "water", "dark ale"
+                        liquid_desc = liquid_data->name; // "water", "dark ale"
                     } else {
                         // Not identified - show appearance-based description
-                        liquid_desc = fmt::format("a {} liquid", liquid_data->color_desc);  // "a clear liquid", "a brown liquid"
+                        liquid_desc =
+                            fmt::format("a {} liquid", liquid_data->color_desc); // "a clear liquid", "a brown liquid"
                     }
                 } else if (!liquid.liquid_type.empty()) {
                     // Unknown liquid type - fallback
@@ -370,11 +367,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
                 if (liquid.identified && !liquid.effects.empty()) {
                     effect_hint = " (tainted!)";
                 }
-                ctx.send(fmt::format("{} is {} {}{}.",
-                                     obj_name,
-                                     fullness_desc,
-                                     liquid_desc,
-                                     effect_hint));
+                ctx.send(fmt::format("{} is {} {}{}.", obj_name, fullness_desc, liquid_desc, effect_hint));
             }
             return CommandResult::Success;
         }
@@ -408,7 +401,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
             ctx.send(fmt::format("The {} is empty.", ctx.format_object_name(container)));
         } else {
             ctx.send(fmt::format("Looking inside {}, you see:", ctx.format_object_name(container)));
-            for (const auto& line : format_grouped_contents(contents)) {
+            for (const auto &line : format_grouped_contents(contents)) {
                 ctx.send(line);
             }
         }
@@ -426,7 +419,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         // Search inventory for extra descriptions
         if (ctx.actor) {
-            for (const auto& item : ctx.actor->inventory().get_all_items()) {
+            for (const auto &item : ctx.actor->inventory().get_all_items()) {
                 if (item) {
                     auto extra = item->get_extra_description(keyword);
                     if (extra.has_value()) {
@@ -439,7 +432,7 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
 
         // Search room objects for extra descriptions
         if (ctx.room) {
-            for (const auto& item : ctx.room->contents().objects) {
+            for (const auto &item : ctx.room->contents().objects) {
                 if (item) {
                     auto extra = item->get_extra_description(keyword);
                     if (extra.has_value()) {
@@ -574,7 +567,8 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
             detailed_desc << fmt::format("Capacity: {} items\n", container_info.capacity);
             detailed_desc << fmt::format("Weight limit: {} pounds\n", container_info.weight_capacity);
             if (container_info.weight_reduction > 0) {
-                detailed_desc << fmt::format("Weight reduction: {}% (bag of holding)\n", container_info.weight_reduction);
+                detailed_desc << fmt::format("Weight reduction: {}% (bag of holding)\n",
+                                             container_info.weight_reduction);
             }
             detailed_desc << fmt::format("State: {}\n", container_info.closed ? "closed" : "open");
 
@@ -589,7 +583,7 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
                     const auto &contents = container_obj->get_contents();
                     if (!contents.empty()) {
                         detailed_desc << "\n--- Contents ---\n";
-                        for (const auto& line : format_grouped_contents(contents)) {
+                        for (const auto &line : format_grouped_contents(contents)) {
                             detailed_desc << line << "\n";
                         }
                     } else {
@@ -608,9 +602,8 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
                 detailed_desc << "Duration: permanent\n";
                 detailed_desc << "Status: always lit\n";
             } else {
-                detailed_desc << fmt::format("Duration: {} hours{}\n",
-                    light_info.duration,
-                    light_info.duration < 0 ? " (infinite)" : "");
+                detailed_desc << fmt::format("Duration: {} hours{}\n", light_info.duration,
+                                             light_info.duration < 0 ? " (infinite)" : "");
                 detailed_desc << fmt::format("Status: {}\n", light_info.lit ? "lit" : "unlit");
             }
         }
@@ -698,15 +691,24 @@ Result<CommandResult> cmd_who(const CommandContext &ctx) {
 // Helper to convert ConnectionState to string
 static std::string connection_state_string(ConnectionState state) {
     switch (state) {
-        case ConnectionState::Connected: return "Connecting";
-        case ConnectionState::Login: return "Login";
-        case ConnectionState::Playing: return "Playing";
-        case ConnectionState::AFK: return "AFK";
-        case ConnectionState::Linkdead: return "Linkdead";
-        case ConnectionState::Reconnecting: return "Reconnect";
-        case ConnectionState::Disconnecting: return "Closing";
-        case ConnectionState::Disconnected: return "Closed";
-        default: return "Unknown";
+    case ConnectionState::Connected:
+        return "Connecting";
+    case ConnectionState::Login:
+        return "Login";
+    case ConnectionState::Playing:
+        return "Playing";
+    case ConnectionState::AFK:
+        return "AFK";
+    case ConnectionState::Linkdead:
+        return "Linkdead";
+    case ConnectionState::Reconnecting:
+        return "Reconnect";
+    case ConnectionState::Disconnecting:
+        return "Closing";
+    case ConnectionState::Disconnected:
+        return "Closed";
+    default:
+        return "Unknown";
     }
 }
 
@@ -757,18 +759,20 @@ Result<CommandResult> cmd_users(const CommandContext &ctx) {
     std::ostringstream output;
 
     // Header
-    output << fmt::format("{:<12} {:<10} {:<20} {:>5} {:>8} {:<20} {}\n",
-                          "Name", "State", "Host", "Idle", "Online", "Room", "Client");
+    output << fmt::format("{:<12} {:<10} {:<20} {:>5} {:>8} {:<20} {}\n", "Name", "State", "Host", "Idle", "Online",
+                          "Room", "Client");
     output << std::string(95, '-') << "\n";
 
     int playing_count = 0;
     int total_count = 0;
 
-    for (const auto& conn : connections) {
-        if (!conn) continue;
+    for (const auto &conn : connections) {
+        if (!conn)
+            continue;
 
         // Skip disconnected connections - they're stale and will be cleaned up soon
-        if (!conn->is_connected()) continue;
+        if (!conn->is_connected())
+            continue;
 
         total_count++;
 
@@ -806,7 +810,7 @@ Result<CommandResult> cmd_users(const CommandContext &ctx) {
 
         // Get client info from GMCP
         std::string client_str = "---";
-        auto& caps = conn->get_terminal_capabilities();
+        auto &caps = conn->get_terminal_capabilities();
         if (!caps.client_name.empty() && caps.client_name != "Unknown") {
             if (!caps.client_version.empty()) {
                 client_str = fmt::format("{} {}", caps.client_name, caps.client_version);
@@ -817,8 +821,8 @@ Result<CommandResult> cmd_users(const CommandContext &ctx) {
             client_str = caps.terminal_name;
         }
 
-        output << fmt::format("{:<12} {:<10} {:<20} {:>5} {:>8} {:<20} {}\n",
-                              name, state_str, host, idle_str, online_str, room_str, client_str);
+        output << fmt::format("{:<12} {:<10} {:<20} {:>5} {:>8} {:<20} {}\n", name, state_str, host, idle_str,
+                              online_str, room_str, client_str);
     }
 
     output << std::string(95, '-') << "\n";
@@ -851,8 +855,8 @@ Result<CommandResult> cmd_where(const CommandContext &ctx) {
     if (!target_room) {
         ctx.send_line(fmt::format("{} is nowhere.", target->display_name()));
     } else {
-        ctx.send_line(fmt::format("{} is in: {} [{}]", target->display_name(), target_room->display_name(),
-                                  target_room->id()));
+        ctx.send_line(
+            fmt::format("{} is in: {} [{}]", target->display_name(), target_room->display_name(), target_room->id()));
     }
 
     return CommandResult::Success;
@@ -912,8 +916,8 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     }
 
     // Basic character info
-    score << fmt::format("Level: {}  Class: {}  Race: {}  Size: {}  Gender: {}\n",
-                         stats.level, player_class, race, size, gender_str);
+    score << fmt::format("Level: {}  Class: {}  Race: {}  Size: {}  Gender: {}\n", stats.level, player_class, race,
+                         size, gender_str);
 
     // Age, height, weight (placeholder values)
     score << fmt::format("Age: {} years, {} months  Height: 5'10\"  Weight: 180 lbs\n", 20 + stats.level,
@@ -924,8 +928,8 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     score << fmt::format("Dex: {}    Con: {}     Cha: {}\n", stats.dexterity, stats.constitution, stats.charisma);
 
     // Hit points and stamina
-    score << fmt::format("Hit points: {}/{}   Stamina: {}/{}\n", stats.hit_points, stats.max_hit_points,
-                         stats.stamina, stats.max_stamina);
+    score << fmt::format("Hit points: {}/{}   Stamina: {}/{}\n", stats.hit_points, stats.max_hit_points, stats.stamina,
+                         stats.max_stamina);
 
     // Condition status (buffs and drunk)
     std::string condition_line;
@@ -939,22 +943,26 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
 
     // Refreshed buff (from drinking - +50% stamina regen)
     if (ctx.actor->has_effect("Refreshed")) {
-        if (has_condition) condition_line += "   ";
+        if (has_condition)
+            condition_line += "   ";
         condition_line += "<cyan>Refreshed</>";
         has_condition = true;
     }
 
     // Drunk status
     if (stats.is_too_drunk()) {
-        if (has_condition) condition_line += "   ";
+        if (has_condition)
+            condition_line += "   ";
         condition_line += "<magenta>Very Drunk!</>";
         has_condition = true;
     } else if (stats.is_slurring()) {
-        if (has_condition) condition_line += "   ";
+        if (has_condition)
+            condition_line += "   ";
         condition_line += "<magenta>Tipsy</>";
         has_condition = true;
     } else if (stats.drunk > 0) {
-        if (has_condition) condition_line += "   ";
+        if (has_condition)
+            condition_line += "   ";
         condition_line += "<magenta>Buzzed</>";
         has_condition = true;
     }
@@ -966,7 +974,8 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     // Combat stats (new ACC/EVA system)
     score << fmt::format("Accuracy: {}   Evasion: {}   Attack Power: {}\n", stats.accuracy, stats.evasion,
                          stats.attack_power);
-    score << fmt::format("Armor Rating: {}   Damage Reduction: {}%\n", stats.armor_rating, stats.damage_reduction_percent);
+    score << fmt::format("Armor Rating: {}   Damage Reduction: {}%\n", stats.armor_rating,
+                         stats.damage_reduction_percent);
 
     // Alignment
     std::string align_desc;
@@ -1006,14 +1015,15 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
         int filled = (percent * bar_width) / 100;
         std::string bar;
         bar += "<green>";
-        for (int i = 0; i < filled; ++i) bar += "=";
+        for (int i = 0; i < filled; ++i)
+            bar += "=";
         bar += "</>";
         bar += "<red>";
-        for (int i = filled; i < bar_width; ++i) bar += "-";
+        for (int i = filled; i < bar_width; ++i)
+            bar += "-";
         bar += "</>";
 
-        score << fmt::format("Exp: {} / {}  [{}] {}%\n",
-                             current_exp, next_level_exp, bar, percent);
+        score << fmt::format("Exp: {} / {}  [{}] {}%\n", current_exp, next_level_exp, bar, percent);
     }
     // Currency - show full breakdown for players
     if (player) {
@@ -1028,17 +1038,16 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     }
 
     // Active effects (spells, buffs, etc.)
-    const auto& effects = ctx.actor->active_effects();
+    const auto &effects = ctx.actor->active_effects();
     if (!effects.empty()) {
         score << "\n<cyan>Active Effects:</>\n";
-        for (const auto& effect : effects) {
+        for (const auto &effect : effects) {
             std::string duration_str = format_effect_duration(effect.duration_hours);
 
             // Show modifier if applicable
             if (!effect.modifier_stat.empty() && effect.modifier_value != 0) {
                 std::string sign = effect.modifier_value > 0 ? "+" : "";
-                score << fmt::format("  <green>{}</> ({}{} {}) - {}\n",
-                                     effect.name, sign, effect.modifier_value,
+                score << fmt::format("  <green>{}</> ({}{} {}) - {}\n", effect.name, sign, effect.modifier_value,
                                      effect.modifier_stat, duration_str);
             } else {
                 score << fmt::format("  <green>{}</> - {}\n", effect.name, duration_str);
@@ -1052,22 +1061,16 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
 
 Result<CommandResult> cmd_time(const CommandContext &ctx) {
     // Get in-game time from TimeSystem
-    const auto& game_time = TimeSystem::instance().current_time();
+    const auto &game_time = TimeSystem::instance().current_time();
 
     // Day names for the week (7 days)
     static constexpr std::array<std::string_view, 7> DAY_NAMES = {
-        "the Moon",
-        "the Bull",
-        "the Deception",
-        "Thunder",
-        "Freedom",
-        "the Great Gods",
-        "the Sun"
-    };
+        "the Moon", "the Bull", "the Deception", "Thunder", "Freedom", "the Great Gods", "the Sun"};
 
     // Format hour as 12-hour time with am/pm
     int display_hour = game_time.hour % 12;
-    if (display_hour == 0) display_hour = 12;
+    if (display_hour == 0)
+        display_hour = 12;
     std::string_view am_pm = (game_time.hour >= 12) ? "pm" : "am";
 
     // Get day of week (0-6)
@@ -1075,7 +1078,7 @@ Result<CommandResult> cmd_time(const CommandContext &ctx) {
     std::string_view day_name = DAY_NAMES[day_of_week];
 
     // Get ordinal suffix for day of month
-    int day_of_month = game_time.day + 1;  // 1-indexed for display
+    int day_of_month = game_time.day + 1; // 1-indexed for display
     std::string ordinal;
     if (day_of_month == 1 || day_of_month == 21) {
         ordinal = "st";
@@ -1089,10 +1092,9 @@ Result<CommandResult> cmd_time(const CommandContext &ctx) {
 
     // Format the time display like legacy
     std::ostringstream time_str;
-    time_str << "\nIt is " << display_hour << " o'clock " << am_pm
-             << ", on the Day of " << day_name << ";\n"
-             << "The " << day_of_month << ordinal << " Day of "
-             << game_time.month_name() << ", Year " << (game_time.year + 1000) << ".\n";
+    time_str << "\nIt is " << display_hour << " o'clock " << am_pm << ", on the Day of " << day_name << ";\n"
+             << "The " << day_of_month << ordinal << " Day of " << game_time.month_name() << ", Year "
+             << (game_time.year + 1000) << ".\n";
 
     ctx.send(time_str.str());
     return CommandResult::Success;
@@ -1238,8 +1240,8 @@ Result<CommandResult> cmd_consider(const CommandContext &ctx) {
 
     // Add health assessment if in combat range
     if (level_diff >= -5 && level_diff <= 5) {
-        float hp_percent = static_cast<float>(target->stats().hit_points) /
-                          static_cast<float>(target->stats().max_hit_points);
+        float hp_percent =
+            static_cast<float>(target->stats().hit_points) / static_cast<float>(target->stats().max_hit_points);
 
         std::string health_note;
         if (hp_percent >= 0.95) {
@@ -1272,7 +1274,7 @@ Result<CommandResult> cmd_diagnose(const CommandContext &ctx) {
         }
     }
 
-    const auto& stats = target->stats();
+    const auto &stats = target->stats();
     float hp_percent = static_cast<float>(stats.hit_points) / static_cast<float>(stats.max_hit_points);
 
     std::ostringstream diagnosis;
@@ -1303,9 +1305,8 @@ Result<CommandResult> cmd_diagnose(const CommandContext &ctx) {
 
     if (target == ctx.actor) {
         diagnosis << fmt::format("  You are {}.\n", health_status);
-        diagnosis << fmt::format("  HP: {}/{}, Stamina: {}/{}\n",
-            stats.hit_points, stats.max_hit_points,
-            stats.stamina, stats.max_stamina);
+        diagnosis << fmt::format("  HP: {}/{}, Stamina: {}/{}\n", stats.hit_points, stats.max_hit_points, stats.stamina,
+                                 stats.max_stamina);
     } else {
         diagnosis << fmt::format("  {} is {}.\n", target->display_name(), health_status);
     }
@@ -1331,7 +1332,7 @@ Result<CommandResult> cmd_glance(const CommandContext &ctx) {
     // Try to find an actor first
     auto target_actor = ctx.find_actor_target(ctx.arg(0));
     if (target_actor) {
-        const auto& stats = target_actor->stats();
+        const auto &stats = target_actor->stats();
         float hp_percent = static_cast<float>(stats.hit_points) / static_cast<float>(stats.max_hit_points);
 
         std::string condition;
@@ -1348,8 +1349,8 @@ Result<CommandResult> cmd_glance(const CommandContext &ctx) {
         }
 
         ctx.send(fmt::format("{} is {}.", target_actor->display_name(), condition));
-        ctx.send(fmt::format("{} is {}.", target_actor->display_name(),
-            magic_enum::enum_name(target_actor->position())));
+        ctx.send(
+            fmt::format("{} is {}.", target_actor->display_name(), magic_enum::enum_name(target_actor->position())));
 
         return CommandResult::Success;
     }
@@ -1371,17 +1372,16 @@ Result<CommandResult> cmd_glance(const CommandContext &ctx) {
 // =============================================================================
 
 // Helper function to display system text from database with fallback
-static void display_system_text(const CommandContext& ctx, const std::string& key,
-                                 const std::string& fallback_title,
-                                 const std::string& fallback_content) {
+static void display_system_text(const CommandContext &ctx, const std::string &key, const std::string &fallback_title,
+                                const std::string &fallback_content) {
     // Try to load from database
-    auto result = ConnectionPool::instance().execute([&key](pqxx::work& txn)
-        -> Result<std::optional<WorldQueries::SystemTextData>> {
-        return WorldQueries::load_system_text(txn, key);
-    });
+    auto result = ConnectionPool::instance().execute(
+        [&key](pqxx::work &txn) -> Result<std::optional<WorldQueries::SystemTextData>> {
+            return WorldQueries::load_system_text(txn, key);
+        });
 
     if (result && *result) {
-        const auto& text = **result;
+        const auto &text = **result;
         // Display title if present
         if (text.title) {
             ctx.send(fmt::format("=== {} ===\n", *text.title));
@@ -1396,62 +1396,57 @@ static void display_system_text(const CommandContext& ctx, const std::string& ke
 }
 
 Result<CommandResult> cmd_credits(const CommandContext &ctx) {
-    display_system_text(ctx, "credits",
-        "FieryMUD Credits",
-        "FieryMUD is based on CircleMUD, which was developed by:\n"
-        "  Jeremy Elson (creator)\n"
-        "  George Greer (maintainer)\n"
-        "\nCircleMUD is based on DikuMUD, created by:\n"
-        "  Hans Henrik Staerfeldt, Katja Nyboe, Tom Madsen,\n"
-        "  Michael Seifert, and Sebastian Hammer\n"
-        "\nFieryMUD development and modernization by the Fiery Consortium.\n"
-        "\nType 'help' for more information on available commands.");
+    display_system_text(ctx, "credits", "FieryMUD Credits",
+                        "FieryMUD is based on CircleMUD, which was developed by:\n"
+                        "  Jeremy Elson (creator)\n"
+                        "  George Greer (maintainer)\n"
+                        "\nCircleMUD is based on DikuMUD, created by:\n"
+                        "  Hans Henrik Staerfeldt, Katja Nyboe, Tom Madsen,\n"
+                        "  Michael Seifert, and Sebastian Hammer\n"
+                        "\nFieryMUD development and modernization by the Fiery Consortium.\n"
+                        "\nType 'help' for more information on available commands.");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_motd(const CommandContext &ctx) {
-    display_system_text(ctx, "motd",
-        "Message of the Day",
-        "Welcome to FieryMUD!\n"
-        "This is a modern implementation of a classic MUD experience.\n"
-        "Please be respectful of other players and have fun!\n"
-        "\nType 'help' to see available commands.\n"
-        "Type 'who' to see who else is online.");
+    display_system_text(ctx, "motd", "Message of the Day",
+                        "Welcome to FieryMUD!\n"
+                        "This is a modern implementation of a classic MUD experience.\n"
+                        "Please be respectful of other players and have fun!\n"
+                        "\nType 'help' to see available commands.\n"
+                        "Type 'who' to see who else is online.");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_news(const CommandContext &ctx) {
-    display_system_text(ctx, "news",
-        "FieryMUD News",
-        "No current news items.\n"
-        "\nCheck back later for updates!");
+    display_system_text(ctx, "news", "FieryMUD News",
+                        "No current news items.\n"
+                        "\nCheck back later for updates!");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_policy(const CommandContext &ctx) {
-    display_system_text(ctx, "policy",
-        "FieryMUD Policies",
-        "1. Be respectful to other players.\n"
-        "2. No harassment, hate speech, or discriminatory behavior.\n"
-        "3. No cheating, exploiting bugs, or using automation.\n"
-        "4. Player killing requires consent from both parties.\n"
-        "5. Report bugs using the 'bug' command.\n"
-        "6. The staff reserves the right to remove players who violate policies.\n"
-        "\nViolation of these policies may result in removal from the game.");
+    display_system_text(ctx, "policy", "FieryMUD Policies",
+                        "1. Be respectful to other players.\n"
+                        "2. No harassment, hate speech, or discriminatory behavior.\n"
+                        "3. No cheating, exploiting bugs, or using automation.\n"
+                        "4. Player killing requires consent from both parties.\n"
+                        "5. Report bugs using the 'bug' command.\n"
+                        "6. The staff reserves the right to remove players who violate policies.\n"
+                        "\nViolation of these policies may result in removal from the game.");
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_version(const CommandContext &ctx) {
-    display_system_text(ctx, "version",
-        "FieryMUD Version Information",
-        "FieryMUD Modern C++23 Edition\n"
-        "Version: 1.0.0-dev\n"
-        "Based on: CircleMUD 3.0 bpl 21\n"
-        "\nBuilt with modern C++23 features including:\n"
-        "  - std::expected for error handling\n"
-        "  - std::ranges for data processing\n"
-        "  - ASIO for asynchronous networking\n"
-        "  - nlohmann/json for world data");
+    display_system_text(ctx, "version", "FieryMUD Version Information",
+                        "FieryMUD Modern C++23 Edition\n"
+                        "Version: 1.0.0-dev\n"
+                        "Based on: CircleMUD 3.0 bpl 21\n"
+                        "\nBuilt with modern C++23 features including:\n"
+                        "  - std::expected for error handling\n"
+                        "  - std::ranges for data processing\n"
+                        "  - ASIO for asynchronous networking\n"
+                        "  - nlohmann/json for world data");
     return CommandResult::Success;
 }
 
@@ -1474,10 +1469,8 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
 
     // List of directions to check in a sensible order
     constexpr std::array<Direction, 10> directions = {
-        Direction::North, Direction::East, Direction::South, Direction::West,
-        Direction::Up, Direction::Down,
-        Direction::Northeast, Direction::Northwest, Direction::Southeast, Direction::Southwest
-    };
+        Direction::North, Direction::East,      Direction::South,     Direction::West,      Direction::Up,
+        Direction::Down,  Direction::Northeast, Direction::Northwest, Direction::Southeast, Direction::Southwest};
 
     std::ostringstream scan_output;
     bool found_anything = false;
@@ -1487,7 +1480,7 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
             continue;
         }
 
-        const auto* exit = current_room->get_exit(dir);
+        const auto *exit = current_room->get_exit(dir);
         if (!exit || !exit->to_room.is_valid()) {
             continue;
         }
@@ -1513,8 +1506,9 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
         std::ostringstream dir_actors;
         bool found_visible = false;
 
-        for (const auto& actor : actors) {
-            if (!actor || !actor->is_visible_to(*ctx.actor)) continue;
+        for (const auto &actor : actors) {
+            if (!actor || !actor->is_visible_to(*ctx.actor))
+                continue;
 
             // Get actor display info
             auto ground_desc = actor->ground();
@@ -1547,13 +1541,11 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
                 }
             }
             // Magic detection - holylight sees all magical auras
-            if ((ctx.actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) &&
-                !actor->active_effects().empty()) {
+            if ((ctx.actor->has_flag(ActorFlag::Detect_Magic) || has_holylight) && !actor->active_effects().empty()) {
                 indicators += "(magical) ";
             }
             // Hidden - holylight sees all hidden
-            if (actor->has_flag(ActorFlag::Hide) &&
-                (ctx.actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
+            if (actor->has_flag(ActorFlag::Hide) && (ctx.actor->has_flag(ActorFlag::Sense_Life) || has_holylight)) {
                 indicators += "(hidden) ";
             }
             // Poison detection - holylight sees all poisoned
@@ -1574,16 +1566,14 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
             }
             // Show ID for immortals with ShowIds enabled
             if (ctx.actor->is_show_ids()) {
-                indicators += fmt::format("<cyan>[{}.{}]</> ",
-                    actor->id().zone_id(), actor->id().local_id());
+                indicators += fmt::format("<cyan>[{}.{}]</> ", actor->id().zone_id(), actor->id().local_id());
             }
 
             // Add health/status indicator
             std::string condition;
             if (actor->position() != Position::Ghost) {
-                const auto& stats = actor->stats();
-                float hp_percent = static_cast<float>(stats.hit_points) /
-                                  static_cast<float>(stats.max_hit_points);
+                const auto &stats = actor->stats();
+                float hp_percent = static_cast<float>(stats.hit_points) / static_cast<float>(stats.max_hit_points);
 
                 if (hp_percent >= 0.95) {
                     condition = "<green>(healthy)</>";
@@ -1631,10 +1621,11 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
 /**
  * Find a board object in the current room.
  */
-static std::shared_ptr<Object> find_board_in_room(const CommandContext& ctx) {
-    if (!ctx.room) return nullptr;
+static std::shared_ptr<Object> find_board_in_room(const CommandContext &ctx) {
+    if (!ctx.room)
+        return nullptr;
 
-    for (const auto& obj : ctx.room->contents().objects) {
+    for (const auto &obj : ctx.room->contents().objects) {
         if (obj && obj->is_board()) {
             return obj;
         }
@@ -1645,7 +1636,7 @@ static std::shared_ptr<Object> find_board_in_room(const CommandContext& ctx) {
 /**
  * Display the list of messages on a board.
  */
-static void show_board_list(const CommandContext& ctx, const BoardData* board) {
+static void show_board_list(const CommandContext &ctx, const BoardData *board) {
     std::ostringstream output;
     output << fmt::format("<cyan>{}</>\n", board->title);
 
@@ -1656,20 +1647,18 @@ static void show_board_list(const CommandContext& ctx, const BoardData* board) {
     if (board->messages.empty()) {
         output << "\nThe board is empty.\n";
     } else {
-        output << fmt::format("\nThis board has {} message{}.\n",
-            board->messages.size(), board->messages.size() == 1 ? "" : "s");
+        output << fmt::format("\nThis board has {} message{}.\n", board->messages.size(),
+                              board->messages.size() == 1 ? "" : "s");
         output << "Usage: board read <number>, board write <subject>, board remove <number>\n\n";
 
         // Display messages (numbered from 1, newest first)
         int msg_num = static_cast<int>(board->messages.size());
-        for (const auto& msg : board->messages) {
+        for (const auto &msg : board->messages) {
             std::string sticky_marker = msg.sticky ? "<yellow>[STICKY]</> " : "";
             auto msg_time = std::chrono::system_clock::to_time_t(msg.posted_at);
             std::tm msg_tm = *std::localtime(&msg_time);
-            output << fmt::format("{:3}. {}{} ({:04d}-{:02d}-{:02d}) :: {}\n",
-                msg_num--, sticky_marker, msg.poster,
-                msg_tm.tm_year + 1900, msg_tm.tm_mon + 1, msg_tm.tm_mday,
-                msg.subject);
+            output << fmt::format("{:3}. {}{} ({:04d}-{:02d}-{:02d}) :: {}\n", msg_num--, sticky_marker, msg.poster,
+                                  msg_tm.tm_year + 1900, msg_tm.tm_mon + 1, msg_tm.tm_mday, msg.subject);
         }
     }
 
@@ -1679,18 +1668,16 @@ static void show_board_list(const CommandContext& ctx, const BoardData* board) {
 /**
  * Display a specific message on a board.
  */
-static CommandResult show_board_message(const CommandContext& ctx, const BoardData* board,
-                                         int msg_num) {
+static CommandResult show_board_message(const CommandContext &ctx, const BoardData *board, int msg_num) {
     // Messages are displayed in reverse order (newest first), but numbered 1-N from newest
     if (msg_num < 1 || msg_num > static_cast<int>(board->messages.size())) {
-        ctx.send_error(fmt::format("That message doesn't exist. Valid range: 1-{}.",
-                                   board->messages.size()));
+        ctx.send_error(fmt::format("That message doesn't exist. Valid range: 1-{}.", board->messages.size()));
         return CommandResult::InvalidTarget;
     }
 
     // Get message (index from the end since messages are sorted newest first)
     size_t index = board->messages.size() - static_cast<size_t>(msg_num);
-    const auto& msg = board->messages[index];
+    const auto &msg = board->messages[index];
 
     // Format the message for display
     std::ostringstream output;
@@ -1699,9 +1686,8 @@ static CommandResult show_board_message(const CommandContext& ctx, const BoardDa
     // Format the posted_at time
     auto posted_time = std::chrono::system_clock::to_time_t(msg.posted_at);
     std::tm posted_tm = *std::localtime(&posted_time);
-    output << fmt::format("<yellow>Date:</> {:04d}-{:02d}-{:02d} {:02d}:{:02d}\n",
-        posted_tm.tm_year + 1900, posted_tm.tm_mon + 1, posted_tm.tm_mday,
-        posted_tm.tm_hour, posted_tm.tm_min);
+    output << fmt::format("<yellow>Date:</> {:04d}-{:02d}-{:02d} {:02d}:{:02d}\n", posted_tm.tm_year + 1900,
+                          posted_tm.tm_mon + 1, posted_tm.tm_mday, posted_tm.tm_hour, posted_tm.tm_min);
     output << fmt::format("<yellow>Author:</> {} (level {})\n", msg.poster, msg.poster_level);
     output << fmt::format("<yellow>Subject:</> {}\n\n", msg.subject);
     output << msg.content;
@@ -1710,17 +1696,16 @@ static CommandResult show_board_message(const CommandContext& ctx, const BoardDa
         auto edit_time = std::chrono::system_clock::to_time_t(msg.edits.back().edited_at);
         std::tm edit_tm = *std::localtime(&edit_time);
         output << fmt::format("\n\n<red>(Edited {} time{} - last by {} on {:04d}-{:02d}-{:02d} {:02d}:{:02d})</>",
-            msg.edits.size(), msg.edits.size() == 1 ? "" : "s",
-            msg.edits.back().editor,
-            edit_tm.tm_year + 1900, edit_tm.tm_mon + 1, edit_tm.tm_mday,
-            edit_tm.tm_hour, edit_tm.tm_min);
+                              msg.edits.size(), msg.edits.size() == 1 ? "" : "s", msg.edits.back().editor,
+                              edit_tm.tm_year + 1900, edit_tm.tm_mon + 1, edit_tm.tm_mday, edit_tm.tm_hour,
+                              edit_tm.tm_min);
     }
 
     ctx.send(output.str());
     return CommandResult::Success;
 }
 
-Result<CommandResult> cmd_board(const CommandContext& ctx) {
+Result<CommandResult> cmd_board(const CommandContext &ctx) {
     // Find a board in the room
     auto board_obj = find_board_in_room(ctx);
     if (!board_obj) {
@@ -1729,7 +1714,7 @@ Result<CommandResult> cmd_board(const CommandContext& ctx) {
     }
 
     int board_id = board_obj->board_number();
-    const auto* board = board_system().get_board(board_id);
+    const auto *board = board_system().get_board(board_id);
 
     if (!board) {
         ctx.send_error("This board appears to be broken.");
@@ -1790,7 +1775,8 @@ Result<CommandResult> cmd_board(const CommandContext& ctx) {
         // Get the subject (everything after "write")
         std::string subject;
         for (size_t i = 1; i < ctx.arg_count(); ++i) {
-            if (!subject.empty()) subject += " ";
+            if (!subject.empty())
+                subject += " ";
             subject += ctx.arg(i);
         }
 
@@ -1806,22 +1792,20 @@ Result<CommandResult> cmd_board(const CommandContext& ctx) {
         int captured_level = player->stats().level;
         std::string captured_board_title = board->title;
 
-        auto composer = std::make_shared<ComposerSystem>(
-            std::weak_ptr<Player>(player), config);
+        auto composer = std::make_shared<ComposerSystem>(std::weak_ptr<Player>(player), config);
 
-        composer->set_completion_callback([player, board_id, captured_subject, captured_poster,
-                                           captured_level, captured_board_title](ComposerResult result) {
+        composer->set_completion_callback([player, board_id, captured_subject, captured_poster, captured_level,
+                                           captured_board_title](ComposerResult result) {
             if (result.success && !result.combined_text.empty()) {
-                auto post_result = board_system().post_message(
-                    board_id, captured_poster, captured_level,
-                    captured_subject, result.combined_text);
+                auto post_result = board_system().post_message(board_id, captured_poster, captured_level,
+                                                               captured_subject, result.combined_text);
 
                 if (post_result) {
                     player->send_message(fmt::format("<green>Message posted to {}.</> (Message #{})",
                                                      captured_board_title, *post_result));
                 } else {
-                    player->send_message(fmt::format("<red>Failed to post message: {}</>",
-                                                     post_result.error().message));
+                    player->send_message(
+                        fmt::format("<red>Failed to post message: {}</>", post_result.error().message));
                 }
             } else if (result.success && result.combined_text.empty()) {
                 player->send_message("No message entered. Post not saved.");
@@ -1855,7 +1839,7 @@ Result<CommandResult> cmd_board(const CommandContext& ctx) {
         int msg_num = std::stoi(num_str);
 
         // Get the message to check ownership
-        const auto* msg = board_system().get_message(board_id, msg_num);
+        const auto *msg = board_system().get_message(board_id, msg_num);
         if (!msg) {
             ctx.send_error(fmt::format("Message {} not found.", msg_num));
             return CommandResult::InvalidTarget;
@@ -1864,7 +1848,7 @@ Result<CommandResult> cmd_board(const CommandContext& ctx) {
         // Check if user can remove this message
         // Can remove if: own message, or god level (level >= 60)
         bool is_owner = (msg->poster == ctx.actor->name());
-        bool is_god = (ctx.actor->stats().level >= 60);  // LVL_GOD
+        bool is_god = (ctx.actor->stats().level >= 60); // LVL_GOD
 
         if (!is_owner && !is_god) {
             ctx.send_error("You can only remove your own messages.");
@@ -1964,12 +1948,7 @@ Result<CommandResult> cmd_read(const CommandContext &ctx) {
 // =============================================================================
 
 Result<void> register_commands() {
-    Commands()
-        .command("look", cmd_look)
-        .alias("l")
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("look", cmd_look).alias("l").category("Information").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("examine", cmd_examine)
@@ -1978,11 +1957,7 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("who", cmd_who)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("who", cmd_who).category("Information").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("users", cmd_users)
@@ -1991,11 +1966,7 @@ Result<void> register_commands() {
         .help("Show all connections with details (immortal only)")
         .build();
 
-    Commands()
-        .command("where", cmd_where)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("where", cmd_where).category("Information").privilege(PrivilegeLevel::Player).build();
 
     Commands()
         .command("inventory", cmd_inventory)
@@ -2018,17 +1989,9 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .build();
 
-    Commands()
-        .command("time", cmd_time)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("time", cmd_time).category("Information").privilege(PrivilegeLevel::Player).build();
 
-    Commands()
-        .command("weather", cmd_weather)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("weather", cmd_weather).category("Information").privilege(PrivilegeLevel::Player).build();
 
     // Stat command - detailed information about targets (temporarily available to all for testing)
     Commands()
@@ -2055,11 +2018,7 @@ Result<void> register_commands() {
         .usable_while_sitting(true)
         .build();
 
-    Commands()
-        .command("glance", cmd_glance)
-        .category("Information")
-        .privilege(PrivilegeLevel::Player)
-        .build();
+    Commands().command("glance", cmd_glance).category("Information").privilege(PrivilegeLevel::Player).build();
 
     // Scanning Commands
     Commands()

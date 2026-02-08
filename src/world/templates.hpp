@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../core/ids.hpp"
+
 #include <string>
 #include <string_view>
 
@@ -17,12 +18,11 @@ namespace FieryMUD {
  * Actual object instances are created via room:spawn_object().
  */
 class ObjectTemplate {
-public:
-    ObjectTemplate(EntityId id, std::string_view name)
-        : id_(id), name_(name) {}
+  public:
+    ObjectTemplate(EntityId id, std::string_view name) : id_(id), name_(name) {}
 
     // Construct from an Object prototype
-    explicit ObjectTemplate(const Object* obj);
+    explicit ObjectTemplate(const Object *obj);
 
     EntityId id() const { return id_; }
     std::string_view name() const { return name_; }
@@ -41,7 +41,7 @@ public:
     void set_level(int l) { level_ = l; }
     void set_type(std::string_view t) { type_ = std::string(t); }
 
-private:
+  private:
     EntityId id_;
     std::string name_;
     std::string keywords_;
@@ -59,12 +59,11 @@ private:
  * Actual mobile instances are spawned via room:spawn_mobile().
  */
 class MobileTemplate {
-public:
-    MobileTemplate(EntityId id, std::string_view name)
-        : id_(id), name_(name) {}
+  public:
+    MobileTemplate(EntityId id, std::string_view name) : id_(id), name_(name) {}
 
     // Construct from a Mobile prototype
-    explicit MobileTemplate(const Mobile* mob);
+    explicit MobileTemplate(const Mobile *mob);
 
     EntityId id() const { return id_; }
     std::string_view name() const { return name_; }
@@ -85,7 +84,7 @@ public:
     void set_experience(int exp) { experience_ = exp; }
     void set_gold(int g) { gold_ = g; }
 
-private:
+  private:
     EntityId id_;
     std::string name_;
     std::string keywords_;

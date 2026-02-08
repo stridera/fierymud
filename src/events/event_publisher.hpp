@@ -8,6 +8,8 @@
  * for consumption by Muditor and Discord bot.
  */
 
+#include "events/event_types.hpp"
+
 #include <atomic>
 #include <condition_variable>
 #include <memory>
@@ -17,8 +19,6 @@
 #include <string>
 #include <string_view>
 #include <thread>
-
-#include "events/event_types.hpp"
 
 // Forward declare hiredis types
 struct redisContext;
@@ -31,10 +31,10 @@ namespace fierymud::events {
 struct EventPublisherConfig {
     std::string redis_host = "127.0.0.1";
     int redis_port = 6379;
-    std::string redis_password;  // Empty = no auth
+    std::string redis_password; // Empty = no auth
     int connection_timeout_ms = 1000;
     int reconnect_delay_ms = 5000;
-    bool enabled = true;  // Allow disabling event publishing
+    bool enabled = true; // Allow disabling event publishing
 };
 
 /**
@@ -59,14 +59,14 @@ class EventPublisher {
     /**
      * @brief Get the singleton instance
      */
-    static EventPublisher& instance();
+    static EventPublisher &instance();
 
     /**
      * @brief Initialize the publisher with configuration
      * @param config Publisher configuration
      * @return true if initialization successful
      */
-    bool initialize(const EventPublisherConfig& config = {});
+    bool initialize(const EventPublisherConfig &config = {});
 
     /**
      * @brief Initialize from environment variables
@@ -114,16 +114,14 @@ class EventPublisher {
     /**
      * @brief Publish a chat message event
      */
-    void publish_chat(GameEventType type, std::string_view player_name,
-                      std::string_view message,
+    void publish_chat(GameEventType type, std::string_view player_name, std::string_view message,
                       std::optional<std::string_view> target = std::nullopt);
 
     /**
      * @brief Publish a player lifecycle event (login, logout, death, etc.)
      */
-    void publish_player(GameEventType type, std::string_view player_name,
-                        std::string_view message, std::optional<int> zone_id = std::nullopt,
-                        std::optional<std::string> room_id = std::nullopt);
+    void publish_player(GameEventType type, std::string_view player_name, std::string_view message,
+                        std::optional<int> zone_id = std::nullopt, std::optional<std::string> room_id = std::nullopt);
 
     /**
      * @brief Publish an admin alert
@@ -151,10 +149,10 @@ class EventPublisher {
     ~EventPublisher();
 
     // Disable copy/move
-    EventPublisher(const EventPublisher&) = delete;
-    EventPublisher& operator=(const EventPublisher&) = delete;
-    EventPublisher(EventPublisher&&) = delete;
-    EventPublisher& operator=(EventPublisher&&) = delete;
+    EventPublisher(const EventPublisher &) = delete;
+    EventPublisher &operator=(const EventPublisher &) = delete;
+    EventPublisher(EventPublisher &&) = delete;
+    EventPublisher &operator=(EventPublisher &&) = delete;
 
     /**
      * @brief Background thread function that processes the event queue
@@ -180,7 +178,7 @@ class EventPublisher {
     EventPublisherConfig config_;
 
     // Redis connection
-    redisContext* redis_ctx_ = nullptr;
+    redisContext *redis_ctx_ = nullptr;
     mutable std::mutex redis_mutex_;
 
     // Event queue for async publishing
@@ -206,4 +204,4 @@ class EventPublisher {
     static constexpr size_t MAX_QUEUE_SIZE = 10000;
 };
 
-}  // namespace fierymud::events
+} // namespace fierymud::events
