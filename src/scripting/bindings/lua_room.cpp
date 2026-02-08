@@ -17,45 +17,6 @@
 
 namespace FieryMUD {
 
-namespace {
-
-// Parse direction string to Direction enum
-std::optional<Direction> parse_direction(const std::string &dir_str) {
-    static const std::unordered_map<std::string, Direction> dir_map = {{"north", Direction::North},
-                                                                       {"n", Direction::North},
-                                                                       {"east", Direction::East},
-                                                                       {"e", Direction::East},
-                                                                       {"south", Direction::South},
-                                                                       {"s", Direction::South},
-                                                                       {"west", Direction::West},
-                                                                       {"w", Direction::West},
-                                                                       {"up", Direction::Up},
-                                                                       {"u", Direction::Up},
-                                                                       {"down", Direction::Down},
-                                                                       {"d", Direction::Down},
-                                                                       {"northeast", Direction::Northeast},
-                                                                       {"ne", Direction::Northeast},
-                                                                       {"northwest", Direction::Northwest},
-                                                                       {"nw", Direction::Northwest},
-                                                                       {"southeast", Direction::Southeast},
-                                                                       {"se", Direction::Southeast},
-                                                                       {"southwest", Direction::Southwest},
-                                                                       {"sw", Direction::Southwest},
-                                                                       {"in", Direction::In},
-                                                                       {"out", Direction::Out}};
-
-    std::string lower = dir_str;
-    std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
-
-    auto it = dir_map.find(lower);
-    if (it != dir_map.end()) {
-        return it->second;
-    }
-    return std::nullopt;
-}
-
-} // anonymous namespace
-
 void register_room_bindings(sol::state &lua) {
     // Direction enum
     lua.new_enum<Direction>("Direction", {{"North", Direction::North},

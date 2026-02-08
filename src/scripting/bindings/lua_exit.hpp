@@ -191,6 +191,9 @@ class ExitWrapper {
     Direction direction_;
 };
 
+/** Parse a direction string ("north", "n", etc.) to Direction enum */
+std::optional<Direction> parse_direction(const std::string &dir_str);
+
 /** Register Exit Lua bindings */
 void register_exit_bindings(sol::state &lua);
 

@@ -370,6 +370,31 @@ target_precompile_headers(fierymud_core PRIVATE
     <magic_enum/magic_enum.hpp>
 )
 
+# Unity build for sol2 Lua binding files - these are the slowest to compile
+# (~67s each) because sol2 is extremely template-heavy. Unity build parses
+# sol2 headers once per batch instead of once per file.
+set(LUA_BINDING_SOURCES
+    src/scripting/bindings/lua_actor.cpp
+    src/scripting/bindings/lua_room.cpp
+    src/scripting/bindings/lua_object.cpp
+    src/scripting/bindings/lua_quest.cpp
+    src/scripting/bindings/lua_combat.cpp
+    src/scripting/bindings/lua_world.cpp
+    src/scripting/bindings/lua_spells.cpp
+    src/scripting/bindings/lua_zone.cpp
+    src/scripting/bindings/lua_exit.cpp
+    src/scripting/bindings/lua_skills.cpp
+    src/scripting/bindings/lua_effects.cpp
+    src/scripting/bindings/lua_timers.cpp
+    src/scripting/bindings/lua_vars.cpp
+    src/scripting/bindings/lua_templates.cpp
+)
+set_source_files_properties(${LUA_BINDING_SOURCES} PROPERTIES UNITY_GROUP "lua_bindings")
+set_target_properties(fierymud_core PROPERTIES
+    UNITY_BUILD ON
+    UNITY_BUILD_MODE GROUP
+)
+
 # =============================================================================
 # Modern FieryMUD Server (fierymud)
 # =============================================================================

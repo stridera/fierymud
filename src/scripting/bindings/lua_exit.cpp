@@ -2,9 +2,6 @@
 
 namespace FieryMUD {
 
-namespace {
-
-// Convert string direction to Direction enum
 std::optional<Direction> parse_direction(const std::string &dir_str) {
     static const std::unordered_map<std::string, Direction> dir_map = {{"north", Direction::North},
                                                                        {"n", Direction::North},
@@ -38,8 +35,6 @@ std::optional<Direction> parse_direction(const std::string &dir_str) {
     }
     return std::nullopt;
 }
-
-} // anonymous namespace
 
 void register_exit_bindings(sol::state &lua) {
     // Register the ExitWrapper as "Exit" usertype
