@@ -5,13 +5,14 @@
 
 #include "config_loader.hpp"
 
-#include "connection_pool.hpp"
-
 #include <algorithm>
+#include <set>
+
 #include <fmt/format.h>
 #include <pqxx/pqxx>
-#include <set>
 #include <spdlog/spdlog.h>
+
+#include "connection_pool.hpp"
 
 namespace fierymud::config {
 

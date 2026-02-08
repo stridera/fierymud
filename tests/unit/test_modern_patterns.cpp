@@ -1,21 +1,25 @@
-#include "../../src/core/result.hpp"
-#include "../../src/core/actor.hpp"
-#include "../../src/core/combat.hpp"
-#include "../../src/game/login_system.hpp"
+#include <concepts>
+#include <ranges>
+
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/generators/catch_generators.hpp>
 #include <catch2/generators/catch_generators_range.hpp>
-#include <ranges>
-#include <concepts>
+
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "core/result.hpp"
+#include "game/login_system.hpp"
 
 // Modern C++23 concepts for type-safe testing
-template<typename T>
+template <typename T>
 concept Testable = requires(T t) {
     t.validate();
     typename T::value_type;
 };
 
-template<typename T>
+template <typename T>
 concept ActorLike = std::derived_from<T, Actor>;
 
 /**
@@ -30,7 +34,7 @@ TEST_CASE("Combat: Warrior Class ACC Rate", "[combat][warrior]") {
     }
 
     SECTION("Warrior-specific ACC rate") {
-        REQUIRE(acc_rate >= 0.6);  // Warriors should have highest ACC rate
+        REQUIRE(acc_rate >= 0.6); // Warriors should have highest ACC rate
         REQUIRE(acc_rate == FieryMUD::ClassAccRates::WARRIOR);
     }
 }
@@ -44,7 +48,7 @@ TEST_CASE("Combat: Sorcerer Class ACC Rate", "[combat][sorcerer]") {
     }
 
     SECTION("Sorcerer-specific ACC rate") {
-        REQUIRE(acc_rate <= 0.4);  // Sorcerers have lower physical combat
+        REQUIRE(acc_rate <= 0.4); // Sorcerers have lower physical combat
         REQUIRE(acc_rate == FieryMUD::ClassAccRates::SORCERER);
     }
 }
@@ -58,7 +62,7 @@ TEST_CASE("Combat: Rogue Class ACC Rate", "[combat][rogue]") {
     }
 
     SECTION("Rogue-specific ACC rate") {
-        REQUIRE(acc_rate >= 0.5);  // Rogues have good ACC
+        REQUIRE(acc_rate >= 0.5); // Rogues have good ACC
         REQUIRE(acc_rate == FieryMUD::ClassAccRates::ROGUE);
     }
 }
@@ -72,7 +76,7 @@ TEST_CASE("Combat: Cleric Class ACC Rate", "[combat][cleric]") {
     }
 
     SECTION("Cleric-specific ACC rate") {
-        REQUIRE(acc_rate >= 0.3);  // Clerics have moderate ACC
+        REQUIRE(acc_rate >= 0.3); // Clerics have moderate ACC
         REQUIRE(acc_rate == FieryMUD::ClassAccRates::CLERIC);
     }
 }
@@ -119,20 +123,20 @@ TEST_CASE("Stats: Attribute Modifier Calculation", "[unit][stats][generator]") {
 TEST_CASE("Actor: Inventory Management with Ranges", "[unit][actor][ranges]") {
     auto player = Player::create(EntityId{1001}, "TestPlayer");
     REQUIRE(player.has_value());
-    auto& actor = *player.value();
+    auto &actor = *player.value();
 
     SECTION("Inventory operations with ranges") {
         // Create test objects
         std::vector<std::shared_ptr<Object>> test_objects;
         for (int i = 1; i <= 10; ++i) {
-            auto obj_result = Object::create(EntityId{static_cast<uint64_t>(1000 + i)},
-                                           fmt::format("TestItem{}", i), ObjectType::Other);
+            auto obj_result = Object::create(EntityId{static_cast<uint64_t>(1000 + i)}, fmt::format("TestItem{}", i),
+                                             ObjectType::Other);
             REQUIRE(obj_result.has_value());
             test_objects.push_back(std::shared_ptr<Object>(obj_result.value().release()));
         }
 
         // Add objects to inventory using ranges
-        for (auto& obj : test_objects) {
+        for (auto &obj : test_objects) {
             auto result = actor.inventory().add_item(obj);
             REQUIRE(result.has_value());
         }
@@ -143,19 +147,16 @@ TEST_CASE("Actor: Inventory Management with Ranges", "[unit][actor][ranges]") {
         auto all_items = actor.inventory().get_all_items();
 
         // Find items matching criteria using ranges
-        auto matching_items = all_items
-            | std::views::filter([](const auto& item) {
-                return item->name().find("TestItem") != std::string::npos;
-              })
-            | std::views::take(5); // Only first 5
+        auto matching_items =
+            all_items |
+            std::views::filter([](const auto &item) { return item->name().find("TestItem") != std::string::npos; }) |
+            std::views::take(5); // Only first 5
 
         size_t count = std::ranges::distance(matching_items);
         REQUIRE(count == 5);
 
         // Test range-based validation
-        bool all_valid = std::ranges::all_of(all_items, [](const auto& item) {
-            return item->validate().has_value();
-        });
+        bool all_valid = std::ranges::all_of(all_items, [](const auto &item) { return item->validate().has_value(); });
         REQUIRE(all_valid);
     }
 }
@@ -194,9 +195,7 @@ TEST_CASE("Modern Error Handling: std::expected Patterns", "[unit][error][expect
     SECTION("Error transformation and context") {
         auto divide_with_context = [](int a, int b, std::string_view context) -> Result<double> {
             if (b == 0) {
-                return std::unexpected(Error{ErrorCode::InvalidArgument,
-                                           "Division by zero",
-                                           std::string(context)});
+                return std::unexpected(Error{ErrorCode::InvalidArgument, "Division by zero", std::string(context)});
             }
             return static_cast<double>(a) / b;
         };
@@ -211,8 +210,7 @@ TEST_CASE("Modern Error Handling: std::expected Patterns", "[unit][error][expect
 /**
  * Concept-based testing for type safety
  */
-template<ActorLike T>
-void test_actor_basic_properties(const T& actor) {
+template <ActorLike T> void test_actor_basic_properties(const T &actor) {
     REQUIRE(actor.id().is_valid());
     REQUIRE(!actor.name().empty());
     REQUIRE(actor.stats().level >= 1);
@@ -230,7 +228,7 @@ TEST_CASE("Concepts: Type-Safe Actor Testing", "[unit][concepts][actor]") {
 
         // Additional player-specific tests
         REQUIRE(player.value()->player_class() == "warrior"); // Default class
-        REQUIRE(player.value()->race() == "Human"); // Default race (capitalized)
+        REQUIRE(player.value()->race() == "Human");           // Default race (capitalized)
     }
 
     SECTION("Mobile satisfies ActorLike concept") {
@@ -264,7 +262,7 @@ TEST_CASE("Performance: Critical Path Benchmarking", "[unit][performance][benchm
 
         // Benchmark lookup operations
         size_t found_count = 0;
-        for (const auto& id : ids) {
+        for (const auto &id : ids) {
             if (id.is_valid() && id.value() < iterations / 2) {
                 ++found_count;
             }
@@ -293,7 +291,7 @@ TEST_CASE("Performance: Critical Path Benchmarking", "[unit][performance][benchm
         // Set up for combat benchmark (with new ACC/EVA system, stats contribute to ACC/EVA)
         attacker.value()->stats().level = 10;      // Higher level = higher ACC
         attacker.value()->stats().strength = 18;   // Better damage + some ACC
-        attacker.value()->stats().accuracy = 20;    // +20 to ACC from gear
+        attacker.value()->stats().accuracy = 20;   // +20 to ACC from gear
         target.value()->stats().armor_rating = 20; // Low AR = low DR%
 
         // Convert to shared_ptr as expected by combat system
@@ -320,6 +318,7 @@ TEST_CASE("Performance: Critical Path Benchmarking", "[unit][performance][benchm
         // We just verify we got some hits
         REQUIRE(hit_count > 0);
 
-        INFO("Combat calculations: " << combat_rounds << " rounds in " << duration.count() << "ms, " << hit_count << " hits");
+        INFO("Combat calculations: " << combat_rounds << " rounds in " << duration.count() << "ms, " << hit_count
+                                     << " hits");
     }
 }

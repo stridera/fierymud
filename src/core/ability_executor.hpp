@@ -1,16 +1,16 @@
 #pragma once
 
-#include "commands/command_system.hpp"
-#include "core/effect_system.hpp"
-#include "core/result.hpp"
-#include "database/world_queries.hpp"
-
 #include <expected>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include "commands/command_system.hpp"
+#include "core/effect_system.hpp"
+#include "core/result.hpp"
+#include "database/world_queries.hpp"
 
 // Forward declarations
 class Actor;

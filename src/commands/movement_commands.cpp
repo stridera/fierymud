@@ -1,15 +1,19 @@
 #include "movement_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/object.hpp"
-#include "../database/config_loader.hpp"
-#include "../text/text_format.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-#include "builtin_commands.hpp"
-#include "information_commands.hpp"
-
 #include <algorithm>
+
+#include "builtin_commands.hpp"
+#include "commands/command_context.hpp"
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/config_loader.hpp"
+#include "information_commands.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 namespace MovementCommands {
 

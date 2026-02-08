@@ -1,19 +1,25 @@
 #include "character_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/world_queries.hpp"
-#include "../game/composer_system.hpp"
-#include "../server/persistence_manager.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/world_manager.hpp"
-#include "command_parser.hpp"
-
 #include <algorithm>
+
 #include <fmt/format.h>
+
+#include "command_context.hpp"
+#include "command_parser.hpp"
+#include "command_system.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/world_queries.hpp"
+#include "game/composer_system.hpp"
+#include "server/persistence_manager.hpp"
+#include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 namespace CharacterCommands {
 

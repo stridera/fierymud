@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "../database/social_queries.hpp"
-#include "command_context.hpp"
-#include "command_system.hpp"
-
 #include <memory>
 #include <string>
 #include <string_view>
+
+#include "command_fwd.hpp"
+
+class Social;
 
 /**
  * Social commands for FieryMUD.

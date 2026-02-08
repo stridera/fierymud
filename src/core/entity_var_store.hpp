@@ -1,11 +1,12 @@
 #pragma once
 
-#include "ids.hpp"
-
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
 #include <unordered_map>
+
+#include <nlohmann/json.hpp>
+
+#include "ids.hpp"
 
 namespace FieryMUD {
 

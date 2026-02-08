@@ -1,8 +1,9 @@
 #include "database/player_queries.hpp"
 
-#include "core/logging.hpp"
-
 #include <fmt/format.h>
+
+#include "core/logging.hpp"
+#include "core/player.hpp"
 
 namespace PlayerQueries {
 

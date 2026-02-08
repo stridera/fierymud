@@ -1,19 +1,28 @@
 #pragma once
 
-#include "../core/actor.hpp"
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-
 #include <chrono>
-#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <tuple>
 #include <vector>
 
+#include "core/ids.hpp"
+#include "core/result.hpp"
+#include "database/generated/db_character.hpp"
+#include "game/character_class.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
 // Forward declarations
 class PlayerConnection;
+class Player;
+
+using Race = db::Race;
 
 /**
  * @brief Login states for the connection state machine
@@ -47,23 +56,13 @@ enum class LoginState {
 };
 
 /**
- * @brief Character class options for creation
- */
-enum class CharacterClass { Warrior = 1, Cleric = 2, Sorcerer = 3, Rogue = 4 };
-
-/**
- * @brief Character race options for creation
- */
-enum class CharacterRace { Human = 1, Elf = 2, Dwarf = 3, Halfling = 4 };
-
-/**
  * @brief Character creation data collected during login
  */
 struct CharacterCreationData {
     std::string name;
     std::string password;
     CharacterClass character_class{CharacterClass::Warrior};
-    CharacterRace race{CharacterRace::Human};
+    Race race{Race::Human};
 
     bool is_complete() const;
     std::string get_class_name() const;

@@ -1,12 +1,3 @@
-#include "admin/admin_server.hpp"
-#include "admin/player_handler.hpp"
-#include "admin/zone_reload_handler.hpp"
-#include "core/logging.hpp"
-#include "core/result.hpp"
-#include "server/mud_server.hpp"
-
-#include <cxxopts.hpp>
-
 #include <atomic>
 #include <chrono>
 #include <csignal>
@@ -16,6 +7,15 @@
 #include <iostream>
 #include <memory>
 #include <thread>
+
+#include <cxxopts.hpp>
+
+#include "admin/admin_server.hpp"
+#include "admin/player_handler.hpp"
+#include "admin/zone_reload_handler.hpp"
+#include "core/logging.hpp"
+#include "core/result.hpp"
+#include "server/mud_server.hpp"
 
 /**
  * Load environment variables from a .env file.

@@ -1,9 +1,9 @@
 #include "database/quest_queries.hpp"
 
-#include "core/logging.hpp"
-
-#include <fmt/chrono.h>
 #include <fmt/format.h>
+#include <nlohmann/json.hpp>
+
+#include "core/logging.hpp"
 
 namespace QuestQueries {
 

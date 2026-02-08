@@ -1,8 +1,8 @@
 #pragma once
 
-#include "core/result.hpp"
-
 #include <string>
+
+#include "core/result.hpp"
 
 /**
  * Database configuration for PostgreSQL connection.

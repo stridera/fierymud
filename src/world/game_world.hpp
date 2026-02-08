@@ -1,19 +1,19 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../game/login_system.hpp"
-#include "room.hpp"
-
-#include <asio.hpp>
-
 #include <chrono>
 #include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include <asio.hpp>
+
+#include "../core/ids.hpp"
+
 // Forward declaration
 class CommandSystem;
+class Room;
+class Player;
 
 /**
  * @brief Central world server managing game state and logic
@@ -30,9 +30,9 @@ class GameWorld : public std::enable_shared_from_this<GameWorld> {
     ~GameWorld() = default;
 
     // Character management functions - used by LoginSystem
-    std::shared_ptr<class Player> create_character(const std::string &name);
-    bool save_character(std::shared_ptr<class Player> player);
-    std::shared_ptr<class Player> load_character(const std::string &name);
+    std::shared_ptr<Player> create_character(const std::string &name);
+    bool save_character(std::shared_ptr<Player> player);
+    std::shared_ptr<Player> load_character(const std::string &name);
 
     // Command system access
     std::shared_ptr<CommandSystem> get_command_system() const;
@@ -42,9 +42,9 @@ class GameWorld : public std::enable_shared_from_this<GameWorld> {
     const std::unordered_map<EntityId, std::shared_ptr<Room>> &get_all_rooms() const { return rooms_; }
 
     // Player management
-    void add_player(std::shared_ptr<class Player> player);
-    void remove_player(std::shared_ptr<class Player> player);
-    std::vector<std::shared_ptr<class Player>> get_online_players() const;
+    void add_player(std::shared_ptr<Player> player);
+    void remove_player(std::shared_ptr<Player> player);
+    std::vector<std::shared_ptr<Player>> get_online_players() const;
 
     // World initialization and lifecycle
     void initialize_world();
@@ -75,7 +75,7 @@ class GameWorld : public std::enable_shared_from_this<GameWorld> {
 
     // World data
     std::unordered_map<EntityId, std::shared_ptr<Room>> rooms_;
-    std::vector<std::shared_ptr<class Player>> online_players_;
+    std::vector<std::shared_ptr<Player>> online_players_;
 
     // World state
     bool world_loaded_ = false;

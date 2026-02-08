@@ -8,11 +8,8 @@
  * for consumption by Muditor and Discord bot.
  */
 
-#include "events/event_types.hpp"
-
 #include <atomic>
 #include <condition_variable>
-#include <memory>
 #include <mutex>
 #include <optional>
 #include <queue>
@@ -24,6 +21,9 @@
 struct redisContext;
 
 namespace fierymud::events {
+
+enum class GameEventType;
+struct GameEvent;
 
 /**
  * @brief Configuration for the event publisher

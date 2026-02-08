@@ -1,9 +1,9 @@
 #include "composer_system.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-
 #include <fmt/format.h>
+
+#include "core/logging.hpp"
+#include "core/player.hpp"
 
 ComposerSystem::ComposerSystem(std::weak_ptr<Player> player, ComposerConfig config)
     : player_(std::move(player)), config_(std::move(config)) {}

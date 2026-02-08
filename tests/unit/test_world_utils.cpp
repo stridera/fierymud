@@ -1,12 +1,14 @@
-#include "../src/world/room.hpp"
-#include "../src/world/world_manager.hpp"
-#include "../src/world/zone.hpp"
-#include "../src/core/object.hpp"
+#include <filesystem>
+#include <fstream>
 
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
-#include <filesystem>
-#include <fstream>
+#include <nlohmann/json.hpp>
+
+#include "../src/core/object.hpp"
+#include "../src/world/room.hpp"
+#include "../src/world/world_manager.hpp"
+#include "../src/world/zone.hpp"
 
 TEST_CASE("World Utils: Directions", "[world][utils][direction]") {
     SECTION("Direction name conversion") {
@@ -295,7 +297,7 @@ TEST_CASE("World Utils: Room Capacity and Occupancy", "[world][utils][room][capa
         // Private rooms have capacity 2
         private_room->set_capacity(2);
 
-        REQUIRE(normal_room->max_occupants() >= 10);  // Default capacity
+        REQUIRE(normal_room->max_occupants() >= 10); // Default capacity
         REQUIRE(tunnel->max_occupants() == 1);
         REQUIRE(private_room->max_occupants() == 2);
     }
@@ -467,7 +469,6 @@ TEST_CASE("World Utils: Zone Command System", "[world][utils][zone][commands]") 
         std::string cmd_str = cmd.to_string();
         REQUIRE(cmd_str.find("Load_Mobile") != std::string::npos);
     }
-
 }
 
 TEST_CASE("World Utils: Zone Reset System", "[world][utils][zone][reset]") {
@@ -499,7 +500,6 @@ TEST_CASE("World Utils: Zone Reset System", "[world][utils][zone][reset]") {
         REQUIRE(zone->stats().player_count == 5);
     }
 }
-
 
 TEST_CASE("World Utils: Zone Command Parser", "[world][utils][zone][parser]") {
     SECTION("Parse zone command line") {
@@ -630,63 +630,53 @@ TEST_CASE("World Utils: WorldManager", "[world][utils][manager]") {
 TEST_CASE("World Utils: Object JSON Parsing", "[world][utils][object][json]") {
     SECTION("Object parsing preserves exact short_description from JSON") {
         // Create JSON with specific short_description that differs from name_list
-        nlohmann::json object_json = {
-            {"id", "3007"},
-            {"type", "TOUCHSTONE"},
-            {"name_list", "sculpture mielikki goddess"},
-            {"short_description", "the living sculpture of Mielikki"}
-        };
-        
+        nlohmann::json object_json = {{"id", "3007"},
+                                      {"type", "TOUCHSTONE"},
+                                      {"name_list", "sculpture mielikki goddess"},
+                                      {"short_description", "the living sculpture of Mielikki"}};
+
         // Parse the object from JSON
         auto object_result = Object::from_json(object_json);
         REQUIRE(object_result.has_value());
-        
+
         auto object = std::move(object_result.value());
-        
+
         // Verify the object was created correctly
         REQUIRE(object->id() == EntityId{3007});
         REQUIRE(object->name() == "sculpture mielikki goddess");
-        
+
         // This is the critical test: short_description should be the exact value from JSON,
         // not the fallback to name_list/keywords
         REQUIRE(object->short_description() == "the living sculpture of Mielikki");
         REQUIRE(object->short_description() != object->name()); // Ensure it's not falling back to name
     }
-    
+
     SECTION("Object parsing handles empty short_description correctly") {
         // Create JSON without short_description field
-        nlohmann::json object_json = {
-            {"id", "3008"},
-            {"type", "OTHER"}, 
-            {"name_list", "test object thing"}
-        };
-        
+        nlohmann::json object_json = {{"id", "3008"}, {"type", "OTHER"}, {"name_list", "test object thing"}};
+
         // Parse the object from JSON
         auto object_result = Object::from_json(object_json);
         REQUIRE(object_result.has_value());
-        
+
         auto object = std::move(object_result.value());
-        
+
         // When no short_description is provided, it should fall back to name
         REQUIRE(object->short_description() == "test object thing");
         REQUIRE(object->short_description() == object->name());
     }
-    
+
     SECTION("Object parsing handles blank short_description correctly") {
         // Create JSON with empty string short_description
         nlohmann::json object_json = {
-            {"id", "3009"},
-            {"type", "OTHER"},
-            {"name_list", "blank description item"},
-            {"short_description", ""}
-        };
-        
+            {"id", "3009"}, {"type", "OTHER"}, {"name_list", "blank description item"}, {"short_description", ""}};
+
         // Parse the object from JSON
         auto object_result = Object::from_json(object_json);
         REQUIRE(object_result.has_value());
-        
+
         auto object = std::move(object_result.value());
-        
+
         // Empty short_description should be preserved as empty (the getter will handle fallback)
         REQUIRE(object->short_description() == "blank description item"); // Fallback behavior from getter
     }

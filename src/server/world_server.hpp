@@ -6,13 +6,18 @@
 #include "../core/result.hpp"
 #include "../world/time_system.hpp"
 // #include "../game/loop.hpp" // Game loop functionality integrated
-#include <asio.hpp>
-
 #include <atomic>
 #include <chrono>
-#include <functional>
 #include <memory>
 #include <unordered_map>
+
+#include <asio.hpp>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // Forward declarations
 struct ServerConfig;

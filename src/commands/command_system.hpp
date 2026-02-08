@@ -1,13 +1,6 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-#include "command_context.hpp"
-#include "command_parser.hpp"
-
-#include <array>
 #include <chrono>
-#include <functional>
 #include <memory>
 #include <mutex>
 #include <span>
@@ -16,6 +9,12 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include "command_context.hpp"
+#include "command_fwd.hpp"
+#include "command_parser.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
 
 // Forward declarations
 class Actor;
@@ -193,13 +192,7 @@ struct CommandContext {
 
     // Entity ID parsing with current zone as default
     // Accepts "zone:id" or just "id" (uses current room's zone)
-    EntityId parse_entity_id(std::string_view str) const {
-        std::optional<std::uint32_t> default_zone;
-        if (room) {
-            default_zone = room->id().zone_id();
-        }
-        return EntityId::parse(str, default_zone);
-    }
+    EntityId parse_entity_id(std::string_view str) const;
 
     // Utility methods
     std::string format_object_name(std::shared_ptr<Object> obj) const;

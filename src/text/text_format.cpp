@@ -1,10 +1,11 @@
 #include "text_format.hpp"
 
+#include <cctype>
+
+#include <fmt/format.h>
+
 #include "core/actor.hpp"
 #include "string_utils.hpp"
-
-#include <cctype>
-#include <fmt/format.h>
 
 namespace TextFormat {
 

@@ -1,8 +1,8 @@
-#include "../src/core/ids.hpp"
-#include "../src/core/result.hpp"
-
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
+
+#include "../src/core/ids.hpp"
+#include "../src/core/result.hpp"
 
 TEST_CASE("Core: EntityId", "[core][ids]") {
     SECTION("Default construction creates invalid ID") {

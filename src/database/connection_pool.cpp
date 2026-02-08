@@ -1,8 +1,9 @@
 #include "database/connection_pool.hpp"
 
-#include "core/logging.hpp"
-
 #include <fmt/format.h>
+
+#include "core/logging.hpp"
+#include "database/database_config.hpp"
 
 ConnectionPool &ConnectionPool::instance() {
     static ConnectionPool instance;

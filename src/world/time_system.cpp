@@ -1,8 +1,9 @@
 #include "time_system.hpp"
 
-#include "../core/logging.hpp"
-
 #include <fmt/format.h>
+
+#include "core/logging.hpp"
+#include "weather.hpp"
 
 using namespace TimeConstants;
 

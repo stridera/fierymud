@@ -2,10 +2,11 @@
 
 #pragma once
 
-#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <unordered_map>
+
+#include <nlohmann/json_fwd.hpp>
 
 /**
  * Terminal capability detection for optimal rich text formatting.

@@ -5,11 +5,13 @@
 
 #include "money.hpp"
 
-#include "logging.hpp"
-
 #include <algorithm>
 #include <cctype>
 #include <vector>
+
+#include <nlohmann/json.hpp>
+
+#include "logging.hpp"
 
 namespace fiery {
 

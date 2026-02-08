@@ -1,12 +1,12 @@
 #include "player_handler.hpp"
 
-#include "../core/actor.hpp"
-#include "../server/mud_server.hpp"
-#include "../world/room.hpp"
-
 #include <fmt/format.h>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
+
+#include "core/player.hpp"
+#include "server/mud_server.hpp"
+#include "world/room.hpp"
 
 using json = nlohmann::json;
 

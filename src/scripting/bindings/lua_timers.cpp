@@ -1,10 +1,10 @@
 #define SOL_ALL_SAFETIES_ON 1
 #include "lua_timers.hpp"
 
-#include "../script_timer_manager.hpp"
-
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
+
+#include "../script_timer_manager.hpp"
 
 namespace FieryMUD {
 

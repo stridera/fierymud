@@ -1,11 +1,13 @@
+#include <iomanip>
+#include <iostream>
+
 #include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
 #include "database/connection_pool.hpp"
 #include "database/database_config.hpp"
 #include "database/player_queries.hpp"
 #include "database/world_queries.hpp"
-
-#include <iomanip>
-#include <iostream>
 
 // Test result tracking
 struct TestStats {

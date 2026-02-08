@@ -1,11 +1,17 @@
 #pragma once
 
-#include "../core/result.hpp"
-#include "weather.hpp"
-
 #include <chrono>
-#include <functional>
 #include <string_view>
+
+#include "../core/result.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
+enum class Season;
 
 // Time constants matching legacy behavior
 namespace TimeConstants {

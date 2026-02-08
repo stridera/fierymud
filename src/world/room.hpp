@@ -1,19 +1,17 @@
 #pragma once
 
-#include "../core/entity.hpp"
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-#include "../database/generated/db_enums.hpp"
-
-#include <magic_enum/magic_enum.hpp>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
 #include <string_view>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+#include "core/entity.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
+#include "database/generated/db_room.hpp"
+#include "flags.hpp"
 
 // Forward declarations
 class Actor;
@@ -37,36 +35,6 @@ class Zone;
  * This ensures the game and database stay in sync automatically.
  */
 using Direction = db::Direction;
-
-/** Room sector types affecting movement and behavior */
-enum class SectorType {
-    Inside = 0,
-    City,
-    Field,
-    Forest,
-    Hills,
-    Mountains,
-    Water_Swim,
-    Water_Noswim,
-    Underwater,
-    Flying,
-    Desert,
-    Swamp,
-    Beach,
-    Road,
-    Underground,
-    Lava,
-    Ice,
-    Astral,
-    Fire,
-    Lightning,
-    Spirit,
-    Badlands,
-    Void,
-
-    // Sentinel
-    Undefined
-};
 
 // RoomFlag enum REMOVED - replaced by:
 // - base_light_level_ field for lighting (numeric, more flexible)

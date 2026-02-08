@@ -2,9 +2,11 @@
 
 #include "coroutine_scheduler.hpp"
 
-#include "../core/logging.hpp"
-
 #include <algorithm>
+
+#include <sol/sol.hpp>
+
+#include "core/logging.hpp"
 
 namespace FieryMUD {
 

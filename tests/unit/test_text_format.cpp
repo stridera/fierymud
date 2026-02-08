@@ -1,6 +1,6 @@
-#include "../../src/text/text_format.hpp"
-
 #include <catch2/catch_test_macros.hpp>
+
+#include "../../src/text/text_format.hpp"
 
 TEST_CASE("TextFormat: Color Processing", "[text][colors][unit]") {
     SECTION("Basic color tags work") {

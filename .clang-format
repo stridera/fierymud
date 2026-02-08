@@ -65,13 +65,13 @@ ForEachMacros:
   - foreach
   - Q_FOREACH
   - BOOST_FOREACH
-IncludeBlocks:   Regroup #Preserve
+IncludeBlocks:   Regroup
 IncludeCategories:
-  - Regex:           '^"'                # Local project headers
+  - Regex:           '<[a-z_]+>'         # C++ standard library (no extension, no path)
     Priority:        1
-  - Regex:           '<[a-z_]+\.hpp>'    # Third-party libraries (cxxopts, nlohmann, etc.)
+  - Regex:           '<.*>'              # Third-party libraries (fmt, spdlog, nlohmann, etc.)
     Priority:        2
-  - Regex:           '<.*>'              # Standard library
+  - Regex:           '^"'               # Project headers
     Priority:        3
 IncludeIsMainRegex: '(Test)?$'
 IndentCaseLabels: false

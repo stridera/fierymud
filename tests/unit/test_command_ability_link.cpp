@@ -1,8 +1,8 @@
-#include "../src/database/world_queries.hpp"
+#include <catch2/catch_test_macros.hpp>
+
 #include "../src/core/ability_executor.hpp"
 #include "../src/core/formula_parser.hpp"
-
-#include <catch2/catch_test_macros.hpp>
+#include "../src/database/world_queries.hpp"
 
 using namespace WorldQueries;
 using namespace FieryMUD;
@@ -113,8 +113,8 @@ TEST_CASE("FormulaContext: Perception and Concealment Variables", "[formula][abi
 
     SECTION("Contested check: perception vs concealment") {
         FormulaContext ctx;
-        ctx.perception = 40;           // Actor's perception
-        ctx.target_concealment = 55;   // Target's concealment
+        ctx.perception = 40;         // Actor's perception
+        ctx.target_concealment = 55; // Target's concealment
 
         // Formula: perception - target_concealment (positive = spotted)
         auto result = FormulaParser::evaluate("perception - target_concealment", ctx);
@@ -130,9 +130,9 @@ TEST_CASE("FormulaContext: Perception and Concealment Variables", "[formula][abi
 
     SECTION("Skulk-style detection formula") {
         FormulaContext ctx;
-        ctx.skill_level = 80;          // Skulk skill
-        ctx.dex_bonus = 4;             // Dexterity modifier
-        ctx.target_perception = 45;    // Observer's perception
+        ctx.skill_level = 80;       // Skulk skill
+        ctx.dex_bonus = 4;          // Dexterity modifier
+        ctx.target_perception = 45; // Observer's perception
 
         // Skulk formula: skill * 2 + dex_bonus * 5 vs target_perception
         // This represents: "perceiver.perception vs sneak skill * 2"
@@ -236,7 +236,7 @@ TEST_CASE("Command-Ability Linkage: Data Flow", "[command][ability][integration]
         AbilityData ability;
         ability.id = 99;
         ability.name = "Skulk";
-        ability.plain_name = "skulk";  // Matches command name
+        ability.plain_name = "skulk"; // Matches command name
         ability.type = AbilityType::Skill;
 
         REQUIRE_FALSE(cmd.ability_id.has_value());
@@ -247,12 +247,12 @@ TEST_CASE("Command-Ability Linkage: Data Flow", "[command][ability][integration]
     SECTION("Command name different from ability name with explicit link") {
         // This demonstrates the power of explicit abilityId FK
         CommandData cmd;
-        cmd.name = "stab";  // Short command name
+        cmd.name = "stab"; // Short command name
         cmd.ability_id = 55;
 
         AbilityData ability;
         ability.id = 55;
-        ability.name = "Backstab Attack";  // Full ability name (different!)
+        ability.name = "Backstab Attack"; // Full ability name (different!)
         ability.plain_name = "backstab_attack";
         ability.type = AbilityType::Skill;
         ability.violent = true;
@@ -269,7 +269,7 @@ TEST_CASE("Focus Stat: Spell Memorization", "[ability][stats][unit]") {
     SECTION("Focus stat in formula context") {
         FormulaContext ctx;
         ctx.custom_vars["focus"] = 25;
-        ctx.skill_level = 50;  // Meditate skill
+        ctx.skill_level = 50; // Meditate skill
 
         // Memorization speed formula: base_time - (focus / 10)
         auto result = FormulaParser::evaluate("100 - focus / 10", ctx);
@@ -279,10 +279,10 @@ TEST_CASE("Focus Stat: Spell Memorization", "[ability][stats][unit]") {
     SECTION("Meditate improves focus") {
         // Meditate effect formula: skill / 2
         FormulaContext ctx;
-        ctx.skill_level = 60;  // Meditate skill at 60%
+        ctx.skill_level = 60; // Meditate skill at 60%
 
         auto focus_bonus = FormulaParser::evaluate("skill / 2", ctx);
         REQUIRE(focus_bonus.has_value());
-        REQUIRE(focus_bonus.value() == 30);  // 60/2 = 30 focus bonus
+        REQUIRE(focus_bonus.value() == 30); // 60/2 = 30 focus bonus
     }
 }

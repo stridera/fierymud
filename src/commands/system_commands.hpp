@@ -1,7 +1,9 @@
 #pragma once
 
-#include "command_context.hpp"
-#include "command_system.hpp"
+#include "core/result.hpp"
+
+class CommandContext;
+enum class CommandResult;
 
 /**
  * System commands for FieryMUD.

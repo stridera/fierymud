@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../core/result.hpp"
-
 #include <memory>
+
+#include "core/result.hpp"
 
 // Forward declarations
 struct ServerConfig;

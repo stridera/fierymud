@@ -1,12 +1,13 @@
 #pragma once
 
-#include "core/actor.hpp"
+#include <memory>
+#include <string_view>
+
+#include <pqxx/pqxx>
+
 #include "core/result.hpp"
 
-#include <memory>
-#include <pqxx/pqxx>
-#include <string>
-#include <string_view>
+class Player;
 
 /**
  * Player/Character query layer for PostgreSQL database.

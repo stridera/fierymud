@@ -1,26 +1,33 @@
 #include "world_manager.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/board.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../core/shopkeeper.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/game_data_cache.hpp"
-#include "../database/trigger_queries.hpp"
-#include "../database/world_queries.hpp"
-#include "../scripting/script_engine.hpp"
-#include "../scripting/trigger_manager.hpp"
+#include <spdlog/spdlog.h>
+
+#include "core/actor.hpp"
+#include "core/board.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "core/shopkeeper.hpp"
+#include "database/connection_pool.hpp"
+#include "database/game_data_cache.hpp"
+#include "database/generated/db_mob.hpp"
+#include "database/trigger_queries.hpp"
+#include "database/world_queries.hpp"
+#include "room.hpp"
+#include "scripting/script_engine.hpp"
+#include "scripting/trigger_manager.hpp"
 #include "templates.hpp"
 #include "weather.hpp"
-
+#include "zone.hpp"
+#define SOL_ALL_SAFETIES_ON 1
 #include <algorithm>
-#include <filesystem>
 #include <fstream>
 #include <queue>
 #include <random>
-#include <spdlog/spdlog.h>
 #include <unordered_set>
+
+#include <sol/sol.hpp>
 
 // World manager constants
 namespace {
@@ -498,7 +505,7 @@ std::vector<std::shared_ptr<Room>> WorldManager::find_rooms_by_keyword(std::stri
     std::vector<std::shared_ptr<Room>> results;
 
     for (const auto &[id, room] : rooms_) {
-        if (room && room->matches_keyword(keyword)) {
+        if (room && room->matches_target_string(keyword)) {
             results.push_back(room);
         }
     }

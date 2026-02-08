@@ -10,15 +10,15 @@
 
 #pragma once
 
-#include "../core/active_effect.hpp"
-#include "../core/actor.hpp"
-#include "../core/result.hpp"
-#include "world_queries.hpp"
-
 #include <memory>
-#include <string>
 #include <string_view>
 #include <vector>
+
+#include "core/active_effect.hpp"
+#include "core/result.hpp"
+#include "world_queries.hpp"
+
+class Player;
 
 /**
  * @interface IPlayerRepository

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../core/ids.hpp"
-
 #include <string>
 #include <string_view>
+
+#include "../core/ids.hpp"
 
 // Forward declarations
 class Object;

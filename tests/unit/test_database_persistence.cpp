@@ -9,8 +9,11 @@
 #include <catch2/catch_test_macros.hpp>
 #include <core/actor.hpp>
 #include <core/money.hpp>
+#include <core/player.hpp>
 #include <database/player_repository.hpp>
 #include <database/world_queries.hpp>
+#include <magic_enum/magic_enum.hpp>
+
 #include "../common/mock_player_repository.hpp"
 
 // ============================================================================
@@ -20,7 +23,7 @@
 TEST_CASE("MockPlayerRepository basic operations", "[database][mock][repository]") {
 
     MockRepositoryGuard guard;
-    auto& mock = guard.mock();
+    auto &mock = guard.mock();
 
     SECTION("Save and load character data") {
         WorldQueries::CharacterData char_data;
@@ -38,7 +41,7 @@ TEST_CASE("MockPlayerRepository basic operations", "[database][mock][repository]
         char_data.hit_points_max = 400;
         char_data.stamina = 150;
         char_data.stamina_max = 180;
-        char_data.wealth = 50000;  // 50 platinum in copper
+        char_data.wealth = 50000; // 50 platinum in copper
         char_data.current_room_zone_id = 30;
         char_data.current_room_id = 15;
         char_data.recall_room_zone_id = 3;
@@ -59,7 +62,7 @@ TEST_CASE("MockPlayerRepository basic operations", "[database][mock][repository]
         auto load_result = mock.load_player_by_name("TestWarrior");
         REQUIRE(load_result.has_value());
 
-        auto& player = *load_result;
+        auto &player = *load_result;
         REQUIRE(player->name() == "TestWarrior");
         REQUIRE(player->stats().level == 50);
         REQUIRE(player->stats().alignment == 500);
@@ -121,8 +124,8 @@ TEST_CASE("MockPlayerRepository basic operations", "[database][mock][repository]
         char_data.id = "zone-zero-uuid";
         char_data.name = "ZoneZeroPlayer";
         char_data.level = 5;
-        char_data.current_room_zone_id = 0;  // Zone 0 is valid
-        char_data.current_room_id = 0;       // Room 0 is valid
+        char_data.current_room_zone_id = 0; // Zone 0 is valid
+        char_data.current_room_id = 0;      // Room 0 is valid
         char_data.recall_room_zone_id = 0;
         char_data.recall_room_id = 0;
 
@@ -132,7 +135,7 @@ TEST_CASE("MockPlayerRepository basic operations", "[database][mock][repository]
         auto load_result = mock.load_player_by_name("ZoneZeroPlayer");
         REQUIRE(load_result.has_value());
 
-        auto& player = *load_result;
+        auto &player = *load_result;
         REQUIRE(player->start_room().zone_id() == 0);
         REQUIRE(player->start_room().local_id() == 0);
         REQUIRE(player->recall_room().zone_id() == 0);
@@ -143,7 +146,7 @@ TEST_CASE("MockPlayerRepository basic operations", "[database][mock][repository]
 TEST_CASE("MockPlayerRepository effect persistence", "[database][mock][effects]") {
 
     MockRepositoryGuard guard;
-    auto& mock = guard.mock();
+    auto &mock = guard.mock();
 
     SECTION("Save and load character effects") {
         std::string char_id = "effect-test-uuid";
@@ -164,7 +167,7 @@ TEST_CASE("MockPlayerRepository effect persistence", "[database][mock][effects]"
         armor_effect.effect_name = "Armor";
         armor_effect.effect_type = "status";
         armor_effect.source_type = "spell";
-        armor_effect.duration_seconds = 3600;  // 1 hour in seconds
+        armor_effect.duration_seconds = 3600; // 1 hour in seconds
         armor_effect.modifier_data = R"({"effect_name":"Armor","flag":"Armor"})";
         effects.push_back(armor_effect);
 
@@ -174,7 +177,7 @@ TEST_CASE("MockPlayerRepository effect persistence", "[database][mock][effects]"
         detect_effect.effect_name = "Detect Magic";
         detect_effect.effect_type = "status";
         detect_effect.source_type = "spell";
-        detect_effect.duration_seconds = 7200;  // 2 hours
+        detect_effect.duration_seconds = 7200; // 2 hours
         detect_effect.modifier_data = R"({"effect_name":"Detect Magic","flag":"Detect_Magic"})";
         effects.push_back(detect_effect);
 
@@ -187,7 +190,7 @@ TEST_CASE("MockPlayerRepository effect persistence", "[database][mock][effects]"
         REQUIRE(load_result->size() == 2);
 
         // Verify effect data
-        auto& loaded_effects = *load_result;
+        auto &loaded_effects = *load_result;
         REQUIRE(loaded_effects[0].effect_id == 10);
         REQUIRE(loaded_effects[0].effect_name == "Armor");
         REQUIRE(loaded_effects[1].effect_id == 42);
@@ -204,7 +207,7 @@ TEST_CASE("MockPlayerRepository effect persistence", "[database][mock][effects]"
 TEST_CASE("MockPlayerRepository item persistence", "[database][mock][items]") {
 
     MockRepositoryGuard guard;
-    auto& mock = guard.mock();
+    auto &mock = guard.mock();
 
     SECTION("Save and verify character items") {
         std::string char_id = "item-test-uuid";
@@ -230,7 +233,7 @@ TEST_CASE("MockPlayerRepository item persistence", "[database][mock][items]") {
         WorldQueries::CharacterItemData potion;
         potion.character_id = char_id;
         potion.object_id = EntityId{30, 50};
-        potion.equipped_location = "";  // In inventory
+        potion.equipped_location = ""; // In inventory
         potion.condition = 100;
         potion.charges = 3;
         items.push_back(potion);
@@ -250,12 +253,12 @@ TEST_CASE("MockPlayerRepository item persistence", "[database][mock][items]") {
 TEST_CASE("MockPlayerRepository account wealth", "[database][mock][wealth]") {
 
     MockRepositoryGuard guard;
-    auto& mock = guard.mock();
+    auto &mock = guard.mock();
 
     SECTION("Save and verify account wealth") {
         std::string user_id = "user-account-uuid";
 
-        auto save_result = mock.save_account_wealth(user_id, 1000000);  // 1000 platinum
+        auto save_result = mock.save_account_wealth(user_id, 1000000); // 1000 platinum
         REQUIRE(save_result.has_value());
 
         auto stored = mock.get_account_wealth(user_id);
@@ -296,7 +299,7 @@ TEST_CASE("PlayerRepositoryProvider switching", "[database][mock][provider]") {
 TEST_CASE("Complete player save/load round-trip via repository", "[database][mock][roundtrip]") {
 
     MockRepositoryGuard guard;
-    auto& mock = guard.mock();
+    auto &mock = guard.mock();
 
     SECTION("Full player data preserved through repository") {
         // Create character data matching what PersistenceManager would build
@@ -304,7 +307,7 @@ TEST_CASE("Complete player save/load round-trip via repository", "[database][moc
         char_data.id = "roundtrip-test-uuid";
         char_data.name = "RoundTripPlayer";
         char_data.level = 75;
-        char_data.alignment = -250;  // Slightly evil
+        char_data.alignment = -250; // Slightly evil
         char_data.strength = 16;
         char_data.intelligence = 18;
         char_data.wisdom = 14;
@@ -315,7 +318,7 @@ TEST_CASE("Complete player save/load round-trip via repository", "[database][moc
         char_data.hit_points_max = 320;
         char_data.stamina = 140;
         char_data.stamina_max = 160;
-        char_data.wealth = 123456;  // Various copper
+        char_data.wealth = 123456; // Various copper
         char_data.current_room_zone_id = 45;
         char_data.current_room_id = 20;
         char_data.recall_room_zone_id = 30;
@@ -333,11 +336,11 @@ TEST_CASE("Complete player save/load round-trip via repository", "[database][moc
         REQUIRE(save_result.has_value());
 
         // Load via repository interface (same as real code would use)
-        auto& repo = PlayerRepositoryProvider::instance().get();
+        auto &repo = PlayerRepositoryProvider::instance().get();
         auto load_result = repo.load_player_by_name("RoundTripPlayer");
         REQUIRE(load_result.has_value());
 
-        auto& player = *load_result;
+        auto &player = *load_result;
 
         // Verify all fields
         REQUIRE(player->name() == "RoundTripPlayer");
@@ -360,7 +363,7 @@ TEST_CASE("Complete player save/load round-trip via repository", "[database][moc
         REQUIRE(player->recall_room().local_id() == 5);
         REQUIRE(player->stats().accuracy == 12);
         REQUIRE(player->stats().attack_power == 18);
-        REQUIRE(player->stats().armor_rating == 65);  // 100 - 35
+        REQUIRE(player->stats().armor_rating == 65); // 100 - 35
         REQUIRE(player->position() == Position::Resting);
         REQUIRE(player->description() == "A mysterious figure cloaked in shadows.");
         REQUIRE(player->title() == "the Enigmatic");

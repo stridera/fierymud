@@ -1,12 +1,17 @@
 #pragma once
 
-#include "../core/result.hpp"
-
-#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
+
+#include "../core/result.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // Forward declarations
 class Player;

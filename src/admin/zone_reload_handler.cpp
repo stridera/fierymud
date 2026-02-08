@@ -1,10 +1,10 @@
 #include "zone_reload_handler.hpp"
 
-#include "../world/world_manager.hpp"
-
 #include <fmt/format.h>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
+
+#include "../world/world_manager.hpp"
 
 using json = nlohmann::json;
 

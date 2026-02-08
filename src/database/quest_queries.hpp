@@ -1,15 +1,16 @@
 #pragma once
 
-#include "core/ids.hpp"
-#include "core/result.hpp"
-
 #include <chrono>
-#include <nlohmann/json.hpp>
 #include <optional>
-#include <pqxx/pqxx>
 #include <string>
 #include <string_view>
 #include <vector>
+
+#include <nlohmann/json_fwd.hpp>
+#include <pqxx/pqxx>
+
+#include "core/ids.hpp"
+#include "core/result.hpp"
 
 /**
  * Quest query layer for PostgreSQL database.

@@ -1,10 +1,5 @@
 #pragma once
 
-#include "core/active_effect.hpp"
-#include "core/actor.hpp"
-#include "core/formula_parser.hpp"
-#include "core/result.hpp"
-
 #include <expected>
 #include <memory>
 #include <optional>
@@ -12,6 +7,11 @@
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include "core/formula_parser.hpp"
+#include "core/result.hpp"
+
+class Actor;
 
 namespace FieryMUD {
 
@@ -309,61 +309,22 @@ class EffectSystem {
      * Apply an effect to an actor.
      */
     std::expected<void, EffectError> apply_effect(Actor &actor, std::string_view effect_name,
-                                                  const EffectOptions &opts) {
-        if (effect_name.empty()) {
-            return std::unexpected(EffectError{"invalid_effect_name"});
-        }
-
-        // Create the effect
-        ActiveEffect effect;
-        effect.name = std::string(effect_name);
-        effect.source = "script";
-        effect.flag = ActorFlag::None;
-        effect.duration_hours = opts.duration > 0 ? static_cast<double>(opts.duration) / 3600.0
-                                                  : -1.0; // Convert seconds to hours, -1 = permanent
-        effect.modifier_value = opts.power;
-        effect.applied_at = std::chrono::steady_clock::now();
-
-        actor.add_effect(effect);
-        return {};
-    }
+                                                  const EffectOptions &opts);
 
     /**
      * Remove an effect from an actor.
      */
-    std::expected<void, EffectError> remove_effect(Actor &actor, std::string_view effect_name) {
-        if (!actor.has_effect(std::string(effect_name))) {
-            return std::unexpected(EffectError{"effect_not_found"});
-        }
-
-        actor.remove_effect(std::string(effect_name));
-        return {};
-    }
+    std::expected<void, EffectError> remove_effect(Actor &actor, std::string_view effect_name);
 
     /**
      * Check if actor has an effect.
      */
-    bool has_effect(const Actor &actor, std::string_view effect_name) const {
-        return actor.has_effect(std::string(effect_name));
-    }
+    bool has_effect(const Actor &actor, std::string_view effect_name) const;
 
     /**
      * Get remaining duration of an effect in seconds.
      */
-    std::optional<int> get_effect_duration(const Actor &actor, std::string_view effect_name) const {
-        const ActiveEffect *effect = actor.get_effect(std::string(effect_name));
-        if (!effect) {
-            return std::nullopt;
-        }
-
-        if (effect->is_permanent()) {
-            return -1; // Permanent effect
-        }
-
-        // Convert remaining hours to seconds
-        // Note: This is simplified - full implementation would track elapsed time
-        return static_cast<int>(effect->duration_hours * 3600.0);
-    }
+    std::optional<int> get_effect_duration(const Actor &actor, std::string_view effect_name) const;
 
   private:
     EffectSystem() = default;

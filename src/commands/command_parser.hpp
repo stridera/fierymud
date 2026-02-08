@@ -1,8 +1,5 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-
 #include <memory>
 #include <optional>
 #include <span>
@@ -10,6 +7,9 @@
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include "core/ids.hpp"
+#include "core/result.hpp"
 
 // Forward declarations
 class Actor;

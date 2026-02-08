@@ -1,8 +1,8 @@
 #pragma once
 
-#include "admin_server.hpp"
-
 #include <string>
+
+#include "admin_server.hpp"
 
 namespace fierymud {
 

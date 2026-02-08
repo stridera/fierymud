@@ -3,7 +3,6 @@
 #pragma once
 
 #include <cstdint>
-#include <functional>
 #include <memory>
 #include <optional>
 #include <ostream>
@@ -11,6 +10,12 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 /**
  * Unified EntityId system to replace legacy ID types.
@@ -47,33 +52,7 @@ class EntityId {
      * @param default_zone Optional zone to use if only local_id is provided
      * @return Parsed EntityId, or invalid EntityId if parsing fails
      */
-    static EntityId parse(std::string_view str, std::optional<std::uint32_t> default_zone = std::nullopt) {
-        auto colon_pos = str.find(':');
-        if (colon_pos != std::string_view::npos) {
-            // Full zone:id format
-            try {
-                int zone_id = std::stoi(std::string(str.substr(0, colon_pos)));
-                int local_id = std::stoi(std::string(str.substr(colon_pos + 1)));
-                if (zone_id >= 0 && local_id >= 0) {
-                    return EntityId(static_cast<std::uint32_t>(zone_id), static_cast<std::uint32_t>(local_id));
-                }
-            } catch (const std::exception &) {
-                // Fall through to return invalid
-            }
-            return EntityId{};
-        }
-
-        // Single number format - use default zone if provided
-        try {
-            int local_id = std::stoi(std::string(str));
-            if (local_id >= 0 && default_zone.has_value()) {
-                return EntityId(*default_zone, static_cast<std::uint32_t>(local_id));
-            }
-        } catch (const std::exception &) {
-            // Fall through to return invalid
-        }
-        return EntityId{};
-    }
+    static EntityId parse(std::string_view str, std::optional<std::uint32_t> default_zone = std::nullopt);
 
     /** Get zone ID component (for database composite keys) */
     constexpr std::uint32_t zone_id() const { return zone_id_; }
@@ -88,7 +67,7 @@ class EntityId {
     constexpr bool is_valid() const { return valid_; }
 
     /** Convert to string representation "zone:local" */
-    std::string to_string() const { return std::to_string(zone_id_) + ":" + std::to_string(local_id_); }
+    std::string to_string() const;
 
     /** Comparison operators for std::unordered_map compatibility */
     constexpr bool operator==(const EntityId &other) const {
@@ -118,14 +97,7 @@ class EntityId {
 
     /** Hash support for unordered containers */
     struct Hash {
-        std::size_t operator()(const EntityId &id) const noexcept {
-            if (!id.valid_)
-                return 0;
-            // Combine hash of both components for better distribution
-            std::size_t h1 = std::hash<std::uint32_t>{}(id.zone_id_);
-            std::size_t h2 = std::hash<std::uint32_t>{}(id.local_id_);
-            return h1 ^ (h2 << 1);
-        }
+        std::size_t operator()(const EntityId &id) const noexcept;
     };
 
   private:

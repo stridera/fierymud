@@ -1,16 +1,21 @@
-#include "arguments.hpp"
-#include "logging.hpp"
-#include "structs.hpp"
-#include "utils.hpp"
-
 #include <algorithm>
 #include <format>
-#include <functional>
 #include <iostream>
 #include <memory>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include "arguments.hpp"
+#include "logging.hpp"
+#include "structs.hpp"
+#include "utils.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // All of our functions should include these headers
 // Enhanced command categorization for intelligent disambiguation

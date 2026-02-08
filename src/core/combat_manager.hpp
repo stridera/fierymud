@@ -1,9 +1,9 @@
 #pragma once
 
-#include "result.hpp"
-
 #include <expected>
 #include <memory>
+
+#include "result.hpp"
 
 // Forward declarations
 class Actor;

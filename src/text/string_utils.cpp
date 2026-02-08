@@ -1,12 +1,11 @@
 #include "string_utils.hpp"
 
-#include "core/logging.hpp"
-
 #include <algorithm>
 #include <numeric>
 #include <ranges>
-#include <string>
 #include <utility>
+
+#include "core/logging.hpp"
 
 std::string ellipsis(const std::string_view str, int maxlen) {
     if (static_cast<int>(str.length()) < maxlen - 3)

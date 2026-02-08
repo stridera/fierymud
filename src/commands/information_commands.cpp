@@ -1,28 +1,30 @@
 #include "information_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/board.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/game_data_cache.hpp"
-#include "../database/world_queries.hpp"
-#include "../game/composer_system.hpp"
-#include "../net/player_connection.hpp"
-#include "../server/world_server.hpp"
-#include "../world/room.hpp"
-#include "../world/time_system.hpp"
-#include "../world/weather.hpp"
-#include "../world/world_manager.hpp"
-#include "builtin_commands.hpp"
-
 #include <algorithm>
 #include <array>
 #include <chrono>
-#include <iomanip>
 #include <sstream>
 #include <unordered_map>
+
+#include "builtin_commands.hpp"
+#include "commands/command_context.hpp"
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "core/board.hpp"
+#include "core/logging.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/game_data_cache.hpp"
+#include "database/world_queries.hpp"
+#include "game/composer_system.hpp"
+#include "net/player_connection.hpp"
+#include "server/world_server.hpp"
+#include "world/room.hpp"
+#include "world/time_system.hpp"
+#include "world/weather.hpp"
+#include "world/world_manager.hpp"
 
 namespace InformationCommands {
 

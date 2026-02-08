@@ -1,14 +1,12 @@
 #pragma once
 
-#include "../core/result.hpp"
-#include "../database/generated/db_enums.hpp"
-#include "entity.hpp"
-
 #include <array>
-#include <magic_enum/magic_enum.hpp>
 #include <optional>
-#include <unordered_map>
 #include <unordered_set>
+
+#include "core/result.hpp"
+#include "database/generated/db_object.hpp"
+#include "entity.hpp"
 
 namespace FieryMUD {
 // Forward declaration for weapon speed (defined in combat.hpp)
@@ -391,7 +389,7 @@ class Object : public Entity {
     const LiquidInfo &liquid_info() const { return liquid_info_; }
 
     /** Set liquid properties */
-    void set_liquid_info(const LiquidInfo &info) { liquid_info_ = info; }
+    void set_liquid_info(const LiquidInfo &info);
 
     /** Check if container has liquid (fountains always have liquid - infinite supply) */
     bool has_liquid() const { return type_ == ObjectType::Fountain || liquid_info_.remaining > 0; }
@@ -441,9 +439,6 @@ class Object : public Entity {
 
     /** Validation */
     Result<void> validate() const override;
-
-    /** Override matches_keyword to also match liquid type for identified drink containers */
-    bool matches_keyword(std::string_view keyword) const override;
 
     /** Override display_name to use dynamic article and base_name for drink/container state */
     std::string display_name(bool with_article = false) const override;

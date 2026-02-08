@@ -1,15 +1,15 @@
 #pragma once
 
-#include "core/entity.hpp"
-#include "core/result.hpp"
-
 #include <array>
 #include <expected>
-#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/result.hpp"
 
 // Forward declarations
 class Actor;

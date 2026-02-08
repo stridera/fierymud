@@ -1,21 +1,24 @@
 #include "system_commands.hpp"
 
-#include "../core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/social_queries.hpp"
-#include "../database/world_queries.hpp"
-#include "../net/player_connection.hpp"
-#include "../server/persistence_manager.hpp"
-#include "../text/rich_text.hpp"
-#include "../text/terminal_capabilities.hpp"
-
 #include <algorithm>
-#include <fmt/format.h>
 #include <map>
+
+#include <fmt/format.h>
+
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/social_queries.hpp"
+#include "database/world_queries.hpp"
+#include "net/player_connection.hpp"
+#include "server/persistence_manager.hpp"
+#include "text/rich_text.hpp"
+#include "text/terminal_capabilities.hpp"
 
 namespace SystemCommands {
 

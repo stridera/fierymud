@@ -2,16 +2,21 @@
 
 #include "trigger_manager.hpp"
 
-#include "../core/logging.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/trigger_queries.hpp"
-#include "coroutine_scheduler.hpp"
-#include "script_engine.hpp"
+#include <random>
 
 #include <fmt/format.h>
 #include <nlohmann/json.hpp>
-#include <random>
+#include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
+
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "coroutine_scheduler.hpp"
+#include "database/connection_pool.hpp"
+#include "database/trigger_queries.hpp"
+#include "script_engine.hpp"
+#include "triggers/trigger_data.hpp"
+#include "triggers/trigger_types.hpp"
 
 namespace FieryMUD {
 

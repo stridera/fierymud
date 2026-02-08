@@ -1,11 +1,9 @@
 #include "game_data_cache.hpp"
 
-#include "../core/logging.hpp"
-#include "connection_pool.hpp"
-#include "world_queries.hpp"
-
-#include <algorithm>
 #include <cctype>
+
+#include "connection_pool.hpp"
+#include "core/logging.hpp"
 
 // =============================================================================
 // ClassData Implementation

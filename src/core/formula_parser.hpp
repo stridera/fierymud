@@ -1,13 +1,18 @@
 #pragma once
 
-#include "core/result.hpp"
-
 #include <expected>
-#include <functional>
 #include <random>
 #include <string>
 #include <string_view>
 #include <unordered_map>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
+#include "core/result.hpp"
 
 namespace FieryMUD {
 

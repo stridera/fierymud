@@ -1,6 +1,13 @@
 #include "script_engine.hpp"
 
-#include "../world/time_system.hpp"
+#include <random>
+
+#include <fmt/format.h>
+#include <sol/error.hpp>
+#include <sol/sol.hpp>
+#include <sol/thread.hpp>
+#include <spdlog/spdlog.h>
+
 #include "bindings/lua_actor.hpp"
 #include "bindings/lua_combat.hpp"
 #include "bindings/lua_effects.hpp"
@@ -17,10 +24,7 @@
 #include "bindings/lua_zone.hpp"
 #include "coroutine_scheduler.hpp"
 #include "trigger_manager.hpp"
-
-#include <fmt/format.h>
-#include <random>
-#include <spdlog/spdlog.h>
+#include "world/time_system.hpp"
 
 namespace FieryMUD {
 
@@ -476,6 +480,17 @@ void ScriptEngine::install_timeout_hook(lua_State *L) {
 void ScriptEngine::remove_timeout_hook(lua_State *L) {
     // Remove the debug hook
     lua_sethook(L, nullptr, 0, 0);
+}
+
+ScriptResult<sol::protected_function_result> ScriptEngine::wrap_result(sol::protected_function_result &&result) {
+    if (!result.valid()) {
+        sol::error err = result;
+        last_error_ = err.what();
+        spdlog::error("Lua execution error: {}", last_error_);
+        return std::unexpected(ScriptError::ExecutionFailed);
+    }
+
+    return result;
 }
 
 } // namespace FieryMUD

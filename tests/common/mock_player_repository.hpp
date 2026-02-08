@@ -10,22 +10,22 @@
 
 #pragma once
 
-#include <database/player_repository.hpp>
-#include <core/actor.hpp>
-#include <database/world_queries.hpp>
-
-#include <unordered_map>
-#include <string>
-#include <vector>
-#include <memory>
 #include <algorithm>
+#include <memory>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+#include <core/actor.hpp>
+#include <database/player_repository.hpp>
+#include <database/world_queries.hpp>
 
 /**
  * @class MockPlayerRepository
  * @brief In-memory storage for player persistence testing
  */
 class MockPlayerRepository : public IPlayerRepository {
-public:
+  public:
     MockPlayerRepository() = default;
 
     // =========================================================================
@@ -36,8 +36,7 @@ public:
         std::string lower_name = to_lower(name);
         auto it = characters_by_name_.find(lower_name);
         if (it == characters_by_name_.end()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Player '{}' not found", name)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Player '{}' not found", name)});
         }
 
         // Create player from stored character data
@@ -48,8 +47,7 @@ public:
         std::string id_str{player_id};
         auto it = characters_.find(id_str);
         if (it == characters_.end()) {
-            return std::unexpected(Error{ErrorCode::NotFound,
-                fmt::format("Player ID '{}' not found", player_id)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Player ID '{}' not found", player_id)});
         }
 
         return create_player_from_data(it->second);
@@ -60,28 +58,24 @@ public:
         return characters_by_name_.contains(lower_name);
     }
 
-    int get_player_count() override {
-        return static_cast<int>(characters_.size());
-    }
+    int get_player_count() override { return static_cast<int>(characters_.size()); }
 
-    Result<void> save_character(const WorldQueries::CharacterData& char_data) override {
+    Result<void> save_character(const WorldQueries::CharacterData &char_data) override {
         characters_[char_data.id] = char_data;
         characters_by_name_[to_lower(char_data.name)] = char_data;
         return Success();
     }
 
-    Result<void> save_character_items(
-        std::string_view character_id,
-        const std::vector<WorldQueries::CharacterItemData>& items) override {
+    Result<void> save_character_items(std::string_view character_id,
+                                      const std::vector<WorldQueries::CharacterItemData> &items) override {
 
         std::string id_str{character_id};
         character_items_[id_str] = items;
         return Success();
     }
 
-    Result<void> save_character_effects(
-        std::string_view character_id,
-        const std::vector<WorldQueries::CharacterEffectData>& effects) override {
+    Result<void> save_character_effects(std::string_view character_id,
+                                        const std::vector<WorldQueries::CharacterEffectData> &effects) override {
 
         std::string id_str{character_id};
         character_effects_[id_str] = effects;
@@ -94,8 +88,8 @@ public:
         return Success();
     }
 
-    Result<std::vector<WorldQueries::CharacterEffectData>> load_character_effects(
-        std::string_view character_id) override {
+    Result<std::vector<WorldQueries::CharacterEffectData>>
+    load_character_effects(std::string_view character_id) override {
 
         std::string id_str{character_id};
         auto it = character_effects_.find(id_str);
@@ -119,19 +113,19 @@ public:
     }
 
     /** Get stored character data (for assertions) */
-    const WorldQueries::CharacterData* get_character_data(std::string_view id) const {
+    const WorldQueries::CharacterData *get_character_data(std::string_view id) const {
         auto it = characters_.find(std::string{id});
         return it != characters_.end() ? &it->second : nullptr;
     }
 
     /** Get stored items (for assertions) */
-    const std::vector<WorldQueries::CharacterItemData>* get_items(std::string_view character_id) const {
+    const std::vector<WorldQueries::CharacterItemData> *get_items(std::string_view character_id) const {
         auto it = character_items_.find(std::string{character_id});
         return it != character_items_.end() ? &it->second : nullptr;
     }
 
     /** Get stored effects (for assertions) */
-    const std::vector<WorldQueries::CharacterEffectData>* get_effects(std::string_view character_id) const {
+    const std::vector<WorldQueries::CharacterEffectData> *get_effects(std::string_view character_id) const {
         auto it = character_effects_.find(std::string{character_id});
         return it != character_effects_.end() ? &it->second : nullptr;
     }
@@ -143,12 +137,12 @@ public:
     }
 
     /** Pre-populate with test data */
-    void add_test_character(const WorldQueries::CharacterData& char_data) {
+    void add_test_character(const WorldQueries::CharacterData &char_data) {
         characters_[char_data.id] = char_data;
         characters_by_name_[to_lower(char_data.name)] = char_data;
     }
 
-private:
+  private:
     std::unordered_map<std::string, WorldQueries::CharacterData> characters_;
     std::unordered_map<std::string, WorldQueries::CharacterData> characters_by_name_;
     std::unordered_map<std::string, std::vector<WorldQueries::CharacterItemData>> character_items_;
@@ -157,12 +151,11 @@ private:
 
     static std::string to_lower(std::string_view str) {
         std::string result{str};
-        std::transform(result.begin(), result.end(), result.begin(),
-            [](unsigned char c) { return std::tolower(c); });
+        std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return std::tolower(c); });
         return result;
     }
 
-    Result<std::unique_ptr<Player>> create_player_from_data(const WorldQueries::CharacterData& data) {
+    Result<std::unique_ptr<Player>> create_player_from_data(const WorldQueries::CharacterData &data) {
         // Create player with stored data
         auto player_result = Player::create(EntityId{1, 0}, data.name);
         if (!player_result) {
@@ -173,7 +166,7 @@ private:
         player->set_database_id(data.id);
 
         // Restore stats
-        auto& stats = player->stats();
+        auto &stats = player->stats();
         stats.level = data.level;
         stats.alignment = data.alignment;
         stats.strength = data.strength;
@@ -195,16 +188,14 @@ private:
 
         // Restore location
         if (data.current_room_zone_id && data.current_room_id) {
-            EntityId start_room(
-                static_cast<uint32_t>(*data.current_room_zone_id),
-                static_cast<uint32_t>(*data.current_room_id));
+            EntityId start_room(static_cast<uint32_t>(*data.current_room_zone_id),
+                                static_cast<uint32_t>(*data.current_room_id));
             player->set_start_room(start_room);
         }
 
         if (data.recall_room_zone_id && data.recall_room_id) {
-            EntityId recall_room(
-                static_cast<uint32_t>(*data.recall_room_zone_id),
-                static_cast<uint32_t>(*data.recall_room_id));
+            EntityId recall_room(static_cast<uint32_t>(*data.recall_room_zone_id),
+                                 static_cast<uint32_t>(*data.recall_room_id));
             player->set_recall_room(recall_room);
         }
 
@@ -243,20 +234,18 @@ private:
  *   } // Automatically resets to real repository
  */
 class MockRepositoryGuard {
-public:
+  public:
     MockRepositoryGuard() {
         mock_ = std::make_unique<MockPlayerRepository>();
         mock_ptr_ = mock_.get();
         PlayerRepositoryProvider::instance().set(std::move(mock_));
     }
 
-    ~MockRepositoryGuard() {
-        PlayerRepositoryProvider::instance().reset();
-    }
+    ~MockRepositoryGuard() { PlayerRepositoryProvider::instance().reset(); }
 
-    MockPlayerRepository& mock() { return *mock_ptr_; }
+    MockPlayerRepository &mock() { return *mock_ptr_; }
 
-private:
+  private:
     std::unique_ptr<MockPlayerRepository> mock_;
-    MockPlayerRepository* mock_ptr_;
+    MockPlayerRepository *mock_ptr_;
 };

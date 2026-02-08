@@ -2,8 +2,9 @@
 
 #include <cctype>
 #include <cmath>
-#include <fmt/format.h>
 #include <random>
+
+#include <fmt/format.h>
 
 namespace FieryMUD {
 

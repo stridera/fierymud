@@ -6,9 +6,13 @@
 #include "events/event_publisher.hpp"
 
 #include <cstdlib>
+
 #include <fmt/format.h>
 #include <hiredis.h>
+#include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
+
+#include "events/event_types.hpp"
 
 namespace fierymud::events {
 

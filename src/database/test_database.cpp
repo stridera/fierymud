@@ -1,10 +1,10 @@
+#include <iostream>
+
 #include "core/logging.hpp"
 #include "database/connection_pool.hpp"
 #include "database/database_config.hpp"
 #include "database/world_queries.hpp"
 #include "world/room.hpp"
-
-#include <iostream>
 
 int main() {
     std::cout << "=== FieryMUD Database Integration Test ===\n\n";

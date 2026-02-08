@@ -1,21 +1,24 @@
 #include "object_commands.hpp"
 
-#include "../core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../core/shopkeeper.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/game_data_cache.hpp"
-#include "../database/world_queries.hpp"
-#include "../scripting/trigger_manager.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-
 #include <algorithm>
+
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
+
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "core/shopkeeper.hpp"
+#include "database/connection_pool.hpp"
+#include "database/game_data_cache.hpp"
+#include "database/world_queries.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 namespace ObjectCommands {
 
@@ -215,7 +218,7 @@ std::shared_ptr<Object> find_drinkable(const CommandContext &ctx, std::string_vi
         }
 
         // Check if it matches by object keyword
-        if (obj->matches_keyword(target_name)) {
+        if (obj->matches_target_string(target_name)) {
             return true;
         }
 
@@ -319,7 +322,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         // First check inventory for the object
         std::shared_ptr<Object> potential_container = nullptr;
         for (const auto &obj : inventory_items) {
-            if (obj && obj->matches_keyword(container_name)) {
+            if (obj && obj->matches_target_string(container_name)) {
                 potential_container = obj;
                 if (obj->is_container()) {
                     source_container = obj;
@@ -332,7 +335,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
         if (!potential_container) {
             auto &room_objects = ctx.room->contents_mutable().objects;
             for (auto &obj : room_objects) {
-                if (obj && obj->matches_keyword(container_name)) {
+                if (obj && obj->matches_target_string(container_name)) {
                     potential_container = obj;
                     if (obj->is_container()) {
                         source_container = obj;
@@ -571,7 +574,7 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
 
         // Handle single object get
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj && obj->matches_target_string(ctx.arg(0))) {
                 target_object = obj;
                 break;
             }
@@ -704,7 +707,7 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -817,7 +820,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
         for (const auto &obj : ctx.actor->inventory().get_all_items()) {
             if (!obj)
                 continue;
-            if (obj->matches_keyword(keyword)) {
+            if (obj->matches_target_string(keyword)) {
                 inventory_items_to_put.push_back(obj);
                 if (static_cast<int>(inventory_items_to_put.size()) >= put_count) {
                     break;
@@ -848,7 +851,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     // First check inventory
     auto all_inventory = ctx.actor->inventory().get_all_items();
     for (const auto &obj : all_inventory) {
-        if (obj && obj->matches_keyword(container_name)) {
+        if (obj && obj->matches_target_string(container_name)) {
             // Don't use an item we're trying to put as the container
             bool is_item_to_put = false;
             for (const auto &item : inventory_items_to_put) {
@@ -872,7 +875,7 @@ Result<CommandResult> cmd_put(const CommandContext &ctx) {
     if (!potential_container) {
         auto &room_objects = ctx.room->contents_mutable().objects;
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(container_name)) {
+            if (obj && obj->matches_target_string(container_name)) {
                 potential_container = obj;
                 if (obj->is_container()) {
                     container = obj;
@@ -1109,7 +1112,7 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -1153,7 +1156,7 @@ Result<CommandResult> cmd_wield(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -1198,7 +1201,7 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     EntityId target_item_id = INVALID_ENTITY_ID;
 
     for (const auto &obj : equipped_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             target_item_id = obj->id();
             break;
@@ -1301,7 +1304,7 @@ Result<CommandResult> cmd_open(const CommandContext &ctx) {
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(target_name)) {
+        if (obj && obj->matches_target_string(target_name)) {
             target_obj = obj;
             break;
         }
@@ -1311,7 +1314,7 @@ Result<CommandResult> cmd_open(const CommandContext &ctx) {
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(target_name)) {
+            if (obj && obj->matches_target_string(target_name)) {
                 target_obj = obj;
                 break;
             }
@@ -1373,7 +1376,7 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(target_name)) {
+        if (obj && obj->matches_target_string(target_name)) {
             target_obj = obj;
             break;
         }
@@ -1383,7 +1386,7 @@ Result<CommandResult> cmd_close(const CommandContext &ctx) {
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(target_name)) {
+            if (obj && obj->matches_target_string(target_name)) {
                 target_obj = obj;
                 break;
             }
@@ -1440,7 +1443,7 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(target_name)) {
+        if (obj && obj->matches_target_string(target_name)) {
             target_obj = obj;
             break;
         }
@@ -1450,7 +1453,7 @@ Result<CommandResult> cmd_lock(const CommandContext &ctx) {
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(target_name)) {
+            if (obj && obj->matches_target_string(target_name)) {
                 target_obj = obj;
                 break;
             }
@@ -1512,7 +1515,7 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
     // First check inventory
     auto inventory_items = ctx.actor->inventory().get_all_items();
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(target_name)) {
+        if (obj && obj->matches_target_string(target_name)) {
             target_obj = obj;
             break;
         }
@@ -1522,7 +1525,7 @@ Result<CommandResult> cmd_unlock(const CommandContext &ctx) {
     if (!target_obj) {
         auto &room_objects = ctx.room->contents_mutable().objects;
         for (auto &obj : room_objects) {
-            if (obj && obj->matches_keyword(target_name)) {
+            if (obj && obj->matches_target_string(target_name)) {
                 target_obj = obj;
                 break;
             }
@@ -1581,7 +1584,7 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
 
     // First check equipped items (prioritize what you're holding)
     for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
-        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+        if (obj && obj->matches_target_string(ctx.arg(0)) && obj->is_light_source()) {
             light_source = obj;
             break;
         }
@@ -1590,7 +1593,7 @@ Result<CommandResult> cmd_light(const CommandContext &ctx) {
     // If not found in equipped, check inventory
     if (!light_source) {
         for (const auto &obj : ctx.actor->inventory().get_all_items()) {
-            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+            if (obj && obj->matches_target_string(ctx.arg(0)) && obj->is_light_source()) {
                 light_source = obj;
                 break;
             }
@@ -1646,7 +1649,7 @@ Result<CommandResult> cmd_extinguish(const CommandContext &ctx) {
 
     // First check equipped items (prioritize what you're holding)
     for (const auto &obj : ctx.actor->equipment().get_all_equipped()) {
-        if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+        if (obj && obj->matches_target_string(ctx.arg(0)) && obj->is_light_source()) {
             light_source = obj;
             break;
         }
@@ -1655,7 +1658,7 @@ Result<CommandResult> cmd_extinguish(const CommandContext &ctx) {
     // If not found in equipped, check inventory
     if (!light_source) {
         for (const auto &obj : ctx.actor->inventory().get_all_items()) {
-            if (obj && obj->matches_keyword(ctx.arg(0)) && obj->is_light_source()) {
+            if (obj && obj->matches_target_string(ctx.arg(0)) && obj->is_light_source()) {
                 light_source = obj;
                 break;
             }
@@ -1709,7 +1712,7 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
     std::shared_ptr<Object> food_item = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             if (obj->type() == ObjectType::Food || obj->type() == ObjectType::Potion) {
                 food_item = obj;
                 break;
@@ -2010,7 +2013,7 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
     for (const auto &item : available_items) {
         // Look up the object prototype to check keywords
         const auto *obj_proto = world.get_object_prototype(item.prototype_id);
-        if (obj_proto && obj_proto->matches_keyword_prefix(item_name)) {
+        if (obj_proto && obj_proto->matches_target_string(item_name)) {
             target_item = &item;
             break;
         }
@@ -2023,7 +2026,7 @@ Result<CommandResult> cmd_buy(const CommandContext &ctx) {
         for (const auto &mob : available_mobs) {
             // Look up the mob prototype to check keywords
             const auto *mob_proto = world.get_mobile_prototype(mob.prototype_id);
-            if (mob_proto && mob_proto->matches_keyword_prefix(item_name)) {
+            if (mob_proto && mob_proto->matches_target_string(item_name)) {
                 target_mob = mob; // Copy the mob data
                 break;
             }
@@ -2246,7 +2249,7 @@ Result<CommandResult> cmd_hold(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -2289,7 +2292,7 @@ Result<CommandResult> cmd_grab(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (auto &obj : room_objects) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -2342,7 +2345,7 @@ Result<CommandResult> cmd_quaff(const CommandContext &ctx) {
     std::shared_ptr<Object> potion = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             if (obj->type() == ObjectType::Potion) {
                 potion = obj;
                 break;
@@ -2398,7 +2401,7 @@ Result<CommandResult> cmd_recite(const CommandContext &ctx) {
     std::shared_ptr<Object> scroll = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             if (obj->type() == ObjectType::Scroll) {
                 scroll = obj;
                 break;
@@ -2470,7 +2473,7 @@ Result<CommandResult> cmd_use(const CommandContext &ctx) {
 
     // Check inventory first
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -2479,7 +2482,7 @@ Result<CommandResult> cmd_use(const CommandContext &ctx) {
     // If not in inventory, check equipment
     if (!target_object) {
         for (const auto &obj : equipped_items) {
-            if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj && obj->matches_target_string(ctx.arg(0))) {
                 target_object = obj;
                 break;
             }
@@ -2575,7 +2578,7 @@ Result<CommandResult> cmd_junk(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -2616,7 +2619,7 @@ Result<CommandResult> cmd_donate(const CommandContext &ctx) {
     std::shared_ptr<Object> target_object = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             target_object = obj;
             break;
         }
@@ -2664,14 +2667,14 @@ Result<CommandResult> cmd_compare(const CommandContext &ctx) {
 
     // Search for first item
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             item1 = obj;
             break;
         }
     }
     if (!item1) {
         for (const auto &obj : equipped_items) {
-            if (obj && obj->matches_keyword(ctx.arg(0))) {
+            if (obj && obj->matches_target_string(ctx.arg(0))) {
                 item1 = obj;
                 break;
             }
@@ -2680,14 +2683,14 @@ Result<CommandResult> cmd_compare(const CommandContext &ctx) {
 
     // Search for second item
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(1)) && obj != item1) {
+        if (obj && obj->matches_target_string(ctx.arg(1)) && obj != item1) {
             item2 = obj;
             break;
         }
     }
     if (!item2) {
         for (const auto &obj : equipped_items) {
-            if (obj && obj->matches_keyword(ctx.arg(1)) && obj != item1) {
+            if (obj && obj->matches_target_string(ctx.arg(1)) && obj != item1) {
                 item2 = obj;
                 break;
             }
@@ -2752,7 +2755,7 @@ Result<CommandResult> cmd_fill(const CommandContext &ctx) {
     std::shared_ptr<Object> container = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             if (obj->type() == ObjectType::Drinkcontainer) {
                 container = obj;
                 break;
@@ -2838,7 +2841,7 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
     std::shared_ptr<Object> source = nullptr;
 
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(0))) {
+        if (obj && obj->matches_target_string(ctx.arg(0))) {
             if (obj->type() == ObjectType::Drinkcontainer) {
                 source = obj;
                 break;
@@ -2875,7 +2878,7 @@ Result<CommandResult> cmd_pour(const CommandContext &ctx) {
     // Find target container
     std::shared_ptr<Object> target = nullptr;
     for (const auto &obj : inventory_items) {
-        if (obj && obj->matches_keyword(ctx.arg(1)) && obj != source) {
+        if (obj && obj->matches_target_string(ctx.arg(1)) && obj != source) {
             if (obj->type() == ObjectType::Drinkcontainer) {
                 target = obj;
                 break;

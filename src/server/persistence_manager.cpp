@@ -1,19 +1,20 @@
 #include "persistence_manager.hpp"
 
-#include "../core/active_effect.hpp"
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/player_queries.hpp"
-#include "../database/world_queries.hpp"
-#include "mud_server.hpp"
-
 #include <algorithm>
 #include <chrono>
+
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
+
+#include "core/active_effect.hpp"
+#include "core/actor.hpp"
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/player_queries.hpp"
+#include "database/world_queries.hpp"
 
 PersistenceManager &PersistenceManager::instance() {
     static PersistenceManager instance;

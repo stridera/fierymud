@@ -1,13 +1,13 @@
 #include "database/database_config.hpp"
 
-#include "core/logging.hpp"
-#include "text/string_utils.hpp"
-
 #include <cstdlib>
 #include <filesystem>
-#include <fmt/format.h>
 #include <fstream>
-#include <sstream>
+
+#include <fmt/format.h>
+
+#include "core/logging.hpp"
+#include "text/string_utils.hpp"
 
 std::string DatabaseConfig::connection_string() const {
     return fmt::format("host={} port={} dbname={} user={} password={}", host, port, dbname, user, password);

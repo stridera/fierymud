@@ -7,14 +7,14 @@
  * - Database save/load operations (when database is available)
  */
 
-#include "../src/core/actor.hpp"
-#include "../src/core/active_effect.hpp"
-#include "../src/core/money.hpp"
-#include "../src/core/ids.hpp"
-
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_string.hpp>
 #include <nlohmann/json.hpp>
+
+#include "core/active_effect.hpp"
+#include "core/ids.hpp"
+#include "core/money.hpp"
+#include "core/player.hpp"
 
 using json = nlohmann::json;
 
@@ -42,7 +42,7 @@ TEST_CASE("Player JSON serialization preserves basic properties", "[persistence]
         REQUIRE(player_result.has_value());
         auto player = std::move(*player_result);
 
-        auto& stats = player->stats();
+        auto &stats = player->stats();
         stats.level = 15;
         stats.alignment = -500;
         stats.strength = 18;
@@ -131,13 +131,8 @@ TEST_CASE("Player position serialization", "[persistence][player][position]") {
     }
 
     SECTION("Various positions preserved through round-trip") {
-        std::vector<Position> positions_to_test = {
-            Position::Standing,
-            Position::Sitting,
-            Position::Resting,
-            Position::Sleeping,
-            Position::Fighting
-        };
+        std::vector<Position> positions_to_test = {Position::Standing, Position::Sitting, Position::Resting,
+                                                   Position::Sleeping, Position::Fighting};
 
         for (auto pos : positions_to_test) {
             auto player1_result = Player::create(EntityId{1, 5}, "PosPlayer");
@@ -331,7 +326,7 @@ TEST_CASE("Player active effects serialization", "[persistence][player][effects]
 
         // Add a Detect Magic effect
         ActiveEffect detect_magic;
-        detect_magic.effect_id = 42;  // Database effect ID
+        detect_magic.effect_id = 42; // Database effect ID
         detect_magic.name = "Detect Magic";
         detect_magic.source = "spell";
         detect_magic.flag = ActorFlag::Detect_Magic;
@@ -345,7 +340,7 @@ TEST_CASE("Player active effects serialization", "[persistence][player][effects]
         REQUIRE(player->has_effect("Detect Magic"));
         REQUIRE(player->active_effects().size() == 1);
 
-        const auto* effect = player->get_effect("Detect Magic");
+        const auto *effect = player->get_effect("Detect Magic");
         REQUIRE(effect != nullptr);
         REQUIRE(effect->effect_id == 42);
         REQUIRE(effect->name == "Detect Magic");
@@ -386,7 +381,7 @@ TEST_CASE("Player active effects serialization", "[persistence][player][effects]
         REQUIRE(player->has_effect("Bless"));
 
         // Verify effect IDs are stored
-        for (const auto& eff : player->active_effects()) {
+        for (const auto &eff : player->active_effects()) {
             REQUIRE(eff.effect_id > 0);
         }
     }
@@ -422,7 +417,7 @@ TEST_CASE("Player DoT effect serialization", "[persistence][player][dot]") {
 
         REQUIRE(player->dot_effects().size() == 1);
 
-        const auto& loaded_dot = player->dot_effects()[0];
+        const auto &loaded_dot = player->dot_effects()[0];
         REQUIRE(loaded_dot.effect_id == 50);
         REQUIRE(loaded_dot.damage_type == "poison");
         REQUIRE(loaded_dot.potency == 5);
@@ -461,7 +456,7 @@ TEST_CASE("Player HoT effect serialization", "[persistence][player][hot]") {
 
         REQUIRE(player->hot_effects().size() == 1);
 
-        const auto& loaded_hot = player->hot_effects()[0];
+        const auto &loaded_hot = player->hot_effects()[0];
         REQUIRE(loaded_hot.effect_id == 60);
         REQUIRE(loaded_hot.heal_type == "divine");
         REQUIRE(loaded_hot.flat_heal == 15);
@@ -507,7 +502,7 @@ TEST_CASE("Player god level serialization", "[persistence][player][immortal]") {
         auto player = std::move(*player_result);
 
         player->set_level(105);
-        player->set_god_level(6);  // level 105 = god_level 6
+        player->set_god_level(6); // level 105 = god_level 6
 
         REQUIRE(player->is_god());
         REQUIRE(player->god_level() == 6);
@@ -566,8 +561,8 @@ TEST_CASE("Complete player data round-trip", "[persistence][player][comprehensiv
         player1->set_description("A stout dwarf with a magnificent beard.");
 
         // Stats
-        auto& stats = player1->stats();
-        stats.alignment = 750;  // Good
+        auto &stats = player1->stats();
+        stats.alignment = 750; // Good
         stats.strength = 20;
         stats.intelligence = 12;
         stats.wisdom = 14;
@@ -583,7 +578,7 @@ TEST_CASE("Complete player data round-trip", "[persistence][player][comprehensiv
         stats.armor_rating = 60;
 
         // Wealth
-        player1->give_wealth(50000);  // 50 platinum worth
+        player1->give_wealth(50000); // 50 platinum worth
 
         // Location
         EntityId inn_room(30, 15);
@@ -652,7 +647,7 @@ TEST_CASE("Complete player data round-trip", "[persistence][player][comprehensiv
         REQUIRE(player2->description() == "A stout dwarf with a magnificent beard.");
 
         // Stats
-        const auto& stats2 = player2->stats();
+        const auto &stats2 = player2->stats();
         REQUIRE(stats2.alignment == 750);
         REQUIRE(stats2.strength == 20);
         REQUIRE(stats2.intelligence == 12);
@@ -688,7 +683,7 @@ TEST_CASE("Complete player data round-trip", "[persistence][player][comprehensiv
 
         // Active effects
         REQUIRE(player2->has_effect("Armor"));
-        const auto* armor = player2->get_effect("Armor");
+        const auto *armor = player2->get_effect("Armor");
         REQUIRE(armor != nullptr);
         REQUIRE(armor->effect_id == 10);
         REQUIRE(armor->modifier_value == 20);
@@ -751,10 +746,9 @@ TEST_CASE("Money system in persistence context", "[persistence][money]") {
 
     SECTION("Money conversion to copper") {
         // Create money using factory methods and addition
-        fiery::Money money = fiery::Money::copper(100) +
-                            fiery::Money::silver(50) +   // +500 copper
-                            fiery::Money::gold(10) +     // +1000 copper
-                            fiery::Money::platinum(5);   // +5000 copper
+        fiery::Money money = fiery::Money::copper(100) + fiery::Money::silver(50) + // +500 copper
+                             fiery::Money::gold(10) +                               // +1000 copper
+                             fiery::Money::platinum(5);                             // +5000 copper
 
         REQUIRE(money.value() == 6600);
     }
@@ -782,6 +776,6 @@ TEST_CASE("Money system in persistence context", "[persistence][money]") {
 
         // Cannot take more than available
         REQUIRE_FALSE(player->take_wealth(1000));
-        REQUIRE(player->wealth() == 700);  // Unchanged
+        REQUIRE(player->wealth() == 700); // Unchanged
     }
 }

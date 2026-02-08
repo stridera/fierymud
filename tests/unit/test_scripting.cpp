@@ -1,23 +1,24 @@
-#include "../src/scripting/script_engine.hpp"
-#include "../src/scripting/coroutine_scheduler.hpp"
-#include "../src/scripting/triggers/trigger_types.hpp"
-#include "../src/scripting/triggers/trigger_data.hpp"
-#include "../src/core/ids.hpp"
-
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <catch2/reporters/catch_reporter_event_listener.hpp>
 #include <catch2/reporters/catch_reporter_registrars.hpp>
+#include <sol/sol.hpp>
+
+#include "../src/core/ids.hpp"
+#include "../src/scripting/coroutine_scheduler.hpp"
+#include "../src/scripting/script_engine.hpp"
+#include "../src/scripting/triggers/trigger_data.hpp"
+#include "../src/scripting/triggers/trigger_types.hpp"
 
 using namespace FieryMUD;
 
 // Event listener to ensure proper ScriptEngine cleanup before static destruction
 class ScriptEngineCleanupListener : public Catch::EventListenerBase {
-public:
+  public:
     using Catch::EventListenerBase::EventListenerBase;
 
-    void testRunEnded(Catch::TestRunStats const&) override {
-        auto& engine = ScriptEngine::instance();
+    void testRunEnded(Catch::TestRunStats const &) override {
+        auto &engine = ScriptEngine::instance();
         if (engine.is_initialized()) {
             engine.shutdown();
         }
@@ -27,7 +28,7 @@ public:
 CATCH_REGISTER_LISTENER(ScriptEngineCleanupListener)
 
 TEST_CASE("ScriptEngine: Initialization", "[scripting][engine]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
 
     SECTION("Engine can be initialized") {
         auto result = engine.initialize();
@@ -44,7 +45,7 @@ TEST_CASE("ScriptEngine: Initialization", "[scripting][engine]") {
 }
 
 TEST_CASE("ScriptEngine: Basic execution", "[scripting][engine]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
@@ -52,180 +53,136 @@ TEST_CASE("ScriptEngine: Basic execution", "[scripting][engine]") {
     SECTION("Simple arithmetic expression") {
         auto result = engine.execute("return 1 + 2", "test_arith");
         REQUIRE(result.has_value());
-        auto& lua_result = result.value();
+        auto &lua_result = result.value();
         REQUIRE(lua_result.get<int>() == 3);
     }
 
     SECTION("String concatenation") {
         auto result = engine.execute("return 'Hello' .. ' ' .. 'World'", "test_concat");
         REQUIRE(result.has_value());
-        auto& lua_result = result.value();
+        auto &lua_result = result.value();
         REQUIRE(lua_result.get<std::string>() == "Hello World");
     }
 
     SECTION("Table creation") {
-        auto result = engine.execute(
-            "local t = {a = 1, b = 2}; return t.a + t.b",
-            "test_table"
-        );
+        auto result = engine.execute("local t = {a = 1, b = 2}; return t.a + t.b", "test_table");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<int>() == 3);
     }
 }
 
 TEST_CASE("ScriptEngine: Utility functions", "[scripting][utils]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("dice() function works") {
         // dice(1, 6) should return 1-6
-        auto result = engine.execute(
-            "local sum = 0; for i = 1, 100 do sum = sum + dice(1, 6) end; return sum",
-            "test_dice"
-        );
+        auto result =
+            engine.execute("local sum = 0; for i = 1, 100 do sum = sum + dice(1, 6) end; return sum", "test_dice");
         REQUIRE(result.has_value());
         int sum = result.value().get<int>();
         // 100 rolls of 1d6, average is 3.5, so sum should be roughly 350
         // With high probability, it's between 150 and 550
-        REQUIRE(sum >= 100);  // Minimum possible: 100 * 1 = 100
-        REQUIRE(sum <= 600);  // Maximum possible: 100 * 6 = 600
+        REQUIRE(sum >= 100); // Minimum possible: 100 * 1 = 100
+        REQUIRE(sum <= 600); // Maximum possible: 100 * 6 = 600
     }
 
     SECTION("random() function works") {
-        auto result = engine.execute(
-            "local r = random(10, 20); return r >= 10 and r <= 20",
-            "test_random"
-        );
+        auto result = engine.execute("local r = random(10, 20); return r >= 10 and r <= 20", "test_random");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("percent_chance() function works") {
         // 100% chance should always succeed
-        auto result = engine.execute(
-            "return percent_chance(100)",
-            "test_percent_100"
-        );
+        auto result = engine.execute("return percent_chance(100)", "test_percent_100");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
 
         // 0% chance should always fail
-        result = engine.execute(
-            "return percent_chance(0)",
-            "test_percent_0"
-        );
+        result = engine.execute("return percent_chance(0)", "test_percent_0");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == false);
     }
 
     SECTION("mud_time() returns table") {
-        auto result = engine.execute(
-            "local t = mud_time(); return t.hour ~= nil and t.day ~= nil",
-            "test_mud_time"
-        );
+        auto result = engine.execute("local t = mud_time(); return t.hour ~= nil and t.day ~= nil", "test_mud_time");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 }
 
 TEST_CASE("ScriptEngine: Sandbox enforcement", "[scripting][sandbox]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("loadfile is blocked") {
-        auto result = engine.execute(
-            "return loadfile ~= nil",
-            "test_loadfile"
-        );
+        auto result = engine.execute("return loadfile ~= nil", "test_loadfile");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == false);
     }
 
     SECTION("dofile is blocked") {
-        auto result = engine.execute(
-            "return dofile ~= nil",
-            "test_dofile"
-        );
+        auto result = engine.execute("return dofile ~= nil", "test_dofile");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == false);
     }
 
     SECTION("io library is not loaded") {
-        auto result = engine.execute(
-            "return io == nil",
-            "test_io"
-        );
+        auto result = engine.execute("return io == nil", "test_io");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("os library is not loaded") {
-        auto result = engine.execute(
-            "return os == nil",
-            "test_os"
-        );
+        auto result = engine.execute("return os == nil", "test_os");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("debug library is not loaded") {
-        auto result = engine.execute(
-            "return debug == nil",
-            "test_debug"
-        );
+        auto result = engine.execute("return debug == nil", "test_debug");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 }
 
 TEST_CASE("ScriptEngine: Compilation and caching", "[scripting][compile]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("Valid script compiles successfully") {
-        auto result = engine.compile_script(
-            "function hello() return 'hello' end",
-            "test_valid"
-        );
+        auto result = engine.compile_script("function hello() return 'hello' end", "test_valid");
         REQUIRE(result.has_value());
     }
 
     SECTION("Invalid script fails compilation") {
-        auto result = engine.compile_script(
-            "function hello( return 'missing paren'",
-            "test_invalid"
-        );
+        auto result = engine.compile_script("function hello( return 'missing paren'", "test_invalid");
         REQUIRE_FALSE(result.has_value());
         REQUIRE(result.error() == ScriptError::CompilationFailed);
     }
 
     SECTION("Syntax error reports correctly") {
-        auto result = engine.execute(
-            "this is not valid lua syntax!!",
-            "test_syntax_error"
-        );
+        auto result = engine.execute("this is not valid lua syntax!!", "test_syntax_error");
         REQUIRE_FALSE(result.has_value());
         REQUIRE(result.error() == ScriptError::ExecutionFailed);
     }
 }
 
 TEST_CASE("ScriptEngine: Coroutines", "[scripting][coroutine]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("Coroutine library is available") {
-        auto result = engine.execute(
-            "return coroutine ~= nil",
-            "test_coroutine_lib"
-        );
+        auto result = engine.execute("return coroutine ~= nil", "test_coroutine_lib");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -242,7 +199,8 @@ TEST_CASE("ScriptEngine: Coroutines", "[scripting][coroutine]") {
             local status, val1 = coroutine.resume(co)
             local status2, val2 = coroutine.resume(co)
             return val1 + val2
-        )", "test_coroutine_create");
+        )",
+                                     "test_coroutine_create");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<int>() == 3); // 1 + 2
     }
@@ -263,8 +221,7 @@ TEST_CASE("TriggerFlag: Bitfield operations", "[scripting][triggers]") {
     }
 
     SECTION("Multiple flags can be combined and tested") {
-        TriggerFlag multi = TriggerFlag::COMMAND | TriggerFlag::SPEECH |
-                           TriggerFlag::GREET | TriggerFlag::DEATH;
+        TriggerFlag multi = TriggerFlag::COMMAND | TriggerFlag::SPEECH | TriggerFlag::GREET | TriggerFlag::DEATH;
         REQUIRE(has_flag(multi, TriggerFlag::COMMAND));
         REQUIRE(has_flag(multi, TriggerFlag::SPEECH));
         REQUIRE(has_flag(multi, TriggerFlag::GREET));
@@ -347,16 +304,14 @@ TEST_CASE("TriggerData: Structure", "[scripting][triggers]") {
 // ============================================================================
 
 TEST_CASE("Lua Bindings: Enum availability", "[scripting][bindings]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("ObjectType enum is accessible") {
-        auto result = engine.execute(
-            "return ObjectType.Weapon ~= nil and ObjectType.Armor ~= nil",
-            "test_object_type_enum"
-        );
+        auto result =
+            engine.execute("return ObjectType.Weapon ~= nil and ObjectType.Armor ~= nil", "test_object_type_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -367,52 +322,42 @@ TEST_CASE("Lua Bindings: Enum availability", "[scripting][bindings]") {
             return ObjectType.Light ~= ObjectType.Weapon and
                    ObjectType.Scroll ~= ObjectType.Staff and
                    ObjectType.Container ~= ObjectType.Food
-        )", "test_object_type_values");
+        )",
+                                     "test_object_type_values");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("EquipSlot enum is accessible") {
-        auto result = engine.execute(
-            "return EquipSlot.Head ~= nil and EquipSlot.Wield ~= nil",
-            "test_equip_slot_enum"
-        );
+        auto result = engine.execute("return EquipSlot.Head ~= nil and EquipSlot.Wield ~= nil", "test_equip_slot_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("ObjectFlag enum is accessible") {
-        auto result = engine.execute(
-            "return ObjectFlag.Magic ~= nil and ObjectFlag.Cursed ~= nil",
-            "test_object_flag_enum"
-        );
+        auto result =
+            engine.execute("return ObjectFlag.Magic ~= nil and ObjectFlag.Cursed ~= nil", "test_object_flag_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Position enum is accessible") {
-        auto result = engine.execute(
-            "return Position.Standing ~= nil and Position.Sleeping ~= nil",
-            "test_position_enum"
-        );
+        auto result =
+            engine.execute("return Position.Standing ~= nil and Position.Sleeping ~= nil", "test_position_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Direction enum is accessible") {
-        auto result = engine.execute(
-            "return Direction.North ~= nil and Direction.South ~= nil and Direction.Up ~= nil",
-            "test_direction_enum"
-        );
+        auto result = engine.execute("return Direction.North ~= nil and Direction.South ~= nil and Direction.Up ~= nil",
+                                     "test_direction_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("SectorType enum is accessible") {
-        auto result = engine.execute(
-            "return SectorType.City ~= nil and SectorType.Forest ~= nil",
-            "test_sector_type_enum"
-        );
+        auto result =
+            engine.execute("return SectorType.City ~= nil and SectorType.Forest ~= nil", "test_sector_type_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -421,105 +366,77 @@ TEST_CASE("Lua Bindings: Enum availability", "[scripting][bindings]") {
     // (is_peaceful, allows_magic, base_light_level) rather than a flags enum
 
     SECTION("MobBehavior and MobTrait enums are accessible") {
-        auto result = engine.execute(
-            "return MobBehavior.Sentinel ~= nil and MobTrait.Mount ~= nil",
-            "test_mob_enum"
-        );
+        auto result = engine.execute("return MobBehavior.Sentinel ~= nil and MobTrait.Mount ~= nil", "test_mob_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("ActorFlag enum is accessible") {
-        auto result = engine.execute(
-            "return ActorFlag.Invisible ~= nil and ActorFlag.Sanctuary ~= nil",
-            "test_actor_flag_enum"
-        );
+        auto result =
+            engine.execute("return ActorFlag.Invisible ~= nil and ActorFlag.Sanctuary ~= nil", "test_actor_flag_enum");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 }
 
 TEST_CASE("Lua Bindings: Usertype registration", "[scripting][bindings]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("Object usertype is registered") {
-        auto result = engine.execute(
-            "return Object ~= nil",
-            "test_object_usertype"
-        );
+        auto result = engine.execute("return Object ~= nil", "test_object_usertype");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Container usertype is registered") {
-        auto result = engine.execute(
-            "return Container ~= nil",
-            "test_container_usertype"
-        );
+        auto result = engine.execute("return Container ~= nil", "test_container_usertype");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Actor usertype is registered") {
-        auto result = engine.execute(
-            "return Actor ~= nil",
-            "test_actor_usertype"
-        );
+        auto result = engine.execute("return Actor ~= nil", "test_actor_usertype");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Mobile usertype is registered") {
-        auto result = engine.execute(
-            "return Mobile ~= nil",
-            "test_mobile_usertype"
-        );
+        auto result = engine.execute("return Mobile ~= nil", "test_mobile_usertype");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Player usertype is registered") {
-        auto result = engine.execute(
-            "return Player ~= nil",
-            "test_player_usertype"
-        );
+        auto result = engine.execute("return Player ~= nil", "test_player_usertype");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("Room usertype is registered") {
-        auto result = engine.execute(
-            "return Room ~= nil",
-            "test_room_usertype"
-        );
+        auto result = engine.execute("return Room ~= nil", "test_room_usertype");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 }
 
 TEST_CASE("Lua Bindings: Direction helper functions", "[scripting][bindings]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("reverse_direction function exists") {
-        auto result = engine.execute(
-            "return reverse_direction ~= nil",
-            "test_reverse_dir_exists"
-        );
+        auto result = engine.execute("return reverse_direction ~= nil", "test_reverse_dir_exists");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("reverse_direction returns opposite") {
-        auto result = engine.execute(
-            "return reverse_direction(Direction.North) == Direction.South",
-            "test_reverse_north"
-        );
+        auto result =
+            engine.execute("return reverse_direction(Direction.North) == Direction.South", "test_reverse_north");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -532,32 +449,27 @@ TEST_CASE("Lua Bindings: Direction helper functions", "[scripting][bindings]") {
                    reverse_direction(Direction.West) == Direction.East and
                    reverse_direction(Direction.Up) == Direction.Down and
                    reverse_direction(Direction.Down) == Direction.Up
-        )", "test_reverse_all");
+        )",
+                                     "test_reverse_all");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("direction_name function exists") {
-        auto result = engine.execute(
-            "return direction_name ~= nil",
-            "test_dir_name_exists"
-        );
+        auto result = engine.execute("return direction_name ~= nil", "test_dir_name_exists");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 
     SECTION("direction_name returns string") {
-        auto result = engine.execute(
-            "return type(direction_name(Direction.North)) == 'string'",
-            "test_dir_name_type"
-        );
+        auto result = engine.execute("return type(direction_name(Direction.North)) == 'string'", "test_dir_name_type");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
 }
 
 TEST_CASE("Lua Bindings: Enum comparisons", "[scripting][bindings]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
@@ -567,7 +479,8 @@ TEST_CASE("Lua Bindings: Enum comparisons", "[scripting][bindings]") {
             local standing = Position.Standing
             local fighting = Position.Fighting
             return standing ~= fighting and standing == Position.Standing
-        )", "test_position_compare");
+        )",
+                                     "test_position_compare");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -577,7 +490,8 @@ TEST_CASE("Lua Bindings: Enum comparisons", "[scripting][bindings]") {
             local weapon = ObjectType.Weapon
             local armor = ObjectType.Armor
             return weapon ~= armor and weapon == ObjectType.Weapon
-        )", "test_objecttype_compare");
+        )",
+                                     "test_objecttype_compare");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -587,7 +501,8 @@ TEST_CASE("Lua Bindings: Enum comparisons", "[scripting][bindings]") {
             local north = Direction.North
             local south = Direction.South
             return north ~= south and north == Direction.North
-        )", "test_direction_compare");
+        )",
+                                     "test_direction_compare");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -654,12 +569,12 @@ TEST_CASE("TriggerSet: Collection operations", "[scripting][triggers]") {
 #include "../src/scripting/trigger_manager.hpp"
 
 TEST_CASE("TriggerManager: Initialization", "[scripting][triggers][manager]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
-    auto& manager = TriggerManager::instance();
+    auto &manager = TriggerManager::instance();
 
     SECTION("Manager can be initialized") {
         bool result = manager.initialize();
@@ -681,12 +596,12 @@ TEST_CASE("TriggerManager: Initialization", "[scripting][triggers][manager]") {
 }
 
 TEST_CASE("TriggerManager: Trigger registration", "[scripting][triggers][manager]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
-    auto& manager = TriggerManager::instance();
+    auto &manager = TriggerManager::instance();
     REQUIRE(manager.initialize() == true);
     manager.clear_all_triggers();
 
@@ -747,12 +662,12 @@ TEST_CASE("TriggerManager: Trigger registration", "[scripting][triggers][manager
 }
 
 TEST_CASE("TriggerManager: Zone management", "[scripting][triggers][manager]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
-    auto& manager = TriggerManager::instance();
+    auto &manager = TriggerManager::instance();
     REQUIRE(manager.initialize() == true);
     manager.clear_all_triggers();
 
@@ -784,7 +699,7 @@ TEST_CASE("TriggerManager: Zone management", "[scripting][triggers][manager]") {
 }
 
 TEST_CASE("TriggerManager: Script execution context", "[scripting][triggers][manager]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
@@ -796,7 +711,8 @@ TEST_CASE("TriggerManager: Script execution context", "[scripting][triggers][man
             cmd = "test"
             arg = "argument"
             return cmd == "test" and arg == "argument"
-        )", "test_context_vars");
+        )",
+                                     "test_context_vars");
         REQUIRE(result.has_value());
         REQUIRE(result.value().get<bool>() == true);
     }
@@ -819,11 +735,9 @@ TEST_CASE("TriggerManager: Script execution context", "[scripting][triggers][man
 // ============================================================================
 
 TEST_CASE("CoroutineScheduler: Basic initialization", "[scripting][coroutines]") {
-    auto& scheduler = get_coroutine_scheduler();
+    auto &scheduler = get_coroutine_scheduler();
 
-    SECTION("Reports zero pending count when uninitialized") {
-        REQUIRE(scheduler.pending_count() == 0);
-    }
+    SECTION("Reports zero pending count when uninitialized") { REQUIRE(scheduler.pending_count() == 0); }
 
     SECTION("Cancel returns 0 for unknown entities") {
         auto cancelled = scheduler.cancel_for_entity(EntityId{99, 99});
@@ -836,13 +750,13 @@ TEST_CASE("CoroutineScheduler: Basic initialization", "[scripting][coroutines]")
 }
 
 TEST_CASE("CoroutineScheduler: wait() function registration", "[scripting][coroutines]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
 
     SECTION("wait function is registered") {
-        auto& lua = engine.lua_state();
+        auto &lua = engine.lua_state();
         sol::object wait_func = lua["wait"];
         REQUIRE(wait_func.valid());
         REQUIRE(wait_func.get_type() == sol::type::function);
@@ -850,7 +764,7 @@ TEST_CASE("CoroutineScheduler: wait() function registration", "[scripting][corou
 }
 
 TEST_CASE("CoroutineScheduler: Yielding scripts", "[scripting][coroutines]") {
-    auto& engine = ScriptEngine::instance();
+    auto &engine = ScriptEngine::instance();
     if (!engine.is_initialized()) {
         engine.initialize();
     }
@@ -864,7 +778,8 @@ TEST_CASE("CoroutineScheduler: Yielding scripts", "[scripting][coroutines]") {
         sol::load_result loaded = thread_lua.load(R"(
             local delay = wait(1.5)
             return "completed"
-        )", "yield_test");
+        )",
+                                                  "yield_test");
 
         REQUIRE(loaded.valid());
 
@@ -889,7 +804,8 @@ TEST_CASE("CoroutineScheduler: Yielding scripts", "[scripting][coroutines]") {
 
         sol::load_result loaded = thread_lua.load(R"(
             return 42
-        )", "no_yield_test");
+        )",
+                                                  "no_yield_test");
 
         REQUIRE(loaded.valid());
 
@@ -912,7 +828,8 @@ TEST_CASE("CoroutineScheduler: Yielding scripts", "[scripting][coroutines]") {
         // Test minimum clamping (0.01 seconds should be clamped to MIN_DELAY)
         sol::load_result loaded = thread_lua.load(R"(
             return wait(0.01)
-        )", "min_clamp_test");
+        )",
+                                                  "min_clamp_test");
 
         REQUIRE(loaded.valid());
 
@@ -927,4 +844,3 @@ TEST_CASE("CoroutineScheduler: Yielding scripts", "[scripting][coroutines]") {
         }
     }
 }
-

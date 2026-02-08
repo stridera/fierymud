@@ -9,11 +9,12 @@
 
 #pragma once
 
-#include <fmt/format.h>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
 #include <string_view>
+
+#include <fmt/format.h>
+#include <nlohmann/json_fwd.hpp>
 
 namespace fiery {
 

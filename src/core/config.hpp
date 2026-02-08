@@ -1,12 +1,13 @@
 #pragma once
 
-#include "ids.hpp"
-#include "result.hpp"
-
 #include <cstdint>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
+
+#include <nlohmann/json_fwd.hpp>
+
+#include "ids.hpp"
+#include "result.hpp"
 
 // Forward declaration
 struct ServerConfig;

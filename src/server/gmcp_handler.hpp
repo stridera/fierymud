@@ -2,12 +2,14 @@
 
 #pragma once
 
-#include "../core/result.hpp"
-
-#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <unordered_set>
+
+#include <nlohmann/json.hpp>
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/result.hpp"
 
 // Forward declarations
 class PlayerConnection;

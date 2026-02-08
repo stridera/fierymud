@@ -1,15 +1,16 @@
 #pragma once
 
-#include "core/actor.hpp"
-#include "core/object.hpp"
-#include "triggers/trigger_data.hpp"
-#include "world/room.hpp"
-
 #include <memory>
 #include <optional>
 #include <string>
 #include <unordered_map>
 #include <variant>
+
+#include "core/object.hpp"
+#include "triggers/trigger_data.hpp"
+#include "world/room.hpp"
+
+class Actor;
 
 namespace FieryMUD {
 

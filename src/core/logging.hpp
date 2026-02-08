@@ -1,17 +1,14 @@
 #pragma once
 
+#include <memory>
+#include <unordered_map>
+
+#include <spdlog/fmt/fmt.h>
+#include <spdlog/sinks/base_sink.h>
+#include <spdlog/spdlog.h>
+
 #include "ids.hpp"
 #include "result.hpp"
-
-#include <memory>
-#include <source_location>
-#include <spdlog/fmt/fmt.h>
-#include <spdlog/sinks/rotating_file_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/spdlog.h>
-#include <string>
-#include <string_view>
-#include <unordered_map>
 
 /**
  * Modern structured logging system.

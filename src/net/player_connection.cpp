@@ -1,21 +1,23 @@
 #include "player_connection.hpp"
 
-#include "../commands/command_system.hpp"
-#include "../commands/information_commands.hpp"
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../events/event_publisher.hpp"
-#include "../server/network_manager.hpp"
-#include "../server/world_server.hpp"
-#include "../text/text_format.hpp"
-#include "../world/world_manager.hpp"
-#include "mssp_handler.hpp"
-
-#include <algorithm>
-#include <chrono>
 #include <fmt/format.h>
-#include <regex>
+
+#include "commands/command_system.hpp"
+#include "commands/information_commands.hpp"
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "events/event_publisher.hpp"
+#include "events/event_types.hpp"
+#include "game/login_system.hpp"
+#include "mssp_handler.hpp"
+#include "server/network_manager.hpp"
+#include "server/world_server.hpp"
+#include "text/text_format.hpp"
+#include "tls_context.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
+#include "world/zone.hpp"
 
 // GMCPHandler implementation
 GMCPHandler::GMCPHandler(PlayerConnection &connection) : connection_(connection) {
@@ -1500,3 +1502,10 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
         start_idle_timer();
     }
 }
+
+asio::ip::tcp::socket &PlayerConnection::socket() { return connection_socket_->tcp_socket(); }
+
+const asio::ip::tcp::socket &PlayerConnection::socket() const { return connection_socket_->tcp_socket(); }
+
+// TLS support queries
+bool PlayerConnection::is_tls_connection() const { return connection_socket_ && connection_socket_->is_tls(); }

@@ -9,12 +9,12 @@
  * a specific board's messages and permissions.
  */
 
-#include "result.hpp"
-
 #include <chrono>
 #include <memory>
 #include <string>
 #include <vector>
+
+#include "result.hpp"
 
 /**
  * Record of an edit made to a board message.

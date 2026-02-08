@@ -1,15 +1,15 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-#include "../world/game_world.hpp"
-
-#include <asio.hpp>
-
 #include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
+
+#include <asio.hpp>
+
+#include "../core/ids.hpp"
+#include "../core/result.hpp"
+#include "../world/game_world.hpp"
 
 /**
  * @brief Test harness for game functionality without networking

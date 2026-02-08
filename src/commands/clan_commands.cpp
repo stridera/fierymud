@@ -1,13 +1,13 @@
 #include "clan_commands.hpp"
 
+#include <algorithm>
+#include <sstream>
+
 #include "../core/clan.hpp"
 #include "../core/logging.hpp"
 #include "../game/player_output.hpp"
 #include "../text/string_utils.hpp"
 #include "command_context.hpp"
-
-#include <algorithm>
-#include <sstream>
 
 namespace ClanCommands {
 

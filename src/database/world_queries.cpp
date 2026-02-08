@@ -1,28 +1,28 @@
 #include "database/world_queries.hpp"
 
 #include "core/logging.hpp"
-#include "core/object.hpp"
+#include "core/mobile.hpp"
 #include "database/db_parsing_utils.hpp"
-#include "database/generated/db_enums.hpp"
+#include "database/generated/db_object.hpp"
 #include "database/generated/db_tables.hpp"
 #include "text/string_utils.hpp"
 
 using DbParsingUtils::parse_pg_array;
 #include <algorithm>
 #include <array>
-#include <crypt.h>
 #include <cstring>
-#include <fmt/chrono.h>
-#include <fmt/format.h>
-#include <functional>
 #include <iomanip>
-#include <magic_enum/magic_enum.hpp>
-#include <openssl/evp.h>
-#include <openssl/rand.h>
 #include <random>
-#include <regex>
 #include <sstream>
 #include <utility>
+
+#include <crypt.h>
+#include <fmt/chrono.h>
+#include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+#include <openssl/evp.h>
+#include <openssl/rand.h>
 
 namespace WorldQueries {
 

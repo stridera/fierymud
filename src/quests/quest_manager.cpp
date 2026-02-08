@@ -1,14 +1,15 @@
 #include "quest_manager.hpp"
 
+#include <fmt/format.h>
+#include <nlohmann/json.hpp>
+#include <spdlog/spdlog.h>
+
 #include "core/actor.hpp"
 #include "core/logging.hpp"
 #include "core/object.hpp"
+#include "core/player.hpp"
 #include "database/connection_pool.hpp"
-#include "database/quest_queries.hpp"
 #include "world/room.hpp"
-
-#include <fmt/format.h>
-#include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 

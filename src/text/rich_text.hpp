@@ -2,11 +2,12 @@
 
 #pragma once
 
-#include <fmt/format.h>
 #include <string>
 #include <string_view>
 #include <utility>
 #include <vector>
+
+#include <fmt/format.h>
 
 // Forward declarations
 namespace TerminalCapabilities {

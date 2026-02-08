@@ -5,8 +5,9 @@
 
 #include "player_repository.hpp"
 
-#include "../core/logging.hpp"
 #include "connection_pool.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
 #include "player_queries.hpp"
 #include "world_queries.hpp"
 

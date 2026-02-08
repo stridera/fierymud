@@ -1,12 +1,11 @@
 #include "weather.hpp"
 
-#include "../core/logging.hpp"
-#include "../core/result.hpp"
-#include "room.hpp"
-#include "zone.hpp"
-
 #include <algorithm>
-#include <fstream>
+
+#include <nlohmann/json.hpp>
+
+#include "core/logging.hpp"
+#include "core/result.hpp"
 
 // Static members
 std::unique_ptr<WeatherSystem> WeatherSystem::instance_ = nullptr;

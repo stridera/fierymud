@@ -1,17 +1,15 @@
 #pragma once
 
-#include "core/ids.hpp"
-#include "core/result.hpp"
-#include "database/quest_queries.hpp"
-
 #include <expected>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include "core/result.hpp"
+#include "database/quest_queries.hpp"
 
 // Forward declarations (in global namespace)
 class Actor;

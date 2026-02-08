@@ -1,17 +1,19 @@
 #include "postmaster_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/world_queries.hpp"
-#include "../game/composer_system.hpp"
-#include "../world/world_manager.hpp"
-#include "command_context.hpp"
-
 #include <charconv>
 #include <chrono>
+
 #include <fmt/chrono.h>
+
+#include "commands/command_system.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "database/world_queries.hpp"
+#include "game/composer_system.hpp"
+#include "world/world_manager.hpp"
 
 namespace PostmasterCommands {
 

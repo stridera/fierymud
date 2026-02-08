@@ -1,24 +1,27 @@
 #include "admin_commands.hpp"
 
-#include "../core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/formula_parser.hpp"
-#include "../core/log_subscriber.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/shopkeeper.hpp"
-#include "../database/connection_pool.hpp"
-#include "../database/trigger_queries.hpp"
-#include "../scripting/script_context.hpp"
-#include "../scripting/script_engine.hpp"
-#include "../scripting/trigger_manager.hpp"
-#include "../world/weather.hpp"
-#include "../world/world_manager.hpp"
-#include "information_commands.hpp"
-
 #include <algorithm>
 #include <set>
 #include <sstream>
+
+#include "commands/command_system.hpp"
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/formula_parser.hpp"
+#include "core/log_subscriber.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/money.hpp"
+#include "core/player.hpp"
+#include "core/shopkeeper.hpp"
+#include "database/connection_pool.hpp"
+#include "database/trigger_queries.hpp"
+#include "information_commands.hpp"
+#include "scripting/script_context.hpp"
+#include "scripting/script_engine.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "world/weather.hpp"
+#include "world/world_manager.hpp"
 
 namespace AdminCommands {
 

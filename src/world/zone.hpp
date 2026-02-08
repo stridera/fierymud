@@ -1,21 +1,25 @@
 #pragma once
 
-#include "../core/entity.hpp"
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-
 #include <chrono>
-#include <fmt/format.h>
-#include <functional>
-#include <magic_enum/magic_enum.hpp>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
 #include <string_view>
-#include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include <fmt/format.h>
+
+#include "core/entity.hpp"
+#include "core/ids.hpp"
+#include "core/result.hpp"
+#include "flags.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // Forward declarations
 class Room;
@@ -50,38 +54,6 @@ enum class ResetMode {
     Always,    // Reset on schedule regardless of players
     OnReboot,  // Reset only on server reboot
     Manual     // Reset only via admin command
-};
-
-/** Zone flags affecting behavior */
-enum class ZoneFlag {
-    Closed = 0,  // Zone is closed to players
-    NoMortals,   // Only immortals can enter
-    Quest,       // Quest zone
-    Grid,        // Grid-based movement
-    Maze,        // Maze zone
-    Recall_Ok,   // Allow recall in zone
-    Summon_Ok,   // Allow summoning in zone
-    Teleport_Ok, // Allow teleporting in zone
-    Search,      // Zone allows searching
-    Noattack,    // No combat allowed
-    Worldmap,    // Zone is part of world map
-    Astral,      // Astral plane zone
-
-    // Clan zones
-    ClanZone, // Zone belongs to a clan
-
-    // Special zones
-    Newbie, // Newbie zone
-    Arena,  // Arena zone
-    Prison, // Prison zone
-
-    // Weather/environment
-    NoWeather,   // Zone not affected by weather
-    Underground, // Underground zone
-
-    // PK zones
-    ChaosOk, // PK allowed
-    LawfulOk // Only lawful PK allowed
 };
 
 /** Zone command types for automated zone resets */

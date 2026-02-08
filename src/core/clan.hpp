@@ -8,13 +8,9 @@ class CharData;
 #include <ctime>
 #include <expected>
 #include <filesystem>
-#include <fmt/format.h>
 #include <fstream>
-#include <functional>
-#include <magic_enum/magic_enum.hpp>
 #include <map>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <ranges>
 #include <span>
@@ -22,6 +18,16 @@ class CharData;
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
 
 // Game-specific includes from legacy
 #include "../../legacy/src/chars.hpp"

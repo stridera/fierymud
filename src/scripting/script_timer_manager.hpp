@@ -3,13 +3,12 @@
 #include <chrono>
 #include <cstdint>
 #include <expected>
-#include <functional>
 #include <map>
 #include <mutex>
 #include <string>
 
 #define SOL_ALL_SAFETIES_ON 1
-#include <sol/sol.hpp>
+#include <sol/forward.hpp>
 
 namespace FieryMUD {
 

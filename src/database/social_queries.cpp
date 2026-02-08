@@ -1,10 +1,11 @@
 #include "social_queries.hpp"
 
-#include "connection_pool.hpp"
-
 #include <algorithm>
 #include <cctype>
+
 #include <spdlog/spdlog.h>
+
+#include "connection_pool.hpp"
 
 namespace {
 

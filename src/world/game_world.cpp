@@ -1,12 +1,14 @@
 #include "game_world.hpp"
 
-#include "../commands/command_system.hpp"
-#include "../core/actor.hpp"
-#include "../core/combat.hpp"
-#include "../core/logging.hpp"
-#include "../server/persistence_manager.hpp"
-
 #include <algorithm>
+
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "server/persistence_manager.hpp"
+#include "world/room.hpp"
 
 GameWorld::GameWorld(asio::io_context &io_context) : io_context_(io_context) {
     Log::info("GameWorld initializing...");

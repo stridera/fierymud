@@ -1,9 +1,11 @@
 #define SOL_ALL_SAFETIES_ON 1
 #include "script_timer_manager.hpp"
 
-#include "../core/logging.hpp"
-
 #include <vector>
+
+#include <sol/sol.hpp>
+
+#include "core/logging.hpp"
 
 namespace FieryMUD {
 

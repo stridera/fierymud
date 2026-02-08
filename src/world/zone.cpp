@@ -1,16 +1,26 @@
 #include "zone.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../text/string_utils.hpp"
-#include "room.hpp"
-
 #include <algorithm>
 #include <fstream>
-#include <regex>
 #include <sstream>
 #include <thread>
+
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "room.hpp"
+#include "text/string_utils.hpp"
+
+// Silence spurious warnings in <regex> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <regex>
+#pragma GCC diagnostic pop
 
 // ZoneCommand Implementation
 

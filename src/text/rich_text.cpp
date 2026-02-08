@@ -1,10 +1,15 @@
 #include "rich_text.hpp"
 
-#include "terminal_capabilities.hpp"
-
 #include <algorithm>
 #include <numeric>
+
+#include "terminal_capabilities.hpp"
+
+// Silence spurious warnings in <regex> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #include <regex>
+#pragma GCC diagnostic pop
 
 //////////////////////////////////////////////////////////////////////////////
 // RichTextFormat Implementation

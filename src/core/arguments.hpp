@@ -1,7 +1,5 @@
 #pragma once
 
-#include "text/string_utils.hpp"
-
 #include <limits>
 #include <optional>
 #include <string>
@@ -25,9 +23,9 @@ class Arguments {
     static constexpr int MAX_ITEMS = std::numeric_limits<int>::max();
 
     // Get the ramaining argument list.
-    [[nodiscard]] std::string_view get() const { return trim(arg_); }
+    [[nodiscard]] std::string_view get() const;
 
-    [[nodiscard]] bool empty() const { return trim(arg_).empty(); }
+    [[nodiscard]] bool empty() const { return get().empty(); }
 
     // When parsing commands, we want to allow things like ";hi" or ".gossip" to allow aliases for say/gossip, etc.
     // This command will return the single character if it's not alpha, and shift the argument list.

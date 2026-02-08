@@ -8,18 +8,18 @@
 #pragma once
 
 #include "script_context.hpp"
-#include "triggers/trigger_types.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
-#include <asio.hpp>
-
 #include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
-#include <sol/sol.hpp>
 #include <unordered_map>
-#include <vector>
+
+#include <asio.hpp>
+#include <sol/coroutine.hpp>
+#include <sol/forward.hpp>
+#include <sol/thread.hpp>
 
 namespace FieryMUD {
 

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../core/actor.hpp"
-#include "../core/config.hpp"
-#include "../core/logging.hpp"
-#include "../net/player_connection.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-
 #include <memory>
+
+#include "core/config.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "net/player_connection.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 // NetworkedPlayer class - combines Player with network connection
 class NetworkedPlayer : public Player, public std::enable_shared_from_this<NetworkedPlayer> {

@@ -1,21 +1,22 @@
 #include "combat_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/combat.hpp"
-#include "../core/logging.hpp"
-#include "../core/money.hpp"
-#include "../core/object.hpp"
-#include "../core/spell_system.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-#include "builtin_commands.hpp"
-#include "core/ability_executor.hpp"
-#include "information_commands.hpp"
-
 #include <algorithm>
 #include <array>
 #include <random>
+
+#include "commands/command_system.hpp"
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "core/money.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "core/spell_system.hpp"
+#include "information_commands.hpp"
+#include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 namespace CombatCommands {
 

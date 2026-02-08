@@ -1,11 +1,12 @@
 #include "game_test_harness.hpp"
 
+#include <algorithm>
+#include <unordered_map>
+
+#include <fmt/format.h>
+
 #include "../core/logging.hpp"
 #include "../world/room.hpp"
-
-#include <algorithm>
-#include <fmt/format.h>
-#include <unordered_map>
 
 GameTestHarness::GameTestHarness() {
     // Initialize world server

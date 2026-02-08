@@ -3,11 +3,10 @@
 #pragma once
 
 #include <expected>
-#include <fmt/format.h>
-#include <magic_enum/magic_enum.hpp>
 #include <string>
 #include <string_view>
-#include <variant>
+
+#include <fmt/format.h>
 
 /**
  * Modern error handling system using std::expected.
@@ -77,25 +76,19 @@ struct Error {
     std::string context; // Additional context (file, function, etc.)
 
     /** Construct error with code and message */
-    Error(ErrorCode error_code, std::string_view msg) : code(error_code), message(msg) {}
+    Error(ErrorCode error_code, std::string_view msg);
 
     /** Construct error with code, message, and context */
-    Error(ErrorCode error_code, std::string_view msg, std::string_view ctx)
-        : code(error_code), message(msg), context(ctx) {}
+    Error(ErrorCode error_code, std::string_view msg, std::string_view ctx);
 
     /** Get error code name as string */
-    std::string code_name() const { return std::string(magic_enum::enum_name(code)); }
+    std::string code_name() const;
 
     /** Get formatted error string */
-    std::string to_string() const {
-        if (context.empty()) {
-            return fmt::format("[{}] {}", code_name(), message);
-        }
-        return fmt::format("[{}] {} (context: {})", code_name(), message, context);
-    }
+    std::string to_string() const;
 
     /** Check if error is of specific type */
-    bool is(ErrorCode error_code) const { return code == error_code; }
+    bool is(ErrorCode error_code) const;
 };
 
 /** Result type alias for std::expected<T, Error> */

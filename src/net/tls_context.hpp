@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../core/result.hpp"
-
-#include <asio.hpp>
-
-#include <asio/ssl.hpp>
 #include <memory>
 #include <string>
+
+#include <asio.hpp>
+#include <asio/ssl.hpp>
+
+#include "core/result.hpp"
 
 // Forward declarations
 struct ServerConfig;

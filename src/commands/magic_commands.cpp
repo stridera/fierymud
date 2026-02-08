@@ -1,11 +1,15 @@
 #include "magic_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/spell_system.hpp"
-
 #include <algorithm>
-#include <fmt/format.h>
 #include <map>
+
+#include <fmt/format.h>
+
+#include "commands/command_context.hpp"
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "core/player.hpp"
+#include "core/spell_system.hpp"
 
 namespace MagicCommands {
 

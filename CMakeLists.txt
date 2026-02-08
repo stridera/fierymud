@@ -83,7 +83,7 @@ endif()
 CPMAddPackage(
     NAME sol2
     GITHUB_REPOSITORY ThePhD/sol2
-    GIT_TAG v3.3.0
+    GIT_TAG v3.5.0
 )
 
 # PostgreSQL C++ client library for database integration
@@ -129,8 +129,8 @@ CPMAddPackage(
 if(asio_ADDED)
     add_library(asio INTERFACE)
     target_include_directories(asio INTERFACE ${asio_SOURCE_DIR}/asio/include)
-    target_compile_definitions(asio INTERFACE 
-        ASIO_STANDALONE 
+    target_compile_definitions(asio INTERFACE
+        ASIO_STANDALONE
         ASIO_NO_DEPRECATED
         ASIO_HAS_STD_CHRONO
     )
@@ -161,12 +161,35 @@ configure_file(
 )
 
 # =============================================================================
+# Generate database headers / implementations
+# =============================================================================
+execute_process(
+    COMMAND python ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py --list
+    OUTPUT_VARIABLE DB_SOURCES
+    ERROR_QUIET
+)
+
+string(REGEX REPLACE "[ \t\r\n]+" ";" DB_SOURCES "${DB_SOURCES}")
+set(DB_HEADERS "${DB_SOURCES}")
+list(FILTER DB_SOURCES INCLUDE REGEX "cpp$")
+list(FILTER DB_HEADERS INCLUDE REGEX "hpp$")
+add_custom_command(
+    OUTPUT ${DB_SOURCES} ${DB_HEADERS}
+    COMMAND python ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py
+    DEPENDS ../muditor/packages/db/prisma/schema.prisma
+            scripts/generate_db_headers.py
+)
+
+
+# =============================================================================
 # Core Library (shared by fierymud and all test executables)
 # =============================================================================
 # This eliminates duplicate compilation - sources are compiled once into a
 # static library that all targets link against.
 
 set(CORE_SOURCES
+    src/core/ids.cpp
+    src/core/result.cpp
     src/core/logging.cpp
     src/core/log_subscriber.cpp
     src/core/config.cpp
@@ -256,14 +279,16 @@ set(CORE_SOURCES
     src/scripting/bindings/lua_timers.cpp
     src/scripting/bindings/lua_vars.cpp
     src/scripting/bindings/lua_templates.cpp
+    src/scripting/triggers/trigger_data.cpp
     # Quest system
     src/quests/quest_manager.cpp
     # Event publishing for Muditor bridge
     src/events/event_publisher.cpp
+    src/events/event_types.cpp
 )
 
 # Create the core static library
-add_library(fierymud_core STATIC ${CORE_SOURCES})
+add_library(fierymud_core STATIC ${CORE_SOURCES} ${DB_SOURCES})
 
 target_include_directories(fierymud_core PUBLIC
     src
@@ -393,7 +418,7 @@ add_test(
 )
 
 add_test(
-    NAME Integration_Tests_Filter  
+    NAME Integration_Tests_Filter
     COMMAND tests "[integration]"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )

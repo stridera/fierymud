@@ -1,7 +1,8 @@
 // Test that container objects load as Container instances
 #include <catch2/catch_test_macros.hpp>
-#include "../../src/core/object.hpp"
 #include <nlohmann/json.hpp>
+
+#include "../../src/core/object.hpp"
 
 using json = nlohmann::json;
 
@@ -17,14 +18,8 @@ TEST_CASE("Container object loads as Container instance", "[container][unit]") {
         {"type", "Container"},
         {"weight", 1},
         {"value", 100},
-        {"container_info", {
-            {"capacity", 50},
-            {"closeable", false},
-            {"closed", false},
-            {"lockable", false},
-            {"locked", false}
-        }}
-    };
+        {"container_info",
+         {{"capacity", 50}, {"closeable", false}, {"closed", false}, {"lockable", false}, {"locked", false}}}};
 
     // Create object using the Object::from_json factory (same as world loading)
     auto result = Object::from_json(bag_json);
@@ -44,7 +39,7 @@ TEST_CASE("Container object loads as Container instance", "[container][unit]") {
     REQUIRE(container_obj != nullptr);
 
     // Verify it has the correct capacity
-    const auto& info = container_obj->container_info();
+    const auto &info = container_obj->container_info();
     REQUIRE(info.capacity == 50);
 
     // Verify it reports as a container
@@ -55,15 +50,13 @@ TEST_CASE("Container object loads as Container instance", "[container][unit]") {
 TEST_CASE("Regular object does not cast to Container", "[container][unit]") {
 
     // Create a non-container object
-    json sword_json = {
-        {"id", 1001},
-        {"name", "iron sword"},
-        {"short_desc", "an iron sword"},
-        {"ground_desc", "An iron sword lies here."},
-        {"type", "Weapon"},
-        {"weight", 5},
-        {"value", 500}
-    };
+    json sword_json = {{"id", 1001},
+                       {"name", "iron sword"},
+                       {"short_desc", "an iron sword"},
+                       {"ground_desc", "An iron sword lies here."},
+                       {"type", "Weapon"},
+                       {"weight", 5},
+                       {"value", 500}};
 
     auto result = Object::from_json(sword_json);
     REQUIRE(result.has_value());

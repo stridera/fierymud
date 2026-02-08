@@ -1,10 +1,12 @@
 #include "logging.hpp"
 
-#include "log_subscriber.hpp"
-
 #include <atomic>
 #include <filesystem>
-#include <spdlog/pattern_formatter.h>
+
+#include <spdlog/sinks/rotating_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
+#include "log_subscriber.hpp"
 
 // Static member definition
 std::unordered_map<std::string, std::shared_ptr<Logger>> Logger::loggers_;

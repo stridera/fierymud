@@ -1,13 +1,14 @@
 #pragma once
 
-#include "../core/result.hpp"
-
 #include <optional>
-#include <pqxx/pqxx>
 #include <string>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include <pqxx/pqxx>
+
+#include "../core/result.hpp"
 
 /**
  * SocialPosition enum matching the database Position enum.

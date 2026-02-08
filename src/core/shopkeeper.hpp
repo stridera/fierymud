@@ -1,12 +1,11 @@
 #pragma once
 
-#include "ids.hpp"
-#include "result.hpp"
-
 #include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
+
+#include "ids.hpp"
 
 // Forward declarations
 class Object;

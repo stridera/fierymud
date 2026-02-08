@@ -1,19 +1,20 @@
 #include "core/ability_executor.hpp"
 
-#include "core/actor.hpp"
-#include "core/combat.hpp"
-#include "core/logging.hpp"
-#include "database/connection_pool.hpp"
-#include "database/world_queries.hpp"
-#include "scripting/trigger_manager.hpp"
-#include "text/text_format.hpp"
-#include "world/room.hpp"
-
 #include <algorithm>
 #include <array>
 #include <cctype>
-#include <fmt/format.h>
 #include <random>
+
+#include <fmt/format.h>
+
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "database/connection_pool.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
 
 namespace FieryMUD {
 

@@ -2,8 +2,9 @@
 
 #include <algorithm>
 #include <cstdlib>
-#include <fmt/format.h>
 #include <iostream>
+
+#include <fmt/format.h>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 

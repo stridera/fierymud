@@ -1,15 +1,18 @@
 #include "communication_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../events/event_publisher.hpp"
-#include "../scripting/trigger_manager.hpp"
-#include "../server/world_server.hpp"
-#include "../text/text_format.hpp"
-#include "../world/room.hpp"
-#include "builtin_commands.hpp"
-
 #include <array>
+
+#include "commands/builtin_commands.hpp"
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/player.hpp"
+#include "events/event_publisher.hpp"
+#include "events/event_types.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "server/world_server.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
 
 namespace CommunicationCommands {
 

@@ -1,13 +1,15 @@
 #include "object.hpp"
 
-#include "../core/logging.hpp"
-#include "../database/game_data_cache.hpp"
-#include "combat.hpp" // For WeaponSpeed enum
-
 #include <algorithm>
-#include <iostream>
 #include <sstream>
 #include <unordered_map>
+
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+
+#include "combat.hpp" // For WeaponSpeed enum
+#include "core/logging.hpp"
+#include "database/game_data_cache.hpp"
 
 // Object system constants
 namespace {
@@ -641,6 +643,15 @@ WeaponSpeed Object::weapon_speed() const {
     return WeaponSpeed::Medium;
 }
 
+void Object::set_liquid_info(const LiquidInfo &info) {
+    liquid_info_ = info;
+    std::vector<std::string> temp_keywords;
+    if (has_liquid() && liquid_info_.identified && !liquid_info_.liquid_type.empty()) {
+        temp_keywords.push_back(liquid_info_.liquid_type);
+    }
+    set_temporary_keywords(temp_keywords);
+}
+
 nlohmann::json Object::to_json() const {
     nlohmann::json json = Entity::to_json();
 
@@ -772,44 +783,6 @@ std::string_view Object::fullness_descriptor() const {
     }
 
     return ""; // No fullness descriptor for other types
-}
-
-bool Object::matches_keyword(std::string_view keyword) const {
-    // First try base Entity keyword matching
-    if (Entity::matches_keyword(keyword)) {
-        return true;
-    }
-
-    // For identified liquid containers with liquid, also match by liquid type
-    // This allows "drink water" or "fill water-cup" to work
-    if (type_ == ObjectType::Drinkcontainer && liquid_info_.remaining > 0 && !liquid_info_.liquid_type.empty() &&
-        has_flag(ObjectFlag::Identified)) {
-
-        // Normalize both to lowercase for comparison
-        std::string lower_keyword;
-        lower_keyword.reserve(keyword.size());
-        for (char c : keyword) {
-            lower_keyword.push_back(std::tolower(static_cast<unsigned char>(c)));
-        }
-
-        std::string lower_liquid;
-        lower_liquid.reserve(liquid_info_.liquid_type.size());
-        for (char c : liquid_info_.liquid_type) {
-            lower_liquid.push_back(std::tolower(static_cast<unsigned char>(c)));
-        }
-
-        // Check if keyword matches liquid type exactly
-        if (lower_keyword == lower_liquid) {
-            return true;
-        }
-
-        // Check if keyword contains liquid type (e.g., "water-cup" contains "water")
-        if (lower_keyword.find(lower_liquid) != std::string::npos) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 std::string Object::display_name(bool with_article) const { return display_name_full(with_article, false); }
@@ -1112,7 +1085,7 @@ std::shared_ptr<Object> Container::find_item(EntityId item_id) const {
 std::vector<std::shared_ptr<Object>> Container::find_items_by_keyword(std::string_view keyword) const {
     std::vector<std::shared_ptr<Object>> results;
     for (const auto &item : contents_) {
-        if (item && item->matches_keyword(keyword)) {
+        if (item && item->matches_target_string(keyword)) {
             results.push_back(item);
         }
     }

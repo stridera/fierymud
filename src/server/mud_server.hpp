@@ -1,28 +1,24 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-// #include "../game/loop.hpp" // Game loop functionality integrated into server
-#include "../commands/command_system.hpp"
-#include "../world/world_manager.hpp"
-#include "world_server.hpp"
-
-#include <asio.hpp>
-
 #include <atomic>
 #include <chrono>
-#include <filesystem>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <thread>
 #include <vector>
 
+#include <asio.hpp>
+
+#include "core/ids.hpp"
+#include "core/result.hpp"
+
 // Forward declarations
 class NetworkManager;
 class PersistenceManager;
 class ConfigurationManager;
 class Player;
+class WorldServer;
 
 /**
  * Modern FieryMUD Server - Complete standalone implementation

@@ -1,13 +1,8 @@
 #include "terminal_capabilities.hpp"
 
-#include "string_utils.hpp"
-
-#include <algorithm>
-#include <cstdlib>
-#include <locale>
 #include <nlohmann/json.hpp>
-#include <string>
-#include <unordered_map>
+
+#include "string_utils.hpp"
 
 namespace TerminalCapabilities {
 

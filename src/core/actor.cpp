@@ -1,19 +1,24 @@
 #include "actor.hpp"
 
-#include "../core/logging.hpp"
-#include "../game/composer_system.hpp"
-#include "../game/player_output.hpp"
-#include "../net/player_connection.hpp"
-#include "../text/string_utils.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-#include "object.hpp"
-#include "spell_system.hpp"
-
 #include <algorithm>
 #include <cmath>
-#include <magic_enum/magic_enum.hpp>
 #include <sstream>
+
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+
+#include "core/logging.hpp"
+#include "database/generated/db_mob.hpp"
+#include "game/composer_system.hpp"
+#include "game/player_output.hpp"
+#include "mobile.hpp"
+#include "net/player_connection.hpp"
+#include "object.hpp"
+#include "player.hpp"
+#include "spell_system.hpp"
+#include "text/string_utils.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 // Gameplay constants
 namespace {
@@ -296,7 +301,7 @@ std::vector<std::shared_ptr<Object>> Inventory::find_items_by_keyword(std::strin
     std::vector<std::shared_ptr<Object>> matches;
 
     for (const auto &item : items_) {
-        if (item && item->matches_keyword(keyword)) {
+        if (item && item->matches_target_string(keyword)) {
             matches.push_back(item);
         }
     }

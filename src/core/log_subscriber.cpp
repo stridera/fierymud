@@ -1,9 +1,11 @@
 #include "log_subscriber.hpp"
 
-#include "actor.hpp"
-
 #include <algorithm>
+
 #include <fmt/format.h>
+
+#include "actor.hpp"
+#include "player.hpp"
 
 LogSubscriber &LogSubscriber::instance() {
     static LogSubscriber instance;

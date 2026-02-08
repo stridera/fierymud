@@ -1,6 +1,6 @@
-#include "../../src/database/db_parsing_utils.hpp"
-
 #include <catch2/catch_test_macros.hpp>
+
+#include "../../src/database/db_parsing_utils.hpp"
 
 TEST_CASE("DbParsing: PostgreSQL Array Parsing", "[database][parsing][array]") {
     SECTION("Empty and null arrays") {

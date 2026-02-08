@@ -1,14 +1,16 @@
 #pragma once
 
-#include "../../world/room.hpp"
-#include "../../world/world_manager.hpp"
+#include <sol/forward.hpp>
+
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
-#include <algorithm>
 #include <memory>
+#include <string>
+
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
-#include <string>
 
 namespace FieryMUD {
 

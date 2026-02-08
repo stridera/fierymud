@@ -1,16 +1,23 @@
 #pragma once
 
-#include "../game/login_system.hpp" // For CharacterClass and CharacterRace enums
-#include "actor.hpp"
-
 #include <algorithm>
 #include <chrono>
-#include <cstdint>
-#include <functional>
 #include <memory>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include "database/generated/db_character.hpp"
+#include "game/character_class.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
+class Actor;
+using Race = db::Race;
 
 namespace FieryMUD {
 
@@ -325,7 +332,7 @@ class CombatSystem {
     /**
      * @brief Get race-specific combat bonuses
      */
-    static CombatStats get_race_combat_bonus(CharacterRace race);
+    static CombatStats get_race_combat_bonus(Race race);
 
     /**
      * @brief Convert string class name to enum
@@ -335,7 +342,7 @@ class CombatSystem {
     /**
      * @brief Convert string race name to enum
      */
-    static CharacterRace string_to_race(std::string_view race_name);
+    static Race string_to_race(std::string_view race_name);
 
     /**
      * @brief Perform a combat attack using the modern system

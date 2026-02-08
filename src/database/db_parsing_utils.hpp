@@ -8,11 +8,11 @@
 
 #pragma once
 
-#include "../world/room.hpp"
-
 #include <optional>
 #include <string>
 #include <vector>
+
+#include "../world/room.hpp"
 
 namespace DbParsingUtils {
 

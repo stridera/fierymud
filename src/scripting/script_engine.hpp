@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <expected>
 #include <memory>
 #include <string>
@@ -7,8 +8,9 @@
 #include <unordered_map>
 
 #define SOL_ALL_SAFETIES_ON 1
-#include <sol/sol.hpp>
-#include <spdlog/spdlog.h>
+#include <sol/bytecode.hpp>
+#include <sol/forward.hpp>
+#include <sol/function.hpp>
 
 namespace FieryMUD {
 
@@ -145,6 +147,8 @@ class ScriptEngine {
     /// Register Effect table for typo-safe effect name lookups
     void register_effect_table();
 
+    ScriptResult<sol::protected_function_result> wrap_result(sol::protected_function_result &&result);
+
     std::unique_ptr<sol::state> lua_; // unique_ptr for explicit destruction during shutdown
     std::unordered_map<std::string, sol::bytecode> bytecode_cache_;
     std::unordered_map<std::string, std::string> failed_script_cache_; // cache_key -> error message
@@ -168,16 +172,7 @@ ScriptResult<sol::protected_function_result> ScriptEngine::safe_call(sol::protec
         return std::unexpected(ScriptError::NotInitialized);
     }
 
-    auto result = func(std::forward<Args>(args)...);
-
-    if (!result.valid()) {
-        sol::error err = result;
-        last_error_ = err.what();
-        spdlog::error("Lua execution error: {}", last_error_);
-        return std::unexpected(ScriptError::ExecutionFailed);
-    }
-
-    return result;
+    return wrap_result(std::move(func(std::forward<Args>(args)...)));
 }
 
 } // namespace FieryMUD

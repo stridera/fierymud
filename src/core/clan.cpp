@@ -1,5 +1,8 @@
 #include "clan.hpp"
 
+#include <expected>
+#include <format>
+
 #include "../../legacy/src/chars.hpp"
 #include "../../legacy/src/comm.hpp"
 #include "../../legacy/src/conf.hpp"
@@ -7,9 +10,6 @@
 #include "../../legacy/src/find.hpp"
 #include "../../legacy/src/screen.hpp"
 #include "../../legacy/src/utils.hpp"
-
-#include <expected>
-#include <format>
 
 // Global clan repository instance
 ClanRepository clan_repository;

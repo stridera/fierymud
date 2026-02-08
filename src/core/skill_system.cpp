@@ -1,11 +1,12 @@
 #include "skill_system.hpp"
 
+#include <memory>
+
 #include "../database/world_queries.hpp"
 #include "../world/room.hpp"
 #include "ability_executor.hpp"
 #include "actor.hpp"
-
-#include <memory>
+#include "player.hpp"
 
 namespace FieryMUD {
 

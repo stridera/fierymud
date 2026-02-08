@@ -1,17 +1,19 @@
 #include "lua_room.hpp"
 
-#include "../../core/actor.hpp"
-#include "../../core/object.hpp"
-#include "../../world/room.hpp"
-#include "../../world/world_manager.hpp"
+#include "core/actor.hpp"
+#include "core/mobile.hpp"
+#include "core/object.hpp"
 #include "lua_exit.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 #include <algorithm>
+#include <unordered_map>
+
 #include <fmt/format.h>
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
-#include <unordered_map>
 
 namespace FieryMUD {
 

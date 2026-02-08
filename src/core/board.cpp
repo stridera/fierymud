@@ -5,11 +5,11 @@
 
 #include "board.hpp"
 
+#include <algorithm>
+
 #include "../database/connection_pool.hpp"
 #include "../database/world_queries.hpp"
 #include "logging.hpp"
-
-#include <algorithm>
 
 namespace {
 // Global board system instance

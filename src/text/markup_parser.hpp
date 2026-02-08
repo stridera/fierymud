@@ -2,15 +2,15 @@
 
 #pragma once
 
-#include "rich_text.hpp"
-#include "terminal_capabilities.hpp"
-
 #include <expected>
 #include <optional>
 #include <string>
 #include <string_view>
 #include <variant>
 #include <vector>
+
+#include "rich_text.hpp"
+#include "terminal_capabilities.hpp"
 
 /**
  * XML-Lite Markup Parser for FieryMUD

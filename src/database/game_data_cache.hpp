@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../core/result.hpp"
-
 #include <chrono>
 #include <mutex>
 #include <optional>
@@ -9,6 +7,8 @@
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+
+#include "../core/result.hpp"
 
 /**
  * @brief Character class data loaded from database

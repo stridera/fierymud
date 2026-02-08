@@ -1,12 +1,13 @@
 #include "database/trigger_queries.hpp"
 
-#include "core/logging.hpp"
-#include "database/db_parsing_utils.hpp"
-#include "database/generated/db_enums.hpp"
-#include "database/generated/db_tables.hpp"
-
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
+
+#include "database/db_parsing_utils.hpp"
+#include "database/generated/db_script.hpp"
+#include "database/generated/db_tables.hpp"
+#include "scripting/triggers/trigger_data.hpp"
+#include "scripting/triggers/trigger_types.hpp"
 
 using DbParsingUtils::parse_pg_array;
 

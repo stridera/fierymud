@@ -1,19 +1,19 @@
 #pragma once
 
-#include "../core/entity.hpp"
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-
 #include <chrono>
-#include <fmt/format.h>
-#include <magic_enum/magic_enum.hpp>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <random>
 #include <string>
 #include <string_view>
 #include <unordered_map>
+
+#include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/ids.hpp"
+#include "core/result.hpp"
 
 // Forward declarations
 class Zone;

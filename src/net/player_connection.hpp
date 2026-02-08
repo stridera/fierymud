@@ -2,30 +2,36 @@
 
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-#include "../game/login_system.hpp"
-#include "../game/player_output.hpp"
-#include "../text/terminal_capabilities.hpp"
-#include "../world/room.hpp"
-#include "tls_context.hpp"
-
-#include <asio.hpp>
-
 #include <chrono>
 #include <deque>
-#include <functional>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <string>
 #include <string_view>
 #include <unordered_map>
 #include <unordered_set>
 
+#include <asio.hpp>
+
+#include "core/ids.hpp"
+#include "core/result.hpp"
+#include "game/player_output.hpp"
+#include "text/terminal_capabilities.hpp"
+
+// Silence spurious warnings in <functional> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <functional>
+#pragma GCC diagnostic pop
+
 // Forward declarations
 class Player;
+class PlayerConnection;
+class LoginSystem;
 class WorldServer;
 class NetworkManager;
+class TLSContextManager;
+class TLSSocket;
+class Room;
 
 /**
  * @brief Player connection state tracking
@@ -114,7 +120,7 @@ class GMCPHandler {
     std::unordered_map<std::string, std::string> parse_new_environ_data(std::string_view data);
 
   private:
-    class PlayerConnection &connection_;
+    PlayerConnection &connection_;
     bool gmcp_enabled_{false};
     std::unordered_set<std::string> client_supports_;
     TerminalCapabilities::Capabilities terminal_capabilities_;
@@ -159,11 +165,11 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     void force_disconnect();
 
     // Socket access for accept operations
-    asio::ip::tcp::socket &socket() { return connection_socket_->tcp_socket(); }
-    const asio::ip::tcp::socket &socket() const { return connection_socket_->tcp_socket(); }
+    asio::ip::tcp::socket &socket();
+    const asio::ip::tcp::socket &socket() const;
 
     // TLS support queries
-    bool is_tls_connection() const { return connection_socket_ && connection_socket_->is_tls(); }
+    bool is_tls_connection() const;
 
     // State queries
     ConnectionState state() const { return state_; }

@@ -1,13 +1,16 @@
 #include "shopkeeper.hpp"
 
-#include "../world/world_manager.hpp"
+#include <algorithm>
+
+#include <fmt/format.h>
+
 #include "actor.hpp"
 #include "logging.hpp"
 #include "money.hpp"
 #include "object.hpp"
-
-#include <algorithm>
-#include <fmt/format.h>
+#include "player.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 // =============================================================================
 // Shopkeeper Implementation

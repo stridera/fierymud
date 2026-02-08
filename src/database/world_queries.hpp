@@ -1,17 +1,19 @@
 #pragma once
 
-#include "core/actor.hpp"
+#include <chrono>
+#include <memory>
+#include <optional>
+#include <vector>
+
+#include <pqxx/pqxx>
+
 #include "core/ids.hpp"
 #include "core/object.hpp"
 #include "core/result.hpp"
 #include "world/room.hpp"
 #include "world/zone.hpp"
 
-#include <chrono>
-#include <memory>
-#include <optional>
-#include <pqxx/pqxx>
-#include <vector>
+class Mobile;
 
 /**
  * World data query layer for PostgreSQL database.

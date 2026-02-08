@@ -1,15 +1,16 @@
 #include "social_commands.hpp"
 
-#include "../core/actor.hpp"
-#include "../database/connection_pool.hpp"
-#include "../text/text_format.hpp"
-#include "../world/room.hpp"
-
 #include <algorithm>
-#include <memory>
-#include <spdlog/spdlog.h>
-#include <string>
 #include <unordered_set>
+
+#include <spdlog/spdlog.h>
+
+#include "commands/command_system.hpp"
+#include "core/actor.hpp"
+#include "database/connection_pool.hpp"
+#include "database/social_queries.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
 
 namespace SocialCommands {
 

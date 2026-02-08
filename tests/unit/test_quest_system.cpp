@@ -1,8 +1,8 @@
-#include "../../src/quests/quest_manager.hpp"
-#include "../../src/database/quest_queries.hpp"
-#include "../../src/core/ids.hpp"
-
 #include <catch2/catch_test_macros.hpp>
+
+#include "../../src/core/ids.hpp"
+#include "../../src/database/quest_queries.hpp"
+#include "../../src/quests/quest_manager.hpp"
 
 // Note: Using explicit namespace prefixes to avoid ambiguity between
 // FieryMUD::QuestStatus and QuestQueries::QuestStatus
@@ -171,15 +171,15 @@ TEST_CASE("Quest: QuestReward structure", "[quest][unit]") {
 
 TEST_CASE("Quest: QuestManager singleton", "[quest][unit]") {
     SECTION("Singleton instance is consistent") {
-        auto& manager1 = FieryMUD::QuestManager::instance();
-        auto& manager2 = FieryMUD::QuestManager::instance();
+        auto &manager1 = FieryMUD::QuestManager::instance();
+        auto &manager2 = FieryMUD::QuestManager::instance();
 
         // Both references should point to the same instance
         REQUIRE(&manager1 == &manager2);
     }
 
     SECTION("Manager exists") {
-        auto& manager = FieryMUD::QuestManager::instance();
+        auto &manager = FieryMUD::QuestManager::instance();
         // Singleton should exist
         REQUIRE(&manager != nullptr);
     }
@@ -205,7 +205,7 @@ TEST_CASE("Quest: QuestTriggerType enum", "[quest][unit]") {
 // ============================================================================
 
 TEST_CASE("Quest: QuestManager initialization", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
 
     SECTION("Manager can initialize successfully") {
         // Initialize should work (or return true if already initialized)
@@ -230,12 +230,12 @@ TEST_CASE("Quest: QuestManager initialization", "[quest][unit]") {
 }
 
 TEST_CASE("Quest: QuestManager statistics", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     (void)manager.initialize();
 
     SECTION("Stats can be reset") {
         manager.reset_stats();
-        const auto& stats = manager.stats();
+        const auto &stats = manager.stats();
 
         REQUIRE(stats.quests_started == 0);
         REQUIRE(stats.quests_completed == 0);
@@ -245,7 +245,7 @@ TEST_CASE("Quest: QuestManager statistics", "[quest][unit]") {
     }
 
     SECTION("Stats structure has all expected fields") {
-        const auto& stats = manager.stats();
+        const auto &stats = manager.stats();
 
         // Just verify these fields exist and are accessible
         [[maybe_unused]] auto started = stats.quests_started;
@@ -259,7 +259,7 @@ TEST_CASE("Quest: QuestManager statistics", "[quest][unit]") {
 }
 
 TEST_CASE("Quest: QuestManager quest count", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     (void)manager.initialize();
 
     SECTION("Empty manager has zero quest count") {
@@ -274,17 +274,17 @@ TEST_CASE("Quest: QuestManager quest count", "[quest][unit]") {
 }
 
 TEST_CASE("Quest: QuestManager quest lookup", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     (void)manager.initialize();
 
     SECTION("Looking up non-existent quest returns nullptr") {
-        auto* quest = manager.get_quest(999, 999);
+        auto *quest = manager.get_quest(999, 999);
         REQUIRE(quest == nullptr);
     }
 
     SECTION("Looking up by invalid EntityId returns nullptr") {
         EntityId invalid_id{999, 999};
-        auto* quest = manager.get_quest(invalid_id);
+        auto *quest = manager.get_quest(invalid_id);
         REQUIRE(quest == nullptr);
     }
 
@@ -295,7 +295,7 @@ TEST_CASE("Quest: QuestManager quest lookup", "[quest][unit]") {
 }
 
 TEST_CASE("Quest: QuestManager available quests", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     (void)manager.initialize();
     manager.clear_all_quests();
 
@@ -306,7 +306,7 @@ TEST_CASE("Quest: QuestManager available quests", "[quest][unit]") {
 }
 
 TEST_CASE("Quest: QuestManager zone operations", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     (void)manager.initialize();
 
     SECTION("Clear zone quests works on non-existent zone") {
@@ -322,7 +322,7 @@ TEST_CASE("Quest: QuestManager zone operations", "[quest][unit]") {
 }
 
 TEST_CASE("Quest: QuestManager without database", "[quest][unit]") {
-    auto& manager = FieryMUD::QuestManager::instance();
+    auto &manager = FieryMUD::QuestManager::instance();
     (void)manager.initialize();
 
     SECTION("Load zone quests returns zero without database") {

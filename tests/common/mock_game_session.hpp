@@ -1,11 +1,5 @@
 #pragma once
 
-#include "../src/core/ids.hpp"
-#include "../src/core/result.hpp"
-#include "../src/net/player_connection.hpp"
-#include "../src/server/networked_actor.hpp"
-#include "../src/server/world_server.hpp"
-
 #include <atomic>
 #include <chrono>
 #include <future>
@@ -15,13 +9,19 @@
 #include <string_view>
 #include <vector>
 
+#include "../src/core/ids.hpp"
+#include "../src/core/result.hpp"
+#include "../src/net/player_connection.hpp"
+#include "../src/server/networked_actor.hpp"
+#include "../src/server/world_server.hpp"
+
 /**
  * MockPlayerConnection - Simulates network connection for testing
  */
 class MockPlayerConnection : public PlayerConnection {
   public:
     MockPlayerConnection(asio::io_context &io_context, std::shared_ptr<WorldServer> world_server,
-                         NetworkManager* network_manager = nullptr);
+                         NetworkManager *network_manager = nullptr);
     ~MockPlayerConnection() = default;
 
     // Mock-specific methods for testing
@@ -53,7 +53,7 @@ class MockPlayerConnection : public PlayerConnection {
  */
 class MockGameSession {
   public:
-    MockGameSession(WorldServer& world_server, asio::io_context& io_context);
+    MockGameSession(WorldServer &world_server, asio::io_context &io_context);
     ~MockGameSession();
 
     // Session lifecycle
@@ -87,14 +87,14 @@ class MockGameSession {
     std::shared_ptr<MockPlayerConnection> get_connection() const { return connection_; }
 
   private:
-    private:
+  private:
     std::shared_ptr<WorldServer> world_server_;
     std::shared_ptr<MockPlayerConnection> connection_;
     std::shared_ptr<NetworkedPlayer> player_;
     std::string player_name_;
 
   private:
-    asio::io_context& io_context_;
+    asio::io_context &io_context_;
     asio::executor_work_guard<asio::io_context::executor_type> work_guard_;
     std::thread io_thread_;
 };
@@ -115,11 +115,11 @@ class UnifiedTestHarness {
     static std::unique_ptr<MockGameSession> create_session();
     static std::vector<std::unique_ptr<MockGameSession>> create_multiple_sessions(size_t count);
 
-    WorldServer& get_world_server() { return *world_server_; }
+    WorldServer &get_world_server() { return *world_server_; }
 
   public:
     ~UnifiedTestHarness();
-    
+
   private:
     UnifiedTestHarness();
     static std::unique_ptr<UnifiedTestHarness> instance_;
@@ -128,11 +128,11 @@ class UnifiedTestHarness {
     asio::executor_work_guard<asio::io_context::executor_type> work_guard_;
     std::thread io_thread_;
     bool environment_initialized_ = false;
-    
+
     // Test environment management
     void setup_test_environment();
     void reset_world_state();
-    
+
   public:
     static void cleanup_test_environment();
 

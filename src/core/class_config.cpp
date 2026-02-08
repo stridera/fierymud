@@ -1,10 +1,12 @@
 #include "class_config.hpp"
 
-#include "core/logging.hpp"
-#include "text/string_utils.hpp"
-
 #include <algorithm>
 #include <fstream>
+
+#include <nlohmann/json.hpp>
+
+#include "core/logging.hpp"
+#include "text/string_utils.hpp"
 
 namespace fierymud {
 

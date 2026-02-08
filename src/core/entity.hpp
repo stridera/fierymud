@@ -1,17 +1,48 @@
 #pragma once
 
-#include "../core/ids.hpp"
-#include "../core/result.hpp"
-
-#include <fmt/format.h>
 #include <memory>
-#include <nlohmann/json.hpp>
-#include <optional>
+#include <ranges>
+#include <set>
 #include <span>
 #include <string>
 #include <string_view>
-#include <unordered_set>
 #include <vector>
+
+#include <fmt/format.h>
+#include <nlohmann/json_fwd.hpp>
+
+#include "core/ids.hpp"
+#include "core/result.hpp"
+
+/** Utility functions for entity management */
+namespace EntityUtils {
+/** Check if keyword is valid (not empty, reasonable length, printable chars) */
+bool is_valid_keyword(std::string_view keyword);
+
+/** Normalize keyword for consistent matching (lowercase, trim) */
+std::string normalize_keyword(std::string_view keyword);
+
+/** Extract keywords from a name list string (legacy compatibility) */
+std::vector<std::string> parse_keyword_list(std::string_view keyword_string);
+
+/** Create keyword list string from vector (legacy compatibility) */
+std::string create_keyword_string(std::span<const std::string> keywords);
+
+/** Check if name needs an article and which one ("a", "an", "the") */
+std::string_view get_article(std::string_view name, bool definite = false);
+
+/** Format entity reference for display (e.g., "a rusty sword", "the ancient tome") */
+std::string format_entity_name(std::string_view name, std::string_view short_desc = "", bool with_article = false,
+                               bool definite_article = false);
+
+/** Check if a keyword set matches a targeting string, supporting compound keywords.
+ *  Compound keywords use hyphens as AND operators: "magician-sleeves" matches
+ *  if the entity has keywords matching BOTH "magician" AND "sleeves" (prefix match).
+ */
+bool matches_target_string(const std::set<std::string> &keywords, std::string_view target);
+
+std::set<std::string> parse_target_string(std::string_view target);
+} // namespace EntityUtils
 
 /**
  * Base Entity class for all game objects.
@@ -54,22 +85,33 @@ class Entity {
     /** Legacy compatibility - get short description */
     std::string_view short_description() const { return short_desc(); }
 
-    /** Check if entity matches a given keyword (exact match, case-insensitive)
-     * Virtual to allow subclasses to add dynamic keyword matching (e.g., liquid types)
-     */
-    virtual bool matches_keyword(std::string_view keyword) const;
-
-    /** Check if any entity keyword starts with the given prefix (case-insensitive) */
-    bool matches_keyword_prefix(std::string_view prefix) const;
-
     /** Check if entity matches a targeting string, supporting compound keywords.
      *  Compound keywords use hyphens as AND operators: "magician-sleeves" matches
      *  if the entity has keywords matching BOTH "magician" AND "sleeves" (prefix match).
      */
-    bool matches_target_string(std::string_view target) const;
+    inline bool matches_target_string(std::string_view target) const {
+        return EntityUtils::matches_target_string(keyword_set_, target);
+    }
 
-    /** Check if entity matches any of the given keywords */
-    bool matches_any_keyword(std::span<const std::string> keywords) const;
+    /** Check if entity matches all of the given keywords.
+     *  Prefix matches are accepted.
+     *  Precondition: Keywords must already be normalized.
+     */
+    template <typename C>
+        requires std::ranges::forward_range<C> && (std::same_as<typename C::value_type, std::string> ||
+                                                   std::same_as<typename C::value_type, const std::string>)
+    bool matches_all_keywords(const C &keywords) const {
+        for (const std::string &word : keywords) {
+            auto match = keyword_set_.lower_bound(word);
+            if (match == keyword_set_.end()) {
+                return false;
+            }
+            if (!match->starts_with(word)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /** Set primary name */
     void set_name(std::string_view new_name) {
@@ -136,11 +178,19 @@ class Entity {
     /** Validate entity state */
     virtual Result<void> validate() const;
 
+    /** Adds keywords that apply to this instance of the entity.
+     * Temporary keywords are not serialized.
+     * Setting temporary keywords will remove any temporary keywords that
+     * had been previously set on the entity.
+     * @param temp_keywords The temporary keywords to add
+     */
+    void set_temporary_keywords(std::span<const std::string> temp_keywords);
+
   private:
     EntityId id_;
     std::string name_;
-    std::vector<std::string> keywords_;           // Ordered list for iteration/serialization
-    std::unordered_set<std::string> keyword_set_; // O(1) lookup cache
+    std::vector<std::string> keywords_; // Ordered list for iteration/serialization
+    std::set<std::string> keyword_set_; // O(log n) lookup cache
     std::string ground_;
     std::string short_;
 };
@@ -165,28 +215,6 @@ class EntityFactory {
     /** Create base Entity from JSON (no type dispatch) */
     static Result<std::unique_ptr<Entity>> create_base_entity_from_json(const nlohmann::json &json);
 };
-
-/** Utility functions for entity management */
-namespace EntityUtils {
-/** Check if keyword is valid (not empty, reasonable length, printable chars) */
-bool is_valid_keyword(std::string_view keyword);
-
-/** Normalize keyword for consistent matching (lowercase, trim) */
-std::string normalize_keyword(std::string_view keyword);
-
-/** Extract keywords from a name list string (legacy compatibility) */
-std::vector<std::string> parse_keyword_list(std::string_view keyword_string);
-
-/** Create keyword list string from vector (legacy compatibility) */
-std::string create_keyword_string(std::span<const std::string> keywords);
-
-/** Check if name needs an article and which one ("a", "an", "the") */
-std::string_view get_article(std::string_view name, bool definite = false);
-
-/** Format entity reference for display (e.g., "a rusty sword", "the ancient tome") */
-std::string format_entity_name(std::string_view name, std::string_view short_desc = "", bool with_article = false,
-                               bool definite_article = false);
-} // namespace EntityUtils
 
 /** JSON conversion support */
 void to_json(nlohmann::json &json, const Entity &entity);

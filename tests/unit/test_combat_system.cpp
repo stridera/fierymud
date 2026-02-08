@@ -1,8 +1,10 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
+#include <catch2/catch_test_macros.hpp>
 
-#include "../../src/core/combat.hpp"
-#include "../../src/core/actor.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
 
 using namespace FieryMUD;
 using Catch::Approx;
@@ -21,7 +23,7 @@ TEST_CASE("Combat System - Class ACC Rates", "[combat][unit]") {
         double rogue_rate = CombatSystem::get_class_acc_rate(CharacterClass::Rogue);
 
         REQUIRE(rogue_rate == Approx(ClassAccRates::ROGUE));
-        REQUIRE(rogue_rate > 0.5);  // Better than baseline
+        REQUIRE(rogue_rate > 0.5); // Better than baseline
     }
 
     SECTION("Cleric has moderate ACC rate") {
@@ -33,7 +35,7 @@ TEST_CASE("Combat System - Class ACC Rates", "[combat][unit]") {
 
 TEST_CASE("Combat System - Race Specific Bonuses", "[combat][unit]") {
     SECTION("Human bonuses (versatile)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Human);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Human);
 
         REQUIRE(bonus.acc == Approx(2.0));
         REQUIRE(bonus.eva == Approx(2.0));
@@ -41,27 +43,27 @@ TEST_CASE("Combat System - Race Specific Bonuses", "[combat][unit]") {
     }
 
     SECTION("Elf bonuses (dexterous)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Elf);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Elf);
 
         REQUIRE(bonus.acc == Approx(3.0));
-        REQUIRE(bonus.eva == Approx(5.0));  // High evasion
-        REQUIRE(bonus.crit_bonus == Approx(5.0));  // Critical margin bonus
+        REQUIRE(bonus.eva == Approx(5.0));        // High evasion
+        REQUIRE(bonus.crit_bonus == Approx(5.0)); // Critical margin bonus
     }
 
     SECTION("Dwarf bonuses (tough)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Dwarf);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Dwarf);
 
-        REQUIRE(bonus.ap == Approx(3.0));  // Strong attacks
-        REQUIRE(bonus.ar == Approx(10.0));  // Extra armor
-        REQUIRE(bonus.res_physical == Approx(90.0));  // 10% physical resistance
-        REQUIRE(bonus.eva == Approx(-2.0));  // Slow
+        REQUIRE(bonus.ap == Approx(3.0));            // Strong attacks
+        REQUIRE(bonus.ar == Approx(10.0));           // Extra armor
+        REQUIRE(bonus.res_physical == Approx(90.0)); // 10% physical resistance
+        REQUIRE(bonus.eva == Approx(-2.0));          // Slow
     }
 
     SECTION("Halfling bonuses (evasive)") {
-        auto bonus = CombatSystem::get_race_combat_bonus(CharacterRace::Halfling);
+        auto bonus = CombatSystem::get_race_combat_bonus(Race::Halfling);
 
-        REQUIRE(bonus.eva == Approx(8.0));  // Very evasive
-        REQUIRE(bonus.crit_bonus == Approx(3.0));  // Lucky crits
+        REQUIRE(bonus.eva == Approx(8.0));        // Very evasive
+        REQUIRE(bonus.crit_bonus == Approx(3.0)); // Lucky crits
     }
 }
 
@@ -71,20 +73,20 @@ TEST_CASE("Combat System - String to Enum Conversion", "[combat][unit]") {
         REQUIRE(CombatSystem::string_to_class("cleric") == CharacterClass::Cleric);
         REQUIRE(CombatSystem::string_to_class("sorcerer") == CharacterClass::Sorcerer);
         REQUIRE(CombatSystem::string_to_class("rogue") == CharacterClass::Rogue);
-        REQUIRE(CombatSystem::string_to_class("thief") == CharacterClass::Rogue);  // Alias
+        REQUIRE(CombatSystem::string_to_class("thief") == CharacterClass::Rogue); // Alias
 
         // Unknown class defaults to warrior
         REQUIRE(CombatSystem::string_to_class("unknown") == CharacterClass::Warrior);
     }
 
     SECTION("Character race conversion") {
-        REQUIRE(CombatSystem::string_to_race("human") == CharacterRace::Human);
-        REQUIRE(CombatSystem::string_to_race("elf") == CharacterRace::Elf);
-        REQUIRE(CombatSystem::string_to_race("dwarf") == CharacterRace::Dwarf);
-        REQUIRE(CombatSystem::string_to_race("halfling") == CharacterRace::Halfling);
+        REQUIRE(CombatSystem::string_to_race("human") == Race::Human);
+        REQUIRE(CombatSystem::string_to_race("elf") == Race::Elf);
+        REQUIRE(CombatSystem::string_to_race("dwarf") == Race::Dwarf);
+        REQUIRE(CombatSystem::string_to_race("halfling") == Race::Halfling);
 
         // Unknown race defaults to human
-        REQUIRE(CombatSystem::string_to_race("unknown") == CharacterRace::Human);
+        REQUIRE(CombatSystem::string_to_race("unknown") == Race::Human);
     }
 }
 
@@ -121,35 +123,35 @@ TEST_CASE("Combat System - CombatStats Combination", "[combat][unit]") {
         stats2.pen_pct = 0.20;
 
         CombatStats result = stats1 + stats2;
-        REQUIRE(result.pen_pct == Approx(CombatConstants::PEN_PCT_CAP));  // Capped at 50%
+        REQUIRE(result.pen_pct == Approx(CombatConstants::PEN_PCT_CAP)); // Capped at 50%
     }
 
     SECTION("Resistances use most favorable (lowest)") {
         CombatStats stats1;
-        stats1.res_fire = 100.0;  // Normal
-        stats1.res_cold = 80.0;   // Some resistance
+        stats1.res_fire = 100.0; // Normal
+        stats1.res_cold = 80.0;  // Some resistance
 
         CombatStats stats2;
-        stats2.res_fire = 50.0;   // Fire resistance
-        stats2.res_cold = 90.0;   // Less resistance
+        stats2.res_fire = 50.0; // Fire resistance
+        stats2.res_cold = 90.0; // Less resistance
 
         CombatStats result = stats1 + stats2;
-        REQUIRE(result.res_fire == Approx(50.0));  // Uses stats2's fire resistance
-        REQUIRE(result.res_cold == Approx(80.0));  // Uses stats1's cold resistance
+        REQUIRE(result.res_fire == Approx(50.0)); // Uses stats2's fire resistance
+        REQUIRE(result.res_cold == Approx(80.0)); // Uses stats1's cold resistance
     }
 }
 
 TEST_CASE("Combat System - DR% Calculation", "[combat][unit]") {
     SECTION("DR% formula: AR / (AR + K)") {
         // Low tier (levels 1-20, K=40)
-        REQUIRE(CombatStats::calculate_dr_percent(40.0, 10) == Approx(0.5));  // 40/(40+40)
-        REQUIRE(CombatStats::calculate_dr_percent(20.0, 10) == Approx(0.333).epsilon(0.01));  // 20/(20+40)
+        REQUIRE(CombatStats::calculate_dr_percent(40.0, 10) == Approx(0.5));                 // 40/(40+40)
+        REQUIRE(CombatStats::calculate_dr_percent(20.0, 10) == Approx(0.333).epsilon(0.01)); // 20/(20+40)
 
         // Mid tier (levels 21-50, K=60)
-        REQUIRE(CombatStats::calculate_dr_percent(60.0, 35) == Approx(0.5));  // 60/(60+60)
+        REQUIRE(CombatStats::calculate_dr_percent(60.0, 35) == Approx(0.5)); // 60/(60+60)
 
         // High tier (levels 51+, K=80)
-        REQUIRE(CombatStats::calculate_dr_percent(80.0, 75) == Approx(0.5));  // 80/(80+80)
+        REQUIRE(CombatStats::calculate_dr_percent(80.0, 75) == Approx(0.5)); // 80/(80+80)
     }
 
     SECTION("DR% caps at 75%") {
@@ -173,10 +175,10 @@ TEST_CASE("Combat System - Hit Calculation", "[combat][unit]") {
 
     SECTION("High ACC vs Low EVA favors attacker") {
         CombatStats attacker;
-        attacker.acc = 150.0;  // Very high
+        attacker.acc = 150.0; // Very high
 
         CombatStats defender;
-        defender.eva = 30.0;   // Low
+        defender.eva = 30.0; // Low
 
         // With ACC 120 higher than EVA, many hits should land
         // (Can't test exact results due to randomness)
@@ -192,11 +194,11 @@ TEST_CASE("Combat System - Damage Mitigation", "[combat][unit]") {
 
         CombatStats defender;
         defender.soak = 5.0;
-        defender.dr_pct = 0.0;  // No DR%
-        defender.res_physical = 100.0;  // Normal resistance
+        defender.dr_pct = 0.0;         // No DR%
+        defender.res_physical = 100.0; // Normal resistance
 
         double mitigated = CombatSystem::apply_mitigation(10.0, attacker, defender, 0);
-        REQUIRE(mitigated == Approx(5.0));  // 10 - 5 soak = 5
+        REQUIRE(mitigated == Approx(5.0)); // 10 - 5 soak = 5
     }
 
     SECTION("DR% reduces damage after soak") {
@@ -206,21 +208,21 @@ TEST_CASE("Combat System - Damage Mitigation", "[combat][unit]") {
 
         CombatStats defender;
         defender.soak = 0.0;
-        defender.dr_pct = 0.5;  // 50% DR
+        defender.dr_pct = 0.5; // 50% DR
         defender.res_physical = 100.0;
 
         double mitigated = CombatSystem::apply_mitigation(10.0, attacker, defender, 0);
-        REQUIRE(mitigated == Approx(5.0));  // 10 * (1 - 0.5) = 5
+        REQUIRE(mitigated == Approx(5.0)); // 10 * (1 - 0.5) = 5
     }
 
     SECTION("Penetration reduces defender's mitigation") {
         CombatStats attacker;
-        attacker.pen_flat = 3.0;  // Reduces soak by 3
-        attacker.pen_pct = 0.5;   // Reduces DR% by 50%
+        attacker.pen_flat = 3.0; // Reduces soak by 3
+        attacker.pen_pct = 0.5;  // Reduces DR% by 50%
 
         CombatStats defender;
-        defender.soak = 5.0;      // Effective soak = 2
-        defender.dr_pct = 0.4;    // Effective DR = 0.2 (40% * 50%)
+        defender.soak = 5.0;   // Effective soak = 2
+        defender.dr_pct = 0.4; // Effective DR = 0.2 (40% * 50%)
         defender.res_physical = 100.0;
 
         // 10 - 2 soak = 8, then 8 * (1 - 0.2) = 6.4

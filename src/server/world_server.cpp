@@ -1,29 +1,31 @@
 #include "world_server.hpp"
 
-#include "../commands/builtin_commands.hpp"
-#include "../commands/command_system.hpp"
-#include "../commands/movement_commands.hpp"
-#include "../core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/combat.hpp"
-#include "../core/logging.hpp"
-#include "../core/result.hpp"
-#include "../game/composer_system.hpp"
-#include "../net/player_connection.hpp"
-#include "../scripting/coroutine_scheduler.hpp"
-#include "../scripting/script_engine.hpp"
-#include "../scripting/trigger_manager.hpp"
-#include "../text/text_format.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-#include "mud_server.hpp"
-#include "networked_actor.hpp"
-#include "persistence_manager.hpp"
-
 #include <algorithm>
-#include <memory>
+
 #include <nlohmann/json.hpp>
-#include <random>
+
+#include "commands/builtin_commands.hpp"
+#include "commands/command_system.hpp"
+#include "commands/movement_commands.hpp"
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/combat.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/player.hpp"
+#include "core/result.hpp"
+#include "game/composer_system.hpp"
+#include "mud_server.hpp"
+#include "net/player_connection.hpp"
+#include "persistence_manager.hpp"
+#include "scripting/coroutine_scheduler.hpp"
+#include "scripting/script_engine.hpp"
+#include "scripting/trigger_manager.hpp"
+#include "scripting/triggers/trigger_types.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
+#include "world/weather.hpp"
+#include "world/world_manager.hpp"
 
 // World server constants
 namespace {

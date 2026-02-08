@@ -1,10 +1,11 @@
 #include "templates.hpp"
 
-#include "../core/actor.hpp" // Mobile is defined in actor.hpp
-#include "../core/object.hpp"
+#include <sstream>
 
 #include <magic_enum/magic_enum.hpp>
-#include <sstream>
+
+#include "core/mobile.hpp"
+#include "core/object.hpp"
 
 namespace FieryMUD {
 

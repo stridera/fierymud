@@ -1,7 +1,7 @@
 #include "builtin_commands.hpp"
 
-#include "../core/money.hpp"
-#include "../scripting/trigger_manager.hpp"
+#include "core/money.hpp"
+#include "scripting/trigger_manager.hpp"
 
 // Command module headers for registration
 #include "account_commands.hpp"
@@ -23,19 +23,23 @@
 #include "system_commands.hpp"
 
 // Core dependencies used by helper functions
-#include "../core/ability_executor.hpp"
-#include "../core/actor.hpp"
-#include "../core/logging.hpp"
-#include "../core/object.hpp"
-#include "../text/rich_text.hpp"
-#include "../text/string_utils.hpp"
-#include "../text/text_format.hpp"
-#include "../world/room.hpp"
-#include "../world/world_manager.hpp"
-
 #include <algorithm>
 #include <set>
 #include <sstream>
+
+#include <magic_enum/magic_enum.hpp>
+
+#include "core/ability_executor.hpp"
+#include "core/actor.hpp"
+#include "core/logging.hpp"
+#include "core/mobile.hpp"
+#include "core/object.hpp"
+#include "core/player.hpp"
+#include "text/rich_text.hpp"
+#include "text/string_utils.hpp"
+#include "text/text_format.hpp"
+#include "world/room.hpp"
+#include "world/world_manager.hpp"
 
 namespace BuiltinCommands {
 

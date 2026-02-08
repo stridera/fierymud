@@ -1,12 +1,13 @@
 #include "entity.hpp"
 
-#include "../core/logging.hpp"
-#include "../text/string_utils.hpp"
-
 #include <algorithm>
 #include <cctype>
-#include <regex>
 #include <sstream>
+
+#include <nlohmann/json.hpp>
+
+#include "core/logging.hpp"
+#include "text/string_utils.hpp"
 
 namespace {
 // Entity validation constants
@@ -15,91 +16,12 @@ constexpr size_t MAX_KEYWORD_LENGTH = 50;
 
 // Entity Implementation
 
-Entity::Entity(EntityId id, std::string_view name) : id_(id), name_(name) {
-    if (!name.empty()) {
-        ensure_name_in_keywords();
-    }
-}
+Entity::Entity(EntityId id, std::string_view name) : id_(id), name_(name) { ensure_name_in_keywords(); }
 
 Entity::Entity(EntityId id, std::string_view name, std::span<const std::string> keywords, std::string_view ground,
                std::string_view short_desc)
     : id_(id), name_(name), ground_(ground), short_(short_desc) {
-
-    keywords_.reserve(keywords.size() + 1);
-    for (const auto &keyword : keywords) {
-        if (EntityUtils::is_valid_keyword(keyword)) {
-            std::string normalized = EntityUtils::normalize_keyword(keyword);
-            if (keyword_set_.find(normalized) == keyword_set_.end()) {
-                keywords_.push_back(normalized);
-                keyword_set_.insert(normalized);
-            }
-        }
-    }
-
-    ensure_name_in_keywords();
-}
-
-bool Entity::matches_keyword(std::string_view keyword) const {
-    std::string normalized = EntityUtils::normalize_keyword(keyword);
-    // O(1) lookup using unordered_set instead of O(n) linear search
-    return keyword_set_.find(normalized) != keyword_set_.end();
-}
-
-bool Entity::matches_keyword_prefix(std::string_view prefix) const {
-    if (prefix.empty()) {
-        return false;
-    }
-
-    std::string normalized_prefix = EntityUtils::normalize_keyword(prefix);
-
-    // First try exact match (O(1))
-    if (keyword_set_.find(normalized_prefix) != keyword_set_.end()) {
-        return true;
-    }
-
-    // Then try prefix match (O(n) but keywords are usually few)
-    for (const auto &keyword : keywords_) {
-        if (keyword.starts_with(normalized_prefix)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-bool Entity::matches_target_string(std::string_view target) const {
-    if (target.empty()) {
-        return false;
-    }
-
-    // Check for compound keyword (contains hyphen)
-    size_t hyphen_pos = target.find('-');
-    if (hyphen_pos == std::string_view::npos) {
-        // No hyphen - use regular prefix matching
-        return matches_keyword_prefix(target);
-    }
-
-    // Split on hyphens and require ALL parts to match
-    size_t start = 0;
-    while (start < target.size()) {
-        size_t end = target.find('-', start);
-        if (end == std::string_view::npos) {
-            end = target.size();
-        }
-
-        std::string_view part = target.substr(start, end - start);
-        if (!part.empty() && !matches_keyword_prefix(part)) {
-            return false; // One part didn't match, fail
-        }
-
-        start = end + 1;
-    }
-
-    return true; // All parts matched
-}
-
-bool Entity::matches_any_keyword(std::span<const std::string> keywords) const {
-    return std::any_of(keywords.begin(), keywords.end(), [this](const std::string &kw) { return matches_keyword(kw); });
+    set_keywords(keywords);
 }
 
 void Entity::set_keywords(std::span<const std::string> new_keywords) {
@@ -108,18 +30,21 @@ void Entity::set_keywords(std::span<const std::string> new_keywords) {
     keywords_.reserve(new_keywords.size() + 1);
 
     for (const auto &keyword : new_keywords) {
-        if (EntityUtils::is_valid_keyword(keyword)) {
-            std::string normalized = EntityUtils::normalize_keyword(keyword);
-
-            // O(1) duplicate check using set
-            if (keyword_set_.find(normalized) == keyword_set_.end()) {
-                keywords_.push_back(normalized);
-                keyword_set_.insert(std::move(normalized));
-            }
-        }
+        add_keyword(keyword);
     }
 
     ensure_name_in_keywords();
+}
+
+void Entity::set_temporary_keywords(std::span<const std::string> temp_keywords) {
+    auto copied_keywords = keywords_;
+    set_keywords(copied_keywords);
+
+    for (const auto &keyword : temp_keywords) {
+        std::string normalized = EntityUtils::normalize_keyword(keyword);
+        // Don't add to keywords_ because it's only ever used for lookup
+        keyword_set_.insert(normalized);
+    }
 }
 
 void Entity::add_keyword(std::string_view keyword) {
@@ -129,10 +54,10 @@ void Entity::add_keyword(std::string_view keyword) {
 
     std::string normalized = EntityUtils::normalize_keyword(keyword);
 
-    // O(1) duplicate check using set
-    if (keyword_set_.find(normalized) == keyword_set_.end()) {
-        keywords_.push_back(normalized);
-        keyword_set_.insert(std::move(normalized));
+    // O(log n) duplicate check using set
+    auto [_, inserted] = keyword_set_.insert(normalized);
+    if (inserted) {
+        keywords_.push_back(std::move(normalized));
     }
 }
 
@@ -421,7 +346,7 @@ Result<std::unique_ptr<Entity>> EntityFactory::create_base_entity_from_json(cons
 
 namespace EntityUtils {
 // Common articles that should not be keywords
-static const std::unordered_set<std::string> ARTICLES = {"a", "an", "the", "some"};
+static const std::set<std::string> ARTICLES = {"a", "an", "the", "some"};
 
 bool is_valid_keyword(std::string_view keyword) {
     if (keyword.empty() || keyword.length() > MAX_KEYWORD_LENGTH) {
@@ -450,18 +375,20 @@ std::string normalize_keyword(std::string_view keyword) {
     std::string normalized;
     normalized.reserve(keyword.length());
 
-    // Convert to lowercase and trim spaces
+    // Convert to lowercase and simplify separators
     bool in_word = false;
     for (char c : keyword) {
         if (std::isspace(c)) {
-            if (in_word) {
-                normalized.push_back(' ');
-                in_word = false;
-            }
+            c = ' ';
         } else {
-            normalized.push_back(std::tolower(c));
-            in_word = true;
+            c = std::tolower(c);
         }
+        bool is_space = (c == ' ' || c == '-');
+        if (is_space && !in_word) {
+            continue;
+        }
+        normalized.push_back(c);
+        in_word = !is_space;
     }
 
     // Remove trailing space if any
@@ -558,6 +485,37 @@ std::string format_entity_name(std::string_view name, std::string_view short_des
     }
 
     return display_name;
+}
+
+bool matches_target_string(const std::set<std::string> &keywords, std::string_view target) {
+    if (target.empty()) {
+        return false;
+    }
+
+    auto words = EntityUtils::normalize_keyword(target) | std::views::split('-');
+
+    for (const auto &split : words) {
+        std::string word{std::string_view(split)};
+        auto iter = keywords.lower_bound(word);
+        if (iter == keywords.end()) {
+            return false;
+        }
+        if (!iter->starts_with(word)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+std::set<std::string> parse_target_string(std::string_view target) {
+    auto words = EntityUtils::normalize_keyword(target) | std::views::split('-');
+
+    std::set<std::string> parsed;
+    for (const auto &split : words) {
+        parsed.emplace(split.begin(), split.end());
+    }
+    return parsed;
 }
 } // namespace EntityUtils
 
