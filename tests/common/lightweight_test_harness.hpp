@@ -3,9 +3,14 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
-#include <regex>
 #include <string>
 #include <vector>
+
+// Silence spurious warnings in <regex> header
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#include <regex>
+#pragma GCC diagnostic pop
 
 #include <catch2/catch_test_macros.hpp>
 #include <fmt/format.h>
