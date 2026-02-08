@@ -15,6 +15,9 @@ if(ENABLE_SANITIZERS)
     add_link_options(-fsanitize=address,undefined)
 endif()
 
+# disable <regex> in cxxopts to silence compile warnings
+add_compile_options(-DCXXOPTS_NO_REGEX)
+
 # Enable testing support
 enable_testing()
 
@@ -163,6 +166,11 @@ configure_file(
 # =============================================================================
 # Generate database headers / implementations
 # =============================================================================
+if(NOT DEFINED MUDITOR_DIR)
+    set(MUDITOR_DIR ${CMAKE_CURRENT_LIST_DIR}/../muditor)
+endif()
+
+
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 execute_process(
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py --list
@@ -180,7 +188,7 @@ list(FILTER DB_HEADERS INCLUDE REGEX "hpp$")
 add_custom_command(
     OUTPUT ${DB_SOURCES} ${DB_HEADERS}
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/scripts/generate_db_headers.py
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../muditor/packages/db/prisma/schema.prisma
+    DEPENDS ${MUDITOR_DIR}/packages/db/prisma/schema.prisma
             ${CMAKE_CURRENT_SOURCE_DIR}/scripts/generate_db_headers.py
 )
 
