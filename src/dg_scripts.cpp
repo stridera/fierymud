@@ -33,17 +33,20 @@
 /* mob trigger types */
 const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
                             "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
+                            "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "Asleep",
+                            "\n"};
 
 /* obj trigger types */
 const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer", "Get",
                              "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",  "Use",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "\n"};
+                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "UNUSED",
+                             "\n"};
 
 /* wld trigger types */
 const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
                              "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
-                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
+                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "UNUSED",
+                             "\n"};
 
 TrigData *trigger_list = nullptr; /* all attached triggers */
 
@@ -2359,7 +2362,7 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
             break;
 
         if (type == MOB_TRIGGER && !(trig->trigger_type & MTRIG_DEATH)) { /* only death trigs are immune to all tests */
-            if (!AWAKE((CharData *)go)) {
+            if (!check_awake(trig, (CharData *)go)) {
                 /* abort execution and clean up */
                 break;
             }
