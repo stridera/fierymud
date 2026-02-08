@@ -65,6 +65,7 @@ ForEachMacros:
   - foreach
   - Q_FOREACH
   - BOOST_FOREACH
+InsertNewlineAtEOF: true
 IncludeBlocks:   Regroup
 IncludeCategories:
   - Regex:           '<[a-z_]+>'         # C++ standard library (no extension, no path)
