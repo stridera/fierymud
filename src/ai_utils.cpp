@@ -624,12 +624,53 @@ void glorion_distraction(CharData *ch, CharData *glorion) {
         event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, glorion, 0), true, &(ch->events), 0);
     } else {
         /* Glory wins: no attack. */
-        if (random_number(1, 8) == 1) {
+        if (true || random_number(1, 8) == 1) {
             act("$n looks upon $N with awe in $s eyes.", true, ch, 0, glorion, TO_NOTVICT);
             act("$n gazes at you in wonder.", true, ch, 0, glorion, TO_VICT);
             act("You are distracted by $N's unearthly beauty.", true, ch, 0, glorion, TO_CHAR);
         }
     }
+}
+
+std::vector<CharData*> find_glorions(CharData* mob) {
+  std::vector<CharData*> glorions;
+  if (!mob || DECEASED(mob) || !IS_NPC(mob)) {
+      return glorions;
+  }
+
+  for (CharData* tch = world[IN_ROOM(mob)].people; tch; tch = tch->next_in_room) {
+    /* If there are any folks in the room with GLORY, they will
+     * interfere with aggression.  One will be chosen at random,
+     * because there's a chance the mob will attack it.  But no
+     * one else will be. */
+    if (mob != tch && CAN_SEE(mob, tch)) {
+      if (EFF_FLAGGED(tch, EFF_GLORY) && PLAYERALLY(tch)) {
+        glorions.push_back(tch);
+      }
+    }
+  }
+  return glorions;
+}
+
+static bool able_to_fight(CharData* ch, bool no_aggr_check = false) {
+    if (!ch || CH_NROOM(ch) == NOWHERE)
+        return false;
+
+    if (ROOM_FLAGGED(CH_NROOM(ch), ROOM_PEACEFUL))
+        return false;
+
+    if (!IS_NPC(ch) && !EFF_FLAGGED(ch, EFF_BERSERK) && !no_aggr_check) {
+        if (GET_WIMP_LEV(ch) >= GET_HIT(ch))
+            return false;
+        if (GET_AGGR_LEV(ch) <= 0 || GET_AGGR_LEV(ch) > GET_HIT(ch))
+            return false;
+    }
+
+    if (PLR_FLAGGED(ch, PLR_BOUND) || !AWAKE(ch) || EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) ||
+        EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
+        return false;
+
+    return true;
 }
 
 #define MAX_TARGETS 10
@@ -641,41 +682,22 @@ CharData *find_aggr_target(CharData *ch) {
     } targets[MAX_TARGETS + 1];
     int i, j, k, num_targets, chosen_targets;
 
-    CharData *glorion = nullptr;
-    int glorion_count;
-
-    if (!ch || CH_NROOM(ch) == NOWHERE)
+    if (!able_to_fight(ch)) {
         return nullptr;
-
-    if (ROOM_FLAGGED(CH_NROOM(ch), ROOM_PEACEFUL))
-        return nullptr;
-
-    if (!IS_NPC(ch) && !EFF_FLAGGED(ch, EFF_BERSERK)) {
-        if (GET_WIMP_LEV(ch) >= GET_HIT(ch))
-            return nullptr;
-        if (GET_AGGR_LEV(ch) <= 0 || GET_AGGR_LEV(ch) > GET_HIT(ch))
-            return nullptr;
     }
-
-    if (PLR_FLAGGED(ch, PLR_BOUND) || !AWAKE(ch) || EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) ||
-        EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
-        return nullptr;
 
     /* Your intelligence determines how many targets you will evaluate. */
     num_targets = std::max(1, GET_INT(ch) * MAX_TARGETS / 100);
 
     /* Choose #num_targets characters at random */
-    glorion_count = 0;
     for (i = 0, tch = world[IN_ROOM(ch)].people; tch; tch = tch->next_in_room) {
         /* If there are any folks in the room with GLORY, they will
-         * interfere with aggression.  One will be chosen at random,
-         * because there's a chance the mob will attack it.  But no
-         * one else will be. */
+         * interfere with aggression. This check is only done the
+         * first time that a mob is exposed to the spell, so
+         * subsequent aggression checks should fail. */
         if (ch != tch && CAN_SEE(ch, tch)) {
             if (EFF_FLAGGED(tch, EFF_GLORY) && PLAYERALLY(tch)) {
-                glorion_count++;
-                if (random_number(1, glorion_count) == 1)
-                    glorion = tch;
+                return nullptr;
             } else if (is_aggr_to(ch, tch)) {
                 if (i >= num_targets)
                     j = random_number(0, i);
@@ -688,11 +710,6 @@ CharData *find_aggr_target(CharData *ch) {
                 i++;
             }
         }
-    }
-
-    if (glorion_count) {
-        glorion_distraction(ch, glorion);
-        return nullptr;
     }
 
     if (i == 0)
@@ -727,4 +744,50 @@ CharData *find_aggr_target(CharData *ch) {
         return nullptr;
 
     return targets[k].target;
+}
+
+void check_glory(CharData* ch, CharData* caster) {
+    if (!able_to_fight(ch)) {
+        return;
+    }
+    std::vector<CharData*> glorions;
+    CharData* target = caster;
+    if (!caster) {
+        glorions = find_glorions(ch);
+        if (glorions.empty()) {
+            return;
+        }
+        target = glorions[random_number(0, glorions.size() - 1)];
+    }
+    glorion_distraction(ch, target);
+}
+
+void check_glory_around(CharData* ch) {
+    if (!able_to_fight(ch, true)) {
+        return;
+    }
+    for (CharData* tch = world[IN_ROOM(ch)].people; tch; tch = tch->next_in_room) {
+        if (!IS_NPC(tch)) {
+            continue;
+        }
+        check_glory(tch, ch);
+    }
+}
+
+EVENTFUNC(witness_glory_event) {
+    GenericEventData *data = (GenericEventData *)event_obj;
+    CharData *ch = data->ch;
+
+    if (EFF_FLAGGED(ch, EFF_GLORY)) {
+        check_glory_around(ch);
+    } else {
+        check_glory(ch);
+    }
+
+    return EVENT_FINISHED;
+}
+
+void queue_glory_event(CharData* ch) {
+    cancel_event(ch->events, EVENT_WITNESS_GLORY);
+    event_create(EVENT_WITNESS_GLORY, witness_glory_event, mkgenericevent(ch, nullptr, 0), true, &(ch->events), 1 RL_SEC);
 }

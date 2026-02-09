@@ -14,6 +14,7 @@
 #include "skills.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
+#include <vector>
 
 #define MOB_ASSISTER(ch)                                                                                               \
     (!MOB_FLAGGED((ch), MOB_PEACEFUL) &&                                                                               \
@@ -34,9 +35,14 @@ void perform_remove(CharData *ch, int pos);
 int appraise_item(CharData *ch, ObjData *obj);
 bool will_assist(CharData *ch, CharData *vict);
 CharData *find_aggr_target(CharData *ch);
-void glorion_distraction(CharData *ch, CharData *glorion);
 int appraise_opponent(CharData *ch, CharData *vict);
 bool is_aggr_to(CharData *ch, CharData *tch);
+
+std::vector<CharData*> find_glorions(CharData* mob);
+void glorion_distraction(CharData *ch, CharData *glorion);
+void check_glory(CharData* ch, CharData* caster = nullptr);
+void check_glory_around(CharData* ch);
+void queue_glory_event(CharData* ch);
 
 /* Class AI functions */
 bool sorcerer_ai_action(CharData *ch, CharData *victim);
