@@ -12,6 +12,7 @@
 
 #include "magic.hpp"
 
+#include "ai.hpp"
 #include "casting.hpp"
 #include "chars.hpp"
 #include "charsize.hpp"
@@ -3347,6 +3348,10 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act(to_room, true, ch, 0, victim, TO_NOTVICT);
             if (to_char == nullptr && ch != victim)
                 act(to_room, false, ch, 0, victim, TO_CHAR);
+        }
+
+        if (spellnum == SPELL_GLORY) {
+            queue_glory_event(ch);
         }
     } else {
         /* Add generic refresh message */

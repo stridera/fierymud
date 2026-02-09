@@ -12,6 +12,7 @@
 
 #include "act.hpp"
 
+#include "ai.hpp"
 #include "board.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
@@ -599,6 +600,10 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
      * gets added beyond this point. The trigger may kill the actor. */
     if (DECEASED(actor))
         return true;
+
+    if (was_in != IN_ROOM(actor)) {
+        queue_glory_event(actor);
+    }
 
     return true;
 }
@@ -1734,7 +1739,7 @@ ACMD(do_drag) {
             act("&3Your meditation is interrupted as %N grabs you.&0", false, ch, 0, 0, TO_CHAR);
             if (IS_NPC(ch))
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
-            else 
+            else
                 REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         }
 
