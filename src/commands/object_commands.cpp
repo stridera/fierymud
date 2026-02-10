@@ -1707,13 +1707,16 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
         return std::unexpected(Errors::InvalidState("No actor context"));
     }
 
-    // Find food item in inventory
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    bool is_god = player && player->is_god();
+
+    // Find item in inventory - gods can eat anything
     auto inventory_items = ctx.actor->inventory().get_all_items();
     std::shared_ptr<Object> food_item = nullptr;
 
     for (const auto &obj : inventory_items) {
         if (obj && obj->matches_target_string(ctx.arg(0))) {
-            if (obj->type() == ObjectType::Food || obj->type() == ObjectType::Potion) {
+            if (is_god || obj->type() == ObjectType::Food || obj->type() == ObjectType::Potion) {
                 food_item = obj;
                 break;
             }
@@ -1723,6 +1726,18 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
     if (!food_item) {
         ctx.send_error(fmt::format("You don't have any food called '{}'.", ctx.arg(0)));
         return CommandResult::InvalidTarget;
+    }
+
+    // Gods can eat anything - just destroy it
+    if (is_god && food_item->type() != ObjectType::Food && food_item->type() != ObjectType::Potion) {
+        if (!ctx.actor->inventory().remove_item(food_item)) {
+            ctx.send_error("Failed to consume the item.");
+            return CommandResult::ResourceError;
+        }
+        ctx.send_success(fmt::format("You eat {}.", ctx.format_object_name(food_item)));
+        ctx.send_to_room(fmt::format("{} eats {}.", ctx.actor->display_name(), ctx.format_object_name(food_item)),
+                         true);
+        return CommandResult::Success;
     }
 
     // Check if food is spoiled (timer expired)
