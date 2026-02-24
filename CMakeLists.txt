@@ -89,7 +89,11 @@ if(lua_ADDED)
     add_library(lua STATIC ${LUA_SOURCES})
     target_include_directories(lua PUBLIC ${lua_SOURCE_DIR})
     target_compile_definitions(lua PUBLIC LUA_USE_POSIX LUA_USE_DLOPEN)
-    set_target_properties(lua PROPERTIES C_STANDARD 11)
+    # Compile Lua as C++ so lua_yield/luaL_error use throw instead of longjmp.
+    # longjmp through sol2's C++ frames causes ASAN stack-buffer-overflow because
+    # it bypasses stack unwinding and leaves ASAN shadow memory inconsistent.
+    set_source_files_properties(${LUA_SOURCES} PROPERTIES LANGUAGE CXX)
+    set_target_properties(lua PROPERTIES LINKER_LANGUAGE CXX)
 endif()
 
 # Sol3 - Modern C++ Lua bindings (header-only)
@@ -332,6 +336,7 @@ target_link_libraries(fierymud_core PUBLIC
 target_compile_definitions(fierymud_core PUBLIC
     SPDLOG_COMPILED_LIB
     SPDLOG_FMT_EXTERNAL
+    SOL_USING_CXX_LUA=1
 )
 
 target_compile_options(fierymud_core PRIVATE

@@ -159,8 +159,32 @@ void CoroutineScheduler::resume_coroutine(std::uint64_t coroutine_id) {
     status = pending.coroutine.status();
     if (status == sol::call_status::yielded) {
         // Coroutine yielded again - wait() was called again
-        // The wait() function will reschedule this coroutine
-        Log::debug("Coroutine {} yielded again", coroutine_id);
+        // Extract the new delay and create a new timer
+        double delay = MIN_DELAY_SECONDS;
+        if (result.valid() && result.return_count() > 0) {
+            delay = result.get<double>(0);
+        }
+        delay = std::clamp(delay, MIN_DELAY_SECONDS, MAX_DELAY_SECONDS);
+
+        // Create a new timer for the next resume
+        auto timer = std::make_shared<asio::steady_timer>(*io_context_,
+                                                          std::chrono::milliseconds(static_cast<long>(delay * 1000)));
+        pending.timer = timer;
+
+        timer->async_wait([this, coroutine_id](const asio::error_code &ec) {
+            if (ec) {
+                if (ec != asio::error::operation_aborted) {
+                    Log::error("Coroutine timer error: {}", ec.message());
+                }
+                return;
+            }
+            if (!initialized_ || !strand_) {
+                return;
+            }
+            asio::post(*strand_, [this, coroutine_id]() { resume_coroutine(coroutine_id); });
+        });
+
+        Log::debug("Coroutine {} yielded again, rescheduled for {} seconds", coroutine_id, delay);
     } else {
         // Coroutine completed
         Log::debug("Coroutine {} completed", coroutine_id);
