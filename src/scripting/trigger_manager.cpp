@@ -341,6 +341,13 @@ void TriggerManager::setup_lua_context(sol::state_view lua, const ScriptContext 
         lua["damage"] = *context.amount(); // Alias for ATTACK/DEFEND triggers
     }
 
+    // Expose trigger identity for error reporting in binding callbacks
+    if (context.trigger()) {
+        lua["__trigger_zone_id"] = context.trigger()->zone_id.value_or(0);
+        lua["__trigger_id"] = context.trigger()->id;
+        lua["__trigger_name"] = context.trigger()->name;
+    }
+
     // Load trigger-specific variables from JSON
     if (context.trigger() && !context.trigger()->variables.empty()) {
         lua["vars"] = lua.create_table();

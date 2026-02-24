@@ -13,8 +13,14 @@
 #include "core/skill_system.hpp"
 #include "core/spell_system.hpp"
 #include "database/generated/db_mob.hpp"
+#include "lua_script_helpers.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
+
+// sol2 inheritance metadata for shared_ptr<Derived> → shared_ptr<Base> conversion
+SOL_BASE_CLASSES(Mobile, Actor);
+SOL_BASE_CLASSES(Player, Actor);
+SOL_DERIVED_CLASSES(Actor, Mobile, Player);
 
 namespace FieryMUD {
 
@@ -171,14 +177,15 @@ void register_actor_bindings(sol::state &lua) {
         // Usage: actor:spawn_object(zone_id, local_id)
         // Returns the object if successful, nil otherwise
         "spawn_object",
-        [](std::shared_ptr<Actor> self, int zone_id, int local_id) -> std::shared_ptr<Object> {
+        [](std::shared_ptr<Actor> self, int zone_id, int local_id, sol::this_state ts) -> std::shared_ptr<Object> {
             if (!self)
                 return nullptr;
 
             EntityId prototype_id(zone_id, local_id);
             auto object = WorldManager::instance().create_object_instance(prototype_id);
             if (!object) {
-                spdlog::warn("actor:spawn_object: Failed to create object {}:{}", zone_id, local_id);
+                spdlog::warn("actor:spawn_object: object {}:{} not found (in {})", zone_id, local_id,
+                             trigger_context(ts));
                 return nullptr;
             }
 

@@ -11,6 +11,7 @@
 #include "core/mobile.hpp"
 #include "core/object.hpp"
 #include "lua_exit.hpp"
+#include "lua_script_helpers.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
 
@@ -223,14 +224,15 @@ void register_room_bindings(sol::state &lua) {
         // Usage: room:spawn_mobile(zone_id, local_id)
         // Returns the mobile if successful, nil otherwise
         "spawn_mobile",
-        [](std::shared_ptr<Room> room, int zone_id, int local_id) -> std::shared_ptr<Mobile> {
+        [](std::shared_ptr<Room> room, int zone_id, int local_id, sol::this_state ts) -> std::shared_ptr<Mobile> {
             if (!room)
                 return nullptr;
 
             EntityId prototype_id(zone_id, local_id);
             auto mobile = WorldManager::instance().spawn_mobile_to_room(prototype_id, room->id());
             if (!mobile) {
-                spdlog::warn("room:spawn_mobile: Failed to spawn mobile {}:{}", zone_id, local_id);
+                spdlog::warn("room:spawn_mobile: mobile {}:{} not found (in {})", zone_id, local_id,
+                             trigger_context(ts));
                 return nullptr;
             }
 
@@ -243,14 +245,15 @@ void register_room_bindings(sol::state &lua) {
         // Usage: room:spawn_object(zone_id, local_id)
         // Returns the object if successful, nil otherwise
         "spawn_object",
-        [](std::shared_ptr<Room> room, int zone_id, int local_id) -> std::shared_ptr<Object> {
+        [](std::shared_ptr<Room> room, int zone_id, int local_id, sol::this_state ts) -> std::shared_ptr<Object> {
             if (!room)
                 return nullptr;
 
             EntityId prototype_id(zone_id, local_id);
             auto object = WorldManager::instance().create_object_instance(prototype_id);
             if (!object) {
-                spdlog::warn("room:spawn_object: Failed to create object {}:{}", zone_id, local_id);
+                spdlog::warn("room:spawn_object: object {}:{} not found (in {})", zone_id, local_id,
+                             trigger_context(ts));
                 return nullptr;
             }
 
