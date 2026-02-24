@@ -1,11 +1,10 @@
 #include "lua_object.hpp"
 
-#include "../../core/object.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
 #include <fmt/format.h>
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
+
+#include "../../core/object.hpp"
 
 namespace FieryMUD {
 

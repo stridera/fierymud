@@ -1,5 +1,12 @@
 #include "world_manager.hpp"
 
+#include <algorithm>
+#include <fstream>
+#include <queue>
+#include <random>
+#include <unordered_set>
+
+#include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
 
 #include "core/actor.hpp"
@@ -20,14 +27,6 @@
 #include "templates.hpp"
 #include "weather.hpp"
 #include "zone.hpp"
-#define SOL_ALL_SAFETIES_ON 1
-#include <algorithm>
-#include <fstream>
-#include <queue>
-#include <random>
-#include <unordered_set>
-
-#include <sol/sol.hpp>
 
 // World manager constants
 namespace {

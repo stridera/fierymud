@@ -1,11 +1,10 @@
 #include "lua_combat.hpp"
 
-#include "../../core/actor.hpp"
-#include "../../core/combat.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
+
+#include "../../core/actor.hpp"
+#include "../../core/combat.hpp"
 
 namespace FieryMUD {
 

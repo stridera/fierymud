@@ -1,4 +1,3 @@
-#define SOL_ALL_SAFETIES_ON 1
 #include "lua_timers.hpp"
 
 #include <sol/sol.hpp>

@@ -1,13 +1,12 @@
 #include "lua_vars.hpp"
 
+#include <sol/sol.hpp>
+#include <spdlog/spdlog.h>
+
 #include "../../core/actor.hpp"
 #include "../../core/entity_var_store.hpp"
 #include "../../core/object.hpp"
 #include "../../world/room.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
-#include <sol/sol.hpp>
-#include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 

@@ -1,5 +1,10 @@
 #include "lua_actor.hpp"
 
+#include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
+#include <sol/sol.hpp>
+#include <spdlog/spdlog.h>
+
 #include "commands/command_system.hpp"
 #include "core/actor.hpp"
 #include "core/combat.hpp"
@@ -10,12 +15,6 @@
 #include "database/generated/db_mob.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
-#include <fmt/format.h>
-#include <magic_enum/magic_enum.hpp>
-#include <sol/sol.hpp>
-#include <spdlog/spdlog.h>
 
 namespace FieryMUD {
 

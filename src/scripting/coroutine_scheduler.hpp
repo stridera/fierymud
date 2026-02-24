@@ -7,9 +7,6 @@
 
 #pragma once
 
-#include "script_context.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
 #include <atomic>
 #include <chrono>
 #include <cstdint>
@@ -20,6 +17,8 @@
 #include <sol/coroutine.hpp>
 #include <sol/forward.hpp>
 #include <sol/thread.hpp>
+
+#include "script_context.hpp"
 
 namespace FieryMUD {
 

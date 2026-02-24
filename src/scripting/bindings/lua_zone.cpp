@@ -1,10 +1,9 @@
 #include "lua_zone.hpp"
 
-#include "../../world/world_manager.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
+
+#include "../../world/world_manager.hpp"
 
 namespace FieryMUD {
 

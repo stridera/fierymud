@@ -337,6 +337,7 @@ target_compile_definitions(fierymud_core PUBLIC
     SPDLOG_COMPILED_LIB
     SPDLOG_FMT_EXTERNAL
     SOL_USING_CXX_LUA=1
+    SOL_ALL_SAFETIES_ON=1
 )
 
 target_compile_options(fierymud_core PRIVATE
