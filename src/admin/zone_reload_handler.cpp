@@ -44,7 +44,7 @@ void register_zone_reload_handlers(AdminServer &admin_server, WorldManager &worl
     admin_server.register_handler("/api/admin/zone-status",
                                   [&world_manager]([[maybe_unused]] const std::string &path,
                                                    [[maybe_unused]] const std::string &body) -> std::string {
-                                      spdlog::info("Received zone status request");
+                                      spdlog::debug("Received zone status request");
 
                                       try {
                                           json zones_json = json::array();

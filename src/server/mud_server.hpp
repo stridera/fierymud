@@ -144,6 +144,7 @@ class ModernMUDServer {
 
     // Statistics and monitoring
     const ServerStats &stats() const { return stats_; }
+    void update_stats();
     std::string get_status_report() const;
     std::string get_performance_report() const;
 
@@ -220,7 +221,6 @@ class ModernMUDServer {
     // Helper methods
     void set_state(ServerState new_state);
     void log_state_change(ServerState old_state, ServerState new_state);
-    void update_stats();
     Result<void> validate_directories();
     Result<void> create_default_world();
 

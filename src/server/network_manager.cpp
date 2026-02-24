@@ -122,7 +122,19 @@ void NetworkManager::stop() {
     Log::info("NetworkManager stopped");
 }
 
-size_t NetworkManager::connection_count() const { return connections_.size(); }
+size_t NetworkManager::connection_count() const {
+    std::lock_guard<std::mutex> lock(connections_mutex_);
+    size_t count = 0;
+    for (const auto &conn : connections_) {
+        // Only count connections with an active socket (excludes Linkdead and Disconnected)
+        if (conn->state() == ConnectionState::Connected || conn->state() == ConnectionState::Login ||
+            conn->state() == ConnectionState::Playing || conn->state() == ConnectionState::AFK ||
+            conn->state() == ConnectionState::Reconnecting) {
+            ++count;
+        }
+    }
+    return count;
+}
 
 std::vector<std::shared_ptr<Player>> NetworkManager::get_connected_players() const {
     std::vector<std::shared_ptr<Player>> players;
@@ -138,7 +150,15 @@ std::vector<std::shared_ptr<Player>> NetworkManager::get_connected_players() con
 
 bool NetworkManager::is_tls_enabled() const { return tls_context_manager_ && tls_context_manager_->is_initialized(); }
 
-// Removed cleanup_disconnected_connections() - linkdead connections should not be auto-cleaned
+void NetworkManager::remove_connection(std::shared_ptr<PlayerConnection> connection) {
+    std::lock_guard<std::mutex> lock(connections_mutex_);
+    auto it = std::find(connections_.begin(), connections_.end(), connection);
+    if (it != connections_.end()) {
+        connections_.erase(it);
+        Log::debug("Removed disconnected connection from NetworkManager. Active connections: {}", connections_.size());
+    }
+}
+
 // Removed find_connection_by_player_name() - only internal unlocked version needed
 
 std::shared_ptr<PlayerConnection>
@@ -226,6 +246,9 @@ void NetworkManager::handle_accept(std::shared_ptr<PlayerConnection> connection,
     if (!error) {
         Log::info("New connection accepted from {}", connection->socket().remote_endpoint().address().to_string());
 
+        // Disable Nagle's algorithm for low-latency interactive traffic
+        connection->socket().set_option(asio::ip::tcp::no_delay(true));
+
         // Add to connection list
         {
             std::lock_guard<std::mutex> lock(connections_mutex_);
@@ -276,6 +299,10 @@ void NetworkManager::handle_tls_accept(std::shared_ptr<PlayerConnection> connect
 
     if (!error) {
         Log::info("New TLS connection accepted from {}", connection->socket().remote_endpoint().address().to_string());
+
+        // Disable Nagle's algorithm - critical for TLS handshake performance
+        // (multiple small round-trip packets benefit from immediate sending)
+        connection->socket().set_option(asio::ip::tcp::no_delay(true));
 
         // Add to connection list
         {

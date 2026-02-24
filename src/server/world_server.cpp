@@ -562,9 +562,8 @@ void WorldServer::handle_player_reconnection(std::shared_ptr<PlayerConnection> o
             active_connections_.erase(active_it);
         }
 
-        // Add new connection with the player as its actor
+        // Map new connection to the player (it's already in active_connections_ from handle_player_connection)
         connection_actors_[new_connection] = player;
-        active_connections_.push_back(new_connection);
 
         Log::info("Player '{}' reconnected. Online players: {}", player->name(), connection_actors_.size());
     });

@@ -18,7 +18,7 @@ void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_se
         "/api/admin/players",
         [&mud_server]([[maybe_unused]] const std::string &path,
                       [[maybe_unused]] const std::string &body) -> std::string {
-            spdlog::info("Received players list request");
+            spdlog::debug("Received players list request");
 
             try {
                 auto players = mud_server.get_online_players();
@@ -32,6 +32,7 @@ void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_se
                                            {"class", player->player_class()},
                                            {"race", std::string(player->race())},
                                            {"room_id", room ? room->id().local_id() : 0},
+                                           {"room_zone_id", room ? room->id().zone_id() : 0},
                                            {"god_level", player->god_level()},
                                            {"is_linkdead", player->is_linkdead()}};
                         players_json.push_back(player_obj);
@@ -181,9 +182,10 @@ void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_se
     admin_server.register_handler("/api/admin/stats",
                                   [&mud_server]([[maybe_unused]] const std::string &path,
                                                 [[maybe_unused]] const std::string &body) -> std::string {
-                                      spdlog::info("Received stats request");
+                                      spdlog::debug("Received stats request");
 
                                       try {
+                                          mud_server.update_stats();
                                           const auto &stats = mud_server.stats();
 
                                           json response = {{"success", true},

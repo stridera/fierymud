@@ -41,6 +41,9 @@ class NetworkManager {
     // Reconnection support
     bool handle_reconnection(std::shared_ptr<PlayerConnection> new_connection, std::string_view player_name);
 
+    // Remove a fully disconnected connection from tracking
+    void remove_connection(std::shared_ptr<PlayerConnection> connection);
+
   private:
     void start_accept();
     void handle_accept(std::shared_ptr<PlayerConnection> connection, const asio::error_code &error);

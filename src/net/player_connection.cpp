@@ -766,7 +766,19 @@ PlayerConnection::PlayerConnection(asio::io_context &io_context, std::shared_ptr
     connection_socket_ = std::make_unique<TLSSocket>(asio::ip::tcp::socket(io_context), tls_manager.get_context());
 }
 
-PlayerConnection::~PlayerConnection() { cleanup_connection(); }
+PlayerConnection::~PlayerConnection() {
+    // Only do local cleanup in the destructor — shared_from_this() is illegal here
+    // because the weak_ptr is already expired. The full cleanup_connection() with
+    // remove_player_connection/remove_connection should have been called earlier
+    // via force_disconnect().
+    if (connection_socket_ && connection_socket_->is_open()) {
+        connection_socket_->close();
+    }
+    idle_check_timer_.cancel();
+    output_queue_.clear();
+    player_.reset();
+    login_system_.reset();
+}
 
 void PlayerConnection::start() {
     connect_time_ = std::chrono::steady_clock::now();
@@ -814,6 +826,9 @@ void PlayerConnection::start() {
 
 void PlayerConnection::handle_connect() {
     transition_to(ConnectionState::Login);
+
+    // Start idle timer immediately to enforce LOGIN_TIMEOUT for connections in Login state
+    start_idle_timer();
 
     // Register this connection with WorldServer for game loop processing
     // (timers, casting, combat, etc.) - must happen AFTER TLS handshake
@@ -992,6 +1007,13 @@ void PlayerConnection::process_input(std::string_view input) {
             send_message("World server not available.");
         }
         // Prompt is sent by WorldServer::send_prompt_to_actor after command processing
+    } else if (state_ == ConnectionState::Linkdead && player_) {
+        // Linkdead player sent input - recover from linkdead and process command
+        Log::info("Linkdead player '{}' recovered with input", player_->name());
+        set_linkdead(false);
+        if (world_server_) {
+            world_server_->process_command(player_, input);
+        }
     } else if (state_ == ConnectionState::AFK && player_) {
         // AFK players can still execute commands, this brings them back
         Log::debug("AFK player '{}' returning with command", player_->name());
@@ -1096,6 +1118,10 @@ void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
 
 void PlayerConnection::attach_player(std::shared_ptr<Player> player) {
     player_ = std::move(player);
+
+    // Clear linkdead state on the player — they're back on a live connection
+    player_->set_linkdead(false);
+    is_linkdead_ = false;
 
     // Set the player's output interface to this connection
     player_->set_output(shared_from_this());
@@ -1351,6 +1377,12 @@ void PlayerConnection::cleanup_connection() {
             // Normal disconnect: remove this connection from WorldServer tracking
             world_server_->remove_player_connection(shared_from_this());
         }
+    }
+
+    // Remove from NetworkManager's connection list so connection_count() stays accurate.
+    // Skip if replaced — handle_reconnection() already removed us and added the new connection.
+    if (!was_replaced_ && network_manager_) {
+        network_manager_->remove_connection(shared_from_this());
     }
 
     player_.reset();

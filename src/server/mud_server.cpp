@@ -806,9 +806,10 @@ Result<void> ModernMUDServer::backup_data() {
 }
 
 void ModernMUDServer::update_stats() {
-    // Update current connection count
-    if (network_manager_) {
-        stats_.current_connections = network_manager_->connection_count();
+    // Update current connection count from WorldServer's active connections
+    // (matches the `users` command — only counts connections tracked by the game)
+    if (world_server_) {
+        stats_.current_connections = world_server_->active_player_count();
     }
 
     // Update memory and performance stats
