@@ -4,11 +4,13 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <future>
 #include <sstream>
 
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
 
+#include "commands/command_system.hpp"
 #include "configuration_manager.hpp"
 #include "core/actor.hpp"
 #include "core/class_config.hpp"
@@ -18,6 +20,8 @@
 #include "database/config_loader.hpp"
 #include "database/connection_pool.hpp"
 #include "database/database_config.hpp"
+#include "events/event_publisher.hpp"
+#include "events/event_types.hpp"
 #include "game/player_output.hpp"
 #include "network_manager.hpp"
 #include "persistence_manager.hpp"
@@ -334,11 +338,7 @@ Result<void> ModernMUDServer::start() {
         io_thread_ = std::thread([this]() {
             Log::info("I/O context thread started");
             try {
-                // Use run() but check for stopped periodically
-                while (!io_context_.stopped()) {
-                    // Run handlers for up to 100ms, then check if stopped
-                    io_context_.run_for(std::chrono::milliseconds(100));
-                }
+                io_context_.run();
             } catch (const std::exception &e) {
                 Log::error("I/O context error: {}", e.what());
             }
@@ -348,14 +348,13 @@ Result<void> ModernMUDServer::start() {
         // Give I/O thread a moment to start
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
-        // Now start world server (uses strand operations)
+        // Start world server
         auto world_result = world_server_->start();
         if (!world_result) {
             set_state(ServerState::Error);
             return world_result;
         }
 
-        // Start networking
         auto network_result = network_manager_->start();
         if (!network_result) {
             set_state(ServerState::Error);
@@ -745,6 +744,88 @@ void ModernMUDServer::kick_player(std::string_view player_name, std::string_view
     }
 
     Log::info("Player {} kicked. Reason: {}", player_name, reason.empty() ? "none given" : std::string(reason));
+}
+
+ModernMUDServer::CommandExecutionResult ModernMUDServer::execute_command(std::string_view executor_name,
+                                                                         std::string_view command) {
+    // Parse the command into verb + arguments
+    auto trimmed = command;
+    while (!trimmed.empty() && std::isspace(static_cast<unsigned char>(trimmed.front()))) {
+        trimmed.remove_prefix(1);
+    }
+
+    auto space_pos = trimmed.find(' ');
+    std::string_view verb = (space_pos != std::string_view::npos) ? trimmed.substr(0, space_pos) : trimmed;
+    std::string_view args = (space_pos != std::string_view::npos) ? trimmed.substr(space_pos + 1) : std::string_view{};
+
+    // Handle chat commands — these don't require the player to be online
+    if (verb == "gossip" || verb == "wiznet") {
+        if (args.empty()) {
+            return {false, fmt::format("{} what?", verb), std::string(executor_name)};
+        }
+
+        // Format the message like the in-game command would
+        // gossip: "<magenta>Name gossips, 'message'</>"
+        // wiznet: "<cyan>Name wiznet, 'message'</>"
+        std::string_view color = (verb == "gossip") ? "magenta" : "cyan";
+        std::string formatted =
+            fmt::format("<{}>{}{}gossips, '{}'</>", color, executor_name, (verb == "wiznet") ? " (web) " : " ", args);
+
+        // Broadcast to all online players
+        broadcast_message(formatted);
+
+        // Publish to event bridge so it shows in Muditor
+        auto event_type = (verb == "gossip") ? fierymud::events::GameEventType::CHAT_GOSSIP
+                                             : fierymud::events::GameEventType::CHAT_OOC;
+        fierymud::events::EventPublisher::instance().publish_chat(event_type, executor_name, args);
+
+        Log::info("{} (web) {}: {}", executor_name, verb, args);
+        return {true, fmt::format("Message sent via {}", verb), std::string(executor_name)};
+    }
+
+    // For non-chat commands, require the player to be online
+    auto player = find_player(executor_name);
+    if (!player) {
+        return {false, fmt::format("Player '{}' not found online", executor_name), std::string(executor_name)};
+    }
+
+    auto *ws = WorldServer::instance();
+    if (!ws) {
+        return {false, "World server not available", std::string(executor_name)};
+    }
+
+    // Use a promise/future to synchronously wait for the strand to execute the command
+    auto promise = std::make_shared<std::promise<CommandExecutionResult>>();
+    auto future = promise->get_future();
+
+    auto actor = std::static_pointer_cast<Actor>(player);
+    std::string cmd_str(command);
+    std::string exec_name(executor_name);
+
+    asio::post(ws->get_strand(), [ws, actor, cmd_str, exec_name, promise]() {
+        auto *cmd_system = ws->get_command_system();
+        if (!cmd_system) {
+            promise->set_value({false, "Command system not available", exec_name});
+            return;
+        }
+
+        auto result = cmd_system->execute_command(actor, cmd_str);
+        if (result) {
+            promise->set_value({true,
+                                fmt::format("Command '{}' executed successfully ({})", cmd_str,
+                                            CommandSystemUtils::result_to_string(*result)),
+                                exec_name});
+        } else {
+            promise->set_value({false, fmt::format("Command failed: {}", result.error().message), exec_name});
+        }
+    });
+
+    auto status = future.wait_for(std::chrono::seconds(5));
+    if (status == std::future_status::timeout) {
+        return {false, "Command execution timed out", std::string(executor_name)};
+    }
+
+    return future.get();
 }
 
 void ModernMUDServer::shutdown_networking() {

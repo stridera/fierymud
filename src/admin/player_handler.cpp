@@ -69,13 +69,10 @@ void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_se
 
                 spdlog::info("Executing command from {}: {}", executor, command);
 
-                // Execute command through the server
-                // TODO: Implement command execution through CommandSystem
-                // For now, we'll return a placeholder response
-                json response = {{"success", true},
-                                 {"message", fmt::format("Command '{}' queued for execution", command)},
-                                 {"executor", executor},
-                                 {"note", "Full command execution integration pending"}};
+                auto result = mud_server.execute_command(executor, command);
+
+                json response = {
+                    {"success", result.success}, {"message", result.message}, {"executor", result.executor}};
 
                 return response.dump();
 

@@ -71,7 +71,6 @@ struct ServerConfig {
 
     // Debugging
     bool enable_debug_commands = false;
-    std::string admin_password = "changeme";
 
     // Logging settings
     std::string log_level = "info";
@@ -157,6 +156,27 @@ class ModernMUDServer {
     void broadcast_message(std::string_view message);
     void kick_player(std::string_view player_name, std::string_view reason = "");
     void shutdown_with_countdown(std::chrono::seconds countdown);
+
+    /**
+     * Execute a game command via the admin API.
+     *
+     * For chat commands (gossip, wiznet), broadcasts the message to all online
+     * players and publishes to the event bridge. The executor does not need to
+     * be logged in.
+     *
+     * For other commands, the executor must be an online player and the command
+     * is dispatched through the CommandSystem on the world strand.
+     *
+     * @param executor_name Name of the character executing the command
+     * @param command The full command string (e.g., "gossip Hello everyone!")
+     * @return success flag, result message, and the executor name
+     */
+    struct CommandExecutionResult {
+        bool success = false;
+        std::string message;
+        std::string executor;
+    };
+    CommandExecutionResult execute_command(std::string_view executor_name, std::string_view command);
 
     // Data management
     Result<void> save_all_data();
