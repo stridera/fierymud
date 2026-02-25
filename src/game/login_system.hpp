@@ -7,6 +7,9 @@
 #include <tuple>
 #include <vector>
 
+#include <asio/io_context.hpp>
+#include <asio/steady_timer.hpp>
+
 #include "core/ids.hpp"
 #include "core/result.hpp"
 #include "database/generated/db_character.hpp"
@@ -36,8 +39,9 @@ enum class LoginState {
     Connecting, // Connection established, waiting for start_login()
 
     // Account-based login flow
-    GetAccount,         // Asking for account username or email
+    GetAccount,         // Asking for account email
     GetAccountPassword, // Asking for account password
+    AwaitLoginApproval, // Waiting for Muditor approval of passwordless login
     SelectCharacter,    // Showing character selection menu
 
     // Legacy character-based login (also used for character creation)
@@ -84,11 +88,14 @@ class LoginSystem {
     using PlayerLoadedCallback = std::function<void(std::shared_ptr<Player>)>;
 
     explicit LoginSystem(std::shared_ptr<PlayerConnection> connection);
-    ~LoginSystem() = default;
+    ~LoginSystem();
 
     // State machine control
     void start_login();
     void process_input(std::string_view input);
+
+    // State queries
+    bool is_awaiting_approval() const { return state_ == LoginState::AwaitLoginApproval; }
 
     // Callbacks
     void set_player_loaded_callback(PlayerLoadedCallback callback) { player_loaded_callback_ = std::move(callback); }
@@ -97,6 +104,7 @@ class LoginSystem {
     // Account-based login handlers
     void handle_get_account(std::string_view input);
     void handle_get_account_password(std::string_view input);
+    void handle_await_login_approval(std::string_view input);
     void handle_select_character(std::string_view input);
 
     // Legacy/character creation handlers
@@ -108,6 +116,12 @@ class LoginSystem {
     void handle_select_class(std::string_view input);
     void handle_select_race(std::string_view input);
     void handle_confirm_creation(std::string_view input);
+
+    // Login request and approval polling helpers
+    void create_login_request_and_poll();
+    void start_approval_poll();
+    void check_approval_status();
+    void cancel_approval_poll();
 
     // Helper methods
     void transition_to(LoginState new_state);
@@ -125,8 +139,8 @@ class LoginSystem {
     void disconnect_with_message(std::string_view message);
 
     // User/account management
-    Result<bool> user_exists(std::string_view username_or_email);
-    Result<bool> verify_user(std::string_view username_or_email, std::string_view password);
+    Result<bool> user_exists(std::string_view email);
+    Result<bool> verify_user(std::string_view email, std::string_view password);
     void load_user_characters();
 
     // Character management
@@ -162,8 +176,12 @@ class LoginSystem {
     std::shared_ptr<Player> player_;
 
     // User/account state
-    std::string user_id_;      // UUID of logged-in user
-    std::string account_name_; // Username or email used to login
+    std::string user_id_;                                // UUID of logged-in user
+    std::string account_name_;                           // Email used to login
+    std::string account_display_name_;                   // Display name of logged-in user
+    bool has_password_{false};                           // Whether the account has a password set
+    std::string pending_login_request_id_;               // ID of active login request (passwordless flow)
+    std::unique_ptr<asio::steady_timer> approval_timer_; // Auto-poll timer for login approval
     std::vector<std::tuple<std::string, std::string, int, std::string>> user_characters_;
     // Characters: (id, name, level, class)
 

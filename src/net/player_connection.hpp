@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include <atomic>
 #include <chrono>
 #include <deque>
 #include <memory>
@@ -172,9 +173,11 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     bool is_tls_connection() const;
 
     // State queries
-    ConnectionState state() const { return state_; }
-    bool is_connected() const override { return state_ != ConnectionState::Disconnected; }
-    bool is_playing() const { return state_ == ConnectionState::Playing; }
+    ConnectionState state() const { return state_.load(std::memory_order_acquire); }
+    bool is_connected() const override {
+        return state_.load(std::memory_order_acquire) != ConnectionState::Disconnected;
+    }
+    bool is_playing() const { return state_.load(std::memory_order_acquire) == ConnectionState::Playing; }
     bool has_player() const { return player_ != nullptr; }
 
     // Enhanced session state queries
@@ -223,6 +226,9 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
 
     // Network manager access for reconnection handling
     NetworkManager *get_network_manager() const { return network_manager_; }
+
+    // IO context access for subsystems that need timers
+    asio::io_context &io_context() { return io_context_; }
 
     // Callbacks
     void set_disconnect_callback(DisconnectCallback callback) { disconnect_callback_ = std::move(callback); }
@@ -279,8 +285,8 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     GMCPHandler gmcp_handler_;
     std::unique_ptr<LoginSystem> login_system_;
 
-    // Connection state
-    ConnectionState state_{ConnectionState::Connected};
+    // Connection state (atomic — read by IO thread in handle_read, written by main thread in force_disconnect)
+    std::atomic<ConnectionState> state_{ConnectionState::Connected};
     std::shared_ptr<Player> player_;
     std::chrono::steady_clock::time_point connect_time_;
     std::chrono::system_clock::time_point login_time_; // When player successfully logged in
@@ -297,9 +303,10 @@ class PlayerConnection : public std::enable_shared_from_this<PlayerConnection>, 
     // Connection limits and timeouts (declared first as some are used below)
     static constexpr std::chrono::seconds TLS_HANDSHAKE_TIMEOUT{30}; // 30 seconds for TLS handshake
     static constexpr std::chrono::seconds LOGIN_TIMEOUT{180};        // 3 minutes
-    static constexpr std::chrono::seconds IDLE_TIMEOUT{1800};        // 30 minutes
-    static constexpr std::chrono::seconds AFK_TIMEOUT{900};          // 15 minutes for AFK detection
-    static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180};     // 3 minutes before going linkdead
+    static constexpr std::chrono::seconds APPROVAL_TIMEOUT{330}; // 5.5 minutes (login approval requests expire after 5)
+    static constexpr std::chrono::seconds IDLE_TIMEOUT{1800};    // 30 minutes
+    static constexpr std::chrono::seconds AFK_TIMEOUT{900};      // 15 minutes for AFK detection
+    static constexpr std::chrono::seconds LINKDEAD_TIMEOUT{180}; // 3 minutes before going linkdead
     static constexpr size_t MAX_OUTPUT_QUEUE_SIZE{500};
     static constexpr size_t MAX_INPUT_LINE_LENGTH{512};
     static constexpr size_t MAX_TELNET_SUBNEG_LENGTH{8192}; // Max GMCP/subneg message size

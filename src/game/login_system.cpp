@@ -27,6 +27,35 @@
 // and bypass zone level restrictions. Legacy: LVL_IMMORT = 100
 constexpr int kImmortalLevel = 100;
 
+namespace {
+bool should_redact_login_input(LoginState state, std::string_view input) {
+    if (input.empty()) {
+        return false;
+    }
+
+    switch (state) {
+    case LoginState::GetAccountPassword:
+    case LoginState::GetPassword:
+    case LoginState::GetNewPassword:
+    case LoginState::ConfirmPassword:
+        return true;
+    case LoginState::GetAccount:
+    case LoginState::GetName:
+        // Quick-login formats include plaintext passwords (user:password[:character] / name:password).
+        return input.find(':') != std::string_view::npos;
+    default:
+        return false;
+    }
+}
+
+std::string login_input_for_log(LoginState state, std::string_view input) {
+    if (should_redact_login_input(state, input)) {
+        return "<redacted>";
+    }
+    return std::string(input);
+}
+} // namespace
+
 // CharacterCreationData implementation
 bool CharacterCreationData::is_complete() const { return !name.empty() && !password.empty(); }
 
@@ -62,6 +91,8 @@ std::string CharacterCreationData::get_race_name() const {
 
 // LoginSystem implementation
 LoginSystem::LoginSystem(std::shared_ptr<PlayerConnection> connection) : connection_(std::move(connection)) {}
+
+LoginSystem::~LoginSystem() { cancel_approval_poll(); }
 
 bool LoginSystem::check_rate_limit() {
     if (login_attempts_ == 0) {
@@ -478,14 +509,15 @@ void LoginSystem::process_input(std::string_view input) {
     // Trim whitespace
     std::string trimmed_input{trim(input)};
 
-    Log::debug("Processing login input in state {}: '{}'", static_cast<int>(state_), trimmed_input);
+    Log::debug("Processing login input in state {}: '{}'", static_cast<int>(state_),
+               login_input_for_log(state_, trimmed_input));
 
     switch (state_) {
     // Initial state - buffer input until start_login() is called
     case LoginState::Connecting:
         // Buffer input received before welcome message is displayed
         if (!trimmed_input.empty()) {
-            Log::debug("Buffering early input: '{}'", trimmed_input);
+            Log::debug("Buffering early input ({} chars)", trimmed_input.size());
             buffered_input_.push_back(trimmed_input);
         }
         break;
@@ -496,6 +528,9 @@ void LoginSystem::process_input(std::string_view input) {
         break;
     case LoginState::GetAccountPassword:
         handle_get_account_password(trimmed_input);
+        break;
+    case LoginState::AwaitLoginApproval:
+        handle_await_login_approval(trimmed_input);
         break;
     case LoginState::SelectCharacter:
         handle_select_character(trimmed_input);
@@ -544,20 +579,20 @@ void LoginSystem::process_input(std::string_view input) {
 
 void LoginSystem::handle_get_account(std::string_view input) {
     if (input.empty()) {
-        send_message("Please enter your account username or email.");
+        send_message("Please enter your account email.");
         send_prompt();
         return;
     }
 
-    // Check for user:password[:character] format for quick login
+    // Check for email:password[:character] format for quick login
     auto colon_pos = input.find(':');
     if (colon_pos != std::string::npos) {
-        std::string username = std::string(input.substr(0, colon_pos));
+        std::string email = std::string(input.substr(0, colon_pos));
         std::string rest = std::string(input.substr(colon_pos + 1));
         std::string password;
         std::string quick_character; // Optional character name for direct login
 
-        // Check for second colon (username:password:character format)
+        // Check for second colon (email:password:character format)
         auto second_colon = rest.find(':');
         if (second_colon != std::string::npos) {
             password = rest.substr(0, second_colon);
@@ -567,26 +602,26 @@ void LoginSystem::handle_get_account(std::string_view input) {
         }
 
         // Trim whitespace
-        username = std::string(trim(username));
+        email = std::string(trim(email));
         password = std::string(trim(password));
         quick_character = std::string(trim(quick_character));
 
-        if (username.empty() || password.empty()) {
-            send_message("Invalid format. Use 'username:password' or just 'username'.");
+        if (email.empty() || password.empty()) {
+            send_message("Invalid format. Use 'email:password' or just 'email'.");
             send_prompt();
             return;
         }
 
-        account_name_ = username;
+        account_name_ = email;
 
         // Try to verify user with password
-        auto verify_result = verify_user(username, password);
+        auto verify_result = verify_user(email, password);
         if (!verify_result || !verify_result.value()) {
             // User account verification failed - try legacy character login
-            auto char_exists = character_exists(username);
+            auto char_exists = character_exists(email);
             if (char_exists && char_exists.value()) {
                 // It's a legacy character - try to load with password
-                auto load_result = load_character(username, password);
+                auto load_result = load_character(email, password);
                 if (load_result) {
                     // Successfully loaded legacy character
                     player_ = load_result.value();
@@ -616,12 +651,12 @@ void LoginSystem::handle_get_account(std::string_view input) {
             }
 
             // Neither account nor legacy character login worked
-            record_failed_attempt(username);
+            record_failed_attempt(email);
             if (login_attempts_ >= MAX_LOGIN_ATTEMPTS) {
                 disconnect_with_message("Too many failed login attempts. Goodbye!");
                 return;
             }
-            send_message("Invalid username or password. Please try again.");
+            send_message("Invalid email or password. Please try again.");
             send_prompt();
             return;
         }
@@ -714,7 +749,7 @@ void LoginSystem::handle_get_account(std::string_view input) {
         return;
     }
 
-    // Just username/email provided - check if exists
+    // Just email provided - check if exists
     account_name_ = std::string(input);
 
     auto exists_result = user_exists(account_name_);
@@ -738,15 +773,60 @@ void LoginSystem::handle_get_account(std::string_view input) {
 
         // Neither account nor character exists
         send_message(fmt::format("Account '{}' not found.", account_name_));
-        send_message("Please register at https://fierymud.org or enter your character name to login.");
+        send_message("Please register at https://fierymud.org to create an account.");
         send_prompt();
         return;
     }
 
-    // Account exists - ask for password
-    transition_to(LoginState::GetAccountPassword);
-    send_message(fmt::format("Welcome back, {}!", account_name_));
+    // Account exists - load user data to check for passwordless login
+    auto user_result = ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<WorldQueries::UserData> {
+        return WorldQueries::load_user_by_email(txn, account_name_);
+    });
+
+    if (!user_result) {
+        send_message("Error loading account. Please try again.");
+        send_prompt();
+        return;
+    }
+
+    const auto &user_data = *user_result;
+    user_id_ = user_data.id;
+    account_display_name_ = user_data.display_name;
+    has_password_ = !user_data.password_hash.empty();
+
+    send_message(fmt::format("Welcome back, {}!", account_display_name_));
+
+    if (has_password_) {
+        // Has password — prompt for it (empty input will trigger Muditor approval)
+        transition_to(LoginState::GetAccountPassword);
+        send_message("Enter your password, or press Enter for Muditor approval.");
+        send_prompt();
+    } else {
+        // Passwordless account — go straight to Muditor approval
+        create_login_request_and_poll();
+    }
+}
+
+void LoginSystem::create_login_request_and_poll() {
+    std::string uid = user_id_;
+    std::string ip = connection_ ? connection_->remote_address() : "";
+    auto request_result =
+        ConnectionPool::instance().execute([&uid, &ip](pqxx::work &txn) -> Result<WorldQueries::LoginRequestData> {
+            return WorldQueries::create_login_request(txn, uid, ip);
+        });
+
+    if (!request_result) {
+        send_message("Failed to create login request. Please try again.");
+        send_prompt();
+        return;
+    }
+
+    pending_login_request_id_ = request_result->id;
+    send_message("\nA login approval request has been sent to your Muditor dashboard.");
+    send_message("Please approve it there to continue. This request expires in 5 minutes.");
+    transition_to(LoginState::AwaitLoginApproval);
     send_prompt();
+    start_approval_poll();
 }
 
 void LoginSystem::handle_get_account_password(std::string_view input) {
@@ -757,8 +837,8 @@ void LoginSystem::handle_get_account_password(std::string_view input) {
     }
 
     if (input.empty()) {
-        send_message("Please enter your password.");
-        send_prompt();
+        // Empty password — trigger Muditor login approval flow
+        create_login_request_and_poll();
         return;
     }
 
@@ -793,6 +873,113 @@ void LoginSystem::handle_get_account_password(std::string_view input) {
         transition_to(LoginState::SelectCharacter);
         send_character_menu();
         send_prompt();
+    }
+}
+
+void LoginSystem::handle_await_login_approval(std::string_view input) {
+    std::string lower_input = to_lowercase(input);
+
+    // Allow cancellation
+    if (lower_input == "q" || lower_input == "quit") {
+        cancel_approval_poll();
+
+        // Cancel the login request in the database
+        auto cancel_result = ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<void> {
+            return WorldQueries::cancel_login_request(txn, pending_login_request_id_);
+        });
+
+        disconnect_with_message("Login request cancelled. Goodbye!");
+        return;
+    }
+
+    // Any other input just shows a waiting message — the timer handles polling
+    send_message("Waiting for Muditor approval...");
+    send_prompt();
+}
+
+void LoginSystem::start_approval_poll() {
+    if (!connection_) {
+        return;
+    }
+
+    approval_timer_ = std::make_unique<asio::steady_timer>(connection_->io_context());
+    check_approval_status();
+}
+
+void LoginSystem::check_approval_status() {
+    if (!approval_timer_ || !connection_ || !connection_->is_connected()) {
+        return;
+    }
+
+    approval_timer_->expires_after(std::chrono::seconds(2));
+    approval_timer_->async_wait([this](const asio::error_code &ec) {
+        if (ec || !connection_ || !connection_->is_connected()) {
+            return; // Timer cancelled or connection gone
+        }
+
+        if (state_ != LoginState::AwaitLoginApproval) {
+            return; // State changed (e.g., user typed 'q')
+        }
+
+        // Check login request status
+        auto check_result =
+            ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<WorldQueries::LoginRequestData> {
+                return WorldQueries::check_login_request(txn, pending_login_request_id_);
+            });
+
+        if (!check_result) {
+            // DB error — reschedule and try again
+            check_approval_status();
+            return;
+        }
+
+        const auto &req = *check_result;
+
+        if (req.status == "APPROVED") {
+            approval_timer_.reset();
+
+            // Update last login and proceed to character selection
+            auto login_result = ConnectionPool::instance().execute([this](pqxx::work &txn) -> Result<void> {
+                return WorldQueries::update_user_last_login(txn, user_id_);
+            });
+
+            send_message("\nLogin approved! Loading your characters...");
+            load_user_characters();
+
+            if (user_characters_.empty()) {
+                send_message("You have no characters yet. Let's create one!");
+                transition_to(LoginState::GetName);
+                send_message("Please enter a name for your new character:");
+                send_prompt();
+            } else {
+                transition_to(LoginState::SelectCharacter);
+                send_character_menu();
+                send_prompt();
+            }
+            return;
+        }
+
+        if (req.status == "DENIED") {
+            approval_timer_.reset();
+            disconnect_with_message("\nLogin request was denied. Disconnecting.");
+            return;
+        }
+
+        if (req.status == "EXPIRED") {
+            approval_timer_.reset();
+            disconnect_with_message("\nLogin request expired. Please try again.");
+            return;
+        }
+
+        // Still PENDING — reschedule
+        check_approval_status();
+    });
+}
+
+void LoginSystem::cancel_approval_poll() {
+    if (approval_timer_) {
+        approval_timer_->cancel();
+        approval_timer_.reset();
     }
 }
 
@@ -1295,10 +1482,13 @@ void LoginSystem::send_prompt() {
     switch (state_) {
     // Account-based login states
     case LoginState::GetAccount:
-        prompt_text = "Enter account username or email: ";
+        prompt_text = "Enter account email: ";
         break;
     case LoginState::GetAccountPassword:
         prompt_text = "Account password: ";
+        break;
+    case LoginState::AwaitLoginApproval:
+        prompt_text = "Waiting for Muditor approval... ('q' to cancel): ";
         break;
     case LoginState::SelectCharacter:
         prompt_text = "Select character: ";
@@ -1471,8 +1661,8 @@ void LoginSystem::send_login_instructions() {
     send_message("<c245>                  www.fierymud.org</c245>");
     send_message("<dim>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</dim>");
     send_message("");
-    send_message("Login with your account username, email, or character name.");
-    send_message("Quick login: <b>username:password[:character]</b>, or <b>character:password</b>");
+    send_message("Login with your account email or character name.");
+    send_message("Quick login: <b>email:password[:character]</b>, or <b>character:password</b>");
     send_message("");
 }
 
@@ -1528,10 +1718,9 @@ void LoginSystem::send_character_menu() {
 // User/Account management helpers
 // =============================================================================
 
-Result<bool> LoginSystem::user_exists(std::string_view username_or_email) {
-    auto result = ConnectionPool::instance().execute([&username_or_email](pqxx::work &txn) {
-        return WorldQueries::user_exists(txn, std::string(username_or_email));
-    });
+Result<bool> LoginSystem::user_exists(std::string_view email) {
+    auto result = ConnectionPool::instance().execute(
+        [&email](pqxx::work &txn) { return WorldQueries::user_exists(txn, std::string(email)); });
 
     if (!result) {
         Log::error("Failed to check user existence: {}", result.error().message);
@@ -1540,56 +1729,50 @@ Result<bool> LoginSystem::user_exists(std::string_view username_or_email) {
     return *result;
 }
 
-Result<bool> LoginSystem::verify_user(std::string_view username_or_email, std::string_view password) {
-    auto result =
-        ConnectionPool::instance().execute([&username_or_email, &password, this](pqxx::work &txn) -> Result<bool> {
-            // First, try to load the user to get their ID
-            auto user_result = WorldQueries::load_user_by_username(txn, std::string(username_or_email));
-            if (!user_result) {
-                // Try by email
-                user_result = WorldQueries::load_user_by_email(txn, std::string(username_or_email));
+Result<bool> LoginSystem::verify_user(std::string_view email, std::string_view password) {
+    auto result = ConnectionPool::instance().execute([&email, &password, this](pqxx::work &txn) -> Result<bool> {
+        // Load user by email
+        auto user_result = WorldQueries::load_user_by_email(txn, std::string(email));
+
+        if (!user_result) {
+            return false; // User not found
+        }
+
+        const auto &user_data = user_result.value();
+
+        // Check if account is locked
+        if (user_data.locked_until) {
+            auto now = std::chrono::system_clock::now();
+            if (user_data.locked_until.value() > now) {
+                Log::warn("User '{}' account is locked until {}", email,
+                          std::chrono::system_clock::to_time_t(user_data.locked_until.value()));
+                return std::unexpected(Error{ErrorCode::PermissionDenied, "Account is temporarily locked"});
+            }
+        }
+
+        // Verify password
+        auto verify_result = WorldQueries::verify_user_password(txn, std::string(email), std::string(password));
+        if (!verify_result || !verify_result.value()) {
+            // Increment failed login attempts
+            WorldQueries::increment_failed_login(txn, user_data.id);
+
+            // Lock account after too many attempts
+            if (user_data.failed_login_attempts + 1 >= 5) {
+                auto lock_until = std::chrono::system_clock::now() + std::chrono::minutes(15);
+                WorldQueries::lock_user_account(txn, user_data.id, lock_until);
+                Log::warn("User '{}' locked for 15 minutes after {} failed attempts", email,
+                          user_data.failed_login_attempts + 1);
             }
 
-            if (!user_result) {
-                return false; // User not found
-            }
+            return false;
+        }
 
-            const auto &user_data = user_result.value();
+        // Password verified - store user ID and update last login
+        user_id_ = user_data.id;
+        WorldQueries::update_user_last_login(txn, user_data.id);
 
-            // Check if account is locked
-            if (user_data.locked_until) {
-                auto now = std::chrono::system_clock::now();
-                if (user_data.locked_until.value() > now) {
-                    Log::warn("User '{}' account is locked until {}", username_or_email,
-                              std::chrono::system_clock::to_time_t(user_data.locked_until.value()));
-                    return std::unexpected(Error{ErrorCode::PermissionDenied, "Account is temporarily locked"});
-                }
-            }
-
-            // Verify password
-            auto verify_result =
-                WorldQueries::verify_user_password(txn, std::string(username_or_email), std::string(password));
-            if (!verify_result || !verify_result.value()) {
-                // Increment failed login attempts
-                WorldQueries::increment_failed_login(txn, user_data.id);
-
-                // Lock account after too many attempts
-                if (user_data.failed_login_attempts + 1 >= 5) {
-                    auto lock_until = std::chrono::system_clock::now() + std::chrono::minutes(15);
-                    WorldQueries::lock_user_account(txn, user_data.id, lock_until);
-                    Log::warn("User '{}' locked for 15 minutes after {} failed attempts", username_or_email,
-                              user_data.failed_login_attempts + 1);
-                }
-
-                return false;
-            }
-
-            // Password verified - store user ID and update last login
-            user_id_ = user_data.id;
-            WorldQueries::update_user_last_login(txn, user_data.id);
-
-            return true;
-        });
+        return true;
+    });
 
     if (!result) {
         Log::error("Failed to verify user: {}", result.error().message);

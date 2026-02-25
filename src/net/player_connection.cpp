@@ -990,7 +990,14 @@ void PlayerConnection::process_telnet_data(const std::vector<uint8_t> &data) {
 }
 
 void PlayerConnection::process_input(std::string_view input) {
-    Log::debug("PlayerConnection::process_input: state={}, input='{}'", static_cast<int>(state_), input);
+    auto current_state = state_.load(std::memory_order_acquire);
+    if (current_state == ConnectionState::Login) {
+        Log::debug("PlayerConnection::process_input: state={}, input=<redacted> ({} chars)",
+                   static_cast<int>(current_state), input.size());
+    } else {
+        Log::debug("PlayerConnection::process_input: state={}, input_length={}", static_cast<int>(current_state),
+                   input.size());
+    }
 
     // Update activity tracking for session management
     update_last_input_time();
@@ -1024,19 +1031,20 @@ void PlayerConnection::process_input(std::string_view input) {
         }
         // Prompt is sent by WorldServer::send_prompt_to_actor after command processing
     } else {
-        Log::warn("Unexpected state in process_input: state={}, has_player={}", static_cast<int>(state_),
-                  player_ != nullptr);
+        Log::warn("Unexpected state in process_input: state={}, has_player={}",
+                  static_cast<int>(state_.load(std::memory_order_acquire)), player_ != nullptr);
     }
 }
 
 void PlayerConnection::transition_to(ConnectionState new_state) {
-    if (state_ == new_state)
+    auto old_state = state_.load(std::memory_order_acquire);
+    if (old_state == new_state)
         return;
 
-    Log::debug("Connection {} transitioning from {} to {}", remote_address(), static_cast<int>(state_),
+    Log::debug("Connection {} transitioning from {} to {}", remote_address(), static_cast<int>(old_state),
                static_cast<int>(new_state));
 
-    state_ = new_state;
+    state_.store(new_state, std::memory_order_release);
 }
 
 void PlayerConnection::on_login_completed(std::shared_ptr<Player> player) {
@@ -1260,7 +1268,7 @@ void PlayerConnection::forward_command_to_game(std::string_view command) {
         return;
     }
 
-    Log::debug("Forwarding buffered command to game: '{}'", command);
+    Log::debug("Forwarding buffered command to game ({} chars)", command.size());
     if (world_server_) {
         world_server_->process_command(player_, command);
     }
@@ -1519,9 +1527,14 @@ void PlayerConnection::handle_idle_timer(const asio::error_code &error) {
 
     // Check login timeout for connections that haven't completed login
     // This prevents connections from sitting at the login screen forever
+    // Use a longer timeout when waiting for Muditor approval (matches 5-minute request expiry)
     if (state_ == ConnectionState::Connected || state_ == ConnectionState::Login) {
+        auto timeout = LOGIN_TIMEOUT;
+        if (login_system_ && login_system_->is_awaiting_approval()) {
+            timeout = APPROVAL_TIMEOUT;
+        }
         auto connected_duration = std::chrono::steady_clock::now() - connect_time_;
-        if (connected_duration >= LOGIN_TIMEOUT) {
+        if (connected_duration >= timeout) {
             Log::info("Disconnecting {} - login timeout after {} seconds", remote_address(),
                       std::chrono::duration_cast<std::chrono::seconds>(connected_duration).count());
             disconnect("Login timeout - please reconnect to try again");
