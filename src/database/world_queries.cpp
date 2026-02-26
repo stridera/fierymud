@@ -3070,58 +3070,28 @@ std::string generate_uuid() {
                        static_cast<unsigned int>(b >> 48), static_cast<unsigned long long>(b & 0xFFFFFFFFFFFFULL));
 }
 
-// Bcrypt-style password hashing using crypt() with SHA-512
-// Format: $6$<salt>$<hash> (SHA-512 crypt)
+// Password hashing using bcrypt via crypt_r()
+// Format: $2b$12$<22-char salt><31-char hash> (60 chars total)
 std::string hash_password(const std::string &password) {
-    // Generate random salt for SHA-512 crypt
+    // Generate 16 random bytes for bcrypt salt
     std::array<unsigned char, 16> salt_bytes{};
     RAND_bytes(salt_bytes.data(), salt_bytes.size());
 
-    // Encode salt as base64-like string
+    // Encode as 22 bcrypt base64 characters
     constexpr std::string_view b64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    std::string salt = "$6$"; // SHA-512 prefix
-    for (const auto &byte : salt_bytes) {
-        salt += b64[byte % 64];
+    std::string salt = "$2b$12$";
+    for (int i = 0; i < 22; ++i) {
+        salt += b64[salt_bytes[i % 16] % 64];
     }
-    salt += "$";
 
-    // Use crypt_r for thread safety
+    // Use crypt_r for thread safety (libxcrypt supports bcrypt)
     struct crypt_data data{}; // Zero-initialize with {}
     char *result = crypt_r(password.c_str(), salt.c_str(), &data);
 
     if (result == nullptr) {
-        // Fallback to SHA-256 if crypt_r fails (should not happen on modern Linux)
         auto logger = Log::database();
-        logger->error("crypt_r failed, using SHA-256 fallback hash");
-
-        // Generate 16-byte salt
-        std::array<unsigned char, 16> fallback_salt{};
-        RAND_bytes(fallback_salt.data(), fallback_salt.size());
-
-        // Build salted password: salt + password
-        std::string salted = std::string(fallback_salt.begin(), fallback_salt.end()) + password;
-
-        // Compute SHA-256 hash using OpenSSL EVP
-        std::array<unsigned char, 32> hash_bytes{};
-        unsigned int hash_len = 0;
-        EVP_MD_CTX *ctx = EVP_MD_CTX_new();
-        if (ctx) {
-            EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
-            EVP_DigestUpdate(ctx, salted.data(), salted.size());
-            EVP_DigestFinal_ex(ctx, hash_bytes.data(), &hash_len);
-            EVP_MD_CTX_free(ctx);
-        }
-
-        // Format as: fallback$<salt_hex>$<hash_hex>
-        std::string salt_hex;
-        std::string hash_hex;
-        for (auto b : fallback_salt) {
-            salt_hex += fmt::format("{:02x}", b);
-        }
-        for (unsigned int i = 0; i < hash_len; ++i) {
-            hash_hex += fmt::format("{:02x}", hash_bytes[i]);
-        }
-        return fmt::format("fallback${}${}", salt_hex, hash_hex);
+        logger->error("crypt_r failed to produce bcrypt hash - this should not happen with libxcrypt");
+        throw std::runtime_error("bcrypt hashing failed");
     }
 
     return std::string(result);
@@ -3129,23 +3099,15 @@ std::string hash_password(const std::string &password) {
 
 // Detect password hash type
 enum class HashType {
-    LegacyCrypt,  // 10-13 character DES/Unix crypt
-    SHA512Crypt,  // $6$...$... format
-    BcryptHash,   // $2a$, $2b$, $2y$ format (bcrypt)
-    FallbackHash, // fallback$... format
+    LegacyCrypt, // 10-13 character DES/Unix crypt
+    BcryptHash,  // $2a$, $2b$, $2y$ format (bcrypt)
     Unknown
 };
 
 HashType detect_hash_type(const std::string &hash) {
-    if (hash.starts_with("$6$")) {
-        return HashType::SHA512Crypt;
-    }
     // Bcrypt hashes: $2a$, $2b$, or $2y$ prefix (60 characters total)
     if ((hash.starts_with("$2a$") || hash.starts_with("$2b$") || hash.starts_with("$2y$")) && hash.length() == 60) {
         return HashType::BcryptHash;
-    }
-    if (hash.starts_with("fallback$")) {
-        return HashType::FallbackHash;
     }
     // Legacy Unix crypt hashes are 10-13 characters
     if (hash.length() >= 10 && hash.length() <= 13) {
@@ -3154,30 +3116,16 @@ HashType detect_hash_type(const std::string &hash) {
     return HashType::Unknown;
 }
 
-// Verify password against stored hash (supports multiple formats)
+// Verify password against stored hash (supports bcrypt and legacy DES crypt)
 bool verify_password_hash(const std::string &password, const std::string &stored_hash) {
     HashType type = detect_hash_type(stored_hash);
 
     switch (type) {
-    case HashType::SHA512Crypt: {
-        // Modern SHA-512 crypt - use crypt_r with stored hash as salt
+    case HashType::BcryptHash: {
+        // Bcrypt hash ($2a$, $2b$, $2y$ format) via crypt_r (libxcrypt)
         struct crypt_data data{}; // Zero-initialize with {}
         char *result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
         return result && stored_hash == result;
-    }
-
-    case HashType::BcryptHash: {
-        // Bcrypt hash ($2a$, $2b$, $2y$ format) - use crypt_r if supported
-        // libxcrypt on modern Linux supports bcrypt via crypt_r
-        struct crypt_data data{}; // Zero-initialize with {}
-        char *result = crypt_r(password.c_str(), stored_hash.c_str(), &data);
-        if (!result) {
-            // crypt_r doesn't support bcrypt on this system
-            auto logger = Log::database();
-            logger->warn("Bcrypt hash verification failed - crypt_r may not support bcrypt on this system");
-            return false;
-        }
-        return stored_hash == result;
     }
 
     case HashType::LegacyCrypt: {
@@ -3191,55 +3139,8 @@ bool verify_password_hash(const std::string &password, const std::string &stored
         return std::strncmp(result, stored_hash.c_str(), 10) == 0;
     }
 
-    case HashType::FallbackHash: {
-        // SHA-256 fallback hash: fallback$<salt_hex>$<hash_hex>
-        // Parse the stored hash to extract salt
-        auto first_dollar = stored_hash.find('$');
-        if (first_dollar == std::string::npos)
-            return false;
-        auto second_dollar = stored_hash.find('$', first_dollar + 1);
-        if (second_dollar == std::string::npos) {
-            // Old format: fallback$<hash_hex> (legacy std::hash - deprecated)
-            // For backwards compatibility only - will be upgraded on next login
-            std::size_t legacy_hash = std::hash<std::string>{}(password);
-            return stored_hash == fmt::format("fallback${:016x}", legacy_hash);
-        }
-
-        // New format: fallback$<salt_hex>$<hash_hex>
-        std::string salt_hex = stored_hash.substr(first_dollar + 1, second_dollar - first_dollar - 1);
-        std::string stored_hash_hex = stored_hash.substr(second_dollar + 1);
-
-        // Convert salt from hex to bytes
-        std::string salt_bytes;
-        for (size_t i = 0; i + 1 < salt_hex.size(); i += 2) {
-            int byte = std::stoi(salt_hex.substr(i, 2), nullptr, 16);
-            salt_bytes += static_cast<char>(byte);
-        }
-
-        // Compute hash of salt + password
-        std::string salted = salt_bytes + password;
-        std::array<unsigned char, 32> computed_hash{};
-        unsigned int hash_len = 0;
-        EVP_MD_CTX *ctx = EVP_MD_CTX_new();
-        if (ctx) {
-            EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
-            EVP_DigestUpdate(ctx, salted.data(), salted.size());
-            EVP_DigestFinal_ex(ctx, computed_hash.data(), &hash_len);
-            EVP_MD_CTX_free(ctx);
-        }
-
-        // Convert computed hash to hex and compare
-        std::string computed_hex;
-        for (unsigned int i = 0; i < hash_len; ++i) {
-            computed_hex += fmt::format("{:02x}", computed_hash[i]);
-        }
-        return stored_hash_hex == computed_hex;
-    }
-
     case HashType::Unknown:
     default: {
-        // SECURITY: Reject unknown hash formats instead of direct comparison
-        // Direct comparison would allow plaintext passwords to work, which is dangerous
         auto logger = Log::database();
         logger->error("Password verification failed: unknown hash format (length {})", stored_hash.size());
         return false;
@@ -3247,11 +3148,9 @@ bool verify_password_hash(const std::string &password, const std::string &stored
     }
 }
 
-// Check if a password hash should be upgraded to modern format
+// Check if a password hash should be upgraded to bcrypt
 bool should_upgrade_password(const std::string &stored_hash) {
-    HashType type = detect_hash_type(stored_hash);
-    // Upgrade legacy crypt and fallback hashes to SHA-512
-    return type == HashType::LegacyCrypt || type == HashType::FallbackHash;
+    return detect_hash_type(stored_hash) == HashType::LegacyCrypt;
 }
 } // namespace
 
@@ -3544,14 +3443,14 @@ Result<bool> verify_character_password(pqxx::work &txn, const std::string &name,
         bool matches = verify_password_hash(password, stored_hash);
 
         if (matches && should_upgrade_password(stored_hash)) {
-            // Upgrade legacy password hash to modern SHA-512 format
+            // Upgrade legacy password hash to bcrypt
             std::string new_hash = hash_password(password);
             txn.exec_params(R"(
                 UPDATE "Characters" SET password_hash = $1, updated_at = NOW()
                 WHERE id = $2
             )",
                             new_hash, character_id);
-            logger->debug("Upgraded password hash for character '{}' from legacy to SHA-512", name);
+            logger->debug("Upgraded password hash for character '{}' from legacy to bcrypt", name);
         }
 
         logger->debug("Password verification for '{}': {}", name, matches ? "success" : "failed");
@@ -3757,7 +3656,7 @@ UserData row_to_user_data(const pqxx::row &row) {
     UserData user;
     user.id = row["id"].as<std::string>();
     user.email = row["email"].as<std::string>();
-    user.username = row["username"].as<std::string>();
+    user.display_name = row["display_name"].as<std::string>("");
     user.password_hash = row["password_hash"].as<std::string>("");
     user.role = parse_user_role(row["role"].as<std::string>("PLAYER"));
     user.failed_login_attempts = row["failed_login_attempts"].as<int>(0);
@@ -3766,17 +3665,17 @@ UserData row_to_user_data(const pqxx::row &row) {
 }
 } // namespace
 
-Result<bool> user_exists(pqxx::work &txn, const std::string &username_or_email) {
+Result<bool> user_exists(pqxx::work &txn, const std::string &email) {
     auto logger = Log::database();
-    logger->debug("Checking if user '{}' exists", username_or_email);
+    logger->debug("Checking if user with email '{}' exists", email);
 
     try {
         auto result = txn.exec_params(R"(
             SELECT 1 FROM "Users"
-            WHERE UPPER(username) = UPPER($1) OR UPPER(email) = UPPER($1)
+            WHERE UPPER(email) = UPPER($1)
             LIMIT 1
         )",
-                                      username_or_email);
+                                      email);
 
         return !result.empty();
 
@@ -3787,35 +3686,6 @@ Result<bool> user_exists(pqxx::work &txn, const std::string &username_or_email) 
     }
 }
 
-Result<UserData> load_user_by_username(pqxx::work &txn, const std::string &username) {
-    auto logger = Log::database();
-    logger->debug("Loading user by username: {}", username);
-
-    try {
-        auto result = txn.exec_params(R"(
-            SELECT
-                id, email, username, password_hash, role,
-                failed_login_attempts, locked_until, last_login_at,
-                created_at, updated_at
-            FROM "Users"
-            WHERE UPPER(username) = UPPER($1)
-        )",
-                                      username);
-
-        if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User '{}' not found", username)});
-        }
-
-        auto user = row_to_user_data(result[0]);
-        logger->debug("Loaded user '{}' (id: {})", user.username, user.id);
-        return user;
-
-    } catch (const pqxx::sql_error &e) {
-        logger->error("SQL error loading user '{}': {}", username, e.what());
-        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load user: {}", e.what())});
-    }
-}
-
 Result<UserData> load_user_by_email(pqxx::work &txn, const std::string &email) {
     auto logger = Log::database();
     logger->debug("Loading user by email: {}", email);
@@ -3823,7 +3693,7 @@ Result<UserData> load_user_by_email(pqxx::work &txn, const std::string &email) {
     try {
         auto result = txn.exec_params(R"(
             SELECT
-                id, email, username, password_hash, role,
+                id, email, display_name, password_hash, role,
                 failed_login_attempts, locked_until, last_login_at,
                 created_at, updated_at
             FROM "Users"
@@ -3836,7 +3706,7 @@ Result<UserData> load_user_by_email(pqxx::work &txn, const std::string &email) {
         }
 
         auto user = row_to_user_data(result[0]);
-        logger->debug("Loaded user '{}' by email", user.username);
+        logger->debug("Loaded user '{}' by email", user.display_name);
         return user;
 
     } catch (const pqxx::sql_error &e) {
@@ -3852,7 +3722,7 @@ Result<UserData> load_user_by_id(pqxx::work &txn, const std::string &id) {
     try {
         auto result = txn.exec_params(R"(
             SELECT
-                id, email, username, password_hash, role,
+                id, email, display_name, password_hash, role,
                 failed_login_attempts, locked_until, last_login_at,
                 created_at, updated_at
             FROM "Users"
@@ -3865,7 +3735,7 @@ Result<UserData> load_user_by_id(pqxx::work &txn, const std::string &id) {
         }
 
         auto user = row_to_user_data(result[0]);
-        logger->debug("Loaded user '{}' by ID", user.username);
+        logger->debug("Loaded user '{}' by ID", user.display_name);
         return user;
 
     } catch (const pqxx::sql_error &e) {
@@ -3874,21 +3744,21 @@ Result<UserData> load_user_by_id(pqxx::work &txn, const std::string &id) {
     }
 }
 
-Result<bool> verify_user_password(pqxx::work &txn, const std::string &username_or_email, const std::string &password) {
+Result<bool> verify_user_password(pqxx::work &txn, const std::string &email, const std::string &password) {
     auto logger = Log::database();
-    logger->debug("Verifying password for user '{}'", username_or_email);
+    logger->debug("Verifying password for user '{}'", email);
 
     try {
         // Check if account is locked
         auto result = txn.exec_params(R"(
             SELECT id, password_hash, locked_until
             FROM "Users"
-            WHERE UPPER(username) = UPPER($1) OR UPPER(email) = UPPER($1)
+            WHERE UPPER(email) = UPPER($1)
         )",
-                                      username_or_email);
+                                      email);
 
         if (result.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User '{}' not found", username_or_email)});
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("User '{}' not found", email)});
         }
 
         std::string user_id = result[0]["id"].as<std::string>();
@@ -3897,13 +3767,13 @@ Result<bool> verify_user_password(pqxx::work &txn, const std::string &username_o
         // Check if account is locked
         if (!result[0]["locked_until"].is_null()) {
             // For simplicity, we'll just log this - proper timestamp parsing would be needed
-            logger->warn("User '{}' account may be locked", username_or_email);
+            logger->warn("User '{}' account may be locked", email);
         }
 
         bool matches = verify_password_hash(password, stored_hash);
 
         if (matches) {
-            // Upgrade legacy password hash to modern SHA-512 format if needed
+            // Upgrade legacy password hash to bcrypt if needed
             if (should_upgrade_password(stored_hash)) {
                 std::string new_hash = hash_password(password);
                 txn.exec_params(R"(
@@ -3911,15 +3781,15 @@ Result<bool> verify_user_password(pqxx::work &txn, const std::string &username_o
                     WHERE id = $2
                 )",
                                 new_hash, user_id);
-                logger->debug("Upgraded password hash for user '{}' from legacy to SHA-512", username_or_email);
+                logger->debug("Upgraded password hash for user '{}' from legacy to bcrypt", email);
             }
         }
 
-        logger->debug("Password verification for user '{}': {}", username_or_email, matches ? "success" : "failed");
+        logger->debug("Password verification for user '{}': {}", email, matches ? "success" : "failed");
         return matches;
 
     } catch (const pqxx::sql_error &e) {
-        logger->error("SQL error verifying password for user '{}': {}", username_or_email, e.what());
+        logger->error("SQL error verifying password for user '{}': {}", email, e.what());
         return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to verify password: {}", e.what())});
     }
 }
@@ -4078,6 +3948,121 @@ Result<void> save_account_wealth(pqxx::work &txn, const std::string &user_id, lo
         logger->error("SQL error saving account wealth: {}", e.what());
         return std::unexpected(
             Error{ErrorCode::InternalError, fmt::format("Failed to save account wealth: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Login Request Queries (passwordless approval flow)
+// =============================================================================
+
+namespace {
+// Helper to parse a PostgreSQL timestamp string to system_clock time_point
+std::chrono::system_clock::time_point parse_pg_timestamp(const std::string &ts) {
+    std::tm tm = {};
+    std::istringstream ss(ts);
+    ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
+    return std::chrono::system_clock::from_time_t(std::mktime(&tm));
+}
+} // namespace
+
+Result<LoginRequestData> create_login_request(pqxx::work &txn, const std::string &user_id,
+                                              const std::string &ip_address, std::chrono::minutes expiry) {
+    auto logger = Log::database();
+    logger->debug("Creating login request for user {}", user_id);
+
+    try {
+        auto result = txn.exec_params(R"(
+            INSERT INTO "login_requests" (id, user_id, status, ip_address, expires_at, created_at)
+            VALUES (gen_random_uuid(), $1, 'PENDING', $2, NOW() + make_interval(mins := $3), NOW())
+            RETURNING id, user_id, status, ip_address,
+                      expires_at::text, created_at::text
+        )",
+                                      user_id, ip_address, static_cast<int>(expiry.count()));
+
+        if (result.empty()) {
+            return std::unexpected(Error{ErrorCode::InternalError, "Failed to create login request"});
+        }
+
+        LoginRequestData req;
+        req.id = result[0]["id"].as<std::string>();
+        req.user_id = result[0]["user_id"].as<std::string>();
+        req.status = result[0]["status"].as<std::string>();
+        req.ip_address = result[0]["ip_address"].as<std::string>("");
+        req.expires_at = parse_pg_timestamp(result[0]["expires_at"].as<std::string>());
+        req.created_at = parse_pg_timestamp(result[0]["created_at"].as<std::string>());
+
+        logger->debug("Created login request {} for user {}", req.id, user_id);
+        return req;
+
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error creating login request: {}", e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to create login request: {}", e.what())});
+    }
+}
+
+Result<LoginRequestData> check_login_request(pqxx::work &txn, const std::string &request_id) {
+    auto logger = Log::database();
+    logger->debug("Checking login request {}", request_id);
+
+    try {
+        // Auto-expire if past deadline
+        txn.exec_params(R"(
+            UPDATE "login_requests"
+            SET status = 'EXPIRED', resolved_at = NOW()
+            WHERE id = $1 AND status = 'PENDING' AND expires_at < NOW()
+        )",
+                        request_id);
+
+        auto result = txn.exec_params(R"(
+            SELECT id, user_id, status, ip_address,
+                   expires_at::text, created_at::text
+            FROM "login_requests"
+            WHERE id = $1
+        )",
+                                      request_id);
+
+        if (result.empty()) {
+            return std::unexpected(Error{ErrorCode::NotFound, fmt::format("Login request '{}' not found", request_id)});
+        }
+
+        LoginRequestData req;
+        req.id = result[0]["id"].as<std::string>();
+        req.user_id = result[0]["user_id"].as<std::string>();
+        req.status = result[0]["status"].as<std::string>();
+        req.ip_address = result[0]["ip_address"].as<std::string>("");
+        req.expires_at = parse_pg_timestamp(result[0]["expires_at"].as<std::string>());
+        req.created_at = parse_pg_timestamp(result[0]["created_at"].as<std::string>());
+
+        logger->debug("Login request {} status: {}", request_id, req.status);
+        return req;
+
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error checking login request: {}", e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to check login request: {}", e.what())});
+    }
+}
+
+Result<void> cancel_login_request(pqxx::work &txn, const std::string &request_id) {
+    auto logger = Log::database();
+    logger->debug("Cancelling login request {}", request_id);
+
+    try {
+        txn.exec_params(R"(
+            UPDATE "login_requests"
+            SET status = 'DENIED', resolved_at = NOW()
+            WHERE id = $1 AND status = 'PENDING'
+        )",
+                        request_id);
+
+        logger->debug("Cancelled login request {}", request_id);
+        return {};
+
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error cancelling login request: {}", e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to cancel login request: {}", e.what())});
     }
 }
 

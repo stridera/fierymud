@@ -175,6 +175,7 @@ class ModernMUDServer {
         bool success = false;
         std::string message;
         std::string executor;
+        std::vector<std::string> output;
     };
     CommandExecutionResult execute_command(std::string_view executor_name, std::string_view command);
 

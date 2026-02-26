@@ -110,6 +110,12 @@ class WorldServer {
     void stop();
     bool is_running() const { return running_.load(); }
 
+    // Pause/unpause system for deterministic testing
+    void pause();
+    void unpause();
+    bool is_paused() const { return paused_.load(); }
+    void tick(int count = 1);
+
     asio::strand<asio::io_context::executor_type> &get_strand() { return world_strand_; }
     std::future<void> get_world_loaded_future();
 
@@ -188,6 +194,7 @@ class WorldServer {
     asio::strand<asio::io_context::executor_type> world_strand_;
     const ServerConfig &config_;
     std::atomic<bool> running_{false};
+    std::atomic<bool> paused_{false};
 
     // Game systems (accessed only from world_strand_)
     WorldManager *world_manager_;

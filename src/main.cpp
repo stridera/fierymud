@@ -12,9 +12,13 @@
 
 #include "admin/admin_server.hpp"
 #include "admin/player_handler.hpp"
+#include "admin/session_handler.hpp"
+#include "admin/trigger_handler.hpp"
+#include "admin/world_handler.hpp"
 #include "admin/zone_reload_handler.hpp"
 #include "core/logging.hpp"
 #include "core/result.hpp"
+#include "events/event_publisher.hpp"
 #include "server/mud_server.hpp"
 
 /**
@@ -229,6 +233,9 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
+        // Initialize Redis event publisher (after logging is set up by server init)
+        fierymud::events::EventPublisher::instance().initialize_from_env();
+
         // Start the server
         auto start_result = g_server->start();
         if (!start_result) {
@@ -242,17 +249,14 @@ int main(int argc, char *argv[]) {
 
         std::cout << "Server running on port " << config.port << ". Press Ctrl+C to stop.\n";
 
-        // Start admin API server on port 8080
+        // Admin HTTP API for Muditor integration
         constexpr uint16_t admin_port = 8080;
         g_admin_server = std::make_unique<fierymud::AdminServer>(admin_port, "127.0.0.1");
-
-        // Register admin handlers
-        // Note: WorldManager access would require getting it from ModernMUDServer
-        // For now, we register player handlers which use ModernMUDServer directly
         fierymud::register_player_handlers(*g_admin_server, *g_server);
-
+        fierymud::register_session_handlers(*g_admin_server, *g_server);
+        fierymud::register_world_handlers(*g_admin_server, *g_server);
+        fierymud::register_trigger_handlers(*g_admin_server, *g_server);
         g_admin_server->start();
-        std::cout << "Admin API running on port " << admin_port << " (localhost only).\n";
 
         // Main server loop - check for shutdown/reload signals
         while (g_server->is_running() && !g_shutdown_requested.load()) {
@@ -271,6 +275,7 @@ int main(int argc, char *argv[]) {
         // Handle shutdown outside of signal context
         if (g_shutdown_requested.load()) {
             std::cout << "\nShutting down...\n";
+            fierymud::events::EventPublisher::instance().shutdown();
             if (g_admin_server) {
                 g_admin_server->stop();
             }

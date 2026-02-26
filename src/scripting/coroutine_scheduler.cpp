@@ -7,6 +7,7 @@
 #include <sol/sol.hpp>
 
 #include "core/logging.hpp"
+#include "script_engine.hpp"
 
 namespace FieryMUD {
 
@@ -144,8 +145,43 @@ void CoroutineScheduler::resume_coroutine(std::uint64_t coroutine_id) {
         return;
     }
 
+    // Install timeout protection before resuming (prevents infinite loops)
+    auto &engine = ScriptEngine::instance();
+    engine.install_timeout_hook(pending.thread.state());
+
     // Resume the coroutine
-    auto result = pending.coroutine();
+    sol::protected_function_result result;
+    try {
+        result = pending.coroutine();
+    } catch (const sol::error &e) {
+        engine.remove_timeout_hook(pending.thread.state());
+        if (engine.timed_out()) {
+            Log::error("Coroutine {} timeout on resume: exceeded {} instructions", coroutine_id,
+                       engine.max_instructions());
+        } else {
+            Log::error("Coroutine {} exception on resume: {}", coroutine_id, e.what());
+        }
+        remove_coroutine(coroutine_id);
+        total_completed_++;
+        return;
+    } catch (...) {
+        engine.remove_timeout_hook(pending.thread.state());
+        Log::error("Coroutine {} unknown exception on resume", coroutine_id);
+        remove_coroutine(coroutine_id);
+        total_completed_++;
+        return;
+    }
+
+    // Remove timeout hook after execution
+    engine.remove_timeout_hook(pending.thread.state());
+
+    // Check for timeout
+    if (engine.timed_out()) {
+        Log::error("Coroutine {} timeout on resume: exceeded {} instructions", coroutine_id, engine.max_instructions());
+        remove_coroutine(coroutine_id);
+        total_completed_++;
+        return;
+    }
 
     if (!result.valid()) {
         sol::error err = result;

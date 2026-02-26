@@ -1,5 +1,7 @@
 #include "account_commands.hpp"
 
+#include <utility>
+
 #include <pqxx/pqxx>
 
 #include "commands/command_system.hpp"
@@ -7,6 +9,7 @@
 #include "core/logging.hpp"
 #include "core/player.hpp"
 #include "database/connection_pool.hpp"
+#include "database/world_queries.hpp"
 #include "game/player_output.hpp"
 
 namespace AccountCommands {
@@ -45,19 +48,19 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
         ctx.send_header("Account Status");
         ctx.send_line("Your character is not linked to an account.");
         ctx.send_line("");
-        ctx.send_line("Use 'account link <email>' to link to an existing account.");
+        ctx.send_line("Use 'account link <email> <password>' to link to an existing account.");
         return CommandResult::Success;
     }
 
     // Query account information from database
     auto result = ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction &txn) -> Result<void> {
         auto row =
-            txn.exec1(fmt::format("SELECT id, email, username, role, created_at, last_login_at, account_wealth "
+            txn.exec1(fmt::format("SELECT id, email, display_name, role, created_at, last_login_at, account_wealth "
                                   "FROM \"Users\" WHERE id = {} AND deleted_at IS NULL",
                                   txn.quote(std::string(player->user_id()))));
 
         ctx.send_header("Account Information");
-        ctx.send_line(fmt::format("Username: {}", row["username"].as<std::string>()));
+        ctx.send_line(fmt::format("Display Name: {}", row["display_name"].as<std::string>()));
         ctx.send_line(fmt::format("Email: {}", row["email"].as<std::string>()));
         ctx.send_line(fmt::format("Role: {}", row["role"].as<std::string>()));
 
@@ -108,54 +111,58 @@ Result<CommandResult> cmd_account_link(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // Need at least the email argument (after 'link' subcommand)
-    if (ctx.arg_count() < 2) {
-        ctx.send_usage("account link <email>");
-        ctx.send_info("Links your character to an existing account by email address.");
+    // Need both email and password arguments (after 'link' subcommand)
+    if (ctx.arg_count() < 3) {
+        ctx.send_usage("account link <email> <password>");
+        ctx.send_info("Links your character to an existing account by verifying account credentials.");
         return CommandResult::InvalidSyntax;
     }
 
     auto email = std::string(ctx.arg(1));
+    auto password = std::string(ctx.arg(2));
 
-    // Look up the account by email
-    auto result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::string> {
-        auto rows = txn.exec(fmt::format("SELECT id, username FROM \"Users\" WHERE email = {} AND deleted_at IS NULL",
-                                         txn.quote(email)));
+    // Look up and authenticate the account by email
+    auto result =
+        ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<std::pair<std::string, std::string>> {
+            auto rows = txn.exec(fmt::format(
+                "SELECT id, display_name FROM \"Users\" WHERE email = {} AND deleted_at IS NULL", txn.quote(email)));
 
-        if (rows.empty()) {
-            return std::unexpected(Error{ErrorCode::NotFound, "No account found with that email."});
-        }
+            if (rows.empty()) {
+                return std::unexpected(Error{ErrorCode::PermissionDenied, "Invalid email or password."});
+            }
 
-        auto user_id = rows[0]["id"].as<std::string>();
-        auto username = rows[0]["username"].as<std::string>();
+            auto verify_result = WorldQueries::verify_user_password(txn, email, password);
+            if (!verify_result) {
+                return std::unexpected(verify_result.error());
+            }
 
-        // Link the character to the account
-        txn.exec(fmt::format("UPDATE \"Characters\" SET user_id = {} WHERE name = {}", txn.quote(user_id),
-                             txn.quote(std::string(player->name()))));
+            if (!verify_result.value()) {
+                return std::unexpected(Error{ErrorCode::PermissionDenied, "Invalid email or password."});
+            }
 
-        return username;
-    });
+            auto user_id = rows[0]["id"].as<std::string>();
+            auto username = rows[0]["display_name"].as<std::string>();
+
+            // Link the character to the account
+            auto update_result = txn.exec(fmt::format("UPDATE \"Characters\" SET user_id = {} WHERE name = {}",
+                                                      txn.quote(user_id), txn.quote(std::string(player->name()))));
+            if (update_result.affected_rows() != 1) {
+                return std::unexpected(Error{ErrorCode::NotFound, "Character not found."});
+            }
+
+            return std::make_pair(user_id, username);
+        });
 
     if (!result) {
         ctx.send_error(result.error().message);
         return CommandResult::ResourceError;
     }
 
-    // Update the player object
-    // Note: We need to query for the user_id since result only has username
-    auto user_result =
-        ConnectionPool::instance().execute_read_only([&](pqxx::nontransaction &txn) -> Result<std::string> {
-            auto row = txn.exec1(
-                fmt::format("SELECT id FROM \"Users\" WHERE email = {} AND deleted_at IS NULL", txn.quote(email)));
-            return row["id"].as<std::string>();
-        });
+    // Update the player object with the linked account ID
+    player->set_user_id(result->first);
 
-    if (user_result) {
-        player->set_user_id(*user_result);
-    }
-
-    ctx.send_success(fmt::format("Character successfully linked to account '{}'.", *result));
-    Log::info("Player {} linked to account {}", player->name(), email);
+    ctx.send_success(fmt::format("Character successfully linked to account '{}'.", result->second));
+    Log::info("Player {} linked character to account {}", player->name(), result->second);
 
     return CommandResult::Success;
 }
@@ -348,7 +355,7 @@ Result<void> register_commands() {
         .category("Account")
         .privilege(PrivilegeLevel::Player)
         .description("Manage your account and linked characters")
-        .usage("account [link|unlink|delete|characters]")
+        .usage("account [link <email> <password>|unlink|delete|characters]")
         .build();
 
     return {};

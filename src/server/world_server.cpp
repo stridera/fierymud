@@ -1,6 +1,7 @@
 #include "world_server.hpp"
 
 #include <algorithm>
+#include <future>
 
 #include <nlohmann/json.hpp>
 
@@ -259,27 +260,18 @@ Result<void> WorldServer::start() {
     asio::post(world_strand_, [this]() {
         auto world_load = world_manager_->load_world();
         if (!world_load) {
-            // Database loading failed - this is a critical error, not recoverable
-            Log::error("FATAL: Failed to load world data from database: {}", world_load.error().message);
-            Log::error("The server cannot start without a valid database connection.");
-            Log::error("Please check your database configuration and ensure PostgreSQL is running.");
-
-            // Signal failure via exception in the promise
+            Log::error("FATAL: Failed to load world data: {}", world_load.error().message);
             try {
                 throw std::runtime_error(fmt::format("Failed to load world data: {}", world_load.error().message));
             } catch (...) {
                 world_loaded_promise_.set_exception(std::current_exception());
             }
-
-            // Mark server as not running to trigger shutdown
             running_.store(false);
             return;
         }
 
         Log::info("World data loaded successfully on world strand");
         world_manager_->set_start_room(EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
-        Log::info("Default starting room set to [{}] - The Forest Temple of Mielikki",
-                  EntityId{DEFAULT_START_ZONE_ID, DEFAULT_START_LOCAL_ID});
         world_loaded_promise_.set_value();
     });
 
@@ -295,6 +287,45 @@ Result<void> WorldServer::start() {
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
+}
+
+void WorldServer::pause() {
+    paused_.store(true);
+    Log::info("WorldServer paused - game systems frozen");
+}
+
+void WorldServer::unpause() {
+    paused_.store(false);
+    Log::info("WorldServer unpaused - game systems resumed");
+}
+
+void WorldServer::tick(int count) {
+    if (!paused_.load()) {
+        Log::warn("WorldServer::tick() called while not paused - ignoring");
+        return;
+    }
+
+    // Post to world strand to ensure thread safety
+    auto promise = std::make_shared<std::promise<void>>();
+    auto future = promise->get_future();
+
+    asio::post(world_strand_, [this, count, promise]() {
+        for (int i = 0; i < count; ++i) {
+            // Run the game systems in order, bypassing the pause check
+            perform_combat_processing();
+            perform_casting_processing();
+            perform_spell_restoration();
+            perform_regen_tick();
+            perform_mob_activity();
+        }
+        promise->set_value();
+    });
+
+    // Wait for ticks to complete (with timeout)
+    auto status = future.wait_for(std::chrono::seconds(10));
+    if (status == std::future_status::timeout) {
+        Log::error("WorldServer::tick() timed out after 10 seconds");
+    }
 }
 
 void WorldServer::begin_shutdown() {
@@ -318,6 +349,10 @@ void WorldServer::begin_shutdown() {
         spell_restore_timer_->cancel();
     if (casting_timer_)
         casting_timer_->cancel();
+    if (regen_tick_timer_)
+        regen_tick_timer_->cancel();
+    if (mob_activity_timer_)
+        mob_activity_timer_->cancel();
 }
 
 void WorldServer::stop() {
@@ -342,6 +377,10 @@ void WorldServer::stop() {
         spell_restore_timer_->cancel();
     if (casting_timer_)
         casting_timer_->cancel();
+    if (regen_tick_timer_)
+        regen_tick_timer_->cancel();
+    if (mob_activity_timer_)
+        mob_activity_timer_->cancel();
 
     // Shutdown scripting systems in proper order:
     // 1. CoroutineScheduler first (cancels all pending Lua coroutines and timers)
@@ -392,7 +431,7 @@ void WorldServer::process_command(std::shared_ptr<PlayerConnection> connection, 
     asio::post(world_strand_, [this, connection, cmd = std::move(cmd)]() {
         // Process the command and send response
         if (!cmd.command.empty()) {
-            Log::debug("Processing command '{}' on world strand", cmd.command);
+            Log::debug("Processing command on world strand ({} chars)", cmd.command.size());
 
             // Use the full CommandSystem for processing
             std::string response;
@@ -455,8 +494,8 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
         return;
     }
 
-    Log::debug("WorldServer::process_command (Actor): Received command '{}' for actor '{}'", command_text,
-               actor->name());
+    Log::debug("WorldServer::process_command (Actor): received command for actor '{}' ({} chars)", actor->name(),
+               command_text.size());
 
     // Create command request
     CommandRequest cmd;
@@ -464,11 +503,11 @@ void WorldServer::process_command(std::shared_ptr<Actor> actor, std::string_view
     cmd.timestamp = std::chrono::steady_clock::now();
 
     asio::post(world_strand_, [this, actor, cmd = std::move(cmd)]() {
-        Log::debug("WorldServer::process_command (Actor) - posted lambda: Processing command '{}' for actor '{}'",
-                   cmd.command, actor->name());
+        Log::debug("WorldServer::process_command (Actor) - posted lambda: actor='{}', command_length={}", actor->name(),
+                   cmd.command.size());
         // Process the command and send response
         if (!cmd.command.empty()) {
-            Log::debug("Processing command '{}' on world strand", cmd.command);
+            Log::debug("Processing command on world strand ({} chars)", cmd.command.size());
 
             // Check if player is in composer mode - route input to composer instead
             if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
@@ -630,7 +669,7 @@ std::shared_ptr<Actor> WorldServer::get_actor_for_connection(std::shared_ptr<Pla
 void WorldServer::handle_command(CommandRequest command) {
     // This runs on the world strand - no synchronization needed!
 
-    Log::debug("Handling command: {}", command.command);
+    Log::debug("Handling command with length {}", command.command.size());
 
     // Full CommandSystem integration is pending player registry implementation
     // For now, just log the command - the existing process_command methods
@@ -641,9 +680,9 @@ void WorldServer::handle_command(CommandRequest command) {
         if (!command.args.empty()) {
             input += " " + command.args;
         }
-        Log::debug("Command received: '{}' from player {}", input, command.player_id);
+        Log::debug("Command received from player {} ({} chars)", command.player_id, input.size());
     } else {
-        Log::warn("Received command '{}' without valid player ID", command.command);
+        Log::warn("Received command without valid player ID ({} chars)", command.command.size());
     }
 }
 
@@ -689,43 +728,43 @@ void WorldServer::handle_player_disconnection(std::shared_ptr<PlayerConnection> 
 // Periodic Operations
 
 void WorldServer::schedule_periodic_cleanup() {
-    cleanup_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    cleanup_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(CLEANUP_INTERVAL, [this]() { perform_cleanup(); }, cleanup_timer_);
 }
 
 void WorldServer::schedule_heartbeat() {
-    heartbeat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    heartbeat_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(HEARTBEAT_INTERVAL, [this]() { perform_heartbeat(); }, heartbeat_timer_);
 }
 
 void WorldServer::schedule_combat_processing() {
     Log::debug("Scheduling combat processing timer ({}ms interval)", COMBAT_PROCESSING_INTERVAL.count());
-    combat_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    combat_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(COMBAT_PROCESSING_INTERVAL, [this]() { perform_combat_processing(); }, combat_timer_);
 }
 
 void WorldServer::schedule_periodic_save() {
     Log::info("Scheduling periodic player save timer ({}min interval)",
               std::chrono::duration_cast<std::chrono::minutes>(PLAYER_SAVE_INTERVAL).count());
-    save_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    save_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(PLAYER_SAVE_INTERVAL, [this]() { perform_player_save(); }, save_timer_);
 }
 
 void WorldServer::schedule_spell_restoration() {
     Log::info("Scheduling spell restoration timer (1s interval)");
-    spell_restore_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    spell_restore_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(SPELL_RESTORE_INTERVAL, [this]() { perform_spell_restoration(); }, spell_restore_timer_);
 }
 
 void WorldServer::schedule_casting_processing() {
     Log::info("Scheduling casting tick timer (500ms interval)");
-    casting_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    casting_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(CASTING_TICK_INTERVAL, [this]() { perform_casting_processing(); }, casting_timer_);
 }
 
 void WorldServer::schedule_regen_tick() {
     Log::info("Scheduling regeneration tick timer (4s interval like legacy)");
-    regen_tick_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    regen_tick_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(REGEN_TICK_INTERVAL, [this]() { perform_regen_tick(); }, regen_tick_timer_);
 }
 
@@ -736,7 +775,7 @@ void WorldServer::perform_regen_tick() {
 
 void WorldServer::schedule_mob_activity() {
     Log::info("Scheduling mob activity timer (2s interval for AI/aggression)");
-    mob_activity_timer_ = std::make_shared<asio::steady_timer>(world_strand_);
+    mob_activity_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(MOB_ACTIVITY_INTERVAL, [this]() { perform_mob_activity(); }, mob_activity_timer_);
 }
 
@@ -1052,7 +1091,10 @@ void WorldServer::schedule_timer(std::chrono::milliseconds interval, std::functi
                 // Check again before executing - shutdown may have started
                 if (!running_.load())
                     return;
-                task();
+                // Skip game logic while paused (timer keeps rescheduling)
+                if (!paused_.load()) {
+                    task();
+                }
                 // Reschedule
                 schedule_timer(interval, task, timer);
             });

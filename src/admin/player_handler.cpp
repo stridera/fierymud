@@ -71,8 +71,10 @@ void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_se
 
                 auto result = mud_server.execute_command(executor, command);
 
-                json response = {
-                    {"success", result.success}, {"message", result.message}, {"executor", result.executor}};
+                json response = {{"success", result.success},
+                                 {"message", result.message},
+                                 {"executor", result.executor},
+                                 {"output", result.output}};
 
                 return response.dump();
 

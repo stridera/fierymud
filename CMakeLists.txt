@@ -19,8 +19,9 @@ elseif(SCCACHE_PROGRAM)
 endif()
 
 # Option to enable sanitizers for debugging memory issues
-# Default ON during development to catch memory bugs early
-option(ENABLE_SANITIZERS "Enable Address and Undefined Behavior sanitizers" ON)
+# Default OFF - ASAN adds 2-3x memory overhead which can crash WSL2.
+# Enable explicitly with: cmake -DENABLE_SANITIZERS=ON
+option(ENABLE_SANITIZERS "Enable Address and Undefined Behavior sanitizers" OFF)
 
 if(ENABLE_SANITIZERS)
     message(STATUS "Building with sanitizers enabled (ASAN + UBSAN)")
@@ -411,6 +412,9 @@ add_executable(fierymud
     src/admin/admin_server.cpp
     src/admin/zone_reload_handler.cpp
     src/admin/player_handler.cpp
+    src/admin/session_handler.cpp
+    src/admin/world_handler.cpp
+    src/admin/trigger_handler.cpp
 )
 
 target_link_libraries(fierymud PRIVATE fierymud_core)

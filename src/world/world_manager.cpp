@@ -239,8 +239,6 @@ Result<void> WorldManager::load_world() {
     logger->info("Performing initial zone resets to populate world...");
     for (const auto &[zone_id, zone] : zones_) {
         if (zone) {
-            logger->trace("Force resetting zone {} ({}) with {} commands", zone_id, zone->name(),
-                          zone->commands().size());
             zone->force_reset();
         }
     }

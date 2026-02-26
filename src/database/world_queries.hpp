@@ -469,7 +469,7 @@ enum class UserRole { Player, Immortal, Builder, HeadBuilder, Coder, God };
 struct UserData {
     std::string id; // UUID
     std::string email;
-    std::string username;
+    std::string display_name;
     std::string password_hash;
     UserRole role = UserRole::Player;
     int failed_login_attempts = 0;
@@ -490,11 +490,8 @@ struct CharacterSummary {
     std::optional<std::chrono::system_clock::time_point> last_login;
 };
 
-/** Check if a user account exists by username or email */
-Result<bool> user_exists(pqxx::work &txn, const std::string &username_or_email);
-
-/** Load user by username */
-Result<UserData> load_user_by_username(pqxx::work &txn, const std::string &username);
+/** Check if a user account exists by email */
+Result<bool> user_exists(pqxx::work &txn, const std::string &email);
 
 /** Load user by email */
 Result<UserData> load_user_by_email(pqxx::work &txn, const std::string &email);
@@ -503,7 +500,7 @@ Result<UserData> load_user_by_email(pqxx::work &txn, const std::string &email);
 Result<UserData> load_user_by_id(pqxx::work &txn, const std::string &id);
 
 /** Verify user password (with automatic hash upgrade for legacy passwords) */
-Result<bool> verify_user_password(pqxx::work &txn, const std::string &username_or_email, const std::string &password);
+Result<bool> verify_user_password(pqxx::work &txn, const std::string &email, const std::string &password);
 
 /** Get all characters associated with a user account */
 Result<std::vector<CharacterSummary>> get_user_characters(pqxx::work &txn, const std::string &user_id);
@@ -523,6 +520,31 @@ Result<void> link_character_to_user(pqxx::work &txn, const std::string &characte
 
 /** Save account wealth (shared across all characters on account) */
 Result<void> save_account_wealth(pqxx::work &txn, const std::string &user_id, long account_wealth);
+
+// =============================================================================
+// Login Request Queries (passwordless approval flow)
+// =============================================================================
+
+/** Login request data from the login_requests table */
+struct LoginRequestData {
+    std::string id;
+    std::string user_id;
+    std::string status; // PENDING, APPROVED, DENIED, EXPIRED
+    std::string ip_address;
+    std::chrono::system_clock::time_point expires_at;
+    std::chrono::system_clock::time_point created_at;
+};
+
+/** Create a new login request for passwordless approval */
+Result<LoginRequestData> create_login_request(pqxx::work &txn, const std::string &user_id,
+                                              const std::string &ip_address,
+                                              std::chrono::minutes expiry = std::chrono::minutes(5));
+
+/** Check the status of a login request (auto-expires if past deadline) */
+Result<LoginRequestData> check_login_request(pqxx::work &txn, const std::string &request_id);
+
+/** Cancel a pending login request (sets status to DENIED) */
+Result<void> cancel_login_request(pqxx::work &txn, const std::string &request_id);
 
 // =============================================================================
 // Shop System Queries

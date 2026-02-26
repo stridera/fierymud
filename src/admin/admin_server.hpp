@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include <unordered_map>
 #include <vector>
 
 #include <asio.hpp>
@@ -73,6 +74,8 @@ class AdminServer {
 
     // Authentication token (should be configured from environment)
     std::string auth_token_;
+    bool allow_unauthenticated_local_ = false;
+    std::string cors_origin_;
 };
 
 /**
