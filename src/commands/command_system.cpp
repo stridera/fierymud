@@ -6,6 +6,7 @@
 #include "core/ability_executor.hpp"
 #include "core/actor.hpp"
 #include "core/logging.hpp"
+#include "core/object.hpp"
 #include "core/player.hpp"
 #include "database/world_queries.hpp"
 #include "scripting/trigger_manager.hpp"
@@ -273,6 +274,41 @@ Result<CommandResult> CommandSystem::execute_parsed_command(std::shared_ptr<Acto
                 }
             }
             Log::debug("execute_parsed_command: finished checking {} mobs", mob_count);
+
+            // Check COMMAND triggers on objects in the room, inventory, and equipment
+            auto check_obj_command = [&](std::shared_ptr<Object> obj) -> bool {
+                if (!obj)
+                    return false;
+                std::string argument = command.args_from(0);
+                auto result = trigger_mgr.dispatch_obj_command(obj, actor, command.command, argument);
+                return result == FieryMUD::TriggerResult::Halt;
+            };
+
+            // Room objects
+            for (const auto &obj : room->contents().objects) {
+                if (check_obj_command(obj)) {
+                    Log::debug("Command '{}' intercepted by object trigger on {}", command.command, obj->name());
+                    return CommandResult::Success;
+                }
+            }
+
+            // Inventory objects
+            for (const auto &obj : actor->inventory().get_all_items()) {
+                if (check_obj_command(obj)) {
+                    Log::debug("Command '{}' intercepted by inventory object trigger on {}", command.command,
+                               obj->name());
+                    return CommandResult::Success;
+                }
+            }
+
+            // Equipped objects
+            for (const auto &obj : actor->equipment().get_all_equipped()) {
+                if (check_obj_command(obj)) {
+                    Log::debug("Command '{}' intercepted by equipped object trigger on {}", command.command,
+                               obj->name());
+                    return CommandResult::Success;
+                }
+            }
         }
     }
     Log::debug("execute_parsed_command: proceeding to command lookup");

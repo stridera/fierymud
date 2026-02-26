@@ -270,6 +270,15 @@ class WorldManager {
         }
     }
 
+    // Room Iteration (for object triggers, etc.)
+    template <typename Func> void for_each_room(Func &&func) const {
+        for (const auto &[id, room] : rooms_) {
+            if (room) {
+                func(room);
+            }
+        }
+    }
+
     // Get all spawned mobiles (for mob activity/AI processing)
     const std::unordered_map<EntityId, std::shared_ptr<Mobile>> &spawned_mobiles() const { return spawned_mobiles_; }
 

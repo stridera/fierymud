@@ -20,6 +20,7 @@
 #include "database/world_queries.hpp"
 #include "game/composer_system.hpp"
 #include "net/player_connection.hpp"
+#include "scripting/trigger_manager.hpp"
 #include "server/world_server.hpp"
 #include "world/room.hpp"
 #include "world/time_system.hpp"
@@ -460,6 +461,13 @@ Result<CommandResult> cmd_look(const CommandContext &ctx) {
         break;
     case TargetType::Actor:
         description = BuiltinCommands::Helpers::format_actor_description(target_info.actor, ctx.actor);
+        // Fire LOOK trigger on the target (notification-only, doesn't block)
+        {
+            auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+            if (trigger_mgr.is_initialized()) {
+                trigger_mgr.dispatch_look(target_info.actor, ctx.actor);
+            }
+        }
         break;
     case TargetType::Object:
         description = BuiltinCommands::Helpers::format_object_description(target_info.object, ctx.actor);

@@ -293,73 +293,75 @@ std::vector<TriggerDataPtr> TriggerManager::find_triggers(const EntityId &entity
 // Trigger Dispatch
 // ============================================================================
 
-void TriggerManager::setup_lua_context(sol::state_view lua, const ScriptContext &context) {
-    // Set up standard context variables
+void TriggerManager::setup_lua_context(sol::environment &env, const ScriptContext &context) {
+    // Set up standard context variables in the per-trigger environment.
+    // This isolates self/actor/target/etc. so concurrent coroutines don't overwrite each other's globals.
     if (auto actor = context.owner_as_actor()) {
-        lua["self"] = actor;
+        env["self"] = actor;
     } else if (auto object = context.owner_as_object()) {
-        lua["self"] = object;
+        env["self"] = object;
     } else if (auto room = context.owner_as_room()) {
-        lua["self"] = room;
+        env["self"] = room;
     }
 
     if (context.actor()) {
-        lua["actor"] = context.actor();
+        env["actor"] = context.actor();
     }
 
     if (context.target()) {
-        lua["target"] = context.target();
+        env["target"] = context.target();
     }
 
     if (context.object()) {
-        lua["object"] = context.object();
+        env["object"] = context.object();
     }
 
     if (context.room()) {
-        lua["room"] = context.room();
+        env["room"] = context.room();
     }
 
     // Command-specific variables
     if (!context.command().empty()) {
-        lua["cmd"] = std::string{context.command()};
+        env["cmd"] = std::string{context.command()};
     }
 
     if (!context.argument().empty()) {
-        lua["arg"] = std::string{context.argument()};
+        env["arg"] = std::string{context.argument()};
     }
 
     if (!context.speech().empty()) {
-        lua["speech"] = std::string{context.speech()};
+        env["speech"] = std::string{context.speech()};
     }
 
     if (context.direction()) {
-        lua["direction"] = *context.direction();
+        env["direction"] = *context.direction();
     }
 
     if (context.amount()) {
-        lua["amount"] = *context.amount();
-        lua["damage"] = *context.amount(); // Alias for ATTACK/DEFEND triggers
+        env["amount"] = *context.amount();
+        env["damage"] = *context.amount(); // Alias for ATTACK/DEFEND triggers
     }
 
     // Expose trigger identity for error reporting in binding callbacks
     if (context.trigger()) {
-        lua["__trigger_zone_id"] = context.trigger()->zone_id.value_or(0);
-        lua["__trigger_id"] = context.trigger()->id;
-        lua["__trigger_name"] = context.trigger()->name;
+        env["__trigger_zone_id"] = context.trigger()->zone_id.value_or(0);
+        env["__trigger_id"] = context.trigger()->id;
+        env["__trigger_name"] = context.trigger()->name;
     }
 
     // Load trigger-specific variables from JSON
     if (context.trigger() && !context.trigger()->variables.empty()) {
-        lua["vars"] = lua.create_table();
+        sol::state_view lua(env.lua_state());
+        env["vars"] = lua.create_table();
         for (auto &[key, value] : context.trigger()->variables.items()) {
             if (value.is_string()) {
-                lua["vars"][key] = value.get<std::string>();
+                env["vars"][key] = value.get<std::string>();
             } else if (value.is_number_integer()) {
-                lua["vars"][key] = value.get<int>();
+                env["vars"][key] = value.get<int>();
             } else if (value.is_number_float()) {
-                lua["vars"][key] = value.get<double>();
+                env["vars"][key] = value.get<double>();
             } else if (value.is_boolean()) {
-                lua["vars"][key] = value.get<bool>();
+                env["vars"][key] = value.get<bool>();
             }
         }
     }
@@ -385,9 +387,6 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr &trigger, Scr
     sol::thread thread = engine.create_thread();
     sol::state_view thread_lua(thread.state());
 
-    // Set up the Lua environment with context on the thread
-    setup_lua_context(thread_lua, context);
-
     // Load the script using bytecode cache for performance
     auto loaded = engine.load_cached(thread_lua, trigger->commands, trigger->cache_key());
     if (!loaded) {
@@ -398,6 +397,13 @@ TriggerResult TriggerManager::execute_trigger(const TriggerDataPtr &trigger, Scr
         ++stats_.failed_executions;
         return TriggerResult::Error;
     }
+
+    // Create a per-trigger environment that inherits from globals via __index.
+    // This isolates context variables (self, actor, target, etc.) so concurrent
+    // coroutines don't overwrite each other's values in the shared global table.
+    sol::environment env(thread_lua, sol::create, thread_lua.globals());
+    setup_lua_context(env, context);
+    sol::set_environment(env, *loaded);
 
     // Create coroutine from the loaded function
     sol::coroutine coro(thread.state(), *loaded);
@@ -998,6 +1004,327 @@ TriggerResult TriggerManager::dispatch_defend(std::shared_ptr<Object> armor, std
         if (result == TriggerResult::Halt) {
             return TriggerResult::Halt;
         }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_get(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::GET);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(object)
+                           .set_actor(actor)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_drop(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::DROP);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(object)
+                           .set_actor(actor)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_wear(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::WEAR);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(object)
+                           .set_actor(actor)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_remove(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::REMOVE);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(object)
+                           .set_actor(actor)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_obj_command(std::shared_ptr<Object> owner, std::shared_ptr<Actor> actor,
+                                                   std::string_view command, std::string_view argument) {
+    if (!initialized_ || !owner) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = owner->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::COMMAND);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(owner)
+                           .set_actor(actor)
+                           .set_command(command)
+                           .set_argument(argument)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_give(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::GIVE);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(object)
+                           .set_actor(actor)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_consume(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::CONSUME);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(object)
+                           .set_actor(actor)
+                           .set_room(actor->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_obj_random(std::shared_ptr<Object> object) {
+    if (!initialized_ || !object) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = object->id();
+    auto triggers = find_triggers(entity_id, ScriptType::OBJECT, TriggerFlag::RANDOM);
+
+    // Thread-local RNG for random trigger chances
+    static thread_local std::mt19937 rng{std::random_device{}()};
+    static thread_local std::uniform_int_distribution<int> dist(0, 99);
+
+    for (const auto &trigger : triggers) {
+        // Check numeric_arg for random percentage
+        int chance = trigger->numeric_arg > 0 ? trigger->numeric_arg : 100;
+
+        // Roll for random trigger using proper RNG
+        if (dist(rng) >= chance) {
+            continue;
+        }
+
+        auto context = ScriptContext::Builder().set_trigger(trigger).set_owner(object).build();
+
+        execute_trigger(trigger, context);
+        // Random triggers don't halt
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_speech_to(std::shared_ptr<Actor> owner, std::shared_ptr<Actor> actor,
+                                                 std::string_view speech) {
+    if (!initialized_ || !owner) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = owner->id();
+    auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::SPEECH_TO);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(owner)
+                           .set_actor(actor)
+                           .set_speech(speech)
+                           .set_room(owner->current_room())
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_look(std::shared_ptr<Actor> owner, std::shared_ptr<Actor> actor) {
+    if (!initialized_ || !owner || !actor) {
+        return TriggerResult::Continue;
+    }
+
+    // Don't trigger on self
+    if (owner == actor) {
+        return TriggerResult::Continue;
+    }
+
+    auto entity_id = owner->id();
+    auto triggers = find_triggers(entity_id, ScriptType::MOB, TriggerFlag::LOOK);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(owner)
+                           .set_actor(actor)
+                           .set_room(owner->current_room())
+                           .build();
+
+        execute_trigger(trigger, context);
+        // LOOK triggers are notification-only, don't halt
+    }
+
+    return TriggerResult::Continue;
+}
+
+// ============================================================================
+// WORLD Trigger Dispatch
+// ============================================================================
+
+TriggerResult TriggerManager::dispatch_preentry(std::shared_ptr<Room> room, std::shared_ptr<Actor> actor,
+                                                Direction direction) {
+    if (!initialized_ || !room || !actor) {
+        return TriggerResult::Continue;
+    }
+
+    // World triggers are keyed by (zone_id, 0)
+    EntityId world_id{room->id().zone_id(), 0};
+    auto triggers = find_triggers(world_id, ScriptType::WORLD, TriggerFlag::PREENTRY);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(room)
+                           .set_actor(actor)
+                           .set_direction(direction)
+                           .set_room(room)
+                           .build();
+
+        auto result = execute_trigger(trigger, context);
+        if (result == TriggerResult::Halt) {
+            return TriggerResult::Halt;
+        }
+    }
+
+    return TriggerResult::Continue;
+}
+
+TriggerResult TriggerManager::dispatch_postentry(std::shared_ptr<Room> room, std::shared_ptr<Actor> actor,
+                                                 Direction direction) {
+    if (!initialized_ || !room || !actor) {
+        return TriggerResult::Continue;
+    }
+
+    // World triggers are keyed by (zone_id, 0)
+    EntityId world_id{room->id().zone_id(), 0};
+    auto triggers = find_triggers(world_id, ScriptType::WORLD, TriggerFlag::POSTENTRY);
+
+    for (const auto &trigger : triggers) {
+        auto context = ScriptContext::Builder()
+                           .set_trigger(trigger)
+                           .set_owner(room)
+                           .set_actor(actor)
+                           .set_direction(direction)
+                           .set_room(room)
+                           .build();
+
+        execute_trigger(trigger, context);
+        // POSTENTRY triggers don't halt
     }
 
     return TriggerResult::Continue;

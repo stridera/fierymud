@@ -223,7 +223,8 @@ void CoroutineScheduler::resume_coroutine(std::uint64_t coroutine_id) {
         Log::debug("Coroutine {} yielded again, rescheduled for {} seconds", coroutine_id, delay);
     } else {
         // Coroutine completed
-        Log::debug("Coroutine {} completed", coroutine_id);
+        Log::debug("Coroutine {} completed successfully (owner: {}:{})", coroutine_id, pending.owner_id.zone_id(),
+                   pending.owner_id.local_id());
         remove_coroutine(coroutine_id);
         total_completed_++;
     }

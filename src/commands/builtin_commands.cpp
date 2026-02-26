@@ -868,6 +868,22 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
         }
     }
 
+    // Dispatch WORLD PREENTRY triggers for the destination zone
+    if (trigger_mgr.is_initialized() && old_room) {
+        auto exit = old_room->get_exit(dir);
+        if (exit) {
+            auto dest_room = World().get_room(exit->to_room);
+            if (dest_room) {
+                auto preentry_result = trigger_mgr.dispatch_preentry(dest_room, ctx.actor, dir);
+                if (preentry_result == FieryMUD::TriggerResult::Halt) {
+                    Log::debug("Movement blocked by PREENTRY trigger for zone {}", dest_room->id().zone_id());
+                    ctx.send_error("Something prevents you from going that way.");
+                    return CommandResult::InvalidState;
+                }
+            }
+        }
+    }
+
     auto result = ctx.move_actor_direction(dir);
     if (!result) {
         ctx.send_error(fmt::format("Movement failed: {}", result.error().message));
@@ -899,6 +915,9 @@ Result<CommandResult> execute_movement(const CommandContext &ctx, Direction dir)
         if (ctx.actor->type_name() == "Mobile") {
             trigger_mgr.dispatch_entry(ctx.actor, new_room, from_direction);
         }
+
+        // Dispatch WORLD POSTENTRY triggers for the destination zone
+        trigger_mgr.dispatch_postentry(new_room, ctx.actor, from_direction);
     }
 
     // Send movement confirmation message

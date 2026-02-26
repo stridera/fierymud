@@ -112,11 +112,10 @@ Result<CommandResult> cmd_say(const CommandContext &ctx) {
                 }
 
                 // Dispatch SPEECH trigger - triggers can react to what was said
-                auto result = trigger_mgr.dispatch_speech(other, ctx.actor, message);
-                if (result == FieryMUD::TriggerResult::Halt) {
-                    Log::debug("Speech intercepted by trigger on {}", other->name());
-                    // Note: We still show the say to the room, trigger just reacted
-                }
+                trigger_mgr.dispatch_speech(other, ctx.actor, message);
+
+                // Dispatch SPEECH_TO trigger - fires on directed speech in room
+                trigger_mgr.dispatch_speech_to(other, ctx.actor, message);
             }
         }
     }
@@ -153,6 +152,17 @@ Result<CommandResult> cmd_tell(const CommandContext &ctx) {
     }
 
     std::string message = sanitize_player_message(ctx.args_from(1), ctx.actor);
+
+    // Fire SPEECH_TO trigger on mob targets before sending messages
+    if (target->type_name() == "Mobile") {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto result = trigger_mgr.dispatch_speech_to(target, ctx.actor, message);
+            if (result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
+    }
 
     // Send to target (cyan for tells)
     std::string target_msg = fmt::format("<cyan>{} tells you, '{}'</>", ctx.actor->display_name(), message);

@@ -39,6 +39,7 @@ constexpr auto SPELL_RESTORE_INTERVAL = std::chrono::seconds(1);
 constexpr auto CASTING_TICK_INTERVAL = std::chrono::milliseconds(500); // 2 ticks per second
 constexpr auto REGEN_TICK_INTERVAL = std::chrono::seconds(4);          // HP/move regen like legacy
 constexpr auto MOB_ACTIVITY_INTERVAL = std::chrono::seconds(2);        // Mob AI tick (aggression, etc.)
+constexpr auto RANDOM_TRIGGER_INTERVAL = std::chrono::seconds(13);     // DG standard random trigger tick
 
 // Game time defaults
 constexpr int DEFAULT_LORE_YEAR = 1000;
@@ -284,6 +285,7 @@ Result<void> WorldServer::start() {
     schedule_casting_processing();
     schedule_regen_tick();
     schedule_mob_activity();
+    schedule_random_processing();
 
     Log::info("WorldServer started with strand-based execution");
     return Success();
@@ -317,6 +319,7 @@ void WorldServer::tick(int count) {
             perform_spell_restoration();
             perform_regen_tick();
             perform_mob_activity();
+            perform_random_processing();
         }
         promise->set_value();
     });
@@ -353,6 +356,8 @@ void WorldServer::begin_shutdown() {
         regen_tick_timer_->cancel();
     if (mob_activity_timer_)
         mob_activity_timer_->cancel();
+    if (random_trigger_timer_)
+        random_trigger_timer_->cancel();
 }
 
 void WorldServer::stop() {
@@ -381,6 +386,8 @@ void WorldServer::stop() {
         regen_tick_timer_->cancel();
     if (mob_activity_timer_)
         mob_activity_timer_->cancel();
+    if (random_trigger_timer_)
+        random_trigger_timer_->cancel();
 
     // Shutdown scripting systems in proper order:
     // 1. CoroutineScheduler first (cancels all pending Lua coroutines and timers)
@@ -777,6 +784,33 @@ void WorldServer::schedule_mob_activity() {
     Log::info("Scheduling mob activity timer (2s interval for AI/aggression)");
     mob_activity_timer_ = std::make_shared<asio::steady_timer>(io_context_);
     schedule_timer(MOB_ACTIVITY_INTERVAL, [this]() { perform_mob_activity(); }, mob_activity_timer_);
+}
+
+void WorldServer::schedule_random_processing() {
+    Log::info("Scheduling random trigger timer (13s interval)");
+    random_trigger_timer_ = std::make_shared<asio::steady_timer>(io_context_);
+    schedule_timer(RANDOM_TRIGGER_INTERVAL, [this]() { perform_random_processing(); }, random_trigger_timer_);
+}
+
+void WorldServer::perform_random_processing() {
+    if (!world_manager_)
+        return;
+
+    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+    if (!trigger_mgr.is_initialized())
+        return;
+
+    // Mob RANDOM triggers
+    world_manager_->for_each_mobile([&trigger_mgr](std::shared_ptr<Mobile> mob) { trigger_mgr.dispatch_random(mob); });
+
+    // Object RANDOM triggers (iterate all rooms and their objects)
+    world_manager_->for_each_room([&trigger_mgr](std::shared_ptr<Room> room) {
+        for (const auto &obj : room->contents().objects) {
+            if (obj) {
+                trigger_mgr.dispatch_obj_random(obj);
+            }
+        }
+    });
 }
 
 // Alignment thresholds for aggression checks

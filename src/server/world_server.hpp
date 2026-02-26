@@ -151,6 +151,7 @@ class WorldServer {
     void schedule_casting_processing();
     void schedule_regen_tick();
     void schedule_mob_activity();
+    void schedule_random_processing();
 
     // Shutdown callback - called when WorldManager requests shutdown
     using ShutdownCallback = std::function<void()>;
@@ -178,6 +179,7 @@ class WorldServer {
     void perform_casting_processing();
     void perform_regen_tick();
     void perform_mob_activity();
+    void perform_random_processing();
 
     // GMCP support
     void send_room_info_to_player(std::shared_ptr<PlayerConnection> connection);
@@ -215,6 +217,7 @@ class WorldServer {
     std::shared_ptr<asio::steady_timer> casting_timer_;
     std::shared_ptr<asio::steady_timer> regen_tick_timer_;
     std::shared_ptr<asio::steady_timer> mob_activity_timer_;
+    std::shared_ptr<asio::steady_timer> random_trigger_timer_;
 
     // Performance tracking
     mutable std::atomic<size_t> commands_processed_{0};

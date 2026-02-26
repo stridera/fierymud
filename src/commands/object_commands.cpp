@@ -395,6 +395,17 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
                 if (!item)
                     continue;
 
+                // Fire GET trigger on each object - if Halt, skip this item
+                {
+                    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+                    if (trigger_mgr.is_initialized()) {
+                        auto trig_result = trigger_mgr.dispatch_get(item, ctx.actor);
+                        if (trig_result == FieryMUD::TriggerResult::Halt) {
+                            continue;
+                        }
+                    }
+                }
+
                 // Check if actor can carry more weight
                 int object_weight = item->weight();
                 if (!ctx.actor->inventory().can_carry(object_weight, ctx.actor->max_carry_weight())) {
@@ -527,6 +538,17 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
                     continue; // Skip items without TAKE flag silently for "get all"
                 }
 
+                // Fire GET trigger on each object - if Halt, skip this item
+                {
+                    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+                    if (trigger_mgr.is_initialized()) {
+                        auto trig_result = trigger_mgr.dispatch_get(obj, ctx.actor);
+                        if (trig_result == FieryMUD::TriggerResult::Halt) {
+                            continue;
+                        }
+                    }
+                }
+
                 // Check if actor can carry more weight (money skips this check)
                 if (obj->type() != ObjectType::Money) {
                     int object_weight = obj->weight();
@@ -591,6 +613,17 @@ Result<CommandResult> cmd_get(const CommandContext &ctx) {
             if (!player || !player->is_god()) {
                 ctx.send_error(fmt::format("You can't pick up {}.", ctx.format_object_name(target_object)));
                 return CommandResult::InvalidState;
+            }
+        }
+
+        // Fire GET trigger on the object before picking up
+        {
+            auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+            if (trigger_mgr.is_initialized()) {
+                auto trig_result = trigger_mgr.dispatch_get(target_object, ctx.actor);
+                if (trig_result == FieryMUD::TriggerResult::Halt) {
+                    return CommandResult::Success; // Trigger handled it
+                }
             }
         }
 
@@ -669,6 +702,16 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
 
         for (const auto &obj : items_to_drop) {
             if (obj) {
+                // Fire DROP trigger on each object - if Halt, skip this item
+                {
+                    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+                    if (trigger_mgr.is_initialized()) {
+                        auto trig_result = trigger_mgr.dispatch_drop(obj, ctx.actor);
+                        if (trig_result == FieryMUD::TriggerResult::Halt) {
+                            continue;
+                        }
+                    }
+                }
                 // Remove from inventory
                 if (ctx.actor->inventory().remove_item(obj)) {
                     // Clear liquid identification when dropping
@@ -716,6 +759,17 @@ Result<CommandResult> cmd_drop(const CommandContext &ctx) {
     if (!target_object) {
         ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
         return CommandResult::InvalidTarget;
+    }
+
+    // Fire DROP trigger on the object before dropping
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_drop(target_object, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
     }
 
     // Remove from inventory
@@ -1000,6 +1054,28 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
+    // Fire GIVE trigger on the object being given
+    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+    if (trigger_mgr.is_initialized()) {
+        auto give_result = trigger_mgr.dispatch_give(obj, ctx.actor);
+        if (give_result == FieryMUD::TriggerResult::Halt) {
+            return CommandResult::Success; // Object trigger handled it
+        }
+    }
+
+    // Fire RECEIVE/BRIBE trigger on the mob receiving BEFORE the transfer so Halt can prevent it
+    if (trigger_mgr.is_initialized()) {
+        FieryMUD::TriggerResult trig_result = FieryMUD::TriggerResult::Continue;
+        if (obj->type() == ObjectType::Money && obj->value() > 0) {
+            trig_result = trigger_mgr.dispatch_bribe(target, ctx.actor, obj->value());
+        } else {
+            trig_result = trigger_mgr.dispatch_receive(target, ctx.actor, obj);
+        }
+        if (trig_result == FieryMUD::TriggerResult::Halt) {
+            return CommandResult::Success; // Trigger handled it
+        }
+    }
+
     // Transfer the object from giver to receiver
     auto removed_obj = ctx.actor->inventory().remove_item(obj->id());
     if (!removed_obj) {
@@ -1021,19 +1097,6 @@ Result<CommandResult> cmd_give(const CommandContext &ctx) {
         ctx.actor->inventory().add_item(removed_obj);
         ctx.send_error(fmt::format("{} cannot carry any more items.", target->display_name()));
         return CommandResult::ResourceError;
-    }
-
-    // Fire RECEIVE trigger for mobs receiving items
-    // For money objects, fire BRIBE trigger instead
-    auto &trigger_mgr = FieryMUD::TriggerManager::instance();
-    if (trigger_mgr.is_initialized()) {
-        if (obj->type() == ObjectType::Money && obj->value() > 0) {
-            // BRIBE trigger for gold
-            trigger_mgr.dispatch_bribe(target, ctx.actor, obj->value());
-        } else {
-            // RECEIVE trigger for other items
-            trigger_mgr.dispatch_receive(target, ctx.actor, removed_obj);
-        }
     }
 
     ctx.send_success(fmt::format("You give {} to {}.", ctx.format_object_name(obj), target->display_name()));
@@ -1123,6 +1186,17 @@ Result<CommandResult> cmd_wear(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
+    // Fire WEAR trigger on the object before equipping
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_wear(target_object, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
+    }
+
     // Try to equip the item
     auto equip_result = ctx.actor->equipment().equip_item(target_object);
     if (!equip_result) {
@@ -1165,6 +1239,17 @@ Result<CommandResult> cmd_wield(const CommandContext &ctx) {
     if (!target_object) {
         ctx.send_error(fmt::format("You don't have '{}'.", ctx.arg(0)));
         return CommandResult::InvalidTarget;
+    }
+
+    // Fire WEAR trigger on the object before wielding (wield uses same DG flag as wear)
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_wear(target_object, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
     }
 
     // Try to equip the item (wield is just equipping)
@@ -1211,6 +1296,17 @@ Result<CommandResult> cmd_remove(const CommandContext &ctx) {
     if (!target_object) {
         ctx.send_error(fmt::format("You're not wearing '{}'.", ctx.arg(0)));
         return CommandResult::InvalidTarget;
+    }
+
+    // Fire REMOVE trigger on the object before unequipping
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_remove(target_object, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
     }
 
     // Unequip the item
@@ -1728,6 +1824,17 @@ Result<CommandResult> cmd_eat(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
+    // Fire CONSUME trigger before eating
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_consume(food_item, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
+    }
+
     // Gods can eat anything - just destroy it
     if (is_god && food_item->type() != ObjectType::Food && food_item->type() != ObjectType::Potion) {
         if (!ctx.actor->inventory().remove_item(food_item)) {
@@ -1860,6 +1967,17 @@ Result<CommandResult> cmd_drink(const CommandContext &ctx) {
     if (!drink_item) {
         ctx.send_error(fmt::format("You can't find anything to drink called '{}'.", target_name));
         return CommandResult::InvalidTarget;
+    }
+
+    // Fire CONSUME trigger before drinking
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_consume(drink_item, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
     }
 
     // Handle different drinkable types
@@ -2371,6 +2489,17 @@ Result<CommandResult> cmd_quaff(const CommandContext &ctx) {
     if (!potion) {
         ctx.send_error(fmt::format("You don't have a potion called '{}'.", ctx.arg(0)));
         return CommandResult::InvalidTarget;
+    }
+
+    // Fire CONSUME trigger before quaffing
+    {
+        auto &trigger_mgr = FieryMUD::TriggerManager::instance();
+        if (trigger_mgr.is_initialized()) {
+            auto trig_result = trigger_mgr.dispatch_consume(potion, ctx.actor);
+            if (trig_result == FieryMUD::TriggerResult::Halt) {
+                return CommandResult::Success; // Trigger handled it
+            }
+        }
     }
 
     // Consume the potion

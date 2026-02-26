@@ -203,6 +203,15 @@ class TriggerManager {
     // OBJECT Trigger Dispatch
     // ========================================================================
 
+    /// Execute a COMMAND trigger on an object
+    /// @param owner The object that owns the trigger
+    /// @param actor The actor who typed the command
+    /// @param command The command word
+    /// @param argument The command arguments
+    /// @return Continue if command should proceed normally, Halt to stop
+    TriggerResult dispatch_obj_command(std::shared_ptr<Object> owner, std::shared_ptr<Actor> actor,
+                                       std::string_view command, std::string_view argument);
+
     /// Execute an ATTACK trigger (weapon being used to attack)
     /// @param weapon The weapon object with the trigger
     /// @param attacker The actor wielding the weapon
@@ -222,6 +231,83 @@ class TriggerManager {
     /// @return Continue or Halt (Halt can reduce/negate damage)
     TriggerResult dispatch_defend(std::shared_ptr<Object> armor, std::shared_ptr<Actor> defender,
                                   std::shared_ptr<Actor> attacker, int damage, std::shared_ptr<Room> room);
+
+    /// Execute a GET trigger (object being picked up)
+    /// @param object The object with the trigger
+    /// @param actor The actor picking up the object
+    /// @return Continue or Halt (Halt prevents pickup)
+    TriggerResult dispatch_get(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor);
+
+    /// Execute a DROP trigger (object being dropped)
+    /// @param object The object with the trigger
+    /// @param actor The actor dropping the object
+    /// @return Continue or Halt (Halt prevents drop)
+    TriggerResult dispatch_drop(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor);
+
+    /// Execute a WEAR trigger (object being worn/wielded)
+    /// @param object The object with the trigger
+    /// @param actor The actor wearing the object
+    /// @return Continue or Halt (Halt prevents equip)
+    TriggerResult dispatch_wear(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor);
+
+    /// Execute a REMOVE trigger (object being removed/unequipped)
+    /// @param object The object with the trigger
+    /// @param actor The actor removing the object
+    /// @return Continue or Halt (Halt prevents removal)
+    TriggerResult dispatch_remove(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor);
+
+    /// Execute a GIVE trigger (object being given to someone)
+    /// @param object The object with the trigger
+    /// @param actor The actor giving the object
+    /// @return Continue or Halt (Halt prevents give)
+    TriggerResult dispatch_give(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor);
+
+    /// Execute a CONSUME trigger (object being eaten/drunk/quaffed)
+    /// @param object The object with the trigger
+    /// @param actor The actor consuming the object
+    /// @return Continue or Halt (Halt prevents consumption)
+    TriggerResult dispatch_consume(std::shared_ptr<Object> object, std::shared_ptr<Actor> actor);
+
+    /// Execute a RANDOM trigger on an object (periodic random chance)
+    /// @param object The object with random trigger
+    /// @return Continue
+    TriggerResult dispatch_obj_random(std::shared_ptr<Object> object);
+
+    // ========================================================================
+    // MOB Trigger Dispatch (additional)
+    // ========================================================================
+
+    /// Execute a SPEECH_TO trigger (actor directly addresses mob)
+    /// @param owner The mob that owns the trigger
+    /// @param actor The actor who spoke
+    /// @param speech What was said
+    /// @return Continue or Halt
+    TriggerResult dispatch_speech_to(std::shared_ptr<Actor> owner, std::shared_ptr<Actor> actor,
+                                     std::string_view speech);
+
+    /// Execute a LOOK trigger (actor looks at mob)
+    /// @param owner The mob being looked at
+    /// @param actor The actor looking
+    /// @return Continue (notification only, doesn't block)
+    TriggerResult dispatch_look(std::shared_ptr<Actor> owner, std::shared_ptr<Actor> actor);
+
+    // ========================================================================
+    // WORLD Trigger Dispatch
+    // ========================================================================
+
+    /// Execute a PREENTRY trigger (player about to enter a zone room)
+    /// @param room The destination room
+    /// @param actor The actor about to enter
+    /// @param direction Direction of travel
+    /// @return Continue or Halt (Halt prevents movement)
+    TriggerResult dispatch_preentry(std::shared_ptr<Room> room, std::shared_ptr<Actor> actor, Direction direction);
+
+    /// Execute a POSTENTRY trigger (player has entered a zone room)
+    /// @param room The room entered
+    /// @param actor The actor that entered
+    /// @param direction Direction of travel
+    /// @return Continue (always)
+    TriggerResult dispatch_postentry(std::shared_ptr<Room> room, std::shared_ptr<Actor> actor, Direction direction);
 
     // ========================================================================
     // Debug Execution (for admin dtrig command)
@@ -279,8 +365,8 @@ class TriggerManager {
     /// Execute a trigger with the given context
     TriggerResult execute_trigger(const TriggerDataPtr &trigger, ScriptContext &context);
 
-    /// Set up Lua environment variables from context
-    void setup_lua_context(sol::state_view lua, const ScriptContext &context);
+    /// Set up Lua environment variables from context (in per-trigger isolated environment)
+    void setup_lua_context(sol::environment &env, const ScriptContext &context);
 
     /// Cache key for entity triggers
     struct CacheKey {

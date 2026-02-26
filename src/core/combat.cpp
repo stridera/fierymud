@@ -606,6 +606,20 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
             auto room = attacker->current_room();
             trigger_mgr.dispatch_attack(weapon, attacker, target, damage_int, room);
         }
+
+        // Execute DEFEND triggers for target's equipped items
+        // Don't filter by slot — any equipped item can have a DEFEND trigger
+        // (armor, shields, even weapons like a parrying dagger)
+        auto room = target->current_room();
+        for (const auto &item : target->equipment().get_all_equipped()) {
+            if (!item) {
+                continue;
+            }
+            auto defend_result = trigger_mgr.dispatch_defend(item, target, attacker, damage_int, room);
+            if (defend_result == TriggerResult::Halt) {
+                break;
+            }
+        }
     }
 
     // Check HIT_PERCENT triggers for mobs

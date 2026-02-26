@@ -165,12 +165,21 @@ void register_actor_bindings(sol::state &lua) {
         [](const Actor &a, const std::string &effect_name) -> bool { return a.has_effect(effect_name); },
 
         // Methods - Movement (requires Room binding)
+        // Directly moves actor between rooms, updating both room contents and actor state.
+        // Bypasses movement restrictions (capacity, entry scripts) since this is a scripted teleport.
         "teleport",
-        [](Actor &a, std::shared_ptr<Room> room) -> bool {
-            if (!room)
+        [](std::shared_ptr<Actor> self, std::shared_ptr<Room> room) -> bool {
+            if (!self || !room)
                 return false;
-            auto result = a.move_to(room);
-            return result.has_value();
+            auto old_room = self->current_room();
+            if (old_room == room)
+                return true; // Already there
+            if (old_room) {
+                old_room->remove_actor(self->id());
+            }
+            room->add_actor(self);
+            self->move_to(room);
+            return true;
         },
 
         // Methods - Spawn object into actor's inventory
