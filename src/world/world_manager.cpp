@@ -1759,7 +1759,7 @@ MovementResult WorldManager::check_movement_restrictions(std::shared_ptr<Actor> 
         return MovementResult("Destination room is full");
     }
 
-    // Check if actor is a Player to access god_level
+    // Check if actor is a Player to check god status
     auto *player = dynamic_cast<const Player *>(actor.get());
     bool is_god = player && player->is_god();
 

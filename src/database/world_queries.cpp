@@ -603,7 +603,7 @@ Result<std::vector<std::unique_ptr<Mobile>>> load_mobs_in_zone(pqxx::work &txn, 
 
             // Currency - wealth is already stored in copper
             if (!row[db::Mobs::WEALTH.data()].is_null()) {
-                mob_stats.gold = row[db::Mobs::WEALTH.data()].as<long>(0);
+                mob_stats.wealth = row[db::Mobs::WEALTH.data()].as<long>(0);
             }
 
             // Elemental resistances (from JSONB column)
@@ -885,7 +885,7 @@ Result<std::unique_ptr<Mobile>> load_mob(pqxx::work &txn, int zone_id, int mob_l
 
         // Currency - wealth is already stored in copper
         if (!row[db::Mobs::WEALTH.data()].is_null()) {
-            mob_stats.gold = row[db::Mobs::WEALTH.data()].as<long>(0);
+            mob_stats.wealth = row[db::Mobs::WEALTH.data()].as<long>(0);
         }
 
         // Elemental resistances (from JSONB column)

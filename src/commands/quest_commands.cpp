@@ -690,8 +690,9 @@ Result<CommandResult> cmd_qcomplete(const CommandContext &ctx) {
                     break;
                 case QuestQueries::QuestRewardType::GOLD:
                     if (reward.amount) {
-                        target->stats().gold += *reward.amount;
-                        target->send_message(fmt::format("You receive {} gold coins!\r\n", *reward.amount));
+                        target->give_wealth(*reward.amount);
+                        auto reward_money = fiery::Money::from_copper(*reward.amount);
+                        target->send_message(fmt::format("You receive {}!\r\n", reward_money.to_string()));
                     }
                     break;
                 case QuestQueries::QuestRewardType::ITEM:

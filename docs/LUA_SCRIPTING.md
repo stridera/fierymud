@@ -249,8 +249,7 @@ mobile:has_mob_flag(flag) -- Check mob flag
 ### Player-Specific
 
 ```lua
-player.is_god             -- true if immortal
-player.god_level          -- Immortal level (0 for mortals)
+player.is_god             -- true if immortal (level >= 100)
 player.is_online          -- true if connected
 player.is_linkdead        -- true if disconnected but in game
 player.class              -- Class name

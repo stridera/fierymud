@@ -494,18 +494,15 @@ TEST_CASE("Player actor flags serialization", "[persistence][player][flags]") {
     }
 }
 
-TEST_CASE("Player god level serialization", "[persistence][player][immortal]") {
+TEST_CASE("Player immortal detection", "[persistence][player][immortal]") {
 
-    SECTION("God level preserved for immortals") {
+    SECTION("Level 100+ players are gods") {
         auto player_result = Player::create(EntityId{1, 20}, "ImmPlayer");
         REQUIRE(player_result.has_value());
         auto player = std::move(*player_result);
 
         player->set_level(105);
-        player->set_god_level(6); // level 105 = god_level 6
-
         REQUIRE(player->is_god());
-        REQUIRE(player->god_level() == 6);
 
         json j = player->to_json();
 
@@ -514,19 +511,16 @@ TEST_CASE("Player god level serialization", "[persistence][player][immortal]") {
         auto player2 = std::move(*player2_result);
 
         REQUIRE(player2->is_god());
-        REQUIRE(player2->god_level() == 6);
         REQUIRE(player2->level() == 105);
     }
 
-    SECTION("Regular player has no god level") {
+    SECTION("Regular player is not a god") {
         auto player_result = Player::create(EntityId{1, 21}, "MortalPlayer");
         REQUIRE(player_result.has_value());
         auto player = std::move(*player_result);
 
         player->set_level(50);
-
         REQUIRE_FALSE(player->is_god());
-        REQUIRE(player->god_level() == 0);
 
         json j = player->to_json();
 
@@ -535,7 +529,6 @@ TEST_CASE("Player god level serialization", "[persistence][player][immortal]") {
         auto player2 = std::move(*player2_result);
 
         REQUIRE_FALSE(player2->is_god());
-        REQUIRE(player2->god_level() == 0);
     }
 }
 
@@ -709,7 +702,7 @@ TEST_CASE("Stats validation in persistence context", "[persistence][stats][valid
     SECTION("Valid stats pass validation") {
         Stats stats;
         stats.level = 50;
-        stats.gold = 10000;
+        stats.wealth = 10000;
         stats.hit_points = 100;
         stats.max_hit_points = 100;
 
@@ -717,13 +710,13 @@ TEST_CASE("Stats validation in persistence context", "[persistence][stats][valid
         REQUIRE(result.has_value());
     }
 
-    SECTION("Negative gold fails validation") {
+    SECTION("Negative wealth fails validation") {
         Stats stats;
-        stats.gold = -100;
+        stats.wealth = -100;
 
         auto result = stats.validate();
         REQUIRE_FALSE(result.has_value());
-        REQUIRE(result.error().message.find("Gold cannot be negative") != std::string::npos);
+        REQUIRE(result.error().message.find("Wealth cannot be negative") != std::string::npos);
     }
 
     SECTION("Zero level becomes level 1") {

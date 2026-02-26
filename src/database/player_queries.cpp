@@ -7,9 +7,6 @@
 
 namespace PlayerQueries {
 
-// Level at which characters become immortals
-constexpr int kImmortalLevel = 100;
-
 Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string_view name) {
     auto logger = Log::database();
     logger->debug("Loading player '{}' from database", name);
@@ -64,12 +61,6 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
         auto &stats = player->stats();
         stats.level = level;
 
-        // Set god level for immortals (level 100+)
-        // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
-        if (level >= kImmortalLevel) {
-            player->set_god_level(level - (kImmortalLevel - 1));
-        }
-
         // Set properties from database
         // Race and class (after level is set, since set_class initializes spell slots)
         if (!row["race"].is_null()) {
@@ -107,7 +98,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
         stats.attack_power = row["damage_roll"].as<int>(0);
         stats.armor_rating = std::max(0, 100 - row["armor_class"].as<int>(100));
 
-        // Currency - wealth is stored in copper, set the player's wallet (not stats.gold)
+        // Currency - wealth is stored in copper, set the player's wallet
         long wealth_copper = row["wealth"].as<long>(0);
         player->give_wealth(wealth_copper);
         logger->info("Loaded player '{}' with {} copper in wallet", player_name, wealth_copper);

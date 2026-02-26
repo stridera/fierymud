@@ -52,28 +52,25 @@ void register_world_bindings(sol::state &lua) {
         return mobile;
     };
 
-    // world.count_mobiles(keyword) - Count mobiles in the world by prototype ID (as string)
-    // Used for checking if a specific mob type exists anywhere in the world
+    // world.count_mobiles(zone_id, local_id) - Count mobiles by composite prototype ID
+    // world.count_mobiles(keyword) - Count mobiles by name keyword search
     // Returns: int (count of matching mobiles)
-    world_table["count_mobiles"] = [](const std::string &keyword) -> int {
-        auto &world = WorldManager::instance();
-        int count = 0;
-
-        // Parse keyword as prototype ID (e.g., "48915" for zone 489, local 15)
-        // or as a vnum string
-        try {
-            auto vnum = static_cast<std::uint64_t>(std::stoll(keyword));
-            int zone_id = static_cast<int>(vnum / 100);
-            int local_id = static_cast<int>(vnum % 100);
-            EntityId prototype_id(zone_id, local_id);
-
+    world_table["count_mobiles"] = sol::overload(
+        [](int zone_id, int local_id) -> int {
+            auto &world = WorldManager::instance();
+            EntityId prototype_id(static_cast<std::uint32_t>(zone_id), static_cast<std::uint32_t>(local_id));
+            int count = 0;
             world.for_each_mobile([&count, &prototype_id](const std::shared_ptr<Mobile> &mob) {
                 if (mob && mob->prototype_id() == prototype_id) {
                     count++;
                 }
             });
-        } catch (...) {
-            // If not a number, try matching by name keyword
+            return count;
+        },
+        [](const std::string &keyword) -> int {
+            auto &world = WorldManager::instance();
+            int count = 0;
+            // Name-based keyword search (case-insensitive)
             world.for_each_mobile([&count, &keyword](const std::shared_ptr<Mobile> &mob) {
                 if (mob) {
                     std::string name = std::string(mob->name());
@@ -85,27 +82,18 @@ void register_world_bindings(sol::state &lua) {
                     }
                 }
             });
-        }
+            return count;
+        });
 
-        return count;
-    };
-
-    // world.count_objects(keyword) - Count objects in the world by prototype ID (as string)
+    // world.count_objects(zone_id, local_id) - Count objects by composite prototype ID
+    // world.count_objects(keyword) - Count objects by name keyword search
     // Note: This counts objects in rooms, not in inventories
     // Returns: int (count of matching objects)
-    world_table["count_objects"] = [](const std::string &keyword) -> int {
-        auto &world = WorldManager::instance();
-        int count = 0;
-
-        // Parse keyword as prototype ID (e.g., "48926" for zone 489, local 26)
-        try {
-            auto vnum = static_cast<std::uint64_t>(std::stoll(keyword));
-            int zone_id = static_cast<int>(vnum / 100);
-            int local_id = static_cast<int>(vnum % 100);
-            EntityId prototype_id(zone_id, local_id);
-
-            // Iterate through all rooms and count matching objects
-            // This is expensive but matches DG Script semantics
+    world_table["count_objects"] = sol::overload(
+        [](int zone_id, int local_id) -> int {
+            auto &world = WorldManager::instance();
+            EntityId prototype_id(static_cast<std::uint32_t>(zone_id), static_cast<std::uint32_t>(local_id));
+            int count = 0;
             for (auto &zone : world.get_all_zones()) {
                 for (auto &room : world.get_rooms_in_zone(zone->id())) {
                     if (room) {
@@ -117,8 +105,12 @@ void register_world_bindings(sol::state &lua) {
                     }
                 }
             }
-        } catch (...) {
-            // If not a number, try matching by name keyword
+            return count;
+        },
+        [](const std::string &keyword) -> int {
+            auto &world = WorldManager::instance();
+            int count = 0;
+            // Name-based keyword search (case-insensitive)
             for (auto &zone : world.get_all_zones()) {
                 for (auto &room : world.get_rooms_in_zone(zone->id())) {
                     if (room) {
@@ -136,10 +128,8 @@ void register_world_bindings(sol::state &lua) {
                     }
                 }
             }
-        }
-
-        return count;
-    };
+            return count;
+        });
 
     // world.destroy(entity) - Remove an entity (mobile or object) from the world
     // Returns: (bool success, string? error)

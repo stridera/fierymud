@@ -67,7 +67,7 @@ Result<void> PersistenceManager::save_player(const Player &player) {
             char_data.stamina = player.stats().stamina;
             char_data.stamina_max = player.stats().max_stamina;
 
-            // Currency - use player.wealth() which gets the wallet value, not stats.gold
+            // Currency - use player.wealth() which returns the wallet value
             char_data.wealth = player.wealth();
 
             // Location (from current room)

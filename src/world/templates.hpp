@@ -73,7 +73,7 @@ class MobileTemplate {
     int alignment() const { return alignment_; }
     int max_hp() const { return max_hp_; }
     int experience() const { return experience_; }
-    int gold() const { return gold_; }
+    int wealth() const { return wealth_; }
 
     // Setters for initialization
     void set_keywords(std::string_view kw) { keywords_ = std::string(kw); }
@@ -82,7 +82,7 @@ class MobileTemplate {
     void set_alignment(int a) { alignment_ = a; }
     void set_max_hp(int hp) { max_hp_ = hp; }
     void set_experience(int exp) { experience_ = exp; }
-    void set_gold(int g) { gold_ = g; }
+    void set_wealth(int w) { wealth_ = w; }
 
   private:
     EntityId id_;
@@ -93,7 +93,7 @@ class MobileTemplate {
     int alignment_ = 0;
     int max_hp_ = 10;
     int experience_ = 0;
-    int gold_ = 0;
+    int wealth_ = 0;
 };
 
 } // namespace FieryMUD

@@ -35,6 +35,6 @@ MobileTemplate::MobileTemplate(const Mobile *mob)
       keywords_(mob ? join_keywords(mob->keywords()) : ""), description_(mob ? std::string(mob->description()) : ""),
       level_(mob ? mob->stats().level : 1), alignment_(mob ? mob->stats().alignment : 0),
       max_hp_(mob ? mob->stats().max_hit_points : 10), experience_(mob ? mob->stats().experience : 0),
-      gold_(mob ? mob->stats().gold : 0) {}
+      wealth_(mob ? mob->stats().wealth : 0) {}
 
 } // namespace FieryMUD

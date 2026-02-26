@@ -1031,7 +1031,7 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     if (player) {
         score << fmt::format("Coins: {}\n", player->wallet().to_string());
     } else {
-        score << fmt::format("Gold: {}\n", stats.gold);
+        score << fmt::format("Wealth: {} copper\n", stats.wealth);
     }
 
     // Current location

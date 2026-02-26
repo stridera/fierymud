@@ -402,25 +402,25 @@ void register_actor_bindings(sol::state &lua) {
         [](const Mobile &m, db::MobProfession profession) -> bool { return m.has_profession(profession); });
 
     // Player class - inherits Actor, adds player-specific properties
-    lua.new_usertype<Player>(
-        "Player", sol::no_constructor, sol::base_classes, sol::bases<Actor>(),
+    lua.new_usertype<Player>("Player", sol::no_constructor, sol::base_classes, sol::bases<Actor>(),
 
-        // Player-specific properties
-        "is_god", sol::property(&Player::is_god), "god_level", sol::property(&Player::god_level), "is_online",
-        sol::property(&Player::is_online), "is_linkdead", sol::property(&Player::is_linkdead),
+                             // Player-specific properties
+                             "is_god", sol::property(&Player::is_god), "is_online", sol::property(&Player::is_online),
+                             "is_linkdead", sol::property(&Player::is_linkdead),
 
-        // Class and title
-        "class", sol::property([](const Player &p) { return p.player_class(); }), "title",
-        sol::property([](const Player &p) { return std::string(p.title()); }),
+                             // Class and title
+                             "class", sol::property([](const Player &p) { return p.player_class(); }), "title",
+                             sol::property([](const Player &p) { return std::string(p.title()); }),
 
-        // Clan info
-        "in_clan", sol::property(&Player::in_clan), "clan_name",
-        sol::property([](const Player &p) { return std::string(p.clan_name()); }), "clan_rank",
-        sol::property([](const Player &p) { return std::string(p.clan_rank_title()); }),
+                             // Clan info
+                             "in_clan", sol::property(&Player::in_clan), "clan_name",
+                             sol::property([](const Player &p) { return std::string(p.clan_name()); }), "clan_rank",
+                             sol::property([](const Player &p) { return std::string(p.clan_rank_title()); }),
 
-        // Player flags
-        "is_brief", sol::property(&Player::is_brief), "is_autoloot", sol::property(&Player::is_autoloot),
-        "is_pk_enabled", sol::property(&Player::is_pk_enabled));
+                             // Player flags
+                             "is_brief", sol::property(&Player::is_brief), "is_autoloot",
+                             sol::property(&Player::is_autoloot), "is_pk_enabled",
+                             sol::property(&Player::is_pk_enabled));
 
     // MobTrait enum - what the mob IS (identity)
     lua.new_enum<db::MobTrait>("MobTrait", {{"Illusion", db::MobTrait::Illusion},

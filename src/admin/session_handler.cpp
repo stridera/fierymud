@@ -55,7 +55,6 @@ void register_session_handlers(AdminServer &admin_server, ModernMUDServer &mud_s
                                      {"player",
                                       {{"name", std::string(existing->name())},
                                        {"level", existing->level()},
-                                       {"god_level", existing->god_level()},
                                        {"room_zone_id", room ? room->id().zone_id() : 0},
                                        {"room_id", room ? room->id().local_id() : 0}}}};
                     return response.dump();
@@ -84,8 +83,6 @@ void register_session_handlers(AdminServer &admin_server, ModernMUDServer &mud_s
 
                 auto player = std::shared_ptr<Player>(std::move(*load_result));
 
-                // Set as god for full access (Overlord level)
-                player->set_god_level(100);
                 player->set_online(true);
 
                 // Load all abilities at max proficiency (god privilege)
@@ -171,7 +168,6 @@ void register_session_handlers(AdminServer &admin_server, ModernMUDServer &mud_s
                                  {"player",
                                   {{"name", std::string(player->name())},
                                    {"level", player->level()},
-                                   {"god_level", player->god_level()},
                                    {"class", player->player_class()},
                                    {"race", std::string(player->race())},
                                    {"room_zone_id", room ? room->id().zone_id() : 0},

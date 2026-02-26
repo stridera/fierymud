@@ -203,16 +203,11 @@ void ScriptEngine::register_utility_functions() {
                            return seconds;
                        }));
 
-    // run_room_trigger(legacy_id) - Execute a world trigger by ID
+    // run_room_trigger(zone_id, local_id) - Execute a world trigger by composite ID
     // Used to invoke shared room-level effects (door manipulation, spawning, etc.)
-    lua_->set_function("run_room_trigger", [](int legacy_id) {
-        int zone_id = legacy_id / 100;
-        if (zone_id == 0)
-            zone_id = 1000;
-        int local_id = legacy_id % 100;
-
+    lua_->set_function("run_room_trigger", [](int zone_id, int local_id) {
         auto &trigger_mgr = TriggerManager::instance();
-        EntityId trigger_eid(zone_id, local_id);
+        EntityId trigger_eid(static_cast<std::uint32_t>(zone_id), static_cast<std::uint32_t>(local_id));
 
         auto trigger = trigger_mgr.find_trigger_by_id(trigger_eid);
         if (!trigger) {

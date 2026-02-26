@@ -36,8 +36,8 @@ void register_template_bindings(sol::state &lua) {
         sol::property([](const MobileTemplate &t) { return std::string(t.keywords()); }), "description",
         sol::property([](const MobileTemplate &t) { return std::string(t.description()); }), "level",
         sol::property(&MobileTemplate::level), "alignment", sol::property(&MobileTemplate::alignment), "max_hp",
-        sol::property(&MobileTemplate::max_hp), "experience", sol::property(&MobileTemplate::experience), "gold",
-        sol::property(&MobileTemplate::gold), "zone_id",
+        sol::property(&MobileTemplate::max_hp), "experience", sol::property(&MobileTemplate::experience), "wealth",
+        sol::property(&MobileTemplate::wealth), "zone_id",
         sol::property([](const MobileTemplate &t) { return t.id().zone_id(); }), "local_id",
         sol::property([](const MobileTemplate &t) { return t.id().local_id(); }), "id",
         sol::property([](const MobileTemplate &t) { return t.id().to_string(); }));

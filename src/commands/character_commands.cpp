@@ -1314,7 +1314,7 @@ Result<CommandResult> cmd_set(const CommandContext &ctx) {
         ctx.send("<b:cyan>Other:</> perception, concealment, focus");
         ctx.send("<b:cyan>Progress:</> level, exp, align");
         ctx.send("<b:cyan>Character:</> class, race, gender, size, title");
-        ctx.send("<b:cyan>Player:</> home, godlevel");
+        ctx.send("<b:cyan>Player:</> home");
         ctx.send("<b:cyan>Flags:</> brief, compact, autoloot, autogold, autosplit,");
         ctx.send("        autoexit, wimpy, afk, deaf, notell, pk, holylight, showids");
         ctx.send("<b:cyan>Skills:</> skill <skill_name> <value>");
@@ -1819,22 +1819,6 @@ Result<CommandResult> cmd_set(const CommandContext &ctx) {
     // =========================================================================
     // PLAYER SPECIFIC PROPERTIES
     // =========================================================================
-    if (field == "godlevel" || field == "god") {
-        if (!target_player) {
-            ctx.send_error("Only players have god level.");
-            return CommandResult::InvalidTarget;
-        }
-        auto val = parse_number(value_str);
-        if (!val) {
-            ctx.send_error("God level must be a number (0=mortal, 1-5=immortal).");
-            return CommandResult::InvalidSyntax;
-        }
-        int clamped = std::clamp(*val, 0, 5);
-        target_player->set_god_level(clamped);
-        ctx.send_success(fmt::format("{}'s god level set to {}.", target->name(), clamped));
-        return CommandResult::Success;
-    }
-
     if (field == "home" || field == "homeroom") {
         if (!target_player) {
             ctx.send_error("Only players have home rooms.");

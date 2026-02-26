@@ -23,10 +23,6 @@
 #include "text/string_utils.hpp"
 #include "world/world_manager.hpp"
 
-// Immortal level threshold - characters at or above this level are considered gods
-// and bypass zone level restrictions. Legacy: LVL_IMMORT = 100
-constexpr int kImmortalLevel = 100;
-
 namespace {
 bool should_redact_login_input(LoginState state, std::string_view input) {
     if (input.empty()) {
@@ -1062,12 +1058,6 @@ void LoginSystem::handle_select_character(std::string_view input) {
             player->set_race(char_data.race_type);
             player->set_gender(char_data.gender);
 
-            // Set god level for immortals (level 100+)
-            // god_level = level - 99, so level 100 = god_level 1, level 105 = god_level 6
-            if (char_data.level >= kImmortalLevel) {
-                player->set_god_level(char_data.level - (kImmortalLevel - 1));
-            }
-
             // Set stats
             auto &stats = player->stats();
             stats.strength = char_data.strength;
@@ -1868,11 +1858,6 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             player->set_race(char_data.race_type);
             player->set_gender(char_data.gender);
 
-            // Set god level for immortals (level 100+)
-            if (char_data.level >= kImmortalLevel) {
-                player->set_god_level(char_data.level - (kImmortalLevel - 1));
-            }
-
             // Set stats
             auto &stats = player->stats();
             stats.strength = char_data.strength;
@@ -2070,11 +2055,6 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
         player->set_race(char_data.race_type);
         player->set_gender(char_data.gender);
 
-        // Set god level for immortals (level 100+)
-        if (char_data.level >= kImmortalLevel) {
-            player->set_god_level(char_data.level - (kImmortalLevel - 1));
-        }
-
         // Set stats
         auto &stats = player->stats();
         stats.strength = char_data.strength;
@@ -2180,8 +2160,8 @@ Result<void> LoginSystem::save_character(std::shared_ptr<Player> player) {
     // Alignment
     char_data.alignment = stats.alignment;
 
-    // Currency (stats.gold is stored in copper)
-    char_data.wealth = stats.gold;
+    // Currency
+    char_data.wealth = stats.wealth;
 
     // Save to database
     auto result = ConnectionPool::instance().execute(

@@ -19,6 +19,7 @@ namespace fierymud {
  *   GET  /api/admin/mob/:zoneId/:id   - Mob prototype details
  *   GET  /api/admin/actor/:name       - Live actor state
  *   POST /api/admin/spawn             - Spawn mob/object into world
+ *   POST /api/admin/teleport          - Move player to a specific room
  */
 void register_world_handlers(AdminServer &admin_server, ModernMUDServer &mud_server);
 

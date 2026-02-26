@@ -103,8 +103,8 @@ Result<void> Stats::validate() const {
     if (experience < 0) {
         return std::unexpected(Errors::InvalidState("Experience cannot be negative"));
     }
-    if (gold < 0) {
-        return std::unexpected(Errors::InvalidState("Gold cannot be negative"));
+    if (wealth < 0) {
+        return std::unexpected(Errors::InvalidState("Wealth cannot be negative"));
     }
 
     return Success();
@@ -169,7 +169,7 @@ nlohmann::json Stats::to_json() const {
             {"resistance_poison", resistance_poison},
             {"level", level},
             {"experience", experience},
-            {"gold", gold},
+            {"wealth", wealth},
             {"alignment", alignment}};
 }
 
@@ -243,8 +243,8 @@ Result<Stats> Stats::from_json(const nlohmann::json &json) {
             stats.level = json["level"].get<int>();
         if (json.contains("experience"))
             stats.experience = json["experience"].get<long>();
-        if (json.contains("gold"))
-            stats.gold = json["gold"].get<long>();
+        if (json.contains("wealth"))
+            stats.wealth = json["wealth"].get<long>();
         if (json.contains("alignment"))
             stats.alignment = json["alignment"].get<int>();
 
@@ -2172,7 +2172,7 @@ Result<std::unique_ptr<Mobile>> Mobile::from_json(const nlohmann::json &json) {
             if (money.contains("platinum")) {
                 total_copper += parse_money_value(money["platinum"]) * PLATINUM_TO_COPPER;
             }
-            stats.gold = total_copper;
+            stats.wealth = total_copper;
         }
 
         // Initialize mobile for its level
@@ -2272,8 +2272,7 @@ std::shared_ptr<Container> Mobile::die() {
         }
 
         // Create coins object if mob had money
-        // Note: stats().gold stores total wealth in copper value for mobs
-        long total_coins = stats().gold;
+        long total_coins = stats().wealth;
         if (total_coins > 0) {
             // Generate a descriptive name based on the amount
             std::string coins_name;
@@ -2585,10 +2584,6 @@ Result<std::unique_ptr<Player>> Player::from_json(const nlohmann::json &json) {
             player->set_account(json["account"].get<std::string>());
         }
 
-        if (json.contains("god_level")) {
-            player->set_god_level(json["god_level"].get<int>());
-        }
-
         if (json.contains("player_class")) {
             player->set_class(json["player_class"].get<std::string>());
         }
@@ -2890,7 +2885,7 @@ nlohmann::json Player::get_status_gmcp() const {
             {"class", player_class_},
             {"race", std::string(race())},
             {"room", room ? room->id().value() : 0},
-            {"gold", stats.gold}};
+            {"wealth", stats.wealth}};
 }
 
 void Player::on_room_change(std::shared_ptr<Room> /* old_room */, std::shared_ptr<Room> /* new_room */) {
@@ -3083,7 +3078,6 @@ nlohmann::json Player::to_json() const {
     // Add Player-specific fields
     json["type"] = "Player";
     json["account"] = account_;
-    json["god_level"] = god_level_;
     json["player_class"] = player_class_;
     json["race"] = std::string(race());
     json["gender"] = std::string(gender());
@@ -3289,7 +3283,7 @@ std::string Actor::get_stat_info() const {
     output << fmt::format("Focus: [{}]\n", stats_.mana);
 
     // Money (convert from copper base to coins)
-    long total_copper = stats_.gold;
+    long total_copper = stats_.wealth;
     long platinum = total_copper / PLATINUM_TO_COPPER;
     total_copper %= PLATINUM_TO_COPPER;
     long gold = total_copper / GOLD_TO_COPPER;

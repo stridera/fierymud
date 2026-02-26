@@ -161,8 +161,8 @@ Result<CommandResult> cmd_rent(const CommandContext &ctx) {
 
     // Calculate rent cost based on player level and items
     long rent_cost = player->level() * 10; // Base: 10 copper per level
-    Log::info("Rent calculation: player {} level {} * 10 = {} copper, current gold = {}", player->name(),
-              player->level(), rent_cost, player->stats().gold);
+    Log::info("Rent calculation: player {} level {} * 10 = {} copper, current wallet = {}", player->name(),
+              player->level(), rent_cost, player->wealth());
 
     if (!player->can_afford(rent_cost)) {
         auto cost_money = fiery::Money::from_copper(rent_cost);

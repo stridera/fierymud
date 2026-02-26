@@ -19,7 +19,7 @@ namespace FieryMUD {
  *   actor.mana           - Current mana
  *   actor.max_mana       - Maximum mana
  *   actor.alignment      - Good/evil alignment (-1000 to 1000)
- *   actor.gold           - Gold carried
+ *   actor.wealth         - Total wealth in copper
  *   actor.position       - Current position (string)
  *   actor.room           - Current room (Room userdata)
  *   actor.is_npc         - True if NPC, false if player

@@ -547,29 +547,19 @@ PrivilegeLevel CommandSystem::get_actor_privilege(std::shared_ptr<Actor> actor) 
         return PrivilegeLevel::Guest;
     }
 
-    // Try to cast to Player to check god level
-    if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
-        if (player->is_god()) {
-            // Use player's actual level to determine privilege
-            int level = player->level();
-            if (level >= static_cast<int>(PrivilegeLevel::Overlord)) {
-                return PrivilegeLevel::Overlord;
-            } else if (level >= static_cast<int>(PrivilegeLevel::Coder)) {
-                return PrivilegeLevel::Coder;
-            } else if (level >= static_cast<int>(PrivilegeLevel::Builder)) {
-                return PrivilegeLevel::Builder;
-            } else if (level >= static_cast<int>(PrivilegeLevel::God)) {
-                return PrivilegeLevel::God;
-            } else if (level >= static_cast<int>(PrivilegeLevel::DemiGod)) {
-                return PrivilegeLevel::DemiGod;
-            } else {
-                return PrivilegeLevel::Helper;
-            }
-        }
-        return PrivilegeLevel::Player;
-    }
-
-    // For mobiles and other actors, return Player as default
+    int level = actor->stats().level;
+    if (level >= static_cast<int>(PrivilegeLevel::Overlord))
+        return PrivilegeLevel::Overlord;
+    if (level >= static_cast<int>(PrivilegeLevel::Coder))
+        return PrivilegeLevel::Coder;
+    if (level >= static_cast<int>(PrivilegeLevel::Builder))
+        return PrivilegeLevel::Builder;
+    if (level >= static_cast<int>(PrivilegeLevel::God))
+        return PrivilegeLevel::God;
+    if (level >= static_cast<int>(PrivilegeLevel::DemiGod))
+        return PrivilegeLevel::DemiGod;
+    if (level >= static_cast<int>(PrivilegeLevel::Helper))
+        return PrivilegeLevel::Helper;
     return PrivilegeLevel::Player;
 }
 

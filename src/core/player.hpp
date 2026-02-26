@@ -124,9 +124,7 @@ class Player : public Actor {
     void clear_output_queue() { output_queue_.clear(); }
 
     /** Player privileges */
-    bool is_god() const { return god_level_ > 0; }
-    int god_level() const { return god_level_; }
-    void set_god_level(int level) { god_level_ = std::max(0, level); }
+    bool is_god() const { return level() >= 100; }
 
     /** Linkdead state management */
     bool is_linkdead() const { return linkdead_; }
@@ -386,8 +384,7 @@ class Player : public Actor {
     std::string database_id_; // UUID from database for persistence
     std::string account_;
     bool online_ = false;
-    bool linkdead_ = false; // Player connection lost but still in world
-    int god_level_ = 0;
+    bool linkdead_ = false;                           // Player connection lost but still in world
     std::shared_ptr<ComposerSystem> active_composer_; // Multi-line text composer
     EntityId start_room_ = INVALID_ENTITY_ID;         // Player's login location (where they logged out)
     EntityId recall_room_ = INVALID_ENTITY_ID;        // Player's recall/touchstone location

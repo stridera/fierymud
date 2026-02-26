@@ -22,7 +22,7 @@ TEST_CASE("Mobile JSON parsing with money handling", "[core][actor][mobile][json
         auto mobile = std::move(result.value());
 
         // Verify money calculation: 10 + (5*10) + (2*100) + (1*1000) = 1260 copper
-        REQUIRE(mobile->stats().gold == 1260);
+        REQUIRE(mobile->stats().wealth == 1260);
     }
 
     SECTION("Parse mobile with numeric money values") {
@@ -37,7 +37,7 @@ TEST_CASE("Mobile JSON parsing with money handling", "[core][actor][mobile][json
         auto mobile = std::move(result.value());
 
         // Verify money calculation: 15 + (8*10) + (3*100) + (0*1000) = 395 copper
-        REQUIRE(mobile->stats().gold == 395);
+        REQUIRE(mobile->stats().wealth == 395);
     }
 
     SECTION("Parse mobile with mixed money value types") {
@@ -51,7 +51,7 @@ TEST_CASE("Mobile JSON parsing with money handling", "[core][actor][mobile][json
         REQUIRE(result.has_value());
         auto mobile = std::move(result.value());
 
-        REQUIRE(mobile->stats().gold == 0);
+        REQUIRE(mobile->stats().wealth == 0);
     }
 
     SECTION("Parse mobile with negative money values (should convert to 0)") {
@@ -66,7 +66,7 @@ TEST_CASE("Mobile JSON parsing with money handling", "[core][actor][mobile][json
         auto mobile = std::move(result.value());
 
         // All negative values should be converted to 0
-        REQUIRE(mobile->stats().gold == 0);
+        REQUIRE(mobile->stats().wealth == 0);
     }
 
     SECTION("Parse mobile with missing money fields") {
@@ -77,7 +77,7 @@ TEST_CASE("Mobile JSON parsing with money handling", "[core][actor][mobile][json
         auto mobile = std::move(result.value());
 
         // Should default to 0 when money object is missing
-        REQUIRE(mobile->stats().gold == 0);
+        REQUIRE(mobile->stats().wealth == 0);
     }
 
     SECTION("Parse mobile with partial money fields") {
@@ -95,7 +95,7 @@ TEST_CASE("Mobile JSON parsing with money handling", "[core][actor][mobile][json
         auto mobile = std::move(result.value());
 
         // Only gold: 5*100 = 500 copper
-        REQUIRE(mobile->stats().gold == 500);
+        REQUIRE(mobile->stats().wealth == 500);
     }
 }
 
@@ -205,7 +205,7 @@ TEST_CASE("Stats validation with fixed gold handling", "[core][actor][stats][val
 
     SECTION("Stats with positive gold should validate") {
         Stats stats;
-        stats.gold = 1000;
+        stats.wealth = 1000;
         stats.level = 5;
         stats.experience = 100;
 
@@ -215,7 +215,7 @@ TEST_CASE("Stats validation with fixed gold handling", "[core][actor][stats][val
 
     SECTION("Stats with zero gold should validate") {
         Stats stats;
-        stats.gold = 0;
+        stats.wealth = 0;
         stats.level = 1;
         stats.experience = 0;
 
@@ -223,14 +223,14 @@ TEST_CASE("Stats validation with fixed gold handling", "[core][actor][stats][val
         REQUIRE(result.has_value());
     }
 
-    SECTION("Stats with negative gold should fail validation") {
+    SECTION("Stats with negative wealth should fail validation") {
         Stats stats;
-        stats.gold = -100; // This should fail validation
+        stats.wealth = -100; // This should fail validation
         stats.level = 1;
         stats.experience = 0;
 
         auto result = stats.validate();
         REQUIRE_FALSE(result.has_value());
-        REQUIRE(result.error().message.find("Gold cannot be negative") != std::string::npos);
+        REQUIRE(result.error().message.find("Wealth cannot be negative") != std::string::npos);
     }
 }

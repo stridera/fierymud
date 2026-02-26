@@ -71,7 +71,7 @@ struct Stats {
     // Experience and progression
     int level = 1;       // Character level
     long experience = 0; // Experience points
-    long gold = 0;       // Currency in copper coins
+    long wealth = 0;     // Currency in copper
 
     // Alignment and morality
     int alignment = 0; // Good/Evil alignment (-1000 to 1000)

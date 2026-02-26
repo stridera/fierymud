@@ -1423,7 +1423,7 @@ static std::string get_condition_string(int hp_percent) {
  * Format codes:
  *   %h - current hit points    %H - max hit points
  *   %v - current stamina       %V - max stamina
- *   %l - level                 %g - gold
+ *   %l - level                 %g - wealth (copper)
  *   %x - experience            %X - exp to next level
  *   %t - tank condition        %T - target condition
  *   %n - newline               %% - literal %
@@ -1431,7 +1431,8 @@ static std::string get_condition_string(int hp_percent) {
  * Color markup is preserved in output and processed by terminal rendering.
  */
 static std::string expand_prompt_format(std::string_view format, const Stats &stats,
-                                        std::shared_ptr<Actor> fighting = nullptr) {
+                                        std::shared_ptr<Actor> fighting = nullptr,
+                                        std::shared_ptr<Player> player = nullptr) {
     std::string result;
     result.reserve(format.size() * 2); // Pre-allocate for efficiency
 
@@ -1455,7 +1456,7 @@ static std::string expand_prompt_format(std::string_view format, const Stats &st
                 result += std::to_string(stats.level);
                 break;
             case 'g':
-                result += std::to_string(stats.gold);
+                result += std::to_string(player ? player->wealth() : stats.wealth);
                 break;
             case 'x':
                 result += std::to_string(stats.experience);
@@ -1520,7 +1521,7 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     }
 
     // Expand the prompt format (substitutes %h, %H, etc.)
-    std::string prompt = expand_prompt_format(format, stats, opponent);
+    std::string prompt = expand_prompt_format(format, stats, opponent, player);
 
     // Process color markup (renders <red>, <yellow>, etc. to ANSI)
     prompt = TextFormat::apply_colors(prompt);

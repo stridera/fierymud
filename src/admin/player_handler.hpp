@@ -16,6 +16,7 @@ namespace fierymud {
  *   POST /api/admin/broadcast - Send message to all players
  *   POST /api/admin/kick      - Disconnect a player
  *   GET  /api/admin/stats     - Server statistics
+ *   POST /api/admin/player/set - Set a player field directly
  */
 void register_player_handlers(AdminServer &admin_server, ModernMUDServer &mud_server);
 

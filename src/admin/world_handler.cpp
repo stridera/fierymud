@@ -108,8 +108,7 @@ json stats_to_json(const Stats &stats) {
             {"attack_power", stats.attack_power},
             {"armor_rating", stats.armor_rating},
             {"alignment", stats.alignment},
-            {"experience", stats.experience},
-            {"gold", stats.gold}};
+            {"experience", stats.experience}};
 }
 
 } // namespace
@@ -309,9 +308,7 @@ void register_world_handlers(AdminServer &admin_server, ModernMUDServer &mud_ser
                 effects.push_back(eff);
             }
 
-            json response = {{"success", true},
-                             {"actor",
-                              {{"name", std::string(actor->name())},
+            json actor_json = {{"name", std::string(actor->name())},
                                {"type", std::string(actor->type_name())},
                                {"stats", stats_to_json(actor->stats())},
                                {"position", std::string(magic_enum::enum_name(actor->position()))},
@@ -321,9 +318,15 @@ void register_world_handlers(AdminServer &admin_server, ModernMUDServer &mud_ser
                                {"gender", std::string(actor->gender())},
                                {"effects", effects},
                                {"room_zone_id", room ? static_cast<int>(room->id().zone_id()) : 0},
-                               {"room_id", room ? static_cast<int>(room->id().local_id()) : 0}}}};
+                               {"room_id", room ? static_cast<int>(room->id().local_id()) : 0}};
 
-            return response.dump();
+            // Add player-specific fields
+            if (player) {
+                actor_json["wallet"] = player->wallet().value();
+                actor_json["bank"] = player->bank().value();
+            }
+
+            return json({{"success", true}, {"actor", actor_json}}).dump();
         });
 
     // POST /api/admin/spawn - Spawn mob or object into the world
@@ -385,6 +388,61 @@ void register_world_handlers(AdminServer &admin_server, ModernMUDServer &mud_ser
                 return json({{"error", "Bad Request"}, {"message", "Invalid JSON"}}).dump();
             } catch (const std::exception &e) {
                 spdlog::error("Spawn handler error: {}", e.what());
+                return json({{"error", "Internal Server Error"}, {"message", e.what()}}).dump();
+            }
+        });
+
+    // POST /api/admin/teleport - Move a player to a specific room directly
+    admin_server.register_handler(
+        "/api/admin/teleport",
+        [&mud_server]([[maybe_unused]] const std::string &path, const std::string &body) -> std::string {
+            spdlog::info("Received teleport request");
+
+            try {
+                auto request = json::parse(body);
+
+                if (!request.contains("player_name") || !request.contains("zone_id") || !request.contains("room_id")) {
+                    return json({{"error", "Bad Request"},
+                                 {"message", "Missing required fields: player_name, zone_id, room_id"}})
+                        .dump();
+                }
+
+                std::string player_name = request["player_name"].get<std::string>();
+                int zone_id = request["zone_id"].get<int>();
+                int room_id = request["room_id"].get<int>();
+
+                // Find the player (telnet or virtual session)
+                auto player = mud_server.find_player(player_name);
+                if (!player) {
+                    player = find_virtual_session(player_name);
+                }
+                if (!player) {
+                    return json({{"error", "Not Found"},
+                                 {"message", fmt::format("Player '{}' not found online", player_name)}})
+                        .dump();
+                }
+
+                EntityId target_room{static_cast<uint32_t>(zone_id), static_cast<uint32_t>(room_id)};
+                auto from_room = player->current_room();
+                auto result = WorldManager::instance().move_actor_to_room(player, target_room);
+
+                if (!result.success) {
+                    return json({{"error", "Failed"},
+                                 {"message", fmt::format("Teleport failed: {}", result.failure_reason)}})
+                        .dump();
+                }
+
+                return json({{"success", true},
+                             {"from_room",
+                              from_room ? fmt::format("{}:{}", from_room->id().zone_id(), from_room->id().local_id())
+                                        : "none"},
+                             {"to_room", fmt::format("{}:{}", zone_id, room_id)}})
+                    .dump();
+
+            } catch (const json::parse_error &e) {
+                return json({{"error", "Bad Request"}, {"message", "Invalid JSON"}}).dump();
+            } catch (const std::exception &e) {
+                spdlog::error("Teleport handler error: {}", e.what());
                 return json({{"error", "Internal Server Error"}, {"message", e.what()}}).dump();
             }
         });
