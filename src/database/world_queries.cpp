@@ -26,30 +26,8 @@ using DbParsingUtils::parse_pg_array;
 
 namespace WorldQueries {
 
-// Helper functions to convert db:: enums to game enums
-// Note: db::ObjectFlag and ObjectFlag have different enum values, so we need an explicit mapping
-inline std::optional<ObjectFlag> to_game(db::ObjectFlag f) {
-    switch (f) {
-    case db::ObjectFlag::Glow:
-        return ObjectFlag::Glow;
-    case db::ObjectFlag::Hum:
-        return ObjectFlag::Hum;
-    case db::ObjectFlag::Invisible:
-        return ObjectFlag::Invisible;
-    case db::ObjectFlag::Magic:
-        return ObjectFlag::Magic;
-    case db::ObjectFlag::Permanent:
-        return ObjectFlag::Permanent;
-    case db::ObjectFlag::Temporary:
-        return ObjectFlag::Temporary;
-    case db::ObjectFlag::Decomposing:
-        return ObjectFlag::Decomposing;
-    case db::ObjectFlag::Float:
-        return ObjectFlag::Float;
-    default:
-        return std::nullopt; // Buoyant, Vehicle, Soulbound have no game equivalent yet
-    }
-}
+// Use shared DB-to-game enum conversion from db_parsing_utils
+inline std::optional<ObjectFlag> to_game(db::ObjectFlag f) { return DbParsingUtils::object_flag_to_game(f); }
 
 /**
  * Convert database object type string to ObjectType.

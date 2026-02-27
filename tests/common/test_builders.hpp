@@ -175,6 +175,10 @@ class ObjectBuilder {
         description_ = desc;
         return *this;
     }
+    ObjectBuilder &with_flag(ObjectFlag flag) {
+        flags_.push_back(flag);
+        return *this;
+    }
 
     // Convenience methods for common object types
     ObjectBuilder &as_weapon(int damage = 10) { return of_type(ObjectType::Weapon).with_value(damage * 5); }
@@ -203,6 +207,8 @@ class ObjectBuilder {
             object->set_value(*value_);
         if (description_)
             object->set_description(*description_);
+        for (auto flag : flags_)
+            object->set_flag(flag);
 
         return object;
     }
@@ -216,6 +222,7 @@ class ObjectBuilder {
     std::optional<int> weight_;
     std::optional<int> value_;
     std::optional<std::string> description_;
+    std::vector<ObjectFlag> flags_;
 };
 
 /**

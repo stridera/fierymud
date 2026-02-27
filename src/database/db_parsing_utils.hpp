@@ -12,9 +12,22 @@
 #include <string>
 #include <vector>
 
+#include "../core/object.hpp"
+#include "../database/generated/db_object.hpp"
 #include "../world/room.hpp"
 
 namespace DbParsingUtils {
+
+/**
+ * Convert a database ObjectFlag enum to the game ObjectFlag enum.
+ *
+ * These enums have different underlying values so a direct static_cast is WRONG.
+ * Some DB flags (Buoyant, Vehicle, Soulbound) have no game equivalent yet.
+ *
+ * @param f The database ObjectFlag
+ * @return Optional game ObjectFlag, nullopt if no game equivalent
+ */
+std::optional<ObjectFlag> object_flag_to_game(db::ObjectFlag f);
 
 /**
  * Parse a PostgreSQL array string into a vector of strings.

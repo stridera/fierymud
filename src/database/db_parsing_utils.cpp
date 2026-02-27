@@ -105,4 +105,27 @@ std::optional<SectorType> sector_from_db_string(const std::string &sector_str) {
 
 // room_flag_from_db_string REMOVED - RoomFlag replaced by baseLightLevel and Lua restrictions
 
+std::optional<ObjectFlag> object_flag_to_game(db::ObjectFlag f) {
+    switch (f) {
+    case db::ObjectFlag::Glow:
+        return ObjectFlag::Glow;
+    case db::ObjectFlag::Hum:
+        return ObjectFlag::Hum;
+    case db::ObjectFlag::Invisible:
+        return ObjectFlag::Invisible;
+    case db::ObjectFlag::Magic:
+        return ObjectFlag::Magic;
+    case db::ObjectFlag::Permanent:
+        return ObjectFlag::Permanent;
+    case db::ObjectFlag::Temporary:
+        return ObjectFlag::Temporary;
+    case db::ObjectFlag::Decomposing:
+        return ObjectFlag::Decomposing;
+    case db::ObjectFlag::Float:
+        return ObjectFlag::Float;
+    default:
+        return std::nullopt; // Buoyant, Vehicle, Soulbound have no game equivalent yet
+    }
+}
+
 } // namespace DbParsingUtils
