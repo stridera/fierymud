@@ -27,7 +27,29 @@ using DbParsingUtils::parse_pg_array;
 namespace WorldQueries {
 
 // Helper functions to convert db:: enums to game enums
-inline ObjectFlag to_game(db::ObjectFlag f) { return static_cast<ObjectFlag>(std::to_underlying(f)); }
+// Note: db::ObjectFlag and ObjectFlag have different enum values, so we need an explicit mapping
+inline std::optional<ObjectFlag> to_game(db::ObjectFlag f) {
+    switch (f) {
+    case db::ObjectFlag::Glow:
+        return ObjectFlag::Glow;
+    case db::ObjectFlag::Hum:
+        return ObjectFlag::Hum;
+    case db::ObjectFlag::Invisible:
+        return ObjectFlag::Invisible;
+    case db::ObjectFlag::Magic:
+        return ObjectFlag::Magic;
+    case db::ObjectFlag::Permanent:
+        return ObjectFlag::Permanent;
+    case db::ObjectFlag::Temporary:
+        return ObjectFlag::Temporary;
+    case db::ObjectFlag::Decomposing:
+        return ObjectFlag::Decomposing;
+    case db::ObjectFlag::Float:
+        return ObjectFlag::Float;
+    default:
+        return std::nullopt; // Buoyant, Vehicle, Soulbound have no game equivalent yet
+    }
+}
 
 /**
  * Convert database object type string to ObjectType.
@@ -1279,6 +1301,21 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(pqxx::work &tx
                 }
             }
 
+            // Parse object flags (PostgreSQL array format)
+            if (!row[db::Objects::FLAGS.data()].is_null()) {
+                std::string flags_str = row[db::Objects::FLAGS.data()].as<std::string>();
+                auto flag_names = parse_pg_array(flags_str);
+                for (const auto &flag_name : flag_names) {
+                    if (auto flag = db::object_flag_from_db(flag_name)) {
+                        if (auto game_flag = to_game(*flag)) {
+                            obj->set_flag(*game_flag);
+                        }
+                    } else {
+                        logger->warn("Object ({}, {}): unknown flag '{}'", obj_zone_id, obj_id, flag_name);
+                    }
+                }
+            }
+
             objects.push_back(std::move(obj));
         }
 
@@ -1539,7 +1576,9 @@ Result<std::unique_ptr<Object>> load_object(pqxx::work &txn, int zone_id, int ob
             auto flag_names = parse_pg_array(flags_str);
             for (const auto &flag_name : flag_names) {
                 if (auto flag = db::object_flag_from_db(flag_name)) {
-                    obj->set_flag(to_game(*flag));
+                    if (auto game_flag = to_game(*flag)) {
+                        obj->set_flag(*game_flag);
+                    }
                 } else {
                     logger->warn("Object ({}, {}): unknown flag '{}'", zone_id, object_local_id, flag_name);
                 }
