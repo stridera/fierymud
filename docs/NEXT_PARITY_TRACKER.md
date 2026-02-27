@@ -433,7 +433,7 @@ All legacy prompt codes now have next equivalents.
 6. ~~**Prompt format codes**~~ DONE
 7. ~~**Room atmosphere coloring**~~ DONE
 8. ~~**Weapon-type combat verbs**~~ DONE - full verb table with 20 damage types
-9. **Equipment slot coloring** - Already exists, verify item name coloring too
+9. ~~**Equipment slot coloring**~~ DONE - Verified: cyan for wear slots, yellow for wielded, flag indicators showing
 10. ~~**Channel-specific colors**~~ DONE
 
 ### Tier 3 - Polish (makes next feel premium)
@@ -443,3 +443,17 @@ All legacy prompt codes now have next equivalents.
 14. ~~**Elemental damage flavor**~~ DONE - Fire/cold/acid/shock/poison prefix descriptions
 15. **Room effect atmosphere** - Rooms don't have an effect system yet; sector atmospheres already done
 16. ~~**"On fire" display**~~ DONE - Multi-color `*<red>*<yellow>* ON FIRE! *<red>*<yellow>*` in room, who, score
+
+---
+
+## Testing
+
+### Unit Tests (175 test cases, 2563 assertions)
+
+| Test File | Coverage | Status |
+|-----------|----------|--------|
+| `test_object_flags.cpp` | DB→game enum mapping, has_flag/set_flag round-trip, flag_indicators display | DONE |
+| `test_db_enum_conversions.cpp` | Round-trip for all 15 DB enum types (ObjectType, ObjectFlag, WearFlag, MobRole, MobTrait, MobBehavior, MobProfession, Position, Stance, Gender, Size, LifeForce, Composition, DamageType, Alignment) | DONE |
+| `test_object_properties.cpp` | DamageProfile, Armor, Portal, Light, Liquid, Container, Spell properties, Extra Descriptions, Effect Flags, basic properties (weight, value, level, equip slot) | DONE |
+
+Key bug caught by tests: `db::ObjectFlag` and game `ObjectFlag` have different underlying values — the old `static_cast` silently mapped flags to wrong values (e.g., db::Invisible=2 mapped to game::Temporary=2). Now uses explicit switch mapping via `DbParsingUtils::object_flag_to_game()`.
