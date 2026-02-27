@@ -35,6 +35,7 @@
 #include "core/mobile.hpp"
 #include "core/object.hpp"
 #include "core/player.hpp"
+#include "database/game_data_cache.hpp"
 #include "text/rich_text.hpp"
 #include "text/string_utils.hpp"
 #include "text/text_format.hpp"
@@ -189,8 +190,15 @@ std::string format_room_description(std::shared_ptr<Room> room, std::shared_ptr<
         return "You are in the void.";
     }
 
+    bool show_ids = viewer && viewer->is_show_ids();
+
     std::ostringstream desc;
-    desc << fmt::format("<green>{}</>\n", room->name());
+    auto sector_color = RoomUtils::get_sector_color_tag(room->sector_type());
+    desc << sector_color << room->name() << "</>";
+    if (show_ids) {
+        desc << fmt::format(" <cyan>[{}.{}]</>", room->id().zone_id(), room->id().local_id());
+    }
+    desc << "\n";
     desc << fmt::format("{}\n", room->description());
 
     // Add exits
@@ -255,7 +263,12 @@ std::string format_object_description(std::shared_ptr<Object> obj, std::shared_p
     }
 
     std::ostringstream desc;
-    desc << fmt::format("{}\n", obj->short_description());
+    if (viewer && viewer->is_show_ids()) {
+        desc << fmt::format("{} <cyan>[{}.{}]</>\n", obj->short_description(), obj->id().zone_id(),
+                            obj->id().local_id());
+    } else {
+        desc << fmt::format("{}\n", obj->short_description());
+    }
 
     // Show magical aura if viewer has Detect_Magic and object is magical
     if (viewer && viewer->has_flag(ActorFlag::Detect_Magic)) {
@@ -401,6 +414,11 @@ std::string format_actor_description(std::shared_ptr<Actor> target, std::shared_
             s[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(s[0])));
         return s;
     };
+
+    // Show ID for immortals with ShowIds enabled
+    if (viewer && viewer->is_show_ids()) {
+        desc << fmt::format("<cyan>[{}.{}]</>\n", target->id().zone_id(), target->id().local_id());
+    }
 
     // Show the longer description first (like "Before you stands a mage.")
     if (!target->description().empty()) {
@@ -578,14 +596,32 @@ std::string format_inventory(std::shared_ptr<Actor> actor) {
         }
     }
 
+    // Get flag indicators for each item (use the first instance of each stacked item)
+    std::unordered_map<EntityId, std::string> id_to_flags;
+    for (const auto &item : inventory) {
+        if (!item)
+            continue;
+        EntityId proto_id = item->id();
+        if (id_to_flags.find(proto_id) == id_to_flags.end()) {
+            id_to_flags[proto_id] = item->flag_indicators(actor.get());
+        }
+    }
+
+    bool show_ids = actor->is_show_ids();
+
     std::ostringstream inv;
     inv << "You are carrying:\n";
     for (const auto &[proto_id, count] : item_counts) {
         const auto &desc = id_to_description[proto_id];
+        const auto &flags = id_to_flags[proto_id];
+        std::string id_tag;
+        if (show_ids) {
+            id_tag = fmt::format(" <cyan>[{}.{}]</>", proto_id.zone_id(), proto_id.local_id());
+        }
         if (count > 1) {
-            inv << fmt::format("  ({}) {}\n", count, desc);
+            inv << fmt::format("  ({}) {}{}{}\n", count, desc, flags, id_tag);
         } else {
-            inv << fmt::format("  {}\n", desc);
+            inv << fmt::format("  {}{}{}\n", desc, flags, id_tag);
         }
     }
 
@@ -654,26 +690,168 @@ std::string format_equipment(std::shared_ptr<Actor> actor) {
         return "You are not using anything.";
     }
 
+    bool show_ids = actor->is_show_ids();
+
     std::ostringstream eq;
     eq << "You are using:\n";
     for (const auto &[slot, item] : equipment) {
         if (item) {
-            eq << fmt::format("{} {}\n", get_equipment_slot_display_name(slot), item->short_description());
+            std::string id_tag;
+            if (show_ids) {
+                id_tag = fmt::format(" <cyan>[{}.{}]</>", item->id().zone_id(), item->id().local_id());
+            }
+            eq << fmt::format("{} {}{}{}\n", get_equipment_slot_display_name(slot), item->short_description(),
+                              item->flag_indicators(actor.get()), id_tag);
         }
     }
 
     return eq.str();
 }
 
-std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
-    std::ostringstream who;
-    who << fmt::format("Players currently online ({}):\n", actors.size());
-
-    for (const auto &actor : actors) {
-        if (actor) {
-            who << fmt::format("  {} (Level {})\n", actor->display_name(), actor->stats().level);
+namespace {
+std::string get_class_display_name(std::string_view player_class) {
+    if (player_class.empty())
+        return "Unknown";
+    const auto *class_data = GameDataCache::instance().find_class_by_name(player_class);
+    if (class_data) {
+        return class_data->name;
+    }
+    std::string result;
+    bool capitalize_next = true;
+    for (char c : player_class) {
+        if (c == '_') {
+            result += '-';
+            capitalize_next = true;
+        } else if (capitalize_next) {
+            result += static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+            capitalize_next = false;
+        } else {
+            result += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
         }
     }
+    return result;
+}
+} // namespace
+
+std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
+    std::ostringstream who;
+
+    // Separate immortals from mortals
+    std::vector<std::shared_ptr<Actor>> immortals;
+    std::vector<std::shared_ptr<Actor>> mortals;
+
+    for (const auto &actor : actors) {
+        if (!actor)
+            continue;
+        if (actor->stats().level >= 100) {
+            immortals.push_back(actor);
+        } else {
+            mortals.push_back(actor);
+        }
+    }
+
+    // Header
+    who << "<b:white>Players currently online</>\n";
+    who << "<b:black>-----------------------------------------------</>\n";
+
+    // Display immortals first with colored rank titles
+    for (const auto &actor : immortals) {
+        int level = actor->stats().level;
+        std::string_view rank_color;
+        std::string_view rank_title;
+
+        if (level >= 105) {
+            rank_color = "b:black";
+            rank_title = "  Overlord ";
+        } else if (level >= 104) {
+            rank_color = "yellow";
+            rank_title = " SoulForger";
+        } else if (level >= 103) {
+            rank_color = "b:red";
+            rank_title = " MajorDeity";
+        } else if (level >= 102) {
+            rank_color = "green";
+            rank_title = " MinorDeity";
+        } else if (level >= 101) {
+            rank_color = "red";
+            rank_title = " QuasiDeity";
+        } else {
+            rank_color = "b:white";
+            rank_title = "    Avatar ";
+        }
+
+        // Build status flags
+        std::string flags;
+        if (actor->is_afk()) {
+            flags += " <yellow>(AFK)</>";
+        }
+        if (actor->has_flag(ActorFlag::Invisible)) {
+            flags += " <dim>(invis)</>";
+        }
+
+        auto player = std::dynamic_pointer_cast<Player>(actor);
+        std::string title_str;
+        if (player && !player->title().empty()) {
+            title_str = fmt::format(" {}", player->title());
+        }
+
+        who << fmt::format(" <b:white>[</><{}>{}  </><b:white>]</> {}{}{}\n", rank_color, rank_title,
+                           actor->display_name(), title_str, flags);
+    }
+
+    // Display mortals with class and level
+    for (const auto &actor : mortals) {
+        auto player = std::dynamic_pointer_cast<Player>(actor);
+        int level = actor->stats().level;
+
+        // Class display with color (from cache)
+        std::string class_name = "Unknown";
+        if (player) {
+            class_name = get_class_display_name(player->player_class());
+        }
+
+        // Level color gradient
+        std::string_view level_color;
+        if (level >= 90)
+            level_color = "b:yellow";
+        else if (level >= 70)
+            level_color = "yellow";
+        else if (level >= 50)
+            level_color = "b:cyan";
+        else if (level >= 30)
+            level_color = "cyan";
+        else if (level >= 10)
+            level_color = "b:green";
+        else
+            level_color = "green";
+
+        // Build status flags
+        std::string flags;
+        if (actor->is_afk()) {
+            flags += " <yellow>(AFK)</>";
+        }
+        if (actor->has_flag(ActorFlag::Invisible)) {
+            flags += " <dim>(invis)</>";
+        }
+        if (actor->has_flag(ActorFlag::Hide)) {
+            flags += " <dim>(hidden)</>";
+        }
+
+        std::string title_str;
+        if (player && !player->title().empty()) {
+            title_str = fmt::format(" {}", player->title());
+        }
+
+        who << fmt::format(" <b:white>[</><{}>{:>3}</> {}  <b:white>]</> {}{}{}\n", level_color, level, class_name,
+                           actor->display_name(), title_str, flags);
+    }
+
+    // Summary line
+    who << "<b:black>-----------------------------------------------</>\n";
+    int num_imm = static_cast<int>(immortals.size());
+    int num_mort = static_cast<int>(mortals.size());
+    who << fmt::format("<cyan>{}</> visible deit{} and <cyan>{}</> visible mortal{} online.\n", num_imm,
+                       num_imm == 1 ? "y" : "ies", num_mort, num_mort == 1 ? "" : "s");
 
     return who.str();
 }
@@ -953,7 +1131,7 @@ void send_communication(const CommandContext &ctx, std::string_view message, Mes
         ctx.send_to_all(formatted_message, true); // exclude self
         break;
     case MessageType::Channel:
-        ctx.send(fmt::format("<magenta>You {}, '{}'</>", channel_name, message));
+        ctx.send(fmt::format("<b:yellow>You {}, '{}'</>", channel_name, message));
         ctx.send_to_all(formatted_message, true); // exclude self
         break;
     default:
@@ -978,7 +1156,7 @@ std::string format_communication(std::shared_ptr<Actor> sender, std::string_view
         color = "b:red";
         break;
     case MessageType::Channel:
-        color = "magenta";
+        color = "b:yellow";
         break;
     case MessageType::Tell:
         color = "cyan";

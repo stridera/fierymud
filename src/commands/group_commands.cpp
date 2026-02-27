@@ -578,7 +578,13 @@ Result<CommandResult> cmd_dismiss(const CommandContext &ctx) {
 Result<void> register_commands() {
     Commands().command("group", cmd_group).alias("gr").category("Group").privilege(PrivilegeLevel::Player).build();
 
-    Commands().command("follow", cmd_follow).alias("fol").category("Group").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("follow", cmd_follow)
+        .alias("fol")
+        .alias("shadow")
+        .category("Group")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     Commands().command("unfollow", cmd_unfollow).category("Group").privilege(PrivilegeLevel::Player).build();
 

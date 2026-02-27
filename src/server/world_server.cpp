@@ -13,8 +13,10 @@
 #include "core/combat.hpp"
 #include "core/logging.hpp"
 #include "core/mobile.hpp"
+#include "core/money.hpp"
 #include "core/player.hpp"
 #include "core/result.hpp"
+#include "core/spell_system.hpp"
 #include "game/composer_system.hpp"
 #include "mud_server.hpp"
 #include "net/player_connection.hpp"
@@ -52,12 +54,6 @@ constexpr std::uint32_t TEST_START_ZONE_ID = 1;
 constexpr std::uint32_t TEST_START_LOCAL_ID = 0; // Test world starting room
 
 // Combat condition thresholds (HP percentage)
-constexpr int CONDITION_PERFECT = 95;
-constexpr int CONDITION_SCRATCHED = 85;
-constexpr int CONDITION_HURT = 70;
-constexpr int CONDITION_WOUNDED = 50;
-constexpr int CONDITION_BLEEDING = 30;
-constexpr int CONDITION_CRITICAL = 15;
 
 // Percentage calculation base
 constexpr int PERCENT_MULTIPLIER = 100;
@@ -1432,26 +1428,6 @@ void WorldServer::send_room_info_to_player(std::shared_ptr<PlayerConnection> con
 }
 
 /**
- * Get condition string based on HP percentage
- */
-static std::string get_condition_string(int hp_percent) {
-    if (hp_percent >= CONDITION_PERFECT)
-        return "perfect";
-    else if (hp_percent >= CONDITION_SCRATCHED)
-        return "scratched";
-    else if (hp_percent >= CONDITION_HURT)
-        return "hurt";
-    else if (hp_percent >= CONDITION_WOUNDED)
-        return "wounded";
-    else if (hp_percent >= CONDITION_BLEEDING)
-        return "bleeding";
-    else if (hp_percent >= CONDITION_CRITICAL)
-        return "critical";
-    else
-        return "dying";
-}
-
-/**
  * Expand prompt format codes into actual values.
  *
  * Format codes:
@@ -1459,16 +1435,26 @@ static std::string get_condition_string(int hp_percent) {
  *   %v - current stamina       %V - max stamina
  *   %l - level                 %g - wealth (copper)
  *   %x - experience            %X - exp to next level
- *   %t - tank condition        %T - target condition
- *   %n - newline               %% - literal %
+ *   %t - tank/opponent condition (colored)
+ *   %T - tank/opponent name
+ *   %o - opponent condition    %O - opponent name
+ *   %a - alignment value       %A - alignment description
+ *   %z - zone name             %Z - room name
+ *   %p - percent HP            %P - percent stamina
+ *   %c - coins (brief: 5p2g)   %C - coins (colored)
+ *   %L - spell slots [1:3/5 2:2/4] with color + restoring count
+ *   %d - active cooldowns [fireball:5s disarm:3s]
+ *   %n - newline               %_ - space
+ *   %% - literal %
  *
  * Color markup is preserved in output and processed by terminal rendering.
  */
 static std::string expand_prompt_format(std::string_view format, const Stats &stats,
+                                        std::shared_ptr<Actor> actor = nullptr,
                                         std::shared_ptr<Actor> fighting = nullptr,
                                         std::shared_ptr<Player> player = nullptr) {
     std::string result;
-    result.reserve(format.size() * 2); // Pre-allocate for efficiency
+    result.reserve(format.size() * 2);
 
     for (size_t i = 0; i < format.size(); ++i) {
         if (format[i] == '%' && i + 1 < format.size()) {
@@ -1496,30 +1482,139 @@ static std::string expand_prompt_format(std::string_view format, const Stats &st
                 result += std::to_string(stats.experience);
                 break;
             case 'X': {
-                // Experience to next level (simplified - could be more complex)
-                long next_level_exp = static_cast<long>(stats.level) * 1000;
+                long next_level_exp = ActorUtils::experience_for_level(stats.level + 1);
                 result += std::to_string(std::max(0L, next_level_exp - stats.experience));
                 break;
             }
             case 't':
-            case 'T': {
-                // Target/tank condition - show fighting opponent's condition
+            case 'o': {
+                // Opponent condition (colored)
                 if (fighting) {
-                    const auto &opp_stats = fighting->stats();
-                    int hp_percent =
-                        (opp_stats.hit_points * PERCENT_MULTIPLIER) / std::max(1, opp_stats.max_hit_points);
-                    result += get_condition_string(hp_percent);
+                    result += fighting->condition_text();
+                }
+                break;
+            }
+            case 'T':
+            case 'O': {
+                // Opponent name
+                if (fighting) {
+                    result += fighting->display_name();
+                }
+                break;
+            }
+            case 'a':
+                result += std::to_string(stats.alignment);
+                break;
+            case 'A': {
+                if (stats.alignment < -350)
+                    result += "<b:red>Evil</>";
+                else if (stats.alignment > 350)
+                    result += "<b:yellow>Good</>";
+                else
+                    result += "<b:green>Neutral</>";
+                break;
+            }
+            case 'p': {
+                // Percent HP
+                int pct = stats.max_hit_points > 0 ? (stats.hit_points * 100) / stats.max_hit_points : 0;
+                result += std::to_string(pct);
+                break;
+            }
+            case 'P': {
+                // Percent stamina
+                int pct = stats.max_stamina > 0 ? (stats.stamina * 100) / stats.max_stamina : 0;
+                result += std::to_string(pct);
+                break;
+            }
+            case 'z':
+            case 'Z': {
+                // Room name
+                if (actor && actor->current_room()) {
+                    result += actor->current_room()->name();
+                }
+                break;
+            }
+            case 'c': {
+                // Coin breakdown (brief): "5p2g3s10c"
+                if (player) {
+                    result += player->wallet().to_brief();
+                }
+                break;
+            }
+            case 'C': {
+                // Coin breakdown (colored)
+                if (player) {
+                    result += player->wallet().to_string(true);
+                }
+                break;
+            }
+            case 'L': {
+                // Spell slot status: "[1:3/5 2:2/4 3:0/2]" or "No spells"
+                if (actor) {
+                    const auto &slots = actor->spell_slots();
+                    auto circles = slots.get_available_circles();
+                    if (circles.empty()) {
+                        result += "No spells";
+                    } else {
+                        result += "[";
+                        bool first = true;
+                        for (int c : circles) {
+                            auto [cur, max] = slots.get_slot_info(c);
+                            if (max > 0) {
+                                if (!first)
+                                    result += " ";
+                                first = false;
+                                // Color: green if slots available, red if empty, yellow if partially used
+                                std::string_view color = (cur == max) ? "green" : (cur == 0) ? "red" : "yellow";
+                                result += fmt::format("<{}>{}</>:{}/{}", color, c, cur, max);
+                            }
+                        }
+                        int restoring = slots.get_total_restoring();
+                        if (restoring > 0) {
+                            result += fmt::format(" <dim>~{}</>", restoring);
+                        }
+                        result += "]";
+                    }
+                }
+                break;
+            }
+            case 'd': {
+                // Active cooldowns: "[fireball:5s disarm:3s]" or empty
+                if (player) {
+                    auto now = std::chrono::system_clock::now();
+                    std::string cd_str;
+                    for (const auto &[id, ability] : player->get_abilities()) {
+                        if (!ability.known)
+                            continue;
+                        // Look up cooldown_ms from the ability cache
+                        const auto *abil_data = FieryMUD::AbilityCache::instance().get_ability(id);
+                        if (!abil_data || abil_data->cooldown_ms <= 0)
+                            continue;
+                        auto elapsed_ms =
+                            std::chrono::duration_cast<std::chrono::milliseconds>(now - ability.last_used).count();
+                        if (elapsed_ms < abil_data->cooldown_ms) {
+                            int remaining_sec = static_cast<int>((abil_data->cooldown_ms - elapsed_ms) / 1000) + 1;
+                            if (!cd_str.empty())
+                                cd_str += " ";
+                            cd_str += fmt::format("<red>{}:{}s</>", ability.plain_name, remaining_sec);
+                        }
+                    }
+                    if (!cd_str.empty()) {
+                        result += fmt::format("[{}]", cd_str);
+                    }
                 }
                 break;
             }
             case 'n':
                 result += "\n";
                 break;
+            case '_':
+                result += " ";
+                break;
             case '%':
                 result += "%";
                 break;
             default:
-                // Unknown code - keep original
                 result += '%';
                 result += code;
                 break;
@@ -1555,7 +1650,7 @@ void WorldServer::send_prompt_to_actor(std::shared_ptr<Actor> actor) {
     }
 
     // Expand the prompt format (substitutes %h, %H, etc.)
-    std::string prompt = expand_prompt_format(format, stats, opponent, player);
+    std::string prompt = expand_prompt_format(format, stats, actor, opponent, player);
 
     // Process color markup (renders <red>, <yellow>, etc. to ANSI)
     prompt = TextFormat::apply_colors(prompt);

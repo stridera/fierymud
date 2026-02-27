@@ -628,29 +628,48 @@ std::string Room::get_room_description(const Actor *observer) const {
     std::string desc{description()};
 
     if (!can_see_in_room(observer)) {
-        return "It is too dark to see anything.";
+        return "<dim>It is pitch black... You cannot see a thing.</>";
     }
 
-    // Add sector-specific atmospheric details
+    // Add sector-specific atmospheric hints (only if the description doesn't already mention it)
+    std::string atmosphere;
     switch (sector_type_) {
-    case SectorType::Forest:
-        if (desc.find("trees") == std::string::npos) {
-            desc += " Tall trees surround you.";
-        }
+    case SectorType::Underwater:
+        atmosphere = "<cyan>Bubbles drift lazily through the murky water around you.</>";
         break;
-    case SectorType::Desert:
-        if (desc.find("sand") == std::string::npos) {
-            desc += " Hot sand stretches in all directions.";
-        }
+    case SectorType::Lava:
+        atmosphere = "<b:red>Waves of searing heat shimmer in the air.</>";
         break;
-    case SectorType::Water_Swim:
-    case SectorType::Water_Noswim:
-        if (desc.find("water") == std::string::npos) {
-            desc += " You are in the water.";
-        }
+    case SectorType::Fire:
+        atmosphere = "<red>Flames lick and dance at the edges of your vision.</>";
+        break;
+    case SectorType::Ice:
+        atmosphere = "<b:cyan>A bitter chill seeps into your bones.</>";
+        break;
+    case SectorType::Swamp:
+        atmosphere = "<b:green>The air is thick with humidity and the buzz of insects.</>";
+        break;
+    case SectorType::Underground:
+        atmosphere = "<dim>The close air carries the scent of damp earth and stone.</>";
+        break;
+    case SectorType::Astral:
+        atmosphere = "<b:magenta>The fabric of reality shimmers with otherworldly light.</>";
+        break;
+    case SectorType::Spirit:
+        atmosphere = "<b:magenta>Ghostly whispers echo from somewhere beyond the veil.</>";
+        break;
+    case SectorType::Void:
+        atmosphere = "<dim>An oppressive emptiness presses in from all sides.</>";
+        break;
+    case SectorType::Lightning:
+        atmosphere = "<b:yellow>Static crackles through the air, raising the hair on your neck.</>";
         break;
     default:
         break;
+    }
+
+    if (!atmosphere.empty()) {
+        desc += "\n" + atmosphere;
     }
 
     return desc;
@@ -942,30 +961,57 @@ int get_sector_light_level(SectorType sector) {
     return it != light_levels.end() ? it->second : 2;
 }
 
-std::string_view get_sector_color(SectorType sector) {
-    static const std::unordered_map<SectorType, std::string_view> colors = {
-        {SectorType::Inside, "\033[0;37m"},       // White
-        {SectorType::City, "\033[0;33m"},         // Yellow
-        {SectorType::Field, "\033[0;32m"},        // Green
-        {SectorType::Forest, "\033[0;32m"},       // Green
-        {SectorType::Hills, "\033[0;33m"},        // Yellow
-        {SectorType::Mountains, "\033[0;37m"},    // White
-        {SectorType::Water_Swim, "\033[0;34m"},   // Blue
-        {SectorType::Water_Noswim, "\033[0;34m"}, // Blue
-        {SectorType::Underwater, "\033[0;36m"},   // Cyan
-        {SectorType::Flying, "\033[0;37m"},       // White
-        {SectorType::Desert, "\033[0;33m"},       // Yellow
-        {SectorType::Swamp, "\033[0;32m"},        // Green
-        {SectorType::Beach, "\033[0;33m"},        // Yellow
-        {SectorType::Road, "\033[0;37m"},         // White
-        {SectorType::Underground, "\033[0;30m"},  // Black
-        {SectorType::Lava, "\033[0;31m"},         // Red
-        {SectorType::Ice, "\033[0;36m"},          // Cyan
-        {SectorType::Fire, "\033[0;31m"}          // Red
-    };
-
-    auto it = colors.find(sector);
-    return it != colors.end() ? it->second : "\033[0;37m";
+std::string_view get_sector_color_tag(SectorType sector) {
+    switch (sector) {
+    case SectorType::Inside:
+        return "<white>";
+    case SectorType::City:
+        return "<b:yellow>";
+    case SectorType::Field:
+        return "<green>";
+    case SectorType::Forest:
+        return "<b:green>";
+    case SectorType::Hills:
+        return "<yellow>";
+    case SectorType::Mountains:
+        return "<b:white>";
+    case SectorType::Water_Swim:
+        return "<b:cyan>";
+    case SectorType::Water_Noswim:
+        return "<b:blue>";
+    case SectorType::Underwater:
+        return "<cyan>";
+    case SectorType::Flying:
+        return "<b:white>";
+    case SectorType::Desert:
+        return "<b:yellow>";
+    case SectorType::Swamp:
+        return "<b:green>";
+    case SectorType::Beach:
+        return "<yellow>";
+    case SectorType::Road:
+        return "<white>";
+    case SectorType::Underground:
+        return "<dim>";
+    case SectorType::Lava:
+        return "<b:red>";
+    case SectorType::Ice:
+        return "<b:cyan>";
+    case SectorType::Astral:
+        return "<b:magenta>";
+    case SectorType::Fire:
+        return "<red>";
+    case SectorType::Lightning:
+        return "<b:yellow>";
+    case SectorType::Spirit:
+        return "<b:magenta>";
+    case SectorType::Badlands:
+        return "<red>";
+    case SectorType::Void:
+        return "<dim>";
+    default:
+        return "<green>";
+    }
 }
 
 bool is_outdoor_sector(SectorType sector) {

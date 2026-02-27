@@ -180,7 +180,7 @@ Result<CommandResult> cmd_clan_chat(const CommandContext &ctx) {
     std::string rank_title = member ? (*clan)->ranks()[member->rank_index].title() : "Member";
 
     std::string formatted_message =
-        fmt::format("<cyan>[Clan] {} ({}): {}</>", ctx.actor()->name(), rank_title, message.str());
+        fmt::format("<b:green>[Clan] {} ({}): {}</>", ctx.actor()->name(), rank_title, message.str());
 
     // Send to all clan members (including self)
     (*clan)->notify(nullptr, formatted_message);

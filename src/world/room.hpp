@@ -308,8 +308,8 @@ bool requires_swimming(SectorType sector);
 /** Get natural light level for sector */
 int get_sector_light_level(SectorType sector);
 
-/** Get sector color code for display */
-std::string_view get_sector_color(SectorType sector);
+/** Get sector color tag for display (e.g. "<green>", "<b:cyan>") */
+std::string_view get_sector_color_tag(SectorType sector);
 
 /** Check if sector is outdoors (affected by weather and sunlight) */
 bool is_outdoor_sector(SectorType sector);

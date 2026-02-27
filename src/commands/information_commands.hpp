@@ -61,4 +61,16 @@ Result<CommandResult> cmd_board(const CommandContext &ctx);
 // Reading commands
 Result<CommandResult> cmd_read(const CommandContext &ctx);
 
+// Additional info commands
+Result<CommandResult> cmd_experience(const CommandContext &ctx);
+Result<CommandResult> cmd_level(const CommandContext &ctx);
+Result<CommandResult> cmd_whoami(const CommandContext &ctx);
+Result<CommandResult> cmd_uptime(const CommandContext &ctx);
+Result<CommandResult> cmd_world_info(const CommandContext &ctx);
+
+// Ability listing commands
+Result<CommandResult> cmd_songs(const CommandContext &ctx);
+Result<CommandResult> cmd_spells(const CommandContext &ctx);
+Result<CommandResult> cmd_skills(const CommandContext &ctx);
+
 } // namespace InformationCommands

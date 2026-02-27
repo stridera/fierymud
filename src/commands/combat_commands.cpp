@@ -3,6 +3,10 @@
 #include <algorithm>
 #include <array>
 #include <random>
+#include <unordered_map>
+
+#include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
 
 #include "commands/command_system.hpp"
 #include "core/ability_executor.hpp"
@@ -197,7 +201,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
         size_t best_match_len = 0;
 
         for (const auto *ability : known_abilities) {
-            if (ability->type != "SPELL")
+            // Accept SPELL, CHANT, and SONG types for cast/perform/chant
+            if (ability->type != "SPELL" && ability->type != "CHANT" && ability->type != "SONG")
                 continue;
 
             // Try matching against display name (with spaces)
@@ -244,7 +249,8 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     const LearnedAbility *known_spell = nullptr;
 
     for (const auto *ability : known_abilities) {
-        if (ability->type != "SPELL")
+        // Accept SPELL, CHANT, and SONG types
+        if (ability->type != "SPELL" && ability->type != "CHANT" && ability->type != "SONG")
             continue;
 
         // Compare against both plain_name (with underscores) and display name (with spaces)
@@ -265,7 +271,7 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
     }
 
     if (!known_spell) {
-        ctx.send_error(fmt::format("You don't know any spell called '{}'.", spell_name));
+        ctx.send_error(fmt::format("You don't know any spell, chant, or song called '{}'.", spell_name));
         return CommandResult::InvalidTarget;
     }
 
@@ -904,42 +910,373 @@ Result<CommandResult> cmd_assist(const CommandContext &ctx) {
 }
 
 Result<CommandResult> cmd_kick(const CommandContext &ctx) {
-    // Kick is a data-driven combat skill
     return FieryMUD::execute_skill_command(ctx, "kick", true, true);
 }
 
 Result<CommandResult> cmd_bash(const CommandContext &ctx) {
-    // Bash is a data-driven combat skill
     return FieryMUD::execute_skill_command(ctx, "bash", true, true);
 }
 
 Result<CommandResult> cmd_backstab(const CommandContext &ctx) {
-    // Backstab requires being hidden or sneaking and initiates combat from stealth
     if (!ctx.actor->has_flag(ActorFlag::Hide) && !ctx.actor->has_flag(ActorFlag::Sneak)) {
         ctx.send_error("You need to be hidden to backstab someone!");
         return CommandResult::InvalidState;
     }
-
-    // Can't backstab while already in combat
     if (ctx.actor->position() == Position::Fighting) {
         ctx.send_error("You can't backstab while fighting!");
         return CommandResult::InvalidState;
     }
-
-    // Need a weapon to backstab
     auto weapon = ctx.actor->equipment().get_main_weapon();
     if (!weapon) {
         ctx.send_error("You need a weapon to backstab!");
         return CommandResult::InvalidState;
     }
-
-    // Clear hide/sneak flags on backstab attempt (reveals you)
     ctx.actor->set_flag(ActorFlag::Hide, false);
     ctx.actor->set_flag(ActorFlag::Sneak, false);
     ctx.actor->stats().concealment = 0;
-
-    // Execute backstab via data-driven ability system
     return FieryMUD::execute_skill_command(ctx, "backstab", true, true);
+}
+
+// =============================================================================
+// High-Priority Combat Skills
+// =============================================================================
+
+Result<CommandResult> cmd_disarm(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to disarm someone!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "disarm", true, false);
+}
+
+Result<CommandResult> cmd_disengage(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You aren't fighting anyone.");
+        return CommandResult::InvalidState;
+    }
+    auto enemy = FieryMUD::CombatManager::get_opponent(*ctx.actor);
+    if (!enemy) {
+        ctx.send_error("You aren't fighting anyone.");
+        return CommandResult::InvalidState;
+    }
+
+    // Skill check: base 40% + level diff + DEX bonus
+    int success_chance =
+        40 + (ctx.actor->stats().level - enemy->stats().level) * 2 + (ctx.actor->stats().dexterity - 10) / 2 * 3;
+    success_chance = std::clamp(success_chance, 10, 90);
+
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<> roll(1, 100);
+
+    if (roll(gen) > success_chance) {
+        ctx.send(fmt::format("You fail to disengage from {}!", enemy->display_name()));
+        ctx.send_to_room(fmt::format("{} tries to disengage from combat but fails!", ctx.actor->display_name()), true);
+        return CommandResult::Success;
+    }
+
+    FieryMUD::CombatManager::end_combat(ctx.actor);
+    ctx.actor->set_position(Position::Standing);
+    ctx.send("You skillfully disengage from combat.");
+    ctx.send_to_room(fmt::format("{} skillfully disengages from combat.", ctx.actor->display_name()), true);
+    ctx.send_to_actor(enemy, fmt::format("{} disengages from you.", ctx.actor->display_name()));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_retreat(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You aren't fighting anyone.");
+        return CommandResult::InvalidState;
+    }
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Retreat in which direction?");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Map direction argument to Direction enum
+    std::string dir_arg = to_lower(std::string(ctx.arg(0)));
+    using Dir = Direction;
+    static const std::unordered_map<std::string, Direction> dir_map = {
+        {"north", Dir::North}, {"n", Dir::North}, {"east", Dir::East}, {"e", Dir::East},
+        {"south", Dir::South}, {"s", Dir::South}, {"west", Dir::West}, {"w", Dir::West},
+        {"up", Dir::Up},       {"u", Dir::Up},    {"down", Dir::Down}, {"d", Dir::Down},
+    };
+
+    auto dir_it = dir_map.find(dir_arg);
+    if (dir_it == dir_map.end()) {
+        ctx.send_error("That's not a valid direction.");
+        return CommandResult::InvalidSyntax;
+    }
+    Direction direction = dir_it->second;
+
+    // Check if exit exists
+    if (!ctx.room || !ctx.room->has_exit(direction)) {
+        ctx.send_error("You can't retreat that way!");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Skill check: base 50% + DEX bonus
+    int success_chance = 50 + (ctx.actor->stats().dexterity - 10) / 2 * 4;
+    success_chance = std::clamp(success_chance, 15, 90);
+
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<> roll(1, 100);
+
+    if (roll(gen) > success_chance) {
+        ctx.send("You fail to retreat!");
+        ctx.send_to_room(fmt::format("{} tries to retreat but stumbles!", ctx.actor->display_name()), true);
+        return CommandResult::Success;
+    }
+
+    // End combat and move
+    FieryMUD::CombatManager::end_combat(ctx.actor);
+    ctx.actor->set_position(Position::Standing);
+
+    auto dir_name = magic_enum::enum_name(direction);
+    std::string dir_lower(dir_name);
+    std::transform(dir_lower.begin(), dir_lower.end(), dir_lower.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
+
+    ctx.send(fmt::format("You retreat {}!", dir_lower));
+    ctx.send_to_room(fmt::format("{} retreats {}.", ctx.actor->display_name(), dir_lower), true);
+
+    // Move actor through the exit
+    auto *exit = ctx.room->get_exit(direction);
+    if (exit && exit->to_room.is_valid()) {
+        WorldManager::instance().move_actor_to_room(ctx.actor, exit->to_room);
+        auto new_room = WorldManager::instance().get_room(exit->to_room);
+        if (new_room) {
+            auto room_desc = InformationCommands::format_room_for_actor(ctx.actor, new_room);
+            ctx.send(room_desc);
+        }
+    }
+
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_guard(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Guard who?");
+        return CommandResult::InvalidSyntax;
+    }
+
+    auto target = ctx.find_actor_target(ctx.arg(0));
+    if (!target) {
+        ctx.send_error(fmt::format("You don't see {} here.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+    if (target == ctx.actor) {
+        ctx.send_error("You can't guard yourself!");
+        return CommandResult::InvalidTarget;
+    }
+
+    ctx.send(fmt::format("You begin guarding {}.", target->display_name()));
+    ctx.send_to_actor(target, fmt::format("{} begins guarding you.", ctx.actor->display_name()));
+    ctx.send_to_room(fmt::format("{} moves to guard {}.", ctx.actor->display_name(), target->display_name()), true);
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_hitall(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be in combat to hit all enemies!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "hit all", false, false);
+}
+
+Result<CommandResult> cmd_bandage(const CommandContext &ctx) {
+    if (ctx.actor->position() == Position::Fighting) {
+        ctx.send_error("You can't bandage wounds while fighting!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "bandage", false, false);
+}
+
+Result<CommandResult> cmd_berserk(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to go berserk!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "berserk", false, false);
+}
+
+Result<CommandResult> cmd_breathe(const CommandContext &ctx) {
+    // Breathe has sub-types: fire, frost, acid, gas, lightning
+    std::string breath_type = "breathe fire"; // default
+    if (ctx.arg_count() > 0) {
+        std::string arg = to_lower(std::string(ctx.arg(0)));
+        if (arg == "fire")
+            breath_type = "breathe fire";
+        else if (arg == "frost" || arg == "cold" || arg == "ice")
+            breath_type = "breathe frost";
+        else if (arg == "acid")
+            breath_type = "breathe acid";
+        else if (arg == "gas" || arg == "poison")
+            breath_type = "breathe gas";
+        else if (arg == "lightning" || arg == "electric")
+            breath_type = "breathe lightning";
+        else {
+            // Treat as target name, default to fire
+            breath_type = "breathe fire";
+        }
+    }
+    return FieryMUD::execute_skill_command(ctx, breath_type, true, true);
+}
+
+Result<CommandResult> cmd_layhands(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "lay hands", false, false);
+}
+
+Result<CommandResult> cmd_throatcut(const CommandContext &ctx) {
+    if (!ctx.actor->has_flag(ActorFlag::Hide) && !ctx.actor->has_flag(ActorFlag::Sneak)) {
+        ctx.send_error("You need to be hidden to cut someone's throat!");
+        return CommandResult::InvalidState;
+    }
+    if (ctx.actor->position() == Position::Fighting) {
+        ctx.send_error("You can't cut throats while fighting!");
+        return CommandResult::InvalidState;
+    }
+    auto weapon = ctx.actor->equipment().get_main_weapon();
+    if (!weapon) {
+        ctx.send_error("You need a weapon to cut someone's throat!");
+        return CommandResult::InvalidState;
+    }
+    ctx.actor->set_flag(ActorFlag::Hide, false);
+    ctx.actor->set_flag(ActorFlag::Sneak, false);
+    ctx.actor->stats().concealment = 0;
+    return FieryMUD::execute_skill_command(ctx, "throatcut", true, true);
+}
+
+Result<CommandResult> cmd_claw(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "claw", true, true);
+}
+
+// =============================================================================
+// Medium-Priority Combat Skills
+// =============================================================================
+
+Result<CommandResult> cmd_buck(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "buck", true, false);
+}
+
+Result<CommandResult> cmd_cartwheel(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to cartwheel!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "cartwheel", true, false);
+}
+
+Result<CommandResult> cmd_doorbash(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send_error("Bash which door?");
+        return CommandResult::InvalidSyntax;
+    }
+    std::string dir_arg = to_lower(std::string(ctx.arg(0)));
+    using Dir = Direction;
+    static const std::unordered_map<std::string, Direction> dir_map = {
+        {"north", Dir::North}, {"n", Dir::North}, {"east", Dir::East}, {"e", Dir::East},
+        {"south", Dir::South}, {"s", Dir::South}, {"west", Dir::West}, {"w", Dir::West},
+        {"up", Dir::Up},       {"u", Dir::Up},    {"down", Dir::Down}, {"d", Dir::Down},
+    };
+
+    auto dir_it = dir_map.find(dir_arg);
+    if (dir_it == dir_map.end()) {
+        ctx.send_error("Bash the door in which direction?");
+        return CommandResult::InvalidSyntax;
+    }
+    Direction direction = dir_it->second;
+
+    if (!ctx.room || !ctx.room->has_exit(direction)) {
+        ctx.send_error("There's no door there.");
+        return CommandResult::InvalidTarget;
+    }
+
+    auto *exit = ctx.room->get_exit(direction);
+    if (!exit || !exit->is_closed) {
+        ctx.send_error("It's already open!");
+        return CommandResult::InvalidState;
+    }
+
+    // Skill check: base 60% + STR bonus
+    int success_chance = 60 + (ctx.actor->stats().strength - 10) / 2 * 5;
+    success_chance = std::clamp(success_chance, 15, 95);
+
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<> roll(1, 100);
+
+    auto dir_name = magic_enum::enum_name(direction);
+    std::string dir_lower(dir_name);
+    std::transform(dir_lower.begin(), dir_lower.end(), dir_lower.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
+
+    if (roll(gen) > success_chance) {
+        ctx.send(fmt::format("You slam into the {} door but it holds fast!", dir_lower));
+        ctx.send_to_room(
+            fmt::format("{} slams into the {} door but it holds fast!", ctx.actor->display_name(), dir_lower), true);
+        return CommandResult::Success;
+    }
+
+    // Success - open the door via mutable exit
+    auto *mutable_exit = ctx.room->get_exit_mutable(direction);
+    if (mutable_exit) {
+        mutable_exit->is_closed = false;
+        mutable_exit->is_locked = false;
+    }
+    ctx.send(fmt::format("You bash open the {} door!", dir_lower));
+    ctx.send_to_room(fmt::format("{} bashes open the {} door!", ctx.actor->display_name(), dir_lower), true);
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_electrify(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "electrify", false, false);
+}
+
+Result<CommandResult> cmd_gouge(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to gouge someone!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "eye gouge", true, false);
+}
+
+Result<CommandResult> cmd_rend(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "rend", true, true);
+}
+
+Result<CommandResult> cmd_roar(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "roar", false, false);
+}
+
+Result<CommandResult> cmd_roundhouse(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to roundhouse kick!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "roundhouse", true, false);
+}
+
+Result<CommandResult> cmd_springleap(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "springleap", true, true);
+}
+
+Result<CommandResult> cmd_stomp(const CommandContext &ctx) {
+    return FieryMUD::execute_skill_command(ctx, "ground shaker", true, true);
+}
+
+Result<CommandResult> cmd_sweep(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to sweep!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "sweep", true, false);
+}
+
+Result<CommandResult> cmd_tripup(const CommandContext &ctx) {
+    if (ctx.actor->position() != Position::Fighting) {
+        ctx.send_error("You need to be fighting to trip someone!");
+        return CommandResult::InvalidState;
+    }
+    return FieryMUD::execute_skill_command(ctx, "trip up", true, false);
 }
 
 // =============================================================================
@@ -947,7 +1284,7 @@ Result<CommandResult> cmd_backstab(const CommandContext &ctx) {
 // =============================================================================
 
 Result<void> register_commands() {
-    Commands().command("kill", cmd_kill).category("Combat").privilege(PrivilegeLevel::Player).build();
+    Commands().command("kill", cmd_kill).alias("murder").category("Combat").privilege(PrivilegeLevel::Player).build();
 
     Commands().command("hit", cmd_hit).category("Combat").privilege(PrivilegeLevel::Player).build();
 
@@ -973,7 +1310,13 @@ Result<void> register_commands() {
 
     Commands().command("kick", cmd_kick).category("Combat").privilege(PrivilegeLevel::Player).build();
 
-    Commands().command("bash", cmd_bash).category("Combat").privilege(PrivilegeLevel::Player).build();
+    Commands()
+        .command("bash", cmd_bash)
+        .alias("bodyslam")
+        .alias("maul")
+        .category("Combat")
+        .privilege(PrivilegeLevel::Player)
+        .build();
 
     Commands()
         .command("backstab", cmd_backstab)
@@ -981,6 +1324,59 @@ Result<void> register_commands() {
         .category("Combat")
         .privilege(PrivilegeLevel::Player)
         .build();
+
+    // High-priority combat skills
+    Commands().command("disarm", cmd_disarm).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("disengage", cmd_disengage).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("retreat", cmd_retreat).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("guard", cmd_guard).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands()
+        .command("hitall", cmd_hitall)
+        .alias("tantrum")
+        .category("Combat")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands().command("bandage", cmd_bandage).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("berserk", cmd_berserk).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("breathe", cmd_breathe).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("layhands", cmd_layhands).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("throatcut", cmd_throatcut).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("claw", cmd_claw).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    // Medium-priority combat skills
+    Commands().command("buck", cmd_buck).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("cartwheel", cmd_cartwheel).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("doorbash", cmd_doorbash).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("electrify", cmd_electrify).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("gouge", cmd_gouge).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("rend", cmd_rend).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("roar", cmd_roar).alias("howl").category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("roundhouse", cmd_roundhouse).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("springleap", cmd_springleap).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("stomp", cmd_stomp).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("sweep", cmd_sweep).category("Combat").privilege(PrivilegeLevel::Player).build();
+
+    Commands().command("tripup", cmd_tripup).category("Combat").privilege(PrivilegeLevel::Player).build();
 
     return Success();
 }

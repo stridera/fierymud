@@ -2502,6 +2502,7 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
     new_object->set_equip_slot(prototype->equip_slot());
     new_object->set_armor_class(prototype->armor_class());
     new_object->set_damage_profile(prototype->damage_profile());
+    new_object->set_damage_type(prototype->damage_type());
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
     new_object->set_liquid_info(prototype->liquid_info());
@@ -2512,6 +2513,13 @@ std::shared_ptr<Object> WorldManager::spawn_object_for_zone(EntityId object_id, 
 
     // Copy board number for bulletin boards
     new_object->set_board_number(prototype->board_number());
+
+    // Copy portal properties
+    if (prototype->is_portal()) {
+        new_object->set_portal_destination(prototype->portal_destination());
+        new_object->set_portal_messages(prototype->portal_entry_msg(), prototype->portal_char_msg(),
+                                        prototype->portal_exit_msg());
+    }
 
     // Copy magic item properties (potions, scrolls, wands, staves)
     new_object->set_spell_level(prototype->spell_level());
@@ -2672,6 +2680,7 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
     new_object->set_equip_slot(prototype->equip_slot());
     new_object->set_armor_class(prototype->armor_class());
     new_object->set_damage_profile(prototype->damage_profile());
+    new_object->set_damage_type(prototype->damage_type());
     new_object->set_container_info(prototype->container_info());
     new_object->set_light_info(prototype->light_info());
     new_object->set_liquid_info(prototype->liquid_info());
@@ -2682,6 +2691,13 @@ std::shared_ptr<Object> WorldManager::create_object_instance(EntityId prototype_
 
     // Copy board number for bulletin boards
     new_object->set_board_number(prototype->board_number());
+
+    // Copy portal properties
+    if (prototype->is_portal()) {
+        new_object->set_portal_destination(prototype->portal_destination());
+        new_object->set_portal_messages(prototype->portal_entry_msg(), prototype->portal_char_msg(),
+                                        prototype->portal_exit_msg());
+    }
 
     // Copy magic item properties (potions, scrolls, wands, staves)
     new_object->set_spell_level(prototype->spell_level());

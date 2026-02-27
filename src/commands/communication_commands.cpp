@@ -1,6 +1,7 @@
 #include "communication_commands.hpp"
 
 #include <array>
+#include <random>
 
 #include "commands/builtin_commands.hpp"
 #include "commands/command_system.hpp"
@@ -352,17 +353,17 @@ Result<CommandResult> cmd_ask(const CommandContext &ctx) {
 
     std::string question = sanitize_player_message(ctx.args_from(1), ctx.actor);
 
-    // Send to target (white for ask, similar to say)
-    std::string target_msg = fmt::format("<white>{} asks you, '{}'</>", ctx.actor->display_name(), question);
+    // Send to target (bright white for ask - slightly more prominent than say)
+    std::string target_msg = fmt::format("<b:white>{} asks you, '{}'</>", ctx.actor->display_name(), question);
     ctx.send_to_actor(target, target_msg);
 
     // Send confirmation to sender
-    std::string sender_msg = fmt::format("<white>You ask {}, '{}'</>", target->display_name(), question);
+    std::string sender_msg = fmt::format("<b:white>You ask {}, '{}'</>", target->display_name(), question);
     ctx.send(sender_msg);
 
     // Let others in the room see the question
     std::string room_msg =
-        fmt::format("<white>{} asks {}, '{}'</>", ctx.actor->display_name(), target->display_name(), question);
+        fmt::format("<b:white>{} asks {}, '{}'</>", ctx.actor->display_name(), target->display_name(), question);
     ctx.send_to_room(room_msg, true);
 
     return CommandResult::Success;
@@ -380,11 +381,11 @@ Result<CommandResult> cmd_petition(const CommandContext &ctx) {
     // Format the petition message for immortals
     // TODO: Add privilege-based filtering when send_to_all_with_privilege is implemented
     // For now, broadcast to all online players (immortals will see it)
-    std::string imm_msg = fmt::format("[PETITION] {} petitions: {}", ctx.actor->display_name(), message);
+    std::string imm_msg = fmt::format("<b:yellow>[PETITION] {} petitions: {}</>", ctx.actor->display_name(), message);
     ctx.send_to_all(imm_msg);
 
     // Confirmation to the petitioner
-    ctx.send("Your petition has been sent to the immortals.");
+    ctx.send("<b:yellow>Your petition has been sent to the immortals.</>");
 
     return CommandResult::Success;
 }
@@ -399,10 +400,10 @@ Result<CommandResult> cmd_wiznet(const CommandContext &ctx) {
     std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Send to actor first
-    ctx.send(fmt::format("You wiznet, '{}'", message));
+    ctx.send(fmt::format("<b:magenta>You wiznet, '{}'</>", message));
 
     // Format the wiznet message for other immortals
-    std::string wiz_msg = fmt::format("{} wiznet, '{}'", ctx.actor->display_name(), message);
+    std::string wiz_msg = fmt::format("<b:magenta>{} wiznet, '{}'</>", ctx.actor->display_name(), message);
 
     // Send to all immortals except self
     if (auto *world_server = WorldServer::instance()) {
@@ -435,11 +436,11 @@ Result<CommandResult> cmd_lasttells(const CommandContext &ctx) {
         return CommandResult::Success;
     }
 
-    ctx.send("--- Recent Tells ---");
+    ctx.send("<cyan>--- Recent Tells ---</>");
     for (const auto &entry : history) {
-        ctx.send(entry);
+        ctx.send(fmt::format("<cyan>{}</>", entry));
     }
-    ctx.send("--- End of Tell History ---");
+    ctx.send("<cyan>--- End of Tell History ---</>");
 
     return CommandResult::Success;
 }
@@ -467,7 +468,8 @@ Result<CommandResult> cmd_gtell(const CommandContext &ctx) {
     std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
     // Format and send to group members
-    std::string group_msg = fmt::format("[GROUP] {} tells the group: {}", ctx.actor->display_name(), message);
+    std::string group_msg =
+        fmt::format("<b:cyan>[GROUP] {} tells the group: {}</>", ctx.actor->display_name(), message);
     player->send_to_group(group_msg);
 
     return CommandResult::Success;
@@ -484,6 +486,71 @@ Result<CommandResult> cmd_gecho(const CommandContext &ctx) {
 
     // Send to all online actors
     ctx.send_to_all(message, false); // Don't exclude self
+
+    return CommandResult::Success;
+}
+
+// =============================================================================
+// Additional Channel Commands
+// =============================================================================
+
+Result<CommandResult> cmd_music(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<message>"); !result) {
+        ctx.send_usage("music <message>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
+    BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Channel, "music");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_ctell(const CommandContext &ctx) {
+    if (auto result = ctx.require_args(1, "<message>"); !result) {
+        ctx.send_usage("ctell <message>");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Clan tell - for now broadcast as a channel message
+    // Full clan system integration would filter to clan members only
+    std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
+    BuiltinCommands::Helpers::send_communication(ctx, message, MessageType::Channel, "clan");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_insult(const CommandContext &ctx) {
+    if (ctx.arg_count() == 0) {
+        ctx.send("You feel insulted.");
+        return CommandResult::Success;
+    }
+
+    auto target = ctx.find_actor_target(ctx.arg(0));
+    if (!target) {
+        ctx.send_error(fmt::format("You don't see {} here.", ctx.arg(0)));
+        return CommandResult::InvalidTarget;
+    }
+    if (target == ctx.actor) {
+        ctx.send("You feel insulted.");
+        return CommandResult::Success;
+    }
+
+    // Random insults
+    static const std::array insults = {
+        "You smell like a troll's armpit!",
+        "Your mother was a bugbear!",
+        "You fight like a dairy farmer!",
+        "I've seen better looking rust monsters!",
+        "Even a gelatinous cube has more personality!",
+    };
+
+    static thread_local std::mt19937 gen{std::random_device{}()};
+    std::uniform_int_distribution<size_t> dist(0, insults.size() - 1);
+    auto insult = insults[dist(gen)];
+
+    ctx.send(fmt::format("You insult {}: <yellow>{}</>", target->display_name(), insult));
+    ctx.send_to_actor(target, fmt::format("{} insults you: <yellow>{}</>", ctx.actor->display_name(), insult));
+    ctx.send_to_room(fmt::format("{} insults {}.", ctx.actor->display_name(), target->display_name()), true,
+                     std::array{target});
 
     return CommandResult::Success;
 }
@@ -553,6 +620,17 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::God)
         .description("Send a global message without showing sender")
         .build();
+
+    Commands().command("music", cmd_music).category("Communication").privilege(PrivilegeLevel::Player).build();
+
+    Commands()
+        .command("ctell", cmd_ctell)
+        .alias("ct")
+        .category("Communication")
+        .privilege(PrivilegeLevel::Player)
+        .build();
+
+    Commands().command("insult", cmd_insult).category("Communication").privilege(PrivilegeLevel::Player).build();
 
     return Success();
 }

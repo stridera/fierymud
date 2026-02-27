@@ -1706,6 +1706,18 @@ Result<CommandResult> cmd_ostat(const CommandContext &ctx) {
         }
     }
 
+    if (target->is_portal()) {
+        ctx.send(fmt::format("\n<b:white>Portal Stats:</>"));
+        if (target->has_portal_destination()) {
+            auto dest = target->portal_destination();
+            ctx.send(fmt::format("  Destination: <b:yellow>{}:{}</>", dest.zone_id(), dest.local_id()));
+        } else {
+            ctx.send("  Destination: <dim>none</>");
+        }
+        ctx.send(fmt::format("  Messages: entry={} char={} exit={}", target->portal_entry_msg(),
+                             target->portal_char_msg(), target->portal_exit_msg()));
+    }
+
     // Flags
     const auto &flags = target->flags();
     if (!flags.empty()) {

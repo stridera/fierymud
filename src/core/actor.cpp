@@ -826,15 +826,24 @@ std::string Actor::room_presence(std::shared_ptr<Actor> viewer) const {
     // Fighting takes precedence
     if (is_fighting()) {
         auto opponent = get_fighting_target();
+        std::string cond = condition_text();
         if (opponent) {
             if (viewer && opponent == viewer) {
-                return fmt::format("{} is here, fighting <red>YOU</>!", name);
+                return fmt::format("{} is here, fighting <red>YOU</> [{}]!", name, cond);
             } else {
-                return fmt::format("{} is here, fighting {}!", name, opponent->display_name());
+                return fmt::format("{} is here, fighting {} [{}]!", name, opponent->display_name(), cond);
             }
         } else {
-            return fmt::format("{} is here, struggling with thin air.", name);
+            return fmt::format("{} is here, struggling with thin air [{}].", name, cond);
         }
+    }
+
+    // HP condition suffix - show when not at full health
+    std::string condition;
+    int max_hp = stats().max_hit_points;
+    int hp = stats().hit_points;
+    if (max_hp > 0 && hp < max_hp) {
+        condition = fmt::format(", in {}", condition_text());
     }
 
     // Position-based descriptions
@@ -844,29 +853,56 @@ std::string Actor::room_presence(std::shared_ptr<Actor> viewer) const {
     case Position::Ghost:
         return fmt::format("The ghost of {} hovers here.", name);
     case Position::Mortally_Wounded:
-        return fmt::format("{} is lying here, mortally wounded.", name);
+        return fmt::format("{} is lying here, <red>mortally wounded</>.", name);
     case Position::Incapacitated:
-        return fmt::format("{} is lying here, incapacitated.", name);
+        return fmt::format("{} is lying here, <b:red>incapacitated</>.", name);
     case Position::Stunned:
-        return fmt::format("{} is lying here, stunned.", name);
+        return fmt::format("{} is lying here, <b:cyan>stunned</>.", name);
     case Position::Sleeping:
-        return fmt::format("{} is sleeping here.", name);
+        return fmt::format("{} is sleeping here{}.", name, condition);
     case Position::Resting:
-        return fmt::format("{} is resting here.", name);
+        return fmt::format("{} is resting here{}.", name, condition);
     case Position::Sitting:
-        return fmt::format("{} is sitting here.", name);
+        return fmt::format("{} is sitting here{}.", name, condition);
     case Position::Prone:
-        return fmt::format("{} is lying here.", name);
+        return fmt::format("{} is lying here{}.", name, condition);
     case Position::Fighting:
         // Already handled above, but just in case
         return fmt::format("{} is here, fighting.", name);
     case Position::Standing:
-        return fmt::format("{} is standing here.", name);
+        return fmt::format("{} is standing here{}.", name, condition);
     case Position::Flying:
-        return fmt::format("{} is hovering here.", name);
+        return fmt::format("{} is hovering here{}.", name, condition);
     default:
-        return fmt::format("{} is here.", name);
+        return fmt::format("{} is here{}.", name, condition);
     }
+}
+
+std::string Actor::condition_text() const {
+    int max_hp = stats().max_hit_points;
+    int hp = stats().hit_points;
+
+    if (max_hp <= 0) {
+        return "<red>awful condition</>";
+    }
+
+    int pct = (hp * 100) / max_hp;
+
+    if (pct >= 100)
+        return "<b:green>excellent condition</>";
+    if (pct >= 88)
+        return "<yellow>a few scratches</>";
+    if (pct >= 75)
+        return "<b:yellow>small wounds and bruises</>";
+    if (pct >= 50)
+        return "<b:magenta>quite a few wounds</>";
+    if (pct >= 30)
+        return "<magenta>big nasty wounds</>";
+    if (pct >= 15)
+        return "<b:red>pretty hurt</>";
+    if (pct >= 0)
+        return "<red>awful condition</>";
+    return "<red>bleeding awfully from large wounds</>";
 }
 
 Result<void> Actor::give_item(std::shared_ptr<Object> item) {

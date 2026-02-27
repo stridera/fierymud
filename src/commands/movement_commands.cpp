@@ -214,13 +214,68 @@ Result<CommandResult> cmd_enter(const CommandContext &ctx) {
             return CommandResult::InvalidState;
         }
 
-        // Move actor through portal
-        ctx.send(fmt::format("You enter {}.", portal->short_description()));
-        ctx.send_to_room(fmt::format("{} enters {}.", ctx.actor->display_name(), portal->short_description()), true);
+        // Validate portal has a destination
+        if (!portal->has_portal_destination()) {
+            ctx.send_error("The portal seems to lead nowhere.");
+            return CommandResult::InvalidState;
+        }
 
-        // Portal travel requires destination room storage on Object class
-        // When implemented: get destination from portal, use WorldManager to move actor
-        ctx.send("Portal travel not yet fully implemented - portal destination storage needed.");
+        // Validate destination room exists
+        auto dest_room = WorldManager::instance().get_room(portal->portal_destination());
+        if (!dest_room) {
+            ctx.send_error("The portal flickers and fades - its destination no longer exists.");
+            return CommandResult::InvalidState;
+        }
+
+        // Portal entry messages based on message index
+        // Index 0 = simple default, higher indices = more dramatic
+        static constexpr std::array<std::string_view, 3> entry_messages = {
+            "{} flares white as {} enters it and disappears.",
+            "{} flares as {} enters it and disappears.",
+            "{} vibrates violently as {} enters it and then stops.",
+        };
+        static constexpr std::array<std::string_view, 4> char_messages = {
+            "You enter {}.",
+            "<b:blue>You feel your body being ripped apart!</>",
+            "<b:blue>{} vibrates violently as you enter.</>",
+            "<b:blue>Your molecules are ripped apart as you enter {}.</>",
+        };
+        static constexpr std::array<std::string_view, 4> exit_messages = {
+            "{} flares white as {} emerges from it.",
+            "{} flares as {} emerges from it.",
+            "{} appears from nowhere!",
+            "There is a loud POP sound as {} emerges from {}.",
+        };
+
+        // Show entry messages to source room
+        int entry_idx = std::min(portal->portal_entry_msg(), static_cast<int>(entry_messages.size()) - 1);
+        ctx.send_to_room(fmt::format(fmt::runtime(entry_messages[entry_idx]), portal->short_description(),
+                                     ctx.actor->display_name()),
+                         true);
+
+        // Show character message
+        int char_idx = std::min(portal->portal_char_msg(), static_cast<int>(char_messages.size()) - 1);
+        ctx.send(fmt::format(fmt::runtime(char_messages[char_idx]), portal->short_description()));
+
+        // Teleport the actor
+        auto move_result = WorldManager::instance().move_actor_to_room(ctx.actor, portal->portal_destination());
+        if (!move_result.success) {
+            ctx.send_error("The portal rejects you - you cannot travel there.");
+            return CommandResult::InvalidState;
+        }
+
+        // Show exit messages to destination room (excluding the traveler)
+        int exit_idx = std::min(portal->portal_exit_msg(), static_cast<int>(exit_messages.size()) - 1);
+        ctx.send_to_room(
+            fmt::format(fmt::runtime(exit_messages[exit_idx]), portal->short_description(), ctx.actor->display_name()),
+            true);
+
+        // Show the new room
+        std::string room_display = InformationCommands::format_room_for_actor(ctx.actor);
+        if (!room_display.empty()) {
+            ctx.send(room_display);
+        }
+
         return CommandResult::Success;
     }
 

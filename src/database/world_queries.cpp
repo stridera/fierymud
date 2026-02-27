@@ -1209,6 +1209,71 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(pqxx::work &tx
                             logger->trace("Set board number {} for board ({}, {})", board_num, obj_zone_id, obj_id);
                         }
                     }
+
+                    // Parse portal destination and messages
+                    if (obj_type == ObjectType::Portal && values_json.is_object()) {
+                        if (values_json.contains("Destination")) {
+                            int dest_vnum = 0;
+                            const auto &dest_val = values_json["Destination"];
+                            if (dest_val.is_string()) {
+                                std::string dest_str = dest_val.get<std::string>();
+                                if (!dest_str.empty()) {
+                                    dest_vnum = std::stoi(dest_str);
+                                }
+                            } else if (dest_val.is_number_integer()) {
+                                dest_vnum = dest_val.get<int>();
+                            }
+                            if (dest_vnum > 0) {
+                                obj->set_portal_destination(EntityId(static_cast<std::uint64_t>(dest_vnum)));
+                            }
+                        }
+
+                        auto parse_msg_index = [](const nlohmann::json &val) -> int {
+                            if (val.is_string()) {
+                                std::string s = val.get<std::string>();
+                                return s.empty() ? 0 : std::stoi(s);
+                            }
+                            return val.is_number_integer() ? val.get<int>() : 0;
+                        };
+
+                        int entry_msg = 0, char_msg = 0, exit_msg = 0;
+                        if (values_json.contains("Entry_Message")) {
+                            entry_msg = parse_msg_index(values_json["Entry_Message"]);
+                        }
+                        if (values_json.contains("Character_Message")) {
+                            char_msg = parse_msg_index(values_json["Character_Message"]);
+                        }
+                        if (values_json.contains("Exit_Message")) {
+                            exit_msg = parse_msg_index(values_json["Exit_Message"]);
+                        }
+                        obj->set_portal_messages(entry_msg, char_msg, exit_msg);
+                    }
+
+                    // Parse weapon damage profile and damage type
+                    if ((obj_type == ObjectType::Weapon || obj_type == ObjectType::Fireweapon) &&
+                        values_json.is_object()) {
+                        if (values_json.contains("Hit Dice") && values_json["Hit Dice"].is_object()) {
+                            DamageProfile dmg;
+                            const auto &dice = values_json["Hit Dice"];
+                            if (dice.contains("num")) {
+                                dmg.dice_count = dice["num"].is_string() ? std::stoi(dice["num"].get<std::string>())
+                                                                         : dice["num"].get<int>();
+                            }
+                            if (dice.contains("size")) {
+                                dmg.dice_sides = dice["size"].is_string() ? std::stoi(dice["size"].get<std::string>())
+                                                                          : dice["size"].get<int>();
+                            }
+                            if (dice.contains("bonus")) {
+                                dmg.damage_bonus = dice["bonus"].is_string()
+                                                       ? std::stoi(dice["bonus"].get<std::string>())
+                                                       : dice["bonus"].get<int>();
+                            }
+                            obj->set_damage_profile(dmg);
+                        }
+                        if (values_json.contains("Damage Type")) {
+                            obj->set_damage_type(values_json["Damage Type"].get<std::string>());
+                        }
+                    }
                 } catch (const nlohmann::json::exception &e) {
                     logger->warn("Failed to parse values JSON for object ({}, {}): {}", obj_zone_id, obj_id, e.what());
                 }

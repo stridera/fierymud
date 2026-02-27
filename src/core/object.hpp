@@ -289,9 +289,27 @@ class Object : public Entity {
     /** Check if object is a touchstone (home point setter) */
     bool is_touchstone() const { return type_ == ObjectType::Touchstone; }
 
+    /** Check if object is a portal */
+    bool is_portal() const { return type_ == ObjectType::Portal; }
+
     /** Get board number for board objects (maps to Board.id in database) */
     int board_number() const { return board_number_; }
     void set_board_number(int num) { board_number_ = num; }
+
+    /** Portal destination (zone_id, local_id) */
+    EntityId portal_destination() const { return portal_destination_; }
+    void set_portal_destination(EntityId dest) { portal_destination_ = dest; }
+    bool has_portal_destination() const { return portal_destination_.is_valid(); }
+
+    /** Portal message indices (index into predefined message arrays) */
+    int portal_entry_msg() const { return portal_entry_msg_; }
+    int portal_char_msg() const { return portal_char_msg_; }
+    int portal_exit_msg() const { return portal_exit_msg_; }
+    void set_portal_messages(int entry, int character, int exit) {
+        portal_entry_msg_ = entry;
+        portal_char_msg_ = character;
+        portal_exit_msg_ = exit;
+    }
 
     /** Check if object is a magic item (scroll, potion, wand, staff) */
     bool is_magic_item() const {
@@ -337,6 +355,13 @@ class Object : public Entity {
     /** Remove object flag */
     void remove_flag(ObjectFlag flag) { set_flag(flag, false); }
 
+    /**
+     * Get colored flag indicator string for display.
+     * Returns strings like "(glowing) (humming) (magic)" with appropriate colors.
+     * The viewer parameter controls detection-based flags (magic, poison, alignment auras).
+     */
+    std::string flag_indicators(const class Actor *viewer = nullptr) const;
+
     /** Check if object grants a specific effect when equipped */
     bool has_effect(EffectFlag effect) const;
 
@@ -366,6 +391,12 @@ class Object : public Entity {
 
     /** Get damage bonus (for weapons) */
     int damage_bonus() const { return damage_profile_.damage_bonus; }
+
+    /** Get weapon damage type (slash, pierce, crush, etc.) */
+    std::string_view damage_type() const { return damage_type_; }
+
+    /** Set weapon damage type */
+    void set_damage_type(std::string_view dt) { damage_type_ = dt; }
 
     /** Get weapon speed category
      * Converts the Weapon's numeric speed (1-10) to WeaponSpeed enum
@@ -506,9 +537,16 @@ class Object : public Entity {
     // Board properties
     int board_number_ = 0; // Board ID (maps to Board.id in database)
 
+    // Portal properties
+    EntityId portal_destination_; // Destination room (zone_id, local_id)
+    int portal_entry_msg_ = 0;    // Entry message index (shown to source room)
+    int portal_char_msg_ = 0;     // Character message index (shown to traveler)
+    int portal_exit_msg_ = 0;     // Exit message index (shown to destination room)
+
     std::unordered_set<ObjectFlag> flags_;
     std::unordered_set<EffectFlag> effect_flags_; // Effects granted when equipped
     DamageProfile damage_profile_;
+    std::string damage_type_ = "Hit"; // Weapon damage type (Hit, Slash, Pierce, Crush, etc.)
     ContainerInfo container_info_;
     LightInfo light_info_;
     LiquidInfo liquid_info_;

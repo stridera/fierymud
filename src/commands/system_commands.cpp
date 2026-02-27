@@ -702,7 +702,12 @@ Result<CommandResult> cmd_socials(const CommandContext &ctx) {
  *   %l - level                 %g - gold
  *   %x - experience            %X - exp to next level
  *   %t - tank condition        %T - target condition
- *   %n - newline               %% - literal %
+ *   %p - percent HP            %P - percent stamina
+ *   %a - alignment value       %A - alignment description
+ *   %c - coins (brief)         %C - coins (colored)
+ *   %z/%Z - room name          %L - spell slots
+ *   %d - active cooldowns      %n - newline
+ *   %% - literal %
  *
  * Color markup (XML-lite format):
  *   <red>text</red>     - Named colors (red, green, blue, yellow, etc.)
@@ -752,6 +757,9 @@ Result<CommandResult> cmd_prompt(const CommandContext &ctx) {
         ctx.send("  %h/%H - current/max hit points    %v/%V - current/max stamina");
         ctx.send("  %l - level                        %g - gold");
         ctx.send("  %x/%X - exp/exp to next level     %t/%T - tank/target condition");
+        ctx.send("  %p/%P - percent HP/stamina        %a/%A - alignment value/desc");
+        ctx.send("  %c/%C - coins (brief/colored)     %z/%Z - room name");
+        ctx.send("  %L - spell slots [1:3/5 2:2/4]    %d - active cooldowns");
         ctx.send("  %n - newline                      %% - literal %");
         ctx.send("");
         ctx.send("Color markup: <red>text</red>, <bred>bold</bred>, <#FF0000>rgb</...>");

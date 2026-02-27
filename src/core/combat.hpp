@@ -194,6 +194,7 @@ struct CombatStats {
     int weapon_dice_size = 6;
     int weapon_base_damage = 0;
     WeaponSpeed weapon_speed = WeaponSpeed::Medium;
+    std::string weapon_damage_type = "Hit"; // Slash, Pierce, Crush, etc.
 
     // Attack speed modifiers (from effects like haste/slow)
     double attack_speed_multiplier = 1.0; // <1.0 = faster, >1.0 = slower

@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <map>
 #include <sstream>
 #include <unordered_map>
 
@@ -15,6 +16,7 @@
 #include "core/money.hpp"
 #include "core/object.hpp"
 #include "core/player.hpp"
+#include "core/spell_system.hpp"
 #include "database/connection_pool.hpp"
 #include "database/game_data_cache.hpp"
 #include "database/world_queries.hpp"
@@ -155,10 +157,16 @@ std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std
 
     // Check visibility
     bool can_see = room->can_see_in_room(actor.get());
+    bool using_infravision = false;
 
     if (!can_see) {
         // Room is dark - just return darkness message
         return room->get_room_description(actor.get());
+    }
+
+    // Check if seeing via infravision (dark room + infravision flag)
+    if (room->is_dark() && actor->has_flag(ActorFlag::Infravision)) {
+        using_infravision = true;
     }
 
     // Check if actor is a player with brief mode enabled
@@ -175,12 +183,31 @@ std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std
 
     std::ostringstream result;
 
-    // Always show room name
-    result << "<green>" << room->name() << "</>\n";
+    // Room name colored by sector type (or red for infravision)
+    if (using_infravision) {
+        result << "<red>" << room->name() << "</>";
+    } else {
+        auto sector_color = RoomUtils::get_sector_color_tag(room->sector_type());
+        result << sector_color << room->name() << "</>";
+    }
+    if (show_ids) {
+        result << fmt::format(" <cyan>[{}.{}]</>", room->id().zone_id(), room->id().local_id());
+    }
+    result << "\n";
+
+    // Infravision header
+    if (using_infravision) {
+        result << "<dim><red>[ Infravision ]</></>\n";
+    }
 
     // Show description only if not in brief mode
     if (!is_brief) {
-        result << room->get_room_description(actor.get()) << "\n";
+        if (using_infravision) {
+            // Infravision: show heat signatures instead of normal descriptions
+            result << "<red>You see the warm outlines of your surroundings through the darkness.</>\n";
+        } else {
+            result << room->get_room_description(actor.get()) << "\n";
+        }
     }
 
     // Show exits if autoexit enabled
@@ -207,7 +234,11 @@ std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std
                 result << "\n<yellow>You see:</>\n";
                 found_objects = true;
             }
-            result << fmt::format("  {}\n", ground_desc);
+            std::string id_tag;
+            if (show_ids) {
+                id_tag = fmt::format(" <cyan>[{}.{}]</>", obj->id().zone_id(), obj->id().local_id());
+            }
+            result << fmt::format("  {}{}{}\n", ground_desc, obj->flag_indicators(actor.get()), id_tag);
         }
     }
 
@@ -216,7 +247,13 @@ std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std
     bool found_others = false;
     for (const auto &other : actors) {
         if (other && other != actor && other->is_visible_to(*actor)) {
-            std::string actor_desc = other->room_presence(actor);
+            std::string actor_desc;
+            if (using_infravision) {
+                // Infravision: see heat signatures, not details
+                actor_desc = fmt::format("<red>The red shape of {} is here.</>", other->display_name());
+            } else {
+                actor_desc = other->room_presence(actor);
+            }
             if (actor_desc.empty()) {
                 continue;
             }
@@ -249,9 +286,10 @@ std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std
             if (other->has_flag(ActorFlag::Poison) && (actor->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
                 indicators += "<magenta>(poisoned)</> ";
             }
-            // On fire
+            // On fire - multi-color legacy style
             if (other->has_flag(ActorFlag::On_Fire)) {
-                indicators += "<red>(burning)</> ";
+                indicators +=
+                    "<b:yellow>*<b:red>*<b:yellow>* <b:red>ON FIRE<b:white>! <b:yellow>*<b:red>*<b:yellow>*</> ";
             }
             // AFK
             if (other->is_afk()) {
@@ -534,7 +572,12 @@ Result<CommandResult> cmd_examine(const CommandContext &ctx) {
         auto obj = target_info.object;
 
         // Basic description
-        detailed_desc << fmt::format("=== {} ===\n", obj->short_description());
+        if (ctx.actor->is_show_ids()) {
+            detailed_desc << fmt::format("=== {} <cyan>[{}.{}]</> ===\n", obj->short_description(), obj->id().zone_id(),
+                                         obj->id().local_id());
+        } else {
+            detailed_desc << fmt::format("=== {} ===\n", obj->short_description());
+        }
         detailed_desc << fmt::format("{}\n", obj->description());
 
         // Technical details
@@ -902,10 +945,16 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     const auto &stats = ctx.actor->stats();
     std::ostringstream score;
 
-    // Character header - centered name
+    // On fire warning (legacy-inspired multi-color flames)
+    if (ctx.actor->has_flag(ActorFlag::On_Fire)) {
+        score << "                     <yellow>*</><red>*</><b:yellow>* </><b:white>You are on </><b:red>FIRE"
+                 "</><b:white>! </><yellow>*</><red>*</><yellow>*</>\n\n";
+    }
+
+    // Character header - centered name with accent color
     std::string name{ctx.actor->name()};
     int padding = std::max(0, (45 - static_cast<int>(name.length())) / 2);
-    score << fmt::format("{:{}}{}\n\n", "", padding, fmt::format("Character attributes for {}", name));
+    score << fmt::format("{:{}}<b:white>Character attributes for {}</>\n\n", "", padding, name);
 
     // Get player-specific info if available
     std::string player_class = "Unknown";
@@ -920,38 +969,64 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
     // Get size and gender from the actor
     std::string_view size = ctx.actor->size();
     std::string gender_str = std::string(ctx.actor->gender());
-    // Capitalize first letter
     if (!gender_str.empty()) {
         gender_str[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(gender_str[0])));
     }
 
-    // Basic character info
-    score << fmt::format("Level: {}  Class: {}  Race: {}  Size: {}  Gender: {}\n", stats.level, player_class, race,
-                         size, gender_str);
+    // Basic character info with colored values
+    score << fmt::format("Level: <b:yellow>{}</>  Class: {}  Race: {}  Size: <yellow>{}</>  Gender: <yellow>{}</>\n",
+                         stats.level, player_class, race, size, gender_str);
 
-    // Age, height, weight (placeholder values)
-    score << fmt::format("Age: {} years, {} months  Height: 5'10\"  Weight: 180 lbs\n", 20 + stats.level,
-                         (stats.level * 3) % 12);
+    // Age, height, weight
+    int age_years = 20 + stats.level;
+    int age_months = (stats.level * 3) % 12;
+    score << fmt::format(
+        "Age: <b:yellow>{}</><yellow> year{}</>,"
+        " <b:yellow>{}</><yellow> month{}</>  "
+        "Height: <b:yellow>5'10\"</>  Weight: <b:yellow>180 lbs</>\n",
+        age_years, age_years == 1 ? "" : "s", age_months, age_months == 1 ? "" : "s");
 
-    // Abilities
-    score << fmt::format("Str: {}    Int: {}     Wis: {}\n", stats.strength, stats.intelligence, stats.wisdom);
-    score << fmt::format("Dex: {}    Con: {}     Cha: {}\n", stats.dexterity, stats.constitution, stats.charisma);
+    // Abilities with colored values
+    score << fmt::format("Str: <b:yellow>{}</>    Int: <b:yellow>{}</>     Wis: <b:yellow>{}</>\n", stats.strength,
+                         stats.intelligence, stats.wisdom);
+    score << fmt::format("Dex: <b:yellow>{}</>    Con: <b:yellow>{}</>     Cha: <b:yellow>{}</>\n", stats.dexterity,
+                         stats.constitution, stats.charisma);
 
-    // Hit points and stamina
-    score << fmt::format("Hit points: {}/{}   Stamina: {}/{}\n", stats.hit_points, stats.max_hit_points, stats.stamina,
-                         stats.max_stamina);
+    // Hit points with color gradient based on percentage
+    int hp_pct = stats.max_hit_points > 0 ? (stats.hit_points * 100) / stats.max_hit_points : 0;
+    std::string_view hp_color;
+    if (hp_pct >= 75)
+        hp_color = "b:green";
+    else if (hp_pct >= 50)
+        hp_color = "b:yellow";
+    else if (hp_pct >= 25)
+        hp_color = "b:red";
+    else
+        hp_color = "red";
+
+    int sta_pct = stats.max_stamina > 0 ? (stats.stamina * 100) / stats.max_stamina : 0;
+    std::string_view sta_color;
+    if (sta_pct >= 75)
+        sta_color = "b:green";
+    else if (sta_pct >= 50)
+        sta_color = "b:yellow";
+    else if (sta_pct >= 25)
+        sta_color = "b:red";
+    else
+        sta_color = "red";
+
+    score << fmt::format("Hit points: <{}>{}</><white>/</><red>{}   </>Stamina: <{}>{}</><white>/</><green>{}</>\n",
+                         hp_color, stats.hit_points, stats.max_hit_points, sta_color, stats.stamina, stats.max_stamina);
 
     // Condition status (buffs and drunk)
     std::string condition_line;
     bool has_condition = false;
 
-    // Nourished buff (from eating - +50% HP regen)
     if (ctx.actor->has_effect("Nourished")) {
         condition_line += "<green>Nourished</>";
         has_condition = true;
     }
 
-    // Refreshed buff (from drinking - +50% stamina regen)
     if (ctx.actor->has_effect("Refreshed")) {
         if (has_condition)
             condition_line += "   ";
@@ -959,11 +1034,10 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
         has_condition = true;
     }
 
-    // Drunk status
     if (stats.is_too_drunk()) {
         if (has_condition)
             condition_line += "   ";
-        condition_line += "<magenta>Very Drunk!</>";
+        condition_line += "<b:magenta>Very Drunk!</>";
         has_condition = true;
     } else if (stats.is_slurring()) {
         if (has_condition)
@@ -981,50 +1055,86 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
         score << fmt::format("Condition: {}\n", condition_line);
     }
 
-    // Combat stats (new ACC/EVA system)
-    score << fmt::format("Accuracy: {}   Evasion: {}   Attack Power: {}\n", stats.accuracy, stats.evasion,
-                         stats.attack_power);
-    score << fmt::format("Armor Rating: {}   Damage Reduction: {}%\n", stats.armor_rating,
+    // Combat stats with colored values
+    score << fmt::format("Accuracy: <b:yellow>{}</>   Evasion: <b:yellow>{}</>   Attack Power: <b:yellow>{}</>\n",
+                         stats.accuracy, stats.evasion, stats.attack_power);
+    score << fmt::format("Armor Rating: <b:yellow>{}</>   Damage Reduction: <b:yellow>{}%</>\n", stats.armor_rating,
                          stats.damage_reduction_percent);
 
-    // Alignment
-    std::string align_desc;
-    if (stats.alignment < -350)
+    // Alignment with color based on value
+    std::string_view align_color;
+    std::string_view align_desc;
+    if (stats.alignment < -350) {
         align_desc = "Evil";
-    else if (stats.alignment > 350)
+        align_color = "b:red";
+    } else if (stats.alignment > 350) {
         align_desc = "Good";
-    else
+        align_color = "b:yellow";
+    } else {
         align_desc = "Neutral";
-    score << fmt::format("Alignment: {} ({})  ", align_desc, stats.alignment);
+        align_color = "b:green";
+    }
+    score << fmt::format("Alignment: <{}>{}</> (<{}>{}</>)  ", align_color, align_desc, align_color, stats.alignment);
 
-    // Position/Status
-    score << fmt::format("Status: {}\n", magic_enum::enum_name(ctx.actor->position()));
+    // Position/Status with color
+    std::string_view status_color;
+    switch (ctx.actor->position()) {
+    case Position::Dead:
+    case Position::Ghost:
+        status_color = "b:black";
+        break;
+    case Position::Mortally_Wounded:
+        status_color = "red";
+        break;
+    case Position::Incapacitated:
+        status_color = "b:red";
+        break;
+    case Position::Stunned:
+        status_color = "b:cyan";
+        break;
+    case Position::Sleeping:
+    case Position::Resting:
+    case Position::Sitting:
+    case Position::Prone:
+        status_color = "yellow";
+        break;
+    case Position::Fighting:
+        status_color = "b:red";
+        break;
+    case Position::Standing:
+        status_color = "green";
+        break;
+    case Position::Flying:
+        status_color = "b:cyan";
+        break;
+    }
+    score << fmt::format("Status: <{}>{}</>\n", status_color, magic_enum::enum_name(ctx.actor->position()));
 
     // Encumbrance
     int current_weight = ctx.actor->current_carry_weight();
     int max_weight = ctx.actor->max_carry_weight();
-    score << fmt::format("Encumbrance: {}/{} lbs  ", current_weight, max_weight);
+    int enc_pct = max_weight > 0 ? (current_weight * 100) / max_weight : 0;
+    std::string_view enc_color = enc_pct >= 90 ? "b:red" : enc_pct >= 70 ? "yellow" : "green";
+    score << fmt::format("Encumbrance: <{}>{}</></>/<green>{}</> lbs  ", enc_color, current_weight, max_weight);
 
     // Experience, progress bar, and gold
-    if (stats.level < 100) { // Not immortal
+    if (stats.level < 100) {
         long current_exp = stats.experience;
         long current_level_exp = ActorUtils::experience_for_level(stats.level);
         long next_level_exp = ActorUtils::experience_for_level(stats.level + 1);
         long exp_this_level = current_exp - current_level_exp;
         long exp_needed = next_level_exp - current_level_exp;
 
-        // Calculate percentage and progress bar
         int percent = 0;
         if (exp_needed > 0) {
             percent = static_cast<int>((exp_this_level * 100) / exp_needed);
             percent = std::clamp(percent, 0, 100);
         }
 
-        // Build progress bar (20 chars wide)
         constexpr int bar_width = 20;
         int filled = (percent * bar_width) / 100;
         std::string bar;
-        bar += "<green>";
+        bar += "<b:green>";
         for (int i = 0; i < filled; ++i)
             bar += "=";
         bar += "</>";
@@ -1033,18 +1143,22 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
             bar += "-";
         bar += "</>";
 
-        score << fmt::format("Exp: {} / {}  [{}] {}%\n", current_exp, next_level_exp, bar, percent);
+        score << fmt::format("Exp: <b:yellow>{}</> / <yellow>{}</>  [{}] <b:yellow>{}%</>\n", current_exp,
+                             next_level_exp, bar, percent);
+    } else {
+        score << "\n";
     }
-    // Currency - show full breakdown for players
+
+    // Currency
     if (player) {
         score << fmt::format("Coins: {}\n", player->wallet().to_string());
     } else {
-        score << fmt::format("Wealth: {} copper\n", stats.wealth);
+        score << fmt::format("Wealth: <yellow>{}</> copper\n", stats.wealth);
     }
 
     // Current location
     if (ctx.room) {
-        score << fmt::format("Location: {} [{}]\n", ctx.room->name(), ctx.room->id());
+        score << fmt::format("Location: <green>{}</> <cyan>[{}]</>\n", ctx.room->name(), ctx.room->id());
     }
 
     // Active effects (spells, buffs, etc.)
@@ -1054,11 +1168,10 @@ Result<CommandResult> cmd_score(const CommandContext &ctx) {
         for (const auto &effect : effects) {
             std::string duration_str = format_effect_duration(effect.duration_hours);
 
-            // Show modifier if applicable
             if (!effect.modifier_stat.empty() && effect.modifier_value != 0) {
                 std::string sign = effect.modifier_value > 0 ? "+" : "";
-                score << fmt::format("  <green>{}</> ({}{} {}) - {}\n", effect.name, sign, effect.modifier_value,
-                                     effect.modifier_stat, duration_str);
+                score << fmt::format("  <green>{}</> (<yellow>{}{} {}</>) - {}\n", effect.name, sign,
+                                     effect.modifier_value, effect.modifier_stat, duration_str);
             } else {
                 score << fmt::format("  <green>{}</> - {}\n", effect.name, duration_str);
             }
@@ -1565,7 +1678,7 @@ Result<CommandResult> cmd_scan(const CommandContext &ctx) {
             }
             // Status effects visible to all
             if (actor->has_flag(ActorFlag::On_Fire)) {
-                indicators += "<red>(burning)</> ";
+                indicators += "<b:yellow>*<b:red>*<b:yellow>*FIRE*<b:red>*<b:yellow>*</> ";
             }
             if (actor->has_flag(ActorFlag::Immobilized) || actor->has_flag(ActorFlag::Paralyzed)) {
                 indicators += "<red>(immobilized)</> ";
@@ -1954,6 +2067,182 @@ Result<CommandResult> cmd_read(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Simple Info Commands
+// =============================================================================
+
+Result<CommandResult> cmd_experience(const CommandContext &ctx) {
+    auto &stats = ctx.actor->stats();
+    int level = stats.level;
+    int exp = stats.experience;
+
+    // Calculate XP needed for next level (simple formula)
+    int next_level_exp = level * level * 1000;
+    int remaining = std::max(0, next_level_exp - exp);
+    int progress = (next_level_exp > 0) ? std::min(100, (exp * 100) / next_level_exp) : 100;
+
+    // Get class name if this is a player
+    std::string class_str = "Adventurer";
+    if (auto *player = dynamic_cast<Player *>(ctx.actor.get())) {
+        class_str = player->player_class();
+    }
+
+    ctx.send(fmt::format("<b:white>Experience Information</>"));
+    ctx.send(fmt::format("Level: <b:yellow>{}</>  Class: {}", level, class_str));
+    ctx.send(fmt::format("Experience: <b:yellow>{}</> / <yellow>{}</>", exp, next_level_exp));
+    ctx.send(fmt::format("Needed for next level: <yellow>{}</>", remaining));
+
+    // Progress bar
+    int filled = progress / 5;
+    std::string bar;
+    for (int i = 0; i < 20; ++i) {
+        bar += (i < filled) ? "=" : "-";
+    }
+    ctx.send(
+        fmt::format("Progress: [<green>{}</><red>{}</>] {}%", bar.substr(0, filled), bar.substr(filled), progress));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_level(const CommandContext &ctx) {
+    auto &stats = ctx.actor->stats();
+    ctx.send(fmt::format("You are level <b:yellow>{}</>.", stats.level));
+    ctx.send(fmt::format("Experience: <b:yellow>{}</>", stats.experience));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_whoami(const CommandContext &ctx) {
+    ctx.send(fmt::format("You are {}.", ctx.actor->display_name()));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_uptime(const CommandContext &ctx) {
+    auto *server = WorldServer::instance();
+    if (!server) {
+        ctx.send_error("Server not available.");
+        return CommandResult::InvalidState;
+    }
+    auto uptime = server->get_performance_stats().uptime();
+    auto hours = std::chrono::duration_cast<std::chrono::hours>(uptime);
+    auto minutes = std::chrono::duration_cast<std::chrono::minutes>(uptime - hours);
+    auto seconds = std::chrono::duration_cast<std::chrono::seconds>(uptime - hours - minutes);
+
+    ctx.send(fmt::format("Server uptime: <b:yellow>{}h {}m {}s</>", hours.count(), minutes.count(), seconds.count()));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_world_info(const CommandContext &ctx) {
+    auto &wm = WorldManager::instance();
+    const auto &stats = wm.stats();
+    ctx.send("<b:white>World Statistics</>");
+    ctx.send(fmt::format("Zones loaded: <b:yellow>{}</>", stats.zones_loaded));
+    ctx.send(fmt::format("Rooms loaded: <b:yellow>{}</>", stats.rooms_loaded));
+    ctx.send(fmt::format("Mobs loaded: <b:yellow>{}</>", stats.mobiles_loaded));
+    ctx.send(fmt::format("Objects loaded: <b:yellow>{}</>", stats.objects_loaded));
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_songs(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can list songs.");
+        return CommandResult::InvalidState;
+    }
+
+    auto songs = player->get_abilities_by_type("SONG");
+    if (songs.empty()) {
+        ctx.send("You don't know any songs.");
+        ctx.send("<dim>Songs are learned by the bard class.</>");
+        return CommandResult::Success;
+    }
+
+    ctx.send("<b:yellow>Songs You Know:</>");
+    ctx.send(std::string(40, '-'));
+    for (const auto *song : songs) {
+        if (!song->known)
+            continue;
+        std::string status;
+        if (song->proficiency >= 90) {
+            status = "<b:green>Mastered</>";
+        } else if (song->proficiency >= 50) {
+            status = "<yellow>Practiced</>";
+        } else {
+            status = "<dim>Learning</>";
+        }
+        ctx.send(fmt::format("  <b:cyan>{:<25}</> {}", song->name, status));
+    }
+    ctx.send("");
+    ctx.send("<dim>Use 'perform <song>' or 'sing <song>' to perform a song.</>");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_spells(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can list spells.");
+        return CommandResult::InvalidState;
+    }
+
+    auto spells = player->get_abilities_by_type("SPELL");
+    if (spells.empty()) {
+        ctx.send("You don't know any spells.");
+        return CommandResult::Success;
+    }
+
+    // Group by circle
+    std::map<int, std::vector<const LearnedAbility *>> by_circle;
+    for (const auto *spell : spells) {
+        if (!spell->known)
+            continue;
+        by_circle[spell->circle].push_back(spell);
+    }
+
+    // Show spell slot status
+    const auto &slots = player->spell_slots();
+    ctx.send("<b:white>Spells Known:</>");
+
+    for (const auto &[circle, circle_spells] : by_circle) {
+        auto [cur, max] = slots.get_slot_info(circle);
+        std::string_view slot_color = (cur == max) ? "green" : (cur == 0) ? "red" : "yellow";
+        ctx.send(fmt::format("\n<b:cyan>Circle {}</> <{}>[{}/{}]</>:", circle, slot_color, cur, max));
+        for (const auto *spell : circle_spells) {
+            ctx.send(fmt::format("  {}", spell->name));
+        }
+    }
+    ctx.send("");
+    ctx.send("<dim>Use 'cast <spell>' to cast a spell.</>");
+    return CommandResult::Success;
+}
+
+Result<CommandResult> cmd_skills(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can list skills.");
+        return CommandResult::InvalidState;
+    }
+
+    auto skills = player->get_abilities_by_type("SKILL");
+    if (skills.empty()) {
+        ctx.send("You don't know any skills.");
+        return CommandResult::Success;
+    }
+
+    ctx.send("<b:white>Skills Known:</>");
+    ctx.send(std::string(50, '-'));
+    for (const auto *skill : skills) {
+        if (!skill->known)
+            continue;
+        // Proficiency bar
+        int filled = skill->proficiency / 5;
+        std::string bar;
+        for (int i = 0; i < 20; ++i) {
+            bar += (i < filled) ? "=" : "-";
+        }
+        std::string_view color = (skill->proficiency >= 90) ? "b:green" : (skill->proficiency >= 50) ? "yellow" : "dim";
+        ctx.send(fmt::format("  {:<25} <{}>[{}]</> {}%", skill->name, color, bar, skill->proficiency));
+    }
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -2103,6 +2392,67 @@ Result<void> register_commands() {
         .privilege(PrivilegeLevel::Player)
         .description("Read something")
         .usage("read <object>")
+        .build();
+
+    // Additional info commands
+    Commands()
+        .command("experience", cmd_experience)
+        .alias("exp")
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    Commands()
+        .command("level", cmd_level)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    Commands()
+        .command("whoami", cmd_whoami)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    Commands()
+        .command("uptime", cmd_uptime)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .usable_while_sleeping(true)
+        .build();
+
+    Commands()
+        .command("world", cmd_world_info)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    // Ability listing commands
+    Commands()
+        .command("songs", cmd_songs)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    Commands()
+        .command("spells", cmd_spells)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    Commands()
+        .command("skills", cmd_skills)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
         .build();
 
     return Success();

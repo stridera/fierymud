@@ -31,4 +31,9 @@ Result<CommandResult> cmd_gecho(const CommandContext &ctx);
 // Group communication (requires group system)
 Result<CommandResult> cmd_gtell(const CommandContext &ctx);
 
+// Channel commands
+Result<CommandResult> cmd_music(const CommandContext &ctx);
+Result<CommandResult> cmd_ctell(const CommandContext &ctx);
+Result<CommandResult> cmd_insult(const CommandContext &ctx);
+
 } // namespace CommunicationCommands

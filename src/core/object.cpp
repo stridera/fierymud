@@ -7,6 +7,7 @@
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
 
+#include "actor.hpp"  // For Actor detection flags in flag_indicators()
 #include "combat.hpp" // For WeaponSpeed enum
 #include "core/logging.hpp"
 #include "database/game_data_cache.hpp"
@@ -560,6 +561,49 @@ Result<std::unique_ptr<Object>> Object::from_json(const nlohmann::json &json) {
             }
         }
 
+        // Parse portal destination from values JSON
+        if (type == ObjectType::Portal && json.contains("values")) {
+            try {
+                const auto &values_json = json["values"];
+                if (values_json.contains("Destination")) {
+                    int dest_vnum = 0;
+                    const auto &dest_val = values_json["Destination"];
+                    if (dest_val.is_string()) {
+                        std::string dest_str = dest_val.get<std::string>();
+                        if (!dest_str.empty()) {
+                            dest_vnum = std::stoi(dest_str);
+                        }
+                    } else if (dest_val.is_number_integer()) {
+                        dest_vnum = dest_val.get<int>();
+                    }
+                    if (dest_vnum > 0) {
+                        object->set_portal_destination(EntityId(static_cast<std::uint64_t>(dest_vnum)));
+                    }
+                }
+
+                int entry_msg = 0, char_msg = 0, exit_msg = 0;
+                auto parse_msg_index = [](const nlohmann::json &val) -> int {
+                    if (val.is_string()) {
+                        std::string s = val.get<std::string>();
+                        return s.empty() ? 0 : std::stoi(s);
+                    }
+                    return val.is_number_integer() ? val.get<int>() : 0;
+                };
+                if (values_json.contains("Entry_Message")) {
+                    entry_msg = parse_msg_index(values_json["Entry_Message"]);
+                }
+                if (values_json.contains("Character_Message")) {
+                    char_msg = parse_msg_index(values_json["Character_Message"]);
+                }
+                if (values_json.contains("Exit_Message")) {
+                    exit_msg = parse_msg_index(values_json["Exit_Message"]);
+                }
+                object->set_portal_messages(entry_msg, char_msg, exit_msg);
+            } catch (const std::exception &) {
+                // Use defaults if parsing fails
+            }
+        }
+
         // Parse extra descriptions
         if (json.contains("extra_descriptions") && json["extra_descriptions"].is_array()) {
             for (const auto &extra_json : json["extra_descriptions"]) {
@@ -606,6 +650,58 @@ void Object::set_flag(ObjectFlag flag, bool value) {
     } else {
         flags_.erase(flag);
     }
+}
+
+std::string Object::flag_indicators(const Actor *viewer) const {
+    std::string result;
+
+    // Always-visible flags
+    if (has_flag(ObjectFlag::Glow)) {
+        result += " <magenta>(glowing)</>";
+    }
+    if (has_flag(ObjectFlag::Hum)) {
+        result += " <cyan>(humming)</>";
+    }
+    if (has_flag(ObjectFlag::Float)) {
+        result += " <blue>(floating)</>";
+    }
+    if (has_flag(ObjectFlag::Invisible)) {
+        result += " <dim>(invisible)</>";
+    }
+    if (has_flag(ObjectFlag::Decomposing)) {
+        result += " <dim>(decomposing)</>";
+    }
+
+    // Detection-based flags (require viewer with appropriate detection)
+    if (viewer) {
+        bool has_holylight = viewer->is_holylight();
+
+        // Magic detection
+        if (has_flag(ObjectFlag::Magic) && (viewer->has_flag(ActorFlag::Detect_Magic) || has_holylight)) {
+            result += " <b:blue>(magic)</>";
+        }
+
+        // Poison detection
+        if (has_flag(ObjectFlag::Poison) && (viewer->has_flag(ActorFlag::Detect_Poison) || has_holylight)) {
+            result += " <b:magenta>(poisoned)</>";
+        }
+
+        // Alignment auras (require detect alignment)
+        if (viewer->has_flag(ActorFlag::Detect_Align) || has_holylight) {
+            if (has_flag(ObjectFlag::AntiEvil)) {
+                result += " <b:yellow>(Gold Aura)</>";
+            } else if (has_flag(ObjectFlag::AntiGood)) {
+                result += " <red>(Red Aura)</>";
+            }
+        }
+
+        // Blessed aura
+        if (has_flag(ObjectFlag::Bless) && (viewer->has_flag(ActorFlag::Detect_Magic) || has_holylight)) {
+            result += " <cyan>(blessed)</>";
+        }
+    }
+
+    return result;
 }
 
 bool Object::has_effect(EffectFlag effect) const { return effect_flags_.contains(effect); }
@@ -1384,7 +1480,13 @@ std::string Object::get_stat_info() const {
         break;
     }
     case ObjectType::Portal:
-        // Portal destination would be stored if we had it
+        if (has_portal_destination()) {
+            output << fmt::format("Destination: {}\n", portal_destination_.to_string());
+        } else {
+            output << "Destination: none\n";
+        }
+        output << fmt::format("Messages: entry={} char={} exit={}\n", portal_entry_msg_, portal_char_msg_,
+                              portal_exit_msg_);
         break;
     case ObjectType::Board:
         output << fmt::format("Board ID: {}\n", board_number_);

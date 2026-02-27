@@ -449,6 +449,12 @@ class Actor : public Entity {
      */
     std::string room_presence(std::shared_ptr<Actor> viewer = nullptr) const override;
 
+    /**
+     * Get a color-coded HP condition string based on current HP percentage.
+     * Returns strings like "<b:green>excellent condition</>" or "<red>awful condition</>".
+     */
+    std::string condition_text() const;
+
     /** Item management convenience methods */
     Result<void> give_item(std::shared_ptr<Object> item);
     std::shared_ptr<Object> take_item(EntityId item_id);

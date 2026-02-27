@@ -22,6 +22,39 @@
 
 namespace FieryMUD {
 
+// Weapon damage type verb table: maps damage type name to {singular, plural} verb forms.
+// Singular = "you X target", Plural = "attacker Xs target"
+struct WeaponVerb {
+    std::string_view singular; // "slash"
+    std::string_view plural;   // "slashes"
+};
+
+// Case-insensitive lookup for weapon damage types
+static const WeaponVerb &get_weapon_verb(std::string_view damage_type) {
+    // Default verb for unknown types
+    static const WeaponVerb default_verb{"hit", "hits"};
+
+    static const std::unordered_map<std::string, WeaponVerb> verb_table = {
+        {"hit", {"hit", "hits"}},        {"sting", {"sting", "stings"}},     {"whip", {"whip", "whips"}},
+        {"slash", {"slash", "slashes"}}, {"bite", {"bite", "bites"}},        {"bludgeon", {"bludgeon", "bludgeons"}},
+        {"crush", {"crush", "crushes"}}, {"pound", {"pound", "pounds"}},     {"claw", {"claw", "claws"}},
+        {"maul", {"maul", "mauls"}},     {"thrash", {"thrash", "thrashes"}}, {"pierce", {"pierce", "pierces"}},
+        {"blast", {"blast", "blasts"}},  {"punch", {"punch", "punches"}},    {"stab", {"stab", "stabs"}},
+        {"fire", {"burn", "burns"}},     {"cold", {"freeze", "freezes"}},    {"acid", {"corrode", "corrodes"}},
+        {"shock", {"shock", "shocks"}},  {"poison", {"poison", "poisons"}},
+    };
+
+    // Convert to lowercase for case-insensitive lookup
+    std::string key;
+    key.reserve(damage_type.size());
+    for (char c : damage_type) {
+        key += static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+
+    auto it = verb_table.find(key);
+    return (it != verb_table.end()) ? it->second : default_verb;
+}
+
 // Static member definitions
 std::vector<std::pair<CombatEvent::EventType, CombatEventHandler>> CombatSystem::event_handlers_;
 std::unordered_set<std::shared_ptr<Actor>> CombatManager::fighting_actors_;
@@ -296,6 +329,8 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor &actor) {
         stats.weapon_base_damage = mobile->bare_hand_damage_dice_bonus();
         // Mobs use VeryFast for natural attacks (claws, bites, etc.)
         stats.weapon_speed = WeaponSpeed::VeryFast;
+        // Use mob's damage type (Claw, Bite, etc.)
+        stats.weapon_damage_type = std::string(mobile->damage_type());
     } else {
         // Default player unarmed
         stats.weapon_dice_num = 1;
@@ -303,6 +338,7 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor &actor) {
         stats.weapon_base_damage = 0;
         // Unarmed attacks are fast
         stats.weapon_speed = WeaponSpeed::Fast;
+        stats.weapon_damage_type = "Punch";
     }
 
     // Check for equipped weapon and get its speed
@@ -315,6 +351,8 @@ CombatStats CombatSystem::calculate_combat_stats(const Actor &actor) {
             stats.weapon_base_damage = weapon->damage_bonus();
             // Use weapon's speed if it has one, otherwise infer from weight
             stats.weapon_speed = weapon->weapon_speed();
+            // Use weapon's damage type
+            stats.weapon_damage_type = std::string(weapon->damage_type());
         }
     }
 
@@ -554,11 +592,19 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
     // Handle miss
     if (result.hit_calc.result == HitResult::Miss) {
         result.type = CombatResult::Type::Miss;
-        result.attacker_message = fmt::format("Your attack misses <cyan>{}</>.", target->display_name());
-        result.target_message =
-            TextFormat::capitalize(fmt::format("{}'s attack misses you.", attacker->display_name()));
+        if (attacker->has_flag(ActorFlag::Blind)) {
+            result.attacker_message = "<dim>You swing wildly in the darkness and miss!</>";
+        } else {
+            result.attacker_message = fmt::format("<dim>Your attack misses</> <cyan>{}</>.", target->display_name());
+        }
+        if (target->has_flag(ActorFlag::Blind)) {
+            result.target_message = "<dim>You hear something whoosh past you.</>";
+        } else {
+            result.target_message =
+                TextFormat::capitalize(fmt::format("<dim>{}'s attack misses you.</>", attacker->display_name()));
+        }
         result.room_message = TextFormat::capitalize(
-            fmt::format("{}'s attack misses <cyan>{}</>.", attacker->display_name(), target->display_name()));
+            fmt::format("<dim>{}'s attack misses</> <cyan>{}</>.", attacker->display_name(), target->display_name()));
 
         // Add dice roll details if attacker wants to see them
         if (wants_dice_details(attacker)) {
@@ -631,31 +677,158 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
         }
     }
 
-    // Create combat messages with color coding
-    std::string hit_type_text;
-    std::string damage_color;
-    switch (result.hit_calc.result) {
-    case HitResult::Critical:
-        hit_type_text = " <b:red>CRITICALLY</>";
+    // Create combat messages with tiered damage descriptions and color coding.
+    // Damage tier is based on damage as a percentage of the target's current HP,
+    // matching legacy's graduated system (graze -> massacre -> obliterate).
+    int dam_pct = 0;
+    if (target_stats.hit_points > 0) {
+        dam_pct = static_cast<int>((damage * 100) / target_stats.hit_points);
+    } else {
+        dam_pct = 100;
+    }
+    // Ensure minimum tier for non-zero damage
+    if (damage > 0 && dam_pct < 1)
+        dam_pct = 1;
+    if (damage == 0)
+        dam_pct = 0;
+
+    // Determine descriptive verb and color based on damage tier.
+    // Lower tiers use weapon-type-specific verbs (slash, pierce, crush, etc.).
+    // Higher tiers use dramatic generic verbs (massacre, OBLITERATE).
+    const auto &weapon_verb = get_weapon_verb(attacker_stats.weapon_damage_type);
+    std::string_view verb_2nd;
+    std::string_view verb_3rd;
+    std::string_view damage_color;
+    std::string suffix;
+
+    // Override for critical/glancing hit types
+    if (result.hit_calc.result == HitResult::Critical) {
         damage_color = "b:red";
-        break;
-    case HitResult::Glancing:
-        hit_type_text = " <dim>glancingly</>";
+    } else if (result.hit_calc.result == HitResult::Glancing) {
         damage_color = "dim";
-        break;
-    default:
-        hit_type_text = "";
-        damage_color = "yellow";
-        break;
     }
 
-    result.attacker_message = fmt::format("You{} hit <cyan>{}</> for <{}>{:.0f}</> damage.", hit_type_text,
-                                          target->display_name(), damage_color, damage);
-    result.target_message = TextFormat::capitalize(fmt::format(
-        "{}{} hits you for <{}>{:.0f}</> damage.", attacker->display_name(), hit_type_text, damage_color, damage));
-    result.room_message =
-        TextFormat::capitalize(fmt::format("{}{} hits <cyan>{}</> for <{}>{:.0f}</> damage.", attacker->display_name(),
-                                           hit_type_text, target->display_name(), damage_color, damage));
+    if (dam_pct == 0) {
+        // Miss
+        verb_2nd = "miss";
+        verb_3rd = "misses";
+        damage_color = "dim";
+    } else if (dam_pct <= 2) {
+        // Graze - use "graze as you <verb>" pattern
+        verb_2nd = "graze";
+        verb_3rd = "grazes";
+        if (damage_color.empty())
+            damage_color = "dim";
+    } else if (dam_pct <= 4) {
+        // Barely <verb> - weapon-specific
+        verb_2nd = weapon_verb.singular;
+        verb_3rd = weapon_verb.plural;
+        if (damage_color.empty())
+            damage_color = "white";
+        suffix = " (barely)";
+    } else if (dam_pct <= 6) {
+        // Normal <verb> - weapon-specific
+        verb_2nd = weapon_verb.singular;
+        verb_3rd = weapon_verb.plural;
+        if (damage_color.empty())
+            damage_color = "white";
+    } else if (dam_pct <= 10) {
+        // <verb> hard - weapon-specific
+        verb_2nd = weapon_verb.singular;
+        verb_3rd = weapon_verb.plural;
+        if (damage_color.empty())
+            damage_color = "yellow";
+        suffix = " hard";
+    } else if (dam_pct <= 15) {
+        // <verb> very hard - weapon-specific
+        verb_2nd = weapon_verb.singular;
+        verb_3rd = weapon_verb.plural;
+        if (damage_color.empty())
+            damage_color = "yellow";
+        suffix = " very hard";
+    } else if (dam_pct <= 19) {
+        // <verb> extremely hard - weapon-specific
+        verb_2nd = weapon_verb.singular;
+        verb_3rd = weapon_verb.plural;
+        if (damage_color.empty())
+            damage_color = "b:yellow";
+        suffix = " extremely hard";
+    } else if (dam_pct <= 35) {
+        // Massacre - dramatic generic with weapon noun
+        verb_2nd = "massacre";
+        verb_3rd = "massacres";
+        if (damage_color.empty())
+            damage_color = "b:red";
+        suffix = fmt::format(" to small fragments with your {}", weapon_verb.singular);
+    } else {
+        // OBLITERATE - dramatic generic with weapon noun
+        verb_2nd = "<b:red>OBLITERATE</>";
+        verb_3rd = "<b:red>OBLITERATES</>";
+        if (damage_color.empty())
+            damage_color = "b:red";
+        suffix = fmt::format(" with a deadly {}", weapon_verb.singular);
+    }
+
+    // Critical/glancing prefix overrides the verb display
+    std::string crit_prefix;
+    if (result.hit_calc.result == HitResult::Critical && dam_pct > 2) {
+        crit_prefix = "<b:red>CRITICALLY</> ";
+    } else if (result.hit_calc.result == HitResult::Glancing) {
+        crit_prefix = "<dim>glancingly</> ";
+    }
+
+    // Elemental flavor prefix for elemental damage types
+    std::string elemental_prefix;
+    std::string elemental_prefix_3rd;
+    {
+        std::string dmg_lower = attacker_stats.weapon_damage_type;
+        std::transform(dmg_lower.begin(), dmg_lower.end(), dmg_lower.begin(), ::tolower);
+        if (dmg_lower == "fire") {
+            elemental_prefix = "<red>Flames erupt from your hands as you</> ";
+            elemental_prefix_3rd = "<red>Flames erupt as</> ";
+        } else if (dmg_lower == "cold") {
+            elemental_prefix = "<b:cyan>Frost crackles along your fingers as you</> ";
+            elemental_prefix_3rd = "<b:cyan>Frost crackles as</> ";
+        } else if (dmg_lower == "acid") {
+            elemental_prefix = "<b:green>Acid sizzles from your touch as you</> ";
+            elemental_prefix_3rd = "<b:green>Acid sizzles as</> ";
+        } else if (dmg_lower == "shock" || dmg_lower == "lightning") {
+            elemental_prefix = "<b:yellow>Lightning arcs from your strike as you</> ";
+            elemental_prefix_3rd = "<b:yellow>Lightning arcs as</> ";
+        } else if (dmg_lower == "poison") {
+            elemental_prefix = "<magenta>Venom drips from your attack as you</> ";
+            elemental_prefix_3rd = "<magenta>Venom drips as</> ";
+        }
+    }
+
+    // Build messages with descriptive verbs + numeric damage
+    bool attacker_blind = attacker->has_flag(ActorFlag::Blind);
+    bool target_blind = target->has_flag(ActorFlag::Blind);
+
+    if (attacker_blind && dam_pct > 0) {
+        // Blind attacker: can't see the target clearly
+        result.attacker_message = fmt::format("<dim>You wildly {}{} something{} for <{}>{:.0f}</> damage.</>",
+                                              crit_prefix, verb_2nd, suffix, damage_color, damage);
+    } else {
+        result.attacker_message =
+            fmt::format("{}You {}{} <cyan>{}</>{} for <{}>{:.0f}</> damage.", elemental_prefix, crit_prefix, verb_2nd,
+                        target->display_name(), suffix, damage_color, damage);
+    }
+
+    if (target_blind) {
+        // Blind target: can't see who's hitting them
+        result.target_message =
+            TextFormat::capitalize(fmt::format("<dim>Something {}{} you{} for <{}>{:.0f}</> damage.</>", crit_prefix,
+                                               verb_3rd, suffix, damage_color, damage));
+    } else {
+        result.target_message =
+            TextFormat::capitalize(fmt::format("{} {}{} you{} for <{}>{:.0f}</> damage.", attacker->display_name(),
+                                               crit_prefix, verb_3rd, suffix, damage_color, damage));
+    }
+
+    result.room_message = TextFormat::capitalize(
+        fmt::format("{}{} {}{} <cyan>{}</>{} for <{}>{:.0f}</> damage.", elemental_prefix_3rd, attacker->display_name(),
+                    crit_prefix, verb_3rd, target->display_name(), suffix, damage_color, damage));
 
     // Add dice roll and mitigation details if attacker wants to see them
     if (wants_dice_details(attacker)) {
