@@ -75,7 +75,8 @@ Result<DatabaseConfig> DatabaseConfig::from_env(const std::string &env_path) {
 
     // Validate configuration
     if (!config.is_valid()) {
-        return std::unexpected(Errors::InvalidArgument("POSTGRES_PASSWORD not set"));
+        return std::unexpected(Errors::InvalidArgument(
+            "Database configuration incomplete (check POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PORT)"));
     }
 
     logger->info("Database configuration loaded: host={} port={} db={} user={}", config.host, config.port,
@@ -127,5 +128,6 @@ Result<DatabaseConfig> DatabaseConfig::from_environment() {
 }
 
 bool DatabaseConfig::is_valid() const {
-    return !password.empty() && !host.empty() && !dbname.empty() && !user.empty() && port > 0;
+    // Password can be empty for local peer/trust authentication
+    return !host.empty() && !dbname.empty() && !user.empty() && port > 0;
 }

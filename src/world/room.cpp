@@ -774,6 +774,18 @@ Result<void> Room::validate() const {
 
 bool Room::sector_provides_light() const { return RoomUtils::get_sector_light_level(sector_type_) > 0; }
 
+bool Room::env_prevents_casting() const {
+    return std::ranges::any_of(environmental_effects_, [](const auto &e) { return e.prevents_casting; });
+}
+
+bool Room::env_prevents_movement() const {
+    return std::ranges::any_of(environmental_effects_, [](const auto &e) { return e.prevents_movement; });
+}
+
+bool Room::env_prevents_speaking() const {
+    return std::ranges::any_of(environmental_effects_, [](const auto &e) { return e.prevents_speaking; });
+}
+
 // RoomUtils Implementation
 
 namespace RoomUtils {

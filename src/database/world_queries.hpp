@@ -999,4 +999,13 @@ Result<void> save_character_aliases(pqxx::work &txn, const std::string &characte
 /** Delete all aliases for a character */
 Result<void> delete_character_aliases(pqxx::work &txn, const std::string &character_id);
 
+// =============================================================================
+// Room Environmental Effect Queries
+// =============================================================================
+
+/** Load all room environmental effects for a zone.
+ *  Returns pairs of (room_local_id, effect) for distribution to rooms.
+ */
+Result<std::vector<std::pair<int, RoomEnvEffect>>> load_room_env_effects_in_zone(pqxx::work &txn, int zone_id);
+
 } // namespace WorldQueries

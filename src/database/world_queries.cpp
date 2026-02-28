@@ -6117,4 +6117,66 @@ Result<void> delete_character_aliases(pqxx::work &txn, const std::string &charac
     }
 }
 
+// =============================================================================
+// Room Environmental Effect Queries
+// =============================================================================
+
+Result<std::vector<std::pair<int, RoomEnvEffect>>> load_room_env_effects_in_zone(pqxx::work &txn, int zone_id) {
+    auto logger = Log::database();
+    logger->debug("Loading room environmental effects for zone {}", zone_id);
+
+    try {
+        // Select room_id from junction table, then all needed Effect columns
+        auto result = txn.exec_params(
+            fmt::format(R"(
+                SELECT re."{}",
+                       e."{}", e."{}", e."{}", e."{}",
+                       e."{}", e."{}", e."{}",
+                       e."{}", e."{}", e."{}", e."{}"
+                FROM "{}" re
+                JOIN "{}" e ON re."{}" = e."{}"
+                WHERE re."{}" = $1
+                ORDER BY re."{}", e."{}"
+            )",
+                        db::RoomEnvironmentalEffect::ROOM_ID, db::Effect::ID, db::Effect::NAME, db::Effect::DESCRIPTION,
+                        db::Effect::EFFECT_TYPE, db::Effect::ON_APPLY, db::Effect::ON_TICK, db::Effect::ON_REMOVE,
+                        db::Effect::TICK_INTERVAL_SEC, db::Effect::PREVENTS_SPEAKING, db::Effect::PREVENTS_CASTING,
+                        db::Effect::PREVENTS_MOVEMENT, db::RoomEnvironmentalEffect::TABLE, db::Effect::TABLE,
+                        db::RoomEnvironmentalEffect::EFFECT_ID, db::Effect::ID,
+                        db::RoomEnvironmentalEffect::ROOM_ZONE_ID, db::RoomEnvironmentalEffect::ROOM_ID,
+                        db::Effect::NAME),
+            zone_id);
+
+        std::vector<std::pair<int, RoomEnvEffect>> effects;
+        effects.reserve(result.size());
+
+        for (const auto &row : result) {
+            int room_local_id = row[0].as<int>();
+
+            RoomEnvEffect effect;
+            effect.effect_id = row[1].as<int>();
+            effect.name = row[2].as<std::string>("");
+            effect.description = row[3].as<std::string>("");
+            effect.effect_type = row[4].as<std::string>("");
+            effect.on_apply = row[5].as<std::string>("");
+            effect.on_tick = row[6].as<std::string>("");
+            effect.on_remove = row[7].as<std::string>("");
+            effect.tick_interval_sec = row[8].as<int>(0);
+            effect.prevents_speaking = row[9].as<bool>(false);
+            effect.prevents_casting = row[10].as<bool>(false);
+            effect.prevents_movement = row[11].as<bool>(false);
+
+            effects.emplace_back(room_local_id, std::move(effect));
+        }
+
+        logger->debug("Loaded {} room environmental effects for zone {}", effects.size(), zone_id);
+        return effects;
+
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error loading room env effects for zone {}: {}", zone_id, e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load room env effects: {}", e.what())});
+    }
+}
+
 } // namespace WorldQueries

@@ -12,6 +12,7 @@
 #include "core/result.hpp"
 #include "database/generated/db_room.hpp"
 #include "flags.hpp"
+#include "world/room_env_effect.hpp"
 
 // Forward declarations
 class Actor;
@@ -205,6 +206,16 @@ class Room : public Entity {
     void set_entry_restriction(std::string_view restriction) { entry_restriction_ = std::string(restriction); }
     bool has_entry_restriction() const { return !entry_restriction_.empty(); }
 
+    // Environmental effects (loaded from RoomEnvironmentalEffect junction table)
+    const std::vector<RoomEnvEffect> &environmental_effects() const { return environmental_effects_; }
+    bool has_environmental_effects() const { return !environmental_effects_.empty(); }
+    void set_environmental_effects(std::vector<RoomEnvEffect> effects) { environmental_effects_ = std::move(effects); }
+
+    // Environmental effect restriction helpers
+    bool env_prevents_casting() const;
+    bool env_prevents_movement() const;
+    bool env_prevents_speaking() const;
+
     // Capacity checks
     int max_occupants() const;
     bool can_accommodate(const Actor *actor) const;
@@ -255,6 +266,9 @@ class Room : public Entity {
 
     // Entry restriction Lua script (from database)
     std::string entry_restriction_;
+
+    // Environmental effects (from RoomEnvironmentalEffect + Effect tables)
+    std::vector<RoomEnvEffect> environmental_effects_;
 
     // Layout coordinates for visual mapping
     std::optional<int> layout_x_;

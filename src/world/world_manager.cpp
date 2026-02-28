@@ -112,6 +112,7 @@ void WorldManager::clear_state() {
     mobiles_.clear();
     spawned_mobiles_.clear(); // Clear mobile instance tracking
     scheduled_resets_.clear();
+    env_tick_accumulators_.clear();
     file_timestamps_.clear();
     start_room_ = INVALID_ENTITY_ID;
     stats_ = WorldStats{}; // Reset stats
@@ -625,6 +626,10 @@ MovementResult WorldManager::move_actor(std::shared_ptr<Actor> actor, Direction 
     notify_room_exit(actor, current_room);
     notify_room_enter(actor, destination_room);
 
+    // Execute environmental effect scripts
+    execute_room_env_scripts(actor, current_room, "on_remove");
+    execute_room_env_scripts(actor, destination_room, "on_apply");
+
     MovementResult result(true);
     result.from_room = current_room->id();
     result.to_room = destination_room->id();
@@ -644,6 +649,10 @@ MovementResult WorldManager::move_actor(std::shared_ptr<Actor> actor, Direction 
 
             // Update follower's room (triggers on_room_change for GMCP updates, etc.)
             follower->move_to(destination_room);
+
+            // Execute env effect scripts for follower too
+            execute_room_env_scripts(follower, current_room, "on_remove");
+            execute_room_env_scripts(follower, destination_room, "on_apply");
 
             // Notify about follower movement
             if (auto player = std::dynamic_pointer_cast<Player>(actor)) {
@@ -680,6 +689,7 @@ MovementResult WorldManager::move_actor_to_room(std::shared_ptr<Actor> actor, En
     if (current_room) {
         current_room->remove_actor(actor->id());
         notify_room_exit(actor, current_room);
+        execute_room_env_scripts(actor, current_room, "on_remove");
     }
 
     destination_room->add_actor(actor);
@@ -688,6 +698,7 @@ MovementResult WorldManager::move_actor_to_room(std::shared_ptr<Actor> actor, En
     actor->move_to(destination_room);
 
     notify_room_enter(actor, destination_room);
+    execute_room_env_scripts(actor, destination_room, "on_apply");
 
     MovementResult result(true);
     result.from_room = current_room ? current_room->id() : INVALID_ENTITY_ID;
@@ -1492,6 +1503,36 @@ Result<void> WorldManager::load_zones_from_database() {
             }
         }
 
+        // Load room environmental effects (after rooms and exits are loaded)
+        logger->debug("Loading room environmental effects");
+        for (const auto &[zone_entity_id, zone] : zones_) {
+            int zone_id = zone_entity_id.zone_id();
+            auto env_result = WorldQueries::load_room_env_effects_in_zone(txn, zone_id);
+            if (!env_result) {
+                logger->warn("Failed to load env effects for zone {}: {}", zone_id, env_result.error().message);
+                continue;
+            }
+
+            // Group effects by room local_id
+            std::unordered_map<int, std::vector<RoomEnvEffect>> effects_by_room;
+            for (auto &[room_local_id, effect] : *env_result) {
+                effects_by_room[room_local_id].push_back(std::move(effect));
+            }
+
+            // Distribute to rooms
+            for (auto &[room_local_id, effects] : effects_by_room) {
+                EntityId room_id(zone_id, room_local_id);
+                auto it = rooms_.find(room_id);
+                if (it != rooms_.end() && it->second) {
+                    it->second->set_environmental_effects(std::move(effects));
+                }
+            }
+
+            if (!env_result->empty()) {
+                logger->debug("Loaded {} env effects across rooms in zone {}", env_result->size(), zone_id);
+            }
+        }
+
         // Third pass: Load mob and object resets for each zone
         logger->debug("Loading zone resets (third pass)");
         for (auto &[zone_entity_id, zone] : zones_) {
@@ -1748,6 +1789,58 @@ void WorldManager::validate_zone_integrity(std::shared_ptr<Zone> zone, Validatio
     for (EntityId room_id : zone->rooms()) {
         if (!get_room(room_id)) {
             result.add_error(fmt::format("Zone {} references non-existent room {}", zone->id(), room_id));
+        }
+    }
+}
+
+void WorldManager::execute_room_env_scripts(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room,
+                                            std::string_view script_field) {
+    if (!actor || !room || !room->has_environmental_effects()) {
+        return;
+    }
+
+    auto &engine = FieryMUD::ScriptEngine::instance();
+    if (!engine.is_initialized()) {
+        return;
+    }
+
+    for (const auto &effect : room->environmental_effects()) {
+        // Select the appropriate script based on the field name
+        const std::string *script = nullptr;
+        if (script_field == "on_apply") {
+            script = &effect.on_apply;
+        } else if (script_field == "on_remove") {
+            script = &effect.on_remove;
+        } else if (script_field == "on_tick") {
+            script = &effect.on_tick;
+        }
+
+        if (!script || script->empty()) {
+            continue;
+        }
+
+        // Create isolated thread and execute with actor/room context
+        sol::thread thread = engine.create_thread();
+        sol::state_view lua(thread.state());
+
+        // Set actor and room as globals (same pattern as trigger system)
+        lua["actor"] = actor;
+        lua["room"] = room;
+
+        auto cache_key = fmt::format("room_env:{}:{}:{}:{}", room->id().zone_id(), room->id().local_id(),
+                                     effect.effect_id, script_field);
+        auto loaded = engine.load_cached(lua, *script, cache_key);
+        if (loaded) {
+            sol::protected_function func = *loaded;
+            auto result = func();
+            if (!result.valid()) {
+                sol::error err = result;
+                spdlog::warn("Room env effect '{}' {} script error in room {}.{}: {}", effect.name, script_field,
+                             room->id().zone_id(), room->id().local_id(), err.what());
+            }
+        } else {
+            spdlog::warn("Failed to load room env effect '{}' {} script for room {}.{}", effect.name, script_field,
+                         room->id().zone_id(), room->id().local_id());
         }
     }
 }
@@ -3000,6 +3093,8 @@ void WorldManager::initialize_weather_callbacks() {
 void WorldManager::tick_regen_all() {
     // Fast tick (every 4 seconds like legacy) for HP/move regeneration, DoT/HoT, dying damage
 
+    constexpr int TICK_INTERVAL_SECONDS = 4;
+
     // Collect actors that died during the tick (can't modify room contents while iterating)
     std::vector<std::shared_ptr<Actor>> died_actors;
 
@@ -3019,6 +3114,49 @@ void WorldManager::tick_regen_all() {
 
                 if (tick_result.died) {
                     died_actors.push_back(actor);
+                }
+            }
+        }
+
+        // Process room environmental effect ticks
+        if (room->has_environmental_effects() && !room->contents().actors.empty()) {
+            auto &room_accum = env_tick_accumulators_[room_id];
+
+            for (const auto &effect : room->environmental_effects()) {
+                if (effect.on_tick.empty() || effect.tick_interval_sec <= 0) {
+                    continue;
+                }
+
+                auto &accum = room_accum[effect.effect_id];
+                accum += TICK_INTERVAL_SECONDS;
+
+                if (accum >= effect.tick_interval_sec) {
+                    accum = 0;
+                    // Fire this specific effect's on_tick for each alive actor
+                    auto &engine = FieryMUD::ScriptEngine::instance();
+                    if (engine.is_initialized()) {
+                        for (auto &actor : room->contents().actors) {
+                            if (actor && actor->is_alive()) {
+                                sol::thread thread = engine.create_thread();
+                                sol::state_view lua(thread.state());
+                                // Set actor and room as globals (same pattern as trigger system)
+                                lua["actor"] = actor;
+                                lua["room"] = room;
+                                auto cache_key = fmt::format("room_env:{}:{}:{}:on_tick", room_id.zone_id(),
+                                                             room_id.local_id(), effect.effect_id);
+                                auto loaded = engine.load_cached(lua, effect.on_tick, cache_key);
+                                if (loaded) {
+                                    sol::protected_function func = *loaded;
+                                    auto result = func();
+                                    if (!result.valid()) {
+                                        sol::error err = result;
+                                        spdlog::warn("Room env effect '{}' on_tick error in room {}.{}: {}",
+                                                     effect.name, room_id.zone_id(), room_id.local_id(), err.what());
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

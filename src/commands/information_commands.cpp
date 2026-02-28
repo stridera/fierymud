@@ -210,6 +210,21 @@ std::string format_room_for_actor(const std::shared_ptr<Actor> &actor, const std
         }
     }
 
+    // Show environmental effect descriptions (atmosphere text)
+    if (!is_brief && room->has_environmental_effects()) {
+        result << "\n";
+        for (const auto &effect : room->environmental_effects()) {
+            if (!effect.description.empty()) {
+                if (using_infravision) {
+                    // Infravision: dim red tint instead of normal colors
+                    result << "<dim><red>" << effect.description << "</></>\n";
+                } else {
+                    result << effect.description << "\n";
+                }
+            }
+        }
+    }
+
     // Show exits if autoexit enabled
     if (show_exits) {
         std::string exits = BuiltinCommands::Helpers::format_exits(room);

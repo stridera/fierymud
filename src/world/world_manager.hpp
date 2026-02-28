@@ -396,6 +396,9 @@ class WorldManager {
     // Zone reset scheduling
     std::unordered_map<EntityId, std::chrono::steady_clock::time_point> scheduled_resets_;
 
+    // Room environmental effect tick accumulators (room_id -> effect_id -> seconds accumulated)
+    std::unordered_map<EntityId, std::unordered_map<int, int>> env_tick_accumulators_;
+
     // Helper methods
     Result<void> load_zones_from_directory(const std::string &zone_dir);
     Result<void> load_zones_from_database(); // Load zones from PostgreSQL database
@@ -415,6 +418,10 @@ class WorldManager {
     void unregister_spawned_mobile(EntityId mobile_id);
     std::shared_ptr<Mobile> find_spawned_mobile(EntityId mobile_id) const;
     void cleanup_zone_mobiles(EntityId zone_id);
+
+    // Environmental effect script execution
+    void execute_room_env_scripts(std::shared_ptr<Actor> actor, std::shared_ptr<Room> room,
+                                  std::string_view script_field);
 
     void validate_room_exits(std::shared_ptr<Room> room, ValidationResult &result) const;
     void validate_zone_integrity(std::shared_ptr<Zone> zone, ValidationResult &result) const;
