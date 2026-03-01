@@ -222,7 +222,7 @@ class Room : public Entity {
     bool is_full() const;
 
     // Room descriptions
-    std::string get_room_description(const Actor *observer = nullptr) const;
+    virtual std::string get_room_description(const Actor *observer = nullptr) const;
     std::string get_exits_description(const Actor *observer = nullptr) const;
     std::string get_contents_description(const Actor *observer = nullptr) const;
 

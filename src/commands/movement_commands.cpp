@@ -83,6 +83,10 @@ Result<CommandResult> cmd_down(const CommandContext &ctx) {
     return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Down);
 }
 
+Result<CommandResult> cmd_out(const CommandContext &ctx) {
+    return BuiltinCommands::Helpers::execute_movement(ctx, Direction::Out);
+}
+
 Result<CommandResult> cmd_exits(const CommandContext &ctx) {
     if (!ctx.room) {
         ctx.send_error("You are not in a room.");
@@ -647,6 +651,14 @@ Result<void> register_commands() {
         .alias("d")
         .category("Movement")
         .description("Move down")
+        .usable_while_sitting(false)
+        .build();
+
+    Commands()
+        .command("out", cmd_out)
+        .alias("o")
+        .category("Movement")
+        .description("Move out")
         .usable_while_sitting(false)
         .build();
 

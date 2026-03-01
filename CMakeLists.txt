@@ -283,6 +283,11 @@ set(CORE_SOURCES
     src/commands/social_commands.cpp
     src/commands/system_commands.cpp
     src/commands/quest_commands.cpp
+    src/commands/housing_commands.cpp
+    # Housing system
+    src/housing/housing_queries.cpp
+    src/housing/housing_room.cpp
+    src/housing/housing_manager.cpp
     # Scripting system
     src/scripting/script_engine.cpp
     src/scripting/trigger_manager.cpp

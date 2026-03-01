@@ -24,6 +24,7 @@
 #include "events/event_publisher.hpp"
 #include "events/event_types.hpp"
 #include "game/player_output.hpp"
+#include "housing/housing_manager.hpp"
 #include "network_manager.hpp"
 #include "persistence_manager.hpp"
 #include "text/string_utils.hpp"
@@ -597,6 +598,13 @@ Result<void> ModernMUDServer::initialize_game_systems() {
         return world_result;
     }
 
+    // Initialize housing manager (runs crash recovery)
+    auto housing_result = HousingManager::instance().initialize();
+    if (!housing_result) {
+        Log::warn("Housing manager initialization warning: {}", housing_result.error().message);
+        // Non-fatal — housing is optional functionality
+    }
+
     // Set shutdown callback so WorldServer can trigger graceful shutdown
     world_server_->set_shutdown_callback([this]() {
         Log::info("Shutdown callback triggered from WorldServer");
@@ -854,6 +862,9 @@ void ModernMUDServer::shutdown_networking() {
 }
 
 void ModernMUDServer::shutdown_game_systems() {
+    // Shutdown housing manager (saves dirty houses, unloads all)
+    HousingManager::instance().shutdown();
+
     // Game systems are shut down as part of world_server_->stop()
 }
 

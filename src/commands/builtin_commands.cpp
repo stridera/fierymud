@@ -11,6 +11,7 @@
 #include "communication_commands.hpp"
 #include "economy_commands.hpp"
 #include "group_commands.hpp"
+#include "housing_commands.hpp"
 #include "information_commands.hpp"
 #include "magic_commands.hpp"
 #include "movement_commands.hpp"
@@ -129,6 +130,11 @@ Result<void> register_all_commands() {
 
     if (auto result = QuestCommands::register_commands(); !result) {
         Log::error("Failed to register quest commands: {}", result.error().message);
+        return result;
+    }
+
+    if (auto result = HousingCommands::register_commands(); !result) {
+        Log::error("Failed to register housing commands: {}", result.error().message);
         return result;
     }
 
