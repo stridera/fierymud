@@ -74,7 +74,8 @@ void register_room_bindings(sol::state &lua) {
             auto id = r.id();
             return fmt::format("{}:{}", id.zone_id(), id.local_id());
         }),
-        "zone_id", sol::property([](const Room &r) -> std::uint32_t { return r.zone_id().zone_id(); }),
+        "zone_id", sol::property([](const Room &r) -> int { return static_cast<int>(r.id().zone_id()); }), "local_id",
+        sol::property([](const Room &r) -> int { return static_cast<int>(r.id().local_id()); }),
 
         // Sector and environment
         "sector", sol::property(&Room::sector_type), "sector_name", sol::property([](const Room &r) -> std::string {
@@ -165,6 +166,23 @@ void register_room_bindings(sol::state &lua) {
             for (auto &actor : r.contents().actors) {
                 if (actor != except) {
                     actor->send_message(msg);
+                }
+            }
+        },
+
+        // Send a message to all adjacent rooms (all rooms connected by exits)
+        // Usage: room:send_to_adjacent("You hear loud moo'ing nearby.")
+        "send_to_adjacent",
+        [](Room &r, const std::string &msg) {
+            for (auto dir : r.get_available_exits()) {
+                const auto *exit = r.get_exit(dir);
+                if (exit && exit->to_room.is_valid()) {
+                    auto adj_room = WorldManager::instance().get_room(exit->to_room);
+                    if (adj_room) {
+                        for (auto &actor : adj_room->contents().actors) {
+                            actor->send_message(msg);
+                        }
+                    }
                 }
             }
         },

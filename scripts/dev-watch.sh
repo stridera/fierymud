@@ -59,17 +59,30 @@ while true; do
     # Wait for any change in the build directory
     inotifywait -q -q -e close_write,moved_to,create,modify "$(dirname $BINARY)" 2>/dev/null
 
-    # Brief pause to let the build fully complete
-    sleep 0.2
+    # Brief pause before checking — build is likely still running
+    sleep 1
 
     # Check if the binary's modification time actually changed
     CURRENT_MTIME=$(stat -c %Y "$BINARY" 2>/dev/null || echo "0")
 
     if [ "$CURRENT_MTIME" != "$LAST_MTIME" ] && [ -f "$BINARY" ]; then
         echo ""
-        echo "[watch] Binary changed, restarting..."
+        echo "[watch] Binary changed, waiting for build to finish..."
+        # Wait until the binary stops changing (linker fully done)
+        while true; do
+            sleep 2
+            NEW_MTIME=$(stat -c %Y "$BINARY" 2>/dev/null || echo "0")
+            if [ "$NEW_MTIME" = "$CURRENT_MTIME" ]; then
+                break
+            fi
+            CURRENT_MTIME="$NEW_MTIME"
+        done
+        # Ensure the binary is executable
+        while [ ! -x "$BINARY" ]; do
+            sleep 0.5
+        done
+        echo "[watch] Restarting..."
         stop_server
-        sleep 0.3  # Brief pause to ensure file is fully written
         start_server
         LAST_MTIME="$CURRENT_MTIME"
     fi

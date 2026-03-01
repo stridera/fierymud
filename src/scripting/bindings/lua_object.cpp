@@ -74,6 +74,8 @@ void register_object_bindings(sol::state &lua) {
             auto id = o.id();
             return fmt::format("{}:{}", id.zone_id(), id.local_id());
         }),
+        "zone_id", sol::property([](const Object &o) -> int { return static_cast<int>(o.id().zone_id()); }), "local_id",
+        sol::property([](const Object &o) -> int { return static_cast<int>(o.id().local_id()); }),
 
         // Type information
         "type", sol::property(&Object::type), "equip_slot", sol::property(&Object::equip_slot),

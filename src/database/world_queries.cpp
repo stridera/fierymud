@@ -1213,18 +1213,18 @@ Result<std::vector<std::unique_ptr<Object>>> load_objects_in_zone(pqxx::work &tx
                     // Parse portal destination and messages
                     if (obj_type == ObjectType::Portal && values_json.is_object()) {
                         if (values_json.contains("Destination")) {
-                            int dest_vnum = 0;
+                            int dest_id = 0;
                             const auto &dest_val = values_json["Destination"];
                             if (dest_val.is_string()) {
                                 std::string dest_str = dest_val.get<std::string>();
                                 if (!dest_str.empty()) {
-                                    dest_vnum = std::stoi(dest_str);
+                                    dest_id = std::stoi(dest_str);
                                 }
                             } else if (dest_val.is_number_integer()) {
-                                dest_vnum = dest_val.get<int>();
+                                dest_id = dest_val.get<int>();
                             }
-                            if (dest_vnum > 0) {
-                                obj->set_portal_destination(EntityId(static_cast<std::uint64_t>(dest_vnum)));
+                            if (dest_id > 0) {
+                                obj->set_portal_destination(EntityId(static_cast<std::uint64_t>(dest_id)));
                             }
                         }
 

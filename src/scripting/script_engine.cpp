@@ -1,5 +1,6 @@
 #include "script_engine.hpp"
 
+#include <ctime>
 #include <random>
 
 #include <fmt/format.h>
@@ -176,6 +177,10 @@ void ScriptEngine::register_utility_functions() {
 
     // log_error(message) - Error level logging
     lua_->set_function("log_error", [](std::string_view message) { spdlog::error("[Lua] {}", message); });
+
+    // timestamp() - Returns current Unix timestamp in seconds
+    // Used by converted DG Scripts that need real-time tracking (e.g., paralysis expiry)
+    lua_->set_function("timestamp", []() -> int64_t { return static_cast<int64_t>(std::time(nullptr)); });
 
     // MUD time function - returns current in-game time
     lua_->set_function("mud_time", [this]() -> sol::table {

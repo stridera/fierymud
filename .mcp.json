@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "fierymud": {
+      "command": "bun",
+      "args": ["run", "mcp/src/index.ts"],
+      "env": {
+        "FIERYMUD_ADMIN_URL": "http://127.0.0.1:8080"
+      }
+    }
+  }
+}

@@ -30,3 +30,7 @@ certs/
 
 # Generated files
 src/database/generated
+
+# MCP server
+mcp/node_modules/
+mcp/bun.lock

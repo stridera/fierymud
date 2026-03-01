@@ -14,7 +14,6 @@ TEST_CASE("Container objects are created as Container subclass from JSON", "[con
         // Create JSON that matches the legacy bag format
         json bag_json = {
             {"id", 3032},
-            {"vnum", "3032"},
             {"name", "bag"},
             {"short_description", "a large bag"},
             {"description", "A large bag made of leather."},

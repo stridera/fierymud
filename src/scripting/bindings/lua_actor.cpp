@@ -9,6 +9,7 @@
 #include "core/actor.hpp"
 #include "core/combat.hpp"
 #include "core/mobile.hpp"
+#include "core/object.hpp"
 #include "core/player.hpp"
 #include "core/skill_system.hpp"
 #include "core/spell_system.hpp"
@@ -44,7 +45,9 @@ void register_actor_bindings(sol::state &lua) {
         "Actor", sol::no_constructor,
 
         // Read-only properties
-        "name", sol::property([](const Actor &a) { return std::string(a.name()); }), "display_name",
+        "zone_id", sol::property([](const Actor &a) -> int { return static_cast<int>(a.id().zone_id()); }), "local_id",
+        sol::property([](const Actor &a) -> int { return static_cast<int>(a.id().local_id()); }), "name",
+        sol::property([](const Actor &a) { return std::string(a.name()); }), "display_name",
         sol::property([](const Actor &a) { return std::string(a.display_name()); }), "level",
         sol::property([](const Actor &a) { return a.stats().level; }), "hp",
         sol::property([](const Actor &a) { return a.stats().hit_points; }), "max_hp",
@@ -163,6 +166,34 @@ void register_actor_bindings(sol::state &lua) {
         // Check if actor has a specific effect by name (e.g., "Invisible", "Sanctuary")
         "has_effect_named",
         [](const Actor &a, const std::string &effect_name) -> bool { return a.has_effect(effect_name); },
+
+        // Alias for has_effect - used by converted DG Scripts (e.g., self:get_has_spell("inspiration"))
+        "get_has_spell", [](const Actor &a, const std::string &spell_name) -> bool { return a.has_effect(spell_name); },
+
+        // Equipment queries
+        // has_equipped(zone_id, local_id) - Check if actor has a specific item equipped
+        // Usage: self:has_equipped(489, 24) -- checks for object 489:24
+        "has_equipped",
+        [](const Actor &a, int zone_id, int local_id) -> bool {
+            EntityId target_id(static_cast<std::uint32_t>(zone_id), static_cast<std::uint32_t>(local_id));
+            for (const auto &item : a.equipment().get_all_equipped()) {
+                if (item && item->id() == target_id) {
+                    return true;
+                }
+            }
+            return false;
+        },
+
+        // get_worn(slot_num) - Get the item in a specific equipment slot
+        // Usage: local item = self:get_worn(17)  -- Hold slot
+        // Returns the Object userdata or nil if slot is empty
+        // Slot numbers: 0=Light, 5=Body, 6=Head, 7=Legs, 10=Arms, 11=Shield,
+        //               16=Wield, 17=Hold, 18=Float, 19=Wield2
+        "get_worn",
+        [](const Actor &a, int slot_num) -> std::shared_ptr<Object> {
+            auto slot = static_cast<EquipSlot>(slot_num);
+            return a.equipment().get_equipped(slot);
+        },
 
         // Methods - Movement (requires Room binding)
         // Directly moves actor between rooms, updating both room contents and actor state.

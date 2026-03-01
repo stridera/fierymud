@@ -621,7 +621,7 @@ end
 | `%actor%` | `actor` |
 | `%self%` | `self` |
 | `%actor.name%` | `actor.name` |
-| `%actor.vnum%` | `actor.id` |
+| `%actor.vnum%` | `actor.zone_id`, `actor.local_id` |
 | `%actor.gold%` | `actor.wealth` |
 | `%random.100%` | `random(1, 100)` |
 
