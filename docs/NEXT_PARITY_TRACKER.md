@@ -73,7 +73,7 @@ Last updated: 2026-02-27
 | `songs` | do_songs | Bard song list | Low | DONE |
 | `spells` | do_spells | Spell list by circle with slot status | Medium | DONE |
 | `skills` | do_skills | Skill list with proficiency bars | Medium | DONE |
-| `trophy` | do_trophy | Trophy/kill display | Low | DONE |
+| `trophy` | do_trophy | Kill tracking with XP diminishing returns + zone diversity | Low | DONE |
 | `whoami` | do_gen_ps | Display own name | Low | DONE |
 | `world` | do_world | World statistics | Low | DONE |
 | `uptime` | do_date | Server uptime | Low | DONE |
@@ -92,7 +92,7 @@ Last updated: 2026-02-27
 |---------|---------------|-------------|----------|--------|
 | `first aid` | do_first_aid | First aid skill | High | DONE |
 | `perform` | do_cast | Cast songs/chants (cast expanded to accept SONG/CHANT types) | High | DONE |
-| `house` | do_house | Player housing | Low | DONE |
+| `house` | do_house | Player housing (moved to Muditor) | Low | N/A |
 
 ---
 
@@ -133,6 +133,9 @@ pfilemaint, terminate, thaw, infodump
 clist, csearch, elist, esearch, estat, ksearch, nlist, olist, olocate,
 onum, rlist, rnum, rsearch, snum, ssearch, tsearch, tnum, vlist, vnum,
 vsearch, vstat, vwear, vitem, zlist, znum, zsearch, slist (admin variant)
+
+### Player Housing (Replaced by Muditor)
+house
 
 ### Misc Legacy-Only
 last, lastgos, log, show, players, pscan, viewdam, wizhelp, wizlist,
@@ -195,11 +198,11 @@ Room description text.
 - Objects: prefixed with yellow "You see:" header
 - Actor indicators: colored per-type (magenta=poison, red=burning, yellow=AFK)
 
-**Status: MOSTLY DONE** - Room name colored by sector type (get_sector_color_tag: City=b:yellow, Forest=b:green, Mountains=b:white, Water=b:cyan, Underground=dim, Lava=b:red, etc.). Atmosphere descriptions added for exotic sectors (Underwater=cyan, Lava=b:red, Fire=red, Ice=b:cyan, Swamp=b:green, Underground=dim, Astral=b:magenta, Spirit=b:magenta, Void=dim, Lightning=b:yellow). Darkness message upgraded to `<dim>It is pitch black...</>`.
+**Status: DONE** - Room name colored by sector type (get_sector_color_tag: City=b:yellow, Forest=b:green, Mountains=b:white, Water=b:cyan, Underground=dim, Lava=b:red, etc.). Atmosphere descriptions added for exotic sectors (Underwater=cyan, Lava=b:red, Fire=red, Ice=b:cyan, Swamp=b:green, Underground=dim, Astral=b:magenta, Spirit=b:magenta, Void=dim, Lightning=b:yellow). Darkness message upgraded to `<dim>It is pitch black...</>`. Environmental effects loaded from DB with colored descriptions, Lua scripts (onApply/onRemove/onTick), and room restrictions.
 
-**Remaining gaps:**
+**All gaps closed:**
 - [x] Infravision display: red-tinted room name, heat signature descriptions, "The red shape of [name] is here"
-- [ ] Room magical effect coloring (fire circle=red, fog, foliage=green, illumination=yellow) - rooms don't have effect system yet
+- [x] Room magical effect coloring (fire circle=red, fog, foliage=green, illumination=yellow) - environmental effects system loaded from DB with colored descriptions
 
 #### 2. Score / Character Sheet
 
@@ -352,7 +355,7 @@ You are using:
 **Status: DONE** - Object::flag_indicators() method with always-visible flags (Glow=magenta, Hum=cyan, Float=blue, Invisible=dim, Decomposing=dim) and detection-based flags (Magic=b:blue, Poison=b:magenta, AntiEvil=b:yellow Gold Aura, AntiGood=red Red Aura, Bless=cyan). Integrated into inventory, equipment, and room object displays.
 
 **Remaining gaps:**
-- [ ] Item quality/rarity coloring (system exists in rich_text.hpp but unused)
+- [x] Item quality/rarity coloring — builders manually set item colors; no automatic rarity system needed
 
 #### 6. Communication Channels
 
@@ -437,11 +440,11 @@ All legacy prompt codes now have next equivalents.
 10. ~~**Channel-specific colors**~~ DONE
 
 ### Tier 3 - Polish (makes next feel premium)
-11. **Item quality/rarity colors** - Color system defined (Common-Legendary) but no rarity field in DB yet
+11. ~~**Item quality/rarity colors**~~ DONE - Builders manually set item colors; no automatic rarity system needed
 12. ~~**Infravision mode**~~ DONE - Red-tinted room name, heat signature descriptions, red actor shapes
 13. ~~**Blind combat messages**~~ DONE - Attacker/target/miss flavor text for blind actors
 14. ~~**Elemental damage flavor**~~ DONE - Fire/cold/acid/shock/poison prefix descriptions
-15. **Room effect atmosphere** - Rooms don't have an effect system yet; sector atmospheres already done
+15. ~~**Room effect atmosphere**~~ DONE - Environmental effects loaded from DB (RoomEnvironmentalEffect + Effect tables), colored descriptions in room output, Lua onApply/onRemove/onTick scripts, restriction flags (preventsCasting/Movement/Speaking)
 16. ~~**"On fire" display**~~ DONE - Multi-color `*<red>*<yellow>* ON FIRE! *<red>*<yellow>*` in room, who, score
 
 ---

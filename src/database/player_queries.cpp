@@ -1,7 +1,9 @@
 #include "database/player_queries.hpp"
 
 #include <fmt/format.h>
+#include <nlohmann/json.hpp>
 
+#include "core/kill_tracker.hpp"
 #include "core/logging.hpp"
 #include "core/player.hpp"
 
@@ -23,7 +25,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
                    description, title,
                    current_room_zone_id, current_room_id,
                    recall_room_zone_id, recall_room_id,
-                   prompt
+                   prompt, kill_tracking_data
             FROM "Characters"
             WHERE LOWER(name) = LOWER($1)
             LIMIT 1
@@ -132,6 +134,17 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
         // Prompt format string
         if (!row["prompt"].is_null()) {
             player->set_prompt(row["prompt"].as<std::string>());
+        }
+
+        // Kill tracking data (XP diminishing returns + zone diversity)
+        if (!row["kill_tracking_data"].is_null()) {
+            try {
+                auto json = nlohmann::json::parse(row["kill_tracking_data"].as<std::string>());
+                player->kill_tracker() = fiery::KillTracker::from_json(json);
+                logger->debug("Loaded kill tracking data for player '{}'", player_name);
+            } catch (const nlohmann::json::exception &e) {
+                logger->warn("Failed to parse kill tracking data for player '{}': {}", player_name, e.what());
+            }
         }
 
         logger->debug("Loaded player '{}' (id: {}, level: {}, class: {}, race: {}) from database", player_name,

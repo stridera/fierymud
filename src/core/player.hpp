@@ -1,6 +1,7 @@
 #pragma once
 
 #include "actor.hpp"
+#include "kill_tracker.hpp"
 #include "money.hpp"
 
 /** Learned ability data stored on Player */
@@ -444,6 +445,9 @@ class Player : public Actor {
     std::vector<std::weak_ptr<Actor>> followers_; // Who is following us
     bool group_flag_ = true;                      // Whether we accept group invites
 
+    // Kill tracking (XP diminishing returns + zone diversity)
+    fiery::KillTracker kill_tracker_;
+
     // Meditation state
     bool is_meditating_ = false; // Currently meditating for spell restoration
 
@@ -458,6 +462,10 @@ class Player : public Actor {
      * Meditation doubles the focus rate.
      */
     int get_spell_restore_rate() const;
+
+    // Kill tracking (XP diminishing returns + zone diversity bonus)
+    fiery::KillTracker &kill_tracker() { return kill_tracker_; }
+    const fiery::KillTracker &kill_tracker() const { return kill_tracker_; }
 
     // Communication tracking methods
     void set_last_tell_sender(std::string_view sender) { last_tell_sender_ = sender; }

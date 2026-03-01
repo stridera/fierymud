@@ -101,6 +101,11 @@ Result<void> PersistenceManager::save_player(const Player &player) {
             // Prompt format string
             char_data.prompt = std::string(player.prompt());
 
+            // Kill tracking data
+            if (!player.kill_tracker().empty()) {
+                char_data.kill_tracking_data = player.kill_tracker().to_json().dump();
+            }
+
             // Save to database
             auto char_save_result = ConnectionPool::instance().execute(
                 [&char_data](pqxx::work &txn) { return WorldQueries::save_character(txn, char_data); });

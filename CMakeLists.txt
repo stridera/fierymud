@@ -222,6 +222,7 @@ set(CORE_SOURCES
     src/core/shopkeeper.cpp
     src/core/board.cpp
     src/core/combat.cpp
+    src/core/kill_tracker.cpp
     src/core/formula_parser.cpp
     src/core/effect_system.cpp
     src/core/ability_executor.cpp

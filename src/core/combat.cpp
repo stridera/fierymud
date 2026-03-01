@@ -873,6 +873,45 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
             result.attacker_message += fmt::format(" You have killed <cyan>{}</>!", target->display_name());
         } else {
             long exp_gain = calculate_experience_gain(*attacker, *target);
+
+            // Apply kill tracking diminishing returns + zone diversity bonus
+            if (auto player = std::dynamic_pointer_cast<Player>(attacker)) {
+                if (auto mob = std::dynamic_pointer_cast<Mobile>(target)) {
+                    auto proto_id = mob->prototype_id();
+                    if (proto_id.is_valid()) {
+                        int zone_id = static_cast<int>(proto_id.zone_id());
+
+                        // Determine group share
+                        double share = 1.0;
+                        if (player->has_group()) {
+                            int group_size = 1;
+                            if (auto room = player->current_room()) {
+                                for (const auto &follower_wp : player->get_followers()) {
+                                    if (auto follower = follower_wp.lock()) {
+                                        if (follower->current_room() == room)
+                                            group_size++;
+                                    }
+                                }
+                                if (auto leader = player->get_leader()) {
+                                    if (leader->current_room() == room)
+                                        group_size++;
+                                    for (const auto &follower_wp : leader->get_followers()) {
+                                        auto follower = follower_wp.lock();
+                                        if (follower && follower != player && follower->current_room() == room)
+                                            group_size++;
+                                    }
+                                }
+                            }
+                            share = 1.0 / std::max(1, group_size);
+                        }
+
+                        player->kill_tracker().record_kill(proto_id, zone_id, share);
+                        double modifier = player->kill_tracker().xp_modifier(proto_id, zone_id);
+                        exp_gain = static_cast<long>(exp_gain * modifier);
+                    }
+                }
+            }
+
             result.experience_gained = exp_gain;
             attacker->gain_experience(exp_gain);
             result.attacker_message +=

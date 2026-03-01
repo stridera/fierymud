@@ -13,6 +13,7 @@
 #include "core/actor.hpp"
 #include "core/board.hpp"
 #include "core/logging.hpp"
+#include "core/mobile.hpp"
 #include "core/money.hpp"
 #include "core/object.hpp"
 #include "core/player.hpp"
@@ -28,6 +29,7 @@
 #include "world/time_system.hpp"
 #include "world/weather.hpp"
 #include "world/world_manager.hpp"
+#include "world/zone.hpp"
 
 namespace InformationCommands {
 
@@ -2258,6 +2260,85 @@ Result<CommandResult> cmd_skills(const CommandContext &ctx) {
 }
 
 // =============================================================================
+// Trophy Command (Kill Tracking Display)
+// =============================================================================
+
+Result<CommandResult> cmd_trophy(const CommandContext &ctx) {
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send("Only players can view trophies.");
+        return CommandResult::Success;
+    }
+
+    const auto &tracker = player->kill_tracker();
+    auto trophy_entries = tracker.get_trophy_entries();
+    auto zone_entries = tracker.get_zone_entries();
+
+    if (trophy_entries.empty() && zone_entries.empty()) {
+        ctx.send("You have no recent kills tracked. Go explore and fight some mobs!");
+        return CommandResult::Success;
+    }
+
+    std::string output;
+    output += "<b:yellow>--- Kill Trophy ---</>\r\n";
+
+    if (!trophy_entries.empty()) {
+        output += "\r\n<b:white>Recent Kills:</>\r\n";
+        for (const auto &entry : trophy_entries) {
+            // Try to get mob name from prototype
+            std::string mob_name;
+            auto *proto = World().get_mobile_prototype(entry.mob_id);
+            if (proto) {
+                mob_name = std::string(proto->short_desc());
+            } else {
+                mob_name = fmt::format("Unknown ({}:{})", entry.mob_id.zone_id(), entry.mob_id.local_id());
+            }
+
+            int pct = static_cast<int>(entry.multiplier * 100.0);
+            std::string color;
+            if (pct >= 90)
+                color = "green";
+            else if (pct >= 50)
+                color = "yellow";
+            else
+                color = "red";
+
+            output += fmt::format("  <{}>{:3d}%</> XP  {:<40s}  <dim>(weight: {:.2f})</>\r\n", color, pct, mob_name,
+                                  entry.weight);
+        }
+    }
+
+    if (!zone_entries.empty()) {
+        output += "\r\n<b:white>Zone Activity:</>\r\n";
+        for (const auto &entry : zone_entries) {
+            // Try to get zone name
+            std::string zone_name;
+            EntityId zone_entity_id(static_cast<uint32_t>(entry.zone_id), 0);
+            auto zone = World().get_zone(zone_entity_id);
+            if (zone) {
+                zone_name = std::string(zone->name());
+            } else {
+                zone_name = fmt::format("Zone {}", entry.zone_id);
+            }
+
+            int bonus_pct = static_cast<int>(entry.bonus * 100.0);
+            std::string bonus_str;
+            if (bonus_pct > 0) {
+                bonus_str = fmt::format("<cyan>+{}% diversity bonus</>", bonus_pct);
+            } else {
+                bonus_str = "<dim>no bonus (high activity)</>";
+            }
+
+            output += fmt::format("  {:<30s}  {}  <dim>(weight: {:.2f})</>\r\n", zone_name, bonus_str, entry.weight);
+        }
+    }
+
+    output += "\r\n<dim>Weights decay over time. Kill diverse mobs in new zones for best XP.</>";
+    ctx.send(output);
+    return CommandResult::Success;
+}
+
+// =============================================================================
 // Command Registration
 // =============================================================================
 
@@ -2465,6 +2546,13 @@ Result<void> register_commands() {
 
     Commands()
         .command("skills", cmd_skills)
+        .category("Information")
+        .privilege(PrivilegeLevel::Player)
+        .usable_while_sitting(true)
+        .build();
+
+    Commands()
+        .command("trophy", cmd_trophy)
         .category("Information")
         .privilege(PrivilegeLevel::Player)
         .usable_while_sitting(true)

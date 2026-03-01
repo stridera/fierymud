@@ -3630,6 +3630,7 @@ Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
                 title = $30, description = $31,
                 prompt = $32, page_length = $33, wimpy_threshold = $34,
                 player_flags = $35::"PlayerFlag"[],
+                kill_tracking_data = $36::jsonb,
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -3640,7 +3641,8 @@ Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
             character.recall_room_zone_id.value_or(0), character.recall_room_id.value_or(0), character.hit_roll,
             character.damage_roll, character.armor_class, character.time_played, character.hunger, character.thirst,
             character.experience, character.skill_points, character.position, character.title, character.description,
-            character.prompt, character.page_length, character.wimpy_threshold, player_flags_array);
+            character.prompt, character.page_length, character.wimpy_threshold, player_flags_array,
+            character.kill_tracking_data);
 
         logger->debug("Saved character '{}' successfully", character.name);
         return {};

@@ -13,6 +13,7 @@
 #include "core/actor.hpp"
 #include "core/combat.hpp"
 #include "core/logging.hpp"
+#include "core/mobile.hpp"
 #include "core/money.hpp"
 #include "core/object.hpp"
 #include "core/player.hpp"
@@ -441,6 +442,20 @@ Result<CommandResult> cmd_cast(const CommandContext &ctx) {
 
                 // Award experience
                 long exp_gain = FieryMUD::CombatSystem::calculate_experience_gain(*ctx.actor, *target);
+
+                // Apply kill tracking diminishing returns + zone diversity bonus
+                if (auto player = std::dynamic_pointer_cast<Player>(ctx.actor)) {
+                    if (auto mob = std::dynamic_pointer_cast<Mobile>(target)) {
+                        auto proto_id = mob->prototype_id();
+                        if (proto_id.is_valid()) {
+                            int zone_id = static_cast<int>(proto_id.zone_id());
+                            player->kill_tracker().record_kill(proto_id, zone_id);
+                            double modifier = player->kill_tracker().xp_modifier(proto_id, zone_id);
+                            exp_gain = static_cast<long>(exp_gain * modifier);
+                        }
+                    }
+                }
+
                 ctx.actor->gain_experience(exp_gain);
 
                 ctx.send(fmt::format("You have killed {}! You gain {} experience.", target->display_name(), exp_gain));

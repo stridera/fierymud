@@ -425,6 +425,9 @@ struct CharacterData {
     // Position state (persisted so ghost state survives logout)
     std::string position = "STANDING"; // Position enum as string
 
+    // Kill tracking (XP diminishing returns + zone diversity)
+    std::optional<std::string> kill_tracking_data;
+
     // Creation time
     std::chrono::system_clock::time_point created_at;
     std::chrono::system_clock::time_point updated_at;
