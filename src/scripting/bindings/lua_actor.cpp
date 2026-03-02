@@ -2,6 +2,7 @@
 
 #include <fmt/format.h>
 #include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
 #include <sol/sol.hpp>
 #include <spdlog/spdlog.h>
 
@@ -15,6 +16,8 @@
 #include "core/spell_system.hpp"
 #include "database/generated/db_mob.hpp"
 #include "lua_script_helpers.hpp"
+#include "quests/legacy_quest_bridge.hpp"
+#include "quests/quest_manager.hpp"
 #include "world/room.hpp"
 #include "world/world_manager.hpp"
 
@@ -413,6 +416,168 @@ void register_actor_bindings(sol::state &lua) {
             self->inventory().remove_item(item);
             spdlog::debug("actor:destroy_item: Destroyed '{}' from {}", item->name(), self->name());
             return true;
+        },
+
+        // Methods - ID-based inventory check
+        // Usage: actor:has_item_id(zone_id, local_id)
+        "has_item_id",
+        [](const Actor &a, int zone_id, int local_id) -> bool {
+            EntityId target_id(static_cast<std::uint32_t>(zone_id), static_cast<std::uint32_t>(local_id));
+            for (const auto &item : a.inventory().get_all_items()) {
+                if (item && item->id() == target_id) {
+                    return true;
+                }
+            }
+            return false;
+        },
+
+        // Methods - Legacy quest convenience bindings (string-based quest names)
+        // These auto-create Quest records in zone 9998 via LegacyQuestBridge.
+
+        // actor:start_quest("quest_name") - Start a quest, auto-creating the Quest record if needed
+        "start_quest",
+        [](Actor &a, const std::string &name) -> bool {
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.get_or_create(name);
+            if (!eid.is_valid()) {
+                spdlog::warn("actor:start_quest: Failed to resolve quest '{}'", name);
+                return false;
+            }
+
+            auto &manager = QuestManager::instance();
+            auto result = manager.start_quest(a, eid.zone_id(), eid.local_id());
+            if (!result) {
+                spdlog::debug("actor:start_quest('{}') failed for {}: {}", name, a.name(), result.error().message);
+                return false;
+            }
+
+            // Set initial _stage to 1
+            manager.set_quest_variable(a, eid.zone_id(), eid.local_id(), "_stage", nlohmann::json(1));
+            return true;
+        },
+
+        // actor:get_quest_stage("quest_name") - Get the _stage variable (int or nil)
+        "get_quest_stage",
+        [&lua](const Actor &a, const std::string &name) -> sol::object {
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.find(name);
+            if (!eid.is_valid()) {
+                return sol::nil;
+            }
+
+            auto &manager = QuestManager::instance();
+            auto result = manager.get_quest_variable(a, eid.zone_id(), eid.local_id(), "_stage");
+            if (!result || !result->is_number_integer()) {
+                return sol::nil;
+            }
+            return sol::make_object(lua, result->get<int>());
+        },
+
+        // actor:advance_quest("quest_name") - Increment the _stage variable
+        "advance_quest",
+        [](Actor &a, const std::string &name) -> bool {
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.find(name);
+            if (!eid.is_valid()) {
+                spdlog::debug("actor:advance_quest: Quest '{}' not found", name);
+                return false;
+            }
+
+            auto &manager = QuestManager::instance();
+            auto current = manager.get_quest_variable(a, eid.zone_id(), eid.local_id(), "_stage");
+            int stage = 1;
+            if (current && current->is_number_integer()) {
+                stage = current->get<int>() + 1;
+            }
+            auto result = manager.set_quest_variable(a, eid.zone_id(), eid.local_id(), "_stage", nlohmann::json(stage));
+            return result.has_value();
+        },
+
+        // actor:complete_quest("quest_name") - Mark quest as COMPLETED
+        "complete_quest",
+        [](Actor &a, const std::string &name) -> bool {
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.find(name);
+            if (!eid.is_valid()) {
+                spdlog::debug("actor:complete_quest: Quest '{}' not found", name);
+                return false;
+            }
+
+            auto &manager = QuestManager::instance();
+            auto result = manager.complete_quest(a, eid.zone_id(), eid.local_id());
+            if (!result) {
+                spdlog::debug("actor:complete_quest('{}') failed: {}", name, result.error().message);
+            }
+            return result.has_value();
+        },
+
+        // actor:get_has_completed("quest_name") - Check if quest status is COMPLETED
+        "get_has_completed",
+        [](const Actor &a, const std::string &name) -> bool {
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.find(name);
+            if (!eid.is_valid()) {
+                return false;
+            }
+
+            auto &manager = QuestManager::instance();
+            return manager.get_quest_status(a, eid.zone_id(), eid.local_id()) == QuestStatus::Completed;
+        },
+
+        // actor:set_quest_var("quest_name", "key", value) - Set a variable in CharacterQuest.variables
+        // Auto-starts the quest if not already started.
+        "set_quest_var",
+        [](Actor &a, const std::string &name, const std::string &key, sol::object value) -> bool {
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.get_or_create(name);
+            if (!eid.is_valid()) {
+                return false;
+            }
+
+            auto &manager = QuestManager::instance();
+
+            // Auto-start quest if not in progress
+            auto status = manager.get_quest_status(a, eid.zone_id(), eid.local_id());
+            if (status != QuestStatus::InProgress && status != QuestStatus::Completed) {
+                auto start_result = manager.start_quest(a, eid.zone_id(), eid.local_id());
+                if (!start_result) {
+                    spdlog::debug("actor:set_quest_var: Auto-start of '{}' failed: {}", name,
+                                  start_result.error().message);
+                    return false;
+                }
+                manager.set_quest_variable(a, eid.zone_id(), eid.local_id(), "_stage", nlohmann::json(1));
+            }
+
+            nlohmann::json json_value = lua_to_json(value);
+            auto result = manager.set_quest_variable(a, eid.zone_id(), eid.local_id(), key, json_value);
+            return result.has_value();
+        },
+
+        // actor:get_quest_var("quest_name:key") - Get a variable from CharacterQuest.variables
+        "get_quest_var",
+        [&lua](const Actor &a, const std::string &name_key) -> sol::object {
+            // Split on first ':'
+            auto colon = name_key.find(':');
+            if (colon == std::string::npos) {
+                spdlog::warn("actor:get_quest_var: Expected 'name:key' format, got '{}'", name_key);
+                return sol::nil;
+            }
+
+            std::string name = name_key.substr(0, colon);
+            std::string key = name_key.substr(colon + 1);
+
+            auto &bridge = LegacyQuestBridge::instance();
+            auto eid = bridge.find(name);
+            if (!eid.is_valid()) {
+                return sol::nil;
+            }
+
+            auto &manager = QuestManager::instance();
+            auto result = manager.get_quest_variable(a, eid.zone_id(), eid.local_id(), key);
+            if (!result) {
+                return sol::nil;
+            }
+            return json_to_lua(lua, *result);
         });
 
     // Mobile (NPC) class - inherits Actor, adds NPC-specific properties

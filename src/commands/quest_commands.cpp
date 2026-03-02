@@ -12,6 +12,7 @@
 #include "core/player.hpp"
 #include "database/connection_pool.hpp"
 #include "database/quest_queries.hpp"
+#include "quests/legacy_quest_bridge.hpp"
 #include "quests/quest_manager.hpp"
 #include "server/world_server.hpp"
 
@@ -372,8 +373,11 @@ Result<CommandResult> cmd_quests(const CommandContext &ctx) {
             for (const auto &progress : *active_result) {
                 const auto *quest = manager.get_quest(progress.quest_id);
                 if (quest) {
-                    output += fmt::format("  <cyan>{}:{}</> - <white>{}</>\r\n", progress.quest_id.zone_id(),
-                                          progress.quest_id.local_id(), quest->name);
+                    std::string prefix = progress.quest_id.zone_id() == FieryMUD::LegacyQuestBridge::LEGACY_ZONE_ID
+                                             ? "<gray>(Legacy)</> "
+                                             : "";
+                    output += fmt::format("  <cyan>{}:{}</> - {}<white>{}</>\r\n", progress.quest_id.zone_id(),
+                                          progress.quest_id.local_id(), prefix, quest->name);
 
                     // Show current phase if available
                     if (progress.current_phase_id) {
@@ -399,8 +403,11 @@ Result<CommandResult> cmd_quests(const CommandContext &ctx) {
             for (const auto &progress : *completed_result) {
                 const auto *quest = manager.get_quest(progress.quest_id);
                 if (quest) {
-                    output += fmt::format("  <cyan>{}:{}</> - <white>{}</>", progress.quest_id.zone_id(),
-                                          progress.quest_id.local_id(), quest->name);
+                    std::string prefix = progress.quest_id.zone_id() == FieryMUD::LegacyQuestBridge::LEGACY_ZONE_ID
+                                             ? "<gray>(Legacy)</> "
+                                             : "";
+                    output += fmt::format("  <cyan>{}:{}</> - {}<white>{}</>", progress.quest_id.zone_id(),
+                                          progress.quest_id.local_id(), prefix, quest->name);
 
                     if (progress.completion_count > 1) {
                         output += fmt::format(" (x{})", progress.completion_count);

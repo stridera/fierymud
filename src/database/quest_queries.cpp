@@ -161,11 +161,10 @@ Result<QuestData> load_quest(pqxx::work &txn, int zone_id, int quest_id) {
             SELECT zone_id, id, name, description,
                    min_level, max_level, repeatable, hidden,
                    trigger_type, trigger_level,
+                   trigger_mob_zone_id, trigger_mob_id,
                    trigger_item_zone_id, trigger_item_id,
                    trigger_room_zone_id, trigger_room_id,
-                   trigger_ability_id, trigger_event_id,
-                   giver_mob_zone_id, giver_mob_id,
-                   completer_mob_zone_id, completer_mob_id
+                   trigger_ability_id, trigger_event_id
             FROM "Quest"
             WHERE zone_id = $1 AND id = $2
         )",
@@ -205,11 +204,8 @@ Result<QuestData> load_quest(pqxx::work &txn, int zone_id, int quest_id) {
             quest.trigger_event_id = row["trigger_event_id"].as<int>();
         }
 
-        if (!row["giver_mob_zone_id"].is_null() && !row["giver_mob_id"].is_null()) {
-            quest.giver_mob = EntityId(row["giver_mob_zone_id"].as<int>(), row["giver_mob_id"].as<int>());
-        }
-        if (!row["completer_mob_zone_id"].is_null() && !row["completer_mob_id"].is_null()) {
-            quest.completer_mob = EntityId(row["completer_mob_zone_id"].as<int>(), row["completer_mob_id"].as<int>());
+        if (!row["trigger_mob_zone_id"].is_null() && !row["trigger_mob_id"].is_null()) {
+            quest.giver_mob = EntityId(row["trigger_mob_zone_id"].as<int>(), row["trigger_mob_id"].as<int>());
         }
 
         // Load phases

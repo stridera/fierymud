@@ -310,6 +310,7 @@ set(CORE_SOURCES
     src/scripting/triggers/trigger_data.cpp
     # Quest system
     src/quests/quest_manager.cpp
+    src/quests/legacy_quest_bridge.cpp
     # Event publishing for Muditor bridge
     src/events/event_publisher.cpp
     src/events/event_types.cpp

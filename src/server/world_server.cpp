@@ -21,6 +21,7 @@
 #include "mud_server.hpp"
 #include "net/player_connection.hpp"
 #include "persistence_manager.hpp"
+#include "quests/quest_manager.hpp"
 #include "scripting/coroutine_scheduler.hpp"
 #include "scripting/script_engine.hpp"
 #include "scripting/trigger_manager.hpp"
@@ -108,6 +109,14 @@ Result<void> WorldServer::initialize(bool /* is_test_mode */) {
     if (!ability_init) {
         Log::warn("Failed to initialize ability cache: {}", ability_init.error().message);
         // Non-fatal - abilities will be looked up on-demand
+    }
+
+    // Initialize quest manager (requires database)
+    if (!FieryMUD::QuestManager::instance().initialize()) {
+        Log::warn("Failed to initialize QuestManager - quest features will be unavailable");
+        // Non-fatal - quests are optional during development
+    } else {
+        Log::info("QuestManager initialized successfully");
     }
 
     // Initialize Lua scripting engine

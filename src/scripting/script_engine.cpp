@@ -24,6 +24,7 @@
 #include "bindings/lua_world.hpp"
 #include "bindings/lua_zone.hpp"
 #include "coroutine_scheduler.hpp"
+#include "quests/legacy_quest_bridge.hpp"
 #include "trigger_manager.hpp"
 #include "world/time_system.hpp"
 
@@ -235,6 +236,9 @@ void ScriptEngine::register_bindings() {
     register_room_bindings(*lua_);
     register_object_bindings(*lua_);
     register_quest_bindings(*lua_);
+
+    // Initialize legacy quest name→EntityId cache for actor-level quest bindings
+    LegacyQuestBridge::instance().initialize();
 
     // Register namespace-based bindings
     register_combat_bindings(*lua_);
