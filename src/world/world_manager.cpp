@@ -11,12 +11,14 @@
 
 #include "core/actor.hpp"
 #include "core/board.hpp"
+#include "core/entity_var_store.hpp"
 #include "core/logging.hpp"
 #include "core/mobile.hpp"
 #include "core/object.hpp"
 #include "core/player.hpp"
 #include "core/shopkeeper.hpp"
 #include "database/connection_pool.hpp"
+#include "database/entity_var_queries.hpp"
 #include "database/game_data_cache.hpp"
 #include "database/generated/db_mob.hpp"
 #include "database/trigger_queries.hpp"
@@ -24,6 +26,7 @@
 #include "room.hpp"
 #include "scripting/script_engine.hpp"
 #include "scripting/trigger_manager.hpp"
+#include "server/world_server.hpp"
 #include "templates.hpp"
 #include "weather.hpp"
 #include "zone.hpp"
@@ -206,6 +209,31 @@ Result<void> WorldManager::load_world() {
         }
     } else {
         spdlog::warn("TriggerManager not initialized - skipping trigger load");
+    }
+
+    // Load entity variables from database
+    spdlog::info("Loading entity variables from database...");
+    {
+        int var_count = 0;
+        auto vars_result = ConnectionPool::instance().execute([&](pqxx::work &txn) -> Result<void> {
+            for (const auto &type : {"MOB", "OBJECT", "ROOM"}) {
+                for (const auto &[zone_id, zone] : zones_) {
+                    auto zone_vars = EntityVarQueries::load_zone_entity_vars(txn, type, zone_id.local_id());
+                    if (zone_vars) {
+                        if (!zone_vars->empty()) {
+                            FieryMUD::EntityVarStore::instance().load_zone_vars(type, zone_id.local_id(), *zone_vars);
+                            var_count += static_cast<int>(zone_vars->size());
+                        }
+                    }
+                }
+            }
+            return {};
+        });
+        if (vars_result) {
+            spdlog::info("Loaded entity variables for {} entities", var_count);
+        } else {
+            spdlog::warn("Failed to load entity variables: {}", vars_result.error().message);
+        }
     }
 
     // Load board data from database
@@ -2211,7 +2239,23 @@ bool WorldManager::is_passable_for_actor(std::shared_ptr<Room> room, std::shared
         return true;
     }
 
-    // TODO: Check Lua room entry restrictions here
+    // Check Lua room entry restrictions
+    if (room->has_entry_restriction()) {
+        const auto &restriction = room->entry_restriction();
+        auto &engine = FieryMUD::ScriptEngine::instance();
+        if (engine.is_initialized()) {
+            // Wrap restriction in a Lua function that receives the actor context
+            std::string lua_code = fmt::format("local actor_level = {} local actor_align = {} return ({})",
+                                               actor->stats().level, actor->stats().alignment, restriction);
+            auto result = engine.execute(lua_code, "room_restriction");
+            if (result) {
+                auto &pfr = *result;
+                if (pfr.valid() && pfr.get_type() == sol::type::boolean && !pfr.get<bool>()) {
+                    return false;
+                }
+            }
+        }
+    }
 
     // Check zone level restrictions
     auto zone = get_zone(room->zone_id());
@@ -3240,6 +3284,26 @@ std::shared_ptr<Mobile> WorldManager::find_mobile(std::string_view name) const {
         }
     }
 
+    return nullptr;
+}
+
+std::shared_ptr<Player> WorldManager::find_player(std::string_view name) const {
+    auto *ws = WorldServer::instance();
+    if (!ws)
+        return nullptr;
+
+    std::string lower_name{name};
+    std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(), ::tolower);
+
+    for (const auto &player : ws->get_online_players()) {
+        if (!player)
+            continue;
+        std::string player_name{player->name()};
+        std::transform(player_name.begin(), player_name.end(), player_name.begin(), ::tolower);
+        if (player_name == lower_name) {
+            return player;
+        }
+    }
     return nullptr;
 }
 

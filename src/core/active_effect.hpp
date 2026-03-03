@@ -197,4 +197,30 @@ struct HotTickResult {
     std::vector<std::string> expired_effects;
 };
 
+/**
+ * @brief Active shapechange transform effect on a character
+ *
+ * Stores the form info and original stats for restoration on expiry/removal.
+ */
+struct TransformEffect {
+    int form_id = 0;
+    std::string form_name;    // "wolf", "bear"
+    std::string display_name; // "a gray wolf"
+    bool can_fly = false;
+
+    // Original values to restore
+    std::string original_display_name;
+    int original_strength = 0;
+    int original_dexterity = 0;
+    int original_constitution = 0;
+    int original_intelligence = 0;
+    int original_wisdom = 0;
+    int original_charisma = 0;
+
+    // Duration tracking
+    int remaining_ticks = -1; // -1 = permanent
+    int tick_interval = 1;
+    int ticks_since_last = 0;
+};
+
 } // namespace fiery

@@ -109,10 +109,10 @@ int SkillSystem::get_skill_level(const Actor &actor, std::string_view skill_name
         return player->get_proficiency(ability->id);
     }
 
-    // Non-players (mobs) - check if they have the ability
-    // For now, return 50 (average proficiency) for mobs
-    // TODO: Add mob ability tracking if needed
-    return 50;
+    // Non-players (mobs) - derive proficiency from level
+    // Higher level mobs are more proficient (30 base + 1 per level, capped at 100)
+    int mob_level = actor.stats().level;
+    return std::clamp(30 + mob_level, 0, 100);
 }
 
 void SkillSystem::set_skill_level(Actor &actor, std::string_view skill_name, int level) {

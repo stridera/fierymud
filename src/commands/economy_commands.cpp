@@ -14,6 +14,7 @@
 #include "core/player.hpp"
 #include "database/connection_pool.hpp"
 #include "database/world_queries.hpp"
+#include "world/room.hpp"
 #include "world/world_manager.hpp"
 
 namespace EconomyCommands {
@@ -144,8 +145,8 @@ Result<CommandResult> cmd_identify(const CommandContext &ctx) {
     auto value_money = fiery::Money::from_copper(obj->value());
     ctx.send(fmt::format("Value: {}", value_money.to_string()));
 
-    // TODO: Show magical properties, stats, etc.
-    ctx.send("Magical Properties: None detected");
+    // Show magical properties and detailed stats
+    ctx.send(obj->get_stat_info());
     ctx.send("--- End of Identification ---");
 
     return CommandResult::Success;
@@ -802,15 +803,28 @@ Result<CommandResult> cmd_account(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
-    // Exchange can only be done at money changers
-    // TODO: Check for money changer NPC in room
+    // Exchange can only be done at bankers (money changers)
+    bool banker_present = false;
+    if (ctx.room) {
+        for (const auto &actor : ctx.room->contents().actors) {
+            auto mob = std::dynamic_pointer_cast<Mobile>(actor);
+            if (mob && mob->has_profession(MobProfession::Banker)) {
+                banker_present = true;
+                break;
+            }
+        }
+    }
+
+    if (!banker_present) {
+        ctx.send_error("You need to be at a banker to exchange currency.");
+        return CommandResult::InvalidTarget;
+    }
 
     if (ctx.arg_count() < 3) {
         ctx.send("Usage: exchange <amount> <from-type> <to-type>");
-        ctx.send("Example: exchange 10 copper silver");
+        ctx.send("Example: exchange 10 gold silver");
         ctx.send("Available types: copper, silver, gold, platinum");
-        ctx.send("");
-        ctx.send("Note: This command requires you to be at a money changer.");
+        ctx.send("Rates: 10 copper = 1 silver, 10 silver = 1 gold, 10 gold = 1 platinum");
         return CommandResult::InvalidSyntax;
     }
 
@@ -829,29 +843,68 @@ Result<CommandResult> cmd_exchange(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    std::string_view from_type = ctx.arg(1);
-    std::string_view to_type = ctx.arg(2);
+    // Parse coin types
+    auto from_coin = fiery::parse_coin_type(ctx.arg(1));
+    auto to_coin = fiery::parse_coin_type(ctx.arg(2));
 
-    // Validate coin types
-    static const std::vector<std::string> valid_types = {"copper", "silver", "gold", "platinum"};
-    auto is_valid_type = [&](std::string_view type) {
-        for (const auto &t : valid_types) {
-            if (t.starts_with(type))
-                return true;
-        }
-        return false;
-    };
-
-    if (!is_valid_type(from_type) || !is_valid_type(to_type)) {
+    if (!from_coin || !to_coin) {
         ctx.send_error("Invalid coin type. Use: copper, silver, gold, or platinum");
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Check for money changer NPC and perform actual exchange
-    ctx.send("You are not at a money changer.");
-    ctx.send("Note: Money exchange system not yet fully implemented.");
+    if (*from_coin == *to_coin) {
+        ctx.send_error("You can't exchange a coin type for itself.");
+        return CommandResult::InvalidSyntax;
+    }
 
-    return CommandResult::InvalidState;
+    // Calculate values in copper
+    long from_value = fiery::get_coin_value(*from_coin);
+    long to_value = fiery::get_coin_value(*to_coin);
+    long total_copper = static_cast<long>(amount) * from_value;
+
+    // Check if player can afford it
+    auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
+    if (!player) {
+        ctx.send_error("Only players can exchange currency.");
+        return CommandResult::InvalidState;
+    }
+
+    if (!player->can_afford(total_copper)) {
+        ctx.send_error(
+            fmt::format("You don't have {} {}.", amount, fiery::COIN_DEFS[static_cast<int>(*from_coin)].name));
+        return CommandResult::InvalidState;
+    }
+
+    // Calculate how many of the target coin they get
+    long result_coins = total_copper / to_value;
+    long remainder_copper = total_copper % to_value;
+
+    if (result_coins == 0) {
+        ctx.send_error(
+            fmt::format("That's not enough to exchange into {}.", fiery::COIN_DEFS[static_cast<int>(*to_coin)].name));
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Perform the exchange: deduct from_coins, add result
+    player->spend(total_copper);
+    long received_copper = result_coins * to_value;
+    player->give_wealth(received_copper);
+
+    // Return any remainder
+    if (remainder_copper > 0) {
+        player->give_wealth(remainder_copper);
+    }
+
+    auto from_money = fiery::Money::from_copper(total_copper);
+    auto to_money = fiery::Money::from_copper(received_copper);
+
+    ctx.send(fmt::format("The banker exchanges {} for {}.", from_money.to_string(), to_money.to_string()));
+    if (remainder_copper > 0) {
+        auto rem_money = fiery::Money::from_copper(remainder_copper);
+        ctx.send(fmt::format("You receive {} in change.", rem_money.to_string()));
+    }
+
+    return CommandResult::Success;
 }
 
 // =============================================================================

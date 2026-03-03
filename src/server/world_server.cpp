@@ -886,8 +886,7 @@ void WorldServer::perform_mob_activity() {
                 continue;
             }
 
-            // Evaluate aggro_condition - simple pattern matching for now
-            // TODO: Implement proper Lua evaluation for complex conditions
+            // Evaluate aggro_condition via Lua
             int player_align = actor->stats().alignment;
             bool should_attack = false;
             std::string attack_reason;
@@ -895,27 +894,30 @@ void WorldServer::perform_mob_activity() {
             if (!aggro_condition || aggro_condition->empty()) {
                 continue; // No condition set, skip
             } else if (*aggro_condition == "true") {
-                // Attacks everyone
                 should_attack = true;
                 attack_reason = "aggressive (all)";
-            } else if (aggro_condition->find("ALIGN.EVIL") != std::string::npos ||
-                       aggro_condition->find("<= -350") != std::string::npos) {
-                // Attacks evil-aligned players
-                if (is_evil_alignment(player_align)) {
-                    should_attack = true;
-                    attack_reason = fmt::format("aggro-evil (player: {})", alignment_name(player_align));
-                }
-            } else if (aggro_condition->find("ALIGN.GOOD") != std::string::npos ||
-                       aggro_condition->find(">= 350") != std::string::npos) {
-                // Attacks good-aligned players
-                if (is_good_alignment(player_align)) {
-                    should_attack = true;
-                    attack_reason = fmt::format("aggro-good (player: {})", alignment_name(player_align));
-                }
             } else {
-                // Unknown condition format - treat as aggressive to all for safety
-                should_attack = true;
-                attack_reason = fmt::format("condition: {}", *aggro_condition);
+                // Evaluate as Lua expression with alignment context
+                auto &engine = FieryMUD::ScriptEngine::instance();
+                if (engine.is_initialized()) {
+                    std::string lua_code = fmt::format(
+                        "local alignment = {} local level = {} local ALIGN = {{EVIL = (alignment <= -350), "
+                        "GOOD = (alignment >= 350), NEUTRAL = (alignment > -350 and alignment < 350)}} "
+                        "return ({})",
+                        player_align, actor->stats().level, *aggro_condition);
+                    auto result = engine.execute(lua_code, "aggro_condition");
+                    if (result) {
+                        auto &pfr = *result;
+                        if (pfr.valid() && pfr.get_type() == sol::type::boolean && pfr.get<bool>()) {
+                            should_attack = true;
+                            attack_reason = fmt::format("lua-aggro ({})", *aggro_condition);
+                        }
+                    } else {
+                        // Lua eval failed — fall back to attacking (safer for game balance)
+                        should_attack = true;
+                        attack_reason = fmt::format("condition-error: {}", *aggro_condition);
+                    }
+                }
             }
 
             if (!should_attack) {

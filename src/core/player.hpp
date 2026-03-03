@@ -151,6 +151,7 @@ class Player : public Actor {
     std::shared_ptr<Room> current_room_ptr() const { return current_room(); }
     int level() const { return stats().level; }
     std::string player_class() const { return player_class_; }
+    int class_id() const { return class_id_; }
 
     /** Override race() to return string instead of string_view for compatibility */
     std::string_view race() const override { return Actor::race(); }
@@ -160,6 +161,7 @@ class Player : public Actor {
         player_class_ = character_class;
         initialize_spell_slots();
     }
+    void set_class_id(int id) { class_id_ = id; }
 
     /** Player title management */
     std::string_view title() const { return title_; }
@@ -394,6 +396,7 @@ class Player : public Actor {
 
     // Character creation fields
     std::string player_class_ = "warrior"; // Default class
+    int class_id_ = 0;                     // Database Class table ID
     std::string title_ = "";               // Player title
     std::string description_ = "";         // Player description
 
@@ -439,6 +442,9 @@ class Player : public Actor {
 
     // Ignored players (by character name, lowercase)
     std::unordered_set<std::string> ignored_players_;
+
+    // Per-player consent list (by character name, lowercase)
+    std::unordered_set<std::string> consented_players_;
 
     // Group/follow system
     std::weak_ptr<Actor> leader_;                 // Who we are following (empty = we are leader or solo)
@@ -690,4 +696,29 @@ class Player : public Actor {
 
     /** Clear all ignored players */
     void clear_ignored_players() { ignored_players_.clear(); }
+
+    /** Per-player consent management */
+    void consent_player(std::string_view player_name) {
+        std::string name_lower{player_name};
+        std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+        consented_players_.insert(name_lower);
+    }
+
+    bool revoke_consent(std::string_view player_name) {
+        std::string name_lower{player_name};
+        std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+        return consented_players_.erase(name_lower) > 0;
+    }
+
+    bool has_consented_to(std::string_view player_name) const {
+        if (has_player_flag(PlayerFlag::Consent))
+            return true; // Global consent overrides
+        std::string name_lower{player_name};
+        std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), ::tolower);
+        return consented_players_.find(name_lower) != consented_players_.end();
+    }
+
+    const std::unordered_set<std::string> &get_consented_players() const { return consented_players_; }
+
+    void clear_consented_players() { consented_players_.clear(); }
 };

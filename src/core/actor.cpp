@@ -1937,6 +1937,39 @@ int Actor::get_hot_regen_boost() const {
     return total_boost; // No cap - can stack to high values
 }
 
+void Actor::apply_transform(const fiery::TransformEffect &effect) {
+    // Remove existing transform first
+    if (transform_.has_value()) {
+        remove_transform();
+    }
+
+    // Store the effect (original stats are already saved in the effect)
+    transform_ = effect;
+
+    Log::game()->debug("Transform '{}' applied to {}", effect.form_name, name());
+}
+
+void Actor::remove_transform() {
+    if (!transform_.has_value()) {
+        return;
+    }
+
+    auto &effect = *transform_;
+
+    // Restore original stats
+    auto &s = stats();
+    s.strength = effect.original_strength;
+    s.dexterity = effect.original_dexterity;
+    s.constitution = effect.original_constitution;
+    s.intelligence = effect.original_intelligence;
+    s.wisdom = effect.original_wisdom;
+    s.charisma = effect.original_charisma;
+
+    Log::game()->debug("Transform '{}' removed from {}", effect.form_name, name());
+
+    transform_.reset();
+}
+
 fiery::HotTickResult Actor::process_hot_effects() {
     fiery::HotTickResult result;
     std::vector<size_t> expired_indices;
@@ -2817,6 +2850,17 @@ void Player::interrupt_composing(std::string_view reason) {
 }
 
 std::shared_ptr<Container> Player::die() {
+    // Remove active transform on death
+    if (has_transform()) {
+        remove_transform();
+    }
+
+    // Apply death exp penalty — lose 10% of current level bracket, never below level threshold
+    auto &s = stats();
+    long penalty = ActorUtils::death_exp_penalty(s.level);
+    long floor = ActorUtils::experience_for_level(s.level);
+    s.experience = std::max(floor, s.experience - penalty);
+
     // Players become ghosts - corpse is created when they use 'release' command
     set_position(Position::Ghost);
     return nullptr; // Player corpse is created on release, not death
@@ -2890,7 +2934,9 @@ nlohmann::json Player::get_vitals_gmcp() const {
             {"exp_percent", exp_percent},
             {"alignment", stats.alignment},
             {"position", position_name},
-            {"hiddenness", 0}, // TODO: Add hiddenness tracking when stealth system is implemented
+            {"hiddenness", (has_flag(ActorFlag::Hide) || has_flag(ActorFlag::Sneak))
+                               ? std::clamp(stats.concealment + 50, 0, 100)
+                               : 0},
             {"level", stats.level},
             {"Vitals",
              {{"hp", stats.hit_points},
@@ -3139,6 +3185,14 @@ long experience_for_level(int level) {
 
     // Use a progressive scale: level^EXP_LEVEL_EXPONENT * EXP_BASE_MULTIPLIER
     return static_cast<long>(std::pow(level, EXP_LEVEL_EXPONENT) * EXP_BASE_MULTIPLIER);
+}
+
+long death_exp_penalty(int level) {
+    if (level <= MIN_LEVEL)
+        return 0;
+    long bracket = experience_for_level(level + 1) - experience_for_level(level);
+    // Lose 10% of the current level bracket's exp requirement
+    return std::max(1L, bracket / 10);
 }
 
 int calculate_hit_points(int level, int constitution) {

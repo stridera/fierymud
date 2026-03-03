@@ -2178,9 +2178,12 @@ std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(const Effec
     context.target->set_flag(ActorFlag::Sleep, false);
     context.target->set_flag(ActorFlag::Paralyzed, false);
 
-    // TODO: Implement exp recovery when death exp tracking is added
-    // int exp_gained = stats.level * 100 * exp_return_percent / 100;
-    (void)exp_return_percent; // Suppress unused warning until exp tracking is implemented
+    // Return a portion of the death exp penalty
+    long penalty = ActorUtils::death_exp_penalty(stats.level);
+    long exp_recovered = penalty * exp_return_percent / 100;
+    if (exp_recovered > 0) {
+        stats.experience += exp_recovered;
+    }
 
     // Move target to actor's room if they're not there
     auto actor_room = context.actor->current_room();
@@ -2197,6 +2200,9 @@ std::expected<EffectResult, Error> EffectExecutor::execute_resurrect(const Effec
         fmt::format("You resurrect {}! They return to life with {} HP.", context.target->display_name(), restored_hp);
     std::string target_msg =
         fmt::format("{} resurrects you! You return to life with {} HP.", context.actor->display_name(), restored_hp);
+    if (exp_recovered > 0) {
+        target_msg += fmt::format(" You recover <experience>{}</> experience.", exp_recovered);
+    }
     std::string room_msg = fmt::format("{} calls upon divine power to resurrect {}!", context.actor->display_name(),
                                        context.target->display_name());
 

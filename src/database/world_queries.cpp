@@ -3631,6 +3631,7 @@ Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
                 prompt = $32, page_length = $33, wimpy_threshold = $34,
                 player_flags = $35::"PlayerFlag"[],
                 kill_tracking_data = $36::jsonb,
+                player_class = $37, class_id = $38,
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -3642,7 +3643,7 @@ Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
             character.damage_roll, character.armor_class, character.time_played, character.hunger, character.thirst,
             character.experience, character.skill_points, character.position, character.title, character.description,
             character.prompt, character.page_length, character.wimpy_threshold, player_flags_array,
-            character.kill_tracking_data);
+            character.kill_tracking_data, character.player_class, character.class_id);
 
         logger->debug("Saved character '{}' successfully", character.name);
         return {};
@@ -6178,6 +6179,104 @@ Result<std::vector<std::pair<int, RoomEnvEffect>>> load_room_env_effects_in_zone
         logger->error("SQL error loading room env effects for zone {}: {}", zone_id, e.what());
         return std::unexpected(
             Error{ErrorCode::InternalError, fmt::format("Failed to load room env effects: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Subclass System Queries
+// =============================================================================
+
+Result<bool> is_class_a_subclass(pqxx::work &txn, int class_id) {
+    auto logger = Log::database();
+    try {
+        auto result = txn.exec_params(R"(SELECT is_subclass FROM "Class" WHERE id = $1)", class_id);
+        if (result.empty()) {
+            return false;
+        }
+        return result[0]["is_subclass"].as<bool>();
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error checking subclass status for class {}: {}", class_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to check subclass: {}", e.what())});
+    }
+}
+
+Result<std::vector<SubclassInfo>> load_subclasses_for_class(pqxx::work &txn, int parent_class_id) {
+    auto logger = Log::database();
+    try {
+        auto result = txn.exec_params(
+            R"(SELECT id, plain_name, name, COALESCE(description, '') as description
+               FROM "Class"
+               WHERE parent_class_id = $1
+               ORDER BY plain_name)",
+            parent_class_id);
+
+        std::vector<SubclassInfo> subclasses;
+        subclasses.reserve(result.size());
+        for (const auto &row : result) {
+            subclasses.push_back({
+                .id = row["id"].as<int>(),
+                .plain_name = row["plain_name"].as<std::string>(),
+                .name = row["name"].as<std::string>(),
+                .description = row["description"].as<std::string>(),
+            });
+        }
+        return subclasses;
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error loading subclasses for class {}: {}", parent_class_id, e.what());
+        return std::unexpected(Error{ErrorCode::InternalError, fmt::format("Failed to load subclasses: {}", e.what())});
+    }
+}
+
+Result<void> update_character_class(pqxx::work &txn, const std::string &character_id, int new_class_id,
+                                    const std::string &new_class_name) {
+    auto logger = Log::database();
+    try {
+        txn.exec_params(R"(UPDATE "Characters" SET class_id = $2, player_class = $3, updated_at = NOW() WHERE id = $1)",
+                        character_id, new_class_id, new_class_name);
+        return {};
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error updating character class: {}", e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to update character class: {}", e.what())});
+    }
+}
+
+// =============================================================================
+// Shapechange System Queries
+// =============================================================================
+
+Result<std::vector<ShapechangeFormData>> load_available_shapechange_forms(pqxx::work &txn,
+                                                                          const std::string &character_id) {
+    auto logger = Log::database();
+    try {
+        auto result = txn.exec_params(
+            R"(SELECT DISTINCT sf.id, sf.name, sf.display_name, COALESCE(sf.description, '') as description,
+                      sf.stat_modifiers::text, sf.duration_ticks, sf.can_fly
+               FROM "ShapechangeForm" sf
+               JOIN "AbilityShapechangeForm" asf ON asf.form_id = sf.id
+               JOIN "CharacterAbilities" ca ON ca.ability_id = asf.ability_id
+               WHERE ca.character_id = $1
+               ORDER BY sf.name)",
+            character_id);
+
+        std::vector<ShapechangeFormData> forms;
+        forms.reserve(result.size());
+        for (const auto &row : result) {
+            forms.push_back({
+                .id = row["id"].as<int>(),
+                .name = row["name"].as<std::string>(),
+                .display_name = row["display_name"].as<std::string>(),
+                .description = row["description"].as<std::string>(),
+                .stat_modifiers = row["stat_modifiers"].as<std::string>(),
+                .duration_ticks = row["duration_ticks"].as<int>(),
+                .can_fly = row["can_fly"].as<bool>(),
+            });
+        }
+        return forms;
+    } catch (const pqxx::sql_error &e) {
+        logger->error("SQL error loading shapechange forms for character {}: {}", character_id, e.what());
+        return std::unexpected(
+            Error{ErrorCode::InternalError, fmt::format("Failed to load shapechange forms: {}", e.what())});
     }
 }
 

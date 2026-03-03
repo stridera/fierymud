@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include <fmt/format.h>
+#include <nlohmann/json.hpp>
 
 #include "command_context.hpp"
 #include "command_parser.hpp"
@@ -501,18 +502,75 @@ Result<CommandResult> cmd_train(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Check if there's a trainer mob in the room
-    // TODO: Implement stat training (uses practice sessions)
+    // Check if there's a trainer mob in the room
+    bool trainer_present = false;
+    if (ctx.room) {
+        for (const auto &actor : ctx.room->contents().actors) {
+            auto mob = std::dynamic_pointer_cast<Mobile>(actor);
+            if (mob && (mob->has_profession(MobProfession::Trainer) || mob->is_teacher())) {
+                trainer_present = true;
+                break;
+            }
+        }
+    }
+
+    if (!trainer_present) {
+        ctx.send_error("There is no trainer here.");
+        return CommandResult::InvalidTarget;
+    }
+
+    constexpr int MAX_TRAINABLE_STAT = 18;
 
     if (ctx.arg_count() == 0) {
-        ctx.send("You can train: str int wis dex con cha");
-        ctx.send("You need to find a trainer and have practice sessions available.");
-        ctx.send("Usage: train <stat>");
+        auto &s = player->stats();
+        ctx.send("--- Training ---");
+        ctx.send(fmt::format("  str {:2d}/{}   int {:2d}/{}   wis {:2d}/{}", s.strength, MAX_TRAINABLE_STAT,
+                             s.intelligence, MAX_TRAINABLE_STAT, s.wisdom, MAX_TRAINABLE_STAT));
+        ctx.send(fmt::format("  dex {:2d}/{}   con {:2d}/{}   cha {:2d}/{}", s.dexterity, MAX_TRAINABLE_STAT,
+                             s.constitution, MAX_TRAINABLE_STAT, s.charisma, MAX_TRAINABLE_STAT));
+        ctx.send("Usage: train <str|int|wis|dex|con|cha>");
         return CommandResult::Success;
     }
 
-    ctx.send("There is no trainer here.");
-    return CommandResult::InvalidTarget;
+    std::string stat_name{ctx.arg(0)};
+    std::transform(stat_name.begin(), stat_name.end(), stat_name.begin(), ::tolower);
+
+    auto &stats = player->stats();
+    int *stat_ptr = nullptr;
+
+    if (stat_name == "str" || stat_name == "strength") {
+        stat_ptr = &stats.strength;
+        stat_name = "strength";
+    } else if (stat_name == "int" || stat_name == "intelligence") {
+        stat_ptr = &stats.intelligence;
+        stat_name = "intelligence";
+    } else if (stat_name == "wis" || stat_name == "wisdom") {
+        stat_ptr = &stats.wisdom;
+        stat_name = "wisdom";
+    } else if (stat_name == "dex" || stat_name == "dexterity") {
+        stat_ptr = &stats.dexterity;
+        stat_name = "dexterity";
+    } else if (stat_name == "con" || stat_name == "constitution") {
+        stat_ptr = &stats.constitution;
+        stat_name = "constitution";
+    } else if (stat_name == "cha" || stat_name == "charisma") {
+        stat_ptr = &stats.charisma;
+        stat_name = "charisma";
+    } else {
+        ctx.send_error("Invalid stat. Choose: str int wis dex con cha");
+        return CommandResult::InvalidSyntax;
+    }
+
+    if (*stat_ptr >= MAX_TRAINABLE_STAT) {
+        ctx.send_error(fmt::format("Your {} is already at the maximum of {}.", stat_name, MAX_TRAINABLE_STAT));
+        return CommandResult::InvalidState;
+    }
+
+    (*stat_ptr)++;
+    ctx.send(fmt::format("Your {} increases to {}!", stat_name, *stat_ptr));
+    ctx.send_to_room(fmt::format("{} trains with the trainer.", player->display_name()), true);
+
+    return CommandResult::Success;
 }
 
 // =============================================================================
@@ -895,17 +953,25 @@ Result<CommandResult> cmd_consent(const CommandContext &ctx) {
     }
 
     // Consent allows specific players to attack/steal/etc from you
-    // Currently only implements "consent all" - per-player consent is a future TODO
 
     if (ctx.arg_count() == 0) {
         ctx.send("--- Consent Status ---");
         if (player->has_player_flag(PlayerFlag::Consent)) {
             ctx.send("You are consenting to ALL players (dangerous!)");
         } else {
-            ctx.send("You have not given consent to anyone.");
+            const auto &consented = player->get_consented_players();
+            if (consented.empty()) {
+                ctx.send("You have not given consent to anyone.");
+            } else {
+                ctx.send("Consented players:");
+                for (const auto &name : consented) {
+                    ctx.send(fmt::format("  {}", name));
+                }
+            }
         }
         ctx.send("");
         ctx.send("Usage:");
+        ctx.send("  consent <player>   - Toggle consent for a specific player");
         ctx.send("  consent all        - Allow anyone (dangerous!)");
         ctx.send("  consent none       - Revoke all consent");
         ctx.send("--- End of Consent ---");
@@ -923,16 +989,28 @@ Result<CommandResult> cmd_consent(const CommandContext &ctx) {
         ctx.send("You are now consenting to ALL players. Be careful!");
         ctx.send_to_room(fmt::format("{} throws caution to the wind!", player->display_name()), true);
     } else if (arg == "none") {
-        if (!player->has_player_flag(PlayerFlag::Consent)) {
-            ctx.send("You are not currently consenting to anyone.");
-            return CommandResult::InvalidState;
-        }
         player->set_player_flag(PlayerFlag::Consent, false);
+        player->clear_consented_players();
         ctx.send("You have revoked consent from everyone.");
     } else {
-        ctx.send_error("Usage: consent all|none");
-        ctx.send("Note: Per-player consent is not yet implemented.");
-        return CommandResult::InvalidSyntax;
+        // Per-player consent toggle
+        std::string target_name{arg};
+        std::string lower_name = target_name;
+        std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(), ::tolower);
+
+        std::string self_lower{player->name()};
+        std::transform(self_lower.begin(), self_lower.end(), self_lower.begin(), ::tolower);
+        if (lower_name == self_lower) {
+            ctx.send_error("You can't consent to yourself.");
+            return CommandResult::InvalidSyntax;
+        }
+
+        if (player->revoke_consent(target_name)) {
+            ctx.send(fmt::format("You have revoked consent from {}.", target_name));
+        } else {
+            player->consent_player(target_name);
+            ctx.send(fmt::format("You have given consent to {}.", target_name));
+        }
     }
 
     return CommandResult::Success;
@@ -1041,8 +1119,18 @@ Result<CommandResult> cmd_call(const CommandContext &ctx) {
             continue;
         }
 
-        // TODO: Move follower to player's room
-        // This requires follower movement implementation
+        auto old_room = follower->current_room();
+        if (old_room) {
+            std::string depart_msg =
+                fmt::format("{} heeds the call of {}.", follower->display_name(), ctx.actor->display_name());
+            for (const auto &room_actor : old_room->contents().actors) {
+                if (room_actor && room_actor != follower) {
+                    room_actor->send_message(depart_msg);
+                }
+            }
+        }
+        follower->move_to(player_room);
+        follower->send_message(fmt::format("You heed the call of {}.", ctx.actor->display_name()));
         called_count++;
     }
 
@@ -1087,13 +1175,11 @@ Result<CommandResult> cmd_order(const CommandContext &ctx) {
         ctx.send(fmt::format("You order your followers to '{}'.", command_str));
         ctx.send_to_room(fmt::format("{} gives orders to their followers.", ctx.actor->display_name()), true);
 
-        // TODO: Execute command for each follower
-        // This requires command execution on behalf of followers
         for (const auto &follower_weak : followers) {
             auto follower = follower_weak.lock();
             if (!follower)
                 continue;
-            // Commands::execute(follower, command_str);
+            CommandSystem::instance().execute_command(follower, command_str);
         }
     } else {
         // Find specific follower by name
@@ -1109,10 +1195,15 @@ Result<CommandResult> cmd_order(const CommandContext &ctx) {
             return CommandResult::InvalidTarget;
         }
 
-        // Check if the mob is charmed (via ActorFlag)
-        // TODO: Add check for who charmed the mob and follower relationships
+        // Check if the mob is charmed and follows this player
         if (!target->has_flag(ActorFlag::Charm)) {
             ctx.send_error(fmt::format("{} refuses to follow your orders.", target->display_name()));
+            return CommandResult::InvalidState;
+        }
+
+        auto master = target->get_master();
+        if (!master || master != ctx.actor) {
+            ctx.send_error(fmt::format("{} doesn't take orders from you.", target->display_name()));
             return CommandResult::InvalidState;
         }
 
@@ -1120,8 +1211,7 @@ Result<CommandResult> cmd_order(const CommandContext &ctx) {
         ctx.send_to_room(fmt::format("{} gives an order to {}.", ctx.actor->display_name(), target->display_name()),
                          true);
 
-        // TODO: Execute command for the follower
-        // Commands::execute(mob, command_str);
+        CommandSystem::instance().execute_command(mob, command_str);
     }
 
     return CommandResult::Success;
@@ -1132,81 +1222,233 @@ Result<CommandResult> cmd_order(const CommandContext &ctx) {
 // =============================================================================
 
 Result<CommandResult> cmd_subclass(const CommandContext &ctx) {
-    // Choose or view subclass specialization
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
         ctx.send_error("Only players can have subclasses.");
         return CommandResult::InvalidState;
     }
 
-    if (ctx.arg_count() == 0) {
-        // Show current subclass status
-        ctx.send("Subclass System:");
-        ctx.send("----------------");
-        // TODO: Show current subclass if any
-        ctx.send("You have not yet chosen a subclass specialization.");
-        ctx.send("");
-        ctx.send("Usage: subclass <specialization>");
-        ctx.send("This choice is permanent and will shape your abilities.");
+    int current_class_id = player->class_id();
+    if (current_class_id == 0) {
+        ctx.send_error("Your class is not configured correctly.");
+        return CommandResult::SystemError;
+    }
+
+    // Check if player is already a subclass
+    auto is_subclass_result = ConnectionPool::instance().execute([current_class_id](pqxx::work &txn) -> Result<bool> {
+        return WorldQueries::is_class_a_subclass(txn, current_class_id);
+    });
+
+    if (!is_subclass_result) {
+        ctx.send_error("Failed to check subclass status.");
+        return CommandResult::SystemError;
+    }
+
+    if (*is_subclass_result) {
+        ctx.send(fmt::format("You are already specialized as a {}.", player->player_class()));
         return CommandResult::Success;
     }
 
-    std::string subclass_name{ctx.arg(0)};
+    // Load available subclasses for current class
+    auto subclasses_result = ConnectionPool::instance().execute(
+        [current_class_id](pqxx::work &txn) -> Result<std::vector<WorldQueries::SubclassInfo>> {
+            return WorldQueries::load_subclasses_for_class(txn, current_class_id);
+        });
 
-    // Check if player meets requirements (typically level 20+)
+    if (!subclasses_result || subclasses_result->empty()) {
+        ctx.send("There are no subclass specializations available for your class.");
+        return CommandResult::Success;
+    }
+
+    const auto &subclasses = *subclasses_result;
+
+    if (ctx.arg_count() == 0) {
+        // List available subclasses
+        ctx.send("Available Subclass Specializations:");
+        ctx.send("-----------------------------------");
+        for (const auto &sc : subclasses) {
+            if (sc.description.empty()) {
+                ctx.send(fmt::format("  {} ({})", sc.name, sc.plain_name));
+            } else {
+                ctx.send(fmt::format("  {} ({}) - {}", sc.name, sc.plain_name, sc.description));
+            }
+        }
+        ctx.send("");
+        ctx.send("Usage: subclass <specialization>");
+        ctx.send("You must be at least level 20 to specialize.");
+        return CommandResult::Success;
+    }
+
+    // Check level requirement
     if (player->stats().level < 20) {
         ctx.send_error("You must be at least level 20 to choose a subclass.");
         return CommandResult::InvalidState;
     }
 
-    // TODO: Validate subclass choice based on player's class
-    // TODO: Check if player already has a subclass
+    // Fuzzy-match the argument against available subclasses
+    std::string requested = to_lowercase(ctx.arg(0));
+    const WorldQueries::SubclassInfo *matched = nullptr;
 
-    ctx.send(fmt::format("Subclass selection '{}' is not yet implemented.", subclass_name));
-    ctx.send("Please check back when the subclass system is complete.");
+    for (const auto &sc : subclasses) {
+        std::string lower_name = to_lowercase(sc.plain_name);
+        if (lower_name == requested || lower_name.starts_with(requested)) {
+            matched = &sc;
+            break;
+        }
+    }
+
+    if (!matched) {
+        ctx.send_error(fmt::format("'{}' is not an available subclass for your class.", ctx.arg(0)));
+        ctx.send("Type 'subclass' to see available options.");
+        return CommandResult::InvalidState;
+    }
+
+    // Update class in memory
+    player->set_class(matched->plain_name);
+    player->set_class_id(matched->id);
+
+    // Update class in database
+    std::string char_id{player->database_id()};
+    int new_class_id = matched->id;
+    std::string new_class_name = matched->plain_name;
+    auto update_result =
+        ConnectionPool::instance().execute([&char_id, new_class_id, &new_class_name](pqxx::work &txn) -> Result<void> {
+            return WorldQueries::update_character_class(txn, char_id, new_class_id, new_class_name);
+        });
+
+    if (!update_result) {
+        ctx.send_error("Failed to save subclass change. Please try again.");
+        return CommandResult::SystemError;
+    }
+
+    // Send confirmation
+    ctx.send(fmt::format("You have chosen to specialize as a {}!", matched->name));
+    ctx.send("Your abilities and growth will now reflect your new specialization.");
+
+    // Room announcement
+    ctx.send_to_room(fmt::format("{} has specialized as a {}!", player->name(), matched->name), true);
 
     return CommandResult::Success;
 }
 
 Result<CommandResult> cmd_shapechange(const CommandContext &ctx) {
-    // Druids can shapechange into various forms
     auto player = std::dynamic_pointer_cast<Player>(ctx.actor);
     if (!player) {
         ctx.send_error("Only players can shapechange.");
         return CommandResult::InvalidState;
     }
 
-    // TODO: Check if player is a druid or has shapechange ability
-    // For now, stub implementation
+    // Query available forms based on player's abilities
+    std::string char_id{player->database_id()};
+    auto forms_result = ConnectionPool::instance().execute(
+        [&char_id](pqxx::work &txn) -> Result<std::vector<WorldQueries::ShapechangeFormData>> {
+            return WorldQueries::load_available_shapechange_forms(txn, char_id);
+        });
+
+    if (!forms_result) {
+        ctx.send_error("Failed to load shapechange forms.");
+        return CommandResult::SystemError;
+    }
+
+    const auto &forms = *forms_result;
+
+    // Handle "natural"/"normal" — revert to original form
+    if (ctx.arg_count() > 0) {
+        std::string form_arg{ctx.arg(0)};
+        if (form_arg == "natural" || form_arg == "normal") {
+            if (!player->has_transform()) {
+                ctx.send("You are already in your natural form.");
+                return CommandResult::Success;
+            }
+            player->remove_transform();
+            ctx.send("Your body shifts and flows back into your natural form.");
+            ctx.send_to_room(fmt::format("{}'s body ripples and transforms back to normal.", player->name()), true);
+            return CommandResult::Success;
+        }
+    }
+
+    if (forms.empty()) {
+        ctx.send("You don't know any shapechange forms.");
+        return CommandResult::Success;
+    }
 
     if (ctx.arg_count() == 0) {
-        ctx.send("Shapechange Forms:");
-        ctx.send("------------------");
-        ctx.send("  wolf     - Swift predator form");
-        ctx.send("  bear     - Powerful combat form");
-        ctx.send("  eagle    - Flying scout form");
-        ctx.send("  natural  - Return to natural form");
+        // List available forms
+        ctx.send("Available Shapechange Forms:");
+        ctx.send("----------------------------");
+        for (const auto &form : forms) {
+            if (form.description.empty()) {
+                ctx.send(fmt::format("  {:12s} ({})", form.name, form.display_name));
+            } else {
+                ctx.send(fmt::format("  {:12s} - {}", form.name, form.description));
+            }
+        }
+        ctx.send("  natural      - Return to natural form");
         ctx.send("");
         ctx.send("Usage: shapechange <form>");
         return CommandResult::Success;
     }
 
-    std::string form_name{ctx.arg(0)};
+    // Find matching form
+    std::string requested = to_lowercase(ctx.arg(0));
+    const WorldQueries::ShapechangeFormData *matched = nullptr;
 
-    if (form_name == "natural" || form_name == "normal" || form_name == "human") {
-        // Return to normal form
-        ctx.send("You shift back into your natural form.");
-        ctx.send_to_room(fmt::format("{}'s body ripples and transforms back to normal.", ctx.actor->display_name()),
-                         true);
-        return CommandResult::Success;
+    for (const auto &form : forms) {
+        std::string lower_name = to_lowercase(form.name);
+        if (lower_name == requested || lower_name.starts_with(requested)) {
+            matched = &form;
+            break;
+        }
     }
 
-    // TODO: Validate form type
-    // TODO: Apply shapechange effects
-    // TODO: Change actor's display name and stats temporarily
+    if (!matched) {
+        ctx.send_error(fmt::format("'{}' is not a shapechange form you know.", ctx.arg(0)));
+        ctx.send("Type 'shapechange' to see available forms.");
+        return CommandResult::InvalidState;
+    }
 
-    ctx.send(fmt::format("You focus your will and attempt to become a {}...", form_name));
-    ctx.send("Shapechange is not yet fully implemented.");
+    // Build TransformEffect with current stats saved for restoration
+    fiery::TransformEffect transform;
+    transform.form_id = matched->id;
+    transform.form_name = matched->name;
+    transform.display_name = matched->display_name;
+    transform.can_fly = matched->can_fly;
+    transform.remaining_ticks = matched->duration_ticks;
+
+    // Save original stats
+    auto &s = player->stats();
+    transform.original_strength = s.strength;
+    transform.original_dexterity = s.dexterity;
+    transform.original_constitution = s.constitution;
+    transform.original_intelligence = s.intelligence;
+    transform.original_wisdom = s.wisdom;
+    transform.original_charisma = s.charisma;
+
+    // Parse stat modifiers from JSON and apply
+    try {
+        auto modifiers = nlohmann::json::parse(matched->stat_modifiers);
+        if (modifiers.contains("strength"))
+            s.strength += modifiers["strength"].get<int>();
+        if (modifiers.contains("dexterity"))
+            s.dexterity += modifiers["dexterity"].get<int>();
+        if (modifiers.contains("constitution"))
+            s.constitution += modifiers["constitution"].get<int>();
+        if (modifiers.contains("intelligence"))
+            s.intelligence += modifiers["intelligence"].get<int>();
+        if (modifiers.contains("wisdom"))
+            s.wisdom += modifiers["wisdom"].get<int>();
+        if (modifiers.contains("charisma"))
+            s.charisma += modifiers["charisma"].get<int>();
+    } catch (const nlohmann::json::exception &e) {
+        Log::warn("Failed to parse stat modifiers for form '{}': {}", matched->name, e.what());
+    }
+
+    // Apply the transform
+    player->apply_transform(transform);
+
+    ctx.send(fmt::format("Your body shifts and transforms into {}!", matched->display_name));
+    ctx.send_to_room(fmt::format("{}'s body ripples and transforms into {}!", player->name(), matched->display_name),
+                     true);
 
     return CommandResult::Success;
 }
@@ -1242,9 +1484,12 @@ Result<CommandResult> cmd_write(const CommandContext &ctx) {
 
     auto target = objects.front();
 
-    // Check if object is writable
-    // TODO: Check for ITEM_WRITE flag or similar
-    // For now, check if it's a note or has "paper" in keywords
+    // Check if object is writable (Note type or has Writable flag)
+    bool is_writable = (target->type() == ObjectType::Note);
+    if (!is_writable) {
+        ctx.send_error(fmt::format("You can't write on {}.", target->display_name()));
+        return CommandResult::InvalidTarget;
+    }
 
     if (ctx.arg_count() < 2) {
         ctx.send(fmt::format("What do you want to write on {}?", target->display_name()));
@@ -1253,8 +1498,14 @@ Result<CommandResult> cmd_write(const CommandContext &ctx) {
 
     std::string message = ctx.args_from(1);
 
-    // TODO: Actually write the message to the object
-    // This would involve updating the object's extra descriptions
+    // Write the message as an extra description on the object
+    ExtraDescription written;
+    written.keywords = {"writing", "message", "note"};
+    written.description = fmt::format("Written by {}:\n{}", player->name(), message);
+    target->add_extra_description(written);
+
+    // Update the examine description to show the writing
+    target->set_examine_description(fmt::format("It reads:\n  \"{}\"", message));
 
     ctx.send(fmt::format("You write on {}:", target->display_name()));
     ctx.send(fmt::format("  \"{}\"", message));

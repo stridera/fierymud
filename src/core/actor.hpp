@@ -587,6 +587,12 @@ class Actor : public Entity {
     /** Get total regen boost from all HoT effects (0-100+) */
     int get_hot_regen_boost() const;
 
+    /** Transform (shapechange) effect management */
+    bool has_transform() const { return transform_.has_value(); }
+    const std::optional<fiery::TransformEffect> &transform() const { return transform_; }
+    void apply_transform(const fiery::TransformEffect &effect);
+    void remove_transform();
+
     /** Process all HoT effects for one tick - returns healing done */
     fiery::HotTickResult process_hot_effects();
 
@@ -703,8 +709,9 @@ class Actor : public Entity {
     std::string size_ = "Medium";
     std::string race_ = "Human";
     std::vector<ActiveEffect> active_effects_;
-    std::vector<fiery::DotEffect> dot_effects_; // Data-driven DoT effects
-    std::vector<fiery::HotEffect> hot_effects_; // Data-driven HoT effects
+    std::vector<fiery::DotEffect> dot_effects_;       // Data-driven DoT effects
+    std::vector<fiery::HotEffect> hot_effects_;       // Data-driven HoT effects
+    std::optional<fiery::TransformEffect> transform_; // Active shapechange transform
 
     // Casting blackout system
     std::chrono::steady_clock::time_point casting_blackout_end_{};
@@ -756,6 +763,10 @@ class Actor : public Entity {
 namespace ActorUtils {
 /** Calculate experience required for level */
 long experience_for_level(int level);
+
+/** Calculate experience penalty for dying at a given level.
+ *  Returns the amount of exp lost (10% of current level bracket). */
+long death_exp_penalty(int level);
 
 /** Calculate hit points for level and constitution */
 int calculate_hit_points(int level, int constitution);

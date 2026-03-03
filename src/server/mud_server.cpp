@@ -16,6 +16,7 @@
 #include "core/actor.hpp"
 #include "core/class_config.hpp"
 #include "core/config.hpp"
+#include "core/entity_var_store.hpp"
 #include "core/logging.hpp"
 #include "core/player.hpp"
 #include "database/config_loader.hpp"
@@ -688,6 +689,15 @@ Result<void> ModernMUDServer::save_all_data() {
     auto persist_result = PersistenceManager::instance().save_all_players();
     if (!persist_result) {
         return persist_result;
+    }
+
+    // Flush dirty entity variables to database
+    auto &var_store = FieryMUD::EntityVarStore::instance();
+    if (var_store.has_dirty()) {
+        auto vars_result = var_store.save_dirty();
+        if (!vars_result) {
+            Log::error("Failed to save entity variables: {}", vars_result.error().message);
+        }
     }
 
     return Success();

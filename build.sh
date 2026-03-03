@@ -1,5 +1,5 @@
 #!/bin/bash
-# FieryMUD Build Script - Limits parallel jobs to prevent WSL crashes
+# FieryMUD Build Script
 #
 # Usage:
 #   ./build.sh              # Build all targets

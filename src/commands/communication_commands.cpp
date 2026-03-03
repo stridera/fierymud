@@ -378,11 +378,20 @@ Result<CommandResult> cmd_petition(const CommandContext &ctx) {
 
     std::string message = sanitize_player_message(ctx.args_from(0), ctx.actor);
 
-    // Format the petition message for immortals
-    // TODO: Add privilege-based filtering when send_to_all_with_privilege is implemented
-    // For now, broadcast to all online players (immortals will see it)
+    // Format the petition message and send only to immortals (God level+)
     std::string imm_msg = fmt::format("<b:yellow>[PETITION] {} petitions: {}</>", ctx.actor->display_name(), message);
-    ctx.send_to_all(imm_msg);
+    if (auto *world_server = WorldServer::instance()) {
+        auto online_actors = world_server->get_online_actors();
+        for (const auto &online_actor : online_actors) {
+            if (online_actor) {
+                if (auto target_player = std::dynamic_pointer_cast<Player>(online_actor)) {
+                    if (target_player->level() >= static_cast<int>(PrivilegeLevel::DemiGod)) {
+                        online_actor->send_message(imm_msg);
+                    }
+                }
+            }
+        }
+    }
 
     // Confirmation to the petitioner
     ctx.send("<b:yellow>Your petition has been sent to the immortals.</>");
@@ -458,8 +467,6 @@ Result<CommandResult> cmd_gtell(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Check for group membership when group system is implemented
-    // For now, just report that no group exists
     if (!player->has_group()) {
         ctx.send_error("You are not in a group.");
         return CommandResult::InvalidState;

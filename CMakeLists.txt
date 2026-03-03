@@ -262,6 +262,8 @@ set(CORE_SOURCES
     src/database/game_data_cache.cpp
     src/database/quest_queries.cpp
     src/database/trigger_queries.cpp
+    src/database/entity_var_queries.cpp
+    src/core/entity_var_store.cpp
     src/commands/command_system.cpp
     src/commands/command_context.cpp
     src/commands/command_parser.cpp

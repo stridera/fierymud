@@ -6,6 +6,7 @@
 
 #include "actor.hpp"
 #include "logging.hpp"
+#include "mobile.hpp"
 #include "money.hpp"
 #include "object.hpp"
 #include "player.hpp"
@@ -396,11 +397,21 @@ ShopResult ShopManager::buy_mob(std::shared_ptr<Actor> buyer, EntityId shopkeepe
         Log::info("God {} took pet '{}' from shopkeeper {} (free)", player->name(), shop_mob->name, shopkeeper_id);
     }
 
-    // TODO: Create the actual pet mob instance in the room
-    // The pet naming will be handled by the calling command, which prompts:
-    // "What would you like to name your new pet?"
-    // Then sets pet->set_custom_name(name) which displays as:
-    // "A kitten named 'Meow' is here."
+    // Spawn the pet mob in the player's room
+    auto room = player->current_room();
+    if (room) {
+        auto pet = WorldManager::instance().spawn_mobile_to_room(shop_mob->prototype_id, room->zone_id());
+        if (pet) {
+            // Set up follower relationship
+            pet->set_master(player);
+            player->add_follower(std::static_pointer_cast<Actor>(pet));
+            pet->set_flag(ActorFlag::Charm, true);
+            Log::info("Pet {} spawned for player {} in room {}", pet->name(), player->name(),
+                      room->zone_id().to_string());
+        } else {
+            Log::warn("Failed to spawn pet mob {} for player {}", shop_mob->prototype_id.to_string(), player->name());
+        }
+    }
 
     return ShopResult::Success;
 }

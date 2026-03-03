@@ -9,6 +9,7 @@
  * a specific board's messages and permissions.
  */
 
+#include <array>
 #include <chrono>
 #include <memory>
 #include <string>
@@ -69,8 +70,21 @@ struct BoardData {
     // Messages sorted by sticky (desc), then posted_at (desc)
     std::vector<BoardMessage> messages;
 
-    // TODO: Privilege rules (stored as JSON in database)
-    // For now, privileges are handled by the legacy code
+    // Minimum level required for each privilege (0 = anyone, -1 = disabled)
+    // Loaded from the board's privilege_rules JSON column in the database.
+    // Default: read=0, write=1, remove_own=1, edit_own=1, remove_any=60, edit_any=60, sticky=60, lock=60
+    std::array<int, NUM_BOARD_PRIVILEGES> privilege_levels = {0, 1, 1, 1, 60, 60, 60, 60};
+
+    /** Check if a given level has a specific privilege on this board. */
+    bool has_privilege(BoardPrivilege priv, int level) const {
+        int idx = static_cast<int>(priv);
+        if (idx < 0 || idx >= NUM_BOARD_PRIVILEGES)
+            return false;
+        int required = privilege_levels[static_cast<size_t>(idx)];
+        if (required < 0)
+            return false; // Disabled
+        return level >= required;
+    }
 };
 
 /**

@@ -292,12 +292,7 @@ class WorldManager {
      * NOTE: Players are tracked by GameWorld, not WorldManager.
      * This method requires integration with the active GameWorld instance.
      */
-    std::shared_ptr<Player> find_player(std::string_view name) const {
-        (void)name;
-        // TODO: Integrate with GameWorld::get_online_players()
-        // WorldManager doesn't track players directly - they're in GameWorld
-        return nullptr;
-    }
+    std::shared_ptr<Player> find_player(std::string_view name) const;
 
     /**
      * Find a mobile by name in the world.

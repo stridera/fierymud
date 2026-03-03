@@ -4,6 +4,7 @@
 #include <cctype>
 
 #include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
 #include <spdlog/spdlog.h>
 
 #include "commands/command_system.hpp"
@@ -12,9 +13,11 @@
 #include "core/player.hpp"
 #include "database/connection_pool.hpp"
 #include "database/quest_queries.hpp"
+#include "database/world_queries.hpp"
 #include "quests/legacy_quest_bridge.hpp"
 #include "quests/quest_manager.hpp"
 #include "server/world_server.hpp"
+#include "world/world_manager.hpp"
 
 namespace QuestCommands {
 
@@ -703,18 +706,63 @@ Result<CommandResult> cmd_qcomplete(const CommandContext &ctx) {
                     }
                     break;
                 case QuestQueries::QuestRewardType::ITEM:
-                    // TODO: Load item from database and give to player
                     if (reward.object) {
-                        target->send_message(
-                            fmt::format("You would receive item {}:{} (item loading not implemented)\r\n",
-                                        reward.object->zone_id(), reward.object->local_id()));
+                        auto item = WorldManager::instance().create_object_instance(*reward.object);
+                        if (item) {
+                            auto give_result = target->give_item(item);
+                            if (give_result) {
+                                target->send_message(fmt::format("You receive {}!\r\n", item->display_name()));
+                            } else {
+                                // Can't carry it — drop in room
+                                if (target->current_room()) {
+                                    target->current_room()->add_object(item);
+                                    target->send_message(fmt::format("You can't carry {} — it falls to the ground.\r\n",
+                                                                     item->display_name()));
+                                }
+                            }
+                        } else {
+                            spdlog::warn("Quest reward: failed to create object {}:{}", reward.object->zone_id(),
+                                         reward.object->local_id());
+                        }
                     }
                     break;
                 case QuestQueries::QuestRewardType::ABILITY:
-                    // TODO: Teach ability to player
                     if (reward.ability_id) {
-                        target->send_message(fmt::format(
-                            "You would learn ability {} (ability teaching not implemented)\r\n", *reward.ability_id));
+                        auto player = std::dynamic_pointer_cast<Player>(target);
+                        if (player) {
+                            // Try to mark existing ability as learned
+                            if (player->learn_ability(*reward.ability_id)) {
+                                player->set_proficiency(*reward.ability_id, 1);
+                                auto *ability = player->get_ability(*reward.ability_id);
+                                target->send_message(fmt::format(
+                                    "You have learned <white>{}</>!\r\n",
+                                    ability ? ability->name : fmt::format("ability #{}", *reward.ability_id)));
+                            } else {
+                                // Ability not in player's ability map — load from DB and add
+                                auto ability_result = ConnectionPool::instance().execute([&](pqxx::work &txn) {
+                                    return WorldQueries::load_ability(txn, *reward.ability_id);
+                                });
+                                if (ability_result) {
+                                    LearnedAbility learned{
+                                        .ability_id = ability_result->id,
+                                        .name = ability_result->name,
+                                        .plain_name = ability_result->plain_name,
+                                        .description = ability_result->description,
+                                        .known = true,
+                                        .proficiency = 1,
+                                        .type = std::string{magic_enum::enum_name(ability_result->type)},
+                                        .min_level = 1,
+                                        .violent = ability_result->violent,
+                                        .sphere = ability_result->sphere,
+                                    };
+                                    player->set_ability(learned);
+                                    target->send_message(
+                                        fmt::format("You have learned <white>{}</>!\r\n", ability_result->name));
+                                } else {
+                                    spdlog::warn("Quest reward: failed to load ability {}", *reward.ability_id);
+                                }
+                            }
+                        }
                     }
                     break;
                 }

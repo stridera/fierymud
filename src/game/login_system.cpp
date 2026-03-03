@@ -1055,6 +1055,7 @@ void LoginSystem::handle_select_character(std::string_view input) {
             // Set character data from database
             player->set_level(char_data.level);
             player->set_class(char_data.player_class);
+            player->set_class_id(char_data.class_id);
             player->set_race(char_data.race_type);
             player->set_gender(char_data.gender);
 
@@ -1855,6 +1856,7 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             // Set character data from database
             player->set_level(char_data.level);
             player->set_class(char_data.player_class);
+            player->set_class_id(char_data.class_id);
             player->set_race(char_data.race_type);
             player->set_gender(char_data.gender);
 
@@ -2052,6 +2054,7 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
         player->set_database_id(char_data.id);
         player->set_level(char_data.level);
         player->set_class(char_data.player_class);
+        player->set_class_id(char_data.class_id);
         player->set_race(char_data.race_type);
         player->set_gender(char_data.gender);
 

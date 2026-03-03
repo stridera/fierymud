@@ -1011,4 +1011,45 @@ Result<void> delete_character_aliases(pqxx::work &txn, const std::string &charac
  */
 Result<std::vector<std::pair<int, RoomEnvEffect>>> load_room_env_effects_in_zone(pqxx::work &txn, int zone_id);
 
+// =============================================================================
+// Subclass System Queries
+// =============================================================================
+
+/** Check if a class is already a subclass */
+Result<bool> is_class_a_subclass(pqxx::work &txn, int class_id);
+
+/** Subclass info returned from queries */
+struct SubclassInfo {
+    int id;
+    std::string plain_name;
+    std::string name; // With color codes
+    std::string description;
+};
+
+/** Load available subclasses for a parent class */
+Result<std::vector<SubclassInfo>> load_subclasses_for_class(pqxx::work &txn, int parent_class_id);
+
+/** Update a character's class in the database */
+Result<void> update_character_class(pqxx::work &txn, const std::string &character_id, int new_class_id,
+                                    const std::string &new_class_name);
+
+// =============================================================================
+// Shapechange System Queries
+// =============================================================================
+
+/** Shapechange form data */
+struct ShapechangeFormData {
+    int id;
+    std::string name;
+    std::string display_name;
+    std::string description;
+    std::string stat_modifiers; // JSON string
+    int duration_ticks;
+    bool can_fly;
+};
+
+/** Load available shapechange forms for a character based on their abilities */
+Result<std::vector<ShapechangeFormData>> load_available_shapechange_forms(pqxx::work &txn,
+                                                                          const std::string &character_id);
+
 } // namespace WorldQueries

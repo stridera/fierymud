@@ -101,6 +101,10 @@ Result<void> PersistenceManager::save_player(const Player &player) {
             // Prompt format string
             char_data.prompt = std::string(player.prompt());
 
+            // Class
+            char_data.player_class = player.player_class();
+            char_data.class_id = player.class_id();
+
             // Kill tracking data
             if (!player.kill_tracker().empty()) {
                 char_data.kill_tracking_data = player.kill_tracker().to_json().dump();

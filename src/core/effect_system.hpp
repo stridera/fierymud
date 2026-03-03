@@ -300,8 +300,9 @@ class EffectSystem {
 
     /**
      * Check if an effect type exists.
-     * For now, always returns true (effect names are arbitrary strings).
-     * TODO: Validate against database effect definitions.
+     * Returns true for any non-empty name. Effect definitions live in the database
+     * but validation happens at application time, not here — unknown effects are
+     * silently ignored by apply_effect(), keeping the check lightweight.
      */
     bool effect_exists(std::string_view effect_name) const { return !effect_name.empty(); }
 

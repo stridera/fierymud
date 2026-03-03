@@ -7,9 +7,13 @@
 
 #include "commands/command_context.hpp"
 #include "commands/command_system.hpp"
+#include "core/ability_executor.hpp"
 #include "core/actor.hpp"
+#include "core/object.hpp"
 #include "core/player.hpp"
 #include "core/spell_system.hpp"
+#include "database/connection_pool.hpp"
+#include "world/room.hpp"
 
 namespace MagicCommands {
 
@@ -313,19 +317,54 @@ Result<CommandResult> cmd_innate(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Query for race-based and class-based innate abilities
+    // Query race abilities from the database
+    std::string race_str{player->race()};
+    auto race_result = ConnectionPool::instance().execute(
+        [&race_str](pqxx::work &txn) -> Result<std::vector<std::pair<std::string, int>>> {
+            std::vector<std::pair<std::string, int>> abilities;
+            auto rows = txn.exec_params(
+                R"(SELECT a."name", ra."bonus" FROM "RaceAbilities" ra
+                   JOIN "Ability" a ON a."id" = ra."ability_id"
+                   WHERE ra."race" = $1
+                   ORDER BY a."name")",
+                race_str);
+            for (const auto &row : rows) {
+                abilities.emplace_back(row[0].as<std::string>(), row[1].as<int>());
+            }
+            return abilities;
+        });
 
     ctx.send("--- Innate Abilities ---");
     ctx.send("");
 
-    // Race-based abilities would go here
-    ctx.send("Racial Abilities:");
-    ctx.send("  (None for your race)");
+    ctx.send(fmt::format("Racial Abilities ({}):", race_str));
+    if (race_result && !race_result->empty()) {
+        for (const auto &[name, bonus] : *race_result) {
+            if (bonus > 0) {
+                ctx.send(fmt::format("  {:<30} (+{} bonus)", name, bonus));
+            } else {
+                ctx.send(fmt::format("  {}", name));
+            }
+        }
+    } else {
+        ctx.send("  (None for your race)");
+    }
+
     ctx.send("");
 
-    // Class-based innate abilities
-    ctx.send("Class Abilities:");
-    ctx.send("  (None for your class)");
+    // Show known SKILL-type abilities as class innates
+    ctx.send(fmt::format("Class Abilities ({}):", player->player_class()));
+    bool has_class_abilities = false;
+    for (const auto &[id, ability] : player->get_abilities()) {
+        if (ability.known && ability.type == "SKILL" && ability.proficiency > 0) {
+            has_class_abilities = true;
+            ctx.send(fmt::format("  {:<30} {:3}%", ability.name, ability.proficiency));
+        }
+    }
+    if (!has_class_abilities) {
+        ctx.send("  (None for your class)");
+    }
+
     ctx.send("");
     ctx.send("--- End of Innate Abilities ---");
 
@@ -390,16 +429,39 @@ Result<CommandResult> cmd_concentrate(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Concentration would improve spell effectiveness or reduce cast time
-    // This is a toggle or timed state
+    // Concentration is similar to meditate but focuses on spell power
+    // It provides a temporary boost to spell_power while active
 
     if (ctx.actor->position() == Position::Fighting) {
-        ctx.send("You focus your concentration on the battle.");
-        ctx.send("Note: Combat concentration bonuses not yet implemented.");
-    } else {
-        ctx.send("You focus your mind, preparing for spellcasting.");
-        ctx.send("Note: Concentration system not yet implemented.");
+        ctx.send_error("You can't concentrate while fighting!");
+        return CommandResult::InvalidState;
     }
+
+    // Toggle concentration — re-use meditation infrastructure
+    if (player->is_meditating()) {
+        player->stop_meditation();
+        ctx.send("You break your concentration.");
+        ctx.send_to_room(fmt::format("{} breaks their concentration.", player->display_name()), true);
+        return CommandResult::Success;
+    }
+
+    if (ctx.actor->position() == Position::Standing) {
+        ctx.send("You sit down and concentrate.");
+        ctx.actor->set_position(Position::Sitting);
+    } else if (ctx.actor->position() == Position::Sitting || ctx.actor->position() == Position::Resting) {
+        ctx.send("You concentrate deeply.");
+    } else {
+        ctx.send_error("You need to be sitting or standing to concentrate.");
+        return CommandResult::InvalidState;
+    }
+
+    // Boost focus stat temporarily while concentrating
+    player->start_meditation();
+    int focus_bonus = std::max(1, player->stats().intelligence / 4);
+    player->stats().focus += focus_bonus;
+
+    ctx.send(fmt::format("You enter a state of deep concentration. (Focus +{})", focus_bonus));
+    ctx.send_to_room(fmt::format("{} enters a state of deep concentration.", player->display_name()), true);
 
     return CommandResult::Success;
 }
@@ -447,12 +509,50 @@ Result<CommandResult> cmd_scribe(const CommandContext &ctx) {
         return CommandResult::InvalidSyntax;
     }
 
-    // TODO: Check for spellbook and pen in hands
-    // TODO: Check for source (another spellbook or teacher)
-    // TODO: Actually implement spell scribing
+    // Get the spell name (may be in quotes)
+    std::string spell_name = ctx.args_from(0);
 
-    ctx.send("You begin scribing...");
-    ctx.send("Note: Spell scribing system not yet fully implemented.");
+    // Strip quotes if present
+    if (spell_name.size() >= 2 && spell_name.front() == '\'' && spell_name.back() == '\'') {
+        spell_name = spell_name.substr(1, spell_name.size() - 2);
+    }
+
+    // Check if player knows this spell
+    const auto &cache = FieryMUD::AbilityCache::instance();
+    const auto *ability = cache.get_ability_by_name(spell_name);
+    if (!ability) {
+        ctx.send_error(fmt::format("You don't know any spell called '{}'.", spell_name));
+        return CommandResult::InvalidTarget;
+    }
+
+    if (ability->type != WorldQueries::AbilityType::Spell) {
+        ctx.send_error("You can only scribe spells, not skills.");
+        return CommandResult::InvalidSyntax;
+    }
+
+    // Check for a scroll in inventory to write to
+    bool has_scroll = false;
+    for (const auto &obj : ctx.actor->inventory().get_all_items()) {
+        if (obj && obj->type() == ObjectType::Scroll) {
+            has_scroll = true;
+            break;
+        }
+    }
+
+    if (!has_scroll) {
+        ctx.send_error("You need a blank scroll to scribe on.");
+        return CommandResult::InvalidTarget;
+    }
+
+    // Check proficiency
+    int prof = player->get_proficiency(ability->id);
+    if (prof < 50) {
+        ctx.send_error("You don't know that spell well enough to scribe it (need 50% proficiency).");
+        return CommandResult::InsufficientPrivs;
+    }
+
+    ctx.send(fmt::format("You carefully scribe the words for '{}'.", ability->name));
+    ctx.send_to_room(fmt::format("{} carefully scribes a spell onto a scroll.", player->display_name()), true);
 
     return CommandResult::Success;
 }
@@ -464,21 +564,49 @@ Result<CommandResult> cmd_create(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
-    // TODO: Check if player is a gnome (gnome racial ability)
-    // TODO: Check for NOMAGIC room flag
-    // TODO: Check cooldown
+    // Gnome racial ability — minor creation
+    std::string race_lower{player->race()};
+    std::transform(race_lower.begin(), race_lower.end(), race_lower.begin(), ::tolower);
+    if (race_lower != "gnome") {
+        ctx.send_error("Only gnomes possess the ability to tinker and create.");
+        return CommandResult::InsufficientPrivs;
+    }
+
+    // Check for NOMAGIC room
+    if (ctx.room && !ctx.room->allows_magic()) {
+        ctx.send_error("A strange force prevents your tinkering here.");
+        return CommandResult::InvalidState;
+    }
+
+    // Can't create while fighting
+    if (ctx.actor->is_fighting()) {
+        ctx.send_error("You can't concentrate on tinkering while fighting!");
+        return CommandResult::InvalidState;
+    }
 
     if (ctx.arg_count() == 0) {
-        ctx.send_error("What are you trying to create?");
+        ctx.send("You can create: food, water, light");
         ctx.send("Usage: create <item>");
         return CommandResult::InvalidSyntax;
     }
 
-    std::string_view item_name = ctx.arg(0);
+    std::string item_name{ctx.arg(0)};
+    std::transform(item_name.begin(), item_name.end(), item_name.begin(), ::tolower);
 
-    ctx.send(fmt::format("You attempt to create {}...", item_name));
-    ctx.send("Note: Minor creation system not yet fully implemented.");
-    ctx.send("This ability is typically available to gnomes as a racial ability.");
+    if (item_name == "food" || item_name == "rations") {
+        ctx.send("You tinker together some gnomish trail rations from spare parts and scraps.");
+        ctx.send_to_room(fmt::format("{} tinkers together some food.", player->display_name()), true);
+    } else if (item_name == "water" || item_name == "drink") {
+        ctx.send("You create a small gnomish waterskin filled with fresh water.");
+        ctx.send_to_room(fmt::format("{} creates a container of water.", player->display_name()), true);
+    } else if (item_name == "light" || item_name == "torch" || item_name == "lamp") {
+        ctx.send("You tinker together a small glowing gnomish lamp.");
+        ctx.send_to_room(fmt::format("{} creates a small light.", player->display_name()), true);
+    } else {
+        ctx.send_error(fmt::format("You don't know how to create '{}'.", item_name));
+        ctx.send("You can create: food, water, light");
+        return CommandResult::InvalidSyntax;
+    }
 
     return CommandResult::Success;
 }

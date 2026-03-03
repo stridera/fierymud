@@ -510,10 +510,31 @@ std::expected<AbilityExecutionResult, Error> AbilityExecutor::execute_by_id(cons
                     continue;
                 }
 
-                // For violent AOE spells, target all other actors (enemies)
-                // For non-violent AOE (like mass heal), target everyone
-                // TODO: Add faction/group checking for proper ally detection
-                targets.push_back(room_actor);
+                if (ability->violent) {
+                    // For violent AOE: skip allies (group members, followers, masters)
+                    bool is_ally = false;
+
+                    // Check if they share a group/follow relationship
+                    auto actor_master = ctx.actor->get_master();
+                    auto target_master = room_actor->get_master();
+
+                    // Same master (both are followers of someone)
+                    if (actor_master && target_master && actor_master == target_master)
+                        is_ally = true;
+                    // Target is our master
+                    if (actor_master && actor_master == room_actor)
+                        is_ally = true;
+                    // Target is our follower
+                    if (target_master && target_master == ctx.actor)
+                        is_ally = true;
+
+                    if (!is_ally) {
+                        targets.push_back(room_actor);
+                    }
+                } else {
+                    // For non-violent AOE (mass heal): target everyone
+                    targets.push_back(room_actor);
+                }
             }
             // For non-violent AOE, include self
             if (!ability->violent) {
@@ -893,23 +914,21 @@ std::expected<void, Error> AbilityExecutor::check_prerequisites(const CommandCon
                 // Check if wielded weapon is of specified type
                 auto weapon = ctx.actor->equipment().get_main_weapon();
                 if (weapon) {
-                    // TODO: Implement proper weapon damage type checking once
-                    // weapons have damage_type property (piercing, slashing, etc.)
-                    // For now, we just check if a weapon is equipped
-                    // and allow the ability if the type matches common patterns
                     std::string req_type = req.value;
                     std::transform(req_type.begin(), req_type.end(), req_type.begin(),
                                    [](unsigned char c) { return std::tolower(c); });
 
-                    // Check by object type for now
+                    // Check by weapon category first
                     if (req_type == "ranged" || req_type == "bow" || req_type == "crossbow") {
                         met = weapon->is_weapon() && weapon->type() == ObjectType::Fireweapon;
                     } else if (req_type == "melee") {
                         met = weapon->is_weapon() && weapon->type() == ObjectType::Weapon;
                     } else {
-                        // For specific damage types (piercing, slashing, etc.),
-                        // assume any weapon works until we implement proper tracking
-                        met = weapon->is_weapon();
+                        // Check weapon's damage type (pierce, slash, crush, fire, etc.)
+                        std::string wpn_dt{weapon->damage_type()};
+                        std::transform(wpn_dt.begin(), wpn_dt.end(), wpn_dt.begin(),
+                                       [](unsigned char c) { return std::tolower(c); });
+                        met = weapon->is_weapon() && wpn_dt == req_type;
                     }
 
                     if (!met) {

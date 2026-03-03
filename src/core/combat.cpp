@@ -516,9 +516,23 @@ double CombatSystem::apply_mitigation(double raw_damage, const CombatStats &atta
     effective_dr = std::min(effective_dr, CombatConstants::DR_CAP);
     double damage_after_dr = damage_after_soak * (1.0 - effective_dr);
 
-    // Step 3: Apply elemental/type resistances (TODO: implement damage types)
-    // For now, apply physical resistance
-    double resistance_mult = defender_stats.res_physical / 100.0;
+    // Step 3: Apply elemental/type resistances based on weapon damage type
+    double resistance_value = defender_stats.res_physical; // Default to physical
+    const auto &dtype = attacker_stats.weapon_damage_type;
+    if (dtype == "Fire" || dtype == "fire") {
+        resistance_value = defender_stats.res_fire;
+    } else if (dtype == "Cold" || dtype == "cold") {
+        resistance_value = defender_stats.res_cold;
+    } else if (dtype == "Shock" || dtype == "shock" || dtype == "Lightning" || dtype == "lightning") {
+        resistance_value = defender_stats.res_shock;
+    } else if (dtype == "Acid" || dtype == "acid") {
+        resistance_value = defender_stats.res_acid;
+    } else if (dtype == "Poison" || dtype == "poison") {
+        resistance_value = defender_stats.res_poison;
+    }
+    // All other types (Hit, Slash, Pierce, Crush, etc.) use res_physical
+
+    double resistance_mult = resistance_value / 100.0;
     double final_damage = damage_after_dr * resistance_mult;
 
     // Minimum 1 damage
@@ -948,7 +962,16 @@ CombatResult CombatSystem::perform_attack(std::shared_ptr<Actor> attacker, std::
 
         // Polymorphic death handling - Player becomes ghost, Mobile creates corpse and despawns
         // die() returns the corpse for Mobiles, nullptr for Players
+        long exp_before_death = target_stats.experience;
         auto corpse = target->die();
+
+        // Report exp loss to player after die() applies the penalty
+        if (is_player) {
+            long exp_lost = exp_before_death - target_stats.experience;
+            if (exp_lost > 0) {
+                result.target_message += fmt::format("\r\nYou lose <experience>{}</> experience.", exp_lost);
+            }
+        }
 
         // Handle autoloot and autogold for Player attackers killing Mobiles
         if (!is_player && attacker->type_name() == "Player" && corpse) {

@@ -71,6 +71,9 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
         if (!row["player_class"].is_null()) {
             player->set_class(row["player_class"].as<std::string>());
         }
+        if (!row["class_id"].is_null()) {
+            player->set_class_id(row["class_id"].as<int>());
+        }
         if (!row["gender"].is_null()) {
             player->set_gender(row["gender"].as<std::string>());
         }

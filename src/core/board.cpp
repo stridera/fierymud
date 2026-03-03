@@ -7,6 +7,9 @@
 
 #include <algorithm>
 
+#include <magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+
 #include "../database/connection_pool.hpp"
 #include "../database/world_queries.hpp"
 #include "logging.hpp"
@@ -43,6 +46,28 @@ void BoardSystem::load_boards() {
             board->alias = std::move(db_board.alias);
             board->title = std::move(db_board.title);
             board->locked = db_board.locked;
+
+            // Parse privilege rules from JSON
+            // Format: [{"privilege": "Read", "level": 0}, {"privilege": "WriteNew", "level": 5}, ...]
+            if (!db_board.privileges.empty() && db_board.privileges != "[]") {
+                try {
+                    auto privs_json = nlohmann::json::parse(db_board.privileges);
+                    if (privs_json.is_array()) {
+                        for (const auto &rule : privs_json) {
+                            if (rule.contains("privilege") && rule.contains("level")) {
+                                auto priv_name = rule["privilege"].get<std::string>();
+                                auto priv = magic_enum::enum_cast<BoardPrivilege>(priv_name);
+                                if (priv.has_value()) {
+                                    board->privilege_levels[static_cast<size_t>(static_cast<int>(*priv))] =
+                                        rule["level"].get<int>();
+                                }
+                            }
+                        }
+                    }
+                } catch (const nlohmann::json::exception &e) {
+                    logger->warn("Board {}: failed to parse privileges JSON: {}", board->id, e.what());
+                }
+            }
 
             // Convert messages
             for (auto &db_msg : db_board.messages) {

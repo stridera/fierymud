@@ -13,6 +13,7 @@
 #include "core/object.hpp"
 #include "core/player.hpp"
 #include "core/shopkeeper.hpp"
+#include "database/config_loader.hpp"
 #include "database/connection_pool.hpp"
 #include "database/game_data_cache.hpp"
 #include "database/world_queries.hpp"
@@ -2774,14 +2775,28 @@ Result<CommandResult> cmd_donate(const CommandContext &ctx) {
         return CommandResult::InvalidTarget;
     }
 
+    // Check if the item can be donated
+    if (target_object->has_flag(ObjectFlag::NoDonate)) {
+        ctx.send_error("That item cannot be donated.");
+        return CommandResult::InvalidTarget;
+    }
+
     // Remove from inventory
     if (!ctx.actor->inventory().remove_item(target_object)) {
         ctx.send_error("You can't donate that.");
         return CommandResult::ResourceError;
     }
 
-    // TODO: Move item to donation room when donation system is implemented
-    // For now, the item is simply removed
+    // Move to donation room (configurable via GameConfig, defaults to temple at 30:0)
+    auto &config = fierymud::config::ConfigLoader::instance();
+    int donation_zone = config.get_int_or("display", "donation_room_zone", 30);
+    int donation_id = config.get_int_or("display", "donation_room_id", 0);
+    auto donation_room = WorldManager::instance().get_room(EntityId(donation_zone, donation_id));
+
+    if (donation_room) {
+        donation_room->add_object(target_object);
+    }
+    // If no donation room configured, item is just removed (vanishes)
 
     ctx.send_success(fmt::format("You donate {}. It vanishes in a puff of smoke to help those in need.",
                                  ctx.format_object_name(target_object)));

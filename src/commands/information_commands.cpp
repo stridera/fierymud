@@ -1861,8 +1861,14 @@ Result<CommandResult> cmd_board(const CommandContext &ctx) {
         return CommandResult::InvalidState;
     }
 
+    int actor_level = ctx.actor->stats().level;
+
     // No arguments or "list" - show the message list
     if (ctx.arg_count() == 0) {
+        if (!board->has_privilege(BoardPrivilege::Read, actor_level)) {
+            ctx.send_error("You do not have permission to read this board.");
+            return CommandResult::InsufficientPrivs;
+        }
         show_board_list(ctx, board);
         return CommandResult::Success;
     }
@@ -1872,12 +1878,21 @@ Result<CommandResult> cmd_board(const CommandContext &ctx) {
 
     // board list
     if (subcmd == "list" || subcmd == "l") {
+        if (!board->has_privilege(BoardPrivilege::Read, actor_level)) {
+            ctx.send_error("You do not have permission to read this board.");
+            return CommandResult::InsufficientPrivs;
+        }
         show_board_list(ctx, board);
         return CommandResult::Success;
     }
 
     // board read <number>
     if (subcmd == "read" || subcmd == "r") {
+        if (!board->has_privilege(BoardPrivilege::Read, actor_level)) {
+            ctx.send_error("You do not have permission to read this board.");
+            return CommandResult::InsufficientPrivs;
+        }
+
         if (ctx.arg_count() < 2) {
             ctx.send_error("Usage: board read <message number>");
             return CommandResult::InvalidSyntax;
@@ -1900,6 +1915,11 @@ Result<CommandResult> cmd_board(const CommandContext &ctx) {
         if (!player) {
             ctx.send_error("Only players can post to boards.");
             return CommandResult::InvalidState;
+        }
+
+        if (!board->has_privilege(BoardPrivilege::WriteNew, actor_level)) {
+            ctx.send_error("You do not have permission to post to this board.");
+            return CommandResult::InsufficientPrivs;
         }
 
         if (board->locked) {
@@ -1986,12 +2006,17 @@ Result<CommandResult> cmd_board(const CommandContext &ctx) {
         }
 
         // Check if user can remove this message
-        // Can remove if: own message, or god level (level >= 60)
         bool is_owner = (msg->poster == ctx.actor->name());
-        bool is_god = (ctx.actor->stats().level >= 60); // LVL_GOD
+        bool can_remove = false;
 
-        if (!is_owner && !is_god) {
-            ctx.send_error("You can only remove your own messages.");
+        if (is_owner && board->has_privilege(BoardPrivilege::RemoveOwn, actor_level)) {
+            can_remove = true;
+        } else if (board->has_privilege(BoardPrivilege::RemoveAny, actor_level)) {
+            can_remove = true;
+        }
+
+        if (!can_remove) {
+            ctx.send_error("You do not have permission to remove that message.");
             return CommandResult::InsufficientPrivs;
         }
 
@@ -2008,6 +2033,10 @@ Result<CommandResult> cmd_board(const CommandContext &ctx) {
     // Unknown subcommand - maybe it's a number for reading
     bool is_number = !subcmd.empty() && std::all_of(subcmd.begin(), subcmd.end(), ::isdigit);
     if (is_number) {
+        if (!board->has_privilege(BoardPrivilege::Read, actor_level)) {
+            ctx.send_error("You do not have permission to read this board.");
+            return CommandResult::InsufficientPrivs;
+        }
         int msg_num = std::stoi(subcmd);
         return show_board_message(ctx, board, msg_num);
     }
@@ -2035,13 +2064,59 @@ Result<CommandResult> cmd_search(const CommandContext &ctx) {
     ctx.send("You search the area carefully...");
     ctx.send_to_room(fmt::format("{} searches the area.", ctx.actor->display_name()), true);
 
-    // TODO: Check for hidden exits
-    // TODO: Check for hidden items
-    // TODO: Check for hidden NPCs
-    // TODO: Apply search skill check
+    bool found_anything = false;
+    int perception = ctx.actor->stats().perception;
 
-    ctx.send("You find nothing hidden.");
-    ctx.send("Note: Full search functionality not yet implemented.");
+    // Check for hidden exits
+    for (auto dir : ctx.room->get_available_exits()) {
+        auto *exit = ctx.room->get_exit_mutable(dir);
+        if (exit && exit->is_hidden) {
+            // Perception check: higher perception = more likely to find
+            int dc = 15; // Base difficulty
+            if (perception >= dc) {
+                exit->is_hidden = false;
+                ctx.send_success(fmt::format("You discover a hidden exit to the {}!", magic_enum::enum_name(dir)));
+                ctx.send_to_room(fmt::format("{} discovers a hidden exit to the {}!", ctx.actor->display_name(),
+                                             magic_enum::enum_name(dir)),
+                                 true);
+                found_anything = true;
+            }
+        }
+    }
+
+    // Check for hidden actors (those using Hide)
+    for (const auto &actor : ctx.room->contents().actors) {
+        if (actor.get() == ctx.actor.get())
+            continue;
+        if (actor->has_flag(ActorFlag::Hide)) {
+            // Searcher perception vs hider's dexterity
+            int dc = actor->stats().dexterity;
+            if (perception >= dc) {
+                actor->set_flag(ActorFlag::Hide, false);
+                ctx.send_success(fmt::format("You discover {} hiding here!", actor->display_name()));
+                actor->send_message("You have been discovered!\r\n");
+                ctx.send_to_room(
+                    fmt::format("{} discovers {} hiding here!", ctx.actor->display_name(), actor->display_name()),
+                    true);
+                found_anything = true;
+            }
+        }
+    }
+
+    // Check for invisible objects (requires Detect Invis to fully see, but search can reveal)
+    for (const auto &obj : ctx.room->contents().objects) {
+        if (obj->has_flag(ObjectFlag::Invisible) && !ctx.actor->has_flag(ActorFlag::Detect_Invis)) {
+            int dc = 18;
+            if (perception >= dc) {
+                ctx.send_success(fmt::format("You sense something hidden here: {}", obj->short_description()));
+                found_anything = true;
+            }
+        }
+    }
+
+    if (!found_anything) {
+        ctx.send("You find nothing hidden.");
+    }
 
     return CommandResult::Success;
 }
@@ -2069,15 +2144,29 @@ Result<CommandResult> cmd_read(const CommandContext &ctx) {
 
     auto obj = objects.front();
 
-    // TODO: Check if object is readable (has description or notes)
+    // Check if object is readable: notes, books, signs, scrolls, or objects with extra descriptions
+    bool is_readable = obj->type() == ObjectType::Note || obj->type() == ObjectType::Scroll ||
+                       !obj->description().empty() || !obj->get_all_extra_descriptions().empty();
+
+    if (!is_readable) {
+        ctx.send(fmt::format("There is nothing written on {}.", obj->short_description()));
+        return CommandResult::InvalidTarget;
+    }
+
     ctx.send(fmt::format("You read {}:", obj->short_description()));
 
-    // For now, just show the object's description
+    // Show the main description
     auto desc = obj->description();
     if (!desc.empty()) {
         ctx.send(std::string{desc});
-    } else {
-        ctx.send("There is nothing written on it.");
+    }
+
+    // Show extra descriptions (notes, inscriptions, etc.)
+    const auto &extra_descs = obj->get_all_extra_descriptions();
+    for (const auto &extra : extra_descs) {
+        if (!extra.description.empty()) {
+            ctx.send(std::string{extra.description});
+        }
     }
 
     return CommandResult::Success;
