@@ -2683,7 +2683,7 @@ ACMD(do_color) {
         char_printf(ch, "Your current color level is {}.\n", ctypes[COLOR_LEV(ch)]);
         return;
     }
-    if ((tp = searchblock(arg, ctypes, false) == -1)) {
+    if ((tp = searchblock(arg, ctypes, false)) == -1) {
         char_printf(ch, "Usage: color { Off | Sparse | Normal | Complete }\n");
         return;
     }
