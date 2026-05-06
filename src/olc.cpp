@@ -183,6 +183,7 @@ ACMD(do_olc) {
             char_printf(ch, "Specify a spell name to edit.\r\n");
             return;
         case SCMD_OLC_OCOPY:
+        case SCMD_OLC_RCOPY:
         case SCMD_OLC_ZCOPY:
         case SCMD_OLC_MCOPY:
         case SCMD_OLC_SCOPY:
@@ -190,12 +191,14 @@ ACMD(do_olc) {
             char_printf(ch, "Specify a source and target VNUM.\r\n");
             return;
         }
+    } else if (isdigit(*buf1)) {
+      number = atoi(buf1);
     }
 
-    if (!*buf1) { /* No argument given. */
+    if (!*buf2) { /* No argument given. */
         switch (subcmd) {
-        case SCMD_OLC_REDIT:
         case SCMD_OLC_OCOPY:
+        case SCMD_OLC_RCOPY:
         case SCMD_OLC_ZCOPY:
         case SCMD_OLC_MCOPY:
         case SCMD_OLC_SCOPY:
@@ -205,7 +208,7 @@ ACMD(do_olc) {
         }
     }
 
-    if (!isdigit(*buf1)) {
+    if (number < 0) {
         if (strncasecmp("save", buf1, 4) == 0) {
             if (!*buf2) {
                 if (subcmd == SCMD_OLC_HEDIT) {
@@ -296,8 +299,6 @@ ACMD(do_olc) {
     /*. If a numeric argument was given, get it . */
     if (subcmd == SCMD_OLC_HEDIT)
         number = HEDIT_PERMISSION;
-    else if (number == -1)
-        number = atoi(buf1);
 
     /*. Check whatever it is isn't already being edited . */
     for (d = descriptor_list; d; d = d->next)
