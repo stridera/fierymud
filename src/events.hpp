@@ -85,8 +85,9 @@ void delayed_command(CharData *ch, char *command, int delay, bool repeatable);
 #define EVENT_COMMAND 28
 #define EVENT_EDITOR_START 29
 #define EVENT_GET_MONEY 30
+#define EVENT_WITNESS_GLORY 31
 /* Update MAX_EVENT to be last event value + 1, please */
-#define MAX_EVENT 31
+#define MAX_EVENT 32
 
 EVENTFUNC(extract_event);
 EVENTFUNC(hurt_event);

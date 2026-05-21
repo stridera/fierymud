@@ -64,6 +64,7 @@ const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
                                          "command",
                                          "start_editor",
                                          "get_money", /* 30 */
+                                         "witness_glory",
                                          "\n"};
 
 /*************************************************************************/
