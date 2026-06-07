@@ -43,6 +43,13 @@ bool char_susceptible_to_triggers(const CharData *ch) {
         return true;
 }
 
+bool check_awake(const TrigData* trig, const CharData* ch) {
+  if (!ch || !trig) {
+    return false;
+  }
+  return AWAKE(ch) || (trig->trigger_type & MTRIG_ASLEEP);
+}
+
 int is_substring(const char *sub, const char *string) {
     const char *s;
 
@@ -162,7 +169,7 @@ int greet_mtrigger(CharData *actor, int dir) {
 
     for (ch = world[IN_ROOM(actor)].people; ch; ch = next_in_room) {
         next_in_room = ch->next_in_room;
-        if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_GREET | MTRIG_GREET_ALL) || !AWAKE(ch) ||
+        if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_GREET | MTRIG_GREET_ALL) ||
             FIGHTING(ch) || (ch == actor))
             continue;
 
@@ -170,6 +177,9 @@ int greet_mtrigger(CharData *actor, int dir) {
             if (((IS_SET(GET_TRIG_TYPE(t), MTRIG_GREET) && CAN_SEE(ch, actor)) ||
                  IS_SET(GET_TRIG_TYPE(t), MTRIG_GREET_ALL)) &&
                 !GET_TRIG_DEPTH(t) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
+                if (!check_awake(t, ch)) {
+                    continue;
+                }
                 add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]]);
                 ADD_UID_VAR(buf, t, actor, "actor");
                 if (!script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW))
@@ -264,10 +274,14 @@ void speech_mtrigger(CharData *actor, const char *str) {
         ch_next = ch->next_in_room;
 
         if (MOB_PERFORMS_SCRIPTS(ch) && (SCRIPT_CHECK(ch, MTRIG_SPEECH) || SCRIPT_CHECK(ch, MTRIG_SPEECHTO)) &&
-            AWAKE(ch) && actor != ch)
+            actor != ch)
             for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
                 if (!TRIGGER_CHECK(t, MTRIG_SPEECH) && !TRIGGER_CHECK(t, MTRIG_SPEECHTO))
                     continue;
+
+                if (!check_awake(t, ch)) {
+                    continue;
+                }
 
                 if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
                     log(LogSeverity::Stat, LVL_GOD, "SYSERR: Speech Trigger #{:d} has no text argument!",
@@ -294,11 +308,15 @@ void speech_to_mtrigger(CharData *actor, CharData *ch, const char *str) {
     if (!char_susceptible_to_triggers(actor) || !char_susceptible_to_triggers(ch))
         return;
 
-    if (MOB_PERFORMS_SCRIPTS(ch) && (SCRIPT_CHECK(ch, MTRIG_SPEECHTO) || SCRIPT_CHECK(ch, MTRIG_SPEECH)) && AWAKE(ch) &&
+    if (MOB_PERFORMS_SCRIPTS(ch) && (SCRIPT_CHECK(ch, MTRIG_SPEECHTO) || SCRIPT_CHECK(ch, MTRIG_SPEECH)) &&
         actor != ch)
         for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
             if (!TRIGGER_CHECK(t, MTRIG_SPEECHTO) && !TRIGGER_CHECK(t, MTRIG_SPEECH))
                 continue;
+
+            if (!check_awake(t, ch)) {
+                continue;
+            }
 
             if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
                 log(LogSeverity::Stat, LVL_GOD, "SYSERR: Speech-to Trigger #{:d} has no text argument!",
@@ -420,7 +438,7 @@ int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
         if (IS_SET(GET_TRIG_TYPE(t), MTRIG_RECEIVE)) {
 
-            if ((GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) && GET_TRIG_NARG(t)) || 
+            if ((GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) && GET_TRIG_NARG(t)) ||
               ((GET_TRIG_ARG(t) && !word_check(vnum, GET_TRIG_ARG(t)) && !GET_TRIG_NARG(t))) ||
               (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
 
@@ -502,11 +520,14 @@ int leave_mtrigger(CharData *actor, int dir) {
         return 1;
 
     for (ch = world[IN_ROOM(actor)].people; ch; ch = ch->next_in_room) {
-        if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_LEAVE) || !AWAKE(ch) || FIGHTING(ch) || ch == actor)
+        if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_LEAVE) || FIGHTING(ch) || ch == actor)
             continue;
 
         for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
             if (TRIGGER_CHECK(t, MTRIG_LEAVE) && CAN_SEE(ch, actor) && random_number(1, 100) <= GET_TRIG_NARG(t)) {
+                if (!check_awake(t, ch)) {
+                    continue;
+                }
                 if (dir >= 0 && dir < NUM_OF_DIRS)
                     add_var(&GET_TRIG_VARS(t), "direction", dirs[dir]);
                 else
@@ -528,12 +549,15 @@ int door_mtrigger(CharData *actor, int subcmd, int dir) {
         return 1;
 
     for (ch = world[IN_ROOM(actor)].people; ch; ch = ch->next_in_room) {
-        if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_DOOR) || !AWAKE(ch) || FIGHTING(ch) || ch == actor ||
+        if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_DOOR) || FIGHTING(ch) || ch == actor ||
             !CAN_SEE(ch, actor))
             continue;
 
         for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
             if (TRIGGER_CHECK(t, MTRIG_DOOR) && random_number(1, 100) <= GET_TRIG_NARG(t)) {
+                if (!check_awake(t, ch)) {
+                    continue;
+                }
                 add_var(&GET_TRIG_VARS(t), "cmd", cmd_door[subcmd]);
                 add_var(&GET_TRIG_VARS(t), "direction", dirs[dir]);
                 ADD_UID_VAR(buf, t, actor, "actor");
@@ -968,7 +992,7 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
         str = name;
 
     for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-        if (GET_TRIG_ARG(t) && word_check(str, GET_TRIG_ARG(t)) || 
+        if (GET_TRIG_ARG(t) && word_check(str, GET_TRIG_ARG(t)) ||
           (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) && isname(str, obj->name)) {
             if (TRIGGER_CHECK(t, OTRIG_LOOK) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
                 if (actor)
@@ -980,7 +1004,7 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
                 if (!script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj)
                   ret_val = 0;
 
-            }     
+            }
         } else
             continue;
     }
