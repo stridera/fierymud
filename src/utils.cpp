@@ -52,8 +52,9 @@ int monk_weight_penalty(CharData *ch) {
 }
 
 static int exp_table[LVL_IMPL + 1];
+static int old_exp_table[LVL_IMPL + 1];
 
-void init_exp_table(void) {
+void init_old_exp_table(void) {
     long exp, last_exp;
     int lvl, i;
 
@@ -81,7 +82,7 @@ void init_exp_table(void) {
         if (lvl < 9)
             exp = ((lvl * lvl) + lvl) / 2 * 5500;
 
-        else if (lvl < 99) { /*(lvl <= LVL_IMMORT) { */
+        else if (lvl < 99) { /*(lvl <= LVL_IMMORT) {} */
             for (i = 0; lvl >= eval[i].level; ++i)
                 ;
             --i;
@@ -109,8 +110,40 @@ void init_exp_table(void) {
         else
             exp = 300000001 + 2 * (lvl - LVL_IMMORT - 1);
 
-        exp_table[lvl] = exp;
+        old_exp_table[lvl] = exp;
         last_exp = exp;
+    }
+}
+
+void init_exp_table(void) {
+    static const long MAX_MORTAL_EXP = 105806000;
+    long last_exp = 0;
+
+    init_old_exp_table();
+
+    exp_table[0] = 0;
+
+    for (int lvl = 1; lvl < LVL_IMMORT; lvl++) {
+        // Base the experience to level up on the experience gained from
+        // defeating a human rogue mob of the same level. (Chosen because humans
+        // and rogues have no experience modifier.)
+        // The factor of 6.615 was chosen to make ** close to MAX_MORTAL_EXP.
+        long exp = get_set_exp(lvl, RACE_HUMAN, CLASS_ROGUE, -1);
+        last_exp += long((6.615 * exp) / 100) * 100;
+        exp_table[lvl] = last_exp;
+    }
+
+    // Shift everything to make ** exactly equal to MAX_MORTAL_EXP
+    long adj = exp_table[LVL_IMMORT - 1] - MAX_MORTAL_EXP;
+    for (int lvl = 1; lvl < LVL_IMMORT; lvl++) {
+      exp_table[lvl] -= adj;
+    }
+
+    // Exp for immortal levels is irrelevant, so just pick a big number.
+    // Levels need to be at least 2 exp apart to avoid breaking things when
+    // calculating the exp cap for the level.
+    for (int lvl = LVL_IMMORT; lvl <= LVL_IMPL; lvl++) {
+        exp_table[lvl] = 300000001 + 2 * (lvl - LVL_IMMORT - 1);
     }
 }
 
@@ -129,6 +162,28 @@ long exp_next_level(int level, int class_num) {
         gain_factor = EXP_GAIN_FACTOR(class_num);
 
     return exp_table[level] * gain_factor;
+}
+
+long adjust_exp_to_level(int level, int class_num, long exp)
+{
+  if (level < 1 || level >= LVL_IMMORT) {
+    return exp;
+  }
+
+  long prev_level = exp_next_level(level - 1, class_num);
+  long next_level = exp_next_level(level, class_num) - 1;
+  if (exp < prev_level || exp > next_level) {
+    long old_prev = EXP_GAIN_FACTOR(class_num) * old_exp_table[level - 1];
+    long old_next = EXP_GAIN_FACTOR(class_num) * old_exp_table[level] - 1;
+    if (exp < old_prev) {
+      return prev_level;
+    } else if (exp > old_next) {
+      return next_level;
+    }
+    float frac = float(exp - old_prev) / float(old_next - old_prev);
+    return prev_level + long(frac * (next_level - prev_level));
+  }
+  return exp;
 }
 
 /* the "touch" command, essentially. */

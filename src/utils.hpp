@@ -48,6 +48,7 @@ int find_zone(int num);
 int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize);
 void init_flagvectors();
 long exp_next_level(int level, int class_num);
+long adjust_exp_to_level(int level, int class_num, long exp);
 void init_exp_table(void);
 CharData *is_playing(char *vict_name);
 
