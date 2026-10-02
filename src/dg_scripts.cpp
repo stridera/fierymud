@@ -2308,7 +2308,6 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
     char cmd[MAX_INPUT_LENGTH], *p;
     ScriptData *sc = 0;
     CmdlistElement *temp;
-    unsigned long loops = 0;
     void *go = nullptr;
 
     void obj_command_interpreter(ObjData * obj, TrigData * t, char *argument);
@@ -2401,7 +2400,6 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                 temp->original = cl;
             } else {
                 cl = temp;
-                loops = 0;
             }
         } else if (!strncasecmp("switch ", p, 7)) {
             cl = find_case(trig, cl, go, sc, type, p + 7);
@@ -2421,13 +2419,7 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                 if (cl->original && process_if(orig_cmd + 6, go, sc, trig, type)) {
                     cl = cl->original;
                     temp = find_done(cl);
-                    loops++;
                     GET_TRIG_LOOPS(trig)++;
-                    if (loops == 30) {
-                        process_wait(go, trig, type, "wait 1", cl);
-                        depth--;
-                        return ret_val;
-                    }
                     if (GET_TRIG_LOOPS(trig) >= 100) {
                         script_log(trig, "looped 100 times!!!");
                         break;
