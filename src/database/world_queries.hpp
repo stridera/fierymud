@@ -406,6 +406,10 @@ struct CharacterData {
     int hunger = 0;
     int thirst = 0;
 
+    // Body dimensions
+    int height = 0;
+    int weight = 0;
+
     // Description/Title
     std::string description;
     std::string title;

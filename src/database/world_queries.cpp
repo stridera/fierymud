@@ -3272,6 +3272,7 @@ Result<CharacterData> load_character_by_name(pqxx::work &txn, const std::string 
                 c.hit_roll, c.damage_roll, c.armor_class,
                 c.last_login, c.time_played, c.is_online,
                 c.hunger, c.thirst,
+                c.height, c.weight,
                 c.description, c.title,
                 c.prompt, c.page_length, c.wimpy_threshold,
                 c.player_flags,
@@ -3360,6 +3361,12 @@ Result<CharacterData> load_character_by_name(pqxx::work &txn, const std::string 
         character.hunger = row["hunger"].as<int>(0);
         character.thirst = row["thirst"].as<int>(0);
 
+        // Body dimensions
+        if (!row["height"].is_null())
+            character.height = row["height"].as<int>(0);
+        if (!row["weight"].is_null())
+            character.weight = row["weight"].as<int>(0);
+
         // Description/Title
         if (!row["description"].is_null()) {
             character.description = row["description"].as<std::string>();
@@ -3411,6 +3418,7 @@ Result<CharacterData> load_character_by_id(pqxx::work &txn, const std::string &i
                 c.hit_roll, c.damage_roll, c.armor_class,
                 c.last_login, c.time_played, c.is_online,
                 c.hunger, c.thirst,
+                c.height, c.weight,
                 c.description, c.title,
                 c.prompt, c.page_length, c.wimpy_threshold,
                 c.player_flags,
@@ -3481,6 +3489,10 @@ Result<CharacterData> load_character_by_id(pqxx::work &txn, const std::string &i
         character.is_online = row["is_online"].as<bool>(false);
         character.hunger = row["hunger"].as<int>(0);
         character.thirst = row["thirst"].as<int>(0);
+        if (!row["height"].is_null())
+            character.height = row["height"].as<int>(0);
+        if (!row["weight"].is_null())
+            character.weight = row["weight"].as<int>(0);
         if (!row["description"].is_null()) {
             character.description = row["description"].as<std::string>();
         }
@@ -3632,6 +3644,7 @@ Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
                 player_flags = $35::"PlayerFlag"[],
                 kill_tracking_data = $36::jsonb,
                 player_class = $37, class_id = $38,
+                height = $39, weight = $40,
                 updated_at = NOW()
             WHERE id = $1
         )",
@@ -3643,7 +3656,8 @@ Result<void> save_character(pqxx::work &txn, const CharacterData &character) {
             character.damage_roll, character.armor_class, character.time_played, character.hunger, character.thirst,
             character.experience, character.skill_points, character.position, character.title, character.description,
             character.prompt, character.page_length, character.wimpy_threshold, player_flags_array,
-            character.kill_tracking_data, character.player_class, character.class_id);
+            character.kill_tracking_data, character.player_class, character.class_id, character.height,
+            character.weight);
 
         logger->debug("Saved character '{}' successfully", character.name);
         return {};

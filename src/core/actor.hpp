@@ -30,6 +30,7 @@ struct Stats {
     int wisdom = 13;       // Awareness and judgment
     int constitution = 13; // Health and endurance
     int charisma = 13;     // Force of personality
+    int luck = 13;         // Fortune and critical chance
 
     // Derived stats
     int hit_points = 20;     // Current health

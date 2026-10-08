@@ -19,7 +19,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
                    strength, intelligence, wisdom, dexterity, constitution, charisma, luck,
                    hit_points, hit_points_max, stamina, stamina_max,
                    wealth, bank_wealth,
-                   password_hash, race, gender, player_class,
+                   password_hash, race, gender, player_class, class_id,
                    height, weight, base_height, base_weight, base_size, current_size,
                    hit_roll, damage_roll, armor_class,
                    description, title,
@@ -93,7 +93,7 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
         stats.dexterity = row["dexterity"].as<int>(10);
         stats.constitution = row["constitution"].as<int>(10);
         stats.charisma = row["charisma"].as<int>(10);
-        // Note: luck is in database but not in Stats struct - skipped
+        stats.luck = row["luck"].as<int>(13);
         stats.hit_points = row["hit_points"].as<int>(100);
         stats.max_hit_points = row["hit_points_max"].as<int>(100);
         stats.stamina = row["stamina"].as<int>(100);
@@ -107,6 +107,12 @@ Result<std::unique_ptr<Player>> load_player_by_name(pqxx::work &txn, std::string
         long wealth_copper = row["wealth"].as<long>(0);
         player->give_wealth(wealth_copper);
         logger->info("Loaded player '{}' with {} copper in wallet", player_name, wealth_copper);
+
+        // Body dimensions
+        if (!row["height"].is_null())
+            player->set_height(row["height"].as<int>(0));
+        if (!row["weight"].is_null())
+            player->set_weight(row["weight"].as<int>(0));
 
         // Description and title
         if (!row["description"].is_null()) {

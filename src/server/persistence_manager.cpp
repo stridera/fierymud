@@ -67,6 +67,17 @@ Result<void> PersistenceManager::save_player(const Player &player) {
             char_data.stamina = player.stats().stamina;
             char_data.stamina_max = player.stats().max_stamina;
 
+            // Luck
+            char_data.luck = player.stats().luck;
+
+            // Conditions
+            char_data.hunger = player.stats().hunger;
+            char_data.thirst = player.stats().thirst;
+
+            // Body dimensions
+            char_data.height = player.height();
+            char_data.weight = player.weight();
+
             // Currency - use player.wealth() which returns the wallet value
             char_data.wealth = player.wealth();
 

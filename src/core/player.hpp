@@ -167,6 +167,12 @@ class Player : public Actor {
     std::string_view title() const { return title_; }
     void set_title(std::string_view player_title) { title_ = player_title; }
 
+    /** Player body dimensions (in inches/pounds) */
+    int height() const { return height_; }
+    void set_height(int h) { height_ = std::max(0, h); }
+    int weight() const { return weight_; }
+    void set_weight(int w) { weight_ = std::max(0, w); }
+
     /** Player description */
     std::string_view description() const override { return description_; }
     void set_description(std::string_view desc) override { description_ = desc; }
@@ -397,8 +403,10 @@ class Player : public Actor {
     // Character creation fields
     std::string player_class_ = "warrior"; // Default class
     int class_id_ = 0;                     // Database Class table ID
-    std::string title_ = "";               // Player title
+    std::string title_ = "";               // Player title (after name)
     std::string description_ = "";         // Player description
+    int height_ = 0;                       // Body height in inches
+    int weight_ = 0;                       // Body weight in pounds
 
     // Player preferences
     std::bitset<static_cast<size_t>(PlayerFlag::MAX_PLAYER_FLAGS)> player_flags_;

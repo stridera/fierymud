@@ -1067,6 +1067,7 @@ void LoginSystem::handle_select_character(std::string_view input) {
             stats.dexterity = char_data.dexterity;
             stats.constitution = char_data.constitution;
             stats.charisma = char_data.charisma;
+            stats.luck = char_data.luck;
 
             // Set vitals
             stats.hit_points = char_data.hit_points;
@@ -1081,6 +1082,14 @@ void LoginSystem::handle_select_character(std::string_view input) {
 
             // Set experience
             stats.experience = char_data.experience;
+
+            // Conditions
+            stats.hunger = char_data.hunger;
+            stats.thirst = char_data.thirst;
+
+            // Body dimensions
+            player->set_height(char_data.height);
+            player->set_weight(char_data.weight);
 
             // Set player preferences
             player->set_prompt(char_data.prompt);
@@ -1868,6 +1877,7 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
             stats.dexterity = char_data.dexterity;
             stats.constitution = char_data.constitution;
             stats.charisma = char_data.charisma;
+            stats.luck = char_data.luck;
 
             // Set vitals
             stats.hit_points = char_data.hit_points;
@@ -1882,6 +1892,14 @@ Result<std::shared_ptr<Player>> LoginSystem::load_character(std::string_view nam
 
             // Set experience
             stats.experience = char_data.experience;
+
+            // Conditions
+            stats.hunger = char_data.hunger;
+            stats.thirst = char_data.thirst;
+
+            // Body dimensions
+            player->set_height(char_data.height);
+            player->set_weight(char_data.weight);
 
             // Set position from database (persists ghost state, etc.)
             if (auto pos = ActorUtils::parse_position(char_data.position)) {
@@ -2066,6 +2084,7 @@ Result<std::shared_ptr<Player>> LoginSystem::create_character() {
         stats.dexterity = char_data.dexterity;
         stats.constitution = char_data.constitution;
         stats.charisma = char_data.charisma;
+        stats.luck = char_data.luck;
 
         // Set vitals
         stats.hit_points = char_data.hit_points;
