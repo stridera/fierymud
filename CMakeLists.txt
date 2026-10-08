@@ -19,7 +19,7 @@ elseif(SCCACHE_PROGRAM)
 endif()
 
 # Option to enable sanitizers for debugging memory issues
-# Default OFF - ASAN adds 2-3x memory overhead which can crash WSL2.
+# Default OFF - ASAN adds 2-3x memory overhead.
 # Enable explicitly with: cmake -DENABLE_SANITIZERS=ON
 option(ENABLE_SANITIZERS "Enable Address and Undefined Behavior sanitizers" OFF)
 

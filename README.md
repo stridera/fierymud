@@ -9,7 +9,7 @@ FieryMUD will continue to grow and change through the coming years and those pla
 
 ### System Dependencies
 
-**Ubuntu/Debian (including WSL2):**
+**Ubuntu/Debian:**
 
 ```bash
 sudo apt update

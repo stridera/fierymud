@@ -13,10 +13,9 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$SCRIPT_DIR/build"
 
-# Default to half of available cores, minimum 2
+# Default to all available cores
 TOTAL_CORES=$(nproc 2>/dev/null || echo 4)
-DEFAULT_JOBS=$(( (TOTAL_CORES + 1) / 2 ))
-DEFAULT_JOBS=$(( DEFAULT_JOBS < 2 ? 2 : DEFAULT_JOBS ))
+DEFAULT_JOBS=$TOTAL_CORES
 
 JOBS=$DEFAULT_JOBS
 TARGET=""
