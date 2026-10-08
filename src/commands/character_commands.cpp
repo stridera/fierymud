@@ -1557,7 +1557,7 @@ Result<CommandResult> cmd_set(const CommandContext &ctx) {
         ctx.send("<b:white>Usage:</> set <target> <field> <value>");
         ctx.send("        Use 'self' or 'me' to target yourself");
         ctx.send("");
-        ctx.send("<b:cyan>Stats:</> str, int, wis, dex, con, cha");
+        ctx.send("<b:cyan>Stats:</> str, int, wis, dex, con, cha, luck");
         ctx.send("<b:cyan>Points:</> hp, maxhp, move, maxmove");
         ctx.send("<b:cyan>Offensive:</> accuracy, attackpower, spellpower, penetration");
         ctx.send("<b:cyan>Defensive:</> evasion, armor, soak, hardness, ward");
@@ -1565,7 +1565,9 @@ Result<CommandResult> cmd_set(const CommandContext &ctx) {
         ctx.send("<b:cyan>Other:</> perception, concealment, focus");
         ctx.send("<b:cyan>Progress:</> level, exp, align");
         ctx.send("<b:cyan>Character:</> class, race, gender, size, title");
-        ctx.send("<b:cyan>Player:</> home");
+        ctx.send("<b:cyan>Body:</> height, weight");
+        ctx.send("<b:cyan>Conditions:</> hunger, thirst, drunk (0-24)");
+        ctx.send("<b:cyan>Player:</> home, recall");
         ctx.send("<b:cyan>Flags:</> brief, compact, autoloot, autogold, autosplit,");
         ctx.send("        autoexit, wimpy, afk, deaf, notell, pk, holylight, showids");
         ctx.send("<b:cyan>Skills:</> skill <skill_name> <value>");
@@ -2252,6 +2254,139 @@ Result<CommandResult> cmd_set(const CommandContext &ctx) {
         }
         target_player->bank() = *money;
         ctx.send_success(fmt::format("{}'s bank set to {}.", target->name(), target_player->bank().to_brief()));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // BODY DIMENSIONS
+    // =========================================================================
+    if (field == "height") {
+        if (!target_player) {
+            ctx.send_error("Only players have height.");
+            return CommandResult::InvalidTarget;
+        }
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Height must be a number (inches).");
+            return CommandResult::InvalidSyntax;
+        }
+        target_player->set_height(std::max(0, *val));
+        ctx.send_success(fmt::format("{}'s height set to {} inches.", target->name(), target_player->height()));
+        return CommandResult::Success;
+    }
+
+    if (field == "weight") {
+        if (!target_player) {
+            ctx.send_error("Only players have body weight.");
+            return CommandResult::InvalidTarget;
+        }
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Weight must be a number (pounds).");
+            return CommandResult::InvalidSyntax;
+        }
+        target_player->set_weight(std::max(0, *val));
+        ctx.send_success(fmt::format("{}'s weight set to {} pounds.", target->name(), target_player->weight()));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // CONDITIONS (hunger/thirst/drunk)
+    // =========================================================================
+    if (field == "hunger") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error(fmt::format("Hunger must be a number ({}-{}).", Stats::CONDITION_MIN, Stats::CONDITION_MAX));
+            return CommandResult::InvalidSyntax;
+        }
+        stats.hunger = std::clamp(*val, Stats::CONDITION_MIN, Stats::CONDITION_MAX);
+        ctx.send_success(fmt::format("{}'s hunger set to {} ({}).", target->name(), stats.hunger,
+                                     stats.hunger == Stats::CONDITION_MAX ? "full"
+                                     : stats.is_starving()                ? "starving"
+                                     : stats.is_hungry()                  ? "hungry"
+                                                                          : "ok"));
+        return CommandResult::Success;
+    }
+
+    if (field == "thirst") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error(fmt::format("Thirst must be a number ({}-{}).", Stats::CONDITION_MIN, Stats::CONDITION_MAX));
+            return CommandResult::InvalidSyntax;
+        }
+        stats.thirst = std::clamp(*val, Stats::CONDITION_MIN, Stats::CONDITION_MAX);
+        ctx.send_success(fmt::format("{}'s thirst set to {} ({}).", target->name(), stats.thirst,
+                                     stats.thirst == Stats::CONDITION_MAX ? "quenched"
+                                     : stats.is_parched()                 ? "parched"
+                                     : stats.is_thirsty()                 ? "thirsty"
+                                                                          : "ok"));
+        return CommandResult::Success;
+    }
+
+    if (field == "drunk") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error(fmt::format("Drunk must be a number ({}-{}).", Stats::CONDITION_MIN, Stats::CONDITION_MAX));
+            return CommandResult::InvalidSyntax;
+        }
+        stats.drunk = std::clamp(*val, Stats::CONDITION_MIN, Stats::CONDITION_MAX);
+        ctx.send_success(fmt::format("{}'s drunk set to {} ({}).", target->name(), stats.drunk,
+                                     stats.drunk == 0       ? "sober"
+                                     : stats.is_too_drunk() ? "wasted"
+                                     : stats.is_slurring()  ? "slurring"
+                                                            : "tipsy"));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // LUCK
+    // =========================================================================
+    if (field == "luck") {
+        auto val = parse_number(value_str);
+        if (!val) {
+            ctx.send_error("Luck must be a number.");
+            return CommandResult::InvalidSyntax;
+        }
+        int clamped = std::clamp(*val, 1, 100);
+        stats.luck = clamped;
+        ctx.send_success(fmt::format("{}'s luck set to {}.", target->name(), clamped));
+        return CommandResult::Success;
+    }
+
+    // =========================================================================
+    // RECALL ROOM (touchstone location, separate from home/start room)
+    // =========================================================================
+    if (field == "recall" || field == "recallroom") {
+        if (!target_player) {
+            ctx.send_error("Only players have recall rooms.");
+            return CommandResult::InvalidTarget;
+        }
+
+        EntityId room_id;
+        if (value_str.empty() || value_str == "here") {
+            if (!ctx.room) {
+                ctx.send_error("You're not in a valid room.");
+                return CommandResult::InvalidState;
+            }
+            room_id = ctx.room->id();
+        } else {
+            auto room_id_opt = CommandParserUtils::parse_entity_id(value_str);
+            if (!room_id_opt || !room_id_opt->is_valid()) {
+                ctx.send_error("Invalid room ID.");
+                return CommandResult::InvalidSyntax;
+            }
+            room_id = *room_id_opt;
+        }
+
+        auto room = WorldManager::instance().get_room(room_id);
+        if (!room) {
+            ctx.send_error(fmt::format("Room {}:{} does not exist.", room_id.zone_id(), room_id.local_id()));
+            return CommandResult::InvalidTarget;
+        }
+
+        target_player->set_recall_room(room_id);
+        ctx.send_success(fmt::format("{}'s recall room set to {}:{} ({}).", target->name(), room_id.zone_id(),
+                                     room_id.local_id(), room->name()));
         return CommandResult::Success;
     }
 
