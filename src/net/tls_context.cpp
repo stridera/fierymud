@@ -150,12 +150,12 @@ Result<void> TLSContextManager::setup_cipher_list() {
     try {
         // Set secure cipher list (modern, secure ciphers only)
         SSL_CTX *ctx = ssl_context_.native_handle();
-        // ECDHE-only ciphers - DHE removed to avoid slow DH key generation on WSL
+        // ECDHE ciphers for both ECDSA and RSA certificates
         const char *cipher_list =
+            "ECDHE-ECDSA-AES256-GCM-SHA384:"
+            "ECDHE-ECDSA-AES128-GCM-SHA256:"
             "ECDHE-RSA-AES256-GCM-SHA384:"
-            "ECDHE-RSA-AES128-GCM-SHA256:"
-            "ECDHE-RSA-AES256-SHA384:"
-            "ECDHE-RSA-AES128-SHA256";
+            "ECDHE-RSA-AES128-GCM-SHA256";
 
         if (SSL_CTX_set_cipher_list(ctx, cipher_list) != 1) {
             return std::unexpected(Error{ErrorCode::NetworkError, "Failed to set TLS cipher list"});
