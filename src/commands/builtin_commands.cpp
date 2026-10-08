@@ -760,6 +760,30 @@ std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
     who << "<b:white>Players currently online</>\n";
     who << "<b:black>-----------------------------------------------</>\n";
 
+    // Fixed bracket content width for consistent alignment (fits "99 Anti-Paladin")
+    constexpr size_t bracket_width = 16;
+
+    // Right-pad a string (which may contain color tags) to a fixed visible width
+    auto pad_to_width = [](const std::string &content, size_t width) -> std::string {
+        auto visible_len = TextFormat::strip_colors(content).size();
+        if (visible_len >= width) {
+            return content;
+        }
+        return content + std::string(width - visible_len, ' ');
+    };
+
+    // Center a string (which may contain color tags) within a fixed visible width
+    auto center_in_width = [](const std::string &content, size_t width) -> std::string {
+        auto visible_len = TextFormat::strip_colors(content).size();
+        if (visible_len >= width) {
+            return content;
+        }
+        auto pad = width - visible_len;
+        auto left = pad / 2;
+        auto right = pad - left;
+        return std::string(left, ' ') + content + std::string(right, ' ');
+    };
+
     // Display immortals first with colored rank titles
     for (const auto &actor : immortals) {
         int level = actor->stats().level;
@@ -768,22 +792,22 @@ std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
 
         if (level >= 105) {
             rank_color = "b:black";
-            rank_title = "  Overlord ";
+            rank_title = "Overlord";
         } else if (level >= 104) {
             rank_color = "yellow";
-            rank_title = " SoulForger";
+            rank_title = "SoulForger";
         } else if (level >= 103) {
             rank_color = "b:red";
-            rank_title = " MajorDeity";
+            rank_title = "MajorDeity";
         } else if (level >= 102) {
             rank_color = "green";
-            rank_title = " MinorDeity";
+            rank_title = "MinorDeity";
         } else if (level >= 101) {
             rank_color = "red";
-            rank_title = " QuasiDeity";
+            rank_title = "QuasiDeity";
         } else {
             rank_color = "b:white";
-            rank_title = "    Avatar ";
+            rank_title = "Avatar";
         }
 
         // Build status flags
@@ -801,8 +825,11 @@ std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
             title_str = fmt::format(" {}", player->title());
         }
 
-        who << fmt::format(" <b:white>[</><{}>{}  </><b:white>]</> {}{}{}\n", rank_color, rank_title,
-                           actor->display_name(), title_str, flags);
+        // Build bracket content: default rank title, centered
+        auto bracket_content = center_in_width(fmt::format("<{}>  {}</>", rank_color, rank_title), bracket_width);
+
+        who << fmt::format(" <b:white>[</> {} <b:white>]</> {}{}{}\n", bracket_content, actor->display_name(),
+                           title_str, flags);
     }
 
     // Display mortals with class and level
@@ -848,8 +875,12 @@ std::string format_who_list(const std::vector<std::shared_ptr<Actor>> &actors) {
             title_str = fmt::format(" {}", player->title());
         }
 
-        who << fmt::format(" <b:white>[</><{}>{:>3}</> {}  <b:white>]</> {}{}{}\n", level_color, level, class_name,
-                           actor->display_name(), title_str, flags);
+        // Build bracket content: "LVL Class" right-padded to fixed width
+        auto bracket_content =
+            pad_to_width(fmt::format("<{}>{:>3}</> {}", level_color, level, class_name), bracket_width);
+
+        who << fmt::format(" <b:white>[</> {} <b:white>]</> {}{}{}\n", bracket_content, actor->display_name(),
+                           title_str, flags);
     }
 
     // Summary line
