@@ -49,6 +49,25 @@ void half_chop(char *string, char *arg1, char *arg2);
 void command_interpreter(CharData *ch, char *argument);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
 
+void perform_teleport(CharData* ch, CharData* victim, int location, const char* victimMsg, const char* leaveMsg, const char* arriveMsg) {
+    bool wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
+
+    dismount_char(victim);
+    if (victimMsg) {
+        act(victimMsg, false, ch, 0, victim, TO_VICT);
+    }
+    if (leaveMsg) {
+        act(leaveMsg, true, victim, 0, victim, TO_ROOM);
+    }
+    char_from_room(victim);
+
+    char_to_room(victim, location);
+    if (arriveMsg) {
+        act(arriveMsg, true, victim, 0, victim, TO_ROOM);
+    }
+    check_new_surroundings(victim, wasdark, false);
+}
+
 ASPELL(spell_acid_fog) {
     DelayedCastEventObj *event_obj;
 
@@ -178,27 +197,16 @@ ASPELL(spell_banish) {
         act("You resist.", false, ch, 0, victim, TO_VICT);
         if (IS_NPC(victim) && !FIGHTING(victim))
             attack(victim, ch);
+        roll = 0;
+    } else {
+        /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
+        roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim);
     }
 
-    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
-    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim); 
-
-    /* Failure */
-    if (roll < 50) {
-        act("Nothing happens.", false, ch, 0, victim, TO_ROOM);
-        char_printf(ch, "Nothing happens.\n");
-    }
-
-    act("$N disappears in a flash of light!", false, ch, 0, victim, TO_CHAR);
-    act("$N disappears in a flash of light!", false, ch, 0, victim, TO_NOTVICT);
-    act("&9&bYou are banished!&0", false, ch, 0, victim, TO_VICT);
-
-    wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
-    dismount_char(victim);
-
-    /* Success */
     if (roll > 100) {
+        /* Success */
         if (IS_NPC(victim)) {
+            act("$N disappears in a flash of light!", false, ch, 0, victim, TO_NOTVICT);
             roll = random_number (0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
             if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
                 extract_objects(victim);
@@ -208,11 +216,20 @@ ASPELL(spell_banish) {
                 log("SYSERR: Could not find homeroom for victim of spell 'banish'.");
                 to_room = 0;
             }
-            char_from_room(victim);
-            char_to_room(victim, to_room);
-            act("&7&b$n&7&b appears in a flash of light!&0", true, victim, 0, 0, TO_ROOM);
-            check_new_surroundings(victim, wasdark, true);
+
+            perform_teleport(
+                victim,
+                victim,
+                to_room,
+                "&9&bYou are banished!&0",
+                "$N disappears in a flash of light!",
+                "$N appears in a flash of light!"
+            );
         }
+    } else {
+        /* Failure */
+        act("Nothing happens.", false, ch, 0, victim, TO_ROOM);
+        char_printf(ch, "Nothing happens.\n");
     }
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -632,18 +649,14 @@ ASPELL(spell_dimension_door) {
     czone = world[ch->in_room].zone;
     tzone = world[victim->in_room].zone;
     if (czone == tzone) {
-        dismount_char(ch);
-        act("&9&bYou quickly enter the black rift that tears open at your "
-            "command...&0",
-            false, ch, 0, victim, TO_CHAR);
-        act("&9&bA black rift in space tears open and $n&9&b steps inside.&0", true, ch, 0, victim, TO_ROOM);
-        wasdark = IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch);
-
-        char_from_room(ch);
-        char_to_room(ch, victim->in_room);
-
-        act("&9&bA black rift in space tears open and $n&9&b steps out grinning.&0", true, ch, 0, 0, TO_ROOM);
-        check_new_surroundings(ch, wasdark, true);
+        perform_teleport(
+            ch,
+            ch,
+            victim->in_room,
+            "&9&bYou quickly enter the black rift that tears open at your command...&0",
+            "&9&bA black rift in space tears open and $n&9&b steps inside.&0",
+            "&9&bA black rift in space tears open and $n&9&b steps out, grinning.&0"
+        );
     } else {
         act("&9&bYour magics are not strong enough for such a great journey.&0", false, ch, 0, 0, TO_CHAR);
         act("&9&bA rift in space opens up, wavers, then dissipates into thin "
@@ -1790,21 +1803,15 @@ ASPELL(spell_relocate) {
             char_printf(ch, "You are already here.\n");
             return CAST_RESULT_CHARGE;
         }
-        dismount_char(ch);
-        act("&7&bYour body begins to fade from existence, &9then you black "
-            "out...&0",
-            false, ch, 0, 0, TO_CHAR);
-        act("&7&b$n&7&b's molecules loosen and eventually dissipate into thin "
-            "air.&0",
-            true, ch, 0, 0, TO_ROOM);
-        wasdark = IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch);
-        char_from_room(ch);
-        char_to_room(ch, victim->in_room);
-        act("&6&bThe air begins to thicken, slowly revealing a living form...&0\n\
-         &7&b$n&7&b's molecules condense and finally take hold... "
-            "$n&7&b appears quite tired.&0",
-            true, ch, 0, 0, TO_ROOM);
-        check_new_surroundings(ch, wasdark, true);
+        perform_teleport(
+            ch,
+            ch,
+            victim->in_room,
+            "&7&bYour body begins to fade from existence, &9then you black out...&0",
+            "&7&b$n&7&b's molecules loosen and eventually dissipate into thin air.&0",
+            "&6&bThe air begins to thicken, slowly revealing a living form...&0\n"
+                "&7&b$n&7&b's molecules condense and finally take hold... $n&7&b appears quite tired.&0"
+        );
         GET_POS(ch) = POS_SITTING;
         GET_STANCE(ch) = STANCE_RESTING;
     }
@@ -2505,7 +2512,6 @@ ASPELL(spell_dispel_magic) {
 /* See if the room permits recalling.  If not, sends a message
  * to the player and the room and returns false.
  * Otherwise returns true. */
-
 int room_recall_check(CharData *ch, CharData *victim, ObjData *obj) {
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -2540,44 +2546,21 @@ ASPELL(spell_recall) {
         log("SYSERR: Could not find homeroom for victim of spell 'recall'.");
         return 0;
     }
-    dismount_char(victim);
+
     act("$n utters a single word...", true, victim, 0, 0, TO_ROOM);
-    act("&7&b$n&7&b disappears in a bright flash of light!&0", true, victim, 0, 0, TO_ROOM);
-    wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
-
-    char_from_room(victim);
-    char_to_room(victim, location);
-    act("&7&b$n&7&b appears in a bright flash of light.&0", true, victim, 0, 0, TO_ROOM);
-    check_new_surroundings(victim, wasdark, false);
+    perform_teleport(
+        victim,
+        victim,
+        location,
+        nullptr,
+        "&7&b$n&7&b disappears in a bright flash of light!&0",
+        "&7&b$n&7&b appears in a bright flash of light.&0"
+    );
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
-ASPELL(spell_world_teleport) {
-    room_num to_room;
-
-    if (victim == nullptr || IS_NPC(victim))
-        return 0;
-
-    do {
-        to_room = random_number(0, top_of_world);
-    } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH) ||
-             ROOM_FLAGGED(to_room, ROOM_GODROOM));
-
-    act("$n slowly fades out of existence and is gone.", false, victim, 0, 0, TO_ROOM);
-    char_from_room(victim);
-    char_to_room(victim, to_room);
-    act("$n slowly fades into existence.", false, victim, 0, 0, TO_ROOM);
-    look_at_room(victim, 0);
-    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-}
-
-ASPELL(spell_teleport) {
-    int location, to_room;
-    RoomData *rm = &world[ch->in_room];
-    int zone = rm->zone, tries = 100;
-    bool wasdark;
-
+void perform_teleport_spell(CharData* ch, CharData* victim, int skill, int minRoom, int maxRoom, bool isVnum) {
     /* Check for success. */
     if (random_number(1, 100) > 10 + skill * 2) {
         char_printf(ch, "&7The spell swirls about and dies away.&0\n");
@@ -2585,35 +2568,58 @@ ASPELL(spell_teleport) {
             act("&7$n tries to teleport $mself, but fails.&0", false, ch, 0, victim, TO_NOTVICT);
         else
             act("&7$n tries to teleport $N, but fails.&0", false, ch, 0, victim, TO_NOTVICT);
-        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        return;
     }
 
-    do {
-        location = random_number((zone_table[zone].number) * 100, zone_table[zone].top);
-        tries--;
-    } while (((to_room = real_room(location)) < 0 ||
-              (ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH))) &&
-             tries);
+    int location = -1;
+    for (int tries = 100; tries > 0; --tries) {
+        int room = random_number(minRoom, maxRoom);
+        if (isVnum) {
+            room = real_room(room);
+        }
+        if (room < 0 || ROOM_FLAGGED(room, ROOM_PRIVATE) || ROOM_FLAGGED(room, ROOM_DEATH) || ROOM_FLAGGED(room, ROOM_GODROOM)) {
+            continue;
+        }
+        location = room;
+    }
 
     /* Here's how the above fails to be a infinite loop, crashing the mud,
      * when the area has no suitable destination rooms. */
-    if (!tries) {
+    if (location < 0) {
         act("$n flickers briefly.", false, victim, 0, 0, TO_ROOM);
         char_printf(victim, "The spell sputters out.\n");
-        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        if (ch != victim) {
+            char_printf(ch, "The spell sputters out.\n");
+        }
+        return;
     }
 
-    act("&9&b$n &9&bslowly fades out of existence and is gone.&0", false, victim, 0, 0, TO_ROOM);
-    act("&9&bYou feel your body being pulled in all directions, then find "
-        "yourself elsewhere.&0",
-        false, ch, 0, victim, TO_VICT);
-    wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
-    dismount_char(victim);
-    char_from_room(victim);
-    char_to_room(victim, to_room);
-    act("&7&b$n&7&b fades into existence.&0", false, victim, 0, 0, TO_ROOM);
-    check_new_surroundings(victim, wasdark, true);
+    perform_teleport(
+        ch,
+        victim,
+        location,
+        "&9&bYou feel your body being pulled in all directions, then find yourself elsewhere.&0",
+        "&9&b$n &9&bslowly fades out of existence and is gone.&0",
+        "&7&b$n&7&b fades into existence.&0"
+    );
+}
 
+ASPELL(spell_world_teleport) {
+    if (victim == nullptr || IS_NPC(victim))
+        return 0;
+
+    perform_teleport_spell(ch, victim, skill, 0, top_of_world, false);
+    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+}
+
+ASPELL(spell_teleport) {
+    if (victim == nullptr || IS_NPC(victim))
+        return 0;
+
+    RoomData *rm = &world[ch->in_room];
+    int zone = rm->zone;
+
+    perform_teleport_spell(ch, victim, skill, (zone_table[zone].number) * 100, zone_table[zone].top, true);
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
@@ -2691,16 +2697,15 @@ ASPELL(spell_summon) {
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
-    dismount_char(victim);
-    act("$n disappears suddenly.", true, victim, 0, 0, TO_ROOM);
-    wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
+    perform_teleport(
+        ch,
+        victim,
+        ch->in_room,
+        "$n has summoned you!",
+        "$n disappears suddenly.",
+        "$n arrives suddenly."
+    );
 
-    char_from_room(victim);
-    char_to_room(victim, ch->in_room);
-
-    act("$n arrives suddenly.", true, victim, 0, 0, TO_ROOM);
-    act("$n has summoned you!", false, ch, 0, victim, TO_VICT);
-    check_new_surroundings(victim, wasdark, true);
     WAIT_STATE(ch, PULSE_VIOLENCE * 4);
 
     /*   if the target of the successful summon is an NPC, make it */
