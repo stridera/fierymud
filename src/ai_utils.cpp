@@ -624,7 +624,7 @@ void glorion_distraction(CharData *ch, CharData *glorion) {
         event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, glorion, 0), true, &(ch->events), 0);
     } else {
         /* Glory wins: no attack. */
-        if (true || random_number(1, 8) == 1) {
+        if (random_number(1, 8) == 1) {
             act("$n looks upon $N with awe in $s eyes.", true, ch, 0, glorion, TO_NOTVICT);
             act("$n gazes at you in wonder.", true, ch, 0, glorion, TO_VICT);
             act("You are distracted by $N's unearthly beauty.", true, ch, 0, glorion, TO_CHAR);
